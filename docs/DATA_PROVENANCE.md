@@ -406,16 +406,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety pinned reading-order payloads remain under
-[`src/data/`](../src/data): 288 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 289 active files hold
-31,088 issue records covering 19,310 distinct tracked identities. The visible files hold 30,601 of those records;
+Two hundred and ninety-one pinned reading-order payloads remain under
+[`src/data/`](../src/data): 289 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 290 active files hold
+31,107 issue records covering 19,317 distinct tracked identities. The visible files hold 30,620 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 289 active payloads, 26,210
-records carry a cover URL and 24,616 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 290 active payloads, 26,229
+records carry a cover URL and 24,633 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -502,15 +502,15 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 1 | The owner's five selections, expanded into six verified collection groups with an explicit approval for both books at position 3 |
+| Selected by raymond-nassar for MCU Prep | 2 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger |
 
-The 211 active source orders generate 288 visible Reading Lists. Marvel Knights to Planet X is the only
+The 212 active source orders generate 289 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
 against the current visible catalog rather than copied into historical reports. Its current
-report records 84 overlapping child-and-peer pairs across 24 visible peers, including one
-three-issue Iron Fist, nine-issue Daredevil and seven-issue Fantastic Four companion relationships,
+report records 85 overlapping child-and-peer pairs across 25 visible peers, including the
+three-issue Iron Fist, nine-issue Daredevil, seven-issue Fantastic Four and six-issue Brand New Day companion relationships,
 while preserving all earlier pairs.
 
 ### Secret Wars fast track and MCU Prep
@@ -573,16 +573,14 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 208 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 207 active
-local source files and the retired owner-selected No Way Home checklist. The two upstream
-Hickman checklists are fetched separately when vendored. The active local sources
-comprise eight assembled from series metadata, 148 from reviewed Comic Book Herald selections,
-thirty-nine from reviewed Comic Book Reading Orders selections, nine compiled by hand, and two
-owner-authored MCU Prep selections, plus one compiled from the owner's selected Comic Book Herald
-excerpt.
-Every file carries its own derivation trail. The 148 Comic Book Herald sources name that guide
-on their catalog cards and link to the exact page or section followed. Thirty-nine reference
-Comic Book Reading Orders and name it on their card.
+The 211 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 210 active
+local source files and the retired owner-selected No Way Home checklist. The upstream full
+Hickman checklist is fetched separately when vendored. The fast-track checklist serves two
+independent Reading Lists, so local-file and source-order counts differ.
+The active local sources include publication-order metadata, reviewed Comic Book Herald and
+Comic Book Reading Orders selections, and owner-authored compilations.
+Every file carries its own derivation trail. Cards credit the source followed and link to its
+exact page or section; an owner compilation does not acquire a third-party source's identity.
 
 ### Design mockups
 
@@ -610,7 +608,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 288 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 290 active reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -1081,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7041-7080`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7074-7113`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11095-11220`.
+`src/data/catalog.json:11135-11260`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2161,3 +2159,55 @@ progress, availability states and launch behavior are unchanged. Reader backups 
 new list through the existing format. Completion and enjoyment belong to the separate existing
 history store, remain untouched by importing this guide, and require their separate history backup
 for portability; they are not invented fields in a reader backup.
+
+## Owner-authored MCU Prep: Spider-Man: Brand New Day
+
+[Issue #705](https://github.com/raymond-nassar/recap-page/issues/705) supplies three first-trade
+selections. The [source ledger](../scripts/data/owner-selections/mcu-prep-spider-man-brand-new-day.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-spider-man-brand-new-day.json) and
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-spider-man-brand-new-day.json) retain
+twenty intended original positions and nineteen publishable originals. The original research
+files remain unchanged from source commit 3178fc805b2e408246cc5332846f3d6405a32fa3.
+
+| Owner selection | Original boundary | Intended / published |
+|---|---|---|
+| Coming Home | Amazing Spider-Man (1999) #30-35 | 6 / 6 |
+| Brand New Day Vol. 1 | Amazing Spider-Man (1999) #546-551, Swing Shift original 20809, and material from Venom Super Special (1995) #1 | 8 / 7 |
+| Back to Basics | Amazing Spider-Man (2018) #1-5, then whole FCBD 2018 Amazing Spider-Man #1, original 66474 | 6 / 6 |
+
+Source position 14, selection 2 within-book position 8, remains the source-identified Venom
+Super Special original 59715 under open assigned [Issue #707](https://github.com/raymond-nassar/recap-page/issues/707).
+The nonempty gap ledger retains its original HTTP 404 and unsuccessful exact-title and broader
+search receipts. The published checklist has no checkbox or invented placeholder for that
+unresolved original. A neighboring special, collection or guessed identity is not substituted.
+This is a metadata gap, not an assertion that the comic is unavailable on Marvel Unlimited.
+
+The [delegated enumeration ruling](https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920)
+keeps 66474 last at source position 20 and published position 19. Publisher enumeration is not
+physical page-order verification. The selected bonus stories open their whole original comics,
+including other material; the collection labels keep that qualification local to this guide.
+The exact Venom sub-story title remains unverified, and Back to Basics' conflicting 136/152-page
+records do not expand its five-issue core. The 2018 run is the newest of the three selected starts,
+not the current run, and no direct film-adaptation claim or omitted reset story is promised.
+
+On 2026-10-06, nineteen authorized exact-detail requests supplied genuine cache records for the
+published originals. Each identity and raw-response hash matched its preserved earlier receipt.
+Earlier dates and hashes remain unchanged, and fresh captures are labelled fresh. Offline
+single-target vendoring used those records without searches, bibliography or series requests,
+source14 retries, or cover-byte downloads. All nineteen rows have cover URLs and digital IDs;
+originals 43128 and 43132 retain empty provider creator arrays rather than invented credits.
+
+The [publication-time full-library report](../scripts/data/owner-overlaps/mcu-prep-spider-man-brand-new-day.json)
+covers 289 existing descriptors, including all 78 generated children and the retained hidden
+parent. Actual central model review approved five partial intersections and 284 no-overlap
+pairs, with no exact duplicates or subset relationships. The shared Coming Home originals stay
+in both contexts, including six of the seven originals in Marvel Knights chapter 07. Only that
+new pair is added to the mutable child index; frozen peer reports and receipts remain unchanged.
+
+The guide is one independently discoverable selected-depth MCU Prep choice, credited to
+raymond-nassar with `sourceLicense: null`. The fixed fourteen-source CBH inventory, other guide
+vectors, retired owner No Way Home archive, runtime dependencies, storage schema, origin,
+availability model and reader launch semantics are unchanged. Existing saved lists, shared
+original-ID progress, notes and overrides remain intact. Reader backups retain an imported guide
+through the existing format. Completion and enjoyment history remains separate and still needs
+its own history backup for portability; it is not added to reader backups.
