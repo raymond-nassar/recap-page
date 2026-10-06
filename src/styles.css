@@ -1041,13 +1041,15 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 .row-actions { position: relative; }
 .row-actions-toggle { display: none; }
-.ract { display: flex; gap: var(--space-2); opacity: 0; }
+.ract { display: flex; flex-wrap: wrap; max-width: 28ch; gap: var(--space-2); opacity: 0; }
 .row:hover .ract, .row:focus-within .ract { opacity: 1; }
 .mini {
   border: 1px solid var(--line-2); background: none; color: var(--muted);
   border-radius: 6px; padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
 }
 .mini-label { display: none; }
+.availability-choice .mini-label { display: inline; }
+.availability-choice .mini-icon { display: none; }
 .mini:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .mini-danger:hover { color: var(--red-fg); }
 

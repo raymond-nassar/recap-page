@@ -109,7 +109,7 @@ stays untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
-and `import-draft-lifecycle` journeys require
+`import-draft-lifecycle` and `reading-state-clarity` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.

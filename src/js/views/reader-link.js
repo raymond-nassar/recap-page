@@ -87,7 +87,8 @@ export function createReaderLinkView({
     nodes.summary.textContent = eligible
       ? `Original: ${originalReaderDescription(issue)}. ${current === null
         ? 'Using the original link.'
-        : `Temporary reader link in this tab: ${readerUrl(current)}.`} ${TEMPORARY_LINK_LIFETIME}`
+        : `Temporary reader link in this tab: ${readerUrl(current)}.`}${current !== null || (draft && !draft.stale && matches(draft, issue))
+        ? ` ${TEMPORARY_LINK_LIFETIME}` : ''}`
       : 'A matching saved comic reference is needed. Temporary links do not verify comic identity or access.';
     if (draft && (!eligible || !matches(draft, issue))) {
       draft.stale = true;

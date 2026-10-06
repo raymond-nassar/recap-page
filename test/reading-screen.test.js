@@ -105,7 +105,7 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
   ]) {
     assert.ok(reading.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
   }
-  assert.match(reading, /availabilityOverrideAction\(item\.override\)/);
+  assert.match(reading, /tooltip: label/);
 });
 
 test('narrow reading rows use a labeled disclosure instead of unexplained symbols', () => {
@@ -115,8 +115,11 @@ test('narrow reading rows use a labeled disclosure instead of unexplained symbol
   assert.match(reading, /'aria-controls': panelId/);
   assert.match(reading, /'aria-label': `More actions for \$\{item\.title\}`/);
   assert.match(reading, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
-  for (const label of ['Move up', 'Move down', 'Change Unlimited status', 'Remove from list']) {
+  for (const label of ['Move up', 'Move down', 'Remove from list']) {
     assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
+  }
+  for (const label of ['Mark as available', 'Mark as unavailable', 'Clear availability override']) {
+    assert.ok(reading.includes(`'${label}'`), `the explicit availability actions are missing ${label}`);
   }
 
   assert.match(css, /@media \(max-width: 620px\) \{[\s\S]*?\.row-actions-toggle \{\s*display: flex/);

@@ -105,8 +105,6 @@ export function createCompletionView({
       announce(rating === 'up' ? 'Enjoyment saved: enjoyed.'
         : rating === 'down' ? 'Enjoyment saved: did not enjoy.' : 'Enjoyment choice cleared.');
     }
-    if (kind === 'rate' && rating === 'down' && currentAction(frame, result)
-      && history.isCompleted(getState(), getListId())) showFeedback(opener);
   }
 
   function cancelRecommendations() {

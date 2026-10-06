@@ -184,6 +184,12 @@ export const completionLifecycle = {
     t.check('completion and optional enjoyment survive reload without a reader write',
       await raw(page) === before && (await history(page)).records[0].rating === 'up');
     await click(page, '#btn-disliked-list');
+    await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-disliked-list').disabled);
+    t.check('negative enjoyment saves without interrupting reading or opening reporting',
+      !await page.$eval('#list-feedback', (dialog) => dialog.open)
+      && (await history(page)).records[0].rating === 'down' && feedbackRequests.length === 0);
+    await click(page, '#btn-list-feedback-guide');
     await page.waitForSelector('#list-feedback[open]');
     const feedback = await page.evaluate(() => ({
       href: document.querySelector('#list-feedback-link').href,
@@ -219,10 +225,10 @@ export const completionLifecycle = {
       && await page.$eval('#announcer', (node) => !/report.*(?:received|submitted|sent)/i.test(node.textContent)));
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => !document.querySelector('#list-feedback').open
-      && document.activeElement.id === 'btn-disliked-list');
-    t.check('feedback Escape restores visible thumb focus',
+      && document.activeElement.id === 'btn-list-feedback-guide');
+    t.check('feedback Escape restores visible explicit-report opener focus',
       await page.evaluate(() => !document.querySelector('#list-feedback').open
-        && document.activeElement.id === 'btn-disliked-list' && document.activeElement.checkVisibility()));
+        && document.activeElement.id === 'btn-list-feedback-guide' && document.activeElement.checkVisibility()));
     for (const [width, height] of [[1280, 900], [390, 844]]) {
       await page.setViewport({ width, height });
       await click(page, '#btn-list-feedback-guide');

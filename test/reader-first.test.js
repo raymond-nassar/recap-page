@@ -55,7 +55,8 @@ test('comic details put Read before artwork and technical help, with a separate 
     assert.ok(help.includes(`id="reader-link-${id}"`), `${id} must remain in troubleshooting`);
   }
   assert.doesNotMatch(help, /id="reader-link-temporary"/);
-  assert.match(help, /id="issue-focus-availability"/);
+  assert.doesNotMatch(help, /id="issue-focus-facts"/);
+  assert.ok(issue.indexOf('id="issue-focus-facts"') < helpAt, 'Normal availability belongs with the other metadata');
   assert.match(issue, /id="btn-issue-synopsis"[^>]*>\s*Show story summary \(may contain spoilers\)/);
 });
 

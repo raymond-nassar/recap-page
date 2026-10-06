@@ -86,8 +86,8 @@ existing saved identity has been made stable.
 
 Thumb icons are optional and stay on your device. Hover over or focus one for its name.
 **Enjoyed** filters your completed collection;
-clicking a selected thumb clears that choice. **Did not enjoy** also opens instructions for
-reporting missing comics or a wrong order. **Report a list problem** opens the same instructions
+clicking a selected thumb clears that choice. **Did not enjoy** saves only that preference.
+**Report a list problem** separately opens instructions for missing comics or a wrong order
 without changing your thumb choice. Desktop and Android use the same optional Microsoft Forms
 link, with no reader account, name or email required. Your saved data and thumb choice are not
 attached. Reports are reviewed privately; private data-loss or security concerns use the separate

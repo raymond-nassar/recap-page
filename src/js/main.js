@@ -2996,7 +2996,6 @@ const issueView = createIssueView({
       : null,
   }),
   elements: () => ({
-    availability: $('#issue-focus-availability'),
     background: $('#issue-focus-bg'),
     byline: $('#issue-focus-by'),
     cancelSynopsis: $('#btn-cancel-issue-synopsis'),
@@ -3017,6 +3016,9 @@ const issueView = createIssueView({
     status: $('#issue-focus-status'),
     synopsis: $('#btn-issue-synopsis'),
     synopsisStatus: $('#issue-synopsis-status'),
+    savedActions: $('#issue-saved-actions'),
+    markRead: $('#btn-issue-mark-read'),
+    editNote: $('#btn-issue-note'),
   }),
   fact,
   getApi: () => api,
@@ -3030,6 +3032,8 @@ const issueView = createIssueView({
     synopsisRunner.cancel();
   },
   onRead: openInReader,
+  onToggleRead: readingView.toggleSavedRead,
+  onEditNote: readingView.editIssueNote,
   onReaderContext: (result) => {
     if (result?.issue) readerLinkView.show(result.issue.issueId, { source: result.source });
     else readerLinkView.leave();

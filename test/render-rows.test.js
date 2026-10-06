@@ -198,8 +198,8 @@ test('each details badge carries its reason in the half a screen reader gets', (
 test('the issue page tells the same three states apart', () => {
   assert.equal(synopsisFallback({ detailsRefused: true }, 'A real synopsis.'), 'A real synopsis.');
   assert.equal(synopsisFallback({ detailsRefused: true }), DETAILS_BADGE.norecord.hint);
-  assert.equal(synopsisFallback({ hydrated: true }), 'No synopsis is recorded for this issue.');
-  assert.equal(synopsisFallback({ hydrated: false }), 'Details have not been fetched yet.');
+  assert.equal(synopsisFallback({ hydrated: true }), 'Story summary has not been loaded.');
+  assert.equal(synopsisFallback({ hydrated: false }), 'Story summary has not been loaded.');
 });
 
 // A run that asked and was answered with nothing is the same answer as a snapshot holding nothing,
@@ -207,7 +207,7 @@ test('the issue page tells the same three states apart', () => {
 test('a session synopsis that came back empty says what the snapshot would have said', () => {
   assert.equal(synopsisFallback({ hydrated: true }, ''), 'No synopsis is recorded for this issue.');
   assert.equal(synopsisFallback({ hydrated: true }, '   '), 'No synopsis is recorded for this issue.');
-  assert.equal(synopsisFallback({ hydrated: true }, null), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: true }, null), 'Story summary has not been loaded.');
 });
 
 // A stored description cannot exist after BL-134, and if a hand-edited state file put one back this
@@ -215,7 +215,7 @@ test('a session synopsis that came back empty says what the snapshot would have 
 test('a description smuggled onto a stored issue is not rendered', () => {
   assert.equal(
     synopsisFallback({ hydrated: true, description: 'Smuggled.' }),
-    'No synopsis is recorded for this issue.',
+    'Story summary has not been loaded.',
   );
 });
 
@@ -226,7 +226,7 @@ test('a description smuggled onto a stored issue is not rendered', () => {
 test('a record the tracker holds outranks a refusal, however the two came to be set together', () => {
   const both = { hydrated: true, detailsRefused: true, source: 'curated', digitalId: 42 };
   assert.equal(detailsState(both), null, 'a hydrated issue has nothing pending and nothing missing');
-  assert.equal(synopsisFallback(both), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback(both), 'Story summary has not been loaded.');
   assert.equal(synopsisFallback(both, 'Held.'), 'Held.');
 });
 
@@ -243,5 +243,5 @@ test('and a genuine refusal, which is never hydrated, still says so on both surf
 // to reach here for that distinction to be worth keeping.
 test('an issue the run asked about and found nothing for stops promising a fetch', () => {
   assert.equal(synopsisFallback({ hydrated: false }, NO_SYNOPSIS), 'No synopsis is recorded for this issue.');
-  assert.equal(synopsisFallback({ hydrated: false }), 'Details have not been fetched yet.');
+  assert.equal(synopsisFallback({ hydrated: false }), 'Story summary has not been loaded.');
 });

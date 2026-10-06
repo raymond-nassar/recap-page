@@ -284,7 +284,7 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   h.nodes.down.listeners.click();
   await h.flush();
   assert.equal(h.nodes.down.attributes['aria-pressed'], 'true');
-  assert.equal(h.nodes.feedbackDialog.open, true);
+  assert.equal(h.nodes.feedbackDialog.open, false, 'negative enjoyment saves without opening reporting');
   assert.equal(LIST_FEEDBACK_URL, feedbackUrl);
   assert.equal(h.nodes.feedbackLink.href, feedbackUrl);
   assert.equal(h.nodes.privateFeedbackLink.href, PRIVATE_FEEDBACK_URL);
@@ -293,9 +293,10 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   assert.deepEqual([...destination.searchParams.keys()], ['id']);
   assert.equal(destination.hash, '');
   assert.equal(h.nodes.feedbackLink.href.includes(h.state.lists.a.name), false);
+  h.nodes.feedbackGuide.listeners.click();
   h.nodes.feedbackDialog.listeners.cancel({ preventDefault() {} });
   assert.equal(h.nodes.feedbackDialog.open, false);
-  assert.equal(h.nodes.down.focused, true);
+  assert.equal(h.nodes.feedbackGuide.focused, true);
   h.nodes.feedbackGuide.listeners.click();
   assert.equal(h.nodes.feedbackDialog.open, true);
   assert.equal(h.records.get('a').rating, 'down');
@@ -313,7 +314,7 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   await h.flush();
   assert.equal(h.nodes.down.attributes['aria-pressed'], 'false');
   assert.equal(h.calls.announce.length, announcements);
-  assert.equal(h.nodes.feedbackDialog.open, true, 'instructions remain useful without claiming a saved rating');
+  assert.equal(h.nodes.feedbackDialog.open, false, 'failed rating does not open instructions either');
 });
 
 test('pending completion cannot steal focus or show stale suggestions after navigation or identity replacement', async () => {

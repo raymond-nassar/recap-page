@@ -169,7 +169,7 @@ GitHub receives the page request, not your saved reading data. Its privacy state
 
 ## Optional reading-list feedback
 
-Thumbs record a private enjoyment preference only. Choosing **Did not enjoy** opens instructions;
+Thumbs record a private enjoyment preference only. Choosing **Did not enjoy** does not open a report;
 it does not submit feedback. **Report a list problem** opens those instructions without changing
 your rating. On desktop and Android, **Open feedback form** deliberately opens Microsoft Forms
 outside Recap Page. No reader account, name or email is required.

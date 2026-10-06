@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1267`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1270`, the reader launch tab at `src/open.html:19`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -255,7 +255,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The handler at `src/js/views/reading.js:806-808` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1020-1033` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:695-697`. The write, result, and notification are handled together at
 `src/js/storage.js:673-700`.
@@ -274,9 +274,9 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:708`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:709`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
-`src/js/views/reading.js:40-48`.
+`src/js/views/reading.js:35-43`.
 
 **Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
 Not every state replacement goes through that method, though: boot loads state at
@@ -519,7 +519,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3329-3381`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3333-3385`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:161-196`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -546,7 +546,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection, source disclosure and path links.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3218-3327`.
+`src/js/main.js:3222-3331`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -573,7 +573,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:237-287`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3235-3268`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:3239-3272`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:2673-2697`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 

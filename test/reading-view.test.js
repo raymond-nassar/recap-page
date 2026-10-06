@@ -462,6 +462,75 @@ function harness(overrides = {}) {
   };
 }
 
+test('UX05 reorder announces the persisted comic position and never claims a failed move', () => {
+  const h = harness();
+  try {
+    h.view.renderRows();
+    const action = (id, act) => {
+      let found;
+      walk(h.nodes.rows, (entry) => {
+        if (entry.dataset?.key === id && entry.dataset?.act === act) found = entry;
+      });
+      return found;
+    };
+    action(2, 'up').fire('click');
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [2, 1, 3]);
+    assert.deepEqual(h.calls.announce, ['Moved Issue Two to position 1 of 3.']);
+    h.setWriteFailures(1);
+    action(2, 'down').fire('click');
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [2, 1, 3]);
+    assert.equal(h.calls.announce.length, 1);
+    action(2, 'up').fire('click');
+    assert.equal(h.calls.announce.length, 1, 'boundary no-op is not a move');
+  } finally { h.restore(); }
+});
+
+test('UX05 rows keep expected access hedged and offer explicit yes no and clear choices', () => {
+  const h = harness();
+  try {
+    h.state().issues[2].mu = '2000-01-01';
+    h.view.renderRows();
+    let badge;
+    const actions = [];
+    walk(h.nodes.rows, (entry) => {
+      if (entry.className?.includes('badge-expected')) badge = entry;
+      if (entry.dataset?.key === 2 && entry.dataset?.act?.startsWith('override')) actions.push(entry);
+    });
+    assert.equal(badge.childNodes[0], 'Expected in Unlimited');
+    assert.deepEqual(actions.map((entry) => entry.dataset.act), ['override-available', 'override-unavailable', 'override-clear']);
+    const before = structuredClone(h.state().read);
+    actions[1].fire('click');
+    assert.equal(h.state().overrides[2], 'unavailable');
+    actions[0].fire('click');
+    assert.equal(h.state().overrides[2], 'available');
+    actions[2].fire('click');
+    assert.equal(Object.hasOwn(h.state().overrides, 2), false);
+    assert.deepEqual(h.state().read, before);
+  } finally { h.restore(); }
+});
+
+test('UX05 synopsis copy distinguishes not loaded from a completed empty result and held text', () => {
+  const empty = Symbol('empty');
+  assert.equal(synopsisFallback({ hydrated: true }, null, empty), 'Story summary has not been loaded.');
+  assert.equal(synopsisFallback({ hydrated: false }, undefined, empty), 'Story summary has not been loaded.');
+  assert.equal(synopsisFallback({ hydrated: true }, empty, empty), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: true }, 'Held plot', empty), 'Held plot');
+});
+
+test('UX05 empty lists retain Add comics without review filters or no-match results', () => {
+  const state = createList(createEmptyState(), { id: 'empty', name: 'Empty' });
+  const h = harness({ state });
+  try {
+    h.view.render();
+    assert.equal(h.nodes.readingEmpty.hidden, false);
+    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
+    assert.equal(h.nodes.full.hidden, true);
+    assert.equal(h.nodes.readingFilters.hidden, true);
+    assert.equal(h.nodes.rows.childNodes.length, 0);
+    assert.deepEqual(h.state().read, {});
+  } finally { h.restore(); }
+});
+
 test('completed lists suppress queued hero, shelf and continuation banners without hiding the full order', () => {
   const state = setDeferred(seededState(), 'list-a', 3, true);
   const h = harness({ state, isCompleted: () => true });
@@ -593,8 +662,9 @@ test('445 picker handles completion, empty ranges and missing identity metadata'
     h.view.openReview();
     assert.equal(h.view.restoreReview({ issueId: list.itemIds.at(-1), contextId: list.id }), true);
     list.itemIds = [];
-    h.view.openReview();
-    assert.match(h.nodes['review-position'].textContent, /no comics in/);
+    h.view.renderReview();
+    assert.equal(h.nodes['review-earlier'].hidden, true);
+    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
     list.itemIds = [20];
     h.view.openReview();
     assert.match(h.nodes['review-position'].textContent, /no comics before/);

@@ -383,6 +383,21 @@ test('injected reader form reconciles outcomes without discarding unrelated temp
   assert.match(h.messages.at(-1), /matching saved comic/);
 });
 
+test('UX05 lifetime copy belongs only to a current draft or active temporary link', () => {
+  const h = harness();
+  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
+  h.nodes.edit.fire('click');
+  assert.match(h.nodes.summary.textContent, /until the page reloads or closes/);
+  h.nodes.cancel.fire('click');
+  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
+  h.nodes.edit.fire('click');
+  h.paste('https://read.marvel.com/#/book/22');
+  h.nodes.form.fire('submit');
+  assert.match(h.nodes.summary.textContent, /until the page reloads or closes/);
+  h.nodes.revert.fire('click');
+  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
+});
+
 test('reader help starts closed and keeps an active temporary link visible outside its disclosure', () => {
   const h = harness();
   const before = structuredClone(h.state());

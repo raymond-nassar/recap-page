@@ -199,7 +199,7 @@ test('presentation derives shared facts without up-next or progress actions', ()
   assert.equal(shown.byline, 'Test Series · Writer One & Artist One');
   assert.equal(shown.description, 'Held for this tab.');
   assert.deepEqual(shown.facts.map(({ key, value }) => [key, value]), [
-    ['In Unlimited', `soon Scheduled ${futureMuDate}`],
+    ['Unlimited availability', `Scheduled ${futureMuDate}`],
     ['Pages', '24'],
     ['Released', '2026-08-26'],
     ['Position', '2 of 5'],

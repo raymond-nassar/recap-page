@@ -2639,9 +2639,10 @@ const SCENARIOS = [
       });
       await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
       t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
-      await click(page, '#btn-review-earlier');
-      t.check('empty list has an explicit state and no candidate', await page.$eval('#review-position', (node) => /no comics in/.test(node.textContent))
-        && await page.$$eval('#review-candidate a', (nodes) => nodes.length === 0));
+      t.check('empty list withdraws review and offers Add comics instead',
+        await page.$eval('#btn-review-earlier', (node) => node.hidden)
+        && await page.$eval('#review-earlier', (node) => node.hidden)
+        && await page.$eval('#btn-empty-add', (node) => node.checkVisibility()));
       t.check('no page errors', errors.length === 0, errors.join('\n'));
     },
   },
@@ -9303,8 +9304,8 @@ const SCENARIOS = [
       t.check('an answered synopsis is displayed on the current issue',
         running.description === `Fixture synopsis from ${new URL(DEFAULT_BASE).host} for ${LONG_ORDER.items[0].issueId}.`,
         running.description);
-      t.check('an issue already asked about no longer says details are unfetched',
-        running.description !== 'Details have not been fetched yet.',
+      t.check('an issue already asked about no longer says its story summary is unloaded',
+        running.description !== 'Story summary has not been loaded.',
         running.description);
 
       await click(page, '#btn-cancel-synopsis');
@@ -11080,6 +11081,10 @@ const SCENARIOS = [
         ring: document.querySelector('#ring-sub').textContent,
         count: document.querySelector('#full-count').textContent,
         focused: document.activeElement?.id,
+        reviewHidden: document.querySelector('#btn-review-earlier').hidden,
+        fullHidden: document.querySelector('#full').hidden,
+        filtersHidden: document.querySelector('#reading-filters').hidden,
+        noMatch: document.querySelector('#rows').textContent.includes('Nothing matches'),
       }));
       const initial = await readingStatus();
       t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
@@ -11087,6 +11092,9 @@ const SCENARIOS = [
         && !initial.completed && !initial.hero
         && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
         && initial.focused === 'order-name', JSON.stringify(initial));
+      t.check('an empty list offers Add comics without review, filters or no-match controls',
+        initial.reviewHidden && initial.fullHidden && initial.filtersHidden && !initial.noMatch
+        && await page.$eval('#btn-empty-add', (button) => button.checkVisibility()), JSON.stringify(initial));
 
       await click(page, '.brand[data-view="home"]');
       const homeEmpty = await page.evaluate(() => ({
@@ -13541,7 +13549,9 @@ const SCENARIOS = [
       const actions = [
         ['up', 'Move up'],
         ['down', 'Move down'],
-        ['override', 'Change Unlimited status'],
+        ['override-available', 'Mark as available'],
+        ['override-unavailable', 'Mark as unavailable'],
+        ['override-clear', 'Clear availability override'],
         ['remove', 'Remove from list'],
       ];
       const metadata = [
@@ -13549,7 +13559,7 @@ const SCENARIOS = [
         { mu: '2999-01-01', badge: 'scheduled' },
         { mu: '2000-01-01', badge: 'expected' },
       ];
-      const nextActions = ['Mark as available', 'Mark as unavailable', 'Clear availability override', 'Mark as available'];
+      const choices = ['override-available', 'override-unavailable', 'override-clear'];
       const normalize = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
       // The observed round trip changed only these write stamps, not any saved user content.
       const userState = ({ writeToken: _token, exportedAt: _stamp, ...content }) => content;
@@ -13575,7 +13585,7 @@ const SCENARIOS = [
             && [...document.querySelectorAll('#rows .row .cb')].map((button) => Number(button.dataset.key)).join(',') === ids.join(','),
           { timeout: 15000 }, saved.lists.fixture.itemIds);
           const before = userState(await readState(page));
-          for (let step = 0; step < nextActions.length; step += 1) {
+          for (let step = 0; step <= choices.length; step += 1) {
             const scope = `${width}px ${badge} step ${step}`;
             const row = '#rows .row:first-of-type';
             const expectedBadge = step === 1 ? 'override-available' : step === 2 ? 'override-unavailable' : badge;
@@ -13586,7 +13596,7 @@ const SCENARIOS = [
                 await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
             }
             await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
-            for (const [act, phrase] of step === 0 ? actions : [actions[2]]) {
+            for (const [act, phrase] of step === 0 ? actions : actions.filter(([act]) => act.startsWith('override-'))) {
               const button = await page.$(`${row} [data-act="${act}"]`);
               await button.focus();
               await page.waitForFunction((text) => {
@@ -13615,20 +13625,15 @@ const SCENARIOS = [
                 && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
                 JSON.stringify({ name, ...rendered }));
               t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
-                rendered.labelVisible === (width === 320) && rendered.iconDecorative && !rendered.iconFocusable
+                rendered.labelVisible === (width === 320 || act.startsWith('override-')) && rendered.iconDecorative && !rendered.iconFocusable
                 && !exposesGlyph(computed)
                 && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
                 JSON.stringify(rendered));
-              if (act === 'override') {
-                t.check(`${scope}: the name and tooltip describe the next override action`,
-                  name.endsWith(nextActions[step]) && rendered.tooltip.endsWith(nextActions[step]),
-                  `${name} / ${rendered.tooltip}`);
-              }
             }
-            if (step < nextActions.length - 1) await click(page, `${row} [data-act="override"]`);
+            if (step < choices.length) await click(page, `${row} [data-act="${choices[step]}"]`);
           }
           const after = userState(await readState(page));
-          t.check(`${width}px ${badge}: cycling back to the metadata state preserves the saved list and progress`,
+          t.check(`${width}px ${badge}: clearing explicit overrides restores metadata without changing list or progress`,
             JSON.stringify(after) === JSON.stringify(before), JSON.stringify({ before, after }));
           if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
           const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
@@ -13641,6 +13646,135 @@ const SCENARIOS = [
     },
   },
 ];
+
+SCENARIOS.push({
+  id: 'reading-state-clarity',
+  title: 'saved comic actions and availability keep their exact meaning without interrupting reading',
+  async run(page, t) {
+    page.__denyExternal = true;
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page, { openRead: true });
+    const first = ORDER.items[0];
+    const second = ORDER.items[1];
+    await openFullOrder(page);
+    const row = (id, act) => `#rows [data-key="${id}"][data-act="${act}"]`;
+    const before = await readState(page);
+    const movedIds = [...before.lists.fixture.itemIds];
+    [movedIds[0], movedIds[1]] = [movedIds[1], movedIds[0]];
+    await page.focus(row(second.issueId, 'up'));
+    await click(page, row(second.issueId, 'up'));
+    await page.waitForFunction((title) => document.querySelector('#announcer').textContent
+      === `Moved ${title} to position 1 of 3.`, {}, second.title);
+    const moved = await readState(page);
+    t.check('reorder speaks the same comic and its final saved full-list position with identity focus',
+      moved.lists.fixture.itemIds.join() === movedIds.join()
+      && await page.$eval(row(second.issueId, 'up'), (button) => button === document.activeElement)
+      && JSON.stringify(moved.read) === JSON.stringify(before.read));
+    await click(page, row(second.issueId, 'down'));
+    await page.waitForFunction((title) => document.querySelector('#announcer').textContent
+      === `Moved ${title} to position 2 of 3.`, {}, second.title);
+
+    const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
+    t.check('the unchanged availability filter predicate has a visibly hedged label',
+      filter === 'Expected or marked available', filter);
+    for (const [act, badge, text] of [
+      ['override-unavailable', 'override-unavailable', 'You marked unavailable'],
+      ['override-available', 'override-available', 'You marked available'],
+      ['override-clear', 'expected', 'Expected in Unlimited'],
+    ]) {
+      await click(page, row(first.issueId, act));
+      const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
+      const hero = await page.$eval('#hero-facts', (node) => node.textContent);
+      t.check(`${act} is explicit and both row and hero retain the same state`,
+        visible === text && hero.includes(text), `${visible} / ${hero}`);
+    }
+
+    await click(page, '#btn-hero-inspect');
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    t.check('availability is visible normal metadata with no troubleshooting disclosure',
+      await page.$eval('#issue-focus-facts', (node) => node.textContent.includes('Expected in Unlimited'))
+      && !await page.$eval('#reader-link-help', (node) => node.open));
+    t.check('metadata hydration does not claim the story summary has already been fetched',
+      await page.$eval('#issue-focus-desc', (node) => node.textContent === 'Story summary has not been loaded.'));
+    t.check('original-link help has no temporary lifetime until an editor is explicitly opened',
+      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    await click(page, '#reader-link-heading');
+    await click(page, '#reader-link-edit');
+    t.check('a current draft explains its temporary lifetime',
+      await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    await click(page, '#reader-link-cancel');
+    t.check('cancel withdraws the lifetime claim for the original link',
+      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+
+    const opened = await readState(page);
+    await page.focus('#btn-issue-mark-read');
+    await click(page, '#btn-issue-mark-read');
+    await page.waitForFunction(() => document.querySelector('#btn-issue-mark-read').textContent === 'Mark as unread');
+    const marked = await readState(page);
+    t.check('Issue read action changes only the actual comic shared marker and retains focus',
+      Object.hasOwn(marked.read, first.issueId)
+      && JSON.stringify(marked.lists) === JSON.stringify(opened.lists)
+      && JSON.stringify(marked.notes) === JSON.stringify(opened.notes)
+      && await page.$eval('#btn-issue-mark-read', (button) => button === document.activeElement)
+      && !await page.$eval('#list-feedback', (dialog) => dialog.open));
+    await click(page, '#btn-issue-note');
+    await page.waitForSelector('#ask[open] #ask-area');
+    await page.$eval('#ask-area', (input) => { input.value = 'Synthetic contextual issue note'; });
+    await click(page, '#ask-ok');
+    await page.waitForFunction((issueId) => !document.querySelector('#ask').open
+      && JSON.parse(localStorage.getItem('mrt.state.v2')).notes[issueId] === 'Synthetic contextual issue note'
+      && document.querySelector('#issue-focus-note').textContent === 'Synthetic contextual issue note', {}, first.issueId);
+    const noted = await readState(page);
+    t.check('Issue note uses the same saved comic and appears immediately without changing list or progress',
+      noted.notes[first.issueId] === 'Synthetic contextual issue note'
+      && JSON.stringify(noted.read) === JSON.stringify(marked.read)
+      && JSON.stringify(noted.lists) === JSON.stringify(marked.lists)
+      && await page.$eval('#issue-focus-note', (node) => node.textContent === 'Synthetic contextual issue note'));
+
+    await click(page, '#btn-issue-note');
+    await page.waitForSelector('#ask[open] #ask-area');
+    await page.$eval('#ask-area', (input) => { input.value = 'Must not be saved after navigation'; });
+    await page.evaluate(() => { location.hash = '#/read/fixture'; });
+    await page.waitForSelector('#view-read:not([hidden])');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    t.check('a note prompt revalidates its Issue context after navigation and never saves stale text',
+      (await readState(page)).notes[first.issueId] === 'Synthetic contextual issue note');
+
+    await click(page, '#btn-complete-list');
+    await page.waitForFunction(() => !document.querySelector('#btn-disliked-list').hidden
+      && !document.querySelector('#btn-disliked-list').disabled);
+    const beforeRating = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.focus('#btn-disliked-list');
+    await click(page, '#btn-disliked-list');
+    await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-disliked-list').disabled);
+    t.check('negative enjoyment saves without a report modal, reader mutation or focus interruption',
+      !await page.$eval('#list-feedback', (dialog) => dialog.open)
+      && await page.$eval('#btn-disliked-list', (button) => button === document.activeElement)
+      && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === beforeRating);
+    await click(page, '#btn-list-feedback-guide');
+    t.check('reporting still requires a separate explicit action and contains no saved-data prefill',
+      await page.$eval('#list-feedback', (dialog) => dialog.open)
+      && await page.$eval('#list-feedback-link', (link) => !link.href.includes('fixture') && !link.href.includes('900001')));
+    await click(page, '#list-feedback-close');
+    await page.setViewport({ width: 390, height: 900 });
+    await click(page, '#btn-reopen-list');
+    await page.waitForFunction(() => !document.querySelector('#btn-complete-list').hidden);
+    await openFullOrder(page);
+    await click(page, row(second.issueId, 'more'));
+    t.check('explicit availability choices remain visible and fit at phone width',
+      await page.$$eval(`#rows .row [data-key="${second.issueId}"].availability-choice`, (buttons) => (
+        buttons.length === 3 && buttons.every((button) => {
+          const bounds = button.getBoundingClientRect();
+          return button.checkVisibility() && bounds.left >= 0 && bounds.right <= innerWidth;
+        })
+      )));
+    t.check('the journey has no application exceptions', errors.length === 0, errors.join(' / '));
+  },
+});
 
 SCENARIOS.push({
   id: 'ux04-validation',
@@ -14012,7 +14146,7 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'defer', 'up', 'down', 'override', 'remove'];
+        const actions = ['open', 'info', 'defer', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'remove'];
         const narrow = viewport.width <= 620;
         await page.mouse.move(0, 0);
         if (narrow) {
@@ -14066,7 +14200,7 @@ SCENARIOS.push({
           keyboard.length === actions.length && keyboard.every((g) => g.focused && g.ring > 0
             && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
         const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
-        t.check(`${size} row ${index}: all seven actions receive trusted pointer and keyboard activation`,
+        t.check(`${size} row ${index}: all nine actions receive trusted pointer and keyboard activation`,
           activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
         if (narrow) {
@@ -15611,7 +15745,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -16095,7 +16229,7 @@ SCENARIOS.push(
 
       await switchRemovalList(page, 'other');
       await click(page, `#rows [data-key="${removedId}"][data-act="read"]`);
-      await click(page, `#rows [data-key="${removedId}"][data-act="override"]`);
+      await click(page, `#rows [data-key="${removedId}"][data-act="override-unavailable"]`);
       await editRemovalText(page, `#rows [data-key="${removedId}"][data-act="note"]`, '#ask-area', 'Later shared issue note');
       await switchRemovalList(page, 'fixture');
       await editRemovalText(page, '#btn-rename-list', '#ask-input', 'Renamed after removal');
@@ -16512,7 +16646,7 @@ SCENARIOS.push({
     // The first Escape must not invoke the row menu's focus rescue; the second still must.
     await page.setViewport({ width: 320, height: 900 });
     await click(page, '#rows .row:first-child [data-act="more"]');
-    const rowAction = '#rows .row:first-child [data-act="override"]';
+    const rowAction = '#rows .row:first-child [data-act="override-available"]';
     await page.focus(rowAction);
     await page.keyboard.press('Escape');
     t.check('first Escape keeps focus in the open narrow row menu',

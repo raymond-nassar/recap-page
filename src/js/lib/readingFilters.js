@@ -29,7 +29,7 @@ export const READING_FILTERS = [
   { value: 'read', label: 'Read', match: (item) => Boolean(item.read) },
   {
     value: 'unlimited',
-    label: 'In Unlimited',
+    label: 'Expected or marked available',
     // Deliberately two of the five states and not a boolean. `expected` is the hedge the
     // availability model exists for and `override-available` is the reader saying they checked;
     // `scheduled`, `unknown` and `override-unavailable` each mean something different from each
