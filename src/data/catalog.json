@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T03:02:26.439Z",
+  "generatedAt": "2026-10-06T14:03:24.518Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2939,6 +2939,46 @@
       "sourceOrigin": "Compiled for this project from the owner's selections",
       "sourceLicense": null,
       "updatedAt": "2026-10-05T03:02:26.439Z"
+    },
+    {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "file": "mcu_prep_spider_man_brand_new_day.json",
+      "name": "MCU Prep: Spider-Man: Brand New Day",
+      "description": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 19,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Spider-Man"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Spider-Man",
+        "Peter Parker",
+        "Coming Home",
+        "Brand New Day",
+        "Back to Basics",
+        "J. Michael Straczynski",
+        "Dan Slott",
+        "Nick Spencer"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 3583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/705",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-06T14:03:24.518Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

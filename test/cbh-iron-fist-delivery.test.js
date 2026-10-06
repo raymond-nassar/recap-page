@@ -91,10 +91,10 @@ test('Iron Fist retains its publication-time relationship review and unchanged n
   const peers = historicalReadingChoiceManifest(manifest).lists.filter((entry) => entry.id !== id
     && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-thunderbolts'
     && entry.id !== 'mcu-prep-deadpool-and-wolverine'
-    && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected');
+    && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'spider-man-no-way-home-owner-selected');
   const live = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight',
-      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
+      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
   });
   assert.deepEqual(report, live);
   assert.equal(report.comparisonCount, peers.length);
@@ -191,8 +191,8 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
   assert.deepEqual([listed.count, listed.placeholderCount, listed.coverIssueId], [414, 38, 10201]);
   assert.deepEqual([listed.type, listed.depth, listed.spotlightKind, listed.timeline],
     ['character-run', 'partial', 'other', null]);
-  assert.equal(manifest.lists.length, 211);
-  assert.equal(catalog.lists.length, 288);
+  assert.equal(manifest.lists.length, 212);
+  assert.equal(catalog.lists.length, 289);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 70);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
     && entry.id !== id).length, 69);
@@ -210,9 +210,9 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     assert.equal(entry.sourceOrigin, "Compiled for this project from Comic Book Herald's guide");
     assert.equal(entry.sourceLicense, null);
   }
-  assert.equal(partition.pairCount, 84);
-  assert.equal(partition.existingListCount, 24);
-  assert.equal(partition.sharedOccurrenceCount, 450);
+  assert.equal(partition.pairCount, 85);
+  assert.equal(partition.existingListCount, 25);
+  assert.equal(partition.sharedOccurrenceCount, 456);
   assert.deepEqual(partition.pairs.filter((row) => row.existingListId === id), [{
     chapterId: 'marvel-knights-to-planet-x-26',
     existingListId: id,

@@ -1,0 +1,34 @@
+{
+  "id": "mcu-prep-spider-man-brand-new-day",
+  "name": "MCU Prep: Spider-Man: Brand New Day",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/705",
+  "gapUrl": "https://github.com/raymond-nassar/recap-page/issues/707",
+  "description": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+  "vectorSha256": "4711835a488495c89340528f5977ea1d15de3a529ae29c83bef3fe6c7cfe98cc",
+  "groups": [
+    "Amazing Spider-Man Vol. 1: Coming Home",
+    "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)",
+    "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+  ],
+  "rows": [
+    [1, 3583, "Amazing Spider-Man (1999) #30", 0],
+    [2, 43123, "Amazing Spider-Man (1999) #31", 0],
+    [3, 43125, "Amazing Spider-Man (1999) #32", 0],
+    [4, 43128, "Amazing Spider-Man (1999) #33", 0],
+    [5, 43130, "Amazing Spider-Man (1999) #34", 0],
+    [6, 43132, "Amazing Spider-Man (1999) #35", 0],
+    [7, 17338, "Amazing Spider-Man (1999) #546", 1],
+    [8, 17340, "Amazing Spider-Man (1999) #547", 1],
+    [9, 17341, "Amazing Spider-Man (1999) #548", 1],
+    [10, 17581, "Amazing Spider-Man (1999) #549", 1],
+    [11, 17582, "Amazing Spider-Man (1999) #550", 1],
+    [12, 17583, "Amazing Spider-Man (1999) #551", 1],
+    [13, 20809, "FREE COMIC BOOK DAY 2007 1 (2007) #1", 1],
+    [15, 67631, "The Amazing Spider-Man (2018) #1", 2],
+    [16, 67633, "The Amazing Spider-Man (2018) #2", 2],
+    [17, 67635, "The Amazing Spider-Man (2018) #3", 2],
+    [18, 67636, "The Amazing Spider-Man (2018) #4", 2],
+    [19, 67637, "The Amazing Spider-Man (2018) #5", 2],
+    [20, 66474, "Free Comic Book Day (The Amazing Spider-Man) (2018) #1", 2]
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "id": "mcu-prep-spider-man-brand-new-day",
+  "name": "MCU Prep: Spider-Man: Brand New Day",
+  "description": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/705",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-06T14:03:24.518Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 19,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 3583,
+      "title": "Amazing Spider-Man (1999) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-04-11T00:00:00+0000",
+      "mu": "2001-04-11T00:00:00+0000",
+      "digitalId": 71,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 43123,
+      "title": "Amazing Spider-Man (1999) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-05-09T00:00:00+0000",
+      "mu": "2001-05-09T00:00:00+0000",
+      "digitalId": 26316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/50b51242d631d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 43125,
+      "title": "Amazing Spider-Man (1999) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-06-13T00:00:00+0000",
+      "mu": "2001-06-13T00:00:00+0000",
+      "digitalId": 26320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/57a34c140a58c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 43128,
+      "title": "Amazing Spider-Man (1999) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-09-01T00:00:00+0000",
+      "mu": "2012-05-01T00:00:00+0000",
+      "digitalId": 26322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/57a34b04dbc2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 43130,
+      "title": "Amazing Spider-Man (1999) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-10-01T00:00:00+0000",
+      "mu": "2001-08-15T00:00:00+0000",
+      "digitalId": 26327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/57a349c3ee333",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 43132,
+      "title": "Amazing Spider-Man (1999) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2012-05-01T00:00:00+0000",
+      "digitalId": 26324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/57a34895df8f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home"
+    },
+    {
+      "issueId": 17338,
+      "title": "Amazing Spider-Man (1999) #546",
+      "number": "546",
+      "url": "https://www.marvel.com/comics/issue/17338/amazing_spider-man_1999_546",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-01-09T00:00:00+0000",
+      "mu": "2008-01-09T00:00:00+0000",
+      "digitalId": 7970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4d24e46ee23ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Winslade",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Gale",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 17340,
+      "title": "Amazing Spider-Man (1999) #547",
+      "number": "547",
+      "url": "https://www.marvel.com/comics/issue/17340/amazing_spider-man_1999_547",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-01-16T00:00:00+0000",
+      "mu": "2008-01-16T00:00:00+0000",
+      "digitalId": 7972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5787b1922acc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 17341,
+      "title": "Amazing Spider-Man (1999) #548",
+      "number": "548",
+      "url": "https://www.marvel.com/comics/issue/17341/amazing_spider-man_1999_548",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-01-23T00:00:00+0000",
+      "mu": "2008-01-23T00:00:00+0000",
+      "digitalId": 7973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5787c1c0a1918",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 17581,
+      "title": "Amazing Spider-Man (1999) #549",
+      "number": "549",
+      "url": "https://www.marvel.com/comics/issue/17581/amazing_spider-man_1999_549",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-02-06T00:00:00+0000",
+      "mu": "2008-02-06T00:00:00+0000",
+      "digitalId": 10489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/4d24fe3e6dcdb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 17582,
+      "title": "Amazing Spider-Man (1999) #550",
+      "number": "550",
+      "url": "https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-02-13T00:00:00+0000",
+      "mu": "2008-02-13T00:00:00+0000",
+      "digitalId": 10490,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/4d24ea242fbbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 17583,
+      "title": "Amazing Spider-Man (1999) #551",
+      "number": "551",
+      "url": "https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2008-02-20T00:00:00+0000",
+      "mu": "2008-02-20T00:00:00+0000",
+      "digitalId": 10491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/4d2520d2335e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 20809,
+      "title": "FREE COMIC BOOK DAY 2007 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1",
+      "seriesId": 3913,
+      "seriesName": "FREE COMIC BOOK DAY 2007 1 (2007)",
+      "onSale": "2007-04-04T00:00:00+0000",
+      "mu": "2007-04-04T00:00:00+0000",
+      "digitalId": 8580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb87fbe41815",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 67631,
+      "title": "The Amazing Spider-Man (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67631/the_amazing_spider-man_2018_1",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5b3feb60f1a30",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    },
+    {
+      "issueId": 67633,
+      "title": "The Amazing Spider-Man (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/67633/the_amazing_spider-man_2018_2",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5b50f9d5c3478",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    },
+    {
+      "issueId": 67635,
+      "title": "The Amazing Spider-Man (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/67635/the_amazing_spider-man_2018_3",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2019-02-11T00:00:00+0000",
+      "digitalId": 48850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b62103ef2e2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    },
+    {
+      "issueId": 67636,
+      "title": "The Amazing Spider-Man (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/67636/the_amazing_spider-man_2018_4",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b748df54d4a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    },
+    {
+      "issueId": 67637,
+      "title": "The Amazing Spider-Man (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/67637/the_amazing_spider-man_2018_5",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2018-09-12T00:00:00+0000",
+      "digitalId": 49156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5b90171c52768",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    },
+    {
+      "issueId": 66474,
+      "title": "Free Comic Book Day (The Amazing Spider-Man) (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66474/free_comic_book_day_the_amazing_spider-man_2018_1",
+      "seriesId": 25687,
+      "seriesName": "Free Comic Book Day (The Amazing Spider-Man) (2018)",
+      "onSale": "2018-05-05T00:00:00+0000",
+      "mu": "2020-03-03T17:33:00+0000",
+      "digitalId": 47542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/604007a4970fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Mike O'sullivan",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+    }
+  ]
+}

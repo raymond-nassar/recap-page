@@ -13865,7 +13865,7 @@ SCENARIOS.push({
       'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
       'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
       'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*',
-      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Deadpool & Wolverine',
+      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Spider-Man: Brand New Day', 'MCU Prep: Deadpool & Wolverine',
       'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
     ];
     const expectedScreenCount = `${expectedScreenTitles.length} Reading Lists`;
@@ -16236,6 +16236,7 @@ SCENARIOS.push(eternalsActualData);
 MUTATIONS.push(eternalsCollectionMutation);
 SCENARIOS.push((await import('./browser-reading-list-choices.mjs')).readingListChoices);
 SCENARIOS.push((await import('./browser-mcu-prep-fantastic-four-first-steps.mjs')).firstStepsActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-brand-new-day.mjs')).brandNewDayActualData);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

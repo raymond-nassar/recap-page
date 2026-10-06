@@ -1,0 +1,828 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-spider-man-brand-new-day",
+  "owner": "raymond-nassar",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/705",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceDecisionUrl": "https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920",
+  "sourceBoundary": "Only the three owner-selected first trades in owner order: Coming Home #30-35; Brand New Day #546-551, Swing Shift original 20809 and selected Venom Super Special material from known original 59715; Back to Basics (2018) #1-5 then selected Spider-Man material from full FCBD 2018 original 66474. Preserve 20 source originals in groups 6/8/6, with 19 exact metadata rows and the source14/book2/within8 settled refusal explicitly retained. No broader collection, neighbouring special, prelude or per-story identity replaces an original.",
+  "readerDescription": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+  "preservedResearch": {
+    "sourceCommit": "3178fc805b2e408246cc5332846f3d6405a32fa3",
+    "artifacts": [
+      {
+        "path": "scripts/data/owner-mcu-prep/brand-new-day-selections.json",
+        "sha256": "5b15db1667fce95e278e124675305ac852b93cbb0d567c0de956ad5c8abb9a54"
+      },
+      {
+        "path": "scripts/data/owner-mcu-prep/brand-new-day-packet.json",
+        "sha256": "2c4fba3a8a84ee279f25c441f780edca85e1e68e3b933d731d8a81d4b9bbed04"
+      },
+      {
+        "path": "scripts/data/owner-mcu-prep/brand-new-day-mapping.json",
+        "sha256": "cbca2a03450f6943bbd4b8f5f1f95e27f0a130885a53a64364bfe84e133c9513"
+      }
+    ]
+  },
+  "selectionCount": 3,
+  "sourceOccurrenceCount": 20,
+  "publishedIssueCount": 19,
+  "sourceGroupCounts": [
+    6,
+    8,
+    6
+  ],
+  "publishedGroupCounts": [
+    6,
+    7,
+    6
+  ],
+  "publishedGroupLabels": [
+    "Amazing Spider-Man Vol. 1: Coming Home",
+    "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)",
+    "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)"
+  ],
+  "sourceSelections": [
+    {
+      "position": 1,
+      "suppliedTitle": "Amazing Spider-Man by J. Michael Straczynski Vol. 1: Coming Home",
+      "suppliedRationale": "Early modern fresh start",
+      "rationaleStatus": "Owner intake purpose, not a current-run or film-adaptation assertion",
+      "collectionTitle": "Amazing Spider-Man Vol. 1: Coming Home",
+      "edition": {
+        "format": "US trade paperback",
+        "isbn10": "0785108068",
+        "isbn13": "9780785108061",
+        "publicationYear": 2001,
+        "creators": {
+          "writer": "J. Michael Straczynski",
+          "art": [
+            "John Romita Jr.",
+            "Scott Hanna"
+          ]
+        },
+        "evidence": [
+          {
+            "evidenceId": "W3",
+            "url": "https://leagueofcomicgeeks.com/comic/9485004/the-amazing-spider-man-vol-1-coming-home-tp",
+            "retrievedAt": "2026-10-03",
+            "httpStatus": null,
+            "bodySha256": null,
+            "receiptPrecision": "recorded-retrieval-date-only",
+            "supports": "Coming Home is a 152-page trade reprinting Amazing Spider-Man #30-35, written by J. Michael Straczynski and illustrated by John Romita Jr. and Scott Hanna.",
+            "qualification": null
+          },
+          {
+            "evidenceId": "W9",
+            "url": "https://books.google.com/books?vid=ISBN9780785108061",
+            "retrievedAt": "2026-10-04T02:59:03.659Z",
+            "httpStatus": 200,
+            "bodySha256": "6de9058bde846e7774023282424ab46311ec086d3ad8a9284428030285667d5b",
+            "receiptPrecision": "captured-http-receipt",
+            "supports": "The Coming Home ISBN record gives 0785108068 / 9780785108061, Marvel Comics 2001, 152 pages, JMS/John Romita/Scott Hanna. W3 supplies the specific John Romita Jr. identity and six-original boundary.",
+            "qualification": "Do not infer exact first-printing day or use the unrelated synopsis as contents evidence."
+          }
+        ]
+      },
+      "verifiedContents": "Amazing Spider-Man (1999) #30-35",
+      "sourcePositions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "originalIssueIds": [
+        3583,
+        43123,
+        43125,
+        43128,
+        43130,
+        43132
+      ],
+      "collectionNotes": {
+        "selectionPosition": 1,
+        "collectionTitle": "Amazing Spider-Man Vol. 1: Coming Home",
+        "notes": [
+          "Identifies the first trade's contents, not a larger JMS omnibus or later ultimate/complete collection. No exact printing day is asserted."
+        ],
+        "originalNotes": []
+      }
+    },
+    {
+      "position": 2,
+      "suppliedTitle": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "suppliedRationale": "Namesake fresh Earth-616 status quo",
+      "rationaleStatus": "Owner intake purpose, not a current-run or film-adaptation assertion",
+      "collectionTitle": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "edition": {
+        "format": "US trade paperback",
+        "isbn10": "078512845X",
+        "isbn13": "9780785128458",
+        "creators": {
+          "principal_writers": [
+            "Dan Slott",
+            "Marc Guggenheim"
+          ],
+          "principal_art": [
+            "Steve McNiven",
+            "Phil Jimenez",
+            "Salvador Larroca"
+          ],
+          "core_original_backup_writers": [
+            "Bob Gale",
+            "Zeb Wells"
+          ],
+          "backup_writer_credit_source": "Live Amazing Spider-Man #546 original detail"
+        },
+        "corroboratingDigitalIsbn13": "9780785171003",
+        "evidence": [
+          {
+            "evidenceId": "W4",
+            "url": "https://books.google.com/books?vid=ISBN9780785128458",
+            "retrievedAt": "2026-10-03",
+            "httpStatus": null,
+            "bodySha256": null,
+            "receiptPrecision": "recorded-retrieval-date-only",
+            "supports": "Google Books' ISBN-specific record verifies Brand New Day Volume 1, ISBN 078512845X / 9780785128458, Marvel, October 29 2008, 200 pages, Dan Slott/Marc Guggenheim and Phil Jimenez/Steve McNiven/Salvador Larroca.",
+            "qualification": "The synopsis is incorrectly about Ends of the Earth. It is not accepted as content evidence or copied into this artifact."
+          },
+          {
+            "evidenceId": "W5",
+            "url": "https://books.google.com/books/about/Spider_Man.html?id=UYBTo1grbR4C",
+            "retrievedAt": "2026-10-04T02:59:03.840Z",
+            "httpStatus": 200,
+            "bodySha256": "b0b0e9ffd7fe7f1c03c6e30964e40a85248f0f2eb34c5b424fb922b1f5925f84",
+            "receiptPrecision": "captured-http-receipt",
+            "supports": "An actual Google Books Brand New Day Volume 1 contents table orders Amazing Spider-Man #546-551, Swing Shift, and Material from Venom Super Special 1. Digital ISBN is 0785171002 / 9780785171003, Marvel Entertainment 2008, 200 pages. Three titled backup stories follow #546 inside the same original.",
+            "qualification": "W8 corroborates the first TPB's collection boundary. No physical page image or physical TOC was inspected. The three backup headings are not new original-comic positions."
+          },
+          {
+            "evidenceId": "W8",
+            "url": "https://comicbookrealm.com/series/21532/211245/marvel-comics-amazing-spider-man-brand-new-day-tpb-1",
+            "retrievedAt": "2026-10-04",
+            "httpStatus": null,
+            "bodySha256": null,
+            "receiptPrecision": "recorded-retrieval-date-only",
+            "supports": "The actual Comic Book Realm TPB 1 page states #546-551, Spider-Man: Swing Shift, and Venom Super-Special. This corroborates the first TPB's bonus boundary independently of the digital contents table.",
+            "qualification": null
+          }
+        ]
+      },
+      "sourcePositions": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "originalIssueIds": [
+        17338,
+        17340,
+        17341,
+        17581,
+        17582,
+        17583,
+        20809,
+        59715
+      ],
+      "collectionNotes": {
+        "selectionPosition": 2,
+        "collectionTitle": "Amazing Spider-Man: Brand New Day Vol. 1",
+        "notes": [
+          "The selected paperback boundary is not the larger Brand New Day Complete Collection.",
+          "No independently verified selected-paperback original named Marvel Spotlight or Director's Cut is added.",
+          "The digital contents order and independent TPB boundary are verified; no physical TOC/image was inspected.",
+          "Only material from Venom Super Special is collected. Reading that whole original exposes additional unrelated material; no preceding Planet of the Symbiotes chapters are added.",
+          "The exact selected Venom sub-story title remains unverified. Use the factual material-from label, not Career Day."
+        ],
+        "originalNotes": [
+          {
+            "sourcePosition": 13,
+            "originalIssueId": 20809,
+            "collectedMaterial": "Swing Shift",
+            "wholeOriginalReadingCaveat": "The original also contains a One More Day preview. The selected trade's Swing Shift material does not authorize adding a One More Day prelude or treating its Director's Cut reprint as another original."
+          },
+          {
+            "sourcePosition": 14,
+            "originalIssueId": 59715,
+            "collectedMaterial": "Material from Venom Super Special #1; exact reprinted story title is not independently verified",
+            "wholeOriginalReadingCaveat": "The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day."
+          }
+        ]
+      }
+    },
+    {
+      "position": 3,
+      "suppliedTitle": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "suppliedRationale": "Described as most recent/light present-day run",
+      "rationaleStatus": "Owner intake purpose, not a current-run or film-adaptation assertion",
+      "collectionTitle": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "edition": {
+        "format": "US trade paperback",
+        "isbn10": "1302912313",
+        "isbn13": "9781302912314",
+        "publicationYear": 2018,
+        "creators": {
+          "writer": "Nick Spencer",
+          "art": [
+            "Ryan Ottley",
+            "Humberto Ramos"
+          ]
+        },
+        "corroboratingDigitalIsbn13": "9781302507206",
+        "evidence": [
+          {
+            "evidenceId": "W2",
+            "url": "https://www.abebooks.com/9781302912314/Amazing-Spider-Man-Nick-Spencer-Vol-1302912313/plp",
+            "retrievedAt": "2026-10-03",
+            "httpStatus": null,
+            "bodySha256": null,
+            "receiptPrecision": "recorded-retrieval-date-only",
+            "supports": "Accessible AbeBooks edition entry verifies Back to Basics ISBN-10 1302912313 / ISBN-13 9781302912314, Ryan Ottley and Humberto Ramos, and the FCBD 2018 Spider-Man story. This particular seller states Amazing Spider-Man #1-6, conflicting with the initial search result's #1-5.",
+            "qualification": "Seller-specific contents are not accepted as final until triangulated."
+          },
+          {
+            "evidenceId": "W6",
+            "url": "https://leagueofcomicgeeks.com/comic/6498507/the-amazing-spider-man-vol-1-back-to-basics-tp",
+            "retrievedAt": "2026-10-03",
+            "httpStatus": null,
+            "bodySha256": null,
+            "receiptPrecision": "recorded-retrieval-date-only",
+            "supports": "The actual Back to Basics collection index states Amazing Spider-Man (2018) #1-5 and material from Free Comic Book Day 2018 (Amazing Spider-Man story); it lists 136 pages.",
+            "qualification": "W10 and W11 independently settle the published issue span at #1-5 plus FCBD. Page-count metadata remains inconsistent: this index gives 136; the actual digital and provider collection records give 152."
+          },
+          {
+            "evidenceId": "W10",
+            "url": "https://books.google.com/books/about/Amazing_Spider_Man_By_Nick_Spencer_Vol_1.html?id=iERrDwAAQBAJ",
+            "retrievedAt": "2026-10-04T03:06:03.953Z",
+            "httpStatus": 200,
+            "bodySha256": "e3db5c6d381111640ac42e4b19dac4c29398acdd145f6172abe1c001a4a179f8",
+            "receiptPrecision": "captured-http-receipt",
+            "supports": "The retrieved Spencer digital edition has ISBN 1302507206 / 9781302507206, Marvel Entertainment 2018, Nick Spencer/Ryan Ottley/Humberto Ramos. Its actual chapter table lists #1, #2, #3, #4, #5 and its factual collection clause includes FCBD 2018 Spider-Man material.",
+            "qualification": "FCBD is explicit collected material, but has no separate heading in this digital contents table. A supplement placed after #5 follows the publisher's collected-issues listing, not an independently inspected physical-page order."
+          },
+          {
+            "evidenceId": "W11",
+            "url": "https://marvel.emreparker.com/v1/issues/67632",
+            "retrievedAt": "2026-10-04T03:06:04.144Z",
+            "httpStatus": 200,
+            "bodySha256": "a21d274023202137ef63cab14fbb8cf36dfcb44de62d2c36a55834a6c82c6d15",
+            "receiptPrecision": "captured-http-receipt",
+            "supports": "Live collection record 67632 says #1-5 and material from FCBD 2018 (Amazing Spider-Man), credits Spencer/Ottley/Ramos and dates the collection to November 28 2018. This is corroborating bibliography, not an original issue to place in the guide.",
+            "qualification": "Record 42148 is another collection-only record and has a later 2013 date; it must not replace the 2008 print edition date or any original-comic identity."
+          }
+        ]
+      },
+      "verifiedContents": "The Amazing Spider-Man (2018) #1-5 and material from FCBD 2018 (Amazing Spider-Man)",
+      "sourcePositions": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "originalIssueIds": [
+        67631,
+        67633,
+        67635,
+        67636,
+        67637,
+        66474
+      ],
+      "collectionNotes": {
+        "selectionPosition": 3,
+        "collectionTitle": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+        "notes": [
+          "The verified published core span is #1-5, not the contradictory seller/print #1-6 text.",
+          "Only the Spider-Man FCBD segment is collected; whole-original reading includes additional FCBD material.",
+          "It is the newest of these three selected starting points, from 2018, not the most recent/current Spider-Man run.",
+          "No replacement run or film-source claim is authorized."
+        ],
+        "originalNotes": [
+          {
+            "sourcePosition": 20,
+            "originalIssueId": 66474,
+            "collectedMaterial": "Amazing Spider-Man story only",
+            "wholeOriginalReadingCaveat": "Only the Spider-Man segment is collected by the selected trade. The app opens the full FCBD original, including other material; its provider credit list also includes Gerry Duggan, Mike Deodato, and Mike O'sullivan."
+          }
+        ]
+      },
+      "pageCountConflict": {
+        "136": [
+          "W6"
+        ],
+        "152": [
+          "W10",
+          "W11"
+        ],
+        "disposition": "Retain the discrepancy; do not use page count to alter the verified issue boundary or create a book-identity/provider gap."
+      }
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #30",
+      "originalIssueId": 3583,
+      "selectedIssueId": 3583,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "30",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #31",
+      "originalIssueId": 43123,
+      "selectedIssueId": 43123,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "31",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #32",
+      "originalIssueId": 43125,
+      "selectedIssueId": 43125,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "32",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #33",
+      "originalIssueId": 43128,
+      "selectedIssueId": 43128,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "33",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #34",
+      "originalIssueId": 43130,
+      "selectedIssueId": 43130,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "34",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #35",
+      "originalIssueId": 43132,
+      "selectedIssueId": 43132,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "35",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #546",
+      "originalIssueId": 17338,
+      "selectedIssueId": 17338,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "546",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17338/amazing_spider-man_1999_546",
+      "collectedMaterial": "Original including Park Avenue Interlude, The Astonishing Aunt May, and Harry and the Hollisters backups"
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #547",
+      "originalIssueId": 17340,
+      "selectedIssueId": 17340,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "547",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17340/amazing_spider-man_1999_547",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #548",
+      "originalIssueId": 17341,
+      "selectedIssueId": 17341,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "548",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17341/amazing_spider-man_1999_548",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #549",
+      "originalIssueId": 17581,
+      "selectedIssueId": 17581,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "549",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17581/amazing_spider-man_1999_549",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #550",
+      "originalIssueId": 17582,
+      "selectedIssueId": 17582,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "550",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #551",
+      "originalIssueId": 17583,
+      "selectedIssueId": 17583,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "551",
+      "seriesId": 454,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 7,
+      "sourceIssueReference": "FREE COMIC BOOK DAY 2007 1 (2007) #1",
+      "originalIssueId": 20809,
+      "selectedIssueId": 20809,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "FREE COMIC BOOK DAY 2007 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3913,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1",
+      "collectedMaterial": "Swing Shift",
+      "wholeOriginalReadingCaveat": "The original also contains a One More Day preview. The selected trade's Swing Shift material does not authorize adding a One More Day prelude or treating its Director's Cut reprint as another original."
+    },
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 8,
+      "sourceIssueReference": "Venom Super Special (1995) #1",
+      "originalIssueId": 59715,
+      "selectedIssueId": null,
+      "resolutionStatus": "unmatched",
+      "normalizedSeriesTitle": "Venom Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": null,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
+      "collectedMaterial": "Material from Venom Super Special #1; exact reprinted story title is not independently verified",
+      "wholeOriginalReadingCaveat": "The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day."
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #1",
+      "originalIssueId": 67631,
+      "selectedIssueId": 67631,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24396,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/67631/the_amazing_spider-man_2018_1",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #2",
+      "originalIssueId": 67633,
+      "selectedIssueId": 67633,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24396,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/67633/the_amazing_spider-man_2018_2",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #3",
+      "originalIssueId": 67635,
+      "selectedIssueId": 67635,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24396,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/67635/the_amazing_spider-man_2018_3",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 18,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #4",
+      "originalIssueId": 67636,
+      "selectedIssueId": 67636,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24396,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/67636/the_amazing_spider-man_2018_4",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 19,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #5",
+      "originalIssueId": 67637,
+      "selectedIssueId": 67637,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 24396,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/67637/the_amazing_spider-man_2018_5",
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 20,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Free Comic Book Day (The Amazing Spider-Man) (2018) #1",
+      "originalIssueId": 66474,
+      "selectedIssueId": 66474,
+      "resolutionStatus": "exact",
+      "normalizedSeriesTitle": "Free Comic Book Day (The Amazing Spider-Man)",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25687,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/66474/free_comic_book_day_the_amazing_spider-man_2018_1",
+      "collectedMaterial": "Amazing Spider-Man story only",
+      "wholeOriginalReadingCaveat": "Only the Spider-Man segment is collected by the selected trade. The app opens the full FCBD original, including other material; its provider credit list also includes Gerry Duggan, Mike Deodato, and Mike O'sullivan."
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Venom Super Special (1995) #1",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "sourceGroup": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Venom Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-04",
+      "auditBasis": "Source-identified original 59715 remains selection 2, within-book 8, source position 14. Preserved 2026-10-04 receipts record HTTP 404 for the exact original, zero exact originals from both exact-title searches and no exact Venom original among 12 broader-query candidates. Open assigned Issue https://github.com/raymond-nassar/recap-page/issues/707 was read on 2026-10-06. Publish the other 19 exact originals without substituting a neighboring special, collection or guessed identity. This is a metadata gap, not a Marvel Unlimited availability claim.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://books.google.com/books/about/Spider_Man.html?id=UYBTo1grbR4C",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://comicbookrealm.com/series/21532/211245/marvel-comics-amazing-spider-man-brand-new-day-tpb-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://www.simpletragic.com/products/venom-super-special-1995-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/59715",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        }
+      ],
+      "evidenceDigest": "f5984bb6978ade179feb7b5cb2d666366fe3321817860ae9dcf3a408597621f6"
+    }
+  ],
+  "sourceGapDetails": [
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 8,
+      "originalIssueId": 59715,
+      "seriesTitle": "Venom Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": null,
+      "coverUrl": null,
+      "selectedIssueId": null,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
+      "identityStatus": "known-original-provider-refusal-not-unresolved-book",
+      "httpStatus": 404,
+      "receipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/59715",
+        "httpStatus": 404,
+        "retrievedAt": "2026-10-04T03:06:03.724Z",
+        "bodySha256": "41426dd7abec6e73df4ef9ca86bfcc25df0fa63cb38ae3c035bcf7cf79697c05",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "lookupBundle": [
+        {
+          "query": "Venom Super Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T02:56:24.084Z",
+            "bodySha256": "569d6d44f5045865e6cebdad068c12b67ccde3c8fe1534a0c77acf0b32346f36",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [],
+          "observedCandidateCount": 0,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "query": "Venom Super-Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T02:59:03.857Z",
+            "bodySha256": "47f4aad4f3b7934496eee2cee84f3313e2549f396bd5ba8e9415696d0c42cf2f",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [],
+          "observedCandidateCount": 0,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "query": "Super Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T03:26:35.851Z",
+            "bodySha256": "ca5413ddcf74c0e7511d2cd1a3696bb43fe051af64ecb9b1a91e1cb89d582eea",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [
+            77775,
+            50896,
+            54964,
+            54966,
+            54967,
+            79442,
+            79450,
+            59712,
+            59710,
+            59711,
+            36775,
+            49168
+          ],
+          "observedCandidateCount": 12,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "route": "/issues/59715",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/issues/59715",
+            "httpStatus": 404,
+            "retrievedAt": "2026-10-04T03:06:03.724Z",
+            "bodySha256": "41426dd7abec6e73df4ef9ca86bfcc25df0fa63cb38ae3c035bcf7cf79697c05",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "settled-provider-refusal-for-known-original"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/raymond-nassar/recap-page/issues/707",
+        "stateReportedByCoordinator": "OPEN",
+        "assigneeReportedByCoordinator": "raymond-nassar",
+        "labelsReportedByCoordinator": [],
+        "coordinatorReportedAt": "2026-10-03T21:31:33.637-07:00",
+        "verificationProvenance": "Coordinator reports independently verified title/body/state/assignment and primary Issue link; this draft owner did not refetch.",
+        "guideRulingUrl": "https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920",
+        "eventualDeliveryPrLinkRequired": true,
+        "duplicateFilingForbidden": true
+      },
+      "nonSubstituteIds": [
+        59710,
+        59711,
+        59712,
+        42148,
+        59421,
+        12010
+      ],
+      "collectedMaterial": "Material from Venom Super Special #1; exact reprinted story title is not independently verified",
+      "wholeOriginalReadingCaveat": "The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day."
+    }
+  ],
+  "editorialOrder": {
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920",
+    "basis": "Publisher-listed supplemental order after Spencer (2018) #1-5",
+    "originalIssueId": 66474,
+    "sourcePosition": 20,
+    "selectionPosition": 3,
+    "withinSelectionPosition": 6,
+    "publishedPosition": 19,
+    "physicalTocVerified": false,
+    "separateHumanReceiptClaimed": false
+  },
+  "framing": {
+    "scope": "Owner-selected first-trade entry points; no direct movie source/adaptation claim.",
+    "recency": "The 2018 Spencer run is the newest of these three selected starts, not a latest/current run.",
+    "backups": "The three named #546 backups remain inside that full original; no per-story IDs.",
+    "progress": "Reuse canonical original issue IDs and shared-original progress. This draft modifies neither progress nor user notes."
+  },
+  "metadataAdoption": {
+    "mode": "fresh-exact-detail-capture",
+    "date": "2026-10-06",
+    "requestCount": 19,
+    "earlierReceiptPolicy": "All original 2026-10-04 receipt dates and hashes remain unchanged in the preserved research.",
+    "rawBodies": "Retained privately, not reconstructed from a normalized projection and not shipped.",
+    "coverBytesFetched": false
+  }
+}

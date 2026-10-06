@@ -2420,6 +2420,39 @@
       "coverIssueId": 12894
     },
     {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "name": "MCU Prep: Spider-Man: Brand New Day",
+      "description": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-spider-man-brand-new-day.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/705",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_spider_man_brand_new_day.json",
+      "characters": [
+        "Spider-Man"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Spider-Man",
+        "Peter Parker",
+        "Coming Home",
+        "Brand New Day",
+        "Back to Basics",
+        "J. Michael Straczynski",
+        "Dan Slott",
+        "Nick Spencer"
+      ],
+      "expect": 19,
+      "timeline": null,
+      "coverIssueId": 3583
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

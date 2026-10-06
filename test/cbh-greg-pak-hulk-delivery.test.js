@@ -163,14 +163,14 @@ test('Greg Pak relationship review is current, real and not inherited by a pendi
     excludedOrderIds: ['mcu-prep-thunderbolts', 'shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
-      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
+      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day'],
   });
   const expectedOrderIds = library.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 197);
@@ -223,7 +223,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 211);
+  assert.equal(manifest.lists.length, 212);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');

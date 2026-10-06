@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-10-05T03:02:26.439Z",
-  "pairCount": 84,
+  "generatedAt": "2026-10-06T14:03:24.518Z",
+  "pairCount": 85,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 24,
-  "sharedOccurrenceCount": 450,
+  "existingListCount": 25,
+  "sharedOccurrenceCount": 456,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "1f3f09d85699af9824525edcdfbb78d0c957c7cd96fdd32e958377ccd7160935",
+  "matrixSha256": "bc4ee1a8f51aac00810eef18c2ac02813681aa5bcdd11fb0c14d521479dbaf30",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -59,6 +59,10 @@
     {
       "id": "mcu-prep-fantastic-four-first-steps",
       "sharedCount": 7
+    },
+    {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "sharedCount": 6
     },
     {
       "id": "modern-x-men-fast-track",
@@ -222,6 +226,19 @@
     {
       "chapterId": "marvel-knights-to-planet-x-07",
       "existingListId": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        3583,
+        43123,
+        43125,
+        43128,
+        43130,
+        43132
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-07",
+      "existingListId": "mcu-prep-spider-man-brand-new-day",
       "sharedCount": 6,
       "sharedIssueIds": [
         3583,
