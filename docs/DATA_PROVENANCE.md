@@ -406,16 +406,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-one pinned reading-order payloads remain under
-[`src/data/`](../src/data): 289 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 290 active files hold
-31,107 issue records covering 19,317 distinct tracked identities. The visible files hold 30,620 of those records;
+Two hundred and ninety-two pinned reading-order payloads remain under
+[`src/data/`](../src/data): 290 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 291 active files hold
+31,120 issue records covering 19,323 distinct tracked identities. The visible files hold 30,633 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 290 active payloads, 26,229
-records carry a cover URL and 24,633 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 291 active payloads, 26,242
+records carry a cover URL and 24,639 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -502,9 +502,9 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 2 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger |
+| Selected by raymond-nassar for MCU Prep | 3 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades |
 
-The 212 active source orders generate 289 visible Reading Lists. Marvel Knights to Planet X is the only
+The 213 active source orders generate 290 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7074-7113`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7108-7147`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11135-11260`.
+`src/data/catalog.json:11176-11301`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2211,6 +2211,59 @@ availability model and reader launch semantics are unchanged. Existing saved lis
 original-ID progress, notes and overrides remain intact. Reader backups retain an imported guide
 through the existing format. Completion and enjoyment history remains separate and still needs
 its own history backup for portability; it is not added to reader backups.
+
+## Owner-authored MCU Prep: She-Hulk: Attorney at Law
+
+[Issue #699](https://github.com/raymond-nassar/recap-page/issues/699) supplies three literal
+owner selections. The [source ledger](../scripts/data/owner-selections/mcu-prep-she-hulk.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-she-hulk.json), [exact mapping](../scripts/data/owner-mappings/mcu-prep-she-hulk.json)
+and [local checklist](../src/data/orders/mcu-prep-she-hulk.md) preserve thirteen original comics
+in the owner's order. The three earlier unsealed draft files remain byte-exact historical inputs,
+now included alongside the delivery evidence rather than required from a private directory.
+
+| Owner selection | Original boundary | Originals |
+|---|---|---|
+| Savage She-Hulk, Stan Lee and John Buscema | The Savage She-Hulk (1980) #1 only, original 15256 | 1 |
+| Single Green Female, Dan Slott | She-Hulk (2004) #1-6 | 6 |
+| Law and Disorder, Charles Soule | She-Hulk (2014) #1-6 | 6 |
+
+The [delegated scope ruling](https://github.com/raymond-nassar/recap-page/issues/699#issuecomment-5976082382)
+settles the unqualified Savage wording as the named creators' single origin, not the full run
+or an invented collected edition. It is coordinator authority under autonomous delegation,
+not a separate human-reviewed receipt. The earlier pointer to Fantastic Four Issue #701
+remains mismatch provenance only.
+
+Bibliography retrieved on 2026-10-03 and 2026-10-04 identifies the subtitle-specific paperback
+boundaries rather than their wider Complete Collections. Single Green Female's ISBN
+9780785114437 has a 2004 physical library record and a 2007 same-ISBN bookseller record;
+its precise printing day is not asserted. Law and Disorder's ISBN 9780785190196 is the 2014
+first trade. Independent library credits identify Javier Pulido on #1-4 and Ron Wimberly on
+#5-6. Those facts remain separate from seven empty origin/Slott provider creator arrays and
+the differing provider art-role labels. Soule stays selected without an absolute latest-run,
+direct-adaptation or verified TV fourth-wall attribution claim.
+
+On 2026-10-06, thirteen authorized exact-detail requests supplied genuine request-bound cache
+records. All identities and canonical response hashes matched the retained original receipts,
+whose dates and hashes remain unchanged. One offline single-target vendor run emitted all
+thirteen originals with cover URLs and digital IDs, no gaps and no placeholders. No searches,
+series or bibliography refetches, image bytes or external narrative were used. Six Slott provider
+Unlimited dates predate the service's launch and remain unreliable metadata, not availability promises.
+
+The [publication-time full-library report](../scripts/data/owner-overlaps/mcu-prep-she-hulk.json)
+binds actual post-refresh descriptions and all 290 existing descriptors, including 78 generated
+children and the hidden parent. Actual independent central GPT-6 Astra review approved one
+partial intersection and 289 pairs without shared originals, with no exact or subset relationships.
+The 1,149-original Hulk-family guide shares the Savage origin and six Slott originals; this compact
+route adds six distinct 2014 originals. Both full vectors and original-ID progress remain intact.
+Frozen peer receipts are not rewritten, and a later meaningful relationship requires new authority.
+
+The guide is one selected-depth MCU Prep choice credited to raymond-nassar with
+`sourceLicense: null`, inserted after Brand New Day and before Agents of Atlas without reordering
+the existing sources. The fourteen-entry CBH companion inventory, prior payloads and retired
+owner No Way Home archive remain unchanged. No runtime dependency, saved-data schema, app origin,
+availability state or reader launch behavior changes. Existing lists, notes, overrides and shared
+read flags survive import and reload. Reader backups retain the imported guide through the existing
+format; completion and enjoyment history remains separate and still needs its own history backup.
 
 ## MCU Prep description refresh
 

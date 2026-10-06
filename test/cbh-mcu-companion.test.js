@@ -397,7 +397,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
-  assert.equal(catalog.lists.length, 289);
+  assert.equal(catalog.lists.length, 290);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
@@ -441,7 +441,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
   assert.equal(screen.count, catalog.lists.filter(({ type }) => type === 'screen-companion').length);
-  assert.equal(screen.count, 15);
+  assert.equal(screen.count, 16);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));

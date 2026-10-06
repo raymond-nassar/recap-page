@@ -2453,6 +2453,40 @@
       "coverIssueId": 3583
     },
     {
+      "id": "mcu-prep-she-hulk",
+      "name": "MCU Prep: She-Hulk: Attorney at Law",
+      "description": "Jennifer Walters balances courtroom cases with life as a green-skinned powerhouse, building her own legal practice one chaotic client at a time. Smart, funny, and full of cases that only a superhero lawyer could take.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-she-hulk.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/699",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_she_hulk.json",
+      "characters": [
+        "She-Hulk"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "She-Hulk",
+        "Attorney at Law",
+        "Savage She-Hulk",
+        "Single Green Female",
+        "Law and Disorder",
+        "Stan Lee",
+        "John Buscema",
+        "Dan Slott",
+        "Charles Soule"
+      ],
+      "expect": 13,
+      "timeline": null,
+      "coverIssueId": 15256
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

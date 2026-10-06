@@ -7,19 +7,19 @@ import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor,
   sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
-import { buildCurrentOwnerOverlap } from '../scripts/lib/owner-current-library.mjs';
+import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
 import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/catalog.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY, ListHistoryStore } from '../src/js/lib/listHistory.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   addIssuesToList, createEmptyState, createList, exportBackup, SCHEMA_VERSION, validateBackup,
 } from '../src/js/lib/model.js';
-import { historicalMcuDescriptionManifest } from './helpers/reading-choice-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
-const fixture = await json('test/fixtures/mcu-prep-brand-new-day-vector.json');
+const fixture = await json('test/fixtures/mcu-prep-she-hulk-vector.json');
 const { id, groups, sourceUrl } = fixture;
 const expectedIds = fixture.rows.map((row) => row[1]);
 const expectedPositions = fixture.rows.map((row) => row[0]);
@@ -38,36 +38,25 @@ const evidence = async () => {
   return { source, packet, mapping, report };
 };
 
-test('Brand New Day accounts for twenty source positions and nineteen exact originals', async () => {
+test('She-Hulk accounts for thirteen exact originals and qualified first-trade boundaries', async () => {
   const { source, packet, mapping } = await evidence();
-  assert.deepEqual(source.sourceGaps?.map((row) => row.sourcePosition), [14],
-    'Source position 14 must remain in the explicit nonempty source-gap ledger');
-  assert.deepEqual(source.sourceGaps, packet.sourceGaps);
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  const gap = source.sourceGapDetails[0];
-  assert.deepEqual([gap.sourcePosition, gap.selectionPosition, gap.withinSelectionPosition,
-    gap.originalIssueId, gap.selectedIssueId, gap.seriesId, gap.coverUrl],
-  [14, 2, 8, 59715, null, null, null]);
-  assert.equal(gap.issue.url, fixture.gapUrl);
-  assert.equal(gap.receipt.httpStatus, 404);
-  assert.deepEqual(gap.lookupBundle.map((lookup) => lookup.receipt.httpStatus), [200, 200, 200, 404]);
-  assert.deepEqual(gap.nonSubstituteIds, [59710, 59711, 59712, 42148, 59421, 12010]);
   assert.equal(source.selectionCount, 3);
-  assert.deepEqual(source.sourceGroupCounts, [6, 8, 6]);
-  assert.deepEqual(source.publishedGroupCounts, [6, 7, 6]);
-  assert.deepEqual(source.rows.map((row) => row.sourcePosition),
-    Array.from({ length: 20 }, (_, index) => index + 1));
-  assert.deepEqual(source.rows.map((row) => row.originalIssueId),
-    [...expectedIds.slice(0, 13), 59715, ...expectedIds.slice(13)]);
-  assert.deepEqual(source.rows.filter((row) => row.resolutionStatus === 'exact')
-    .map((row) => row.selectedIssueId), expectedIds);
-  assert.equal(packet.expectedCount, 19);
-  assert.equal(packet.proposedManifest.expect, 19);
-  assert.equal(mapping.approvedSourceCount, 20);
+  assert.equal(source.publishedIssueCount, 13);
+  assert.deepEqual(source.sourceGroupCounts, [1, 6, 6]);
+  assert.deepEqual(source.publishedGroupCounts, [1, 6, 6]);
+  assert.deepEqual(source.rows.map((row) => row.sourcePosition), expectedPositions);
+  assert.deepEqual(source.rows.map((row) => row.originalIssueId), expectedIds);
+  assert.deepEqual(source.rows.map((row) => row.selectedIssueId), expectedIds);
+  assert.deepEqual(source.rows.map((row) => row.seriesYear), [1980, ...Array(6).fill(2004), ...Array(6).fill(2014)]);
+  assert.equal(packet.expectedCount, 13);
+  assert.equal(packet.proposedManifest.expect, 13);
+  assert.equal(mapping.approvedSourceCount, 13);
   assert.deepEqual(sourceCountsForPacket(packet), {
-    sourceOccurrenceCount: 20, sourceIdentityCount: 20, includedIssueCount: 19,
-    sourceGapCount: 1, repeatedSourceReferenceCount: 0,
+    sourceOccurrenceCount: 13, sourceIdentityCount: 13, includedIssueCount: 13,
+    sourceGapCount: 0, repeatedSourceReferenceCount: 0,
   });
+  assert.equal(Object.hasOwn(packet, 'sourceGaps'), false);
+  assert.equal(Object.hasOwn(packet, 'sourceRepeats'), false);
   assert.deepEqual(packet.rows.map((row) => row.candidateIssueId), expectedIds);
   assert.deepEqual(mapping.rows.map((row) => row.selectedIssueId), expectedIds);
   assert.deepEqual(mapping.rows.map((row) => row.sourcePosition), expectedPositions);
@@ -76,21 +65,37 @@ test('Brand New Day accounts for twenty source positions and nineteen exact orig
   assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.rows));
   assert.equal(source.sourceUrl, sourceUrl);
   assert.equal(source.readerDescription, fixture.description);
-  assert.equal(source.editorialOrder.physicalTocVerified, false);
+  assert.equal(source.editorialOrder.originIssueId, 15256);
+  assert.equal(source.editorialOrder.authorityType, 'coordinator-choice-under-autonomous-delegation');
   assert.equal(source.editorialOrder.separateHumanReceiptClaimed, false);
-  assert.deepEqual([source.editorialOrder.originalIssueId, source.editorialOrder.sourcePosition,
-    source.editorialOrder.publishedPosition], [66474, 20, 19]);
-  assert.equal(source.preservedResearch.sourceCommit, '3178fc805b2e408246cc5332846f3d6405a32fa3');
+  assert.equal(source.editorialOrder.precisePrintingDayAsserted, false);
+  assert.equal(source.sourceDecisionUrl, `${sourceUrl}#issuecomment-5976082382`);
+  assert.equal(source.supersededKickoffPointer.url,
+    'https://github.com/raymond-nassar/recap-page/issues/701');
+  assert.equal(source.sourceSelections[0].collectionTitle, null);
+  assert.equal(source.sourceSelections[0].editionIsbn, null);
+  assert.deepEqual(source.sourceSelections[1].publicationYearObservations.map((row) => row.year), [2004, 2007]);
+  assert.equal(source.sourceSelections[1].editionIsbn, '9780785114437');
+  assert.equal(source.sourceSelections[1].precisePrintingDate, null);
+  assert.equal(source.sourceSelections[2].editionIsbn, '9780785190196');
+  assert.equal(source.sourceSelections[2].publicationYear, 2014);
+  assert.deepEqual(source.sourceSelections[2].creditedCreators.slice(1), [
+    { name: 'Javier Pulido', role: 'artist on #1-4' },
+    { name: 'Ron Wimberly', role: 'artist on #5-6' },
+  ]);
+  assert.ok(source.factualQualifications.some((row) => /Soule remains selected.*refutes absolute recency/.test(row)));
+  assert.equal(source.preservedResearch.originalsWereUncommittedDrafts, true);
+  assert.equal(source.preservedResearch.artifacts.length, 3);
   for (const original of source.preservedResearch.artifacts) {
     assert.equal(hashText(await text(original.path)), original.sha256);
   }
-  assert.equal(mapping.candidateMetadata.length, 19);
+  assert.equal(mapping.candidateMetadata.length, 13);
   for (const row of mapping.rows) {
     assert.equal(row.resolutionStatus, 'exact');
     assert.equal(resolveRow(row, mapping.candidateMetadata).selectedIssueId, String(row.selectedIssueId));
     const candidate = mapping.candidateMetadata.find((entry) => entry.id === row.selectedIssueId);
     const fresh = candidate.freshMetadataEvidence;
-    assert.equal(fresh.url, candidate.metadataUrl);
+    assert.equal(fresh.url, `https://marvel.emreparker.com/v1/issues/${row.selectedIssueId}`);
     assert.equal(fresh.urlSha256, hashText(fresh.url));
     assert.equal(fresh.status, 200);
     assert.match(fresh.retrievedAt, /^2026-10-06T/);
@@ -103,14 +108,17 @@ test('Brand New Day accounts for twenty source positions and nineteen exact orig
     assert.equal(candidate.providerProjection.issueNumber, row.issueNumber);
     assert.equal(candidate.providerProjection.title, row.resolvedIssueTitle);
     assert.equal(Object.hasOwn(candidate.providerProjection, 'description'), false);
+    assert.equal(candidate.coverBytesFetched, false);
+    assert.equal(candidate.availabilityClaim, null);
   }
 });
 
-test('Brand New Day binds actual approval to the complete current library', async () => {
+test('She-Hulk binds post-refresh approval to every current-library peer', async () => {
   const { packet, mapping, report } = await evidence();
-  const [{ report: current, library }, manifest, catalog] = await Promise.all([
-    buildCurrentOwnerOverlap(mapping), json('src/data/curated-lists.json'), json('src/data/catalog.json'),
+  const [library, manifest, catalog] = await Promise.all([
+    loadCurrentOwnerLibrary(id), json('src/data/curated-lists.json'), json('src/data/catalog.json'),
   ]);
+  const current = buildComparisonReport({ candidateIds: expectedIds, orders: library.orders });
   const peerIds = [...new Set([...manifest.lists, ...catalog.lists].map((row) => row.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
@@ -120,28 +128,29 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   assert.ok(!peerIds.includes('spider-man-no-way-home-owner-selected'));
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
   const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
-  const recordedManifest = historicalMcuDescriptionManifest({
-    ...library.manifest,
-    lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
-  });
+  const recordedManifest = {
+    ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
+  };
   const recordedDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
-  assert.equal(report.comparisonCount, 289);
-  assert.equal(report.libraryDigest, recordedDigest);
+  assert.equal(report.comparisonCount, 290);
+  assert.equal(report.libraryDigest, recordedDigest,
+    'Post-refresh authority binds actual current descriptions without a historical inverse');
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'),
-    report.comparisons.filter((row) => row.relationship !== 'none'),
-    'A new meaningful relationship needs its own central review');
-  assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
-    .map((row) => [row.orderId, row.relationship, row.sharedCount]), [
-    ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 12],
-    ['doctor-octopus-otto-octavius-reading-order', 'partial', 6],
-    ['marvel-knights-to-planet-x', 'partial', 6],
-    ['marvel-knights-to-planet-x-07', 'partial', 6],
-    ['spider-man-best-of', 'partial', 6],
+  assert.ok(current.comparisons.filter((row) => !recordedIds.has(row.orderId))
+    .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
+  'A later meaningful relationship needs its own central review');
+  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), [
+    {
+      orderId: 'question-of-the-week-do-you-have-a-hulk-reading-order',
+      relationship: 'partial', sharedCount: 7, sharedIds: expectedIds.slice(0, 7).map(String),
+    },
   ]);
-  assert.equal(report.comparisons.filter((row) => row.relationship === 'none').length, 284);
+  const hulk = library.orders.find((row) => row.orderId === 'question-of-the-week-do-you-have-a-hulk-reading-order');
+  assert.equal(hulk.issueIds.length, 1149);
+  assert.ok(expectedIds.slice(7).every((issueId) => !hulk.issueIds.includes(String(issueId))));
+  assert.equal(report.comparisons.filter((row) => row.relationship === 'none').length, 289);
   validateFrozenPacket(packet, { provider });
   assertMappingMatchesPacketOccurrences(packet, mapping);
   validateMappingDigest(mapping);
@@ -152,25 +161,22 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   });
   assert.equal(packet.sourceReview.authorityType, 'stronger-model');
   assert.equal(mapping.relationshipReview.authorityType, 'stronger-model');
-  assert.match(mapping.relationshipReview.authorityIdentity, /central coordinator independent/);
+  assert.match(mapping.relationshipReview.authorityIdentity, /GPT-6 Astra.*central coordinator independent/);
+  assert.equal(mapping.relationshipReview.reviewedAt, '2026-10-06T20:26:04.235Z');
   assert.equal(mapping.relationshipReview.approvalDigest,
-    'f4caf353a23d71c80f59e2338c3ce18001b1dc6ddf8d70367bd815aa444b9d5e');
-  const chapter = mapping.relationshipReview.dispositions.find((row) =>
-    row.orderId === 'marvel-knights-to-planet-x-07');
-  assert.match(chapter.rationale, /seven-original generated chapter shares six Coming Home/);
+    '6b912b468d9cce4b20c2fdf08c3c97ac3196d8aa5656d3c9ef93190c9e1cd17a');
   assert.deepEqual(packet.insertionAnchor, { beforeId: 'agents-of-atlas-reading-order' });
   const position = manifest.lists.findIndex((row) => row.id === id);
-  assert.equal(manifest.lists[position - 1].id, 'mcu-prep-fantastic-four-first-steps');
-  assert.equal(manifest.lists[position + 1].id, 'mcu-prep-she-hulk');
-  assert.ok(position < manifest.lists.findIndex((row) => row.id === packet.insertionAnchor.beforeId));
+  assert.equal(manifest.lists[position - 1].id, 'mcu-prep-spider-man-brand-new-day');
+  assert.equal(manifest.lists[position + 1].id, packet.insertionAnchor.beforeId);
 });
 
-test('Brand New Day publishes one qualified guide without changing saved reader or history data', async () => {
+test('She-Hulk publishes thirteen originals without changing reader or history data', async () => {
   const { packet, mapping } = await evidence();
   const [payload, manifest, catalog, markdown, inventory] = await Promise.all([
-    json('src/data/mcu_prep_spider_man_brand_new_day.json'),
-    json('src/data/curated-lists.json'), json('src/data/catalog.json'),
-    text(`src/data/orders/${id}.md`), json('scripts/data/cbh-mcu-companion-inventory.json'),
+    json('src/data/mcu_prep_she_hulk.json'), json('src/data/curated-lists.json'),
+    json('src/data/catalog.json'), text(`src/data/orders/${id}.md`),
+    json('scripts/data/cbh-mcu-companion-inventory.json'),
   ]);
   const parsed = parseChecklist(markdown);
   assert.deepEqual(parsed.entries.map((row) => row.issueId), expectedIds);
@@ -178,14 +184,12 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   assert.deepEqual(parsed.entries.map((row) => row.section), expectedGroups);
   assert.deepEqual(parsed.entries.map((row) => row.title), fixture.rows.map((row) => row[2]));
   assert.deepEqual(parsed.unresolved, []);
-  assert.match(markdown, /Source position 14, selection 2, within-book position 8/);
-  assert.ok(markdown.includes(fixture.gapUrl));
-  assert.doesNotMatch(markdown, /- \[[ x]\].*Venom Super Special|[\u2013\u2014]/);
-  assert.deepEqual(payload.items.map((row) => row.issueId), expectedIds);
+  assert.match(markdown, /DATA_PROVENANCE\.md#owner-authored-mcu-prep-she-hulk-attorney-at-law/);
+  assert.doesNotMatch(markdown, /[\u2013\u2014]/);
+  assert.deepEqual(payload.items.map((row) => row.issueId), expectedIds,
+    'Published She-Hulk original vector and order must match the accepted source exactly');
   assert.deepEqual(payload.items.map((row) => row.collectedIn), expectedGroups);
-  assert.equal(payload.count, 19);
-  assert.equal(payload.collections, 3);
-  assert.equal(payload.placeholders, 0);
+  assert.deepEqual([payload.count, payload.collections, payload.placeholders], [13, 3, 0]);
   assert.deepEqual(payload.unresolved, []);
   assert.equal(payload.description, fixture.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
@@ -204,7 +208,9 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
     assert.equal(Object.hasOwn(item, 'storyId'), false);
   }
   assert.deepEqual(payload.items.filter((row) => row.creators.length === 0).map((row) => row.issueId),
-    [43128, 43132]);
+    expectedIds.slice(0, 7));
+  assert.deepEqual(payload.items.filter((row) => row.mu && Number(row.mu.slice(0, 4)) < 2007)
+    .map((row) => row.issueId), expectedIds.slice(1, 7));
   assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
@@ -224,13 +230,13 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   assert.equal((await json('src/data/spider_man_no_way_home_owner_selected.json')).count, 18);
   assert.equal((await json('src/data/spider_man_no_way_home.json')).count, 17);
 
-  let state = createList(createEmptyState(), { id: 'existing-spidey', name: 'My Spidey list', note: 'My list note' });
-  state = addIssuesToList(state, 'existing-spidey', [{
-    ...payload.items[0], collectedIn: 'My previous Coming Home section',
+  let state = createList(createEmptyState(), { id: 'existing-hulk', name: 'My Hulk list', note: 'My list note' });
+  state = addIssuesToList(state, 'existing-hulk', [{
+    ...payload.items[0], collectedIn: 'My previous Hulk section',
   }]).state;
-  state = { ...state, read: { 3583: 123456 }, notes: { 3583: 'My existing Spidey note' },
-    overrides: { 3583: 'unavailable' } };
-  const priorList = structuredClone(state.lists['existing-spidey']);
+  state = { ...state, read: { 15256: 123456 }, notes: { 15256: 'My existing Hulk note' },
+    overrides: { 15256: 'unavailable' } };
+  const priorList = structuredClone(state.lists['existing-hulk']);
   const historyText = JSON.stringify({
     format: LIST_HISTORY_FORMAT, version: 1,
     records: [{ listId: priorList.id, created: priorList.created, catalogId: null,
@@ -239,24 +245,24 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   const saved = new Map([[LIST_HISTORY_KEY, historyText]]);
   const history = new ListHistoryStore({ storage: { getItem: (key) => saved.get(key) ?? null } });
   assert.equal(history.load().ok, true);
-  state = createList(state, { id: 'brand', name: payload.name, catalogId: id, description: payload.description });
-  state = addIssuesToList(state, 'brand', payload.items).state;
+  state = createList(state, { id: 'she-hulk', name: payload.name, catalogId: id, description: payload.description });
+  state = addIssuesToList(state, 'she-hulk', payload.items).state;
   assert.equal(state.schemaVersion, SCHEMA_VERSION);
-  assert.deepEqual(state.lists['existing-spidey'], priorList);
-  assert.deepEqual(state.lists.brand.itemIds, expectedIds);
-  assert.equal(state.lists.brand.collectedIn[3583], groups[0]);
-  assert.equal(Object.hasOwn(state.issues[3583], 'collectedIn'), false);
-  assert.equal(Object.keys(state.issues).filter((key) => key === '3583').length, 1);
+  assert.deepEqual(state.lists['existing-hulk'], priorList);
+  assert.deepEqual(state.lists['she-hulk'].itemIds, expectedIds);
+  assert.equal(state.lists['she-hulk'].collectedIn[15256], groups[0]);
+  assert.equal(Object.hasOwn(state.issues[15256], 'collectedIn'), false);
+  assert.equal(Object.keys(state.issues).filter((key) => key === '15256').length, 1);
   const backup = exportBackup(state);
   const restored = validateBackup(backup);
   assert.equal(restored.ok, true, restored.errors.join('; '));
-  assert.deepEqual(restored.state.lists.brand.itemIds, expectedIds);
-  assert.deepEqual(restored.state.lists['existing-spidey'], priorList);
-  assert.equal(restored.state.read[3583], 123456);
-  assert.equal(restored.state.notes[3583], 'My existing Spidey note');
-  assert.equal(restored.state.overrides[3583], 'unavailable');
-  assert.equal(history.isCompleted(restored.state, 'existing-spidey'), true);
-  assert.equal(history.getRecord(restored.state, 'existing-spidey').rating, 'up');
+  assert.deepEqual(restored.state.lists['she-hulk'].itemIds, expectedIds);
+  assert.deepEqual(restored.state.lists['existing-hulk'], priorList);
+  assert.equal(restored.state.read[15256], 123456);
+  assert.equal(restored.state.notes[15256], 'My existing Hulk note');
+  assert.equal(restored.state.overrides[15256], 'unavailable');
+  assert.equal(history.isCompleted(restored.state, 'existing-hulk'), true);
+  assert.equal(history.getRecord(restored.state, 'existing-hulk').rating, 'up');
   assert.equal(saved.get(LIST_HISTORY_KEY), historyText);
   assert.equal(Object.hasOwn(backup, 'listHistory'), false);
 });
