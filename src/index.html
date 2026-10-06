@@ -786,13 +786,13 @@
                 </div>
                 <form id="form-import" class="stack">
                   <label for="import-text">Reading List</label>
-                  <textarea id="import-text" rows="8" spellcheck="false"></textarea>
+                  <textarea id="import-text" rows="8" spellcheck="false" aria-describedby="import-report"></textarea>
                   <div class="field-row">
                     <button type="submit" class="btn">Import</button>
                     <label class="checkbox"><input type="checkbox" id="import-new-list" checked /> Into a new list</label>
                   </div>
                 </form>
-                <div id="import-report" class="results"></div>
+                <div id="import-report" class="results" tabindex="-1"></div>
             </section>
           </section>
 
@@ -843,7 +843,7 @@
               <h2>Data safety</h2>
               <div class="card card-static addpri">
                 <h3>Backup and restore</h3>
-                <p class="rail-hint">Back up regularly. Reading-data backups contain lists, notes, read progress and deferrals. Completion and enjoyment need the separate completion-history backup below.</p>
+                <p class="rail-hint">Back up regularly. Reading-data backups contain lists, notes, read progress and deferrals. A complete transfer also needs the separate completion-history backup below and the separate import-draft file when a draft is present.</p>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
                 </div>
@@ -855,6 +855,13 @@
                   <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
                 </div>
                 <div id="restore-report" class="results"></div>
+                <h4>Separate import draft</h4>
+                <p class="rail-hint">Includes exact pasted source, source positions, selected matches and retained previous sources. No automatic expiry. Reading-data and completion-history backups do not include it. Restoring reading data keeps the draft but requires review before applying more comics.</p>
+                <div class="field-row">
+                  <button type="button" id="btn-export-draft" class="btn btn-g">Download import-draft backup</button>
+                  <input type="file" id="restore-draft" accept="application/json,.json" aria-label="Separate import draft file to restore" aria-describedby="draft-transfer-report" />
+                </div>
+                <div id="draft-transfer-report" class="results" tabindex="-1"></div>
                 <details class="field-disclosure action-disclosure" id="backup-export-options">
                   <summary>Checklist and sharing options</summary>
                   <div class="stack">

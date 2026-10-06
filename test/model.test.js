@@ -1,4 +1,41 @@
 ﻿import test from 'node:test';
+import { sourceOccurrences, occurrenceIssue } from '../src/js/lib/importDraft.js';
+import { publishImportOccurrences } from '../src/js/lib/model.js';
+
+test('ordered import fills multiple gaps in reverse order after an unchanged prefix', () => {
+  let state = createList(createEmptyState(), { id: 'ordered', name: 'Existing' });
+  state = addIssuesToList(state, 'ordered', [{ issueId: 9, title: 'Prefix' }]).state;
+  const draft = {
+    destination: { id: 'ordered', created: state.lists.ordered.created, name: 'Existing', newList: false, prefix: [9] },
+    occurrences: sourceOccurrences('- [ ] [One](https://www.marvel.com/comics/issue/1/)\n- [ ] Two\n- [ ] Three\n- [ ] [Four](https://www.marvel.com/comics/issue/4/)'),
+  };
+  state = publishImportOccurrences(state, draft, draft.occurrences.map(occurrenceIssue), [0, 3], 1).state;
+  draft.occurrences[2].choice = normalizeIssue({ issueId: 3, title: 'Three' });
+  state = publishImportOccurrences(state, draft, draft.occurrences.map(occurrenceIssue), [2], 2).state;
+  draft.occurrences[1].choice = normalizeIssue({ issueId: 2, title: 'Two' });
+  state = publishImportOccurrences(state, draft, draft.occurrences.map(occurrenceIssue), [1], 3).state;
+  assert.deepEqual(state.lists.ordered.itemIds, [9, 1, 2, 3, 4]);
+  assert.equal(Object.getPrototypeOf(state.lists), null);
+});
+
+test('earlier-source duplicate moves only import-owned membership and preserves original edition and markers', () => {
+  let state = createList(createEmptyState(), { id: 'duplicates', name: 'Existing', deferredIssueIds: [] });
+  state = addIssuesToList(state, 'duplicates', [{ issueId: 9, title: 'Prefix', collectedIn: 'Original' }]).state;
+  state = markRead(state, 9, true, 3);
+  const draft = {
+    destination: { id: 'duplicates', created: state.lists.duplicates.created, newList: false, prefix: [9] },
+    occurrences: sourceOccurrences('## Early\n- [ ] Gap\n- [ ] [One](https://www.marvel.com/comics/issue/1/)\n## Later\n- [x] [Two](https://www.marvel.com/comics/issue/2/)\n- [ ] [Prefix](https://www.marvel.com/comics/issue/9/)'),
+  };
+  state = publishImportOccurrences(state, draft, draft.occurrences.map(occurrenceIssue), [1, 2, 3], 4).state;
+  state = markRead(state, 2, false);
+  draft.occurrences[0].choice = normalizeIssue({ issueId: 2, title: 'Two' });
+  state = publishImportOccurrences(state, draft, draft.occurrences.map(occurrenceIssue), [0], 5).state;
+  assert.deepEqual(state.lists.duplicates.itemIds, [9, 2, 1]);
+  assert.deepEqual(state.lists.duplicates.collectedIn, { 9: 'Original', 1: 'Early', 2: 'Early' });
+  assert.equal(state.read[9], 3);
+  assert.equal(state.read[2], undefined);
+  assert.equal(draft.occurrences.length, 4);
+});
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

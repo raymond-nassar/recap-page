@@ -104,6 +104,11 @@ The existing **Undo removal** offer can put that copy back.
 
 Completion dates and enjoyment choices have their own export and restore controls in
 **Backup & settings**. Export both backups to carry both kinds of data to another device.
+If a pasted import draft is present, also download its separately labeled import-draft backup.
+It contains the original source, unresolved positions and selected matches, not just saved comics.
+Resolved comics publish even when other positions remain unresolved. Matching a gap fills its
+source position; duplicate occurrences remain in the draft without duplicating list membership.
+Saved source has no automatic expiry: resume it after reload or explicitly discard it from Add comics.
 Restoring reading data does not replace completion history; matching saved lists can reveal
 their retained history again.
 
@@ -182,7 +187,8 @@ Microsoft Store installations receive product updates only through Microsoft Sto
 For a standalone archive or source copy:
 
 1. Export a reading backup from **Backup & settings**, and a completion-history backup if you
-   want to keep completion dates and enjoyment choices too.
+   want to keep completion dates and enjoyment choices too. Also export the separate import-draft
+   file when one is present.
 2. Stop the old copy.
 3. Download the latest archive or source.
 4. Start the new copy at <http://127.0.0.1:8787/>.

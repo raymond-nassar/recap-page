@@ -50,6 +50,17 @@ and optional thumbs. Each restore replaces only its own kind of data. A reading-
 its Undo does not replace completion history. Download both files to preserve both kinds of data.
 The separately labelled saved-value troubleshooting copy is not a normal history backup.
 
+Pasted imports retain exact source text, recognized source positions and selected matches in a
+separate local draft, including unresolved and duplicate occurrences. Source can contain arbitrary
+personal text. There is no automatic expiry or upload. For a complete transfer, also export the
+separately labeled import-draft file when present. Current reading/history formats remain unchanged.
+Draft restore changes only that draft; it preserves prior draft sources inside the new bounded file
+and requires explicit Resume review. A replacement that exceeds the size limit is refused.
+Reading restore and Undo retain source but invalidate automatic application. An uncertain interrupted
+operation never blindly replays historical read markers. Failed writes retain visible unsaved source
+or guarded recovery; when storage outcome cannot be verified, export retained source before reloading.
+Browser downloads are requests, not confirmation that a file was saved.
+
 ## Direct network requests
 
 These features make direct requests:
@@ -115,6 +126,12 @@ Salvage copies kept after a failed read are not removed. Remove them separately 
 **Copies kept after a failed read**; a copy cannot be removed while it protects active unreadable
 data. Erase also requests metadata cache cleanup and reports cleanup failures; it does not erase
 offline app files. **Clear cached metadata** remains a separate control.
+
+Verified reading erase also removes the captured import draft and its retained source snapshots.
+If reading data or the draft changes during confirmation/cleanup, or removal cannot be verified,
+the draft is kept or its uncertain outcome is reported. Explicit draft discard removes source
+without removing published comics. Start fresh and clearing cached metadata do not discard drafts.
+Neither erase nor discard removes exported files.
 
 Use browser controls to clear desktop storage and caches; uninstalling the Windows package leaves
 them in place. On Android, clearing app data or uninstalling removes private app storage. These

@@ -478,3 +478,10 @@ test('a list with no collected editions gains no headings', () => {
 
   assert.ok(!md.includes('## '), `no sub-heading may appear:\n${md}`);
 });
+test('import compatibility keeps checklist indices across raw physical lines', () => {
+  const parsed = parseChecklist('# Raw\r\n\r\nprose\r\n- [ ] One\u00a0#1\r\n## Trade\r\n> bundle\r\n- [x] [Two](https://www.marvel.com/comics/issue/2/) <!-- mrt:source-occurrence=2 -->\r\n- [ ] Three\r\n');
+  assert.deepEqual([...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index).map((row) => row.index), [0, 1, 2]);
+  assert.equal(parsed.entries[0].section, 'Trade');
+  assert.equal(parsed.entries[0].read, true);
+  assert.equal(parsed.sourcePositions[0].count, 2);
+});

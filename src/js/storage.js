@@ -6,9 +6,15 @@
 
 import {
   createEmptyState, migrate, exportBackup, validateBackup, withoutIssueDescriptions,
+  normalizeIssue, MAX_BACKUP_BYTES, publishImportOccurrences,
 } from './lib/model.js';
+import {
+  DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, listSignature, occurrenceIssue,
+  validateImportDraft, importProjection, pendingOutcome,
+} from './lib/importDraft.js';
 
 export const KEY = 'mrt.state.v2';
+export const IMPORT_DRAFT_KEY = 'mrt.import.draft.v1';
 const TEMP_KEY = 'mrt.state.restore.tmp';
 const PRERESTORE_KEY = 'mrt.state.prerestore';
 const SALVAGE_KEY = 'mrt.state.salvage';
@@ -49,6 +55,279 @@ function tokenOf(raw) {
   if (typeof raw !== 'string' || raw === '') return null;
   const found = TOKEN_PATTERN.exec(raw.slice(0, TOKEN_PREFIX_CHARS));
   return found ? found[1] : null;
+}
+
+export class ImportDraftStore {
+  constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {} }) {
+    this.reader = reader;
+    this.storage = storage;
+    this.locks = locks;
+    this.onChange = onChange;
+    this.raw = null;
+    this.draft = null;
+    this.error = null;
+    this.recovery = [];
+    this.uncertain = false;
+    this.blocked = false;
+    this.load();
+  }
+
+  load() {
+    if (this.uncertain) {
+      this.error = 'Import draft storage outcome is unknown. Export retained source before reloading; no further changes are allowed.';
+      return this.draft;
+    }
+    const prior = this.raw;
+    try {
+      const raw = this.storage.getItem(IMPORT_DRAFT_KEY);
+      this.raw = raw;
+      const draft = raw === null ? null : validateImportDraft(raw);
+      this.draft = draft;
+      this.error = null;
+      this.blocked = false;
+    } catch (error) {
+      if (prior && prior !== this.raw) this.recovery = [...new Set([...this.recovery, prior])];
+      this.error = `Could not read the import draft (${error.message}). It was not overwritten.`;
+      this.blocked = true;
+    }
+    return this.draft;
+  }
+
+  capture() {
+    return this.raw;
+  }
+
+  isCurrent(expected) {
+    return expected === this.raw && this.storage.getItem(IMPORT_DRAFT_KEY) === expected;
+  }
+
+  async locked(expected, operation) {
+    if (!this.locks?.request) return { ok: false, changed: false, error: 'Import draft saving needs browser storage locks. Source was kept; nothing was published.' };
+    try {
+      return await this.locks.request(IMPORT_DRAFT_KEY, () => {
+        if (this.uncertain) throw new Error('Draft storage outcome is unknown. Export the retained source before reloading; further changes are paused.');
+        if (!this.isCurrent(expected)) throw new Error('The import draft changed in another tab. Reopen Add comics to review the current draft.');
+        if (this.blocked) throw new Error(this.error);
+        const result = operation();
+        this.error = result.ok ? null : result.error;
+        return result;
+      });
+    } catch (error) {
+      this.error = error.message;
+      return { ok: false, changed: false, error: error.message };
+    } finally {
+      this.onChange();
+    }
+  }
+
+  write(next) {
+    const previous = this.raw;
+    const raw = JSON.stringify({
+      ...next, previousSources: [...new Set([...next.previousSources, ...this.recovery])], revision: newToken(),
+    });
+    validateImportDraft(raw);
+    if (!this.isCurrent(previous)) throw new Error('Another tab changed the draft before saving. Nothing was overwritten.');
+    let writeError = null;
+    try {
+      this.storage.setItem(IMPORT_DRAFT_KEY, raw);
+    } catch (error) {
+      writeError = error;
+    }
+    let actual;
+    try {
+      actual = this.storage.getItem(IMPORT_DRAFT_KEY);
+    } catch (error) {
+      this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
+      this.uncertain = true;
+      return { ok: false, changed: null, error: `Import draft verification failed (${error.message}). Storage outcome is unknown; retained source is available for export before reloading.` };
+    }
+    if (actual === raw) {
+      this.raw = raw;
+      this.draft = JSON.parse(raw);
+      this.error = null;
+      this.recovery = [];
+      return { ok: true, changed: true };
+    }
+    if (actual !== previous) {
+      this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
+      this.uncertain = true;
+      return { ok: false, changed: null, error: 'Another value replaced the draft. Storage outcome is uncertain; export retained source before reloading. No rollback was attempted.' };
+    }
+    const checkpointOnly = next.pending === null && this.draft?.pending
+      && next.incarnation === this.draft.incarnation && next.rawText === this.draft.rawText;
+    if (!checkpointOnly) this.recovery = [...new Set([...this.recovery, raw])];
+    return { ok: false, changed: false, error: `Import draft was not saved${writeError ? ` (${writeError.message})` : ''}. Previous saved source is unchanged; keep this page open or export the unsaved source.` };
+  }
+
+  start(rawText, { listId = null, name = 'Imported Reading List' } = {}) {
+    const expected = this.capture();
+    return this.locked(expected, () => {
+      if (this.draft) throw new Error('A saved import draft already exists. Resume or export and discard it before starting another.');
+      const occurrences = sourceOccurrences(rawText);
+      if (!occurrences.length) throw new Error('Could not find any issues in that text.');
+      const list = listId ? this.reader.state.lists[listId] : null;
+      if (listId && !list) throw new Error('That destination no longer exists. Nothing was imported.');
+      const draft = {
+        format: DRAFT_FORMAT, version: DRAFT_VERSION, rawText, occurrences,
+        incarnation: newToken(), revision: newToken(), previousSources: [],
+        destination: {
+          id: list?.id ?? newToken(), created: list?.created ?? Date.now(),
+          name: list?.name ?? name, newList: !list, prefix: list ? [...list.itemIds] : [],
+        },
+        expected: listSignature(list), readerToken: this.reader.seenToken, paused: false, pending: null,
+      };
+      const prepared = this.write(draft);
+      if (!prepared.ok) return prepared;
+      return this.publish();
+    });
+  }
+
+  resolve(index, candidate, expected) {
+    return this.locked(expected, () => {
+      if (!this.draft || this.draft.pending || this.draft.paused) throw new Error('Resume the saved draft before resolving a comic.');
+      const issue = normalizeIssue(candidate);
+      const entry = this.draft.occurrences[index];
+      if (!entry || occurrenceIssue(entry) || !issue || issue.issueId <= 0) throw new Error('That selection is no longer an unresolved source position.');
+      const occurrences = this.draft.occurrences.map((row, i) => i === index ? { ...row, choice: issue } : row);
+      const prepared = this.write({ ...this.draft, occurrences });
+      if (!prepared.ok) return prepared;
+      return this.publish();
+    });
+  }
+
+  publish() {
+    const draft = this.draft;
+    const readerRaw = this.storage.getItem(KEY);
+    if (this.reader.blocked || this.reader.foreignWriteSince()
+      || tokenOf(readerRaw) !== draft.readerToken
+      || listSignature(this.reader.state.lists[draft.destination.id]) !== draft.expected) {
+      throw new Error('The reading data or destination changed. Source is saved; review Resume before publishing.');
+    }
+    const indices = draft.occurrences.flatMap((entry, index) => !entry.applied && occurrenceIssue(entry) ? [index] : []);
+    if (!indices.length) return { ok: true, readerSaved: false, added: 0, listId: draft.destination.id };
+    const inputs = draft.occurrences.map(occurrenceIssue);
+    const at = Date.now();
+    const operation = publishImportOccurrences(this.reader.state, draft, inputs, indices, at);
+    const pending = {
+      before: importProjection(this.reader.state, draft, indices),
+      after: importProjection(operation.state, draft, indices),
+      beforeToken: tokenOf(readerRaw), beforeAbsent: readerRaw === null, indices, at,
+    };
+    const prepared = this.write({ ...draft, pending });
+    if (!prepared.ok) return prepared;
+    this.reader.update(() => operation.state);
+    let actualRaw;
+    let actualState;
+    try {
+      actualRaw = this.storage.getItem(KEY);
+      actualState = actualRaw ? migrate(JSON.parse(actualRaw)) : createEmptyState();
+    } catch (error) {
+      return { ok: false, readerSaved: null, error: `Reading-data verification failed (${error.message}). Source and pending choice are saved; no automatic retry.` };
+    }
+    if (!this.reader.lastUpdateOk || tokenOf(actualRaw) !== this.reader.seenToken
+      || importProjection(actualState, draft, indices) !== pending.after) {
+      this.reader.load();
+      const outcome = pendingOutcome(this.draft, actualState, tokenOf(actualRaw), actualRaw === null);
+      return { ok: false, readerSaved: outcome === 'before' ? false : null, error: 'Comic saving could not be confirmed. Source and pending choice are saved; use Resume to review, not a blind retry.' };
+    }
+    const checkpoint = this.finishPending(actualState, tokenOf(actualRaw));
+    return {
+      ...checkpoint, readerSaved: true, added: operation.added, listId: draft.destination.id,
+      error: checkpoint.ok ? null : `Comics were saved, but the draft checkpoint did not finish. ${checkpoint.error}`,
+    };
+  }
+
+  finishPending(state, token) {
+    const pending = this.draft.pending;
+    const indices = new Set(pending.indices);
+    return this.write({
+      ...this.draft, pending: null, paused: false, readerToken: token,
+      expected: listSignature(state.lists[this.draft.destination.id]),
+      destination: { ...this.draft.destination, newList: false },
+      occurrences: this.draft.occurrences.map((entry, index) => indices.has(index)
+        ? { ...entry, applied: true } : entry),
+    });
+  }
+
+  resume(expected = this.capture()) {
+    return this.locked(expected, () => {
+      if (!this.draft) throw new Error('There is no saved import draft.');
+      const raw = this.storage.getItem(KEY);
+      if (this.reader.blocked || this.reader.foreignWriteSince()) throw new Error('Reading data changed. Reload before reviewing this draft.');
+      if (this.draft.pending) {
+        const outcome = pendingOutcome(this.draft, this.reader.state, tokenOf(raw), raw === null);
+        if (outcome === 'after') return { ...this.finishPending(this.reader.state, tokenOf(raw)), readerSaved: true, added: 0, listId: this.draft.destination.id };
+        if (outcome !== 'before') throw new Error('The interrupted import outcome is uncertain. Source is retained; historical read markers will not be replayed.');
+        const cleared = this.write({ ...this.draft, pending: null });
+        if (!cleared.ok) return cleared;
+      }
+      if (listSignature(this.reader.state.lists[this.draft.destination.id]) !== this.draft.expected) throw new Error('The destination was deleted, replaced or edited. Source is retained, but cannot be applied to that changed list.');
+      const checked = this.write({ ...this.draft, readerToken: tokenOf(raw), paused: false });
+      if (!checked.ok) return checked;
+      return this.publish();
+    });
+  }
+
+  invalidate() {
+    const expected = this.capture();
+    return this.locked(expected, () => this.draft
+      ? this.write({
+        ...this.draft, paused: true, incarnation: newToken(),
+        pending: this.draft.pending ? { ...this.draft.pending, beforeToken: `invalidated:${newToken()}`, beforeAbsent: false } : null,
+      }) : { ok: true });
+  }
+
+  restore(text, expected) {
+    let candidate;
+    try {
+      candidate = validateImportDraft(text);
+    } catch (error) {
+      return Promise.resolve({ ok: false, changed: false, invalid: true, error: error.message });
+    }
+    return this.locked(expected, () => this.write({
+      ...candidate, incarnation: newToken(), revision: newToken(), paused: true,
+      pending: candidate.pending ? { ...candidate.pending, beforeToken: `restored:${newToken()}`, beforeAbsent: false } : null,
+      previousSources: [...candidate.previousSources, ...(this.raw ? [this.raw] : [])],
+    }));
+  }
+
+  discard(expected, { readerRaw = undefined } = {}) {
+    return this.locked(expected, () => {
+      if (readerRaw !== undefined && this.storage.getItem(KEY) !== readerRaw) throw new Error('Reading data changed before draft cleanup. The draft was kept.');
+      let removalError = null;
+      try { this.storage.removeItem(IMPORT_DRAFT_KEY); } catch (error) { removalError = error; }
+      let actual;
+      try { actual = this.storage.getItem(IMPORT_DRAFT_KEY); } catch (error) {
+        this.recovery = [...new Set([...this.recovery, this.raw].filter(Boolean))];
+        this.uncertain = true;
+        return { ok: false, changed: null, error: `Import draft removal is uncertain (${error.message}). Export retained source before reloading.` };
+      }
+      if (actual !== null) {
+        if (actual !== this.raw) {
+          this.recovery = [...new Set([...this.recovery, this.raw].filter(Boolean))];
+          this.uncertain = true;
+        }
+        return {
+          ok: false, changed: actual === this.raw ? false : null,
+          error: `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before reloading; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
+        };
+      }
+      this.raw = null;
+      this.draft = null;
+      this.recovery = [];
+      return { ok: true, changed: true };
+    });
+  }
+
+  exportText() {
+    if (this.recovery.length) return this.recovery[this.recovery.length - 1];
+    if (this.raw !== null) return this.raw;
+    throw new Error('There is no retained import draft to export.');
+  }
+
+  fileRefusal(file) {
+    return file?.size > MAX_BACKUP_BYTES ? 'The import draft exceeds the 8 MiB limit.' : null;
+  }
 }
 
 export class Store {

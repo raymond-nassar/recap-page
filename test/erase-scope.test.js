@@ -69,12 +69,14 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
     readingView: { forgetDeleted() { calls.forget += 1; h.undo = null; } },
     recoveryView: { render() {}, renderSalvage() {} },
     renderAll() {},
+    draftExpected: null,
+    importDraft: { discard: async () => ({ ok: true, changed: true }) },
     notify: (...args) => calls.notify.push(args),
     announce: (message) => calls.announce.push(message),
   };
   // Run the actual composed callback, not a parallel implementation that can miss its waits.
   const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
-  const bodies = [...source.matchAll(/\n {2}eraseHistory: true,\n {2}onErase: async \(\) => \{([\s\S]*?)\n {2}\},\n\}\);/g)];
+  const bodies = [...source.matchAll(/\n {2}eraseHistory: true,\n {2}onErase: async \(draftExpected\) => \{([\s\S]*?)\n {2}\},\n\}\);/g)];
   assert.equal(bodies.length, 1, 'the actual erase callback must resolve uniquely');
   const run = compileFunction(`return (async () => {${bodies[0][1]}\n})();`, Object.keys(dependencies));
   h.run = () => run(...Object.values(dependencies));
@@ -367,7 +369,7 @@ test('the erase dialog is built by the policy, not by a literal at the button', 
   const at = dataSrc.indexOf(lead);
   assert.ok(policy !== -1 && next > policy, 'the two policies must both still be there, in order');
   assert.ok(at > policy && at < next, 'and the lead has to sit inside the policy that composes it');
-  assert.match(dataSrc, /body: eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)/);
+  assert.match(dataSrc, /body: `\$\{eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)\}/);
   assert.match(dataSrc, /export function eraseDialogBody/);
   assert.match(mainSrc, /import.*eraseOutcome.*from.*views\/data\.js/);
 });

@@ -13,7 +13,7 @@ import {
 import {
   ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
-import { KEY, Store } from '../src/js/storage.js';
+import { KEY, Store, ImportDraftStore, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
 import { wireFieldValidation } from '../src/js/views/shared/field-validation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -22,6 +22,37 @@ const html = read('src/index.html');
 const main = read('src/js/main.js');
 const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
+
+test('pasted import publishes new destination, activation, members and checked markers in one reader write', async () => {
+  const values = new Map();
+  const writes = [];
+  const storage = {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => { writes.push(key); values.set(key, value); },
+  };
+  const reader = new Store({ storage });
+  reader.load();
+  const draft = new ImportDraftStore({ reader, locks: { request: async (_key, fn) => fn() } });
+  const result = await draft.start('- [x] [One](https://www.marvel.com/comics/issue/1/)\n- [ ] Gap\n- [ ] [Three](https://www.marvel.com/comics/issue/3/)');
+  assert.equal(result.ok, true);
+  assert.equal(writes.filter((key) => key === KEY).length, 1);
+  assert.ok(writes.indexOf(IMPORT_DRAFT_KEY) < writes.indexOf(KEY));
+  assert.equal(reader.state.active, result.listId);
+  assert.deepEqual(reader.state.lists[result.listId].itemIds, [1, 3]);
+  assert.ok(reader.state.read[1]);
+  assert.equal(reader.state.read[3], undefined);
+});
+
+test('both unresolved match paths delegate captured source position to the same durable publisher', () => {
+  const resolving = add.slice(add.indexOf('  function unresolvedRow'), add.indexOf('  function showImportResult'));
+  assert.equal((resolving.match(/importDraft\.resolve\(entry\.index,/g) ?? []).length, 2);
+  assert.match(resolving, /importDraft\.isCurrent\(expected\)/);
+  assert.doesNotMatch(resolving, /addIssuesToList|markRead/);
+  assert.match(resolving, /Find match/);
+  assert.match(resolving, /This one/);
+  assert.match(add, /wireFieldValidation\(\{[\s\S]*field: \$\('#import-text'\)/);
+  assert.match(add, /selected\.size && \$\('#import-text'\)\.value === displayedSource/);
+});
 
 test('field validation preserves hints, expands containing disclosures and resets invalid state', () => {
   const listeners = {};

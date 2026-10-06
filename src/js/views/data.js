@@ -11,7 +11,7 @@ import { wireFieldValidation } from './shared/field-validation.js';
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:345-348` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:624-627` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -125,6 +125,10 @@ export function createDataView({
   onApiBaseSubmit,
   onClearCache,
   onErase,
+  captureDraft,
+  draftFileRefusal,
+  onExportDraft,
+  onRestoreDraft,
   eraseHistory = false,
 }) {
   function renderLocalConnectionStatus(status, readyStatus) {
@@ -173,6 +177,41 @@ export function createDataView({
     });
 
     nodes.btnExportJson.addEventListener('click', onExportJson);
+    const draftValidation = nodes.restoreDraft ? wireFieldValidation({
+      field: nodes.restoreDraft, reportId: 'draft-transfer-report',
+      reportError: (message) => notify('#draft-transfer-report', message, 'error'),
+      invalidMessage: 'Choose a supported import draft file.',
+    }) : null;
+    nodes.btnExportDraft?.addEventListener('click', onExportDraft);
+    nodes.restoreDraft?.addEventListener('change', async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const expected = captureDraft();
+      try {
+        const refusal = draftFileRefusal(file);
+        if (refusal) throw new Error(refusal);
+        const text = await file.text();
+        const yes = await askConfirm({
+          title: 'Restore this separate import draft?',
+          body: 'Reading data and completion history stay unchanged. Any current draft source is retained inside the new draft file, within its size limit. Restored work needs explicit Resume review before applying anything.',
+          confirmLabel: 'Restore draft',
+        });
+        if (!yes) return;
+        const result = await onRestoreDraft(text, expected);
+        if (result.invalid) {
+          draftValidation.fail(result.error);
+          return;
+        }
+        notify('#draft-transfer-report', result.ok
+          ? 'Import draft restored. Reading data was not changed. Review Resume saved import in Add comics.'
+          : `${result.changed === null ? 'Draft storage outcome is unknown; export retained source before reloading.' : 'Draft restore did not finish.'} ${result.error}`, result.ok ? 'ok' : 'error');
+      } catch (error) {
+        draftValidation.fail(`Import draft restore refused: ${error.message}`);
+      } finally {
+        event.target.value = '';
+        event.target.focus();
+      }
+    });
 
     nodes.btnExportMd.addEventListener('click', onExportMarkdown);
     nodes.btnExportOrder.addEventListener('click', onExportOrder);
@@ -244,17 +283,18 @@ export function createDataView({
       if (nodes.btnWipe.disabled) return;
       nodes.btnWipe.disabled = true;
       let cancelled = false;
+      const draftExpected = captureDraft?.();
       try {
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory }),
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
           confirmLabel: 'Erase everything',
         });
         if (!yes) {
           cancelled = true;
           return;
         }
-        await onErase();
+        await onErase(draftExpected);
       } finally {
         nodes.btnWipe.disabled = false;
         if (cancelled && nodes.btnWipe.isConnected && !nodes.btnWipe.closest('[hidden]')) nodes.btnWipe.focus();

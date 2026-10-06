@@ -20,7 +20,7 @@ import {
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
-import { Store, KEY as STATE_KEY } from './storage.js';
+import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, KEY as STATE_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
 import { createListRecommendationResolver } from './lib/listRecommendations.js';
 import { createCompletionView } from './views/completion.js';
@@ -99,6 +99,14 @@ const store = new Store({
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
+const importDraft = new ImportDraftStore({
+  reader: store,
+  onChange: () => {
+    renderAll();
+    if (importDraft.error) notify('#save-report', importDraft.error, 'error', 'import-draft-save');
+    else clearNotice('import-draft-save');
+  },
+});
 const listHistory = new ListHistoryStore({
   readerStore: store,
   onChange: (_history, error) => {
@@ -135,6 +143,10 @@ export function dispatchStorageEvent(
     historyStore = readerStore === store ? listHistory : null,
   } = {},
 ) {
+  if (readerStore === store && (event.key === IMPORT_DRAFT_KEY || event.key === null)) {
+    importDraft.load();
+    renderAll();
+  }
   if (event.key === LIST_HISTORY_KEY) {
     historyStore?.load();
     return;
@@ -2107,6 +2119,8 @@ const dataView = createDataView({
     cacheUsage: $('#cache-usage'),
     localConnectionReport: $('#local-connection-report'),
     localConnectionStatus: $('#local-connection-status'),
+    btnExportDraft: $('#btn-export-draft'),
+    restoreDraft: $('#restore-draft'),
   }),
   getApiBase: () => settings.apiBase,
   getSalvageCopies: () => store.salvageCopies(),
@@ -2115,6 +2129,17 @@ const dataView = createDataView({
   backupFileRefusal,
   askConfirm,
   notify,
+  captureDraft: () => importDraft.capture(),
+  draftFileRefusal: (file) => importDraft.fileRefusal(file),
+  onExportDraft: async () => {
+    try {
+      const result = await download('recap-import-draft.json', importDraft.exportText(), 'application/json');
+      if (result) announce(downloadMessage(result, 'Import draft'));
+    } catch (error) {
+      notify('#draft-transfer-report', `Could not export the import draft: ${error.message}`, 'error');
+    }
+  },
+  onRestoreDraft: (text, expected) => importDraft.restore(text, expected),
   onExportJson: async () => {
     const result = await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
     if (!result) return;
@@ -2125,12 +2150,14 @@ const dataView = createDataView({
   onRestore: (text) => {
     const res = store.restore(text);
     readerLinkView.reconcile({ changed: res.changed });
+    if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onUndoRestore: () => {
     const res = store.undoRestore();
     readerLinkView.reconcile({ changed: res.changed });
+    if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
@@ -2185,7 +2212,7 @@ const dataView = createDataView({
     }
   },
   eraseHistory: true,
-  onErase: async () => {
+  onErase: async (draftExpected) => {
     const result = await eraseReaderAndHistory(store, listHistory, {
       onReaderErased: () => {
         readerLinkView.reconcile({ changed: true });
@@ -2197,6 +2224,8 @@ const dataView = createDataView({
     let snapshotKept = result.snapshotKept;
     let readerChanged = result.readerChanged;
     if (result.readerErased === true) {
+      const draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
+      if (!draftRemoved.ok) notify('#save-report', `Reading data was erased, but import draft cleanup did not finish. ${draftRemoved.error}`, 'error', 'import-draft-save');
       try {
         if (await cache.clear() !== true) {
           cacheFailure = 'Cached metadata could not be cleared. Try Clear cached metadata in Backup & settings.';
@@ -2821,6 +2850,7 @@ function ensureAddList(name) {
 const addView = createAddView({
   $,
   announce,
+  askConfirm,
   el,
   ensureList: ensureAddList,
   friendly,
@@ -2828,6 +2858,7 @@ const addView = createAddView({
   getState: () => store.state,
   hydrate: (listId) => hydrator.start(listId),
   issueFocusAnchor,
+  importDraft,
   lookupManual: lookupIssue,
   notify,
   onNonEmptyListSave: recordNonEmptyListSave,

@@ -10052,7 +10052,10 @@ const SCENARIOS = [
           && exportedLinks[0] === `https://read.marvel.com/#/book/${READER_DIGITAL_ID}`,
         JSON.stringify(exportedLinks));
 
-      await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        localStorage.removeItem('mrt.import.draft.v1');
+      });
       await open(page, '/');
       await click(page, '[data-view="add-import"]');
       await page.evaluate((text) => {
@@ -13608,15 +13611,15 @@ SCENARIOS.push({
       document.querySelector('#import-new-list').checked = false;
       document.querySelector('#form-import').requestSubmit();
     });
-    await page.waitForSelector('#import-report button');
-    const find = await page.$('#import-report button');
+    await page.waitForSelector('#import-report button[aria-label^="Find match"]');
+    const find = await page.$('#import-report button[aria-label^="Find match"]');
     const findName = (await page.accessibility.snapshot({ root: find, interestingOnly: false }))?.name ?? '';
     t.check('unresolved action retains Find match and identifies its source line',
       findName.includes('Find match') && findName.includes('Unresolved fixture'), findName);
-    await click(page, '#import-report button');
+    await click(page, '#import-report button[aria-label^="Find match"]');
     await page.waitForFunction(() => [...document.querySelectorAll('#import-report button')]
       .some((button) => button.textContent === 'This one'));
-    const choices = await page.$$('#import-report button');
+    const choices = await page.$$('#import-report button[aria-label^="This one"]');
     const names = await Promise.all(choices.map(async (button) => (
       await page.accessibility.snapshot({ root: button, interestingOnly: false })
     )?.name ?? ''));
@@ -14629,6 +14632,7 @@ async function preparePage(page, origin, mutation) {
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
+    ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
@@ -15421,7 +15425,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -16454,6 +16458,9 @@ SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll4
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
+const orderedImport = await import('./browser-ordered-import.mjs');
+SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
+MUTATIONS.push(...orderedImport.importMutations);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence);

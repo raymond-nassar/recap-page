@@ -27,6 +27,18 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const WORKER_FILE = join(ROOT, 'src', 'sw.js');
 const ORIGIN = 'http://127.0.0.1:8787';
 
+test('import draft helper joins real resource-derived shell warming without external storage', () => {
+  const urls = shellUrls({
+    location: { origin: ORIGIN, href: `${ORIGIN}/#/add-import` },
+    performance: { getEntriesByType: () => [
+      { name: `${ORIGIN}/js/lib/importDraft.js` },
+      { name: 'https://example.test/comic-image.jpg' },
+    ] },
+  });
+  assert.ok(urls.includes(`${ORIGIN}/js/lib/importDraft.js`));
+  assert.equal(urls.some((url) => url.includes('example.test')), false);
+});
+
 function makeResponse(status = 200, body = 'ok') {
   return { status, body, clone() { return makeResponse(status, body); } };
 }

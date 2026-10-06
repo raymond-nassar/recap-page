@@ -126,6 +126,7 @@ test('453 foreign adoption retains valid temporary links but actual erase and un
       store: readerStore,
       readerLinkView: { reconcile: (outcome) => links.reconcile(readerStore.state, outcome) },
       readingView: { forgetDeleted() {} },
+      importDraft: { invalidate: async () => ({ ok: true }) },
     })[name];
   });
   for (const operation of [() => callbacks[0]('invalid backup'), () => callbacks[1]()]) {

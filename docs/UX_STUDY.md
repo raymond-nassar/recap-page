@@ -52,7 +52,7 @@ Evaluated against all ten of Nielsen's usability heuristics, named by their stan
 | 2 | Match between the system and the real world | 1 | Strong. Labels are written in reader language, and availability wording hedges rather than promises. `src/js/views/reading.js:33-38` |
 | 3 | User control and freedom | 3 | Restoring a backup could be undone, deleting a list could not. Closed by BL-035. UX-H-003 |
 | 4 | Consistency and standards | 3 | Two different error and prompt systems run side by side. UX-H-002 |
-| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:118-140`, `src/js/lib/model.js:895-973` |
+| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:118-140`, `src/js/lib/model.js:928-1006` |
 | 6 | Recognition rather than recall | 2 | The one keyboard shortcut the interface advertises is documented only at the point of use. UX-H-004 |
 | 7 | Flexibility and efficiency of use | 2 | Only two shortcuts exist and one silently stops working. UX-D-003 |
 | 8 | Aesthetic and minimalist design | 1 | Restrained by design, though each row carries six controls that are hidden until hover. UX-A-005 |
@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-100`, `src/js/main.js:2621-2644`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-100`, `src/js/main.js:2650-2673`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,8 +86,8 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1928`, `src/js/views/reading.js:348-356`, `src/js/views/reading.js:373-387`, against
-`src/js/main.js:547-574`
+Evidence: `src/js/main.js:1940`, `src/js/views/reading.js:348-356`, `src/js/views/reading.js:373-387`, against
+`src/js/main.js:559-586`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
 curated import failures through `alert()`, asks for a list name through `prompt()`, and confirms
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/views/reading.js:373-387`, `src/js/views/data.js:215-220`
+Evidence: `src/js/views/reading.js:373-387`, `src/js/views/data.js:254-259`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1057-1068`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1064-1075`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -387,7 +387,7 @@ Severity: 2, single-rater estimate
 Rationale: affects every notice in the product, and duplicate speech is disruptive rather than
 blocking
 Confidence: Observed
-Evidence: `src/js/main.js:386-399`, `src/js/main.js:547-574`, `src/index.html:21`,
+Evidence: `src/js/main.js:398-411`, `src/js/main.js:559-586`, `src/index.html:21`,
 `src/index.html:108`, `src/index.html:706`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
@@ -397,7 +397,7 @@ nothing is missed, is right, but the effect is that every confirmation is spoken
 Recommendation: pick one channel per message, keeping `announce()` for events with no visible
 surface and letting the visible live region speak for itself everywhere else
 Backlog item: BL-027
-Resolved: which channel a message uses is now read off the container at `src/js/main.js:392-399`
+Resolved: which channel a message uses is now read off the container at `src/js/main.js:404-411`
 rather than decided by a list of ids, and the six result panes stopped being live regions. The
 Impact above describes the pre-fix behaviour and is kept as the record of why the item was
 raised. Measured on a first run with storage cleared, the surfaces that speak went from 9 to 3.
@@ -498,7 +498,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. The rail item has to be
 selected before the shot is taken, because nothing carries `aria-current` on a fresh load:
-`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1535-1537`, and no rail item declares
+`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1547-1549`, and no rail item declares
 `data-view="home"`. The brand does, but the brand is not an `.ri`. So a capture of the page as it
 first loads photographs a bar that is not rendered and passes for a picture of nothing.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -743,7 +743,7 @@ Evidence: `src/index.html:47-92`, `src/js/lib/route.js:20-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:61-138`,
-`src/js/main.js:1572-1611`, `test/ux-completion.test.js:69-80`.
+`src/js/main.js:1584-1623`, `test/ux-completion.test.js:69-80`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -758,7 +758,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1503-1569`,
+src/ returning no matches`, `src/js/main.js:1515-1581`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No
@@ -843,7 +843,7 @@ sentence frames rather than quotations. Nobody said these words.
   I stopped, so I can resume without scrolling to find the boundary. Traced to
   `src/js/views/progress.js:48-103`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
-  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1056-1087`.
+  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1089-1120`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how
   far through this story I am rather than a total across everything I have ever imported.
   Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:531-533`.
