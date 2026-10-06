@@ -170,7 +170,7 @@ export const deadpoolWolverineActualData = {
       if ((await stored(page)).matches === 0) {
         await click(page, '#preview-add [data-act="main"]');
         await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-          ?.textContent.includes('In library'));
+          ?.textContent.includes('Open'));
       }
       const imported = await stored(page);
       t.check(`${label} import or reopening retains one exact guide and the existing library`,

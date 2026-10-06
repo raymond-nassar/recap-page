@@ -667,7 +667,7 @@ export function createReadingView({
         const readContext = 'Open in Marvel Unlimited';
         const readName = readerPresentation(item, 'saved').temporary
           ? labelledName('Read with temporary link', `${label}: ${readContext}`)
-          : labelledName(label, readContext);
+          : labelledName('Read', `${label}: ${readContext}`);
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [

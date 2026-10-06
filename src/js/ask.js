@@ -13,6 +13,7 @@ const OK = 'ok';
 
 let pending = null;
 let opener = null;
+let naming = false;
 
 function parts() {
   return {
@@ -23,6 +24,7 @@ function parts() {
     field: document.getElementById('ask-field'),
     label: document.getElementById('ask-label'),
     input: document.getElementById('ask-input'),
+    error: document.getElementById('ask-error'),
     areaField: document.getElementById('ask-area-field'),
     areaLabel: document.getElementById('ask-area-label'),
     area: document.getElementById('ask-area'),
@@ -34,8 +36,20 @@ function parts() {
 // Called once at start-up. The close listener lives here rather than being added per question,
 // so a question that is answered twice, by submitting as Escape is pressed, cannot resolve twice.
 export function wireAsk() {
-  const { dlg, cancel, input, area } = parts();
+  const { dlg, form, cancel, input, area, error } = parts();
   if (!dlg) return;
+  const clearError = () => {
+    input.removeAttribute('aria-invalid');
+    error.textContent = '';
+  };
+  input.addEventListener('input', clearError);
+  form.addEventListener('submit', (event) => {
+    if (!naming || input.value.trim()) return;
+    event.preventDefault();
+    error.textContent = 'Enter a name, not just spaces.';
+    input.setAttribute('aria-invalid', 'true');
+    input.focus();
+  });
   cancel.addEventListener('click', () => dlg.close(''));
   dlg.addEventListener('close', () => {
     const settle = pending;
@@ -54,7 +68,7 @@ export function wireAsk() {
 // Resolves when the reader answers. Escape and Cancel both count as backing out, which is what
 // makes the destructive default "no".
 function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {
-  const { dlg, title: h, body: p, field, label, input, areaField, areaLabel, area, ok } = parts();
+  const { dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, ok } = parts();
   if (!dlg || pending) return Promise.resolve({ ok: false, value: '', area: '' });
 
   h.textContent = title;
@@ -64,6 +78,9 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
 
   const asksForText = prefill !== null && !multiline;
   const asksForNote = prefill !== null && multiline;
+  naming = asksForText;
+  input.removeAttribute('aria-invalid');
+  error.textContent = '';
   field.hidden = !asksForText;
   input.required = asksForText;
   label.textContent = asksForText ? inputLabel : '';
@@ -104,9 +121,7 @@ export async function askConfirm({ title, body = '', confirmLabel = 'Confirm' })
   return ok;
 }
 
-// Resolves the typed name, or null if the reader backed out. An all-whitespace name resolves
-// null rather than being saved, matching what every caller already guarded against when this
-// was prompt().
+// The submit listener keeps whitespace-only names editable; cancellation still resolves null.
 export async function askText({ title, body = '', label, value = '', confirmLabel = 'Save' }) {
   const { ok, value: typed } = await open({ title, body, confirmLabel, prefill: value, inputLabel: label });
   return ok ? typed.trim() || null : null;

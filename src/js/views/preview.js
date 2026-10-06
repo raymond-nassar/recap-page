@@ -62,11 +62,10 @@ export function createPreviewView({
   function addButton(list) {
     const inLibrary = isInLibrary(list.id);
     if (inLibrary) {
-      const settled = !justAdded.has(list.id);
-      const text = settled ? 'Open →' : '✓ In library';
+      const text = 'Open →';
       return el('button', {
         type: 'button',
-        class: settled ? 'btn btn-g' : 'btn btn-added',
+        class: 'btn btn-g',
         'aria-label': labelledName(text, list.name),
         dataset: { key: list.id, act: 'main' },
         onclick: () => {
@@ -83,10 +82,20 @@ export function createPreviewView({
     }, ADD_TEXT);
   }
 
+  function addControls(list) {
+    return [
+      addButton(list),
+      ...(isInLibrary(list.id) ? [el('span', {
+        class: 'rail-hint', role: 'status',
+        text: justAdded.has(list.id) ? 'Added to library' : 'In library',
+      })] : []),
+    ];
+  }
+
   function syncAdd() {
     const nodes = elements();
     if (!previewList || !nodes.dialog.open) return;
-    nodes.add.replaceChildren(addButton(previewList));
+    nodes.add.replaceChildren(...addControls(previewList));
   }
 
   function returnFocus(held) {
@@ -139,7 +148,7 @@ export function createPreviewView({
     ].filter(Boolean).join(' · ');
     nodes.description.textContent = list.description || '';
     nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
-    nodes.add.replaceChildren(addButton(list));
+    nodes.add.replaceChildren(...addControls(list));
   }
 
   async function loadIssues(list) {
@@ -206,7 +215,10 @@ export function createPreviewView({
     const nodes = elements();
     nodes.close.addEventListener('click', () => nodes.dialog.close());
     nodes.dialog.addEventListener('click', (event) => {
-      if (event.target === nodes.dialog) nodes.dialog.close();
+      if (event.target !== nodes.dialog) return;
+      const bounds = nodes.dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right
+        || event.clientY < bounds.top || event.clientY > bounds.bottom) nodes.dialog.close();
     });
     nodes.dialog.addEventListener('close', async () => {
       if (nodes.dialog.open) return;

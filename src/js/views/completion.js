@@ -1,6 +1,7 @@
 import { listReadingProgress } from '../lib/model.js';
 import { listHistoryIdentity, parseListHistory } from '../lib/listHistory.js';
 import { uiIcon } from '../lib/uiIcon.js';
+import { labelledName } from '../lib/accname.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -161,6 +162,7 @@ export function createCompletionView({
               type: 'button', class: 'btn btn-g',
               dataset: { recommendation: suggestion.catalogId },
               text: suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List',
+              'aria-label': labelledName(suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List', suggestion.name),
               onclick: () => {
                 if (!recommendationCurrent(held)) return;
                 if (suggestion.savedListId) openList(suggestion.savedListId);
@@ -313,6 +315,7 @@ export function createCompletionView({
       return;
     }
     restoring = true;
+    let cancelled = false;
     renderHistory();
     try {
       const text = await file.text();
@@ -323,6 +326,7 @@ export function createCompletionView({
         body: 'This replaces completion dates and enjoyment choices only. Reading lists, notes and comic progress are unchanged. There is no automatic Undo; download a completion-history backup first to keep the current history.',
         confirmLabel: 'Restore completion history',
       });
+      if (!yes) cancelled = true;
       if (!yes || generation !== importGeneration || getView() !== 'data') return;
       const result = await history.restore(text);
       if (result.ok) notify('#history-report', 'Completion history restored. Reading data is unchanged.', 'ok');
@@ -332,6 +336,8 @@ export function createCompletionView({
       restoring = false;
       input.value = '';
       renderHistory();
+      if (cancelled && generation === importGeneration && getView() === 'data'
+        && input.isConnected && !input.disabled && !input.closest('[hidden]')) input.focus();
     }
   }
 

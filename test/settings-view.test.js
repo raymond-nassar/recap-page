@@ -210,7 +210,8 @@ test('the local connection, API and cache reports stay with the controls they re
 
 test('each report pane hears only about the control it sits with', () => {
   // A cache clear used to overwrite a restore refusal, because all three shared one pane.
-  assert.equal(noticeTarget('That API URL is not usable'), '#api-report');
+  assert.match(ALL_SOURCE, /reportId: 'api-report',\s*reportError: \(message\) => notify\('#api-report', message, 'error'\)/);
+  assert.match(ALL_SOURCE, /apiValidation\.fail\('That API URL is not usable/);
   assert.equal(noticeTarget('API URL saved.'), '#api-report');
   assert.equal(noticeTarget('The local app connection is ready.'), '#local-connection-report');
   assert.equal(noticeTarget('Cached metadata cleared.'), '#cache-report');

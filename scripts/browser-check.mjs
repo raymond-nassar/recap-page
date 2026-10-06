@@ -687,7 +687,7 @@ const MUTATIONS = [
       addEventListener('click', (event) => {
         const button = event.target instanceof Element
           && event.target.closest('#preview-add [data-act="main"]');
-        if (!button?.textContent.includes('In library')) return;
+        if (!button?.textContent.includes('Open')) return;
         event.preventDefault(); event.stopImmediatePropagation();
       }, true);
     },
@@ -3572,7 +3572,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const matches = Object.values(state.lists)
@@ -3590,7 +3590,7 @@ const SCENARIOS = [
         && imported.matches === 1 && imported.listCount === 1
         && imported.titles.join('|') === expectedTitles.join('|')
         && imported.previewOpen
-        && imported.openAction.includes('In library'),
+        && imported.openAction.includes('Open'),
         JSON.stringify(imported));
       const openSelector = '#preview-add [data-act="main"]';
       await page.focus(openSelector);
@@ -3731,7 +3731,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const matches = Object.values(state.lists)
@@ -3819,7 +3819,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(async () => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const payload = await fetch('/data/hope_summers_reading_order.json')
@@ -3992,7 +3992,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       checkRows('import retains all 663 issue IDs and titles in source order', imported.rows);
       t.check('import preserves one negative gap, eight single canonical repeats and the endpoint',
@@ -4143,7 +4143,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates one 192-position list with the original #0 anthology identity',
         imported.matches === 1 && imported.anthology?.number === '0'
@@ -4271,7 +4271,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates exactly one X-23 Reading List without placeholders',
         imported.matches === 1 && imported.rows.every((row) => row.issueId > 0),
@@ -4418,7 +4418,7 @@ const SCENARIOS = [
       checkBoundaries('Nova preview keeps both gaps, 30 once-only repeats and no closed corrections', preview);
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('Nova import creates exactly one saved Reading List', imported.matches === 1);
       checkRows('Nova import retains every ID, title and canonical position', imported.rows);
@@ -4576,7 +4576,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       checkRows('Import retains all 94 source positions, original IDs and titles', imported.rows);
       t.check('Import keeps three negative gap identities and just one original Marvel Zombies #1',
@@ -4734,7 +4734,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates one Silk Reading List', imported.matches === 1, JSON.stringify(imported.matches));
       checkRows('import retains the complete 74-position original and gap vector', imported.rows);
@@ -4813,7 +4813,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const list = Object.values(state.lists)
@@ -5747,7 +5747,7 @@ const SCENARIOS = [
           === 'Daredevil & Black Widow Opening Sequence');
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
         && document.querySelector('#order-name')?.textContent.trim()
@@ -9917,11 +9917,11 @@ const SCENARIOS = [
       // than only by reading past it. This is the first aria-describedby in the page.
       const hint = await page.evaluate(() => {
         const input = document.querySelector('#manual-url');
-        const id = input?.getAttribute('aria-describedby') ?? null;
-        const p = id ? document.getElementById(id) : null;
-        return { id, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
+        const ids = (input?.getAttribute('aria-describedby') ?? '').split(/\s+/);
+        const p = ids.includes('manual-url-hint') ? document.getElementById('manual-url-hint') : null;
+        return { ids, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
       });
-      t.check('the address field names its own explanation', hint.id === 'manual-url-hint', JSON.stringify(hint.id));
+      t.check('the address field names its own explanation', hint.ids.includes('manual-url-hint'), JSON.stringify(hint.ids));
       t.check('and that explanation says where to get the address',
         /paste.*Marvel Unlimited.*Read/i.test(hint.text), hint.text.slice(0, 100));
 
@@ -13456,6 +13456,263 @@ const SCENARIOS = [
 ];
 
 SCENARIOS.push({
+  id: 'ux04-validation',
+  title: 'field corrections remain associated, visible and focused without saving invalid input',
+  async run(page, t) {
+    await seedFixtureState(page);
+    await open(page, '/#/read/fixture');
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await click(page, '#btn-rename-list');
+    await page.$eval('#ask-input', (input) => { input.value = '   '; });
+    await click(page, '#ask-ok');
+    t.check('whitespace naming stays open with an associated focused correction', await page.evaluate(() => {
+      const input = document.querySelector('#ask-input');
+      const error = document.getElementById(input.getAttribute('aria-describedby'));
+      return document.querySelector('#ask').open && document.activeElement === input
+        && input.getAttribute('aria-invalid') === 'true' && !!error?.textContent.trim();
+    }));
+    if (await page.$eval('#ask', (dialog) => dialog.open)) {
+      await page.$eval('#ask-input', (input) => {
+        input.value = 'Corrected name';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      t.check('typing a correction clears the naming error', await page.$eval('#ask-input',
+        (input) => !input.hasAttribute('aria-invalid')));
+      await click(page, '#ask-cancel');
+    }
+    await open(page, '/#/add-manual');
+    const fieldError = async (selector) => page.$eval(selector, (input) => {
+      const ids = (input.getAttribute('aria-describedby') ?? '').split(/\s+/);
+      return input.getAttribute('aria-invalid') === 'true' && document.activeElement === input
+        && ids.some((id) => document.getElementById(id)?.textContent.trim())
+        && input.getClientRects().length > 0;
+    });
+    await page.$eval('#manual-title', (input) => { input.value = '   '; });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('manual whitespace title receives a focused associated error', await fieldError('#manual-title'));
+    await page.$eval('#manual-title', (input) => {
+      input.value = 'Unsaved validation fixture';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    t.check('manual title correction clears invalid state', await page.$eval('#manual-title',
+      (input) => !input.hasAttribute('aria-invalid')));
+    await page.$eval('#manual-url', (input) => { input.value = 'not a URL'; input.closest('details').open = false; });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('native invalid optional URL opens its disclosure and focuses an associated error',
+      await fieldError('#manual-url')
+        && await page.$eval('#manual-url', (input) => input.closest('details').open));
+    await page.$eval('#manual-url', (input) => {
+      input.value = 'https://example.test/not-marvel';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('custom invalid URL uses the same associated focus contract', await fieldError('#manual-url'));
+    t.check('invalid submissions and cancelled naming leave reading data byte-identical',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+    await open(page, '/#/data');
+    await page.$eval('#api-base', (input) => { input.value = 'https://'; });
+    await page.$eval('#form-settings', (form) => form.requestSubmit());
+    t.check('native metadata URL correction is associated and focused', await fieldError('#api-base'));
+    await page.$eval('#api-base', (input) => {
+      input.value = 'http://example.test';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.$eval('#form-settings', (form) => form.requestSubmit());
+    t.check('custom metadata URL correction is associated and focused', await fieldError('#api-base'));
+    await page.evaluateOnNewDocument(() => { window.__mrtComicSearch = true; });
+    await open(page, '/?ux04=builder#/add-search');
+    await page.$eval('#search-q', (input) => { input.value = 'Fixture'; });
+    await click(page, '#form-search button[type="submit"]');
+    await page.waitForSelector('#search-results input[data-comic-id]');
+    await click(page, '#search-results [data-act="select-all"]');
+    await page.$eval('#search-list-name', (input) => {
+      input.value = '   ';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await click(page, '#search-selection-form button[type="submit"]');
+    t.check('builder naming errors identify and focus the invalid field', await fieldError('#search-list-name'));
+    await page.$eval('#search-list-name', (input) => {
+      input.value = 'Corrected draft';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    t.check('builder correction clears invalid state without saving',
+      await page.$eval('#search-list-name', (input) => !input.hasAttribute('aria-invalid'))
+        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+  },
+}, {
+  id: 'ux04-context',
+  title: 'explicit interactions retain action words, result context and cancellation focus',
+  async run(page, t) {
+    await page.evaluateOnNewDocument(() => { window.__mrtComicSearch = true; window.__mrtWiki = 'ok'; });
+    await seedFixtureState(page);
+    await open(page, '/#/read/fixture');
+    await page.waitForSelector('#shelf .tile-read:not([hidden])');
+    const read = await page.$('#shelf .tile-read:not([hidden])');
+    const name = (await page.accessibility.snapshot({ root: read, interestingOnly: false }))?.name ?? '';
+    t.check('Coming up Read retains its visible action in the computed name', /^Read\b/.test(name), name);
+    await click(page, '#shelf a[data-issue-id]');
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    const tree = await page.accessibility.snapshot({ interestingOnly: false });
+    const regions = [];
+    const collect = (entry) => {
+      if (entry?.role === 'region') regions.push(entry.name);
+      entry?.children?.forEach(collect);
+    };
+    collect(tree);
+    t.check('Issue details has no repeated same-name nested landmark',
+      regions.filter((value) => value === ORDER.items[1].title || value === ORDER.items[0].title).length <= 1,
+      JSON.stringify(regions));
+    for (const [kind, query, target] of [
+      ['series', 'House of M', 'House of M (2015)'],
+      ['creator', 'Hickman', 'Jonathan Hickman'],
+    ]) {
+      await open(page, `/?long-add=1#/add-${kind}`);
+      await page.$eval(`#${kind}-q`, (input, value) => { input.value = value; }, query);
+      await click(page, `#form-${kind} button[type="submit"]`);
+      const browse = `#${kind}-results button[aria-label="Browse comics ${kind === 'creator' ? 'by' : 'in'} ${target}"]`;
+      await page.waitForSelector(browse);
+      await page.focus(browse);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector(`#${kind}-results input[data-comic-id]`);
+      t.check(`${kind} explicit Browse focuses the new result heading`, await page.evaluate((prefix) => (
+        document.activeElement === document.querySelector(`#${prefix}-results h2`)
+      ), kind));
+      await page.keyboard.press('Tab');
+      t.check(`${kind} result heading gives a logical next Tab to its filter`,
+        await page.evaluate(() => document.activeElement.id) === `${kind}-comic-filter`);
+    }
+    await open(page, '/#/add-manual');
+    const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.$eval('#manual-title', (input) => { input.value = 'Fixture Vol 7 26'; });
+    await click(page, '#btn-manual-lookup');
+    await page.waitForSelector('#manual-candidates .result .btn');
+    const use = await page.$('#manual-candidates .result .btn');
+    const useName = (await page.accessibility.snapshot({ root: use, interestingOnly: false }))?.name ?? '';
+    t.check('wiki choice name retains Use this and identifies its candidate',
+      useName.includes('Use this') && useName.includes('Fixture Vol 7 26'), useName);
+    await click(page, '#manual-candidates .result .btn');
+    t.check('wiki choice is clearly selected and still unsaved with focus on the filled title',
+      await page.evaluate(() => document.activeElement.id === 'manual-title'
+        && /Selected/.test(document.querySelector('#manual-candidates').textContent)
+        && /not saved/.test(document.querySelector('#manual-candidates').textContent)
+        && document.querySelector('#manual-title').value === 'Fixture Vol 7 26'));
+    t.check('wiki selection alone leaves reading data byte-identical',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved);
+    await open(page, '/#/add-import');
+    await page.evaluate(() => {
+      document.querySelector('#import-text').value = '- [ ] Unresolved fixture';
+      document.querySelector('#import-new-list').checked = false;
+      document.querySelector('#form-import').requestSubmit();
+    });
+    await page.waitForSelector('#import-report button');
+    const find = await page.$('#import-report button');
+    const findName = (await page.accessibility.snapshot({ root: find, interestingOnly: false }))?.name ?? '';
+    t.check('unresolved action retains Find match and identifies its source line',
+      findName.includes('Find match') && findName.includes('Unresolved fixture'), findName);
+    await click(page, '#import-report button');
+    await page.waitForFunction(() => [...document.querySelectorAll('#import-report button')]
+      .some((button) => button.textContent === 'This one'));
+    const choices = await page.$$('#import-report button');
+    const names = await Promise.all(choices.map(async (button) => (
+      await page.accessibility.snapshot({ root: button, interestingOnly: false })
+    )?.name ?? ''));
+    t.check('unresolved choices retain This one and identify candidate and source',
+      names.length === 2 && names.every((value) => value.includes('This one')
+        && value.includes('Unresolved fixture'))
+        && names.some((value) => value.includes('Search Fixture (2026) #1')), JSON.stringify(names));
+    await open(page, '/#/home');
+    await page.waitForSelector('.home-path-title');
+    const richNames = [];
+    for (const selector of ['.home-path', 'button:has(.yours-name)']) {
+      for (const card of await page.$$(selector)) {
+        if (!await card.evaluate((node) => !node.closest('[hidden]') && node.getClientRects().length > 0)) continue;
+        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent);
+        const accessible = await page.accessibility.snapshot({ root: card, interestingOnly: false });
+        if (title) richNames.push({ title, name: accessible?.name ?? '' });
+      }
+    }
+    t.check('rich navigation card names retain prominent titles despite supplemental text ordering',
+      richNames.length >= 6 && richNames.every((card) => card.name.includes(card.title)),
+      JSON.stringify(richNames));
+    await open(page, '/#/data');
+    await page.focus('#btn-wipe');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#ask[open]');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('#btn-wipe').disabled);
+    t.check('Erase cancellation restores its enabled opener',
+      await page.evaluate(() => document.activeElement.id === 'btn-wipe'));
+    const historyBefore = await page.evaluate(() => localStorage.getItem('mrt.list-history.v1'));
+    await page.$eval('#restore-history-file', (input) => {
+      const file = new File([JSON.stringify({ format: 'recap-page-list-history', version: 1, records: [] })],
+        'synthetic-history.json', { type: 'application/json' });
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      input.focus();
+      input.files = transfer.files;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#restore-history-file').disabled);
+    t.check('history restore cancellation focuses its re-enabled file control without writing history',
+      await page.evaluate(() => document.activeElement.id === 'restore-history-file')
+        && await page.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === historyBefore);
+    await open(page, '/dev-faults.html');
+    const main = await page.$('main');
+    const mainTree = main ? await page.accessibility.snapshot({ root: main, interestingOnly: false }) : null;
+    t.check('diagnostic utility exposes exactly one main landmark without changing its controls',
+      mainTree?.role === 'main' && await page.$$eval('main', (nodes) => nodes.length === 1)
+        && await page.$$eval('main button', (nodes) => nodes.length === 10));
+  },
+}, {
+  id: 'ux04-preview',
+  title: 'Preview padding is not backdrop and a saved guide retains an explicit Open action',
+  async run(page, t) {
+    await open(page, '/#/catalog');
+    const preview = '#catalog-results [data-story="list:browser-check"] [data-act="preview"]';
+    await page.waitForSelector(preview);
+    const show = async () => {
+      await click(page, preview);
+      await page.waitForSelector('#preview[open]');
+    };
+    await show();
+    const bounds = await page.$eval('#preview', (dialog) => {
+      const r = dialog.getBoundingClientRect();
+      return { x: r.left + 3, y: r.top + 3, outsideX: Math.max(1, r.left - 10), outsideY: r.top + 10 };
+    });
+    await page.mouse.click(bounds.x, bounds.y);
+    t.check('clicking Preview interior padding never dismisses it', await page.$eval('#preview', (dialog) => dialog.open));
+    if (!await page.$eval('#preview', (dialog) => dialog.open)) await show();
+    await page.mouse.click(bounds.outsideX, bounds.outsideY);
+    t.check('a true backdrop click dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await page.keyboard.press('Escape');
+    t.check('Escape dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await click(page, '#preview-close');
+    t.check('Close dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await click(page, '#preview-add button');
+    await page.waitForFunction(() => {
+      const button = document.querySelector('#preview-add button');
+      return button && !button.disabled && /Open|In library/.test(button.textContent);
+    });
+    const savedButton = await page.$('#preview-add button');
+    const accessible = await page.accessibility.snapshot({ root: savedButton, interestingOnly: false });
+    t.check('a newly saved guide keeps Open visible and named, with separate Added feedback',
+      accessible?.name.startsWith('Open')
+        && await page.$eval('#preview-add', (host) => host.querySelector('button').textContent.includes('Open')
+          && [...host.children].some((node) => node.tagName !== 'BUTTON' && /Added|In library/.test(node.textContent))),
+      JSON.stringify(accessible));
+    await click(page, '#preview-add button');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('saved Preview Open remains actionable and enters its Reading List',
+      await page.$eval('#view-read', (view) => !view.hidden));
+  },
+});
+
+SCENARIOS.push({
   id: 'issue-443-row-actions',
   title: 'Reading List rows and first/last actions remain unobscured at narrow and desktop sizes',
   async run(page, t) {
@@ -14117,7 +14374,7 @@ SCENARIOS.push({
         )));
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => (
-        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library')
+        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open')
       ));
       const imported = await readState(page);
       const matches = Object.values(imported.lists).filter((list) => list.catalogId === id);
@@ -16297,7 +16554,7 @@ SCENARIOS.push({
     checkRows('preview retains all 191 first positions, IDs and titles', preview);
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const saved = await imported();
     t.check('import saves exactly one catalog-bound guide', saved.matches === 1, JSON.stringify(saved));
     checkRows('import retains all 191 positions, IDs and titles', saved.rows);

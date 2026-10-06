@@ -1594,33 +1594,33 @@
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1022-1026|0": {
-    "anchor": "src/js/views/add.js:1022-1026",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1058-1062|0": {
+    "anchor": "src/js/views/add.js:1058-1062",
     "fp": "685f975f82d16d65",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:29-66|0": {
-    "anchor": "src/js/views/add.js:29-66",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:31-68|0": {
+    "anchor": "src/js/views/add.js:31-68",
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:309-352|0": {
-    "anchor": "src/js/views/add.js:309-352",
-    "fp": "2a36cd330c02d6ce",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:313-355|0": {
+    "anchor": "src/js/views/add.js:313-355",
+    "fp": "181871c435b16f65",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:562-586|0": {
-    "anchor": "src/js/views/add.js:562-586",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:576-600|0": {
+    "anchor": "src/js/views/add.js:576-600",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:68-91|0": {
-    "anchor": "src/js/views/add.js:68-91",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:70-93|0": {
+    "anchor": "src/js/views/add.js:70-93",
     "fp": "2f677131e0096b88",
     "head": "export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:93-185|0": {
-    "anchor": "src/js/views/add.js:93-185",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:95-187|0": {
+    "anchor": "src/js/views/add.js:95-187",
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
@@ -1774,13 +1774,13 @@
     "fp": "8afb6d479f5f3d20",
     "head": "// it in a Map that dies with the tab. Nothing here touches mrt.state.v2, nothing here is written to"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:135|0": {
-    "anchor": "src/dev-faults.html:135",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:137|0": {
+    "anchor": "src/dev-faults.html:137",
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1251|0": {
-    "anchor": "src/index.html:1251",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1252|0": {
+    "anchor": "src/index.html:1252",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2149,9 +2149,9 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:129-143|0": {
-    "anchor": "src/js/views/preview.js:129-143",
-    "fp": "efda8a60d1291a90",
+  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:138-152|0": {
+    "anchor": "src/js/views/preview.js:138-152",
+    "fp": "060d81e45a5efe2e",
     "head": "function paint(list) {"
   },
   "docs/UX_STUDY.md|job-stories|src/js/views/progress.js:48-103|0": {
@@ -2419,9 +2419,9 @@
     "fp": "40aa5dfbe1353aab",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:56-100|0": {
-    "anchor": "src/js/ask.js:56-100",
-    "fp": "db818e7343a867ed",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-117|0": {
+    "anchor": "src/js/ask.js:70-117",
+    "fp": "82cad93ac99c5b16",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1928|0": {
@@ -2444,8 +2444,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:207-212|0": {
-    "anchor": "src/js/views/data.js:207-212",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:215-220|0": {
+    "anchor": "src/js/views/data.js:215-220",
     "fp": "ae14dd291f0e8f99",
     "head": "nodes.undoRestore.addEventListener('click', () => {"
   },
@@ -6184,8 +6184,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:342-351|0": {
-    "anchor": "src/js/views/add.js:342-351",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:345-354|0": {
+    "anchor": "src/js/views/add.js:345-354",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

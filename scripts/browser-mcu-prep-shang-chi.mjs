@@ -130,7 +130,7 @@ export const mcuPrepShangChiActualData = {
 
       await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await storedRows(page);
       t.check(`${width}px import creates one catalog-bound companion`, imported.matches === 1,
         JSON.stringify(imported.matches));

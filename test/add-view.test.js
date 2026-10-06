@@ -14,6 +14,7 @@ import {
   ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
 import { KEY, Store } from '../src/js/storage.js';
+import { wireFieldValidation } from '../src/js/views/shared/field-validation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -21,6 +22,36 @@ const html = read('src/index.html');
 const main = read('src/js/main.js');
 const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
+
+test('field validation preserves hints, expands containing disclosures and resets invalid state', () => {
+  const listeners = {};
+  const attributes = { 'aria-describedby': 'existing-hint' };
+  const outer = { tagName: 'DETAILS', open: false, parentElement: null };
+  const inner = { tagName: 'DETAILS', open: false, parentElement: outer };
+  const field = {
+    parentElement: inner, focused: false,
+    getAttribute: (name) => attributes[name] ?? null,
+    setAttribute: (name, value) => { attributes[name] = value; },
+    removeAttribute: (name) => { delete attributes[name]; },
+    addEventListener: (name, handler) => { listeners[name] = handler; },
+    focus() { this.focused = true; },
+  };
+  let message;
+  const validation = wireFieldValidation({
+    field, reportId: 'error', reportError: (text) => { message = text; }, invalidMessage: 'Complete the address.',
+  });
+  let prevented = false;
+  listeners.invalid({ preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.equal(message, 'Complete the address.');
+  assert.equal(attributes['aria-describedby'], 'existing-hint error');
+  assert.equal(attributes['aria-invalid'], 'true');
+  assert.equal(field.focused && inner.open && outer.open, true);
+  listeners.input();
+  assert.equal(attributes['aria-invalid'], undefined);
+  validation.fail('Custom error.');
+  assert.equal(message, 'Custom error.');
+});
 
 function prose(text) {
   return text
@@ -596,7 +627,7 @@ test('composition constructs one Add boundary and delegates its lifecycle', () =
   assert.doesNotMatch(main, /function (renderResults|doImport|unresolvedRow|doManual)\(/);
   assert.doesNotMatch(
     add,
-    /from ['"](?:\.\.\/(?:api|cache|hydrate|main|storage|synopsis)\.js|\.\.\/lib\/limiter\.js|\.\/)/,
+    /from ['"](?:\.\.\/(?:api|cache|hydrate|main|storage|synopsis)\.js|\.\.\/lib\/limiter\.js|\.\/(?!shared\/))/,
     'Add must receive controller services and sibling views through composition',
   );
   for (const owner of ['Store', 'MarvelApi', 'ResponseCache', 'RateLimiter', 'Hydrator', 'SynopsisRunner']) {

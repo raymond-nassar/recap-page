@@ -9,8 +9,8 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1251`, the reader launch tab at `src/open.html:19`, and the development-only fault
-harness at `src/dev-faults.html:135`.
+`src/index.html:1252`, the reader launch tab at `src/open.html:19`, and the development-only fault
+harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
 Separating startup lets tests import view functions without booting the app. The external module
@@ -288,18 +288,25 @@ replacement paths.
 **Comic searches preview first and save once.** The API delivers each normalized page before it
 requests the next one, at `src/js/api.js:193-230`. Each search owns a read-only run that accumulates
 comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
-total, at `src/js/views/add.js:93-185`. Cancellation retires the run before aborting its request;
+total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:562-586`.
+receives focus, at `src/js/views/add.js:576-600`.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
-and activation in one Store update, at `src/js/views/add.js:29-66` and `src/js/views/add.js:68-91`.
+and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/views/add.js:70-93`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:309-352`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1022-1026`. Paste import and manual entry keep their existing paths.
+starts hydration, at `src/js/views/add.js:313-355`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1058-1062`. Paste import and manual entry keep their existing paths.
+
+Field corrections identify the invalid field, associate its inline report and focus it. An invalid
+optional reader address opens its disclosure before focus moves. Whitespace-only names stay in the
+naming dialog for correction. Explicit series and creator browsing focuses the resulting heading;
+the next Tab reaches the result filter. Selecting wiki details fills the title, focuses it and
+states that the entry is still unsaved. Preview keeps Open as the saved-guide action and reports
+library membership separately; interior dialog padding is not a backdrop dismissal.
 
 ## Where a reader's data lives
 

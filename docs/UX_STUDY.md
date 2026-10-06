@@ -97,7 +97,7 @@ in which case a rename silently does nothing.
 Recommendation: move naming and confirmation into the page using the existing notice and dialog
 patterns, and route import failures through `notify()` like every other path
 Backlog item: BL-034
-Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:56-100`, and the
+Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-117`, and the
 three `alert()` calls in `importCurated` now write to a pane the caller names. The Evidence
 anchors name the code as it now stands; the Impact above describes the native dialogs it
 replaced. The suppression case in particular is closed: a browser that blocks dialogs can no
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/views/reading.js:373-387`, `src/js/views/data.js:207-212`
+Evidence: `src/js/views/reading.js:373-387`, `src/js/views/data.js:215-220`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -836,7 +836,7 @@ sentence frames rather than quotations. Nobody said these words.
   `src/index.html:295-340` and `src/index.html:319-320`.
 * When I open a crossover I have never read, I want to know how much reading I am committing to
   before I import it, so I can pick the essential path or the complete path deliberately. Traced to
-  `src/js/views/preview.js:129-143`.
+  `src/js/views/preview.js:138-152`.
 * When an issue has no metadata yet, I want the app to say so plainly, so I can tell a pending
   lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:846-847`.
 * When I have read half of a long order across several sittings, I want to come back and see where

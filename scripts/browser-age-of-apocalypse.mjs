@@ -152,7 +152,7 @@ export async function checkAgeOfApocalypseActualData(page, t) {
 
   await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
   await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-    ?.textContent.includes('In library'));
+    ?.textContent.includes('Open'));
   const imported = await storedRows(page);
   t.check('import creates exactly one AoA guide', imported.matches === 1);
   checkVector(t, 'import persists the exact 262-title, ID, position and group vector', imported.rows);

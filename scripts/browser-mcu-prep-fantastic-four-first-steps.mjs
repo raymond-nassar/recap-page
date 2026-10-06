@@ -206,7 +206,7 @@ export const firstStepsActualData = {
     }
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await savedRows(page);
     t.check('import adds one catalog-bound companion without replacing the existing anthology list',
       imported.matches === 1 && imported.listCount === 2, JSON.stringify(imported));

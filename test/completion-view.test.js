@@ -345,6 +345,11 @@ test('suggestions open saved candidates or preview unsaved ones and expose failu
   });
   await h.view.render();
   assert.equal(h.nodes.suggestions.children.length, 2);
+  for (const suggestion of h.nodes.suggestions.children) {
+    const button = suggestion.children[2];
+    assert.ok(button['aria-label'].startsWith(button.text));
+    assert.ok(button['aria-label'].includes(suggestion.children[0].text));
+  }
   h.nodes.suggestions.children[0].children[2].onclick();
   h.nodes.suggestions.children[1].children[2].onclick();
   assert.deepEqual(h.calls.opened, ['b']);

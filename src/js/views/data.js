@@ -5,6 +5,8 @@
 // validates locally and delegates the actual state change to an injected callback, so this
 // module never touches the Store, cache, API, Hydrator, or SynopsisRunner.
 
+import { wireFieldValidation } from './shared/field-validation.js';
+
 // ------------------------------------------------------------------ erase policy
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
@@ -155,6 +157,12 @@ export function createDataView({
 
   function wire() {
     const nodes = elements();
+    const apiValidation = wireFieldValidation({
+      field: nodes.apiBase,
+      reportId: 'api-report',
+      reportError: (message) => notify('#api-report', message, 'error'),
+      invalidMessage: 'Enter a complete metadata API URL.',
+    });
     nodes.apiBase.value = getApiBase();
     nodes.optCovers.addEventListener('change', (e) => onSetCovers(e.target.checked));
     nodes.optTheme.addEventListener('change', (e) => onSetTheme(e.target.value));
@@ -217,7 +225,8 @@ export function createDataView({
       e.preventDefault();
       const value = nodes.apiBase.value.trim().replace(/\/+$/, '');
       if (!isAllowedApiBase(value)) {
-        return notify('#api-report', 'That API URL is not usable: use https, or http against localhost.', 'error');
+        apiValidation.fail('That API URL is not usable: use https, or http against a loopback address.');
+        return;
       }
       onApiBaseSubmit(value);
     });
@@ -234,16 +243,21 @@ export function createDataView({
     nodes.btnWipe.addEventListener('click', async () => {
       if (nodes.btnWipe.disabled) return;
       nodes.btnWipe.disabled = true;
+      let cancelled = false;
       try {
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
           body: eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory }),
           confirmLabel: 'Erase everything',
         });
-        if (!yes) return;
+        if (!yes) {
+          cancelled = true;
+          return;
+        }
         await onErase();
       } finally {
         nodes.btnWipe.disabled = false;
+        if (cancelled && nodes.btnWipe.isConnected && !nodes.btnWipe.closest('[hidden]')) nodes.btnWipe.focus();
       }
     });
   }

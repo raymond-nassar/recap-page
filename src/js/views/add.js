@@ -21,6 +21,8 @@ import { compareIssues } from '../lib/sort.js';
 import { updatedLabel } from '../lib/catalog.js';
 import { formatRoute } from '../lib/route.js';
 import { uiIcon } from '../lib/uiIcon.js';
+import { labelledName } from '../lib/accname.js';
+import { wireFieldValidation } from './shared/field-validation.js';
 
 const NAME_SEARCH_LIMIT = 40;
 const ISSUE_SEARCH_LIMIT = 50;
@@ -229,6 +231,8 @@ export function createAddView({
   let draftName = DEFAULT_LIST_NAME;
   let nameEdited = false;
   let saving = false;
+  let manualTitleValidation;
+  let manualUrlValidation;
   const searches = [
     {
       prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
@@ -315,8 +319,7 @@ export function createAddView({
       return;
     }
     if (!destinationId && (!draftName.trim() || draftName.trim().length > MAX_NAME)) {
-      notify(report, `Name the new Reading List using 1 to ${MAX_NAME} characters.`, 'warn');
-      builder.name.focus();
+      builder.validation.fail(`Name the new Reading List using 1 to ${MAX_NAME} characters.`);
       return;
     }
     const creating = !destinationId;
@@ -374,6 +377,12 @@ export function createAddView({
       text: 'That Reading List no longer exists. Choose another list.',
     });
     const report = el('div', { id: `${prefix}-selection-report`, class: 'results', tabindex: -1 });
+    const validation = wireFieldValidation({
+      field: name,
+      reportId: report.id,
+      reportError: (message) => notify(`#${prefix}-selection-report`, message, 'warn'),
+      invalidMessage: `Name the new Reading List using 1 to ${MAX_NAME} characters.`,
+    });
     const form = el('form', { class: 'stack', id: `${prefix}-selection-form` }, [
       selectionCount,
       el('label', { for: `${prefix}-destination`, text: 'Save to' }),
@@ -414,7 +423,7 @@ export function createAddView({
     });
     $(config.results).before(host);
     config.builder = {
-      host, destination, name, nameRow, count: selectionCount, save, clear, missing, report,
+      host, destination, name, nameRow, count: selectionCount, save, clear, missing, report, validation,
     };
   }
 
@@ -427,7 +436,8 @@ export function createAddView({
     const heading = config.kind === 'creator'
       ? `Comics credited to ${status.item.name}`
       : config.kind === 'series' ? `Comics in ${status.item.name}` : `Comics matching “${status.item.name}”`;
-    box.append(el('h2', { class: 'comic-results-heading', text: heading }));
+    const resultHeading = el('h2', { class: 'comic-results-heading', text: heading, tabindex: -1 });
+    box.append(resultHeading);
     if (status.phase !== 'complete') {
       const partial = status.total != null
         ? `${comics(items.length)} of ${count(status.total)}`
@@ -451,6 +461,8 @@ export function createAddView({
         box.append(el('p', { class: 'rail-hint', text: 'No comics to show. Try a different search.' }));
       }
       refreshBuilders();
+      if (config.focusResults) resultHeading.focus();
+      config.focusResults = false;
       return;
     }
 
@@ -557,6 +569,8 @@ export function createAddView({
       if (more.hidden) filter.focus({ preventScroll: true });
     });
     renderRows();
+    if (config.focusResults) resultHeading.focus();
+    config.focusResults = false;
   }
 
   for (const config of searches) {
@@ -587,6 +601,7 @@ export function createAddView({
   }
 
   function beginSearch(config) {
+    config.focusResults = false;
     config.epoch += 1;
     config.runner.cancel();
     config.hasResults = false;
@@ -646,7 +661,10 @@ export function createAddView({
               type: 'button',
               class: 'btn btn-g',
               'aria-label': `Browse comics ${kind === 'creator' ? 'by' : 'in'} ${item.name}`,
-              onclick: () => { void config.runner.start(item); },
+              onclick: () => {
+                config.focusResults = true;
+                void config.runner.start(item);
+              },
             }, 'Browse comics'),
           ]));
         }
@@ -677,7 +695,9 @@ export function createAddView({
       el('div', { class: 'result-title', text: entry.title }),
       el('div', { class: 'result-meta', text: 'No issue link, search to resolve' }),
     ]);
-    const button = el('button', { type: 'button', class: 'btn btn-g' }, 'Find match');
+    const button = el('button', {
+      type: 'button', class: 'btn btn-g', 'aria-label': labelledName('Find match', entry.title),
+    }, 'Find match');
     button.addEventListener('click', async () => {
       button.disabled = true;
       try {
@@ -727,6 +747,7 @@ export function createAddView({
             el('button', {
               type: 'button',
               class: 'btn btn-g',
+              'aria-label': labelledName('This one', `${candidate.title} for ${entry.title}`),
               onclick: () => {
                 let added = 0;
                 const saved = updateState((state) => {
@@ -860,18 +881,20 @@ export function createAddView({
     notify(
       '#manual-candidates',
       summary
-        ? `Filled from “${candidate.title}” on the wiki: ${summary}. Press Add issue to keep it.`
-        : `“${candidate.title}” carried no release date, page count or credits, so only the title was filled.`,
+        ? `Selected “${candidate.title}” from the wiki: ${summary}. It is not saved. Press Add issue to keep it.`
+        : `Selected “${candidate.title}” from the wiki. Only the title was filled. It is not saved. Press Add issue to keep it.`,
       summary ? 'ok' : 'warn',
       '#manual-candidates',
       { label: 'Discard', onClick: () => { clearManualMatch(); announce('Details from the wiki discarded.'); } },
     );
+    manualTitleValidation.clear();
+    $('#manual-title').focus();
   }
 
   async function doManualLookup() {
     const phrase = $('#manual-title').value.trim();
     if (!phrase) {
-      notify('#manual-report', 'Type a title first, then look it up.', 'warn');
+      manualTitleValidation.fail('Type a title first, then look it up.');
       return;
     }
     const button = $('#btn-manual-lookup');
@@ -902,6 +925,7 @@ export function createAddView({
           el('button', {
             type: 'button',
             class: 'btn btn-g',
+            'aria-label': labelledName('Use this', candidate.title),
             onclick: () => acceptManualMatch(candidate),
           }, 'Use this'),
         ]));
@@ -923,11 +947,11 @@ export function createAddView({
     const title = $('#manual-title').value.trim();
     const url = $('#manual-url').value.trim();
     if (!title) {
-      notify('#manual-report', 'A title is required.', 'warn');
+      manualTitleValidation.fail('A title is required.');
       return;
     }
     if (url && !isSafeMarvelUrl(url)) {
-      notify('#manual-report', 'That URL is not a marvel.com address. Leave it blank if you do not have one.', 'error');
+      manualUrlValidation.fail('That URL is not a marvel.com address. Leave it blank if you do not have one.');
       return;
     }
     const wikiId = manualMatch?.marvelIssueId ?? null;
@@ -1004,6 +1028,18 @@ export function createAddView({
   }
 
   function wire() {
+    manualTitleValidation = wireFieldValidation({
+      field: $('#manual-title'),
+      reportId: 'manual-report',
+      reportError: (message) => notify('#manual-report', message, 'warn'),
+      invalidMessage: 'A title is required.',
+    });
+    manualUrlValidation = wireFieldValidation({
+      field: $('#manual-url'),
+      reportId: 'manual-report',
+      reportError: (message) => notify('#manual-report', message, 'error'),
+      invalidMessage: 'Enter a complete marvel.com or Marvel Unlimited address, or leave it blank.',
+    });
     for (const config of searches) {
       createBuilder(config);
       if (config.kind === 'issue') {
