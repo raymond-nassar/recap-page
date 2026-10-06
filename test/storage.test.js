@@ -27,6 +27,31 @@ test('draft prepare throw, silent no-op and unknown readback refuse reader publi
     assert.equal(storage.writes.filter((key) => key === KEY).length, 0);
     assert.ok(draft.exportText().includes('Two'));
   }
+  for (const huge of [false, true]) {
+    const { storage, reader, draft } = importFixture();
+    const sourceA = `- [ ] Source A\n${huge ? 'a'.repeat(5 * 1024 * 1024) : 'private prose A'}`;
+    const sourceB = '- [ ] Source B\nprivate prose B';
+    storage.silentKey = IMPORT_DRAFT_KEY;
+    assert.equal((await draft.start(sourceA)).ok, false);
+    storage.silentKey = null;
+    const other = new ImportDraftStore({ reader, locks: draftLocks });
+    assert.equal((await other.start(huge ? `${sourceB}\n${'b'.repeat(5 * 1024 * 1024)}` : sourceB)).ok, true);
+    const adopted = storage.getItem(IMPORT_DRAFT_KEY);
+    draft.load();
+    if (huge) {
+      assert.throws(() => draft.exportText(), /8 MiB/, 'aggregate transfer must refuse overflow, not omit a source');
+      assert.equal(storage.getItem(IMPORT_DRAFT_KEY), adopted);
+      assert.ok(draft.recovery.length, 'overflow leaves the unsaved departure guard active');
+    } else {
+      const exported = draft.exportText();
+      const transferred = JSON.parse(exported);
+      assert.equal(transferred.rawText, sourceA);
+      assert.ok(transferred.previousSources.includes(adopted), 'complete transfer includes current B as well as failed A');
+      const fresh = importFixture();
+      assert.equal((await fresh.draft.restore(exported, null)).ok, true);
+      assert.ok(fresh.draft.draft.previousSources.includes(adopted));
+    }
+  }
 });
 
 test('failed reader write leaves durable pending source and retries with the same destination once', async () => {
@@ -45,6 +70,20 @@ test('failed reader write leaves durable pending source and retries with the sam
   const writes = storage.writes.filter((key) => key === KEY).length;
   assert.equal((await draft.resume()).ok, true);
   assert.equal(storage.writes.filter((key) => key === KEY).length, writes);
+  const long = importFixture();
+  long.reader.update((state) => addIssuesToList(createList(state, { id: 'prefix', name: 'Prefix' }),
+    'prefix', [{ issueId: 9, title: 'Prefix', collectedIn: 'Keep' }]).state);
+  const raw = `## ${'x'.repeat(201)}\n- [ ] [One](https://www.marvel.com/comics/issue/1/)\n- [ ] Two`;
+  assert.equal((await long.draft.start(raw, { listId: 'prefix' })).ok, true);
+  assert.equal(long.draft.draft.pending, null);
+  long.reader.load();
+  long.draft.load();
+  assert.equal((await long.draft.resume()).ok, true);
+  assert.equal((await long.draft.resolve(1, { issueId: 2, title: 'Two' }, long.draft.capture())).ok, true);
+  assert.equal(long.draft.draft.rawText, raw);
+  assert.deepEqual(long.reader.state.lists.prefix.itemIds, [9, 1, 2]);
+  assert.equal(long.reader.state.lists.prefix.collectedIn[9], 'Keep');
+  assert.equal(long.reader.state.lists.prefix.collectedIn[1].length, 200);
 });
 
 test('foreign revisions, removed key and restored incarnation refuse late choices with explicit lock refusal', async () => {

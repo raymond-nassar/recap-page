@@ -1564,8 +1564,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2650-2673|0": {
-    "anchor": "src/js/main.js:2650-2673",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2656-2679|0": {
+    "anchor": "src/js/main.js:2656-2679",
     "fp": "00703283127b3365",
     "head": "function renderAll() {"
   },
@@ -1574,23 +1574,23 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:364-396|0": {
-    "anchor": "src/js/storage.js:364-396",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:374-406|0": {
+    "anchor": "src/js/storage.js:374-406",
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:660-687|0": {
-    "anchor": "src/js/storage.js:660-687",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:670-697|0": {
+    "anchor": "src/js/storage.js:670-697",
     "fp": "b7d36f9e697421d1",
     "head": "update(fn) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:806-872|0": {
-    "anchor": "src/js/storage.js:806-872",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:816-882|0": {
+    "anchor": "src/js/storage.js:816-882",
     "fp": "87bb22d2166d3fff",
     "head": "restore(rawJson) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:935-943|0": {
-    "anchor": "src/js/storage.js:935-943",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:945-953|0": {
+    "anchor": "src/js/storage.js:945-953",
     "fp": "c10d8af0b6ad7801",
     "head": "// A successful restore is a deliberate overwrite, so it also clears the block."
   },
@@ -1639,13 +1639,13 @@
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2650-2673|0": {
-    "anchor": "src/js/main.js:2650-2673",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2656-2679|0": {
+    "anchor": "src/js/main.js:2656-2679",
     "fp": "00703283127b3365",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3211-3244|0": {
-    "anchor": "src/js/main.js:3211-3244",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3217-3250|0": {
+    "anchor": "src/js/main.js:3217-3250",
     "fp": "755e088f3b509ba2",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1664,13 +1664,13 @@
     "fp": "0a962c0efebbd6c1",
     "head": "function paintTimelinePosition(root, position, {"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:423-433|0": {
-    "anchor": "src/js/storage.js:423-433",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:433-443|0": {
+    "anchor": "src/js/storage.js:433-443",
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:351-377|0": {
-    "anchor": "test/storage.test.js:351-377",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:390-416|0": {
+    "anchor": "test/storage.test.js:390-416",
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
@@ -1699,13 +1699,13 @@
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3194-3303|0": {
-    "anchor": "src/js/main.js:3194-3303",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3200-3309|0": {
+    "anchor": "src/js/main.js:3200-3309",
     "fp": "c11e3b30ebf1bbad",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3305-3357|0": {
-    "anchor": "src/js/main.js:3305-3357",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3311-3363|0": {
+    "anchor": "src/js/main.js:3311-3363",
     "fp": "5518a9bfa859ea81",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1814,28 +1814,28 @@
     "fp": "d04eedd9cd784a4a",
     "head": "const serialized = JSON.stringify({"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:964-981|0": {
-    "anchor": "src/js/storage.js:964-981",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:974-991|0": {
+    "anchor": "src/js/storage.js:974-991",
     "fp": "6a45bb40e47d2dfa",
     "head": "rewindSnapshot(held) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:983-1000|0": {
-    "anchor": "src/js/storage.js:983-1000",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:993-1010|0": {
+    "anchor": "src/js/storage.js:993-1010",
     "fp": "d0ddabeee321f509",
     "head": "undoRestore() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:846-851|0": {
-    "anchor": "src/js/storage.js:846-851",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:856-861|0": {
+    "anchor": "src/js/storage.js:856-861",
     "fp": "226b51fd48953d63",
     "head": "this.storage?.setItem(TEMP_KEY, serialized);"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:454-460|0": {
-    "anchor": "src/js/storage.js:454-460",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:464-470|0": {
+    "anchor": "src/js/storage.js:464-470",
     "fp": "b429c9cf55d87586",
     "head": "freeArchiveKey() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:749|0": {
-    "anchor": "src/js/storage.js:749",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:759|0": {
+    "anchor": "src/js/storage.js:759",
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
@@ -1884,8 +1884,8 @@
     "fp": "263516adc3bd2487",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:586-609|0": {
-    "anchor": "src/js/storage.js:586-609",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:596-619|0": {
+    "anchor": "src/js/storage.js:596-619",
     "fp": "a217fd173d10b27a",
     "head": "salvageCopies() {"
   },
@@ -2409,8 +2409,8 @@
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2650-2673|0": {
-    "anchor": "src/js/main.js:2650-2673",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2656-2679|0": {
+    "anchor": "src/js/main.js:2656-2679",
     "fp": "00703283127b3365",
     "head": "function renderAll() {"
   },
@@ -2444,8 +2444,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:254-259|0": {
-    "anchor": "src/js/views/data.js:254-259",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:259-264|0": {
+    "anchor": "src/js/views/data.js:259-264",
     "fp": "ae14dd291f0e8f99",
     "head": "nodes.undoRestore.addEventListener('click', () => {"
   },
@@ -6164,8 +6164,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "src/js/views/data.js|preamble|src/js/storage.js:624-627|0": {
-    "anchor": "src/js/storage.js:624-627",
+  "src/js/views/data.js|preamble|src/js/storage.js:634-637|0": {
+    "anchor": "src/js/storage.js:634-637",
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },

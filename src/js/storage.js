@@ -320,7 +320,17 @@ export class ImportDraftStore {
   }
 
   exportText() {
-    if (this.recovery.length) return this.recovery[this.recovery.length - 1];
+    if (this.recovery.length) {
+      const candidate = this.recovery[this.recovery.length - 1];
+      const draft = validateImportDraft(candidate);
+      const previousSources = [...new Set([
+        ...draft.previousSources, ...this.recovery.slice(0, -1),
+        ...(this.raw !== null && this.raw !== candidate ? [this.raw] : []),
+      ])];
+      const exported = JSON.stringify({ ...draft, previousSources });
+      validateImportDraft(exported);
+      return exported;
+    }
     if (this.raw !== null) return this.raw;
     throw new Error('There is no retained import draft to export.');
   }

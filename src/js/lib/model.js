@@ -668,7 +668,7 @@ export function publishImportOccurrences(state, draft, inputs, indices, at) {
     else delete collectedIn[id];
   }
   next = { ...result.state, lists: withList(result.state.lists, destination.id, {
-    ...list, itemIds, collectedIn,
+    ...list, itemIds, collectedIn: normalizeCollectedIn(collectedIn, itemIds),
   }) };
   for (const index of indices) {
     if (draft.occurrences[index].read) next = markRead(next, inputs[index].issueId, true, at);

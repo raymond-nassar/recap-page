@@ -59,6 +59,9 @@ and requires explicit Resume review. A replacement that exceeds the size limit i
 Reading restore and Undo retain source but invalidate automatic application. An uncertain interrupted
 operation never blindly replays historical read markers. Failed writes retain visible unsaved source
 or guarded recovery; when storage outcome cannot be verified, export retained source before reloading.
+That export includes adopted current source alongside failed source candidates. If their combined
+file exceeds the draft limit, export is refused explicitly and retained work stays guarded in the
+open page; no source is silently omitted to make a file fit.
 Browser downloads are requests, not confirmation that a file was saved.
 
 ## Direct network requests

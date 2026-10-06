@@ -2223,6 +2223,7 @@ const dataView = createDataView({
     let historyKept = result.historyKept;
     let snapshotKept = result.snapshotKept;
     let readerChanged = result.readerChanged;
+    let draftKept = null;
     if (result.readerErased === true) {
       const draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
       if (!draftRemoved.ok) notify('#save-report', `Reading data was erased, but import draft cleanup did not finish. ${draftRemoved.error}`, 'error', 'import-draft-save');
@@ -2244,6 +2245,11 @@ const dataView = createDataView({
         readerChanged = null;
       }
       if (readerChanged !== false) store.load();
+      try {
+        draftKept = store.storage.getItem(IMPORT_DRAFT_KEY) !== null;
+      } catch {
+        draftKept = null;
+      }
     }
     // The button's visibility belongs to recoveryView.render(), and the withdrawal happens after
     // the repaint the erase itself triggered, so the question is put again here rather than left
@@ -2261,9 +2267,9 @@ const dataView = createDataView({
       return;
     }
     const outcome = eraseOutcome(snapshotKept, store.salvageCopies(), {
-      historyKept, readerChanged, cacheFailure, currentFacts: true,
+      historyKept, readerChanged, cacheFailure, currentFacts: true, draftKept,
     });
-    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure) notify('#save-report', outcome, 'warn');
+    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false) notify('#save-report', outcome, 'warn');
     else announce(outcome);
   },
 });

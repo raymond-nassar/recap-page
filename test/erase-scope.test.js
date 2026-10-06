@@ -62,7 +62,7 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
   const cacheStarted = deferred();
   const h = { storage, reader, history, calls, cacheStarted, undo: { list: reader.state.lists.old }, temporaryLink: 'old reference' };
   const dependencies = {
-    store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY,
+    store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY, IMPORT_DRAFT_KEY: 'mrt.import.draft.v1',
     eraseReaderAndHistory, eraseOutcome,
     cache: { async clear(...args) { calls.cache.push(args); cacheStarted.resolve(); return clear(h, ...args); } },
     readerLinkView: { reconcile(result) { calls.links.push(result); if (result.changed === true || result.changed === null) h.temporaryLink = null; } },
@@ -70,7 +70,7 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
     recoveryView: { render() {}, renderSalvage() {} },
     renderAll() {},
     draftExpected: null,
-    importDraft: { discard: async () => ({ ok: true, changed: true }) },
+    importDraft: { discard: async () => h.draftResult ?? ({ ok: true, changed: true }) },
     notify: (...args) => calls.notify.push(args),
     announce: (message) => calls.announce.push(message),
   };
@@ -143,7 +143,7 @@ test('actual erase follow-through withdraws old offers before waits and preserve
 });
 
 test('actual erase honors cache boolean policy and never reports unreadable final facts as verified absence', async () => {
-  for (const outcome of ['false', 'throw', 'unavailable', 'true', 'reader', 'history', 'snapshot', 'silent-reader']) {
+  for (const outcome of ['false', 'throw', 'unavailable', 'true', 'reader', 'history', 'snapshot', 'silent-reader', 'draft-retained', 'draft-unknown', 'draft-newer']) {
     const h = eraseFixture({
       clear: async (fixture, options) => {
         if (outcome === 'false') return false;
@@ -151,9 +151,16 @@ test('actual erase honors cache boolean policy and never reports unreadable fina
         if (outcome === 'unavailable') return ResponseCache.prototype.clear.call({ open: async () => null }, options);
         const key = { reader: KEY, history: LIST_HISTORY_KEY, snapshot: 'mrt.state.prerestore' }[outcome];
         if (key) fixture.storage.failReads.add(key);
+        if (outcome === 'draft-newer') fixture.storage.map.set('mrt.import.draft.v1', 'new source after cleanup');
+        if (outcome === 'draft-retained') fixture.storage.map.set('mrt.import.draft.v1', 'retained source after refused cleanup');
+        if (outcome === 'draft-unknown') fixture.storage.failReads.add('mrt.import.draft.v1');
         return true;
       },
     });
+    if (outcome === 'draft-retained' || outcome === 'draft-unknown') {
+      h.storage.map.set('mrt.import.draft.v1', 'source retained by refused cleanup');
+      h.draftResult = { ok: false, changed: outcome === 'draft-retained' ? false : null, error: 'Draft cleanup not verified.' };
+    }
     const originalUndo = h.undo;
     if (outcome === 'silent-reader') h.storage.silentWrites.add(KEY);
     await h.run();
@@ -168,6 +175,7 @@ test('actual erase honors cache boolean policy and never reports unreadable fina
       if (outcome === 'reader') assert.match(messages, /reading data could not be checked/i);
       if (outcome === 'history') assert.match(messages, /Completion history could not be checked/i);
       if (outcome === 'snapshot') assert.match(messages, /pre-restore copy could not be checked/i);
+      if (outcome.startsWith('draft-')) assert.match(messages, /import draft/i);
       if (outcome === 'silent-reader') {
         assert.equal(h.undo, originalUndo);
         assert.equal(h.calls.forget, 0);

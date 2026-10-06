@@ -11,7 +11,7 @@ import { wireFieldValidation } from './shared/field-validation.js';
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:624-627` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:634-637` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -69,9 +69,14 @@ export function eraseDialogBody(copies, { completionHistory = false } = {}) {
 // copies this route deliberately does not reach: naming where they are is the difference between
 // disclosing them and merely not having lied.
 export function eraseOutcome(snapshotKept, copies, {
-  historyKept = false, historyError = null, readerChanged = false, cacheFailure = null, currentFacts = false,
+  historyKept = false, historyError = null, readerChanged = false, cacheFailure = null, currentFacts = false, draftKept = false,
 } = {}) {
   const notes = [];
+  if (draftKept === null) {
+    notes.push('The import draft could not be checked after the erase. Do not assume its source was removed; check the separate import draft in Backup & settings.');
+  } else if (draftKept) {
+    notes.push('An import draft and its source are still saved. Check the separate import draft in Backup & settings.');
+  }
   if (cacheFailure) notes.push(cacheFailure);
   if (historyKept === null) {
     notes.push('Completion history could not be checked after the erase. Retry reading completion history in Backup & settings.');
