@@ -13861,13 +13861,8 @@ SCENARIOS.push({
         .map((number) => `Daredevil (1998) #${number}`),
       ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => `Daredevil (2019) #${number}`),
     ];
-    const expectedScreenTitles = [
-      'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-      'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-      'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*',
-      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Spider-Man: Brand New Day', 'MCU Prep: She-Hulk: Attorney at Law', 'MCU Prep: Ms. Marvel', 'MCU Prep: Captain America: Brave New World', 'MCU Prep: Deadpool & Wolverine',
-      'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
-    ];
+    const { expectedMcuTitles } = await import('../test/helpers/current-reading-library.mjs');
+    const expectedScreenTitles = expectedMcuTitles();
     const expectedScreenCount = `${expectedScreenTitles.length} Reading Lists`;
     const payload = JSON.parse(readFileSync(
       new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
