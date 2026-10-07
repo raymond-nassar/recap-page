@@ -120,3 +120,9 @@ test('installed poll failures expose fixed operations and numeric errors, never 
   assert.match(cases, /PRIVATE category/);
   assert.match(cases, /installedPoll\(broken/);
 });
+
+test('proof DPI context is configured before COM initialization', () => {
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  const startup = native.slice(native.indexOf('int wmain('));
+  assert.ok(startup.indexOf('SetThreadDpiAwarenessContext') < startup.indexOf('CoInitializeEx'));
+});

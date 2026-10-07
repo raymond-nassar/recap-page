@@ -3539,14 +3539,17 @@ int wmain(int argc, wchar_t** argv) {
     std::ofstream report(reportPath, std::ios::binary | std::ios::app);
     liveReport = &report;
     liveReportPath = reportPath;
-    const auto com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+    HRESULT com = E_FAIL;
+    bool comInitialized = false;
     try {
         check(static_cast<bool>(report), "proof report path is required");
-        check(SUCCEEDED(com), "proof COM initialization failed");
-        proof::nativeArchitecture(GetCurrentProcess());
         check(observed("proof-dpi-awareness", [] {
             return SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) != nullptr;
         }), "proof DPI context unavailable");
+        com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+        check(SUCCEEDED(com), "proof COM initialization failed");
+        comInitialized = true;
+        proof::nativeArchitecture(GetCurrentProcess());
         if (options[L"--mode"] == L"visual-worker") {
             checkpoint("ENTER", "visual-target-validation");
             const auto pid = static_cast<DWORD>(std::stoul(options[L"--target-pid"]));
@@ -3684,7 +3687,7 @@ int wmain(int argc, wchar_t** argv) {
                 appCapturePublished = true;
             }
         }
-        if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
+        if (comInitialized) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }
 }
