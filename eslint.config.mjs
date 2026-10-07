@@ -98,6 +98,15 @@ export default [
     rules: noEmDashInShippedCopy,
   },
   {
+    files: ['src/**/*.js'],
+    rules: { 'no-alert': 'error' },
+  },
+  {
+    // This developer harness deliberately uses native dialogs while exercising recovery faults.
+    files: ['src/dev-faults.js'],
+    rules: { 'no-alert': 'off' },
+  },
+  {
     // The server, the build scripts and the tests run in Node.
     files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },

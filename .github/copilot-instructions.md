@@ -15,6 +15,11 @@ pre-restore and salvage keys the recovery paths depend on, so read it before tou
 Serve it with `npm start` and open it in a real browser. Do not try to verify UI behaviour in a
 sandboxed webview: it blocks the popups the reader launch depends on.
 
+For changes to markup, styles, or interaction, read the local
+[Interface design contract](../CONTRIBUTING.md#interface-design) and follow the
+[UI workflow](instructions/ui.instructions.md) before editing. Use this routing even when
+your host does not load path-specific instructions automatically.
+
 ## Use only as much workflow as the risk needs
 
 This repository was built with Research, Plan, Implement and Review. Its first six phase artifacts
