@@ -17,11 +17,14 @@ test('native observer initializes a GUI thread before demanding the exact DPI co
   assert.match(main, /SetThreadDpiAwarenessContext\(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\) != nullptr/);
   assert.match(main, /AreDpiAwarenessContextsEqual\(GetThreadDpiAwarenessContext\(\),\s*DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\)/);
   const wrapper = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
+  assert.match(wrapper, /\$env:MRT_NATIVE_DPI_PROOF = '1'\s*& node --test/);
+  assert.match(wrapper, /finally \{ \$env:MRT_NATIVE_DPI_PROOF = \$previousDpiProof \}/);
   assert.match(wrapper, /& node --test \(Join-Path \$root 'test\\native-dpi-awareness\.test\.js'\)\s*if \(\$LASTEXITCODE -ne 0\) \{ throw/);
 });
 
 test('hidden redirected native observer establishes per-monitor-v2 DPI awareness', {
-  skip: process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true',
+  skip: process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true'
+    || process.env.MRT_NATIVE_DPI_PROOF !== '1',
 }, (t) => {
   const scratch = mkdtempSync(join(tmpdir(), 'recap-dpi-proof-'));
   t.after(() => rmSync(scratch, { recursive: true, force: true }));
