@@ -13,6 +13,21 @@ const click = async (page, selector) => {
   await page.$eval(selector, (element) => element.click());
 };
 
+export function ownerPresentation(expected) {
+  const headings = [];
+  let storedGroup = null;
+  let displayedGroup = null;
+  const rows = expected.map((row) => {
+    if (row.group !== storedGroup) {
+      storedGroup = row.group;
+      displayedGroup = storedGroup ?? 'Individual issues';
+      headings.push(displayedGroup);
+    }
+    return { ...row, group: displayedGroup };
+  });
+  return { rows, headings };
+}
+
 export function ownerGuideScenario(contract) {
   const catalog = json('../src/data/catalog.json');
   const card = catalog.lists.find((entry) => entry.id === contract.id);
@@ -46,10 +61,7 @@ export function ownerGuideScenario(contract) {
     records: [{ listId: 'owner-shared', created: seed.lists['owner-shared'].created,
       completedAt: 123457, rating: 'up' }],
   });
-  const headings = expected.reduce((result, row, index) => {
-    if (row.group && row.group !== expected[index - 1]?.group) result.push(row.group);
-    return result;
-  }, []);
+  const presentation = ownerPresentation(expected);
   const readSaved = (page) => page.evaluate((stateKey, historyKey, id) => {
     const raw = localStorage.getItem(stateKey);
     const state = JSON.parse(raw);
@@ -131,7 +143,7 @@ export function ownerGuideScenario(contract) {
         await page.waitForFunction((count) =>
           document.querySelectorAll('#preview[open] .preview-issue-link').length === count, {}, expected.length);
         t.check(`Preview preserves the independent whole-original vector and groups at ${width}px`,
-          isDeepStrictEqual(await rendered(page, true), { rows: expected, headings }));
+          isDeepStrictEqual(await rendered(page, true), presentation));
         const preview = await page.evaluate(() => ({
           description: document.querySelector('#preview-desc')?.textContent.trim(),
           source: document.querySelector('#preview-source a')?.href,
@@ -157,7 +169,7 @@ export function ownerGuideScenario(contract) {
         await page.$eval('#full', (node) => { node.open = true; });
         await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count, {}, expected.length);
         t.check(`Reading List retains all originals and groups at ${width}px`,
-          isDeepStrictEqual(await rendered(page, false), { rows: expected, headings }));
+          isDeepStrictEqual(await rendered(page, false), presentation));
         t.check(`Reading List fits at ${width}px`,
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       }

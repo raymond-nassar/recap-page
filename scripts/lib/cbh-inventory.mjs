@@ -400,7 +400,7 @@ function assertExcludedSourceRow(row, index) {
   }
 }
 
-function sourceIdentityKey(value) {
+export function sourceIdentityKey(value) {
   return [
     String(value.normalizedSeriesTitle ?? '').trim().toLowerCase(),
     String(value.seriesYear ?? ''),
@@ -611,7 +611,7 @@ function assertSourceGapResolution(
   }
 }
 
-function assertSourceGap(gap, index) {
+export function assertSourceGap(gap, index) {
   const label = `Source gap ${index + 1}`;
   if (!isPlainObject(gap)) throw new Error(`${label} must be an object`);
   const missing = [...SOURCE_GAP_FIELDS].filter((field) => (

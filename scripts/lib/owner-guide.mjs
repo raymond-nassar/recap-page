@@ -11,8 +11,8 @@ import { cleanText, loadCachedMetadata, writeOutputsAtomically } from '../vendor
 import { parseManifest } from '../../src/js/lib/curated.js';
 import { escapeLinkText, issueIdFromUrl, normalizeTitle, parseChecklist, stripInlineMarkdown } from '../../src/js/lib/markdown.js';
 import {
-  approvalDigestFor, assertMappingMatchesPacketOccurrences, canonicalJson, digestCanonicalJson, gapEvidenceDigestFor,
-  mappingDigestFor, packetDigestFor, sourceCountsForPacket,
+  approvalDigestFor, assertMappingMatchesPacketOccurrences, assertSourceGap, canonicalJson, digestCanonicalJson, gapEvidenceDigestFor,
+  mappingDigestFor, packetDigestFor, sourceCountsForPacket, sourceIdentityKey,
   sourcePositionsForPacket, validatePacketProposal,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
@@ -35,25 +35,29 @@ export function parseOwnerMarkdown(text) {
   assert.ok(!/data:image\//i.test(text), 'Comic image bytes cannot be part of a reading-list input.');
   const selections = [];
   let group = null;
+  let listIndent = null;
   for (const [index, line] of text.split(/\r?\n/).entries()) {
     if (/^\s*(```|~~~)/.test(line)) throw new Error('Fenced content requires an explicit selection before preparation.');
     const heading = /^ {0,3}(#{1,6})\s+(.+)$/.exec(line);
     if (heading) {
       group = heading[1].length === 1 ? null : stripInlineMarkdown(heading[2]);
+      listIndent = null;
       continue;
     }
-    const item = /^ {0,3}(?:\d+[.)]|[-*])\s+(.+)$/.exec(line);
+    const item = /^([ \t]*)(?:\d+[.)]|[-*+])(?:[ \t]+|$)(.*)$/.exec(line);
     if (!item) {
-      if (/^\s+(?:\d+[.)]|[-*])\s+/.test(line)) {
-        throw new Error('Nested selections require an explicit flat owner order.');
-      }
       if (line.trim() && selections.length) selections.at(-1).continuation.push(line);
       continue;
     }
-    const parsed = parseChecklist(`- ${item[1]}`);
+    if (item[1].includes('\t') || item[1].length > 3
+      || (listIndent !== null && listIndent !== item[1].length)) {
+      throw new Error('Nested or inconsistent indentation requires an explicit flat owner order.');
+    }
+    listIndent = item[1].length;
+    const parsed = parseChecklist(`- ${item[2]}`);
     const entry = [...parsed.entries, ...parsed.unresolved][0];
     assert.ok(entry, `Markdown selection at line ${index + 1} is empty.`);
-    const bold = /^\*\*(.+?)\*\*(?:\s|$)/.exec(item[1]);
+    const bold = /^\*\*(.+?)\*\*(?:\s|$)/.exec(item[2]);
     selections.push({
       inputPosition: selections.length + 1, line: index + 1, markdown: line,
       title: bold ? stripInlineMarkdown(bold[1]) : entry.title,
@@ -196,7 +200,8 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     assert.ok(!expansions.has(selection.inputPosition), 'Duplicate supplied selection expansion.');
     assert.equal(selection.inputSha256, intake[selection.inputPosition - 1].inputSha256,
       'Expansion does not bind the exact supplied Markdown selection.');
-    assert.ok(typeof selection.group === 'string' && selection.group.trim());
+    assert.ok(selection.group === null || (typeof selection.group === 'string' && selection.group.trim()),
+      'An expansion needs its collection group or explicit null for individual originals.');
     assert.ok(Array.isArray(selection.rows) && selection.rows.length, 'An expanded selection cannot be empty.');
     assert.ok(Array.isArray(selection.evidenceSources) && selection.evidenceSources.length,
       'Trade or compilation expansion requires dated bibliography and a scope decision.');
@@ -212,7 +217,7 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     const explicit = expansions.get(input.inputPosition);
     const rows = explicit?.rows ?? directIssues(input);
     if (!rows) unresolvedSelections.push(input.inputPosition);
-    const group = explicit?.group ?? input.group;
+    const group = explicit ? explicit.group : input.group;
     for (const row of rows ?? []) {
       expanded.push({
         ...row, sourcePosition: expanded.length + 1, inputPosition: input.inputPosition,
@@ -256,24 +261,44 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
   const candidates = [...cached.records.values()].filter((record) => record.status === 200).map(candidateFromRecord);
   const exact = [];
   const gaps = [];
+  const gapOccurrences = [];
   const repeats = [];
   const unresolved = [];
   const seen = new Map();
+  const seenGaps = new Map();
   for (const row of expanded) {
     const identity = resolveRow(row, candidates);
     if (row.gap) {
       assert.notEqual(identity.resolutionStatus, 'exact', 'An exactly resolved original cannot be silently filed as a gap.');
       const gap = {
         ...row.gap, sourcePosition: row.sourcePosition, sourceIssueReference: row.sourceIssueReference,
-        sourceRangeReference: row.sourceRangeReference, sourceGroup: row.sourceRangeReference,
+        sourceRangeReference: row.sourceRangeReference,
         normalizedSeriesTitle: row.normalizedSeriesTitle, seriesYear: row.seriesYear, issueNumber: row.issueNumber,
       };
+      if (row.sourceRangeReference) gap.sourceGroup = row.sourceRangeReference;
+      else delete gap.sourceGroup;
       assert.ok(gap.evidenceSources?.some((entry) =>
         /^https:\/\/github\.com\/raymond-nassar\/recap-page\/issues\/[1-9]\d*$/.test(entry.url)
         && entry.url !== request.sourceUrl.split('#')[0]),
       'Each gap bundle must link a separate repository Issue; its assignee is checked in source review.');
       gap.evidenceDigest = gapEvidenceDigestFor(gap);
-      gaps.push(gap);
+      assertSourceGap(gap, gapOccurrences.length);
+      gapOccurrences.push(gap);
+      const key = sourceIdentityKey(gap);
+      const canonical = seenGaps.get(key);
+      if (canonical) {
+        assert.ok(gap.kind === canonical.kind && gap.status === canonical.status,
+          'Repeated originals cannot have conflicting gap dispositions.');
+        repeats.push({
+          sourcePosition: gap.sourcePosition, canonicalGapPosition: canonical.sourcePosition,
+          sourceIssueReference: gap.sourceIssueReference, sourceRangeReference: gap.sourceRangeReference,
+          normalizedSeriesTitle: canonical.normalizedSeriesTitle,
+          seriesYear: canonical.seriesYear, issueNumber: canonical.issueNumber,
+        });
+      } else {
+        seenGaps.set(key, gap);
+        gaps.push(gap);
+      }
       continue;
     }
     const identityConflict = [row.candidateIssueId, row.originalIssueId]
@@ -305,7 +330,8 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     });
   }
   if (unresolved.length || !exact.length) {
-    return { schemaVersion: 1, status: 'needs-resolution', intakeReceipt, intake, selections, rows: exact, gaps, repeats, unresolved };
+    return { schemaVersion: 1, status: 'needs-resolution', intakeReceipt, intake, selections,
+      rows: exact, gaps, gapOccurrences, repeats, unresolved };
   }
   const source = {
     schemaVersion: 1, id: request.id, sourceProvider: OWNER_PROVIDER.id,
@@ -313,6 +339,7 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     readerDescription: request.description, selections,
     sourceIssueCount: expanded.length, publishedIssueCount: exact.length,
     rows: expanded.map(({ gap: _gap, ...row }) => row), sourceGaps: gaps,
+    ...(gapOccurrences.length > gaps.length ? { sourceGapOccurrences: gapOccurrences } : {}),
     preservedResearch: {
       publicSourceSelfContained: true, publicArtifactReadRequired: false, originalBytesChanged: false,
       artifacts: [intakeReceipt],

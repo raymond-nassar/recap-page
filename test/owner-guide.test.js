@@ -9,6 +9,7 @@ import {
 } from '../scripts/lib/owner-guide.mjs';
 import { validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
+import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
@@ -273,4 +274,91 @@ test('incomplete original identities and an explicit identity conflict cannot se
   assert.equal(conflict.unresolved[0].resolutionStatus, 'identity-conflict');
   assert.equal(conflict.unresolved[0].selectedIssueId, null);
   assert.equal(conflict.unresolved[0].originalIssueId, 103);
+});
+
+test('review regression: plus bullets retain every original and source selection', async (t) => {
+  const { root, request } = await setup(t);
+  for (const markers of [['-', '+'], ['+', '-'], ['+', '+']]) {
+    const markdown = `# Selections\n\n${markers[0]} Sample Comic (2020) #1\n${markers[1]} Sample Comic (2020) #2\n`;
+    await writeFile(request.markdownFile, markdown);
+    const proposal = await prepareOwnerGuide(request, { root });
+    assert.equal(proposal.status, 'awaiting-review');
+    assert.equal(proposal.artifacts.source.sourceIssueCount, 2);
+    assert.deepEqual(proposal.artifacts.mapping.rows.map((row) => row.selectedIssueId), [101, 102]);
+    assert.deepEqual(proposal.artifacts.source.selections.map((row) => row.inputPosition), [1, 2]);
+  }
+});
+
+test('review regression: nested and unsupported indentation never becomes a flat selection', () => {
+  for (const marker of ['-', '*', '+', '1.']) {
+    for (const indent of ['  ', '    ', '\t']) {
+      assert.throws(() => parseOwnerMarkdown(`- Sample Comic (2020) #1\n${indent}${marker} Sample Comic (2020) #2\n`),
+        /Nested|indent/);
+    }
+  }
+  assert.equal(parseOwnerMarkdown('  + Sample Comic (2020) #1\n  + Sample Comic (2020) #2\n').length, 2);
+});
+
+test('review regression: repeated missing originals preserve canonical gap references and each group', async (t) => {
+  const { root, request, cache } = await setup(t, '# Selections\n\n1. First trade\n2. Second trade\n');
+  await cache(104, 3, 404);
+  request.metadataIssueIds.push(104);
+  const inputs = parseOwnerMarkdown(await readFile(request.markdownFile, 'utf8'));
+  const gap = {
+    kind: 'published-metadata-gap', status: 'open', checkedAt: '2026-10-07',
+    auditBasis: 'Synthetic exact metadata request returned 404.',
+    evidenceSources: [
+      { kind: 'metadata', url: 'https://marvel.emreparker.com/v1/issues/104', retrievedAt: '2026-10-07' },
+      { kind: 'tracking', url: 'https://github.com/raymond-nassar/recap-page/issues/1001', retrievedAt: '2026-10-07' },
+    ],
+  };
+  request.selections = inputs.map((input, index) => ({
+    inputPosition: input.inputPosition, inputSha256: input.inputSha256,
+    group: index === 0 ? 'Volume One' : 'Volume Two',
+    evidenceSources: [{ url: 'https://example.org/selected-scope', retrievedAt: '2026-10-07' }],
+    rows: (index === 0 ? [1, 3] : [3, 2]).map((number) => ({
+      sourceIssueReference: `Sample Comic (2020) #${number}`, normalizedSeriesTitle: 'Sample Comic',
+      seriesYear: 2020, issueNumber: String(number), ...(number === 3 ? { gap: structuredClone(gap) } : {}),
+    })),
+  }));
+  const proposal = await prepareOwnerGuide(request, { root });
+  assert.equal(proposal.status, 'awaiting-review');
+  assert.deepEqual(proposal.sourceCounts, {
+    sourceOccurrenceCount: 4, sourceIdentityCount: 3, includedIssueCount: 2,
+    sourceGapCount: 1, repeatedSourceReferenceCount: 1,
+  });
+  assert.deepEqual(proposal.artifacts.packet.sourceGaps.map((row) => row.sourcePosition), [2]);
+  assert.deepEqual(proposal.artifacts.packet.repeatedSourceReferences, [{
+    sourcePosition: 3, canonicalGapPosition: 2, sourceIssueReference: 'Sample Comic (2020) #3',
+    sourceRangeReference: 'Volume Two', normalizedSeriesTitle: 'Sample Comic', seriesYear: 2020, issueNumber: '3',
+  }]);
+  assert.deepEqual(proposal.artifacts.source.sourceGapOccurrences.map((row) => [row.sourcePosition, row.sourceGroup]),
+    [[2, 'Volume One'], [3, 'Volume Two']]);
+  const authored = await authorizeOwnerGuide(proposal, actualReview(proposal), { root });
+  assert.deepEqual(authored.contract.rows.map((row) => row.slice(0, 2)), [[1, 101], [4, 102]]);
+  request.selections[1].group = null;
+  const ungrouped = await prepareOwnerGuide(request, { root });
+  assert.equal(ungrouped.artifacts.packet.repeatedSourceReferences[0].sourceRangeReference, null);
+  assert.equal(Object.hasOwn(ungrouped.artifacts.source.sourceGapOccurrences[1], 'sourceGroup'), false);
+  request.selections[1].rows[0].gap.kind = 'availability-exclusion';
+  request.selections[1].rows[0].gap.status = 'closed';
+  await assert.rejects(() => prepareOwnerGuide(request, { root }), /conflicting gap dispositions/);
+});
+
+test('review regression: mixed collection presentation does not rewrite null stored groups', () => {
+  const stored = [
+    { issueId: 101, group: null }, { issueId: 102, group: 'Volume One' },
+    { issueId: 103, group: null }, { issueId: 104, group: 'Volume One' },
+  ];
+  const before = structuredClone(stored);
+  assert.deepEqual(ownerPresentation(stored), {
+    rows: [{ issueId: 101, group: null }, { issueId: 102, group: 'Volume One' },
+      { issueId: 103, group: 'Individual issues' }, { issueId: 104, group: 'Volume One' }],
+    headings: ['Volume One', 'Individual issues', 'Volume One'],
+  });
+  assert.deepEqual(stored, before);
+  assert.deepEqual(ownerPresentation([{ group: null }, { group: null }]),
+    { rows: [{ group: null }, { group: null }], headings: [] });
+  assert.deepEqual(ownerPresentation([{ group: 'Individual issues' }, { group: null }]).headings,
+    ['Individual issues', 'Individual issues']);
 });

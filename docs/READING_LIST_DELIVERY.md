@@ -40,12 +40,13 @@ selection list. It creates `request.json` with deliberately unfilled decisions. 
 data is not overwritten on repeated intake. A different handoff cannot silently reset an existing
 clock.
 
-Numbered trade selections, bullets and checklists are accepted. Headings and every selected
+Numbered trade selections, `-`, `*` and `+` bullets, and checklists are accepted. Headings and every selected
 position stay explicit. A plain original reference such as `Sample Comic (2020) #1-3` can expand
 deterministically. A title such as `A writer's first volume` cannot: it needs a dated, explicit
 edition or compilation decision. A formation-focused event selection is not automatically a trade
 or the complete event. Nested selections, fenced content and embedded image bytes are refused.
-No publisher pages or images are fetched.
+No publisher pages or images are fetched. Each list block must use consistent top-level
+indentation; nested or inconsistently indented selections need an explicit flat order.
 
 ## Prepare the exact selected scope
 
@@ -64,7 +65,7 @@ Fill the private request with:
 | `sourceFacts` | Optional self-contained factual qualifications, not copied provider prose or executable private paths |
 
 Each explicit expansion names its `inputPosition` and the exact `inputSha256` from `intake.json`,
-its reader-facing `group`, an `interpretation` such as an owner compilation, dated
+its reader-facing `group` (or explicit null for individual originals), an `interpretation` such as an owner compilation, dated
 `evidenceSources` with `url` and `retrievedAt`, and ordered `rows`. Each row preserves its original
 `sourceIssueReference`, metadata-normalized `normalizedSeriesTitle`, `seriesYear`, `issueNumber`,
 and any known exact `seriesId`, `candidateIssueId` or `originalIssueId`. Preserve an alias
@@ -91,7 +92,9 @@ positions. For a known metadata gap, keep an explicit row `gap` using the existi
 schema. File its separate gap Issue assigned to the owner and include that Issue in the gap's
 sorted `evidenceSources`. The exact rows may then ship while gap positions remain in source,
 packet and mapping provenance. Repeated originals retain explicit first-occurrence references.
-An unresolved edition boundary still needs a real decision, not a fabricated metadata gap.
+Repeated missing originals use one canonical gap and explicit repeat positions; the factual source
+also retains each gap occurrence's group and lookup evidence. Conflicting gap dispositions are
+refused. An unresolved edition boundary still needs a real decision, not a fabricated metadata gap.
 
 A complete proposal preserves a digest-named directory under `proposals` containing `proposal.json`
 and an unapproved `approval-request.json`. The console names that request, and the work directory's
