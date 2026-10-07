@@ -22,6 +22,7 @@ import { ListHistoryStore, LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/
 import {
   historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
 } from './helpers/reading-choice-history.mjs';
+import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 
 const id = 'mcu-prep-fantastic-four-first-steps';
 const sourceUrl = 'https://github.com/raymond-nassar/recap-page/issues/701';
@@ -208,9 +209,10 @@ test('First Steps reviews every active source and generated child without inheri
     expectedOrderIds: [...recordedPeers],
     packetValidation: { provider: OWNER_SOURCE_PROVIDER },
   }));
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'),
-    report.comparisons.filter((row) => row.relationship !== 'none'),
-    'A new shared relationship needs a new approval rather than an inherited frozen receipt');
+  const reference = await json(`scripts/data/owner-mcu-prep/${id}.ms-marvel-reciprocal.json`);
+  const reciprocal = await assertFirstStepsMsMarvelReciprocal({ reference, packet, mapping, report });
+  assert.deepEqual(current.comparisons, reciprocal.current.comparisons,
+    'Every active peer remains covered; only the exact approved reciprocal may add a shared relationship');
   assert.ok(!current.comparisons.some((row) => row.orderId === 'spider-man-no-way-home-owner-selected'));
   assert.ok(current.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x'));
   assert.ok(current.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x-34'));

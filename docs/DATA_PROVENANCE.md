@@ -406,16 +406,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-two pinned reading-order payloads remain under
-[`src/data/`](../src/data): 290 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 291 active files hold
-31,120 issue records covering 19,323 distinct tracked identities. The visible files hold 30,633 of those records;
+Two hundred and ninety-three pinned reading-order payloads remain under
+[`src/data/`](../src/data): 291 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 292 active files hold
+31,138 issue records covering 19,323 distinct tracked identities. The visible files hold 30,651 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 291 active payloads, 26,242
-records carry a cover URL and 24,639 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 292 active payloads, 26,260
+records carry a cover URL and 24,657 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -502,9 +502,9 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 3 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades |
+| Selected by raymond-nassar for MCU Prep | 4 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups |
 
-The 213 active source orders generate 290 visible Reading Lists. Marvel Knights to Planet X is the only
+The 214 active source orders generate 291 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -608,7 +608,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 290 active reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. No active payload currently declares a source-order licence |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7108-7147`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7141-7180`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11176-11301`.
+`src/data/catalog.json:11216-11341`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2143,6 +2143,13 @@ opens the whole anthology, including its Kamala segment. A guide-owned collectio
 states that qualification. There are no per-story IDs, global note edits or separate progress
 records for the same original, and no approval of an unpublished Ms. Marvel sibling is implied.
 
+The later [Ms. Marvel reciprocal reference](../scripts/data/owner-mcu-prep/mcu-prep-fantastic-four-first-steps.ms-marvel-reciprocal.json)
+now binds that guide's actual independent approval and both live original vectors to the
+unchanged First Steps packet, mapping, report and approval. Only their shared original 49846 is
+admitted as a new partial relationship. The complete current-peer guard still enumerates every
+active guide and rejects any other new nonempty relationship. The reference's recorded
+publication cohort remains historical; later disjoint additions do not require rewriting it.
+
 The [publication-time relationship report](../scripts/data/owner-mcu-prep/mcu-prep-fantastic-four-first-steps.overlap.json)
 covers all 288 existing active peers: every visible list, all 78 generated chapters and the
 retained hidden parent. Actual model review approves seven partial intersections and the
@@ -2264,6 +2271,66 @@ owner No Way Home archive remain unchanged. No runtime dependency, saved-data sc
 availability state or reader launch behavior changes. Existing lists, notes, overrides and shared
 read flags survive import and reload. Reader backups retain the imported guide through the existing
 format; completion and enjoyment history remains separate and still needs its own history backup.
+
+## Owner-authored MCU Prep: Ms. Marvel
+
+[Issue #702](https://github.com/raymond-nassar/recap-page/issues/702) supplies three owner
+selections. The earlier association with Guardians Issue #700 remains mismatch evidence,
+not a second source authority. The [source ledger](../scripts/data/owner-selections/mcu-prep-ms-marvel.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-ms-marvel.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-ms-marvel.json) and
+[local checklist](../src/data/orders/mcu-prep-ms-marvel.md) preserve all eighteen originals
+in three six-original groups. The three earlier hyphen-named drafts remain unchanged
+historical inputs rather than private prerequisites for public checks.
+
+| Owner selection | Verified edition | Ordered originals |
+|---|---|---|
+| No Normal | 2014, ISBN 9780785190219 | Ms. Marvel (2014) #1-5, then whole All-New Marvel NOW! Point One (2014) #1, original 49846 |
+| Generation Why | 2015, ISBN 9780785190226 | Ms. Marvel (2014) #6-11 |
+| Ms. Marvel by Saladin Ahmed Vol. 1: Destined | 2019, ISBN 9781302918293 | Magnificent Ms. Marvel (2019) #1-6 |
+
+The [delegated enumeration ruling](https://github.com/raymond-nassar/recap-page/issues/702#issuecomment-5976082380)
+places Point One at source position 6 after the five solo originals. It is coordinator authority
+under autonomous delegation, not physical paperback chapter-order verification or a separate
+human-reviewed receipt. The collection selects Kamala's story, but opening original 49846
+opens the entire anthology, including unrelated stories. The collection label keeps the
+qualification local to this guide. First Steps retains its separate Surfer qualification on
+the same original at position 28. There is one original ID and shared read state, with no
+story-specific progress or global user-note changes. Sketchbook, process and variant artwork
+remain explicit non-issue supplements rather than invented comic rows.
+
+The retained bibliography distinguishes Wilson's two first trades from Ahmed's Destined
+selection. Jacob Wyatt, also credited as Jake Wyatt, draws #6-7; Adrian Alphona draws #8-11.
+Ahmed and Minkyu Jung are the selected 2019 creators, without asserting a precise printing
+day. Provider role labels remain factual captures rather than invented corrections. The
+guide does not claim a first-ever appearance, an identical television origin, direct adaptation
+of the whole collections, a current ongoing run or a latest-run ranking.
+
+On 2026-10-06, eighteen authorized exact-detail requests supplied genuine request-bound cache
+records. All identities and raw-response hashes matched the preserved historical receipts;
+the earlier dates and hashes remain unchanged and the new observations are labelled fresh.
+Offline single-target vendoring emitted eighteen resolved originals, with cover URLs and
+digital IDs on every row, no placeholders and no gaps. No searches, series or bibliography
+refetches, image-byte downloads or third-party descriptions were used. Provider Unlimited
+dates remain unreliable metadata rather than promises of reading availability.
+
+The [publication-time full-library report](../scripts/data/owner-overlaps/mcu-prep-ms-marvel.json)
+binds actual post-refresh descriptions and all 291 existing descriptors, including 78 generated
+children and the hidden parent. Actual independent central approval covers three partial
+relationships and 288 pairs without shared originals, with no exact duplicates or subset
+relationships. The Captain Marvel/Ms. Marvel guide shares eleven solo originals, the broader
+Kamala guide shares seventeen, and First Steps shares only anthology 49846. Both broader
+guides and the frozen First Steps evidence remain intact; a reference-only reciprocal
+supplement binds the new approval without manufacturing another receipt.
+
+The guide is one independent selected-depth MCU Prep choice credited to raymond-nassar,
+with `sourceLicense: null`, a null timeline and false beginner flag. It is inserted after
+She-Hulk and before Agents of Atlas, preserving prior relative order. The fixed fourteen-source
+CBH inventory, other guide vectors and retired owner No Way Home archive are unchanged.
+No runtime dependency, saved-data schema, app origin, availability state or reader-launch
+behavior changes. Existing lists, shared read flags, notes and overrides survive import and
+reload. Reader backups preserve the imported guide in the existing format; completion and
+enjoyment history remains separate and needs its own history backup for portability.
 
 ## MCU Prep description refresh
 

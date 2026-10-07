@@ -37,7 +37,7 @@ const laterReviewedIds = new Set([
   'x-men-utopia',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+  'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
 ]);
 
 const EXPECTED_COUNTS = Object.freeze({
@@ -131,7 +131,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 290);
+  assert.equal(catalog.lists.length, 291);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);

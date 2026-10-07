@@ -134,12 +134,12 @@ test('AoA relationship report is rebuilt from every peer at its review', async (
       && orderId !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && orderId !== 'namor-sub-mariner-reading-order'
       && orderId !== 'iron-fist-reading-order'
-      && orderId !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && orderId !== 'mcu-prep-daredevil-born-again' && orderId !== 'mcu-prep-moon-knight' && orderId !== 'mcu-prep-deadpool-and-wolverine' && orderId !== 'mcu-prep-eternals' && orderId !== 'mcu-prep-fantastic-four-first-steps' && orderId !== 'mcu-prep-spider-man-brand-new-day' && orderId !== 'mcu-prep-she-hulk' && orderId !== 'spider-man-no-way-home-owner-selected' && orderId !== 'mcu-prep-thunderbolts')
+      && orderId !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && orderId !== 'mcu-prep-daredevil-born-again' && orderId !== 'mcu-prep-moon-knight' && orderId !== 'mcu-prep-deadpool-and-wolverine' && orderId !== 'mcu-prep-eternals' && orderId !== 'mcu-prep-fantastic-four-first-steps' && orderId !== 'mcu-prep-spider-man-brand-new-day' && orderId !== 'mcu-prep-she-hulk' && orderId !== 'mcu-prep-ms-marvel' && orderId !== 'spider-man-no-way-home-owner-selected' && orderId !== 'mcu-prep-thunderbolts')
     .sort((left, right) => left.localeCompare(right));
   const live = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [],
     { excludedOrderIds: ['the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
-      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
   assert.equal(expectedOrderIds.length, 199);
   assert.deepEqual(report.comparisons.map((item) => item.orderId), expectedOrderIds);
@@ -207,7 +207,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.ok(all.every((item) => !item.section || item.section.length <= MAX_COLLECTION));
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
-  assert.equal(manifest.lists.length, 213);
+  assert.equal(manifest.lists.length, 214);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
