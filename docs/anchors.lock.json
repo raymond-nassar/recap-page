@@ -1929,13 +1929,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11303-11428|0": {
-    "anchor": "src/data/catalog.json:11303-11428",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11340-11465|0": {
+    "anchor": "src/data/catalog.json:11340-11465",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7214-7253|0": {
-    "anchor": "src/data/curated-lists.json:7214-7253",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7244-7283|0": {
+    "anchor": "src/data/curated-lists.json:7244-7283",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T13:27:16.994Z",
+  "generatedAt": "2026-10-07T14:50:35.496Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3147,6 +3147,43 @@
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-07T13:27:16.994Z"
+    },
+    {
+      "id": "mcu-prep-agatha-all-along",
+      "file": "mcu_prep_agatha_all_along.json",
+      "name": "MCU Prep: Agatha All Along",
+      "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Agatha Harkness",
+        "Scarlet Witch",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Agatha All Along",
+        "The Last Door",
+        "House of Harkness"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 13304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5ab52066707e9",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/703",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-07T14:50:35.496Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

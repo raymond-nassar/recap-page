@@ -502,9 +502,9 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 6 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals |
+| Selected by raymond-nassar for MCU Prep | 7 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals; Agatha retains one introduction, six Orlando originals and five explicit House of Harkness gaps |
 
-The 216 active source orders generate 293 visible Reading Lists. Marvel Knights to Planet X is the only
+The 217 active source orders generate 294 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7214-7253`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7244-7283`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11303-11428`.
+`src/data/catalog.json:11340-11465`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2517,3 +2517,83 @@ guide in the existing reader schema. Completion and enjoyment remain separate in
 Compatible older builds retain imported originals but do not gain this bundled
 catalog choice until updated; this is not a promise of older completion-history
 support. No migration, origin change or runtime dependency is introduced.
+
+## Owner-authored MCU Prep: Agatha All Along
+
+[Issue #703](https://github.com/raymond-nassar/recap-page/issues/703) and its
+[owner correction](https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864)
+select three groups with twelve intended original positions. The
+[self-contained factual source](../scripts/data/owner-selections/mcu-prep-agatha-all-along.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-agatha-all-along.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-agatha-all-along.json)
+and [local checklist](../src/data/orders/mcu-prep-agatha-all-along.md) preserve
+seven readable originals and five explicit missing positions. The corrected
+handoff is a derived rendering of the original selections and actual correction,
+not byte-identical original owner Markdown. Its receipt and the names, byte counts
+and hashes of thirteen unchanged private research originals remain public facts;
+no private path or external artifact access is needed to interpret the source.
+
+| Owner selection | Intended originals | Published originals |
+|---|---|---|
+| Fantastic Four by Lee/Kirby: Agatha Harkness introduction | Fantastic Four (1961) #94 | One whole original, ID 13304 |
+| Scarlet Witch by Steve Orlando Vol. 1: The Last Door | Scarlet Witch (2023) #1-5, then Scarlet Witch Annual (2023) #1 | Six whole originals, IDs 97133, 97135, 97136, 97137, 97138 and 109670 |
+| House of Harkness Infinity Comic (2024) #1-5 | Five selected episodes at source positions 8-12 | None; all five remain explicit metadata gaps |
+
+The retained bibliography was retrieved on 2026-10-03. The Last Door is ISBN
+9780785194743, on sale August 29, 2023, with 168 pages and the six originals above.
+That edition date is separate from original comic publication dates. The sequence
+is the accepted collection expansion, not an independently verified physical table
+of contents. Orlando remains selected; the earlier witches-road wording does not
+authorize substituting James Robinson. Fantastic Four #103 and a full Lee/Kirby
+trade are not selected.
+
+The owner's replacement resolves the former Darkhold Diaries bibliography hold
+without rewriting it or turning it into a provider gap.
+[Independent reporting](https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/),
+retrieved on 2026-10-05, supports the real House of Harkness digital comic,
+Preeti Chhibber/Jodi Nishijima credits and alternate-universe school-rival premise.
+It does not verify the five supplied provider-ID associations or a direct
+television tie-in.
+
+[Gap #728](https://github.com/raymond-nassar/recap-page/issues/728) remains open
+and assigned to the owner. The supplied associations 121656, 121657, 121658,
+121659 and 121660 each returned HTTP 404 at 2026-10-06T06:50:25Z. Their distinct
+millisecond timestamps, raw response hashes, request URLs and supplied publisher
+links remain in source, packet and mapping provenance. None was retried, promoted
+to an exact mapping or replaced. No provider series, canonical detail or cover
+data is invented. The third group is missing from the readable rows, not silently
+deleted or represented by placeholders; the reader description discloses it.
+
+Cache qualification found factual projections but no complete responses for the
+seven readable originals. One authorized exact detail request per original on
+2026-10-07 recovered seven HTTP 200 responses. Every raw response hash and factual
+field matched its historical observation. Historical dates and hashes remain
+distinct from the new acquisition receipts. No other provider, bibliography,
+publisher-page or image request was made. Cache-only vendoring retains provider
+dates, sparse creator roles and Fantastic Four #94's zero page count; the existing
+cover normalization supplies the emitted URL representation without rewriting
+raw metadata. Comic narratives and image bytes are not published. Digital IDs and
+Unlimited dates do not establish current availability.
+
+The [complete-library report](../scripts/data/owner-overlaps/mcu-prep-agatha-all-along.json)
+covers all 294 earlier descriptors, including 78 generated children and the hidden
+partition parent. Actual independent parent model authority approves two partials:
+the broader Agatha guide shares 13304 and 109670, and the broader Fantastic Four
+guide shares 13304. The other 292 comparisons have no shared original. Missing
+Harkness associations contribute no invented overlap. This is source, insertion
+and relationship authority, not human sign-off or formal code review.
+
+One selected-depth MCU Prep choice follows Guardians and precedes Agents of Atlas,
+credits `Selected by raymond-nassar for MCU Prep`, retains `sourceLicense: null`
+and uses original 13304 for its representative cover URL. Existing broader guides,
+the frozen First Steps/Ms. Marvel reciprocal authority, the fourteen-record CBH
+inventory, the active seventeen-original No Way Home list and its retired
+eighteen-original archive remain unchanged.
+
+Import is additive and shares progress through the seven original IDs. Existing
+lists, read timestamps, notes, overrides and list deferral are preserved. Reader
+backups retain imported originals in the existing schema; completion and enjoyment
+remain in separate history storage and need the separate history backup for
+portable recovery. Compatible older builds retain imported originals but do not
+gain this bundled catalog choice until updated. No older completion-history
+support, migration, origin change or runtime dependency is implied.

@@ -36,7 +36,8 @@ export async function assertOwnerDeliveryContract(contract, {
   const expectedIds = contract.rows.map((row) => row[1]);
   const expectedPositions = contract.rows.map((row) => row[0]);
   const expectedGroups = contract.rows.map((row) => row[3] == null ? null : contract.groups[row[3]]);
-  assert.equal(hash(sourceText), contract.sourceSha256);
+  // Fresh Windows checkouts convert generated LF source JSON to CRLF without changing its approved content.
+  assert.equal(hash(sourceText.replace(/\r\n/g, '\n')), contract.sourceSha256);
   assert.equal(packet.sourceContentSha256, contract.sourceSha256);
   assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.rows));
   assert.deepEqual(sourceCountsForPacket(packet), contract.sourceCounts);

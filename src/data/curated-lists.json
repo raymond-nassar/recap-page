@@ -2593,6 +2593,36 @@
       "expect": 28
     },
     {
+      "id": "mcu-prep-agatha-all-along",
+      "name": "MCU Prep: Agatha All Along",
+      "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-agatha-all-along.md",
+      "out": "mcu_prep_agatha_all_along.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/703",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Agatha Harkness",
+        "Scarlet Witch",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Agatha All Along",
+        "The Last Door",
+        "House of Harkness"
+      ],
+      "coverIssueId": 13304,
+      "expect": 7
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

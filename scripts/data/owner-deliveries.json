@@ -4,6 +4,10 @@
     {
       "id": "mcu-prep-guardians-of-the-galaxy",
       "contract": "test/fixtures/owner-delivery/mcu-prep-guardians-of-the-galaxy.json"
+    },
+    {
+      "id": "mcu-prep-agatha-all-along",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-agatha-all-along.json"
     }
   ]
 }
