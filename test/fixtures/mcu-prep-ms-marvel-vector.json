@@ -1,0 +1,122 @@
+{
+  "id": "mcu-prep-ms-marvel",
+  "name": "MCU Prep: Ms. Marvel",
+  "description": "Kamala Khan goes from ordinary Jersey City teen to shapeshifting hero overnight, then keeps growing into the role alongside her community and family. Pure heart, humor, and a hero finding her footing.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/702",
+  "groups": [
+    "Ms. Marvel Vol. 1: No Normal (whole Point One anthology; Kamala Khan material)",
+    "Ms. Marvel Vol. 2: Generation Why",
+    "Ms. Marvel by Saladin Ahmed Vol. 1: Destined"
+  ],
+  "vectorSha256": "224417bae7e02aff90c61bec302ee6656fc958b0e8eed9bc71e84cce83341643",
+  "rows": [
+    [
+      1,
+      49089,
+      "Ms. Marvel (2014) #1",
+      0
+    ],
+    [
+      2,
+      49090,
+      "Ms. Marvel (2014) #2",
+      0
+    ],
+    [
+      3,
+      49091,
+      "Ms. Marvel (2014) #3",
+      0
+    ],
+    [
+      4,
+      49092,
+      "Ms. Marvel (2014) #4",
+      0
+    ],
+    [
+      5,
+      49093,
+      "Ms. Marvel (2014) #5",
+      0
+    ],
+    [
+      6,
+      49846,
+      "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1",
+      0
+    ],
+    [
+      7,
+      49094,
+      "Ms. Marvel (2014) #6",
+      1
+    ],
+    [
+      8,
+      49095,
+      "Ms. Marvel (2014) #7",
+      1
+    ],
+    [
+      9,
+      49096,
+      "Ms. Marvel (2014) #8",
+      1
+    ],
+    [
+      10,
+      49097,
+      "Ms. Marvel (2014) #9",
+      1
+    ],
+    [
+      11,
+      49098,
+      "Ms. Marvel (2014) #10",
+      1
+    ],
+    [
+      12,
+      49099,
+      "Ms. Marvel (2014) #11",
+      1
+    ],
+    [
+      13,
+      75470,
+      "Magnificent Ms. Marvel (2019) #1",
+      2
+    ],
+    [
+      14,
+      75472,
+      "Magnificent Ms. Marvel (2019) #2",
+      2
+    ],
+    [
+      15,
+      75474,
+      "Magnificent Ms. Marvel (2019) #3",
+      2
+    ],
+    [
+      16,
+      75475,
+      "Magnificent Ms. Marvel (2019) #4",
+      2
+    ],
+    [
+      17,
+      75476,
+      "Magnificent Ms. Marvel (2019) #5",
+      2
+    ],
+    [
+      18,
+      75477,
+      "Magnificent Ms. Marvel (2019) #6",
+      2
+    ]
+  ]
+}

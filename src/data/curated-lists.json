@@ -2487,6 +2487,39 @@
       "coverIssueId": 15256
     },
     {
+      "id": "mcu-prep-ms-marvel",
+      "name": "MCU Prep: Ms. Marvel",
+      "description": "Kamala Khan goes from ordinary Jersey City teen to shapeshifting hero overnight, then keeps growing into the role alongside her community and family. Pure heart, humor, and a hero finding her footing.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-ms-marvel.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/702",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_ms_marvel.json",
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Ms. Marvel",
+        "Kamala Khan",
+        "No Normal",
+        "Generation Why",
+        "Destined",
+        "G. Willow Wilson",
+        "Saladin Ahmed"
+      ],
+      "expect": 18,
+      "timeline": null,
+      "coverIssueId": 49089
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

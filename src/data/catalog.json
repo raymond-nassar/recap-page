@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T20:39:26.279Z",
+  "generatedAt": "2026-10-07T00:28:57.144Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3020,6 +3020,46 @@
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-06T20:39:26.279Z"
+    },
+    {
+      "id": "mcu-prep-ms-marvel",
+      "file": "mcu_prep_ms_marvel.json",
+      "name": "MCU Prep: Ms. Marvel",
+      "description": "Kamala Khan goes from ordinary Jersey City teen to shapeshifting hero overnight, then keeps growing into the role alongside her community and family. Pure heart, humor, and a hero finding her footing.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 18,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Ms. Marvel",
+        "Kamala Khan",
+        "No Normal",
+        "Generation Why",
+        "Destined",
+        "G. Willow Wilson",
+        "Saladin Ahmed"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 49089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/52e6c3c8df654",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/702",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-07T00:28:57.144Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

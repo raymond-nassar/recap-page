@@ -1,0 +1,640 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-ms-marvel",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/702",
+  "sourceRetrievedAt": "2026-10-03",
+  "draftStatus": "limited-owned-source-draft-not-integrated-or-published",
+  "sourceBoundary": "The three owner-selected collections in supplied order: No Normal, Generation Why, then Ahmed and Jung's first Magnificent collection, Destined. Expand only the 18 verified original comics. Coordinator-authorized publisher-enumeration/project order places the original 2014 Point One anthology at expanded position 6 after solo Ms. Marvel (2014) #1-5; it is not verified physical paperback TOC order or a separate human-reviewed receipt.",
+  "selectionCount": 3,
+  "expandedIssueCount": 18,
+  "resolvedIssueCount": 18,
+  "publishedIssueCount": 0,
+  "gapCount": 0,
+  "projectOrderAuthority": {
+    "kind": "coordinator-choice-under-autonomous-delegation",
+    "url": "https://github.com/raymond-nassar/recap-page/issues/702#issuecomment-5976082380",
+    "receivedAt": "2026-10-03T20:18:38.512-07:00",
+    "scope": "Project expansion order only; no implementation, final relationship/authority or publication release.",
+    "anthologySourcePosition": 6,
+    "humanReviewedReceipt": false,
+    "physicalTocVerified": false,
+    "implementationOrPublicationRelease": false
+  },
+  "selections": [
+    {
+      "position": 1,
+      "originalTitle": "Ms. Marvel Vol. 1: No Normal",
+      "originalPurpose": "the definitive modern origin and direct basis for the show.",
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "editionIsbn10": "078519021X",
+      "publicationYear": 2014,
+      "distributorOnSaleDate": "2014-10-14",
+      "creditedCreators": [
+        "G. Willow Wilson",
+        "Adrian Alphona",
+        "Ian Herring",
+        "Joe Caramagna"
+      ],
+      "creatorCredits": [
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer",
+          "evidence": [
+            "S01",
+            "S03"
+          ]
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "interior artist",
+          "evidence": [
+            "S01",
+            "S03"
+          ]
+        },
+        {
+          "name": "Ian Herring",
+          "role": "color artist",
+          "evidence": [
+            "S03"
+          ]
+        },
+        {
+          "name": "Joe Caramagna",
+          "role": "letterer",
+          "evidence": [
+            "S03"
+          ]
+        }
+      ],
+      "sourcePositions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "contents": [
+        {
+          "seriesTitle": "Ms. Marvel",
+          "seriesYear": 2014,
+          "seriesId": 18468,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "issueIds": [
+            49089,
+            49090,
+            49091,
+            49092,
+            49093
+          ]
+        },
+        {
+          "seriesTitle": "All-New Marvel NOW! Point One",
+          "seriesYear": 2014,
+          "seriesId": 18729,
+          "issueNumbers": [
+            "1"
+          ],
+          "issueIds": [
+            49846
+          ],
+          "selectedMaterial": "Ms. Marvel/Kamala Khan story only"
+        }
+      ],
+      "expansionNote": "The collection selects Kamala Khan's Ms. Marvel story only. The app opens the full original anthology, including unrelated stories. The anthology is at expanded position 6 by delegated project-order choice, not physical TOC verification. Non-issue supplements are accounted for separately.",
+      "anthology": {
+        "included": true,
+        "issueId": 49846,
+        "originalOnSaleDate": "2014-01-08",
+        "firstSoloIssueOnSaleDate": "2014-02-05",
+        "originalPublicationRelationship": "The anthology original was released before Ms. Marvel (2014) #1.",
+        "sourceExtent": "The collection selects Kamala Khan's Ms. Marvel story, not the other anthology stories.",
+        "wholeIssueReadingQualification": "The collection selects Kamala Khan's Ms. Marvel story only. The app opens the full original anthology, including unrelated stories.",
+        "authorizedProjectPlacement": "After Ms. Marvel (2014) #1-5, as expanded source position 6, in coordinator-authorized publisher-enumeration/project order.",
+        "placementVerification": "The publisher and library catalog verify inclusion, not physical chapter placement. Search-indexed story catalogs suggest the Kamala story follows the five solo chapters, but GCD and eBay records could not be directly retrieved. Physical TOC placement is not claimed verified.",
+        "projectOrderResolved": true,
+        "projectOrderAuthorityUrl": "https://github.com/raymond-nassar/recap-page/issues/702#issuecomment-5976082380",
+        "humanReviewedReceipt": false,
+        "physicalTocVerified": false,
+        "storyTitleLead": {
+          "title": "Garden State of Mind",
+          "status": "search-indexed-bibliography-lead-not-needed-for-original-identity"
+        },
+        "debutLanguagePolicy": "Call it the anthology's Kamala story or an early introduction. Do not claim Kamala's first-ever appearance from these sources."
+      },
+      "supplementalMaterial": [
+        {
+          "kind": "non-issue-supplement",
+          "catalogReportedContents": [
+            "Adrian Alphona sketchbook material",
+            "inks-to-color process material",
+            "variant artwork"
+          ],
+          "evidence": [
+            "S03"
+          ],
+          "accounting": "Retained explicitly as collected extras. These are not separately numbered original comics and add no issue rows. No artwork was fetched.",
+          "editionQualification": "The library edition record groups this ISBN with 9780785198284. Its exact supplemental-page sequence is not verified for the selected paperback."
+        }
+      ],
+      "editionQualifications": [
+        "Open Library groups two ISBNs and gives October 30, 2014; the exact selected paperback's distributor page gives October 14, 2014. Use the distributor for its on-sale date and publish only the verified year if day-level dating is unnecessary.",
+        "Do not substitute Carol Danvers's earlier Ms. Marvel series, the 2015 Kamala relaunch, a complete collection, or a later facsimile."
+      ],
+      "evidence": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S14",
+        "S15"
+      ]
+    },
+    {
+      "position": 2,
+      "originalTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "originalPurpose": "continues Kamala's early heroics and Jersey City community ties.",
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "editionIsbn10": "0785190228",
+      "publicationYear": 2015,
+      "distributorOnSaleDate": "2015-03-17",
+      "creditedCreators": [
+        "G. Willow Wilson",
+        "Jacob Wyatt",
+        "Adrian Alphona",
+        "Ian Herring",
+        "Joe Caramagna"
+      ],
+      "creatorCredits": [
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer",
+          "evidence": [
+            "S05",
+            "S06"
+          ]
+        },
+        {
+          "name": "Jacob Wyatt",
+          "creditedAlias": "Jake Wyatt",
+          "role": "artist on #6-7",
+          "evidence": [
+            "S05",
+            "S06"
+          ]
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "artist on #8-11",
+          "evidence": [
+            "S05",
+            "S06"
+          ]
+        },
+        {
+          "name": "Ian Herring",
+          "role": "color artist",
+          "evidence": [
+            "S06"
+          ]
+        },
+        {
+          "name": "Joe Caramagna",
+          "role": "letterer",
+          "evidence": [
+            "S06"
+          ]
+        }
+      ],
+      "sourcePositions": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "contents": [
+        {
+          "seriesTitle": "Ms. Marvel",
+          "seriesYear": 2014,
+          "seriesId": 18468,
+          "issueNumbers": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "issueIds": [
+            49094,
+            49095,
+            49096,
+            49097,
+            49098,
+            49099
+          ]
+        }
+      ],
+      "expansionNote": "The next six numerically consecutive issues of the same 2014 series, following the No Normal selection.",
+      "supplementalMaterial": [],
+      "editionQualifications": [
+        "Vol. 2 means the second trade of Ms. Marvel (2014), not Ms. Marvel (2015).",
+        "Ms. Marvel: Generation Why Infinity Comic (2023), provider series 37472, is not the selected original series.",
+        "Search responses supplied April publication dates without supporting retrieved evidence; the selected ISBN's distributor directly gives March 17, 2015."
+      ],
+      "evidence": [
+        "S05",
+        "S06",
+        "S14"
+      ]
+    },
+    {
+      "position": 3,
+      "originalTitle": "The Magnificent Ms. Marvel Vol. 1",
+      "originalPurpose": "the most recent ongoing.",
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "editionIsbn10": "130291829X",
+      "publicationYear": 2019,
+      "exactPublicationDay": null,
+      "dateQualification": "The year and exact ISBN are verified. Search/retailer dates varied, and the directly retrieved library record gives October 29, 2019. No single distributor day is claimed.",
+      "creditedCreators": [
+        "Saladin Ahmed",
+        "Minkyu Jung"
+      ],
+      "creatorCredits": [
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer",
+          "evidence": [
+            "S07",
+            "S08",
+            "S09",
+            "S11"
+          ]
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "interior artist",
+          "evidence": [
+            "S07",
+            "S08",
+            "S09",
+            "S10"
+          ]
+        }
+      ],
+      "sourcePositions": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "contents": [
+        {
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "seriesYear": 2019,
+          "seriesId": 27133,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "issueIds": [
+            75470,
+            75472,
+            75474,
+            75475,
+            75476,
+            75477
+          ]
+        }
+      ],
+      "expansionNote": "The six original issues of the first Destined collection, in ascending issue order.",
+      "supplementalMaterial": [],
+      "editionQualifications": [
+        "The selected trade is Destined, not a complete collection or the full 18-issue run.",
+        "Provider series 27134 is the collected edition; use series 27133 and the six original issue IDs instead.",
+        "No replacement with Beyond the Limit, The New Mutant, Mutant Menace, NYX or any later run is authorized.",
+        "The ISBN-13 checksum validates 9781302918293; the speculative alternate 9781302918299 is not a valid replacement."
+      ],
+      "runRecencyQualification": {
+        "namedSeriesStartYear": 2019,
+        "namedRunFinalIssue": "Magnificent Ms. Marvel (2019) #18",
+        "finalIssueId": 89683,
+        "finalIssueOnSaleDate": "2021-02-24",
+        "evidence": [
+          "S13",
+          "S15"
+        ],
+        "assessment": "The named ongoing has ended. 'Most recent ongoing' is not verified as a current 2026 ranking and must not be presented as 'currently ongoing'. Later limited series do not automatically refute a narrow last-solo-ongoing claim and do not authorize substitution.",
+        "excludedFromSelection": "Issues #7-18, Stormranger, Outlawed, and later Ms. Marvel series."
+      },
+      "evidence": [
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S14",
+        "S15"
+      ]
+    }
+  ],
+  "bibliography": [
+    {
+      "id": "S01",
+      "kind": "publisher-distributor",
+      "family": "Penguin Random House",
+      "url": "https://prhcomics.com/book/?isbn=9780785190219",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-html-facts-extracted-without-executing-page-scripts",
+      "supports": "Selected paperback ISBN, October 14, 2014 on-sale date, Wilson/Alphona credits, Ms. Marvel (2014) #1-5 plus material from All-New Marvel NOW! Point One #1.",
+      "doesNotEstablish": "Physical chapter placement of the anthology story."
+    },
+    {
+      "id": "S02",
+      "kind": "publisher-distributor",
+      "family": "Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/694386/ms-marvel-vol-1-no-normal-by-g-willow-wilson/",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Independent retrieval of the publisher's explicit issue boundary and Wilson/Alphona creator credits.",
+      "independenceQualification": "Same publisher/distributor family as S01, not a second independent bibliography."
+    },
+    {
+      "id": "S03",
+      "kind": "library-bibliography",
+      "family": "Open Library / contributing MARC catalogs",
+      "url": "https://openlibrary.org/books/OL26888389M.json",
+      "requestedUrl": "https://openlibrary.org/isbn/9780785190219.json",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-json",
+      "supports": "ISBN-bound title, creator statement, original issue boundary transcribed from the title page, and explicit non-issue extras.",
+      "qualification": "This record combines two ISBNs and has a publication-day discrepancy. It supplies no table_of_contents field."
+    },
+    {
+      "id": "S04",
+      "kind": "digital-book-bibliography",
+      "family": "Google Books",
+      "url": "https://books.google.com/books/about/Ms_Marvel_Vol_1.html?id=JoWbBAAAQBAJ",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-text",
+      "supports": "The included Point One material is specifically the Ms. Marvel story.",
+      "doesNotEstablish": "Physical paperback chapter placement."
+    },
+    {
+      "id": "S05",
+      "kind": "publisher-distributor",
+      "family": "Penguin Random House",
+      "url": "https://prhcomics.com/book/?isbn=9780785190226",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-html-facts-extracted-without-executing-page-scripts",
+      "supports": "Generation Why title, selected ISBN, March 17, 2015 on-sale date, Wilson/Jake Wyatt/Alphona credits, and Ms. Marvel (2014) #6-11."
+    },
+    {
+      "id": "S06",
+      "kind": "library-bibliography",
+      "family": "Open Library / contributing MARC catalogs",
+      "url": "https://openlibrary.org/books/OL26887083M.json",
+      "requestedUrl": "https://openlibrary.org/isbn/9780785190226.json",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-json",
+      "supports": "Selected ISBN, 2015 year, title-page #6-11 boundary and creator statement attributing #6-7 to Jacob Wyatt and #8-11 to Alphona."
+    },
+    {
+      "id": "S07",
+      "kind": "book-retailer-bibliography",
+      "family": "AbeBooks",
+      "url": "https://www.abebooks.com/9781302918293/Marvel-Saladin-Ahmed-Vol-Destined-130291829X/plp",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Selected Destined ISBN, Ahmed/Jung creator identity and Magnificent Ms. Marvel (2019) #1-6.",
+      "independenceQualification": "Contents prose is publisher-supplied; it is used for factual boundaries, not copied narrative."
+    },
+    {
+      "id": "S08",
+      "kind": "comics-bibliography",
+      "family": "League of Comic Geeks",
+      "url": "https://leagueofcomicgeeks.com/comic/5323391/the-magnificent-ms-marvel-by-saladin-ahmed-vol-1-destined-tp",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-web-fetch; separate-native-http-request-later-blocked",
+      "supports": "The first Destined trade's #1-6 boundary and Ahmed/Jung credits."
+    },
+    {
+      "id": "S09",
+      "kind": "book-retailer-bibliography",
+      "family": "ThriftBooks",
+      "url": "https://www.thriftbooks.com/w/magnificent-ms-marvel-vol-1_saladin-ahmed/20578192/",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Magnificent Ms. Marvel (2019) #1-6 and Ahmed/Jung credits.",
+      "independenceQualification": "Publisher-supplied contents prose, not an independent narrative authority."
+    },
+    {
+      "id": "S10",
+      "kind": "library-bibliography",
+      "family": "Open Library",
+      "url": "https://openlibrary.org/books/OL32012710M.json",
+      "requestedUrl": "https://openlibrary.org/isbn/9781302918293.json",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-json",
+      "supports": "Selected ISBN, Destined subtitle, 2019 year, Jung contributor credit.",
+      "qualification": "This library record gives October 29, 2019. Its contributor-role labels are not used to override print or issue credits."
+    },
+    {
+      "id": "S11",
+      "kind": "library-author-link",
+      "family": "Open Library",
+      "url": "https://openlibrary.org/works/OL20523976W.json",
+      "authorUrl": "https://openlibrary.org/authors/OL7171817A.json",
+      "retrievedAt": "2026-10-03",
+      "access": "direct-json",
+      "supports": "The Destined work's author pointer resolves to Saladin Ahmed."
+    },
+    {
+      "id": "S12",
+      "kind": "creator-interview",
+      "family": "Den of Geek",
+      "url": "https://www.denofgeek.com/tv/ms-marvel-why-kamala-khans-powers-were-changed-for-tv/",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Named production participants explain preserving comic-book essence while changing the powers/origin presentation for television; article contrasts the comic Terrigen/Inhuman origin.",
+      "notStored": "Third-party article narrative or copied interview text."
+    },
+    {
+      "id": "S13",
+      "kind": "issue-bibliography",
+      "family": "Key Collector Comics",
+      "url": "https://www.keycollectorcomics.com/issue/magnificent-ms-marvel-1-18,322542/",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Ahmed and Jung's #18 is identified as the run's final issue.",
+      "notSelectionExpansion": true
+    },
+    {
+      "id": "S14",
+      "kind": "metadata-api",
+      "family": "marvel.emreparker.com",
+      "urlPattern": "https://marvel.emreparker.com/v1/issues/{exact-original-id}",
+      "retrievedAt": "2026-10-03",
+      "receiptArtifact": "mcu-prep-ms-marvel-mapping.json#metadataReceipts",
+      "mappingArtifact": "mcu-prep-ms-marvel-mapping.json",
+      "supports": "18 unique original IDs, titles, series/year/number, exact detail/cover URLs, HTTP 200 status, metadata dates and creators.",
+      "receiptCount": 18,
+      "availabilityQualification": "Metadata unlimitedDate does not establish availability. No boolean availability assertion is made."
+    },
+    {
+      "id": "S15",
+      "kind": "complete-series-candidate-pages",
+      "family": "marvel.emreparker.com",
+      "urls": [
+        "https://marvel.emreparker.com/v1/series/18468/issues?limit=100&offset=0",
+        "https://marvel.emreparker.com/v1/series/18729/issues?limit=100&offset=0",
+        "https://marvel.emreparker.com/v1/series/27133/issues?limit=100&offset=0"
+      ],
+      "retrievedAt": "2026-10-03",
+      "receiptArtifact": "mcu-prep-ms-marvel-mapping.json#metadataReceipts",
+      "supports": "Complete candidate sets for exact title/year/number matching; anthology January 8, 2014 original and the non-selected Magnificent #18 February 24, 2021 finale date.",
+      "receiptCount": 3,
+      "notSelectionExpansion": true
+    },
+    {
+      "id": "S16",
+      "kind": "showrunner-interview",
+      "family": "Variety",
+      "url": "https://variety.com/2022/tv/news/ms-marvel-finale-kamala-khan-mutants-captain-marvel-1235316482/",
+      "retrievedAt": "2026-10-03",
+      "access": "direct",
+      "supports": "Bisha K. Ali discusses the MCU mutation revelation and explicitly distinguishes the Carol/Kamala television switch from the comic's shape-changing.",
+      "notStored": "Third-party article narrative or copied interview text."
+    }
+  ],
+  "claimPolicy": {
+    "originalPurposes": "Owner descriptions are retained as provenance, not newly verified adaptation, debut or recency claims.",
+    "publishedCopy": "Name the three verified collections and their original comics. Do not claim a first-ever appearance, identical TV/comic origins, a direct whole-trade adaptation, a currently ongoing run or a latest/most-recent ranking.",
+    "attribution": "The owner selected the three collections. Bibliography verifies collection facts; it did not author this selection.",
+    "assessment": [
+      {
+        "selectionPosition": 1,
+        "ownerWording": "the definitive modern origin and direct basis for the show.",
+        "assessment": "Kamala's modern comic origin is supported by the selected 2014 introductory issues. 'Definitive' is the owner's assessment. The show draws on the character and themes but is not an identical origin or powers adaptation; no retrieved source establishes the whole No Normal collection as a direct scene-by-scene basis.",
+        "supportedDifferences": [
+          "Den of Geek's creator interviews distinguish the comics' Terrigen/Inhuman polymorph powers from the show's bangle-linked manifestation and discuss preserving the essence rather than literal translation.",
+          "Variety's Bisha K. Ali interview confirms the show's mutation revelation and distinguishes the television Carol/Kamala switch from Kamala's shape-changing into Carol in comic issue #1."
+        ],
+        "publishedCopyPolicy": "Describe an owner-selected comic-origin companion. Do not assert identical TV/comic origins or unsupported direct adaptation of this whole trade.",
+        "evidence": [
+          "S01",
+          "S12",
+          "S16"
+        ]
+      },
+      {
+        "selectionPosition": 2,
+        "ownerWording": "continues Kamala's early heroics and Jersey City community ties.",
+        "assessment": "The original #6-11 boundary directly continues the same 2014 series. Keep the owner's purpose as provenance; use original project wording rather than publisher plot copy.",
+        "evidence": [
+          "S05",
+          "S06",
+          "S14"
+        ]
+      },
+      {
+        "selectionPosition": 3,
+        "ownerWording": "the most recent ongoing.",
+        "assessment": "Qualify the named 2019-2021 run rather than affirm a 2026 recency ranking or implying it is still ongoing. Preserve the selected first volume.",
+        "publishedCopyPolicy": "Name the selected first volume of the 2019 series. Do not claim it is currently ongoing, latest or most recent.",
+        "evidence": [
+          "S13",
+          "S15"
+        ]
+      }
+    ]
+  },
+  "metadataPolicy": {
+    "apiCreatorRoles": "Retain provider creator names and roles exactly. Use bibliography for collection credits without silently correcting API roles.",
+    "providerAnthologyName": "Provider series 18729 is ALL-NEW MARVEL NOW! POINT ONE 1 (2014). The bibliographic title is All-New Marvel NOW! Point One; do not substitute the 2012 original or 2023 facsimile.",
+    "dates": "Provider on-sale and unlimited dates are metadata, not proof of reading-service availability. Preserve all five availability states.",
+    "imagesAndNarrative": "Only cover URLs and factual metadata are retained. No comic image bytes or third-party narrative descriptions are copied.",
+    "cachedLookupRequestCount": 21,
+    "newNetworkRequestsForDraft": 0
+  },
+  "compatibility": {
+    "preservedBroaderGuideIds": [
+      "ms-marvel-kamala-khan-reading-order",
+      "captain-marvel-ms-marvel-reading-order"
+    ],
+    "sharedAnthology": {
+      "id": "shared-anthology-49846-firststeps-newdawn",
+      "evidenceKind": "parent-supplied-compatibility-fact-for-eventual-implementation",
+      "receivedAt": "2026-10-03T20:32:21.437-07:00",
+      "canonicalOriginalIssueId": 49846,
+      "ownGuide": {
+        "id": "mcu-prep-ms-marvel",
+        "selectedSegment": "Kamala Khan's story",
+        "expandedSourcePosition": 6,
+        "scopeAuthorityUrl": "https://github.com/raymond-nassar/recap-page/issues/702#issuecomment-5976082380"
+      },
+      "otherGuide": {
+        "projectLabel": "FirstSteps",
+        "selectionLabel": "NewDawn",
+        "selectedSegment": "Surfer's segment",
+        "expandedSourcePosition": 28,
+        "scopeAuthorityUrl": "https://github.com/raymond-nassar/recap-page/issues/701#issuecomment-5976175823"
+      },
+      "eventualImplementationRequirements": [
+        "Preserve one canonical original ID 49846 and existing shared issue-progress behavior across the guides.",
+        "Do not mint story-specific original IDs or modify user notes/progress to distinguish selected segments.",
+        "Qualify each guide's selected segment while the app opens the same full original anthology.",
+        "Include this shared original honestly in the eventual unfiltered library relationship comparison.",
+        "Do not infer guide equivalence, subset status or an approved relationship from this pointer."
+      ],
+      "commentIndependentlyRetrieved": false,
+      "completeLibraryComparison": false,
+      "relationshipApprovalImplied": false,
+      "implementationReleased": false
+    },
+    "qualificationScope": "Collection/source/guide context only; never mutable global user notes.",
+    "canonicalProgressIdentity": 49846,
+    "perStoryOriginalIdsAllowed": false,
+    "progressOrUserNoteChangesAllowed": false
+  },
+  "integrationProposal": {
+    "insertionAnchor": {
+      "beforeId": "white-tiger-ava-ayala"
+    },
+    "status": "Unapproved proposal following the existing owner-companion insertion convention; re-evaluate only after settled-base integration release.",
+    "catalogOrManifestRegistered": false
+  },
+  "sourceGaps": [],
+  "repeatedSourceReferences": [],
+  "excludedSourceReferences": [
+    "Ms. Marvel (2014) #12-19 and the 2015 relaunch",
+    "Marvel NOW! Point One (2012) and the 2023 anthology facsimile",
+    "Ms. Marvel: Generation Why Infinity Comic (2023)",
+    "Magnificent Ms. Marvel (2019) #7-18 and later series",
+    "Collected-edition provider IDs rather than selected original comics",
+    "Unverified first-ever appearance, identical-TV-origin, direct whole-trade adaptation and latest/current-ongoing claims"
+  ],
+  "publicationReleased": false,
+  "finalizedLibraryComparison": false,
+  "finalizedRelationshipApproval": false
+}

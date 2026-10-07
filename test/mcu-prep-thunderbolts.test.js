@@ -279,7 +279,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
   const current = { candidateId: id, ...buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders }) };
-  assert.equal(descriptors.length, 290);
+  assert.equal(descriptors.length, 291);
   assert.equal(descriptors.some((entry) => entry.orderId === 'spider-man-no-way-home-owner-selected'), false);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -294,7 +294,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   }));
   const laterIds = [
     'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
-    'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
     'avengers-doomsday-secret-wars',
   ];
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
@@ -321,7 +321,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const activePeerIds = new Set(currentOrders.map((entry) => entry.orderId));
   assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-she-hulk', 'mcu-prep-spider-man-brand-new-day']);
+    'mcu-prep-ms-marvel', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-she-hulk', 'mcu-prep-spider-man-brand-new-day']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),

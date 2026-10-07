@@ -1,0 +1,2049 @@
+{
+  "id": "mcu-prep-ms-marvel",
+  "inventoryId": "mcu-prep-ms-marvel",
+  "packetDigest": "b962a9deaba21a834c0d010b1f0cd64813f13d8eb4ffd66ca148152dda69c532",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/702",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceContentSha256": "f89680907d6bf0d21387bbd9753d5486cb33015529c0ea9834c2acc3b3b88331",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 18,
+  "excludedSourceReferences": [
+    "Ms. Marvel (2014) #12-19 and the 2015 relaunch",
+    "Marvel NOW! Point One (2012) and the 2023 anthology facsimile",
+    "Ms. Marvel: Generation Why Infinity Comic (2023)",
+    "Magnificent Ms. Marvel (2019) #7-18 and later series",
+    "Collected-edition provider IDs rather than selected original comics",
+    "Unverified first-ever appearance, identical-TV-origin, direct whole-trade adaptation and latest/current-ongoing claims"
+  ],
+  "proposedManifest": {
+    "id": "mcu-prep-ms-marvel",
+    "name": "MCU Prep: Ms. Marvel",
+    "description": "An owner-selected path through No Normal, Generation Why, and Destined, expanded into 18 original comics in the delegated project order.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mcu-prep-ms-marvel.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/702",
+    "sourceOrigin": "Compiled for this project from the owner's selections",
+    "sourceLicense": null,
+    "out": "mcu_prep_ms_marvel.json",
+    "characters": [
+      "Ms. Marvel",
+      "Kamala Khan"
+    ],
+    "keywords": [
+      "Ms. Marvel",
+      "Kamala Khan",
+      "No Normal",
+      "Generation Why",
+      "Destined",
+      "G. Willow Wilson",
+      "Saladin Ahmed"
+    ],
+    "expect": 18,
+    "timeline": null,
+    "coverIssueId": 49089
+  },
+  "candidateMetadata": [
+    {
+      "id": 49089,
+      "title": "Ms. Marvel (2014) #1",
+      "issueNumber": "1",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49089/ms_marvel_2014_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/52e6c3c8df654.jpg",
+      "digitalId": 32979,
+      "onSale": "2014-02-05T00:00:00+0000",
+      "unlimitedDate": "2014-08-04T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49089",
+        "attemptedAt": "2026-10-04T02:51:38.500Z",
+        "fetchedAt": "2026-10-04T02:51:38.700Z",
+        "status": 200,
+        "urlSha256": "7c884defbcf5db9a8b506e1475224cac149f5859268f90b8803af99d1f08c623",
+        "bodySha256": "7388186bb48e7fc1a4e4439f83a7c83795ea17f21556c3435f45af27b070dc00",
+        "bytes": 1127
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49090,
+      "title": "Ms. Marvel (2014) #2",
+      "issueNumber": "2",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49090/ms_marvel_2014_2",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/531dd500151e3.jpg",
+      "digitalId": 33445,
+      "onSale": "2014-03-19T00:00:00+0000",
+      "unlimitedDate": "2014-09-15T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49090",
+        "attemptedAt": "2026-10-04T02:51:38.702Z",
+        "fetchedAt": "2026-10-04T02:51:38.858Z",
+        "status": 200,
+        "urlSha256": "a1c6dfd8bac182a59ca70bbc14e8798d02199073f4274ac094f2650ac9e126c8",
+        "bodySha256": "c9f0200732f84383320233eda393248fccdbaece8ca27fd2053d7ede1102ce98",
+        "bytes": 1198
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49091,
+      "title": "Ms. Marvel (2014) #3",
+      "issueNumber": "3",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49091/ms_marvel_2014_3",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/b0/5346ffc523078.jpg",
+      "digitalId": 33565,
+      "onSale": "2014-04-16T00:00:00+0000",
+      "unlimitedDate": "2014-10-13T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49091",
+        "attemptedAt": "2026-10-04T02:51:47.698Z",
+        "fetchedAt": "2026-10-04T02:51:47.893Z",
+        "status": 200,
+        "urlSha256": "a60f55672a2d67ebe84a0ae2ba7b1b29b194f9c24cb226524957907847972fb5",
+        "bodySha256": "79a3304ee6a26d18eecd57a0b81f10711edf7882e68f0ed10cd302c072aa618a",
+        "bytes": 855
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49092,
+      "title": "Ms. Marvel (2014) #4",
+      "issueNumber": "4",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49092/ms_marvel_2014_4",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/53766b56a5fd4.jpg",
+      "digitalId": 33985,
+      "onSale": "2014-05-28T00:00:00+0000",
+      "unlimitedDate": "2014-11-24T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49092",
+        "attemptedAt": "2026-10-04T02:51:48.182Z",
+        "fetchedAt": "2026-10-04T02:51:48.356Z",
+        "status": 200,
+        "urlSha256": "9ea81d54f913929d8da30dc05a5a978e4ee1ef3910ddbc5a3f7687098d2454db",
+        "bodySha256": "fdbfbce840bc426b5b973f2eb4627a046507b8448bc924558886410965f31c53",
+        "bytes": 866
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49093,
+      "title": "Ms. Marvel (2014) #5",
+      "issueNumber": "5",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49093/ms_marvel_2014_5",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5399dcfabf8ed.jpg",
+      "digitalId": 34038,
+      "onSale": "2014-06-25T00:00:00+0000",
+      "unlimitedDate": "2014-12-29T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49093",
+        "attemptedAt": "2026-10-04T02:51:48.357Z",
+        "fetchedAt": "2026-10-04T02:51:48.515Z",
+        "status": 200,
+        "urlSha256": "514874158900ca8cb209b1cb244bb2274ee2a165331520abaaa324fd6e26a399",
+        "bodySha256": "94acc0e449f32f8f5ab09e7680aa60b58085240535f66b4e5947d37e03aaf305",
+        "bytes": 731
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49846,
+      "title": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1",
+      "issueNumber": "1",
+      "seriesId": 18729,
+      "seriesName": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49846/all-new_marvel_now_point_one_1_2014_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/f/e0/67e6f6fe05dcb.jpg",
+      "digitalId": 32791,
+      "onSale": "2014-01-08T00:00:00+0000",
+      "unlimitedDate": "2014-06-30T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Lee Garbett",
+          "role": "inker"
+        },
+        {
+          "name": "Mike Allred",
+          "role": "inker"
+        },
+        {
+          "name": "Philip J. Noto",
+          "role": "inker"
+        },
+        {
+          "name": "Rags Morales",
+          "role": "inker"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "inker"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Nathan Edmondson",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49846",
+        "attemptedAt": "2026-10-04T02:51:48.516Z",
+        "fetchedAt": "2026-10-04T02:51:48.713Z",
+        "status": 200,
+        "urlSha256": "08dd2ee6af5273c37fb0016c8e2afb3814e1ee8d517ea9cb22a25323ed98b8b5",
+        "bodySha256": "419655a22117b9b4e6d842ffb21566f496375c32cce6b907b7d107cb4fcde172",
+        "bytes": 1196
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49094,
+      "title": "Ms. Marvel (2014) #6",
+      "issueNumber": "6",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49094/ms_marvel_2014_6",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/f0/53bb010835b69.jpg",
+      "digitalId": 34370,
+      "onSale": "2014-07-16T00:00:00+0000",
+      "unlimitedDate": "2015-01-19T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49094",
+        "attemptedAt": "2026-10-04T02:51:48.714Z",
+        "fetchedAt": "2026-10-04T02:51:48.911Z",
+        "status": 200,
+        "urlSha256": "d76c581a1393ccfcb565b92d9dcf078c1b92b9fdb3758bd059665c7bf691a865",
+        "bodySha256": "f62d8ac62814053843b1a8205e25a228c07a4421c85adfd71610d4c5627489a8",
+        "bytes": 690
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49095,
+      "title": "Ms. Marvel (2014) #7",
+      "issueNumber": "7",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49095/ms_marvel_2014_7",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/00/53f35c8bf1c02.jpg",
+      "digitalId": 34618,
+      "onSale": "2014-08-20T00:00:00+0000",
+      "unlimitedDate": "2015-02-16T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49095",
+        "attemptedAt": "2026-10-04T02:51:57.707Z",
+        "fetchedAt": "2026-10-04T02:51:57.968Z",
+        "status": 200,
+        "urlSha256": "ff7134b78278eecae239f4d6e27b2cbd501110542d6577967b51b7faffbcfc17",
+        "bodySha256": "009c2db27b786452f62c0cf8c6c8e140abdfbf051e5bd7038c5334f8d7d55032",
+        "bytes": 1001
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49096,
+      "title": "Ms. Marvel (2014) #8",
+      "issueNumber": "8",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49096/ms_marvel_2014_8",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/1/00/5409f05b98627.jpg",
+      "digitalId": 34936,
+      "onSale": "2014-09-10T00:00:00+0000",
+      "unlimitedDate": "2015-03-16T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49096",
+        "attemptedAt": "2026-10-04T02:51:58.189Z",
+        "fetchedAt": "2026-10-04T02:51:58.347Z",
+        "status": 200,
+        "urlSha256": "f6fbd6dc5e4a1bdf9a811e96062ba3a02f116c04eae252aa55431ce480e97c2d",
+        "bodySha256": "8659eea38112423dadad4933bc79a14a6fcd7b6aa4566df85ba367c78ebcf855",
+        "bytes": 960
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49097,
+      "title": "Ms. Marvel (2014) #9",
+      "issueNumber": "9",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49097/ms_marvel_2014_9",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/00/543430e6bf2be.jpg",
+      "digitalId": 35054,
+      "onSale": "2014-10-15T00:00:00+0000",
+      "unlimitedDate": "2015-04-13T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49097",
+        "attemptedAt": "2026-10-04T02:51:58.360Z",
+        "fetchedAt": "2026-10-04T02:51:58.516Z",
+        "status": 200,
+        "urlSha256": "e682e86d149e12c89aa0477bcd687620f57cf67c154149352c02d1d9a43de11c",
+        "bodySha256": "ed9c97f69bd19d6bc466e9961269cba6b5f9a3df98e15b15835ea8bffbc89d0d",
+        "bytes": 905
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49098,
+      "title": "Ms. Marvel (2014) #10",
+      "issueNumber": "10",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49098/ms_marvel_2014_10",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/50/5491a3c6c08cf.jpg",
+      "digitalId": 35940,
+      "onSale": "2014-12-17T00:00:00+0000",
+      "unlimitedDate": "2015-06-22T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sana Amanat",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49098",
+        "attemptedAt": "2026-10-04T02:51:58.518Z",
+        "fetchedAt": "2026-10-04T02:51:58.702Z",
+        "status": 200,
+        "urlSha256": "a891f9f7b4b3b7466f5261a0c0089a30fc9825ba85d81da767391e7078f95d7c",
+        "bodySha256": "89fc7cff8790810bbe3fbca5307f956cbfaee01ea4d7cf3d78bcefe35be2fe22",
+        "bytes": 1006
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 49099,
+      "title": "Ms. Marvel (2014) #11",
+      "issueNumber": "11",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/49099/ms_marvel_2014_11",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/c/03/54c67f1138915.jpg",
+      "digitalId": 36324,
+      "onSale": "2015-02-04T00:00:00+0000",
+      "unlimitedDate": "2015-07-20T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "inker"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/49099",
+        "attemptedAt": "2026-10-04T02:51:58.717Z",
+        "fetchedAt": "2026-10-04T02:51:58.874Z",
+        "status": 200,
+        "urlSha256": "ddc0c207a5522ab06c531db053451c6ab4a3682a8c96bf3cff1d3b21803ad1e6",
+        "bodySha256": "0fb98551416357607cf7bf8acaa369b62167af448b3c2d72d8cd74e67d7649c8",
+        "bytes": 887
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75470,
+      "title": "Magnificent Ms. Marvel (2019) #1",
+      "issueNumber": "1",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75470/magnificent_ms_marvel_2019_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/5c802c145f371.jpg",
+      "digitalId": 50879,
+      "onSale": "2019-03-13T00:00:00+0000",
+      "unlimitedDate": "2019-09-16T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75470",
+        "attemptedAt": "2026-10-04T02:52:07.714Z",
+        "fetchedAt": "2026-10-04T02:52:07.931Z",
+        "status": 200,
+        "urlSha256": "024b272b621a8833c28abe1dbcf4bceabd546542ff36dd6a70ccba10ee4a5fde",
+        "bodySha256": "91f4db1eb38228225aa474918b8bc7eff5ce7a15c1777e978a0de6f771a053a0",
+        "bytes": 1304
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75472,
+      "title": "Magnificent Ms. Marvel (2019) #2",
+      "issueNumber": "2",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75472/magnificent_ms_marvel_2019_2",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/5cacf580ba144.jpg",
+      "digitalId": 51151,
+      "onSale": "2019-04-17T00:00:00+0000",
+      "unlimitedDate": "2019-04-17T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75472",
+        "attemptedAt": "2026-10-04T02:52:08.196Z",
+        "fetchedAt": "2026-10-04T02:52:08.369Z",
+        "status": 200,
+        "urlSha256": "ea721fe424426e9cfe0fc95543c4be0ea58eae285f7593ba456c3b6a58659b93",
+        "bodySha256": "160767101b7e72dce47ae42157889bddad813d367839fc2366f28363a17c9aa3",
+        "bytes": 1151
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75474,
+      "title": "Magnificent Ms. Marvel (2019) #3",
+      "issueNumber": "3",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75474/magnificent_ms_marvel_2019_3",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/5ce4007d23915.jpg",
+      "digitalId": 51465,
+      "onSale": "2019-05-29T00:00:00+0000",
+      "unlimitedDate": "2019-12-02T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75474",
+        "attemptedAt": "2026-10-04T02:52:08.370Z",
+        "fetchedAt": "2026-10-04T02:52:08.544Z",
+        "status": 200,
+        "urlSha256": "9860c2e7705d9fb2bc54c0b4c01aa17cdb99d06a9258e6b13b6a27d29144831f",
+        "bodySha256": "204daa1ccae111cf9c2c89e64a3b19ad3ea33681600e9eb95d498ff08da229d3",
+        "bytes": 1168
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75475,
+      "title": "Magnificent Ms. Marvel (2019) #4",
+      "issueNumber": "4",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75475/magnificent_ms_marvel_2019_4",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/5d08f2ec15d0f.jpg",
+      "digitalId": 51769,
+      "onSale": "2019-06-26T00:00:00+0000",
+      "unlimitedDate": "2019-12-30T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75475",
+        "attemptedAt": "2026-10-04T02:52:08.547Z",
+        "fetchedAt": "2026-10-04T02:52:08.809Z",
+        "status": 200,
+        "urlSha256": "4bbff60321ae3f1dec562ef726b6a54c0fbd3374092987ae228f3d8a6688bff7",
+        "bodySha256": "24281075a3a3db6dd0525a905fc6389dfa937137c5e457659010861160c5e484",
+        "bytes": 1134
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75476,
+      "title": "Magnificent Ms. Marvel (2019) #5",
+      "issueNumber": "5",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75476/magnificent_ms_marvel_2019_5",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/5d2c92009a2a3.jpg",
+      "digitalId": 51976,
+      "onSale": "2019-07-24T00:00:00+0000",
+      "unlimitedDate": "2020-01-27T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75476",
+        "attemptedAt": "2026-10-04T02:52:08.812Z",
+        "fetchedAt": "2026-10-04T02:52:09.000Z",
+        "status": 200,
+        "urlSha256": "f759de052afc16aa22dc8dcba7910bc869c425700c76cf065fcc527c5ecd8c74",
+        "bodySha256": "5750075762d441801816e2405dc11d7e2f57db4378a271cdbcec9a292da3f257",
+        "bytes": 1158
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    },
+    {
+      "id": 75477,
+      "title": "Magnificent Ms. Marvel (2019) #6",
+      "issueNumber": "6",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/75477/magnificent_ms_marvel_2019_6",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/30/5d5422518bb37.jpg",
+      "digitalId": 52378,
+      "onSale": "2019-08-21T00:00:00+0000",
+      "unlimitedDate": "2020-02-24T00:00:00+0000",
+      "format": null,
+      "variantDescription": null,
+      "creators": [
+        {
+          "name": "Ian Herring",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/75477",
+        "attemptedAt": "2026-10-04T02:52:37.699Z",
+        "fetchedAt": "2026-10-04T02:52:37.900Z",
+        "status": 200,
+        "urlSha256": "d6b8bbfdf328a288b08fd800f40f18ba277f80114abf285a1d1228d0a5041f47",
+        "bodySha256": "2c871014eb36bed060ae3ff5898249fd68636b8d68f6f121aad9cbdbfb43f946",
+        "bytes": 1167
+      },
+      "descriptionStored": false,
+      "comicImageBytesFetched": false
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "Ms. Marvel (2014) #1",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18468,
+      "candidateIssueId": 49089,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49089,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49089/ms_marvel_2014_1",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "Ms. Marvel (2014) #2",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18468,
+      "candidateIssueId": 49090,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49090,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49090/ms_marvel_2014_2",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "Ms. Marvel (2014) #3",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18468,
+      "candidateIssueId": 49091,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49091,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49091/ms_marvel_2014_3",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "Ms. Marvel (2014) #4",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18468,
+      "candidateIssueId": 49092,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49092,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49092/ms_marvel_2014_4",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "Ms. Marvel (2014) #5",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18468,
+      "candidateIssueId": 49093,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49093,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49093/ms_marvel_2014_5",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "collectionTitle": "Ms. Marvel Vol. 1: No Normal",
+      "editionIsbn": "9780785190219",
+      "sourceIssueReference": "All-New Marvel NOW! Point One (2014) #1",
+      "sourceRangeReference": "Ms. Marvel Vol. 1: No Normal",
+      "normalizedSeriesTitle": "ALL-NEW MARVEL NOW! POINT ONE 1",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18729,
+      "candidateIssueId": 49846,
+      "manualSeriesSelectionApproved": false,
+      "canonicalBibliographicSeriesTitle": "All-New Marvel NOW! Point One",
+      "sourceMaterialKind": "Kamala Khan story from an anthology",
+      "wholeIssueReadingQualification": "The collection selects Kamala Khan's Ms. Marvel story only. The app opens the full original anthology, including unrelated stories.",
+      "placementStatus": "coordinator-authorized-publisher-enumeration-project-order-not-physical-toc-verified",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49846,
+      "resolvedIssueTitle": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49846/all-new_marvel_now_point_one_1_2014_1",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #6",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18468,
+      "candidateIssueId": 49094,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49094,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49094/ms_marvel_2014_6",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #7",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 18468,
+      "candidateIssueId": 49095,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49095,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49095/ms_marvel_2014_7",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #8",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18468,
+      "candidateIssueId": 49096,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49096,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49096/ms_marvel_2014_8",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #9",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 18468,
+      "candidateIssueId": 49097,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49097,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49097/ms_marvel_2014_9",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #10",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 18468,
+      "candidateIssueId": 49098,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49098,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49098/ms_marvel_2014_10",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 2,
+      "collectionTitle": "Ms. Marvel Vol. 2: Generation Why",
+      "editionIsbn": "9780785190226",
+      "sourceIssueReference": "Ms. Marvel (2014) #11",
+      "sourceRangeReference": "Ms. Marvel Vol. 2: Generation Why",
+      "normalizedSeriesTitle": "Ms. Marvel",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "seriesId": 18468,
+      "candidateIssueId": 49099,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 49099,
+      "resolvedIssueTitle": "Ms. Marvel (2014) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49099/ms_marvel_2014_11",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #1",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27133,
+      "candidateIssueId": 75470,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75470,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75470/magnificent_ms_marvel_2019_1",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #2",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27133,
+      "candidateIssueId": 75472,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75472,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75472/magnificent_ms_marvel_2019_2",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #3",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27133,
+      "candidateIssueId": 75474,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75474,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75474/magnificent_ms_marvel_2019_3",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #4",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27133,
+      "candidateIssueId": 75475,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75475,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75475/magnificent_ms_marvel_2019_4",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #5",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27133,
+      "candidateIssueId": 75476,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75476,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75476/magnificent_ms_marvel_2019_5",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    },
+    {
+      "sourcePosition": 18,
+      "selectionPosition": 3,
+      "collectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "editionIsbn": "9781302918293",
+      "sourceIssueReference": "Magnificent Ms. Marvel (2019) #6",
+      "sourceRangeReference": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "normalizedSeriesTitle": "Magnificent Ms. Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 27133,
+      "candidateIssueId": 75477,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 75477,
+      "resolvedIssueTitle": "Magnificent Ms. Marvel (2019) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/75477/magnificent_ms_marvel_2019_6",
+      "resolutionReason": "Cached HTTP 200 original-issue metadata and the complete cached series candidate page agree on series ID, starting year and exact issue number."
+    }
+  ],
+  "sourcePositionOrder": {
+    "ownerSelections": "Issue 702: No Normal, Generation Why, The Magnificent Ms. Marvel Vol. 1, in that order.",
+    "withinNumberedRanges": "Ascending original issue numbers within each independently verified collection range.",
+    "anthologyPosition": "Coordinator-authorized publisher-enumeration/project order places anthology 49846 at expanded position 6 after Ms. Marvel (2014) #1-5. This is not verified physical paperback TOC order.",
+    "anthologyProjectOrderResolved": true,
+    "physicalTocPlacementVerified": false,
+    "orderAuthority": {
+      "kind": "coordinator-choice-under-autonomous-delegation",
+      "url": "https://github.com/raymond-nassar/recap-page/issues/702#issuecomment-5976082380",
+      "receivedAt": "2026-10-03T20:18:38.512-07:00",
+      "scope": "Project expansion order only; no implementation, final relationship/authority or publication release.",
+      "anthologySourcePosition": 6,
+      "humanReviewedReceipt": false,
+      "physicalTocVerified": false,
+      "implementationOrPublicationRelease": false
+    },
+    "notClaimed": "This project-order decision is not a human-reviewed receipt, physical-paperback TOC verification, sealed publication packet or approved current-library comparison."
+  },
+  "seriesEvidence": [
+    {
+      "expected": {
+        "id": 18468,
+        "title": "Ms. Marvel",
+        "year": 2014,
+        "indexName": "Ms. Marvel (2014 - 2015)"
+      },
+      "apiSeriesNames": [
+        "Ms. Marvel (2014 - 2015)"
+      ],
+      "reportedTotal": 19,
+      "issuesLookup": {
+        "url": "https://marvel.emreparker.com/v1/series/18468/issues?limit=100&offset=0",
+        "attemptedAt": "2026-10-04T02:51:37.694Z",
+        "fetchedAt": "2026-10-04T02:51:38.173Z",
+        "status": 200,
+        "urlSha256": "fbe8bb6fc37d9c21fbd5fb327f4b393aabec974d2c2e5f0fc60b2ab4b69bd022",
+        "bodySha256": "2b802b4d5c2ccf0df5124602a25d9830ab3c0372c765851ad9781d55382771a6",
+        "bytes": 5680
+      },
+      "candidateCount": 19,
+      "candidates": [
+        {
+          "id": 52253,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #19",
+          "issueNumber": "19",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52253/ms_marvel_2014_19",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-10-14T00:00:00+0000"
+        },
+        {
+          "id": 52252,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #18",
+          "issueNumber": "18",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52252/ms_marvel_2014_18",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-09-09T00:00:00+0000"
+        },
+        {
+          "id": 52251,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #17",
+          "issueNumber": "17",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52251/ms_marvel_2014_17",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-08-05T00:00:00+0000"
+        },
+        {
+          "id": 52250,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #16",
+          "issueNumber": "16",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52250/ms_marvel_2014_16",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-06-17T00:00:00+0000"
+        },
+        {
+          "id": 52249,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #15",
+          "issueNumber": "15",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52249/ms_marvel_2014_15",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-05-13T00:00:00+0000"
+        },
+        {
+          "id": 52248,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #14",
+          "issueNumber": "14",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52248/ms_marvel_2014_14",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-04-15T00:00:00+0000"
+        },
+        {
+          "id": 52247,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #13",
+          "issueNumber": "13",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/52247/ms_marvel_2014_13",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-03-11T00:00:00+0000"
+        },
+        {
+          "id": 49100,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #12",
+          "issueNumber": "12",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49100/ms_marvel_2014_12",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-02-18T00:00:00+0000"
+        },
+        {
+          "id": 49099,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #11",
+          "issueNumber": "11",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49099/ms_marvel_2014_11",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2015-02-04T00:00:00+0000"
+        },
+        {
+          "id": 49098,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #10",
+          "issueNumber": "10",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49098/ms_marvel_2014_10",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-12-17T00:00:00+0000"
+        },
+        {
+          "id": 49097,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #9",
+          "issueNumber": "9",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49097/ms_marvel_2014_9",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-10-15T00:00:00+0000"
+        },
+        {
+          "id": 49096,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #8",
+          "issueNumber": "8",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49096/ms_marvel_2014_8",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-09-10T00:00:00+0000"
+        },
+        {
+          "id": 49095,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #7",
+          "issueNumber": "7",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49095/ms_marvel_2014_7",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-08-20T00:00:00+0000"
+        },
+        {
+          "id": 49094,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #6",
+          "issueNumber": "6",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49094/ms_marvel_2014_6",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-07-16T00:00:00+0000"
+        },
+        {
+          "id": 49093,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #5",
+          "issueNumber": "5",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49093/ms_marvel_2014_5",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-06-25T00:00:00+0000"
+        },
+        {
+          "id": 49092,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #4",
+          "issueNumber": "4",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49092/ms_marvel_2014_4",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-05-28T00:00:00+0000"
+        },
+        {
+          "id": 49091,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #3",
+          "issueNumber": "3",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49091/ms_marvel_2014_3",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-04-16T00:00:00+0000"
+        },
+        {
+          "id": 49090,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #2",
+          "issueNumber": "2",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49090/ms_marvel_2014_2",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-03-19T00:00:00+0000"
+        },
+        {
+          "id": 49089,
+          "title": "Ms. Marvel",
+          "seriesTitle": "Ms. Marvel",
+          "issueTitle": "Ms. Marvel (2014) #1",
+          "issueNumber": "1",
+          "seriesId": 18468,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49089/ms_marvel_2014_1",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-02-05T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "expected": {
+        "id": 18729,
+        "title": "ALL-NEW MARVEL NOW! POINT ONE 1",
+        "year": 2014,
+        "indexName": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014)",
+        "canonicalBibliographicTitle": "All-New Marvel NOW! Point One",
+        "identityNote": "The provider's one-shot series name embeds 1. The canonical anthology is the 2014 original, not Marvel NOW! Point One (2012) or the 2023 facsimile."
+      },
+      "apiSeriesNames": [
+        "ALL-NEW MARVEL NOW! POINT ONE 1 (2014)"
+      ],
+      "reportedTotal": 1,
+      "issuesLookup": {
+        "url": "https://marvel.emreparker.com/v1/series/18729/issues?limit=100&offset=0",
+        "attemptedAt": "2026-10-04T02:51:38.175Z",
+        "fetchedAt": "2026-10-04T02:51:38.336Z",
+        "status": 200,
+        "urlSha256": "0cad51d11d9a100091af4581f3bb38c8612bb6922b697f5545cd71744ce806f6",
+        "bodySha256": "2313471dbbe4b64c2ebb9433a95e7a2fe916e190fd6164e894d549ebda05ee36",
+        "bytes": 481
+      },
+      "candidateCount": 1,
+      "candidates": [
+        {
+          "id": 49846,
+          "title": "ALL-NEW MARVEL NOW! POINT ONE 1",
+          "seriesTitle": "ALL-NEW MARVEL NOW! POINT ONE 1",
+          "issueTitle": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1",
+          "issueNumber": "1",
+          "seriesId": 18729,
+          "seriesYear": 2014,
+          "detailUrl": "https://www.marvel.com/comics/issue/49846/all-new_marvel_now_point_one_1_2014_1",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2014-01-08T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "expected": {
+        "id": 27133,
+        "title": "Magnificent Ms. Marvel",
+        "year": 2019,
+        "indexName": "Magnificent Ms. Marvel (2019)"
+      },
+      "apiSeriesNames": [
+        "Magnificent Ms. Marvel (2019)"
+      ],
+      "reportedTotal": 18,
+      "issuesLookup": {
+        "url": "https://marvel.emreparker.com/v1/series/27133/issues?limit=100&offset=0",
+        "attemptedAt": "2026-10-04T02:51:38.338Z",
+        "fetchedAt": "2026-10-04T02:51:38.498Z",
+        "status": 200,
+        "urlSha256": "0af60c80fc416d5268188b8d3ca7ee6e3ab75614d2e022ab15d6f4774d0ab81e",
+        "bodySha256": "fb1421aa8d92291c678cfd4fc1a6e6962883b32c657fef23f00d826118d31f86",
+        "bytes": 5913
+      },
+      "candidateCount": 18,
+      "candidates": [
+        {
+          "id": 89683,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #18",
+          "issueNumber": "18",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/89683/magnificent_ms_marvel_2019_18",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2021-02-24T00:00:00+0000"
+        },
+        {
+          "id": 84551,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #17",
+          "issueNumber": "17",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/84551/magnificent_ms_marvel_2019_17",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-12-16T00:00:00+0000"
+        },
+        {
+          "id": 84550,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #16",
+          "issueNumber": "16",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/84550/magnificent_ms_marvel_2019_16",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-11-11T00:00:00+0000"
+        },
+        {
+          "id": 84549,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #15",
+          "issueNumber": "15",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/84549/magnificent_ms_marvel_2019_15",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-10-07T00:00:00+0000"
+        },
+        {
+          "id": 84548,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #14",
+          "issueNumber": "14",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/84548/magnificent_ms_marvel_2019_14",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-09-09T00:00:00+0000"
+        },
+        {
+          "id": 84547,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #13",
+          "issueNumber": "13",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/84547/magnificent_ms_marvel_2019_13",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-03-04T00:00:00+0000"
+        },
+        {
+          "id": 75854,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #12",
+          "issueNumber": "12",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75854/magnificent_ms_marvel_2019_12",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-02-05T00:00:00+0000"
+        },
+        {
+          "id": 75853,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #11",
+          "issueNumber": "11",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75853/magnificent_ms_marvel_2019_11",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2020-01-08T00:00:00+0000"
+        },
+        {
+          "id": 75852,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #10",
+          "issueNumber": "10",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75852/magnificent_ms_marvel_2019_10",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-12-04T00:00:00+0000"
+        },
+        {
+          "id": 75851,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #9",
+          "issueNumber": "9",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75851/magnificent_ms_marvel_2019_9",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-11-06T00:00:00+0000"
+        },
+        {
+          "id": 75481,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #8",
+          "issueNumber": "8",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75481/magnificent_ms_marvel_2019_8",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-10-09T00:00:00+0000"
+        },
+        {
+          "id": 75478,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #7",
+          "issueNumber": "7",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75478/magnificent_ms_marvel_2019_7",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-09-18T00:00:00+0000"
+        },
+        {
+          "id": 75477,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #6",
+          "issueNumber": "6",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75477/magnificent_ms_marvel_2019_6",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-08-21T00:00:00+0000"
+        },
+        {
+          "id": 75476,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #5",
+          "issueNumber": "5",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75476/magnificent_ms_marvel_2019_5",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-07-24T00:00:00+0000"
+        },
+        {
+          "id": 75475,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #4",
+          "issueNumber": "4",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75475/magnificent_ms_marvel_2019_4",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-06-26T00:00:00+0000"
+        },
+        {
+          "id": 75474,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #3",
+          "issueNumber": "3",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75474/magnificent_ms_marvel_2019_3",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-05-29T00:00:00+0000"
+        },
+        {
+          "id": 75472,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #2",
+          "issueNumber": "2",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75472/magnificent_ms_marvel_2019_2",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-04-17T00:00:00+0000"
+        },
+        {
+          "id": 75470,
+          "title": "Magnificent Ms. Marvel",
+          "seriesTitle": "Magnificent Ms. Marvel",
+          "issueTitle": "Magnificent Ms. Marvel (2019) #1",
+          "issueNumber": "1",
+          "seriesId": 27133,
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/75470/magnificent_ms_marvel_2019_1",
+          "format": null,
+          "variantDescription": null,
+          "onSale": "2019-03-13T00:00:00+0000"
+        }
+      ]
+    }
+  ],
+  "metadataReceipts": [
+    {
+      "url": "https://marvel.emreparker.com/v1/series/18468/issues?limit=100&offset=0",
+      "attemptedAt": "2026-10-04T02:51:37.694Z",
+      "fetchedAt": "2026-10-04T02:51:38.173Z",
+      "status": 200,
+      "urlSha256": "fbe8bb6fc37d9c21fbd5fb327f4b393aabec974d2c2e5f0fc60b2ab4b69bd022",
+      "bodySha256": "2b802b4d5c2ccf0df5124602a25d9830ab3c0372c765851ad9781d55382771a6",
+      "bytes": 5680
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/18729/issues?limit=100&offset=0",
+      "attemptedAt": "2026-10-04T02:51:38.175Z",
+      "fetchedAt": "2026-10-04T02:51:38.336Z",
+      "status": 200,
+      "urlSha256": "0cad51d11d9a100091af4581f3bb38c8612bb6922b697f5545cd71744ce806f6",
+      "bodySha256": "2313471dbbe4b64c2ebb9433a95e7a2fe916e190fd6164e894d549ebda05ee36",
+      "bytes": 481
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/27133/issues?limit=100&offset=0",
+      "attemptedAt": "2026-10-04T02:51:38.338Z",
+      "fetchedAt": "2026-10-04T02:51:38.498Z",
+      "status": 200,
+      "urlSha256": "0af60c80fc416d5268188b8d3ca7ee6e3ab75614d2e022ab15d6f4774d0ab81e",
+      "bodySha256": "fb1421aa8d92291c678cfd4fc1a6e6962883b32c657fef23f00d826118d31f86",
+      "bytes": 5913
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49089",
+      "attemptedAt": "2026-10-04T02:51:38.500Z",
+      "fetchedAt": "2026-10-04T02:51:38.700Z",
+      "status": 200,
+      "urlSha256": "7c884defbcf5db9a8b506e1475224cac149f5859268f90b8803af99d1f08c623",
+      "bodySha256": "7388186bb48e7fc1a4e4439f83a7c83795ea17f21556c3435f45af27b070dc00",
+      "bytes": 1127
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49090",
+      "attemptedAt": "2026-10-04T02:51:38.702Z",
+      "fetchedAt": "2026-10-04T02:51:38.858Z",
+      "status": 200,
+      "urlSha256": "a1c6dfd8bac182a59ca70bbc14e8798d02199073f4274ac094f2650ac9e126c8",
+      "bodySha256": "c9f0200732f84383320233eda393248fccdbaece8ca27fd2053d7ede1102ce98",
+      "bytes": 1198
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49091",
+      "attemptedAt": "2026-10-04T02:51:47.698Z",
+      "fetchedAt": "2026-10-04T02:51:47.893Z",
+      "status": 200,
+      "urlSha256": "a60f55672a2d67ebe84a0ae2ba7b1b29b194f9c24cb226524957907847972fb5",
+      "bodySha256": "79a3304ee6a26d18eecd57a0b81f10711edf7882e68f0ed10cd302c072aa618a",
+      "bytes": 855
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49092",
+      "attemptedAt": "2026-10-04T02:51:48.182Z",
+      "fetchedAt": "2026-10-04T02:51:48.356Z",
+      "status": 200,
+      "urlSha256": "9ea81d54f913929d8da30dc05a5a978e4ee1ef3910ddbc5a3f7687098d2454db",
+      "bodySha256": "fdbfbce840bc426b5b973f2eb4627a046507b8448bc924558886410965f31c53",
+      "bytes": 866
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49093",
+      "attemptedAt": "2026-10-04T02:51:48.357Z",
+      "fetchedAt": "2026-10-04T02:51:48.515Z",
+      "status": 200,
+      "urlSha256": "514874158900ca8cb209b1cb244bb2274ee2a165331520abaaa324fd6e26a399",
+      "bodySha256": "94acc0e449f32f8f5ab09e7680aa60b58085240535f66b4e5947d37e03aaf305",
+      "bytes": 731
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49846",
+      "attemptedAt": "2026-10-04T02:51:48.516Z",
+      "fetchedAt": "2026-10-04T02:51:48.713Z",
+      "status": 200,
+      "urlSha256": "08dd2ee6af5273c37fb0016c8e2afb3814e1ee8d517ea9cb22a25323ed98b8b5",
+      "bodySha256": "419655a22117b9b4e6d842ffb21566f496375c32cce6b907b7d107cb4fcde172",
+      "bytes": 1196
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49094",
+      "attemptedAt": "2026-10-04T02:51:48.714Z",
+      "fetchedAt": "2026-10-04T02:51:48.911Z",
+      "status": 200,
+      "urlSha256": "d76c581a1393ccfcb565b92d9dcf078c1b92b9fdb3758bd059665c7bf691a865",
+      "bodySha256": "f62d8ac62814053843b1a8205e25a228c07a4421c85adfd71610d4c5627489a8",
+      "bytes": 690
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49095",
+      "attemptedAt": "2026-10-04T02:51:57.707Z",
+      "fetchedAt": "2026-10-04T02:51:57.968Z",
+      "status": 200,
+      "urlSha256": "ff7134b78278eecae239f4d6e27b2cbd501110542d6577967b51b7faffbcfc17",
+      "bodySha256": "009c2db27b786452f62c0cf8c6c8e140abdfbf051e5bd7038c5334f8d7d55032",
+      "bytes": 1001
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49096",
+      "attemptedAt": "2026-10-04T02:51:58.189Z",
+      "fetchedAt": "2026-10-04T02:51:58.347Z",
+      "status": 200,
+      "urlSha256": "f6fbd6dc5e4a1bdf9a811e96062ba3a02f116c04eae252aa55431ce480e97c2d",
+      "bodySha256": "8659eea38112423dadad4933bc79a14a6fcd7b6aa4566df85ba367c78ebcf855",
+      "bytes": 960
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49097",
+      "attemptedAt": "2026-10-04T02:51:58.360Z",
+      "fetchedAt": "2026-10-04T02:51:58.516Z",
+      "status": 200,
+      "urlSha256": "e682e86d149e12c89aa0477bcd687620f57cf67c154149352c02d1d9a43de11c",
+      "bodySha256": "ed9c97f69bd19d6bc466e9961269cba6b5f9a3df98e15b15835ea8bffbc89d0d",
+      "bytes": 905
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49098",
+      "attemptedAt": "2026-10-04T02:51:58.518Z",
+      "fetchedAt": "2026-10-04T02:51:58.702Z",
+      "status": 200,
+      "urlSha256": "a891f9f7b4b3b7466f5261a0c0089a30fc9825ba85d81da767391e7078f95d7c",
+      "bodySha256": "89fc7cff8790810bbe3fbca5307f956cbfaee01ea4d7cf3d78bcefe35be2fe22",
+      "bytes": 1006
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/49099",
+      "attemptedAt": "2026-10-04T02:51:58.717Z",
+      "fetchedAt": "2026-10-04T02:51:58.874Z",
+      "status": 200,
+      "urlSha256": "ddc0c207a5522ab06c531db053451c6ab4a3682a8c96bf3cff1d3b21803ad1e6",
+      "bodySha256": "0fb98551416357607cf7bf8acaa369b62167af448b3c2d72d8cd74e67d7649c8",
+      "bytes": 887
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75470",
+      "attemptedAt": "2026-10-04T02:52:07.714Z",
+      "fetchedAt": "2026-10-04T02:52:07.931Z",
+      "status": 200,
+      "urlSha256": "024b272b621a8833c28abe1dbcf4bceabd546542ff36dd6a70ccba10ee4a5fde",
+      "bodySha256": "91f4db1eb38228225aa474918b8bc7eff5ce7a15c1777e978a0de6f771a053a0",
+      "bytes": 1304
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75472",
+      "attemptedAt": "2026-10-04T02:52:08.196Z",
+      "fetchedAt": "2026-10-04T02:52:08.369Z",
+      "status": 200,
+      "urlSha256": "ea721fe424426e9cfe0fc95543c4be0ea58eae285f7593ba456c3b6a58659b93",
+      "bodySha256": "160767101b7e72dce47ae42157889bddad813d367839fc2366f28363a17c9aa3",
+      "bytes": 1151
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75474",
+      "attemptedAt": "2026-10-04T02:52:08.370Z",
+      "fetchedAt": "2026-10-04T02:52:08.544Z",
+      "status": 200,
+      "urlSha256": "9860c2e7705d9fb2bc54c0b4c01aa17cdb99d06a9258e6b13b6a27d29144831f",
+      "bodySha256": "204daa1ccae111cf9c2c89e64a3b19ad3ea33681600e9eb95d498ff08da229d3",
+      "bytes": 1168
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75475",
+      "attemptedAt": "2026-10-04T02:52:08.547Z",
+      "fetchedAt": "2026-10-04T02:52:08.809Z",
+      "status": 200,
+      "urlSha256": "4bbff60321ae3f1dec562ef726b6a54c0fbd3374092987ae228f3d8a6688bff7",
+      "bodySha256": "24281075a3a3db6dd0525a905fc6389dfa937137c5e457659010861160c5e484",
+      "bytes": 1134
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75476",
+      "attemptedAt": "2026-10-04T02:52:08.812Z",
+      "fetchedAt": "2026-10-04T02:52:09.000Z",
+      "status": 200,
+      "urlSha256": "f759de052afc16aa22dc8dcba7910bc869c425700c76cf065fcc527c5ecd8c74",
+      "bodySha256": "5750075762d441801816e2405dc11d7e2f57db4378a271cdbcec9a292da3f257",
+      "bytes": 1158
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/issues/75477",
+      "attemptedAt": "2026-10-04T02:52:37.699Z",
+      "fetchedAt": "2026-10-04T02:52:37.900Z",
+      "status": 200,
+      "urlSha256": "d6b8bbfdf328a288b08fd800f40f18ba277f80114abf285a1d1228d0a5041f47",
+      "bodySha256": "2c871014eb36bed060ae3ff5898249fd68636b8d68f6f121aad9cbdbfb43f946",
+      "bytes": 1167
+    }
+  ],
+  "metadataMappedAt": "2026-10-04T02:52:37.902Z",
+  "preparedAt": "2026-10-04T08:27:19.155Z",
+  "requestCount": 21,
+  "newNetworkRequests": 0,
+  "reviewStatus": "owned-source-draft-unapproved",
+  "packetReview": null,
+  "approvedManifest": null,
+  "relationshipReview": null,
+  "libraryComparisonSealed": false,
+  "relationshipApprovalSealed": false,
+  "fullImplementationReleased": false,
+  "publicationReleased": false,
+  "mappingDigest": "5b1039639c9b42fbf6089c82fd9852a36ed8bb8df0c62e77a97fa0e2bba96a2e"
+}

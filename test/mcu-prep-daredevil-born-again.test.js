@@ -188,7 +188,7 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
   const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
   assert.deepEqual(later.map((entry) => entry.id),
     ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight',
-      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars']);
+      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
     .map((entry) => entry.id), retained.map((entry) => entry.id));
   const laterOrders = await Promise.all(later.map(async (entry) => ({
@@ -196,12 +196,12 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...currentReviewedOrders, ...laterOrders] });
-  assert.equal(current.comparisonCount, 290);
+  assert.equal(current.comparisonCount, 291);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
   assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 286);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 287);
   assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
   assert.deepEqual(current.comparisons.filter((entry) => later.some((peer) => peer.id === entry.orderId))

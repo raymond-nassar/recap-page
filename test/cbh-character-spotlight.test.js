@@ -225,7 +225,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
       ironManCandidateId,
       modernXMenCandidateId,
       guardiansCandidateId,
-      youngAvengersCandidateId, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+      youngAvengersCandidateId, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
     ],
   });
 }
@@ -233,7 +233,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
 async function buildCurrentReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildRawReportForMapping(mappingPath, peerPaths, {
     ...options,
-    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
+    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
   });
 }
 
@@ -666,7 +666,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
   excluded.add('mcu-prep-deadpool-and-wolverine');
   excluded.add('spider-man-no-way-home-owner-selected');
   excluded.add('mcu-prep-thunderbolts');
-  excluded.add('mcu-prep-eternals'); excluded.add('mcu-prep-fantastic-four-first-steps'); excluded.add('mcu-prep-spider-man-brand-new-day'); excluded.add('mcu-prep-she-hulk');
+  excluded.add('mcu-prep-eternals'); excluded.add('mcu-prep-fantastic-four-first-steps'); excluded.add('mcu-prep-spider-man-brand-new-day'); excluded.add('mcu-prep-she-hulk'); excluded.add('mcu-prep-ms-marvel');
   const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -731,7 +731,7 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
         'shang-chi-master-of-kung-fu-reading-order',
-        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
       ],
     },
   );
@@ -756,7 +756,7 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
         'shang-chi-master-of-kung-fu-reading-order',
-        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
       ],
     },
   );
@@ -1047,7 +1047,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
   const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .filter((entry) => entry.id !== id && entry.id !== hawkeyeLaterId
@@ -1061,7 +1061,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     .filter((id) => id !== 'ms-marvel-kamala-khan-reading-order' && id !== 'nova-reading-order'
       && id !== 'ultimate-spider-man-reading-order'
       && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-daredevil-born-again' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts' && id !== 'mcu-prep-eternals' && id !== 'mcu-prep-fantastic-four-first-steps' && id !== 'mcu-prep-spider-man-brand-new-day' && id !== 'mcu-prep-she-hulk' && id !== 'mcu-prep-deadpool-and-wolverine' && id !== 'spider-man-no-way-home-owner-selected');
+      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-daredevil-born-again' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts' && id !== 'mcu-prep-eternals' && id !== 'mcu-prep-fantastic-four-first-steps' && id !== 'mcu-prep-spider-man-brand-new-day' && id !== 'mcu-prep-she-hulk' && id !== 'mcu-prep-ms-marvel' && id !== 'mcu-prep-deadpool-and-wolverine' && id !== 'spider-man-no-way-home-owner-selected');
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -1411,7 +1411,7 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
   assert.deepEqual(currentReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -1472,7 +1472,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1713,7 +1713,7 @@ test('Fantastic Four settles issue 324 with exact identities and availability ex
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -1940,7 +1940,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-        'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+        'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
       ],
     },
   );
@@ -2687,7 +2687,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'nova-reading-order'
      && id !== 'ultimate-spider-man-reading-order'
      && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-daredevil-born-again' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts' && id !== 'mcu-prep-eternals' && id !== 'mcu-prep-fantastic-four-first-steps' && id !== 'mcu-prep-spider-man-brand-new-day' && id !== 'mcu-prep-she-hulk' && id !== 'mcu-prep-deadpool-and-wolverine' && id !== 'spider-man-no-way-home-owner-selected')
+     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-daredevil-born-again' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts' && id !== 'mcu-prep-eternals' && id !== 'mcu-prep-fantastic-four-first-steps' && id !== 'mcu-prep-spider-man-brand-new-day' && id !== 'mcu-prep-she-hulk' && id !== 'mcu-prep-ms-marvel' && id !== 'mcu-prep-deadpool-and-wolverine' && id !== 'spider-man-no-way-home-owner-selected')
     .sort();
   const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -2726,7 +2726,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
       ],
     },
   );
@@ -4330,7 +4330,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'].includes(entry.id));
+  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'].includes(entry.id));
 
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);
@@ -4664,7 +4664,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 290);
+  assert.equal(catalog.lists.length, 291);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 70);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);
@@ -4789,7 +4789,7 @@ test('Magneto publishes the complete reviewed settlement while preserving positi
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, `scripts/data/cbh-mappings/${magnetoCandidateId}.json`),
     [],
-    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk'] },
+    { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel'] },
   );
   const reviewedLibraryDigest = currentReport.libraryDigest;
   const positions = [

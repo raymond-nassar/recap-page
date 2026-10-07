@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "approved-reciprocal-owner-relationship-reference",
+  "recordedBase": "7de1a793b44d9ba962d3e6f3e498cc7585e67e04",
+  "recordedTree": "da268e13e61bbb913860d411429209f27068b6e7",
+  "recordedLibraryDigest": "c154907e7350e2780ed3dc8d3edf3ca05a6a97f36ccdf4f1bbef58b4fdcd68c0",
+  "frozenGuide": {
+    "id": "mcu-prep-fantastic-four-first-steps",
+    "vectorSha256": "b9503cc71709e25c90a89b884418928a34e15ec3e873b42b9d626506eeb0b194",
+    "packetDigest": "413fba326a593d348b7f27a694292655447580ad7a2f8823d4f5bd728f2f13bf",
+    "mappingDigest": "eed187ef1197beee4fb4d8f81b1cc717bd81b09806541cb089cd361136047c0a",
+    "reportDigest": "98b6d54732938786de71c35432612060a5902904085b4bf309f9252bae5951fc",
+    "approvalDigest": "0f105c96bc4a1d3ee1cac9949e40d96b3c36118d9aa62b7a8d05493c815dd1e9"
+  },
+  "reviewedGuide": {
+    "id": "mcu-prep-ms-marvel",
+    "vectorSha256": "625f320919d4e60c2cbf57a5ac19de43136b7191e8a6d69a1a62bba9fe00d8ba",
+    "packetDigest": "d1dc158015ec9902988f474234f14105bcef07f2a7f4763b5fbb4caa28e49682",
+    "mappingDigest": "f0488d961edde38d2626793ca01417f1eaccc30df4e2b4caf6051ce97e81e608",
+    "reportDigest": "0cbd06337bcddd0d5256f614644ae8b5a01452e7675ce9101f686b5e004a89f1",
+    "approvalDigest": "93131dbe78b4b490b0ef2a93fa08bd2372430ab1e280d9738996aae9711fd72a"
+  },
+  "relationship": {
+    "fromId": "mcu-prep-fantastic-four-first-steps",
+    "toId": "mcu-prep-ms-marvel",
+    "relationship": "partial",
+    "sharedCount": 1,
+    "sharedIds": [
+      "49846"
+    ]
+  }
+}
