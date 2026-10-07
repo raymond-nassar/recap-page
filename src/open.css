@@ -1,29 +1,51 @@
-/* Styles for the Marvel Unlimited launch page.
-   Kept in its own file rather than an inline <style> so the app can serve a
-   Content-Security-Policy with a strict `style-src 'self'`, which is what stops
-   injected markup from carrying its own styling.
-
-   The literals below are the app's shipped dark tokens written out, because this document is opened
-   in its own tab and never loads the stylesheet that defines them. BL-166 repainted them by hand for
-   that reason, and it is the reason to be careful: the palette gate reads `src/styles.css` alone, so
-   nothing here is watched and this page sat in the retired red for one commit after the rest of the
-   app had moved. Measured against the page fill, the body text reads 16.87:1, the caption 6.08:1 and
-   the link 8.77:1, and white on the brand mark reads 4.77:1. */
-
+/* Separate local tokens keep this tab under the same strict style policy as the app.
+   Each authored palette and its rendered consumers are owned by the palette gate. */
+:root, :root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111117;
+  --text: #f2f2f8;
+  --muted: #9191a4;
+  --blue: #7fb3ff;
+  --accent: #8a53e1;
+  --on-accent: #fff;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fafaff;
+  --text: #13131b;
+  --muted: #5c5c6e;
+  --blue: #17509c;
+  --accent: #6d28d9;
+  --on-accent: #fff;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #fafaff;
+    --text: #13131b;
+    --muted: #5c5c6e;
+    --blue: #17509c;
+    --accent: #6d28d9;
+    --on-accent: #fff;
+  }
+}
+* { box-sizing: border-box; }
 body {
   margin: 0; min-height: 100vh; display: grid; place-items: center;
-  background: #111117; color: #f2f2f8;
+  background: var(--bg); color: var(--text);
   font: 15px/1.6 system-ui, "Segoe UI", sans-serif; text-align: center; padding: 2rem;
 }
-.box { max-width: 44ch; }
+.box { max-width: 44ch; overflow-wrap: anywhere; }
 .mark {
-  width: 34px; height: 34px; border-radius: 9px; background: #8a53e1; color: #fff;
+  width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: var(--on-accent);
   display: grid; place-items: center; font-weight: 800; margin: 0 auto 1.2rem;
 }
 h1 { font-size: 1.05rem; font-weight: 600; margin: 0 0 .4rem; }
-p { color: #9191a4; font-size: .87rem; margin: .4rem 0; }
-a { color: #7fb3ff; }
+p { font-size: .87rem; margin: .4rem 0; }
+#p, #settings-status { color: var(--muted); }
+a { color: var(--blue); }
+a:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
 @media (prefers-reduced-motion: no-preference) {
-  .mark { animation: pulse 1.4s ease-in-out infinite; }
+  :root[data-state="pending"] .mark { animation: pulse 1.4s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: .55; } }
 }

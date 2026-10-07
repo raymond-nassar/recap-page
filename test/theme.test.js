@@ -20,6 +20,26 @@ const DARK = ':root, :root[data-theme="dark"]';
 const LIGHT_ATTR = ':root[data-theme="light"]';
 const LIGHT_MEDIA = ':root:not([data-theme="dark"])';
 
+test('launcher standalone palette follows every explicit and system theme without weakening paint ownership', () => {
+  const source = read('src/open.css');
+  const tokens = ['--bg', '--text', '--muted', '--blue', '--accent', '--on-accent'];
+  const rows = [];
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const local = tokensIn(source, selector);
+    const shared = tokensIn(css, selector);
+    for (const token of tokens) {
+      const expected = token === '--on-accent' ? '#fff' : shared.get(token);
+      const actual = local.get(token) ?? null;
+      const ok = expected === actual;
+      console.log(`UX11-UNIT ${JSON.stringify({ owner: 'theme', selector, token, expected, actual, ok })}`);
+      rows.push(ok);
+    }
+  }
+  assert.ok(rows.every(Boolean), 'Every standalone token must match its explicit or system palette');
+  assert.equal(STANDALONE_PAIRS.length, 15);
+  assert.deepEqual(standaloneFindings(source), []);
+});
+
 test('native fields and path selects share the scoped Field typography and target contract', () => {
   assert.match(css, /select, input\[type="search"\], input\[type="text"\], input\[type="url"\] \{[^}]*min-height: 44px;[^}]*font: inherit;[^}]*font-size: var\(--t-body\)/);
 });
@@ -197,7 +217,13 @@ test('every standalone launch-page literal is measured in an actual contrast pai
   const measured = STANDALONE_PAIRS.map(([foreground, background]) => (
     ratio(parseHex(foreground), parseHex(background)).toFixed(2)
   ));
-  assert.deepEqual(measured, ['16.87', '6.08', '8.77', '4.77']);
+  assert.deepEqual(measured.slice(0, 5), ['16.87', '6.08', '8.77', '4.77', '8.77']);
+  assert.equal(measured.length, 15);
+  STANDALONE_PAIRS.forEach(([foreground, background, floor, where], index) => {
+    const actual = ratio(parseHex(foreground), parseHex(background));
+    console.log(`UX11-PALETTE ${JSON.stringify({ where, floor, actual, ok: actual >= floor })}`);
+    assert.ok(actual >= floor, `Standalone pair ${index} must clear its actual floor`);
+  });
 
   const changed = `${read('src/open.css')}\n.extra { color: #010203; background: #111117; }\n`;
   const findings = standaloneFindings(changed).map((finding) => finding.message);

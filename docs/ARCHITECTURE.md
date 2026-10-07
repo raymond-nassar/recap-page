@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1288`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1289`, the reader launch tab at `src/open.html:21`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -92,7 +92,7 @@ its queue and two rolling windows at `src/js/lib/limiter.js:11-20`, so separate 
 independent budgets. Save education and session synopsis state are instance-owned too.
 
 **Changing the API base replaces the client and cache.** The replacement goes to the Hydrator and
-SynopsisRunner at `src/js/main.js:2289-2304`. In-flight synopsis work is cancelled and its memory
+SynopsisRunner at `src/js/main.js:2297-2312`. In-flight synopsis work is cancelled and its memory
 cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
 connection, not the configured service.
 
@@ -192,7 +192,7 @@ flowchart TD
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
 at `scripts/vendor-orders.mjs:602-650`. Runtime loads and parses that same-origin catalog once at
-`src/js/main.js:1981-1992`, independently of the metadata service.
+`src/js/main.js:1989-2000`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
 from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
@@ -206,9 +206,17 @@ at `src/js/reader.js:82-105`. A known digital ID redirects straight to Marvel Un
 Without one, a pinned exact issue page and an already refused metadata lookup open that page
 directly; the same strict HTTPS same-issue validator runs before and after opening the tab.
 Other unknown references retain the configured metadata lookup and use the pinned issue page
-when the lookup cannot resolve a reader ID, at `src/open.js:76-114`. The launch page never
+when the lookup cannot resolve a reader ID, at `src/open.js:132-170`. The launch page never
 reads or writes reading progress. Android uses the same validation in its generated launcher
 while preserving the Bifrost app-link route for known digital IDs.
+
+The launch tab reads display settings without saving them and follows explicit or system theme.
+It distinguishes a pending lookup, a resolved link, missing metadata, lookup errors, an actual
+timeout and unusable settings. Only pending normal-motion feedback pulses. A missing reference
+offers a same-origin return instead of a generic external link. The shared app keeps conditional
+no-tab guidance visible after a valid dispatch, even when `noopener` returns a null handle:
+that handle does not establish that a popup was blocked. Refusals use their existing exact
+message, and a subsequent valid dispatch replaces it without moving focus or marking a comic read.
 
 ## Marking one issue read
 
@@ -268,7 +276,7 @@ Announcements at `src/js/main.js:334-336` depend on save success, so a screen re
 The UI restores the row and shows a notice rather than making an unsaved change look saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2816-2840`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2824-2848`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -443,8 +451,8 @@ dies with the tab. The API request uses `no-store`, the response cache strips th
 state normalization refuses it. The separate boundaries mean clearing metadata, exporting a backup,
 and reloading all agree that the prose was temporary.
 
-**The launch page writes nothing.** It reads and validates the API base from `mrt.settings` at
-`src/open.js:65-74`, without touching reading progress.
+**The launch page writes nothing.** It reads `mrt.settings` at `src/open.js:61-83` and validates
+the configured API base at `src/open.js:121-130`, without touching reading progress.
 
 **The fault harness has separate keys.** Its backup and quota-filling keys at `src/dev-faults.js:5-6`
 are not written by the tracker.
@@ -519,7 +527,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3477-3530`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3485-3538`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:174-209`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -546,7 +554,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection, source disclosure and path links.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3366-3475`.
+`src/js/main.js:3374-3483`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -573,8 +581,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:243-293`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3383-3416`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2816-2840`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3391-3424`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2824-2848`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration

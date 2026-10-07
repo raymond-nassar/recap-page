@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="referrer" content="no-referrer" />
-    <title>Opening a comic…</title>
+    <title>Looking up reader link - Recap Page</title>
     <link rel="stylesheet" href="./open.css" />
   </head>
   <body>
-    <div class="box">
+    <main class="box" aria-labelledby="h">
       <div class="mark" aria-hidden="true">M</div>
-      <h1 id="h">Opening a comic…</h1>
-      <p id="p" role="status">If this tab does not move on its own, use the link below.</p>
+      <h1 id="h">Looking up reader link</h1>
+      <p id="p" role="status" aria-live="polite" aria-atomic="true">Looking up the recorded Marvel Unlimited link for this issue.</p>
+      <p id="settings-status" hidden></p>
       <p><a id="fallback" href="https://www.marvel.com/unlimited">Continue manually</a></p>
-    </div>
+      <p><a id="return" href="./#/home">Back to Recap Page</a></p>
+    </main>
 
     <script type="module" src="./open.js"></script>
   </body>

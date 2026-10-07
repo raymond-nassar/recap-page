@@ -9,6 +9,54 @@ const html = read('../src/index.html');
 const add = read('../src/js/views/add.js');
 const catalog = read('../src/js/views/shared/catalog-presentation.js');
 
+test('shared reader handoff visibly distinguishes conditional intent and exact refusals without writes or focus', () => {
+  const source = read('../src/js/main.js');
+  const start = source.indexOf('function openInReader(');
+  const end = source.indexOf('\n// ------------------------------------------------------------------ synopsis', start);
+  assert.ok(start >= 0 && end > start, 'Actual shared function must be extractable');
+  const helper = { hidden: true, textContent: '' };
+  const issue = { title: 'Browser Check (2026) #2' };
+  const events = [];
+  let outcome = { ok: true, issue };
+  let opened = { ok: true, target: 'reader', window: null };
+  const state = { read: { 900002: false }, listOrder: ['fixture'] };
+  const before = JSON.stringify(state);
+  const context = {
+    $: (selector) => { assert.equal(selector, '#reader-handoff-help'); return helper; },
+    store: { state }, temporaryReaderLinks: { resolve: () => outcome },
+    openIssueTab: () => { events.push('open'); return opened; },
+    announce: (message) => events.push(message),
+  };
+  runInNewContext(`${source.slice(start, end)}\nthis.open = openInReader;`, context);
+  const rows = [];
+  const measure = (name, expected, actual) => {
+    const ok = JSON.stringify(expected) === JSON.stringify(actual);
+    console.log(`UX11-UNIT ${JSON.stringify({ owner: 'reader-first', name, expected, actual, ok })}`);
+    rows.push(ok);
+  };
+  measure('initial helper hidden', true, helper.hidden);
+  const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.";
+  for (const handle of [null, {}]) {
+    opened = { ok: true, target: 'reader', window: handle };
+    context.open(issue, { preventDefault() {} }, 'synthetic');
+    measure('valid visible conditional copy', [false, copy], [helper.hidden, helper.textContent]);
+  }
+  outcome = { ok: false, error: 'Synthetic comic source no longer exists.' };
+  context.open(issue, null, 'synthetic');
+  measure('resolver refusal visible', [false, outcome.error], [helper.hidden, helper.textContent]);
+  outcome = { ok: true, issue };
+  opened = { ok: false };
+  context.open(issue, null, 'synthetic');
+  measure('reference refusal visible', `${issue.title} has no Marvel reference recorded, so it cannot be opened.`, helper.textContent);
+  context.open(issue, null, null);
+  measure('source refusal visible', 'The comic source is missing. Open its current details and try again.', helper.textContent);
+  opened = { ok: true, target: 'reader', window: null };
+  context.open(issue, null, 'synthetic');
+  measure('valid resets refusal', copy, helper.textContent);
+  measure('saved bytes unchanged', before, JSON.stringify(state));
+  assert.ok(rows.every(Boolean), 'Every conditional/refusal branch must visibly retain its exact outcome');
+});
+
 function view(name) {
   const start = html.indexOf(`<section id="view-${name}"`);
   assert.ok(start >= 0, `Missing ${name} view`);

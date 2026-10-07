@@ -1872,12 +1872,18 @@ function readerPresentation(issue, source) {
 
 function openInReader(issue, event, source) {
   event?.preventDefault();
-  if (!source) { announce('The comic source is missing. Open its current details and try again.'); return; }
+  const help = $('#reader-handoff-help');
+  function showHelp(message) {
+    help.textContent = message;
+    help.hidden = false;
+  }
+  function refuse(message) { showHelp(message); announce(message); }
+  if (!source) { refuse('The comic source is missing. Open its current details and try again.'); return; }
   const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
-  if (!resolved.ok) { announce(resolved.error); return; }
+  if (!resolved.ok) { refuse(resolved.error); return; }
   const res = openIssueTab(resolved.issue);
   if (!res.ok) {
-    announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
+    refuse(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
   }
   announce(res.target === 'reader'
@@ -1885,6 +1891,8 @@ function openInReader(issue, event, source) {
     : res.target === 'page'
       ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
       : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  showHelp("If no new tab appears, check your browser's popup controls for this site, "
+    + 'then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.');
 }
 
 // ------------------------------------------------------------------ synopsis fetching

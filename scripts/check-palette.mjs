@@ -131,11 +131,16 @@ export const PAIRS = [
 ];
 
 export const STANDALONE_PAIRS = [
-  ['#f2f2f8', '#111117', BODY, 'body text on the launch page', 'body::color', 'body::background'],
-  ['#9191a4', '#111117', BODY, 'the launch-page caption', 'p::color', 'body::background'],
-  ['#7fb3ff', '#111117', BODY, 'the launch-page fallback link', 'a::color', 'body::background'],
-  ['#fff', '#8a53e1', BODY, 'the letter inside the launch-page mark', '.mark::color', '.mark::background'],
-];
+  [':root, :root[data-theme="dark"]', '#111117', '#f2f2f8', '#9191a4', '#7fb3ff', '#8a53e1'],
+  [':root[data-theme="light"]', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
+  [':root:not([data-theme="dark"])', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
+].flatMap(([selector, bg, text, muted, blue, accent]) => [
+  [text, bg, BODY, `${selector} body text`, `${selector}::--text`, `${selector}::--bg`],
+  [muted, bg, BODY, `${selector} status text`, `${selector}::--muted`, `${selector}::--bg`],
+  [blue, bg, BODY, `${selector} fallback and return links`, `${selector}::--blue`, `${selector}::--bg`],
+  ['#fff', accent, BODY, `${selector} letter inside the mark`, `${selector}::--on-accent`, `${selector}::--accent`],
+  [blue, bg, LARGE, `${selector} anchor focus outline`, `${selector}::--blue`, `${selector}::--bg`],
+]);
 
 // Two of the surfaces this stylesheet paints on are not tokens and have no hex value to read, so a
 // pair rendered on either could not be listed at all and both went ungated. That is the state this
@@ -492,6 +497,29 @@ export function standaloneFindings(source, pairs = STANDALONE_PAIRS) {
         message: `${foreground} on ${backgroundName} measures ${measured.toFixed(2)}:1, below the ${floor}:1 floor, and is ${where}`,
       });
     }
+  }
+  const text = stripComments(source, '.css');
+  const blocks = new Map([...text.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => [
+    match[1].replace(/\s+/g, ' ').trim(),
+    new Map([...match[2].matchAll(/([\w-]+)\s*:\s*([^;{}]+);/g)].map((declaration) => [
+      declaration[1], declaration[2].trim(),
+    ])),
+  ]));
+  for (const [selector, property, expected] of [
+    ['body', 'background', 'var(--bg)'], ['body', 'color', 'var(--text)'],
+    ['#p, #settings-status', 'color', 'var(--muted)'], ['a', 'color', 'var(--blue)'],
+    ['.mark', 'background', 'var(--accent)'], ['.mark', 'color', 'var(--on-accent)'],
+    ['a:focus-visible', 'outline', '3px solid var(--blue)'],
+    [':root, :root[data-theme="dark"]', 'color-scheme', 'dark'],
+    [':root[data-theme="light"]', 'color-scheme', 'light'],
+    [':root:not([data-theme="dark"])', 'color-scheme', 'light'],
+  ]) {
+    if (blocks.get(selector)?.get(property) !== expected) {
+      findings.push({ message: `${selector} ${property} must consume ${expected} on the launch page` });
+    }
+  }
+  if (!/@media\s*\(prefers-color-scheme:\s*light\)\s*\{\s*:root:not\(\[data-theme="dark"\]\)/.test(text)) {
+    findings.push({ message: 'The launch-page system-light palette must remain inside its light preference scope' });
   }
   return findings;
 }

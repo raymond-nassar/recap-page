@@ -22,6 +22,7 @@
 
 import { isAllowedApiBase } from './js/lib/apiBase.js';
 import { issuePageUrl } from './js/lib/issuePageUrl.js';
+import { themeAttribute, normaliseTheme } from './js/lib/theme.js';
 
 // Disown the opener before anything else, and in particular before any navigation.
 // The opener belongs to the tab rather than to the document, so severing it here also
@@ -49,11 +50,66 @@ const title = (q.get('t') || '').slice(0, 120);
 const h = document.getElementById('h');
 const p = document.getElementById('p');
 const fallback = document.getElementById('fallback');
+const settingsStatus = document.getElementById('settings-status');
+
+let settings = {};
+let lookupReadable = true;
+let settingsMessage = '';
+let parsed;
+let readFailed = false;
+try {
+  parsed = localStorage.getItem('mrt.settings');
+} catch {
+  readFailed = true;
+  lookupReadable = false;
+  settingsMessage = 'Saved display settings could not be read. Using the system theme.';
+}
+if (!readFailed) {
+  try {
+    const raw = JSON.parse(parsed || '{}');
+    if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
+      settings = raw;
+      if (raw.theme != null && raw.theme !== normaliseTheme(raw.theme)) {
+        settingsMessage = 'Saved theme is not recognized. Using the system theme.';
+      }
+    } else {
+      lookupReadable = raw !== null;
+      settingsMessage = 'Saved settings are not readable. Using the system theme.';
+    }
+  } catch {
+    lookupReadable = false;
+    settingsMessage = 'Saved settings are not readable. Using the system theme.';
+  }
+}
+const chosenTheme = themeAttribute(settings.theme);
+if (chosenTheme) document.documentElement.setAttribute('data-theme', chosenTheme);
+else document.documentElement.removeAttribute('data-theme');
+document.querySelector('meta[name="color-scheme"]').setAttribute('content', chosenTheme || 'dark light');
+settingsStatus.textContent = settingsMessage;
+settingsStatus.hidden = !settingsMessage;
 
 const readerUrl = (d) => `https://read.marvel.com/#/book/${d}`;
 const detailUrl = (i) => `https://www.marvel.com/comics/issue/${i}/`;
 
-if (title) h.textContent = `Opening ${title}…`;
+const presentation = {
+  pending: ['Looking up reader link', 'Looking up the recorded Marvel Unlimited link for this issue.'],
+  resolved: ['Opening Marvel Unlimited', 'Opening the recorded reader link. Reading progress has not changed.'],
+  page: ['Opening Marvel issue page', 'Opening the Marvel issue page. Reading progress has not changed.'],
+  'no-reader-link': ['No direct reader link', 'No direct reader link is recorded. Opening the Marvel issue page instead.'],
+  'lookup-error': ['Reader lookup failed', 'The metadata lookup failed. Opening the Marvel issue page instead.'],
+  timeout: ['Reader lookup timed out', 'The metadata lookup timed out. Opening the Marvel issue page instead.'],
+  'lookup-unavailable': ['Reader lookup unavailable', 'Saved lookup settings could not be used. Opening the Marvel issue page instead.'],
+  'missing-reference': ['Nothing to open', 'This link was missing an issue reference.'],
+};
+function present(state) {
+  const [heading, caption] = presentation[state];
+  document.documentElement.setAttribute('data-state', state);
+  document.title = `${heading} - Recap Page`;
+  h.textContent = title && ['pending', 'resolved', 'page'].includes(state) ? `Opening ${title}...`
+    : state === 'page' ? 'Opening the Marvel issue page' : heading;
+  p.textContent = caption;
+  fallback.hidden = state === 'missing-reference';
+}
 
 function go(url) {
   fallback.href = url;
@@ -63,9 +119,9 @@ function go(url) {
 // Same origin as the app, so this reads the user's configured API base directly
 // instead of accepting one from the query string.
 function apiBase() {
+  if (!lookupReadable) return null;
   try {
-    const raw = JSON.parse(localStorage.getItem('mrt.settings') || '{}');
-    const base = String(raw.apiBase || 'https://marvel.emreparker.com/v1').replace(/\/+$/, '');
+    const base = String(settings.apiBase || 'https://marvel.emreparker.com/v1').replace(/\/+$/, '');
     if (!isAllowedApiBase(base)) return null;
     return base;
   } catch {
@@ -75,9 +131,9 @@ function apiBase() {
 
 async function resolveAndGo(id, page = detailUrl(id)) {
   const base = apiBase();
-  if (!base) return go(page);
+  if (!base) { present('lookup-unavailable'); return go(page); }
 
-  p.textContent = 'Looking up the Marvel Unlimited link for this issue…';
+  present('pending');
   fallback.href = page;
 
   const ctl = new AbortController();
@@ -94,10 +150,10 @@ async function resolveAndGo(id, page = detailUrl(id)) {
     if (!res.ok) throw new Error(String(res.status));
     const data = await res.json();
     const d = digits(String(data && data.digitalId != null ? data.digitalId : ''));
-    if (d) return go(readerUrl(d));
-    p.textContent = 'No direct reader link is recorded, so this opens the Marvel issue page instead.';
+    if (d) { present('resolved'); return go(readerUrl(d)); }
+    present('no-reader-link');
   } catch {
-    p.textContent = 'Could not reach the metadata service, so this opens the issue page on marvel.com instead.';
+    present(ctl.signal.aborted ? 'timeout' : 'lookup-error');
   } finally {
     clearTimeout(timer);
   }
@@ -105,14 +161,13 @@ async function resolveAndGo(id, page = detailUrl(id)) {
 }
 
 if (digitalId) {
+  present('resolved');
   go(readerUrl(digitalId));
 } else if (knownPage) {
-  if (!title) h.textContent = 'Opening the Marvel issue page…';
-  p.textContent = 'Opening the Marvel issue page. Reading progress has not changed.';
+  present('page');
   go(pageUrl);
 } else if (issueId) {
   resolveAndGo(issueId, pageUrl || detailUrl(issueId));
 } else {
-  h.textContent = 'Nothing to open';
-  p.textContent = 'This link was missing an issue reference.';
+  present('missing-reference');
 }

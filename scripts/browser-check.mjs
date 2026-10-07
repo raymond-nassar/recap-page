@@ -8830,6 +8830,13 @@ const SCENARIOS = [
     title: 'the reader tab opens synchronously, inside the gesture',
     async run(page, t) {
       await importOrder(page);
+      page.__ux11Step = 'before-first-dispatch';
+      const beforeHandoff = await page.evaluate(() => ({
+        raw: localStorage.getItem('mrt.state.v2'),
+        helper: document.querySelector('#reader-handoff-help')?.checkVisibility() ?? false,
+      }));
+      ux11Receipt(page, t, 'H05:initial-help', { visible: false }, beforeHandoff,
+        { hidden: beforeHandoff.helper === false });
 
       // The proof that no await intervenes is that the call is recorded during the click's own
       // dispatch. A handler that opened the tab after any await would record it afterwards, and
@@ -8839,12 +8846,32 @@ const SCENARIOS = [
 
       await page.evaluate(() => {
         const btn = document.querySelector('button.mini[data-act="open"][data-key="900001"]');
+        btn.focus();
         window.__dispatching = true;
         btn.click();
         window.__dispatching = false;
       });
 
       const opened = await page.evaluate(() => window.__opened);
+      const feedback = await page.evaluate(() => ({
+        text: document.querySelector('#reader-handoff-help')?.textContent ?? null,
+        visible: document.querySelector('#reader-handoff-help')?.checkVisibility() ?? false,
+        focused: document.activeElement?.dataset.key ?? null,
+        raw: localStorage.getItem('mrt.state.v2'),
+      }));
+      page.__ux11Step = 'after-known-dispatch';
+      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.";
+      ux11Receipt(page, t, 'H03/H05/H06:conditional-help', { text: helpCopy, visible: true,
+        focused: '900001', raw: beforeHandoff.raw }, feedback,
+      { exactCopy: feedback.text === helpCopy, rendered: feedback.visible,
+        focusRetained: feedback.focused === '900001', rawUnchanged: feedback.raw === beforeHandoff.raw });
+      const native = opened.length === 1 ? new URL(opened[0].url, page.__origin) : null;
+      ux11Receipt(page, t, 'H01:exact-native-intent', { origin: page.__origin, path: '/open.html',
+        d: '700001', i: '900001', target: '_blank', features: 'noopener' }, opened,
+      { count: opened.length === 1, duringGesture: opened[0]?.dispatching === true,
+        origin: native?.origin === page.__origin, path: native?.pathname === '/open.html',
+        digitalId: native?.searchParams.get('d') === '700001', issueId: native?.searchParams.get('i') === '900001',
+        target: opened[0]?.target === '_blank', features: opened[0]?.features === 'noopener' });
       t.check('clicking Read opens exactly one tab', opened.length === 1, `${opened.length} call(s)`);
       t.check('and it opens during the click itself, with no await in between', opened[0]?.dispatching === true);
 
@@ -8863,6 +8890,11 @@ const SCENARIOS = [
         window.__dispatching = false;
       });
       const second = await page.evaluate(() => window.__opened);
+      const secondUrl = second.length === 1 ? new URL(second[0].url, page.__origin) : null;
+      ux11Receipt(page, t, 'H02:lookup-native-intent', { i: '900002', d: null, target: '_blank', features: 'noopener' },
+        second, { count: second.length === 1, synchronous: second[0]?.dispatching === true,
+          issueId: secondUrl?.searchParams.get('i') === '900002', noBook: secondUrl !== null && !secondUrl.searchParams.has('d'),
+          target: second[0]?.target === '_blank', features: second[0]?.features === 'noopener' });
       t.check('an issue with no reference still opens a tab at once', second.length === 1 && second[0].dispatching === true, JSON.stringify(second));
       // Require the record before reading it. A bare negated substring reports this as satisfied
       // when nothing was opened at all, which is the one case it is meant to catch, and it reads
@@ -14101,10 +14133,28 @@ SCENARIOS.push({
     await click(page, '#btn-disliked-list');
     await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
       && !document.querySelector('#btn-disliked-list').disabled);
+    const ratingObservation = await page.evaluate((beforeRaw) => {
+      const button = document.querySelector('#btn-disliked-list');
+      const active = document.activeElement;
+      const modalOpen = document.querySelector('#list-feedback').open;
+      const afterRaw = localStorage.getItem('mrt.state.v2');
+      return {
+        modalOpen, active: { id: active?.id ?? null, tag: active?.tagName ?? null,
+          expectedNode: active === button },
+        button: { id: button.id, connected: button.isConnected, visible: button.checkVisibility(),
+          pressed: button.getAttribute('aria-pressed'), disabled: button.disabled },
+        beforeRaw, afterRaw,
+        predicates: { modalClosed: !modalOpen, focusRetained: active === button,
+          readerBytesUnchanged: afterRaw === beforeRaw },
+      };
+    }, beforeRating);
+    console.log(`READING-STATE-RATING ${JSON.stringify({ expected: {
+      modalClosed: true, activeId: 'btn-disliked-list', readerRaw: beforeRating },
+    actual: ratingObservation })}`);
     t.check('negative enjoyment saves without a report modal, reader mutation or focus interruption',
-      !await page.$eval('#list-feedback', (dialog) => dialog.open)
-      && await page.$eval('#btn-disliked-list', (button) => button === document.activeElement)
-      && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === beforeRating);
+      ratingObservation.predicates.modalClosed
+      && ratingObservation.predicates.focusRetained
+      && ratingObservation.predicates.readerBytesUnchanged);
     await click(page, '#btn-list-feedback-guide');
     t.check('reporting still requires a separate explicit action and contains no saved-data prefill',
       await page.$eval('#list-feedback', (dialog) => dialog.open)
@@ -15426,13 +15476,14 @@ async function manualReport(page) {
 
 // The stub is installed with evaluateOnNewDocument rather than after load, because the catalog is
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
-async function preparePage(page, origin, mutation) {
+async function preparePage(page, origin, mutation, scenarioId = null) {
   page.__origin = origin;
   page.__mutation = mutation;
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();
   for (const [path, rewrite] of [
+    ['/open.js', mutation?.rewriteOpen],
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/add.js', mutation?.rewriteAdd],
@@ -15460,6 +15511,33 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setRequestInterception(true);
   page.on('request', async (request) => {
+    if (scenarioId === 'reader-launcher-feedback') {
+      const visit = page.__ux11Visit;
+      if (visit && request.url() === `${origin}/open.js` && visit.tap) {
+        let source = rewrites.get(request.url()) ?? readFileSync(new URL('../src/open.js', import.meta.url), 'utf8');
+        source = ux11Splice(source, 'location.replace(url);',
+          'window.__ux11Tap(url); location.replace(url);', 'observation-tap');
+        await request.respond({ status: 200, contentType: 'application/javascript',
+          headers: { 'cache-control': 'no-store' }, body: source });
+        return;
+      }
+      if (new URL(request.url()).origin !== origin) {
+        const observedUrl = request.url();
+        const resource = new URL(observedUrl);
+        resource.hash = '';
+        const record = { url: observedUrl, derivedHttpIdentity: resource.href,
+          httpIdentityEvidence: 'DERIVED HTTP IDENTITY; not a second observed wire URL',
+          navigation: request.isNavigationRequest(),
+          mainFrame: request.frame() === page.mainFrame(), ordinal: (visit?.requests.length ?? 0) + 1,
+          nonce: visit?.nonce ?? null, time: Date.now() };
+        const expected = visit && record.navigation && record.mainFrame
+          && record.url === visit.intended && record.derivedHttpIdentity === visit.network && record.ordinal === 1;
+        if (visit) visit.requests.push({ ...record, accepted: Boolean(expected) });
+        if (expected) await request.respond({ status: 204, headers: { 'cache-control': 'no-store' } });
+        else await request.abort();
+        return;
+      }
+    }
     const rewritten = rewrites.get(request.url());
     if (rewritten) {
       await request.respond({
@@ -17413,7 +17491,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     }
     enter('prepare-page');
     if (diagnostic?.blank) await page.setViewport({ width: 1280, height: 900 });
-    else await preparePage(page, origin, mutation);
+    else await preparePage(page, origin, mutation, scenario.id);
     prepared = true;
     enter('run');
     await scenario.run(page, t);
@@ -19469,6 +19547,376 @@ MUTATIONS.push(
     rewriteCollectionNavigation: (source) => ux10Splice(source,
       'getTarget(entry.id)', 'getTarget(entries[0].id)', 'M02'),
   },
+);
+
+function ux11Splice(source, before, after, id) {
+  const count = source.split(before).length - 1;
+  console.log(`UX11-SPLICE ${JSON.stringify({ id, expected: 1, actual: count })}`);
+  if (count !== 1) throw new Error(`${id} requires one exact source target, found ${count}`);
+  return source.replace(before, after);
+}
+
+function ux11Receipt(page, t, oracle, expected, actual, subpredicates) {
+  const ok = Object.values(subpredicates).every(Boolean);
+  console.log(`UX11-MEASURE ${JSON.stringify({
+    owner: page.__ux11Owner ?? 'handoff', oracle, visit: page.__ux11Visit?.id ?? null,
+    role: page.__mutation ? 'fault' : process.env.UX11_ROLE ?? 'normal',
+    fault: page.__mutation?.id ?? null, origin: page.__origin,
+    nonce: page.__ux11Visit?.nonce ?? null, step: page.__ux11Step,
+    expected, actual, subpredicates, ok,
+  })}`);
+  t.check(`${oracle} reader handoff outcome`, ok, JSON.stringify({ expected, actual, subpredicates }));
+}
+
+async function ux11Snapshot(page) {
+  return page.evaluate(() => {
+    const h = document.getElementById('h');
+    const p = document.getElementById('p');
+    const fallback = document.getElementById('fallback');
+    const back = document.getElementById('return');
+    const settings = document.getElementById('settings-status');
+    const paint = (node, property) => node ? getComputedStyle(node)[property] : null;
+    const main = document.querySelector('main');
+    return {
+      nonce: window.__ux11?.nonce ?? null, url: location.href, title: document.title,
+      heading: h?.textContent ?? null, caption: p?.textContent ?? null,
+      state: document.documentElement.dataset.state ?? null,
+      theme: document.documentElement.dataset.theme ?? null,
+      scheme: paint(document.documentElement, 'colorScheme'),
+      paints: [paint(document.body, 'backgroundColor'), paint(document.body, 'color'),
+        paint(p, 'color'), paint(fallback, 'color'), paint(document.querySelector('.mark'), 'backgroundColor'),
+        paint(document.querySelector('.mark'), 'color')],
+      animation: paint(document.querySelector('.mark'), 'animationName'),
+      oldNodes: Boolean(h?.isConnected && p?.isConnected && fallback?.isConnected),
+      main: { count: document.querySelectorAll('main').length,
+        label: main?.getAttribute('aria-labelledby') ?? null,
+        contains: Boolean(main?.contains(h) && main?.contains(p) && main?.contains(fallback)) },
+      status: [p?.getAttribute('role'), p?.getAttribute('aria-live'), p?.getAttribute('aria-atomic')],
+      fallback: { href: fallback?.href ?? null, hidden: fallback?.hidden ?? false,
+        visible: fallback?.checkVisibility() ?? false },
+      back: { literal: back?.getAttribute('href') ?? null, href: back?.href ?? null,
+        target: back?.getAttribute('target') ?? null, visible: back?.checkVisibility() ?? false },
+      settings: { text: settings?.textContent ?? '', visible: settings?.checkVisibility() ?? false },
+      focus: document.activeElement?.id ?? '', openerNull: window.opener === null,
+      viewport: [innerWidth, innerHeight], overflow: document.documentElement.scrollWidth > innerWidth,
+      raw: localStorage.getItem('mrt.state.v2'), selected: localStorage.getItem('mrt.selectedList'),
+      fixture: window.__ux11 ? { calls: window.__ux11.calls, timers: window.__ux11.timers,
+        started: window.__ux11.started, settled: window.__ux11.settled, aborted: window.__ux11.aborted,
+        writes: window.__ux11.writes } : null,
+    };
+  });
+}
+
+async function ux11Preload(page, fixture) {
+  const script = await page.evaluateOnNewDocument((f) => {
+    if (!location.pathname.endsWith('/open.html')) return;
+    const originalFetch = window.fetch.bind(window);
+    const now = () => performance.timeOrigin + performance.now();
+    const state = window.__ux11 = { nonce: f.nonce, calls: [], timers: [],
+      started: now(), settled: null, aborted: null, writes: [] };
+    const originalSet = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      state.writes.push({ key, value });
+      return originalSet.call(this, key, value);
+    };
+    originalSet.call(localStorage, 'mrt.settings', JSON.stringify(f.settings));
+    const realTimeout = window.setTimeout.bind(window);
+    const realClear = window.clearTimeout.bind(window);
+    const clock = new Map();
+    window.setTimeout = (fn, delay, ...args) => {
+      const record = { delay, at: now(), fired: null, cleared: false };
+      const id = realTimeout(() => { record.fired = now(); fn(...args); }, delay);
+      clock.set(id, record);
+      if ([8000, 1400].includes(delay)) state.timers.push(record);
+      return id;
+    };
+    window.clearTimeout = (id) => {
+      if (clock.has(id)) clock.get(id).cleared = true;
+      realClear(id);
+    };
+    window.fetch = (input, init) => {
+      const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+      if (url.origin === location.origin) return originalFetch(input, init);
+      if (url.href !== 'https://marvel.emreparker.com/v1/issues/900002') {
+        throw new Error(`Unexpected synthetic metadata request ${url.href}`);
+      }
+      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept,
+        signal: init?.signal instanceof AbortSignal, at: now() });
+      return new Promise((resolve, reject) => {
+        const finish = () => {
+          state.settled = now();
+          if (f.mode === 'network') reject(new TypeError('Synthetic offline'));
+          else if (f.mode === 'json') resolve({ ok: true, json: async () => { throw new SyntaxError('Synthetic JSON'); } });
+          else resolve(new Response(JSON.stringify({ digitalId: f.mode === 'missing' ? null : 700002 }),
+            { status: f.mode === 'http' ? 503 : 200, headers: { 'content-type': 'application/json' } }));
+        };
+        state.release = finish;
+        init.signal.addEventListener('abort', () => {
+          state.aborted = now();
+          state.settled = state.aborted;
+          reject(new DOMException('Synthetic deadline', 'AbortError'));
+        }, { once: true });
+        if (!['hold', 'timeout'].includes(f.mode)) finish();
+      });
+    };
+    window.__ux11Tap = (url) => {
+      const node = (id) => document.getElementById(id);
+      const paint = (n, p) => n ? getComputedStyle(n)[p] : null;
+      console.log(`UX11-TAP ${JSON.stringify({
+        nonce: state.nonce, intendedUrl: url, title: document.title,
+        state: document.documentElement.dataset.state ?? null,
+        heading: node('h')?.textContent, caption: node('p')?.textContent,
+        animation: paint(document.querySelector('.mark'), 'animationName'),
+        focus: document.activeElement?.id ?? '', openerNull: window.opener === null,
+        raw: localStorage.getItem('mrt.state.v2'), fixture: state,
+      })}`);
+    };
+  }, fixture);
+  return script.identifier;
+}
+
+const UX11_TITLES = {
+  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited',
+  page: 'Opening Marvel issue page', 'no-reader-link': 'No direct reader link',
+  'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
+  'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
+};
+const UX11_CAPTIONS = {
+  pending: 'Looking up the recorded Marvel Unlimited link for this issue.',
+  resolved: 'Opening the recorded reader link. Reading progress has not changed.',
+  page: 'Opening the Marvel issue page. Reading progress has not changed.',
+  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel issue page instead.',
+  'lookup-error': 'The metadata lookup failed. Opening the Marvel issue page instead.',
+  timeout: 'The metadata lookup timed out. Opening the Marvel issue page instead.',
+  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel issue page instead.',
+  'missing-reference': 'This link was missing an issue reference.',
+};
+
+async function runReaderLauncherFeedback(page, t) {
+  page.__ux11Owner = 'reader-launcher-feedback';
+  const slug = 'https://www.marvel.com/comics/issue/900002/browser_check_2';
+  const canonical = 'https://www.marvel.com/comics/issue/900002/';
+  const book = 'https://read.marvel.com/#/book/700002';
+  const fixtures = [
+    { id: 'L06', query: 'd=700001&i=900001&t=Browser%20Check%20%282026%29%20%232', state: 'resolved',
+      intended: 'https://read.marvel.com/#/book/700001' },
+    { id: 'L01', theme: 'light', system: 'dark' }, { id: 'L02', theme: 'dark' },
+    { id: 'L03', theme: 'system' }, { id: 'L04', theme: 'system', system: 'dark' },
+    { id: 'L05', theme: 'unexpected' },
+    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1`, state: 'page', intended: slug },
+    { id: 'L08', mode: 'hold', state: 'resolved', intended: book },
+    { id: 'L09', mode: 'missing', state: 'no-reader-link', intended: slug },
+    { id: 'L10', mode: 'http', state: 'lookup-error', intended: slug },
+    { id: 'L11', mode: 'network', query: 'i=900002', state: 'lookup-error', intended: canonical },
+    { id: 'L12', mode: 'json', state: 'lookup-error', intended: slug },
+    { id: 'L13', mode: 'timeout', query: 'i=900002', state: 'timeout', intended: canonical },
+    { id: 'L14', state: 'lookup-unavailable', intended: slug, apiBase: 'ftp://127.0.0.1/v1' },
+    { id: 'L15', mode: 'hold', state: 'resolved', intended: book, reduce: true },
+  ];
+  const rawState = {};
+  let useTap = false;
+  const taps = [];
+  const listener = (message) => {
+    if (message.text().startsWith('UX11-TAP ')) taps.push(JSON.parse(message.text().slice(9)));
+  };
+  page.on('console', listener);
+  try {
+    page.__ux11Step = 'synthetic-seed';
+    await open(page, '/');
+    await seedFixtureState(page);
+    Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
+      selected: localStorage.getItem('mrt.selectedList') })));
+    for (const f of fixtures) {
+      const query = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const nonce = `${f.id}-${Date.now()}`;
+      const expectedUrl = `${page.__origin}/open.html?${query}`;
+      page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,
+        requests: [], tap: useTap };
+      page.__ux11Step = `${f.id}:setup`;
+      console.log(`UX11-STEP ${JSON.stringify({ step: page.__ux11Step, fixture: f, nonce, expectedUrl, rawState })}`);
+      await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: f.system ?? 'light' },
+        { name: 'prefers-reduced-motion', value: f.reduce ? 'reduce' : 'no-preference' }]);
+      const preload = await ux11Preload(page, { ...f, nonce,
+        settings: { theme: f.theme ?? 'dark', ...(f.apiBase ? { apiBase: f.apiBase } : {}) } });
+      const loadVisit = async () => {
+        await page.goto(expectedUrl, { waitUntil: 'load' });
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        return ux11Snapshot(page);
+      };
+      let snapshot = await loadVisit();
+      if (!snapshot.oldNodes || snapshot.nonce !== nonce) throw new Error(`${f.id}: original launcher fixture failed`);
+      if (f.id === 'L06') {
+        await page.waitForFunction(() => document.getElementById('fallback')?.href === 'https://read.marvel.com/#/book/700001',
+          { timeout: 2000 });
+        snapshot = await ux11Snapshot(page);
+        if (snapshot.url !== expectedUrl || !snapshot.oldNodes) {
+          console.error(`UX11-RETENTION-FAIL ${JSON.stringify({ expectedUrl, snapshot, requests: page.__ux11Visit.requests })}`);
+          useTap = true;
+          page.__ux11Visit.tap = true;
+          page.__ux11Visit.requests = [];
+          snapshot = await loadVisit();
+          const tap = taps.findLast((item) => item.nonce === nonce);
+          if (!tap || tap.intendedUrl !== f.intended) throw new Error('Single alternate observer did not qualify');
+        }
+        const r = page.__ux11Visit.requests;
+        if (r.length !== 1 || !r[0].accepted || snapshot.fallback.href !== f.intended) {
+          throw new Error(`L06 two-layer native intent qualification failed: ${JSON.stringify({ snapshot, r })}`);
+        }
+        console.log(`UX11-QUALIFIED ${JSON.stringify({ nonce, mode: useTap ? 'pre-navigation' : 'retained204',
+          intendedExpected: f.intended, intendedActual: snapshot.fallback.href, rawObservedExpected: f.intended,
+          derivedHttpIdentityExpected: page.__ux11Visit.network, requests: r })}`);
+      }
+      page.__ux11Step = `${f.id}:post-setup`;
+      const measurePresentation = (actual, state) => ux11Receipt(page, t, `${f.id}:presentation`,
+        { state, title: `${UX11_TITLES[state]} - Recap Page`, caption: UX11_CAPTIONS[state],
+          animation: state === 'pending' && !f.reduce ? 'pulse' : 'none',
+          main: { count: 1, label: 'h', contains: true }, status: ['status', 'polite', 'true'] }, actual,
+        { state: actual.state === state, title: actual.title === `${UX11_TITLES[state]} - Recap Page`,
+          caption: actual.caption === UX11_CAPTIONS[state],
+          animation: state === 'pending' && !f.reduce ? actual.animation !== 'none' : actual.animation === 'none',
+          mainCount: actual.main.count === 1, mainName: actual.main.label === 'h', mainContains: actual.main.contains,
+          statusRole: actual.status[0] === 'status', live: actual.status[1] === 'polite', atomic: actual.status[2] === 'true' });
+      if (['hold', 'timeout'].includes(f.mode)) {
+        await page.waitForFunction(() => window.__ux11.calls.length === 1, { timeout: 2000 });
+        snapshot = await ux11Snapshot(page);
+        measurePresentation(snapshot, 'pending');
+        ux11Receipt(page, t, `${f.id}:pending-request`, { url: 'https://marvel.emreparker.com/v1/issues/900002',
+          accept: 'application/json', cache: 'no-store', delay: 8000, fallback: f.query === 'i=900002' ? canonical : slug },
+        snapshot, { count: snapshot.fixture.calls.length === 1,
+          exactUrl: snapshot.fixture.calls[0].url === 'https://marvel.emreparker.com/v1/issues/900002',
+          accept: snapshot.fixture.calls[0].accept === 'application/json', cache: snapshot.fixture.calls[0].cache === 'no-store',
+          signal: snapshot.fixture.calls[0].signal, abortDelay: snapshot.fixture.timers[0]?.delay === 8000,
+          fallback: snapshot.fallback.href === (f.query === 'i=900002' ? canonical : slug),
+          noEarlyNativeIntent: page.__ux11Visit.requests.length === 0 });
+        if (f.mode === 'hold') {
+          if (f.id === 'L15') {
+            await page.focus('#fallback');
+            await page.keyboard.press('Tab');
+            await page.keyboard.down('Shift');
+            try { await page.keyboard.press('Tab'); } finally { await page.keyboard.up('Shift'); }
+          }
+          await page.evaluate(() => window.__ux11.release());
+        }
+      }
+      if (f.intended) {
+        page.__ux11Step = `${f.id}:native-settlement`;
+        const deadline = f.mode === 'timeout' ? 12000 : 2500;
+        const start = Date.now();
+        while (!page.__ux11Visit.requests.length && Date.now() - start < deadline) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        if (!page.__ux11Visit.requests.length) throw new Error(`${f.id} qualified native request absent at deadline`);
+        snapshot = await ux11Snapshot(page);
+        const tap = useTap ? taps.findLast((item) => item.nonce === nonce) : null;
+        if (useTap && !tap) throw new Error(`${f.id} alternate pre-navigation receipt absent`);
+        measurePresentation(snapshot, f.state);
+        const requests = page.__ux11Visit.requests;
+        const intendedActual = tap?.intendedUrl ?? snapshot.fallback.href;
+        ux11Receipt(page, t, `${f.id}:two-layer-intent`, { intended: f.intended, rawObservedUrl: f.intended,
+          derivedHttpIdentity: page.__ux11Visit.network,
+          httpIdentityEvidence: 'DERIVED HTTP IDENTITY; not a second observed wire URL',
+          nonce, count: 1 }, { intendedActual, requests, snapshot, tap },
+        { fullIntent: intendedActual === f.intended, rawObservedUrl: requests[0]?.url === f.intended,
+          derivedHttpIdentity: requests[0]?.derivedHttpIdentity === page.__ux11Visit.network,
+          ordinal: requests[0]?.ordinal === 1, mainFrame: requests[0]?.mainFrame === true,
+          navigation: requests[0]?.navigation === true, nonce: requests[0]?.nonce === nonce,
+          count: requests.length === 1, accepted: requests.every((r) => r.accepted),
+          opener: snapshot.openerNull, rawBytes: snapshot.raw === rawState.raw });
+        if (f.mode) {
+          const timers = snapshot.fixture.timers;
+          const fallbackTimer = timers.find((timer) => timer.delay === 1400);
+          const abort = timers.find((timer) => timer.delay === 8000);
+          ux11Receipt(page, t, `${f.id}:settled-clock`, { abort: 8000, fallback: ['hold'].includes(f.mode) ? null : 1400 },
+            { timers, fixture: snapshot.fixture, requests }, {
+              clearedAbort: abort?.cleared === true,
+              fallbackPolicy: f.mode === 'hold' ? !fallbackTimer : fallbackTimer?.delay === 1400,
+              notEarly: !fallbackTimer || requests[0].time >= fallbackTimer.at + 1400,
+              boundedDelay: !fallbackTimer || requests[0].time <= fallbackTimer.at + 2000,
+              realAbort: f.mode !== 'timeout' || snapshot.fixture.aborted >= abort.at + 8000,
+              boundedAbort: f.mode !== 'timeout' || snapshot.fixture.aborted <= abort.at + 10000,
+              retainedFocus: f.id !== 'L15' || snapshot.focus === 'fallback',
+            });
+        } else {
+          ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0 }, snapshot.fixture,
+            { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0 });
+        }
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        ux11Receipt(page, t, `${f.id}:no-duplicate`, 1, page.__ux11Visit.requests,
+          { one: page.__ux11Visit.requests.length === 1 });
+      } else {
+        measurePresentation(snapshot, 'missing-reference');
+        const light = f.theme === 'light' || (!['dark', 'light'].includes(f.theme) && f.system !== 'dark');
+        const paints = light ? ['rgb(250, 250, 255)', 'rgb(19, 19, 27)', 'rgb(92, 92, 110)',
+          'rgb(23, 80, 156)', 'rgb(109, 40, 217)', 'rgb(255, 255, 255)']
+          : ['rgb(17, 17, 23)', 'rgb(242, 242, 248)', 'rgb(145, 145, 164)',
+            'rgb(127, 179, 255)', 'rgb(138, 83, 225)', 'rgb(255, 255, 255)'];
+        const expectedTheme = ['light', 'dark'].includes(f.theme) ? f.theme : null;
+        ux11Receipt(page, t, `${f.id}:theme-and-missing`, { theme: expectedTheme, paints, scheme: light ? 'light' : 'dark',
+          noReference: true, limitation: f.id === 'L05' }, snapshot,
+        { theme: snapshot.theme === expectedTheme, ...Object.fromEntries(paints.map((value, i) => [`paint${i}`, value === snapshot.paints[i]])),
+          scheme: snapshot.scheme === (light ? 'light' : 'dark'), noFetch: snapshot.fixture.calls.length === 0,
+          noTimer: snapshot.fixture.timers.length === 0, noIntent: page.__ux11Visit.requests.length === 0,
+          fallbackHidden: !snapshot.fallback.visible && snapshot.fallback.hidden,
+          raw: snapshot.raw === rawState.raw, noProductWrites: snapshot.fixture.writes.length === 0,
+          unknownLimitation: f.id !== 'L05' || (snapshot.settings.visible
+            && snapshot.settings.text === 'Saved theme is not recognized. Using the system theme.') });
+        if (f.id === 'L03') {
+          await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+          await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(resolve)));
+          const live = await ux11Snapshot(page);
+          ux11Receipt(page, t, 'L03:live-system', { theme: null, background: 'rgb(17, 17, 23)', scheme: 'dark' }, live,
+            { attributeAbsent: live.theme === null, background: live.paints[0] === 'rgb(17, 17, 23)',
+              scheme: live.scheme === 'dark', raw: live.raw === rawState.raw });
+        }
+        if (f.id === 'L01') {
+          const expectedReturn = `${page.__origin}/#/home`;
+          ux11Receipt(page, t, 'L01:native-return-shape', { literal: './#/home', href: expectedReturn, target: null },
+            snapshot, { literal: snapshot.back.literal === './#/home', href: snapshot.back.href === expectedReturn,
+              sameTab: snapshot.back.target === null, rendered: snapshot.back.visible, noOverflow: !snapshot.overflow });
+          if (snapshot.back.visible) {
+            await page.keyboard.press('Tab');
+            const keyboard = await page.evaluate(() => {
+              const node = document.activeElement;
+              const style = getComputedStyle(node);
+              return { id: node.id, width: parseFloat(style.outlineWidth), color: style.outlineColor, style: style.outlineStyle };
+            });
+            ux11Receipt(page, t, 'L01:keyboard-return', { id: 'return', floor: 3, color: paints[3] }, keyboard,
+              { nativeOrder: keyboard.id === 'return', width: keyboard.width >= 3,
+                color: keyboard.color === paints[3], solid: keyboard.style === 'solid' });
+            const actionReady = keyboard.id === 'return';
+            if (actionReady) {
+              await page.keyboard.press('Enter');
+              await page.waitForFunction(() => location.hash === '#/home');
+            }
+            const returned = await page.evaluate(() => ({ hash: location.hash,
+              raw: localStorage.getItem('mrt.state.v2'), main: Boolean(document.querySelector('main')),
+              heading: Boolean(document.querySelector('#view-home h1')) }));
+            ux11Receipt(page, t, 'L01:returned-home', { actionTarget: 'return', action: 'native Enter',
+              hash: '#/home', raw: rawState.raw }, { ...returned, actionTarget: keyboard.id,
+              action: actionReady ? 'native Enter' : 'skipped: wrong measured focus' },
+            { actionPrerequisite: actionReady, hash: returned.hash === '#/home',
+              bytes: returned.raw === rawState.raw, main: returned.main, heading: returned.heading });
+          }
+        }
+      }
+      await page.removeScriptToEvaluateOnNewDocument(preload);
+    }
+  } catch (error) {
+    console.error(`UX11-ERROR ${JSON.stringify({ step: page.__ux11Step, name: error.name,
+      message: error.message, stack: error.stack, visit: page.__ux11Visit, taps })}`);
+    throw error;
+  } finally {
+    page.off('console', listener);
+  }
+}
+
+SCENARIOS.push({ id: 'reader-launcher-feedback', title: 'truthful theme-aware standalone reader handoff', run: runReaderLauncherFeedback });
+MUTATIONS.push(
+  { id: 'launcher-force-dark', title: 'chosen launcher theme is ignored', breaks: 'reader-launcher-feedback',
+    rewriteOpen: (source) => ux11Splice(source, 'const chosenTheme = themeAttribute(settings.theme);',
+      "const chosenTheme = 'dark';", 'launcher-force-dark') },
+  { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
+    rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
 );
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
