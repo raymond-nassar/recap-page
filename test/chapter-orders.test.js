@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -165,9 +166,9 @@ test('the generated catalog replaces the parent with every child and the owner-o
   const children = catalog.lists.filter((entry) => (
     chapterOrdinal(parentId, ledger.chapterCount, entry.id) !== null
   ));
-  assert.equal(manifestRaw.lists.length, 215);
-  assert.equal(raw.lists.length, 292);
-  assert.equal(catalog.lists.length, 292);
+  assert.equal(manifestRaw.lists.length, currentReadingCensus.sources);
+  assert.equal(raw.lists.length, currentReadingCensus.visible);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);
   assert.equal(children.length, 78);

@@ -156,7 +156,7 @@ function assertCachedMetadata(record, id, url) {
   return record.body;
 }
 
-async function loadCachedMetadata(ids, cacheDir) {
+export async function loadCachedMetadata(ids, cacheDir) {
   if (new Set(ids).size !== ids.length) {
     throw new Error('Cache-only metadata requires each requested issue exactly once');
   }
@@ -171,14 +171,14 @@ async function loadCachedMetadata(ids, cacheDir) {
         cause: error,
       });
     }
-    return [id, assertCachedMetadata(record, id, url)];
+    return [id, assertCachedMetadata(record, id, url), record];
   }));
   const meta = new Map(metadata.filter(([, body]) => body !== null));
   const refused = new Set(metadata.filter(([, body]) => body === null).map(([id]) => id));
   if (meta.size + refused.size !== ids.length) {
     throw new Error('Cache-only metadata did not establish a one-to-one issue set');
   }
-  return { meta, refused };
+  return { meta, refused, records: new Map(metadata.map(([id, , record]) => [id, record])) };
 }
 
 async function cleanupArtifacts(paths) {
@@ -284,7 +284,7 @@ export async function writeOutputsAtomically(outputs, { replaceFile = rename } =
 // description. The 47 it does find are series names out of the index, which a different generator
 // writes. Neither fact is a reason to widen this function: the placeholder-title hazard above is
 // unchanged and is the one that would cost a reader their progress.
-function cleanText(s) {
+export function cleanText(s) {
   return String(s ?? '').replace(/[\u2013\u2014]/g, '-').replace(/\s+/g, ' ').trim();
 }
 

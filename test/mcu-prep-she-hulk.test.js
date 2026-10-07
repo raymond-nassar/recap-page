@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -138,10 +139,10 @@ test('She-Hulk binds post-refresh approval to every current-library peer', async
   assert.equal(report.libraryDigest, recordedDigest,
     'Post-refresh authority binds actual current descriptions without a historical inverse');
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
-  assert.ok(current.comparisons.filter((row) => !recordedIds.has(row.orderId))
+  assert.ok(legacyOwnerPeers(current.comparisons).filter((row) => !recordedIds.has(row.orderId))
     .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
   'A later meaningful relationship needs its own central review');
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), [
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'), [
     {
       orderId: 'question-of-the-week-do-you-have-a-hulk-reading-order',
       relationship: 'partial', sharedCount: 7, sharedIds: expectedIds.slice(0, 7).map(String),

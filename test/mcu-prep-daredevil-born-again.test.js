@@ -1,3 +1,4 @@
+import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -186,7 +187,7 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
       && disposition.authorityIdentity === 'raymond-nassar'));
   const reviewed = new Set(entries.map((entry) => entry.id));
   const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
-  assert.deepEqual(later.map((entry) => entry.id),
+  assert.deepEqual(legacyOwnerPeers(later).map((entry) => entry.id),
     ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight',
       'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
@@ -196,16 +197,16 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...currentReviewedOrders, ...laterOrders] });
-  assert.equal(current.comparisonCount, 292);
+  assert.equal(current.comparisonCount, currentReadingCensus.peers);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
   assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 288);
-  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+  assert.equal(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship === 'none').length, 288);
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
-  assert.deepEqual(current.comparisons.filter((entry) => later.some((peer) => peer.id === entry.orderId))
-    .map((entry) => [entry.relationship, entry.sharedIds]), later.map(() => ['none', []]));
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => later.some((peer) => peer.id === entry.orderId))
+    .map((entry) => [entry.relationship, entry.sharedIds]), legacyOwnerPeers(later).map(() => ['none', []]));
 });
 
 test('owner Daredevil checklist and pinned payload publish all 37 originals in six parts', async () => {

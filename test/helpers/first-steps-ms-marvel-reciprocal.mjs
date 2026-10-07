@@ -8,6 +8,7 @@ import {
 import { buildComparisonReport, compareIssueSets } from '../../scripts/lib/cbh-overlap.mjs';
 import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
 import { OWNER_SOURCE_PROVIDER } from '../../scripts/report-fantastic-four-overlap.mjs';
+import { legacyOwnerPeers } from './current-reading-library.mjs';
 
 export const MS_MARVEL_PROVIDER = Object.freeze({
   id: 'owner-authored', hosts: ['github.com'], sourceOrigin: 'Selected by raymond-nassar for MCU Prep',
@@ -104,7 +105,7 @@ export async function assertFirstStepsMsMarvelReciprocal({ reference, packet, ma
   const expectedNonNone = [
     ...report.comparisons.filter((row) => row.relationship !== 'none'), approvedDelta,
   ].sort((left, right) => left.orderId.localeCompare(right.orderId));
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'),
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'),
     expectedNonNone, 'Every other new non-none First Steps relationship requires fresh authority');
   assert.equal(digestCanonicalJson(reference),
     '9f7643ad0d7ab38bc08261747705e038045d0024d9a5ae3e1e925c049160e9cc',

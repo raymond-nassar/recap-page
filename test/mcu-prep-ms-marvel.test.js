@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -148,11 +149,11 @@ test('Ms. Marvel binds full-current authority and the strict First Steps recipro
   assert.equal(report.libraryDigest, recordedDigest,
     'This post-refresh authority binds actual descriptions, not an older inverse');
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
-  assert.ok(current.comparisons.filter((row) => !recordedIds.has(row.orderId))
+  assert.ok(legacyOwnerPeers(current.comparisons).filter((row) => !recordedIds.has(row.orderId))
     .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
   'A later meaningful Ms. Marvel relationship needs its own central authority');
   const solo2014 = expectedIds.slice(0, 5).concat(expectedIds.slice(6, 12)).map(String);
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), [
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'), [
     { orderId: 'captain-marvel-ms-marvel-reading-order', relationship: 'partial', sharedCount: 11, sharedIds: solo2014 },
     { orderId: 'mcu-prep-fantastic-four-first-steps', relationship: 'partial', sharedCount: 1, sharedIds: ['49846'] },
     { orderId: 'ms-marvel-kamala-khan-reading-order', relationship: 'partial', sharedCount: 17,
@@ -175,10 +176,11 @@ test('Ms. Marvel binds full-current authority and the strict First Steps recipro
   assert.deepEqual(reciprocal.approvedDelta,
     { orderId: id, relationship: 'partial', sharedCount: 1, sharedIds: ['49846'] });
   assert.deepEqual(packet.insertionAnchor, { beforeId: 'agents-of-atlas-reading-order' });
-  const position = manifest.lists.findIndex((row) => row.id === id);
-  assert.equal(manifest.lists[position - 1].id, 'mcu-prep-she-hulk');
-  assert.equal(manifest.lists[position + 1].id, 'mcu-prep-captain-america-brave-new-world');
-  assert.equal(manifest.lists[position + 2].id, packet.insertionAnchor.beforeId);
+  const retainedOrder = legacyOwnerPeers(manifest.lists);
+  const position = retainedOrder.findIndex((row) => row.id === id);
+  assert.equal(retainedOrder[position - 1].id, 'mcu-prep-she-hulk');
+  assert.equal(retainedOrder[position + 1].id, 'mcu-prep-captain-america-brave-new-world');
+  assert.equal(retainedOrder[position + 2].id, packet.insertionAnchor.beforeId);
 });
 
 test('Ms. Marvel publishes eighteen originals with guide-local shared anthology and protected saved data', async () => {

@@ -9,7 +9,7 @@ Android has separate private app storage. There is no hosted backend, account, o
 database.
 
 The app has no runtime dependencies. Its development dependencies are lint tooling: the four
-packages listed at `package.json:54-58` run on a maintainer's machine or in CI, not in the browser.
+packages listed at `package.json:62-66` run on a maintainer's machine or in CI, not in the browser.
 
 Silent loss or corruption of saved reading progress is the highest-severity security issue here.
 

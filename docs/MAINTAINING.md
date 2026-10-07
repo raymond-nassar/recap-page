@@ -602,6 +602,13 @@ Use the ordinary local-checklist vendor with `--only` and verify the owner credi
 card. Provider gaps remain ordered provenance and get a separately assigned gap Issue; a collection
 identity conflict requires an owner decision rather than a neighboring substitution.
 
+For a new owner Markdown handoff, use the [reusable owner delivery commands](READING_LIST_DELIVERY.md).
+They prepare explicit selections, check proposed public inputs before approval, bind actual source,
+insertion and relationship authority, and register shared unit/browser contracts. Do not copy
+another guide's scripts or update old roster literals. Keep the full current-library check and the
+final publication history scan. The delivery clock ends at the actual owner/app merge and includes
+external waits; the tooling alone does not establish the under-one-hour target.
+
 ## Create reading paths and collected-edition groups
 
 A reading path names a sequence of existing order IDs. Put an authored path in the `paths` array

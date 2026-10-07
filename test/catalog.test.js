@@ -1,3 +1,4 @@
+import { currentReadingCensus, registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -167,7 +168,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists, dropped } = parseCatalogRaw(JSON.parse(await readFile(url, 'utf8')));
   assert.equal(dropped, 0);
-  assert.equal(lists.length, 292);
+  assert.equal(lists.length, currentReadingCensus.visible);
 
   let placeholders = 0;
   let emptyRecords = 0;
@@ -200,13 +201,16 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
 
     // The card art has to belong to the order it represents. A cover pinned from an issue
     // that is not in the file is how a catalog ends up illustrated with the wrong comic.
-    assert.ok(list.coverIssueId, `${list.id} has no representative issue for its cover`);
-    const rep = order.items.find((i) => i.issueId === list.coverIssueId);
-    assert.ok(rep, `${list.id} cover issue ${list.coverIssueId} is not in ${list.file}`);
-    assert.deepEqual(list.cover, rep.cover, `${list.id} cover does not match its representative issue`);
-    // Marvel serves http in the API payload; anything pinned must already be https or it is
-    // blocked as mixed content the moment the app is served over TLS.
-    assert.match(list.cover.path, /^https:\/\//, `${list.id} cover is not https`);
+    if (registeredOwnerIds.includes(list.id) && list.cover === null) {
+      assert.equal(list.coverIssueId, null, 'No representative artwork is claimed without metadata.');
+      assert.ok(order.items.every((item) => item.cover == null), 'Missing optional cover metadata is explicit.');
+    } else {
+      assert.ok(list.coverIssueId, `${list.id} has no representative issue for its cover`);
+      const rep = order.items.find((i) => i.issueId === list.coverIssueId);
+      assert.ok(rep, `${list.id} cover issue ${list.coverIssueId} is not in ${list.file}`);
+      assert.deepEqual(list.cover, rep.cover, `${list.id} cover does not match its representative issue`);
+      assert.match(list.cover.path, /^https:\/\//, `${list.id} cover is not https`);
+    }
   }
   assert.deepEqual(
     {
@@ -219,10 +223,10 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
       bothEntries,
     },
     {
-      complete: 29292,
+      complete: currentReadingCensus.complete,
       placeholders: 1149,
       emptyRecords: 229,
-      total: 30670,
+      total: currentReadingCensus.totalItems,
       placeholderEntries: 28,
       emptyEntries: 23,
       bothEntries: 8,
@@ -251,11 +255,15 @@ test('every catalog cover resolves to a variant URL the browser can request', as
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists } = parseCatalog(JSON.parse(await readFile(url, 'utf8')));
   for (const list of lists) {
-    assert.match(
-      catalogCoverUrl(list),
-      /^https:\/\/.+\/portrait_incredible\.(jpg|png|gif)$/,
-      `${list.id} does not produce a usable cover URL`,
-    );
+    if (registeredOwnerIds.includes(list.id) && list.cover === null) {
+      assert.equal(catalogCoverUrl(list), null, 'Absent metadata must not invent an image URL.');
+    } else {
+      assert.match(
+        catalogCoverUrl(list),
+        /^https:\/\/.+\/portrait_incredible\.(jpg|png|gif)$/,
+        `${list.id} does not produce a usable cover URL`,
+      );
+    }
   }
 });
 

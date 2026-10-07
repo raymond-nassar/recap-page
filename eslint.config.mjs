@@ -143,6 +143,7 @@ export default [
       'scripts/browser-mcu-prep-captain-america-brave-new-world.mjs',
       'scripts/browser-mcu-prep-descriptions.mjs',
       'scripts/browser-owner-no-way-home.mjs',
+      'scripts/browser-owner-guide.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

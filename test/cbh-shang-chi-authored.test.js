@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -176,7 +177,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
     repeat.sourcePosition, repeat.canonicalSourcePosition,
   ]), [[12, 10], [207, 31], [208, 97], [209, 98]]);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
-  assert.equal(manifest.lists.length, 215);
+  assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(manifest.lists[position - 1].id, 'doctor-octopus-otto-octavius-reading-order');
   assert.equal(manifest.lists[position + 1].id, 'thunderbolts-reading-order');
   assert.deepEqual(manifest.lists[position], packet.proposedManifest);
@@ -219,7 +220,7 @@ test('Shang-Chi vendored payload preserves exact original IDs, eight gaps and it
   assert.deepEqual([card.type, card.depth, card.spotlightKind, card.timeline],
     ['character-run', 'partial', 'other', null]);
   assert.equal(card.sourceLicense, null);
-  assert.equal(catalog.lists.length, 292);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const parsedCatalog = parseCatalog(catalog);
   assert.equal(shelfKey({ lists: [card] }), 'spotlights');
   for (const query of ['Shang-Chi', 'Master of Kung Fu', 'Ten Rings']) {

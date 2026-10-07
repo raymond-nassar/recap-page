@@ -1438,6 +1438,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     ]);
 
     const summary = await authorPacket(['future-event'], {
+      publicationRoot: tempDir,
       mappingsDir,
       overlapsDir,
       packetsDir,
@@ -1477,6 +1478,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     );
     await assert.rejects(
       () => authorPacket(['future-event'], {
+        publicationRoot: tempDir,
         mappingsDir,
         overlapsDir,
         packetsDir,
@@ -1507,6 +1509,7 @@ test('one-guide authoring keeps a shipped external peer outside the reviewed lib
     );
     await assert.rejects(
       () => authorPacket(['future-event'], {
+        publicationRoot: tempDir,
         mappingsDir,
         overlapsDir,
         packetsDir,

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -130,7 +131,7 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   assert.equal(report.comparisonCount, 289);
   assert.equal(report.libraryDigest, recordedDigest);
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'),
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'),
     report.comparisons.filter((row) => row.relationship !== 'none'),
     'A new meaningful relationship needs its own central review');
   assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
