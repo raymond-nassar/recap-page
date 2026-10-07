@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-agatha-all-along",
+  "name": "MCU Prep: Agatha All Along",
+  "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/703",
+  "groups": [
+    "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
+    "Scarlet Witch by Steve Orlando Vol. 1: The Last Door"
+  ],
+  "rows": [
+    [
+      1,
+      13304,
+      "Fantastic Four (1961) #94",
+      0
+    ],
+    [
+      2,
+      97133,
+      "Scarlet Witch (2023) #1",
+      1
+    ],
+    [
+      3,
+      97135,
+      "Scarlet Witch (2023) #2",
+      1
+    ],
+    [
+      4,
+      97136,
+      "Scarlet Witch (2023) #3",
+      1
+    ],
+    [
+      5,
+      97137,
+      "Scarlet Witch (2023) #4",
+      1
+    ],
+    [
+      6,
+      97138,
+      "Scarlet Witch (2023) #5",
+      1
+    ],
+    [
+      7,
+      109670,
+      "Scarlet Witch Annual (2023) #1",
+      1
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 12,
+    "sourceIdentityCount": 12,
+    "includedIssueCount": 7,
+    "sourceGapCount": 5,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "a2333e43bca925e1b5e4648e8ffcce7546adfb0f12cb3927ac139accd550baa8",
+  "proposalDigest": "e1fecd9a229d1bd93b0bc765bcbea234fe0ac8841b259497f24fb3a38ec06e01",
+  "approvalDigest": "4453058f04062fc4215b530d7a41bac9b84b4b18346fffa4e10d8a590d8e987b",
+  "insertionAnchor": {
+    "beforeId": "agents-of-atlas-reading-order"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-agatha-all-along.json",
+    "scripts/data/owner-packets/mcu-prep-agatha-all-along.json",
+    "scripts/data/owner-mappings/mcu-prep-agatha-all-along.json",
+    "scripts/data/owner-overlaps/mcu-prep-agatha-all-along.json"
+  ],
+  "vectorSha256": "d97d94e7af9a779b4036a4071bece3f7a8c8b90a35f657b841e5c5512dd3242a"
+}

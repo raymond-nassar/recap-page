@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-agatha-all-along",
+  "inventoryId": "mcu-prep-agatha-all-along",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/703",
+  "sourceRetrievedAt": "2026-10-07",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "a2333e43bca925e1b5e4648e8ffcce7546adfb0f12cb3927ac139accd550baa8",
+  "sourceIssueBearingBlocksSha256": "7a94815e207ac9c7e07836827e37b7f74e5eb392f24fb3b6adaf5d0623667be8",
+  "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
+  "excludedSourceReferences": [],
+  "expectedCount": 7,
+  "proposedManifest": {
+    "id": "mcu-prep-agatha-all-along",
+    "name": "MCU Prep: Agatha All Along",
+    "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-agatha-all-along.md",
+    "out": "mcu_prep_agatha_all_along.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/703",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Agatha Harkness",
+      "Scarlet Witch",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "MCU Prep",
+      "Agatha All Along",
+      "The Last Door",
+      "House of Harkness"
+    ],
+    "coverIssueId": 13304,
+    "expect": 7
+  },
+  "insertionAnchor": {
+    "beforeId": "agents-of-atlas-reading-order"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four (1961) #94",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "94",
+      "seriesId": 2121,
+      "candidateIssueId": 13304,
+      "originalIssueId": 13304,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #1",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 33277,
+      "candidateIssueId": 97133,
+      "originalIssueId": 97133,
+      "sourcePosition": 2,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #2",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 33277,
+      "candidateIssueId": 97135,
+      "originalIssueId": 97135,
+      "sourcePosition": 3,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #3",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 33277,
+      "candidateIssueId": 97136,
+      "originalIssueId": 97136,
+      "sourcePosition": 4,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "seriesId": 33277,
+      "candidateIssueId": 97137,
+      "originalIssueId": 97137,
+      "sourcePosition": 5,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #5",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "seriesId": 33277,
+      "candidateIssueId": 97138,
+      "originalIssueId": 97138,
+      "sourcePosition": 6,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "normalizedSeriesTitle": "Scarlet Witch Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37548,
+      "candidateIssueId": 109670,
+      "originalIssueId": 109670,
+      "sourcePosition": 7,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "sourceOccurrenceCount": 12,
+  "sourceGaps": [
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121656, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121656 returned HTTP 404 at 2026-10-06T06:50:25.114Z; raw response SHA-256 a4df43e65bdd826a389ca9d0640f988804c9c85d52308605cde35a4fd490f229. Supplied link https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121656",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 8,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "0168298d14b49f796b8065a2cd0c211bed4a1a8f8c5d6af1f54361a4642434c8"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121657, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121657 returned HTTP 404 at 2026-10-06T06:50:25.426Z; raw response SHA-256 3bc7739f12f7097e6794cc3b480c2bef0010edee18e504839619470cc8a5c9fa. Supplied link https://www.marvel.com/comics/issue/121657/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121657",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121657/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 9,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "93d1e1eaf3781e2b95d36de7fdd6e94407f5a7dce9411cc2d148ab89a25632b0"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121658, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121658 returned HTTP 404 at 2026-10-06T06:50:25.592Z; raw response SHA-256 8d64875ff169b0dd03a6f901d52c30a2075915b513a3688fddaae3e06da579e7. Supplied link https://www.marvel.com/comics/issue/121658/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121658",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121658/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 10,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "43cd993068cde56f67cbda2838b3fac4f3aaa12e7278f70fa4f3fdc8d21b8261"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121659, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121659 returned HTTP 404 at 2026-10-06T06:50:25.775Z; raw response SHA-256 1c3620459de02a36e7dad98ed03832acc3a6ec519fa8a75da50672734ec05e86. Supplied link https://www.marvel.com/comics/issue/121659/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121659",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121659/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 11,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "d2e7573bc89c666a0dbc720efd66cb808f8a18b3dd44ae43e0fd5b7e9e8bf52e"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121660, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121660 returned HTTP 404 at 2026-10-06T06:50:25.947Z; raw response SHA-256 4474a72a6f6e31e7ad85b1e6e2a730795524bde61aa466805809d5fd3529e7c9. Supplied link https://www.marvel.com/comics/issue/121660/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121660",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121660/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 12,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "c3cbd015b14a6cd0dd4a6dda3f088c2930b5af721c9ff25111153d361693a340"
+    }
+  ],
+  "packetDigest": "0c852f33a660dd747b2d0fd4a41264de9b8203a9c3ea8d2e12b76bac85061c73",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central coordinator independent owner-source authority",
+    "rationale": "Approve the corrected three-selection source with exactly12 intended positions, seven readable whole originals and five explicit gaps. Positions1-7 are13304,97133,97135,97136,97137,97138,109670, with intended groups1/6/5 and published1/6/0. Retain only Fantastic Four94 for the Lee/Kirby introduction and Orlando The Last Door, ISBN9780785194743, with its original publisher date and five issues plus Annual. Do not substitute Robinson, add103 or claim physical TOC verification. The actual owner replacement of Darkhold Diaries with House of Harkness1-5 is settled. Positions8-12 retain owner-supplied121656-121660 associations as unverified, exact old404 timestamps/hashes/supplied URLs and open gap728, never fabricated provider metadata or placeholders. Approve exact gap-aware reader copy and owner credit. All13 private originals were rehashed; seven genuine raw responses match historical hashes and factual fields; no gap retry occurred. Public source is self-contained, keeps truthful private name/hash/byte receipts and distinguishes derived corrected input from original owner bytes. This is actual model data authority, not human or formal code review.",
+    "reviewedAt": "2026-10-07T14:46:45.970Z",
+    "proposalDigest": "e1fecd9a229d1bd93b0bc765bcbea234fe0ac8841b259497f24fb3a38ec06e01"
+  }
+}
