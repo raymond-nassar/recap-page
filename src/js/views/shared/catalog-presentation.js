@@ -127,7 +127,7 @@ export function createCatalogPresentation({
       }, text);
     }
     return el('button', {
-      class: 'btn',
+      class: 'btn btn-g',
       type: 'button',
       'aria-label': labelledName(CATALOG_ADD, list.name),
       dataset: { key: list.id, act: 'import' },
@@ -402,7 +402,13 @@ export function createCatalogPresentation({
     box.append(flow);
   }
 
-  function ensureSetupGuideFeature(lists, surface, featuredCard) {
+  function setSetupGuideVisibility(surface, visible) {
+    const id = surface === 'catalog' ? 'modern-timeline-feature' : `${surface}-setup-guide-feature`;
+    const existing = elements.query(`#${id}`);
+    if (existing) existing.hidden = !visible;
+  }
+
+  function ensureSetupGuideFeature(lists, surface, featuredCard, { hidden = false } = {}) {
     const featureId = surface === 'catalog'
       ? 'modern-timeline-feature'
       : `${surface}-setup-guide-feature`;
@@ -422,6 +428,7 @@ export function createCatalogPresentation({
       : 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter this age directly.';
     const feature = el('section', {
       id: featureId,
+      hidden,
       class: 'setup-guide-feature',
       'aria-labelledby': titleId,
       dataset: { featuredList: list.id },
@@ -452,6 +459,7 @@ export function createCatalogPresentation({
     catalogCard,
     chosenPath,
     ensureSetupGuideFeature,
+    setSetupGuideVisibility,
     paintTimelinePosition,
     renderTimelineSections,
     shelfSectionHead,

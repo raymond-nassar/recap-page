@@ -785,6 +785,49 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   const issueIds = [{ id: 'example-character', issueIds: ['1', '2'] }];
 
   assert.equal(libraryDigestFor(classified, issueIds), libraryDigestFor(manifest, issueIds));
+  const discoveryManifest = {
+    lists: [
+      { id: 'ordinary', name: 'Ordinary', type: 'event', depth: 'complete',
+        sourceFile: 'ordinary.md', sourceOrigin: 'Repository', out: 'ordinary.json' },
+      { id: 'parent', name: 'Parent', type: 'event', depth: 'complete',
+        sourceFile: 'parent.md', sourceOrigin: 'Repository', out: 'parent.json',
+        partitionFile: 'parent-parts.json', catalog: false },
+    ],
+    paths: [{ id: 'journey', steps: ['ordinary', 'parent'] }],
+  };
+  const vectors = [
+    { id: 'ordinary', issueIds: ['1', '2'] },
+    { id: 'parent', issueIds: ['3', '4'] },
+  ];
+  const baseline = libraryDigestFor(discoveryManifest, vectors);
+  const selected = structuredClone(discoveryManifest);
+  selected.lists[0].storylines = true;
+  selected.lists[1].storylinesChildren = ['parent-02'];
+  assert.equal(libraryDigestFor(selected, vectors), baseline,
+    'valid ordinary and partition-child discovery selectors must not redefine the issue library');
+  for (const [field, value] of [
+    ['id', 'changed'], ['name', 'Changed'], ['sourceFile', 'changed.md'],
+    ['sourceOrigin', 'Changed source'], ['out', 'changed.json'],
+    ['unknownDiscoveryField', true], ['nested', { storylines: true }],
+  ]) {
+    const changed = structuredClone(discoveryManifest);
+    changed.lists[0][field] = value;
+    assert.notEqual(libraryDigestFor(changed, vectors), baseline, `${field} remains digest-bound`);
+  }
+  for (const changed of [
+    { ...discoveryManifest, lists: discoveryManifest.lists.slice(1) },
+    { ...discoveryManifest, lists: [...discoveryManifest.lists].reverse() },
+    { ...discoveryManifest, paths: [{ id: 'journey', steps: ['parent', 'ordinary'] }] },
+    { ...discoveryManifest, storylines: true },
+    { ...discoveryManifest, metadata: { storylinesChildren: ['parent-02'] } },
+  ]) assert.notEqual(libraryDigestFor(changed, vectors), baseline);
+  assert.notEqual(libraryDigestFor(discoveryManifest, [...vectors].reverse()), baseline);
+  assert.notEqual(libraryDigestFor(discoveryManifest, [
+    vectors[0], { ...vectors[1], issueIds: ['4', '3'] },
+  ]), baseline);
+  assert.notEqual(libraryDigestFor(discoveryManifest, [
+    vectors[0], { ...vectors[1], issueIds: ['3', '5'] },
+  ]), baseline);
   assert.notEqual(
     libraryDigestFor({
       ...manifest,

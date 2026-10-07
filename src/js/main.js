@@ -2481,8 +2481,10 @@ async function reportBundledLoadFailure({
 }) {
   const result = await runLocalConnectionProbe();
   if (!isCurrent()) return false;
+  const retryLabel = key === CATALOG_LOAD ? 'Retry catalog' : 'Try again';
   if (!result.current || result.status === LOCAL_SERVER_STATUS.READY) {
-    notify(report, failure, 'error', key);
+    notify(report, failure, 'error', key,
+      key === CATALOG_LOAD ? localRecoveryAction(retryLabel, key, retry) : null);
     return false;
   }
   notify(
@@ -2490,7 +2492,7 @@ async function reportBundledLoadFailure({
     `The local app connection is not available, so ${subject} could not be loaded. ${LOCAL_CONNECTION_STEPS}`,
     'warn',
     key,
-    localRecoveryAction('Try again', key, retry),
+    localRecoveryAction(retryLabel, key, retry),
   );
   return true;
 }
@@ -2630,6 +2632,10 @@ function renderPublishingIndex(category, allStories) {
   const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
   $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
   box.replaceChildren();
+  box.append(el('p', {
+    class: 'rail-hint',
+    text: 'Choose a publishing period. The Modern Timeline is a guided route through later stories; Modern Age lets you choose a period instead.',
+  }));
   if (count === 0) {
     box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' }));
     return;
@@ -2709,6 +2715,13 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     renderPublishingIndex(category, allStories);
     return;
   }
+  if (PUBLISHING_CATEGORIES.some((candidate) => candidate.route === route)) {
+    box.before(el('p', {
+      class: 'rail-hint publishing-scope',
+      text: 'Reading Lists begin in this period and may continue into later years.',
+    }));
+    for (const old of [...box.parentElement.querySelectorAll('.publishing-scope')].slice(0, -1)) old.remove();
+  }
   catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
@@ -2721,7 +2734,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     (candidate) => candidate.key === category.key && candidate.route === category.route,
   );
   if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
-    box.replaceChildren();
+    box.replaceChildren(el('p', {
+      class: 'rail-hint',
+      text: 'Choose a period within Modern Age. For a guided starting route, browse the Modern Timeline.',
+    }));
     periodList.replaceChildren(...children.map((child) => homeView.categoryTile({
       ...child,
       tier: 'secondary',
@@ -2735,6 +2751,16 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     box.append(el('p', {
       class: 'rail-hint publishing-empty',
       text: 'No Reading Lists are published for this period yet.',
+    }));
+    if (isPublishingCategory) box.append(el('a', {
+      class: 'btn btn-g',
+      href: formatRoute({ view: 'marvel-ages' }),
+      text: 'Choose another Marvel Age',
+      onclick: (event) => {
+        if (!isPlainNavigation(event)) return;
+        event.preventDefault();
+        showView('marvel-ages', { push: true });
+      },
     }));
     return;
   }
@@ -3155,6 +3181,7 @@ const progressView = createProgressView({
   elements: () => ({
     method: $('#progress-method'),
     methodText: $('#progress-method-text'),
+    subject: $('#progress-subject'),
     radios: document.querySelectorAll('input[name="progress-scope"]'),
     results: $('#series-progress'),
     scope: $('#progress-scope'),

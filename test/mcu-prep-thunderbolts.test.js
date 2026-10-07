@@ -286,11 +286,24 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     expectedOrderIds: descriptors.map((entry) => entry.orderId),
   }));
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
-  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => ({
-    ...entry,
-    descriptor: historicalReadingChoiceCatalogEntry(entry.descriptor),
-    issueIds: historicalReadingChoiceIssueIds(entry.orderId, entry.issueIds),
-  }));
+  const currentDescriptorsBefore = structuredClone(currentOrders.map((entry) => entry.descriptor));
+  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => {
+    const descriptor = { ...historicalReadingChoiceCatalogEntry(entry.descriptor) };
+    delete descriptor.storylines;
+    delete descriptor.storylinesChildren;
+    return {
+      ...entry,
+      descriptor,
+      issueIds: historicalReadingChoiceIssueIds(entry.orderId, entry.issueIds),
+    };
+  });
+  assert.deepEqual(currentOrders.map((entry) => entry.descriptor), currentDescriptorsBefore);
+  const changedHistoricalDescriptor = structuredClone(orders);
+  changedHistoricalDescriptor[0].descriptor.name += ' changed';
+  assert.notEqual(digestCanonicalJson(changedHistoricalDescriptor), digestCanonicalJson(orders));
+  const changedHistoricalIdentity = structuredClone(orders);
+  changedHistoricalIdentity[0].issueIds.reverse();
+  assert.notEqual(digestCanonicalJson(changedHistoricalIdentity), digestCanonicalJson(orders));
   const laterIds = [
     'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
     'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',

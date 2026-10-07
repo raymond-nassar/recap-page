@@ -173,6 +173,7 @@ function catalogHarness({
   const paints = [];
   const announcements = [];
   const timeline = node({ kind: 'timeline' });
+  const setup = node();
   let currentState = savedState();
   let active = true;
   let loads = 0;
@@ -196,7 +197,9 @@ function catalogHarness({
     onSortChange: () => {},
     presentation: {
       chosenPath: () => null,
-      ensureSetupGuideFeature: () => {},
+      ensureSetupGuideFeature: (_lists, _key, _featured, options = {}) => {
+        setup.hidden = Boolean(options.hidden);
+      },
       paintTimelinePosition: (...args) => paints.push(args),
       renderTimelineSections: (root) => root.append(timeline),
     },
@@ -208,6 +211,7 @@ function catalogHarness({
     loads: () => loads,
     nodes,
     paints,
+    setup,
     setActive: (value) => { active = value; },
     setState: (value) => { currentState = value; },
     timeline,
@@ -216,6 +220,22 @@ function catalogHarness({
 }
 
 const waitForAnnouncement = () => new Promise((resolve) => setTimeout(resolve, 550));
+
+test('narrowed Timeline results lead while unrelated Setup returns only after clear', async () => {
+  const h = catalogHarness();
+  await h.view.render('catalog');
+  assert.equal(h.setup.hidden, false);
+  h.nodes.query.value = 'unmatched discovery';
+  h.nodes.query.listeners.input();
+  await h.view.render('catalog');
+  assert.equal(h.setup.hidden, true);
+  assert.ok(h.nodes.results.children.some((child) => child.text?.includes('No Reading Lists')));
+  h.nodes.query.value = '';
+  h.nodes.query.listeners.input();
+  await h.view.render('catalog');
+  assert.equal(h.setup.hidden, false);
+  assert.equal(h.paints.at(-1)[2].narrowed, false);
+});
 
 test('Catalog derives before narrowing and refreshes only a changed position', async () => {
   const h = catalogHarness();

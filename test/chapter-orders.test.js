@@ -48,6 +48,24 @@ async function fixture() {
 
 const clone = (value) => structuredClone(value);
 
+test('Storylines child IDs select metadata only, never inherited parent eligibility or payload changes', async () => {
+  const f = await fixture();
+  const selectedId = f.ledger.chapters[1].id;
+  const build = (order) => buildChapterFamily({ ...f, order,
+    existingPathIds: f.manifest.paths.map((entry) => entry.id) });
+  const family = build({ ...f.order, storylinesChildren: [selectedId] });
+  assert.deepEqual(family.children.filter((child) => child.order.storylines).map((child) => child.order.id),
+    [selectedId]);
+  for (const [index, child] of family.children.entries()) {
+    assert.equal(Object.hasOwn(child.order, 'storylinesChildren'), false);
+    assert.deepEqual(child.payload, f.family.children[index].payload);
+  }
+  for (const storylinesChildren of [['unknown'], [selectedId, selectedId], [' padded '], null]) {
+    assert.throws(() => build({ ...f.order, storylinesChildren }), /storylinesChildren/);
+  }
+  assert.throws(() => build({ ...f.order, storylines: true }), /storylines/);
+});
+
 test('the corrected owner ledger pins every chapter field and source position', async () => {
   const {
     parsed, ledger, family,

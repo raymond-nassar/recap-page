@@ -37,6 +37,7 @@ import {
   buildChapterFamily,
   buildChildOverlapEvidence,
   validateChapterLedger,
+  validateStorylinesChildren,
 } from './lib/chapter-orders.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -91,6 +92,7 @@ async function loadPartitionLedgers(orders) {
     if (ledger.parentId !== order.id) {
       throw new Error(`${order.partitionFile} belongs to "${ledger.parentId}", not "${order.id}"`);
     }
+    validateStorylinesChildren(order, ledger);
     ledgers.set(order.id, ledger);
   }
   return ledgers;
@@ -326,6 +328,7 @@ function catalogEntry(order, payload) {
     description: order.description,
     type: order.type,
     depth: order.depth,
+    ...(order.storylines === true ? { storylines: true } : {}),
     ...(order.type === 'character-run' ? { spotlightKind: order.spotlightKind } : {}),
     count: payload.count,
     placeholderCount: placeholders,

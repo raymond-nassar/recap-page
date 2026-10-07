@@ -3,6 +3,7 @@ import { listHistoryIdentity, parseListHistory } from '../lib/listHistory.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
+import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -253,19 +254,33 @@ export function createCompletionView({
       let gateway = gateways.get(name);
       if (!gateway) {
         const copy = el('p', { class: 'rail-hint' });
+        const browse = el('a', {
+          id: `${name}-completed-browse`,
+          class: 'btn',
+          href: formatRoute({ view: 'catalog' }),
+          text: 'Browse Reading Lists',
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            showView('catalog', { push: true });
+          },
+        });
         const section = el('section', {
           id: `${name}-completed`, class: 'sec completion-gateway',
           'aria-labelledby': `${name}-completed-h`,
         }, [
           el('div', { class: 'sec-h' }, el('h2', { id: `${name}-completed-h`, text: 'Completed lists' })),
           copy,
+          browse,
           el('button', { type: 'button', class: 'btn btn-g', text: 'View completed lists', onclick: () => showView('completed', { push: true }) }),
         ]);
-        parent.insertBefore(section, before);
-        gateway = { section, copy };
+        parent.insertBefore(section, name === 'library' ? before.nextSibling : before);
+        gateway = { section, copy, browse };
         gateways.set(name, gateway);
       }
-      gateway.section.hidden = state.listOrder.length === 0 || (name === 'home' && counts?.completed === 0);
+      gateway.section.hidden = state.listOrder.length === 0 || counts?.completed === 0;
+      gateway.browse.hidden = !counts || !state.listOrder.length
+        || counts.completed !== state.listOrder.length;
       gateway.copy.textContent = counts
         ? `${counts.completed} completed Reading ${counts.completed === 1 ? 'List' : 'Lists'}. ${counts.enjoyed} enjoyed.${counts.completed === state.listOrder.length && counts.completed ? ' All your saved lists are completed; choose another when you are ready.' : ''}`
         : 'Completion history is unavailable. Open the collection or Backup & settings to check it.';

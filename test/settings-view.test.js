@@ -9,6 +9,17 @@ const DATA_VIEW = readFileSync(new URL('../src/js/views/data.js', import.meta.ur
 const RECOVERY_VIEW = readFileSync(new URL('../src/js/views/recovery.js', import.meta.url), 'utf8');
 const ALL_SOURCE = MAIN + DATA_VIEW + RECOVERY_VIEW;
 
+test('catalog load failures retain a catalog-specific actionable Retry in both connection branches', () => {
+  const reporter = MAIN.slice(MAIN.indexOf('async function reportBundledLoadFailure'),
+    MAIN.indexOf('async function checkHealth'));
+  assert.match(reporter, /Retry catalog/);
+  assert.match(reporter, /key === CATALOG_LOAD/);
+  const healthy = reporter.slice(reporter.indexOf('LOCAL_SERVER_STATUS.READY'), reporter.indexOf('return false;', reporter.indexOf('LOCAL_SERVER_STATUS.READY')));
+  assert.match(healthy, /localRecoveryAction/);
+  assert.match(reporter, /Try again/);
+  assert.match(reporter, /if \(!isCurrent\(\)\) return false/);
+});
+
 const VIEW = sliceElement(
   HTML,
   'section',

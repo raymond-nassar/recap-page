@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1283`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1284`, the reader launch tab at `src/open.html:19`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -191,7 +191,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:599-647`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:602-650`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:1980-1991`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
@@ -268,7 +268,7 @@ Announcements at `src/js/main.js:333-335` depend on save success, so a screen re
 The UI restores the row and shows a notice rather than making an unsaved change look saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2769-2793`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2795-2819`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -507,19 +507,19 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1409-1462`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1440-1493`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
-`scripts/lib/chapter-orders.mjs:377-387`.
+`scripts/lib/chapter-orders.mjs:392-402`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:684-702`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:693-711`.
 The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
 paths remains a separate stop in each sequence.
 
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3429-3481`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3456-3508`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:174-209`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -546,7 +546,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection, source disclosure and path links.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3318-3427`.
+`src/js/main.js:3345-3454`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -557,7 +557,7 @@ rendering and focus work.
 
 Modern Timeline stores no cursor. Its catalog view builds one first-match index from the saved
 Reading Lists' catalog identities, walks the canonical unfiltered story order and stops at the first
-representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:27-69`. Grouped
+representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:28-70`. Grouped
 stories retain their shallowest-owned representative for logical stop completion, but each
 alternative has its own card and the marker belongs to that specific list. A catalog with a
 dropped entry reports the position as unavailable because the parser no longer has enough identity
@@ -565,7 +565,7 @@ or order information to place that gap.
 
 Filtering changes only the visible list keys. The view retains canonical stories and visible keys
 from the current successful render, derives position from live Store state, and rejects marker
-refresh while a newer catalog render is pending, at `src/js/views/catalog.js:138-180`. A hidden
+refresh while a newer catalog render is pending, at `src/js/views/catalog.js:139-181`. A hidden
 current story is named rather than replaced, full completion sits after the unfiltered spine, and
 filtered completion is stated before the narrowed results.
 
@@ -573,8 +573,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:243-293`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3335-3368`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2769-2793`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3362-3395`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2795-2819`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration

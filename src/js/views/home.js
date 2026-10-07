@@ -77,18 +77,18 @@ export function createHomeView({
       }),
       el('div', { class: 'cta home-start-actions' }, [
         el('a', {
-          href: formatRoute({ view: 'browse' }),
-          class: 'btn btn-g',
+          href: formatRoute({ view: 'catalog' }),
+          class: 'btn',
           id: 'btn-home-browse',
           onclick: (event) => {
             if (!isPlainNavigation(event)) return;
             event?.preventDefault();
-            onNavigateHub('browse');
+            onNavigateHub('catalog');
           },
         }, 'Browse Reading Lists'),
         el('a', {
           href: formatRoute({ view: 'add' }),
-          class: 'btn',
+          class: 'btn btn-g',
           id: 'btn-home-add',
           onclick: (event) => {
             if (!isPlainNavigation(event)) return;
@@ -114,6 +114,7 @@ export function createHomeView({
     }
 
     const { read, total } = listProgress(getState(), id);
+    nodes.continueSection.classList.toggle('continue-empty', total === 0);
     const deferred = deferredCount(getState(), id);
     const issue = upNext(getState(), id);
     nodes.continueHeading.textContent = list.name;

@@ -1242,6 +1242,8 @@ export function libraryDigestFor(manifest, orderIssueIds) {
       spotlightKind: _spotlightKind,
       partitionFile: _partitionFile,
       catalog: _catalog,
+      storylines: _storylines,
+      storylinesChildren: _storylinesChildren,
       ...entry
     }) => entry),
   };

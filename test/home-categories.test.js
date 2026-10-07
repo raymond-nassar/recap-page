@@ -33,6 +33,14 @@ const presentationSource = [
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = catalogEntries(catalog.lists);
 
+test('Storylines gateway count uses the same complete eligible pool as ordinary browsing', () => {
+  const pool = HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories);
+  const gateway = availableHomeCategories(stories).find((category) => category.key === 'storylines');
+  assert.equal(gateway.count, 60);
+  assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
+  assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
+});
+
 test('the current gateway offers three primary modes and three secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
   assert.deepEqual(

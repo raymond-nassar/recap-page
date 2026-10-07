@@ -89,6 +89,17 @@ function checkEntry(raw, index, seen) {
   } else if (raw.catalog === false && !partitionFile) {
     at('catalog: false is only valid on a partition parent');
   }
+  if (Object.hasOwn(raw, 'storylines') && (partitionFile || typeof raw.storylines !== 'boolean')) {
+    at('storylines must be a literal boolean on an ordinary list, never a partition parent');
+  }
+  if (Object.hasOwn(raw, 'storylinesChildren')) {
+    const ids = raw.storylinesChildren;
+    if (!partitionFile || !Array.isArray(ids)
+      || ids.some((child) => typeof child !== 'string' || !child || child !== child.trim())
+      || new Set(ids).size !== ids.length) {
+      at('storylinesChildren must be unique exact child IDs on a partition parent');
+    }
+  }
   if (!str(raw.sourceOrigin)) at('has no sourceOrigin');
   // Origin and licence are different claims and were one field until BL-099. Ten of the twelve
   // values that field held were prose about where an order came from, which is not a grant of
@@ -145,6 +156,9 @@ function checkEntry(raw, index, seen) {
       sourceFile,
       partitionFile,
       catalog: raw.catalog !== false,
+      ...(partitionFile
+        ? (Object.hasOwn(raw, 'storylinesChildren') ? { storylinesChildren: [...raw.storylinesChildren] } : {})
+        : { storylines: raw.storylines === true }),
       // The page a reader can open is not always the raw file we fetch; fall back to the raw
       // URL so attribution is never blank. An order authored here has no upstream page, so it
       // is credited by sourceOrigin alone rather than given a link that goes nowhere.
@@ -266,6 +280,9 @@ export function parseManifest(raw) {
   for (const [group, members] of groups) {
     const values = new Set(members.map((entry) => entry.spotlightKind));
     if (values.size > 1) errors.push(`group "${group}" has conflicting spotlightKind values`);
+    if (new Set(members.map((entry) => entry.storylines)).size > 1) {
+      errors.push(`group "${group}" has conflicting storylines values`);
+    }
   }
 
   // Paths are checked in a second pass because a step names another entry, and an entry cannot

@@ -20,7 +20,10 @@ function node(props = {}, children = []) {
     replaceChildren(...next) { this.children = next; },
     prepend(child) { this.children.unshift(child); },
     append(child) { this.children.push(child); },
-    insertBefore(child, before) { this.children.splice(Math.max(0, this.children.indexOf(before)), 0, child); },
+    insertBefore(child, before) {
+      const index = this.children.indexOf(before);
+      this.children.splice(index < 0 ? this.children.length : index, 0, child);
+    },
     closest() { return this.hidden ? this : null; },
     focus() { this.focused = true; },
     showModal() { this.open = true; },
@@ -206,11 +209,24 @@ test('wrap-up completes and reopens at the existing visibility boundaries withou
 test('healthy history keeps exceptional tools disclosed and incidents open without moving focus', async () => {
   const h = fixture();
   await h.view.render();
+  assert.equal(h.nodes.library.children[0], h.nodes.libraryYours);
+  const gateway = h.nodes.library.children.find((section) => section.id === 'library-completed');
+  assert.ok(gateway);
+  assert.equal(gateway.hidden, true, 'zero completed history does not lead active reading');
+  await h.history.complete('a');
+  await h.view.render();
+  const browse = gateway.children.find((child) => child.id === 'library-completed-browse');
+  assert.equal(browse.href, '#/catalog');
+  assert.equal(browse.hidden, false);
+  browse.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  browse.onclick({ button: 0, preventDefault() {} });
+  assert.equal(h.current, 'catalog');
   assert.equal(h.nodes.historyTroubleshooting.open, false);
   assert.ok(h.nodes.backupHistory.children.includes(h.nodes.historyControls));
   h.history.known = false;
   h.history.lastError = 'Saved history could not be read';
   await h.view.render();
+  assert.equal(browse.hidden, true, 'unknown history is not all-completed');
   assert.equal(h.nodes.historyTroubleshooting.open, true);
   assert.match(h.nodes.historyStatus.textContent, /could not be read/);
   assert.equal(h.nodes.historyRetry.disabled, false);

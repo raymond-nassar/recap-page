@@ -109,7 +109,10 @@ test('facets count visible list choices without losing logical story equivalence
   assert.equal(catalog.countStories([fast, full]), 1);
   const facets = catalog.catalogFacets([fast, full]);
   assert.equal(facets.find(({ key }) => key === 'all').count, 2);
-  assert.equal(facets.find(({ key }) => key === 'type:creator-run').count, 2);
+  assert.equal(facets.some(({ key }) => key === 'type:creator-run'), false);
+  const contrasted = catalog.catalogFacets([fast, full, entry('contrasting-event', { type: 'event' })]);
+  assert.equal(contrasted.find(({ key }) => key === 'all').count, 3);
+  assert.equal(contrasted.find(({ key }) => key === 'type:creator-run').count, 2);
 });
 
 test('independent spotlight choices retain their shared subject rank and stable order', () => {

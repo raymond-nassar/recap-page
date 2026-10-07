@@ -258,7 +258,7 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   assert.equal(findById(firstRun, 'btn-home-recommended'), null);
   findById(firstRun, 'btn-home-browse').onclick();
   findById(firstRun, 'btn-home-add').onclick();
-  assert.deepEqual(h.calls.navigate, ['catalog', 'browse', 'add']);
+  assert.deepEqual(h.calls.navigate, ['catalog', 'catalog', 'add']);
 });
 
 test('first-run Home offers only Browse and Add without waiting for catalog load', () => {
@@ -271,10 +271,13 @@ test('first-run Home offers only Browse and Add without waiting for catalog load
   assert.equal(firstRun.hidden, false);
   assert.equal(findById(firstRun, 'home-recommended'), null);
   assert.equal(browse.children[0], 'Browse Reading Lists');
+  assert.equal(browse.href, '#/catalog');
+  assert.equal(browse.class, 'btn');
   assert.equal(add.children[0], 'Add comics');
+  assert.equal(add.class, 'btn btn-g');
   browse.onclick();
   add.onclick();
-  assert.deepEqual(h.calls.navigate, ['browse', 'add']);
+  assert.deepEqual(h.calls.navigate, ['catalog', 'add']);
   assert.deepEqual(h.state, before);
   h.state.listOrder.push('a');
   h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
@@ -417,6 +420,7 @@ test('441 Home describes an empty saved list without claiming completion or chan
 
   assert.equal(h.nodes.continueSection.hidden, false);
   assert.equal(h.nodes.continueNext.textContent, 'No issues in this Reading List yet. Open it to add comics.');
+  assert.equal(h.nodes.continueSection.classList.contains('continue-empty'), true);
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
   assert.equal(h.nodes.continueFill.style.width, '0%');

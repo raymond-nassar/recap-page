@@ -490,6 +490,24 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'storylines-canonical-only',
+    breaks: 'storylines-discovery-actual-data',
+    why: 'secondary Storylines projection wrongly excludes eligible canonical Timeline groups',
+    rewriteCatalog: (source) => source.replace(
+      /export function storylinesStories\(stories\) \{[\s\S]*?\n\}/,
+      "export function storylinesStories(stories) {\n  return shelfStories(stories, 'lines');\n}",
+    ),
+  },
+  {
+    id: 'catalog-healthy-retry-absent',
+    breaks: 'discovery-priorities',
+    why: 'a healthy local connection still leaves catalog failure without a recovery command',
+    rewriteMain: (source) => source.replace(
+      'key === CATALOG_LOAD ? localRecoveryAction(retryLabel, key, retry) : null',
+      'null',
+    ),
+  },
+  {
     id: 'restore-copy-unlabeled-redo',
     breaks: 'restore-copy-workflow',
     why: 'consumed Undo is incorrectly minted again for the retained opposite-direction copy',
@@ -4978,10 +4996,10 @@ const SCENARIOS = [
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
       t.check('Back from Add restores Home and heading focus', true);
       await click(page, '#btn-home-browse');
-      await page.waitForFunction(() => location.hash === '#/browse' && document.activeElement?.id === 'browse-h');
+      await page.waitForFunction(() => location.hash === '#/catalog' && document.activeElement?.id === 'catalog-h');
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
-      t.check('direct Browse uses the existing hub and Back restores Home focus', true);
+      t.check('prominent Browse reaches the Modern Timeline and Back restores Home focus', true);
 
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
       const enlarged = await page.evaluate(() => {
@@ -5081,8 +5099,7 @@ const SCENARIOS = [
       t.check('a primary category uses real history and Back returns focus to Home', true);
 
       await click(page, '#btn-home-browse');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      await click(page, '#view-browse [data-category="timeline"]');
+      await page.waitForSelector('#view-catalog:not([hidden])');
       await page.waitForSelector('#catalog-results [data-act="preview"]');
       await click(page, '#catalog-results [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
@@ -7011,13 +7028,20 @@ const SCENARIOS = [
       await click(page, '[data-view="progress"]');
       await page.waitForFunction(() => !document.querySelector('#progress-method')?.hidden);
       const progress = await page.$eval('#view-progress', (section) => ({
-        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).map((node) => node.id),
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectOutsideMethod: !section.querySelector('#progress-method #progress-subject'),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         oldNote: Boolean(section.querySelector('#progress-note, #progress-sub')),
         methodOpen: section.querySelector('#progress-method')?.open,
         methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
       }));
       t.check('Progress keeps methodology in one collapsed disclosure',
-        progress.directNotes === 0 && !progress.oldNote
+        JSON.stringify(progress.directNotes) === JSON.stringify(['progress-subject'])
+        && progress.subject === 'Reading List: Browser Check Order'
+        && progress.subjectVisible && progress.subjectOutsideMethod
+        && progress.subjectAssociation === 'progress-subject' && !progress.oldNote
         && progress.methodOpen === false && progress.methodLabel === 'How counts work',
         JSON.stringify(progress));
 
@@ -7054,7 +7078,11 @@ const SCENARIOS = [
       const initial = await page.$eval('#view-progress', (section) => ({
         checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
-        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).map((node) => node.id),
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectOutsideMethod: !section.querySelector('#progress-method #progress-subject'),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         hash: location.hash,
         method: section.querySelector('#progress-method-text')?.textContent.trim(),
         methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
@@ -7071,7 +7099,10 @@ const SCENARIOS = [
         && initial.row === '0 of 3 tracked issues read (0%)',
         JSON.stringify(initial));
       t.check('Progress keeps methodology in one collapsed disclosure',
-        initial.directNotes === 0
+        JSON.stringify(initial.directNotes) === JSON.stringify(['progress-subject'])
+        && initial.subject === 'Reading List: Browser Check Order'
+        && initial.subjectVisible && initial.subjectOutsideMethod
+        && initial.subjectAssociation === 'progress-subject'
         && !initial.oldNote
         && initial.methodOpen === false
         && initial.methodLabel === 'How counts work',
@@ -7083,11 +7114,16 @@ const SCENARIOS = [
       await click(page, 'input[name="progress-scope"][value="all"]');
       const all = await page.$eval('#view-progress', (section) => ({
         checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         method: section.querySelector('#progress-method-text')?.textContent.trim(),
         row: section.querySelector('.result-meta')?.textContent.trim(),
       }));
       t.check('the extracted scope wiring switches to all-list methodology and rerenders',
         all.checked === 'all'
+        && all.subject === 'All saved Reading Lists' && all.subjectVisible
+        && all.subjectAssociation === 'progress-subject'
         && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
         && all.row === initial.row,
         JSON.stringify(all));
@@ -7891,9 +7927,9 @@ const SCENARIOS = [
         action: notice.querySelector('button')?.textContent.trim(),
         state: localStorage.getItem('mrt.state.v2'),
       }));
-      t.check('a refused catalog load offers Try again without changing saved data',
+      t.check('a refused catalog load offers Retry catalog without changing saved data',
         catalogFailure.text.includes('catalog could not be loaded')
-        && catalogFailure.action === 'Try again',
+        && catalogFailure.action === 'Retry catalog',
         JSON.stringify(catalogFailure));
 
       await setMode(work, 'health', 'ready');
@@ -7903,7 +7939,7 @@ const SCENARIOS = [
         offer: Boolean(document.querySelector('#home-cat-report button')),
         pending: window.__mrtLocalPending.catalog.length,
       }));
-      t.check('catalog Try again withdraws the offer and reruns only the catalog request',
+      t.check('catalog Retry withdraws the offer and reruns only the catalog request',
         !catalogPending.offer && catalogPending.pending === 1, JSON.stringify(catalogPending));
       if (catalogPending.pending !== 1) return;
       await setMode(work, 'catalog', 'ready');
@@ -15954,6 +15990,232 @@ async function preparePage(page, origin, mutation) {
 
 // ------------------------------------------------------------------ running
 
+SCENARIOS.push(
+  {
+    id: 'storylines-discovery-actual-data',
+    title: 'one curated Storylines pool includes real event variants without moving canonical identity',
+    async run(page, t) {
+      try {
+        await open(page, '/?catalog=actual#/lines');
+        await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
+        const initial = await page.evaluate(() => [...document.querySelectorAll(
+          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        )].map((node) => node.dataset.key));
+        const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
+        t.check('normal Storylines browsing includes all three original Civil War readings',
+          civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
+        t.check('the secondary pool has sixty original readings without duplicates or scaffold chapters',
+          initial.length === 60 && new Set(initial).size === 60
+            && initial.includes('marvel-knights-to-planet-x-02')
+            && initial.includes('marvel-knights-to-planet-x-78')
+            && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
+        await page.evaluate(() => {
+          const query = document.querySelector('#lines-q');
+          query.value = 'Civil War';
+          query.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        await page.waitForFunction(() => !document.querySelector('#lines-results')?.textContent.includes('Loading the catalog'));
+        const searched = await page.evaluate(() => [...document.querySelectorAll(
+          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        )].map((node) => node.dataset.key));
+        t.check('scoped Storylines search retains every genuine Civil War variant',
+          civilWar.every((id) => searched.includes(id)) && new Set(searched).size === searched.length,
+          JSON.stringify(searched));
+        if (!civilWar.every((id) => searched.includes(id))) return;
+        const actual = ACTUAL_CATALOG.lists.find((list) => list.id === 'civil-war-essential');
+        await click(page, '#lines-results [data-story="list:civil-war-essential"] [data-act="preview"]');
+        await page.waitForFunction(() => document.querySelector('#preview')?.open === true);
+        await click(page, '#preview-add [data-act="main"]');
+        await page.waitForFunction(() => {
+          const raw = localStorage.getItem('mrt.state.v2');
+          if (raw === null) return false;
+          return Object.values(JSON.parse(raw).lists)
+            .some((list) => list.catalogId === 'civil-war-essential');
+        });
+        const savedId = await page.evaluate(() => {
+          const dialog = document.querySelector('#preview');
+          const observation = { dialog, delivered: false };
+          observation.listener = () => { observation.delivered = true; };
+          dialog.addEventListener('close', observation.listener, { once: true });
+          window.__ux08Close = observation;
+          return Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+            .find((list) => list.catalogId === 'civil-war-essential').id;
+        });
+        const href = formatRoute({ view: 'read', listId: savedId });
+        try {
+          await click(page, '#preview-close');
+          await page.waitForFunction((expected) => window.__ux08Close?.delivered
+            && !document.querySelector('#preview')?.open
+            && document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
+          {}, href);
+        } finally {
+          await page.evaluate(() => {
+            const observation = window.__ux08Close;
+            observation?.dialog.removeEventListener('close', observation.listener);
+            delete window.__ux08Close;
+          });
+        }
+        const identity = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const saved = state.lists[id];
+          return { catalogId: saved.catalogId, count: saved.itemIds.length,
+            href: document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
+        }, savedId);
+        t.check('Preview save preserves the original catalog ID/count and the actual saved native destination',
+          identity.catalogId === actual.id && identity.count === actual.count && identity.href === href,
+          JSON.stringify(identity));
+        await click(page, '#lines-results a[data-key="civil-war-essential"]');
+        await page.waitForFunction((expected) => location.hash === expected, {}, href);
+        t.check('saved Open names the actual reading subject',
+          (await page.title()).includes(actual.name), await page.title());
+        await page.goBack();
+        await page.waitForFunction(() => location.hash.startsWith('#/lines'));
+        t.check('Back returns to the independent Storylines document',
+          await page.$eval('#view-lines', (node) => !node.hidden));
+        const beforeTimeline = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return { itemIds: state.lists[id].itemIds, read: state.read,
+            listOrder: state.listOrder, catalogId: state.lists[id].catalogId };
+        }, savedId);
+        await click(page, '.ri[data-view="browse"]');
+        await page.waitForSelector('#view-browse:not([hidden])');
+        await click(page, '#view-browse [data-category="timeline"]');
+        await page.waitForSelector('#catalog-results .catalog-card');
+        const reused = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const anchor = document.querySelector('#catalog-results a[data-key="civil-war-essential"]');
+          return { href: anchor?.getAttribute('href') ?? null, savedId: state.lists[id]?.id,
+            itemIds: state.lists[id]?.itemIds, read: state.read, listOrder: state.listOrder,
+            catalogId: state.lists[id]?.catalogId,
+            copies: Object.values(state.lists).filter((list) => list.catalogId === 'civil-war-essential').length };
+        }, savedId);
+        t.check('canonical Timeline reuses the exact saved native destination without reimport or progress changes',
+          reused.href === href && reused.savedId === savedId && reused.copies === 1
+            && reused.catalogId === beforeTimeline.catalogId
+            && JSON.stringify(reused.itemIds) === JSON.stringify(beforeTimeline.itemIds)
+            && JSON.stringify(reused.read) === JSON.stringify(beforeTimeline.read)
+            && JSON.stringify(reused.listOrder) === JSON.stringify(beforeTimeline.listOrder),
+          JSON.stringify(reused));
+      } catch (error) {
+        console.error('storylines-discovery-actual-data original failure:', error.message, error.stack);
+        throw error;
+      }
+    },
+  },
+  {
+    id: 'discovery-priorities',
+    title: 'useful discovery leads first-run, scoped results and recoverable catalog failures',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-first-run:not([hidden])');
+      const first = await page.evaluate(() => {
+        const browse = document.querySelector('#btn-home-browse');
+        const add = document.querySelector('#btn-home-add');
+        return { href: browse?.getAttribute('href'), primary: browse?.classList.contains('btn-g') === false,
+          secondary: add?.classList.contains('btn-g') === true };
+      });
+      t.check('first-run Browse is primary and reaches actual Modern Timeline, with Add secondary',
+        first.href === '#/catalog' && first.primary && first.secondary, JSON.stringify(first));
+      await seedFixtureState(page);
+      await open(page, '/?catalog=browser-check#/progress');
+      await page.waitForFunction(() => document.querySelector('#series-progress')?.textContent.trim());
+      const subject = await page.evaluate(() => document.querySelector('#progress-subject')?.textContent.trim() ?? null);
+      t.check('Progress names the active saved list without opening methodology',
+        subject === `Reading List: ${ORDER.name}`, JSON.stringify(subject));
+      await open(page, '/?catalog=browser-check#/library');
+      await page.waitForFunction(() => !document.querySelector('#view-library')?.hidden);
+      const library = await page.evaluate(() => ({
+        order: [...document.querySelector('#view-library').children].map((node) => node.id),
+        historyHidden: document.querySelector('#library-completed')?.hidden,
+      }));
+      t.check('active Library precedes history and empty history is not a leading gateway',
+        library.order.indexOf('library-yours') < library.order.indexOf('library-completed')
+          && library.historyHidden === true, JSON.stringify(library));
+      await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+          format: 'recap-page-list-history', version: 1,
+          records: state.listOrder.map((id) => ({ listId: id, created: state.lists[id].created,
+            catalogId: state.lists[id].catalogId, completedAt: 123456, rating: null })),
+        }));
+      });
+      await page.reload({ waitUntil: 'load' });
+      const complete = await page.evaluate(() => {
+        const browse = document.querySelector('#library-completed-browse');
+        return { present: Boolean(browse), hidden: browse?.hidden, href: browse?.getAttribute('href') };
+      });
+      t.check('known all-completed Library offers a useful native Modern Timeline destination',
+        complete.present && !complete.hidden && complete.href === '#/catalog', JSON.stringify(complete));
+      await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+      await page.reload({ waitUntil: 'load' });
+      const unknown = await page.evaluate(() => ({
+        hidden: document.querySelector('#library-completed-browse')?.hidden,
+        copy: document.querySelector('#library-completed')?.textContent,
+      }));
+      t.check('unknown history keeps its incident guidance without claiming all-completed',
+        unknown.hidden === true && unknown.copy?.includes('unavailable'), JSON.stringify(unknown));
+      await page.evaluate(() => localStorage.removeItem('mrt.list-history.v1'));
+      await open(page, '/?catalog=actual#/age-golden');
+      await page.waitForFunction(() => document.querySelector('#age-golden-results .publishing-empty'));
+      const golden = await page.evaluate(() => ({
+        scope: document.querySelector('#view-age-golden .publishing-scope')?.textContent,
+        alternate: document.querySelector('#age-golden-results a')?.getAttribute('href'),
+      }));
+      t.check('empty Golden Age names beginning-in scope and offers populated alternative periods',
+        golden.scope?.includes('begin in this period') && golden.alternate === '#/marvel-ages',
+        JSON.stringify(golden));
+      await open(page, '/?catalog=actual#/marvel-on-screen');
+      await page.waitForFunction(() => document.querySelector('#marvel-on-screen-results .catalog-card'));
+      const highlights = await page.evaluate(() => [...document.querySelectorAll(
+        '#view-marvel-on-screen .publishing-highlights li',
+      )].map((node) => ({ tag: node.tagName, radius: getComputedStyle(node).borderRadius,
+        controls: node.querySelectorAll('button, input, a').length })));
+      t.check('MCU highlights look informational rather than like actionable facet pills',
+        highlights.length > 0 && highlights.every((entry) => entry.tag === 'LI'
+          && entry.radius === '0px' && entry.controls === 0), JSON.stringify(highlights));
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
+      await page.evaluate(() => {
+        const query = document.querySelector('#catalog-q');
+        query.value = 'no-ux08-guide-matches';
+        query.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelector('#catalog-results')?.textContent.includes('No Reading Lists'));
+      const narrow = await page.evaluate(() => ({
+        setupAbsent: !document.querySelector('#modern-timeline-feature')
+          || document.querySelector('#modern-timeline-feature').hidden,
+        cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+      }));
+      t.check('no-results leads ahead of unrelated earlier-story Setup',
+        narrow.setupAbsent && narrow.cards === 0, JSON.stringify(narrow));
+      for (const health of ['ready', 'down']) {
+        await open(page, `/?local-health=${health}&local-catalog=down#/catalog`);
+        await page.waitForFunction(() => document.querySelector('#catalog-report .notice'));
+        const recovery = await page.evaluate(() => ({
+          actions: [...document.querySelectorAll('#catalog-report .notice button')]
+            .map((node) => node.textContent.trim()),
+          failure: document.querySelector('#catalog-report .notice')?.textContent.trim(),
+          before: window.__mrtCatalogRequests ?? 0,
+        }));
+        const available = recovery.actions.includes('Retry catalog');
+        t.check(`${health} local connection leaves an explicitly actionable catalog Retry`,
+          available, JSON.stringify(recovery));
+        if (!available) continue;
+        await page.evaluate(() => {
+          window.__mrtLocalModes.health = 'ready';
+          window.__mrtLocalModes.catalog = 'ready';
+          [...document.querySelectorAll('#catalog-report .notice button')]
+            .find((node) => node.textContent.trim() === 'Retry catalog').click();
+        });
+        await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
+        t.check(`${health} Retry actually reloads catalog data and withdraws the failure`,
+          await page.evaluate((before) => window.__mrtCatalogRequests > before
+            && !document.querySelector('#catalog-report .notice'), recovery.before));
+      }
+    },
+  },
+);
+
 function tally() {
   const rows = [];
   return {
@@ -16216,7 +16478,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT

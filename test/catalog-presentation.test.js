@@ -40,6 +40,15 @@ const list = {
   updatedAt: '2026-09-07T00:00:00Z',
 };
 
+test('unselected catalog Add and Preview actions are neutral without changing native saved Open identity', () => {
+  const nodes = descendants(presentation.catalogCard({ key: 'spider-man', lists: [list] }, null));
+  const add = nodes.find((candidate) => candidate.dataset?.act === 'import');
+  const preview = nodes.find((candidate) => candidate.tag === 'button' && text(candidate) === 'Preview');
+  assert.equal(add.tag, 'button');
+  assert.ok(add.class.split(' ').includes('btn-g'));
+  assert.ok(preview.class.split(' ').includes('btn-g'));
+});
+
 test('cards expose a concise source link and snapshot without a disclosure', () => {
   const card = presentation.catalogCard({ key: 'spider-man', lists: [list] }, null);
   const nodes = descendants(card);

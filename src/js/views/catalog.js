@@ -15,6 +15,7 @@ import {
   pathPlacements,
   searchCatalog,
   shelfLists,
+  storylinesLists,
   sortSpotlightStories,
   spotlightKindLabel,
   spotlightSortLabel,
@@ -194,13 +195,12 @@ export function createCatalogView({
     const nodes = elements.shelf(key);
     const options = catalogFacets(lists);
     nodes.filters.hidden = !searchable || options.length < 2;
-    if (nodes.filters.hidden) {
+    if (state.facet !== 'all' && lists.length
+      && filterByFacet(lists, state.facet).length === lists.length) {
       state.facet = 'all';
-      return;
+      announceResult('That filter includes every Reading List here. Showing all.', key);
     }
-    if (state.facet !== 'all' && !options.some((candidate) => candidate.key === state.facet)) {
-      state.facet = 'all';
-    }
+    if (nodes.filters.hidden) return;
     const existing = [...nodes.filters.querySelectorAll(`input[name="${key}-category"]`)];
     if (existing.length === options.length
       && existing.every((radio, index) => radio.value === options[index].key)) {
@@ -244,6 +244,7 @@ export function createCatalogView({
     const state = stateByShelf.get(key);
     const nodes = elements.shelf(key);
     nodes.results.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the catalog…' }));
+    presentation.setSetupGuideVisibility?.(key, false);
     clearLoadNotice();
     nodes.clear.hidden = !state.query;
 
@@ -271,13 +272,9 @@ export function createCatalogView({
     if (!current()) return;
 
     if (catalog.dropped) notifyDropped(key, catalog.dropped);
-    if (key === 'catalog') {
-      presentation.ensureSetupGuideFeature(catalog.lists, key, modernTimelineFeaturedCard);
-    }
-
     const mine = key === 'catalog'
       ? modernTimelineLists(catalog.lists)
-      : shelfLists(catalog.lists, key);
+      : key === 'lines' ? storylinesLists(catalog.lists) : shelfLists(catalog.lists, key);
     const canonicalTimelineStories = key === 'catalog' ? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
     if (!mine.length) {
@@ -305,6 +302,11 @@ export function createCatalogView({
       nodes.clear.hidden = true;
     }
     renderFilters(key, mine, searchable);
+    if (key === 'catalog') {
+      presentation.ensureSetupGuideFeature(catalog.lists, key, modernTimelineFeaturedCard, {
+        hidden: state.facet !== 'all' || Boolean(state.query),
+      });
+    }
     if (key === 'spotlights') syncSpotlightControls();
 
     const inSpotlight = key === 'spotlights'

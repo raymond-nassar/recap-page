@@ -193,7 +193,11 @@ test('batch two stays exact through mapping, Markdown, generated data, catalog, 
     assert.equal(inventoryEntry.deliveryStatus, 'shipped');
     assert.equal(inventoryEntry.disposition, 'grouped-variant');
     assert.ok(inventoryEntry.catalogIds.includes(id), `${id} is absent from its inventory parent`);
-    assert.deepEqual(manifestEntry, approved);
+    const { storylines, ...originalFields } = manifestEntry;
+    const eligible = ['planet-hulk', 'annihilation-conquest', 'war-of-kings'].includes(id);
+    assert.equal(storylines === true, eligible, `${id} has unexpected discovery eligibility`);
+    if (!eligible) assert.ok(storylines === undefined || storylines === false);
+    assert.deepEqual(originalFields, approved);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourcePosition'), false);
     assert.equal(Object.hasOwn(manifestEntry, 'coverSourceReference'), false);
     assert.equal(parsed.unresolved.length, 0);

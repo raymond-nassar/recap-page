@@ -1671,6 +1671,9 @@ progress { accent-color: var(--accent); height: 6px; }
 /* 132 rather than 106, for the same reason the catalog cover grew: this is the other place a
    reader is being asked to decide something. */
 .chero-in { display: grid; grid-template-columns: 132px 1fr; gap: var(--space-8); align-items: start; }
+.chero.continue-empty { padding: var(--space-5); }
+.continue-empty .chero-in { grid-template-columns: 1fr; }
+.continue-empty .art, .continue-empty .pbar { display: none; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
 .chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; }
 .chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
@@ -1767,8 +1770,8 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   margin: calc(-1 * var(--space-3)) 0 var(--space-5);
 }
 .publishing-range, .publishing-count, .publishing-highlights li {
-  border: 1px solid var(--line); border-radius: 999px; padding: var(--space-2) var(--space-5);
-  color: var(--muted); font-size: var(--t-caption); background: var(--card-2);
+  border-left: 2px solid var(--line); padding: var(--space-1) var(--space-4);
+  color: var(--muted); font-size: var(--t-caption);
 }
 .publishing-count { color: var(--text); }
 .publishing-highlights {

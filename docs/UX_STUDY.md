@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-100`, `src/js/main.js:2769-2793`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-100`, `src/js/main.js:2795-2819`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1083-1094`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1084-1095`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:753`,
-  `src/styles.css:1881-1883`.
+  `src/styles.css:1884-1886`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:574-579`, `src/js/views/catalog.js:419-448`.
+  so the criterion is met. Evidence: `src/index.html:575-580`, `src/js/views/catalog.js:421-450`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -388,7 +388,7 @@ Rationale: affects every notice in the product, and duplicate speech is disrupti
 blocking
 Confidence: Observed
 Evidence: `src/js/main.js:402-415`, `src/js/main.js:563-590`, `src/index.html:21`,
-`src/index.html:121`, `src/index.html:722`
+`src/index.html:121`, `src/index.html:723`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
 then also calls `announce()`, which writes the same message into the dedicated `#announcer` live
@@ -442,7 +442,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:1881-1883`.
+`src/styles.css:1884-1886`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -725,7 +725,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:753`, `src/styles.css:1881-1883`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:753`, `src/styles.css:1884-1886`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -841,14 +841,14 @@ sentence frames rather than quotations. Nobody said these words.
   lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:847-848`.
 * When I have read half of a long order across several sittings, I want to come back and see where
   I stopped, so I can resume without scrolling to find the boundary. Traced to
-  `src/js/views/progress.js:48-103`.
+  `src/js/views/progress.js:48-107`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
   control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1089-1120`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how
   far through this story I am rather than a total across everything I have ever imported.
-  Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:547-549`.
+  Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:547-550`.
   Resolved: BL-014 scoped the count to the active list and put the choice in the view at
-  `src/index.html:548-552`, with the subtitle naming whichever of the two is being counted.
+  `src/index.html:549-553`, with the subtitle naming whichever of the two is being counted.
 * When I read on my phone beside the reader, I want the list to be the first thing on screen, so I
   can mark an issue read without scrolling past the whole menu. Hypothesis, and the gap behind
   UX-D-001.
@@ -866,7 +866,7 @@ from observing anyone. Every low point cites a finding.
 | Settling into a rhythm | Marks read, returns, marks read again, uses D | Fluent until the shortcut stops responding | UX-D-003, UX-H-001 |
 | Filtering to what is left | Sets the Unread filter, works through the remainder | Efficient, until a reload resets it | UX-I-002 |
 | Reading on a phone | Opens the app beside the reader on a small screen | Frustrated. The list is a full screen away and the page scrolls sideways | UX-D-001, UX-D-002, UX-A-005 |
-| Checking progress | Opens Progress by series to see how far through the crossover they are | Confused. Counts include every other list they ever imported | Existing story 4.2, `src/index.html:547-549` |
+| Checking progress | Opens Progress by series to see how far through the crossover they are | Confused. Counts include every other list they ever imported | Existing story 4.2, `src/index.html:547-550` |
 | Going back | Presses the browser Back button after moving between views | Surprised. Back leaves the application entirely | UX-I-001 |
 | Tidying up | Deletes a list made by mistake | Uneasy. A native dialog, then no way back | UX-H-002, UX-H-003 |
 

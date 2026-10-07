@@ -545,7 +545,8 @@
           <!-- ---------------------------------------- progress view -->
           <section id="view-progress" class="view view-wide" hidden aria-labelledby="progress-h">
             <div class="head"><div class="head-left"><h1 id="progress-h">Progress by series</h1></div></div>
-            <fieldset class="filters" id="progress-scope">
+            <p class="rail-hint" id="progress-subject"></p>
+            <fieldset class="filters" id="progress-scope" aria-describedby="progress-subject">
               <legend class="visually-hidden">Choose what to count</legend>
               <label class="fp"><input type="radio" name="progress-scope" value="list" checked /><span>This list</span></label>
               <label class="fp"><input type="radio" name="progress-scope" value="all" /><span>All lists</span></label>
