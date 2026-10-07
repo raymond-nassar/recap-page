@@ -10,6 +10,19 @@ import { runInNewContext } from 'node:vm';
 const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.meta.url), 'utf8');
 const runner = readFileSync(new URL('../scripts/run-wack.ps1', import.meta.url), 'utf8');
 
+test('native startup text prints with its existing painter and retains normal control behavior', () => {
+  const source = readFileSync(new URL('../packaging/windows/native/Launcher.cpp', import.meta.url), 'utf8');
+  const adapter = source.match(/LRESULT CALLBACK textProcedure\([\s\S]*?\n\}/)?.[0];
+  assert.ok(adapter, 'stock startup labels need an explicit print-client adapter');
+  assert.match(adapter, /if \(message == WM_PRINTCLIENT\) return DefSubclassProc\(window, WM_PAINT, wparam, 0\);/);
+  assert.match(adapter, /if \(message == WM_NCDESTROY\) RemoveWindowSubclass\(window, textProcedure, id\);/);
+  assert.match(adapter, /return DefSubclassProc\(window, message, wparam, lparam\);/);
+  assert.match(source, /for \(const auto control : \{ app->status, app->footer \}\)\s*recap::require\(SetWindowSubclass\(control, textProcedure, 1, 0\),/);
+  const proof = readFileSync(new URL('./native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(proof, /PrintWindow\(window, memory, PW_CLIENTONLY\)/);
+  assert.match(proof, /check\(evidence->footerInk >= 64 && right - left >= 16 && bottom - top >= 4,/);
+});
+
 function topLevelMap(source, key) {
   const lines = source.split(/\r?\n/);
   const start = lines.findIndex((line) => line === `${key}:`);
