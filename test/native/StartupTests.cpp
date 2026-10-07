@@ -103,6 +103,8 @@ const char* failureCode(const std::exception& failure) {
         { "proof GUI thread unavailable", "proof-gui-thread-unavailable" },
         { "proof DPI context unavailable", "proof-dpi-context-unavailable" },
         { "proof DPI context differed", "proof-dpi-context-differed" },
+        { "proof COM apartment query failed", "proof-com-apartment-query-failed" },
+        { "proof COM initialization failed", "proof-com-initialization-failed" },
         { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
         { "F03 pending close lost the startup owner", "n2-pending-owner-lost" },
         { "F01 coordinator created a visible terminal", "n3-visible-coordinator-terminal" },
@@ -3546,6 +3548,7 @@ int wmain(int argc, wchar_t** argv) {
     liveReportPath = reportPath;
     HRESULT com = E_FAIL;
     bool comInitialized = false;
+    bool fixtureComInitialized = false;
     try {
         check(static_cast<bool>(report), "proof report path is required");
         // Hidden, redirected console launches do not initialize a USER thread.
@@ -3556,13 +3559,33 @@ int wmain(int argc, wchar_t** argv) {
         }), "proof DPI context unavailable");
         check(AreDpiAwarenessContextsEqual(GetThreadDpiAwarenessContext(),
               DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2), "proof DPI context differed");
-        com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+        if (options[L"--com-apartment"] == L"sta") {
+            check(options[L"--mode"] == L"dpi-awareness", "proof COM test mode differs");
+            com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+            check(SUCCEEDED(com), "proof COM initialization failed");
+            fixtureComInitialized = true;
+        }
+        APTTYPE apartment{};
+        APTTYPEQUALIFIER qualifier{};
+        const auto apartmentResult = CoGetApartmentType(&apartment, &qualifier);
+        check(apartmentResult == S_OK || apartmentResult == CO_E_NOTINITIALIZED,
+              "proof COM apartment query failed");
+        const auto apartmentModel = apartmentResult == S_OK &&
+            (apartment == APTTYPE_STA || apartment == APTTYPE_MAINSTA)
+            ? COINIT_APARTMENTTHREADED : COINIT_MULTITHREADED;
+        com = observed("com-initialize", [apartmentModel] {
+            return CoInitializeEx(nullptr, apartmentModel);
+        });
         check(SUCCEEDED(com), "proof COM initialization failed");
         comInitialized = true;
         proof::nativeArchitecture(GetCurrentProcess());
         if (options[L"--mode"] == L"dpi-awareness") {
             observed("installed-poll-cases", [] { installedPollCases(); });
             observed("com-uninitialize", [] { CoUninitialize(); });
+            if (fixtureComInitialized) {
+                CoUninitialize();
+                fixtureComInitialized = false;
+            }
             report << "PASS hidden-observer-dpi-awareness\n";
             return 0;
         }
@@ -3704,6 +3727,7 @@ int wmain(int argc, wchar_t** argv) {
             }
         }
         if (comInitialized) observed("com-uninitialize", [] { CoUninitialize(); });
+        if (fixtureComInitialized) CoUninitialize();
         return 1;
     }
 }

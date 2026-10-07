@@ -17,13 +17,16 @@ test('native observer initializes a GUI thread before demanding the exact DPI co
   assert.match(main, /SetThreadDpiAwarenessContext\(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\) != nullptr/);
   assert.match(main, /AreDpiAwarenessContextsEqual\(GetThreadDpiAwarenessContext\(\),\s*DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\)/);
   assert.match(main, /if \(options\[L"--mode"\] == L"dpi-awareness"\) \{\s*observed\("installed-poll-cases", \[\] \{ installedPollCases\(\); \}\);/);
+  assert.match(main, /CoGetApartmentType\(&apartment, &qualifier\)/);
+  assert.match(main, /apartment == APTTYPE_STA \|\| apartment == APTTYPE_MAINSTA/);
+  assert.match(main, /CoInitializeEx\(nullptr, apartmentModel\)/);
   const wrapper = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
   assert.match(wrapper, /\$env:MRT_NATIVE_DPI_PROOF = '1'\s*& node --test/);
   assert.match(wrapper, /finally \{ \$env:MRT_NATIVE_DPI_PROOF = \$previousDpiProof \}/);
   assert.match(wrapper, /& node --test \(Join-Path \$root 'test\\native-dpi-awareness\.test\.js'\)\s*if \(\$LASTEXITCODE -ne 0\) \{ throw/);
 });
 
-test('hidden redirected native observer establishes per-monitor-v2 DPI awareness', {
+test('hidden redirected native observer respects an existing STA and establishes per-monitor-v2 DPI awareness', {
   skip: process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true'
     || process.env.MRT_NATIVE_DPI_PROOF !== '1',
 }, (t) => {
@@ -32,7 +35,9 @@ test('hidden redirected native observer establishes per-monitor-v2 DPI awareness
   const report = join(scratch, 'result.txt');
   const driver = fileURLToPath(new URL(
     `../dist/native-proof/${process.arch}/NativeStartupTests.exe`, import.meta.url));
-  const child = spawnSync(driver, ['--mode', 'dpi-awareness', '--report', report], {
+  const child = spawnSync(driver, [
+    '--mode', 'dpi-awareness', '--com-apartment', 'sta', '--report', report,
+  ], {
     stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true, timeout: 10000,
     encoding: 'utf8', maxBuffer: 65536,
   });
