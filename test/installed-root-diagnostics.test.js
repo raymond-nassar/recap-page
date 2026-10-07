@@ -116,7 +116,9 @@ test('installed poll failures expose fixed operations and numeric errors, never 
   assert.match(native, /void serverVerifierCases\(\) \{\s*installedPollCases\(\);/);
   const cases = native.match(/void installedPollCases\(\) \{([\s\S]*?)^\}/m)?.[1];
   assert.ok(cases);
-  assert.match(cases, /std::current_exception\(\) == original/);
+  assert.doesNotMatch(cases, /std::current_exception|std::make_exception_ptr|std::rethrow_exception/);
+  assert.equal((cases.match(/original = &injected; throw;/g) || []).length, 2);
+  assert.equal((cases.match(/check\(&propagated == original/g) || []).length, 2);
   assert.match(cases, /PRIVATE category/);
   assert.match(cases, /installedPoll\(broken/);
 });

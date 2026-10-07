@@ -16,6 +16,7 @@ test('native observer initializes a GUI thread before demanding the exact DPI co
   assert.match(main, /IsGUIThread\(TRUE\) != FALSE/);
   assert.match(main, /SetThreadDpiAwarenessContext\(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\) != nullptr/);
   assert.match(main, /AreDpiAwarenessContextsEqual\(GetThreadDpiAwarenessContext\(\),\s*DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2\)/);
+  assert.match(main, /if \(options\[L"--mode"\] == L"dpi-awareness"\) \{\s*observed\("installed-poll-cases", \[\] \{ installedPollCases\(\); \}\);/);
   const wrapper = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
   assert.match(wrapper, /\$env:MRT_NATIVE_DPI_PROOF = '1'\s*& node --test/);
   assert.match(wrapper, /finally \{ \$env:MRT_NATIVE_DPI_PROOF = \$previousDpiProof \}/);
@@ -42,6 +43,7 @@ test('hidden redirected native observer establishes per-monitor-v2 DPI awareness
   assert.equal(child.stderr, '');
   assert.match(text, /CHECK EXIT proof-gui-thread/);
   assert.match(text, /CHECK EXIT proof-dpi-awareness/);
+  assert.match(text, /CHECK EXIT installed-poll-cases/);
   assert.match(text, /^PASS hidden-observer-dpi-awareness\r?$/m);
   assert.doesNotMatch(text, /^FAIL /m);
 });

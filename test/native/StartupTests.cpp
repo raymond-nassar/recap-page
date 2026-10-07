@@ -3246,16 +3246,17 @@ void installedPollCases() {
           "pending installed poll changed acceptance");
     const auto verify = [&](const auto& failure, const char* expected) {
         report.str("");
-        const auto original = std::make_exception_ptr(failure);
+        const std::exception* original = nullptr;
         bool caught = false;
         try {
             installedPoll(report, [&](const char*& operation) -> bool {
                 operation = "counts-publish";
-                std::rethrow_exception(original);
+                try { throw failure; }
+                catch (const std::exception& injected) { original = &injected; throw; }
             });
-        } catch (const std::exception&) {
+        } catch (const std::exception& propagated) {
             caught = true;
-            check(std::current_exception() == original, "installed poll replaced the original failure");
+            check(&propagated == original, "installed poll replaced the original failure");
         }
         check(caught, "installed poll swallowed the original failure");
         check(report.str() == expected, "installed poll diagnostic shape differs");
@@ -3280,15 +3281,16 @@ void installedPollCases() {
     std::ostringstream broken;
     broken.setstate(std::ios::badbit);
     broken.exceptions(std::ios::failbit);
-    const auto original = std::make_exception_ptr(ordinary);
+    const std::exception* original = nullptr;
     bool caught = false;
     try {
         installedPoll(broken, [&](const char*&) -> bool {
-            std::rethrow_exception(original);
+            try { throw ordinary; }
+            catch (const std::exception& injected) { original = &injected; throw; }
         });
-    } catch (const std::exception&) {
+    } catch (const std::exception& propagated) {
         caught = true;
-        check(std::current_exception() == original, "diagnostic write failure replaced the original failure");
+        check(&propagated == original, "diagnostic write failure replaced the original failure");
     }
     check(caught, "diagnostic write failure swallowed the original failure");
 }
@@ -3559,6 +3561,7 @@ int wmain(int argc, wchar_t** argv) {
         comInitialized = true;
         proof::nativeArchitecture(GetCurrentProcess());
         if (options[L"--mode"] == L"dpi-awareness") {
+            observed("installed-poll-cases", [] { installedPollCases(); });
             observed("com-uninitialize", [] { CoUninitialize(); });
             report << "PASS hidden-observer-dpi-awareness\n";
             return 0;
