@@ -19620,6 +19620,13 @@ async function ux11Preload(page, fixture) {
       return originalSet.call(this, key, value);
     };
     originalSet.call(localStorage, 'mrt.settings', JSON.stringify(f.settings));
+    if (f.readDenied) {
+      const originalGet = Storage.prototype.getItem;
+      Storage.prototype.getItem = function (key) {
+        if (this === localStorage && key === 'mrt.settings') throw new Error('Synthetic denied settings');
+        return originalGet.call(this, key);
+      };
+    }
     const realTimeout = window.setTimeout.bind(window);
     const realClear = window.clearTimeout.bind(window);
     const clock = new Map();
@@ -19637,7 +19644,7 @@ async function ux11Preload(page, fixture) {
     window.fetch = (input, init) => {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
       if (url.origin === location.origin) return originalFetch(input, init);
-      if (url.href !== 'https://marvel.emreparker.com/v1/issues/900002') {
+      if (url.href !== (f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002')) {
         throw new Error(`Unexpected synthetic metadata request ${url.href}`);
       }
       state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept,
@@ -19712,6 +19719,9 @@ async function runReaderLauncherFeedback(page, t) {
     { id: 'L13', mode: 'timeout', query: 'i=900002', state: 'timeout', intended: canonical },
     { id: 'L14', state: 'lookup-unavailable', intended: slug, apiBase: 'ftp://127.0.0.1/v1' },
     { id: 'L15', mode: 'hold', state: 'resolved', intended: book, reduce: true },
+    { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
+    { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
+      apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
   ];
   const rawState = {};
   let useTap = false;
@@ -19780,10 +19790,11 @@ async function runReaderLauncherFeedback(page, t) {
         await page.waitForFunction(() => window.__ux11.calls.length === 1, { timeout: 2000 });
         snapshot = await ux11Snapshot(page);
         measurePresentation(snapshot, 'pending');
-        ux11Receipt(page, t, `${f.id}:pending-request`, { url: 'https://marvel.emreparker.com/v1/issues/900002',
+        const expectedLookup = f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002';
+        ux11Receipt(page, t, `${f.id}:pending-request`, { url: expectedLookup,
           accept: 'application/json', cache: 'no-store', delay: 8000, fallback: f.query === 'i=900002' ? canonical : slug },
         snapshot, { count: snapshot.fixture.calls.length === 1,
-          exactUrl: snapshot.fixture.calls[0].url === 'https://marvel.emreparker.com/v1/issues/900002',
+          exactUrl: snapshot.fixture.calls[0].url === expectedLookup,
           accept: snapshot.fixture.calls[0].accept === 'application/json', cache: snapshot.fixture.calls[0].cache === 'no-store',
           signal: snapshot.fixture.calls[0].signal, abortDelay: snapshot.fixture.timers[0]?.delay === 8000,
           fallback: snapshot.fallback.href === (f.query === 'i=900002' ? canonical : slug),
@@ -19807,6 +19818,17 @@ async function runReaderLauncherFeedback(page, t) {
         }
         if (!page.__ux11Visit.requests.length) throw new Error(`${f.id} qualified native request absent at deadline`);
         snapshot = await ux11Snapshot(page);
+        if (['L16', 'L17'].includes(f.id)) {
+          const message = f.id === 'L16'
+            ? 'Saved display settings could not be read. Using the system theme.'
+            : 'Saved theme is not recognized. Using the system theme.';
+          ux11Receipt(page, t, `${f.id}:settings-policy`, { message, visible: true, theme: null,
+            scheme: 'light', background: 'rgb(250, 250, 255)', raw: rawState.raw, writes: 0 }, snapshot,
+          { exactMessage: snapshot.settings.text === message, visible: snapshot.settings.visible,
+            systemAttribute: snapshot.theme === null, systemScheme: snapshot.scheme === 'light',
+            systemPaint: snapshot.paints[0] === 'rgb(250, 250, 255)', rawBytes: snapshot.raw === rawState.raw,
+            noWrites: snapshot.fixture.writes.length === 0 });
+        }
         const tap = useTap ? taps.findLast((item) => item.nonce === nonce) : null;
         if (useTap && !tap) throw new Error(`${f.id} alternate pre-navigation receipt absent`);
         measurePresentation(snapshot, f.state);

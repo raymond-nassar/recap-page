@@ -113,6 +113,8 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
   const navigations = [];
   const requests = [];
   const timers = [];
+  const settingsReads = [];
+  const writes = [];
   const markup = readFileSync(new URL('../src/open.html', import.meta.url), 'utf8');
   const node = () => ({
     textContent: '', href: '', hidden: false, attrs: {},
@@ -142,8 +144,9 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
     window: host,
     location: mockLocation,
     document: doc,
-    localStorage: { getItem() { if (readError) throw new Error('Synthetic denied settings'); return settings; },
-      setItem() { assert.fail('Launcher must not write settings'); }, removeItem() { assert.fail('Launcher must not remove settings'); } },
+    localStorage: { getItem(key) { settingsReads.push({ key, denied: readError }); if (readError) throw new Error('Synthetic denied settings'); return settings; },
+      setItem(key) { writes.push(key); assert.fail('Launcher must not write settings'); },
+      removeItem(key) { writes.push(key); assert.fail('Launcher must not remove settings'); } },
     fetch: (...args) => { requests.push(args); return fetchImpl(...args); },
     setTimeout: (fn, delay) => { const timer = { fn, delay }; timers.push(timer); return timer; },
     clearTimeout: (timer) => { timer.cleared = true; },
@@ -151,7 +154,7 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
   try {
     await import(`../src/open.js?fixture=${++desktopCase}`);
     await new Promise(setImmediate);
-    if (exercise) await exercise({ nodes, root, meta, doc, navigations, requests, timers, host });
+    if (exercise) await exercise({ nodes, root, meta, doc, navigations, requests, timers, host, settingsReads, writes });
     return { nodes, navigations, requests, timers, fireFallback() {
       const saved = Object.getOwnPropertyDescriptor(globalThis, 'location');
       globalThis.location = mockLocation;
@@ -240,6 +243,49 @@ test('launcher settled no-link and failure reasons retain exact safe fallback an
             Boolean(nodes['settings-status'] && !nodes['settings-status'].hidden && nodes['settings-status'].textContent));
         }
       } });
+  }
+  for (const denied of [true, false]) {
+    const kind = denied ? 'read-denied-valid-issue' : 'unknown-theme-valid-issue';
+    let release;
+    await desktopLauncher(`?i=900002&u=${encodeURIComponent(ux11Page)}`,
+      () => new Promise((resolve) => { release = resolve; }), {
+        readError: denied, settings: '{"theme":"unexpected","apiBase":"https://ux11-api.invalid/v1"}',
+        exercise: async ({ doc, root, meta, nodes, requests, timers, navigations, settingsReads, writes }) => {
+          const measure = (name, expected, actual) => launcherMeasure(rows, `${kind} ${name}`, expected, actual);
+          measure('settings read', [{ key: 'mrt.settings', denied }], settingsReads);
+          measure('system attribute', null, root.attrs['data-theme'] ?? null);
+          measure('system meta', 'dark light', meta.attrs.content);
+          measure('exact limitation', denied
+            ? 'Saved display settings could not be read. Using the system theme.'
+            : 'Saved theme is not recognized. Using the system theme.', nodes['settings-status'].textContent);
+          measure('limitation visible', false, nodes['settings-status'].hidden);
+          if (denied) {
+            measure('state', 'lookup-unavailable', root.attrs['data-state']);
+            measure('title', 'Reader lookup unavailable - Recap Page', doc.title);
+            measure('requests', [], requests);
+            measure('timers', [], timers);
+            measure('immediate destination', [ux11Page], navigations);
+            measure('fallback', ux11Page, nodes.fallback.href);
+          } else {
+            measure('pending state', 'pending', root.attrs['data-state']);
+            measure('pending title', 'Looking up reader link - Recap Page', doc.title);
+            measure('configured request', 'https://ux11-api.invalid/v1/issues/900002', requests[0]?.[0]);
+            measure('request count', 1, requests.length);
+            measure('cache', 'no-store', requests[0]?.[1].cache);
+            measure('accept', 'application/json', requests[0]?.[1].headers.accept);
+            measure('abort signal', true, requests[0]?.[1].signal instanceof AbortSignal);
+            measure('abort deadline', [8000], timers.map((timer) => timer.delay));
+            measure('no early navigation', [], navigations);
+            if (release) release({ ok: true, json: async () => ({ digitalId: 700002 }) });
+            await new Promise(setImmediate);
+            measure('resolved state', 'resolved', root.attrs['data-state']);
+            measure('reader destination', ['https://read.marvel.com/#/book/700002'], navigations);
+            measure('only cleared abort', [{ delay: 8000, cleared: true }],
+              timers.map(({ delay, cleared }) => ({ delay, cleared: cleared === true })));
+          }
+          measure('no writes', [], writes);
+        },
+      });
   }
   launcherResult(rows);
 });
