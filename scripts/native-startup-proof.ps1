@@ -19,6 +19,12 @@ if ($DiagnosticTarget -ne 'console-wack' -and -not $Diagnostic) { throw 'A focus
 $root = Split-Path -Parent $PSScriptRoot
 & node (Join-Path $root 'scripts\lib\native-launcher.mjs') --verify --proof
 if ($LASTEXITCODE -ne 0) { throw 'Native proof inputs did not validate.' }
+$previousDpiProof = $env:MRT_NATIVE_DPI_PROOF
+try {
+  $env:MRT_NATIVE_DPI_PROOF = '1'
+  & node --test (Join-Path $root 'test\native-dpi-awareness.test.js')
+  if ($LASTEXITCODE -ne 0) { throw 'The hidden native observer DPI regression failed.' }
+} finally { $env:MRT_NATIVE_DPI_PROOF = $previousDpiProof }
 $proofRecord = Get-Content -LiteralPath (Join-Path $root 'dist\native-proof\build.json') -Raw | ConvertFrom-Json
 $scratch = Join-Path $env:RUNNER_TEMP "recap-native-proof-$Architecture-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
 if (Test-Path -LiteralPath $scratch) { throw 'The native proof scratch directory already exists.' }
