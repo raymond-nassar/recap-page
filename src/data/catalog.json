@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T03:22:22.493Z",
+  "generatedAt": "2026-10-07T13:27:16.994Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3103,6 +3103,50 @@
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-07T03:22:22.493Z"
+    },
+    {
+      "id": "mcu-prep-guardians-of-the-galaxy",
+      "file": "mcu_prep_guardians_of_the_galaxy.json",
+      "name": "MCU Prep: Guardians of the Galaxy",
+      "description": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 4,
+      "characters": [
+        "Guardians of the Galaxy",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot"
+      ],
+      "keywords": [
+        "Guardians of the Galaxy",
+        "Annihilation: Conquest",
+        "Legacy",
+        "A Chasing Tale",
+        "Then It's Us",
+        "Dan Abnett",
+        "Andy Lanning",
+        "Keith Giffen",
+        "Skottie Young",
+        "Al Ewing"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 21268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/517ad3738f6a1",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/700",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-07T13:27:16.994Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

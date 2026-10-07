@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-guardians-of-the-galaxy",
+  "name": "MCU Prep: Guardians of the Galaxy",
+  "description": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/700",
+  "groups": [
+    "Annihilation: Conquest (formation-focused owner compilation)",
+    "Guardians of the Galaxy Vol. 1: Legacy",
+    "Rocket Raccoon Vol. 1: A Chasing Tale",
+    "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+  ],
+  "rows": [
+    [
+      1,
+      15891,
+      "ANNIHILATION: CONQUEST PROLOGUE 1 (2007) #1",
+      0
+    ],
+    [
+      2,
+      16009,
+      "Annihilation: Conquest - Starlord (2007) #1",
+      0
+    ],
+    [
+      3,
+      16191,
+      "Annihilation: Conquest - Starlord (2007) #2",
+      0
+    ],
+    [
+      4,
+      16598,
+      "Annihilation: Conquest - Starlord (2007) #3",
+      0
+    ],
+    [
+      5,
+      16599,
+      "Annihilation: Conquest - Starlord (2007) #4",
+      0
+    ],
+    [
+      6,
+      17271,
+      "Annihilation: Conquest (2007) #1",
+      0
+    ],
+    [
+      7,
+      17405,
+      "Annihilation: Conquest (2007) #2",
+      0
+    ],
+    [
+      8,
+      17645,
+      "Annihilation: Conquest (2007) #3",
+      0
+    ],
+    [
+      9,
+      20686,
+      "Annihilation: Conquest (2007) #4",
+      0
+    ],
+    [
+      10,
+      20885,
+      "Annihilation: Conquest (2007) #5",
+      0
+    ],
+    [
+      11,
+      21016,
+      "Annihilation: Conquest (2007) #6",
+      0
+    ],
+    [
+      12,
+      21268,
+      "Guardians of the Galaxy (2008) #1",
+      1
+    ],
+    [
+      13,
+      21412,
+      "Guardians of the Galaxy (2008) #2",
+      1
+    ],
+    [
+      14,
+      21586,
+      "Guardians of the Galaxy (2008) #3",
+      1
+    ],
+    [
+      15,
+      21783,
+      "Guardians of the Galaxy (2008) #4",
+      1
+    ],
+    [
+      16,
+      22025,
+      "Guardians of the Galaxy (2008) #5",
+      1
+    ],
+    [
+      17,
+      22352,
+      "Guardians of the Galaxy (2008) #6",
+      1
+    ],
+    [
+      18,
+      50221,
+      "Rocket Raccoon (2014) #1",
+      2
+    ],
+    [
+      19,
+      50223,
+      "Rocket Raccoon (2014) #2",
+      2
+    ],
+    [
+      20,
+      50224,
+      "Rocket Raccoon (2014) #3",
+      2
+    ],
+    [
+      21,
+      50225,
+      "Rocket Raccoon (2014) #4",
+      2
+    ],
+    [
+      22,
+      50788,
+      "Rocket Raccoon (2014) #5",
+      2
+    ],
+    [
+      23,
+      51150,
+      "Rocket Raccoon (2014) #6",
+      2
+    ],
+    [
+      24,
+      78683,
+      "Guardians of the Galaxy (2020) #1",
+      3
+    ],
+    [
+      25,
+      78684,
+      "Guardians of the Galaxy (2020) #2",
+      3
+    ],
+    [
+      26,
+      78685,
+      "Guardians of the Galaxy (2020) #3",
+      3
+    ],
+    [
+      27,
+      78686,
+      "Guardians of the Galaxy (2020) #4",
+      3
+    ],
+    [
+      28,
+      78687,
+      "Guardians of the Galaxy (2020) #5",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 28,
+    "sourceIdentityCount": 28,
+    "includedIssueCount": 28,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "853fccb4ba0e1eb3d1e0845fc0c404307aa95c084b940f7a53b845c43ae2e175",
+  "proposalDigest": "40747f909b884fb393a714cfc2099bfd293d8c10e0674b973879fd23cf7837d6",
+  "approvalDigest": "aa5470bc385aa6261b4d940ae9eb9b26d628c056d7166e91b18924ac35e7692c",
+  "insertionAnchor": {
+    "beforeId": "agents-of-atlas-reading-order"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-guardians-of-the-galaxy.json",
+    "scripts/data/owner-packets/mcu-prep-guardians-of-the-galaxy.json",
+    "scripts/data/owner-mappings/mcu-prep-guardians-of-the-galaxy.json",
+    "scripts/data/owner-overlaps/mcu-prep-guardians-of-the-galaxy.json"
+  ],
+  "vectorSha256": "46ce28e9a41a3dd2b7a9eafbee240e5ac14b50e05becd6586963b387cee55760"
+}

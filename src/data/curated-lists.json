@@ -2556,6 +2556,43 @@
       "coverIssueId": 17623
     },
     {
+      "id": "mcu-prep-guardians-of-the-galaxy",
+      "name": "MCU Prep: Guardians of the Galaxy",
+      "description": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-guardians-of-the-galaxy.md",
+      "out": "mcu_prep_guardians_of_the_galaxy.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/700",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Guardians of the Galaxy",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot"
+      ],
+      "keywords": [
+        "Guardians of the Galaxy",
+        "Annihilation: Conquest",
+        "Legacy",
+        "A Chasing Tale",
+        "Then It's Us",
+        "Dan Abnett",
+        "Andy Lanning",
+        "Keith Giffen",
+        "Skottie Young",
+        "Al Ewing"
+      ],
+      "coverIssueId": 21268,
+      "expect": 28
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
