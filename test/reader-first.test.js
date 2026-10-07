@@ -63,7 +63,7 @@ test('comic details put Read before artwork and technical help, with a separate 
 test('a completed list has a Browse action without replacing deferred continuation', () => {
   const reading = view('read');
   const completed = reading.slice(reading.indexOf('<div id="all-read"'), reading.indexOf('<section id="all-deferred"'));
-  assert.match(completed, /data-view="browse">Browse Reading Lists<\/button>/);
+  assert.match(completed, /<a href="#\/browse" class="btn" data-view="browse">Browse Reading Lists<\/a>/);
   assert.doesNotMatch(completed, /id="btn-review-deferred"/);
   assert.match(reading, /id="all-deferred"[\s\S]*?id="btn-review-deferred">Review deferred/);
 });

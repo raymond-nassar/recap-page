@@ -1,6 +1,7 @@
 import { uiIcon } from '../lib/uiIcon.js';
 import { isLaunchable } from '../reader.js';
 import { deferredCount } from '../lib/model.js';
+import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -48,7 +49,11 @@ export function createHomeView({
       const issue = upNext(getState(), getActiveListId());
       if (issue) onRead(issue, event, 'saved');
     });
-    nodes.continueOpen.addEventListener('click', onOpen);
+    nodes.continueOpen.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event?.preventDefault();
+      onOpen();
+    });
     nodes.continueReview.addEventListener('click', onReview);
     nodes.continueDeferred.addEventListener('click', onReviewDeferred);
   }
@@ -71,17 +76,25 @@ export function createHomeView({
         text: 'Browse curated Reading Lists. Add individual issues or your own list.',
       }),
       el('div', { class: 'cta home-start-actions' }, [
-        el('button', {
-          type: 'button',
+        el('a', {
+          href: formatRoute({ view: 'browse' }),
           class: 'btn btn-g',
           id: 'btn-home-browse',
-          onclick: () => onNavigateHub('browse'),
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            onNavigateHub('browse');
+          },
         }, 'Browse Reading Lists'),
-        el('button', {
-          type: 'button',
+        el('a', {
+          href: formatRoute({ view: 'add' }),
           class: 'btn',
           id: 'btn-home-add',
-          onclick: () => onNavigateHub('add'),
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            onNavigateHub('add');
+          },
         }, 'Add comics'),
       ]),
     ]);
@@ -93,6 +106,7 @@ export function createHomeView({
     const nodes = elements();
     const id = getActiveListId();
     const list = getState().lists[id];
+    nodes.continueOpen.setAttribute('href', formatRoute({ view: 'read', listId: id }));
     nodes.continueSection.hidden = !populated || !list;
     if (nodes.continueSection.hidden) {
       nodes.continueHeading.textContent = CONTINUE_NO_LIST;
@@ -162,12 +176,16 @@ export function createHomeView({
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;
-    return el('li', {}, el('button', {
-      type: 'button',
+    return el('li', {}, el('a', {
+      href: formatRoute({ view: category.route }),
       class: `home-path home-path-${category.tier}`,
       'aria-label': `${category.heading}. ${category.label}. ${count}.`,
       dataset: { category: category.key },
-      onclick: () => onNavigateCategory(category),
+      onclick: (event) => {
+        if (!isPlainNavigation(event)) return;
+        event?.preventDefault();
+        onNavigateCategory(category);
+      },
     }, [
       createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
       el('span', { class: 'home-path-copy' }, [

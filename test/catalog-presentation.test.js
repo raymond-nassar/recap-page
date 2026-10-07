@@ -95,3 +95,23 @@ test('missing or unsafe source links retain credit without becoming clickable', 
   assert.equal(text(presentation.attributionLine({ updatedAt: list.updatedAt })),
     `Snapshot taken ${updatedLabel(list)}`);
 });
+
+test('saved catalog Open is a native actual-list destination while Add and Preview remain commands', () => {
+  let opened = 0;
+  const saved = { id: 'actual/list', name: 'Saved name' };
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => saved, paintCoverUrl: () => {},
+    shortTitle: (title) => title, onOpen: () => { opened += 1; },
+  });
+  const nodes = descendants(shared.catalogCard({ key: 'spider-man', lists: [list] }, null));
+  const open = nodes.find((node) => node.href === '#/read/actual%2Flist');
+  assert.equal(open.tag, 'a');
+  assert.equal(open.href, '#/read/actual%2Flist');
+  open.onclick({ button: 0, metaKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.equal(opened, 0);
+  open.onclick({ button: 0, preventDefault() {} });
+  assert.equal(opened, 1);
+  assert.equal(nodes.find((node) => text(node) === 'Preview').tag, 'button');
+  const unsaved = descendants(presentation.catalogCard({ key: 'spider-man', lists: [list] }, null));
+  assert.equal(unsaved.find((node) => node.dataset?.act === 'import').tag, 'button');
+});

@@ -109,9 +109,11 @@ export const ownerNoWayHomeActualData = {
       await page.waitForFunction((key, length) => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const list = Object.values(state?.lists ?? {}).find((entry) => entry.catalogId === key);
-        const button = document.querySelector('#preview-add [data-act="main"]');
-        return list?.itemIds.length === length && button?.dataset.key === key && !button.disabled
-          && /In library|Open/.test(button.textContent);
+        const open = document.querySelector('#preview-add a[data-act="main"]');
+        return list?.itemIds.length === length && state.lists[list.id] === list
+          && open?.dataset.key === key
+          && open.getAttribute('href') === `#/read/${encodeURIComponent(list.id)}`
+          && /In library|Open/.test(open.textContent);
       }, {}, catalogId, count);
     };
     const preview = async (catalogId, wanted, width) => {
@@ -207,11 +209,12 @@ export const ownerNoWayHomeActualData = {
     for (const width of [1280, 360]) {
       await page.setViewport({ width, height: 900 });
       await goto('library');
-      await page.waitForSelector('#library-yours-list button');
-      const library = await page.$$eval('#library-yours-list button', (nodes) =>
-        nodes.map((node) => node.textContent.trim()));
+      await page.waitForSelector('#library-yours-list a[href="#/read/retired-import"]');
+      const library = await page.$$eval('#library-yours-list a[href^="#/read/"]', (nodes) =>
+        nodes.map((node) => ({ name: node.textContent.trim(), href: node.getAttribute('href') })));
       t.check(`${width}px Library still offers the previously imported retired guide`,
-        library.some((name) => name.includes(payload.name)), JSON.stringify(library));
+        library.some((entry) => entry.name.includes(payload.name) && entry.href === '#/read/retired-import'),
+        JSON.stringify(library));
       await goto('read/retired-import?full=1&filter=all');
       await page.waitForFunction((name) => !document.querySelector('#view-read')?.hidden
         && document.querySelector('#order-name')?.textContent.trim() === name

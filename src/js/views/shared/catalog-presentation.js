@@ -1,4 +1,5 @@
 import { labelledName } from '../../lib/accname.js';
+import { formatRoute, isPlainNavigation } from '../../lib/route.js';
 import {
   catalogCoverUrl,
   catalogGapLabels,
@@ -45,6 +46,7 @@ function stopLink(stop, surface, {
     href: hrefForStop(stop),
     'aria-label': label,
     onclick: (event) => {
+      if (!isPlainNavigation(event)) return;
       event.preventDefault();
       onGoToStop(stop);
     },
@@ -112,12 +114,16 @@ export function createCatalogPresentation({
     const saved = isInLibrary(list.id);
     if (saved) {
       const text = 'Open →';
-      return el('button', {
+      return el('a', {
         class: 'btn',
-        type: 'button',
+        href: formatRoute({ view: 'read', listId: saved.id }),
         'aria-label': labelledName(text, list.name),
         dataset: { key: list.id, act: 'open' },
-        onclick: () => onOpen(list, saved, reportTarget),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event?.preventDefault();
+          onOpen(list, saved, reportTarget);
+        },
       }, text);
     }
     return el('button', {

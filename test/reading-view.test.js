@@ -240,7 +240,7 @@ function harness(overrides = {}) {
   const notices = new Map();
   const nodes = {
     readingFilters: node({ id: 'reading-filters', tag: 'fieldset' }),
-    saveEducationSettings: node({ id: 'save-education-settings', tag: 'button' }),
+    saveEducationSettings: node({ id: 'save-education-settings', tag: 'a', href: '#/data' }),
     fullSummary: node({ tag: 'summary' }),
     fullAction: node({ id: 'full-action' }),
     fullCount: node({ id: 'full-count' }),
@@ -742,6 +742,8 @@ test('453 reader presentation invalidates memoized buttons without changing stor
 
 test('wire and render build reading controls and call launch inside the same gesture turn', () => {
   const h = harness();
+  const originalWindow = globalThis.window;
+  const originalStyle = globalThis.getComputedStyle;
   try {
     h.view.wire();
     h.view.render();
@@ -758,7 +760,11 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.calls.launch.length, 1, 'launch must happen during the click, not after a later tick');
     assert.equal(h.calls.launch[0][0].title, 'Issue Two');
 
-    h.nodes.saveEducationSettings.fire('click');
+    let navigationPrevented = false;
+    h.nodes.saveEducationSettings.fire('click', {
+      button: 0, preventDefault() { navigationPrevented = true; },
+    });
+    assert.equal(navigationPrevented, true);
     assert.deepEqual(h.calls.showView.at(-1), { name: 'data', opts: { push: true } });
     h.nodes.btnHydrate.fire('click');
     h.nodes.btnSynopsis.fire('click');
@@ -766,7 +772,51 @@ test('wire and render build reading controls and call launch inside the same ges
     h.nodes.btnCancelSynopsis.fire('click');
     assert.deepEqual(h.calls.hydrate, ['list-a', 'cancel']);
     assert.deepEqual(h.calls.synopsis, ['start', 'cancel']);
+    let toggle;
+    walk(h.nodes.rows, (control) => { if (!toggle && control.dataset?.act === 'more') toggle = control; });
+    assert.ok(toggle);
+    const actions = toggle.parentNode;
+    const scrolls = [];
+    globalThis.window = { innerHeight: 900, scrollBy: (options) => scrolls.push(options) };
+    let outline = 5;
+    globalThis.getComputedStyle = () => ({ outlineWidth: `${outline - 2}px`, outlineOffset: '2px' });
+    toggle.getBoundingClientRect = () => ({ left: 42, right: 278, top: 120.125, bottom: 164.125 });
+    const filters = h.nodes.readingFilters;
+    let bounds = { left: 17, right: 303, top: 0, bottom: 133.171875 };
+    filters.getBoundingClientRect = () => bounds;
+    const before = JSON.stringify(h.state());
+    const announcements = h.calls.announce.length;
+    const launches = h.calls.launch.length;
+    for (const config of [
+      { bottom: 133.171875, outline: 5, delta: 115.125 - 133.171875 },
+      { bottom: 280.5, outline: 9, delta: 111.125 - 280.5 },
+      { bottom: 280.5, hidden: true },
+      { bottom: 90 },
+      { bottom: 280.5, left: 290 },
+    ]) {
+      outline = config.outline ?? 5;
+      bounds = { left: config.left ?? 17, right: 303, top: 0, bottom: config.bottom };
+      filters.hidden = config.hidden ?? false;
+      toggle.fire('click');
+      assert.equal(actions.classList.contains('is-open'), true);
+      let prevented = false;
+      const count = scrolls.length;
+      actions.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+      assert.equal(prevented, true);
+      assert.equal(globalThis.document.activeElement, toggle, 'Escape retains the exact More toggle');
+      assert.equal(actions.classList.contains('is-open'), false);
+      assert.deepEqual(toggle.scrolled, { block: 'nearest' }, 'nearest reveal retains bottom clearance');
+      assert.deepEqual(scrolls.slice(count), config.delta === undefined ? []
+        : [{ top: config.delta, left: 0, behavior: 'instant' }]);
+    }
+    assert.equal(JSON.stringify(h.state()), before);
+    assert.equal(h.calls.announce.length, announcements);
+    assert.equal(h.calls.launch.length, launches);
   } finally {
+    if (originalWindow === undefined) delete globalThis.window;
+    else globalThis.window = originalWindow;
+    if (originalStyle === undefined) delete globalThis.getComputedStyle;
+    else globalThis.getComputedStyle = originalStyle;
     h.restore();
   }
 });

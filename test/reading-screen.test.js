@@ -22,6 +22,19 @@ const css = read('src/styles.css');
 const main = read('src/js/main.js');
 const reading = read('src/js/views/reading.js');
 
+test('mobile navigation reserves measured content space and cannot cover active forms or dialogs', () => {
+  assert.match(html, /<a href="#\/data"[^>]*id="save-education-settings"/);
+  assert.match(reading, /isPlainNavigation\(event\)[\s\S]*showView\('data', \{ push: true \}\)/);
+  assert.match(css, /main \{ padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
+  assert.match(css, /scroll-padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
+  assert.match(css, /env\(safe-area-inset-bottom\)/);
+  assert.match(css, /body:has\(dialog\[open\]\) \.rail-header \{ visibility: hidden; \}/);
+  assert.match(main, /new ResizeObserver/);
+  assert.match(main, /visualViewport\.height < window\.innerHeight \* 0\.75/);
+  assert.match(main, /hide \|\| editable\(\) \|\| obscuredViewport\(\)/);
+  assert.doesNotMatch(main.slice(main.indexOf('function wireMobileNavigation'), main.indexOf('let tooltips;')),
+    /localStorage|store\.update|history\./);
+});
 test('the reading view opts out of the prose measure, so a desktop is used rather than margined', () => {
   // BL-165 capped every view at the reading measure and gave home an opt-out because a catalog is a
   // grid. The reading view is the same kind of surface and was measured at 876px on a 2560 display
@@ -115,6 +128,9 @@ test('narrow reading rows use a labeled disclosure instead of unexplained symbol
   assert.match(reading, /'aria-controls': panelId/);
   assert.match(reading, /'aria-label': `More actions for \$\{item\.title\}`/);
   assert.match(reading, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
+  assert.match(reading, /setOpen\(false\);\s*focusRemovalTarget\(toggle, \{ avoidFilters: true \}\)/);
+  assert.match(reading, /filters\.getBoundingClientRect\(\)/);
+  assert.match(reading, /top: top - filterBounds\.bottom, left: 0, behavior: 'instant'/);
   for (const label of ['Move up', 'Move down', 'Remove from list']) {
     assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
   }

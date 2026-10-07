@@ -839,8 +839,8 @@ const MUTATIONS = [
     breaks: 'library-view-extraction',
     why: 'the shared presenter opens the first saved list instead of the tile that was pressed',
     rewriteSavedLists: (source) => source.replace(
-      'onclick: () => openList(id),',
-      'onclick: () => openList(state.listOrder[0]),',
+      '          openList(id);',
+      '          openList(state.listOrder[0]);',
     ),
   },
   {
@@ -848,8 +848,8 @@ const MUTATIONS = [
     breaks: 'library-view-extraction',
     why: 'Everything read invents saved-list context for an issue-wide result',
     rewriteLibrary: (source) => source.replace(
-      "surface: 'everything-read',",
-      "surface: 'everything-read', context: { kind: 'list', id: 'first' },",
+      "surface: view.value === 'library-read' ? 'everything-read' : 'added-by-hand',",
+      "surface: view.value === 'library-read' ? 'everything-read' : 'added-by-hand', context: { kind: 'list', id: 'first' },",
     ),
   },
   {
@@ -1910,7 +1910,12 @@ const SCENARIOS = [
           t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
             const node = document.querySelector(hasLists ? '#home-continue' : '#home-first-run');
             return !document.querySelector('#home-updates').open && !node.hidden
-              && [...node.querySelectorAll('button')].some((button) => button.getClientRects().length);
+              && (hasLists
+                ? [...node.querySelectorAll('button')].some((button) => button.getClientRects().length)
+                : ['#btn-home-browse', '#btn-home-add'].every((selector) => {
+                  const target = node.querySelector(selector);
+                  return target?.matches('a[href]') && target.getClientRects().length;
+                }));
           }, populated));
           await openAllHomeUpdates(page, t, label);
           const layout = await page.evaluate(() => {
@@ -3666,7 +3671,7 @@ const SCENARIOS = [
         hash: location.hash,
         sameState: localStorage.getItem('mrt.state.v2') === state,
         focus: document.activeElement?.id,
-        action: document.querySelector(`${selector} button`)?.dataset.act,
+        action: document.querySelector(`${selector} a[data-act="open"]`)?.dataset.act,
       }), savedState, cardSelector);
       t.check('browser Back restores MCU Prep, its card, focus, and saved state',
         returned.sameState && returned.hash.startsWith('#/marvel-on-screen/')
@@ -4909,7 +4914,7 @@ const SCENARIOS = [
         question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
         distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
         recommendation: !!document.querySelector('#home-recommended'),
-        startActions: [...document.querySelectorAll('#home-first-run button')]
+        startActions: [...document.querySelectorAll('#home-first-run a')]
           .map((button) => button.textContent.trim()),
       }));
       t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
@@ -4949,7 +4954,7 @@ const SCENARIOS = [
       await page.focus('#btn-home-browse');
       await page.keyboard.press('Tab');
       await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden
-        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'Navigation',
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'More',
       { timeout: 3000 });
       t.check('keyboard focus reaches the named Add action with a visible indicator',
         await page.$eval('#btn-home-add', (button) => button === document.activeElement
@@ -4981,12 +4986,12 @@ const SCENARIOS = [
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
       const enlarged = await page.evaluate(() => {
         const region = document.querySelector('#home-first-run');
-        const controls = [...region.querySelectorAll('button')];
+        const controls = [...region.querySelectorAll('#btn-home-browse, #btn-home-add')];
         return {
           rootFont: getComputedStyle(document.documentElement).fontSize,
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
           regionOverflow: region.scrollWidth > region.clientWidth,
-          controlsInViewport: controls.every((node) => {
+          controlsInViewport: controls.length === 2 && controls.every((node) => {
             const rect = node.getBoundingClientRect();
             return rect.width > 0 && rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
           }),
@@ -5029,7 +5034,7 @@ const SCENARIOS = [
       const narrow = await page.evaluate(() => {
         const region = document.querySelector('#home-first-run');
         const regionRect = region.getBoundingClientRect();
-        const controls = [...document.querySelectorAll('#home-first-run button')].map(
+        const controls = [...document.querySelectorAll('#home-first-run a')].map(
           (button) => button.getBoundingClientRect(),
         );
         return {
@@ -5049,7 +5054,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 1280, height: 900 });
       t.check('first-run actions stay 44 pixels high and unclipped at desktop width',
         await page.evaluate(() => {
-          const controls = [...document.querySelectorAll('#home-first-run button')];
+          const controls = [...document.querySelectorAll('#home-first-run a')];
           return controls.length === 2 && document.documentElement.scrollWidth <= innerWidth
             && controls.every((button) => {
               const rect = button.getBoundingClientRect();
@@ -5479,8 +5484,32 @@ const SCENARIOS = [
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return Object.values(state.lists).find((list) => list.catalogId === id)?.itemIds.length ?? 0;
         }, representative.id);
-        await click(page, '#preview-close');
-        await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+        const savedId = await page.evaluate((id) => {
+          const dialog = document.querySelector('#preview');
+          const observation = { delivered: false, dialog };
+          observation.listener = () => { observation.delivered = true; };
+          dialog.addEventListener('close', observation.listener, { once: true });
+          window.__timelineClose = observation;
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return Object.values(state.lists).find((list) => list.catalogId === id)?.id;
+        }, representative.id);
+        try {
+          await click(page, '#preview-close');
+          await page.waitForFunction((id, href) => {
+            const dialog = document.querySelector('#preview');
+            const openAction = document.querySelector(
+              `#catalog-results [data-story="list:${id}"] a[data-act="open"]`,
+            );
+            return window.__timelineClose?.delivered && !dialog?.open
+              && openAction?.dataset.key === id && openAction.getAttribute('href') === href;
+          }, {}, representative.id, formatRoute({ view: 'read', listId: savedId }));
+        } finally {
+          await page.evaluate(() => {
+            const observation = window.__timelineClose;
+            observation?.dialog.removeEventListener('close', observation.listener);
+            delete window.__timelineClose;
+          });
+        }
         representativeResults.push({ ...shown, savedCount });
       }
       t.check('representative first, corrected middle, and final chapters preview and save normally',
@@ -5522,7 +5551,7 @@ const SCENARIOS = [
           labelledBy: feature?.getAttribute('aria-labelledby') ?? '',
           context: feature?.querySelector('.setup-guide-context p:last-child')?.textContent.trim() ?? '',
           meta: card?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
-          actions: [...(card?.querySelectorAll('button') ?? [])].map((button) => ({
+          actions: [...(card?.querySelectorAll('a[data-act="open"], button[data-act="preview"]') ?? [])].map((button) => ({
             text: button.textContent.trim(),
             name: button.getAttribute('aria-label'),
             act: button.dataset.act,
@@ -5589,9 +5618,10 @@ const SCENARIOS = [
             right: rect.right,
             cardColumns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
             actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
-            controls: [...actions.querySelectorAll('button')].every((button) => (
-              button.getBoundingClientRect().height >= 44
-            )),
+            controls: actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]').length === 2
+              && [...actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]')].every((button) => (
+                button.getBoundingClientRect().height >= 44
+              )),
           };
         },
       );
@@ -7190,14 +7220,14 @@ const SCENARIOS = [
       await click(page, '.brand[data-view="home"]');
       const home = await page.$eval('#home-yours', (section) => ({
         summary: section.querySelector('.sec-note')?.textContent.trim(),
-        tiles: [...section.querySelectorAll('#home-yours-list button')]
+        tiles: [...section.querySelectorAll('#home-yours-list a')]
           .map((button) => button.getAttribute('aria-label')),
       }));
 
       await click(page, '.ri[data-view="library"]');
       const library = await page.$eval('#library-yours', (section) => ({
         summary: section.querySelector('.sec-note')?.textContent.trim(),
-        tiles: [...section.querySelectorAll('#library-yours-list button')]
+        tiles: [...section.querySelectorAll('#library-yours-list a')]
           .map((button) => button.getAttribute('aria-label')),
       }));
       t.check('Home and Library receive the same saved-list presentation',
@@ -7206,7 +7236,7 @@ const SCENARIOS = [
           && home.tiles.length === 2,
         JSON.stringify({ home, library }));
 
-      await click(page, '#library-yours-list li:nth-child(2) button');
+      await click(page, '#library-yours-list li:nth-child(2) a');
       const libraryOpen = await page.evaluate(() => ({
         active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
         hash: location.hash,
@@ -7216,7 +7246,7 @@ const SCENARIOS = [
         JSON.stringify(libraryOpen));
 
       await click(page, '.brand[data-view="home"]');
-      await click(page, '#home-yours-list li:first-child button');
+      await click(page, '#home-yours-list li:first-child a');
       const homeOpen = await page.evaluate(() => ({
         active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
         hash: location.hash,
@@ -8612,7 +8642,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1042` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1094` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -10379,7 +10409,7 @@ const SCENARIOS = [
       t.check('hydration offers and requests nothing for the reader record',
         first.hydrateHidden && first.requests === 0, JSON.stringify(first));
 
-      await click(page, '#list-nav button[data-act="open"]');
+      await click(page, '#list-nav a[data-act="open"]');
       await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
       await openFullOrder(page);
       const actions = await page.evaluate((issueId) => ({
@@ -12798,7 +12828,7 @@ const SCENARIOS = [
         await page.setViewport({ width, height: 900 });
         await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
         await page.waitForFunction(
-          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
           { timeout: 15000 },
         );
         const sample = await measureReading();
@@ -12841,7 +12871,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
         { timeout: 15000 },
       );
       const savedExpanded = await measureReading();
@@ -12860,7 +12890,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
         { timeout: 15000 },
       );
       const emptyHome = await measureHeading();
@@ -12909,10 +12939,47 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation'
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More'
           && document.querySelector('#sidebar-panel')?.hidden === true,
         { timeout: 15000 },
       );
+      await page.evaluate(() => {
+        const spacer = document.createElement('div');
+        spacer.id = 'navigation-scroll-fixture';
+        spacer.style.height = '1800px';
+        document.querySelector('#main').append(spacer);
+        document.querySelector('#main').tabIndex = -1;
+        document.querySelector('#main').focus();
+        window.scrollTo(0, 200);
+      });
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
+      t.check('downward scroll withdraws the bottom bar without writing progress',
+        await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
+      await page.evaluate(() => window.scrollTo(0, 195));
+      await page.waitForFunction(() => scrollY === 195);
+      t.check('a five-pixel reversal does not jitter the bar visible',
+        await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => window.scrollTo(0, 175));
+      await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      t.check('upward scroll reveals all four labelled destinations and More',
+        await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
+          .every((node) => node.getBoundingClientRect().height >= 44)));
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.focus('.mobile-link[data-view="library"]');
+      t.check('keyboard navigation reveals the bar without requiring a scroll gesture',
+        await page.evaluate(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => window.scrollTo(0, 350));
+      await page.waitForFunction(() => scrollY === 350);
+      t.check('focus within pins the mobile bar visible',
+        await page.evaluate(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await click(page, '.mobile-link[data-view="library"]');
+      t.check('routing reveals the bottom bar and selects the Library destination',
+        await page.evaluate(() => scrollY === 0
+          && document.querySelector('.mobile-link[data-view="library"]').getAttribute('aria-current') === 'page'
+          && !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => document.querySelector('#navigation-scroll-fixture').remove());
       const openNavigation = async () => {
         await page.$eval('#btn-rail-toggle', (button) => button.focus());
         const expanded = await page.$eval('#btn-rail-toggle', (button) => button.getAttribute('aria-expanded'));
@@ -12983,7 +13050,7 @@ const SCENARIOS = [
         };
       });
       t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
-        opened.ariaLabel === 'Navigation'
+        opened.ariaLabel === 'More'
         && opened.controlsId === 'sidebar-panel'
         && opened.expanded === 'true'
         && opened.focused === 'btn-rail-toggle'
@@ -13207,7 +13274,8 @@ const SCENARIOS = [
             top: rect.top,
             bottom: rect.bottom,
             visible: rect.bottom > 0 && rect.top < innerHeight,
-            unobscured: rect.top >= sidebarBottom,
+            unobscured: rect.top >= sidebarBottom
+              && rect.bottom <= document.querySelector('.rail-header').getBoundingClientRect().top,
           };
         })(),
         animations: document.getAnimations().length,
@@ -13390,7 +13458,7 @@ const SCENARIOS = [
             const toggle = document.querySelector('#btn-rail-toggle');
             const panel = document.querySelector('#sidebar-panel');
             const shell = document.querySelector('#shell');
-            const isNarrowNow = toggle?.getAttribute('aria-label') === 'Navigation';
+            const isNarrowNow = toggle?.getAttribute('aria-label') === 'More';
             if (wantNarrow !== null && isNarrowNow !== wantNarrow) return false;
             if (wantRailed !== null && shell?.classList.contains('railed') !== wantRailed) return false;
             if (wantHidden !== null && panel?.hidden !== wantHidden) return false;
@@ -14209,17 +14277,17 @@ SCENARIOS.push({
     await show();
     await click(page, '#preview-add button');
     await page.waitForFunction(() => {
-      const button = document.querySelector('#preview-add button');
-      return button && !button.disabled && /Open|In library/.test(button.textContent);
+      const link = document.querySelector('#preview-add a[data-act="main"]');
+      return link?.hasAttribute('href') && /Open/.test(link.textContent);
     });
-    const savedButton = await page.$('#preview-add button');
+    const savedButton = await page.$('#preview-add a[data-act="main"]');
     const accessible = await page.accessibility.snapshot({ root: savedButton, interestingOnly: false });
     t.check('a newly saved guide keeps Open visible and named, with separate Added feedback',
       accessible?.name.startsWith('Open')
-        && await page.$eval('#preview-add', (host) => host.querySelector('button').textContent.includes('Open')
-          && [...host.children].some((node) => node.tagName !== 'BUTTON' && /Added|In library/.test(node.textContent))),
+        && await page.$eval('#preview-add', (host) => host.querySelector('a[data-act="main"]').textContent.includes('Open')
+          && [...host.children].some((node) => node.getAttribute('role') === 'status' && /Added|In library/.test(node.textContent))),
       JSON.stringify(accessible));
-    await click(page, '#preview-add button');
+    await click(page, '#preview-add a[data-act="main"]');
     await page.waitForSelector('#view-read:not([hidden])');
     t.check('saved Preview Open remains actionable and enters its Reading List',
       await page.$eval('#view-read', (view) => !view.hidden));
@@ -14512,6 +14580,150 @@ MUTATIONS.push(
   },
 );
 
+SCENARIOS.push({
+  id: 'semantic-destinations',
+  title: 'destinations expose native links, resolved titles and actual manual membership',
+  async run(page, t) {
+    let state = createList(createEmptyState(), { id: 'manual/a', name: 'Same name', catalogId: 'browser-check' });
+    state = createList(state, { id: 'manual-b', name: 'Same name' });
+    const manual = { issueId: -9001, title: 'Hand entered comic', source: 'manual' };
+    state = addIssuesToList(state, 'manual/a', [manual]).state;
+    state = addIssuesToList(state, 'manual-b', [manual]).state;
+    await page.evaluateOnNewDocument((saved) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, state);
+    await open(page, '/#/library-manual');
+    const manualRow = await page.evaluate(() => {
+      const root = document.querySelector('#view-library-manual .results');
+      return {
+        details: root.querySelector('a.result-focus')?.getAttribute('href') ?? null,
+        lists: [...root.querySelectorAll('.library-list-links a')].map((link) => link.getAttribute('href')),
+        title: document.title,
+      };
+    });
+    t.check('manual comic details are a real saved-identity destination',
+      manualRow.details === '#/issue/-9001', JSON.stringify(manualRow));
+    t.check('duplicate list names expose each actual saved ID in saved order',
+      JSON.stringify(manualRow.lists) === JSON.stringify(['#/read/manual%2Fa', '#/read/manual-b']),
+      JSON.stringify(manualRow));
+    t.check('manual collection title identifies its view and app',
+      manualRow.title === 'Added by hand | Recap Page', manualRow.title);
+    await click(page, '.brand[data-view="home"]');
+    await page.waitForSelector('#home-primary-paths .home-path');
+    const links = await page.evaluate(() => {
+      const selectors = ['.brand[data-view="home"]', '.ri[data-view="library"]',
+        '.ri[data-view="browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
+        '.ri[data-view="about"]', '#home-primary-paths .home-path', '#home-yours-list li > *',
+        '#btn-chero-open', '#view-add [data-view="add-search"]', 'footer [data-view="about"]'];
+      return selectors.map((selector) => {
+        const node = document.querySelector(selector);
+        return { selector, tag: node?.tagName, href: node?.getAttribute('href'),
+          sameOrigin: node?.href ? new URL(node.href).origin === location.origin : false };
+      });
+    });
+    t.check('every equivalent destination is a same-origin hash link',
+      links.every((node) => node.tag === 'A' && node.href?.startsWith('#/') && node.sameOrigin),
+      JSON.stringify(links));
+    const modifiers = await page.evaluate(() => ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+      const link = document.querySelector('.ri[data-view="library"]');
+      const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+      link.addEventListener('click', (seen) => { window.__nativeLinkDefault = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+      link.dispatchEvent(event);
+      return window.__nativeLinkDefault;
+    }));
+    t.check('modifier activation retains the browser default instead of same-tab interception',
+      modifiers.every(Boolean), JSON.stringify(modifiers));
+    const middle = await page.evaluate(() => {
+      const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+      const link = document.querySelector('.ri[data-view="library"]');
+      link.addEventListener('auxclick', (seen) => { window.__middleDefault = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+      link.dispatchEvent(event);
+      return window.__middleDefault;
+    });
+    t.check('middle activation retains native link behavior', middle);
+    await page.focus('.ri[data-view="library"]');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-library:not([hidden])');
+    t.check('Enter navigates and focuses the Library heading',
+      await page.evaluate(() => document.activeElement?.id === 'library-h'
+        && document.title === 'Library | Recap Page'));
+    await click(page, '#view-library [data-view="library-manual"]');
+    const details = await page.$('#view-library-manual a.result-focus');
+    if (details) {
+      await details.dispose();
+      await click(page, '#view-library-manual a.result-focus');
+      await page.waitForSelector('#issue-focus-card:not([hidden])');
+      t.check('saved manual Issue has its resolved title without invented provider metadata',
+        await page.evaluate(() => document.title === 'Hand entered comic | Recap Page'
+          && document.querySelector('#issue-focus-h').textContent === 'Hand entered comic'));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.dataset.focusSource === 'added-by-hand');
+      t.check('Back restores the manual row opener', true);
+    }
+    await click(page, '.ri[data-view="browse"]');
+    await click(page, '#view-browse [data-category="timeline"]');
+    await page.waitForSelector('#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+    await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+    await page.waitForSelector('#preview[open]');
+    const preview = await page.$eval('#preview-add [data-act="main"]', (node) => ({
+      tag: node.tagName, href: node.getAttribute('href'),
+    }));
+    t.check('saved Preview Open exposes the actual saved identity as a native destination',
+      preview.tag === 'A' && preview.href === '#/read/manual%2Fa', JSON.stringify(preview));
+    if (preview.tag === 'A') {
+      const nativePreview = await page.evaluate(() => {
+        const event = new MouseEvent('click', { button: 0, ctrlKey: true, bubbles: true, cancelable: true });
+        const link = document.querySelector('#preview-add [data-act="main"]');
+        link.addEventListener('click', (seen) => {
+          window.__previewNative = !seen.defaultPrevented && document.querySelector('#preview').open;
+          seen.preventDefault();
+        }, { once: true });
+        link.dispatchEvent(event);
+        return window.__previewNative;
+      });
+      t.check('modified Preview Open preserves its session and the native default', nativePreview);
+    }
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('ordinary Preview Open still closes its modal and selects the exact saved list',
+      await page.evaluate(() => !document.querySelector('#preview').open
+        && location.hash.includes('manual%2Fa')));
+    const settings = await page.$eval('#save-education-settings', (node) => ({
+      tag: node.tagName, href: node.getAttribute('href'),
+    }));
+    t.check('reading save education exposes settings as a native destination',
+      settings.tag === 'A' && settings.href === '#/data', JSON.stringify(settings));
+    if (settings.tag === 'A') {
+      const nativeSettings = await page.evaluate(() => {
+        const before = location.hash;
+        const event = new MouseEvent('click', { button: 0, metaKey: true, bubbles: true, cancelable: true });
+        const link = document.querySelector('#save-education-settings');
+        link.addEventListener('click', (seen) => {
+          window.__settingsNative = !seen.defaultPrevented && location.hash === before;
+          seen.preventDefault();
+        }, { once: true });
+        link.dispatchEvent(event);
+        return window.__settingsNative;
+      });
+      t.check('modified settings activation leaves reading and browser defaults unchanged', nativeSettings);
+    }
+    await click(page, '#save-education-settings');
+    await page.waitForSelector('#view-data:not([hidden])');
+    t.check('ordinary settings activation retains view heading focus',
+      await page.evaluate(() => document.activeElement?.id === 'data-h'));
+  },
+});
+
+MUTATIONS.push({
+  id: 'semantic-destinations-intercept-modifiers',
+  breaks: 'semantic-destinations',
+  why: 'destination routing prevents the browser default for native modifier activation',
+  rewriteMain: (source) => source.replace(
+    /btn\.addEventListener\('click', \(event\) => \{\r?\n {6}if \(!isPlainNavigation\(event\)\) return;/,
+    "btn.addEventListener('click', (event) => {",
+  ),
+});
+
 // ------------------------------------------------------------------ page helpers
 
 MUTATIONS.push(
@@ -14554,8 +14766,8 @@ SCENARIOS.push({
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await open(page, '/');
     await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 12);
-    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].map((icon) => {
-      const button = icon.closest('button');
+    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) => !icon.closest('.mobile-link')).map((icon) => {
+      const button = icon.closest('button, a[href]');
       return {
         tag: icon.tagName,
         gateway: icon.classList.contains('home-path-icon') || icon.classList.contains('home-path-arrow'),
@@ -14578,7 +14790,7 @@ SCENARIOS.push({
       inventory.length === 49 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
-        .flatMap((root) => [...root.querySelectorAll('button.home-path')])
+        .flatMap((root) => [...root.querySelectorAll('a.home-path')])
         .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
@@ -14600,7 +14812,7 @@ SCENARIOS.push({
       const geometry = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) =>
         icon.getBoundingClientRect().width > 0).map((icon) => {
         const box = icon.getBoundingClientRect();
-        const target = icon.closest('button').getBoundingClientRect();
+        const target = icon.closest('button, a[href]').getBoundingClientRect();
         const paint = getComputedStyle(icon);
         return {
           symbol: icon.querySelector('use').getAttribute('href'),
@@ -14652,7 +14864,7 @@ SCENARIOS.push({
       const forced = await page.$eval(iconSelector, (el) => ({
         active: matchMedia('(forced-colors: active)').matches,
         stroke: getComputedStyle(el).stroke, color: getComputedStyle(el).color,
-        background: getComputedStyle(el.closest('button')).backgroundColor,
+        background: getComputedStyle(el.closest('button, a[href]')).backgroundColor,
         width: parseFloat(getComputedStyle(el).strokeWidth),
       }));
       t.check(`forced colours ${state}: search stroke follows a perceivable system colour`,
@@ -14705,7 +14917,7 @@ SCENARIOS.push({
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
           fits: visible.every((el) => {
             const icon = el.getBoundingClientRect();
-            const button = el.closest('button').getBoundingClientRect();
+            const button = el.closest('button, a[href]').getBoundingClientRect();
             return icon.left >= button.left && icon.right <= button.right
               && icon.top >= button.top && icon.bottom <= button.bottom;
           }),
@@ -14953,7 +15165,7 @@ SCENARIOS.push({
       await click(page, homeSelector);
       await page.waitForSelector(cardSelector);
       t.check(`${width}px: returning to MCU Prep preserves saved bytes and exposes Open, not Add`,
-        await page.$eval(`${cardSelector} button`, (button) => button.dataset.act === 'open')
+        await page.$eval(`${cardSelector} a[data-act="open"]`, (link) => link.dataset.act === 'open')
         && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, savedState));
     }
     t.check('the owner-selection journey makes no external requests and has no browser errors',
@@ -16821,10 +17033,22 @@ SCENARIOS.push({
         (await tooltipVisual449(page, selector, tipId)).visible);
       t.check(`${name}: tooltip repaint does not add an announcement`,
         announcer === await page.$eval('#announcer', (node) => node.textContent));
-      await page.$eval(selector, (node) => { node.disabled = true; });
+      const disabledState = await page.$eval(selector, (node) => {
+        const native = node instanceof HTMLButtonElement;
+        const previous = native ? node.disabled : node.getAttribute('aria-disabled');
+        if (native) node.disabled = true;
+        else node.setAttribute('aria-disabled', 'true');
+        return { native, previous };
+      });
       await settle();
       t.check(`${name}: a disabled trigger withdraws its hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
-      await page.$eval(selector, (node) => { node.disabled = false; node.classList.remove('tooltip-repaint-449'); delete node.dataset.tooltipRepaint449; });
+      await page.$eval(selector, (node, state) => {
+        if (state.native) node.disabled = state.previous;
+        else if (state.previous === null) node.removeAttribute('aria-disabled');
+        else node.setAttribute('aria-disabled', state.previous);
+        node.classList.remove('tooltip-repaint-449');
+        delete node.dataset.tooltipRepaint449;
+      }, disabledState);
       await reset();
       await page.focus(selector);
       await page.$eval(selector, (node) => { node.hidden = true; });

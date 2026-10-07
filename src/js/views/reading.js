@@ -22,6 +22,7 @@ import {
 import { availability, describe, localDayString, STATE } from '../lib/availability.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
+import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
@@ -287,7 +288,11 @@ export function createReadingView({
       el('input', { type: 'radio', name: 'filter', value: option.value }),
       el('span', { text: option.label }),
     ])));
-    $('#save-education-settings').addEventListener('click', () => showView('data', { push: true }));
+    $('#save-education-settings').addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      showView('data', { push: true });
+    });
 
     // The toggle event can arrive after an already queued animation frame. Filling pending rows in
     // the click microtask keeps the opened disclosure ready for that frame; toggle still owns URL state.
@@ -1012,7 +1017,7 @@ export function createReadingView({
       if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
       event.preventDefault();
       setOpen(false);
-      toggle.focus();
+      focusRemovalTarget(toggle, { avoidFilters: true });
     });
     return root;
   }
@@ -1156,10 +1161,22 @@ export function createReadingView({
     return true;
   }
 
-  function focusRemovalTarget(target) {
+  function focusRemovalTarget(target, { avoidFilters = false } = {}) {
     if (target && target !== document.body && target.isConnected && target.getClientRects().length) {
       target.focus();
       target.scrollIntoView({ block: 'nearest' });
+      const filters = avoidFilters ? $('#reading-filters') : null;
+      if (!filters || filters.hidden || !filters.getClientRects().length) return;
+      const filterBounds = filters.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
+      const style = getComputedStyle(target);
+      const ring = parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset));
+      const top = rect.top - ring;
+      if (filterBounds.bottom > 0 && filterBounds.top < window.innerHeight
+        && top < filterBounds.bottom && rect.bottom + ring > filterBounds.top
+        && rect.left - ring < filterBounds.right && rect.right + ring > filterBounds.left) {
+        window.scrollBy({ top: top - filterBounds.bottom, left: 0, behavior: 'instant' });
+      }
     } else {
       focusCurrentView();
     }

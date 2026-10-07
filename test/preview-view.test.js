@@ -16,7 +16,7 @@ function node(props = {}, children = []) {
   };
 }
 
-const element = (_tag, props = {}, children = []) => node(props, children);
+const element = (_tag, props = {}, children = []) => ({ ...node(props, children), tag: _tag });
 const list = (id) => ({
   id,
   name: `List ${id}`,
@@ -155,7 +155,7 @@ test('Preview keeps interior padding open and separates saved Open from added st
     const state = { lists: {}, listOrder: [] };
     const view = createPreviewView({
       captureFocus: () => null, el: element, elements: () => nodes, getState: () => state,
-      isInLibrary: () => saved ? 'saved' : null,
+      isInLibrary: () => saved ? { id: 'saved' } : null,
       issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onAdd: async () => { saved = true; return 'saved'; },
       onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },
@@ -168,6 +168,10 @@ test('Preview keeps interior padding open and separates saved Open from added st
     assert.equal(nodes.dialog.open, true);
     await nodes.add.children[0].onclick({ currentTarget: nodes.add.children[0] });
     assert.equal(nodes.add.children[0].children[0], 'Open →');
+    assert.equal(nodes.add.children[0].tag, 'a');
+    assert.equal(nodes.add.children[0].href, '#/read/saved');
+    nodes.add.children[0].onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+    assert.equal(opened, 0);
     assert.match(nodes.add.children[0]['aria-label'], /^Open: List one$/);
     assert.equal(nodes.add.children[1].text, 'Added to library');
     nodes.add.children[0].onclick();

@@ -284,7 +284,7 @@ test('each Library hub choice carries the label its view is rendered with', () =
   const html = read('src/index.html');
   const hub = html.slice(html.indexOf('id="view-library"'), html.indexOf('id="view-progress"'));
   for (const v of LIBRARY_VIEWS) {
-    const button = hub.match(new RegExp(`data-view="${v.value}"[\\s\\S]*?</button>`));
+    const button = hub.match(new RegExp(`data-view="${v.value}"[\\s\\S]*?</a>`));
     assert.ok(button, `no Library hub choice routes to ${v.value}`);
     assert.ok(
       button[0].includes(`<span>${v.label}</span>`),

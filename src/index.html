@@ -34,13 +34,26 @@
                   aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar"
                   aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
             <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#menu"/></svg>
-            <span class="rail-toggle-label">Navigation</span>
+            <span class="rail-toggle-label">More</span>
           </button>
 
-          <button type="button" class="brand" data-view="home">
+          <a href="#/home" class="brand" data-view="home">
             <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
             <b class="lbl">Recap&nbsp;Page</b>
-          </button>
+            <span class="mobile-home-label">Home</span>
+          </a>
+          <a href="#/library" class="mobile-link" data-view="library">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
+            <span>Library</span>
+          </a>
+          <a href="#/browse" class="mobile-link" data-view="browse">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
+            <span>Browse</span>
+          </a>
+          <a href="#/add" class="mobile-link" data-view="add">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
+            <span>Add comics</span>
+          </a>
         </div>
 
         <div id="sidebar-panel">
@@ -50,24 +63,24 @@
                 <h2 id="rail-reading" class="rail-h">Reading</h2>
                 <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
                 <ul class="rail-list" aria-labelledby="rail-reading">
-                  <li><button type="button" class="ri" data-view="library">
+                  <li><a href="#/library" class="ri" data-view="library">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span class="lbl">Library</span>
-                  </button></li>
+                  </a></li>
                 </ul>
               </div>
 
               <div class="nav-group">
                 <h2 class="rail-h">Discover</h2>
                 <ul class="rail-list">
-                  <li><button type="button" class="ri" data-view="browse">
+                  <li><a href="#/browse" class="ri" data-view="browse">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
                     <span class="lbl">Browse</span>
-                  </button></li>
-                  <li><button type="button" class="ri" data-view="add">
+                  </a></li>
+                  <li><a href="#/add" class="ri" data-view="add">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
                     <span class="lbl">Add comics</span>
-                  </button></li>
+                  </a></li>
                 </ul>
               </div>
             </div>
@@ -80,14 +93,14 @@
             <div class="nav-group nav-foot">
               <h2 class="rail-h">App</h2>
               <ul class="rail-list">
-                <li><button type="button" class="ri" data-view="data">
+                <li><a href="#/data" class="ri" data-view="data">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#settings"/></svg>
                   <span class="lbl">Backup &amp; settings</span>
-                </button></li>
-                <li><button type="button" class="ri" data-view="about">
+                </a></li>
+                <li><a href="#/about" class="ri" data-view="about">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#info"/></svg>
                   <span class="lbl">About this app</span>
-                </button></li>
+                </a></li>
               </ul>
             </div>
           </nav>
@@ -193,7 +206,7 @@
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta">
                     <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
-                    <button type="button" class="btn btn-g" id="btn-chero-open">Open the list</button>
+                    <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
                   </div>
@@ -254,7 +267,7 @@
                 in Backup &amp; settings to protect your progress or move it to another browser profile
                 or computer.
               </p>
-              <button type="button" class="quiet" id="save-education-settings">Backup &amp; settings</button>
+              <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
             </aside>
 
             <div id="reading-body" hidden>
@@ -342,14 +355,14 @@
               <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
                 <h2 id="reading-empty-h">No issues yet</h2>
                 <p>No comics have been added to this Reading List. Add comics to start reading.</p>
-                <button type="button" class="btn" id="btn-empty-add" data-view="add">Add comics</button>
+                <a href="#/add" class="btn" id="btn-empty-add" data-view="add">Add comics</a>
               </section>
 
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
                 <h2 id="all-read-h" tabindex="-1">Every issue marked read</h2>
                 <p>Every issue in this list is marked read.</p>
-                <button type="button" class="btn" data-view="browse">Browse Reading Lists</button>
+                <a href="#/browse" class="btn" data-view="browse">Browse Reading Lists</a>
               </div>
 
               <section id="all-deferred" class="empty-state" hidden aria-labelledby="all-deferred-h">
@@ -508,23 +521,23 @@
             <section class="empty" id="library-empty" hidden>
               <h2>No Reading Lists yet</h2>
               <div class="actions">
-                <button type="button" class="btn primary" data-view="browse">Browse</button>
-                <button type="button" class="btn" data-view="add">Add comics</button>
+                <a href="#/browse" class="btn primary" data-view="browse">Browse</a>
+                <a href="#/add" class="btn" data-view="add">Add comics</a>
               </div>
             </section>
 
             <section class="search-hub library-tools" aria-labelledby="library-tools-h">
               <h2 id="library-tools-h">Across your library</h2>
               <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="library-read">
+                <a href="#/library-read" class="search-hub-card" data-view="library-read">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#check"/></svg><span>Everything read</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="progress">
+                </a>
+                <a href="#/progress" class="search-hub-card" data-view="progress">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#progress"/></svg><span>Progress by series</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="library-manual">
+                </a>
+                <a href="#/library-manual" class="search-hub-card" data-view="library-manual">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#edit"/></svg><span>Added by hand</span>
-                </button>
+                </a>
               </div>
             </section>
           </section>
@@ -664,25 +677,25 @@
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
             <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
             <div class="search-hub-grid add-hub-grid" id="add-primary-methods">
-              <button type="button" class="search-hub-card" data-view="add-search">
+              <a href="#/add-search" class="search-hub-card" data-view="add-search">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
-              </button>
-              <button type="button" class="search-hub-card" data-view="add-series">
+              </a>
+              <a href="#/add-series" class="search-hub-card" data-view="add-series">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
-              </button>
+              </a>
             </div>
             <details class="field-disclosure action-disclosure add-other-methods" id="add-other-methods">
               <summary>More ways to add</summary>
               <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="add-creator">
+                <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-import">
+                </a>
+                <a href="#/add-import" class="search-hub-card" data-view="add-import">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-manual">
+                </a>
+                <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
-                </button>
+                </a>
               </div>
             </details>
           </section>
@@ -713,35 +726,35 @@
               <section class="search-hub" aria-labelledby="search-browse-h">
                 <h2 id="search-browse-h">Browse by</h2>
                 <div class="search-hub-grid">
-                  <button type="button" class="search-hub-card" data-view="add-series">
+                  <a href="#/add-series" class="search-hub-card" data-view="add-series">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span>Series</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="add-creator">
+                  </a>
+                  <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
                     <span>Creators</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="spotlights">
+                  </a>
+                  <a href="#/spotlights" class="search-hub-card" data-view="spotlights">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
                     <span>Characters</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="catalog">
+                  </a>
+                  <a href="#/catalog" class="search-hub-card" data-view="catalog">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
                     <span>Reading guides</span>
-                  </button>
+                  </a>
                 </div>
               </section>
               <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
                 <h2 id="search-other-h">Other ways to add</h2>
                 <div class="search-hub-grid">
-                  <button type="button" class="search-hub-card" data-view="add-import">
+                  <a href="#/add-import" class="search-hub-card" data-view="add-import">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
                     <span>Paste a Reading List</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="add-manual">
+                  </a>
+                  <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
                     <span>Add an issue by hand</span>
-                  </button>
+                  </a>
                 </div>
               </section>
             </details>
@@ -1139,7 +1152,7 @@
               <div class="sec-h"><h2 id="completed-lists-h">Your completed Reading Lists</h2></div>
               <ul id="completed-list" class="yours"></ul>
             </section>
-            <button type="button" class="btn btn-g" data-view="data">Backup &amp; settings</button>
+            <a href="#/data" class="btn btn-g" data-view="data">Backup &amp; settings</a>
           </section>
           <section id="list-wrap-up" class="completion-wrapup card card-static" hidden aria-labelledby="list-wrap-up-h">
             <h2 id="list-wrap-up-h">Wrap up this Reading List</h2>
@@ -1178,9 +1191,9 @@
             </details>
           </section>
           <footer class="app-footer">
-            <button type="button" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">
+            <a href="#/about" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">
               Unofficial fan project. Metadata and links only. <span data-marvel-copyright>© MARVEL</span>
-            </button>
+            </a>
           </footer>
         </div>
       </main>

@@ -5,6 +5,7 @@ import {
   readingTimeLabel,
 } from '../lib/catalog.js';
 import { labelledName } from '../lib/accname.js';
+import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const ADD_TEXT = '+ Add to library';
 
@@ -63,12 +64,14 @@ export function createPreviewView({
     const inLibrary = isInLibrary(list.id);
     if (inLibrary) {
       const text = 'Open →';
-      return el('button', {
-        type: 'button',
+      return el('a', {
+        href: formatRoute({ view: 'read', listId: inLibrary.id }),
         class: 'btn btn-g',
         'aria-label': labelledName(text, list.name),
         dataset: { key: list.id, act: 'main' },
-        onclick: () => {
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event?.preventDefault();
           if (isCurrent(previewSession)) return onOpen(list, inLibrary);
         },
       }, text);

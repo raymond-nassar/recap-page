@@ -39,7 +39,7 @@ import { lookupIssue } from './lib/wiki.js';
 import { DEFAULT_FILTER } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
 import {
-  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
+  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
@@ -1165,8 +1165,8 @@ function renderSidebar() {
 
   if (isNarrow) {
     toggle.setAttribute('aria-expanded', String(narrowOpen));
-    toggle.setAttribute('aria-label', 'Navigation');
-    toggle.dataset.tip = 'Navigation · Ctrl+\\';
+    toggle.setAttribute('aria-label', 'More');
+    toggle.dataset.tip = 'More · Ctrl+\\';
   } else {
     const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
     toggle.setAttribute('aria-expanded', String(!railed));
@@ -1174,6 +1174,7 @@ function renderSidebar() {
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
   tooltips?.refresh();
+  revealMobileNavigation();
 }
 
 function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
@@ -1184,6 +1185,9 @@ function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
   if (!next && rescueFocus && activeInsidePanel) toggle.focus();
   narrowOpen = Boolean(next);
   renderSidebar();
+  if (next && !document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) {
+    panel.scrollIntoView({ block: 'start' });
+  }
   if (announceIt) announce(narrowOpen ? 'Navigation shown.' : 'Navigation hidden.');
 }
 
@@ -1264,7 +1268,54 @@ function wireSidebar() {
     renderSidebar();
   });
 
+  wireMobileNavigation();
   wireAppTooltips();
+}
+
+let revealMobileNavigation = () => {};
+function wireMobileNavigation() {
+  const header = document.querySelector('.rail-header');
+  const panel = $('#sidebar-panel');
+  let previousY = window.scrollY;
+  let distance = 0;
+  let frame = null;
+  const editable = () => document.activeElement?.matches('input, textarea, select, [contenteditable="true"]');
+  const obscuredViewport = () => Boolean(window.visualViewport
+    && window.visualViewport.height < window.innerHeight * 0.75);
+  const paint = (hide = false) => {
+    const focused = header.contains(document.activeElement) || panel.contains(document.activeElement);
+    header.classList.toggle('mobile-nav-hidden', isNarrow && !narrowOpen && !focused
+      && (hide || editable() || obscuredViewport()));
+    document.documentElement.style.setProperty('--mobile-nav-height', `${header.getBoundingClientRect().height}px`);
+  };
+  revealMobileNavigation = () => {
+    previousY = window.scrollY;
+    distance = 0;
+    paint();
+  };
+  const onScroll = () => {
+    frame = null;
+    const y = Math.max(0, window.scrollY);
+    const delta = y - previousY;
+    previousY = y;
+    if (Math.sign(delta) !== Math.sign(distance)) distance = 0;
+    distance += delta;
+    if (y <= 32 || distance <= -16) paint();
+    else if (distance >= 16) paint(true);
+  };
+  window.addEventListener('scroll', () => {
+    if (frame === null) frame = requestAnimationFrame(onScroll);
+  }, { passive: true });
+  document.addEventListener('focusin', () => {
+    if (header.contains(document.activeElement) || panel.contains(document.activeElement) || editable()) paint();
+  });
+  document.addEventListener('focusout', () => queueMicrotask(() => paint(
+    header.classList.contains('mobile-nav-hidden'),
+  )));
+  window.visualViewport?.addEventListener('resize', revealMobileNavigation);
+  window.visualViewport?.addEventListener('scroll', revealMobileNavigation);
+  new ResizeObserver(() => paint(header.classList.contains('mobile-nav-hidden'))).observe(header);
+  revealMobileNavigation();
 }
 
 let tooltips;
@@ -1338,16 +1389,24 @@ function issueFocusAnchor(issue, {
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
 function emptyAction({ label, view }) {
-  return el('button', {
+  return el('a', {
     class: 'btn btn-g',
-    type: 'button',
-    onclick: () => navigateTo(view),
+    href: formatRoute({ view }),
+    onclick: (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateTo(view);
+    },
   }, label);
 }
 
 function wireNav() {
   for (const btn of document.querySelectorAll('[data-view]')) {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.view));
+    btn.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateTo(btn.dataset.view);
+    });
   }
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
@@ -1548,7 +1607,7 @@ function showView(next, { focus = true, push = false } = {}) {
     if (panel) panel.hidden = name !== next;
   }
   const parent = railParentView(next);
-  for (const btn of document.querySelectorAll('.ri[data-view]')) {
+  for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {
     if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   }
@@ -1574,6 +1633,7 @@ function showView(next, { focus = true, push = false } = {}) {
   // screen rather than before reaching it, so that route repaints at its own call site.
   if (next === 'data') recoveryView.renderSalvage();
   window.scrollTo({ top: 0 });
+  revealMobileNavigation();
   // After the scroll to the top, so that bringing a message into view is not undone. Which pane
   // each outstanding notice belongs in has just changed, because a different view is showing.
   placeNotices();
@@ -1598,6 +1658,10 @@ function renderBreadcrumbs() {
     ? store.state.lists[activeId]
     : null;
   const issueResult = issueView.result();
+  document.title = routeTitle({
+    view, list: active, issueTitle: issueResult?.issue?.title
+      ?? (view === 'issue' ? $('#issue-focus-h')?.textContent : null),
+  });
   const resolvedContext = issueResult?.contextStatus === 'valid'
     ? {
       ...issueResult.context,
@@ -1722,12 +1786,16 @@ function renderRail() {
       const pct = total ? (read / total) * 100 : 0;
       const current = view === 'read' && activeListId() === id;
 
-      nav.append(el('li', {}, el('button', {
-        type: 'button',
+      nav.append(el('li', {}, el('a', {
+        href: formatRoute({ view: 'read', listId: id }),
         class: 'ri',
         'aria-current': current ? 'page' : null,
         dataset: { key: id, act: 'open', tip: ['Continue reading', `${list.name}:`, read, 'of', total, 'read'].join(' ') },
-        onclick: () => openSavedList(id),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event.preventDefault();
+          openSavedList(id);
+        },
       }, [
         el('span', { class: 'init', 'aria-hidden': true, text: (list.name || '?').trim().charAt(0) }),
         el('span', { class: 'lbl' }, [
@@ -2559,13 +2627,17 @@ function renderPublishingIndex(category, allStories) {
     }, [
       el('div', { class: 'sec-h' }, [
         el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }),
-        el('button', {
+        el('a', {
           id: 'marvel-ages-modern-all',
-          type: 'button',
+          href: formatRoute({ view: 'age-modern' }),
           class: 'quiet',
           text: 'Browse all Modern Age Reading Lists',
           'aria-label': aggregateLabel,
-          onclick: () => showView('age-modern', { push: true }),
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event.preventDefault();
+            showView('age-modern', { push: true });
+          },
         }),
       ]),
       el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' }))),

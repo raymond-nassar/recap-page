@@ -273,7 +273,8 @@ test('rendered categories navigate explicitly instead of relying on boot-time bi
   const start = homeSource.indexOf('function categoryTile');
   assert.notEqual(start, -1, 'the category tile renderer is missing');
   const body = homeSource.slice(start, homeSource.indexOf('async function renderGateways', start));
-  assert.match(body, /onclick: \(\) => onNavigateCategory\(category\)/);
+  assert.match(body, /href: formatRoute\(\{ view: category\.route \}\)/);
+  assert.match(body, /isPlainNavigation\(event\)[\s\S]*onNavigateCategory\(category\)/);
   assert.match(mainSource, /onNavigateCategory: \(category\) => \{[\s\S]*showView\(category\.route, \{ push: true \}\)/);
 });
 
@@ -281,7 +282,8 @@ test('Preview Open closes its modal before navigating to an existing Reading Lis
   const start = previewSource.indexOf('function addButton');
   assert.notEqual(start, -1, 'the catalog action renderer is missing');
   const body = previewSource.slice(start, previewSource.indexOf('function syncAdd', start));
-  assert.match(body, /onclick: \(\) => \{\s*if \(isCurrent\(previewSession\)\) return onOpen\(list, inLibrary\);/);
+  assert.match(body, /href: formatRoute\(\{ view: 'read', listId: inLibrary\.id \}\)/);
+  assert.match(body, /isPlainNavigation\(event\)[\s\S]*if \(isCurrent\(previewSession\)\) return onOpen\(list, inLibrary\);/);
   assert.match(
     mainSource,
     /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true\s*\}\)/,

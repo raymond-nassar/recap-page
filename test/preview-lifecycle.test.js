@@ -135,6 +135,9 @@ test('an existing Preview Open keeps its exact list identity and does not Add', 
   const saved = { id: 'existing', catalogId: list.id };
   h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
   await h.view.open(list);
+  assert.equal(h.nodes.add.children[0].href, '#/read/existing');
+  h.nodes.add.children[0].onclick({ button: 0, metaKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.deepEqual(h.calls.opened, []);
   assert.equal(h.nodes.add.children[0].onclick(), 1);
   assert.equal(h.calls.added, 0);
   assert.deepEqual(h.calls.opened, [[list, saved]]);

@@ -207,12 +207,19 @@ test('each card binds Add or Open and Preview to its own exact list', () => {
     ? [root, ...root.children.flatMap(descendants)] : [];
   for (const list of [fast, full]) {
     const card = presentation.catalogCard({ key: `list:${list.id}`, groupKey: 'shared', lists: [list] }, null);
-    const buttons = descendants(card).filter(({ tag }) => tag === 'button');
-    assert.equal(buttons[0].dataset.key, list.id);
-    assert.equal(buttons[1].children[0], 'Preview');
-    assert.equal(buttons[1]['aria-label'], `Preview: ${list.name}`);
-    buttons[0].onclick({ currentTarget: buttons[0] });
-    buttons[1].onclick();
+    const controls = descendants(card);
+    const main = controls.find((control) => ['import', 'open'].includes(control.dataset?.act));
+    const preview = controls.find((control) => control.dataset?.act === 'preview');
+    assert.equal(main.dataset.key, list.id);
+    assert.equal(preview.tag, 'button');
+    assert.equal(preview.children[0], 'Preview');
+    assert.equal(preview['aria-label'], `Preview: ${list.name}`);
+    assert.equal(main.tag, list.id === 'full' ? 'a' : 'button');
+    if (list.id === 'full') assert.equal(main.href, '#/read/saved-full');
+    let prevented = false;
+    main.onclick({ currentTarget: main, button: 0, preventDefault() { prevented = true; } });
+    assert.equal(prevented, list.id === 'full');
+    preview.onclick();
   }
   assert.deepEqual(added, ['fast']);
   assert.deepEqual(opened, ['full']);

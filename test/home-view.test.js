@@ -45,7 +45,7 @@ function node(props = {}, children = []) {
 }
 
 function element(_tag, props = {}, children = []) {
-  return node(props, children);
+  return { ...node(props, children), tag: _tag };
 }
 
 function findById(root, id) {
@@ -209,6 +209,24 @@ test('510 Home distinguishes deferred work from completion and exposes a separat
   h.state.read[8] = 511;
   h.view.render();
   assert.equal(h.nodes.continueDeferred.hidden, true);
+});
+
+test('Home gateways and Continue expose native destinations without changing reading action callbacks', async () => {
+  const h = harness({ populated: true });
+  h.view.wire();
+  h.view.render();
+  await new Promise((resolve) => setImmediate(resolve));
+  const link = h.nodes.gateways[0].nodes.primary.children[0].children[0];
+  assert.equal(link.tag, 'a');
+  assert.equal(link.href, '#/catalog');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.deepEqual(h.calls.navigate, []);
+  assert.equal(h.nodes.continueOpen.attributes.href, '#/read/a');
+  h.nodes.continueOpen.listeners.click({ button: 0, metaKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.equal(h.calls.open, 0);
+  h.nodes.continueOpen.listeners.click({ button: 0, preventDefault() {} });
+  assert.equal(h.calls.open, 1);
+  assert.equal(typeof h.nodes.continueRead.listeners.click, 'function');
 });
 
 test('Home view owns focused first-run choices, saved lists, and shared gateways', async () => {

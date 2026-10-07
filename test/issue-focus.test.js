@@ -264,8 +264,16 @@ test('every issue-bearing surface uses the shared focus route while retaining re
 
   const library = read('src/js/views/library.js');
   assert.match(library, /view\.value === 'library-read'/);
-  assert.match(library, /surface: 'everything-read'/);
+  assert.match(library, /surface: view\.value === 'library-read' \? 'everything-read' : 'added-by-hand'/);
   assert.doesNotMatch(library, /kind: 'list'/);
+});
+
+test('manual Library Issue links remain unscoped so duplicate list names cannot invent Issue context', () => {
+  const library = read('src/js/views/library.js');
+  assert.match(library, /issueFocusAnchor\(issue, \{/);
+  assert.match(library, /'added-by-hand'/);
+  assert.doesNotMatch(library, /context:|kind: 'list'/);
+  assert.match(library, /getState\(\)\.lists\[id\]\?\.itemIds\.includes\(issue\.issueId\)/);
 });
 
 test('same-tab focus navigation stores an ephemeral opener and pushes exactly one destination', () => {

@@ -137,3 +137,23 @@ test('shared saved lists never depend on Library and main composes both consumer
   assert.match(main, /function renderLibraryHub\([\s\S]*savedLists\.render\(/);
   assert.doesNotMatch(main, /savedLists\?\.(?:render)|if \(savedLists\)/);
 });
+
+test('saved-list tiles keep native destinations while same-tab opening retains its existing selection callback', () => {
+  const state = stateFixture();
+  const opened = [];
+  const presenter = createSavedListsPresenter({
+    el: element, getState: () => state, openList: (id) => opened.push(id), paintCover: () => {},
+  });
+  const target = sectionFixture();
+  presenter.render(target.section, target.results);
+  const link = target.results.children[0].children[0];
+  assert.equal(link.tag, 'a');
+  assert.equal(link.props.href, '#/read/first');
+  let prevented = false;
+  link.props.onclick({ button: 0, ctrlKey: true, preventDefault() { prevented = true; } });
+  assert.equal(prevented, false);
+  assert.deepEqual(opened, []);
+  link.props.onclick({ button: 0, preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.deepEqual(opened, ['first']);
+});

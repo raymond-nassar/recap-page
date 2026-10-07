@@ -17,12 +17,15 @@ const expected = [
 
 test('all navigation/search glyphs use the selected local symbols, not font characters', () => {
   const icons = [...html.matchAll(/<svg class="gi"([^>]*)>(.*?)<\/svg>/g)];
-  assert.equal(icons.length, 23);
+  const mobile = [...html.matchAll(/<a href="#\/(?:library|browse|add)" class="mobile-link"[^>]*>[\s\S]*?<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>/g)]
+    .map(([, name]) => name);
+  assert.deepEqual(mobile, ['books', 'search', 'add']);
+  assert.equal(icons.length, 26);
   assert.deepEqual(icons.map(([, , content]) => {
     const match = /^<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>$/.exec(content);
     assert.ok(match, 'each icon contains only a local symbol reference');
     return match[1];
-  }), expected);
+  }), [expected[0], ...mobile, ...expected.slice(1)]);
   assert.doesNotMatch(html, /&#xE[0-9A-F]{3};/i);
   assert.doesNotMatch(css, /Segoe (?:Fluent Icons|MDL2 Assets)/);
   for (const [, attributes] of icons) {

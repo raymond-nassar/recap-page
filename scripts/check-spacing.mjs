@@ -30,6 +30,13 @@ const SEMANTIC = new Map([
     consumers: [{ selector: '.setting', property: 'padding-right' }],
   }],
 ]);
+// CSS owns the safe-area inset; wireMobileNavigation measures the bar height for main clearance.
+const AUTHORED_GEOMETRY = [
+  { selector: '.rail-header', property: 'padding',
+    value: 'var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom))' },
+  { selector: 'main', property: 'padding-bottom',
+    value: 'calc(var(--mobile-nav-height, 80px) + var(--space-6))' },
+];
 const GOVERNED = /^(?:(?:margin|padding)(?:-(?:top|right|bottom|left|inline|block)(?:-(?:start|end))?)?|gap|row-gap|column-gap)$/;
 const VARIABLE = String.raw`var\(\s*--[-\w]+\s*\)`;
 const CALCULATION = String.raw`calc\((?:[\s+\-*/.\d()]|${VARIABLE})+\)`;
@@ -97,7 +104,11 @@ export function grammarFindings(source) {
   for (const declaration of all.filter(({ property }) => GOVERNED.test(property))) {
     const normalizedValue = declaration.value
       .replace(/\bauto\b/gi, 'auto')
-      .replace(/!important$/i, '!important');
+      .replace(/!important$/i, '!important')
+      .replace(/\s+/g, ' ');
+    if (AUTHORED_GEOMETRY.some(({ selector, property, value }) => (
+      selector === declaration.selector && property === declaration.property && value === normalizedValue
+    ))) continue;
     if (!SPACING_VALUE.test(normalizedValue)) {
       findings.push(`line ${declaration.line} ${declaration.property} carries unsupported spacing value ${declaration.value}`);
     }

@@ -646,6 +646,58 @@ a { color: var(--blue); }
    line after the badge instead of stranding it on a row of its own. */
 .path-step { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; }
 
+.mobile-link, .mobile-home-label { display: none; }
+.brand, .ri, .home-path, .yours a { text-decoration: none; }
+.library-list-links { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
+.library-list-links a { min-height: 44px; display: inline-flex; align-items: center; }
+
+@media (max-width: 880px) {
+  .shell, .shell.railed { grid-template-rows: auto 1fr; }
+  .rail { padding: 0; gap: 0; border-right: 0; border-bottom: 0; }
+  .rail-header {
+    position: fixed; z-index: 20; bottom: 0; left: 0; right: 0;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+    padding: var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line-2); background: var(--card);
+    transition: transform .15s ease; transform: translateY(0);
+  }
+  .rail-header.mobile-nav-hidden { transform: translateY(100%); }
+  .rail-header:focus-within { transform: translateY(0); }
+  .rail-header .brand, .rail-header .mobile-link, .rail-header .rail-toggle {
+    display: flex; flex-direction: column; justify-content: center; gap: var(--space-1);
+    min-width: 0; min-height: 44px; width: auto; height: auto; margin: 0;
+    padding: var(--space-2); border: 1px solid transparent; border-radius: 6px;
+    color: var(--text); text-align: center; overflow-wrap: anywhere;
+    font-size: var(--t-caption); line-height: 1.2; text-decoration: none;
+  }
+  .rail-header .brand { order: 0; }
+  .rail-header .mobile-link { order: 1; }
+  .rail-header .rail-toggle { order: 2; }
+  .rail-header .brand .lbl { display: none; }
+  .mobile-home-label { display: inline; }
+  .rail-header .brand .mark, .rail-header .gi { width: 20px; height: 20px; }
+  .rail-toggle-label { font-size: var(--t-caption); }
+  .rail-header [aria-current="page"], .rail-header [aria-expanded="true"] {
+    background: var(--card-2); border-color: var(--blue); font-weight: 700;
+  }
+  #sidebar-panel {
+    max-height: calc(100dvh - var(--mobile-nav-height, 80px));
+    overflow-y: auto; padding: var(--space-3) var(--space-4);
+  }
+  #sidebar-panel .rail-foot { margin-top: var(--space-3); padding-top: 0; }
+  main { padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
+  html { scroll-padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
+  main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
+  body:has(dialog[open]) .rail-header { visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-header { transition: none; }
+}
+@media (forced-colors: active) {
+  .rail-header { border-color: CanvasText; }
+  .rail-header [aria-current="page"], .rail-header [aria-expanded="true"] { border-color: Highlight; }
+}
+
 /* ============================================================ main */
 
 main { min-width: 0; }
@@ -1643,12 +1695,12 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   gap: var(--space-5); align-items: start;
 }
 .yours li { min-width: 0; }
-.yours button {
+.yours a {
   width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line-2);
   border-radius: 12px; padding: var(--space-4) var(--space-5); color: var(--text); min-height: 44px;
   display: grid; gap: var(--space-3);
 }
-.yours button:hover { background: var(--card-2); }
+.yours a:hover { background: var(--card-2); }
 .yours .yt { display: flex; justify-content: space-between; gap: var(--space-6); align-items: baseline; }
 /* The name is the thing being chosen and the thing being clicked, so it carries the weight. It
    used to be muted while the count beside it was full brightness, which put the emphasis on how
@@ -1838,7 +1890,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .ri[aria-current], .ri.on, .brand[aria-current] { border: 2px solid Highlight; }
   .breadcrumb a { color: LinkText; }
   .breadcrumb [aria-current="page"] { color: CanvasText; }
-  .home-path, .yours button, .preview, .catalog-card { border: 1px solid CanvasText; }
+  .home-path, .yours a, .preview, .catalog-card { border: 1px solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
   .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }

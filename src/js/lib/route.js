@@ -58,6 +58,19 @@ function linked(view, label, extra = {}) {
 
 const current = (label) => ({ label, current: true });
 
+export function isPlainNavigation(event) {
+  return !event || (event.button === 0 && !event.ctrlKey && !event.metaKey
+    && !event.shiftKey && !event.altKey && !event.defaultPrevented);
+}
+
+export function routeTitle({ view, list = null, issueTitle = null } = {}) {
+  const title = view === 'home' ? 'Home'
+    : view === 'read' ? cleanLabel(list?.name, 'Reading List')
+      : view === 'issue' ? cleanLabel(issueTitle, 'Issue details')
+        : breadcrumbHierarchy({ view }).at(-1)?.label ?? 'Recap Page';
+  return title === 'Recap Page' ? title : `${title} | Recap Page`;
+}
+
 export function breadcrumbHierarchy({
   view, list = null, issueTitle = null, context = null,
 } = {}) {

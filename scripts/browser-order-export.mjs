@@ -69,7 +69,7 @@ export const orderOnlyExport = {
     }, state, sourceUrl);
 
     await page.goto(`${page.__origin}/#/home`, { waitUntil: 'networkidle0' });
-    await click(page, '#list-nav button[data-act="open"]');
+    await click(page, '#list-nav a[data-act="open"]');
     await page.waitForSelector('#view-read:not([hidden])');
     await page.focus('#list-export > summary');
     await page.keyboard.press('Enter');
@@ -150,7 +150,7 @@ export const orderOnlyExport = {
     t.check('export sent zero external requests', external.length === 0, JSON.stringify(external));
     page.off('request', observeRequest);
 
-    await click(page, '#list-nav button[data-act="open"]');
+    await click(page, '#list-nav a[data-act="open"]');
     await click(page, '#btn-export-order');
     await page.waitForSelector('#ask[open]');
     await activateExport(page, '#ask-ok');

@@ -1,4 +1,5 @@
 import { LIBRARY_VIEWS } from '../lib/library.js';
+import { formatRoute } from '../lib/route.js';
 
 const GROUP_MIN = 12;
 
@@ -17,10 +18,13 @@ export function createLibraryView({
   const shownByKey = new Map();
 
   function row(issue, view) {
+    const memberships = getState().listOrder?.filter((id) => (
+      getState().lists[id]?.itemIds.includes(issue.issueId)
+    )) ?? [];
     const meta = [
       issue.readAt ? `Read ${new Date(issue.readAt).toLocaleDateString()}` : null,
       issue.seriesName ? seriesOnly(issue.seriesName) : null,
-      issue.lists.length ? `In ${issue.lists.join(', ')}` : 'In no list',
+      memberships.length ? null : 'In no list',
     ].filter(Boolean).join(' · ');
 
     const badge = view.markHandAdded && issue.source === 'manual'
@@ -37,13 +41,22 @@ export function createLibraryView({
         el('div', { class: 'result-meta' }, [el('span', { text: meta }), ...badge]),
       ]),
     ];
-    return view.value === 'library-read'
-      ? issueFocusAnchor(issue, {
-        surface: 'everything-read',
-        className: 'result result-cov result-focus',
-        children: contents,
-      })
-      : el('div', { class: 'result result-cov' }, contents);
+    const details = issueFocusAnchor(issue, {
+      surface: view.value === 'library-read' ? 'everything-read' : 'added-by-hand',
+      className: 'result result-cov result-focus',
+      children: contents,
+    });
+    if (!memberships.length) return details;
+    return el('div', { class: 'library-issue' }, [
+      details,
+      el('div', { class: 'library-list-links' }, [
+        el('span', { text: 'In ' }),
+        ...memberships.map((id) => el('a', {
+          href: formatRoute({ view: 'read', listId: id }),
+          text: getState().lists[id].name,
+        })),
+      ]),
+    ]);
   }
 
   function render() {
