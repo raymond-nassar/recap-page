@@ -78,3 +78,45 @@ test('actual native handoff ordering observes a timeout published at the finish 
   assert.equal(invoke({ timeoutReported: false }, () => false, () => false,
     () => assert.fail('no marker')), false);
 });
+
+test('installed poll failures expose fixed operations and numeric errors, never exception text', () => {
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  const helper = native.match(/bool installedPoll\([^\n]+\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(helper, 'the installed poll must retain the failing operation');
+  assert.match(helper, /return poll\(operation\)/);
+  assert.match(helper, /catch \(const std::exception& failure\)/);
+  assert.match(helper, /dynamic_cast<const fs::filesystem_error\*>/);
+  assert.match(helper, /dynamic_cast<const std::ios_base::failure\*>/);
+  assert.match(helper, /dynamic_cast<const std::bad_alloc\*>/);
+  assert.match(helper, /std::system_category\(\)/);
+  assert.match(helper, /std::generic_category\(\)/);
+  assert.match(helper, /std::iostream_category\(\)/);
+  assert.match(helper, /"DIAG installed-poll-failure operation="/);
+  assert.match(helper, /system->code\(\)\.value\(\)/);
+  assert.match(helper, /catch \(\.\.\.\) \{\}\s*throw;/);
+  assert.doesNotMatch(helper, /\.what\(|\.name\(|\.message\(|\.path[12]\(|typeid/);
+
+  const installed = native.slice(native.indexOf('void installed('), native.indexOf('} // namespace'));
+  assert.match(installed, /return installedPoll\(report, \[&\]\(const char\*& operation\)/);
+  for (const [operation, action] of [
+    ['root-count', 'const auto counts = observer.entryCounts(executable)'],
+    ['counts-publish', 'write(control / L"counts.txt"'],
+    ['busy-feedback', 'if (busy && !dismissed)'],
+    ['finish-query', 'return busy ? dismissed : fs::exists(control / L"finish.txt")'],
+    ['timeout-query', 'return fs::exists(control / L"root-timeout.txt")'],
+    ['root-diagnostic', 'reportInstalledRootTimeout(observer, executable, report)'],
+  ]) {
+    const marker = `operation = "${operation}";`;
+    assert.ok(installed.includes(marker), `missing fixed operation ${operation}`);
+    assert.ok(installed.indexOf(marker) < installed.indexOf(action),
+      `${operation} must be recorded before it can fail`);
+  }
+  assert.match(helper, /operation = "semantic-collect"/);
+  assert.match(installed, /"installed observer deadline exceeded", 600000/);
+  assert.match(native, /void serverVerifierCases\(\) \{\s*installedPollCases\(\);/);
+  const cases = native.match(/void installedPollCases\(\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(cases);
+  assert.match(cases, /std::current_exception\(\) == original/);
+  assert.match(cases, /PRIVATE category/);
+  assert.match(cases, /installedPoll\(broken/);
+});
