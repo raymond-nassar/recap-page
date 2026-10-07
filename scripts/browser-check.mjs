@@ -13865,7 +13865,7 @@ SCENARIOS.push({
       'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
       'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
       'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*',
-      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Spider-Man: Brand New Day', 'MCU Prep: She-Hulk: Attorney at Law', 'MCU Prep: Ms. Marvel', 'MCU Prep: Deadpool & Wolverine',
+      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Spider-Man: Brand New Day', 'MCU Prep: She-Hulk: Attorney at Law', 'MCU Prep: Ms. Marvel', 'MCU Prep: Captain America: Brave New World', 'MCU Prep: Deadpool & Wolverine',
       'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
     ];
     const expectedScreenCount = `${expectedScreenTitles.length} Reading Lists`;
@@ -16239,6 +16239,7 @@ SCENARIOS.push((await import('./browser-mcu-prep-fantastic-four-first-steps.mjs'
 SCENARIOS.push((await import('./browser-mcu-prep-brand-new-day.mjs')).brandNewDayActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-she-hulk.mjs')).sheHulkActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-ms-marvel.mjs')).msMarvelActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-captain-america-brave-new-world.mjs')).braveNewWorldActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare

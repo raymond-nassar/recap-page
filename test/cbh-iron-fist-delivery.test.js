@@ -91,10 +91,10 @@ test('Iron Fist retains its publication-time relationship review and unchanged n
   const peers = historicalReadingChoiceManifest(manifest).lists.filter((entry) => entry.id !== id
     && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-thunderbolts'
     && entry.id !== 'mcu-prep-deadpool-and-wolverine'
-    && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'mcu-prep-she-hulk' && entry.id !== 'mcu-prep-ms-marvel' && entry.id !== 'spider-man-no-way-home-owner-selected');
+    && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'mcu-prep-she-hulk' && entry.id !== 'mcu-prep-ms-marvel' && entry.id !== 'mcu-prep-captain-america-brave-new-world' && entry.id !== 'spider-man-no-way-home-owner-selected');
   const live = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight',
-      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
+      'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
   });
   assert.deepEqual(report, live);
   assert.equal(report.comparisonCount, peers.length);
@@ -191,8 +191,8 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
   assert.deepEqual([listed.count, listed.placeholderCount, listed.coverIssueId], [414, 38, 10201]);
   assert.deepEqual([listed.type, listed.depth, listed.spotlightKind, listed.timeline],
     ['character-run', 'partial', 'other', null]);
-  assert.equal(manifest.lists.length, 214);
-  assert.equal(catalog.lists.length, 291);
+  assert.equal(manifest.lists.length, 215);
+  assert.equal(catalog.lists.length, 292);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 70);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
     && entry.id !== id).length, 69);

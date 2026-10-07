@@ -2520,6 +2520,42 @@
       "coverIssueId": 49089
     },
     {
+      "id": "mcu-prep-captain-america-brave-new-world",
+      "name": "MCU Prep: Captain America: Brave New World",
+      "description": "Red Hulk tears through the Marvel universe, while Sam Wilson settles into life with the shield and fights to earn the public's trust. Legacy, politics, and a hero proving himself.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-captain-america-brave-new-world.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/704",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_captain_america_brave_new_world.json",
+      "characters": [
+        "Hulk",
+        "Red Hulk",
+        "Wolverine",
+        "Sam Wilson",
+        "Captain America"
+      ],
+      "keywords": [
+        "Captain America: Brave New World",
+        "Red Hulk",
+        "Hydra Ascendant",
+        "Not My Captain America",
+        "Jeph Loeb",
+        "Rick Remender",
+        "Nick Spencer",
+        "Puny Little Man"
+      ],
+      "expect": 19,
+      "timeline": null,
+      "coverIssueId": 17623
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

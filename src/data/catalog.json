@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T00:28:57.144Z",
+  "generatedAt": "2026-10-07T03:22:22.493Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3060,6 +3060,49 @@
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-07T00:28:57.144Z"
+    },
+    {
+      "id": "mcu-prep-captain-america-brave-new-world",
+      "file": "mcu_prep_captain_america_brave_new_world.json",
+      "name": "MCU Prep: Captain America: Brave New World",
+      "description": "Red Hulk tears through the Marvel universe, while Sam Wilson settles into life with the shield and fights to earn the public's trust. Legacy, politics, and a hero proving himself.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 19,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Hulk",
+        "Red Hulk",
+        "Wolverine",
+        "Sam Wilson",
+        "Captain America"
+      ],
+      "keywords": [
+        "Captain America: Brave New World",
+        "Red Hulk",
+        "Hydra Ascendant",
+        "Not My Captain America",
+        "Jeph Loeb",
+        "Rick Remender",
+        "Nick Spencer",
+        "Puny Little Man"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 17623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/519684406e84d",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/704",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-07T03:22:22.493Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

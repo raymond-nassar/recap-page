@@ -23,7 +23,7 @@ import {
 const root = fileURLToPath(new URL('..', import.meta.url));
 const id = 'mcu-prep-moon-knight';
 const laterIds = [
-  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
   'avengers-doomsday-secret-wars',
 ];
@@ -61,7 +61,7 @@ const expectedGroups = expectedSelections.map((selection) => `${selection.title}
 const expectedScreenIds = [
   'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
   'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
-  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
   'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again',
 ];
 const sourceOrigin = 'Selected by the owner for MCU Prep; expanded into original issues for this project';

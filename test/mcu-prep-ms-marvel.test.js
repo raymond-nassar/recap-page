@@ -177,7 +177,8 @@ test('Ms. Marvel binds full-current authority and the strict First Steps recipro
   assert.deepEqual(packet.insertionAnchor, { beforeId: 'agents-of-atlas-reading-order' });
   const position = manifest.lists.findIndex((row) => row.id === id);
   assert.equal(manifest.lists[position - 1].id, 'mcu-prep-she-hulk');
-  assert.equal(manifest.lists[position + 1].id, packet.insertionAnchor.beforeId);
+  assert.equal(manifest.lists[position + 1].id, 'mcu-prep-captain-america-brave-new-world');
+  assert.equal(manifest.lists[position + 2].id, packet.insertionAnchor.beforeId);
 });
 
 test('Ms. Marvel publishes eighteen originals with guide-local shared anthology and protected saved data', async () => {

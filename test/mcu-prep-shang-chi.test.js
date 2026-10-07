@@ -213,7 +213,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
   })));
   const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
-  assert.equal(current.comparisonCount, 291);
+  assert.equal(current.comparisonCount, 292);
   assert.equal(current.comparisonCount, currentEntries.length);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -227,7 +227,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
   assert.equal(current.comparisons.some((row) =>
     row.orderId === 'spider-man-no-way-home-owner-selected'), false);
   for (const laterId of [
-    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel',
+    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
     'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again', 'avengers-doomsday-secret-wars',
   ]) {
     const comparison = current.comparisons.find((row) => row.orderId === laterId);
