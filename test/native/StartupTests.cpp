@@ -3542,11 +3542,10 @@ int wmain(int argc, wchar_t** argv) {
     std::ofstream report(reportPath, std::ios::binary | std::ios::app);
     liveReport = &report;
     liveReportPath = reportPath;
-    const auto com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+    HRESULT com = E_FAIL;
+    bool comInitialized = false;
     try {
         check(static_cast<bool>(report), "proof report path is required");
-        check(SUCCEEDED(com), "proof COM initialization failed");
-        proof::nativeArchitecture(GetCurrentProcess());
         // Hidden, redirected console launches do not initialize a USER thread.
         check(observed("proof-gui-thread", [] { return IsGUIThread(TRUE) != FALSE; }),
               "proof GUI thread unavailable");
@@ -3555,6 +3554,10 @@ int wmain(int argc, wchar_t** argv) {
         }), "proof DPI context unavailable");
         check(AreDpiAwarenessContextsEqual(GetThreadDpiAwarenessContext(),
               DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2), "proof DPI context differed");
+        com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+        check(SUCCEEDED(com), "proof COM initialization failed");
+        comInitialized = true;
+        proof::nativeArchitecture(GetCurrentProcess());
         if (options[L"--mode"] == L"dpi-awareness") {
             observed("com-uninitialize", [] { CoUninitialize(); });
             report << "PASS hidden-observer-dpi-awareness\n";
@@ -3697,7 +3700,7 @@ int wmain(int argc, wchar_t** argv) {
                 appCapturePublished = true;
             }
         }
-        if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
+        if (comInitialized) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }
 }
