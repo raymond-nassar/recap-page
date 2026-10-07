@@ -1,4 +1,9 @@
 {
   "schemaVersion": 1,
-  "guides": []
+  "guides": [
+    {
+      "id": "mcu-prep-guardians-of-the-galaxy",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-guardians-of-the-galaxy.json"
+    }
+  ]
 }

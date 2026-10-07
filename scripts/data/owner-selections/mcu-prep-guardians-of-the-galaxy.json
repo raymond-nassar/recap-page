@@ -1,0 +1,1500 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-guardians-of-the-galaxy",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/700",
+  "sourceRetrievedAt": "2026-10-07",
+  "readerDescription": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Annihilation: Conquest",
+      "inputSha256": "3afdd406f3a1b51f11e16e51d48a5ef9d3e47e2e2154fba48eb4ee7f5581218e",
+      "group": "Annihilation: Conquest (formation-focused owner compilation)",
+      "interpretation": "Explicit formation-focused owner compilation: Prologue #1, Star-Lord #1-4, then main Conquest #1-6. Not a published trade, whole event or omnibus.",
+      "evidenceSources": [
+        {
+          "url": "https://www.comicbooktreasury.com/annihilation-conquest-reading-order/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.comicbookwire.com/reading-order/marvel/event/annihilation-conquest/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://omniversecomics.guide/2023/01/05/annihilation-conquest-2007-2008-reading-order/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/700#issuecomment-5976023960",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 11
+    },
+    {
+      "inputPosition": 2,
+      "suppliedTitle": "Guardians of the Galaxy by Abnett & Lanning Vol. 1",
+      "inputSha256": "fb1c3eec64f9f3c851e0ac3bd8f155189778d6d798064e7a5c6ed80db4c95f16",
+      "group": "Guardians of the Galaxy Vol. 1: Legacy",
+      "interpretation": "Original first trade: Guardians of the Galaxy Vol. 1: Legacy; ISBN 9780785133384.",
+      "evidenceSources": [
+        {
+          "url": "https://www.abebooks.com/9780785133384/Guardians-Galaxy-Vol-1-Legacy-0785133380/plp",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.comicbookwire.com/reading-order/marvel/event/annihilation-conquest/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://books.google.com/books?vid=ISBN9780785133384",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://books.google.com/books?vid=ISBN9780785133261",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/700#issuecomment-5976023960",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 6
+    },
+    {
+      "inputPosition": 3,
+      "suppliedTitle": "Rocket Raccoon by Skottie Young Vol. 1",
+      "inputSha256": "d8d58dc4b8fb273d24731591cf5f64799d09f649b16dac6b92f04899729ed807",
+      "group": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "interpretation": "Original first trade: Rocket Raccoon Vol. 1: A Chasing Tale; ISBN 9780785190455.",
+      "evidenceSources": [
+        {
+          "url": "https://www.abebooks.com/9780785190455/Rocket-Raccon-Vol-1-Chasing-0785190457/plp",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://books.google.com/books?vid=ISBN9780785190455",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://books.google.com/books?vid=ISBN9780785193890",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.reedcomics.com/rocket-raccoon-volume-1-a-chasing-tale-graphic-novels",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/700#issuecomment-5976023960",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 6
+    },
+    {
+      "inputPosition": 4,
+      "suppliedTitle": "Guardians of the Galaxy by Al Ewing Vol. 1",
+      "inputSha256": "b1fed584a2546ec9aaad057a5e6ecfbbcbe1679f621ee0565569674c1323bc32",
+      "group": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "interpretation": "Original first trade: Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us; ISBN 9781302920753.",
+      "evidenceSources": [
+        {
+          "url": "https://leagueofcomicgeeks.com/comic/5631498/guardians-of-the-galaxy-vol-1-then-its-us-tp",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://books.google.com/books?vid=ISBN9781302920753",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.abebooks.com/9781302920753/Guardians-Galaxy-Ewing-Vol-Us-1302920758/plp",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-10-03"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/700#issuecomment-5976023960",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 5
+    }
+  ],
+  "sourceIssueCount": 28,
+  "publishedIssueCount": 28,
+  "rows": [
+    {
+      "sourceIssueReference": "Annihilation: Conquest Prologue (2007) #1",
+      "normalizedSeriesTitle": "annihilation conquest prologue 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2420,
+      "candidateIssueId": 15891,
+      "originalIssueId": 15891,
+      "aliasExplanation": "Bibliographic title \"Annihilation: Conquest Prologue\" and provider title \"ANNIHILATION: CONQUEST PROLOGUE 1\" identify the same original at the recorded series ID, year and issue number.",
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest - Star-Lord (2007) #1",
+      "normalizedSeriesTitle": "annihilation conquest starlord",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2541,
+      "candidateIssueId": 16009,
+      "originalIssueId": 16009,
+      "aliasExplanation": "Bibliographic title \"Annihilation: Conquest - Star-Lord\" and provider title \"Annihilation: Conquest - Starlord\" identify the same original at the recorded series ID, year and issue number.",
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest - Star-Lord (2007) #2",
+      "normalizedSeriesTitle": "annihilation conquest starlord",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2541,
+      "candidateIssueId": 16191,
+      "originalIssueId": 16191,
+      "aliasExplanation": "Bibliographic title \"Annihilation: Conquest - Star-Lord\" and provider title \"Annihilation: Conquest - Starlord\" identify the same original at the recorded series ID, year and issue number.",
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest - Star-Lord (2007) #3",
+      "normalizedSeriesTitle": "annihilation conquest starlord",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2541,
+      "candidateIssueId": 16598,
+      "originalIssueId": 16598,
+      "aliasExplanation": "Bibliographic title \"Annihilation: Conquest - Star-Lord\" and provider title \"Annihilation: Conquest - Starlord\" identify the same original at the recorded series ID, year and issue number.",
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest - Star-Lord (2007) #4",
+      "normalizedSeriesTitle": "annihilation conquest starlord",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2541,
+      "candidateIssueId": 16599,
+      "originalIssueId": 16599,
+      "aliasExplanation": "Bibliographic title \"Annihilation: Conquest - Star-Lord\" and provider title \"Annihilation: Conquest - Starlord\" identify the same original at the recorded series ID, year and issue number.",
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #1",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3061,
+      "candidateIssueId": 17271,
+      "originalIssueId": 17271,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #2",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 3061,
+      "candidateIssueId": 17405,
+      "originalIssueId": 17405,
+      "sourcePosition": 7,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #3",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 3061,
+      "candidateIssueId": 17645,
+      "originalIssueId": 17645,
+      "sourcePosition": 8,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #4",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 3061,
+      "candidateIssueId": 20686,
+      "originalIssueId": 20686,
+      "sourcePosition": 9,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #5",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 3061,
+      "candidateIssueId": 20885,
+      "originalIssueId": 20885,
+      "sourcePosition": 10,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Annihilation: Conquest (2007) #6",
+      "normalizedSeriesTitle": "annihilation conquest",
+      "seriesYear": 2007,
+      "issueNumber": "6",
+      "seriesId": 3061,
+      "candidateIssueId": 21016,
+      "originalIssueId": 21016,
+      "sourcePosition": 11,
+      "inputPosition": 1,
+      "sourceRangeReference": "Annihilation: Conquest (formation-focused owner compilation)",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #1",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4885,
+      "candidateIssueId": 21268,
+      "originalIssueId": 21268,
+      "sourcePosition": 12,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #2",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 4885,
+      "candidateIssueId": 21412,
+      "originalIssueId": 21412,
+      "sourcePosition": 13,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #3",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 4885,
+      "candidateIssueId": 21586,
+      "originalIssueId": 21586,
+      "sourcePosition": 14,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #4",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 4885,
+      "candidateIssueId": 21783,
+      "originalIssueId": 21783,
+      "sourcePosition": 15,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #5",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 4885,
+      "candidateIssueId": 22025,
+      "originalIssueId": 22025,
+      "sourcePosition": 16,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2008) #6",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2008,
+      "issueNumber": "6",
+      "seriesId": 4885,
+      "candidateIssueId": 22352,
+      "originalIssueId": 22352,
+      "sourcePosition": 17,
+      "inputPosition": 2,
+      "sourceRangeReference": "Guardians of the Galaxy Vol. 1: Legacy",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #1",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18806,
+      "candidateIssueId": 50221,
+      "originalIssueId": 50221,
+      "sourcePosition": 18,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #2",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18806,
+      "candidateIssueId": 50223,
+      "originalIssueId": 50223,
+      "sourcePosition": 19,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #3",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18806,
+      "candidateIssueId": 50224,
+      "originalIssueId": 50224,
+      "sourcePosition": 20,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #4",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18806,
+      "candidateIssueId": 50225,
+      "originalIssueId": 50225,
+      "sourcePosition": 21,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #5",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18806,
+      "candidateIssueId": 50788,
+      "originalIssueId": 50788,
+      "sourcePosition": 22,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Rocket Raccoon (2014) #6",
+      "normalizedSeriesTitle": "rocket raccoon",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18806,
+      "candidateIssueId": 51150,
+      "originalIssueId": 51150,
+      "sourcePosition": 23,
+      "inputPosition": 3,
+      "sourceRangeReference": "Rocket Raccoon Vol. 1: A Chasing Tale",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2020) #1",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28042,
+      "candidateIssueId": 78683,
+      "originalIssueId": 78683,
+      "sourcePosition": 24,
+      "inputPosition": 4,
+      "sourceRangeReference": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2020) #2",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28042,
+      "candidateIssueId": 78684,
+      "originalIssueId": 78684,
+      "sourcePosition": 25,
+      "inputPosition": 4,
+      "sourceRangeReference": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2020) #3",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 28042,
+      "candidateIssueId": 78685,
+      "originalIssueId": 78685,
+      "sourcePosition": 26,
+      "inputPosition": 4,
+      "sourceRangeReference": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2020) #4",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 28042,
+      "candidateIssueId": 78686,
+      "originalIssueId": 78686,
+      "sourcePosition": 27,
+      "inputPosition": 4,
+      "sourceRangeReference": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy (2020) #5",
+      "normalizedSeriesTitle": "guardians of the galaxy",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28042,
+      "candidateIssueId": 78687,
+      "originalIssueId": 78687,
+      "sourcePosition": 28,
+      "inputPosition": 4,
+      "sourceRangeReference": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "guardians-trial-input.md",
+        "sha256": "5194eda33478e9d79a1aa9aeeeae436a5c50fffd4a62508475779e72d3cbb3a9",
+        "bytes": 514
+      }
+    ]
+  },
+  "facts": {
+    "acceptedOriginalCount": 28,
+    "acceptedGroupCounts": [
+      11,
+      6,
+      6,
+      5
+    ],
+    "selectedIssueIds": [
+      15891,
+      16009,
+      16191,
+      16598,
+      16599,
+      17271,
+      17405,
+      17645,
+      20686,
+      20885,
+      21016,
+      21268,
+      21412,
+      21586,
+      21783,
+      22025,
+      22352,
+      50221,
+      50223,
+      50224,
+      50225,
+      50788,
+      51150,
+      78683,
+      78684,
+      78685,
+      78686,
+      78687
+    ],
+    "numericVectorSha256": "46ce28e9a41a3dd2b7a9eafbee240e5ac14b50e05becd6586963b387cee55760",
+    "bibliographyReused": true,
+    "bibliographyRetrievalDate": "2026-10-03",
+    "historicalMetadataRetrievalDate": "2026-10-03",
+    "privateOriginalReceipts": [
+      {
+        "name": "mcu-prep-guardians-of-the-galaxy.source.json",
+        "sha256": "e00eefc3f650416d7616a894144ee591e099f29fc5e18b51b19b6474b6128b85",
+        "bytes": 52653
+      },
+      {
+        "name": "mcu-prep-guardians-of-the-galaxy.packet.json",
+        "sha256": "6aae0ef43af3fdfeef8a57c12ecd07d7959387e14fe921e5e0825bea58f3422f",
+        "bytes": 20444
+      },
+      {
+        "name": "mcu-prep-guardians-of-the-galaxy.mapping.json",
+        "sha256": "bcece550caa9d43e59600da9f0dcab5f7d0ec721a0bee89790fa8fab4b9f5347",
+        "bytes": 128684
+      },
+      {
+        "name": "guardians-selected-research.json",
+        "sha256": "9e4df4edbcc87a33c80194ba326e292a4ed3bfc9da97f9c77ebb888b7ca42666",
+        "bytes": 61184
+      },
+      {
+        "name": "guardians-bibliography.json",
+        "sha256": "568bce5c8825defe676d7aac3fd87b12cc886311938a593de7c7dc612064a635",
+        "bytes": 24527
+      },
+      {
+        "name": "guardians-bibliography-captures.json",
+        "sha256": "c6af4adeadb73da4b449ebc3462bce083ac97447729cc21152615bdff82c6be7",
+        "bytes": 7667
+      }
+    ],
+    "editions": [
+      {
+        "position": 1,
+        "suppliedTitle": "Annihilation: Conquest",
+        "suppliedRationale": "The event that first assembles this version of the team, chronologically earliest.",
+        "rationaleStatus": "Owner intake motivation, not a verified film-adaptation, chronology, recency or availability claim.",
+        "collectionTitle": "Annihilation: Conquest (formation-focused owner compilation)",
+        "creators": [
+          "Dan Abnett",
+          "Andy Lanning",
+          "Keith Giffen"
+        ],
+        "edition": {
+          "title": "Annihilation: Conquest (formation-focused owner compilation)",
+          "format": "Explicit owner compilation, not a published trade",
+          "isbn": null,
+          "publicationYear": null,
+          "evidence": [
+            {
+              "id": "W3",
+              "url": "https://www.comicbooktreasury.com/annihilation-conquest-reading-order/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Separates prologue, Star-Lord #1-4 and main #1-6, plus optional tie-ins. Its advertised 2025 omnibus includes extra Nova and Saga material, so older omnibus boundaries cannot be assumed."
+            },
+            {
+              "id": "W4",
+              "url": "https://www.comicbookwire.com/reading-order/marvel/event/annihilation-conquest/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Main story is a series with a separate prologue; tie-in minis expand it. Legacy and Complete Collection Vol. 1 are separately named post-event entry points."
+            },
+            {
+              "id": "W25",
+              "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Distinguishes original/future-set Guardians and modern formation in the Star-Lord mini; Complete Collection Vol. 1 #1-12; Then It's Us #1-5 and next volume #6-12; later 2023 Grootfall. Unrelated whole-run #19 claim is not used."
+            },
+            {
+              "id": "W26",
+              "url": "https://omniversecomics.guide/2023/01/05/annihilation-conquest-2007-2008-reading-order/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Ordered prologue, Star-Lord mini before main, optional tie-ins, ongoing team formation in Guardians (2008) #1 and concrete High Evolutionary appearances in Conquest #1-4."
+            }
+          ]
+        },
+        "originalCount": 11,
+        "originalIssueIds": [
+          15891,
+          16009,
+          16191,
+          16598,
+          16599,
+          17271,
+          17405,
+          17645,
+          20686,
+          20885,
+          21016
+        ]
+      },
+      {
+        "position": 2,
+        "suppliedTitle": "Guardians of the Galaxy by Abnett & Lanning Vol. 1",
+        "suppliedRationale": "The team's early ongoing adventures right after forming.",
+        "rationaleStatus": "Owner intake motivation, not a verified film-adaptation, chronology, recency or availability claim.",
+        "collectionTitle": "Guardians of the Galaxy Vol. 1: Legacy",
+        "creators": [
+          "Dan Abnett",
+          "Andy Lanning"
+        ],
+        "edition": {
+          "title": "Guardians of the Galaxy Vol. 1: Legacy",
+          "format": "Paperback",
+          "isbn": "9780785133384",
+          "publicationYear": 2009,
+          "evidence": [
+            {
+              "id": "W5",
+              "url": "https://www.abebooks.com/9780785133384/Guardians-Galaxy-Vol-1-Legacy-0785133380/plp",
+              "retrievedAt": "2026-10-03",
+              "basis": "Legacy contents are Guardians of the Galaxy #1-6 and the collection follows Conquest. ISBN in the retrieved bibliographic URL is 9780785133384."
+            },
+            {
+              "id": "W4",
+              "url": "https://www.comicbookwire.com/reading-order/marvel/event/annihilation-conquest/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Main story is a series with a separate prologue; tie-in minis expand it. Legacy and Complete Collection Vol. 1 are separately named post-event entry points."
+            },
+            {
+              "id": "W9",
+              "url": "https://books.google.com/books?vid=ISBN9780785133384",
+              "retrievedAt": "2026-10-03",
+              "basis": "Title, Abnett/Lanning, 2009 edition year and ISBN; facts independently captured with HTTP 200."
+            },
+            {
+              "id": "W10",
+              "url": "https://books.google.com/books?vid=ISBN9780785133261",
+              "retrievedAt": "2026-10-03",
+              "basis": "2008 hardcover edition, writers and ISBN; facts independently captured with HTTP 200."
+            }
+          ],
+          "bibliographyCapture": {
+            "id": "legacy-paperback",
+            "isbn": "9780785133384",
+            "url": "https://books.google.com/books?vid=ISBN9780785133384",
+            "fetchedAt": "2026-10-04T02:49:31.758Z",
+            "status": 200,
+            "bibliography": {
+              "Title": "Guardians of the Galaxy: Legacy Graphic Novel PB Series Volume 1 of Guardians of the Galaxy - Legacy Volume 1 of Guardians of the Galaxy Look & find books Volume 1 of War of kings",
+              "Authors": "Dan Abnett , Andy Lanning",
+              "Publisher": "Marvel, 2009",
+              "ISBN": "0785133380, 9780785133384",
+              "Length": "152 pages"
+            },
+            "finalUrl": "https://books.google.com/books?vid=ISBN9780785133384",
+            "pageTitle": "Guardians of the Galaxy: Legacy - Dan Abnett, Andy Lanning - Google Books",
+            "googleBookId": "IyVQNwAACAAJ",
+            "extractionStatus": "bibliographic-fields-only"
+          }
+        },
+        "originalCount": 6,
+        "originalIssueIds": [
+          21268,
+          21412,
+          21586,
+          21783,
+          22025,
+          22352
+        ]
+      },
+      {
+        "position": 3,
+        "suppliedTitle": "Rocket Raccoon by Skottie Young Vol. 1",
+        "suppliedRationale": "Solo spotlight, later in the modern era.",
+        "rationaleStatus": "Owner intake motivation, not a verified film-adaptation, chronology, recency or availability claim.",
+        "collectionTitle": "Rocket Raccoon Vol. 1: A Chasing Tale",
+        "creators": [
+          "Skottie Young"
+        ],
+        "edition": {
+          "title": "Rocket Raccoon Vol. 1: A Chasing Tale",
+          "format": "Paperback",
+          "isbn": "9780785190455",
+          "publicationYear": 2015,
+          "evidence": [
+            {
+              "id": "W6",
+              "url": "https://www.abebooks.com/9780785190455/Rocket-Raccon-Vol-1-Chasing-0785190457/plp",
+              "retrievedAt": "2026-10-03",
+              "basis": "The retrieved page credits Skottie Young and Jake Parker. The extracted page omitted other bibliographic fields, so this alone does not establish date or contents."
+            },
+            {
+              "id": "W12",
+              "url": "https://books.google.com/books?vid=ISBN9780785190455",
+              "retrievedAt": "2026-10-03",
+              "basis": "2015 first-volume edition and ISBN; description explicitly collects #1-6."
+            },
+            {
+              "id": "W13",
+              "url": "https://books.google.com/books?vid=ISBN9780785193890",
+              "retrievedAt": "2026-10-03",
+              "basis": "Same first volume in 2015 hardcover; ISBN and title."
+            },
+            {
+              "id": "W16",
+              "url": "https://www.reedcomics.com/rocket-raccoon-volume-1-a-chasing-tale-graphic-novels",
+              "retrievedAt": "2026-10-03",
+              "basis": "Skottie Young and original Rocket Raccoon (2014) #1-6 boundary."
+            }
+          ],
+          "bibliographyCapture": {
+            "id": "young-paperback",
+            "isbn": "9780785190455",
+            "url": "https://books.google.com/books?vid=ISBN9780785190455",
+            "fetchedAt": "2026-10-04T02:49:32.391Z",
+            "status": 200,
+            "bibliography": {
+              "Title": "Rocket Raccon Vol. 1: A Chasing Tale",
+              "Publisher": "Marvel, 2015",
+              "ISBN": "0785190457, 9780785190455",
+              "Length": "136 pages"
+            },
+            "finalUrl": "https://books.google.com/books?vid=ISBN9780785190455",
+            "pageTitle": "Rocket Raccon Vol. 1: A Chasing Tale - Google Books",
+            "googleBookId": "dlB7vgEACAAJ",
+            "extractionStatus": "bibliographic-fields-only"
+          }
+        },
+        "originalCount": 6,
+        "originalIssueIds": [
+          50221,
+          50223,
+          50224,
+          50225,
+          50788,
+          51150
+        ]
+      },
+      {
+        "position": 4,
+        "suppliedTitle": "Guardians of the Galaxy by Al Ewing Vol. 1",
+        "suppliedRationale": "The most recent run, touching on the High Evolutionary, directly relevant to the third film's villain.",
+        "rationaleStatus": "Owner intake motivation, not a verified film-adaptation, chronology, recency or availability claim.",
+        "collectionTitle": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+        "creators": [
+          "Al Ewing"
+        ],
+        "edition": {
+          "title": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us",
+          "format": "Paperback",
+          "isbn": "9781302920753",
+          "publicationYear": 2020,
+          "evidence": [
+            {
+              "id": "W8",
+              "url": "https://leagueofcomicgeeks.com/comic/5631498/guardians-of-the-galaxy-vol-1-then-its-us-tp",
+              "retrievedAt": "2026-10-03",
+              "basis": "Then It's Us collects Guardians of the Galaxy (2020) #1-5; the collection description identifies the Olympian gods, not the High Evolutionary."
+            },
+            {
+              "id": "W14",
+              "url": "https://books.google.com/books?vid=ISBN9781302920753",
+              "retrievedAt": "2026-10-03",
+              "basis": "2020 edition and ISBN; its #1-6 description is recorded as a conflict, not accepted final contents."
+            },
+            {
+              "id": "W15",
+              "url": "https://www.abebooks.com/9781302920753/Guardians-Galaxy-Ewing-Vol-Us-1302920758/plp",
+              "retrievedAt": "2026-10-03",
+              "basis": "Ewing/Cabal and Olympian-gods premise; its #1-6 description conflicts with final first-volume bibliography."
+            },
+            {
+              "id": "W25",
+              "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+              "retrievedAt": "2026-10-03",
+              "basis": "Distinguishes original/future-set Guardians and modern formation in the Star-Lord mini; Complete Collection Vol. 1 #1-12; Then It's Us #1-5 and next volume #6-12; later 2023 Grootfall. Unrelated whole-run #19 claim is not used."
+            }
+          ],
+          "bibliographyCapture": {
+            "id": "ewing-first-trade",
+            "isbn": "9781302920753",
+            "url": "https://books.google.com/books?vid=ISBN9781302920753",
+            "fetchedAt": "2026-10-04T02:49:32.724Z",
+            "status": 200,
+            "bibliography": {
+              "Title": "Guardians of the Galaxy by Al Ewing Vol. 1",
+              "Publisher": "Marvel, 2020",
+              "ISBN": "1302920758, 9781302920753",
+              "Length": "144 pages"
+            },
+            "finalUrl": "https://books.google.com/books?vid=ISBN9781302920753",
+            "pageTitle": "Guardians of the Galaxy by Al Ewing Vol. 1 - Google Books",
+            "googleBookId": "SKRIzwEACAAJ",
+            "extractionStatus": "bibliographic-fields-only"
+          }
+        },
+        "originalCount": 5,
+        "originalIssueIds": [
+          78683,
+          78684,
+          78685,
+          78686,
+          78687
+        ]
+      }
+    ],
+    "historicalScopeDecision": {
+      "type": "parent-autonomous-delegated-default",
+      "authorityType": "coordinator-autonomous",
+      "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/700#issuecomment-5976023960",
+      "decisionRecordedAt": "2026-10-04T03:05:59Z",
+      "decisionRetrievedAt": "2026-10-03",
+      "separateHumanReviewedReceipt": false,
+      "rationale": "The coordinator chose the formation-focused eleven and original Legacy six under delegated autonomy while the owner was unavailable. Preparation permission does not grant source-review, insertion, relationship or publication authority."
+    },
+    "bibliographyConflicts": [
+      {
+        "selectionPosition": 2,
+        "distinction": "Original Legacy first trade #1-6 is selected; the distinct Complete Collection Vol. 1 #1-12 is not."
+      },
+      {
+        "selectionPosition": 3,
+        "distinction": "Search responses supplied inconsistent exact publication dates. Only the directly retrieved 2015 edition year is adopted."
+      },
+      {
+        "selectionPosition": 4,
+        "earlierRetailerMetadata": "Google Books and AbeBooks report #1-6.",
+        "finalCollectionBibliography": "League of Comic Geeks explicitly lists #1-5; Comic Book Herald independently lists #1-5 and begins Vol. 2 at #6.",
+        "resolution": "Use the final five-original boundary. Keep the six-issue retailer discrepancy as bibliography conflict, not a provider gap or an extra selected source row.",
+        "unprovenExplanationNotAdopted": "A pandemic/solicitation explanation was suggested by search output but not independently verified."
+      }
+    ],
+    "unsupportedIntakeClaims": [
+      {
+        "claim": "Most recent run",
+        "status": "refuted",
+        "basis": "The later Kelly/Lanzing Guardians of the Galaxy (2023) run and first Grootfall trade are independently identified.",
+        "evidenceIds": [
+          "W25",
+          "W27"
+        ],
+        "action": "Retain Ewing's named volume; omit current-most-recent language."
+      },
+      {
+        "claim": "First Ewing trade touches the High Evolutionary and is directly relevant to the third film's villain",
+        "status": "unsupported-for-this-volume",
+        "basis": "The first trade's independently retrieved collection descriptions identify an Olympian-gods conflict. A concrete High Evolutionary connection is independently documented in the already selected Conquest main series, but no verified first-Ewing-volume connection was found.",
+        "evidenceIds": [
+          "W8",
+          "W14",
+          "W15",
+          "W26"
+        ],
+        "action": "Do not ship this as a verified recommendation rationale, do not assert exhaustive character absence from incomplete listings, and do not substitute another Ewing book or creator."
+      }
+    ],
+    "claimEvidence": [
+      {
+        "id": "W8",
+        "url": "https://leagueofcomicgeeks.com/comic/5631498/guardians-of-the-galaxy-vol-1-then-its-us-tp",
+        "retrievedAt": "2026-10-03",
+        "basis": "Then It's Us collects Guardians of the Galaxy (2020) #1-5; the collection description identifies the Olympian gods, not the High Evolutionary."
+      },
+      {
+        "id": "W14",
+        "url": "https://books.google.com/books?vid=ISBN9781302920753",
+        "retrievedAt": "2026-10-03",
+        "basis": "2020 edition and ISBN; its #1-6 description is recorded as a conflict, not accepted final contents."
+      },
+      {
+        "id": "W15",
+        "url": "https://www.abebooks.com/9781302920753/Guardians-Galaxy-Ewing-Vol-Us-1302920758/plp",
+        "retrievedAt": "2026-10-03",
+        "basis": "Ewing/Cabal and Olympian-gods premise; its #1-6 description conflicts with final first-volume bibliography."
+      },
+      {
+        "id": "W25",
+        "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+        "retrievedAt": "2026-10-03",
+        "basis": "Distinguishes original/future-set Guardians and modern formation in the Star-Lord mini; Complete Collection Vol. 1 #1-12; Then It's Us #1-5 and next volume #6-12; later 2023 Grootfall. Unrelated whole-run #19 claim is not used."
+      },
+      {
+        "id": "W26",
+        "url": "https://omniversecomics.guide/2023/01/05/annihilation-conquest-2007-2008-reading-order/",
+        "retrievedAt": "2026-10-03",
+        "basis": "Ordered prologue, Star-Lord mini before main, optional tie-ins, ongoing team formation in Guardians (2008) #1 and concrete High Evolutionary appearances in Conquest #1-4."
+      },
+      {
+        "id": "W27",
+        "url": "https://books.google.com/books?vid=ISBN9781302951191",
+        "retrievedAt": "2026-10-03",
+        "basis": "Guardians of the Galaxy (2023) #1-5; counter-evidence to Ewing being the most recent run, not a proposed replacement."
+      }
+    ],
+    "caveats": [
+      "The formation-focused Conquest selection is a coordinator-chosen owner compilation, not a published trade or the complete event.",
+      "Provider labels ANNIHILATION: CONQUEST PROLOGUE 1 and Annihilation: Conquest - Starlord are retained separately from bibliographic wording; exact series IDs, years and issue numbers are unchanged.",
+      "The prologue and Rocket Raccoon (2014) #1-6 provider creator arrays omit writer roles. Bibliographic authorship is retained independently; cached creator arrays are not claimed to be exhaustive or rewritten.",
+      "The Legacy paperback publication year is 2009; its original issues are from the 2008 series. Collection publication years and original on-sale dates remain distinct; no unverified exact collection date is inferred.",
+      "Then It's Us has five selected originals. The six-issue retailer description is a recorded bibliography conflict, not a sixth selected row.",
+      "Ewing recency and High Evolutionary film relevance are unsupported intake framing for this first trade and are excluded from proposed copy. No claim of exhaustive character absence or one-to-one film adaptation is made.",
+      "Conquest develops a precursor squad and the ongoing Guardians series follows it; do not identify that squad as exactly the film roster or promise strict in-universe chronology.",
+      "Provider digital IDs and unlimitedDate values are cached metadata only, not a Marvel Unlimited availability claim.",
+      "Only cover URLs are retained. No third-party narrative, image bytes or host-private paths are included."
+    ],
+    "historicalSelectedMetadataReceipts": [
+      {
+        "issueId": 15891,
+        "fetchedAt": "2026-10-04T02:59:50.148Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "12cb047cd750e50e109098ca24b97d0dec1f339aa2f2c82c30bc85d393326a20"
+      },
+      {
+        "issueId": 16009,
+        "fetchedAt": "2026-10-04T02:59:50.432Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "80e02bfbaa5601b52b465e964d9411de127c349b09f5900e5a4f05df60d7f2b1"
+      },
+      {
+        "issueId": 16191,
+        "fetchedAt": "2026-10-04T02:59:50.651Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "6a17c0dcb81c8dca241f93487c128c5c68fe158e87ffcabf1e6a8c7d5c9b17e9"
+      },
+      {
+        "issueId": 16598,
+        "fetchedAt": "2026-10-04T03:00:00.156Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "f375291fc3739ca15f82934bb2476275c10a462dcc8871c4c0e96529fbe9d31c"
+      },
+      {
+        "issueId": 16599,
+        "fetchedAt": "2026-10-04T03:00:30.146Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "ce0c6df9c93d41fa70089eb595fbdce0a4a56e0cbcb49aac7382d882f363ca80"
+      },
+      {
+        "issueId": 17271,
+        "fetchedAt": "2026-10-04T03:00:30.428Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "0c058236d01ba5a75b6087eb7aca87fe53e110bbe207dbabe5cdeb8c68c0cc4f"
+      },
+      {
+        "issueId": 17405,
+        "fetchedAt": "2026-10-04T03:00:30.728Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "cc33b4ec0f6c98ada0bd99e47a7bd7846cb7098531de1c117ef73fc0b8334a08"
+      },
+      {
+        "issueId": 17645,
+        "fetchedAt": "2026-10-04T03:00:40.155Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "9690fd508a1c55d9f99848b4e1220933fe6262d27aa93f42f316e076ae64b1f7"
+      },
+      {
+        "issueId": 20686,
+        "fetchedAt": "2026-10-04T03:00:40.432Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "9dfd3902e29ea07e90c17f3926f45457f8c756ab33ecda154ea1ce11fb804e93"
+      },
+      {
+        "issueId": 20885,
+        "fetchedAt": "2026-10-04T03:00:40.735Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "73ee5412b04490c134d027f565a230ac30f3e7c1c1a3063f2dc4931ac2f2fdc5"
+      },
+      {
+        "issueId": 21016,
+        "fetchedAt": "2026-10-04T03:00:50.162Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "9639bfb38d83f742d16c889e1aec1465da64f62d0755bb3afcd25ad6bae89621"
+      },
+      {
+        "issueId": 21268,
+        "fetchedAt": "2026-10-04T03:00:50.437Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "a260146107eb9d5614656588394b6eb811a8170ea2c7828f47b31cfbf29161a4"
+      },
+      {
+        "issueId": 21412,
+        "fetchedAt": "2026-10-04T03:00:50.738Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "6f9169a7c0d09208ad3416ff2e4f0d766c1b9a70d75806ac8197b4cebce037ec"
+      },
+      {
+        "issueId": 21586,
+        "fetchedAt": "2026-10-04T03:01:00.170Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "8ae62b41c93f2812b49d63c42074c237622ccea4aa30d7c0f5f8a92433b08529"
+      },
+      {
+        "issueId": 21783,
+        "fetchedAt": "2026-10-04T03:01:30.151Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "5c82bbf53ffbf43878086717f7265b810def5845ba9d7459fe44441fe92bc6a5"
+      },
+      {
+        "issueId": 22025,
+        "fetchedAt": "2026-10-04T03:01:30.433Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "c388342e3e085a8f5dca3dd55e7c3ab0971a6c9f1bf68294838505d1a4c5b6ba"
+      },
+      {
+        "issueId": 22352,
+        "fetchedAt": "2026-10-04T03:01:30.736Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "e899cec2d6913ce78363dd806c353535bbdf0096c65f2f094ecc12e542e1e7a5"
+      },
+      {
+        "issueId": 50221,
+        "fetchedAt": "2026-10-04T03:02:00.180Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "06da1af0e57ec40945cbad3ada284c958dd0e3d5c29f82daeb16a0379555b459"
+      },
+      {
+        "issueId": 50223,
+        "fetchedAt": "2026-10-04T03:02:30.158Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "a16a713b47c2c05ce296ed60463ee5482939f57aa25136eaef89fdb4e4dc72c4"
+      },
+      {
+        "issueId": 50224,
+        "fetchedAt": "2026-10-04T03:02:30.445Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "f846bbf53c775968eb791fbc88440735e5da469ed461879716473681bc278fee"
+      },
+      {
+        "issueId": 50225,
+        "fetchedAt": "2026-10-04T03:02:30.750Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "6bf2f739d2a68b1a049b393c74ad113ddc180886ac4fe102f4ebfed53297fa58"
+      },
+      {
+        "issueId": 50788,
+        "fetchedAt": "2026-10-04T03:02:40.173Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "00c62c4dba63f65a1ee9969c9172478f9b524e67b4ab1fc210ecbbf96808a338"
+      },
+      {
+        "issueId": 51150,
+        "fetchedAt": "2026-10-04T03:02:40.450Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "a73c5b804831a9b5efe97bccc33f159fd818343618ced158029b79d3d7c31d71"
+      },
+      {
+        "issueId": 78683,
+        "fetchedAt": "2026-10-04T03:02:40.758Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "0f2c6d4a532d55b7aefb4f905d61baaf589ae7ba6b35fc1b988ae6345ede6f62"
+      },
+      {
+        "issueId": 78684,
+        "fetchedAt": "2026-10-04T03:02:50.176Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "924a81142e551cc9c6646e0fa391139f9421fa36ed5e9d57a7cb67579f5deae4"
+      },
+      {
+        "issueId": 78685,
+        "fetchedAt": "2026-10-04T03:02:50.506Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "93b71d6f5604195c2cab221e7821f9f754e9986d6e1a52ed0273eaa83c74bda3"
+      },
+      {
+        "issueId": 78686,
+        "fetchedAt": "2026-10-04T03:02:50.768Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "365b841d86411ac8189c24170f57c93173df9be459b0b1dfed3709dda83d243a"
+      },
+      {
+        "issueId": 78687,
+        "fetchedAt": "2026-10-04T03:03:00.199Z",
+        "status": 200,
+        "historicalFactProjectionBodySha256": "f34fe939f44e6bffedba7ffe12db5ae64906cd55251d83b7106e5a557fa2e571"
+      }
+    ],
+    "metadataCacheQualification": {
+      "historicalRecordsAreFactProjections": true,
+      "genuineCompleteResponsesInitiallyAvailable": 0,
+      "authorizedMissingOriginalCount": 28,
+      "originalDatesAndHashesPreserved": true,
+      "exactCompleteResponsesRecovered": 28,
+      "recoveredOn": "2026-10-07"
+    },
+    "currentCompleteMetadataReceipts": [
+      {
+        "issueId": 15891,
+        "url": "https://marvel.emreparker.com/v1/issues/15891",
+        "urlSha256": "51bf49746c2977387434f8a2c1b713b4b56ac36e19e88e6c182047d9be3b80f5",
+        "startedAt": "2026-10-07T13:19:17.939Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:18.337Z",
+        "rawBodySha256": "35ae99184fed6826f03a1dcba97d21ce87bfc3b4255609c89ef2943750f826b2",
+        "rawBodyBytes": 602,
+        "bodySha256": "35ae99184fed6826f03a1dcba97d21ce87bfc3b4255609c89ef2943750f826b2",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:18.345Z"
+      },
+      {
+        "issueId": 16009,
+        "url": "https://marvel.emreparker.com/v1/issues/16009",
+        "urlSha256": "80fae9e69e54d770eba5887041db75b83d0b13be735d641fcf28534acc255d59",
+        "startedAt": "2026-10-07T13:19:18.346Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:18.540Z",
+        "rawBodySha256": "d1e84be4ea35bbc8f8c6edbac67cedc49b6c2651252798df7ff92c99e28eec14",
+        "rawBodyBytes": 879,
+        "bodySha256": "d1e84be4ea35bbc8f8c6edbac67cedc49b6c2651252798df7ff92c99e28eec14",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:18.544Z"
+      },
+      {
+        "issueId": 16191,
+        "url": "https://marvel.emreparker.com/v1/issues/16191",
+        "urlSha256": "c94f38879681d9e05cc9c4b0e59c804cc2a36b1033554339dab18538bc19fb1a",
+        "startedAt": "2026-10-07T13:19:18.545Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:18.705Z",
+        "rawBodySha256": "8f0c13054fa0bfc4d02b6b14d3d66def07958af1d65dc54e4e0cf1bc0b934b75",
+        "rawBodyBytes": 879,
+        "bodySha256": "8f0c13054fa0bfc4d02b6b14d3d66def07958af1d65dc54e4e0cf1bc0b934b75",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:18.707Z"
+      },
+      {
+        "issueId": 16598,
+        "url": "https://marvel.emreparker.com/v1/issues/16598",
+        "urlSha256": "8fc51609a9349e933d337aa7e8020b12ce90bb83b4d9741b1361ff5faee19211",
+        "startedAt": "2026-10-07T13:19:27.939Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:28.185Z",
+        "rawBodySha256": "3bd5579c5f3023ecc865954f96be0084f368999a344c08b35d643ba912bc1d49",
+        "rawBodyBytes": 879,
+        "bodySha256": "3bd5579c5f3023ecc865954f96be0084f368999a344c08b35d643ba912bc1d49",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:28.190Z"
+      },
+      {
+        "issueId": 16599,
+        "url": "https://marvel.emreparker.com/v1/issues/16599",
+        "urlSha256": "ec5220094ab5df7a637b882023d6123d36768923e8919442ec60d56feacb9341",
+        "startedAt": "2026-10-07T13:19:28.356Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:28.669Z",
+        "rawBodySha256": "b4c10eeb56e43ca199a61aa776ec958941646f1eef65a4b17b6b545834fe5b9f",
+        "rawBodyBytes": 879,
+        "bodySha256": "b4c10eeb56e43ca199a61aa776ec958941646f1eef65a4b17b6b545834fe5b9f",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:28.673Z"
+      },
+      {
+        "issueId": 17271,
+        "url": "https://marvel.emreparker.com/v1/issues/17271",
+        "urlSha256": "9151f54e7cffbc23a6c95136a4f117d821904981d9fc671ecf4bf098accd89f7",
+        "startedAt": "2026-10-07T13:19:28.674Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:28.861Z",
+        "rawBodySha256": "ec05bd050775dc206128edd0c574c7246bae79bfb120e2489b10aa73dbda8979",
+        "rawBodyBytes": 886,
+        "bodySha256": "ec05bd050775dc206128edd0c574c7246bae79bfb120e2489b10aa73dbda8979",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:28.864Z"
+      },
+      {
+        "issueId": 17405,
+        "url": "https://marvel.emreparker.com/v1/issues/17405",
+        "urlSha256": "e3ad5e5b281740721956c1b6237355341aa4eef3e544d2a61fdcbd4f368f82bd",
+        "startedAt": "2026-10-07T13:19:37.941Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:38.162Z",
+        "rawBodySha256": "414bb27352641799e44e0e7a873f31f989132275d1b4597a5d3dd996f627a4d2",
+        "rawBodyBytes": 886,
+        "bodySha256": "414bb27352641799e44e0e7a873f31f989132275d1b4597a5d3dd996f627a4d2",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:38.165Z"
+      },
+      {
+        "issueId": 17645,
+        "url": "https://marvel.emreparker.com/v1/issues/17645",
+        "urlSha256": "51eb9cab7a834bb6537e9fe289d91da28fe398f22c408547a6a5bbbcc340a7f7",
+        "startedAt": "2026-10-07T13:19:38.356Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:38.540Z",
+        "rawBodySha256": "afd2a87b6d8a098e4d384a7cc623475ed6f4d35f3e57e120213874f6bc85a109",
+        "rawBodyBytes": 887,
+        "bodySha256": "afd2a87b6d8a098e4d384a7cc623475ed6f4d35f3e57e120213874f6bc85a109",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:38.545Z"
+      },
+      {
+        "issueId": 20686,
+        "url": "https://marvel.emreparker.com/v1/issues/20686",
+        "urlSha256": "f57ed481598eb6eec1f1dcfe4c563146f6ea0965b7fe176d5323e6121d1bf370",
+        "startedAt": "2026-10-07T13:19:38.677Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:38.839Z",
+        "rawBodySha256": "10506cc1234167752863da45d82289ab8b036ca56651b4b14966e30fa42a31ad",
+        "rawBodyBytes": 936,
+        "bodySha256": "10506cc1234167752863da45d82289ab8b036ca56651b4b14966e30fa42a31ad",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:38.843Z"
+      },
+      {
+        "issueId": 20885,
+        "url": "https://marvel.emreparker.com/v1/issues/20885",
+        "urlSha256": "4f8fe50580d523764777eb1fd828494429f024dbcd1e9f61cd6f4688385e3c51",
+        "startedAt": "2026-10-07T13:19:47.952Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:19:48.163Z",
+        "rawBodySha256": "7d3d7a928cdfde585279c41a92311ce7bbc194d63574b9a72ff47a884a5a5af9",
+        "rawBodyBytes": 887,
+        "bodySha256": "7d3d7a928cdfde585279c41a92311ce7bbc194d63574b9a72ff47a884a5a5af9",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:19:48.167Z"
+      },
+      {
+        "issueId": 21016,
+        "url": "https://marvel.emreparker.com/v1/issues/21016",
+        "urlSha256": "59e45c382168186b691086db9fbc9e53df4d5c2a8f77066a53e7d619c6e7435b",
+        "startedAt": "2026-10-07T13:20:17.948Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:18.160Z",
+        "rawBodySha256": "0d8ce8ad1ff5f71df0461e1cadfc1b356d313b05a20f154b391e9f472e0e6421",
+        "rawBodyBytes": 943,
+        "bodySha256": "0d8ce8ad1ff5f71df0461e1cadfc1b356d313b05a20f154b391e9f472e0e6421",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:18.163Z"
+      },
+      {
+        "issueId": 21268,
+        "url": "https://marvel.emreparker.com/v1/issues/21268",
+        "urlSha256": "bd5e0975748db8e23eeaaa49ba881da21772c1cd4ea9b71058b516ce74b9d2cd",
+        "startedAt": "2026-10-07T13:20:18.356Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:18.528Z",
+        "rawBodySha256": "5ce514d6c26fec02fbc3085fe77da2ceb9e2fa3ada6d1c145e143f929aa9bcf8",
+        "rawBodyBytes": 897,
+        "bodySha256": "5ce514d6c26fec02fbc3085fe77da2ceb9e2fa3ada6d1c145e143f929aa9bcf8",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:18.530Z"
+      },
+      {
+        "issueId": 21412,
+        "url": "https://marvel.emreparker.com/v1/issues/21412",
+        "urlSha256": "f07c2908f2052b55bf3e1f9619111789d937662127fcec5f3c7f35f2cf59ea01",
+        "startedAt": "2026-10-07T13:20:18.554Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:18.746Z",
+        "rawBodySha256": "c5a359e7785f162ebf2108cf9fd7ff6e9d912f71644d15c29e50a7673f833745",
+        "rawBodyBytes": 897,
+        "bodySha256": "c5a359e7785f162ebf2108cf9fd7ff6e9d912f71644d15c29e50a7673f833745",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:18.748Z"
+      },
+      {
+        "issueId": 21586,
+        "url": "https://marvel.emreparker.com/v1/issues/21586",
+        "urlSha256": "cc7e7a2e5d0a82d0aaa0672378f2055948f65b826959449a2b82611a8e114a1b",
+        "startedAt": "2026-10-07T13:20:27.956Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:28.166Z",
+        "rawBodySha256": "6a20b46f1d0d4cd60677f1dd39748eee7d85a42b076c9f3ab401882514f970d8",
+        "rawBodyBytes": 897,
+        "bodySha256": "6a20b46f1d0d4cd60677f1dd39748eee7d85a42b076c9f3ab401882514f970d8",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:28.169Z"
+      },
+      {
+        "issueId": 21783,
+        "url": "https://marvel.emreparker.com/v1/issues/21783",
+        "urlSha256": "36b4b57fd4fb708edd84c66c1a3c59091c2d2a8cbc19cd34aaf801bfc6600fe1",
+        "startedAt": "2026-10-07T13:20:28.358Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:28.560Z",
+        "rawBodySha256": "fa5055b9f45b199e40be7397b26bc5876ffdf70396779fb9707c538798200222",
+        "rawBodyBytes": 889,
+        "bodySha256": "fa5055b9f45b199e40be7397b26bc5876ffdf70396779fb9707c538798200222",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:28.569Z"
+      },
+      {
+        "issueId": 22025,
+        "url": "https://marvel.emreparker.com/v1/issues/22025",
+        "urlSha256": "9683b91451d56365ab1ee7fb56987f908d16a5a1aa38e179c7db04767eef2537",
+        "startedAt": "2026-10-07T13:20:28.674Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:28.979Z",
+        "rawBodySha256": "253001992c87a66e3c80d8d1dcf03bf246073802294e7a4d19dd1d0b785e6484",
+        "rawBodyBytes": 889,
+        "bodySha256": "253001992c87a66e3c80d8d1dcf03bf246073802294e7a4d19dd1d0b785e6484",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:28.989Z"
+      },
+      {
+        "issueId": 22352,
+        "url": "https://marvel.emreparker.com/v1/issues/22352",
+        "urlSha256": "05bbbb67181b4f91f138d8674702a52856ac52ad5d2832e6f2516f4bbcf15c64",
+        "startedAt": "2026-10-07T13:20:37.956Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:38.163Z",
+        "rawBodySha256": "3be9ad1898f63fe3f9962ddd22d44684c4253b8a9b0a9ed071fcb88f652002a3",
+        "rawBodyBytes": 889,
+        "bodySha256": "3be9ad1898f63fe3f9962ddd22d44684c4253b8a9b0a9ed071fcb88f652002a3",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:38.171Z"
+      },
+      {
+        "issueId": 50221,
+        "url": "https://marvel.emreparker.com/v1/issues/50221",
+        "urlSha256": "c7f510cf9f494ef82a85da049bfd404dd5602442ca3f176731bb1bd8e7ca5eb7",
+        "startedAt": "2026-10-07T13:20:38.359Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:38.528Z",
+        "rawBodySha256": "a6c5e5504ae3a4ceddf9a5e8f307f4b3e7eb7f5f704a853eef549fb69e36c26b",
+        "rawBodyBytes": 1373,
+        "bodySha256": "a6c5e5504ae3a4ceddf9a5e8f307f4b3e7eb7f5f704a853eef549fb69e36c26b",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:38.532Z"
+      },
+      {
+        "issueId": 50223,
+        "url": "https://marvel.emreparker.com/v1/issues/50223",
+        "urlSha256": "897447378e01b1454ba5521313550c1fa01401731a10e4c7a701f3a3b04b08f7",
+        "startedAt": "2026-10-07T13:20:38.688Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:38.849Z",
+        "rawBodySha256": "f7a15f9afb8227bcd0a8bd8c9d07e2260109b11e5e6434ea311fb16af955b882",
+        "rawBodyBytes": 821,
+        "bodySha256": "f7a15f9afb8227bcd0a8bd8c9d07e2260109b11e5e6434ea311fb16af955b882",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:38.861Z"
+      },
+      {
+        "issueId": 50224,
+        "url": "https://marvel.emreparker.com/v1/issues/50224",
+        "urlSha256": "ca19d8542f4c939e236faf88c289fd040678a005b2b9d80fddce09c3cead1a96",
+        "startedAt": "2026-10-07T13:20:47.958Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:20:48.160Z",
+        "rawBodySha256": "3410b72c7196df077491be92c8acd3030647975020ebf29ad12b232b547bd4a1",
+        "rawBodyBytes": 827,
+        "bodySha256": "3410b72c7196df077491be92c8acd3030647975020ebf29ad12b232b547bd4a1",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:20:48.165Z"
+      },
+      {
+        "issueId": 50225,
+        "url": "https://marvel.emreparker.com/v1/issues/50225",
+        "urlSha256": "fb7cf2717ca8e02ccd9c2e772677d36a40055e260da70d7e948cbe88b527cd50",
+        "startedAt": "2026-10-07T13:21:17.956Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:18.182Z",
+        "rawBodySha256": "3a1283b928f59e99023a27143235d324e1cd0c48cfee3757f777d5be51b0b99d",
+        "rawBodyBytes": 866,
+        "bodySha256": "3a1283b928f59e99023a27143235d324e1cd0c48cfee3757f777d5be51b0b99d",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:18.190Z"
+      },
+      {
+        "issueId": 50788,
+        "url": "https://marvel.emreparker.com/v1/issues/50788",
+        "urlSha256": "e000a7ac13f76898b768a0b5c79127c6b6aaf55cb4c76e759672564fc49a47d8",
+        "startedAt": "2026-10-07T13:21:18.357Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:18.532Z",
+        "rawBodySha256": "240cf4095131d1421387bf534564b9fd39c72dfeac10bf60ee2872dce89c343d",
+        "rawBodyBytes": 957,
+        "bodySha256": "240cf4095131d1421387bf534564b9fd39c72dfeac10bf60ee2872dce89c343d",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:18.536Z"
+      },
+      {
+        "issueId": 51150,
+        "url": "https://marvel.emreparker.com/v1/issues/51150",
+        "urlSha256": "ace4a1587d8dcf74576984df658069ca27dc584e95b4a8d255e5c09e2e13276a",
+        "startedAt": "2026-10-07T13:21:18.557Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:18.735Z",
+        "rawBodySha256": "a3a3a8e2f3652059e7527498f5a18756ce8b985ffb0cc8cfa3091e36111cc599",
+        "rawBodyBytes": 764,
+        "bodySha256": "a3a3a8e2f3652059e7527498f5a18756ce8b985ffb0cc8cfa3091e36111cc599",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:18.740Z"
+      },
+      {
+        "issueId": 78683,
+        "url": "https://marvel.emreparker.com/v1/issues/78683",
+        "urlSha256": "2c799958adb20ec2ab849ef74cc653c367b9af954d2a553a4b4da54ba804d61b",
+        "startedAt": "2026-10-07T13:21:27.956Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:28.169Z",
+        "rawBodySha256": "288fe6708ba0f646ee3c262e6a30ef9069a16b8a7c832a9523835e78444ba54a",
+        "rawBodyBytes": 1453,
+        "bodySha256": "288fe6708ba0f646ee3c262e6a30ef9069a16b8a7c832a9523835e78444ba54a",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:28.198Z"
+      },
+      {
+        "issueId": 78684,
+        "url": "https://marvel.emreparker.com/v1/issues/78684",
+        "urlSha256": "0d0a3c47b1248d8cf459b95443866ec124584649e4faf9626f860e776da518fe",
+        "startedAt": "2026-10-07T13:21:28.360Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:28.526Z",
+        "rawBodySha256": "976ae22304c3c5fa6dcb169e76966cf96c65c946597806332cf64dcbcaf11d2d",
+        "rawBodyBytes": 1144,
+        "bodySha256": "976ae22304c3c5fa6dcb169e76966cf96c65c946597806332cf64dcbcaf11d2d",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:28.530Z"
+      },
+      {
+        "issueId": 78685,
+        "url": "https://marvel.emreparker.com/v1/issues/78685",
+        "urlSha256": "dc50649c173d47ecd9b8fbab018f94c0437850522f35b8d27417ab7dc9322b9c",
+        "startedAt": "2026-10-07T13:21:28.676Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:28.842Z",
+        "rawBodySha256": "77cbf53deda13d89276e64f83d77a4c756bf71302ef45965f3ef1920fdd1c6a1",
+        "rawBodyBytes": 1286,
+        "bodySha256": "77cbf53deda13d89276e64f83d77a4c756bf71302ef45965f3ef1920fdd1c6a1",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:28.851Z"
+      },
+      {
+        "issueId": 78686,
+        "url": "https://marvel.emreparker.com/v1/issues/78686",
+        "urlSha256": "739542eb4b4e05866ee39dbcb13b2e5993c5e80d4d2a548b7af258598e865460",
+        "startedAt": "2026-10-07T13:21:37.961Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:38.170Z",
+        "rawBodySha256": "b73590c58801561e4f16c6894759b88fe09915f63f7e728f5d0579a16328e958",
+        "rawBodyBytes": 1267,
+        "bodySha256": "b73590c58801561e4f16c6894759b88fe09915f63f7e728f5d0579a16328e958",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:38.173Z"
+      },
+      {
+        "issueId": 78687,
+        "url": "https://marvel.emreparker.com/v1/issues/78687",
+        "urlSha256": "898d103ee87927b461bdda4b81a7645f645ebab90743b97871519ec27869b4e0",
+        "startedAt": "2026-10-07T13:21:38.373Z",
+        "status": 200,
+        "fetchedAt": "2026-10-07T13:21:38.557Z",
+        "rawBodySha256": "e40b7e45412ee8c7c537ab6e3b2b90b4f37fad31ff53a994f560cf9224a67965",
+        "rawBodyBytes": 1179,
+        "bodySha256": "e40b7e45412ee8c7c537ab6e3b2b90b4f37fad31ff53a994f560cf9224a67965",
+        "statusText": "exact-complete-response-preserved",
+        "completedAt": "2026-10-07T13:21:38.560Z"
+      }
+    ]
+  },
+  "publicDependencies": []
+}

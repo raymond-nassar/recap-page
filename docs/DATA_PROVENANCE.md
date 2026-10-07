@@ -406,16 +406,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-four pinned reading-order payloads remain under
-[`src/data/`](../src/data): 292 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 293 active files hold
-31,157 issue records covering 19,324 distinct tracked identities. The visible files hold 30,670 of those records;
+Two hundred and ninety-five pinned reading-order payloads remain under
+[`src/data/`](../src/data): 293 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 294 active files hold
+31,185 issue records covering 19,324 distinct tracked identities. The visible files hold 30,698 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 293 active payloads, 26,279
-records carry a cover URL and 24,676 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 294 active payloads, 26,307
+records carry a cover URL and 24,704 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -502,9 +502,9 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 5 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals |
+| Selected by raymond-nassar for MCU Prep | 6 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals |
 
-The 215 active source orders generate 292 visible Reading Lists. Marvel Knights to Planet X is the only
+The 216 active source orders generate 293 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -573,7 +573,7 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 211 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 210 active
+The 215 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 214 active
 local source files and the retired owner-selected No Way Home checklist. The upstream full
 Hickman checklist is fetched separately when vendored. The fast-track checklist serves two
 independent Reading Lists, so local-file and source-order counts differ.
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7177-7216`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7214-7253`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11259-11384`.
+`src/data/catalog.json:11303-11428`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2434,3 +2434,86 @@ guide in their current format. Completion/enjoyment remains separate in
 history backup is required. Older builds that support the existing reader format can
 retain imported originals; they do not gain this bundled catalog choice until updated,
 and unsupported older completion-history behavior is not a downgrade guarantee.
+
+## Owner-authored MCU Prep: Guardians of the Galaxy
+
+[Issue #700](https://github.com/raymond-nassar/recap-page/issues/700) supplies four
+named selections in owner order. The
+[self-contained factual source](../scripts/data/owner-selections/mcu-prep-guardians-of-the-galaxy.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-guardians-of-the-galaxy.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-guardians-of-the-galaxy.json)
+and [local checklist](../src/data/orders/mcu-prep-guardians-of-the-galaxy.md)
+preserve 28 distinct originals in eleven/six/six/five. The private research originals
+remain unchanged; public provenance retains their names, hashes and byte counts,
+not executable private paths or a requirement to open them.
+
+| Owner selection | Accepted boundary | Edition |
+|---|---|---|
+| Annihilation: Conquest | Prologue (2007) #1, Star-Lord (2007) #1-4, then main Conquest (2007) #1-6 | Explicit formation-focused owner compilation, not a trade, complete event or omnibus; no invented ISBN |
+| Guardians of the Galaxy Vol. 1: Legacy | Guardians of the Galaxy (2008) #1-6 | 2009 paperback, ISBN 9780785133384; not the twelve-original Complete Collection |
+| Rocket Raccoon Vol. 1: A Chasing Tale | Rocket Raccoon (2014) #1-6 by Skottie Young | 2015 paperback, ISBN 9780785190455 |
+| Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us | Guardians of the Galaxy (2020) #1-5 | 2020 collection, ISBN 9781302920753 |
+
+The dated bibliography was retained from 2026-10-03 rather than represented as
+fresh research. Google Books and AbeBooks report six originals for the Ewing
+collection; the accepted final five-original boundary follows the independently
+recorded League of Comic Geeks and Comic Book Herald enumerations. The discrepancy
+remains explicit, without adding #6 or inventing an explanation for it. Collection
+edition years are separate from original issue on-sale dates; unverified exact
+collection publication dates are not inferred.
+
+The provider titles `ANNIHILATION: CONQUEST PROLOGUE 1` and
+`Annihilation: Conquest - Starlord` are recorded aliases of the bibliographic
+titles, with their exact series IDs, years, issue numbers and original IDs
+unchanged. Provider credits omit writer roles for the prologue and the six Rocket
+originals. Independently supported authorship remains bibliography, not a rewrite
+of the sparse provider arrays.
+
+The supplied motivations are owner framing, not verified film, chronology,
+recency or availability claims. Conquest develops a precursor squad, not a
+guaranteed match for the film roster. The Ewing selection is not called the latest
+run or a verified High Evolutionary source for the third film. No substitute run,
+extra tie-in or researched-but-unselected original is added.
+
+Cache qualification found 28 retained factual projections but no genuine complete
+response records for the selected originals. On 2026-10-07, one authorized exact
+issue-detail request per original supplied 28 complete HTTP 200 response records,
+with no retries or other metadata, bibliography or image requests. Every recovered
+body's factual projection agrees with its historical counterpart. Historical dates
+and digests remain separate from the new response receipts. Cache-only vendoring
+publishes 28 resolved rows, no gaps or placeholders, and cover URLs rather than
+image bytes. Provider descriptions remain null; cached digital IDs and Unlimited
+dates do not establish reading availability.
+
+The [complete-library comparison](../scripts/data/owner-overlaps/mcu-prep-guardians-of-the-galaxy.json)
+covers all 293 earlier descriptors: 215 source orders, 292 visible cards,
+78 generated children and one hidden partition parent. Actual independent parent
+model review approves eight partial relationships and the zero-shared-original
+policy covers the other 285. There is no subset or exact duplicate.
+
+| Existing guide | Shared selected originals |
+|---|---|
+| Adam Warlock | Six Legacy originals |
+| Annihilation: Conquest | All eleven selected Conquest originals |
+| Ultron best-of | The prologue and six main Conquest originals |
+| Groot | Four Star-Lord, six Legacy and six Rocket originals |
+| Guardians of the Galaxy | Six Legacy and five Ewing originals |
+| Nova | Five Ewing originals |
+| Rocket Raccoon | Six Legacy originals |
+| Star-Lord | Six Legacy originals |
+
+This is source, insertion and relationship authority, not human sign-off or a
+formal code review. The selected-depth MCU Prep card follows Brave New World and
+precedes Agents of Atlas, credits raymond-nassar and uses original 21268 for its
+representative cover URL. Existing event and broader character routes remain
+available. The frozen First Steps/Ms. Marvel approval and reciprocal reference,
+the fourteen-record CBH inventory and the retired No Way Home archive are unchanged.
+
+Preview leaves reader and separate history values unchanged. Additive import
+preserves existing lists, original-level read timestamps, notes, overrides and list
+deferral; shared originals keep shared progress. Reader backups retain the imported
+guide in the existing reader schema. Completion and enjoyment remain separate in
+`mrt.list-history.v1` and require the separate history backup for portable recovery.
+Compatible older builds retain imported originals but do not gain this bundled
+catalog choice until updated; this is not a promise of older completion-history
+support. No migration, origin change or runtime dependency is introduced.
