@@ -13559,6 +13559,59 @@ const SCENARIOS = [
           savedFalseReload,
         }));
 
+      const crossingState = async (view) => page.evaluate((destination) => {
+        const describe = (node) => {
+          if (!node) return null;
+          const rect = node.getBoundingClientRect();
+          const style = getComputedStyle(node);
+          return {
+            tag: node.tagName, id: node.id, class: node.className,
+            view: node.dataset.view ?? null, href: node.getAttribute('href'),
+            display: style.display, visibility: style.visibility,
+            rect: { top: rect.top, left: rect.left, width: rect.width, height: rect.height },
+            rendered: rect.width > 0 && rect.height > 0
+              && style.display !== 'none' && style.visibility === 'visible',
+          };
+        };
+        const active = document.activeElement;
+        const desktop = document.querySelector(`.ri[data-view="${destination}"]`);
+        return {
+          active: describe(active), desktop: describe(desktop), activeIsDesktop: active === desktop,
+          route: location.href, history: history.length,
+          storage: Object.fromEntries(Object.keys(localStorage).sort().map((key) => [key, localStorage.getItem(key)])),
+        };
+      }, view);
+      for (const view of ['library', 'browse', 'add']) {
+        await resizeTo(880, { narrow: true, panelHidden: true });
+        await page.$eval(`.mobile-link[data-view="${view}"]`, (link) => link.focus());
+        const before = await crossingState(view);
+        await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+        const after = await crossingState(view);
+        const href = `#/${view}`;
+        t.check(`desktop return rescues focused mobile ${view} to its rendered identical destination`,
+          before.active?.tag === 'A' && before.active.view === view && before.active.href === href
+          && before.active.rendered && after.activeIsDesktop && after.active?.rendered
+          && after.active.view === view && after.active.href === href
+          && after.desktop?.view === view && after.desktop.href === href,
+          JSON.stringify({ before, after }));
+        t.check(`mobile ${view} focus crossing does not navigate or persist`,
+          before.route === after.route && before.history === after.history
+          && JSON.stringify(before.storage) === JSON.stringify(after.storage),
+          JSON.stringify({ before, after }));
+      }
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await page.$eval('.mobile-link[data-view="library"]', (link) => link.focus());
+      await page.$eval('#btn-hero-read', (button) => button.focus());
+      const mainBefore = await crossingState('library');
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      const mainAfter = await crossingState('library');
+      t.check('desktop return does not steal Reading focus after leaving a mobile destination',
+        mainBefore.active?.id === 'btn-hero-read' && mainAfter.active?.id === 'btn-hero-read'
+        && mainAfter.active.rendered && mainBefore.route === mainAfter.route
+        && mainBefore.history === mainAfter.history
+        && JSON.stringify(mainBefore.storage) === JSON.stringify(mainAfter.storage),
+        JSON.stringify({ mainBefore, mainAfter }));
+
       await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
       await page.$eval('.ri[data-view="library"]', (button) => button.focus());
       await resizeTo(880, { narrow: true, panelHidden: true });

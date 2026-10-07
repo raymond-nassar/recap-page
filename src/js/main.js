@@ -1214,6 +1214,16 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
 function wireSidebar() {
   const saved = loadRailed();
   const narrowMedia = window.matchMedia('(max-width: 880px)');
+  let mobileFocus = null;
+  document.addEventListener('focusin', (e) => {
+    mobileFocus = isNarrow && e.target instanceof Element && e.target.matches('.mobile-link')
+      ? e.target : null;
+  });
+  document.addEventListener('focusout', (e) => {
+    if (e.target !== mobileFocus) return;
+    // CSS can blur the disappearing link to BODY before the resize handler runs.
+    if (e.relatedTarget || narrowMedia.matches || mobileFocus.getClientRects().length) mobileFocus = null;
+  });
   wasCompact = window.innerWidth < RAIL_BREAKPOINT;
   isNarrow = narrowMedia.matches;
   narrowOpen = false;
@@ -1253,9 +1263,14 @@ function wireSidebar() {
       railed = compact || (loadRailed() ?? false);
     }
     const nextNarrow = narrowMedia.matches;
+    let returningFocus = null;
     if (nextNarrow !== isNarrow) {
       const panel = $('#sidebar-panel');
       const activeInside = panel?.contains(document.activeElement);
+      if (!nextNarrow && mobileFocus && !mobileFocus.getClientRects().length
+        && (document.activeElement === mobileFocus || document.activeElement === document.body)) {
+        returningFocus = mobileFocus;
+      }
       isNarrow = nextNarrow;
       if (nextNarrow) {
         narrowOpen = false;
@@ -1266,6 +1281,15 @@ function wireSidebar() {
       tooltips?.refresh();
     }
     renderSidebar();
+    if (returningFocus && (document.activeElement === returningFocus || document.activeElement === document.body)) {
+      const destination = [...$('#sidebar-panel').querySelectorAll('.ri[data-view]')].find((link) => (
+        link.dataset.view === returningFocus.dataset.view
+        && link.getAttribute('href') === returningFocus.getAttribute('href')
+        && link.getClientRects().length
+      ));
+      destination?.focus();
+    }
+    if (!isNarrow) mobileFocus = null;
   });
 
   wireMobileNavigation();

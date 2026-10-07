@@ -1534,8 +1534,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1956-1967|0": {
-    "anchor": "src/js/main.js:1956-1967",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1980-1991|0": {
+    "anchor": "src/js/main.js:1980-1991",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
@@ -1564,8 +1564,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2745-2769|0": {
-    "anchor": "src/js/main.js:2745-2769",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2769-2793|0": {
+    "anchor": "src/js/main.js:2769-2793",
     "fp": "b1396d382b6c5ef2",
     "head": "function renderAll() {"
   },
@@ -1639,13 +1639,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2745-2769|0": {
-    "anchor": "src/js/main.js:2745-2769",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2769-2793|0": {
+    "anchor": "src/js/main.js:2769-2793",
     "fp": "b1396d382b6c5ef2",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3311-3344|0": {
-    "anchor": "src/js/main.js:3311-3344",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3335-3368|0": {
+    "anchor": "src/js/main.js:3335-3368",
     "fp": "755e088f3b509ba2",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1699,13 +1699,13 @@
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3294-3403|0": {
-    "anchor": "src/js/main.js:3294-3403",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3318-3427|0": {
+    "anchor": "src/js/main.js:3318-3427",
     "fp": "c11e3b30ebf1bbad",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3405-3457|0": {
-    "anchor": "src/js/main.js:3405-3457",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3429-3481|0": {
+    "anchor": "src/js/main.js:3429-3481",
     "fp": "5518a9bfa859ea81",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1759,8 +1759,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2264-2279|0": {
-    "anchor": "src/js/main.js:2264-2279",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2288-2303|0": {
+    "anchor": "src/js/main.js:2288-2303",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -2114,8 +2114,8 @@
     "fp": "3c75afdf5cfc5638",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1648-1691|0": {
-    "anchor": "src/js/main.js:1648-1691",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1672-1715|0": {
+    "anchor": "src/js/main.js:1672-1715",
     "fp": "f344ddda7790e906",
     "head": "function renderBreadcrumbs() {"
   },
@@ -2359,8 +2359,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1610-1612|0": {
-    "anchor": "src/js/main.js:1610-1612",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1634-1636|0": {
+    "anchor": "src/js/main.js:1634-1636",
     "fp": "68f0263068782dee",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {"
   },
@@ -2404,8 +2404,8 @@
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2745-2769|0": {
-    "anchor": "src/js/main.js:2745-2769",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2769-2793|0": {
+    "anchor": "src/js/main.js:2769-2793",
     "fp": "b1396d382b6c5ef2",
     "head": "function renderAll() {"
   },
@@ -2419,8 +2419,8 @@
     "fp": "82cad93ac99c5b16",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2012|0": {
-    "anchor": "src/js/main.js:2012",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2036|0": {
+    "anchor": "src/js/main.js:2036",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2464,8 +2464,8 @@
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1578-1645|0": {
-    "anchor": "src/js/main.js:1578-1645",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1602-1669|0": {
+    "anchor": "src/js/main.js:1602-1669",
     "fp": "718cfcb13ccaf7ce",
     "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
@@ -6054,8 +6054,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1804|0": {
-    "anchor": "src/js/main.js:1804",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1828|0": {
+    "anchor": "src/js/main.js:1828",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },

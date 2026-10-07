@@ -56,6 +56,10 @@ returns through the actual pages visited.
   More opens the existing utility panel, including Continue reading, settings, About and status.
 - Narrow mode starts closed regardless of saved desktop choice.
 - Narrow open and closed state is ephemeral and is never written to storage.
+- Returning to desktop transfers focus from a disappearing Library, Browse or Add comics bottom
+  link to the rendered desktop link with the same destination. CSS may blur the old link before
+  resize handling, so only that pending focus is retained; moving focus elsewhere cancels it.
+  This changes neither the current page nor saved data, history or desktop preference.
 - In narrow mode, the controlled panel holds nav plus API and queue status explanations.
 - `Ctrl+\` toggles desktop expand and compact or narrow More with the same exact shortcut.
 - Escape closes only from inside the narrow sidebar when open; it is not a global escape rule.
