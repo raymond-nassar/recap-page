@@ -444,6 +444,14 @@ LRESULT CALLBACK headingProcedure(HWND window, UINT message, WPARAM wparam, LPAR
     return DefSubclassProc(window, message, wparam, lparam);
 }
 
+LRESULT CALLBACK textProcedure(HWND window, UINT message, WPARAM wparam, LPARAM lparam,
+                               UINT_PTR id, DWORD_PTR) {
+    // The x64 proof captured no footer ink through the stock print-client path.
+    if (message == WM_PRINTCLIENT) return DefSubclassProc(window, WM_PAINT, wparam, 0);
+    if (message == WM_NCDESTROY) RemoveWindowSubclass(window, textProcedure, id);
+    return DefSubclassProc(window, message, wparam, lparam);
+}
+
 void drawClose(App& app, const DRAWITEMSTRUCT& item) {
     FillRect(item.hDC, &item.rcItem, app.background);
     const auto pen = CreatePen(PS_SOLID, std::max(1, app.scale(1)), app.foreground);
@@ -691,6 +699,9 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR arguments, int) {
         ShowWindow(app->detail, SW_HIDE);
         app->footer = makeControl(L"STATIC", L"Closing this window lets startup continue in the background.",
                                   SS_LEFT, FooterId);
+        for (const auto control : { app->status, app->footer })
+            recap::require(SetWindowSubclass(control, textProcedure, 1, 0),
+                           L"The startup text could not be prepared");
         app->dpi = GetDpiForWindow(app->window);
         const int scaledWidth = std::min(app->scale(640), static_cast<int>(work.right - work.left));
         const int scaledHeight = std::min(app->scale(340), static_cast<int>(work.bottom - work.top));
