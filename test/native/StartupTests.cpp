@@ -100,6 +100,9 @@ const char* failureCode(const std::exception& failure) {
     if (dynamic_cast<const WindowMessageFailure*>(&failure)) return "window-message-failed";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
     static constexpr const char* labels[][2] = {
+        { "proof GUI thread unavailable", "proof-gui-thread-unavailable" },
+        { "proof DPI context unavailable", "proof-dpi-context-unavailable" },
+        { "proof DPI context differed", "proof-dpi-context-differed" },
         { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
         { "F03 pending close lost the startup owner", "n2-pending-owner-lost" },
         { "F01 coordinator created a visible terminal", "n3-visible-coordinator-terminal" },
@@ -3544,9 +3547,19 @@ int wmain(int argc, wchar_t** argv) {
         check(static_cast<bool>(report), "proof report path is required");
         check(SUCCEEDED(com), "proof COM initialization failed");
         proof::nativeArchitecture(GetCurrentProcess());
+        // Hidden, redirected console launches do not initialize a USER thread.
+        check(observed("proof-gui-thread", [] { return IsGUIThread(TRUE) != FALSE; }),
+              "proof GUI thread unavailable");
         check(observed("proof-dpi-awareness", [] {
             return SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) != nullptr;
         }), "proof DPI context unavailable");
+        check(AreDpiAwarenessContextsEqual(GetThreadDpiAwarenessContext(),
+              DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2), "proof DPI context differed");
+        if (options[L"--mode"] == L"dpi-awareness") {
+            observed("com-uninitialize", [] { CoUninitialize(); });
+            report << "PASS hidden-observer-dpi-awareness\n";
+            return 0;
+        }
         if (options[L"--mode"] == L"visual-worker") {
             checkpoint("ENTER", "visual-target-validation");
             const auto pid = static_cast<DWORD>(std::stoul(options[L"--target-pid"]));
