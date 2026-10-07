@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -58,7 +59,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 18);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 

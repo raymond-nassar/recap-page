@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
@@ -239,8 +240,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 215);
-  assert.equal(catalog.lists.length, 292);
+  assert.equal(manifest.lists.length, currentReadingCensus.sources);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));

@@ -31,8 +31,8 @@
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
-import { dirname, join } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
   LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
@@ -16241,6 +16241,22 @@ SCENARIOS.push((await import('./browser-mcu-prep-she-hulk.mjs')).sheHulkActualDa
 SCENARIOS.push((await import('./browser-mcu-prep-ms-marvel.mjs')).msMarvelActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-captain-america-brave-new-world.mjs')).braveNewWorldActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
+const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
+const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
+for (const guide of readOwnerGuideRegistry().guides) {
+  SCENARIOS.push(ownerGuideScenario(JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'))));
+}
+const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
+if (ownerContracts.length > 1) throw new Error('Use --owner-contract once for a representative existing guide.');
+if (ownerContracts.length) {
+  const root = fileURLToPath(new URL('..', import.meta.url));
+  const file = resolve(root, ownerContracts[0].slice('--owner-contract='.length));
+  const inside = relative(root, file);
+  if (inside.startsWith(`..${sep}`) || isAbsolute(inside)) throw new Error('Owner browser contracts must be inside the repository.');
+  const scenario = ownerGuideScenario(JSON.parse(readFileSync(file, 'utf8')));
+  if (SCENARIOS.some((entry) => entry.id === scenario.id)) throw new Error('Owner browser contract is already registered.');
+  SCENARIOS.push(scenario);
+}
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
