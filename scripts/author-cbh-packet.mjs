@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseManifest } from '../src/js/lib/curated.js';
@@ -18,6 +18,7 @@ import {
 } from './lib/cbh-inventory.mjs';
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from './report-order-overlap.mjs';
+import { preflightPublicationWrites, readPublicationInputs } from './check-publication.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
@@ -469,6 +470,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   payloadDir = path.dirname(MANIFEST_PATH),
   peerIds = [],
   includeLater = false,
+  publicationRoot = ROOT,
 } = {}) {
   assertNoDuplicates(packetIds, 'authored packet id');
   assertNoDuplicates(peerIds, 'external peer id');
@@ -476,6 +478,27 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   for (const peerId of peerIds) {
     assert(!packetIdSet.has(peerId), `${peerId} cannot be both authored and an external peer`);
   }
+  const initialPaths = [
+    manifestFile,
+    ...[...packetIds, ...peerIds].map((id) => path.join(mappingsDir, `${id}.json`)),
+  ];
+  const initialInputs = await readPublicationInputs({ root: publicationRoot, paths: initialPaths });
+  const initialManifest = initialInputs.json(manifestFile);
+  assert(parseManifest(initialManifest).errors.length === 0, 'The existing manifest is invalid before authoring');
+  const inputs = await readPublicationInputs({
+    root: publicationRoot,
+    paths: [
+      ...initialPaths,
+      ...initialManifest.lists.map((entry) => path.join(payloadDir, entry.out || `${entry.id}.json`)),
+      ...packetIds.flatMap((id) => [
+        path.join(overlapsDir, `${id}.json`),
+        ...(initialInputs.json(path.join(mappingsDir, `${id}.json`)).packetDigest
+          ? [path.join(packetsDir, `${id}.json`)] : []),
+      ]),
+    ],
+  });
+  assert(canonicalJson(inputs.json(manifestFile)) === canonicalJson(initialManifest),
+    'The public manifest changed while preparing authoring inputs');
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
   const laterOrderIds = laterOrderIdsForAuthor(includeLater);
   const excludedOrderIds = [...packetIds, ...peerIds, ...laterOrderIds];
@@ -489,15 +512,15 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     !externalPeerIdSet.has(entry.id) && !laterOrderIdSet.has(entry.id)
   ));
   const externalPeerMappings = await Promise.all(peerIds.map(async (id) => {
-    const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
+    const mapping = inputs.json(path.join(mappingsDir, `${id}.json`));
     assert(mapping.id === id, `${id} external peer mapping id changed`);
     return mapping;
   }));
   const mappings = await Promise.all(packetIds.map(async (id) => {
-    const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
-    const report = JSON.parse(await readFile(path.join(overlapsDir, `${id}.json`), 'utf8'));
+    const mapping = inputs.json(path.join(mappingsDir, `${id}.json`));
+    const report = inputs.json(path.join(overlapsDir, `${id}.json`));
     const packet = mapping.packetDigest
-      ? JSON.parse(await readFile(path.join(packetsDir, `${id}.json`), 'utf8'))
+      ? inputs.json(path.join(packetsDir, `${id}.json`))
       : null;
     return { id, mapping, report, packet };
   }));
@@ -563,12 +586,14 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   assert(parsed.errors.length === 0, `Authored manifest is invalid:\n${parsed.errors.join('\n')}`);
   assert(parsed.entries.length === existing.length + packetIds.length, 'Authored manifest lost an order');
 
-  await mkdir(ordersDir, { recursive: true });
-  for (const { mapping } of mappings) {
+  const outputs = mappings.map(({ mapping }) => {
     const entry = entries.find((candidate) => candidate.id === mapping.id);
-    await writeFile(path.join(ordersDir, entry.sourceFile), buildMarkdown(mapping), 'utf8');
-  }
-  await writeFile(manifestFile, `${JSON.stringify(nextManifest, null, 2)}\n`, 'utf8');
+    return { file: path.join(ordersDir, entry.sourceFile), content: buildMarkdown(mapping) };
+  });
+  outputs.push({ file: manifestFile, content: `${JSON.stringify(nextManifest, null, 2)}\n` });
+  await preflightPublicationWrites({ root: publicationRoot, inputs, outputs });
+  await mkdir(ordersDir, { recursive: true });
+  for (const output of outputs) await writeFile(output.file, output.content, 'utf8');
   return {
     guides: mappings.length,
     rows: issueIds.length,
@@ -624,6 +649,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile))
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);
   }).catch((error) => {
     console.error(error.message);
-    process.exitCode = 1;
+    process.exitCode = error.exitCode ?? 1;
   });
 }

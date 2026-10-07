@@ -6054,8 +6054,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:215-219|0": {
-    "anchor": "scripts/check-publication.mjs:215-219",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:216-220|0": {
+    "anchor": "scripts/check-publication.mjs:216-220",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
@@ -6124,8 +6124,8 @@
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
-  "SECURITY.md|about-the-app|package.json:54-58|0": {
-    "anchor": "package.json:54-58",
+  "SECURITY.md|about-the-app|package.json:62-66|0": {
+    "anchor": "package.json:62-66",
     "fp": "a7a19dc0dbfabe78",
     "head": "\"devDependencies\": {"
   },

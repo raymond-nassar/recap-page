@@ -7,6 +7,7 @@ import { after } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
+import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const { sha256, ...evidence } = JSON.parse(readFileSync(
@@ -86,7 +87,7 @@ export function historicalReadingChoiceManifest(manifest) {
   return {
     ...manifest,
     lists: historicalMcuDescriptionManifest(manifest).lists
-      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars')
+      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars' && !registeredOwnerGuideIds.includes(id))
       .map((entry) => entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry),
   };
 }

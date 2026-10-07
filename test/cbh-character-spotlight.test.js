@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -4664,7 +4665,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 292);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 70);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);

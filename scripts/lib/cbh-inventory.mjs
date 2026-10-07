@@ -400,7 +400,7 @@ function assertExcludedSourceRow(row, index) {
   }
 }
 
-function sourceIdentityKey(value) {
+export function sourceIdentityKey(value) {
   return [
     String(value.normalizedSeriesTitle ?? '').trim().toLowerCase(),
     String(value.seriesYear ?? ''),
@@ -611,7 +611,7 @@ function assertSourceGapResolution(
   }
 }
 
-function assertSourceGap(gap, index) {
+export function assertSourceGap(gap, index) {
   const label = `Source gap ${index + 1}`;
   if (!isPlainObject(gap)) throw new Error(`${label} must be an object`);
   const missing = [...SOURCE_GAP_FIELDS].filter((field) => (
@@ -1202,7 +1202,8 @@ function assertManifestProposal(packet, provider) {
   if (manifest.out !== `${packet.id.replaceAll('-', '_')}.json`) {
     throw new Error(`${packet.id} proposedManifest out does not match its id`);
   }
-  if (!Number.isInteger(Number(manifest.coverIssueId))) {
+  if (!(provider.allowMissingCover === true && manifest.coverIssueId === null)
+    && (!Number.isInteger(Number(manifest.coverIssueId)) || Number(manifest.coverIssueId) <= 0)) {
     throw new Error(`${packet.id} proposedManifest must name an exact coverIssueId`);
   }
 }
@@ -1294,7 +1295,7 @@ export function validateApprovalDigest(relationshipReview, candidateId = 'Candid
   return true;
 }
 
-export function validateFrozenPacket(packet, {
+export function validatePacketProposal(packet, {
   expectedId = null,
   inventoryRecord = null,
   catalogEntries = [],
@@ -1386,19 +1387,6 @@ export function validateFrozenPacket(packet, {
     || packet.insertionAnchor.beforeId === packet.id) {
     throw new Error(`${packet.id} insertionAnchor must name one different beforeId`);
   }
-  const sourceReview = packet.sourceReview;
-  if (!isPlainObject(sourceReview)
-    || !['human', 'stronger-model'].includes(sourceReview.authorityType)) {
-    throw new Error(`${packet.id} sourceReview requires human or stronger-model authority`);
-  }
-  assertNonEmptyString(sourceReview.authorityIdentity, `${packet.id} sourceReview authorityIdentity`);
-  assertNonEmptyString(sourceReview.rationale, `${packet.id} sourceReview rationale`);
-  assertNonEmptyString(sourceReview.reviewedAt, `${packet.id} sourceReview reviewedAt`);
-  assertSha256(packet.packetDigest, `${packet.id} packetDigest`);
-  if (packetDigestFor(packet) !== packet.packetDigest) {
-    throw new Error(`${packet.id} packet digest is stale`);
-  }
-
   if (inventoryRecord) {
     if (inventoryRecord.id !== packet.inventoryId) {
       throw new Error(`${packet.id} inventory identity does not match ${packet.inventoryId}`);
@@ -1433,6 +1421,23 @@ export function validateFrozenPacket(packet, {
     sourceSection: packet.sourceSection,
     catalogIds: [packet.proposedManifest.id],
   }], existingRecords);
+  return true;
+}
+
+export function validateFrozenPacket(packet, options = {}) {
+  validatePacketProposal(packet, options);
+  const sourceReview = packet.sourceReview;
+  if (!isPlainObject(sourceReview)
+    || !['human', 'stronger-model'].includes(sourceReview.authorityType)) {
+    throw new Error(`${packet.id} sourceReview requires human or stronger-model authority`);
+  }
+  assertNonEmptyString(sourceReview.authorityIdentity, `${packet.id} sourceReview authorityIdentity`);
+  assertNonEmptyString(sourceReview.rationale, `${packet.id} sourceReview rationale`);
+  assertNonEmptyString(sourceReview.reviewedAt, `${packet.id} sourceReview reviewedAt`);
+  assertSha256(packet.packetDigest, `${packet.id} packetDigest`);
+  if (packetDigestFor(packet) !== packet.packetDigest) {
+    throw new Error(`${packet.id} packet digest is stale`);
+  }
   return true;
 }
 

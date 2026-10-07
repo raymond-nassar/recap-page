@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -163,10 +164,10 @@ test('Brave New World binds every current peer and the actual three-partial inde
   assert.equal(report.libraryDigest, recordedDigest,
     'Actual post-Ms.Marvel descriptions and vectors remain the authority basis');
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
-  assert.ok(current.comparisons.filter((row) => !recordedIds.has(row.orderId))
+  assert.ok(legacyOwnerPeers(current.comparisons).filter((row) => !recordedIds.has(row.orderId))
     .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
   'Later meaningful relationships cannot inherit this frozen authority');
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), [
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'), [
     { orderId: 'falcon-sam-wilson-captain-america-reading-order', relationship: 'partial', sharedCount: 12,
       sharedIds: expectedIds.slice(7).map(String) },
     { orderId: 'question-of-the-week-do-you-have-a-hulk-reading-order', relationship: 'partial', sharedCount: 6,
@@ -188,9 +189,10 @@ test('Brave New World binds every current peer and the actual three-partial inde
   assert.equal(mapping.relationshipReview.approvalDigest,
     'f943dea98fb70a9e099894a26db3675c25810689768c6866525af7a3e3a769af');
   assert.deepEqual(packet.insertionAnchor, { beforeId: 'agents-of-atlas-reading-order' });
-  const position = manifest.lists.findIndex((row) => row.id === id);
-  assert.equal(manifest.lists[position - 1].id, 'mcu-prep-ms-marvel');
-  assert.equal(manifest.lists[position + 1].id, packet.insertionAnchor.beforeId);
+  const retainedOrder = legacyOwnerPeers(manifest.lists);
+  const position = retainedOrder.findIndex((row) => row.id === id);
+  assert.equal(retainedOrder[position - 1].id, 'mcu-prep-ms-marvel');
+  assert.equal(retainedOrder[position + 1].id, packet.insertionAnchor.beforeId);
 });
 
 test('Brave New World publishes the exact nineteen-vector and preserves reader, deferral and separate history', async () => {

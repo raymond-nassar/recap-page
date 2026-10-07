@@ -24,7 +24,8 @@
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { dirname, join } from 'node:path';
+import { lstat, readFile, realpath, writeFile } from 'node:fs/promises';
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -488,6 +489,290 @@ export function excluded(report) {
   return parts.length ? `, ${parts.join(', ')}` : '';
 }
 
+const sha256 = (value) => createHash('sha256').update(value).digest('hex');
+
+function publicPath(value) {
+  if (typeof value !== 'string' || !value || value.includes(':')
+    || [...value].some((character) => character.charCodeAt(0) < 32 || character.charCodeAt(0) === 127)
+    || isAbsolute(value) || value.startsWith('\\')) {
+    throw new Error('invalid public path');
+  }
+  const name = value.replaceAll('\\', '/');
+  if (name.split('/').some((part) => !part || part === '.' || part === '..')
+    || name.split('/').some((part) => /[. ]$/.test(part))
+    || name.split('/')[0].toLowerCase() === '.git') {
+    throw new Error('invalid public path');
+  }
+  return name;
+}
+
+async function publicFile(root, name, proposed) {
+  const parts = name.split('/');
+  let file = root;
+  for (const [index, part] of parts.entries()) {
+    file = join(file, part);
+    let info;
+    try {
+      info = await lstat(file);
+    } catch (error) {
+      if (error.code === 'ENOENT' && proposed) continue;
+      throw new Error('required public input is unreadable', { cause: error });
+    }
+    if (info.isSymbolicLink() || (index < parts.length - 1 ? !info.isDirectory() : !info.isFile())) {
+      throw new Error('public input crosses a link or non-file boundary');
+    }
+  }
+  return file;
+}
+
+export async function resolvePublicFile(root, name) {
+  return publicFile(await realpath(root), publicPath(name), false);
+}
+
+// A private-original name/hash/byte receipt is not a file reference. A path-bearing receipt is.
+// Keep this structural distinction separate from the existing privacy detector.
+function publicReferences(value, references = new Set()) {
+  if (!value || typeof value !== 'object') return references;
+  if (Object.hasOwn(value, 'publicDependencies')) {
+    if (!Array.isArray(value.publicDependencies)) throw new Error('invalid public dependency declaration');
+    value.publicDependencies.forEach((entry) => references.add(publicPath(entry)));
+  }
+  if (Object.hasOwn(value, 'path')
+    && (Object.hasOwn(value, 'sha256') || Object.hasOwn(value, 'bytes'))) {
+    references.add(publicPath(value.path));
+  }
+  for (const child of Object.values(value)) publicReferences(child, references);
+  return references;
+}
+
+function preflightPolicyDigest() {
+  return sha256(JSON.stringify({
+    patterns: PATTERNS.map(([name, pattern]) => [name, pattern.source, pattern.flags]),
+    allowances: [...ALLOWED],
+    protectedRoots: PROTECTED,
+  }));
+}
+
+/**
+ * Read only the declared public population, including untracked files. Proposed bytes let authors
+ * inspect their exact output before writing it. No private match, absolute path or raw content
+ * enters the result. The receipt is evidence about bytes, never source-review authority.
+ */
+export async function preflightPublication({
+  root = ROOT, files, proposed = new Map(), expected = null,
+} = {}) {
+  const problems = [];
+  const contentFindings = [];
+  const inputs = [];
+  const fail = (input, reason) => problems.push({ input, reason });
+  let declarations;
+  let directory;
+  try {
+    directory = await realpath(root);
+    if (!Array.isArray(files) || files.length === 0) throw new Error('public input set is empty');
+    declarations = files.map((entry) => {
+      if (!entry || typeof entry !== 'object'
+        || Object.keys(entry).some((key) => !['path', 'dependencies'].includes(key))
+        || !Array.isArray(entry.dependencies)) {
+        throw new Error('public input declarations require paths and complete dependency arrays');
+      }
+      const dependencies = entry.dependencies.map(publicPath).sort();
+      if (new Set(dependencies.map((name) => name.toLowerCase())).size !== dependencies.length) {
+        throw new Error('public dependency declaration contains duplicates');
+      }
+      return { path: publicPath(entry.path), dependencies };
+    });
+    if (new Set(declarations.map((entry) => entry.path.toLowerCase())).size !== declarations.length) {
+      throw new Error('public input declaration contains duplicate paths');
+    }
+    const names = new Set(declarations.map((entry) => entry.path));
+    if (!(proposed instanceof Map) || [...proposed.keys()].some((name) => !names.has(name))) {
+      throw new Error('proposed bytes are outside the declared public set');
+    }
+    for (const entry of declarations) {
+      if (entry.dependencies.some((name) => !names.has(name) || name === entry.path)) {
+        throw new Error('public dependency set is incomplete or self-referencing');
+      }
+    }
+  } catch {
+    return {
+      schemaVersion: 1, status: 'unanswered', code: 2,
+      problems: [{ input: null, reason: 'Invalid, empty, incomplete or inaccessible public input declaration.' }],
+      findings: [],
+    };
+  }
+
+  for (const [index, entry] of declarations.entries()) {
+    const input = index + 1;
+    const sink = new Map();
+    findings(entry.path, entry.path, sink);
+    const label = sink.size ? {} : { path: entry.path };
+    if (PROTECTED.some(([prefix]) => entry.path.toLowerCase().startsWith(prefix))) {
+      contentFindings.push({ input, ...label, kind: 'a protected working-evidence path', count: 1 });
+      continue;
+    }
+    try {
+      const file = await publicFile(directory, entry.path, proposed.has(entry.path));
+      const supplied = proposed.get(entry.path);
+      if (proposed.has(entry.path) && typeof supplied !== 'string' && !Buffer.isBuffer(supplied)) {
+        throw new Error('proposed bytes must be text or a buffer');
+      }
+      const body = proposed.has(entry.path) ? Buffer.from(supplied) : await readFile(file);
+      await publicFile(directory, entry.path, proposed.has(entry.path));
+      if (body.length === 0) throw new Error('required public input is empty');
+      const text = decode(body);
+      if (text === null) throw new Error('required public input is not supported text');
+      const encoding = body[0] === 0xff && body[1] === 0xfe ? 'utf-16le'
+        : body[0] === 0xfe && body[1] === 0xff ? 'utf-16be' : 'utf-8';
+      if (!new TextDecoder(encoding, { fatal: true }).decode(body).trim()) throw new Error('empty public text');
+      findings(entry.path, text, sink);
+      if (entry.path.endsWith('.json')) {
+        const references = publicReferences(JSON.parse(text.replace(/^\uFEFF/, '')));
+        if ([...references].some((name) => !entry.dependencies.includes(name))) {
+          throw new Error('public provenance dependency is not declared');
+        }
+      }
+      inputs.push({ ...entry, bytes: body.length, sha256: sha256(body) });
+    } catch {
+      // Filesystem/JSON errors often quote their input. Do not move a private value into a log.
+      fail(input, 'Required input could not be fully read within the public boundary, or its provenance dependencies are incomplete.');
+    }
+    for (const [kind, matches] of sink) {
+      contentFindings.push({ input, ...label, kind, count: matches.length });
+    }
+  }
+
+  const result = {
+    schemaVersion: 1,
+    status: contentFindings.length ? 'findings' : problems.length ? 'unanswered' : 'clean',
+    code: contentFindings.length ? 1 : problems.length ? 2 : 0,
+    problems, findings: contentFindings,
+  };
+  if (result.code !== 0) return result;
+  inputs.sort((left, right) => left.path < right.path ? -1 : left.path > right.path ? 1 : 0);
+  const receipt = { policySha256: preflightPolicyDigest(), inputs };
+  const digest = sha256(JSON.stringify(receipt));
+  if (expected && (expected.status !== 'clean' || expected.code !== 0
+    || expected.digest !== digest || JSON.stringify(expected.inputs) !== JSON.stringify(inputs)
+    || expected.policySha256 !== receipt.policySha256)) {
+    return {
+      ...result, status: 'unanswered', code: 2,
+      problems: [{ input: null, reason: 'The clean public-input receipt is stale or invalid.' }],
+    };
+  }
+  return { ...result, ...receipt, digest };
+}
+
+export function requireCleanPreflight(result) {
+  if (result?.code !== 0 || result.status !== 'clean') {
+    const error = new Error(`Publication preflight ${result?.status ?? 'unanswered'}; no approval or output is authorized.`);
+    error.exitCode = result?.code === 1 ? 1 : 2;
+    error.preflight = result;
+    throw error;
+  }
+  return result;
+}
+
+export async function readPublicationInputs({ root = ROOT, paths }) {
+  const contents = new Map();
+  const files = [];
+  try {
+    if (!Array.isArray(paths) || paths.length === 0) throw new Error('missing public inputs');
+    const directory = await realpath(root);
+    const queue = paths.map((file) => publicPath(relative(resolve(root), resolve(file))));
+    for (let index = 0; index < queue.length; index += 1) {
+      const name = queue[index];
+      if (contents.has(name)) continue;
+      if (PROTECTED.some(([prefix]) => name.toLowerCase().startsWith(prefix))) {
+        return requireCleanPreflight(await preflightPublication({
+          root, files: [{ path: name, dependencies: [] }],
+        }));
+      }
+      const file = await publicFile(directory, name, false);
+      const body = await readFile(file);
+      const text = decode(body);
+      const dependencies = name.endsWith('.json')
+        ? [...publicReferences(JSON.parse(text?.replace(/^\uFEFF/, '')))].sort() : [];
+      contents.set(name, body);
+      files.push({ path: name, dependencies });
+      queue.push(...dependencies);
+    }
+  } catch (error) {
+    if (error.exitCode) throw error;
+    return requireCleanPreflight({
+      code: 2, status: 'unanswered',
+    });
+  }
+  const receipt = requireCleanPreflight(await preflightPublication({ root, files, proposed: contents }));
+  return {
+    receipt, contents,
+    json(file) {
+      const name = publicPath(relative(resolve(root), resolve(file)));
+      const body = contents.get(name);
+      if (!body) throw new Error('Required public JSON was not part of the preflight.');
+      return JSON.parse(decode(body).replace(/^\uFEFF/, ''));
+    },
+  };
+}
+
+export async function preflightPublicationWrites({ root = ROOT, inputs, outputs }) {
+  if (!Array.isArray(outputs) || outputs.length === 0) {
+    throw new Error('Publication preflight requires a nonempty output set.');
+  }
+  const files = inputs.receipt.inputs.map(({ path, dependencies }) => ({ path, dependencies }));
+  requireCleanPreflight(await preflightPublication({ root, files, expected: inputs.receipt }));
+  const declarations = new Map(files.map((entry) => [entry.path, entry]));
+  const proposed = new Map(inputs.contents);
+  const destinations = new Set();
+  for (const output of outputs) {
+    let name;
+    let dependencies;
+    try {
+      name = publicPath(relative(resolve(root), resolve(output.file)));
+      if (destinations.has(name.toLowerCase())) throw new Error('duplicate output');
+      destinations.add(name.toLowerCase());
+      dependencies = name.endsWith('.json')
+        ? [...publicReferences(JSON.parse(output.content))].sort() : [];
+    } catch {
+      throw new Error('Publication preflight unanswered: invalid output name, bytes or provenance.');
+    }
+    declarations.set(name, { path: name, dependencies });
+    proposed.set(name, output.content);
+  }
+  return requireCleanPreflight(await preflightPublication({
+    root, files: [...declarations.values()], proposed,
+  }));
+}
+
+async function preflightCli(args) {
+  const options = new Map();
+  if (args.filter((argument) => argument === '--preflight').length > 1) {
+    throw new Error('duplicate preflight mode');
+  }
+  for (const argument of args.filter((value) => value !== '--preflight')) {
+    const match = /^--(preflight|files|expect|output)=(.+)$/.exec(argument);
+    const key = match?.[1] === 'preflight' ? 'files' : match?.[1];
+    if (!match || options.has(key)) throw new Error('invalid preflight arguments');
+    options.set(key, match[2]);
+  }
+  const declaration = JSON.parse(await readFile(options.get('files'), 'utf8'));
+  if (declaration.schemaVersion !== 1 || Object.keys(declaration).some((key) => !['schemaVersion', 'files'].includes(key))) {
+    throw new Error('invalid public declaration schema');
+  }
+  const expected = options.has('expect')
+    ? JSON.parse(await readFile(options.get('expect'), 'utf8')) : null;
+  const result = await preflightPublication({ files: declaration.files, expected });
+  if (options.has('output')) {
+    const output = resolve(options.get('output'));
+    if (declaration.files.some((entry) => resolve(ROOT, entry.path).toLowerCase() === output.toLowerCase())) {
+      throw new Error('receipt must not replace a public input');
+    }
+    await writeFile(output, `${JSON.stringify(result, null, 2)}\n`, 'utf8');
+  }
+  console.log(JSON.stringify(result, null, 2));
+  return result.code;
+}
+
 function isShallow() {
   return git(['rev-parse', '--is-shallow-repository']).trim() === 'true';
 }
@@ -495,6 +780,14 @@ function isShallow() {
 // ------------------------------------------------------------------ report
 
 async function main() {
+  if (process.argv.slice(2).some((arg) => arg.startsWith('--preflight'))) {
+    try {
+      return await preflightCli(process.argv.slice(2));
+    } catch {
+      console.error('Publication preflight unanswered: invalid arguments or an unreadable declaration/receipt.');
+      return 2;
+    }
+  }
   if (BRANCHES) {
     const result = await advertisedBranchPolicy();
     if (result.code === 2) {

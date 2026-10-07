@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -234,7 +235,7 @@ test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero To
     }
   }
   assert.deepEqual(parseManifest(manifest).errors, []);
-  assert.equal(manifest.lists.length, 215);
+  assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'operation-zero-tolerance');
   assert.deepEqual(manifest.lists[position], packet.proposedManifest);
@@ -298,7 +299,7 @@ test('Onslaught publishes 72 exact original identities and two ordered unresolve
   assert.equal(payload.items[72].issueId, 23388);
   assert.equal(payload.items[73].issueId, 16337);
   const catalog = parseCatalog(catalogRaw);
-  assert.equal(catalog.lists.length, 292);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const card = catalog.lists.find((row) => row.id === id);
   assert.equal(card.count, 74);
   assert.equal(card.placeholderCount, 2);

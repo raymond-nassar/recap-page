@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers, registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -154,8 +155,8 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.count, 17);
   assert.equal(card.placeholderCount, 0);
   assert.equal(card.emptyRecordCount, 0);
-  assert.deepEqual(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
-    .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id), expectedScreenIds);
+  assert.deepEqual(legacyOwnerPeers(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
+    .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id)), expectedScreenIds);
   assert.equal(shelfLists(catalog.lists, 'spotlights').length, 70);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
@@ -261,9 +262,9 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
   const visibleDigest = libraryDigestFor({
-    lists: entries.filter((entry) => !laterIds.includes(entry.id))
+    lists: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id))
       .map(historicalReadingChoiceCatalogEntry), paths: catalog.paths,
-  }, visibleOrders.filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
+  }, legacyOwnerPeers(visibleOrders).filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   })));
   assert.deepEqual(ledger.sourceContentProjection, projectionFields);
@@ -288,7 +289,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     {
       report: visibleReport, review: mapping.visibleRelationshipReview,
       currentLibraryDigest: visibleDigest,
-      expectedOrderIds: entries.filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
+      expectedOrderIds: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
       currentOrders: visibleOrders,
       count: 280,
     },
@@ -315,8 +316,8 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     const current = buildComparisonReport({
       candidateIds: expectedIssueIds, orders: evidence.currentOrders,
     });
-    assert.equal(current.comparisonCount, evidence.count + laterIds.length);
-    assert.deepEqual(current.comparisons, [
+    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredOwnerIds.length);
+    assert.deepEqual(legacyOwnerPeers(current.comparisons), [
       ...evidence.report.comparisons,
       ...laterIds.map((orderId) => ({
         orderId, sharedCount: 0, sharedIds: [], relationship: 'none',
