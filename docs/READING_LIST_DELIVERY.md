@@ -15,9 +15,17 @@ delivery; tooling and fixture runs do not prove the goal.
 
 ## Prerequisites
 
-Use the guide's released worktree on actual main, the exact owner Markdown, its intake Issue,
-accepted bibliography and any genuine retained metadata cache. Keep working evidence in a private
-directory outside the repository. Node, Git and the existing npm development tooling are required.
+After actual tooling landing, the parent creates a fresh app-managed delivery worktree on actual
+main. Authoring, full validation, commit and PR creation all use that same clean delivery worktree;
+do not validate elsewhere or switch publication trees afterwards.
+
+Retained research worktrees and their original drafts remain untouched in place and are reused
+read-only as external evidence. Keep private inputs and working evidence outside the delivery
+tree. The `$work` output directory must also remain outside every Git worktree. Do not stage, move,
+delete or ignore research originals to obtain clean status.
+
+Use the exact owner Markdown, its intake Issue, accepted bibliography and genuine retained
+metadata cache. Node, Git and the existing npm development tooling are required.
 The browser check uses installed Edge and the existing external `puppeteer-core` installation.
 Neither becomes a runtime dependency.
 
@@ -30,6 +38,8 @@ Use the separate CBH/CBRO authoring paths for those programs.
 The examples use PowerShell variables for paths, so a path with spaces is one argument.
 Set `$work` to the private evidence directory and `$markdown` to the supplied file.
 Set `$handedAt` to its actual ISO timestamp, not the time you start the command.
+Fresh delivery-worktree setup and any new adaptation of retained research remain inside the real
+trial interval; they do not justify restarting the clock or moving its start forward.
 
 ```powershell
 npm run owner:intake -- "--work=$work" "--markdown=$markdown" "--handed-at=$handedAt"
@@ -56,7 +66,7 @@ Fill the private request with:
 |---|---|
 | `id`, `name`, `description` | Stable lower-kebab-case identity and approved single-line reader copy |
 | `sourceUrl`, `sourceRetrievedAt` | Exact repository intake Issue or decision comment and source-reading date |
-| `markdownFile`, `metadataCache` | Private input and genuine cache locations; never published as dependencies |
+| `markdownFile`, `metadataCache` | Read-only private input and genuine cache locations outside the delivery tree; never published as dependencies |
 | `metadataIssueIds` | Exact candidate IDs whose recorded metadata should be considered, including rejected candidates |
 | `selections` | Explicit expansions for trades, compilations or references needing interpretation; empty for direct exact references |
 | `publicFiles` | Complete additional public provenance declarations, including transitive dependencies; empty when self-contained |
@@ -140,8 +150,10 @@ are not re-signed or treated as authority for a new non-none pair.
 
 Finish the guide-specific maintained provenance paragraph and inspect the complete diff.
 Run the proposed-public-file preflight below, then stage exactly the intended public files.
-Full validation refuses unstaged changes or undeclared untracked files rather than claiming
-to have tested a different candidate.
+Full validation rejects unstaged changes and **all non-ignored untracked files** in the delivery
+worktree, not only files omitted from a public declaration. Neither `publicFiles` nor preservation
+receipts provide a private-retention exemption. Retained research stays outside this publication
+tree throughout authoring, validation, commit and PR creation.
 
 ```powershell
 npm run owner:check -- "--work=$work" --scope=full
@@ -202,6 +214,7 @@ Self-contained public facts may preserve a private original's basename, SHA-256 
 without a `path` or a requirement to open the private original. The public projection has its own
 hash. Never relabel a projection's digest as the original digest. Findings identify a pattern and
 input without printing the private matched value.
+These provenance receipts do not exempt untracked files from the full-validation cleanliness gate.
 
 CBH/CBRO approval and authoring boundaries also invoke this preflight before writes. The ordinary
 history, surface and branch modes remain separate backstops:
