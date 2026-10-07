@@ -140,6 +140,7 @@ export default [
       'scripts/browser-mcu-prep-brand-new-day.mjs',
       'scripts/browser-mcu-prep-she-hulk.mjs',
       'scripts/browser-mcu-prep-ms-marvel.mjs',
+      'scripts/browser-mcu-prep-captain-america-brave-new-world.mjs',
       'scripts/browser-mcu-prep-descriptions.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/capture-store-assets.mjs',

@@ -406,16 +406,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-three pinned reading-order payloads remain under
-[`src/data/`](../src/data): 291 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 292 active files hold
-31,138 issue records covering 19,323 distinct tracked identities. The visible files hold 30,651 of those records;
+Two hundred and ninety-four pinned reading-order payloads remain under
+[`src/data/`](../src/data): 292 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 293 active files hold
+31,157 issue records covering 19,324 distinct tracked identities. The visible files hold 30,670 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 292 active payloads, 26,260
-records carry a cover URL and 24,657 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 293 active payloads, 26,279
+records carry a cover URL and 24,676 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -502,9 +502,9 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
-| Selected by raymond-nassar for MCU Prep | 4 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups |
+| Selected by raymond-nassar for MCU Prep | 5 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals |
 
-The 214 active source orders generate 291 visible Reading Lists. Marvel Knights to Planet X is the only
+The 215 active source orders generate 292 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7141-7180`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7177-7216`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11216-11341`.
+`src/data/catalog.json:11259-11384`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2358,3 +2358,79 @@ or rewritten. Selected comics, collection groups, source attribution, shared
 read progress, notes, overrides and separate completion/enjoyment history are
 unchanged. The original active No Way Home guide remains the selected target;
 the retired owner-selected guide remains archived and absent from discovery.
+
+## Owner-authored MCU Prep: Captain America: Brave New World
+
+[Issue #704](https://github.com/raymond-nassar/recap-page/issues/704) supplies three
+named first-volume selections in owner order. The
+[source ledger](../scripts/data/owner-selections/mcu-prep-captain-america-brave-new-world.json),
+[approved packet](../scripts/data/owner-packets/mcu-prep-captain-america-brave-new-world.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-captain-america-brave-new-world.json)
+and [local checklist](../src/data/orders/mcu-prep-captain-america-brave-new-world.md)
+preserve nineteen distinct originals in seven/six/six. The three earlier dot-named
+research drafts remain byte-exact private evidence, not published or required by
+public checks. The public source and mapping contain the accepted facts.
+
+| Owner selection | Reference paperback | Accepted originals |
+|---|---|---|
+| Hulk Vol. 1: Red Hulk, Jeph Loeb | 2009, ISBN 9780785128823 | Hulk (2008) #1-6, then whole Wolverine (2003) #50, original 5815 |
+| All-New Captain America Vol. 1: Hydra Ascendant, Rick Remender | 2016, ISBN 9780785192329 | All-New Captain America (2014) #1-6 |
+| Captain America: Sam Wilson Vol. 1: Not My Captain America, Nick Spencer | 2016, ISBN 9780785196402 | Captain America: Sam Wilson (2015) #1-6 |
+
+Red Hulk's corresponding Premiere hardcover is the distinct 2008 edition,
+ISBN 9780785128816. Hydra Ascendant's corresponding hardcover is the distinct
+2015 edition, ISBN 9780785193760. Dated library, publisher-enumeration and other
+bibliographic receipts stay in the ledger, with their original hashes and raw
+creator-credit caveats, including the catalog spelling "McGuiness, Ed".
+The accepted enumeration is not independently verified physical contents-page order.
+
+Red Hulk selects the Puny Little Man backup from Wolverine #50, not its unrelated
+lead material. Source position 7 nevertheless links the full original Wolverine
+(2003) #50. Opening it opens and records progress for that whole issue. The
+selected-backup qualification stays in this guide's checklist and provenance;
+there is no per-story ID, injected user note, special progress record or global
+metadata/creator override.
+
+The first Hulk collection introduces the Red Hulk mystery without revealing Ross
+or supplying his later origin. The Remender trade starts with Sam already carrying
+the shield rather than including the actual handoff. Spencer's selected first
+volume is preserved without replacing it with a newer series. Supplied origin,
+handoff, recency and direct-film-source claims remain corrected or unverified
+provenance, not verified published claims. Neither Hulk #22/#23, Captain America
+(2012) #25 nor unselected prelude or later-volume material is added.
+
+On 2026-10-07, nineteen authorized exact-detail requests supplied genuine complete
+request-bound cache records, including the new canonical 5815 metadata. Every raw
+response digest matched its preserved 2026-10-04 receipt and no canonical facts
+changed. The original dates and hashes remain unchanged; private payload projections
+were not represented as raw provider responses. Single-target cache-only vendoring
+emitted nineteen resolved rows with cover URLs and digital IDs on every row, no gaps
+and no placeholders. Only factual projections are published: descriptions remain
+null, comic image bytes are not copied, and provider Unlimited dates do not establish
+reading availability.
+
+The [publication-time complete-library report](../scripts/data/owner-overlaps/mcu-prep-captain-america-brave-new-world.json)
+binds the actual post-Ms. Marvel descriptions and all 292 existing descriptors,
+including 78 generated children and the hidden partition parent. Actual independent
+central model authority approves 289 pairs without shared originals and three partials:
+the broader Sam Wilson route shares all twelve Remender/Spencer originals, the Hulk
+route shares six Hulk originals, and World War Hulk: Aftersmash shares those same six.
+There is no exact duplicate or subset. None of the broader routes or event guide is
+replaced, and the frozen First Steps/Ms. Marvel approval and reciprocal reference
+remain unchanged. This source/data authority is not a human receipt or formal code review.
+
+One selected-depth MCU Prep card is inserted after Ms. Marvel and before Agents of
+Atlas, credited to raymond-nassar, with `sourceLicense: null`, null timeline and false
+beginner flag. The fixed fourteen-record CBH inventory, prior payloads and retired
+owner-selected No Way Home archive remain intact. Runtime dependencies stay at zero.
+The origin, five availability meanings, synchronous separate reader launch and
+reader schema 3 are unchanged.
+
+Preview leaves both saved reader and separate history values untouched. Additive
+import preserves prior lists, original-level read timestamps, notes, overrides and
+list deferral while adding the new list. Existing reader backups retain the imported
+guide in their current format. Completion/enjoyment remains separate in
+`mrt.list-history.v1`: a reader backup alone does not portably carry it, so the separate
+history backup is required. Older builds that support the existing reader format can
+retain imported originals; they do not gain this bundled catalog choice until updated,
+and unsupported older completion-history behavior is not a downgrade guarantee.
