@@ -127,17 +127,17 @@ export function createHomeView({
     nodes.continueReview.hidden = total === 0;
 
     if (issue) {
-      nodes.continueNext.textContent = `Next: ${issue.title}`;
+      const reader = readerPresentation(issue, 'saved');
+      nodes.continueNext.textContent = `Next: ${issue.title}${reader.temporary ? ' (temporary reader link)' : ''}`;
       paintCover(nodes.continueImage, nodes.continueFallback, issue, 'portrait_incredible');
       nodes.continueSeries.textContent = seriesOnly(issue.seriesName);
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
-      const reader = readerPresentation(issue, 'saved');
       nodes.continueRead.hidden = false;
       nodes.continueRead.disabled = !reader.launchable;
-      nodes.continueRead.textContent = reader.temporary ? 'Read with temporary link' : 'Read next';
+      nodes.continueRead.textContent = 'Read';
       nodes.continueRead.setAttribute(
         'aria-label',
-        labelledName(nodes.continueRead.textContent, `${issue.title} in Marvel Unlimited`),
+        labelledName('Read', `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
       );
     } else {
       nodes.continueNext.textContent = total === 0

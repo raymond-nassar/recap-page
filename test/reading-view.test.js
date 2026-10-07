@@ -269,6 +269,7 @@ function harness(overrides = {}) {
     heroFacts: node({ id: 'hero-facts' }),
     btnHeroInfo: node({ id: 'btn-hero-info', text: 'Info', tag: 'a' }),
     btnHeroRead: node({ id: 'btn-hero-read', tag: 'button' }),
+    heroReaderTemporary: node({ id: 'hero-reader-temporary', hidden: true }),
     btnHeroInspect: node({ id: 'btn-hero-inspect', tag: 'button' }),
     btnHeroDone: node({ id: 'btn-hero-done', tag: 'button' }),
     btnRenameList: node({ id: 'btn-rename-list', tag: 'button' }),
@@ -325,6 +326,7 @@ function harness(overrides = {}) {
     ['#btn-synopsis', nodes.btnSynopsis],
     ['#btn-cancel-synopsis', nodes.btnCancelSynopsis],
     ['#btn-hero-read', nodes.btnHeroRead],
+    ['#hero-reader-temporary', nodes.heroReaderTemporary],
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
     ['#reading-body', nodes.readingBody],
@@ -756,17 +758,35 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     temporary = true;
     h.view.refreshReader();
     assert.equal(h.nodes.btnHeroRead.hidden, false);
-    assert.match(h.nodes.btnHeroRead.textContent, /temporary/);
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
+    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Read: .* with temporary link$/);
+    assert.equal(h.nodes.heroReaderTemporary.hidden, false);
+    assert.equal(h.nodes.heroReaderTemporary.textContent, 'Using a temporary reader link.');
     assert.notDeepEqual(h.nodes.rows.childNodes, oldRows, 'effective presentation participates in cache key');
     const actions = [];
     walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'open') actions.push(entry); });
     assert.ok(actions.length);
     for (const action of actions) {
       assert.equal(action.hidden, false);
+      // This double keeps append() text in childNodes instead of aggregating textContent.
+      assert.equal(action.textContent || action.childNodes.join(''), 'Read');
       assert.match(action.attributes['aria-label'], /temporary/);
       action.fire('click', {});
       assert.equal(h.calls.launch.at(-1)[2], 'saved');
     }
+    const notices = [];
+    for (const container of [h.nodes.rows, h.nodes.shelf]) {
+      walk(container, (entry) => {
+        if (entry.dataset?.readerTemporary) notices.push(entry);
+        if (entry.dataset?.act === 'open') assert.equal(entry.textContent || entry.childNodes.join(''), 'Read');
+      });
+    }
+    assert.ok(notices.length);
+    assert.ok(notices.every((entry) => entry.textContent === 'Temporary reader link'));
+    temporary = false;
+    h.view.refreshReader();
+    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
+    assert.equal(h.nodes.heroReaderTemporary.textContent, '');
     assert.equal(h.nodes.heroDesc.textContent, oldDescription);
     assert.equal(JSON.stringify(h.state()), state);
   } finally {
@@ -786,6 +806,9 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.nodes.listNote.textContent, 'List note');
     assert.equal(h.nodes.btnListNote.textContent, 'Edit note');
     assert.equal(h.nodes.heroTitle.textContent, 'Issue Two');
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
+    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'], 'Read: Issue Two in Marvel Unlimited');
+    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
     assert.equal(h.nodes.readingFilters.querySelectorAll('input[name="filter"]').length, READING_FILTERS.length);
     assert.equal(typeof h.nodes.btnHeroRead.listeners.click[0], 'function');
 

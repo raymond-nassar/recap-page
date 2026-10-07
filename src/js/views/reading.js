@@ -647,8 +647,14 @@ export function createReadingView({
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
     const reader = readerPresentation(issue, 'saved');
-    $('#btn-hero-read').hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
-    $('#btn-hero-read').textContent = reader.temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    const button = $('#btn-hero-read');
+    button.hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
+    button.textContent = 'Read';
+    button.setAttribute('aria-label', labelledName('Read', issue
+      ? `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}` : ''));
+    const temporary = $('#hero-reader-temporary');
+    temporary.hidden = button.hidden || !reader.temporary;
+    temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
   }
 
   function refreshReader() {
@@ -681,9 +687,8 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const readContext = 'Open in Marvel Unlimited';
-        const readName = readerPresentation(item, 'saved').temporary
-          ? labelledName('Read with temporary link', `${label}: ${readContext}`)
-          : labelledName('Read', `${label}: ${readContext}`);
+        const reader = readerPresentation(item, 'saved');
+        const readName = labelledName('Read', `${label}: ${readContext}${reader.temporary ? ' with temporary link' : ''}`);
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -699,15 +704,18 @@ export function createReadingView({
               ]),
             ],
           }),
+          ...(reader.temporary ? [el('span', {
+            class: 'lab', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
+          })] : []),
           el('button', {
             type: 'button',
             class: 'tile-read',
             title: `${label}: ${readContext}`,
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
-            hidden: !readerPresentation(item, 'saved').launchable,
+            hidden: !reader.launchable,
             onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
-          }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
+          }, 'Read'),
         ]));
       }
     }, {
@@ -924,14 +932,18 @@ export function createReadingView({
 
   function issueRowActions(item, listId) {
     const panelId = `row-actions-${item.issueId}`;
+    const reader = readerPresentation(item, 'saved');
     const panel = el('div', { class: 'ract', id: panelId }, [
       el('button', {
         type: 'button', class: 'mini',
-        'aria-label': `Read ${item.title} in Marvel Unlimited${readerPresentation(item, 'saved').temporary ? ' with temporary link' : ''}`,
+        'aria-label': labelledName('Read', `${item.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
         dataset: { key: item.issueId, act: 'open' },
-        hidden: !readerPresentation(item, 'saved').launchable,
+        hidden: !reader.launchable,
         onclick: (e) => launch(item, e),
-      }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
+      }, 'Read'),
+      ...(reader.temporary ? [el('span', {
+        class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
+      })] : []),
       detailUrl(item)
         ? el('a', {
           class: 'mini has-tooltip',

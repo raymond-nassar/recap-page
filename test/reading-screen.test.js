@@ -115,10 +115,13 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
   const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
   assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
-  for (const [id, key, ariaKey] of [['btn-hero-read', 'Enter', 'Enter'], ['btn-hero-done', 'D', 'd']]) {
+  for (const [id, tooltip, ariaKey] of [
+    ['btn-hero-read', 'Keyboard shortcut: Enter', 'Enter'],
+    ['btn-hero-done', 'Mark read and continue. Keyboard shortcut: D', 'd'],
+  ]) {
     const button = cta.match(new RegExp(`<button[^>]*id="${id}"[^>]*>`))?.[0] ?? '';
     assert.match(button, /class="[^"]*\bhas-tooltip\b/, `${id} has no tooltip hook`);
-    assert.match(button, new RegExp(`data-tooltip="Keyboard shortcut: ${key}"`), `${id} has no visible shortcut tooltip`);
+    assert.ok(button.includes(`data-tooltip="${tooltip}"`), `${id} has no visible action and shortcut tooltip`);
     assert.match(button, new RegExp(`aria-keyshortcuts="${ariaKey}"`), `${id} does not expose its shortcut accessibly`);
   }
   assert.match(html, /id="action-tip" hidden aria-hidden="true"/);

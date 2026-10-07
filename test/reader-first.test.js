@@ -35,7 +35,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
     rows.push(ok);
   };
   measure('initial helper hidden', true, helper.hidden);
-  const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.";
+  const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
   for (const handle of [null, {}]) {
     opened = { ok: true, target: 'reader', window: handle };
     context.open(issue, { preventDefault() {} }, 'synthetic');
@@ -75,8 +75,13 @@ test('reading groups Read and Done together, with comic details and infrequent a
   const reading = view('read');
   const primary = reading.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)?.[0];
   assert.ok(primary, 'The primary reading group is missing');
-  assert.match(primary, /id="btn-hero-read"/);
-  assert.match(primary, /id="btn-hero-done"[\s\S]*?Done, next/);
+  for (const id of ['btn-chero-read', 'btn-hero-read', 'btn-issue-read']) {
+    assert.match(html, new RegExp(`<button\\b[^>]*id="${id}"[^>]*>\\s*Read\\s*<\\/button>`), id);
+  }
+  assert.match(primary, /id="btn-hero-done"[^>]*>\s*Done\s*<\/button>/);
+  assert.match(primary, /data-tooltip="Mark read and continue\. Keyboard shortcut: D"/);
+  assert.match(primary, /aria-keyshortcuts="d"/);
+  assert.match(reading, /id="hero-reader-temporary"[^>]*hidden/);
   assert.doesNotMatch(primary, /id="btn-hero-(inspect|defer|info)"/);
   assert.equal((primary.match(/\bbtn-lg\b/g) ?? []).length, 1);
   assert.match(reading, /id="btn-hero-inspect"[^>]*>\s*About this comic\s*</);

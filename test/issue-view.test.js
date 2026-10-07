@@ -137,6 +137,8 @@ test('comic availability stays intact in normal metadata instead of troubleshoot
     const state = { issues: { 42: saved }, lists: {}, read: {}, notes: {}, overrides: override ? { 42: override } : {} };
     const h = harness({ state });
     await h.view.render({ issueId: 42, context: null });
+    assert.equal(h.nodes.read.textContent, 'Read');
+    assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited');
     assert.equal(h.nodes.facts.children.filter((item) => item.key === 'Unlimited availability').length, 1);
     labels.push(h.nodes.facts.children.find((item) => item.key === 'Unlimited availability').value);
   }
@@ -343,7 +345,8 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   temporary = true;
   h.view.refreshReader();
   assert.equal(h.nodes.read.hidden, false);
-  assert.equal(h.nodes.read.textContent, 'Read with temporary link');
+  assert.equal(h.nodes.read.textContent, 'Read');
+  assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited with temporary link');
   assert.equal(h.nodes.facts.children, facts);
   assert.equal(h.nodes.info.href, info);
   assert.equal(h.nodes.description.textContent, '');

@@ -1624,8 +1624,8 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1035-1048|0": {
-    "anchor": "src/js/views/reading.js:1035-1048",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1047-1060|0": {
+    "anchor": "src/js/views/reading.js:1047-1060",
     "fp": "a4e20d502298d5da",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
@@ -1634,8 +1634,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:724|0": {
-    "anchor": "src/js/views/reading.js:724",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:732|0": {
+    "anchor": "src/js/views/reading.js:732",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -1779,8 +1779,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1289|0": {
-    "anchor": "src/index.html:1289",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1290|0": {
+    "anchor": "src/index.html:1290",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1959,8 +1959,8 @@
     "fp": "f49b08319d5bdd77",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1072-1076|0": {
-    "anchor": "src/index.html:1072-1076",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1073-1077|0": {
+    "anchor": "src/index.html:1073-1077",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2089,13 +2089,13 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:552-555|0": {
-    "anchor": "src/index.html:552-555",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:553-556|0": {
+    "anchor": "src/index.html:553-556",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:515-548|0": {
-    "anchor": "src/index.html:515-548",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:516-549|0": {
+    "anchor": "src/index.html:516-549",
     "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2129,23 +2129,23 @@
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:313-358|0": {
-    "anchor": "src/index.html:313-358",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|job-stories|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|job-stories|src/index.html:337-338|0": {
     "anchor": "src/index.html:337-338",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:552-555|0": {
-    "anchor": "src/index.html:552-555",
+  "docs/UX_STUDY.md|job-stories|src/index.html:553-556|0": {
+    "anchor": "src/index.html:553-556",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:554-558|0": {
-    "anchor": "src/index.html:554-558",
+  "docs/UX_STUDY.md|job-stories|src/index.html:555-559|0": {
+    "anchor": "src/index.html:555-559",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2164,8 +2164,8 @@
     "fp": "42161b2e4c7595a3",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:857-858|0": {
-    "anchor": "src/js/views/reading.js:857-858",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:865-866|0": {
+    "anchor": "src/js/views/reading.js:865-866",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2184,9 +2184,9 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:313-358|0": {
-    "anchor": "src/index.html:313-358",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|proto-persona#relationship-to-marvel-unlimited|src/js/reader.js:12|0": {
@@ -2194,8 +2194,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:857-858|0": {
-    "anchor": "src/js/views/reading.js:857-858",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:865-866|0": {
+    "anchor": "src/js/views/reading.js:865-866",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2204,8 +2204,8 @@
     "fp": "89df9badf1d976de",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:854-856|0": {
-    "anchor": "src/js/views/reading.js:854-856",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:862-864|0": {
+    "anchor": "src/js/views/reading.js:862-864",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2224,8 +2224,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:580-585|0": {
-    "anchor": "src/index.html:580-585",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:581-586|0": {
+    "anchor": "src/index.html:581-586",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
@@ -2264,10 +2264,10 @@
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:337-338|0": {
-    "anchor": "src/index.html:337-338",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:334-336|0": {
+    "anchor": "src/index.html:334-336",
+    "fp": "b22251e455876ddc",
+    "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
   "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:127-133|0": {
     "anchor": "src/styles.css:127-133",
@@ -2294,9 +2294,9 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:313-358|0": {
-    "anchor": "src/index.html:313-358",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:791-798|0": {
@@ -2314,9 +2314,9 @@
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:925-1032|0": {
-    "anchor": "src/js/views/reading.js:925-1032",
-    "fp": "49360b3f19ac6dc0",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:933-1044|0": {
+    "anchor": "src/js/views/reading.js:933-1044",
+    "fp": "99cdb59f36638594",
     "head": "function issueRowActions(item, listId) {"
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1098-1099|0": {
@@ -2339,8 +2339,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:728|0": {
-    "anchor": "src/index.html:728",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:729|0": {
+    "anchor": "src/index.html:729",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2359,9 +2359,9 @@
     "fp": "5386608e02c68058",
     "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:313-358|0": {
-    "anchor": "src/index.html:313-358",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/index.html:10|0": {
@@ -2384,8 +2384,8 @@
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:854-856|0": {
-    "anchor": "src/js/views/reading.js:854-856",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:862-864|0": {
+    "anchor": "src/js/views/reading.js:862-864",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2401,16 +2401,16 @@
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:337-338|0": {
     "anchor": "src/index.html:337-338",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/lib/shortcuts.js:26-60|0": {
     "anchor": "src/js/lib/shortcuts.js:26-60",
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1071-1091|0": {
-    "anchor": "src/js/views/reading.js:1071-1091",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1083-1103|0": {
+    "anchor": "src/js/views/reading.js:1083-1103",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2459,18 +2459,18 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1089-1100|0": {
-    "anchor": "src/index.html:1089-1100",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1090-1101|0": {
+    "anchor": "src/index.html:1090-1101",
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
   "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:337-338|0": {
     "anchor": "src/index.html:337-338",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1071-1091|0": {
-    "anchor": "src/js/views/reading.js:1071-1091",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1083-1103|0": {
+    "anchor": "src/js/views/reading.js:1083-1103",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2494,13 +2494,13 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:515-548|0": {
-    "anchor": "src/index.html:515-548",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:516-549|0": {
+    "anchor": "src/index.html:516-549",
     "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:858|0": {
-    "anchor": "src/js/views/reading.js:858",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:866|0": {
+    "anchor": "src/js/views/reading.js:866",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },

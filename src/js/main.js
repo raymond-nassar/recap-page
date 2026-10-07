@@ -1113,7 +1113,7 @@ function applyReadingShortcutSetting() {
   const done = $('#btn-hero-done');
   done.classList.toggle('has-tooltip', enabled);
   if (enabled) {
-    done.setAttribute('data-tooltip', 'Keyboard shortcut: D');
+    done.setAttribute('data-tooltip', 'Mark read and continue. Keyboard shortcut: D');
     done.setAttribute('aria-keyshortcuts', 'd');
   } else {
     done.removeAttribute('data-tooltip');
@@ -1892,7 +1892,7 @@ function openInReader(issue, event, source) {
       ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
       : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
   showHelp("If no new tab appears, check your browser's popup controls for this site, "
-    + 'then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.');
+    + 'then choose Read again. Opening a comic does not mark it read.');
 }
 
 // ------------------------------------------------------------------ synopsis fetching

@@ -206,7 +206,7 @@
                   <p class="chero-count" id="chero-count"></p>
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta">
-                    <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
+                    <button type="button" class="btn" id="btn-chero-read">Read</button>
                     <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
@@ -332,12 +332,13 @@
                     <p class="byline" id="hero-by"></p>
                     <div class="cta" id="hero-primary-actions">
                       <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
-                        Open in Marvel Unlimited
+                        Read
                       </button>
-                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Keyboard shortcut: D" aria-keyshortcuts="d">
-                        Done, next
+                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark read and continue. Keyboard shortcut: D" aria-keyshortcuts="d">
+                        Done
                       </button>
                     </div>
+                    <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <dl class="facts" id="hero-facts"></dl>
                     <div class="reading-comic-actions">
                       <button type="button" class="btn btn-link" id="btn-hero-inspect">About this comic</button>
@@ -440,7 +441,7 @@
                 <div class="issue-reading-controls">
                   <div class="cta">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
-                      Open in Marvel Unlimited
+                      Read
                     </button>
                   </div>
                   <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
@@ -926,7 +927,7 @@
                 </p>
                 <details class="setting-more">
                   <summary>About this preference</summary>
-                  <p class="rail-hint" id="reading-shortcut-storage-help">Done, next still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
+                  <p class="rail-hint" id="reading-shortcut-storage-help">Done still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
                 </details>
                 <div id="reading-shortcut-report" class="results"></div>
               </div>

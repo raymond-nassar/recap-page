@@ -104,7 +104,7 @@ function harness({
     continueFallback: node(),
     continueSeries: node(),
     continueNumber: node(),
-    continueRead: node({ text: 'Read next' }),
+    continueRead: node({ text: 'Read' }),
     continueOpen: node({ text: 'Open Reading List' }),
     continueReview: node(),
     continueDeferred: node(),
@@ -303,13 +303,16 @@ test('453 Home refresh uses effective launchability and saved provenance without
   h.view.refreshReader();
   assert.equal(h.nodes.continueRead.hidden, false);
   assert.equal(h.nodes.continueRead.disabled, false);
-  assert.match(h.nodes.continueRead.attributes['aria-label'], /Read with temporary link/);
+  assert.equal(h.nodes.continueRead.textContent, 'Read');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Manual comic in Marvel Unlimited with temporary link');
+  assert.equal(h.nodes.continueNext.textContent, 'Next: Manual comic (temporary reader link)');
   h.nodes.continueRead.listeners.click({});
   assert.equal(h.calls.read.at(-1)[2], 'saved');
   assert.equal(h.calls.read.at(-1)[0].digitalId, undefined);
   temporary = false;
   h.view.refreshReader();
   assert.equal(h.nodes.continueRead.disabled, true);
+  assert.doesNotMatch(h.nodes.continueNext.textContent, /temporary/);
 });
 
 test('Home view paints populated Continue details and accessible actions', () => {
@@ -327,7 +330,8 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.nodes.continueNext.textContent, 'Next: Next issue');
   assert.equal(h.nodes.continueSeries.textContent, 'Series');
   assert.equal(h.nodes.continueNumber.textContent, '#3');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read next: Next issue in Marvel Unlimited');
+  assert.equal(h.nodes.continueRead.textContent, 'Read');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Next issue in Marvel Unlimited');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.calls.covers.length, 1);
 });

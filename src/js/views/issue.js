@@ -265,7 +265,9 @@ export function createIssueView({
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    nodes.read.textContent = 'Read';
+    nodes.read.setAttribute('aria-label', labelledName('Read',
+      `${currentResult.issue.title} in Marvel Unlimited${temporary ? ' with temporary link' : ''}`));
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });

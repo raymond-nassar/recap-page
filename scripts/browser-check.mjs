@@ -2202,12 +2202,6 @@ const SCENARIOS = [
         window.open = (...args) => { window.__link453.opens.push(args); return {}; };
       });
       await seedFixtureState(page);
-      const seed = fixtureReadingState();
-      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
-      seed.lists.fixture.itemIds.unshift(-8);
-      seed.notes[-8] = 'Private note excluded from reports';
-      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
-      await page.reload({ waitUntil: 'load' });
       const go = async (hash, selector) => {
         await page.evaluate((next) => {
           // Keep the synthetic route and its notification together: a background repaint can
@@ -2257,6 +2251,49 @@ const SCENARIOS = [
         before?.focus();
         return !node.getClientRects().length && excluded;
       });
+      const readLabel = async (selector, context, temporary = false, statusSelector = null) => {
+        const actual = await page.$eval(selector, (button, selectedStatus) => {
+          const status = selectedStatus ? document.querySelector(selectedStatus)
+            : button.closest('.ract, .tile')?.querySelector('[data-reader-temporary]');
+          return {
+            text: button.textContent.trim(),
+            name: button.getAttribute('aria-label') || button.textContent.trim(),
+            visible: button.getClientRects().length > 0,
+            status: status?.textContent.trim() ?? '',
+            statusVisible: Boolean(status?.getClientRects().length),
+          };
+        }, statusSelector);
+        const predicates = {
+          label: actual.text === 'Read',
+          name: actual.name.startsWith('Read') && actual.name.includes(context),
+          visible: actual.visible,
+          temporaryContext: !temporary || (/temporary link/.test(actual.name)
+            && /temporary reader link/i.test(actual.status) && actual.statusVisible),
+        };
+        console.log(`READER-LABEL ${JSON.stringify({ selector, context, temporary, actual, predicates })}`);
+        t.check(`${selector} keeps the Read label and ${temporary ? 'visible temporary' : 'comic'} context`,
+          Object.values(predicates).every(Boolean), JSON.stringify(actual));
+      };
+      await go('#/home', '#view-home:not([hidden])');
+      await readLabel('#btn-chero-read', ORDER.items[0].title);
+      await reading();
+      await readLabel('#btn-hero-read', ORDER.items[0].title);
+      const done = await page.$eval('#btn-hero-done', (button) => ({
+        text: button.textContent.trim(), shortcut: button.getAttribute('aria-keyshortcuts'),
+        help: button.dataset.tooltip,
+      }));
+      console.log(`READER-DONE ${JSON.stringify(done)}`);
+      t.check('Done remains the distinct mark-read-and-continue control',
+        done.text === 'Done' && done.shortcut === 'd'
+          && done.help === 'Mark read and continue. Keyboard shortcut: D', JSON.stringify(done));
+      await focusIssue(ORDER.items[0].issueId);
+      await readLabel('#btn-issue-read', ORDER.items[0].title);
+      const seed = fixtureReadingState();
+      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
+      seed.lists.fixture.itemIds.unshift(-8);
+      seed.notes[-8] = 'Private note excluded from reports';
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+      await page.reload({ waitUntil: 'load' });
       await focusIssue(-8);
       t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
       const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
@@ -2285,6 +2322,7 @@ const SCENARIOS = [
         !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
         && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
       )));
+      await readLabel('#btn-issue-read', seed.issues[-8].title, true, '#reader-link-temporary');
       await click(page, '#reader-link-reportToggle');
       t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
       t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
@@ -2303,12 +2341,17 @@ const SCENARIOS = [
       await click(page, '#btn-issue-read');
       await reading();
       t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await readLabel('#btn-hero-read', seed.issues[-8].title, true, '#hero-reader-temporary');
       await click(page, '#btn-hero-read');
       await page.focus('#order-name');
       await page.keyboard.press('Enter');
       await openFullOrder(page);
+      const toggle = '#rows [data-key="-8"][data-act="more"]';
+      if (await page.$eval(toggle, (button) => button.getAttribute('aria-expanded') !== 'true')) await click(page, toggle);
+      await readLabel('#rows [data-key="-8"][data-act="open"]', seed.issues[-8].title, true);
       await click(page, '#rows [data-key="-8"][data-act="open"]');
       await go('#/home', '#view-home:not([hidden])');
+      await readLabel('#btn-chero-read', seed.issues[-8].title, true, '#chero-next');
       await click(page, '#btn-chero-read');
       t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
         window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
@@ -2319,6 +2362,7 @@ const SCENARIOS = [
       const positive = ORDER.items[0].issueId;
       await use(positive, 55);
       await reading();
+      await readLabel(`#shelf [data-key="${positive}"][data-act="open"]`, 'Browser Check #1 2026', true);
       await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
       t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
         new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
@@ -8860,7 +8904,7 @@ const SCENARIOS = [
         raw: localStorage.getItem('mrt.state.v2'),
       }));
       page.__ux11Step = 'after-known-dispatch';
-      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Open in Marvel Unlimited again. Opening a comic does not mark it read.";
+      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
       ux11Receipt(page, t, 'H03/H05/H06:conditional-help', { text: helpCopy, visible: true,
         focused: '900001', raw: beforeHandoff.raw }, feedback,
       { exactCopy: feedback.text === helpCopy, rendered: feedback.visible,
@@ -11228,7 +11272,7 @@ const SCENARIOS = [
         };
       });
       const enabled = (value) => value.checked && value.aria === 'd'
-        && value.tooltip === 'Keyboard shortcut: D' && value.hook
+        && value.tooltip === 'Mark read and continue. Keyboard shortcut: D' && value.hook
         && value.description.includes('Turn off in Backup & settings');
       const disabled = (value) => !value.checked && value.aria === null
         && value.tooltip === null && !value.hook && value.description.startsWith('Disabled.');
@@ -16679,7 +16723,7 @@ SCENARIOS.push(responsiveOwner({
       fullWidth: hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2,
       ranges: hero.title.bounded && hero.prose.bounded,
       action: hero.actionWidth >= hero.contentWidth - 2 && hero.actionHeight >= 48,
-      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Open in Marvel Unlimited',
+      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Read',
       secondaryAndFacts: hero.actions.some((node) => node.id === 'btn-hero-info' && node.href === ORDER.items[0].url)
         && hero.facts.includes(ORDER.items[0].title),
     };
@@ -18608,7 +18652,7 @@ SCENARIOS.push({
     t.check('withdrawing a shortcut withdraws its visible hint and shortcut metadata',
       !(await tooltipVisual449(page, action.selector, action.tipId)).visible
       && await page.$eval(action.selector, (node) => !node.hasAttribute('aria-keyshortcuts')));
-    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Mark read and continue. Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
     await reset();
 
     // The first Escape must not invoke the row menu's focus rescue; the second still must.
