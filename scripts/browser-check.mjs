@@ -40,10 +40,12 @@ import {
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
-  shelfSections,
+  shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
 } from '../src/js/lib/catalog.js';
+import { parseColour, ratio } from './check-palette.mjs';
+import { isDeepStrictEqual } from 'node:util';
 import { readerIssueId } from '../src/js/lib/markdown.js';
-import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import { addIssuesToList, createEmptyState, createList, normalizeIssue, pendingIssueIds } from '../src/js/lib/model.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
@@ -8678,7 +8680,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1094` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1098` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -16216,6 +16218,1142 @@ SCENARIOS.push(
   },
 );
 
+// Historical captured package text, not a claim about the currently installed build.
+// Retained HTML: 81811 bytes, SHA256 fb0d104f4f44a85d8fb4ac25b4c9b09766c14fb78ddb01684a86ed455ec77774.
+const RESPONSIVE_BUILD = 'windows-msix 3.2.0.0; candidate; source 8ae81a17805e2e67772bea932ee721e817b68157.';
+const RESPONSIVE_TITLE = ACTUAL_CATALOG.lists.find((list) => list.id === 'avengers-defenders-war'
+  && list.file === 'avengers_defenders_war.json');
+
+function responsiveOwner(scenario) {
+  const run = scenario.run;
+  return { ...scenario, async run(page, t) {
+    try {
+      await run(page, t);
+    } catch (error) {
+      console.error(`UX09-ORIGINAL-ERROR ${JSON.stringify({
+        owner: scenario.id, step: page.__ux09Step, name: error.name,
+        message: error.message, stack: error.stack,
+      })}`);
+      throw error;
+    }
+  } };
+}
+
+function responsiveStep(page, step) {
+  page.__ux09Step = step;
+  console.log(`UX09-STEP ${JSON.stringify({ owner: page.__ux09Owner, step })}`);
+}
+
+async function responsiveReceipt(page, t, id, name, measurements, ok) {
+  const mode = await page.evaluate(() => ({
+    viewport: [innerWidth, innerHeight],
+    theme: document.documentElement.dataset.theme ?? 'system',
+  }));
+  console.log(`UX09-MEASURE ${JSON.stringify({
+    owner: id.startsWith('RF') ? 'responsive-reflow' : 'responsive-controls',
+    id, role: t.responsiveRole, fixtureQualified: true,
+    expected: measurements.expected,
+    actual: measurements, subpredicates: measurements.subpredicates ?? { measuredPredicate: Boolean(ok) },
+    ...mode, ok: Boolean(ok),
+  })}`);
+  t.check(`${id} ${name}`, ok, JSON.stringify(measurements));
+}
+
+async function responsiveFrames(page) {
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+    () => requestAnimationFrame(resolve),
+  )));
+}
+
+async function responsiveReading(page, { checked = false } = {}) {
+  await page.evaluateOnNewDocument(() => {
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+    const original = window.fetch;
+    window.fetch = (input, init) => {
+      const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+      if (url.origin === location.origin) return original(input, init);
+      if (url.pathname.endsWith('/health')) {
+        return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 }), { status: 200 }));
+      }
+      const issue = /\/issues\/(90000[123])$/.exec(url.pathname);
+      if (!issue) return Promise.reject(new TypeError('Unexpected responsive fixture request'));
+      if (window.__ux09HoldDetails) {
+        return new Promise((resolve, reject) => {
+          const abort = () => {
+            window.__ux09Aborts = (window.__ux09Aborts ?? 0) + 1;
+            reject(new DOMException('Aborted', 'AbortError'));
+          };
+          if (init?.signal?.aborted) abort();
+          else init?.signal?.addEventListener('abort', abort, { once: true });
+        });
+      }
+      return Promise.resolve(new Response(JSON.stringify({
+        id: Number(issue[1]), description: `Synthetic plot 447 for ${issue[1]}.`,
+      }), { status: 200, headers: { 'content-type': 'application/json' } }));
+    };
+  });
+  responsiveStep(page, 'setup-import');
+  await importOrder(page);
+  if (checked) {
+    const seed = await readState(page);
+    seed.issues[900003] = normalizeIssue({
+      ...seed.issues[900003], source: 'markdown', seriesId: null, digitalId: null,
+      hydrated: undefined, detailsRefused: false,
+    });
+    if (JSON.stringify(pendingIssueIds(seed)) !== '[900003]') throw new Error('Normalized pending fixture is not exactly 900003');
+    await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+    responsiveStep(page, 'setup-pending-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    await openFullOrder(page);
+    const loaded = await readState(page);
+    const trigger = await page.$eval('#btn-hydrate', (node) => ({
+      hidden: node.hidden, disabled: node.disabled, text: node.textContent,
+    }));
+    const qualified = JSON.stringify(pendingIssueIds(loaded)) === '[900003]' && !trigger.hidden && !trigger.disabled;
+    console.log(`UX09-FIXTURE ${JSON.stringify({ pendingIssue: 900003,
+      normalized: loaded.issues[900003], pending: pendingIssueIds(loaded), trigger, qualified })}`);
+    if (!qualified) throw new Error('Fresh-document pending identity/trigger did not qualify');
+  }
+  const natural = await page.evaluate(() => ({
+    narrow: matchMedia('(max-width: 700px)').matches,
+    open: document.querySelector('#list-actions')?.open ?? null,
+  }));
+  console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
+    qualified: natural.open === !natural.narrow })}`);
+  if (natural.open !== !natural.narrow) throw new Error('Natural List actions breakpoint state did not qualify');
+  if (!natural.open) await click(page, '#list-actions > summary');
+  await click(page, '#btn-synopsis');
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
+    === 'All synopses fetched, for this tab only.');
+  if (!natural.open) await click(page, '#list-actions > summary');
+  await page.focus('#btn-hero-description');
+  await page.keyboard.press('Enter');
+  if (checked) {
+    await click(page, '#rows .cb[data-key="900002"]');
+  }
+  const qualified = await page.evaluate((wantChecked) => {
+    const prose = document.querySelector('#hero-desc');
+    const button = document.querySelector('#btn-hero-description');
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return prose.textContent === 'Synthetic plot 447 for 900001.' && !prose.hidden
+      && prose.getBoundingClientRect().height > 0 && button.getAttribute('aria-expanded') === 'true'
+      && button.getAttribute('aria-controls') === 'hero-desc'
+      && !state.read[900001] && !state.read[900003]
+      && Boolean(state.read[900002]) === wantChecked;
+  }, checked);
+  console.log(`UX09-FIXTURE ${JSON.stringify({ heroIssue: 900001, checkedIssue: checked ? 900002 : null, qualified })}`);
+  if (!qualified) throw new Error('Responsive hero/read fixture did not qualify');
+  return page.evaluate(() => ({
+    state: localStorage.getItem('mrt.state.v2'),
+    history: localStorage.getItem('mrt.list-history.v1'),
+  }));
+}
+
+async function responsiveText(page, selector) {
+  return page.$eval(selector, (node) => {
+    const bounds = node.getBoundingClientRect();
+    const style = getComputedStyle(node);
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const rects = [...range.getClientRects()].filter((rect) => rect.width > 0)
+      .map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
+    return {
+      text: node.textContent, width: bounds.width, left: bounds.left, right: bounds.right,
+      top: bounds.top, bottom: bounds.bottom, rects,
+      lines: new Set(rects.map((rect) => Math.round(rect.top))).size,
+      bounded: rects.every((rect) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+        && rect.left >= -1 && rect.right <= innerWidth + 1),
+      overflow: style.overflow, textOverflow: style.textOverflow,
+      documentWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    };
+  });
+}
+
+async function responsiveRoute(page, hash, view) {
+  await page.evaluate((value) => { location.hash = value; }, hash);
+  await page.waitForSelector(`#view-${view}:not([hidden])`);
+  await responsiveFrames(page);
+}
+
+async function responsiveRule(page, rule) {
+  return page.evaluate((css) => {
+    const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+    const index = sheet.cssRules.length;
+    sheet.insertRule(css, index);
+    return index;
+  }, rule);
+}
+
+async function responsiveDeleteRule(page, index) {
+  await page.evaluate((position) => {
+    [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css')).deleteRule(position);
+  }, index);
+}
+
+async function responsiveCard(page) {
+  const selector = '.catalog-card:has([data-key="avengers-defenders-war"])';
+  await page.waitForSelector(selector);
+  const title = await responsiveText(page, `${selector} .catalog-card-title`);
+  const prose = await responsiveText(page, `${selector} .catalog-card-desc`);
+  const anatomy = await page.$eval(selector, (node) => {
+    const main = node.querySelector('.catalog-card-main');
+    const text = node.querySelector('.catalog-card-text').getBoundingClientRect();
+    const art = main.firstElementChild.getBoundingClientRect();
+    const rect = main.getBoundingClientRect();
+    const style = getComputedStyle(main);
+    const outer = node.getBoundingClientRect();
+    const parent = node.closest('.timeline-year-row');
+    return {
+      contentWidth: rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+      contentLeft: rect.left + parseFloat(style.paddingLeft),
+      contentRight: rect.right - parseFloat(style.paddingRight),
+      textWidth: text.width, textTop: text.top, artBottom: art.bottom,
+      left: outer.left, right: outer.right, viewport: innerWidth,
+      chronologyInset: parseFloat(getComputedStyle(parent).paddingLeft),
+      display: {
+        description: node.querySelector('.catalog-card-desc').textContent,
+        credit: node.querySelector('.result-source').textContent,
+        options: [...node.querySelectorAll('.catalog-card-actions button')].map((button) => button.textContent),
+      },
+    };
+  });
+  const expected = {
+    title: 'Avengers/Defenders War',
+    description: firstSentence(RESPONSIVE_TITLE.description),
+    credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
+    options: ['+ Add to library', 'Preview'],
+  };
+  const qualified = title.text === expected.title
+    && anatomy.display.description === expected.description
+    && anatomy.display.credit === expected.credit
+    && JSON.stringify(anatomy.display.options) === JSON.stringify(expected.options);
+  console.log(`UX09-FIXTURE ${JSON.stringify({ catalogId: RESPONSIVE_TITLE.id, expected, actual: anatomy.display, qualified })}`);
+  if (!qualified) throw new Error('Accepted card projection did not qualify');
+  return { ...anatomy, title, prose, expected, qualified };
+}
+
+async function responsiveHero(page) {
+  const title = await responsiveText(page, '#hero-title');
+  const prose = await responsiveText(page, '#hero-desc');
+  const geometry = await page.evaluate(() => {
+    const inner = document.querySelector('#hero .hero-in');
+    const rect = inner.getBoundingClientRect();
+    const style = getComputedStyle(inner);
+    const art = inner.querySelector('.art').getBoundingClientRect();
+    const action = document.querySelector('#btn-hero-read');
+    const box = action.getBoundingClientRect();
+    return {
+      contentWidth: rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+      artBottom: art.bottom, actionWidth: box.width, actionHeight: box.height,
+      actionHref: action.getAttribute('href'), actionLabel: action.textContent.trim(),
+      actions: [...inner.querySelectorAll('a,button')].map((node) => ({
+        id: node.id, label: node.textContent.trim(), href: node.getAttribute('href'),
+      })),
+      facts: document.querySelector('#hero').textContent.trim(),
+      revealed: !document.querySelector('#hero-desc').hidden,
+    };
+  });
+  if (prose.text !== 'Synthetic plot 447 for 900001.' || !geometry.revealed) {
+    throw new Error('Exact revealed hero fixture did not qualify');
+  }
+  return { ...geometry, title, prose, expected: { prose: 'Synthetic plot 447 for 900001.', minimumAction: 48 } };
+}
+
+async function responsiveCommands(page) {
+  const actual = await page.evaluate(() => {
+    const details = document.querySelector('#list-actions');
+    const complete = document.querySelector('#btn-complete-list');
+    const box = (node) => {
+      if (!node) return null;
+      const rect = node.getBoundingClientRect();
+      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+        width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
+    };
+    const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
+      open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
+      completeOutside: Boolean(details && !details.contains(complete)),
+      bodyPainted: Boolean(details?.querySelector('.list-actions-body')?.checkVisibility()) };
+    if (details) details.open = true;
+    document.querySelector('#list-export').open = true;
+    result.commands = ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+      'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list']
+      .map((id) => ({ id, ...box(document.getElementById(id)), hidden: document.getElementById(id).hidden }));
+    if (details) details.open = false;
+    return result;
+  });
+  const a = actual.complete;
+  const b = actual.summary;
+  const overlap = a && b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
+    * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : null;
+  return { ...actual, overlap, expected: { minimumTarget: 44, ordinaryHeightCap: 112,
+    expandedIds: ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+      'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list'] } };
+}
+
+function responsiveReflowPredicates(build, card, hero, commands, expanded = false) {
+  return {
+    about: build.text === RESPONSIVE_BUILD && build.lines >= 2 && build.bounded
+      && build.documentWidth === build.clientWidth,
+    title: card.title.text === 'Avengers/Defenders War' && card.title.bounded
+      && card.title.documentWidth === card.title.clientWidth && card.title.clientWidth === 320,
+    card: card.textWidth >= card.contentWidth - 2 && card.title.top >= card.artBottom
+      && card.prose.rects[0]?.top >= card.artBottom && card.prose.bounded && card.title.bounded
+      && Math.abs(card.prose.left - card.contentLeft) <= 1
+      && Math.abs(card.prose.right - card.contentRight) <= 1,
+    hero: hero.title.top >= hero.artBottom && hero.prose.rects[0]?.top >= hero.artBottom
+      && hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2
+      && hero.title.bounded && hero.prose.bounded && hero.actionWidth >= hero.contentWidth - 2
+      && hero.actionHeight >= 48,
+    gutter: card.left <= 16 && card.viewport - card.right <= 16
+      && card.left + card.viewport - card.right <= 32 && card.chronologyInset <= 16,
+    commands: commands.open === false && commands.completeOutside && !commands.bodyPainted
+      && commands.overlap === 0 && commands.summary?.width >= 44 && commands.summary?.height >= 44
+      && commands.complete?.width >= 44 && commands.complete?.height >= 44
+      && commands.height <= (expanded ? commands.summary.height + commands.complete.height + 24 : 112)
+      && commands.commands.every((node) => node.hidden || node.visible),
+  };
+}
+
+SCENARIOS.push(responsiveOwner({
+  id: 'responsive-reflow',
+  title: 'Exact historical build, ordinary title and narrow prose use available content width',
+  async run(page, t) {
+    page.__ux09Owner = 'responsive-reflow';
+    responsiveStep(page, 'RF01-about');
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+    });
+    await page.setViewport({ width: 320, height: 720 });
+    await open(page, '/?catalog=actual#/about');
+    await page.$eval('#about-build', (node, text) => { node.textContent = text; }, RESPONSIVE_BUILD);
+    const build = await responsiveText(page, '#about-build');
+    if (build.text !== RESPONSIVE_BUILD) throw new Error('Historical About fixture mismatch');
+    await responsiveReceipt(page, t, 'RF01', 'exact historical About wraps within 320 pixels',
+      { ...build, expected: { text: RESPONSIVE_BUILD, minimumLines: 2, documentWidth: 320, clientWidth: 320 },
+        subpredicates: { wraps: build.lines >= 2, bounded: build.bounded,
+          viewport: build.documentWidth === 320 && build.clientWidth === 320 } },
+      build.lines >= 2 && build.bounded && build.documentWidth === 320 && build.clientWidth === 320);
+
+    responsiveStep(page, 'RF02-03-05-catalog');
+    await open(page, '/?catalog=actual#/age-bronze');
+    const cardSelector = '.catalog-card:has([data-key="avengers-defenders-war"])';
+    await page.waitForSelector(cardSelector);
+    const title = await responsiveText(page, `${cardSelector} .catalog-card-title`);
+    const display = await page.$eval(cardSelector, (card) => ({
+      description: card.querySelector('.catalog-card-desc').textContent,
+      credit: card.querySelector('.result-source').textContent,
+      options: [...card.querySelectorAll('.catalog-card-actions button')].map((node) => node.textContent),
+    }));
+    const expected = {
+      description: firstSentence(RESPONSIVE_TITLE.description),
+      credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
+      options: ['+ Add to library', 'Preview'],
+    };
+    const qualified = title.text === 'Avengers/Defenders War'
+      && JSON.stringify(display) === JSON.stringify(expected);
+    console.log(`UX09-FIXTURE ${JSON.stringify({ catalogId: RESPONSIVE_TITLE.id, display, expected, qualified })}`);
+    if (!qualified) throw new Error('Accepted card display projection did not qualify');
+    await responsiveReceipt(page, t, 'RF02', 'ordinary Avengers/Defenders War title reflows',
+      { ...title, expected: { text: 'Avengers/Defenders War', wrapping: 'when needed', documentWidth: 320 },
+        subpredicates: { text: title.text === 'Avengers/Defenders War', bounded: title.bounded,
+          document: title.documentWidth === 320 && title.clientWidth === 320 } },
+      title.text === 'Avengers/Defenders War' && title.bounded
+        && title.documentWidth === 320 && title.clientWidth === 320);
+    const card = await responsiveCard(page);
+    const cardPredicates = {
+      fullWidth: card.textWidth >= card.contentWidth - 2,
+      clearArt: card.title.top >= card.artBottom && card.prose.rects[0]?.top >= card.artBottom,
+      ranges: card.title.bounded && card.prose.bounded,
+      contentEdges: Math.abs(card.prose.left - card.contentLeft) <= 1
+        && Math.abs(card.prose.right - card.contentRight) <= 1,
+      projection: card.qualified,
+    };
+    await responsiveReceipt(page, t, 'RF03', 'card prose clears artwork and uses the full content box',
+      { ...card, subpredicates: cardPredicates }, Object.values(cardPredicates).every(Boolean));
+    const gutter = await page.$eval(`${cardSelector}`, (node) => {
+      const rect = node.getBoundingClientRect();
+      const parent = node.closest('.timeline-year-row');
+      return { left: rect.left, right: rect.right, viewport: innerWidth,
+        chronologyInset: parent ? parseFloat(getComputedStyle(parent).paddingLeft) : null };
+    });
+    await responsiveReceipt(page, t, 'RF05', 'narrow chronology and gutters reserve at most 32 pixels',
+      { ...gutter, expected: { maximumEachGutter: 16, maximumCombined: 32, maximumChronologyInset: 16 },
+        subpredicates: { left: gutter.left <= 16, right: 320 - gutter.right <= 16,
+          chronology: gutter.chronologyInset !== null && gutter.chronologyInset <= 16,
+          combined: gutter.left + 320 - gutter.right <= 32 } },
+      gutter.left <= 16 && 320 - gutter.right <= 16 && gutter.chronologyInset !== null
+      && gutter.chronologyInset <= 16 && gutter.left + (320 - gutter.right) <= 32);
+
+    responsiveStep(page, 'RF04-06-reading');
+    const saved = await responsiveReading(page);
+    await page.setViewport({ width: 320, height: 720 });
+    await responsiveFrames(page);
+    const hero = await responsiveHero(page);
+    const heroPredicates = {
+      clearArt: hero.title.top >= hero.artBottom && hero.prose.rects[0]?.top >= hero.artBottom,
+      fullWidth: hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2,
+      ranges: hero.title.bounded && hero.prose.bounded,
+      action: hero.actionWidth >= hero.contentWidth - 2 && hero.actionHeight >= 48,
+      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Open in Marvel Unlimited',
+      secondaryAndFacts: hero.actions.some((node) => node.id === 'btn-hero-info' && node.href === ORDER.items[0].url)
+        && hero.facts.includes(ORDER.items[0].title),
+    };
+    await responsiveReceipt(page, t, 'RF04', 'qualified hero title and prose clear the cover',
+      { ...hero, subpredicates: heroPredicates },
+      Object.values(heroPredicates).every(Boolean));
+    const commands = await responsiveCommands(page);
+    const commandPredicates = {
+      nativeClosed: commands.open === false && !commands.bodyPainted,
+      independentComplete: commands.completeOutside && commands.complete.visible,
+      compact: commands.height <= 112,
+      targets: commands.summary?.height >= 44 && commands.summary?.width >= 44
+        && commands.complete.height >= 44 && commands.complete.width >= 44,
+      overlap: commands.overlap === 0,
+      expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
+    };
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact with independent Complete',
+      { ...commands, subpredicates: commandPredicates },
+      Object.values(commandPredicates).every(Boolean));
+    responsiveStep(page, 'RF07-text-modes');
+    const modes = [];
+    await open(page, '/?catalog=actual#/read/' + (await readState(page)).active);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    await click(page, '#btn-synopsis');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent === 'All synopses fetched, for this tab only.');
+    await click(page, '#list-actions > summary');
+    await page.focus('#btn-hero-description');
+    await page.keyboard.press('Enter');
+    const doubledRule = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return ':root { ' + ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+        .map((token) => `${token}: ${parseFloat(style.getPropertyValue(token)) * 2}px !important;`).join(' ') + ' }';
+    });
+    for (const [mode, rule] of [
+      ['doubled-text', doubledRule],
+      ['text-spacing', '@media all { * { line-height: 1.5 !important; letter-spacing: .12em !important; word-spacing: .16em !important; } p { margin-bottom: 2em !important; } }'],
+    ]) {
+      const index = await responsiveRule(page, rule);
+      await responsiveRoute(page, '#/about', 'about');
+      await page.$eval('#about-build', (node, text) => { node.textContent = text; }, RESPONSIVE_BUILD);
+      const modeBuild = await responsiveText(page, '#about-build');
+      if (mode === 'doubled-text' && modeBuild.documentWidth !== modeBuild.clientWidth) {
+        const overflow = await page.evaluate(() => [...document.querySelectorAll('#view-about *, .rail-header *, .app-footer *')]
+          .filter((node) => node.checkVisibility()).flatMap((node) => {
+            const box = node.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            const rects = [...range.getClientRects()].filter((rect) => rect.width > 0
+              && (rect.right > innerWidth + 1 || rect.left < -1))
+              .slice(0, 8).map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
+            if (box.right <= innerWidth + 1 && box.left >= -1 && rects.length === 0) return [];
+            const style = getComputedStyle(node);
+            return [{ id: node.id, tag: node.tagName, class: node.className,
+              text: node.textContent.slice(0, 160), left: box.left, right: box.right, rects,
+              font: style.font, wrap: style.overflowWrap, whiteSpace: style.whiteSpace,
+              minWidth: style.minWidth }];
+          }).slice(0, 30));
+        console.log(`UX09-OVERFLOW ${JSON.stringify({ mode, width: modeBuild.documentWidth,
+          viewport: modeBuild.clientWidth, overflow })}`);
+      }
+      await responsiveRoute(page, '#/age-bronze', 'age-bronze');
+      const modeCard = await responsiveCard(page);
+      await responsiveRoute(page, '#/read/' + (await readState(page)).active, 'read');
+      if (await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') !== 'true')) {
+        await page.focus('#btn-hero-description');
+        await page.keyboard.press('Enter');
+      }
+      const modeHero = await responsiveHero(page);
+      const modeCommands = await responsiveCommands(page);
+      const subpredicates = responsiveReflowPredicates(modeBuild, modeCard, modeHero, modeCommands, true);
+      modes.push({ mode, build: modeBuild, card: modeCard, hero: modeHero, commands: modeCommands, subpredicates });
+      await responsiveDeleteRule(page, index);
+    }
+    await page.setViewport({ width: 640, height: 450 });
+    const landscape = await responsiveHero(page);
+    modes.push({ mode: '640-reflow', hero: landscape, subpredicates: {
+      prose: landscape.prose.text === 'Synthetic plot 447 for 900001.',
+      bounded: landscape.title.bounded && landscape.prose.bounded
+        && landscape.prose.documentWidth === landscape.prose.clientWidth,
+    } });
+    await responsiveReceipt(page, t, 'RF07', 'retained text modes preserve qualified prose and reflow',
+      { modes, expected: { predicates: ['about', 'title', 'card', 'hero', 'gutter', 'commands'],
+        expandedStripCap: 'Complete height + summary height + 24', landscapeViewport: [640, 450] },
+      subpredicates: Object.fromEntries(modes.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.mode}:${key}`, value]))) },
+      modes.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RF08-active-scope');
+    await open(page, '/?catalog=actual#/progress');
+    const subject = await page.$eval('#progress-subject', (node) => node.textContent);
+    const preserved = await page.evaluate((before) => (
+      localStorage.getItem('mrt.state.v2') === before.state
+      && localStorage.getItem('mrt.list-history.v1') === before.history
+      && document.querySelector('#progress-scope').getAttribute('aria-describedby') === 'progress-subject'
+    ), saved);
+    await page.setViewport({ width: 320, height: 720 });
+    await responsiveRoute(page, '#/catalog', 'catalog');
+    await page.waitForSelector('#catalog-results .catalog-card');
+    const featureExpected = modernTimelineFeaturedCard(ACTUAL_CATALOG.lists, 'catalog')?.id ?? null;
+    const setup = await page.evaluate(() => {
+      const node = document.querySelector('#modern-timeline-feature');
+      return { present: Boolean(node), visible: Boolean(node?.checkVisibility()), id: node?.dataset.featuredList ?? null };
+    });
+    await page.$eval('#catalog-q', (node) => {
+      node.value = 'no-ux09-guide-matches';
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.waitForFunction(() => document.querySelector('#catalog-results').textContent.includes('No Reading Lists'));
+    const narrowing = await page.evaluate(() => ({
+      setupVisible: Boolean(document.querySelector('#modern-timeline-feature')?.checkVisibility()),
+      cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+    }));
+    await click(page, '#catalog-clear');
+    await page.waitForSelector('#catalog-results .catalog-card');
+    const cleared = await page.evaluate(() => Boolean(document.querySelector('#modern-timeline-feature')?.checkVisibility()));
+    await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+    responsiveStep(page, 'RF08-unknown-fresh-document');
+    await open(page, '/?catalog=actual#/library');
+    await page.reload({ waitUntil: 'load' });
+    const unknown = await page.evaluate(() => ({
+      browseHidden: document.querySelector('#library-completed-browse').hidden,
+      copy: document.querySelector('#library-completed').textContent,
+    }));
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      state.lists = {};
+      state.listOrder = [];
+      state.active = null;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+      localStorage.removeItem('mrt.list-history.v1');
+    });
+    responsiveStep(page, 'RF08-no-list-fresh-document');
+    await open(page, '/?catalog=actual#/progress');
+    await page.reload({ waitUntil: 'load' });
+    const noList = await page.evaluate(() => ({
+      subject: document.querySelector('#progress-subject').textContent,
+      scopeHidden: document.querySelector('#progress-scope').hidden,
+    }));
+    await page.evaluate((before) => {
+      localStorage.setItem('mrt.state.v2', before.state);
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    responsiveStep(page, 'RF08-restored-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    const restoredSubject = await page.$eval('#progress-subject', (node) => node.textContent);
+    const scopePredicates = {
+      activeScope: subject === `Reading List: ${ORDER.name}`, preserved,
+      eligible: setup.id === featureExpected && setup.visible === Boolean(featureExpected),
+      narrowed: !narrowing.setupVisible && narrowing.cards === 0,
+      cleared: cleared === Boolean(featureExpected),
+      unknown: unknown.browseHidden && unknown.copy.includes('unavailable'),
+      noList: noList.subject === 'No saved Reading Lists' && noList.scopeHidden,
+      restored: await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before.state
+        && localStorage.getItem('mrt.list-history.v1') === before.history, saved)
+        && restoredSubject === `Reading List: ${ORDER.name}`,
+    };
+    await responsiveReceipt(page, t, 'RF08', 'accepted scope and saved reading/history survive presentation',
+      { subject, preserved, setup, narrowing, cleared, unknown, noList, restoredSubject,
+        expected: { subject: `Reading List: ${ORDER.name}`, featuredId: featureExpected,
+          noList: 'No saved Reading Lists', unknownBrowseHidden: true }, subpredicates: scopePredicates },
+      Object.values(scopePredicates).every(Boolean));
+  },
+}));
+
+SCENARIOS.push(responsiveOwner({
+  id: 'responsive-controls',
+  title: 'Real read boxes, native fields and dialogs preserve focus, state and checked contrast',
+  async run(page, t) {
+    page.__ux09Owner = 'responsive-controls';
+    const saved = await responsiveReading(page, { checked: true });
+    await page.setViewport({ width: 320, height: 480 });
+    await responsiveFrames(page);
+    responsiveStep(page, 'RC01-read-targets');
+    const readBoxes = () => page.evaluate(() => {
+      const row = document.querySelector('#rows .cb[data-key="900002"]').closest('.row');
+      const control = row.querySelector('.cb');
+      const rect = control.getBoundingClientRect();
+      const collisions = [...row.querySelectorAll('a,button')].filter((node) => node !== control
+        && node.getClientRects().length).map((node) => {
+        const other = node.getBoundingClientRect();
+        return Math.max(0, Math.min(rect.right, other.right) - Math.max(rect.left, other.left))
+          * Math.max(0, Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top));
+      });
+      return { width: rect.width, height: rect.height, collisions,
+        track: parseFloat(getComputedStyle(row).gridTemplateColumns) };
+    });
+    const boxes = await readBoxes();
+    await page.setViewport({ width: 1024, height: 720 });
+    await responsiveFrames(page);
+    const wider = await readBoxes();
+    await page.setViewport({ width: 320, height: 480 });
+    await responsiveFrames(page);
+    const targetPredicates = {
+      narrow: boxes.width >= 44 && boxes.height >= 44,
+      wide: wider.width >= 24 && wider.height >= 24,
+      track: boxes.track >= boxes.width && wider.track >= wider.width,
+      intersections: [...boxes.collisions, ...wider.collisions].every((area) => area === 0),
+    };
+    await responsiveReceipt(page, t, 'RC01', 'actual read targets are allocated and do not overlap',
+      { boxes, wider, expected: { narrow: 44, wider: 24, intersectionArea: 0 },
+        subpredicates: targetPredicates }, Object.values(targetPredicates).every(Boolean));
+    responsiveStep(page, 'RC09-computed-paint');
+    const contrasts = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const paint = await page.$eval('#rows .cb[data-key="900002"]', (node) => {
+        const style = getComputedStyle(node);
+        let opacity = 1;
+        for (let parent = node; parent; parent = parent.parentElement) opacity *= Number(getComputedStyle(parent).opacity);
+        return { foreground: style.color, background: style.backgroundColor, opacity,
+          pressed: node.getAttribute('aria-pressed') };
+      });
+      const rgb = (value) => {
+        const match = /^rgb\((\d+), (\d+), (\d+)\)$/.exec(value);
+        return match ? parseColour(match.slice(1).join(' ')) : null;
+      };
+      const fg = rgb(paint.foreground);
+      const bg = rgb(paint.background);
+      contrasts.push({ theme, ...paint, ratio: fg && bg ? ratio(fg, bg) : null });
+    }
+    await responsiveReceipt(page, t, 'RC09', 'actual checked foreground clears 3:1 in both themes',
+      { contrasts, checkedIssue: 900002, expected: { minimumRatio: 3, opacity: 1, pressed: 'true' },
+        subpredicates: Object.fromEntries(contrasts.flatMap((entry) => [
+          [`${entry.theme}:contrast`, entry.ratio >= 3], [`${entry.theme}:opaque`, entry.opacity === 1],
+          [`${entry.theme}:pressed`, entry.pressed === 'true'],
+        ])) },
+      contrasts.every((entry) => entry.opacity === 1 && entry.ratio >= 3 && entry.pressed === 'true'));
+    responsiveStep(page, 'RC06-disclosure-crossing');
+    await page.setViewport({ width: 701, height: 480 });
+    await responsiveFrames(page);
+    const disclosure = await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      if (!details) return { exists: false };
+      const descriptor = Object.getOwnPropertyDescriptor(HTMLDetailsElement.prototype, 'open');
+      window.__ux09BeforeClose = [];
+      Object.defineProperty(details, 'open', {
+        get() { return descriptor.get.call(this); },
+        set(value) {
+          if (!value && descriptor.get.call(this)) {
+            window.__ux09BeforeClose.push({ activeId: document.activeElement.id,
+              summaryFocused: document.activeElement === this.querySelector('summary'),
+              stillOpen: this.open, summaryVisible: this.querySelector('summary').checkVisibility() });
+          }
+          descriptor.set.call(this, value);
+        },
+        configurable: true,
+      });
+      details.open = true;
+      document.querySelector('#list-export').open = true;
+      document.querySelector('#btn-export-md').focus();
+      return { exists: true, nestedOpen: document.querySelector('#list-export').open };
+    });
+    await page.setViewport({ width: 700, height: 480 });
+    await responsiveFrames(page);
+    const focused = await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      return { closed: details?.open === false,
+        focused: document.activeElement === details?.querySelector('summary'),
+        nestedOpen: document.querySelector('#list-export').open,
+        beforeClose: window.__ux09BeforeClose ?? [],
+        completeVisible: document.querySelector('#btn-complete-list').checkVisibility(),
+        completeOutside: Boolean(details && !details.contains(document.querySelector('#btn-complete-list'))),
+        pendingOutside: ['btn-cancel-hydrate', 'hydration-status', 'btn-cancel-synopsis', 'synopsis-status']
+          .every((id) => !details?.contains(document.getElementById(id))) };
+    });
+    await page.setViewport({ width: 701, height: 480 });
+    await responsiveFrames(page);
+    const wide = await page.evaluate(() => ({
+      open: document.querySelector('#list-actions')?.open,
+      focused: document.activeElement === document.querySelector('#list-actions > summary'),
+    }));
+    await page.evaluate(() => { window.__ux09HoldDetails = true; });
+    responsiveStep(page, 'RC06-pending-hydrate-trigger');
+    const pendingTrigger = await page.$eval('#btn-hydrate', (node) => ({
+      visible: node.checkVisibility(), enabled: !node.disabled && !node.hidden, text: node.textContent,
+    }));
+    console.log(`UX09-FIXTURE ${JSON.stringify({ pendingIssue: 900003, trigger: pendingTrigger,
+      qualified: pendingTrigger.visible && pendingTrigger.enabled })}`);
+    if (!pendingTrigger.visible || !pendingTrigger.enabled) throw new Error('Actual pending hydration trigger not painted/enabled');
+    await click(page, '#btn-hydrate');
+    responsiveStep(page, 'RC06-pending-hydrate-cancel-visible');
+    await page.waitForFunction(() => !document.querySelector('#btn-cancel-hydrate').hidden);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = false; });
+    const pending = await page.evaluate(() => ({
+      status: document.querySelector('#hydration-status').textContent,
+      statusVisible: document.querySelector('#hydration-status').checkVisibility(),
+      stopVisible: document.querySelector('#btn-cancel-hydrate').checkVisibility(),
+      outside: Boolean(document.querySelector('#list-actions')
+        && !document.querySelector('#list-actions').contains(document.querySelector('#btn-cancel-hydrate'))),
+    }));
+    await click(page, '#btn-cancel-hydrate');
+    responsiveStep(page, 'RC06-pending-hydrate-cancel-cleanup');
+    await page.waitForFunction(() => document.querySelector('#btn-cancel-hydrate').hidden);
+    responsiveStep(page, 'RC06-pending-synopsis-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    await page.evaluate(() => {
+      window.__ux09HoldDetails = true;
+      const node = document.querySelector('#list-actions');
+      if (node) node.open = true;
+    });
+    await click(page, '#btn-synopsis');
+    responsiveStep(page, 'RC06-pending-synopsis-confirm');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    responsiveStep(page, 'RC06-pending-synopsis-cancel-visible');
+    await page.waitForFunction(() => !document.querySelector('#btn-cancel-synopsis').hidden);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = false; });
+    const synopsisPending = await page.evaluate(() => ({
+      status: document.querySelector('#synopsis-status').textContent,
+      statusVisible: document.querySelector('#synopsis-status').checkVisibility(),
+      stopVisible: document.querySelector('#btn-cancel-synopsis').checkVisibility(),
+      outside: Boolean(document.querySelector('#list-actions')
+        && !document.querySelector('#list-actions').contains(document.querySelector('#btn-cancel-synopsis'))),
+    }));
+    await click(page, '#btn-cancel-synopsis');
+    responsiveStep(page, 'RC06-pending-synopsis-cancel-cleanup');
+    await page.waitForFunction(() => document.querySelector('#btn-cancel-synopsis').hidden);
+    await page.evaluate(() => { window.__ux09HoldDetails = false; });
+    responsiveStep(page, 'RC06-completed-fresh-document');
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const list = state.lists[state.active];
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    await page.reload({ waitUntil: 'load' });
+    const completedState = await page.evaluate(() => ({
+      completeHidden: document.querySelector('#btn-complete-list').hidden,
+      reopenVisible: document.querySelector('#btn-reopen-list').checkVisibility(),
+    }));
+    responsiveStep(page, 'RC06-unavailable-fresh-document');
+    await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+    await page.reload({ waitUntil: 'load' });
+    const unavailable = await page.evaluate(() => ({
+      completeHidden: document.querySelector('#btn-complete-list').hidden,
+      completeDisabled: document.querySelector('#btn-complete-list').disabled,
+      guidance: document.querySelector('#list-completion-status').textContent,
+    }));
+    await page.evaluate((before) => {
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    await page.reload({ waitUntil: 'load' });
+    const disclosurePredicates = {
+      exists: disclosure.exists, rescueBeforeClose: focused.beforeClose.some((entry) => entry.summaryFocused
+        && entry.stillOpen && entry.summaryVisible),
+      narrowClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
+      completeIndependent: focused.completeOutside && focused.completeVisible,
+      pendingIndependent: focused.pendingOutside && pending.outside && pending.statusVisible
+        && pending.stopVisible && pending.status.includes('Fetching')
+        && synopsisPending.outside && synopsisPending.statusVisible && synopsisPending.stopVisible,
+      wideNoSteal: wide.open && wide.focused,
+      completed: completedState.completeHidden && completedState.reopenVisible,
+      unavailable: !unavailable.completeHidden && unavailable.completeDisabled
+        && unavailable.guidance === 'Completion history is not valid JSON. Its saved value has been kept.',
+    };
+    await responsiveReceipt(page, t, 'RC06', 'breakpoint closing rescues focus and preserves nested commands',
+      { disclosure, focused, wide, pending, synopsisPending, completedState, unavailable,
+        expected: { breakpoint: [701, 700, 701], closeOrder: 'focus visible summary before open=false',
+          pending: 'painted outside editing disclosure', complete: 'active visible; completed hidden; unavailable disabled' },
+        subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
+
+    responsiveStep(page, 'RC04-native-note');
+    await page.setViewport({ width: 320, height: 360 });
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    await click(page, '#btn-list-note');
+    await page.waitForSelector('#ask[open]');
+    const ask = await page.evaluate(() => {
+      const dialog = document.querySelector('#ask');
+      document.querySelector('#ask-cancel').scrollIntoView({ block: 'center' });
+      document.querySelector('#ask-cancel').focus();
+      const rect = dialog.getBoundingClientRect();
+      const target = document.querySelector('#ask-cancel').getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, targetTop: target.top, targetBottom: target.bottom,
+        viewport: innerHeight, rows: document.querySelector('#ask-area').rows,
+        areaVisible: !document.querySelector('#ask-area-field').hidden,
+        barVisibility: getComputedStyle(document.querySelector('.rail-header')).visibility };
+    });
+    await responsiveReceipt(page, t, 'RC04', 'native Note scrolls to Cancel without bar obstruction',
+      { ...ask, expected: { rows: 5, viewportInset: 8, barVisibility: 'hidden' },
+        subpredicates: { fixture: ask.rows === 5 && ask.areaVisible,
+          dialog: ask.top >= 8 && ask.bottom <= ask.viewport - 8,
+          cancel: ask.targetTop >= ask.top && ask.targetBottom <= ask.bottom,
+          bar: ask.barVisibility === 'hidden' } },
+      ask.rows === 5 && ask.areaVisible && ask.top >= 8 && ask.bottom <= ask.viewport - 8
+      && ask.targetTop >= ask.top && ask.targetBottom <= ask.bottom && ask.barVisibility === 'hidden');
+    await click(page, '#ask-cancel');
+    responsiveStep(page, 'RC02-native-field-family');
+    const fields = [];
+    const fieldBox = (selector) => page.$eval(selector, (node) => ({
+      height: node.getBoundingClientRect().height, font: getComputedStyle(node).fontSize,
+      lineHeight: getComputedStyle(node).lineHeight, radius: getComputedStyle(node).borderRadius,
+      tag: node.tagName, label: document.querySelector(`label[for="${node.id}"]`)?.textContent ?? null,
+      required: node.required, options: node.options ? [...node.options].map((option) => option.value) : null,
+      describedby: node.getAttribute('aria-describedby'),
+    }));
+    for (const theme of ['dark', 'light']) {
+      await open(page, '/#/data');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const themeField = await fieldBox('#opt-theme');
+      await open(page, '/?catalog=actual#/reading-paths');
+      await page.waitForSelector('#reading-path-select option');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const pathField = await fieldBox('#reading-path-select');
+      await page.focus('#reading-path-select');
+      const selectedBefore = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      await page.keyboard.press('ArrowDown');
+      const selectedAfter = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      await page.keyboard.press('ArrowUp');
+      await open(page, '/#/add-manual');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const manual = await fieldBox('#manual-title');
+      const manualUrl = await fieldBox('#manual-url');
+      const invalid = await page.$eval('#manual-title', (node) => ({
+        missing: node.validity.valueMissing, message: node.validationMessage,
+      }));
+      const family = [themeField, pathField, manual, manualUrl];
+      fields.push({ theme, themeField, pathField, manual, manualUrl, invalid,
+        selectedBefore, selectedAfter, subpredicates: {
+          geometry: family.every((field) => field.height >= 44),
+          typography: family.every((field) => field.font === manual.font
+            && field.lineHeight === manual.lineHeight && field.radius === manual.radius),
+          labels: family.every((field) => Boolean(field.label)),
+          native: themeField.tag === 'SELECT' && pathField.tag === 'SELECT' && manual.tag === 'INPUT',
+          options: JSON.stringify(themeField.options) === JSON.stringify(['system', 'dark', 'light'])
+            && pathField.options.length > 1 && selectedAfter === selectedBefore + 1,
+          validation: manual.required && invalid.missing && invalid.message.length > 0
+            && manual.describedby === 'manual-report'
+            && manualUrl.describedby === 'manual-url-hint manual-report',
+        } });
+    }
+    await responsiveReceipt(page, t, 'RC02', 'native Field family retains names and consistent 44px typography',
+      { fields, expected: { minimumHeight: 44, sameFontLineHeightRadius: true,
+        themeOptions: ['system', 'dark', 'light'],
+        describedby: { title: 'manual-report', url: 'manual-url-hint manual-report' } },
+      subpredicates: Object.fromEntries(fields.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.theme}:${key}`, value]))) },
+      fields.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RC03-markdown');
+    await open(page, '/#/add-import');
+    const preSelector = '.import-guide pre';
+    await page.$eval('#import-guide-h', (node) => { node.setAttribute('tabindex', '-1'); node.focus(); });
+    await page.keyboard.press('Tab');
+    const markdown = await page.$eval(preSelector, (node) => ({
+      tabindex: node.getAttribute('tabindex'), name: node.getAttribute('aria-labelledby'),
+      focused: document.activeElement === node, outline: getComputedStyle(node).outlineStyle,
+      text: node.textContent, scroll: node.scrollWidth, client: node.clientWidth,
+    }));
+    const overflowProbe = await responsiveRule(page, '.import-guide pre { white-space: pre !important; }');
+    const beforeArrow = await page.$eval(preSelector, (node) => ({
+      scroll: node.scrollWidth, client: node.clientWidth, left: node.scrollLeft, text: node.textContent,
+    }));
+    await page.focus(preSelector);
+    await page.keyboard.press('ArrowRight');
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    const afterArrow = await page.$eval(preSelector, (node) => node.scrollLeft);
+    await responsiveDeleteRule(page, overflowProbe);
+    const markdownPredicates = {
+      explicit: markdown.tabindex === '0' && markdown.name === 'import-guide-h',
+      focus: markdown.focused && markdown.outline !== 'none',
+      content: markdown.text.includes('Secret Wars (2015) #1') && beforeArrow.text === markdown.text,
+      overflowQualified: beforeArrow.scroll > beforeArrow.client,
+      arrow: beforeArrow.scroll > beforeArrow.client && afterArrow > beforeArrow.left,
+    };
+    await responsiveReceipt(page, t, 'RC03', 'Markdown example has portable focus and qualified ArrowRight scrolling',
+      { markdown, beforeArrow, afterArrow, expected: { tabindex: '0', heading: 'import-guide-h',
+        overflowProbe: 'existing content, temporary white-space:pre; require scrollWidth>clientWidth before ArrowRight' },
+      subpredicates: markdownPredicates },
+      Object.values(markdownPredicates).every(Boolean));
+    responsiveStep(page, 'RC05-low-height-dialogs');
+    await page.setViewport({ width: 720, height: 320 });
+    await open(page, '/?catalog=actual#/age-bronze');
+    const previewTrigger = '.catalog-card:has([data-key="avengers-defenders-war"]) [data-act="preview"]';
+    await page.focus(previewTrigger);
+    await click(page, previewTrigger);
+    await page.waitForSelector('#preview[open]');
+    const preview = await page.evaluate(() => {
+      const dialog = document.querySelector('#preview');
+      const close = document.querySelector('#preview-close');
+      close.scrollIntoView({ block: 'center' });
+      close.focus();
+      const rect = close.getBoundingClientRect();
+      return { open: dialog.open, top: rect.top, bottom: rect.bottom, height: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    const closed = await page.$eval('#preview', (node) => !node.open);
+    const previewFocus = await page.$eval(previewTrigger, (node) => node === document.activeElement);
+    const active = (await readState(page)).active;
+    await open(page, '/#/read/' + active);
+    await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      if (details) details.open = true;
+      document.querySelector('#list-export').open = true;
+    });
+    await page.focus('#btn-export-md');
+    await click(page, '#btn-export-md');
+    await page.waitForSelector('#markdown-export[open]');
+    const exportBox = await page.$eval('#markdown-export [data-action="cancel"]', (node) => {
+      node.scrollIntoView({ block: 'center' });
+      node.focus();
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    responsiveStep(page, 'RC05-export-native-close-removal');
+    await page.waitForFunction(() => !document.querySelector('#markdown-export')
+      && document.activeElement.id === 'btn-export-md');
+    const exportClosed = await page.evaluate(() => !document.querySelector('#markdown-export')
+      && document.activeElement.id === 'btn-export-md');
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const list = state.lists[state.active];
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.focus('#btn-list-feedback-guide');
+    await click(page, '#btn-list-feedback-guide');
+    await page.waitForSelector('#list-feedback[open]');
+    const feedback = await page.$eval('#list-feedback-close', (node) => {
+      node.scrollIntoView({ block: 'center' });
+      node.focus();
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    const feedbackClosed = await page.evaluate(() => !document.querySelector('#list-feedback').open
+      && document.activeElement.id === 'btn-list-feedback-guide');
+    await page.evaluate((before) => {
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    const dialogPredicates = {
+      preview: preview.open && preview.top >= 0 && preview.bottom <= preview.height && preview.barHidden,
+      previewClose: closed && previewFocus,
+      export: exportBox.top >= 0 && exportBox.bottom <= exportBox.viewport && exportBox.barHidden,
+      exportClose: exportClosed,
+      feedback: feedback.top >= 0 && feedback.bottom <= feedback.viewport && feedback.barHidden,
+      feedbackClose: feedbackClosed,
+    };
+    await responsiveReceipt(page, t, 'RC05', 'low-height independent Preview keeps native close reachable',
+      { preview, closed, previewFocus, exportBox, exportClosed, feedback, feedbackClosed,
+        expected: { viewport: [720, 320], actions: 'fully visible', close: 'native Escape restores launcher',
+          bar: 'unpainted while modal' }, subpredicates: dialogPredicates },
+      Object.values(dialogPredicates).every(Boolean));
+    responsiveStep(page, 'RC07-safe-area-clearance');
+    await page.setViewport({ width: 390, height: 720 });
+    await open(page, '/#/add-manual');
+    const safeRule = await responsiveRule(page, '.rail-header { padding-bottom: calc(var(--space-2) + 20px) !important; }');
+    await page.focus('.rail-header a');
+    await page.waitForFunction(() => {
+      const header = document.querySelector('.rail-header');
+      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height'))
+        === header.getBoundingClientRect().height;
+    });
+    const bar = await page.evaluate(() => {
+      const node = document.querySelector('.rail-header');
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, paddingBottom: parseFloat(getComputedStyle(node).paddingBottom),
+        base: parseFloat(getComputedStyle(node).paddingTop),
+        reportedHeight: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height')),
+        targets: [...node.querySelectorAll('a,button')].filter((target) => target.getClientRects().length)
+          .map((target) => ({ label: target.textContent.trim(), width: target.getBoundingClientRect().width,
+            height: target.getBoundingClientRect().height })) };
+    });
+    await page.focus('#manual-title');
+    await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight
+      || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden');
+    const editable = await page.evaluate(() => ({
+      hidden: document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight
+        || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden',
+      focused: document.activeElement.id === 'manual-title',
+      top: document.querySelector('#manual-title').getBoundingClientRect().top,
+      bottom: document.querySelector('#manual-title').getBoundingClientRect().bottom,
+      viewport: innerHeight,
+    }));
+    await page.focus('#manual-url');
+    await page.$eval('#manual-url', (node) => node.scrollIntoView({ block: 'center' }));
+    await responsiveFrames(page);
+    const lastField = await page.evaluate(() => {
+      const rect = document.querySelector('#manual-url').getBoundingClientRect();
+      const barRect = document.querySelector('.rail-header').getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight, barTop: barRect.top,
+        barHidden: barRect.top >= innerHeight || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await responsiveDeleteRule(page, safeRule);
+    await open(page, '/#/read/' + active);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    const nativeWriteStart = await page.evaluate(() => Date.now());
+    await deleteActiveList(page);
+    await page.waitForSelector('#app-report .notice');
+    const noticeTarget = async (label) => {
+      await page.focus('.rail-header .brand');
+      await page.evaluate((text) => {
+        const node = [...document.querySelectorAll('#app-report button')].find((button) => button.textContent.trim() === text);
+        node.scrollIntoView({ block: 'center' });
+      }, label);
+      await responsiveFrames(page);
+      return page.evaluate((text) => {
+        const node = [...document.querySelectorAll('#app-report button')].find((button) => button.textContent.trim() === text);
+        const rect = node.getBoundingClientRect();
+        const barRect = document.querySelector('.rail-header').getBoundingClientRect();
+        return { label: node.textContent.trim(), top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+          barTop: barRect.top, barHidden: barRect.top >= innerHeight
+            || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden',
+          visible: node.checkVisibility() };
+      }, label);
+    };
+    const undo = await noticeTarget('Undo removal');
+    const feedbackNotice = await noticeTarget('Dismiss');
+    await clickNoticeButton(page, 'Undo removal');
+    await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 1);
+    const beforeUndoSetup = JSON.parse(saved.state);
+    const afterUndoSetup = await readState(page);
+    const changedFields = [...new Set([...Object.keys(beforeUndoSetup), ...Object.keys(afterUndoSetup)])]
+      .filter((key) => !isDeepStrictEqual(beforeUndoSetup[key], afterUndoSetup[key]));
+    const setupHistory = await page.evaluate(() => localStorage.getItem('mrt.list-history.v1'));
+    const nativeWriteEnd = await page.evaluate(() => Date.now());
+    const exportedBefore = Date.parse(beforeUndoSetup.exportedAt);
+    const exportedAfter = Date.parse(afterUndoSetup.exportedAt);
+    const setupQualified = JSON.stringify(changedFields.sort()) === '["exportedAt","writeToken"]'
+      && typeof beforeUndoSetup.writeToken === 'string' && typeof afterUndoSetup.writeToken === 'string'
+      && beforeUndoSetup.writeToken.length > 0 && afterUndoSetup.writeToken.length > 0
+      && beforeUndoSetup.writeToken !== afterUndoSetup.writeToken && setupHistory === saved.history
+      && Number.isFinite(exportedBefore) && Number.isFinite(exportedAfter)
+      && new Date(exportedBefore).toISOString() === beforeUndoSetup.exportedAt
+      && new Date(exportedAfter).toISOString() === afterUndoSetup.exportedAt
+      && exportedAfter >= nativeWriteStart && exportedAfter <= nativeWriteEnd && exportedAfter > exportedBefore;
+    console.log(`UX09-FIXTURE ${JSON.stringify({ setup: 'native-delete-Undo',
+      allowedDelta: 'writeToken/exportedAt only during explicit native writes', changedFields,
+      nativeWriteStart, nativeWriteEnd, before: beforeUndoSetup, after: afterUndoSetup,
+      historyPreserved: setupHistory === saved.history, qualified: setupQualified })}`);
+    if (!setupQualified) throw new Error(`Undo setup changed unexpected reader fields: ${changedFields.join(', ')}`);
+    await open(page, '/#/add-manual');
+    await page.focus('#manual-title');
+    const clearance = (target) => target.top >= 0 && target.bottom <= target.viewport
+      && (target.barHidden || target.bottom <= target.barTop - 8);
+    const barPredicates = {
+      targets: bar.targets.length === 5 && bar.targets.every((target) => target.width >= 44 && target.height >= 44 && target.label),
+      safeArea: bar.paddingBottom === bar.base + 20 && bar.reportedHeight >= bar.bottom - bar.top,
+      editable: editable.hidden && editable.focused && editable.top >= 0 && editable.bottom <= editable.viewport,
+      lastField: clearance(lastField),
+      undo: clearance(undo) && undo.visible && !undo.barHidden,
+      feedback: clearance(feedbackNotice) && feedbackNotice.visible && !feedbackNotice.barHidden,
+    };
+    await responsiveReceipt(page, t, 'RC07', 'full-label bar targets and editable guard preserve clearance',
+      { bar, editable, lastField, undo, feedbackNotice,
+        expected: { safeAreaProbe: 20, targets: 44, clearance: 8, labels: 'five full destinations',
+          proxy: 'CSS arithmetic, not a physical notch' }, subpredicates: barPredicates },
+      Object.values(barPredicates).every(Boolean));
+    const crossingSnapshot = await page.evaluate(() => ({
+      state: localStorage.getItem('mrt.state.v2'), history: localStorage.getItem('mrt.list-history.v1'),
+    }));
+    console.log(`UX09-FIXTURE ${JSON.stringify({ setup: 'post-Undo immutable crossings', ...crossingSnapshot, qualified: true })}`);
+    responsiveStep(page, 'RC08-crossings-preferences');
+    await page.setViewport({ width: 880, height: 720 });
+    await responsiveFrames(page);
+    await page.setViewport({ width: 881, height: 720 });
+    await responsiveFrames(page);
+    const crossing = await page.evaluate((before) => ({
+      focused: document.activeElement.id === 'manual-title',
+      state: localStorage.getItem('mrt.state.v2') === before.state,
+      history: localStorage.getItem('mrt.list-history.v1') === before.history,
+      hash: location.hash,
+    }), crossingSnapshot);
+    const client = await page.createCDPSession();
+    const preferences = [];
+    for (const mode of ['dark', 'light', 'forced-reduced']) {
+      await client.send('Emulation.setEmulatedMedia', { features: [
+        { name: 'forced-colors', value: mode === 'forced-reduced' ? 'active' : 'none' },
+        { name: 'prefers-reduced-motion', value: mode === 'forced-reduced' ? 'reduce' : 'no-preference' },
+      ] });
+      await page.setViewport({ width: 390, height: 720 });
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value === 'light' ? 'light' : 'dark'; }, mode);
+      await page.focus('.rail-header .brand');
+      await responsiveFrames(page);
+      await page.evaluate(() => scrollBy(0, 80));
+      responsiveStep(page, `RC08-${mode}-pinned-transition-settlement`);
+      await page.waitForFunction(() => {
+        const node = document.querySelector('.rail-header');
+        return node.getAnimations().every((animation) => animation.playState === 'finished')
+          && node.getBoundingClientRect().bottom <= innerHeight;
+      });
+      const pinned = await page.evaluate(() => {
+        const node = document.querySelector('.rail-header');
+        const rect = node.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+          focused: node.contains(document.activeElement), transition: getComputedStyle(node).transitionDuration,
+          borderStyle: getComputedStyle(node).borderTopStyle,
+          forced: matchMedia('(forced-colors:active)').matches,
+          reduced: matchMedia('(prefers-reduced-motion:reduce)').matches };
+      });
+      await page.focus('#manual-title');
+      await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
+      const guarded = await page.evaluate(() => ({
+        hidden: document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight,
+        focused: document.activeElement.id === 'manual-title',
+      }));
+      preferences.push({ mode, pinned, guarded, subpredicates: {
+        pinning: pinned.focused && pinned.top >= 0 && pinned.bottom <= pinned.viewport + 1,
+        editableGuard: guarded.hidden && guarded.focused,
+        forcedReduced: mode !== 'forced-reduced'
+          || (pinned.forced && pinned.reduced && pinned.transition === '0s' && pinned.borderStyle === 'solid'),
+      } });
+    }
+    await client.send('Emulation.setEmulatedMedia', { features: [] });
+    await client.detach();
+    const afterPreferences = await page.evaluate((before) => ({
+      state: localStorage.getItem('mrt.state.v2') === before.state,
+      history: localStorage.getItem('mrt.list-history.v1') === before.history,
+    }), crossingSnapshot);
+    const crossingPredicates = {
+      focused: crossing.focused, reader: crossing.state, history: crossing.history,
+      route: crossing.hash === '#/add-manual',
+      preferenceReader: afterPreferences.state, preferenceHistory: afterPreferences.history,
+      ...Object.fromEntries(preferences.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.mode}:${key}`, value]))),
+    };
+    await responsiveReceipt(page, t, 'RC08', 'field breakpoint crossings do not steal focus or write reader/history',
+      { crossing, preferences, afterPreferences, expected: { crossings: [880, 881], modes: ['dark', 'light', 'forced-reduced'],
+        focused: 'manual-title', readerHistory: 'byte-identical', transitionReduced: '0s' },
+      subpredicates: crossingPredicates },
+      Object.values(crossingPredicates).every(Boolean));
+  },
+}));
+
+MUTATIONS.push(
+  {
+    id: 'responsive-about-wrap-off',
+    breaks: 'responsive-reflow',
+    why: 'only the exact historical About token loses its new wrapping rule',
+    script: () => addEventListener('load', () => {
+      const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+      sheet.insertRule('#about-build { overflow-wrap: normal !important; }', sheet.cssRules.length);
+    }),
+  },
+  {
+    id: 'responsive-read-box-17',
+    breaks: 'responsive-controls',
+    why: 'only actual read-button dimensions return to 17 pixels while the repaired grid stays',
+    script: () => addEventListener('load', () => {
+      const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+      sheet.insertRule('.row .cb { width: 17px !important; height: 17px !important; }', sheet.cssRules.length);
+    }),
+  },
+);
+
 function tally() {
   const rows = [];
   return {
@@ -16229,6 +17367,9 @@ function tally() {
 async function runScenario(browser, origin, scenario, mutation, diagnostic = null) {
   let context;
   const t = tally();
+  if (scenario.id.startsWith('responsive-')) {
+    t.responsiveRole = mutation ? 'broken' : process.env.UX09_ROLE === 'restored' ? 'restored' : 'normal';
+  }
   let error = null;
   let prepared = false;
   let completed = false;

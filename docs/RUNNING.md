@@ -406,6 +406,10 @@ importing a file with no issues does not create one.
 
 **Export personal checklist** opens a preview with read checkboxes by default and notes available
 only when selected. Notes do not re-import from either Markdown format.
+On a narrow reading screen, open **List actions**, then **Export**. The same editing and fetch
+commands remain available there. **Mark as Completed** and active fetch status/Stop controls stay
+outside the disclosure. Widening the screen opens it without moving focus; narrowing it returns
+focus to **List actions** before hiding a focused editing command.
 **Download JSON backup** preserves all reader data, including notes and progress. Use it to
 protect saved data, not to share a reading order.
 

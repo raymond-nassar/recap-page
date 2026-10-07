@@ -1479,8 +1479,8 @@
     "fp": "d06960e1a6a4cd39",
     "head": "export function compareIssueSets(candidateIds, existingIds) {"
   },
-  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:929-931|0": {
-    "anchor": "docs/UX_STUDY.md:929-931",
+  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:932-934|0": {
+    "anchor": "docs/UX_STUDY.md:932-934",
     "fp": "1e64d83a8ff9a25f",
     "head": "**Puppeteer was installed outside the repository, deliberately.** `node_modules/` is not covered by"
   },
@@ -1624,8 +1624,8 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1025-1038|0": {
-    "anchor": "src/js/views/reading.js:1025-1038",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1035-1048|0": {
+    "anchor": "src/js/views/reading.js:1035-1048",
     "fp": "a4e20d502298d5da",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
@@ -1634,8 +1634,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:714|0": {
-    "anchor": "src/js/views/reading.js:714",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:724|0": {
+    "anchor": "src/js/views/reading.js:724",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -1779,8 +1779,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1284|0": {
-    "anchor": "src/index.html:1284",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1288|0": {
+    "anchor": "src/index.html:1288",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1944,8 +1944,8 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:594|0": {
-    "anchor": "src/js/views/reading.js:594",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:604|0": {
+    "anchor": "src/js/views/reading.js:604",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
@@ -1954,8 +1954,8 @@
     "fp": "f49b08319d5bdd77",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1067-1071|0": {
-    "anchor": "src/index.html:1067-1071",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1071-1075|0": {
+    "anchor": "src/index.html:1071-1075",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2084,13 +2084,13 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:547-550|0": {
-    "anchor": "src/index.html:547-550",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:551-554|0": {
+    "anchor": "src/index.html:551-554",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:510-543|0": {
-    "anchor": "src/index.html:510-543",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:514-547|0": {
+    "anchor": "src/index.html:514-547",
     "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2119,28 +2119,28 @@
     "fp": "f344ddda7790e906",
     "head": "function renderBreadcrumbs() {"
   },
-  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:69-80|0": {
-    "anchor": "test/ux-completion.test.js:69-80",
+  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:83-94|0": {
+    "anchor": "test/ux-completion.test.js:83-94",
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:308-353|0": {
-    "anchor": "src/index.html:308-353",
+  "docs/UX_STUDY.md|job-stories|src/index.html:312-357|0": {
+    "anchor": "src/index.html:312-357",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:332-333|0": {
-    "anchor": "src/index.html:332-333",
+  "docs/UX_STUDY.md|job-stories|src/index.html:336-337|0": {
+    "anchor": "src/index.html:336-337",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:547-550|0": {
-    "anchor": "src/index.html:547-550",
+  "docs/UX_STUDY.md|job-stories|src/index.html:551-554|0": {
+    "anchor": "src/index.html:551-554",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:549-553|0": {
-    "anchor": "src/index.html:549-553",
+  "docs/UX_STUDY.md|job-stories|src/index.html:553-557|0": {
+    "anchor": "src/index.html:553-557",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2159,18 +2159,18 @@
     "fp": "42161b2e4c7595a3",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:847-848|0": {
-    "anchor": "src/js/views/reading.js:847-848",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:857-858|0": {
+    "anchor": "src/js/views/reading.js:857-858",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:287-290|0": {
-    "anchor": "src/js/views/reading.js:287-290",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:297-300|0": {
+    "anchor": "src/js/views/reading.js:297-300",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:948|0": {
-    "anchor": "src/styles.css:948",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:952|0": {
+    "anchor": "src/styles.css:952",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2179,8 +2179,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:308-353|0": {
-    "anchor": "src/index.html:308-353",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:312-357|0": {
+    "anchor": "src/index.html:312-357",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2189,8 +2189,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:847-848|0": {
-    "anchor": "src/js/views/reading.js:847-848",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:857-858|0": {
+    "anchor": "src/js/views/reading.js:857-858",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2199,8 +2199,8 @@
     "fp": "89df9badf1d976de",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:844-846|0": {
-    "anchor": "src/js/views/reading.js:844-846",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:854-856|0": {
+    "anchor": "src/js/views/reading.js:854-856",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2219,8 +2219,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:575-580|0": {
-    "anchor": "src/index.html:575-580",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:579-584|0": {
+    "anchor": "src/index.html:579-584",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
@@ -2229,8 +2229,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1884-1886|0": {
-    "anchor": "src/styles.css:1884-1886",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1892-1894|0": {
+    "anchor": "src/styles.css:1892-1894",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2249,8 +2249,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1884-1886|0": {
-    "anchor": "src/styles.css:1884-1886",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1892-1894|0": {
+    "anchor": "src/styles.css:1892-1894",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2259,8 +2259,8 @@
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:332-333|0": {
-    "anchor": "src/index.html:332-333",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:336-337|0": {
+    "anchor": "src/index.html:336-337",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
@@ -2274,48 +2274,53 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:876|0": {
-    "anchor": "src/styles.css:876",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:880|0": {
+    "anchor": "src/styles.css:880",
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1020-1021|0": {
-    "anchor": "src/styles.css:1020-1021",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1024-1025|0": {
+    "anchor": "src/styles.css:1024-1025",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1023|0": {
-    "anchor": "src/styles.css:1023",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1027|0": {
+    "anchor": "src/styles.css:1027",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:308-353|0": {
-    "anchor": "src/index.html:308-353",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:312-357|0": {
+    "anchor": "src/index.html:312-357",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:787-794|0": {
-    "anchor": "src/styles.css:787-794",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:791-798|0": {
+    "anchor": "src/styles.css:791-798",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1037-1040|0": {
-    "anchor": "src/styles.css:1037-1040",
-    "fp": "713b8b6372bfe540",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1041-1044|0": {
+    "anchor": "src/styles.css:1041-1044",
+    "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:915-1022|0": {
-    "anchor": "src/js/views/reading.js:915-1022",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2226-2227|0": {
+    "anchor": "src/styles.css:2226-2227",
+    "fp": "216c8709fab455f9",
+    "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
+  },
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:925-1032|0": {
+    "anchor": "src/js/views/reading.js:925-1032",
     "fp": "49360b3f19ac6dc0",
     "head": "function issueRowActions(item, listId) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1094-1095|0": {
-    "anchor": "src/styles.css:1094-1095",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1098-1099|0": {
+    "anchor": "src/styles.css:1098-1099",
     "fp": "0874e4ac50b18fce",
     "head": ".row-actions { position: relative; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1108-1125|0": {
-    "anchor": "src/styles.css:1108-1125",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1112-1129|0": {
+    "anchor": "src/styles.css:1112-1129",
     "fp": "4516d2da0e913545",
     "head": "@media (max-width: 620px) {"
   },
@@ -2329,8 +2334,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:723|0": {
-    "anchor": "src/index.html:723",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:727|0": {
+    "anchor": "src/index.html:727",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2349,8 +2354,8 @@
     "fp": "5386608e02c68058",
     "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:308-353|0": {
-    "anchor": "src/index.html:308-353",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:312-357|0": {
+    "anchor": "src/index.html:312-357",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2369,13 +2374,13 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1884-1886|0": {
-    "anchor": "src/styles.css:1884-1886",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1892-1894|0": {
+    "anchor": "src/styles.css:1892-1894",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:844-846|0": {
-    "anchor": "src/js/views/reading.js:844-846",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:854-856|0": {
+    "anchor": "src/js/views/reading.js:854-856",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2389,8 +2394,8 @@
     "fp": "87a8f4102a4a1266",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:332-333|0": {
-    "anchor": "src/index.html:332-333",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:336-337|0": {
+    "anchor": "src/index.html:336-337",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
@@ -2399,8 +2404,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1061-1081|0": {
-    "anchor": "src/js/views/reading.js:1061-1081",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1071-1091|0": {
+    "anchor": "src/js/views/reading.js:1071-1091",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2429,13 +2434,13 @@
     "fp": "5386608e02c68058",
     "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:354-362|0": {
-    "anchor": "src/js/views/reading.js:354-362",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:364-372|0": {
+    "anchor": "src/js/views/reading.js:364-372",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:379-393|0": {
-    "anchor": "src/js/views/reading.js:379-393",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:389-403|0": {
+    "anchor": "src/js/views/reading.js:389-403",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2444,23 +2449,23 @@
     "fp": "4de994265fe57895",
     "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:379-393|0": {
-    "anchor": "src/js/views/reading.js:379-393",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:389-403|0": {
+    "anchor": "src/js/views/reading.js:389-403",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1084-1095|0": {
-    "anchor": "src/index.html:1084-1095",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1088-1099|0": {
+    "anchor": "src/index.html:1088-1099",
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:332-333|0": {
-    "anchor": "src/index.html:332-333",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:336-337|0": {
+    "anchor": "src/index.html:336-337",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1061-1081|0": {
-    "anchor": "src/js/views/reading.js:1061-1081",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1071-1091|0": {
+    "anchor": "src/js/views/reading.js:1071-1091",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2484,13 +2489,13 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:510-543|0": {
-    "anchor": "src/index.html:510-543",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:514-547|0": {
+    "anchor": "src/index.html:514-547",
     "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:848|0": {
-    "anchor": "src/js/views/reading.js:848",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:858|0": {
+    "anchor": "src/js/views/reading.js:858",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6019,8 +6024,8 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:1094|0": {
-    "anchor": "src/styles.css:1094",
+  "scripts/browser-check.mjs|preamble|src/styles.css:1098|0": {
+    "anchor": "src/styles.css:1098",
     "fp": "bad6625aa1fb228f",
     "head": ".row-actions { position: relative; }"
   },
@@ -6059,38 +6064,18 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:813|0": {
-    "anchor": "src/js/views/reading.js:813",
-    "fp": "1c4f24ab55f1e36b",
-    "head": "'aria-pressed': String(item.read),"
-  },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:814|0": {
-    "anchor": "src/js/views/reading.js:814",
-    "fp": "6260601161fee24f",
-    "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
-  },
   "scripts/check-palette.mjs|preamble|src/js/views/shared/saved-lists.js:32|0": {
     "anchor": "src/js/views/shared/saved-lists.js:32",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1039|0": {
-    "anchor": "src/styles.css:1039",
-    "fp": "ab1b965d8a6c63ba",
-    "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1041|0": {
-    "anchor": "src/styles.css:1041",
-    "fp": "66318b8a9bc87d06",
-    "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1919|0": {
-    "anchor": "src/styles.css:1919",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1927|0": {
+    "anchor": "src/styles.css:1927",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1943|0": {
-    "anchor": "src/styles.css:1943",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1951|0": {
+    "anchor": "src/styles.css:1951",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6109,13 +6094,8 @@
     "fp": "1a189415f7ffa207",
     "head": "width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:534-535|0": {
-    "anchor": "src/styles.css:534-535",
-    "fp": "c91a0a86b137ab9d",
-    "head": ".railed .rail-foot .pill { width: 10px; height: 10px; padding: 0; border-radius: 50%; overflow: hidd"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:867|0": {
-    "anchor": "src/styles.css:867",
+  "scripts/check-palette.mjs|preamble|src/styles.css:871|0": {
+    "anchor": "src/styles.css:871",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },

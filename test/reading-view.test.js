@@ -290,8 +290,24 @@ function harness(overrides = {}) {
     allReadHeading: node({ id: 'all-read-h', tag: 'h2' }),
   };
   nodes.full = node({ id: 'full', tag: 'details', open: overrides.fullOpen ?? true }, [nodes.fullSummary, nodes.fullAction, nodes.fullCount, nodes.readingFilters]);
+  nodes.listActionsSummary = node({ tag: 'summary', text: 'List actions' });
+  nodes.listExport = node({ id: 'list-export', tag: 'details' }, [
+    node({ tag: 'summary', text: 'Export' }), nodes.btnExportMd, nodes.btnExportOrder,
+  ]);
+  nodes.listActions = node({ id: 'list-actions', tag: 'details', open: true }, [
+    nodes.listActionsSummary,
+    node({ class: 'list-actions-body' }, [
+      nodes.btnRenameList, nodes.btnListNote, nodes.btnDuplicateList, nodes.listExport,
+      nodes.btnHydrate, nodes.btnSynopsis, nodes.btnDeleteList,
+    ]),
+  ]);
+  nodes.listTools = node({ class: 'list-tools' }, [nodes.listActions]);
+  nodes.listWork = node({ class: 'list-work' }, [
+    nodes.hydrationStatus, nodes.btnCancelHydrate, nodes.synopsisStatus, nodes.btnCancelSynopsis,
+  ]);
 
   const selectorMap = new Map([
+    ['#list-actions', nodes.listActions],
     ['#reading-filters', nodes.readingFilters],
     ['#save-education-settings', nodes.saveEducationSettings],
     ['#full', nodes.full],
@@ -440,7 +456,20 @@ function harness(overrides = {}) {
     ymd: (value) => (typeof value === 'string' ? value.slice(0, 10) : ''),
   });
 
+  const previousDocument = globalThis.document;
+  const previousMatchMedia = globalThis.matchMedia;
   globalThis.document = documentStub;
+  globalThis.matchMedia = (media) => {
+    assert.equal(media, '(max-width: 700px)');
+    return {
+      media, matches: false,
+      addEventListener(type, listener) {
+        assert.equal(type, 'change');
+        assert.equal(typeof listener, 'function');
+        this.listener = listener;
+      },
+    };
+  };
   if (readerStore) {
     readerStore.onChange = (next, error) => {
       state = next;
@@ -458,7 +487,12 @@ function harness(overrides = {}) {
     setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
     view,
-    restore() { delete globalThis.document; },
+    restore() {
+      if (previousDocument === undefined) delete globalThis.document;
+      else globalThis.document = previousDocument;
+      if (previousMatchMedia === undefined) delete globalThis.matchMedia;
+      else globalThis.matchMedia = previousMatchMedia;
+    },
   };
 }
 

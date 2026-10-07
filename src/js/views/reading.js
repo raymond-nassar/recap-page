@@ -262,6 +262,16 @@ export function createReadingView({
   }
 
   function wire() {
+    const details = $('#list-actions');
+    const summary = details.querySelector('summary');
+    const compact = matchMedia('(max-width: 700px)');
+    const syncListActions = () => {
+      const narrow = compact.matches;
+      if (narrow && details.contains(document.activeElement) && document.activeElement !== summary) summary.focus();
+      details.open = !narrow;
+    };
+    compact.addEventListener('change', syncListActions);
+    syncListActions();
     $('#btn-review-earlier').addEventListener('click', openReview);
     $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
     $('#review-later-button').addEventListener('click', () => moveReview(1));

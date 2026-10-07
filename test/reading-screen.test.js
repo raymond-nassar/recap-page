@@ -22,6 +22,38 @@ const css = read('src/styles.css');
 const main = read('src/js/main.js');
 const reading = read('src/js/views/reading.js');
 
+test('responsive read boxes allocate real nonoverlapping row space', () => {
+  assert.match(css, /\.cb \{[^}]*width: 24px; height: 24px/);
+  assert.match(css, /grid-template-columns: 44px 44px minmax\(0, 1fr\) auto/);
+  assert.match(css, /\.row \.cb \{ width: 44px; height: 44px; \}/);
+});
+
+test('narrow hero prose and idle list commands use their available width', () => {
+  assert.match(css, /#hero-title \{ clear: both; \}/);
+  assert.match(css, /\.list-tools \{[^}]*margin-bottom: var\(--space-4\)/);
+  assert.match(css, /\.list-actions > summary \{[^}]*min-height: 44px/);
+});
+
+test('native list actions retain completion and pending controls with focus before close', () => {
+  assert.match(html, /<details id="list-actions" class="list-actions" open>/);
+  const opener = html.indexOf('<details id="list-actions"');
+  assert.ok(opener >= 0, 'outer List actions opener is missing');
+  let depth = 0;
+  let end = null;
+  for (const match of html.slice(opener).matchAll(/<\/?details\b[^>]*>/g)) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) {
+      end = opener + match.index + match[0].length;
+      break;
+    }
+  }
+  assert.ok(end !== null, 'balanced outer List actions closer is missing');
+  const editing = html.slice(opener, end);
+  assert.match(editing, /<details id="list-export">/);
+  assert.doesNotMatch(editing, /id="(?:hydration-status|synopsis-status|btn-cancel-hydrate|btn-cancel-synopsis)"/);
+  assert.match(reading, /if \(narrow && details\.contains\(document\.activeElement\)[^]*summary\.focus\(\);[^]*details\.open = !narrow/);
+});
+
 test('mobile navigation reserves measured content space and cannot cover active forms or dialogs', () => {
   assert.match(html, /<a href="#\/data"[^>]*id="save-education-settings"/);
   assert.match(reading, /isPlainNavigation\(event\)[\s\S]*showView\('data', \{ push: true \}\)/);
@@ -178,7 +210,7 @@ test('the full Reading List action and state hooks receive the accepted copy', (
   }
 });
 
-test('the list tools are demoted by moving the border to the strip, not by hiding a button', () => {
+test('all editing commands remain reachable through native List actions', () => {
   // Discoverability and keyboard access both have to survive the demotion, so the test is that the
   // buttons are still there, still bordered when reached, and that the group carries an edge.
   assert.match(css, /\.list-tools \{[^}]*border: 1px solid var\(--line\)/);

@@ -272,30 +272,34 @@
 
             <div id="reading-body" hidden>
               <div class="list-tools">
-                <button type="button" class="quiet" id="btn-rename-list">Rename</button>
-                <button type="button" class="quiet" id="btn-list-note">Note</button>
-                <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                <details id="list-export">
-                  <summary class="quiet">Export</summary>
-                  <div class="field-row">
-                    <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
-                    <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                <details id="list-actions" class="list-actions" open>
+                  <summary>List actions</summary>
+                  <div class="list-actions-body">
+                    <button type="button" class="quiet" id="btn-rename-list">Rename</button>
+                    <button type="button" class="quiet" id="btn-list-note">Note</button>
+                    <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                    <details id="list-export">
+                      <summary class="quiet">Export</summary>
+                      <div class="field-row">
+                        <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                        <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                      </div>
+                    </details>
+                    <span class="grow"></span>
+                    <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
+                    <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
+                    <!-- Removal keeps comic progress but removes the reader's own order and note. -->
+                    <span class="tool-sep" aria-hidden="true"></span>
+                    <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
                   </div>
                 </details>
-                <span class="grow"></span>
+              </div>
+              <!-- Pending and terminal feedback stays visible without expanding the command strip. -->
+              <div class="list-work">
                 <span id="hydration-status" class="rail-hint" hidden></span>
-                <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
                 <button type="button" class="quiet" id="btn-cancel-hydrate" hidden>Stop</button>
-                <!-- Its own status line rather than sharing #hydration-status. The two runs can be
-                     going at once, they report different numbers, and one overwriting the other
-                     would show a reader a count that belongs to something they did not start. -->
                 <span id="synopsis-status" class="rail-hint" hidden></span>
-                <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
-                <!-- Keep removal separate from editing and export: it removes the reader's own
-                     order and note, even though the catalog and comic progress are kept. -->
-                <span class="tool-sep" aria-hidden="true"></span>
-                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
               </div>
 
               <!-- The reader's own note about this order. Sits above the hero because it is
@@ -797,7 +801,7 @@
                 <p class="add-destination add-target"></p>
                 <div class="import-guide" aria-labelledby="import-guide-h">
                   <h2 id="import-guide-h">Markdown checklist</h2>
-                  <pre><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
+                  <pre tabindex="0" aria-labelledby="import-guide-h"><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
 - [x] Secret Wars (2015) #2
 [x] = already read; links are optional</code></pre>
                 </div>

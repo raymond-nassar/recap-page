@@ -20,6 +20,29 @@ const DARK = ':root, :root[data-theme="dark"]';
 const LIGHT_ATTR = ':root[data-theme="light"]';
 const LIGHT_MEDIA = ':root:not([data-theme="dark"])';
 
+test('native fields and path selects share the scoped Field typography and target contract', () => {
+  assert.match(css, /select, input\[type="search"\], input\[type="text"\], input\[type="url"\] \{[^}]*min-height: 44px;[^}]*font: inherit;[^}]*font-size: var\(--t-body\)/);
+});
+
+test('the native ask dialog authors viewport bounds and vertical scroll without replacing its controls', () => {
+  assert.match(css, /\.ask \{[^}]*max-height: calc\(100dvh - 2rem\);[^}]*overflow-y: auto/);
+  assert.match(read('src/index.html'), /<textarea id="ask-area" rows="5"/);
+});
+
+test('checked read foreground clears both themes without changing the shared palette or other debts', () => {
+  assert.match(css, /\.row\.is-read \.cb \{[^}]*color: var\(--bg\)/);
+  assert.ok(PAIRS.some(([fg, bg, floor, where]) => fg === '--bg' && bg === '--teal'
+    && floor === 3 && where === 'the tick inside a checked read checkbox'));
+  assert.deepEqual(KNOWN, ['dark:--track:--card', 'light:--track:--card', 'dark:--track:--rail', 'light:--track:--rail']);
+  for (const [selector, teal, bg] of [[DARK, '#3fcfbb', '#111117'], [LIGHT_ATTR, '#12695f', '#fafaff']]) {
+    const tokens = tokensIn(css, selector);
+    assert.equal(tokens.get('--teal'), teal);
+    assert.equal(tokens.get('--bg'), bg);
+    assert.equal(tokens.get('--on-accent'), '#fff');
+    assert.ok(ratio(parseHex(bg), parseHex(teal)) >= 3);
+  }
+});
+
 // Comments are blanked rather than removed so every offset still lines up with the original text.
 const stripComments = (text) => text.replace(/\/\*[\s\S]*?\*\//g, (m) => ' '.repeat(m.length));
 
@@ -409,7 +432,7 @@ test('the recorded below-floor pairs are exactly the pairs that measure below it
 
 test('every recorded pair reports its current ratio, not just its existence', () => {
   // The docs claim the ratio is printed on every CI run, and for a while that was false: the number
-  // was reachable only under a `--report` flag no CI step passes, so a green run said five pairs were
+  // was reachable only under a `--report` flag no CI step passes, so a green run named recorded pairs
   // recorded and never said what they measured. A ratio nobody sees cannot be noticed drifting, and
   // these are the pairs most likely to move, since the gate stays green anywhere below the floor.
   //
@@ -498,7 +521,8 @@ test('a control boundary is measured against every surface it is drawn on, not j
   assert.deepEqual(surfaces('--logo-fill'), ['--bg']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);
   assert.deepEqual(surfaces('--track-2'), ['--bg']);
-  assert.deepEqual(surfaces('--on-accent'), ['--accent', '--teal', '--track-2']);
+  assert.deepEqual(surfaces('--on-accent'), ['--accent', '--track-2']);
+  assert.deepEqual(surfaces('--bg'), ['--teal']);
 });
 
 // Every class this app puts on something a reader operates, found by reading the markup and the

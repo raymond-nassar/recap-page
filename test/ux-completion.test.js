@@ -17,6 +17,20 @@ const catalogView = read('src/js/views/catalog.js');
 const library = read('src/js/lib/library.js');
 const libraryView = read('src/js/views/library.js');
 const styles = read('src/styles.css');
+
+test('exact build and ordinary title reflow have scoped wrapping contracts', () => {
+  const runner = read('scripts/browser-check.mjs');
+  assert.ok(runner.includes('windows-msix 3.2.0.0; candidate; source 8ae81a17805e2e67772bea932ee721e817b68157.'));
+  assert.ok(runner.includes('avengers_defenders_war.json'));
+  assert.match(styles, /#about-build \{ overflow-wrap: anywhere; \}/);
+  assert.match(styles, /\.catalog-card-title \{[^}]*overflow-wrap: anywhere/);
+});
+
+test('the Markdown example is explicitly focusable and named by its existing heading', () => {
+  assert.match(html, /<pre tabindex="0" aria-labelledby="import-guide-h">/);
+  assert.match(styles, /\.import-guide pre:focus-visible \{[^}]*outline:/);
+});
+
 function filesUnder(relativeDir, extension) {
   const out = [];
   const visit = (relativeDirPath) => {
