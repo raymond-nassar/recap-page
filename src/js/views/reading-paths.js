@@ -1,5 +1,6 @@
 import { resolveReadingPaths } from '../lib/catalog.js';
 import { labelledName } from '../lib/accname.js';
+import { createCollectionNavigation } from './shared/collection-navigation.js';
 import {
   completionState,
   listForCatalogId,
@@ -98,6 +99,22 @@ export function createReadingPathsView({
         }),
       ]),
     ])));
+    const renderedGeneration = generation;
+    nodes.navigation.replaceChildren(createCollectionNavigation({
+      el,
+      id: 'reading-path-jump',
+      label: 'Jump to stop',
+      entries: path.stops.map((stop) => ({ id: stop.stepId, name: stop.name })),
+      isCurrent: () => isCurrent() && generation === renderedGeneration && selectedPath === path,
+      getTarget: (id) => [...nodes.spine.querySelectorAll('[data-reading-path-action]')]
+        .find((action) => action.dataset.readingPathAction === id),
+      getNext: () => {
+        const next = path.stops.find((stop) => {
+          return !readingPathProgress(getState(), stop, { isCompleted })?.completed;
+        });
+        return next ? { kind: 'target', id: next.stepId } : { kind: 'complete' };
+      },
+    }));
     refreshProgress();
   }
 
@@ -117,6 +134,7 @@ export function createReadingPathsView({
   async function render({ opener = null } = {}) {
     const currentGeneration = ++generation;
     const nodes = elements();
+    nodes.navigation.replaceChildren();
     clearLoadNotice();
     nodes.status.textContent = 'Loading reading paths…';
     nodes.details.hidden = true;
@@ -157,6 +175,7 @@ export function createReadingPathsView({
     elements().select.addEventListener('change', (event) => {
       const selected = resolvedPaths.find((path) => path.id === event.target.value);
       if (!selected || !isCurrent()) return;
+      generation += 1;
       onSelectedPath(selected.id);
       renderStructure(selected);
     });

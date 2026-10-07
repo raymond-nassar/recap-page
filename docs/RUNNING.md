@@ -20,6 +20,18 @@ For an unread order with available source credit, choose **Export order only**.
 Neither `.md` file is a complete backup. Use **Download JSON backup** to keep a restorable copy
 of lists, notes, progress and other saved choices in Recap Page.
 
+## Jump within a long collection
+
+Reading paths have a **Jump to stop** selector. Long publishing-age pages have
+**Jump to Reading List**. Choose a named destination, then activate **Jump** to focus
+its existing action or title. Keyboard users can type a name or use the native arrow,
+Home and End keys, then Tab to Jump and press Enter. The full original order stays visible.
+
+In a reading path, **Next unfinished stop** means the first stop not explicitly marked
+completed in its current saved version. Reading every issue does not mark a list completed.
+Jump does not open a list, switch saved versions, change progress or save a destination.
+Activate the focused action separately to preview or open it.
+
 ## Choose how to run it
 
 All three routes use the same app and address. Switching between them does not move or lose progress.

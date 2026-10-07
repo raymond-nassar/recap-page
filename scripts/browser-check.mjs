@@ -33,6 +33,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
+import { readingPathProgress } from '../src/js/views/reading-paths.js';
 
 import {
   LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
@@ -41,6 +43,7 @@ import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
   shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
+  publishingCategoryStories, resolveReadingPaths, storyYear,
 } from '../src/js/lib/catalog.js';
 import { parseColour, ratio } from './check-palette.mjs';
 import { isDeepStrictEqual } from 'node:util';
@@ -15439,6 +15442,7 @@ async function preparePage(page, origin, mutation) {
     ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
     ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
+    ['/js/views/shared/collection-navigation.js', mutation?.rewriteCollectionNavigation],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
@@ -18854,6 +18858,618 @@ SCENARIOS.push(eternalsActualData);
 MUTATIONS.push(eternalsCollectionMutation);
 SCENARIOS.push((await import('./browser-reading-list-choices.mjs')).readingListChoices);
 SCENARIOS.push((await import('./browser-mcu-prep-fantastic-four-first-steps.mjs')).firstStepsActualData);
+
+const UX10_PATHS = resolveReadingPaths(ACTUAL_CATALOG.paths, ACTUAL_CATALOG.lists);
+const UX10_LONG = UX10_PATHS.find(({ id }) => id === 'marvel-knights-to-planet-x');
+const UX10_MODERN = UX10_PATHS.find(({ id }) => id === 'modern-avengers');
+const UX10_HISTORY_KEY = 'mrt.list-history.v1';
+const ux10PathAction = (id) => `[data-reading-path-action="${id}"]`;
+const ux10AgeCards = (key) => publishingCategoryStories(catalogEntries(ACTUAL_CATALOG.lists), key)
+  .map((story, index) => ({ story, index }))
+  .sort((a, b) => storyYear(a.story) - storyYear(b.story) || a.index - b.index)
+  .map(({ story }) => ({ id: story.key, name: story.lists[0].name }));
+
+function ux10Library(stops, { allComplete = false, identity = false } = {}) {
+  let state = createEmptyState();
+  const records = [];
+  const add = (catalogId, id, position, completed, created = 1000 + position) => {
+    state = createList(state, { id, name: id, catalogId });
+    state.lists[id].created = created;
+    state = addIssuesToList(state, id, [0, 1].map((offset) => ({
+      issueId: 910000 + position * 2 + offset, title: `UX10 synthetic ${position}/${offset}`,
+    }))).state;
+    const ids = state.lists[id].itemIds;
+    state.notes[ids[0]] = 'UX10 retained note';
+    state.overrides[ids[1]] = 'unavailable';
+    if (identity) state.read[ids[0]] = 123;
+    if (!identity && position === 76) ids.forEach((issueId) => { state.read[issueId] = 123; });
+    if (!identity && position === 77) state.lists[id].deferredIssueIds = [ids[1]];
+    records.push({ listId: id, created, catalogId, completedAt: completed ? 123456 : null, rating: null });
+  };
+  if (identity) {
+    stops.slice(0, 7).forEach((stop, index) => add(stop.stepId, `ux10-modern-prefix-${index + 1}`, index + 1, true, 3001 + index));
+    [
+      ['hickman-minimal', 'ux10-hickman-first', false],
+      ['hickman-minimal', 'ux10-hickman-second', true],
+      ['hickman-full', 'ux10-hickman-full', true],
+      ['avengers-doomsday-secret-wars', 'ux10-hickman-doomsday', false],
+    ].forEach(([catalogId, id, completed], index) => add(catalogId, id, 80 + index, completed, 2001 + index));
+    state.active = 'ux10-hickman-full';
+  } else {
+    stops.forEach((stop, index) => add(stop.stepId, `ux10-stop-${String(index + 1).padStart(2, '0')}`, index + 1, allComplete || index !== 75));
+  }
+  return { state, history: { format: 'recap-page-list-history', version: 1, records } };
+}
+
+async function runLongCollectionNavigation(page, t) {
+  let step = 'LC01 accepted-spine preflight';
+  const enter = (next) => { step = next; console.log(`UX10-STEP ${JSON.stringify({ owner: 'long-collection-navigation', step, mutation: page.__mutation?.id ?? null })}`); };
+  const errors = [];
+  const external = [];
+  page.on('pageerror', (error) => errors.push({ name: error.name, message: error.message }));
+  page.on('request', (request) => {
+    if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== page.__origin) external.push(request.url());
+  });
+  await page.evaluateOnNewDocument(() => localStorage.setItem('mrt.settings', JSON.stringify({ covers: false })));
+  const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const raw = () => page.evaluate(() => ({
+    reader: localStorage.getItem('mrt.state.v2'), history: localStorage.getItem('mrt.list-history.v1'),
+    settings: localStorage.getItem('mrt.settings'), hash: location.hash, historyLength: history.length,
+  }));
+  const receipt = (journey, branch, expected, actual, subpredicates, rawBefore = null, rawAfter = null) => {
+    console.log(`UX10-MEASURE ${JSON.stringify({ owner: 'long-collection-navigation', journey, branch, expected, actual, subpredicates, rawBefore, rawAfter })}`);
+    for (const [predicate, passed] of Object.entries(subpredicates)) {
+      console.log(`UX10-PREDICATE ${JSON.stringify({ journey, branch, predicate, passed, expected, actual })}`);
+      t.check(`${journey} ${branch}: ${predicate}`, passed, JSON.stringify({ expected, actual }));
+    }
+  };
+  const sameRaw = (before, after) => isDeepStrictEqual(before, after);
+  const pathUrl = (id = UX10_LONG.id, fixture = 'actual') => `/?catalog=${fixture}#/reading-paths?path=${id}`;
+  const ageUrl = (key) => `/?catalog=actual#/age-${key}`;
+  const pathReady = async (id = UX10_LONG.id, fixture = 'actual') => {
+    await open(page, pathUrl(id, fixture));
+    await page.waitForFunction((expected) => document.querySelector('#reading-path-select')?.value === expected
+      && document.querySelector('#reading-path-spine [data-reading-path-action]'), {}, id);
+    await settle();
+  };
+  const ageReady = async (key) => {
+    await open(page, ageUrl(key));
+    await page.waitForFunction((route) => document.querySelector(`#${route}-count`)?.textContent !== 'Loading Reading Lists'
+      && !document.querySelector(`#${route}-results > p[aria-hidden="true"]`), {}, `age-${key}`);
+    await settle();
+  };
+  const pathVector = () => page.$$eval('#reading-path-spine [data-reading-path-stop]', (rows) => rows.map((row) => row.dataset.readingPathStop));
+  const ageVector = (key) => page.$$eval(`#age-${key}-results .catalog-card`, (cards) => cards.map((card) => card.dataset.story));
+  const focus = () => page.evaluate(() => {
+    const target = document.activeElement;
+    const box = target.getBoundingClientRect();
+    const style = getComputedStyle(target);
+    const nav = document.querySelector('.rail-header');
+    const navBox = nav.getBoundingClientRect();
+    const navStyle = getComputedStyle(nav);
+    const bottom = navStyle.position === 'fixed' && navStyle.visibility !== 'hidden' && navBox.top < innerHeight
+      ? navBox.top : innerHeight;
+    const sticky = [...document.querySelectorAll('main [class]')].filter((node) => {
+      const css = getComputedStyle(node);
+      const rect = node.getBoundingClientRect();
+      return css.position === 'sticky' && css.top === '0px' && rect.top <= 0 && rect.bottom > 0;
+    }).reduce((max, node) => Math.max(max, node.getBoundingClientRect().bottom), 0);
+    return {
+      id: target.dataset.readingPathAction ?? target.closest('.catalog-card')?.dataset.story ?? target.id,
+      tag: target.tagName, tabindex: target.getAttribute('tabindex'),
+      rect: { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height },
+      outline: { width: parseFloat(style.outlineWidth), style: style.outlineStyle },
+      viewport: { width: innerWidth, height: innerHeight }, headerBottom: sticky, navTop: bottom,
+      usable: box.width > 0 && box.height > 0 && box.left >= 0 && box.right <= innerWidth
+        && box.top >= sticky && box.bottom <= bottom,
+    };
+  });
+  const jump = async (host, value, keyboard = false) => {
+    await page.focus(`${host} select`);
+    if (keyboard) await page.keyboard.press('End');
+    else await page.select(`${host} select`, value);
+    const selected = await page.$eval(`${host} select`, (select) => ({ value: select.value, focused: select === document.activeElement }));
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+    await settle();
+    return { selected, focus: await focus(), status: await page.$eval(`${host} [role="status"]`, (node) => node.textContent) };
+  };
+  const measureJump = async (journey, branch, host, value, expectedId, keyboard = false) => {
+    const before = await raw();
+    const actual = await jump(host, value, keyboard);
+    const after = await raw();
+    receipt(journey, branch, { target: expectedId, value }, actual, {
+      selectionInert: actual.selected.focused, exactTarget: actual.focus.id === expectedId,
+      visibleFocus: actual.focus.outline.width >= 1 && actual.focus.outline.style !== 'none',
+      targetUsable: actual.focus.usable, noWritesOrRouting: sameRaw(before, after),
+    }, before, after);
+    return actual;
+  };
+  const paintedExpectations = (stops, state, completion) => stops.map((stop) => {
+    const progress = readingPathProgress(state, stop, {
+      isCompleted: (current, id) => typeof completion !== 'string' && completion.records.some((record) => {
+        const saved = current.lists[id];
+        return record.listId === id && record.created === saved.created
+          && record.catalogId === saved.catalogId && record.completedAt !== null;
+      }),
+    });
+    return {
+      id: stop.stepId,
+      name: progress?.name ?? stop.name,
+      action: progress ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version') : 'Preview',
+      count: progress ? `${progress.read} of ${progress.total}` : null,
+      deferred: progress?.deferred ?? 0,
+      completed: Boolean(progress?.completed),
+      alternate: progress?.match === 'sibling',
+    };
+  });
+  const waitPainted = async (expected, fixture) => {
+    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'wait-painted', expected })}`);
+    await page.waitForFunction((expected) => expected.every((entry) => {
+      const row = document.querySelector(`[data-reading-path-stop="${entry.id}"]`);
+      if (!row) return false;
+      const action = row.querySelector('[data-reading-path-action]');
+      const text = row.querySelector('.reading-path-stop-progress').textContent;
+      return action.textContent === entry.action && action.getAttribute('aria-label').includes(entry.name)
+        && (entry.count === null ? text === 'Not added' : text.includes(entry.count) && text.includes(entry.name))
+        && text.includes('Marked as completed') === entry.completed
+        && text.includes('Alternate reading version.') === entry.alternate
+        && (entry.deferred === 0 ? !text.includes(' deferred.') : text.includes(`${entry.deferred} deferred.`));
+    }), {}, expected);
+    const actual = await page.evaluate((expected) => expected.map(({ id }) => {
+      const row = document.querySelector(`[data-reading-path-stop="${id}"]`);
+      const action = row.querySelector('[data-reading-path-action]');
+      return { id, action: action.textContent, label: action.getAttribute('aria-label'), progress: row.querySelector('.reading-path-stop-progress').textContent };
+    }), expected);
+    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'painted-qualified', expected, actual })}`);
+  };
+  const seed = async ({ state, history: completion }, url) => {
+    await page.evaluate((next, historyValue) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(next));
+      localStorage.setItem('mrt.list-history.v1', typeof historyValue === 'string' ? historyValue : JSON.stringify(historyValue));
+    }, state, completion);
+    await open(page, url);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#reading-path-spine [data-reading-path-action]');
+    const pathId = new URLSearchParams(new URL(url, page.__origin).hash.split('?')[1]).get('path');
+    const fixturePath = pathId === 'bc-path'
+      ? resolveReadingPaths([{
+        ...CATALOG.paths[0],
+        steps: ['browser-check', 'browser-check-two',
+          ...Array.from({ length: 9 }, (_, index) => `browser-check-extra-${index + 1}`),
+          'browser-check-three-short'],
+      }], CATALOG.lists)[0]
+      : UX10_PATHS.find(({ id }) => id === pathId);
+    if (!fixturePath) throw new Error(`UX10 seed has no declared fixture path ${pathId}`);
+    await waitPainted(paintedExpectations(fixturePath.stops, state, completion), `fresh seed ${pathId}`);
+    if (typeof completion === 'string') {
+      await page.waitForFunction((expected) => localStorage.getItem('mrt.list-history.v1') === expected
+        && document.body.textContent.includes('Completion history') && document.body.textContent.includes('kept'), {}, completion);
+    }
+    await settle();
+  };
+  try {
+    enter(step);
+    await pathReady();
+    const vector = await pathVector();
+    receipt('LC01', 'accepted full spine', UX10_LONG.stops.map(({ stepId }) => stepId), vector,
+      { count78: vector.length === 78, exactOrder: isDeepStrictEqual(vector, UX10_LONG.stops.map(({ stepId }) => stepId)) });
+    const exists = await page.$('#reading-path-navigation form');
+    receipt('LC01', 'desired native late-stop keyboard widget', 'native form/select/Jump/status', Boolean(exists), { desiredWidget: Boolean(exists) });
+    if (!exists) {
+      for (let index = 2; index <= 11; index += 1) console.log(`UX10-BLOCKED ${JSON.stringify({ journey: `LC${String(index).padStart(2, '0')}`, reason: 'LC01 desired widget absent', completed: false })}`);
+      const error = new Error('LC01 desired native jump widget absent after qualified 78-stop baseline');
+      error.name = 'UX10BaselineContractAbsent';
+      throw error;
+    }
+    const sourceBytes = {};
+    for (const modulePath of ['/js/views/reading-paths.js', '/js/views/shared/collection-navigation.js']) {
+      const original = readFileSync(new URL(`../src${modulePath}`, import.meta.url), 'utf8');
+      const served = await page.evaluate(async (path) => (await fetch(path)).text(), modulePath);
+      const originalSha256 = createHash('sha256').update(original).digest('hex');
+      const servedSha256 = createHash('sha256').update(served).digest('hex');
+      sourceBytes[modulePath] = { originalSha256, servedSha256, exactOriginal: served === original };
+    }
+    receipt('LC01', 'bound module responses and restoration', page.__mutation?.id ?? 'original source bytes', sourceBytes, {
+      readingModuleBound: sourceBytes['/js/views/reading-paths.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-read-is-complete'),
+      sharedModuleBound: sourceBytes['/js/views/shared/collection-navigation.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-wrong-target'),
+    });
+    const options = await page.$$eval('#reading-path-navigation option', (nodes) => nodes.filter((node) => node.value.startsWith('entry:')).map((node) => ({ id: node.value.slice(6), label: node.textContent })));
+    receipt('LC01', 'full name-first ordinal vector', UX10_LONG.stops.map(({ stepId, name, position }) => ({ id: stepId, label: `${name} (${position} of 78)` })), options, {
+      fullOrder: isDeepStrictEqual(options.map(({ id }) => id), vector),
+      namesAndOrdinals: options.every((option, index) => option.label === `${UX10_LONG.stops[index].name} (${index + 1} of 78)`),
+    });
+    await measureJump('LC01', 'three-key late stop', '#reading-path-navigation', `entry:${vector[77]}`, vector[77], true);
+    const typeaheadBefore = await raw();
+    await page.focus('#reading-path-navigation select');
+    await page.keyboard.press('Home');
+    await page.keyboard.type('Planet');
+    const typed = await page.$eval('#reading-path-navigation select', (node) => ({ value: node.value, focused: document.activeElement === node }));
+    await page.keyboard.press('Tab'); await page.keyboard.press('Enter'); await settle();
+    receipt('LC01', 'native typeahead', vector[77], { typed, focus: await focus() }, {
+      nameTypeahead: typed.value === `entry:${vector[77]}`, selectionInert: typed.focused,
+      exactTarget: (await focus()).id === vector[77],
+      orderRetained: isDeepStrictEqual(await pathVector(), vector),
+      noWritesOrRouting: sameRaw(typeaheadBefore, await raw()),
+      visibleFocus: (await focus()).outline.width >= 1 && (await focus()).outline.style !== 'none',
+      targetUsable: (await focus()).usable,
+    }, typeaheadBefore, await raw());
+
+    enter('LC02 Knights age');
+    await ageReady('marvel-knights-heroes-return');
+    const ageExpected = ux10AgeCards('marvel-knights-heroes-return');
+    const ageIds = await ageVector('marvel-knights-heroes-return');
+    const ageOptions = await page.$$eval('#age-marvel-knights-heroes-return-navigation option', (nodes) => nodes.filter((node) => node.value).map((node) => node.value.slice(6)));
+    receipt('LC02', '81 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
+      cards81: ageIds.length === 81, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
+      guides6: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 6,
+      cardOrder: isDeepStrictEqual(ageIds, ageExpected.map(({ id }) => id)), optionOrder: isDeepStrictEqual(ageIds, ageOptions),
+    });
+    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${ageIds[80]}`, 'list:marvel-knights-to-planet-x-78', true);
+    receipt('LC02', 'original heading and whole collection', { tag: 'H4', tabindex: '-1' }, lastAge.focus, {
+      headingPreserved: lastAge.focus.tag === 'H4' && lastAge.focus.tabindex === '-1',
+      fullVectorRetained: isDeepStrictEqual(await ageVector('marvel-knights-heroes-return'), ageIds),
+    });
+
+    enter('LC03 variants and cross-era chapters');
+    await ageReady('event-era');
+    const eventIds = await ageVector('event-era');
+    const expectedEvent = ux10AgeCards('event-era').map(({ id }) => id);
+    const linksBefore = await page.$$eval('#age-event-era-results .catalog-card', (cards) => cards.map((card) => ({
+      id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
+    })));
+    await measureJump('LC03', 'essential variant only', '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential');
+    const linksAfter = await page.$$eval('#age-event-era-results .catalog-card', (cards) => cards.map((card) => ({
+      id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
+    })));
+    receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
+      cards39: eventIds.length === 39, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
+      crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
+      linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),
+    });
+
+    enter('LC04 reusable long leaves and small exclusion');
+    for (const [key, count, last] of [
+      ['fresh-start', 13, 'king-in-black'], ['current', 13, 'fall-house-x-rise-powers-x'],
+      ['early-modern', 16, 'operation-zero-tolerance'],
+    ]) {
+      await ageReady(key);
+      const ids = await ageVector(key);
+      const structure = await page.$eval(`#age-${key}-navigation form`, (form) => ({
+        class: form.className, tags: [...form.children].map((child) => child.tagName),
+        next: [...form.querySelectorAll('option')].some((option) => option.value === 'next-unfinished'),
+      }));
+      receipt('LC04', key, { count, last: `list:${last}` }, { ids, structure }, {
+        count: ids.length === count, order: isDeepStrictEqual(ids, ux10AgeCards(key).map(({ id }) => id)),
+        reusedNativeForm: structure.class === 'collection-navigation' && structure.tags.join('/') === 'LABEL/SELECT/BUTTON/P',
+        noNext: !structure.next,
+      });
+      await measureJump('LC04', `${key} late keyboard`, `#age-${key}-navigation`, `entry:list:${last}`, `list:${last}`, true);
+    }
+    await ageReady('marvel-now');
+    const small = await ageVector('marvel-now');
+    receipt('LC04', 'small Marvel NOW retains variants', 10, small, {
+      count10: small.length === 10, bothHickmanVariants: small.includes('list:hickman-minimal') && small.includes('list:hickman-full'),
+      noForm: !(await page.$('#age-marvel-now-navigation form')),
+    });
+
+    enter('LC05 explicit completion synthetic 78');
+    const completionFixture = ux10Library(UX10_LONG.stops);
+    await seed(completionFixture, pathUrl());
+    const progress = await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent));
+    receipt('LC05', 'normalized exact completion fixture', { read76: 2, deferred77: 1 }, progress.slice(75, 77), {
+      readButUnmarked76: progress[75].includes('2 of 2') && !progress[75].includes('Marked as completed'),
+      completedUnreadDeferred77: progress[76].includes('0 of 2') && progress[76].includes('1 deferred') && progress[76].includes('Marked as completed'),
+    });
+    await measureJump('LC05', 'next skips only explicit completions', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[75].stepId);
+    receipt('LC05', 'progress and reader launch unchanged', progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent)), {
+      sameProgress: isDeepStrictEqual(progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent))),
+      noReaderTab: await page.evaluate(() => window.__opened.length === 0),
+    });
+
+    enter('LC06 empty, all-complete, unknown and empty age');
+    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl());
+    await measureJump('LC06', 'empty library first stop', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    await seed(ux10Library(UX10_LONG.stops, { allComplete: true }), pathUrl());
+    const completeBefore = await raw();
+    const complete = await jump('#reading-path-navigation', 'next-unfinished');
+    const completeAfter = await raw();
+    receipt('LC06', 'all explicitly complete', 'All displayed stops are marked as completed.', complete, {
+      explicitMessage: complete.status === 'All displayed stops are marked as completed.',
+      noTargetFocus: complete.focus.tag === 'BUTTON', retainedBytes: sameRaw(completeBefore, completeAfter),
+      unreadRetained: await page.$eval(`${ux10PathAction(UX10_LONG.stops[76].stepId)}`, (action) => action.parentElement.textContent.includes('0 of 2')),
+    }, completeBefore, completeAfter);
+    await seed({ state: completionFixture.state, history: '{UX10 corrupt history' }, pathUrl());
+    await measureJump('LC06', 'unknown history is unfinished', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    const unknown = await page.evaluate(() => ({ raw: localStorage.getItem('mrt.list-history.v1'), text: document.body.textContent }));
+    receipt('LC06', 'unknown history report is explicit', 'preserved corrupt history with guidance', unknown, {
+      rawPreserved: unknown.raw === '{UX10 corrupt history', explicitGuidance: unknown.text.includes('Completion history') && unknown.text.includes('kept'),
+    });
+    await ageReady('golden');
+    const empty = await page.$eval('#age-golden-results', (box) => ({ text: box.textContent, href: box.querySelector('a')?.getAttribute('href') }));
+    receipt('LC06', 'empty Golden Age', empty, empty, {
+      truthfulEmpty: empty.text.includes('No Reading Lists are published for this period yet.'),
+      alternative: empty.href === '#/marvel-ages', noForm: !(await page.$('#age-golden-navigation form')),
+    });
+
+    enter('LC07 live A-E exact duplicate and sibling identity');
+    const identity = ux10Library(UX10_MODERN.stops, { identity: true });
+    await seed(identity, pathUrl(UX10_MODERN.id));
+    await page.evaluate(() => {
+      window.__ux10Form = document.querySelector('#reading-path-navigation form');
+      window.__ux10Action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+    });
+    const adopt = async (key, value) => {
+      await page.evaluate((key, value) => {
+        const oldValue = localStorage.getItem(key); const newValue = JSON.stringify(value);
+        localStorage.setItem(key, newValue);
+        dispatchEvent(new StorageEvent('storage', { key, oldValue, newValue, storageArea: localStorage, url: location.href }));
+      }, key, value);
+      await settle();
+    };
+    const removeCopy = (id) => {
+      delete identity.state.lists[id];
+      identity.state.listOrder = identity.state.listOrder.filter((entry) => entry !== id);
+      if (identity.state.active === id) identity.state.active = identity.state.listOrder[0] ?? null;
+    };
+    for (const [stage, chosen, nextIndex, actionText] of [
+      ['A', 'ux10-hickman-first', 7, 'Open saved list'],
+      ['B', 'ux10-hickman-second', 8, 'Open saved list'],
+      ['C', 'ux10-hickman-full', 8, 'Open saved version'],
+      ['D', 'ux10-hickman-full', 7, 'Open saved version'],
+      ['E', null, 7, 'Preview'],
+    ]) {
+      if (stage === 'B') { removeCopy('ux10-hickman-first'); await adopt('mrt.state.v2', identity.state); }
+      if (stage === 'C') { removeCopy('ux10-hickman-second'); await adopt('mrt.state.v2', identity.state); }
+      if (stage === 'D') {
+        identity.history.records.find((record) => record.listId === 'ux10-hickman-full').completedAt = null;
+        await adopt(UX10_HISTORY_KEY, identity.history);
+      }
+      if (stage === 'E') {
+        removeCopy('ux10-hickman-full'); removeCopy('ux10-hickman-doomsday');
+        await adopt('mrt.state.v2', identity.state);
+      }
+      await waitPainted(paintedExpectations(UX10_MODERN.stops, identity.state, identity.history), `LC07 live ${stage}`);
+      const association = await page.evaluate(async () => {
+        const { readingPathProgress } = await import('/js/views/reading-paths.js');
+        const { parseListHistory, listHistoryIdentity } = await import('/js/lib/listHistory.js');
+        const { resolveReadingPaths } = await import('/js/lib/catalog.js');
+        const catalog = await (await fetch('/data/catalog.json')).json();
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const records = parseListHistory(localStorage.getItem('mrt.list-history.v1'));
+        const stop = resolveReadingPaths(catalog.paths, catalog.lists).find((path) => path.id === 'modern-avengers').stops[7];
+        const progress = readingPathProgress(state, stop, { isCompleted: (current, id) => Boolean(records.get(listHistoryIdentity(current.lists[id]))?.completedAt) });
+        const action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+        return {
+          chosen: progress?.listId ?? null, progress,
+          text: action.textContent, label: action.getAttribute('aria-label'), painted: action.parentElement.querySelector('.reading-path-stop-progress').textContent,
+          sameForm: window.__ux10Form === document.querySelector('#reading-path-navigation form'), sameAction: window.__ux10Action === action,
+        };
+      });
+      receipt('LC07', `${stage} chosen saved version`, { chosen, next: UX10_MODERN.stops[nextIndex].stepId, actionText }, association, {
+        exactChosen: association.chosen === chosen, actionLabel: association.text === actionText && association.label.includes(chosen ?? UX10_MODERN.stops[7].name),
+        truthfulProgress: chosen ? association.progress.read === 1 && association.progress.total === 2 && association.painted.includes('1 of 2') : association.painted === 'Not added',
+        alternateWording: stage === 'C' || stage === 'D' ? association.painted.includes('Alternate reading version.') : !association.painted.includes('Alternate reading version.'),
+        formAndActionIdentity: association.sameForm && association.sameAction,
+      });
+      await measureJump('LC07', `${stage} live next`, '#reading-path-navigation', 'next-unfinished', UX10_MODERN.stops[nextIndex].stepId);
+    }
+
+    enter('LC08 finite invalid native and stale generation handling');
+    await pathReady();
+    const invalid = async (branch, mode, expectedValue, expectedText) => {
+      const before = await raw();
+      const actual = await page.evaluate((mode) => {
+        const form = document.querySelector('#reading-path-navigation form');
+        const select = form.querySelector('select');
+        const originalValue = select.value;
+        let option;
+        if (mode === 'injected') {
+          option = new Option('Missing synthetic identity', 'entry:ux10-absent');
+          select.append(option); select.value = option.value;
+        } else select.value = mode === 'absent' ? 'ux10-absent' : '';
+        form.querySelector('button').focus();
+        form.requestSubmit();
+        const result = { value: select.value, text: form.querySelector('[role="status"]').textContent, focus: document.activeElement.tagName };
+        option?.remove(); select.value = originalValue;
+        return result;
+      }, mode);
+      const after = await raw();
+      receipt('LC08', branch, { value: expectedValue, text: expectedText }, actual, {
+        actualNativeValue: actual.value === expectedValue, explicitFeedback: actual.text.includes(expectedText),
+        noFallback: actual.focus === 'BUTTON', bytesUnchanged: sameRaw(before, after),
+      }, before, after);
+    };
+    await invalid('placeholder', 'empty', '', 'Choose');
+    await invalid('absent value deselects', 'absent', '', 'Choose');
+    await invalid('selected injected option rejects', 'injected', 'entry:ux10-absent', 'no longer available');
+    const disconnected = await page.evaluate((id) => {
+      const form = document.querySelector('#reading-path-navigation form');
+      const target = document.querySelector(`[data-reading-path-action="${id}"]`);
+      const parent = target.parentElement; const next = target.nextSibling;
+      target.remove(); form.querySelector('select').value = `entry:${id}`;
+      form.querySelector('button').focus(); form.requestSubmit();
+      const result = { text: form.querySelector('[role="status"]').textContent, target: document.activeElement.tagName };
+      parent.insertBefore(target, next);
+      return result;
+    }, UX10_LONG.stops[77].stepId);
+    receipt('LC08', 'detached target', 'unavailable/no fallback', disconnected, { unavailable: disconnected.text.includes('no longer available'), noFallback: disconnected.target === 'BUTTON' });
+    await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#reading-path-navigation form'); });
+    await page.select('#reading-path-select', UX10_MODERN.id);
+    await settle();
+    const stale = await page.evaluate(() => {
+      const before = document.activeElement;
+      window.__ux10OldForm.requestSubmit();
+      return { sameFocus: document.activeElement === before, newForm: window.__ux10OldForm !== document.querySelector('#reading-path-navigation form') };
+    });
+    receipt('LC08', 'path switch rejects old form', true, stale, { noStolenFocus: stale.sameFocus, newGeneration: stale.newForm });
+    await measureJump('LC08', 'current valid form remains usable', '#reading-path-navigation', `entry:${UX10_MODERN.stops[9].stepId}`, UX10_MODERN.stops[9].stepId);
+    await page.evaluate(() => { window.__ux10Inactive = document.querySelector('#reading-path-navigation form'); });
+    await click(page, '.brand[data-view="home"]'); await settle();
+    const away = await page.evaluate(() => { const before = document.activeElement; window.__ux10Inactive.requestSubmit(); return document.activeElement === before; });
+    receipt('LC08', 'navigation away rejects old form', true, away, { noFocusSteal: away });
+    await ageReady('event-era');
+    const reserved = await page.evaluate(() => {
+      const form = document.querySelector('#age-event-era-navigation form'); const select = form.querySelector('select');
+      const original = select.value; const option = new Option('Unexpected next', 'next-unfinished'); select.append(option); select.value = option.value;
+      form.querySelector('button').focus(); form.requestSubmit();
+      const result = { value: select.value, text: form.querySelector('[role="status"]').textContent, focus: document.activeElement.tagName };
+      option.remove(); select.value = original; return result;
+    });
+    receipt('LC08', 'age next token cannot invoke absent callback', 'unavailable', reserved, { nativeValue: reserved.value === 'next-unfinished', truthfulRejection: reserved.text.includes('no longer available'), noFallback: reserved.focus === 'BUTTON' });
+
+    enter('LC09 deep links and native Preview/Open return');
+    await pathReady();
+    const reloadBefore = await raw(); await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#reading-path-spine [data-reading-path-action]'); await settle();
+    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#reading-path-select', (node) => node.value), {
+      pathRetained: await page.$eval('#reading-path-select', (node) => node.value) === UX10_LONG.id,
+      hashRetained: (await raw()).hash === reloadBefore.hash,
+    });
+    await ageReady('event-era'); await page.reload({ waitUntil: 'load' }); await page.waitForSelector('#age-event-era-results .catalog-card'); await settle();
+    const ageBeforeNavigation = await raw();
+    await page.evaluate(() => { location.hash = '#/reading-paths?path=modern-avengers'; });
+    await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'modern-avengers'); await settle();
+    await page.evaluate(() => history.back());
+    await page.waitForFunction(() => document.activeElement?.id === 'age-event-era-h'); await settle();
+    const backed = await raw();
+    await page.evaluate(() => history.forward());
+    await page.waitForFunction(() => document.activeElement?.id === 'reading-paths-h'); await settle();
+    receipt('LC09', 'age/path Back Forward', { back: '#/age-event-era', forward: '#/reading-paths?path=modern-avengers' }, { back: backed, forward: await raw() }, {
+      backAge: backed.hash === ageBeforeNavigation.hash, forwardPath: (await raw()).hash === '#/reading-paths?path=modern-avengers',
+      headingFocus: await page.evaluate(() => document.activeElement.id === 'reading-paths-h'),
+    });
+    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
+    const previewJump = await measureJump('LC09', 'authored synthetic Preview jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    if (previewJump.focus.id === 'browser-check-three-short') {
+      const beforePreview = await raw();
+      await page.keyboard.press('Enter'); await page.waitForSelector('#preview[open] .preview-issue-link');
+      const preview = await page.evaluate(() => ({ title: document.querySelector('#preview-h').textContent, choices: document.querySelectorAll('#preview-paths input').length, key: document.querySelector('#preview-add button')?.dataset.key }));
+      receipt('LC09', 'exact authored Preview', 'Third Stop: The Short Way', preview, { correctTitle: preview.title === 'Third Stop: The Short Way', noChooser: preview.choices === 0, exactKey: preview.key === 'browser-check-three-short' });
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('#preview').open && document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      receipt('LC09', 'native close focus settlement', 'browser-check-three-short', await focus(), { exactReturn: (await focus()).id === 'browser-check-three-short', noSavedBytesChange: (await raw()).reader === beforePreview.reader && (await raw()).history === beforePreview.history });
+    } else receipt('LC09', 'activation refused after wrong-target fault', 'correct focus prerequisite', previewJump.focus, { exactTargetRequired: false });
+    const savedFixture = fixtureReadingState();
+    savedFixture.schemaVersion = 3;
+    savedFixture.lists.fixture.catalogId = 'browser-check-three-short';
+    await seed({ state: savedFixture, history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
+    await open(page, '/?catalog=reading-path-stop-actions#/catalog');
+    await page.waitForFunction((expectedName) => {
+      const target = document.querySelector('#catalog-results [data-key="browser-check-three-short"][data-act="open"]');
+      return target?.tagName === 'A' && target.getAttribute('href') === '#/read/fixture'
+        && target.getAttribute('aria-label').includes(expectedName);
+    }, {}, CATALOG.lists.find(({ id }) => id === 'browser-check-three-short').name);
+    const modifiedBefore = await raw();
+    const modifier = await page.evaluate(() => {
+      const action = document.querySelector('#catalog-results [data-key="browser-check-three-short"][data-act="open"]');
+      let prevented;
+      action.addEventListener('click', (event) => { prevented = event.defaultPrevented; event.preventDefault(); }, { once: true });
+      action.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
+      return { prevented, tag: action.tagName, href: action.getAttribute('href') };
+    });
+    receipt('LC03', 'modified saved native destination', '#/read/fixture', modifier, {
+      appDoesNotIntercept: modifier.prevented === false, nativeSavedLink: modifier.tag === 'A' && modifier.href === '#/read/fixture',
+      noSelectionOrRouting: sameRaw(modifiedBefore, await raw()),
+    }, modifiedBefore, await raw());
+    await pathReady('bc-path', 'reading-path-stop-actions');
+    const savedJump = await measureJump('LC09', 'saved exact Open jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    if (savedJump.focus.id === 'browser-check-three-short') {
+      await page.keyboard.press('Enter'); await page.waitForSelector('#view-read:not([hidden])');
+      const reading = await page.evaluate(() => ({ active: JSON.parse(localStorage.getItem('mrt.state.v2')).active, hash: location.hash }));
+      receipt('LC09', 'explicit saved Open', 'fixture', reading, { sameSavedId: reading.active === 'fixture', readingRoute: reading.hash === '#/read/fixture' });
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      receipt('LC09', 'saved Back return', 'browser-check-three-short', await focus(), { exactActionReturn: (await focus()).id === 'browser-check-three-short', visibleReturn: (await focus()).usable });
+    } else receipt('LC09', 'Open refused after wrong-target fault', 'correct focus prerequisite', savedJump.focus, { exactTargetRequired: false });
+
+    enter('LC10 actual keyboard geometry');
+    for (const [width, height] of [[1280, 900], [320, 900], [320, 480]]) {
+      await page.setViewport({ width, height });
+      for (const [surface, host, value, target] of [
+        ['path', '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId],
+        ['age', '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential'],
+      ]) {
+        if (surface === 'path') await pathReady(); else await ageReady('event-era');
+        const before = await raw();
+        const geometry = await page.$eval(`${host} form`, (form) => {
+          const select = form.querySelector('select'); const button = form.querySelector('button');
+          const a = select.getBoundingClientRect(); const b = button.getBoundingClientRect();
+          return {
+            select: { width: a.width, height: a.height }, button: { width: b.width, height: b.height },
+            overlap: Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)),
+            label: [...select.labels].map((label) => label.textContent), docWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth,
+          };
+        });
+        receipt('LC10', `${surface} ${width}x${height} native boxes`, { minimum: 44, overlap: 0 }, geometry, {
+          labelAssociation: geometry.label.length === 1 && geometry.label[0].includes('Jump to'),
+          nativeTargets44: geometry.select.width >= 44 && geometry.select.height >= 44 && geometry.button.width >= 44 && geometry.button.height >= 44,
+          noOverlap: geometry.overlap === 0, noPageOverflow: geometry.docWidth === geometry.clientWidth,
+          layoutNoWrite: sameRaw(before, await raw()),
+        }, before, await raw());
+        await measureJump('LC10', `${surface} ${width}x${height} painted clearance`, host, value, target);
+      }
+      await page.evaluate(() => {
+        const details = document.querySelector('#list-actions');
+        if (details.open) details.querySelector('summary').click();
+      }); await settle();
+      const idle = await page.evaluate(() => ({ open: document.querySelector('#list-actions').open, statusInside: Boolean(document.querySelector('#list-actions .list-work')) }));
+      receipt('LC10', `${width}x${height} native idle restoration`, false, idle, { disclosureRestored: !idle.open, statusRemainsSibling: !idle.statusInside });
+    }
+
+    enter('LC11 preferences and error accounting');
+    await page.setViewport({ width: 1280, height: 900 });
+    const cdp = await page.createCDPSession();
+    for (const [mode, features] of [
+      ['forced-colors', [{ name: 'forced-colors', value: 'active' }]],
+      ['reduced-motion', [{ name: 'prefers-reduced-motion', value: 'reduce' }]],
+      ['normal', [{ name: 'forced-colors', value: 'none' }, { name: 'prefers-reduced-motion', value: 'no-preference' }]],
+    ]) {
+      await cdp.send('Emulation.setEmulatedMedia', { features });
+      await pathReady();
+      await measureJump('LC11', `${mode} path`, '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId);
+      await ageReady('event-era');
+      await measureJump('LC11', `${mode} age`, '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential');
+    }
+    await cdp.send('Emulation.setEmulatedMedia', { features: [] }); await cdp.detach();
+    receipt('LC11', 'error and remote accounting', { errors: [], external: [] }, { errors, external }, {
+      noPageErrors: errors.length === 0, noExternalRequests: external.length === 0,
+      noReaderLaunch: await page.evaluate(() => window.__opened.length === 0),
+      fullAgeOrder: isDeepStrictEqual(await ageVector('event-era'), expectedEvent),
+    });
+  } catch (error) {
+    console.log(`UX10-ORIGINAL-ERROR ${JSON.stringify({ step, name: error.name, message: error.message, stack: error.stack, mutation: page.__mutation?.id ?? null })}`);
+    throw error;
+  }
+}
+
+SCENARIOS.push({
+  id: 'long-collection-navigation',
+  title: 'native long collection jump preserves exact identities, explicit completion and local focus',
+  run: runLongCollectionNavigation,
+});
+function ux10Splice(source, before, after, id) {
+  const count = source.split(before).length - 1;
+  console.log(`UX10-SPLICE ${JSON.stringify({ id, expected: 1, actual: count })}`);
+  if (count !== 1) throw new Error(`${id} requires exactly one source splice; found ${count}`);
+  return source.replace(before, after);
+}
+MUTATIONS.push(
+  {
+    id: 'long-navigation-read-is-complete', title: 'read progress wrongly implies explicit completion',
+    breaks: 'long-collection-navigation',
+    rewriteReadingPaths: (source) => ux10Splice(source,
+      'return !readingPathProgress(getState(), stop, { isCompleted })?.completed;',
+      "return readingPathProgress(getState(), stop, { isCompleted })?.state !== 'done';", 'M01'),
+  },
+  {
+    id: 'long-navigation-wrong-target', title: 'late choice wrongly focuses first collection target',
+    breaks: 'long-collection-navigation',
+    rewriteCollectionNavigation: (source) => ux10Splice(source,
+      'getTarget(entry.id)', 'getTarget(entries[0].id)', 'M02'),
+  },
+);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

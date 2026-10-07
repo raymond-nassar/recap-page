@@ -60,6 +60,7 @@ import { createCatalogPresentation } from './views/shared/catalog-presentation.j
 import { createCatalogView } from './views/catalog.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
+import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
@@ -2616,6 +2617,7 @@ function ensurePublishingViews() {
         el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
         el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' }),
       ])]),
+      el('div', { id: `${category.route}-navigation` }),
       el('div', { id: `${category.route}-results`, class: 'results' }),
     ]), $('.app-footer'));
   }
@@ -2681,6 +2683,8 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   const generation = ++publishingCategoryGeneration;
   const current = () => generation === publishingCategoryGeneration && isCurrent();
   const box = $(`#${route}-results`);
+  const navigation = $(`#${route}-navigation`);
+  navigation.replaceChildren();
   const periods = $(`#${route}-categories`);
   const periodList = $(`#${route}-category-list`);
   box.replaceChildren(el('p', {
@@ -2779,6 +2783,23 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
         localStoryKeys,
       },
     });
+    const cards = [...box.querySelectorAll('.catalog-card')];
+    if (cards.length > 12) navigation.replaceChildren(createCollectionNavigation({
+      el,
+      id: `${route}-jump`,
+      label: 'Jump to Reading List',
+      entries: cards.map((card) => ({
+        id: card.dataset.story,
+        name: card.querySelector('.catalog-card-title').textContent,
+      })),
+      isCurrent: () => current() && box.isConnected,
+      getTarget: (id) => {
+        const card = cards.find((candidate) => candidate.dataset.story === id);
+        const target = card.querySelector('.catalog-card-title');
+        if (target) target.setAttribute('tabindex', '-1');
+        return target;
+      },
+    }));
     return;
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
@@ -3461,6 +3482,7 @@ const readingPathsView = createReadingPathsView({
     description: $('#reading-path-description'),
     details: $('#reading-path-details'),
     name: $('#reading-path-name'),
+    navigation: $('#reading-path-navigation'),
     progressOutputs: () => document.querySelectorAll('[data-reading-path-progress]'),
     select: $('#reading-path-select'),
     source: $('#reading-path-source'),
