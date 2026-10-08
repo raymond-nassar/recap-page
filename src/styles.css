@@ -250,9 +250,8 @@ a { color: var(--blue); }
   border-radius: 6px;
 }
 
-/* A view change deliberately moves keyboard focus to its heading. Keep that landing point visible
-   so the spoken context change and the visual context change identify the same place. */
-.view h1[tabindex="-1"]:focus,
+/* Collection jumps keep an explicit landing marker. Page navigation uses ordinary
+   :focus-visible, so pointer activation does not box a heading that is not a control. */
 .catalog-card-title[tabindex="-1"]:focus {
   outline: 3px solid var(--blue);
   outline-offset: 4px;
@@ -752,10 +751,12 @@ main { min-width: 0; }
 .ring .ring-arc { stroke: var(--accent-text); }
 #ring-arc { transition: stroke-dashoffset .35s ease; }
 
-.list-tools { display: flex; align-items: center; gap: var(--space-1); flex-wrap: wrap; margin-bottom: var(--space-4); border: 1px solid var(--line); border-radius: 12px; padding: var(--space-3) var(--space-4); }
-.list-actions { min-width: 0; flex: 1 1 auto; }
-.list-actions > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); }
+.list-tools { display: flex; align-items: flex-start; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
+.list-actions { min-width: 0; flex: 0 1 auto; }
+.list-actions[open] { flex-basis: 100%; }
+.list-actions > summary { min-height: 44px; width: fit-content; max-width: 100%; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); border: 1px solid var(--line-2); border-radius: 8px; }
 .list-actions-body, .list-work { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
+.list-actions-body { margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--line); border-radius: 8px; }
 .list-work { margin-bottom: var(--space-4); overflow-wrap: anywhere; }
 /* The rule that keeps the destructive command apart from the reversible ones. */
 .tool-sep { width: 1px; align-self: stretch; margin: var(--space-1) var(--space-4); background: var(--line); }
@@ -1095,10 +1096,17 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
 .badge-override-unavailable { color: var(--red-fg); border-color: rgb(var(--red-line) / 33.333%); }
 
-.row-actions { position: relative; }
-.row-actions-toggle { display: none; }
-.ract { display: flex; flex-wrap: wrap; max-width: 28ch; gap: var(--space-2); opacity: 0; }
-.row:hover .ract, .row:focus-within .ract { opacity: 1; }
+.row-actions { position: relative; justify-self: end; text-align: right; }
+.row-actions-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: var(--space-3) var(--space-4); }
+.row-actions.is-open { grid-column: 1 / -1; justify-self: stretch; }
+.row-actions:not(.is-open) > .ract { display: none; }
+.row-actions.is-open > .ract {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
+  width: 100%; max-width: 36rem; min-width: 0; margin-top: var(--space-3); margin-left: auto;
+  padding: var(--space-3); border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
+}
+.row-actions .ract > .rail-hint { grid-column: 1 / -1; text-align: left; }
 .mini {
   border: 1px solid var(--line-2); background: none; color: var(--muted);
   border-radius: 6px; padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
@@ -1108,25 +1116,13 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .availability-choice .mini-icon { display: none; }
 .mini:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .mini-danger:hover { color: var(--red-fg); }
-
+.ract .mini {
+  display: flex; align-items: center; gap: var(--space-4); width: 100%; min-height: 44px;
+  text-align: left;
+}
+.row-actions .mini-label { display: inline; }
 @media (max-width: 620px) {
-  .row-actions { justify-self: end; }
-  .row-actions-toggle {
-    display: flex; align-items: center; min-height: 44px; padding: var(--space-3) var(--space-4);
-  }
-  .row-actions:not(.is-open) > .ract { display: none; }
-  .row-actions.is-open > .ract {
-    margin-top: var(--space-3);
-    width: 100%; min-width: 0; padding: var(--space-3);
-    flex-direction: column; align-items: stretch; opacity: 1;
-    border: 1px solid var(--line-2); border-radius: 8px;
-    background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
-  }
-  .row-actions .mini {
-    display: flex; align-items: center; gap: var(--space-4); width: 100%; min-height: 44px;
-    text-align: left;
-  }
-  .row-actions .mini-label { display: inline; }
+  .row-actions.is-open > .ract { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ============================================================ forms, cards, results */
@@ -2003,11 +1999,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 @media (min-width: 1100px) { .hero-in { grid-template-columns: 248px 1fr; } }
 
-/* Rename, Note, Duplicate, Export and Delete were five outlined pills directly above the hero, at
-   the same weight as the hero's own buttons. The border moves from each button to the strip that
-   holds them, so the group keeps one affordance and stops competing, and every button comes back
-   at full weight the moment it is hovered or focused. Nothing moves in the DOM, so tab order,
-   the accessible names and the delete confirmation are all untouched. */
+/* The expanded command group owns the edge; individual commands gain weight only when reached.
+   Their names, tab order and confirmations do not depend on the disclosure's presentation. */
 .list-tools .quiet { border-color: transparent; padding: var(--space-3) var(--space-4); }
 .list-tools .quiet:hover, .list-tools .quiet:focus-visible { border-color: var(--line-2); }
 .list-tools .quiet-danger:hover { border-color: rgb(var(--red-line) / 40%); }
@@ -2026,6 +2019,10 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 #reading-filters {
   position: sticky; top: 0; z-index: 1; background: var(--bg);
   margin: 0 0 var(--space-2); padding: var(--space-5) 0 var(--space-5);
+}
+/* The filter pills wrap with width and text size; their real height is the scroll obstruction. */
+#rows [data-act], .row-actions > .ract {
+  scroll-margin-top: calc(var(--reading-filter-height, 0px) + var(--space-4));
 }
 
 /* A finished collected edition already dims its name. Its count takes the positive colour too, so

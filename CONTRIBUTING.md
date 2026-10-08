@@ -88,6 +88,10 @@ Use concise labels and one prominent primary action per task group, not one for 
 Give secondary and repeated row actions less visual weight, and avoid explanatory paragraphs
 after controls or repeated information.
 
+Reading-list administration starts behind List actions on desktop and touch. Row commands use
+an explicit More actions disclosure, not a hover-only panel that reserves empty space. Preserve
+the reader's expanded/collapsed choice and focus when the viewport changes.
+
 Put supplementary guidance in concise tooltips available on both hover and keyboard focus.
 Connect nonredundant descriptions to their controls for screen readers. Keep required labels,
 meaningful status, errors, save confirmation and safety warnings visible; tooltips do not replace
@@ -114,6 +118,8 @@ checked on 2026-10-03. This is an app-wide standard, not a convention limited to
   contained and provide Escape and a visible cancel/close control. Cancel leaves the action
   unapplied. Restore a usable opener, or choose a logical successor when it is gone or the
   task has advanced. Do not leave focus inside a hidden disclosure or stack modal questions.
+  Route headings retain focus for orientation, but pointer navigation must not force a focus box
+  around a page title. Keep normal `:focus-visible` indicators for keyboard navigation.
 - **Fields and errors.** Associate a visible label with each visible field. A placeholder is not a
   label. Associate actionable error text with the field while preserving its hint; mark the
   invalid state, reveal any containing disclosure and focus the field needing correction.

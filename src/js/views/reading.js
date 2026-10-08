@@ -264,14 +264,12 @@ export function createReadingView({
   function wire() {
     const details = $('#list-actions');
     const summary = details.querySelector('summary');
-    const compact = matchMedia('(max-width: 700px)');
-    const syncListActions = () => {
-      const narrow = compact.matches;
-      if (narrow && details.contains(document.activeElement) && document.activeElement !== summary) summary.focus();
-      details.open = !narrow;
-    };
-    compact.addEventListener('change', syncListActions);
-    syncListActions();
+    details.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !details.open) return;
+      event.preventDefault();
+      summary.focus();
+      details.open = false;
+    });
     $('#btn-review-earlier').addEventListener('click', openReview);
     $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
     $('#review-later-button').addEventListener('click', () => moveReview(1));
@@ -351,6 +349,10 @@ export function createReadingView({
     }
 
     const group = $('#reading-filters');
+    const filterSize = new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--reading-filter-height', `${group.getBoundingClientRect().height}px`);
+    });
+    filterSize.observe(group);
     group.addEventListener('pointerdown', () => {
       arrowing = false;
       endFilterRun({ commit: true });
@@ -822,6 +824,7 @@ export function createReadingView({
         const fb = el('div', { class: 'rf cover-fallback', 'aria-hidden': true });
         paintCover(img, fb, item, 'portrait_incredible');
 
+        const expanded = entry?.node.querySelector('.row-actions')?.classList.contains('is-open') ?? false;
         const node = el('li', {
           class: `row${item.read ? ' is-read' : ''}${item.issueId === currentId ? ' now' : ''}`,
         }, [
@@ -876,7 +879,7 @@ export function createReadingView({
               onclick: () => editIssueNote(item),
             }, item.note ? item.note : 'Add a note'),
           ]),
-          issueRowActions(item, id),
+          issueRowActions(item, id, expanded),
         ]);
         rowCache.set(item.issueId, { key: rowKey, readerKey, node });
         desired.push(node);
@@ -930,7 +933,7 @@ export function createReadingView({
     announce(`Moved ${state.issues[issueId]?.title ?? `Issue ${issueId}`} to position ${after + 1} of ${list.itemIds.length}.`);
   }
 
-  function issueRowActions(item, listId) {
+  function issueRowActions(item, listId, expanded = false) {
     const panelId = `row-actions-${item.issueId}`;
     const reader = readerPresentation(item, 'saved');
     const panel = el('div', { class: 'ract', id: panelId }, [
@@ -1031,6 +1034,7 @@ export function createReadingView({
       root.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
     };
+    setOpen(expanded);
     toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));
     root.addEventListener('focusout', (event) => {
       if (!root.contains(event.relatedTarget)) setOpen(false);

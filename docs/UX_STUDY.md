@@ -49,7 +49,7 @@ Evaluated against all ten of Nielsen's usability heuristics, named by their stan
 | # | Heuristic | Severity | Verdict |
 |---|-----------|----------|---------|
 | 1 | Visibility of system status | 2 | Status is communicated well in words, but the interface stalls visibly on a long list. UX-H-001 |
-| 2 | Match between the system and the real world | 1 | Strong. Labels are written in reader language, and availability wording hedges rather than promises. `src/js/views/reading.js:862-864` |
+| 2 | Match between the system and the real world | 1 | Strong. Labels are written in reader language, and availability wording hedges rather than promises. `src/js/views/reading.js:865-867` |
 | 3 | User control and freedom | 3 | Restoring a backup could be undone, deleting a list could not. Closed by BL-035. UX-H-003 |
 | 4 | Consistency and standards | 3 | Two different error and prompt systems run side by side. UX-H-002 |
 | 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:132-154`, `src/js/lib/model.js:928-1006` |
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2045`, `src/js/views/reading.js:364-372`, `src/js/views/reading.js:389-403`, against
+Evidence: `src/js/main.js:2045`, `src/js/views/reading.js:366-374`, `src/js/views/reading.js:391-405`, against
 `src/js/main.js:564-591`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/views/reading.js:389-403`, `src/js/views/data.js:321-349`
+Evidence: `src/js/views/reading.js:391-405`, `src/js/views/data.js:321-349`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -140,7 +140,7 @@ Severity: 2, single-rater estimate
 Rationale: affects repeat use rather than first use, and the cost is a slower path rather than a
 blocked one
 Confidence: Observed
-Evidence: `src/index.html:337-338`, `src/js/views/reading.js:1083-1103`
+Evidence: `src/index.html:337-338`, `src/js/views/reading.js:1087-1107`
 Source: heuristic 6 sweep, code-only framing
 Impact: the hero button carries a `kbd` hint, so the shortcut is discoverable at that one spot and
 nowhere else. There is no shortcut reference anywhere in the interface, so a reader who has
@@ -218,8 +218,8 @@ Not applicable, with reason:
   across src/`.
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
-  transition that already respects reduced motion. Evidence: `src/styles.css:753`,
-  `src/styles.css:1892-1894`.
+  transition that already respects reduced motion. Evidence: `src/styles.css:752`,
+  `src/styles.css:1888-1890`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -277,7 +277,7 @@ fix
 Backlog item: BL-029
 Resolved: the single accent was split into `--red` for surfaces behind white text and
 `--red-text` for red used as text, at `src/styles.css:127-133`, and the `kbd` tint was removed at
-`src/styles.css:880`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
+`src/styles.css:881`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
 them purple, so the split survives under different names. The figures in the Evidence artifacts are
 the pre-fix measurements and are kept as the record of why the item was raised.
 
@@ -303,8 +303,8 @@ mark rather than through container opacity, so the state reads without dragging 
 the contrast floor
 Backlog item: BL-030
 Resolved: the container `opacity` was replaced with a dedicated `--read-fg` foreground plus a
-strikethrough, at `src/styles.css:1024-1025`. The only opacity left on a read row is on the cover
-image at `src/styles.css:1027`, which carries no text. Re-measured with six rows actually in the
+strikethrough, at `src/styles.css:1025-1026`. The only opacity left on a read row is on the cover
+image at `src/styles.css:1028`, which carries no text. Re-measured with six rows actually in the
 read state, axe 4.13.0 reported no contrast violations on the surface.
 
 #### UX-A-003: Hero text contrast is undeterminable because it sits on a blurred cover
@@ -328,7 +328,7 @@ Recommendation: place a solid or sufficiently opaque scrim between the cover and
 computed background is fixed regardless of cover, which also makes the surface checkable
 Backlog item: BL-031
 Resolved as a side effect of BL-029: the hero scrim's top stop was raised from 60 to 88 percent
-alpha at `src/styles.css:791-798`. Sampling the rendered background across all eight catalog
+alpha at `src/styles.css:792-799`. Sampling the rendered background across all eight catalog
 series narrowed the spread from `#222325`-`#2e2d30` to `#1b1d22`-`#1e2126`, and the computed
 bound for a pure white cover is `#1f2228`, so the background is now fixed enough to check
 against whatever the reader imports rather than varying comic to comic.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1041-1044` and `src/styles.css:2238-2239`.
+`src/styles.css:1042-1045` and `src/styles.css:2235-2236`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -367,7 +367,7 @@ Severity: 3, single-rater estimate
 Rationale: hides six controls per row on the primary reading path, on every touch device, for the
 life of the product
 Confidence: Measured
-Evidence: `src/styles.css:1098-1099`, `docs/ux-artifacts/live-inspection.json`
+Original measurement: `docs/ux-artifacts/live-inspection.json`
 Source: mobile viewport framing, criterion 1.4.13
 Impact: the row action container computes to `opacity: 0` at rest and is revealed only on `:hover`
 or `:focus-within`. Keyboard users are served, because the measured tab walk reached every action
@@ -377,10 +377,10 @@ reveals them. This differs from UX-A-004, which is about the size of those contr
 Recommendation: reveal the row actions at rest on pointer-coarse devices and below the mobile
 breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
-Resolved: narrow screens now show a visible More actions control, and opening it reveals full text
-labels for every compact row action. Fine-pointer layouts retain the compact hover and focus strip.
-The responsive presentation is defined at `src/styles.css:1112-1129`, and the disclosure preserves
-keyboard focus and Escape handling at `src/js/views/reading.js:933-1044`.
+Resolved: all screen sizes now show a visible More actions control, and opening it reveals full text
+labels for every row action. Closed actions take no layout space; hover alone does not reveal them.
+The responsive presentation is defined at `src/styles.css:1099-1126`, and the disclosure preserves
+keyboard focus and Escape handling at `src/js/views/reading.js:936-1048`.
 
 #### UX-A-006: Status messages are announced twice
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:1892-1894`.
+`src/styles.css:1888-1890`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -538,7 +538,7 @@ Severity: 2, single-rater estimate
 Rationale: affects the information most specific to this product, on every row, though a short
 label is always visible alongside it
 Confidence: Observed
-Evidence: `src/js/views/reading.js:862-864`
+Evidence: `src/js/views/reading.js:865-867`
 Source: WCAG 2.2 Level A sweep, criterion 4.1.2
 Impact: the badge shows a short label and puts the full description in a `title` attribute. `title`
 does not appear on touch, is inconsistently surfaced to keyboard users, and is announced
@@ -612,7 +612,7 @@ series. Only Progress by series shipped. A reader therefore has no single place 
 reading history across lists, and no way to find the issues they entered by hand, even though the
 data model already distinguishes both. The manual-entry marker in particular exists and is rendered
 per row, so the grouping view is the only missing piece. Evidence for the existing marker:
-`src/js/views/reading.js:866`.
+`src/js/views/reading.js:869`.
 Recommendation: add the two rail entries as filtered views over existing data, reusing the manual
 source marker and the global read map
 Backlog item: BL-038
@@ -634,7 +634,7 @@ Shift and Tab. Focus order matched reading order. Every stop carried a visible f
 3 pixel solid outline. No trap was found, and the reverse walk escaped cleanly to the document
 body. Exactly one stop was not visible, a 1 by 1 pixel input at zero opacity, and that is the
 standard visually-hidden filter radio paired with a visible label, not a stray control. Evidence:
-`src/styles.css:952`, `src/js/views/reading.js:297-300`.
+`src/styles.css:953`, `src/js/views/reading.js:295-298`.
 
 Dialog focus return was not testable, because the application contains no dialogs at all. The
 measured DOM has zero elements with `role="dialog"`, zero `dialog` elements and zero `aria-modal`
@@ -649,7 +649,7 @@ Severity: 3, single-rater estimate
 Rationale: breaks the product's only workflow shortcut at exactly the moment a reader would repeat
 it, and the failure is silent
 Confidence: Observed
-Evidence: `src/js/views/reading.js:1083-1103`, `src/index.html:337-338`
+Evidence: `src/js/views/reading.js:1087-1107`, `src/index.html:337-338`
 Source: heuristic 7 sweep, code-only framing, confirmed against the live tab ring
 Impact: the shortcut handler returns early when the active element is a button, link or input. The
 hero advertises D for Done, next. Clicking that button leaves it focused, so the very next press of
@@ -690,7 +690,7 @@ Rationale: catastrophic in its category. It defeated the entire mobile layout on
 device class the product is explicitly meant to be used beside, and escaped notice when the media
 query was read alone because that rule itself was correct
 Confidence: Measured
-Evidence: `src/styles.css:286-292`, `src/styles.css:294-297`,
+Evidence: `src/styles.css:285-291`, `src/styles.css:293-296`,
 `docs/ux-artifacts/viewport-sweep-reading.json`
 Source: mobile viewport framing, viewport sweep
 Historical impact: the stylesheet contained a media query that collapsed the rail to
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:753`, `src/styles.css:1892-1894`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:752`, `src/styles.css:1888-1890`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -821,7 +821,7 @@ evidence value and the cheapest question that would confirm or kill it.
 | Relationship to Marvel Unlimited | Active subscriber who reads in the web reader | Strong. The entire product deep-links into the reader and the link contract was validated against a live subscription. `src/js/reader.js:12` | Is the subscription current, and is the web reader the usual way in rather than the mobile app? |
 | Primary device while reading | Desktop or laptop, with the tracker beside the reader | Moderate. The reflow and rail defects would be intolerable if a phone were the main device, and they shipped. `docs/ux-artifacts/viewport-sweep-reading.json` | On the last five reading sessions, what was the tracker open on? |
 | Reading style | Follows a long curated order end to end rather than dipping in | Strong. The product is built around order, resume and next-unread rather than around browsing. `src/index.html:313-359` | When a list is abandoned partway, what caused it? |
-| Tolerance for missing metadata | High, provided the app admits what it does not know | Strong. Pending and by-hand states are surfaced rather than hidden, and this was a deliberate decision. `src/js/views/reading.js:865-866` | Would you rather see a guess or a clearly marked gap? |
+| Tolerance for missing metadata | High, provided the app admits what it does not know | Strong. Pending and by-hand states are surfaced rather than hidden, and this was a deliberate decision. `src/js/views/reading.js:868-869` | Would you rather see a guess or a clearly marked gap? |
 | Attitude to cloud services | Actively prefers local-only and treats that as the point | Strong. Recorded as a product constraint and stated in the backlog's own out-of-scope list. `PRODUCT_BACKLOG.md:454-456` | If sync existed and was opt-in, would you turn it on? |
 | Accessibility needs | None known, and unasked | Weak. This is an assumption by absence. No accessibility requirement appears anywhere in the repository, and the shipped contrast and target sizes are consistent with nobody having needed otherwise. | Do you use any system accessibility setting, including text size, contrast or reduced motion? |
 
@@ -841,7 +841,7 @@ sentence frames rather than quotations. Nobody said these words.
   before I import it, so I can pick the essential path or the complete path deliberately. Traced to
   `src/js/views/preview.js:141-155`.
 * When an issue has no metadata yet, I want the app to say so plainly, so I can tell a pending
-  lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:865-866`.
+  lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:868-869`.
 * When I have read half of a long order across several sittings, I want to come back and see where
   I stopped, so I can resume without scrolling to find the boundary. Traced to
   `src/js/views/progress.js:48-107`.

@@ -1624,8 +1624,8 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1047-1060|0": {
-    "anchor": "src/js/views/reading.js:1047-1060",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1051-1064|0": {
+    "anchor": "src/js/views/reading.js:1051-1064",
     "fp": "a4e20d502298d5da",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
@@ -1634,8 +1634,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:732|0": {
-    "anchor": "src/js/views/reading.js:732",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:734|0": {
+    "anchor": "src/js/views/reading.js:734",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -1949,8 +1949,8 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:604|0": {
-    "anchor": "src/js/views/reading.js:604",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:606|0": {
+    "anchor": "src/js/views/reading.js:606",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
@@ -2164,18 +2164,18 @@
     "fp": "42161b2e4c7595a3",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:865-866|0": {
-    "anchor": "src/js/views/reading.js:865-866",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:868-869|0": {
+    "anchor": "src/js/views/reading.js:868-869",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:297-300|0": {
-    "anchor": "src/js/views/reading.js:297-300",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:295-298|0": {
+    "anchor": "src/js/views/reading.js:295-298",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:952|0": {
-    "anchor": "src/styles.css:952",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:953|0": {
+    "anchor": "src/styles.css:953",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2194,8 +2194,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:865-866|0": {
-    "anchor": "src/js/views/reading.js:865-866",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:868-869|0": {
+    "anchor": "src/js/views/reading.js:868-869",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2204,8 +2204,8 @@
     "fp": "89df9badf1d976de",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:862-864|0": {
-    "anchor": "src/js/views/reading.js:862-864",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:865-867|0": {
+    "anchor": "src/js/views/reading.js:865-867",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2234,8 +2234,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1892-1894|0": {
-    "anchor": "src/styles.css:1892-1894",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1888-1890|0": {
+    "anchor": "src/styles.css:1888-1890",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2244,8 +2244,8 @@
     "fp": "8e9f0b814f7bdc04",
     "head": ":focus-visible {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:753|0": {
-    "anchor": "src/styles.css:753",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:752|0": {
+    "anchor": "src/styles.css:752",
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
@@ -2254,13 +2254,13 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1892-1894|0": {
-    "anchor": "src/styles.css:1892-1894",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1888-1890|0": {
+    "anchor": "src/styles.css:1888-1890",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:753|0": {
-    "anchor": "src/styles.css:753",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:752|0": {
+    "anchor": "src/styles.css:752",
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
@@ -2279,18 +2279,18 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:880|0": {
-    "anchor": "src/styles.css:880",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:881|0": {
+    "anchor": "src/styles.css:881",
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1024-1025|0": {
-    "anchor": "src/styles.css:1024-1025",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1025-1026|0": {
+    "anchor": "src/styles.css:1025-1026",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1027|0": {
-    "anchor": "src/styles.css:1027",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1028|0": {
+    "anchor": "src/styles.css:1028",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2299,35 +2299,30 @@
     "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:791-798|0": {
-    "anchor": "src/styles.css:791-798",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:792-799|0": {
+    "anchor": "src/styles.css:792-799",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1041-1044|0": {
-    "anchor": "src/styles.css:1041-1044",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1042-1045|0": {
+    "anchor": "src/styles.css:1042-1045",
     "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2238-2239|0": {
-    "anchor": "src/styles.css:2238-2239",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2235-2236|0": {
+    "anchor": "src/styles.css:2235-2236",
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:933-1044|0": {
-    "anchor": "src/js/views/reading.js:933-1044",
-    "fp": "99cdb59f36638594",
-    "head": "function issueRowActions(item, listId) {"
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:936-1048|0": {
+    "anchor": "src/js/views/reading.js:936-1048",
+    "fp": "91f84b1d128c3126",
+    "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1098-1099|0": {
-    "anchor": "src/styles.css:1098-1099",
-    "fp": "0874e4ac50b18fce",
-    "head": ".row-actions { position: relative; }"
-  },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1112-1129|0": {
-    "anchor": "src/styles.css:1112-1129",
-    "fp": "4516d2da0e913545",
-    "head": "@media (max-width: 620px) {"
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1099-1126|0": {
+    "anchor": "src/styles.css:1099-1126",
+    "fp": "444ef76011523544",
+    "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
   "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:121|0": {
     "anchor": "src/index.html:121",
@@ -2379,23 +2374,23 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1892-1894|0": {
-    "anchor": "src/styles.css:1892-1894",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1888-1890|0": {
+    "anchor": "src/styles.css:1888-1890",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:862-864|0": {
-    "anchor": "src/js/views/reading.js:862-864",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:865-867|0": {
+    "anchor": "src/js/views/reading.js:865-867",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:286-292|0": {
-    "anchor": "src/styles.css:286-292",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:285-291|0": {
+    "anchor": "src/styles.css:285-291",
     "fp": "e52389e0f9813d77",
     "head": ".rail {"
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:294-297|0": {
-    "anchor": "src/styles.css:294-297",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:293-296|0": {
+    "anchor": "src/styles.css:293-296",
     "fp": "87a8f4102a4a1266",
     "head": "@media (max-width: 880px) {"
   },
@@ -2409,8 +2404,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1083-1103|0": {
-    "anchor": "src/js/views/reading.js:1083-1103",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1087-1107|0": {
+    "anchor": "src/js/views/reading.js:1087-1107",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2439,13 +2434,13 @@
     "fp": "5386608e02c68058",
     "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:364-372|0": {
-    "anchor": "src/js/views/reading.js:364-372",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:366-374|0": {
+    "anchor": "src/js/views/reading.js:366-374",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:389-403|0": {
-    "anchor": "src/js/views/reading.js:389-403",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:391-405|0": {
+    "anchor": "src/js/views/reading.js:391-405",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2454,8 +2449,8 @@
     "fp": "4de994265fe57895",
     "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:389-403|0": {
-    "anchor": "src/js/views/reading.js:389-403",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:391-405|0": {
+    "anchor": "src/js/views/reading.js:391-405",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2469,8 +2464,8 @@
     "fp": "e7e623017953e08f",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1083-1103|0": {
-    "anchor": "src/js/views/reading.js:1083-1103",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1087-1107|0": {
+    "anchor": "src/js/views/reading.js:1087-1107",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2499,8 +2494,8 @@
     "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:866|0": {
-    "anchor": "src/js/views/reading.js:866",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:869|0": {
+    "anchor": "src/js/views/reading.js:869",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6029,11 +6024,6 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:1098|0": {
-    "anchor": "src/styles.css:1098",
-    "fp": "bad6625aa1fb228f",
-    "head": ".row-actions { position: relative; }"
-  },
   "scripts/check-anchors.mjs|preamble|scripts/check-contract.mjs:1|0": {
     "anchor": "scripts/check-contract.mjs:1",
     "fp": "4949218de757741f",
@@ -6074,33 +6064,33 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1927|0": {
-    "anchor": "src/styles.css:1927",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1923|0": {
+    "anchor": "src/styles.css:1923",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1951|0": {
-    "anchor": "src/styles.css:1951",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1947|0": {
+    "anchor": "src/styles.css:1947",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:474|0": {
-    "anchor": "src/styles.css:474",
+  "scripts/check-palette.mjs|preamble|src/styles.css:473|0": {
+    "anchor": "src/styles.css:473",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:474|1": {
-    "anchor": "src/styles.css:474",
+  "scripts/check-palette.mjs|preamble|src/styles.css:473|1": {
+    "anchor": "src/styles.css:473",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:478|0": {
-    "anchor": "src/styles.css:478",
+  "scripts/check-palette.mjs|preamble|src/styles.css:477|0": {
+    "anchor": "src/styles.css:477",
     "fp": "1a189415f7ffa207",
     "head": "width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:871|0": {
-    "anchor": "src/styles.css:871",
+  "scripts/check-palette.mjs|preamble|src/styles.css:872|0": {
+    "anchor": "src/styles.css:872",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },

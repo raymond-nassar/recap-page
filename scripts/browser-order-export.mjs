@@ -71,6 +71,8 @@ export const orderOnlyExport = {
     await page.goto(`${page.__origin}/#/home`, { waitUntil: 'networkidle0' });
     await click(page, '#list-nav a[data-act="open"]');
     await page.waitForSelector('#view-read:not([hidden])');
+    await page.focus('#list-actions > summary');
+    await page.keyboard.press('Enter');
     await page.focus('#list-export > summary');
     await page.keyboard.press('Enter');
     await page.waitForSelector('#btn-export-order', { visible: true });

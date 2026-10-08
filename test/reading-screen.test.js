@@ -34,8 +34,8 @@ test('narrow hero prose and idle list commands use their available width', () =>
   assert.match(css, /\.list-actions > summary \{[^}]*min-height: 44px/);
 });
 
-test('native list actions retain completion and pending controls with focus before close', () => {
-  assert.match(html, /<details id="list-actions" class="list-actions" open>/);
+test('native list actions start closed and retain completion and pending controls with focus before close', () => {
+  assert.match(html, /<details id="list-actions" class="list-actions action-disclosure">/);
   const opener = html.indexOf('<details id="list-actions"');
   assert.ok(opener >= 0, 'outer List actions opener is missing');
   let depth = 0;
@@ -51,7 +51,14 @@ test('native list actions retain completion and pending controls with focus befo
   const editing = html.slice(opener, end);
   assert.match(editing, /<details id="list-export">/);
   assert.doesNotMatch(editing, /id="(?:hydration-status|synopsis-status|btn-cancel-hydrate|btn-cancel-synopsis)"/);
-  assert.match(reading, /if \(narrow && details\.contains\(document\.activeElement\)[^]*summary\.focus\(\);[^]*details\.open = !narrow/);
+  assert.match(reading, /summary\.focus\(\);\s*details\.open = false/);
+  assert.doesNotMatch(reading, /details\.open = !narrow/);
+});
+
+test('page titles use ordinary focus-visible rather than a forced navigation box', () => {
+  assert.match(css, /:focus-visible \{\s*outline: 3px solid var\(--blue\)/);
+  assert.doesNotMatch(css, /\.view h1\[tabindex="-1"\]:focus(?!-visible)/);
+  assert.match(main, /heading\.setAttribute\('tabindex', '-1'\);\s*heading\.focus/);
 });
 
 test('mobile navigation reserves measured content space and cannot cover active forms or dialogs', () => {
@@ -156,7 +163,7 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
   assert.match(reading, /tooltip: label/);
 });
 
-test('narrow reading rows use a labeled disclosure instead of unexplained symbols', () => {
+test('reading rows use a labeled disclosure at every width instead of hover-only commands', () => {
   assert.match(reading, /class: 'row-actions'/);
   assert.match(reading, /class: 'mini row-actions-toggle'[\s\S]*text: 'More actions'/);
   assert.match(reading, /'aria-expanded': 'false'/);
@@ -173,9 +180,10 @@ test('narrow reading rows use a labeled disclosure instead of unexplained symbol
     assert.ok(reading.includes(`'${label}'`), `the explicit availability actions are missing ${label}`);
   }
 
-  assert.match(css, /@media \(max-width: 620px\) \{[\s\S]*?\.row-actions-toggle \{\s*display: flex/);
+  assert.match(css, /\.row-actions-toggle \{\s*display: inline-flex/);
   assert.match(css, /\.row-actions:not\(\.is-open\) > \.ract \{ display: none; \}/);
-  assert.match(css, /\.row-actions\.is-open > \.ract \{[\s\S]*?flex-direction: column/);
+  assert.match(css, /\.row-actions\.is-open > \.ract \{[^}]*display: grid/);
+  assert.doesNotMatch(css, /\.row:hover \.ract/);
 });
 
 test('Coming up precedes the one native full Reading List disclosure', () => {
@@ -214,9 +222,10 @@ test('the full Reading List action and state hooks receive the accepted copy', (
 });
 
 test('all editing commands remain reachable through native List actions', () => {
-  // Discoverability and keyboard access both have to survive the demotion, so the test is that the
-  // buttons are still there, still bordered when reached, and that the group carries an edge.
-  assert.match(css, /\.list-tools \{[^}]*border: 1px solid var\(--line\)/);
+  assert.match(css, /\.list-actions-body \{[^}]*border: 1px solid var\(--line\)/);
+  const ordinaryStrip = css.match(/^\.list-tools \{[^}]*\}/m)?.[0] ?? '';
+  assert.match(ordinaryStrip, /display: flex/);
+  assert.doesNotMatch(ordinaryStrip, /border:/);
   assert.match(css, /\.list-tools \.quiet \{[^}]*border-color: transparent/);
   assert.match(css, /\.list-tools \.quiet:hover, \.list-tools \.quiet:focus-visible \{[^}]*border-color: var\(--line-2\)/);
   for (const id of ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md', 'btn-delete-list']) {

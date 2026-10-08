@@ -8727,11 +8727,8 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1098` hides the row
-      // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
-      // control out of reach, and the defaults are blind to it. Measured in the same Edge this
-      // drives: with the two buttons faded that way both rows passed while nothing sat under the
-      // pointer at either button's centre.
+      // `opacity: 0`. Measured in the same Edge this drives: with the two buttons faded that way
+      // both default checks passed while nothing visible sat under the pointer at either centre.
       const offers = await page.evaluate(() => {
         const banner = document.querySelector('#blocked-banner:not([hidden])');
         const usable = (sel) => {
@@ -8888,6 +8885,7 @@ const SCENARIOS = [
       // before the app loaded, in preparePage.
       await page.evaluate(() => { window.__opened = []; });
 
+      await revealReadingControl(page, 'button.mini[data-act="open"][data-key="900001"]');
       await page.evaluate(() => {
         const btn = document.querySelector('button.mini[data-act="open"][data-key="900001"]');
         btn.focus();
@@ -11551,6 +11549,7 @@ const SCENARIOS = [
         const px = (el) => (el ? Math.round(el.getBoundingClientRect().width) : 0);
         const shelf = document.querySelector('#shelf');
         const tiles = [...document.querySelectorAll('#shelf .tile')];
+        const rowActions = [...document.querySelectorAll('#rows .row-actions')];
         const size = (el) => (el ? parseFloat(getComputedStyle(el).fontSize) : 0);
         return {
           view: px(document.querySelector('#view-read')),
@@ -11587,6 +11586,11 @@ const SCENARIOS = [
           secondary: size(document.querySelector('#btn-hero-done')),
           linkFill: getComputedStyle(document.querySelector('#btn-hero-info')).backgroundColor,
           strip: getComputedStyle(document.querySelector('.list-tools')).borderTopWidth,
+          commandsClosed: !document.querySelector('#list-actions').open
+            && !document.querySelector('.list-actions-body').checkVisibility(),
+          compactRows: rowActions.length > 0 && rowActions.every((row) =>
+            row.querySelector('.row-actions-toggle').checkVisibility()
+            && !row.querySelector('.ract').checkVisibility()),
           toolNames: [...document.querySelectorAll('.list-tools .quiet')]
             .filter((el) => !el.hidden).map((el) => el.textContent.trim()),
           reachable: [...document.querySelectorAll('.list-tools .quiet')]
@@ -11608,9 +11612,41 @@ const SCENARIOS = [
       t.check('the percentage is no longer hidden in a tooltip', narrow.ringTitle === null, JSON.stringify(narrow.ringTitle));
       t.check('one call to action is larger than the rest', narrow.primary > narrow.secondary, `${narrow.primary} vs ${narrow.secondary}`);
       t.check('the way out of the app is drawn as a link, not a button', /, 0\)$/.test(narrow.linkFill), narrow.linkFill);
-      t.check('the demoted tools keep a bounding edge', parseFloat(narrow.strip) > 0, narrow.strip);
+      t.check('list administration starts closed without a permanent full-width command box',
+        narrow.commandsClosed && parseFloat(narrow.strip) === 0, JSON.stringify(narrow));
+      t.check('desktop rows expose More actions without reserving hidden command space',
+        narrow.compactRows, JSON.stringify(narrow));
       t.check('and every one of them is still there and still reachable',
         narrow.toolNames.length >= 5 && narrow.reachable, narrow.toolNames.join(' / '));
+
+      await page.click('.brand[data-view="home"]');
+      await page.waitForSelector('#btn-chero-open', { visible: true });
+      await page.click('#btn-chero-open');
+      const pointerHeading = await page.$eval('#order-name', (node) => ({
+        focused: document.activeElement === node,
+        visible: node.matches(':focus-visible'),
+        outline: getComputedStyle(node).outlineStyle,
+        width: parseFloat(getComputedStyle(node).outlineWidth),
+      }));
+      t.check('pointer navigation announces the destination without boxing its title',
+        pointerHeading.focused && !pointerHeading.visible
+          && (pointerHeading.outline === 'none' || pointerHeading.width === 0), JSON.stringify(pointerHeading));
+      await page.focus('.brand[data-view="home"]');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#btn-chero-open', { visible: true });
+      await page.focus('#btn-chero-open');
+      await page.keyboard.press('Enter');
+      await page.keyboard.press('Tab');
+      const keyboardFocus = await page.evaluate(() => {
+        const node = document.activeElement;
+        const style = getComputedStyle(node);
+        return { interactive: node.matches('button, a, summary, input, select'),
+          visible: node.matches(':focus-visible'), width: parseFloat(style.outlineWidth), outline: style.outlineStyle };
+      });
+      t.check('keyboard navigation retains a visible focus indicator on the next control',
+        keyboardFocus.interactive && keyboardFocus.visible && keyboardFocus.width > 0
+          && keyboardFocus.outline !== 'none', JSON.stringify(keyboardFocus));
+      await openFullOrder(page);
 
       await page.setViewport({ width: 2560, height: 1080 });
       const wide = await measure();
@@ -12479,6 +12515,7 @@ const SCENARIOS = [
       await importOrder(page);
       await openFullOrder(page);
       await page.setViewport({ width: 1280, height: 900 });
+      await revealReadingControl(page, '#rows .row .ract [data-act="open"]');
 
       const reference = await page.evaluate(() => {
         const pixels = (style, property) => Number.parseFloat(style[property]);
@@ -12518,6 +12555,7 @@ const SCENARIOS = [
           button: sides('#btn-hero-read', 'padding'),
           card: sides('.card > summary', 'padding'),
           minimumTargetDistance: Math.min(...targetDistances),
+          minimumTargetSize: Math.min(...actions.flatMap((rect) => [rect.width, rect.height])),
         };
         cardProbe.remove();
         return result;
@@ -12533,8 +12571,9 @@ const SCENARIOS = [
         && reference.button.join('/') === '12/24/12/24'
         && reference.card.join('/') === '16/16/16/16',
         JSON.stringify(reference));
-      t.check('desktop row actions retain the target-spacing exception',
-        reference.minimumTargetDistance >= 24, `${reference.minimumTargetDistance}px`);
+      t.check('expanded desktop row actions retain full-sized targets and spacing',
+        reference.minimumTargetSize >= 44 && reference.minimumTargetDistance >= 24,
+        `${reference.minimumTargetSize}px targets, ${reference.minimumTargetDistance}px centres`);
 
       await page.setViewport({ width: 320, height: 900 });
       await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
@@ -14016,11 +14055,9 @@ const SCENARIOS = [
             const row = '#rows .row:first-of-type';
             const expectedBadge = step === 1 ? 'override-available' : step === 2 ? 'override-unavailable' : badge;
             await page.waitForSelector(`${row} .badge-${expectedBadge}`, { timeout: 15000 });
-            if (width === 320) {
-              await click(page, `${row} [data-act="more"]`);
-              t.check(`${scope}: the first-row menu is open`,
-                await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
-            }
+            await revealReadingControl(page, `${row} [data-act="up"]`);
+            t.check(`${scope}: the first-row disclosure is open`,
+              await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
             await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
             for (const [act, phrase] of step === 0 ? actions : actions.filter(([act]) => act.startsWith('override-'))) {
               const button = await page.$(`${row} [data-act="${act}"]`);
@@ -14051,7 +14088,7 @@ const SCENARIOS = [
                 && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
                 JSON.stringify({ name, ...rendered }));
               t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
-                rendered.labelVisible === (width === 320 || act.startsWith('override-')) && rendered.iconDecorative && !rendered.iconFocusable
+                rendered.labelVisible && rendered.iconDecorative && !rendered.iconFocusable
                 && !exposesGlyph(computed)
                 && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
                 JSON.stringify(rendered));
@@ -14061,7 +14098,7 @@ const SCENARIOS = [
           const after = userState(await readState(page));
           t.check(`${width}px ${badge}: clearing explicit overrides restores metadata without changing list or progress`,
             JSON.stringify(after) === JSON.stringify(before), JSON.stringify({ before, after }));
-          if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
+          await revealReadingControl(page, `#rows [data-key="${second.issueId}"][data-act="up"]`);
           const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
           const otherName = (await page.accessibility.snapshot({ root: other, interestingOnly: false }))?.name ?? '';
           t.check(`${width}px ${badge}: repeated Move up controls distinguish issue identities`,
@@ -14089,6 +14126,7 @@ SCENARIOS.push({
     const before = await readState(page);
     const movedIds = [...before.lists.fixture.itemIds];
     [movedIds[0], movedIds[1]] = [movedIds[1], movedIds[0]];
+    await revealReadingControl(page, row(second.issueId, 'up'));
     await page.focus(row(second.issueId, 'up'));
     await click(page, row(second.issueId, 'up'));
     await page.waitForFunction((title) => document.querySelector('#announcer').textContent
@@ -14549,7 +14587,10 @@ SCENARIOS.push({
         const hit = document.elementFromPoint(x, y);
         return hit === control || control.contains(hit) || hit?.contains(control);
       });
+      const filterBounds = document.querySelector('#reading-filters').getBoundingClientRect();
       return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+        filterBottom: filterBounds.bottom,
+        scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop,
         visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
           && bounds.right <= innerWidth && bounds.bottom <= innerHeight };
     });
@@ -14592,14 +14633,11 @@ SCENARIOS.push({
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
         const actions = ['open', 'info', 'defer', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'remove'];
-        const narrow = viewport.width <= 620;
         await page.mouse.move(0, 0);
-        if (narrow) {
-          await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
-          await page.keyboard.press('Enter');
-          t.check(`${size} row ${index}: Enter opens More actions`,
-            await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
-        }
+        await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
+        await page.keyboard.press('Enter');
+        t.check(`${size} row ${index}: Enter opens More actions`,
+          await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
         const panel = `${row} .ract`;
         await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
         const panelBounds = await page.$eval(panel, (el) => {
@@ -14632,7 +14670,7 @@ SCENARIOS.push({
           pointers.length === actions.length && pointers.every((p) => p.visible && p.hits && !p.clips.length),
           JSON.stringify(pointers));
         await page.mouse.move(0, 0);
-        await page.$eval(narrow ? toggle : `${row} .rnote`, (el) => el.focus());
+        await page.$eval(toggle, (el) => el.focus());
         const keyboard = [];
         for (const act of actions) {
           await page.keyboard.press('Tab');
@@ -14648,37 +14686,35 @@ SCENARIOS.push({
         t.check(`${size} row ${index}: all nine actions receive trusted pointer and keyboard activation`,
           activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
-        if (narrow) {
-          const hintVisible = await page.evaluate(() => {
-            const control = document.activeElement;
-            const tip = document.querySelector('#action-tip');
-            return control?.matches('.has-tooltip') && tip && !tip.hidden
-              && tip.textContent === control.dataset.tooltip;
-          });
-          if (hintVisible) {
-            await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
-            await page.keyboard.press('Escape');
-            t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
-              await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
-                && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
-          }
+        const hintVisible = await page.evaluate(() => {
+          const control = document.activeElement;
+          const tip = document.querySelector('#action-tip');
+          return control?.matches('.has-tooltip') && tip && !tip.hidden
+            && tip.textContent === control.dataset.tooltip;
+        });
+        if (hintVisible) {
+          await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
           await page.keyboard.press('Escape');
-          const returned = await controlGeometry(toggle);
-          t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
-            returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
-              && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
-            JSON.stringify(returned));
-          await page.keyboard.press('Enter');
-          await page.keyboard.down('Shift');
-          try {
-            await page.keyboard.press('Tab');
-          } finally {
-            await page.keyboard.up('Shift');
-          }
-          t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
-            await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
-              && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
+          t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
+            await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
+              && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
         }
+        await page.keyboard.press('Escape');
+        const returned = await controlGeometry(toggle);
+        t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
+          returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
+            && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
+          JSON.stringify(returned));
+        await page.keyboard.press('Enter');
+        await page.keyboard.down('Shift');
+        try {
+          await page.keyboard.press('Tab');
+        } finally {
+          await page.keyboard.up('Shift');
+        }
+        t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
+          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+            && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
       }
     }
     await page.setViewport({ width: 320, height: 900 });
@@ -15364,8 +15400,25 @@ async function open(page, path) {
 // page.click is unreliable here: an element the app has just rendered is frequently reported as
 // not clickable while it is perfectly present and wired. Dispatching the click from inside the
 // page is what the app's own handlers see anyway.
-async function click(page, selector) {
+async function revealReadingControl(page, selector) {
   await page.waitForSelector(selector, { timeout: 15000 });
+  await page.evaluate((s) => {
+    const target = document.querySelector(s);
+    if (target.closest('.list-actions-body')) {
+      const list = document.querySelector('#list-actions');
+      if (!list.open) list.querySelector('summary').click();
+      const exports = target.closest('#list-export');
+      if (exports && !exports.open && !exports.querySelector('summary').contains(target)) {
+        exports.querySelector('summary').click();
+      }
+    }
+    const row = target.closest('.ract')?.closest('.row-actions');
+    if (row && !row.classList.contains('is-open')) row.querySelector('.row-actions-toggle').click();
+  }, selector);
+}
+
+async function click(page, selector) {
+  await revealReadingControl(page, selector);
   await page.evaluate((s) => document.querySelector(s).click(), selector);
 }
 
@@ -16441,8 +16494,8 @@ async function responsiveReading(page, { checked = false } = {}) {
     open: document.querySelector('#list-actions')?.open ?? null,
   }));
   console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
-    qualified: natural.open === !natural.narrow })}`);
-  if (natural.open !== !natural.narrow) throw new Error('Natural List actions breakpoint state did not qualify');
+    qualified: natural.open === false })}`);
+  if (natural.open !== false) throw new Error('Natural List actions closed state did not qualify');
   if (!natural.open) await click(page, '#list-actions > summary');
   await click(page, '#btn-synopsis');
   await page.waitForSelector('#ask[open]');
@@ -16976,6 +17029,11 @@ SCENARIOS.push(responsiveOwner({
     });
     await page.setViewport({ width: 700, height: 480 });
     await responsiveFrames(page);
+    const resized = await page.evaluate(() => ({
+      open: document.querySelector('#list-actions').open,
+      focused: document.activeElement === document.querySelector('#btn-export-md'),
+    }));
+    await page.keyboard.press('Escape');
     const focused = await page.evaluate(() => {
       const details = document.querySelector('#list-actions');
       return { closed: details?.open === false,
@@ -16995,6 +17053,7 @@ SCENARIOS.push(responsiveOwner({
     }));
     await page.evaluate(() => { window.__ux09HoldDetails = true; });
     responsiveStep(page, 'RC06-pending-hydrate-trigger');
+    await click(page, '#list-actions > summary');
     const pendingTrigger = await page.$eval('#btn-hydrate', (node) => ({
       visible: node.checkVisibility(), enabled: !node.disabled && !node.hidden, text: node.textContent,
     }));
@@ -17070,19 +17129,20 @@ SCENARIOS.push(responsiveOwner({
     const disclosurePredicates = {
       exists: disclosure.exists, rescueBeforeClose: focused.beforeClose.some((entry) => entry.summaryFocused
         && entry.stillOpen && entry.summaryVisible),
-      narrowClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
+      resizePreservesChoice: resized.open && resized.focused,
+      escapeClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
       completeIndependent: focused.completeOutside && focused.completeVisible,
       pendingIndependent: focused.pendingOutside && pending.outside && pending.statusVisible
         && pending.stopVisible && pending.status.includes('Fetching')
         && synopsisPending.outside && synopsisPending.statusVisible && synopsisPending.stopVisible,
-      wideNoSteal: wide.open && wide.focused,
+      wideNoSteal: !wide.open && wide.focused,
       completed: completedState.completeHidden && completedState.reopenVisible,
       unavailable: !unavailable.completeHidden && unavailable.completeDisabled
         && unavailable.guidance === 'Completion history is not valid JSON. Its saved value has been kept.',
     };
-    await responsiveReceipt(page, t, 'RC06', 'breakpoint closing rescues focus and preserves nested commands',
-      { disclosure, focused, wide, pending, synopsisPending, completedState, unavailable,
-        expected: { breakpoint: [701, 700, 701], closeOrder: 'focus visible summary before open=false',
+    await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
+      { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
+        expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
           pending: 'painted outside editing disclosure', complete: 'active visible; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
@@ -18083,6 +18143,7 @@ async function seedRemovalFixture(page, saved = fixtureReadingState()) {
 
 async function removeFixtureIssue(page, issueId) {
   const selector = `#rows [data-key="${issueId}"][data-act="remove"]`;
+  await revealReadingControl(page, selector);
   await page.waitForSelector(selector, { visible: true });
   await page.focus(selector);
   await page.evaluate((target) => document.querySelector(target).click(), selector);
@@ -18204,6 +18265,7 @@ SCENARIOS.push(
       await seedRemovalFixture(page, saved);
       const before = await readState(page);
       const target = `#rows [data-key="${removedId}"][data-act="remove"]`;
+      await revealReadingControl(page, target);
       await page.focus(target);
       const scrolled = await page.$eval('#app-report', (node) => node.getBoundingClientRect().bottom < 0);
       t.check('the removal starts genuinely scrolled away from the notice pane', scrolled);

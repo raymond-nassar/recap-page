@@ -263,7 +263,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1047-1060` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1051-1064` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:695-697`. The write, result, and notification are handled together at
 `src/js/storage.js:673-700`.
@@ -282,7 +282,7 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:732`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:734`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:36-44`.
 

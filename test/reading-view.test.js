@@ -58,6 +58,7 @@ function queryAll(root, selector) {
     if (selector === 'summary' && node.tag === 'summary') found.push(node);
     if (selector === '#reading-filters' && node.id === 'reading-filters') found.push(node);
     if (selector === '.order-strip' && node.className.split(/\s+/).includes('order-strip')) found.push(node);
+    if (selector === '.row-actions' && node.classList.contains('row-actions')) found.push(node);
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
   });
@@ -239,6 +240,7 @@ function harness(overrides = {}) {
   let writeFailures = 0;
   const notices = new Map();
   const nodes = {
+    documentElement: node({ tag: 'html' }),
     readingFilters: node({ id: 'reading-filters', tag: 'fieldset' }),
     saveEducationSettings: node({ id: 'save-education-settings', tag: 'a', href: '#/data' }),
     fullSummary: node({ tag: 'summary' }),
@@ -295,7 +297,7 @@ function harness(overrides = {}) {
   nodes.listExport = node({ id: 'list-export', tag: 'details' }, [
     node({ tag: 'summary', text: 'Export' }), nodes.btnExportMd, nodes.btnExportOrder,
   ]);
-  nodes.listActions = node({ id: 'list-actions', tag: 'details', open: true }, [
+  nodes.listActions = node({ id: 'list-actions', tag: 'details' }, [
     nodes.listActionsSummary,
     node({ class: 'list-actions-body' }, [
       nodes.btnRenameList, nodes.btnListNote, nodes.btnDuplicateList, nodes.listExport,
@@ -372,6 +374,7 @@ function harness(overrides = {}) {
 
   const documentStub = {
     activeElement: null,
+    documentElement: nodes.documentElement,
     listeners: {},
     createElement(tag) { return node({ tag }); },
     createTextNode(text) { return { text, textContent: text }; },
@@ -460,7 +463,13 @@ function harness(overrides = {}) {
 
   const previousDocument = globalThis.document;
   const previousMatchMedia = globalThis.matchMedia;
+  const previousResizeObserver = globalThis.ResizeObserver;
+  const observers = [];
   globalThis.document = documentStub;
+  globalThis.ResizeObserver = class {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe(target) { this.target = target; }
+  };
   globalThis.matchMedia = (media) => {
     assert.equal(media, '(max-width: 700px)');
     return {
@@ -482,6 +491,7 @@ function harness(overrides = {}) {
   return {
     calls,
     nodes,
+    observers,
     notices,
     settings,
     setActive(listId) { state = setActive(state, listId); },
@@ -494,9 +504,80 @@ function harness(overrides = {}) {
       else globalThis.document = previousDocument;
       if (previousMatchMedia === undefined) delete globalThis.matchMedia;
       else globalThis.matchMedia = previousMatchMedia;
+      if (previousResizeObserver === undefined) delete globalThis.ResizeObserver;
+      else globalThis.ResizeObserver = previousResizeObserver;
     },
   };
 }
+
+test('reading filter geometry reserves actual sticky clearance without changing saved state', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    const observer = h.observers.find((entry) => entry.target === h.nodes.readingFilters);
+    assert.ok(observer, 'the actual filter band has no size observation');
+    const before = JSON.stringify(h.state());
+    for (const height of [93.75, 54, 0]) {
+      h.nodes.readingFilters.getBoundingClientRect = () => ({ height });
+      observer.callback();
+      assert.equal(h.nodes.documentElement.style['--reading-filter-height'], `${height}px`);
+      assert.equal(JSON.stringify(h.state()), before);
+    }
+  } finally {
+    h.restore();
+  }
+});
+
+test('list actions remain closed until opened and Escape restores focus before closing', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    assert.equal(h.nodes.listActions.open, false);
+    const before = JSON.stringify(h.state());
+    let open = true;
+    const closing = [];
+    Object.defineProperty(h.nodes.listActions, 'open', {
+      get: () => open,
+      set(value) {
+        if (!value && open) closing.push(globalThis.document.activeElement);
+        open = value;
+      },
+    });
+    h.nodes.listExport.open = true;
+    h.nodes.btnExportMd.focus();
+    let prevented = false;
+    h.nodes.listActions.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(h.nodes.listActions.open, false);
+    assert.deepEqual(closing, [h.nodes.listActionsSummary]);
+    assert.equal(h.nodes.listExport.open, true);
+    assert.equal(JSON.stringify(h.state()), before);
+  } finally {
+    h.restore();
+  }
+});
+
+test('an open row command disclosure survives its own saved-state rerender', () => {
+  const h = harness();
+  try {
+    const findAction = (act) => {
+      let found;
+      walk(h.nodes.rows, (entry) => {
+        if (entry.dataset?.key === 2 && entry.dataset.act === act) found = entry;
+      });
+      return found;
+    };
+    h.view.renderRows();
+    findAction('more').fire('click');
+    assert.equal(findAction('more').getAttribute('aria-expanded'), 'true');
+    findAction('override-available').fire('click');
+    h.view.renderRows();
+    assert.equal(findAction('more').getAttribute('aria-expanded'), 'true');
+    assert.equal(h.state().overrides[2], 'available');
+  } finally {
+    h.restore();
+  }
+});
 
 test('UX05 reorder announces the persisted comic position and never claims a failed move', () => {
   const h = harness();
