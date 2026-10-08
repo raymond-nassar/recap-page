@@ -155,14 +155,15 @@ Google can also submit Console changes already ready for review when the API edi
 
 ## Delivered release matrix
 
-Evidence checked 2026-09-29 UTC. Update each row only after observing its own delivery, not merely
+Desktop delivery evidence checked 2026-10-08 UTC; Android rows retain their 2026-09-29 evidence.
+Update each row only after observing its own delivery, not merely
 after building, merging, uploading or requesting certification. Preserve original build provenance
 when an artifact was built before its release tag.
 
 | Platform/channel | Product/package | Source and delivery evidence | Status |
 |---|---|---|---|
-| Windows portable, GitHub stable | 3.0.1 / portable 3.0.1 | [v3.0.1](https://github.com/raymond-nassar/recap-page/releases/tag/v3.0.1), artifact source `64a7cd11d663d9a822660f25b656cf1019ce5f7d`, later release tag `26164bc51fcd8c6f4b986ccedf05695907ffdd89`; attached preparation record and ZIP SHA-256 `f2640568088246d9b27a11a6c1100e185ebff868e0585653c4bd139d72517ce8` | Published 2026-09-20. |
-| Microsoft Store, production | Live version not reverified in this task | [Store packet completion](https://github.com/raymond-nassar/recap-page/issues/368#issuecomment-5521178746); later [2.1.0 submission record](https://github.com/raymond-nassar/recap-page/issues/488#issuecomment-5644530944) reports certification, not publication | Existing channel. Do not infer live version/source from a GitHub tag or workflow success. Owner read-back is required before the next Store update. |
+| Windows portable, GitHub stable | 4.0.0 / portable 4.0.0 | [v4.0.0](https://github.com/raymond-nassar/recap-page/releases/tag/v4.0.0), artifact source `27b00929f47db188fa94f26dcf0536389d0807f8`, later release tag `1bc436d9488f65f8230e4e6ba4594bbcf0d15d26`; both share tree `1eeecbff5a4a9a315c8b00e732ea5d6f00711cb9`. ZIP SHA-256 `96e15db9f7579246e617ca97f8da25c7d8b6a5256555156609e6214cae536ee8` | Published 2026-10-08. |
+| Microsoft Store, production | 4.0.0 / 4.0.0.0 | [Owner delivery confirmation](https://github.com/raymond-nassar/recap-page/pull/748#issuecomment-6062078462), following [run 37783966719](https://github.com/raymond-nassar/recap-page/actions/runs/37783966719), submission `1152921505702075190`, source `1bc436d9488f65f8230e4e6ba4594bbcf0d15d26`, bundle SHA-256 `7f8f9120c233ff2f59dc3947751165b021fe2f186f3058a6967d0278670256e9` | Owner confirmed available and installed 2026-10-08; not inferred from submission success. |
 | Android, GitHub sideload beta | 3.0.1 / 3.0.1-beta.2, code 3000002 | [Beta 2](https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2), source `b174688c53b9f129aafc40d5763b939430a279e3`, APK SHA-256 `67c663cb00356bfe972076b86b6ee2686fee3fdffa4830c8f5a12f11218b7187` | Published 2026-09-28; prototype signing, not sustainable Play update identity. |
 | Android, hosted development | 3.0.1 / legacy beta label, code 3000002 | [Run 36510133212](https://github.com/raymond-nassar/recap-page/actions/runs/36510133212), source `fd10803c1d316686d1dfaad8b16f911f4d9eed1f` | Test-only artifact, not a later public beta or a Play release. |
 | Android, Google Play | None | [Publication roadmap](https://github.com/raymond-nassar/recap-page/issues/570) | Not enrolled or published by this work. |
