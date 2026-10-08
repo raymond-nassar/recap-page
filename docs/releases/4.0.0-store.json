@@ -1,0 +1,5 @@
+{
+  "version": "4.0.0",
+  "locale": "en-us",
+  "text": "- Rate individual comics privately from half a star to five stars without marking them read.\n- Browse MCU Prep by movie or series release, change the order and search by title or character.\n- Explore new guides for Brand New Day, She-Hulk, Ms. Marvel, Brave New World, Guardians of the Galaxy and Agatha All Along. Missing provider details stay explicitly identified.\n- Read with clearer Read and Done actions, compact controls and easier navigation on phones and long lists.\n- Resume unfinished pasted orders without losing their source or unresolved positions.\n- Choose clearly named reading-data, history and unfinished-import backups, with truthful recovery outcomes.\n- Back up before upgrading. Existing reading data migrates to schema 4 for ratings; older app versions cannot edit the newer data or restore its backups. History and unfinished drafts still require their separate exports."
+}

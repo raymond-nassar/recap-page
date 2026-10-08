@@ -461,8 +461,8 @@ async function runUpgrade({ puppeteer, edge, mutation }) {
         return { schema: model.SCHEMA_VERSION, ok: store.lastUpdateOk, raw: localStorage.getItem(KEY),
           token: store.seenToken, state: store.state };
       });
-      check('downgrade-candidate', 'candidate saves unread and read-with-retained schema 3 intent',
-        candidate.schema === 3 && candidate.ok && candidate.token !== baseline.token
+      check('downgrade-candidate', 'candidate saves unread and read-with-retained schema 4 intent',
+        candidate.schema === 4 && candidate.ok && candidate.token !== baseline.token
         && candidate.state.lists[before.listId].deferredIssueIds.length === 2
         && Object.values(candidate.state.read).includes(510));
       const staleResult = await stale.evaluate(async () => {

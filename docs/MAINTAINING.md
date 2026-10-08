@@ -206,7 +206,7 @@ Calculate the number of commands first.
 ## Run the upgrade check
 
 This check also pins the pre-deferral schema-2 build at
-`ba23627bd7d094b649a7c3d113ab659bf88b4a8e`. It saves nonempty schema-3 intent in the candidate,
+`ba23627bd7d094b649a7c3d113ab659bf88b4a8e`. It saves nonempty schema-4 intent in the candidate,
 tries ordinary writes from a live stale older tab and a freshly loaded older build at the same
 isolated origin, then returns to the candidate. Exact canonical bytes, read timestamps, list
 identity and order must survive. This downgrade-refusal check does not cover deliberate

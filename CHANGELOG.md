@@ -13,6 +13,129 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.0.0
+
+### Rate your comics, find your next read and keep unfinished work
+
+- Rate individual comics privately from half a star to five stars without marking them read.
+- Browse MCU Prep by movie or series release, switch between oldest and newest, and search by title
+  or character.
+- Find new MCU Prep guides for Spider-Man: Brand New Day, She-Hulk, Ms. Marvel, Captain America:
+  Brave New World, Guardians of the Galaxy and Agatha All Along.
+- Read with clearer Read and Done actions, compact list controls and easier navigation on phones
+  and long Reading Lists.
+- Keep unfinished pasted orders on your device and resume matching without losing their source
+  or unresolved positions.
+- Choose clearly named backups for reading data, completion history and unfinished imports, with
+  recovery messages that explain what was actually saved or retained.
+
+### Saved data and upgrading
+
+This is a major version because private issue ratings introduce reading-data schema 4. Upgrading
+from 3.2.0 preserves existing lists, progress, notes, availability overrides and deferrals while
+adding an initially empty ratings map. Backups from schemas 1, 2 and 3 remain readable.
+The storage key and fixed local address are unchanged.
+
+**Export a reading-data backup before upgrading and keep that pre-upgrade copy independently.**
+Ratings are included in the ordinary reading-data JSON backup, not Markdown sharing exports.
+Restoring an older reading-data backup replaces ratings with none; Undo last restore recovers the
+previous saved ratings with the rest of the previous reading data.
+
+**Older app versions cannot edit schema-4 data or restore its backups.** Their unsupported-schema
+recovery preserves the newer data rather than silently dropping ratings. Use a rating-capable
+build to restore a schema-4 backup. Installing an older build is not a safe rollback of newer data.
+
+Completion and enjoyment still have their own history backup. Unfinished pasted imports use a
+separate optional draft backup that preserves their exact source and unresolved positions.
+Neither history nor unfinished drafts are silently included in a reading-data backup. Settings
+remain distinct, and temporary reader links remain memory-only.
+
+Windows browser profiles, Android app storage and other browser profiles do not share saved data.
+There is no automatic transfer or cloud synchronization. Keep the same installation/profile and
+local address when updating, and export each relevant backup separately when moving data.
+
+This record prepares a release candidate. It does not announce Windows Store or Google Play
+availability. Platform qualification, physical-device acceptance and each publication approval
+remain separate.
+
+### Private half-star issue ratings
+
+Open About this comic and choose Rate this issue to save a score from half a star to five stars.
+The saved score stays compact above your note; the editor opens only when requested. Ratings are
+optional and independent of reading progress, list membership and separate list enjoyment.
+Edit or remove a score, or cancel without changing it. Failed saves keep the draft available
+instead of claiming success, and stale editors cannot overwrite a changed saved rating.
+
+### Reading, discovery and retained work
+
+List management starts closed, and each row exposes secondary commands through an explicit
+More actions control. Expanded controls and focus survive row updates and layout changes.
+Read opens a comic; Done records progress and continues. Opening a comic never marks it read.
+Pointer and touch navigation no longer force a focus box around the page title, while keyboard
+focus remains visible.
+
+Native navigation links, clearer discovery, results-first comic search and long-collection
+controls make it easier to find a guide and return to it. Narrow layouts keep their controls
+usable without avoidable clipping. The existing availability distinctions, temporary-link
+warnings and separate immediate reader launch remain intact.
+
+Unfinished pasted orders retain their exact source and unresolved positions locally. Resolved
+comics keep their source order, and interrupted or uncertain saves retain recovery evidence.
+Reading-data, history and draft backup actions identify the kind of copy they use. Restore,
+Undo and recovery messages distinguish requested downloads from verified or retained copies.
+
+### MCU Prep by screen release
+
+Movie and Disney+ series companions are organized by phase and screen release date. Browse oldest
+first, reverse to newest first, or search by character and title. Guides associated with several
+releases appear once at their earliest release, while every associated title stays searchable.
+Scheduled and year-only dates are labeled, and general guides remain visible. If release metadata
+cannot load, guides remain searchable and release sorting offers a focused Retry.
+
+### New MCU Prep reading guides
+
+- **Spider-Man: Brand New Day:** Coming Home, the first Brand New Day volume and Back to Basics,
+  with nineteen resolved originals. Venom Super Special (1995) #1 remains a documented metadata
+  gap. Bonus-story selections open their whole original comics.
+- **She-Hulk: Attorney at Law:** The Savage She-Hulk origin, Single Green Female and Law and
+  Disorder, with thirteen originals in three groups. Edition and creator-credit qualifications
+  remain explicit; the guide does not promise direct adaptation or availability.
+- **Ms. Marvel:** No Normal, Generation Why and Destined, with eighteen original comics.
+  The selected Kamala material in Point One opens the whole anthology, sharing original-level
+  progress with First Steps. Both broader Ms. Marvel guides remain available.
+- **Captain America: Brave New World:** Red Hulk, Hydra Ascendant and Not My Captain America,
+  with nineteen originals in the selected order. Wolverine (2003) #50 opens the full original
+  for its selected Puny Little Man backup. Collection contents are established without claiming
+  independently verified physical table-of-contents order or direct screen adaptation.
+- **Guardians of the Galaxy:** A formation-focused Annihilation: Conquest selection, Legacy,
+  Rocket Raccoon: A Chasing Tale and Al Ewing's Then It's Us, with twenty-eight originals.
+  Preview the four groups before importing; shared originals retain their existing progress.
+- **Agatha All Along:** Agatha Harkness's first appearance and Steve Orlando's The Last Door,
+  with seven whole originals ready to import. The five selected House of Harkness Infinity Comic
+  chapters remain explicitly missing provider details, without substitutes or placeholders.
+
+Guide imports preserve existing lists, shared issue-level progress, notes, availability overrides,
+deferrals and separate completion history. Previously imported descriptions are retained.
+The unresolved Brand New Day and Agatha metadata bundles remain tracked separately in
+[#707](https://github.com/raymond-nassar/recap-page/issues/707) and
+[#728](https://github.com/raymond-nassar/recap-page/issues/728).
+
+### Release and authoring maintenance
+
+Android release workflows derive normal inputs from reviewed reservations and verified packets.
+Signing and publishing still require separate human approvals and exact-artifact checks.
+Testing publication checks supported destination state within the approved operation; optional
+native CI uses a single mode selector. Concurrent or pending Play Console work remains a stop.
+The publishing guide clarifies the restricted workload-identity claims used by Google.
+
+Android qualification installs a checksum-verified pinned emulator and separates workflow-owned
+tooling from the requested application source. Windows publishing retrieves full history for its
+separate tooling checkout. The release upgrade check now requires the current schema 4 while
+retaining its historical baseline, stale-tab refusal and exact saved-data preservation checks.
+
+Reading-list authoring gains reusable Markdown preparation, early publication checks and shared
+validation, without changing existing saved progress. No browser runtime dependency is added.
+
 ## 3.2.0
 
 ### More reading choices and quieter next steps
