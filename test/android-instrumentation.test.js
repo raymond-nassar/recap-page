@@ -214,7 +214,7 @@ test('registered CI keeps mutually exclusive manual rehearsal and original debug
     ['  test:', '  lint:', '  android-emulator:'].includes(match[0].trimEnd())).length, 3);
 });
 
-test('emulator setup installs the verified tested archive instead of the moving stable package',
+test('emulator setup retries SDK downloads and installs only the verified tested archive',
   { skip: process.platform === 'win32' }, async () => {
     const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
     const setup = runner.slice(runner.indexOf('SDKMANAGER='), runner.indexOf('{\n  git rev-parse HEAD'));
@@ -223,6 +223,7 @@ test('emulator setup installs the verified tested archive instead of the moving 
       const script = `
 set -euo pipefail
 SDK="$RUNNER_TEMP/sdk"
+rm -rf -- "$SDK/.temp" "$SDK/.downloadIntermediates"
 mkdir -p "$SDK/emulator" "$SDK/system-images/android-36/google_apis/x86_64"
 printf 'Pkg.Revision = 37.2.11\\n' > "$SDK/emulator/source.properties"
 touch "$SDK/emulator/stale-file"
@@ -245,16 +246,33 @@ unzip() {
   mkdir -p "\${@: -1}/emulator"
   printf 'Pkg.Revision = %s\\n' "$EMULATOR_REVISION" > "\${@: -1}/emulator/source.properties"
 }
+SDK_ATTEMPTS=0
+SDK_SLEEPS=0
+sleep() {
+  [[ "$*" == 5 ]]
+  SDK_SLEEPS=$((SDK_SLEEPS + 1))
+}
 SDKMANAGER() {
   [[ "$*" == '--channel=0 platforms;android-36 build-tools;35.0.0 system-images;android-36;google_apis;x86_64' ||
-     "$*" == '--channel=0 emulator platforms;android-36 build-tools;35.0.0 system-images;android-36;google_apis;x86_64' ]]
+     "$*" == '--channel=0 emulator platforms;android-36 build-tools;35.0.0 system-images;android-36;google_apis;x86_64' ]] || return 1
+  test ! -e "$SDK/.temp" && test ! -e "$SDK/.downloadIntermediates" || return 24
+  SDK_ATTEMPTS=$((SDK_ATTEMPTS + 1))
+  printf '%s\\n' "$SDK_ATTEMPTS" > "$RUNNER_TEMP/sdk-attempts"
+  printf '%s\\n' "$SDK_SLEEPS" > "$RUNNER_TEMP/sdk-sleeps"
+  if [[ "$SDK_ATTEMPTS" -le "$SDK_FAILURES" ]]; then
+    mkdir -p "$SDK/.temp" "$SDK/.downloadIntermediates"
+    printf '%s\\n' 'Error on ZipFile unknown archive' >&2
+    return 23
+  fi
 }
 ${setup.replace('"$SDKMANAGER" --channel=0', 'SDKMANAGER --channel=0')}
 test ! -e "$SDK/emulator/stale-file"
 grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
 `;
-      for (const [checksumOk, emulatorRevision, imageRevision, error] of [
+      for (const [checksumOk, emulatorRevision, imageRevision, error, sdkFailures = 0] of [
         ['true', '37.1.11', '7', null],
+        ['true', '37.1.11', '7', null, 2],
+        ['true', '37.1.11', '7', 'Android SDK installation failed after 3 attempts', 3],
         ['false', '37.1.11', '7', 'Android Emulator archive checksum verification failed'],
         ['true', '37.2.11', '7', 'Expected Android Emulator revision 37.1.11'],
         ['true', '37.1.11', '8', 'Expected API 36 Google APIs x86_64 image revision 7'],
@@ -263,10 +281,14 @@ grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
         const result = childProcess.spawnSync('bash', ['-c', script], {
           encoding: 'utf8',
           env: { ...process.env, RUNNER_TEMP: root, CHECKSUM_OK: checksumOk,
-            EMULATOR_REVISION: emulatorRevision, IMAGE_REVISION: imageRevision },
+            EMULATOR_REVISION: emulatorRevision, IMAGE_REVISION: imageRevision,
+            SDK_FAILURES: String(sdkFailures) },
         });
         assert.ifError(result.error);
-        assert.equal(result.status, error ? 1 : 0, result.stderr);
+        assert.equal(result.status, sdkFailures === 3 ? 23 : error ? 1 : 0, result.stderr);
+        const attempts = Math.min(sdkFailures + 1, 3);
+        assert.equal(await readFile(join(root, 'sdk-attempts'), 'utf8'), `${attempts}\n`);
+        assert.equal(await readFile(join(root, 'sdk-sleeps'), 'utf8'), `${attempts - 1}\n`);
         if (!error) {
           const metadata = await readFile(join(root, 'sdk/emulator/package.xml'), 'utf8');
           assert.match(metadata, /<localPackage path="emulator">/);
@@ -274,6 +296,10 @@ grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
           assert.match(metadata, /<revision><major>37<\/major><minor>1<\/minor><micro>11<\/micro><\/revision>/);
         } else {
           assert.ok(result.stderr.includes(error), result.stderr);
+          if (sdkFailures === 3) {
+            assert.equal(await readFile(join(root, 'verified'), 'utf8').catch(() => null), null,
+              'SDK failure must stop before downloading or installing the emulator');
+          }
           assert.equal(await readFile(join(root, 'sdk/emulator/source.properties'), 'utf8'), 'Pkg.Revision = 37.2.11\n');
           await readFile(join(root, 'sdk/emulator/stale-file'));
         }
