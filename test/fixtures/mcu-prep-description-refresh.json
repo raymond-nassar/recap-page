@@ -1,0 +1,108 @@
+{
+  "sourceCommit": "1389e546de45b76844325cf149a6b7911829d360",
+  "issue": "https://github.com/raymond-nassar/recap-page/issues/731",
+  "readingChoiceHistoryLfSha256": "b20f45a3c357d2733beb9e90c8e66a7b7d3ef7c8d44b9c79c5d041c5d6bef250",
+  "entries": [
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "file": "mcu_prep_deadpool_and_wolverine.json",
+      "before": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "after": "Dive into Logan's Weapon X nightmare and Wade's chaotic mercenary life, then fast forward to a battered, future version of Wolverine who's finally ready to pop the claws again. Brutal experiments, outrageous mercenary jobs, and one very rough retirement: there's plenty of trouble to go around.",
+      "manifestSha256": "7e4ad5fb9b14cc22880f92201f34cfadc088bf399086550858eeb4e4ba63fdc9",
+      "catalogSha256": "504c6fd364ac122d832ade6a3ff8ca11042ed9bbca181097f7176dd2bff44ed2",
+      "payloadSha256": "e47b85b90363434975379c51f0fe01f2f8923326e50ae99acd30470477999724",
+      "payloadLfSha256": "842c050353b09d808f25b7238d630a013b80b4279e174779d471f4cdb2dad0aa"
+    },
+    {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "before": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "after": "Watch Kingpin learn Matt Murdock's secret and burn his whole life to the ground, straight from the comic that gave the show its name. This is Hell's Kitchen at its most brutal, with Fisk tightening his grip on the city while Matt fights to survive.",
+      "manifestSha256": "17af04fcfb23e6c55ada0dfc480381692bc4e491aa053c714b5505d14724790e",
+      "catalogSha256": "fbbac7079d528d8aaf1fc991262ec9002e2158ec656f0cf3619fe48f698525a4",
+      "payloadSha256": "b3582eb37c86592bd110a57cd04aac1445a77ed260462e4f0ebb936a0ba06acb",
+      "payloadLfSha256": "5cd92a461b6a263c04a516c4590acc14524fad2030e629e2800e380dfb605391"
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "file": "mcu_prep_thunderbolts.json",
+      "before": "34 resolved originals; Thunderbolts (1997) #-1 remains a documented provider gap. Owner-selected prep from four collections and one Taskmaster spotlight, following the original team, Natasha and Yelena, Bucky's Winter Soldier story and his later Thunderbolts team.",
+      "after": "Meet the original team of villains playing at being heroes, then follow Bucky's Winter Soldier past, Natasha and Yelena's deadly rivalry, and Taskmaster's mercenary tricks. It's a crash course in trusting people you really shouldn't. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "manifestSha256": "cd0fe30538c5a62966fcbb4a3668286b8bff88e38fb9d58996fe7bb48ce1b06b",
+      "catalogSha256": "2b12eabdb72f2ffcebdf7d6fe6feebe3286fd4495f8c73f6f682b1c499b2fd13",
+      "payloadSha256": "00a08d0b54c22de245acde4bc6dffcbe22a015f5e253ed96a94839217cfadb1e",
+      "payloadLfSha256": "4c0f1db00a7cb01632420f7eec5b93db95811fe50f32ffb5369f275ab20890e2"
+    },
+    {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "file": "mcu_prep_fantastic_four_first_steps.json",
+      "before": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+      "after": "Start with the cosmic accident that made Marvel's First Family, then go straight to the arrival of Galactus and the Silver Surfer. Family, science, and world-ending stakes, all in one package. The Point One selection opens the whole anthology, including stories beyond its Silver Surfer material.",
+      "manifestSha256": "a09f3489285a502798e75c9aa10f61e7b66438e71dd66a7d311bafadfdd30902",
+      "catalogSha256": "de676daea66e60699b408b969199fdd8ab26c0f9d4faaf53bdd2d25e9f77b216",
+      "payloadSha256": "eb883c227d1cdc4ada0227868b3c816143b0157b67f1861648cd1c2e7a65599a",
+      "payloadLfSha256": "b8350ad914227c01d67dc63fbbe09605fa6549dc1c513956a40c7409de6c8058"
+    },
+    {
+      "id": "avengers-doomsday-secret-wars",
+      "file": "avengers_doomsday_secret_wars.json",
+      "before": "The Secret Wars fast track, presented as comics background for Avengers: Doomsday and Avengers: Secret Wars. Uses the same ten trade-based sections and shared issue read progress, with its own saved Reading List.",
+      "after": "Doctor Doom at his most brilliant and ruthless, building toward the moment he becomes a literal god ruling over the wreckage of a shattered multiverse. This is the deep end of Marvel cosmic stakes, with Doom finally taking center stage.",
+      "manifestSha256": "096ec4cf29a8e269db92d411d8ee064c472d129df7dde5e373cf5a94f709eb64",
+      "catalogSha256": "ddcf77f1ef4517c0d07599953ee49d613f569c83625d6664782e9264a58567d7",
+      "payloadSha256": "56357650c7312de669c0d182178b51980b71bdc07d20889121b4306a121ba405",
+      "payloadLfSha256": "77aa9e6a2c28b35643361133d4326ff0a2f2186cc728c721937f8e407e88df00"
+    },
+    {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "before": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "after": "Shang-Chi's estranged siblings crawl out of his father's shadow to claim a deadly empire, while new allies and the Ten Rings pull him into fresh trouble. Family legacy and master assassin drama collide.",
+      "manifestSha256": "2e9657d5d91571687a31c98feb869004e6c5dae21861a332ca7db60cfa87d4c8",
+      "catalogSha256": "77225e4b9db5783a10e5ed007d2a255c984a22bbd0d1273a9858a387d679c424",
+      "payloadSha256": "2891abedbc7c84cafe0d74c72edb1e08125a554f45b96992c59fe9f459669c35",
+      "payloadLfSha256": "c72c210072b626014ebd0d02b790070d85c59dd6eb1f61af8c8b61d788ea6538"
+    },
+    {
+      "id": "mcu-prep-eternals",
+      "file": "mcu_prep_eternals.json",
+      "before": "Three owner-selected Eternals collections: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s miniseries, then Kieron Gillen and Esad Ribic's first volume. Original issues only.",
+      "after": "Ancient god-like beings have secretly shaped human history since the Stone Age, and these books peel back the mystery of who they really are. Expect secret identities, buried memories, and the kind of scale only cosmic beings can deliver.",
+      "manifestSha256": "c65c27834bc6e9a0457bf0d5aee5517733e6cf0cc0976c228971f8c22d259c73",
+      "catalogSha256": "d58d2316c16afc64e0b1fef2458092a3a713f093e8e7c118156c8c50cdd0384c",
+      "payloadSha256": "30fa1ac2b99c2b5e349b9fc2d3cba597669225cea38555cb00d2da0312ac6ab0",
+      "payloadLfSha256": "15d765a2676f18870eeaf8487549cf6e987c9f427a37bd8bb11a3b173e86d51f"
+    },
+    {
+      "id": "spider-man-no-way-home",
+      "file": "spider_man_no_way_home.json",
+      "before": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+      "after": "Swing through Peter's tangled past, a desperate fight to protect the people he loves, and a brush with Doctor Strange's magic. Nostalgia, heartbreak, and magical trouble, all in one web.",
+      "manifestSha256": "602ec8f272eb3db6dff8e824d73c0dff7bfad1997891c1e277161817b5239d55",
+      "catalogSha256": "c50ab3be1c739d739d2983446d589c3b2c3700c1f1c4cd998615dd0b6718e5a1",
+      "payloadSha256": "81db8e269395ebe463a509f8b2e70aca99c40281056808f2419a9339c9c56dea",
+      "payloadLfSha256": "3adc2c9972ac801950183fdbaf08bb7de298f47b1ee3b8fe377c109a3161aae5"
+    },
+    {
+      "id": "mcu-prep-moon-knight",
+      "file": "mcu_prep_moon_knight.json",
+      "before": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "after": "Marc Spector's identities fight for control of his own mind while Egyptian gods pull the strings behind the scenes. Expect psychological horror, divine politics, and zero certainty about who's really driving.",
+      "manifestSha256": "cad49b8b830e84bcba588a379cb87c602a499d686c1472b945509b28bc6de163",
+      "catalogSha256": "9a60300de5c1f057a65ca9589cedf7e6a7846a53939e164231c0a969fc362dda",
+      "payloadSha256": "1f0817c4a8042bd09b6c122d1e98782185d47098a66e12df33d273a82f1a255f",
+      "payloadLfSha256": "41b89a7286ee3f2e94ffdaecf5899e1a67da9902c1a00b8d4ead37d174c9d129"
+    },
+    {
+      "id": "doctor-strange-multiverse-of-madness",
+      "file": "doctor_strange_multiverse_of_madness.json",
+      "before": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+      "after": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",
+      "manifestSha256": "7aa4978f60561d0b29d90966e6a80a4a9dab880ed7fe1c30009ab82a7493fd10",
+      "catalogSha256": "59c129fd4efcd4196aca669b04fa6be5961d72dc79a75dd0f71cc3713dce1735",
+      "payloadSha256": "dda00a1d32035d15a28c1089f0ed559d9aba21782d8179abc6b33d150a37b76e",
+      "payloadLfSha256": "305cd7646896917b4633eebbe3de4cb5496a95427e236e5a917239e8d3405378"
+    }
+  ],
+  "sha256": "6333cf20651e02519060549f043a32883a64e0413af64621e5f19831c0b11e2a"
+}

@@ -2,19 +2,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { createEmptyState, createList, MAX_COLLECTION } from '../src/js/lib/model.js';
+import { expectedMcuTitles } from '../test/helpers/current-reading-library.mjs';
 
 const readJson = (url) => JSON.parse(readFileSync(url, 'utf8'));
 const fixture = readJson(new URL('../test/fixtures/mcu-prep-moon-knight-browser-vector.json', import.meta.url));
 const prior = readJson(new URL('../src/data/moon_knight_reading_order.json', import.meta.url));
 const { id, name, rows: expected } = fixture;
 const groups = [...new Set(expected.map((row) => row.section))];
-const screenTitles = [
-  'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-  'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-  'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', name, 'Eternals',
-  'MCU Prep: The Fantastic Four: First Steps',
-  'MCU Prep: Deadpool & Wolverine', 'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
-];
+const screenTitles = expectedMcuTitles();
 const priorId = 'prior-moon-knight';
 const issueNote = 'My existing Moon Knight issue note';
 const guideNote = 'My existing complete-guide note';

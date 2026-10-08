@@ -1,0 +1,984 @@
+{
+  "id": "mcu-prep-guardians-of-the-galaxy",
+  "name": "MCU Prep: Guardians of the Galaxy",
+  "description": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/700",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-07T13:27:16.994Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 28,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 15891,
+      "title": "ANNIHILATION: CONQUEST PROLOGUE 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15891/annihilation_conquest_prologue_1_2007_1",
+      "seriesId": 2420,
+      "seriesName": "ANNIHILATION: CONQUEST PROLOGUE 1 (2007)",
+      "onSale": "2007-06-20T00:00:00+0000",
+      "mu": "2007-06-20T00:00:00+0000",
+      "digitalId": 7932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/513a75867ca5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 16009,
+      "title": "Annihilation: Conquest - Starlord (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16009/annihilation_conquest_-_starlord_2007_1",
+      "seriesId": 2541,
+      "seriesName": "Annihilation: Conquest - Starlord (2007)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 7937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/51df25c64725e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "penciler"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 16191,
+      "title": "Annihilation: Conquest - Starlord (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16191/annihilation_conquest_-_starlord_2007_2",
+      "seriesId": 2541,
+      "seriesName": "Annihilation: Conquest - Starlord (2007)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 7938,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/51df26f6f3ec3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "penciler"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 16598,
+      "title": "Annihilation: Conquest - Starlord (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16598/annihilation_conquest_-_starlord_2007_3",
+      "seriesId": 2541,
+      "seriesName": "Annihilation: Conquest - Starlord (2007)",
+      "onSale": "2007-09-26T00:00:00+0000",
+      "mu": "2007-09-26T00:00:00+0000",
+      "digitalId": 7939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/51df288b4fbaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "penciler"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 16599,
+      "title": "Annihilation: Conquest - Starlord (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16599/annihilation_conquest_-_starlord_2007_4",
+      "seriesId": 2541,
+      "seriesName": "Annihilation: Conquest - Starlord (2007)",
+      "onSale": "2007-11-07T00:00:00+0000",
+      "mu": "2007-11-07T00:00:00+0000",
+      "digitalId": 7940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/51df29e9e311d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "penciler"
+        },
+        {
+          "name": "Nic Klein",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 17271,
+      "title": "Annihilation: Conquest (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17271/annihilation_conquest_2007_1",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2007-11-07T00:00:00+0000",
+      "mu": "2007-11-07T00:00:00+0000",
+      "digitalId": 7930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/4e8381b35e231",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 17405,
+      "title": "Annihilation: Conquest (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/17405/annihilation_conquest_2007_2",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2007-12-05T00:00:00+0000",
+      "mu": "2007-12-05T00:00:00+0000",
+      "digitalId": 7931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/4e8384c84cd95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 17645,
+      "title": "Annihilation: Conquest (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17645/annihilation_conquest_2007_3",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-01-02T00:00:00+0000",
+      "mu": "2008-01-02T00:00:00+0000",
+      "digitalId": 10630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4e83867ba1c87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 20686,
+      "title": "Annihilation: Conquest (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20686/annihilation_conquest_2007_4",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-02-06T00:00:00+0000",
+      "mu": "2008-02-06T00:00:00+0000",
+      "digitalId": 10631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/4e83879785c16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 20885,
+      "title": "Annihilation: Conquest (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/20885/annihilation_conquest_2007_5",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-03-12T00:00:00+0000",
+      "mu": "2008-03-12T00:00:00+0000",
+      "digitalId": 10633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/4e8389572567c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 21016,
+      "title": "Annihilation: Conquest (2007) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/21016/annihilation_conquest_2007_6",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-04-16T00:00:00+0000",
+      "mu": "2008-04-16T00:00:00+0000",
+      "digitalId": 10635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/4e81eebde62e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Wellinton Alves",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annihilation: Conquest (formation-focused owner compilation)"
+    },
+    {
+      "issueId": 21268,
+      "title": "Guardians of the Galaxy (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21268/guardians_of_the_galaxy_2008_1",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-05-14T00:00:00+0000",
+      "mu": "2008-05-14T00:00:00+0000",
+      "digitalId": 10838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/517ad3738f6a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 21412,
+      "title": "Guardians of the Galaxy (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21412/guardians_of_the_galaxy_2008_2",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 10840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad37ceb179",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 21586,
+      "title": "Guardians of the Galaxy (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21586/guardians_of_the_galaxy_2008_3",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-07-09T00:00:00+0000",
+      "mu": "2008-07-09T00:00:00+0000",
+      "digitalId": 10848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/517ad3694cee2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 21783,
+      "title": "Guardians of the Galaxy (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/21783/guardians_of_the_galaxy_2008_4",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-08-20T00:00:00+0000",
+      "mu": "2008-08-20T00:00:00+0000",
+      "digitalId": 10867,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/517ad36440e01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 22025,
+      "title": "Guardians of the Galaxy (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/22025/guardians_of_the_galaxy_2008_5",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-09-17T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 10868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/517ad355c9b05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 22352,
+      "title": "Guardians of the Galaxy (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/22352/guardians_of_the_galaxy_2008_6",
+      "seriesId": 4885,
+      "seriesName": "Guardians of the Galaxy (2008 - 2010)",
+      "onSale": "2008-10-15T00:00:00+0000",
+      "mu": "2008-10-15T00:00:00+0000",
+      "digitalId": 11045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/517ad475ab6f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clint Langley",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Vol. 1: Legacy"
+    },
+    {
+      "issueId": 50221,
+      "title": "Rocket Raccoon (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50221/rocket_raccoon_2014_1",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-07-02T00:00:00+0000",
+      "mu": "2015-01-05T00:00:00+0000",
+      "digitalId": 34252,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/30/53ada103c6c31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 50223,
+      "title": "Rocket Raccoon (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50223/rocket_raccoon_2014_2",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/53da95a0701dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 50224,
+      "title": "Rocket Raccoon (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50224/rocket_raccoon_2014_3",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-09-03T00:00:00+0000",
+      "mu": "2015-03-02T00:00:00+0000",
+      "digitalId": 34746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/53f75c7309eef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 50225,
+      "title": "Rocket Raccoon (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/50225/rocket_raccoon_2014_4",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-10-08T00:00:00+0000",
+      "mu": "2015-04-13T00:00:00+0000",
+      "digitalId": 34858,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5429bb870aec0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 50788,
+      "title": "Rocket Raccoon (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/50788/rocket_raccoon_2014_5",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5446bcf23f418",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 51150,
+      "title": "Rocket Raccoon (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/51150/rocket_raccoon_2014_6",
+      "seriesId": 18806,
+      "seriesName": "Rocket Raccoon (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-08T00:00:00+0000",
+      "digitalId": 35845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5486032f431c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Skottie Young",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon Vol. 1: A Chasing Tale"
+    },
+    {
+      "issueId": 78683,
+      "title": "Guardians of the Galaxy (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78683/guardians_of_the_galaxy_2020_1",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-01-22T00:00:00+0000",
+      "mu": "2020-07-27T00:00:00+0000",
+      "digitalId": 53556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5e1c8c88ea5a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    },
+    {
+      "issueId": 78684,
+      "title": "Guardians of the Galaxy (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78684/guardians_of_the_galaxy_2020_2",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5e28a2bcbaccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    },
+    {
+      "issueId": 78685,
+      "title": "Guardians of the Galaxy (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/78685/guardians_of_the_galaxy_2020_3",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/5e67bd7569883",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Belen Ortega",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Nina Vakueva",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    },
+    {
+      "issueId": 78686,
+      "title": "Guardians of the Galaxy (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/78686/guardians_of_the_galaxy_2020_4",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-10-19T00:00:00+0000",
+      "digitalId": 54618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5e9e0777e20d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    },
+    {
+      "issueId": 78687,
+      "title": "Guardians of the Galaxy (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78687/guardians_of_the_galaxy_2020_5",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-08-05T00:00:00+0000",
+      "mu": "2020-11-09T00:00:00+0000",
+      "digitalId": 54893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5f1f310de3cec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    }
+  ]
+}

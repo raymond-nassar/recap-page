@@ -1,0 +1,1397 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-brave-new-world",
+  "owner": "raymond-nassar",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/704",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceBoundary": "Exactly the three owner-selected first volumes, in their supplied order. Seven original identities for Red Hulk, six for Hydra Ascendant and six for Not My Captain America. The seventh original is whole Wolverine (2003) #50 for its selected Puny Little Man backup. Publisher enumeration is accepted; no independently verified physical TOC order is claimed.",
+  "readerDescription": "Red Hulk tears through the Marvel universe, while Sam Wilson settles into life with the shield and fights to earn the public's trust. Legacy, politics, and a hero proving himself.",
+  "descriptionAuthority": {
+    "kind": "user-directed-copy-relayed-in-current-P04-continuation",
+    "humanCheckboxOrNewSourceChoiceClaimed": false
+  },
+  "preservedResearch": {
+    "artifacts": [
+      {
+        "name": "mcu-prep-captain-america-brave-new-world.source.json",
+        "sha256": "9056fdcab60e7a8806885642782445e8c069ec28d73f934873a9d8b867b15e7a",
+        "bytes": 44117,
+        "qualification": "Unchanged original unsealed research draft preserved privately, not current publication approval or a public validation dependency."
+      },
+      {
+        "name": "mcu-prep-captain-america-brave-new-world.packet.json",
+        "sha256": "05d26bb08d43de769aabcdd4f2533cdaa91eda08fdda74ec122d02667db83625",
+        "bytes": 12151,
+        "qualification": "Unchanged original unsealed research draft preserved privately, not current publication approval or a public validation dependency."
+      },
+      {
+        "name": "mcu-prep-captain-america-brave-new-world.mapping.json",
+        "sha256": "968f35551b3f71386067461fed076c0e50d914d07b01544e3d893b77552ee19b",
+        "bytes": 68136,
+        "qualification": "Unchanged original unsealed research draft preserved privately, not current publication approval or a public validation dependency."
+      }
+    ],
+    "originalBytesChanged": false,
+    "publicArtifactReadRequired": false,
+    "publicSourceSelfContained": true,
+    "qualification": "The dated bibliography, original receipt hashes, selected originals, creator caveats and corrected supplied claims are contained in this public factual source and mapping. Private working drafts are not published or required by public checks."
+  },
+  "selectionCount": 3,
+  "sourceIssueCount": 19,
+  "publishedIssueCount": 19,
+  "sourceGroupCounts": [
+    7,
+    6,
+    6
+  ],
+  "publishedGroupCounts": [
+    7,
+    6,
+    6
+  ],
+  "publishedGroupLabels": [
+    "Hulk Vol. 1: Red Hulk",
+    "All-New Captain America Vol. 1: Hydra Ascendant",
+    "Captain America: Sam Wilson Vol. 1: Not My Captain America"
+  ],
+  "selections": [
+    {
+      "position": 1,
+      "originalTitle": "Hulk by Jeph Loeb Vol. 1: Red Hulk",
+      "originalSelectionText": "1. **Hulk by Jeph Loeb Vol. 1: Red Hulk** - origin of Thaddeus Ross as the Red Hulk, chronologically earliest and direct source for the film's antagonist arc.",
+      "suppliedClaims": [
+        "Earliest Thaddeus Ross origin",
+        "Direct film-antagonist source"
+      ],
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "subtitle": "Red Hulk",
+      "writer": "Jeph Loeb",
+      "creditedCreators": [
+        "Jeph Loeb",
+        "Ed McGuinness"
+      ],
+      "referenceEdition": {
+        "format": "standard Marvel paperback",
+        "isbn13": "9780785128823",
+        "isbn10": "0785128824",
+        "publicationYear": 2009,
+        "publisher": "Marvel Comics"
+      },
+      "sameFirstVolumeEdition": {
+        "format": "Premiere hardcover",
+        "isbn13": "9780785128816",
+        "isbn10": "0785128816",
+        "publicationYear": 2008
+      },
+      "sourcePositions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "originalIssueIds": [
+        17623,
+        20668,
+        20863,
+        20999,
+        21535,
+        21968,
+        5815
+      ],
+      "contents": [
+        {
+          "seriesTitle": "Hulk",
+          "seriesYear": 2008,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "materialOnly": false,
+          "seriesId": 3374,
+          "issueIds": [
+            17623,
+            20668,
+            20863,
+            20999,
+            21535,
+            21968
+          ]
+        },
+        {
+          "seriesTitle": "Wolverine",
+          "seriesYear": 2003,
+          "issueNumbers": [
+            "50"
+          ],
+          "materialOnly": true,
+          "includedMaterial": "Puny Little Man backup by Jeph Loeb and Ed McGuinness",
+          "qualification": "The collection reprints bonus material from this original. The app would open the whole original issue, which also contains an unrelated lead story.",
+          "seriesId": 632,
+          "issueIds": [
+            5815
+          ]
+        }
+      ],
+      "expansionOrder": "Hulk #1-6 in numerical order, followed by the collection's separately identified Wolverine bonus original; not a publication-date sort.",
+      "ownerClaimDisposition": "The selected volume introduces the Red Hulk identity mystery; it does not reveal Ross or contain his later Red Hulk origin. Exact direct film-source status remains unverified.",
+      "excluded": [
+        "Hulk #22 identity reveal",
+        "Hulk #23 origin explanation",
+        "Later expanded collections or creator-complete editions"
+      ],
+      "bibliographyEvidence": [
+        "W4",
+        "W6",
+        "W9",
+        "W13",
+        "W18"
+      ],
+      "cachedBibliographicReceipts": [
+        {
+          "evidenceId": "W9",
+          "selectionPosition": 1,
+          "kind": "archive",
+          "url": "https://archive.org/metadata/hulkvolumeonered0000loeb/metadata",
+          "fetchedAt": "2026-10-04T03:02:33.305Z",
+          "status": 200,
+          "responseUrl": "https://archive.org/metadata/hulkvolumeonered0000loeb/metadata",
+          "bodySha256": "3696a7ca9a309c4ceaf51339c8cfe9a9da026a887c17bfdc79ffd35993e676a8",
+          "facts": {
+            "title": "Hulk. Volume one, Red Hulk ",
+            "creator": "Loeb, Jeph",
+            "associatedNames": "McGuiness, Ed",
+            "isbn": [
+              "0785128824",
+              "9780785128816",
+              "0785128816",
+              "9780785128823"
+            ],
+            "publicationYear": "2008",
+            "publisher": "New York : Marvel",
+            "contentsNotes": [
+              "\"Contains material originally published in magazine form as Hulk #1-6 and Wolverine #50.\"-- T.p. verso"
+            ],
+            "oclcId": "232127086",
+            "openLibraryEdition": "OL25975615M"
+          }
+        },
+        {
+          "evidenceId": "W13",
+          "selectionPosition": 1,
+          "kind": "openlibrary",
+          "url": "https://openlibrary.org/books/OL25975615M.json",
+          "fetchedAt": "2026-10-04T03:02:33.650Z",
+          "status": null,
+          "error": "TypeError: fetch failed"
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "originalTitle": "All-New Captain America Vol. 1",
+      "originalSelectionText": "2. **All-New Captain America Vol. 1** (Rick Remender) - Sam Wilson first takes up the shield.",
+      "suppliedClaims": [
+        "First shield handoff"
+      ],
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "subtitle": "Hydra Ascendant",
+      "writer": "Rick Remender",
+      "creditedCreators": [
+        "Rick Remender",
+        "Stuart Immonen"
+      ],
+      "referenceEdition": {
+        "format": "standard Marvel paperback",
+        "isbn13": "9780785192329",
+        "isbn10": "0785192328",
+        "publicationYear": 2016,
+        "publisher": "Marvel Worldwide"
+      },
+      "sameFirstVolumeEdition": {
+        "format": "hardcover",
+        "isbn13": "9780785193760",
+        "isbn10": "0785193766",
+        "publicationYear": 2015
+      },
+      "sourcePositions": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "originalIssueIds": [
+        51053,
+        51238,
+        51240,
+        51243,
+        51245,
+        51246
+      ],
+      "contents": [
+        {
+          "seriesTitle": "All-New Captain America",
+          "seriesYear": 2014,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "materialOnly": false,
+          "seriesId": 19163,
+          "issueIds": [
+            51053,
+            51238,
+            51240,
+            51243,
+            51245,
+            51246
+          ]
+        }
+      ],
+      "expansionOrder": "Six original issues in numerical order.",
+      "ownerClaimDisposition": "This is Sam's first All-New series arc after the handoff, not a collection containing the handoff itself.",
+      "excluded": [
+        "Captain America (2012) #25",
+        "All-New Captain America: Fear Him",
+        "Complete Collection extras and special issues"
+      ],
+      "bibliographyEvidence": [
+        "W7",
+        "W8",
+        "W11",
+        "W14",
+        "W15",
+        "W16"
+      ],
+      "cachedBibliographicReceipts": [
+        {
+          "evidenceId": "W16",
+          "selectionPosition": 2,
+          "kind": "archive",
+          "url": "https://archive.org/metadata/allnewcaptainame0000reme/metadata",
+          "fetchedAt": "2026-10-04T03:02:44.008Z",
+          "status": 200,
+          "responseUrl": "https://archive.org/metadata/allnewcaptainame0000reme/metadata",
+          "bodySha256": "6acfb77c7a77045a40671b26f92525a741bcbf81abfe3bcb4a5e44602f10e149",
+          "facts": {
+            "title": "All-new Captain America. 1, Hydra Ascendant",
+            "creator": "Remender, Rick, author",
+            "associatedNames": "Immonen, Stuart, artist; Von Grawbadger, Wade, inker; Gracia, Martegod, colorist; Navarro, Eduardo, colorist; Sanchez Almara, Dono, colorist; Caramagna, Joe, letterer; Simon, Joe, creator; Kirby, Jack, creator",
+            "isbn": [
+              "9780785193760",
+              "0785193766",
+              "9780785192329",
+              "0785192328"
+            ],
+            "publicationYear": "2015",
+            "publisher": "New York, NY : Marvel Worldwide, Inc., a subsidary of Marvel Entertainment, LLC",
+            "contentsNotes": [
+              "\"Contains material originally published in magazine form as All-new Captain America #1-6.\""
+            ],
+            "oclcId": null,
+            "openLibraryEdition": "OL28561603M"
+          }
+        },
+        {
+          "evidenceId": "W14",
+          "selectionPosition": 2,
+          "kind": "openlibrary",
+          "url": "https://openlibrary.org/books/OL28584709M.json",
+          "fetchedAt": "2026-10-04T03:02:44.109Z",
+          "status": null,
+          "error": "TypeError: fetch failed"
+        },
+        {
+          "evidenceId": "W15",
+          "selectionPosition": 2,
+          "kind": "openlibrary",
+          "url": "https://openlibrary.org/books/OL28561603M.json",
+          "fetchedAt": "2026-10-04T03:02:54.642Z",
+          "status": null,
+          "error": "TypeError: fetch failed"
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "originalTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalSelectionText": "3. **Captain America: Sam Wilson Vol. 1: Not My Captain America** (Nick Spencer) - the most recent, Sam's ongoing run as Captain America.",
+      "suppliedClaims": [
+        "Most recent ongoing"
+      ],
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "subtitle": "Not My Captain America",
+      "writer": "Nick Spencer",
+      "creditedCreators": [
+        "Nick Spencer",
+        "Daniel Acuna",
+        "Paul Renaud",
+        "Mike Choi"
+      ],
+      "referenceEdition": {
+        "format": "standard Marvel paperback",
+        "isbn13": "9780785196402",
+        "isbn10": "0785196404",
+        "publicationYear": 2016,
+        "publisher": "Marvel Worldwide"
+      },
+      "sourcePositions": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "originalIssueIds": [
+        56549,
+        56554,
+        56557,
+        56558,
+        56559,
+        56560
+      ],
+      "contents": [
+        {
+          "seriesTitle": "Captain America: Sam Wilson",
+          "seriesYear": 2015,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "materialOnly": false,
+          "seriesId": 20711,
+          "issueIds": [
+            56549,
+            56554,
+            56557,
+            56558,
+            56559,
+            56560
+          ]
+        }
+      ],
+      "expansionOrder": "Six original issues in numerical order.",
+      "ownerClaimDisposition": "Keep the selected 2015 Spencer run; most recent is inaccurate given later Sam-led series. No replacement is authorized.",
+      "excluded": [
+        "Later Spencer volumes",
+        "Symbol of Truth",
+        "Sam Wilson, Captain America (2025)"
+      ],
+      "bibliographyEvidence": [
+        "W2",
+        "W5",
+        "W10",
+        "W17"
+      ],
+      "cachedBibliographicReceipts": [
+        {
+          "evidenceId": "W10",
+          "selectionPosition": 3,
+          "kind": "archive",
+          "url": "https://archive.org/metadata/captainamericano0000spen/metadata",
+          "fetchedAt": "2026-10-04T03:03:05.257Z",
+          "status": 200,
+          "responseUrl": "https://archive.org/metadata/captainamericano0000spen/metadata",
+          "bodySha256": "d4adbc597d8272b77a02ca2b5706eb1b8508e48831a0c873de124201799a5f15",
+          "facts": {
+            "title": "Captain America. Not my Captain America. : Sam Wilson. 1",
+            "creator": "Spencer, Nick",
+            "associatedNames": "Acuña, Daniel, 1974-; Choi, Mike; Renaud, Paul, 1975-; Caramagna, Joe",
+            "isbn": [
+              "0785196404",
+              "9780785196402"
+            ],
+            "publicationYear": "2016",
+            "publisher": "New York, NY : Marvel Worldwide, Incorporated",
+            "contentsNotes": [
+              "\"Contains material originally published in magazine form as Captain America : Sam Wilson #1-6\"--Title page verso"
+            ],
+            "oclcId": null,
+            "openLibraryEdition": "OL27240137M"
+          }
+        },
+        {
+          "evidenceId": "W17",
+          "selectionPosition": 3,
+          "kind": "openlibrary",
+          "url": "https://openlibrary.org/books/OL27240137M.json",
+          "fetchedAt": "2026-10-04T03:03:05.364Z",
+          "status": null,
+          "error": "TypeError: fetch failed"
+        }
+      ]
+    }
+  ],
+  "bibliography": [
+    {
+      "id": "W1",
+      "url": "https://github.com/raymond-nassar/recap-page/issues/704",
+      "retrievedDate": "2026-10-03",
+      "sourceUpdatedAt": "2026-10-04T02:38:37Z",
+      "method": "gh issue view --json; raw response persisted in intake-704.json",
+      "claim": "Owner intake names the three works in order, labels the supplied descriptions as unverified claims, forbids appending unselected reveal/prelude comics and withholds publication release.",
+      "confidence": "high"
+    },
+    {
+      "id": "W2",
+      "url": "https://www.abebooks.com/9780785196402/Captain-America-Sam-Wilson-Vol-0785196404/plp",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Synopsis explicitly identifies Captain America: Sam Wilson #1-6 as the collected originals.",
+      "confidence": "medium",
+      "qualification": "Page cautions that synopsis may belong to another edition; verify edition fields and an independent catalog before accepting the edition."
+    },
+    {
+      "id": "W3",
+      "url": "https://books.google.com/books/about/Captain_America_Sam_Wilson_Vol_1.html?id=06_cDAEACAAJ",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Back-cover metadata describes Sam as already selected by Steve before this collection's events.",
+      "confidence": "medium",
+      "qualification": "Fetched simplified view omits bibliographic fields; not yet sufficient to certify edition/year."
+    },
+    {
+      "id": "W4",
+      "url": "https://archive.org/details/hulkvolumeonered0000loeb",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic landing page only",
+      "claim": "Title-page-verso catalog note lists Hulk #1-6 AND Wolverine #50.",
+      "confidence": "high",
+      "qualification": "Edition identifiers still require verification. No book scans, image bytes or narrative reproduction retrieved."
+    },
+    {
+      "id": "W5",
+      "url": "https://archive.org/details/captainamericano0000spen",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic landing page only",
+      "claim": "Title-page-verso catalog note identifies Captain America: Sam Wilson #1-6 as the originals.",
+      "confidence": "high"
+    },
+    {
+      "id": "W6",
+      "url": "https://www.abebooks.com/9780785128816/Hulk-Vol-1-Red-Jeph-0785128816/plp",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Booklist's review of the first Red Hulk volume explicitly states that the identity mystery is not solved in this volume.",
+      "confidence": "high",
+      "qualification": "Review supports claim correction; edition metadata/contents require separate record.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W7",
+      "url": "https://www.abebooks.com/9780785193760/All-New-Captain-America-Hydra-Ascendant-0785193766/plp",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Collecting note lists All-New Captain America #1-6 only.",
+      "confidence": "medium"
+    },
+    {
+      "id": "W8",
+      "url": "https://www.abebooks.com/9780785192329/All-New-Captain-America-Vol-Ascendant-0785192328/plp",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Paperback ISBN 9780785192329/0785192328 and title Hydra Ascendant; retailer lists All-New Captain America #1-6.",
+      "confidence": "medium"
+    },
+    {
+      "id": "W9",
+      "url": "https://archive.org/metadata/hulkvolumeonered0000loeb/metadata",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of catalog metadata JSON only",
+      "claim": "Library-derived record identifies Red Hulk, Loeb and McGuinness, publication year 2008, both first-volume hardcover/paperback ISBNs 9780785128816 and 9780785128823, and material from Hulk #1-6 plus Wolverine #50.",
+      "confidence": "high",
+      "qualification": "Record merges both bindings and reports 2008. Separate the edition-specific paperback release date from that catalog year; retrieve no media files."
+    },
+    {
+      "id": "W10",
+      "url": "https://archive.org/metadata/captainamericano0000spen/metadata",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of catalog metadata JSON only",
+      "claim": "Library-derived record confirms Nick Spencer, first-volume ISBN 9780785196402, 2016, Marvel Worldwide, associated artists Daniel Acuna, Mike Choi and Paul Renaud, and Captain America: Sam Wilson #1-6.",
+      "confidence": "high"
+    },
+    {
+      "id": "W11",
+      "url": "https://catalog.larl.org/Record/204625",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Lake Agassiz Regional Library record identifies Rick Remender and Stuart Immonen with a 2015 All-New Captain America edition.",
+      "confidence": "medium",
+      "qualification": "Simplified fetch returns generated citations rather than ISBN/contents fields; cannot yet tie its 2015 year to the proposed paperback."
+    },
+    {
+      "id": "W12",
+      "url": "https://comicbookroundup.com/comic-books/reviews/marvel-comics/captain-america-(2012)/25",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Contemporaneous issue reviews identify Captain America #25 as the passing of the mantle and distinguish the coming All-New Captain America #1.",
+      "confidence": "high",
+      "qualification": "Source commentary is paraphrased as factual claim support, not copied into artifacts.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W13",
+      "url": "https://openlibrary.org/books/OL25975615M.json",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic JSON",
+      "claim": "Standard Red Hulk paperback edition ISBN 9780785128823 is cataloged as 2009; source records include San Francisco Public Library MARC and the related Internet Archive item.",
+      "confidence": "high",
+      "independenceNote": "Open Library and Internet Archive share catalog lineage. They are not counted as two independent verifications of the Wolverine bonus."
+    },
+    {
+      "id": "W14",
+      "url": "https://openlibrary.org/books/OL28584709M.json",
+      "requestUrl": "https://openlibrary.org/isbn/9780785192329.json",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic JSON",
+      "claim": "All-New Captain America Vol. 1: Hydra Ascendant paperback ISBN 9780785192329 is cataloged as 2016.",
+      "confidence": "high"
+    },
+    {
+      "id": "W15",
+      "url": "https://openlibrary.org/books/OL28561603M.json",
+      "requestUrl": "https://openlibrary.org/isbn/9780785193760.json",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic JSON",
+      "claim": "All-New Captain America first-volume hardcover ISBN 9780785193760 is cataloged as 2015.",
+      "confidence": "high"
+    },
+    {
+      "id": "W16",
+      "url": "https://archive.org/metadata/allnewcaptainame0000reme/metadata",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic metadata only",
+      "claim": "Title-page catalog note confirms All-New Captain America #1-6 only, title Hydra Ascendant, Rick Remender and Stuart Immonen, and both standard first-volume ISBNs.",
+      "confidence": "high",
+      "qualification": "Combined library record reports original hardcover year 2015. Paperback year comes from W14, not this merged record."
+    },
+    {
+      "id": "W17",
+      "url": "https://openlibrary.org/books/OL27240137M.json",
+      "requestUrl": "https://openlibrary.org/isbn/9780785196402.json",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of bibliographic JSON",
+      "claim": "Spencer's standard first volume has subtitle Not My Captain America, ISBN 9780785196402, year 2016 and originals Captain America: Sam Wilson #1-6.",
+      "confidence": "high",
+      "independenceNote": "Shares San Francisco Public Library/Internet Archive catalog lineage with W10. AbeBooks W2 supplies separately fetched contents corroboration."
+    },
+    {
+      "id": "W18",
+      "url": "https://www.keycollectorcomics.com/issue/wolverine-3-50,412353/",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "The 2007 Wolverine #50 listing identifies the backup Puny Little Man by Jeph Loeb and Ed McGuinness, separate from its main Evolution story.",
+      "confidence": "high",
+      "qualification": "Together with W9 and canonical series index, identifies the collected Wolverine original as the 2003 series #50. The first trade contains bonus material from that original, not its whole unrelated lead story.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W19",
+      "url": "https://insidepulse.com/2010/05/13/spoiler-warnings-red-hulk-red-she-hulk-revealed-jeph-loeb-finally-pulls-the-trigger-on-his-marvel-mystery/",
+      "retrievedDate": "2026-10-03",
+      "sourceDate": "2010-05-13",
+      "method": "web_fetch of article HTML only",
+      "claim": "Contemporary report identifies Hulk #22 as the later Thaddeus Ross identity reveal.",
+      "confidence": "high",
+      "qualification": "Embedded artwork URLs were not requested. No images or article narratives copied.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W20",
+      "url": "https://www.keycollectorcomics.com/issue/hulk-1-23-2,29237/",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of HTML and structured metadata",
+      "claim": "The Hulk #23 listing and its ComicIssue structured description explicitly identify the later Red Hulk origin story in 2010.",
+      "confidence": "high",
+      "qualification": "Identity reveal in #22 and origin in #23 are distinct. Neither belongs to first-volume Hulk #1-6.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W21",
+      "url": "https://www.cbr.com/captain-america-sam-wilson-origin-shield/",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch",
+      "claim": "Independent comics reference article identifies Captain America #25 as the handoff to Sam and later Symbol of Truth as a newer Sam-led ongoing.",
+      "confidence": "high"
+    },
+    {
+      "id": "W22",
+      "url": "https://www.penguinrandomhouse.com/books/777684/sam-wilson-captain-america-better-angels-by-evan-narcisse/",
+      "retrievedDate": "2026-10-03",
+      "method": "web_fetch of publisher-distributor HTML",
+      "claim": "Publisher-distributor lists Sam Wilson, Captain America: Better Angels by Evan Narcisse and Greg Pak, ISBN 9781302963064, collecting the 2025 series #1-5.",
+      "confidence": "high",
+      "qualification": "Counter-evidence to most-recent wording only; never selected as a replacement.",
+      "recheckedDate": "2026-10-04",
+      "recheckTimezone": "UTC",
+      "recheckMethod": "web_fetch of HTML text only; no image resources requested"
+    },
+    {
+      "id": "W23",
+      "url": "https://comicbookroundup.com/comic-books/reviews/marvel-comics/hulk-(2008)/22",
+      "retrievedDate": "2026-10-04",
+      "retrievalTimezone": "UTC",
+      "method": "web_fetch of contemporaneous review listings",
+      "claim": "Issue-specific contemporary reviews of Hulk (2008) #22 identify an awaited major revelation. Together with W19 this independently anchors the later Ross reveal to #22, outside the first-volume #1-6 boundary.",
+      "confidence": "high"
+    }
+  ],
+  "intakeReceipt": {
+    "title": "Add owner-selected MCU Prep: Captain America: Brave New World",
+    "author": "raymond-nassar",
+    "createdAt": "2026-10-04T02:38:37Z",
+    "updatedAt": "2026-10-04T02:38:37Z",
+    "retrievedDate": "2026-10-03",
+    "originalSelectionLines": [
+      "1. **Hulk by Jeph Loeb Vol. 1: Red Hulk** - origin of Thaddeus Ross as the Red Hulk, chronologically earliest and direct source for the film's antagonist arc.",
+      "2. **All-New Captain America Vol. 1** (Rick Remender) - Sam Wilson first takes up the shield.",
+      "3. **Captain America: Sam Wilson Vol. 1: Not My Captain America** (Nick Spencer) - the most recent, Sam's ongoing run as Captain America."
+    ],
+    "cachedFileSha256": "e638a684ee14046bb9ebe0dd114c34fbc63fc35c1b8f276bfbeb8eba6906633b"
+  },
+  "historicalMetadataRequestReceipts": [
+    {
+      "requestNumber": 1,
+      "url": "https://marvel.emreparker.com/v1/series/3374/issues?limit=100&offset=0",
+      "requestedAt": "2026-10-04T03:04:38.600Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/series/3374/issues?limit=100&offset=0",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "8a677ec276de46e999f9624d98401b7e027f6268ecbcabd1401628e4b4b01d8c",
+      "receivedAt": "2026-10-04T03:04:38.883Z"
+    },
+    {
+      "requestNumber": 2,
+      "url": "https://marvel.emreparker.com/v1/series/632/issues?limit=100&offset=0",
+      "requestedAt": "2026-10-04T03:04:38.895Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/series/632/issues?limit=100&offset=0",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "f744bf3728bd1293be9d89c82052751824d96179f6dec326b30dd709869839c0",
+      "receivedAt": "2026-10-04T03:04:39.095Z"
+    },
+    {
+      "requestNumber": 3,
+      "url": "https://marvel.emreparker.com/v1/series/19163/issues?limit=100&offset=0",
+      "requestedAt": "2026-10-04T03:04:39.116Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/series/19163/issues?limit=100&offset=0",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "f7c69c62c7c53e978de74f9fccfe75622f4c50cd82e13e8e0466d22cbc4821ff",
+      "receivedAt": "2026-10-04T03:04:39.280Z"
+    },
+    {
+      "requestNumber": 4,
+      "url": "https://marvel.emreparker.com/v1/series/20711/issues?limit=100&offset=0",
+      "requestedAt": "2026-10-04T03:04:39.290Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/series/20711/issues?limit=100&offset=0",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "a1063a571a945628ce495cb6d865ace0f62989aae306a79def079d66fce032bd",
+      "receivedAt": "2026-10-04T03:04:39.494Z"
+    },
+    {
+      "requestNumber": 5,
+      "url": "https://marvel.emreparker.com/v1/issues/17623",
+      "requestedAt": "2026-10-04T03:04:39.498Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/17623",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "e1b2bf8242b30cc7fae3a1f5db7b166476f6947fbde2b43d4e5918f1b7b6d2ff",
+      "receivedAt": "2026-10-04T03:04:39.663Z"
+    },
+    {
+      "requestNumber": 6,
+      "url": "https://marvel.emreparker.com/v1/issues/20668",
+      "requestedAt": "2026-10-04T03:04:48.601Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/20668",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "6d6f61771236955cca38415dd7e92276311fe8a7267e6f1a5b2feaa96cabec13",
+      "receivedAt": "2026-10-04T03:04:48.801Z"
+    },
+    {
+      "requestNumber": 7,
+      "url": "https://marvel.emreparker.com/v1/issues/20863",
+      "requestedAt": "2026-10-04T03:04:48.899Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/20863",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "fe7b97a03fc381d3282ff8e5a3ac4d7c04a0e5d679026a6c5c0b62b4e754c2da",
+      "receivedAt": "2026-10-04T03:04:49.068Z"
+    },
+    {
+      "requestNumber": 8,
+      "url": "https://marvel.emreparker.com/v1/issues/20999",
+      "requestedAt": "2026-10-04T03:04:49.117Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/20999",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "92a59dd7ef42864b8fd3f5bb85547d2cc0f71e2cdaca45bbac96efccd6663c9c",
+      "receivedAt": "2026-10-04T03:04:49.272Z"
+    },
+    {
+      "requestNumber": 9,
+      "url": "https://marvel.emreparker.com/v1/issues/21535",
+      "requestedAt": "2026-10-04T03:04:49.292Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/21535",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "b93e81727261afe67f68046934873b7d9633574c27cd2ae81b1e8010e173b0e7",
+      "receivedAt": "2026-10-04T03:04:49.477Z"
+    },
+    {
+      "requestNumber": 10,
+      "url": "https://marvel.emreparker.com/v1/issues/21968",
+      "requestedAt": "2026-10-04T03:04:49.507Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/21968",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "b178df596ba3476536dcb0bb9b55c08a31d934daba63a843bf2240682cf550c8",
+      "receivedAt": "2026-10-04T03:04:49.663Z"
+    },
+    {
+      "requestNumber": 11,
+      "url": "https://marvel.emreparker.com/v1/issues/5815",
+      "requestedAt": "2026-10-04T03:05:38.601Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/5815",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "c55671143c42a2215b6794f63749d48c16814251c4833a3261f03941379e9d88",
+      "receivedAt": "2026-10-04T03:05:38.827Z"
+    },
+    {
+      "requestNumber": 12,
+      "url": "https://marvel.emreparker.com/v1/issues/51053",
+      "requestedAt": "2026-10-04T03:05:38.911Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51053",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "a3bf1d94e284a7ddffa43ae3dbdbee8076562d558f6f33369ebeb1a3657cba12",
+      "receivedAt": "2026-10-04T03:05:39.096Z"
+    },
+    {
+      "requestNumber": 13,
+      "url": "https://marvel.emreparker.com/v1/issues/51238",
+      "requestedAt": "2026-10-04T03:05:39.127Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51238",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "f5ebcce8d07263bbc221704f526efca9783f2258fef0e46aa18894156fcf6f13",
+      "receivedAt": "2026-10-04T03:05:39.301Z"
+    },
+    {
+      "requestNumber": 14,
+      "url": "https://marvel.emreparker.com/v1/issues/51240",
+      "requestedAt": "2026-10-04T03:05:39.303Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51240",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "753723e892de507f4fcafb98e9b5b5f491ba0f545919d4f59d9f1d299b9da5fb",
+      "receivedAt": "2026-10-04T03:05:39.480Z"
+    },
+    {
+      "requestNumber": 15,
+      "url": "https://marvel.emreparker.com/v1/issues/51243",
+      "requestedAt": "2026-10-04T03:05:39.500Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51243",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "3addaf3fa13039999faf170cab3b3737356a1d73afc88c7fcdae6fd5f36b5909",
+      "receivedAt": "2026-10-04T03:05:39.661Z"
+    },
+    {
+      "requestNumber": 16,
+      "url": "https://marvel.emreparker.com/v1/issues/51245",
+      "requestedAt": "2026-10-04T03:05:48.605Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51245",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "dea851b7e0ad97fc7955d2933ecb97702bb76f5dc6170759a4ab5fd406907e93",
+      "receivedAt": "2026-10-04T03:05:48.842Z"
+    },
+    {
+      "requestNumber": 17,
+      "url": "https://marvel.emreparker.com/v1/issues/51246",
+      "requestedAt": "2026-10-04T03:05:48.913Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/51246",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "85686201bb5c77ac7cdc77910d0bf6cfc0d4241f9edc62e462c8f79981b270c5",
+      "receivedAt": "2026-10-04T03:05:49.094Z"
+    },
+    {
+      "requestNumber": 18,
+      "url": "https://marvel.emreparker.com/v1/issues/56549",
+      "requestedAt": "2026-10-04T03:05:49.134Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56549",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "fbc0e095a6778b6625a0de680298e89c4164ffb7d97667b41d61cfcd4e1c23d9",
+      "receivedAt": "2026-10-04T03:05:49.314Z"
+    },
+    {
+      "requestNumber": 19,
+      "url": "https://marvel.emreparker.com/v1/issues/56554",
+      "requestedAt": "2026-10-04T03:05:49.316Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56554",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "8cce06ee9241b05143424fdddcbe902e42ccd9166525e5b652ee818cbfe4ce72",
+      "receivedAt": "2026-10-04T03:05:49.484Z"
+    },
+    {
+      "requestNumber": 20,
+      "url": "https://marvel.emreparker.com/v1/issues/56557",
+      "requestedAt": "2026-10-04T03:05:49.509Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56557",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "2aafc81b6d4c6e0d3470494cfae0cdb2220824f8d0f5acef4e12c8d4c425bfbe",
+      "receivedAt": "2026-10-04T03:05:49.678Z"
+    },
+    {
+      "requestNumber": 21,
+      "url": "https://marvel.emreparker.com/v1/issues/56558",
+      "requestedAt": "2026-10-04T03:06:38.607Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56558",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "f269a417429f5e8d4dd80effdbc9ef679385403d2adcab4e0833679f86f47937",
+      "receivedAt": "2026-10-04T03:06:38.846Z"
+    },
+    {
+      "requestNumber": 22,
+      "url": "https://marvel.emreparker.com/v1/issues/56559",
+      "requestedAt": "2026-10-04T03:06:38.911Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56559",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "dcfa6013e303930a90ec60ee2a12a5ab400a2b88d5b43d4077f8d044bfa8119d",
+      "receivedAt": "2026-10-04T03:06:39.082Z"
+    },
+    {
+      "requestNumber": 23,
+      "url": "https://marvel.emreparker.com/v1/issues/56560",
+      "requestedAt": "2026-10-04T03:06:39.142Z",
+      "status": 200,
+      "responseUrl": "https://marvel.emreparker.com/v1/issues/56560",
+      "contentType": "application/json",
+      "retryAfter": null,
+      "bodySha256": "60786a515829391a108076aacfa26f7153f7117dde00ef5282eab5ff0cf7a909",
+      "receivedAt": "2026-10-04T03:06:39.330Z"
+    }
+  ],
+  "rawCreditCaveats": [
+    "Library receipt credits are retained verbatim, including McGuiness, Ed and other catalog spelling/credit anomalies. They are not silently rewritten as normalized display names.",
+    "Provider creator arrays in the mapping retain their original names, roles and IDs. They credit the whole original comic, not necessarily only selected backup material.",
+    "Merged library records report original hardcover years. The separately verified reference-paperback years are retained without relabeling the original receipts.",
+    "Open Library transport recheck failures remain failures, separate from the earlier dated successful edition evidence. They are not comic-provider gaps."
+  ],
+  "claimPolicy": {
+    "suppliedClaims": "Owner rationale is preserved as provenance, not asserted as independently verified published copy.",
+    "correctedClaims": [
+      {
+        "id": "F2",
+        "kind": "corrected-origin-and-identity-claim",
+        "retainedOwnerClaims": [
+          "Earliest Thaddeus Ross origin",
+          "Direct film-antagonist source"
+        ],
+        "verifiedFact": "Red Hulk volume one introduces the identity mystery but does not solve it. The Ross identity reveal occurs later in Hulk #22, and the later origin explanation is identified with #23.",
+        "evidenceIds": [
+          "W6",
+          "W19",
+          "W20",
+          "W23"
+        ],
+        "publicationDisposition": "Do not claim this first volume reveals Ross or contains his Red Hulk origin. Exact direct film-adaptation source status remains unverified and stays provenance-only.",
+        "forbiddenRepair": "Do not append Hulk #22/#23 or substitute an expanded collection."
+      },
+      {
+        "id": "F3",
+        "kind": "corrected-handoff-claim",
+        "retainedOwnerClaims": [
+          "First shield handoff"
+        ],
+        "verifiedFact": "Hydra Ascendant collects All-New Captain America (2014) #1-6. The actual shield handoff is in Captain America (2012) #25, outside this collection.",
+        "evidenceIds": [
+          "W12",
+          "W16",
+          "W21"
+        ],
+        "publicationDisposition": "Describe the beginning of Sam Wilson's All-New series after taking up the shield, not a collection containing the handoff.",
+        "forbiddenRepair": "Do not append Captain America #25, Fear Him or Complete Collection extras."
+      },
+      {
+        "id": "F4",
+        "kind": "corrected-recency-claim",
+        "retainedOwnerClaims": [
+          "Most recent ongoing"
+        ],
+        "verifiedFact": "The selected Spencer first volume collects the 2015 Sam Wilson series #1-6. A publisher-distributor record confirms a later 2025 Sam-led series, so most recent is inaccurate.",
+        "evidenceIds": [
+          "W10",
+          "W17",
+          "W21",
+          "W22"
+        ],
+        "publicationDisposition": "Keep Nick Spencer, the named first volume and its order. Omit most-recent wording from verified published copy.",
+        "forbiddenRepair": "Do not substitute Symbol of Truth or the 2025 series."
+      }
+    ],
+    "publishedCopyBoundary": "Name the three selected works and exact original comics. Do not claim the first Hulk volume reveals Ross or contains his later origin, the Remender trade includes the actual handoff, Spencer is the latest ongoing, or the books are verified direct film-adaptation sources.",
+    "attribution": "The owner selected the works. Library and other references support bibliography and claim corrections only; no external reading-guide author supplied this selection."
+  },
+  "editorialOrder": {
+    "basis": "Accepted owner selection order and publisher collection/original enumeration.",
+    "physicalTocVerified": false,
+    "independentPhysicalPageOrderClaimed": false,
+    "addedPreludeOrLaterRevealOriginals": false,
+    "substitutedRun": false
+  },
+  "wholeOriginalIdentityContract": {
+    "materialOnlySourcePosition": 7,
+    "canonicalOriginalIssueId": 5815,
+    "selectedMaterial": "Puny Little Man backup",
+    "opensWholeOriginal": true,
+    "unrelatedLeadAlsoPresent": true,
+    "sharedCanonicalOriginalIdentity": true,
+    "perStoryIdentifiers": false,
+    "savedNotesOrProgressChanged": false,
+    "pageOrderVerified": false,
+    "originalIssueId": 5815,
+    "sourcePosition": 7,
+    "wholeIssueQualification": "The Red Hulk collection selects the Puny Little Man backup from Wolverine (2003) #50 only. The app opens and records progress for the full original issue, including unrelated lead material.",
+    "readerScope": "whole-original",
+    "qualificationScope": "guide",
+    "perStoryIdsAllowed": false,
+    "progressOrUserNoteMutationAllowed": false,
+    "globalMetadataOverrideAllowed": false
+  },
+  "metadataPolicy": {
+    "originalReceiptDatesAndHashesPreserved": true,
+    "freshExactIssueGetCount": 19,
+    "freshResponsesMatchOriginalRawDigests": 19,
+    "cacheOrigin": "Actual single exact detail GETs for missing full responses; private projections were not relabeled as raw cache.",
+    "comicImageBytesFetched": false,
+    "copiedProviderNarratives": false,
+    "availabilityClaim": null,
+    "freshFactsAdoptionRequiresParentAuthority": true
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #1",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 3374,
+      "candidateIssueId": 17623,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 1,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 17623,
+      "selectedIssueId": 17623,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #2",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 3374,
+      "candidateIssueId": 20668,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 2,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 20668,
+      "selectedIssueId": 20668,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #3",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 3374,
+      "candidateIssueId": 20863,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 3,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 20863,
+      "selectedIssueId": 20863,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #4",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 3374,
+      "candidateIssueId": 20999,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 4,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 20999,
+      "selectedIssueId": 20999,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #5",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 3374,
+      "candidateIssueId": 21535,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 5,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 21535,
+      "selectedIssueId": 21535,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Hulk (2008) #6",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 2008,
+      "issueNumber": "6",
+      "seriesId": 3374,
+      "candidateIssueId": 21968,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 6,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 21968,
+      "selectedIssueId": 21968,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 1,
+      "collectionTitle": "Hulk Vol. 1: Red Hulk",
+      "sourceIssueReference": "Wolverine (2003) #50",
+      "sourceRangeReference": "Hulk Vol. 1: Red Hulk",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "50",
+      "seriesId": 632,
+      "candidateIssueId": 5815,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The collection reprints bonus material from this original. The app would open the whole original issue, which also contains an unrelated lead story.",
+      "editionIsbn": "9780785128823",
+      "withinSelectionPosition": 7,
+      "collectedIn": "Hulk Vol. 1: Red Hulk",
+      "originalIssueId": 5815,
+      "selectedIssueId": 5815,
+      "materialOnly": true
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #1",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19163,
+      "candidateIssueId": 51053,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 1,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51053,
+      "selectedIssueId": 51053,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #2",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 19163,
+      "candidateIssueId": 51238,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 2,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51238,
+      "selectedIssueId": 51238,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #3",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 19163,
+      "candidateIssueId": 51240,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 3,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51240,
+      "selectedIssueId": 51240,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #4",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 19163,
+      "candidateIssueId": 51243,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 4,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51243,
+      "selectedIssueId": 51243,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #5",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 19163,
+      "candidateIssueId": 51245,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 5,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51245,
+      "selectedIssueId": 51245,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 2,
+      "collectionTitle": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "sourceIssueReference": "All-New Captain America (2014) #6",
+      "sourceRangeReference": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "normalizedSeriesTitle": "All-New Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 19163,
+      "candidateIssueId": 51246,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785192329",
+      "withinSelectionPosition": 6,
+      "collectedIn": "All-New Captain America Vol. 1: Hydra Ascendant",
+      "originalIssueId": 51246,
+      "selectedIssueId": 51246,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #1",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20711,
+      "candidateIssueId": 56549,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 1,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56549,
+      "selectedIssueId": 56549,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #2",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20711,
+      "candidateIssueId": 56554,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 2,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56554,
+      "selectedIssueId": 56554,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #3",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20711,
+      "candidateIssueId": 56557,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 3,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56557,
+      "selectedIssueId": 56557,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #4",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20711,
+      "candidateIssueId": 56558,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 4,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56558,
+      "selectedIssueId": 56558,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 18,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #5",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20711,
+      "candidateIssueId": 56559,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 5,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56559,
+      "selectedIssueId": 56559,
+      "materialOnly": false
+    },
+    {
+      "sourcePosition": 19,
+      "selectionPosition": 3,
+      "collectionTitle": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "sourceIssueReference": "Captain America: Sam Wilson (2015) #6",
+      "sourceRangeReference": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "normalizedSeriesTitle": "Captain America: Sam Wilson",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20711,
+      "candidateIssueId": 56560,
+      "manualSeriesSelectionApproved": false,
+      "editionIsbn": "9780785196402",
+      "withinSelectionPosition": 6,
+      "collectedIn": "Captain America: Sam Wilson Vol. 1: Not My Captain America",
+      "originalIssueId": 56560,
+      "selectedIssueId": 56560,
+      "materialOnly": false
+    }
+  ]
+}

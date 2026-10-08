@@ -4,9 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  digestCanonicalJson, sourceCountsForPacket, validateFrozenPacket, validateMappingDigest,
+  digestCanonicalJson, libraryDigestFor, reportDigestFor, sourceCountsForPacket,
+  validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
+import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
 import {
   buildFirstStepsOverlap, OWNER_SOURCE_PROVIDER,
 } from '../scripts/report-fantastic-four-overlap.mjs';
@@ -16,6 +19,10 @@ import {
 } from '../src/js/lib/model.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { ListHistoryStore, LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
+import {
+  historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
+} from './helpers/reading-choice-history.mjs';
+import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 
 const id = 'mcu-prep-fantastic-four-first-steps';
 const sourceUrl = 'https://github.com/raymond-nassar/recap-page/issues/701';
@@ -138,7 +145,7 @@ test('First Steps is one independent MCU Prep choice and never revives the retir
   ]);
   const entry = manifest.lists.find((row) => row.id === id);
   const card = rawCatalog.lists.find((row) => row.id === id);
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(historicalMcuDescriptionEntry(entry), packet.proposedManifest);
   for (const row of [entry, card]) {
     assert.equal(row.type, 'screen-companion');
     assert.equal(row.depth, 'selected');
@@ -181,9 +188,20 @@ test('First Steps reviews every active source and generated child without inheri
   assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
   assert.equal(current.comparisonCount, peerIds.length);
   const recordedPeers = new Set(report.comparisons.map((row) => row.orderId));
-  const historical = await buildFirstStepsOverlap(mapping, {
-    excludedOrderIds: peerIds.filter((peerId) => !recordedPeers.has(peerId)),
+  const library = await loadCurrentOwnerLibrary(id);
+  const recordedOrders = library.orders.filter((row) => recordedPeers.has(row.orderId));
+  const recordedManifest = historicalMcuDescriptionManifest({
+    ...library.manifest,
+    lists: library.manifest.lists.filter((row) => recordedPeers.has(row.id)),
   });
+  const unsigned = {
+    ...current,
+    libraryDigest: libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+      id: row.orderId, issueIds: row.issueIds.map(String),
+    }))),
+    ...buildComparisonReport({ candidateIds: issueIds, orders: recordedOrders }),
+  };
+  const historical = { ...unsigned, reportDigest: reportDigestFor(unsigned) };
   assert.deepEqual(historical, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report,
@@ -191,9 +209,10 @@ test('First Steps reviews every active source and generated child without inheri
     expectedOrderIds: [...recordedPeers],
     packetValidation: { provider: OWNER_SOURCE_PROVIDER },
   }));
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'),
-    report.comparisons.filter((row) => row.relationship !== 'none'),
-    'A new shared relationship needs a new approval rather than an inherited frozen receipt');
+  const reference = await json(`scripts/data/owner-mcu-prep/${id}.ms-marvel-reciprocal.json`);
+  const reciprocal = await assertFirstStepsMsMarvelReciprocal({ reference, packet, mapping, report });
+  assert.deepEqual(current.comparisons, reciprocal.current.comparisons,
+    'Every active peer remains covered; only the exact approved reciprocal may add a shared relationship');
   assert.ok(!current.comparisons.some((row) => row.orderId === 'spider-man-no-way-home-owner-selected'));
   assert.ok(current.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x'));
   assert.ok(current.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x-34'));

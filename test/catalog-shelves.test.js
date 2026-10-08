@@ -27,6 +27,7 @@ import {
   timelineYears,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 
 // The catalog is split across three screens. Three screens is three chances to drop a story, and a
 // story reachable from no screen at all is the worst outcome available here: it is bundled with the
@@ -48,8 +49,8 @@ test('Storylines discovery overlaps canonical shelves with complete original gro
     assert.ok(ids.includes(id), `${id} missing from secondary discovery`);
     assert.equal(catalogListShelf(catalog.lists, id), 'catalog');
   }
-  assert.equal(ids.length, 60);
-  assert.equal(projected.length, 53);
+  assert.equal(ids.length, currentReadingCensus.storylines);
+  assert.equal(projected.length, currentReadingCensus.storylines - 7, 'existing variant groups keep their shared-card reduction');
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(ids.includes('marvel-knights-to-planet-x-01'), false);
   for (const canonical of shelfLists(catalog.lists, 'lines')) assert.ok(ids.includes(canonical.id));

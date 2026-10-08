@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -36,7 +37,7 @@ const stories = catalogEntries(catalog.lists);
 test('Storylines gateway count uses the same complete eligible pool as ordinary browsing', () => {
   const pool = HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories);
   const gateway = availableHomeCategories(stories).find((category) => category.key === 'storylines');
-  assert.equal(gateway.count, 60);
+  assert.equal(gateway.count, currentReadingCensus.storylines);
   assert.equal(gateway.count, pool.reduce((total, story) => total + story.lists.length, 0));
   assert.equal(new Set(pool.flatMap((story) => story.lists.map((list) => list.id))).size, gateway.count);
 });
@@ -66,7 +67,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 14);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 

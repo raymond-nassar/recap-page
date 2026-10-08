@@ -1,3 +1,4 @@
+import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -213,7 +214,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
   })));
   const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
-  assert.equal(current.comparisonCount, 288);
+  assert.equal(current.comparisonCount, currentReadingCensus.peers);
   assert.equal(current.comparisonCount, currentEntries.length);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -222,12 +223,12 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
   }));
   const reviewedIds = new Set(report.comparisons.map((row) => row.orderId));
   assert.deepEqual(current.comparisons.filter((row) => reviewedIds.has(row.orderId)), report.comparisons);
-  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), shared,
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'), shared,
     'New meaningful relationships need central review, not inherited approval');
   assert.equal(current.comparisons.some((row) =>
     row.orderId === 'spider-man-no-way-home-owner-selected'), false);
   for (const laterId of [
-    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
+    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
     'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again', 'avengers-doomsday-secret-wars',
   ]) {
     const comparison = current.comparisons.find((row) => row.orderId === laterId);

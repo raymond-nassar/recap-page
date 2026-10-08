@@ -31,8 +31,8 @@
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
-import { dirname, join } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { readingPathProgress } from '../src/js/views/reading-paths.js';
 
@@ -15174,13 +15174,8 @@ SCENARIOS.push({
         .map((number) => `Daredevil (1998) #${number}`),
       ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => `Daredevil (2019) #${number}`),
     ];
-    const expectedScreenTitles = [
-      'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-      'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-      'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*',
-      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: The Fantastic Four: First Steps', 'MCU Prep: Deadpool & Wolverine',
-      'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
-    ];
+    const { expectedMcuTitles } = await import('../test/helpers/current-reading-library.mjs');
+    const expectedScreenTitles = expectedMcuTitles();
     const expectedScreenCount = `${expectedScreenTitles.length} Reading Lists`;
     const payload = JSON.parse(readFileSync(
       new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
@@ -16124,6 +16119,7 @@ SCENARIOS.push(
     title: 'one curated Storylines pool includes real event variants without moving canonical identity',
     async run(page, t) {
       try {
+        const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
         await open(page, '/?catalog=actual#/lines');
         await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
         const initial = await page.evaluate(() => [...document.querySelectorAll(
@@ -16132,8 +16128,8 @@ SCENARIOS.push(
         const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
         t.check('normal Storylines browsing includes all three original Civil War readings',
           civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
-        t.check('the secondary pool has sixty original readings without duplicates or scaffold chapters',
-          initial.length === 60 && new Set(initial).size === 60
+        t.check('the secondary pool includes the current readings without duplicates or scaffold chapters',
+          initial.length === currentReadingCensus.storylines && new Set(initial).size === currentReadingCensus.storylines
             && initial.includes('marvel-knights-to-planet-x-02')
             && initial.includes('marvel-knights-to-planet-x-78')
             && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
@@ -18980,6 +18976,27 @@ SCENARIOS.push(eternalsActualData);
 MUTATIONS.push(eternalsCollectionMutation);
 SCENARIOS.push((await import('./browser-reading-list-choices.mjs')).readingListChoices);
 SCENARIOS.push((await import('./browser-mcu-prep-fantastic-four-first-steps.mjs')).firstStepsActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-brand-new-day.mjs')).brandNewDayActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-she-hulk.mjs')).sheHulkActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-ms-marvel.mjs')).msMarvelActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-captain-america-brave-new-world.mjs')).braveNewWorldActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
+const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
+const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
+for (const guide of readOwnerGuideRegistry().guides) {
+  SCENARIOS.push(ownerGuideScenario(JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'))));
+}
+const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
+if (ownerContracts.length > 1) throw new Error('Use --owner-contract once for a representative existing guide.');
+if (ownerContracts.length) {
+  const root = fileURLToPath(new URL('..', import.meta.url));
+  const file = resolve(root, ownerContracts[0].slice('--owner-contract='.length));
+  const inside = relative(root, file);
+  if (inside.startsWith(`..${sep}`) || isAbsolute(inside)) throw new Error('Owner browser contracts must be inside the repository.');
+  const scenario = ownerGuideScenario(JSON.parse(readFileSync(file, 'utf8')));
+  if (SCENARIOS.some((entry) => entry.id === scenario.id)) throw new Error('Owner browser contract is already registered.');
+  SCENARIOS.push(scenario);
+}
 
 const UX10_PATHS = resolveReadingPaths(ACTUAL_CATALOG.paths, ACTUAL_CATALOG.lists);
 const UX10_LONG = UX10_PATHS.find(({ id }) => id === 'marvel-knights-to-planet-x');

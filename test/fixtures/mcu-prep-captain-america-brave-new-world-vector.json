@@ -1,0 +1,33 @@
+{
+  "id": "mcu-prep-captain-america-brave-new-world",
+  "name": "MCU Prep: Captain America: Brave New World",
+  "description": "Red Hulk tears through the Marvel universe, while Sam Wilson settles into life with the shield and fights to earn the public's trust. Legacy, politics, and a hero proving himself.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/704",
+  "groups": [
+    "Hulk Vol. 1: Red Hulk",
+    "All-New Captain America Vol. 1: Hydra Ascendant",
+    "Captain America: Sam Wilson Vol. 1: Not My Captain America"
+  ],
+  "vectorSha256": "d2e58ccacd41cbaee81794f1c34a845240e7029243b4452ac13d78b6d3f2b4b6",
+  "rows": [
+    [1, 17623, "Hulk (2008) #1", 0],
+    [2, 20668, "Hulk (2008) #2", 0],
+    [3, 20863, "Hulk (2008) #3", 0],
+    [4, 20999, "Hulk (2008) #4", 0],
+    [5, 21535, "Hulk (2008) #5", 0],
+    [6, 21968, "Hulk (2008) #6", 0],
+    [7, 5815, "Wolverine (2003) #50", 0],
+    [8, 51053, "All-New Captain America (2014) #1", 1],
+    [9, 51238, "All-New Captain America (2014) #2", 1],
+    [10, 51240, "All-New Captain America (2014) #3", 1],
+    [11, 51243, "All-New Captain America (2014) #4", 1],
+    [12, 51245, "All-New Captain America (2014) #5", 1],
+    [13, 51246, "All-New Captain America (2014) #6", 1],
+    [14, 56549, "Captain America: Sam Wilson (2015) #1", 2],
+    [15, 56554, "Captain America: Sam Wilson (2015) #2", 2],
+    [16, 56557, "Captain America: Sam Wilson (2015) #3", 2],
+    [17, 56558, "Captain America: Sam Wilson (2015) #4", 2],
+    [18, 56559, "Captain America: Sam Wilson (2015) #5", 2],
+    [19, 56560, "Captain America: Sam Wilson (2015) #6", 2]
+  ]
+}

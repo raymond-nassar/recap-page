@@ -7,6 +7,7 @@ import {
   writeFile,
 } from 'node:fs/promises';
 import path from 'node:path';
+import { registeredOwnerGuideIds } from './owner-guide-registry.mjs';
 import {
   approvalDigestFor,
   canonicalJson,
@@ -141,7 +142,8 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'mcu-prep-daredevil-born-again',
   'mcu-prep-moon-knight',
   'spider-man-no-way-home-owner-selected',
-  'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
+  'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
+  ...registeredOwnerGuideIds,
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

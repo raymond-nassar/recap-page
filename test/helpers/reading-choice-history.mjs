@@ -7,6 +7,7 @@ import { after } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
+import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const { sha256, ...evidence } = JSON.parse(readFileSync(
@@ -23,6 +24,18 @@ if (createHash('sha256').update(JSON.stringify(evidence)).digest('hex') !== sha2
 }
 const entries = new Map(evidence.entries.map((entry) => [entry.id, entry]));
 const catalogEntries = new Map(evidence.catalogEntries.map((entry) => [entry.id, entry]));
+const { sha256: descriptionSha256, ...descriptionRevision } = JSON.parse(readFileSync(
+  new URL('../fixtures/mcu-prep-description-refresh.json', import.meta.url), 'utf8',
+));
+if (createHash('sha256').update(JSON.stringify(descriptionRevision)).digest('hex') !== descriptionSha256
+  || descriptionRevision.sourceCommit !== '1389e546de45b76844325cf149a6b7911829d360'
+  || descriptionRevision.entries.length !== 10
+  || new Set(descriptionRevision.entries.map(({ id }) => id)).size !== 10
+  || new Set(descriptionRevision.entries.map(({ file }) => file)).size !== 10) {
+  throw new Error('MCU description revision does not match its captured editorial change.');
+}
+const descriptions = new Map(descriptionRevision.entries.map((entry) => [entry.id, entry]));
+const descriptionFiles = new Map(descriptionRevision.entries.map((entry) => [entry.file, entry]));
 const tempDirs = new Set();
 let snapshotPromise;
 
@@ -30,12 +43,51 @@ after(async () => {
   await Promise.all([...tempDirs].map((dir) => rm(dir, { recursive: true, force: true })));
 });
 
+function requireCurrentDescription(entry, revision) {
+  if (entry.id !== revision.id) {
+    throw new Error(`${revision.file}: MCU description identity does not match ${revision.id}`);
+  }
+  if (entry.description !== revision.after) {
+    throw new Error(`${revision.id}: expected exact current description before historical reconstruction`);
+  }
+}
+
+// A copy revision is not a new source approval. Replay only its exact, checked inverse.
+export function historicalMcuDescriptionEntry(entry) {
+  const file = entry.out ?? entry.file;
+  const revision = descriptions.get(entry.id) ?? descriptionFiles.get(file);
+  if (!revision) return entry;
+  requireCurrentDescription(entry, revision);
+  if (file !== revision.file
+    || (Object.hasOwn(entry, 'out') && entry.out !== revision.file)
+    || (Object.hasOwn(entry, 'file') && entry.file !== revision.file)) {
+    throw new Error(`${revision.id}: MCU description payload identity does not match ${revision.file}`);
+  }
+  return { ...entry, description: revision.before };
+}
+
+export function historicalMcuDescriptionManifest(manifest) {
+  return { ...manifest, lists: manifest.lists.map(historicalMcuDescriptionEntry) };
+}
+
+export function historicalMcuDescriptionPayloadText(file, text) {
+  const revision = descriptionFiles.get(file);
+  if (!revision) return text;
+  requireCurrentDescription(JSON.parse(text), revision);
+  const header = `  "description": ${JSON.stringify(revision.after)},`;
+  const headers = text.match(/^ {2}"description": .+,\r?$/gm) ?? [];
+  if (headers.length !== 1 || headers[0].replace(/\r$/, '') !== header) {
+    throw new Error(`${file}: expected one exact top-level MCU description header`);
+  }
+  return text.replace(header, () => `  "description": ${JSON.stringify(revision.before)},`);
+}
+
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
   return {
     ...manifest,
-    lists: manifest.lists
-      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars')
+    lists: historicalMcuDescriptionManifest(manifest).lists
+      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars' && !registeredOwnerGuideIds.includes(id))
       .map((entry) => entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry),
   };
 }
@@ -45,7 +97,8 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
-  return catalogEntries.has(entry.id) ? structuredClone(catalogEntries.get(entry.id)) : entry;
+  const original = historicalMcuDescriptionEntry(entry);
+  return catalogEntries.has(entry.id) ? structuredClone(catalogEntries.get(entry.id)) : original;
 }
 
 export async function historicalReadingChoicePayloadText(file) {
@@ -58,7 +111,7 @@ export async function historicalReadingChoicePayloadText(file) {
   if (payloadFile === 'hickman_minimal.json') {
     throw new Error('The rewritten fast-track payload requires its original metadata, not only its historical vector.');
   }
-  let text = await readFile(sourcePath, 'utf8');
+  let text = historicalMcuDescriptionPayloadText(payloadFile, await readFile(sourcePath, 'utf8'));
   const editorial = evidence.payloadEditorial[payloadFile];
   if (!editorial) return text;
   for (const [field, value] of Object.entries(editorial)) {

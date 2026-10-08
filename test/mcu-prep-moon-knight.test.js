@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { legacyOwnerPeers, registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -16,14 +17,14 @@ import {
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import {
-  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  historicalMcuDescriptionEntry, historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
   loadHistoricalReadingChoiceLibrary,
 } from './helpers/reading-choice-history.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const id = 'mcu-prep-moon-knight';
 const laterIds = [
-  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
   'avengers-doomsday-secret-wars',
 ];
@@ -61,7 +62,7 @@ const expectedGroups = expectedSelections.map((selection) => `${selection.title}
 const expectedScreenIds = [
   'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
   'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
-  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
   'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again',
 ];
 const sourceOrigin = 'Selected by the owner for MCU Prep; expanded into original issues for this project';
@@ -134,7 +135,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   const entry = manifest.lists.find((entry) => entry.id === id);
   assert.equal(entry.type, 'screen-companion');
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(historicalMcuDescriptionEntry(entry), packet.proposedManifest);
   const card = catalog.lists.find((item) => item.id === id);
   for (const item of [entry, card]) {
     assert.equal(item.name, 'Moon Knight: MCU Prep');
@@ -154,8 +155,8 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.count, 17);
   assert.equal(card.placeholderCount, 0);
   assert.equal(card.emptyRecordCount, 0);
-  assert.deepEqual(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
-    .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id), expectedScreenIds);
+  assert.deepEqual(legacyOwnerPeers(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
+    .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id)), expectedScreenIds);
   assert.equal(shelfLists(catalog.lists, 'spotlights').length, 70);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
@@ -261,9 +262,9 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
   const visibleDigest = libraryDigestFor({
-    lists: entries.filter((entry) => !laterIds.includes(entry.id))
+    lists: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id))
       .map(historicalReadingChoiceCatalogEntry), paths: catalog.paths,
-  }, visibleOrders.filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
+  }, legacyOwnerPeers(visibleOrders).filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   })));
   assert.deepEqual(ledger.sourceContentProjection, projectionFields);
@@ -288,7 +289,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     {
       report: visibleReport, review: mapping.visibleRelationshipReview,
       currentLibraryDigest: visibleDigest,
-      expectedOrderIds: entries.filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
+      expectedOrderIds: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
       currentOrders: visibleOrders,
       count: 280,
     },
@@ -315,8 +316,8 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     const current = buildComparisonReport({
       candidateIds: expectedIssueIds, orders: evidence.currentOrders,
     });
-    assert.equal(current.comparisonCount, evidence.count + laterIds.length);
-    assert.deepEqual(current.comparisons, [
+    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredOwnerIds.length);
+    assert.deepEqual(legacyOwnerPeers(current.comparisons), [
       ...evidence.report.comparisons,
       ...laterIds.map((orderId) => ({
         orderId, sharedCount: 0, sharedIds: [], relationship: 'none',

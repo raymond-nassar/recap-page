@@ -6,6 +6,7 @@ import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
 } from '../src/js/lib/model.js';
 import { parseRoute } from '../src/js/lib/route.js';
+import { assertLegacyMcuTitles } from '../test/helpers/current-reading-library.mjs';
 
 const id = 'mcu-prep-deadpool-and-wolverine';
 const readJson = (relative) => JSON.parse(readFileSync(new URL(relative, import.meta.url), 'utf8'));
@@ -39,13 +40,8 @@ baseline = { ...baseline, overrides: { [house.items[1].issueId]: 'unavailable' }
 assert.equal(house.items.length, 20);
 assert.equal(expected.length, 43);
 assert.equal(expectedGroups.length, 5);
-assert.equal(expectedTitles.length, 14);
+assertLegacyMcuTitles(expectedTitles);
 assert.deepEqual(payload.items.map((item) => item.issueId), expected.map((item) => item.issueId));
-assert.deepEqual(expectedTitles.slice(-8), [
-  'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', 'Moon Knight: MCU Prep', 'Eternals',
-  'MCU Prep: The Fantastic Four: First Steps',
-  'MCU Prep: Deadpool & Wolverine', 'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
-]);
 
 async function click(page, selector) {
   await page.waitForSelector(selector);

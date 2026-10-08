@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -147,7 +148,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
   const manifest = await readJson('src/data/curated-lists.json');
   const existing = historicalReadingChoiceManifest(manifest).lists.filter((entry) =>
     entry.id !== id && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'mcu-prep-she-hulk' && entry.id !== 'mcu-prep-ms-marvel' && entry.id !== 'mcu-prep-captain-america-brave-new-world' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(existing.length, 200);
   const existingManifest = {
     ...manifest,
@@ -165,7 +166,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
   assert.equal(libraryDigest, '473bfe1e3e3247395973c2464b01fcbfafc858ed656417baf5cdf44ea5174903');
   assert.equal(report.reportDigest, '1ef070ad35dfd5507f78515c7465f988f0a3ded82fd416a3990ba81734d9b7bf');
   const rebuilt = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [],
-    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'] });
+    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world'] });
   assert.deepEqual(rebuilt, report);
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
@@ -234,7 +235,7 @@ test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero To
     }
   }
   assert.deepEqual(parseManifest(manifest).errors, []);
-  assert.equal(manifest.lists.length, 211);
+  assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'operation-zero-tolerance');
   const { storylines, ...originalFields } = manifest.lists[position];
@@ -300,7 +301,7 @@ test('Onslaught publishes 72 exact original identities and two ordered unresolve
   assert.equal(payload.items[72].issueId, 23388);
   assert.equal(payload.items[73].issueId, 16337);
   const catalog = parseCatalog(catalogRaw);
-  assert.equal(catalog.lists.length, 288);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const card = catalog.lists.find((row) => row.id === id);
   assert.equal(card.count, 74);
   assert.equal(card.placeholderCount, 2);

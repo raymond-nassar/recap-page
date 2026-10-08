@@ -1,3 +1,4 @@
+import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -25,7 +26,7 @@ import {
 } from './helpers/owner-mcu-library-extension.mjs';
 import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
 import {
-  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  historicalMcuDescriptionEntry, historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'mcu-prep-deadpool-and-wolverine';
@@ -167,8 +168,8 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
     createHash('sha256').update(sourceText.replace(/\r\n/g, '\n'), 'utf8').digest('hex'));
   assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.selections));
   const entry = manifest.lists.find((list) => list.id === id);
-  assert.deepEqual(packet.proposedManifest, entry);
-  assert.deepEqual(mapping.proposedManifest, entry);
+  assert.deepEqual(packet.proposedManifest, historicalMcuDescriptionEntry(entry));
+  assert.deepEqual(mapping.proposedManifest, historicalMcuDescriptionEntry(entry));
   assert.equal(payload.source, source.sourceUrl);
   assert.equal(entry.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
@@ -186,8 +187,8 @@ test('MCU Prep discovery preserves the active guides and independent reading cho
   const catalog = parseCatalog(raw);
   const entry = manifest.lists.find((list) => list.id === id);
   const card = catalog.lists.find((list) => list.id === id);
-  assert.equal(manifest.lists.length, 211);
-  assert.equal(catalog.lists.length, 288);
+  assert.equal(manifest.lists.length, currentReadingCensus.sources);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
   assert.equal(manifest.lists.filter((list) => list.id === id).length, 1);
   assert.equal(catalog.lists.filter((list) => list.id === id).length, 1);
   for (const value of [entry, card]) {
@@ -205,7 +206,7 @@ test('MCU Prep discovery preserves the active guides and independent reading cho
   assert.equal(category.route, 'marvel-on-screen');
   assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
     catalog.lists.filter((card) => card.type === 'screen-companion').map((card) => card.id));
-  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 14);
+  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, currentReadingCensus.mcu);
   assert.ok(catalog.paths.every((readingPath) => !readingPath.steps.includes(id)));
 });
 
@@ -214,7 +215,7 @@ test('approved relationships cover the complete library including generated chil
   const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
   const { completeManifest, orders, catalogIds } = await loadCompleteLibrary(manifest, catalog);
   const expectedPeers = orders.filter((entry) => entry.id !== id);
-  assert.equal(orders.length, 289);
+  assert.equal(orders.length, currentReadingCensus.allOrders);
   assert.equal(orders.some((entry) => entry.id === 'spider-man-no-way-home-owner-selected'), false);
   const recordedOrders = await recordedOwnerMcuLibrary({ orders, extension, candidateId: id, originalReport: report });
   const { current: recorded, laterIds } = assertCurrentLibraryExtension({
@@ -228,16 +229,16 @@ test('approved relationships cover the complete library including generated chil
     expectedPeers.map((entry) => entry.id).sort());
   const addedPeerIds = expectedPeers.filter((entry) => !recordedPeerIds.has(entry.id))
     .map((entry) => entry.id);
-  assert.deepEqual(addedPeerIds, ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-    'mcu-prep-moon-knight', 'mcu-prep-fantastic-four-first-steps', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again']);
+  assert.deepEqual(legacyOwnerPeers(addedPeerIds), ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-moon-knight', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)),
     recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)));
-  assert.deepEqual(current.comparisons.filter((entry) => !recordedPeerIds.has(entry.orderId))
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => !recordedPeerIds.has(entry.orderId))
     .map((entry) => [entry.relationship, entry.sharedCount, entry.sharedIds]),
-  addedPeerIds.map(() => ['none', 0, []]));
-  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+  legacyOwnerPeers(addedPeerIds).map(() => ['none', 0, []]));
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'),
     'A new or changed nonempty relationship does not inherit the frozen approval');
   assert.equal(extension.publishedBase, '7e18d3fc7c115de3afd6e38807e86b52c75cbf29');
@@ -246,7 +247,7 @@ test('approved relationships cover the complete library including generated chil
   ]);
   assert.equal(recorded.comparisonCount, 284);
   assert.equal(current.comparisonCount, expectedPeers.length);
-  assert.equal(current.comparisonCount, 288);
+  assert.equal(current.comparisonCount, currentReadingCensus.peers);
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId),
     expectedPeers.map((entry) => entry.id).sort((left, right) => left.localeCompare(right)));
   assert.ok(expectedPeers.length >= catalog.lists.length - 1);

@@ -1,0 +1,840 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-agatha-all-along",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/703",
+  "sourceRetrievedAt": "2026-10-07",
+  "readerDescription": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Fantastic Four by Lee/Kirby (Agatha Harkness introduction issues)",
+      "inputSha256": "135123ab4718b9adbf946625b3676f47e671f2c1ebee1d737613c4001cc57a1a",
+      "group": "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
+      "interpretation": "Single whole original: Fantastic Four (1961) #94, the Lee/Kirby Agatha introduction. Not a full trade; #103 is not selected.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "url": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 1
+    },
+    {
+      "inputPosition": 2,
+      "suppliedTitle": "Scarlet Witch by Steve Orlando Vol. 1",
+      "inputSha256": "75efb047657467de81d53f63e4f728add22febc1c6db5fdb229d67b0a551f273",
+      "group": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "interpretation": "Steve Orlando first collection The Last Door, ISBN 9780785194743, on sale 2023-08-29: Scarlet Witch (2023) #1-5 followed by Scarlet Witch Annual (2023) #1. Whole originals; not Robinson or Witches Road.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "url": "https://prhcomics.com/book/?isbn=9780785194743",
+          "retrievedAt": "2026-10-03"
+        }
+      ],
+      "originalCount": 6
+    },
+    {
+      "inputPosition": 3,
+      "suppliedTitle": "House of Harkness Infinity Comic (2024) #1-5",
+      "inputSha256": "1d27e350f75346562e67b2f1144c90b5f63c7c2279d3ead3689e3f9cb6b768ef",
+      "group": "House of Harkness Infinity Comic (2024) #1-5",
+      "interpretation": "Owner-corrected replacement for the superseded Darkhold Diaries selection: only House of Harkness Infinity Comic (2024) #1-5. All five are recorded provider gaps, not published placeholders or verified provider identities.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "originalCount": 5
+    }
+  ],
+  "sourceIssueCount": 12,
+  "publishedIssueCount": 7,
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four (1961) #94",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "94",
+      "seriesId": 2121,
+      "candidateIssueId": 13304,
+      "originalIssueId": 13304,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #1",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 33277,
+      "candidateIssueId": 97133,
+      "originalIssueId": 97133,
+      "sourcePosition": 2,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #2",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 33277,
+      "candidateIssueId": 97135,
+      "originalIssueId": 97135,
+      "sourcePosition": 3,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #3",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 33277,
+      "candidateIssueId": 97136,
+      "originalIssueId": 97136,
+      "sourcePosition": 4,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #4",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "seriesId": 33277,
+      "candidateIssueId": 97137,
+      "originalIssueId": 97137,
+      "sourcePosition": 5,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2023) #5",
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "seriesId": 33277,
+      "candidateIssueId": 97138,
+      "originalIssueId": 97138,
+      "sourcePosition": 6,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "normalizedSeriesTitle": "Scarlet Witch Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37548,
+      "candidateIssueId": 109670,
+      "originalIssueId": 109670,
+      "sourcePosition": 7,
+      "inputPosition": 2,
+      "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "sourcePosition": 8,
+      "inputPosition": 3,
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "sourcePosition": 9,
+      "inputPosition": 3,
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "sourcePosition": 10,
+      "inputPosition": 3,
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "sourcePosition": 11,
+      "inputPosition": 3,
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "sourcePosition": 12,
+      "inputPosition": 3,
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "sourceGaps": [
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121656, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121656 returned HTTP 404 at 2026-10-06T06:50:25.114Z; raw response SHA-256 a4df43e65bdd826a389ca9d0640f988804c9c85d52308605cde35a4fd490f229. Supplied link https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121656",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 8,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "0168298d14b49f796b8065a2cd0c211bed4a1a8f8c5d6af1f54361a4642434c8"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121657, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121657 returned HTTP 404 at 2026-10-06T06:50:25.426Z; raw response SHA-256 3bc7739f12f7097e6794cc3b480c2bef0010edee18e504839619470cc8a5c9fa. Supplied link https://www.marvel.com/comics/issue/121657/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121657",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121657/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 9,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "93d1e1eaf3781e2b95d36de7fdd6e94407f5a7dce9411cc2d148ab89a25632b0"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121658, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121658 returned HTTP 404 at 2026-10-06T06:50:25.592Z; raw response SHA-256 8d64875ff169b0dd03a6f901d52c30a2075915b513a3688fddaae3e06da579e7. Supplied link https://www.marvel.com/comics/issue/121658/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121658",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121658/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 10,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "43cd993068cde56f67cbda2838b3fac4f3aaa12e7278f70fa4f3fdc8d21b8261"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121659, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121659 returned HTTP 404 at 2026-10-06T06:50:25.775Z; raw response SHA-256 1c3620459de02a36e7dad98ed03832acc3a6ec519fa8a75da50672734ec05e86. Supplied link https://www.marvel.com/comics/issue/121659/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121659",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121659/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 11,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "d2e7573bc89c666a0dbc720efd66cb808f8a18b3dd44ae43e0fd5b7e9e8bf52e"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-06",
+      "auditBasis": "Owner-supplied association 121660, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121660 returned HTTP 404 at 2026-10-06T06:50:25.947Z; raw response SHA-256 4474a72a6f6e31e7ad85b1e6e2a730795524bde61aa466805809d5fd3529e7c9. Supplied link https://www.marvel.com/comics/issue/121660/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "independent-reporting",
+          "url": "https://comicbook.com/comics/news/marvel-agatha-house-of-harkness-comic-scarlet-witch-magic-boarding-school/",
+          "retrievedAt": "2026-10-05"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/121660",
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-correction",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "kind": "owner-supplied-link",
+          "url": "https://www.marvel.com/comics/issue/121660/",
+          "retrievedAt": "2026-10-05"
+        }
+      ],
+      "sourcePosition": 12,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
+      "evidenceDigest": "c3cbd015b14a6cd0dd4a6dda3f088c2930b5af721c9ff25111153d361693a340"
+    }
+  ],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "agatha-corrected-input.md",
+        "sha256": "66d5a657818d9f2acc298ea4be07cf4aa9943d71fdcf2aa7161c38ad0a37fe5a",
+        "bytes": 410
+      }
+    ]
+  },
+  "facts": {
+    "sourceChoice": {
+      "issue": "https://github.com/raymond-nassar/recap-page/issues/703",
+      "correction": "https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864",
+      "supersededSelection": "Agatha: Darkhold Diaries (2024 limited series)",
+      "effectiveReplacement": "House of Harkness Infinity Comic (2024) #1-5"
+    },
+    "correctedHandoff": {
+      "name": "agatha-corrected-input.md",
+      "bytes": 410,
+      "sha256": "66d5a657818d9f2acc298ea4be07cf4aa9943d71fdcf2aa7161c38ad0a37fe5a",
+      "handedAt": "2026-10-07T14:34:33.447Z",
+      "derivedCorrectedHandoff": true,
+      "transformation": "Exact Issue heading and numbered selections, with only the superseded third line replaced by a factual rendering of the recorded owner correction. This is a derived corrected handoff, not byte-identical original owner input.",
+      "originalIssueCreatedAt": "2026-10-04T02:38:36Z",
+      "originalIssueSnapshotSha256": "27e3d65086ff4957a0120ec18aed9e04ba307914c8a882ef7016bfeb6d3725fb",
+      "sourceCorrectionCreatedAt": "2026-10-06T07:17:21Z",
+      "correctionSnapshotSha256": "ecda8283b88a8498e446586015650b5954efff53d25f66810c325691d64c15b9"
+    },
+    "intendedGroupCounts": [
+      1,
+      6,
+      5
+    ],
+    "publishedGroupCounts": [
+      1,
+      6,
+      0
+    ],
+    "intendedSourcePositions": 12,
+    "publishedOriginals": 7,
+    "gapPositions": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "groups": [
+      "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
+      "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "House of Harkness Infinity Comic (2024) #1-5"
+    ],
+    "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+    "gapDetails": [
+      {
+        "sourcePosition": 8,
+        "inputPosition": 3,
+        "withinSelectionPosition": 1,
+        "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+        "ownerSuppliedIssueId": 121656,
+        "providerIdentityVerified": false,
+        "suppliedUrl": "https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1",
+        "metadataUrl": "https://marvel.emreparker.com/v1/issues/121656",
+        "urlSha256": "9b788bf0ee827a0e566e30856cf520df5c706995fd0d910fea12d7c847ce8462",
+        "status": 404,
+        "fetchedAt": "2026-10-06T06:50:25.114Z",
+        "responseBodySha256": "a4df43e65bdd826a389ca9d0640f988804c9c85d52308605cde35a4fd490f229",
+        "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+        "seriesId": null,
+        "providerDetailUrl": null,
+        "coverUrl": null
+      },
+      {
+        "sourcePosition": 9,
+        "inputPosition": 3,
+        "withinSelectionPosition": 2,
+        "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+        "ownerSuppliedIssueId": 121657,
+        "providerIdentityVerified": false,
+        "suppliedUrl": "https://www.marvel.com/comics/issue/121657/",
+        "metadataUrl": "https://marvel.emreparker.com/v1/issues/121657",
+        "urlSha256": "2351cec4522f0c8f835ea86c10c1429c1031a1490134ff88da3e21274118f04d",
+        "status": 404,
+        "fetchedAt": "2026-10-06T06:50:25.426Z",
+        "responseBodySha256": "3bc7739f12f7097e6794cc3b480c2bef0010edee18e504839619470cc8a5c9fa",
+        "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+        "seriesId": null,
+        "providerDetailUrl": null,
+        "coverUrl": null
+      },
+      {
+        "sourcePosition": 10,
+        "inputPosition": 3,
+        "withinSelectionPosition": 3,
+        "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+        "ownerSuppliedIssueId": 121658,
+        "providerIdentityVerified": false,
+        "suppliedUrl": "https://www.marvel.com/comics/issue/121658/",
+        "metadataUrl": "https://marvel.emreparker.com/v1/issues/121658",
+        "urlSha256": "0c2d2862684eac37181483e4f0d5c43255fe69732a6753982f8e3432d1f82b15",
+        "status": 404,
+        "fetchedAt": "2026-10-06T06:50:25.592Z",
+        "responseBodySha256": "8d64875ff169b0dd03a6f901d52c30a2075915b513a3688fddaae3e06da579e7",
+        "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+        "seriesId": null,
+        "providerDetailUrl": null,
+        "coverUrl": null
+      },
+      {
+        "sourcePosition": 11,
+        "inputPosition": 3,
+        "withinSelectionPosition": 4,
+        "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+        "ownerSuppliedIssueId": 121659,
+        "providerIdentityVerified": false,
+        "suppliedUrl": "https://www.marvel.com/comics/issue/121659/",
+        "metadataUrl": "https://marvel.emreparker.com/v1/issues/121659",
+        "urlSha256": "1453e44321169106e3fe3bf01f909151f90cdd1f387a338ba5f202dacd0d3ef3",
+        "status": 404,
+        "fetchedAt": "2026-10-06T06:50:25.775Z",
+        "responseBodySha256": "1c3620459de02a36e7dad98ed03832acc3a6ec519fa8a75da50672734ec05e86",
+        "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+        "seriesId": null,
+        "providerDetailUrl": null,
+        "coverUrl": null
+      },
+      {
+        "sourcePosition": 12,
+        "inputPosition": 3,
+        "withinSelectionPosition": 5,
+        "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+        "ownerSuppliedIssueId": 121660,
+        "providerIdentityVerified": false,
+        "suppliedUrl": "https://www.marvel.com/comics/issue/121660/",
+        "metadataUrl": "https://marvel.emreparker.com/v1/issues/121660",
+        "urlSha256": "a66b89a121b23831dde8bb66274f4031fdbe98cca8a2ccc27bfb55165ff0fa76",
+        "status": 404,
+        "fetchedAt": "2026-10-06T06:50:25.947Z",
+        "responseBodySha256": "4474a72a6f6e31e7ad85b1e6e2a730795524bde61aa466805809d5fd3529e7c9",
+        "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/728",
+        "seriesId": null,
+        "providerDetailUrl": null,
+        "coverUrl": null
+      }
+    ],
+    "bibliography": {
+      "title": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+      "isbn13": "9780785194743",
+      "onSale": "2023-08-29",
+      "pages": 168,
+      "retrievedAt": "2026-10-03",
+      "url": "https://prhcomics.com/book/?isbn=9780785194743",
+      "responseBodySha256": "eb720960fcc92d3eb5a2a10f6000d9c83b39cc966e89f2c27112bc10a43537d5",
+      "contents": [
+        "Scarlet Witch (2023) #1-5",
+        "Scarlet Witch Annual (2023) #1"
+      ],
+      "physicalTocOrderIndependentlyVerified": false
+    },
+    "qualifications": [
+      "All seven readable rows link whole original comics and retain their original shared-progress identities, not trades or isolated story segments.",
+      "Fantastic Four #94 is the selected Lee/Kirby introduction. The diagnostic #103 is excluded; no full Fantastic Four trade is invented.",
+      "Retain Steve Orlando and The Last Door. The obsolete witches-road wording does not authorize James Robinson or Witches Road.",
+      "The House of Harkness school-rival premise and Preeti Chhibber/Jodi Nishijima credits are supported by reporting retrieved 2026-10-05, not by the five refused detail requests.",
+      "No direct television tie-in, exhaustive character absence or Marvel Unlimited availability is asserted.",
+      "Historical provider observations retain FF #94 pageCount 0, coarse creator-role labels and original dates. Existing normalizeCover supplies the emitted cover representation; no raw metadata is rewritten.",
+      "The older Darkhold Diaries bibliography hold is preserved as history and superseded by the actual owner replacement, not relabeled as a metadata gap."
+    ],
+    "originalMetadataReceipts": [
+      {
+        "requestIndex": 2,
+        "url": "https://marvel.emreparker.com/v1/issues/13304",
+        "urlSha256": "30003f9e71a3c4484ea403eb66a5be6653ec4d2bea6965fce998675ceb2e6cdf",
+        "fetchedAt": "2026-10-04T02:57:52.170Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/13304",
+        "responseBodySha256": "e6e171ce101b4988a037b9fcababeebe2d9523ee2c9fa2f2f2c143794f6f3cf6",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 3,
+        "url": "https://marvel.emreparker.com/v1/issues/97133",
+        "urlSha256": "7933ec364d7f27bb9fade7f8cf4d1404ddec0004ac49252178a520e0b8b23ecd",
+        "fetchedAt": "2026-10-04T02:57:52.359Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/97133",
+        "responseBodySha256": "dbd567f34186df324037b74a87bc7049d0d7988d07c76f7183ca128fa22f3e63",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 4,
+        "url": "https://marvel.emreparker.com/v1/issues/97135",
+        "urlSha256": "98497e6f09d11c3593d3db187923e7e8c33df5de1c5d3773bb18c6af5b0706c5",
+        "fetchedAt": "2026-10-04T02:57:52.525Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/97135",
+        "responseBodySha256": "8ae445b59f6ced991eabda78e39f2514946add59a7dafd4de92ab054a27555f1",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 5,
+        "url": "https://marvel.emreparker.com/v1/issues/97136",
+        "urlSha256": "0531c10f942f0aa7ce315e86da486cefb87dfb5eadde398f464137fbae0d8ea9",
+        "fetchedAt": "2026-10-04T02:57:52.698Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/97136",
+        "responseBodySha256": "63f2b5ca3d7866f6151f976d4172a79b4ea0a5582c3498f003d62f1f0aa1d192",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 6,
+        "url": "https://marvel.emreparker.com/v1/issues/97137",
+        "urlSha256": "08a112afa387443fe2a75a760dae57fcb35e8edd596fb2a48e2a857c0e988cbf",
+        "fetchedAt": "2026-10-04T02:58:01.733Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/97137",
+        "responseBodySha256": "0365e2f4321ffd5c9eb51e18bec44ce6f1be9d9f35c5b10b49c5343ed4f5347d",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 7,
+        "url": "https://marvel.emreparker.com/v1/issues/97138",
+        "urlSha256": "e8d82b500c64e5fca40b04740641e5940736f9d0dfcb68d67e01a0f6a98ba5f0",
+        "fetchedAt": "2026-10-04T02:58:02.182Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/97138",
+        "responseBodySha256": "f2a14600ee63d9d99e983d3aef1ab8ebdafa9be9aff962954a33e23ea92c138a",
+        "outcome": "json-response"
+      },
+      {
+        "requestIndex": 8,
+        "url": "https://marvel.emreparker.com/v1/issues/109670",
+        "urlSha256": "1033d5a60fef34af4d571c7ee027646afb5534e133837b1c4e4598d535090df0",
+        "fetchedAt": "2026-10-04T02:58:02.485Z",
+        "status": 200,
+        "finalUrl": "https://marvel.emreparker.com/v1/issues/109670",
+        "responseBodySha256": "4a20ddb2564e3372637ca5ed6db39a7b010640b6f42a601d0a98b7b81c6d44fe",
+        "outcome": "json-response"
+      }
+    ],
+    "metadataAcquisition": [
+      {
+        "id": 13304,
+        "url": "https://marvel.emreparker.com/v1/issues/13304",
+        "urlSha256": "30003f9e71a3c4484ea403eb66a5be6653ec4d2bea6965fce998675ceb2e6cdf",
+        "fetchedAt": "2026-10-07T14:41:19.638Z",
+        "status": 200,
+        "rawBytes": 824,
+        "responseBodySha256": "e6e171ce101b4988a037b9fcababeebe2d9523ee2c9fa2f2f2c143794f6f3cf6",
+        "historicalFetchedAt": "2026-10-04T02:57:52.170Z",
+        "historicalResponseBodySha256": "e6e171ce101b4988a037b9fcababeebe2d9523ee2c9fa2f2f2c143794f6f3cf6",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 97133,
+        "url": "https://marvel.emreparker.com/v1/issues/97133",
+        "urlSha256": "7933ec364d7f27bb9fade7f8cf4d1404ddec0004ac49252178a520e0b8b23ecd",
+        "fetchedAt": "2026-10-07T14:41:20.098Z",
+        "status": 200,
+        "rawBytes": 1539,
+        "responseBodySha256": "dbd567f34186df324037b74a87bc7049d0d7988d07c76f7183ca128fa22f3e63",
+        "historicalFetchedAt": "2026-10-04T02:57:52.359Z",
+        "historicalResponseBodySha256": "dbd567f34186df324037b74a87bc7049d0d7988d07c76f7183ca128fa22f3e63",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 97135,
+        "url": "https://marvel.emreparker.com/v1/issues/97135",
+        "urlSha256": "98497e6f09d11c3593d3db187923e7e8c33df5de1c5d3773bb18c6af5b0706c5",
+        "fetchedAt": "2026-10-07T14:41:20.288Z",
+        "status": 200,
+        "rawBytes": 1563,
+        "responseBodySha256": "8ae445b59f6ced991eabda78e39f2514946add59a7dafd4de92ab054a27555f1",
+        "historicalFetchedAt": "2026-10-04T02:57:52.525Z",
+        "historicalResponseBodySha256": "8ae445b59f6ced991eabda78e39f2514946add59a7dafd4de92ab054a27555f1",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 97136,
+        "url": "https://marvel.emreparker.com/v1/issues/97136",
+        "urlSha256": "0531c10f942f0aa7ce315e86da486cefb87dfb5eadde398f464137fbae0d8ea9",
+        "fetchedAt": "2026-10-07T14:41:20.452Z",
+        "status": 200,
+        "rawBytes": 1228,
+        "responseBodySha256": "63f2b5ca3d7866f6151f976d4172a79b4ea0a5582c3498f003d62f1f0aa1d192",
+        "historicalFetchedAt": "2026-10-04T02:57:52.698Z",
+        "historicalResponseBodySha256": "63f2b5ca3d7866f6151f976d4172a79b4ea0a5582c3498f003d62f1f0aa1d192",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 97137,
+        "url": "https://marvel.emreparker.com/v1/issues/97137",
+        "urlSha256": "08a112afa387443fe2a75a760dae57fcb35e8edd596fb2a48e2a857c0e988cbf",
+        "fetchedAt": "2026-10-07T14:41:20.639Z",
+        "status": 200,
+        "rawBytes": 1258,
+        "responseBodySha256": "0365e2f4321ffd5c9eb51e18bec44ce6f1be9d9f35c5b10b49c5343ed4f5347d",
+        "historicalFetchedAt": "2026-10-04T02:58:01.733Z",
+        "historicalResponseBodySha256": "0365e2f4321ffd5c9eb51e18bec44ce6f1be9d9f35c5b10b49c5343ed4f5347d",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 97138,
+        "url": "https://marvel.emreparker.com/v1/issues/97138",
+        "urlSha256": "e8d82b500c64e5fca40b04740641e5940736f9d0dfcb68d67e01a0f6a98ba5f0",
+        "fetchedAt": "2026-10-07T14:41:29.645Z",
+        "status": 200,
+        "rawBytes": 1035,
+        "responseBodySha256": "f2a14600ee63d9d99e983d3aef1ab8ebdafa9be9aff962954a33e23ea92c138a",
+        "historicalFetchedAt": "2026-10-04T02:58:02.182Z",
+        "historicalResponseBodySha256": "f2a14600ee63d9d99e983d3aef1ab8ebdafa9be9aff962954a33e23ea92c138a",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      },
+      {
+        "id": 109670,
+        "url": "https://marvel.emreparker.com/v1/issues/109670",
+        "urlSha256": "1033d5a60fef34af4d571c7ee027646afb5534e133837b1c4e4598d535090df0",
+        "fetchedAt": "2026-10-07T14:41:30.111Z",
+        "status": 200,
+        "rawBytes": 1165,
+        "responseBodySha256": "4a20ddb2564e3372637ca5ed6db39a7b010640b6f42a601d0a98b7b81c6d44fe",
+        "historicalFetchedAt": "2026-10-04T02:58:02.485Z",
+        "historicalResponseBodySha256": "4a20ddb2564e3372637ca5ed6db39a7b010640b6f42a601d0a98b7b81c6d44fe",
+        "rawMatchesHistorical": true,
+        "requestAttempts": 1,
+        "fullRawBytesRetainedPrivately": true
+      }
+    ],
+    "preservedOriginals": [
+      {
+        "name": "agatha-bibliography-research.mjs",
+        "bytes": 5882,
+        "sha256": "effd6817530a22b22bbf17b52fb1dd5b6062774898cc06ee8c9b2ccf42d633e1"
+      },
+      {
+        "name": "agatha-bibliography-retrievals.json",
+        "bytes": 6077,
+        "sha256": "f239eaba840858b81269b6609a7609e8e2f607b62e68fd0660a898e1aa1532b6"
+      },
+      {
+        "name": "agatha-house-of-harkness-metadata-research.json",
+        "bytes": 11482,
+        "sha256": "696c0625fafc59756f9744dfff1d3b8f46c3d00ab01a4f3e4a7720710910ad19"
+      },
+      {
+        "name": "agatha-house-of-harkness-metadata-research.mjs",
+        "bytes": 8184,
+        "sha256": "cd51d5ca71b9851a041b90918a0a239950045d208bf43830bf0b4698a3aa4f30"
+      },
+      {
+        "name": "agatha-house-of-harkness-self-check.json",
+        "bytes": 2070,
+        "sha256": "0940a5463c164019d743b8fa94a8dc7cc2e447be1ca199c7dd16a37f5899a09c"
+      },
+      {
+        "name": "agatha-house-of-harkness-self-check.mjs",
+        "bytes": 11058,
+        "sha256": "2f6c07dfa8ce72c9b85605c6c908d2564589477aefdbf135f58e065ac0d2ef26"
+      },
+      {
+        "name": "agatha-mcu-prep-research.json",
+        "bytes": 79873,
+        "sha256": "8bd90c2fece04b2488a07b3ddfab2be8e4c3e2ae553123dab67231b68a4156b6"
+      },
+      {
+        "name": "agatha-metadata-research.json",
+        "bytes": 40733,
+        "sha256": "cb25ce41b0d6293df2e2144c08d243ad7d6cbfb0f2c061600cb87e2ce2b90ca8"
+      },
+      {
+        "name": "agatha-metadata-research.mjs",
+        "bytes": 11931,
+        "sha256": "bbc136045bb980afe0a305b4ea1e65d38be1d6d7b2e963338dc8217c4bb3b4f4"
+      },
+      {
+        "name": "agatha-orlando-edition-date.json",
+        "bytes": 418,
+        "sha256": "467a8785d3ca8ecf1c19d48b5d283b9c44782893573277c0784056141fd7eba9"
+      },
+      {
+        "name": "agatha-owner-issue-703.json",
+        "bytes": 3804,
+        "sha256": "635aced2ae33d6f4a4ec2f28bd729c0129e8156b62a43c4ab72b9db1bc3a2ca3"
+      },
+      {
+        "name": "agatha-research-self-check.json",
+        "bytes": 6288,
+        "sha256": "19fd57aed4decc148ebe25970f4845e888205831ca929f633402bf64fbfb5b96"
+      },
+      {
+        "name": "agatha-research-self-check.mjs",
+        "bytes": 12335,
+        "sha256": "f3b8e28b96fa9cd9d9f46f04162fe65595cbb5be9ecf2a025d4d62d771eddb52"
+      }
+    ],
+    "preservation": {
+      "originalBytesChanged": false,
+      "publicSourceSelfContained": true,
+      "publicArtifactReadRequired": false,
+      "availableCompleteCacheAtIntake": 0,
+      "factualProjectionsAreNotRawCache": true
+    },
+    "editorialBoundary": "Supplied group order and within-collection order, not an independently verified physical table of contents. The entirely missing third group remains explicit in source and gap provenance."
+  },
+  "publicDependencies": []
+}

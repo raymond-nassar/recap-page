@@ -100,6 +100,11 @@ const char* failureCode(const std::exception& failure) {
     if (dynamic_cast<const WindowMessageFailure*>(&failure)) return "window-message-failed";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
     static constexpr const char* labels[][2] = {
+        { "proof GUI thread unavailable", "proof-gui-thread-unavailable" },
+        { "proof DPI context unavailable", "proof-dpi-context-unavailable" },
+        { "proof DPI context differed", "proof-dpi-context-differed" },
+        { "proof COM apartment query failed", "proof-com-apartment-query-failed" },
+        { "proof COM initialization failed", "proof-com-initialization-failed" },
         { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
         { "F03 pending close lost the startup owner", "n2-pending-owner-lost" },
         { "F01 coordinator created a visible terminal", "n3-visible-coordinator-terminal" },
@@ -3209,6 +3214,89 @@ bool completeInstalledWait(InstalledWaitState& state, Finished finished, Pending
     return complete;
 }
 
+template<class Poll>
+bool installedPoll(std::ostream& report, Poll poll) {
+    const char* operation = "semantic-collect";
+    try {
+        return poll(operation);
+    } catch (const std::exception& failure) {
+        const auto* system = dynamic_cast<const std::system_error*>(&failure);
+        const char* kind = dynamic_cast<const fs::filesystem_error*>(&failure) ? "filesystem"
+            : dynamic_cast<const std::ios_base::failure*>(&failure) ? "iostream"
+            : system ? "system"
+            : dynamic_cast<const std::bad_alloc*>(&failure) ? "allocation" : "standard";
+        const char* category = !system ? "none"
+            : system->code().category() == std::system_category() ? "system"
+            : system->code().category() == std::generic_category() ? "generic"
+            : system->code().category() == std::iostream_category() ? "iostream" : "other";
+        // Exception messages and category names can contain paths or other private text.
+        try {
+            report << "DIAG installed-poll-failure operation=" << operation
+                   << " kind=" << kind << " category=" << category
+                   << " numeric=" << (system ? system->code().value() : 0) << "\n";
+            report.flush();
+        } catch (...) {}
+        throw;
+    }
+}
+
+void installedPollCases() {
+    std::ostringstream report;
+    check(installedPoll(report, [](const char*&) { return true; }) && report.str().empty(),
+          "successful installed poll emitted failure diagnostics");
+    check(!installedPoll(report, [](const char*&) { return false; }) && report.str().empty(),
+          "pending installed poll changed acceptance");
+    const auto verify = [&](const auto& failure, const char* expected) {
+        report.str("");
+        const std::exception* original = nullptr;
+        bool caught = false;
+        try {
+            installedPoll(report, [&](const char*& operation) -> bool {
+                operation = "counts-publish";
+                try { throw failure; }
+                catch (const std::exception& injected) { original = &injected; throw; }
+            });
+        } catch (const std::exception& propagated) {
+            caught = true;
+            check(&propagated == original, "installed poll replaced the original failure");
+        }
+        check(caught, "installed poll swallowed the original failure");
+        check(report.str() == expected, "installed poll diagnostic shape differs");
+    };
+    const std::runtime_error ordinary("PRIVATE message");
+    verify(ordinary, "DIAG installed-poll-failure operation=counts-publish kind=standard category=none numeric=0\n");
+    const fs::filesystem_error filesystem("PRIVATE message", fs::path(L"PRIVATE path"),
+        std::error_code(32, std::system_category()));
+    verify(filesystem, "DIAG installed-poll-failure operation=counts-publish kind=filesystem category=system numeric=32\n");
+    verify(std::system_error(std::error_code(5, std::generic_category()), "PRIVATE message"),
+        "DIAG installed-poll-failure operation=counts-publish kind=system category=generic numeric=5\n");
+    verify(std::ios_base::failure("PRIVATE message", std::error_code(1, std::iostream_category())),
+        "DIAG installed-poll-failure operation=counts-publish kind=iostream category=iostream numeric=1\n");
+    verify(std::bad_alloc(),
+        "DIAG installed-poll-failure operation=counts-publish kind=allocation category=none numeric=0\n");
+    struct PrivateCategory : std::error_category {
+        const char* name() const noexcept override { return "PRIVATE category"; }
+        std::string message(int) const override { return "PRIVATE message"; }
+    } privateCategory;
+    verify(std::system_error(std::error_code(7, privateCategory)),
+        "DIAG installed-poll-failure operation=counts-publish kind=system category=other numeric=7\n");
+    std::ostringstream broken;
+    broken.setstate(std::ios::badbit);
+    broken.exceptions(std::ios::failbit);
+    const std::exception* original = nullptr;
+    bool caught = false;
+    try {
+        installedPoll(broken, [&](const char*&) -> bool {
+            try { throw ordinary; }
+            catch (const std::exception& injected) { original = &injected; throw; }
+        });
+    } catch (const std::exception& propagated) {
+        caught = true;
+        check(&propagated == original, "diagnostic write failure replaced the original failure");
+    }
+    check(caught, "diagnostic write failure swallowed the original failure");
+}
+
 std::string safeVerificationDiagnostic(const std::wstring& detail) {
     const std::wstring prefix = L"Verification diagnostic: ";
     std::wistringstream lines(detail);
@@ -3308,6 +3396,7 @@ void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& e
 }
 
 void serverVerifierCases() {
+    installedPollCases();
     const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
         recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
     std::ostringstream fixtureReport;
@@ -3376,38 +3465,43 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     bool operationActive = false;
     InstalledWaitState waitState;
     observedWait("installed-result-wait", [&] {
-        collectSemanticOperations(observer, control, operationOrdinal, operationActive);
-        const auto counts = observer.entryCounts(executable);
-        write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
-              "\nended=" + std::to_string(counts.second) + "\n");
-        if (busy && !dismissed) {
-            const auto events = observer.processes();
-            for (const auto& event : events) {
-                if (!event.start) continue;
-                const HWND window = windowFor(event.pid);
-                if (!window || controlText(GetDlgItem(window, 203)) != L"Close") continue;
-                Child gui;
-                retain(gui, event.pid, executable);
-                observer.bindRoot(gui.pid, gui.process.get());
-                accessible(window, true);
-                const auto detail = controlText(GetDlgItem(window, 204));
-                for (const auto* required : {
-                    L"Port 8787 is already in use.", L"It is not running this version of Recap Page.",
-                    L"Do not start Recap Page on a different port.",
-                    L"another port opens a separate browser storage location.", L"http://127.0.0.1:8787/"
-                }) check(detail.find(required) != std::wstring::npos, "installed native guidance was incomplete");
-                sendChecked(GetDlgItem(window, 203), BM_CLICK);
-                proof::until([&] { return gui.exit() != STILL_ACTIVE; }, "installed error was not dismissible");
-                check(gui.exit() == 1, "installed native error exited successfully");
-                dismissed = true;
-                write(control / L"dismissed.txt", "dismissed");
-                break;
+        return installedPoll(report, [&](const char*& operation) {
+            collectSemanticOperations(observer, control, operationOrdinal, operationActive);
+            operation = "root-count";
+            const auto counts = observer.entryCounts(executable);
+            operation = "counts-publish";
+            write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
+                  "\nended=" + std::to_string(counts.second) + "\n");
+            operation = "busy-feedback";
+            if (busy && !dismissed) {
+               const auto events = observer.processes();
+               for (const auto& event : events) {
+                   if (!event.start) continue;
+                   const HWND window = windowFor(event.pid);
+                   if (!window || controlText(GetDlgItem(window, 203)) != L"Close") continue;
+                   Child gui;
+                   retain(gui, event.pid, executable);
+                   observer.bindRoot(gui.pid, gui.process.get());
+                   accessible(window, true);
+                   const auto detail = controlText(GetDlgItem(window, 204));
+                   for (const auto* required : {
+                       L"Port 8787 is already in use.", L"It is not running this version of Recap Page.",
+                       L"Do not start Recap Page on a different port.",
+                       L"another port opens a separate browser storage location.", L"http://127.0.0.1:8787/"
+                   }) check(detail.find(required) != std::wstring::npos, "installed native guidance was incomplete");
+                   sendChecked(GetDlgItem(window, 203), BM_CLICK);
+                   proof::until([&] { return gui.exit() != STILL_ACTIVE; }, "installed error was not dismissible");
+                   check(gui.exit() == 1, "installed native error exited successfully");
+                   dismissed = true;
+                   write(control / L"dismissed.txt", "dismissed");
+                   break;
+               }
             }
-        }
-        return completeInstalledWait(waitState,
-            [&] { return busy ? dismissed : fs::exists(control / L"finish.txt"); },
-            [&] { return fs::exists(control / L"root-timeout.txt"); },
-            [&] { reportInstalledRootTimeout(observer, executable, report); });
+            return completeInstalledWait(waitState,
+               [&] { operation = "finish-query"; return busy ? dismissed : fs::exists(control / L"finish.txt"); },
+               [&] { operation = "timeout-query"; return fs::exists(control / L"root-timeout.txt"); },
+               [&] { operation = "root-diagnostic"; reportInstalledRootTimeout(observer, executable, report); });
+        });
     }, "installed observer deadline exceeded", 600000);
     observed("semantic-channel-drain", [&] {
         proof::until([&] {
@@ -3452,14 +3546,49 @@ int wmain(int argc, wchar_t** argv) {
     std::ofstream report(reportPath, std::ios::binary | std::ios::app);
     liveReport = &report;
     liveReportPath = reportPath;
-    const auto com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
+    HRESULT com = E_FAIL;
+    bool comInitialized = false;
+    bool fixtureComInitialized = false;
     try {
         check(static_cast<bool>(report), "proof report path is required");
-        check(SUCCEEDED(com), "proof COM initialization failed");
-        proof::nativeArchitecture(GetCurrentProcess());
+        // Hidden, redirected console launches do not initialize a USER thread.
+        check(observed("proof-gui-thread", [] { return IsGUIThread(TRUE) != FALSE; }),
+              "proof GUI thread unavailable");
         check(observed("proof-dpi-awareness", [] {
             return SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) != nullptr;
         }), "proof DPI context unavailable");
+        check(AreDpiAwarenessContextsEqual(GetThreadDpiAwarenessContext(),
+              DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2), "proof DPI context differed");
+        if (options[L"--com-apartment"] == L"sta") {
+            check(options[L"--mode"] == L"dpi-awareness", "proof COM test mode differs");
+            com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+            check(SUCCEEDED(com), "proof COM initialization failed");
+            fixtureComInitialized = true;
+        }
+        APTTYPE apartment{};
+        APTTYPEQUALIFIER qualifier{};
+        const auto apartmentResult = CoGetApartmentType(&apartment, &qualifier);
+        check(apartmentResult == S_OK || apartmentResult == CO_E_NOTINITIALIZED,
+              "proof COM apartment query failed");
+        const auto apartmentModel = apartmentResult == S_OK &&
+            (apartment == APTTYPE_STA || apartment == APTTYPE_MAINSTA)
+            ? COINIT_APARTMENTTHREADED : COINIT_MULTITHREADED;
+        com = observed("com-initialize", [apartmentModel] {
+            return CoInitializeEx(nullptr, apartmentModel);
+        });
+        check(SUCCEEDED(com), "proof COM initialization failed");
+        comInitialized = true;
+        proof::nativeArchitecture(GetCurrentProcess());
+        if (options[L"--mode"] == L"dpi-awareness") {
+            observed("installed-poll-cases", [] { installedPollCases(); });
+            observed("com-uninitialize", [] { CoUninitialize(); });
+            if (fixtureComInitialized) {
+                CoUninitialize();
+                fixtureComInitialized = false;
+            }
+            report << "PASS hidden-observer-dpi-awareness\n";
+            return 0;
+        }
         if (options[L"--mode"] == L"visual-worker") {
             checkpoint("ENTER", "visual-target-validation");
             const auto pid = static_cast<DWORD>(std::stoul(options[L"--target-pid"]));
@@ -3597,7 +3726,8 @@ int wmain(int argc, wchar_t** argv) {
                 appCapturePublished = true;
             }
         }
-        if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
+        if (comInitialized) observed("com-uninitialize", [] { CoUninitialize(); });
+        if (fixtureComInitialized) CoUninitialize();
         return 1;
     }
 }

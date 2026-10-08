@@ -1,3 +1,4 @@
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -183,9 +184,9 @@ test('the generated catalog replaces the parent with every child and the owner-o
   const children = catalog.lists.filter((entry) => (
     chapterOrdinal(parentId, ledger.chapterCount, entry.id) !== null
   ));
-  assert.equal(manifestRaw.lists.length, 211);
-  assert.equal(raw.lists.length, 288);
-  assert.equal(catalog.lists.length, 288);
+  assert.equal(manifestRaw.lists.length, currentReadingCensus.sources);
+  assert.equal(raw.lists.length, currentReadingCensus.visible);
+  assert.equal(catalog.lists.length, currentReadingCensus.visible);
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);
   assert.equal(children.length, 78);
@@ -243,7 +244,7 @@ test('the child overlap matrix is current, disjoint and aggregates to the parent
       pinned.internalChildOverlapCount,
       pinned.matrixSha256,
     ],
-    [84, 51, 24, 450, 0, '1f3f09d85699af9824525edcdfbb78d0c957c7cd96fdd32e958377ccd7160935'],
+    [85, 51, 25, 456, 0, 'bc4ee1a8f51aac00810eef18c2ac02813681aa5bcdd11fb0c14d521479dbaf30'],
   );
 });
 

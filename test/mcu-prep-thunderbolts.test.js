@@ -1,3 +1,4 @@
+import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -198,8 +199,9 @@ test('Thunderbolts keeps the exact minus-one gap without a guessed replacement o
     [15311, 'Thunderbolts (1997) #1', '1'],
     [62424, 'Thunderbolts (1997) #1', '1'],
   ]);
-  assert.match(manifest.lists.find((entry) => entry.id === id).description,
-    /34 resolved originals.*Thunderbolts \(1997\) #-1.*documented provider gap/);
+  const copy = await readJson('test/fixtures/mcu-prep-description-refresh.json');
+  assert.equal(manifest.lists.find((entry) => entry.id === id).description,
+    copy.entries.find((entry) => entry.id === id).after);
 });
 
 test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf without CBH attribution', async () => {
@@ -278,7 +280,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
   const current = { candidateId: id, ...buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders }) };
-  assert.equal(descriptors.length, 288);
+  assert.equal(descriptors.length, currentReadingCensus.peers);
   assert.equal(descriptors.some((entry) => entry.orderId === 'spider-man-no-way-home-owner-selected'), false);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -306,7 +308,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   assert.notEqual(digestCanonicalJson(changedHistoricalIdentity), digestCanonicalJson(orders));
   const laterIds = [
     'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
-    'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
     'avengers-doomsday-secret-wars',
   ];
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
@@ -331,9 +333,9 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   ]);
   const recordedPeerIds = new Set(recorded.comparisons.map((entry) => entry.orderId));
   const activePeerIds = new Set(currentOrders.map((entry) => entry.orderId));
-  assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings']);
+  assert.deepEqual(legacyOwnerPeers(currentOrders).filter((entry) => !recordedPeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
+    'mcu-prep-ms-marvel', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-she-hulk', 'mcu-prep-spider-man-brand-new-day']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),
@@ -353,10 +355,10 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   assert.deepEqual(report.comparisons.filter((entry) => entry.relationship === 'partial')
     .map((entry) => [entry.orderId, entry.sharedCount]), expectedPartialPeers);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length, 275);
-  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'),
     'A new or changed nonempty relationship does not inherit the frozen approval');
-  for (const entry of current.comparisons.filter((comparison) => !publicationPeers.has(comparison.orderId))) {
+  for (const entry of legacyOwnerPeers(current.comparisons).filter((comparison) => !publicationPeers.has(comparison.orderId))) {
     assert.equal(entry.relationship, 'none');
     assert.equal(entry.sharedCount, 0);
     assert.deepEqual(entry.sharedIds, []);
