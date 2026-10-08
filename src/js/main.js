@@ -58,6 +58,7 @@ import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
 import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
+import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
@@ -66,6 +67,8 @@ import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
 import { saveDownload, downloadMessage } from './lib/download.js';
+import { setIssueRating } from './lib/model.js';
+import { createIssueRatingView } from './views/issue-rating.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -2616,6 +2619,7 @@ function ensurePublishingViews() {
       el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
+      ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2722,6 +2726,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
 
   if (!current()) return;
+  if (route === 'marvel-on-screen') {
+    await mcuPrepView.render(catalog, { isCurrent: current });
+    return;
+  }
   const allStories = catalogEntries(catalog.lists);
   if (category.kind === 'publishing-index') {
     renderPublishingIndex(category, allStories);
@@ -2834,6 +2842,7 @@ function renderAll() {
   addView.renderDestination();
   readerLinkView.refresh();
   issueView.refreshReader();
+  issueRatingView.refresh();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
@@ -2872,6 +2881,7 @@ export function boot() {
   wireNav();
   readingView.wireShortcuts();
   issueView.wire();
+  issueRatingView.wire();
   readerLinkView.wire();
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
@@ -3138,6 +3148,23 @@ const readerLinkView = createReaderLinkView({
   focusFallback: () => focusViewHeading(view),
 });
 
+const issueRatingView = createIssueRatingView({
+  elements: () => ({
+    ...Object.fromEntries([
+      'root', 'trigger', 'label', 'status', 'dialog', 'form', 'comic', 'input',
+      'decrease', 'increase', 'save', 'cancel', 'remove', 'error',
+    ].map((key) => [key, $(`#issue-rating-${key}`)])),
+    stars: document.querySelectorAll('#issue-rating-stars button'),
+  }),
+  getState: () => store.state,
+  isBlocked: () => store.blocked,
+  saveRating: (issueId, value) => {
+    store.update((state) => setIssueRating(state, issueId, value));
+    return { ok: store.lastUpdateOk, error: store.lastError };
+  },
+  announce,
+});
+
 const issueView = createIssueView({
   coverUrl,
   decorateResult: (result, { catalog }) => ({
@@ -3186,8 +3213,13 @@ const issueView = createIssueView({
   onToggleRead: readingView.toggleSavedRead,
   onEditNote: readingView.editIssueNote,
   onReaderContext: (result) => {
-    if (result?.issue) readerLinkView.show(result.issue.issueId, { source: result.source });
-    else readerLinkView.leave();
+    if (result?.issue) {
+      readerLinkView.show(result.issue.issueId, { source: result.source });
+      issueRatingView.show(result.issue, { source: result.source });
+    } else {
+      readerLinkView.leave();
+      issueRatingView.leave();
+    }
   },
   onStaleContext: (route) => {
     if (issueRoute !== route) return;
@@ -3386,6 +3418,30 @@ const catalogPresentation = createCatalogPresentation({
   }),
   paintCoverUrl,
   shortTitle,
+});
+
+const mcuPrepView = createMcuPrepView({
+  el,
+  elements: () => ({
+    count: $('#marvel-on-screen-count'),
+    results: $('#marvel-on-screen-results'),
+  }),
+  isCurrent: () => view === 'marvel-on-screen',
+  loadMetadata: async () => {
+    const response = await fetch('./data/mcu-prep.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  },
+  presentation: catalogPresentation,
+  clearLoadNotice: () => clearNotice('mcu-release-load'),
+  onLoadFailure: ({ error, isCurrent }) => reportBundledLoadFailure({
+    report: '#marvel-on-screen-report',
+    failure: `Release details could not be loaded: ${error.message}. Reading Lists are still available without release grouping. Your saved lists are unchanged.`,
+    key: 'mcu-release-load',
+    subject: 'MCU release details',
+    retry: () => $('#marvel-on-screen-retry').click(),
+    isCurrent,
+  }),
 });
 
 const catalogView = createCatalogView({

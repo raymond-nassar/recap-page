@@ -48,7 +48,7 @@ import {
 import { parseColour, ratio } from './check-palette.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import { readerIssueId } from '../src/js/lib/markdown.js';
-import { addIssuesToList, createEmptyState, createList, normalizeIssue, pendingIssueIds } from '../src/js/lib/model.js';
+import { SCHEMA_VERSION, addIssuesToList, createEmptyState, createList, normalizeIssue, pendingIssueIds } from '../src/js/lib/model.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
@@ -3677,11 +3677,11 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep discovers Far From Home once in catalog MCU order',
+      t.check('actual MCU Prep discovers Far From Home once alongside every companion',
         screen.hash === '#/marvel-on-screen'
         && screen.count === `${expectedScreenNames.length} Reading Lists`
         && screen.cards === 1
-        && screen.titles.join('|') === expectedScreenNames.join('|'),
+        && [...screen.titles].sort().join('|') === [...expectedScreenNames].sort().join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',
         !screen.path && !screen.orientation, JSON.stringify(screen));
@@ -5859,7 +5859,7 @@ const SCENARIOS = [
         };
       });
       t.check('schema load preserves the complete legacy list and its local/global fields',
-        loaded.schemaVersion === 3
+        loaded.schemaVersion === 4
         && loaded.name === 'Marvel Knights to Planet X'
         && loaded.catalogId === 'marvel-knights-to-planet-x'
         && loaded.note === 'Legacy list note'
@@ -5922,7 +5922,7 @@ const SCENARIOS = [
         };
       });
       t.check('an individually added chapter shares progress without splitting or changing the umbrella',
-        shared.schemaVersion === 3
+        shared.schemaVersion === 4
         && shared.listCount === 2
         && shared.legacyItems === 487
         && shared.legacyCatalogId === 'marvel-knights-to-planet-x'
@@ -12111,7 +12111,7 @@ const SCENARIOS = [
 
       const library = fixtureReadingState();
       const saved = library.lists.fixture;
-      library.schemaVersion = 3;
+      library.schemaVersion = SCHEMA_VERSION;
       saved.deferredIssueIds = [];
       library.lists = {
         sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
@@ -15217,7 +15217,7 @@ SCENARIOS.push({
       new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
     ));
     const initial = fixtureReadingState();
-    initial.schemaVersion = 3;
+    initial.schemaVersion = SCHEMA_VERSION;
     initial.issues[20750] = { ...payload.items[0], source: 'curated' };
     initial.lists.fixture.itemIds.push(20750);
     initial.lists.fixture.collectedIn[20750] = 'Existing saved section';
@@ -15294,10 +15294,10 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps every companion in the integrated catalog order`,
+      t.check(`${width}px: Browse keeps every companion exactly once`,
         browse.title === 'Browse MCU Prep' && browse.count === expectedScreenCount
         && browse.cards === expectedScreenTitles.length && browse.selectedCount === 1
-        && browse.titles.join('|') === expectedScreenTitles.join('|'), JSON.stringify(browse));
+        && [...browse.titles].sort().join('|') === [...expectedScreenTitles].sort().join('|'), JSON.stringify(browse));
       t.check(`${width}px: MCU Prep has no new shelf, timeline, path or horizontal overflow`,
         !browse.orientation && !browse.path && browse.scrollWidth <= browse.viewport
         && (width === 390 ? browse.columns === 1 : browse.columns > 1),
@@ -17801,7 +17801,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -19043,12 +19043,18 @@ SCENARIOS.push((await import('./browser-mcu-prep-she-hulk.mjs')).sheHulkActualDa
 SCENARIOS.push((await import('./browser-mcu-prep-ms-marvel.mjs')).msMarvelActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-captain-america-brave-new-world.mjs')).braveNewWorldActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
+const { mcuPrepOrganization, mcuPrepOrganizationMutation } = await import('./browser-mcu-prep-organization.mjs');
+SCENARIOS.push(mcuPrepOrganization);
+MUTATIONS.push(mcuPrepOrganizationMutation);
 const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
 const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
 for (const guide of readOwnerGuideRegistry().guides) {
   SCENARIOS.push(ownerGuideScenario(JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'))));
 }
 const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
+const { issueRatings, issueRatingMutations } = await import('./browser-issue-ratings.mjs');
+SCENARIOS.push(issueRatings);
+MUTATIONS.push(...issueRatingMutations);
 if (ownerContracts.length > 1) throw new Error('Use --owner-contract once for a representative existing guide.');
 if (ownerContracts.length) {
   const root = fileURLToPath(new URL('..', import.meta.url));
@@ -19553,7 +19559,7 @@ async function runLongCollectionNavigation(page, t) {
       receipt('LC09', 'native close focus settlement', 'browser-check-three-short', await focus(), { exactReturn: (await focus()).id === 'browser-check-three-short', noSavedBytesChange: (await raw()).reader === beforePreview.reader && (await raw()).history === beforePreview.history });
     } else receipt('LC09', 'activation refused after wrong-target fault', 'correct focus prerequisite', previewJump.focus, { exactTargetRequired: false });
     const savedFixture = fixtureReadingState();
-    savedFixture.schemaVersion = 3;
+    savedFixture.schemaVersion = SCHEMA_VERSION;
     savedFixture.lists.fixture.catalogId = 'browser-check-three-short';
     await seed({ state: savedFixture, history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
     await open(page, '/?catalog=reading-path-stop-actions#/catalog');

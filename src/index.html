@@ -458,6 +458,13 @@
                   <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
+                  <div id="issue-rating-root" class="issue-rating" hidden>
+                    <button type="button" class="rating-trigger" id="issue-rating-trigger" aria-haspopup="dialog">
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/></svg>
+                      <span id="issue-rating-label">Rate this issue</span>
+                    </button>
+                    <p id="issue-rating-status" class="rail-hint" hidden></p>
+                  </div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
                   <div class="cta" id="issue-saved-actions" hidden>
                     <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
@@ -866,6 +873,7 @@
               <h2>Data safety</h2>
               <div class="card card-static addpri">
                 <h3>Back up reading data</h3>
+                <p class="rail-hint">Reading-data backups contain lists, notes, issue ratings, read progress and deferrals.</p>
                 <p class="rail-hint">For a complete reading and history transfer, download the reading-data and completion-history backups together, plus the separate import-draft file when a draft or retained draft source is present. Settings are not included. These are separate files, not interchangeable formats.</p>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
@@ -1042,7 +1050,7 @@
 
             <div class="card card-static card-danger setting">
               <h2>Danger zone</h2>
-              <p class="rail-hint setting-desc">Erasing removes every list, all progress, every note, and completion and enjoyment history from this browser.</p>
+              <p class="rail-hint setting-desc">Erasing removes every list, all progress, every note, every issue rating, and completion and enjoyment history from this browser.</p>
               <button type="button" id="btn-wipe" class="btn btn-danger setting-ctl setting-action">Erase all local data</button>
             </div>
           </section>
@@ -1275,6 +1283,35 @@
         <div class="ask-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>
           <button type="submit" class="btn" id="ask-ok" value="ok">OK</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="issue-rating-dialog" class="ask rating-dialog" aria-labelledby="issue-rating-title" aria-describedby="issue-rating-comic">
+      <form id="issue-rating-form">
+        <h2 id="issue-rating-title">Your rating</h2>
+        <p id="issue-rating-comic" class="rating-comic"></p>
+        <div id="issue-rating-stars" class="rating-stars" role="group" aria-label="Choose a whole-star rating">
+          <button type="button" data-rating="1" aria-label="Choose 1 star"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+          <button type="button" data-rating="2" aria-label="Choose 2 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+          <button type="button" data-rating="3" aria-label="Choose 3 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+          <button type="button" data-rating="4" aria-label="Choose 4 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+          <button type="button" data-rating="5" aria-label="Choose 5 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+        </div>
+        <label class="visually-hidden" for="issue-rating-input">Rating out of five, in half-star increments</label>
+        <div class="rating-stepper">
+          <button type="button" class="btn btn-g" id="issue-rating-decrease" aria-label="Decrease by half a star">&minus;</button>
+          <input id="issue-rating-input" type="number" min="0.5" max="5" step="0.5" inputmode="decimal" required aria-describedby="issue-rating-hint issue-rating-error" />
+          <span aria-hidden="true">/ 5</span>
+          <button type="button" class="btn btn-g" id="issue-rating-increase" aria-label="Increase by half a star">+</button>
+        </div>
+        <p class="rating-hint" id="issue-rating-hint">Choose a star, then fine-tune by half a star.</p>
+        <p class="rating-privacy">Your rating only. It won't change reading progress.</p>
+        <p id="issue-rating-error" class="report" role="status" aria-live="polite"></p>
+        <div class="rating-footer">
+          <button type="button" class="btn btn-link" id="issue-rating-remove">Remove rating</button>
+          <button type="button" class="btn btn-g" id="issue-rating-cancel">Cancel</button>
+          <button type="submit" class="btn" id="issue-rating-save">Save rating</button>
         </div>
       </form>
     </dialog>

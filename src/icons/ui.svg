@@ -57,4 +57,7 @@
   <symbol id="thumb-down" viewBox="0 0 24 24">
     <path d="M3 3h4v11H3zM7 14l5 7c2 0 3-2 2-5l-1-2h6c2 0 2-2 1-4l-2-7H7"/>
   </symbol>
+  <symbol id="star" viewBox="0 0 24 24">
+    <path d="m12 2.5 2.94 5.96 6.58.96-4.76 4.64 1.12 6.56L12 17.52l-5.88 3.1 1.12-6.56L2.48 9.42l6.58-.96Z"/>
+  </symbol>
 </svg>

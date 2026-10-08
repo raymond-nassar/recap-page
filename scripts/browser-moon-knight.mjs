@@ -164,7 +164,7 @@ export const moonKnightActualData = {
             && actual.credit === 'https://github.com/raymond-nassar/recap-page/issues/685'
             && actual.action === `Add to library: ${name}` && !actual.path
             && actual.hash === `#/marvel-on-screen/${priorId}` && !actual.overflow
-            && JSON.stringify(actual.titles) === JSON.stringify(screenTitles),
+            && JSON.stringify([...actual.titles].sort()) === JSON.stringify([...screenTitles].sort()),
           JSON.stringify(actual));
         await click(page, `${card} [data-act="preview"]`);
         await page.waitForFunction(() =>

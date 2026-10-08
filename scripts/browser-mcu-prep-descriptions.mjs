@@ -97,7 +97,7 @@ export const mcuPrepDescriptions = {
         description: node.querySelector('.catalog-card-desc').textContent.trim(),
       })));
       t.check(`${surface}: all active MCU choices appear once without the retired owner guide`,
-        isDeepStrictEqual(cards.map((row) => row.id), companions.map((row) => row.id))
+        isDeepStrictEqual(cards.map((row) => row.id).sort(), companions.map((row) => row.id).sort())
         && !cards.some((row) => row.id === 'spider-man-no-way-home-owner-selected'));
       for (const edit of edits) {
         const actual = cards.find((row) => row.id === edit.id)?.description;

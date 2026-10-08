@@ -159,14 +159,14 @@ export const firstStepsActualData = {
       screenRoute?.view === 'marvel-on-screen' && screenRoute.listId === screen.activeListId
       && screen.matches === 1 && screen.retired === 0
       && screen.count === `${screenNames.length} Reading Lists`
-      && JSON.stringify(screen.names) === JSON.stringify(screenNames), JSON.stringify(screen));
+      && JSON.stringify([...screen.names].sort()) === JSON.stringify([...screenNames].sort()), JSON.stringify(screen));
     for (const width of [600, 390]) {
       await resize(page, width, width === 390 ? 844 : 900);
       const layout = await overflow(page);
       const names = await page.$$eval('#marvel-on-screen-results .catalog-card-title',
         (nodes) => nodes.map((node) => node.textContent.trim()));
       t.check(`MCU Prep keeps every independent choice without horizontal overflow at ${width}px`,
-        JSON.stringify(names) === JSON.stringify(screenNames) && layout.scrollWidth <= layout.viewport,
+        JSON.stringify([...names].sort()) === JSON.stringify([...screenNames].sort()) && layout.scrollWidth <= layout.viewport,
         JSON.stringify({ ...layout, cards: names.length }));
     }
     await resize(page, 1280);

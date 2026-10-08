@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "region": "US",
+  "seriesDateKind": "premiere",
+  "sources": [
+    {
+      "id": "mcu-films",
+      "url": "https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films",
+      "retrievedAt": "2026-10-08"
+    },
+    {
+      "id": "mcu-series",
+      "url": "https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe_television_series",
+      "retrievedAt": "2026-10-08"
+    },
+    {
+      "id": "avengers-schedule",
+      "url": "https://variety.com/2025/film/news/avengers-delayed-doomsday-secret-wars-december-1236407485/",
+      "retrievedAt": "2026-10-08"
+    },
+    {
+      "id": "agatha-premiere",
+      "url": "https://press.disneyplus.com/news/disney-plus-agatha-all-along-trailer-and-key-art",
+      "retrievedAt": "2026-10-08"
+    }
+  ],
+  "releases": [
+    {
+      "id": "guardians-of-the-galaxy",
+      "title": "Guardians of the Galaxy",
+      "phase": 2,
+      "format": "movie",
+      "date": "2014-08-01",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "spider-man-far-from-home",
+      "title": "Spider-Man: Far From Home",
+      "phase": 3,
+      "format": "movie",
+      "date": "2019-07-02",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "wandavision",
+      "title": "WandaVision",
+      "phase": 4,
+      "format": "series",
+      "date": "2021-01-15",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "what-if-season-1",
+      "title": "What If...? (Season 1)",
+      "phase": 4,
+      "format": "series",
+      "date": "2021-08-11",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "shang-chi",
+      "title": "Shang-Chi and the Legend of the Ten Rings",
+      "phase": 4,
+      "format": "movie",
+      "date": "2021-09-03",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "eternals",
+      "title": "Eternals",
+      "phase": 4,
+      "format": "movie",
+      "date": "2021-11-05",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "spider-man-no-way-home",
+      "title": "Spider-Man: No Way Home",
+      "phase": 4,
+      "format": "movie",
+      "date": "2021-12-17",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "moon-knight",
+      "title": "Moon Knight",
+      "phase": 4,
+      "format": "series",
+      "date": "2022-03-30",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "doctor-strange-multiverse-of-madness",
+      "title": "Doctor Strange in the Multiverse of Madness",
+      "phase": 4,
+      "format": "movie",
+      "date": "2022-05-06",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "ms-marvel",
+      "title": "Ms. Marvel",
+      "phase": 4,
+      "format": "series",
+      "date": "2022-06-08",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "she-hulk",
+      "title": "She-Hulk: Attorney at Law",
+      "phase": 4,
+      "format": "series",
+      "date": "2022-08-18",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "deadpool-and-wolverine",
+      "title": "Deadpool & Wolverine",
+      "phase": 5,
+      "format": "movie",
+      "date": "2024-07-26",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "agatha-all-along",
+      "title": "Agatha All Along",
+      "phase": 5,
+      "format": "series",
+      "date": "2024-09-18",
+      "status": "released",
+      "sources": ["mcu-series", "agatha-premiere"]
+    },
+    {
+      "id": "captain-america-brave-new-world",
+      "title": "Captain America: Brave New World",
+      "phase": 5,
+      "format": "movie",
+      "date": "2025-02-14",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "daredevil-born-again-season-1",
+      "title": "Daredevil: Born Again (Season 1)",
+      "phase": 5,
+      "format": "series",
+      "date": "2025-03-04",
+      "status": "released",
+      "sources": ["mcu-series"]
+    },
+    {
+      "id": "thunderbolts",
+      "title": "Thunderbolts*",
+      "phase": 5,
+      "format": "movie",
+      "date": "2025-05-02",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "fantastic-four-first-steps",
+      "title": "The Fantastic Four: First Steps",
+      "phase": 6,
+      "format": "movie",
+      "date": "2025-07-25",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "spider-man-brand-new-day",
+      "title": "Spider-Man: Brand New Day",
+      "phase": 6,
+      "format": "movie",
+      "date": "2026-07-31",
+      "status": "released",
+      "sources": ["mcu-films"]
+    },
+    {
+      "id": "avengers-doomsday",
+      "title": "Avengers: Doomsday",
+      "phase": 6,
+      "format": "movie",
+      "date": "2026-12-18",
+      "status": "scheduled",
+      "sources": ["mcu-films", "avengers-schedule"]
+    },
+    {
+      "id": "avengers-secret-wars",
+      "title": "Avengers: Secret Wars",
+      "phase": 6,
+      "format": "movie",
+      "date": "2027",
+      "status": "scheduled",
+      "sources": ["mcu-films", "avengers-schedule"]
+    }
+  ],
+  "guides": [
+    { "id": "doctor-strange-multiverse-of-madness", "releases": ["doctor-strange-multiverse-of-madness"] },
+    { "id": "spider-man-no-way-home", "releases": ["spider-man-no-way-home"] },
+    { "id": "marvel-multiverse", "releases": [], "note": "General multiverse reading, not assigned to a single screen release." },
+    { "id": "marvel-what-if", "releases": ["what-if-season-1"], "note": "Placed at the series debut, not assumed to accompany every later season." },
+    { "id": "wandavision", "releases": ["wandavision"] },
+    { "id": "spider-man-far-from-home", "releases": ["spider-man-far-from-home"] },
+    { "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings", "releases": ["shang-chi"] },
+    { "id": "mcu-prep-thunderbolts", "releases": ["thunderbolts"] },
+    { "id": "mcu-prep-moon-knight", "releases": ["moon-knight"] },
+    { "id": "mcu-prep-eternals", "releases": ["eternals"] },
+    { "id": "mcu-prep-fantastic-four-first-steps", "releases": ["fantastic-four-first-steps"] },
+    { "id": "mcu-prep-spider-man-brand-new-day", "releases": ["spider-man-brand-new-day"] },
+    { "id": "mcu-prep-she-hulk", "releases": ["she-hulk"] },
+    { "id": "mcu-prep-ms-marvel", "releases": ["ms-marvel"] },
+    { "id": "mcu-prep-captain-america-brave-new-world", "releases": ["captain-america-brave-new-world"] },
+    { "id": "mcu-prep-guardians-of-the-galaxy", "releases": ["guardians-of-the-galaxy"], "note": "Associated with the title-matching original movie, not inferred sequels." },
+    { "id": "mcu-prep-agatha-all-along", "releases": ["agatha-all-along"] },
+    { "id": "mcu-prep-deadpool-and-wolverine", "releases": ["deadpool-and-wolverine"] },
+    { "id": "avengers-doomsday-secret-wars", "releases": ["avengers-doomsday", "avengers-secret-wars"] },
+    { "id": "mcu-prep-daredevil-born-again", "releases": ["daredevil-born-again-season-1"] }
+  ]
+}

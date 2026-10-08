@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Store, KEY, ImportDraftStore, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
-import { createEmptyState, createList, addIssuesToList, markRead, isRead, exportBackup } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, markRead, isRead, exportBackup, setIssueRating } from '../src/js/lib/model.js';
 
 const draftLocks = { request: async (_name, operation) => operation() };
 const importSource = '# Import\r\n\r\n- [x] [One](https://www.marvel.com/comics/issue/1/)\r\n- [ ] Two\r\n- [ ] [Three](https://www.marvel.com/comics/issue/3/)';
@@ -56,6 +56,7 @@ test('draft prepare throw, silent no-op and unknown readback refuse reader publi
 
 test('failed reader write leaves durable pending source and retries with the same destination once', async () => {
   const { storage, reader, draft } = importFixture();
+  reader.update((state) => setIssueRating(state, 9, 3.5));
   storage.failKey = KEY;
   const result = await draft.start(importSource);
   assert.equal(result.ok, false);
@@ -67,6 +68,9 @@ test('failed reader write leaves durable pending source and retries with the sam
   assert.equal((await draft.resume()).ok, true);
   assert.deepEqual(reader.state.listOrder, [id]);
   assert.deepEqual(reader.state.lists[id].itemIds, [1, 3]);
+  assert.equal(reader.state.ratings[9], 3.5);
+  assert.equal(JSON.parse(storage.getItem(KEY)).ratings[9], 3.5);
+  assert.equal(exportBackup(reader.state).ratings[9], 3.5);
   const writes = storage.writes.filter((key) => key === KEY).length;
   assert.equal((await draft.resume()).ok, true);
   assert.equal(storage.writes.filter((key) => key === KEY).length, writes);

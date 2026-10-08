@@ -908,7 +908,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1073-1077`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1081-1085`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -2597,3 +2597,40 @@ remain in separate history storage and need the separate history backup for
 portable recovery. Compatible older builds retain imported originals but do not
 gain this bundled catalog choice until updated. No older completion-history
 support, migration, origin change or runtime dependency is implied.
+
+## MCU Prep screen-release organization
+
+[`src/data/mcu-prep.json`](../src/data/mcu-prep.json) is separately authored discovery metadata,
+not a reading-order payload or an output of the catalog generator. It records exact existing
+guide IDs, explicit screen-release associations, titles, phases, movie/series format, release
+dates, released/scheduled status, and sources with retrieval dates. It contains factual release
+metadata, not movie artwork, comic images, synopses or copied guide prose.
+
+The owner supplied combined movie and Disney+ series/season input and approved one discovery
+card per guide at its earliest explicitly associated release. The original supplied input is
+retained separately from verified facts in the feature evidence; it is not treated as a verified
+or exhaustive release database. Only releases associated with published guides are included.
+The feature scope and acceptance criteria are in
+[#743](https://github.com/raymond-nassar/recap-page/issues/743).
+
+Dates use U.S. theatrical releases and the first U.S. Disney+ episode of a listed series or season,
+not world premieres, finales or the viewer's local timezone. Source tables were checked on
+2026-10-08: [MCU films](https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films)
+and [MCU television series](https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe_television_series).
+The [Disney+ Agatha announcement](https://press.disneyplus.com/news/disney-plus-agatha-all-along-trailer-and-key-art)
+confirms its U.S. evening premiere. The
+[Avengers schedule report](https://variety.com/2025/film/news/avengers-delayed-doomsday-secret-wars-december-1236407485/)
+corroborates the two scheduled films. Those source records also carry the retrieval date in the
+registry. No Marvel publisher pages were scraped.
+
+Secret Wars deliberately retains the owner's year-only 2027 precision, even though the checked
+schedule source names a full date. Scheduled status is explicit and never becomes a release claim
+merely because a date passes. A year-only entry follows fully dated entries in the same year
+before newest-first reversal, without assigning it a fabricated calendar day.
+
+The Guardians guide is associated with the original title-matching movie, not inferred sequels.
+What If and Daredevil are associated with the first supplied seasons, not all later seasons.
+The general Marvel Multiverse guide has no single release assignment. Unassigned guides remain
+visible after the phase sections in either direction; search includes their ordinary catalog
+titles and characters. Multi-release guides retain one identity and expose every associated title.
+The catalog, comic vectors, source credit, imported list fields, progress and backups remain unchanged.
