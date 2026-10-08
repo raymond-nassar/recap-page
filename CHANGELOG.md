@@ -13,6 +13,28 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.0.1
+
+### Easier Android navigation
+
+- Use an Android More button with the required larger touch target.
+
+### Saved data and upgrading
+
+This Android-only patch keeps reading-data schema 4 unchanged. Existing lists, progress, notes,
+ratings, availability overrides and deferrals remain compatible with 4.0.0. Older backups remain
+readable under the same compatibility rules; no migration is required. Completion history and
+unfinished imports retain their separate backups.
+
+Windows skips this patch and remains on 4.0.0. These notes prepare the Android release source,
+not a Google Play availability announcement or publication approval.
+
+### Android release validation
+
+Candidate qualification retries failed SDK downloads within its existing bounded limit before
+rejecting a build. Native checks follow the current navigation and restore confirmation flows,
+preserving the required touch size, provider-byte equality and restored-state assertions.
+
 ## 4.0.0
 
 ### Rate your comics, find your next read and keep unfinished work

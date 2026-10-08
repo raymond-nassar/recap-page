@@ -1,0 +1,5 @@
+{
+  "version": "4.0.1",
+  "locale": "en-us",
+  "text": "- Android-only patch: the More button meets the required larger touch size.\n- Android release validation follows current navigation and restore confirmation and retries failed SDK downloads within a bounded limit.\n- Reading-data schema 4 and existing saved data remain unchanged; no migration is required. Completion history and unfinished imports retain their separate backups.\n- Windows skips this patch and remains on 4.0.0. These version-matched notes do not authorize or announce a Windows update."
+}
