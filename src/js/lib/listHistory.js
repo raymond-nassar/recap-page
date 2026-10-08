@@ -308,7 +308,7 @@ export class ListHistoryStore {
     const version = Number(input?.schemaVersion ?? 1);
     const saved = object(input?.lists) && Object.hasOwn(input.lists, captured.list.id)
       ? input.lists[captured.list.id] : null;
-    if (!object(input) || ![1, 2, SCHEMA_VERSION].includes(version)) {
+    if (!object(input) || ![1, 2, 3, SCHEMA_VERSION].includes(version)) {
       reader.load();
       return this.fail('Saved reading data is not a supported version. Completion history is unchanged.');
     }

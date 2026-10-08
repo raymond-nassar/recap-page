@@ -278,7 +278,7 @@ test('Brave New World publishes the exact nineteen-vector and preserves reader, 
   state = createList(state, { id: 'brave', name: payload.name, catalogId: id, description: payload.description });
   state = addIssuesToList(state, 'brave', payload.items).state;
   assert.equal(KEY, 'mrt.state.v2');
-  assert.equal(state.schemaVersion, 3);
+  assert.equal(state.schemaVersion, 4);
   assert.equal(state.schemaVersion, SCHEMA_VERSION);
   assert.deepEqual(state.lists['prior-hulk'], previous.lists['prior-hulk']);
   assert.deepEqual(state.lists['prior-house'], previous.lists['prior-house']);

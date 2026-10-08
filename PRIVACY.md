@@ -1,8 +1,8 @@
 # Recap Page privacy policy
 
-Last updated: 2026-10-04
+Last updated: 2026-10-07
 
-Recap Page keeps your reading progress, lists, completion dates, enjoyment choices, notes,
+Recap Page keeps your reading progress, lists, issue ratings, completion dates, enjoyment choices, notes,
 settings, availability choices, and custom entries on your device. There is no account,
 advertising, analytics, behavioral tracking, or telemetry. Saved data is not uploaded or synced
 automatically. If you export it, the destination you choose receives that file's contents.
@@ -36,7 +36,7 @@ list does not inherit that record.
 ## Export and import
 
 Export a JSON backup from **Backup & settings**, or export a list in an offered format. Files can
-contain progress and notes. Desktop uses a browser download. Android uses a document picker: the
+contain progress, issue ratings and notes. Desktop uses a browser download. Android uses a document picker: the
 selected file provider supplies an import or receives the export's filename and contents. Both
 pickers request a local-only provider; this is not a guarantee against its own sync or retention.
 
@@ -44,7 +44,8 @@ Choose a destination you trust and keep backups outside the app. Backups are not
 automatically, but saving transfers the chosen content to that destination. Manage previously
 exported files and any partial documents left by a failed save at the destination.
 
-Reading backups do not contain completion dates or enjoyment choices. **Backup & settings**
+Issue ratings are part of reading-data JSON backups, not Markdown exports. Reading backups do not
+contain completion dates or list enjoyment choices. **Backup & settings**
 offers a separate completion-history backup containing saved list identities, completion dates,
 and optional thumbs. Each restore replaces only its own kind of data. A reading-data restore or
 its Undo does not replace completion history. Download both files to preserve both kinds of data.
@@ -71,7 +72,7 @@ These features make direct requests:
   the lookup button.
 
 Each service can see the request, your network address, and the issue or search details it needs.
-Recap Page does not send those services your saved lists, notes, read markers, completion dates,
+Recap Page does not send those services your saved lists, notes, issue ratings, read markers, completion dates,
 enjoyment choices, settings, or backups.
 
 Next-reading suggestions use same-origin bundled reading orders, paths, writer credits, and
@@ -99,7 +100,7 @@ external software update service. Store updates come only through Microsoft Stor
 
 ## Control and deletion
 
-In **Backup & settings**, **Erase all local data** clears lists, progress, notes, availability
+In **Backup & settings**, **Erase all local data** clears lists, progress, notes, issue ratings, availability
 overrides, and custom entries after verifying the saved empty reading data. Completion and
 enjoyment history are removed only after that verification and only while the checked reader
 and history values remain unchanged. Failed or unconfirmed history cleanup is reported as

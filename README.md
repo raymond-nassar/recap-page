@@ -44,6 +44,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **See what's next.** Keep the current comic, next issue, part labels, and progress in view.
 - **Make your own lists.** Select comics from issue, series, and creator searches, then save them
   to a named Reading List. Mark issues read or unread, write notes, and add custom comics.
+- **Remember your favorites.** Rate individual issues from half a star to five stars. Open
+  **About this comic**, then **Rate this issue**. The saved score stays compact beside your note.
 - **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
   earlier issues, and reveal descriptions when you're ready.
 - **Follow Reading Paths.** From Home or Browse, see each stop's progress from the matching list,
@@ -107,12 +109,26 @@ Completion dates and enjoyment choices have their own export and restore control
 Restoring reading data does not replace completion history; matching saved lists can reveal
 their retained history again.
 
+### Your issue ratings
+
+Issue ratings are private, optional and shared wherever that comic appears. Choose a star, adjust
+by half a star, then **Save rating**. **Cancel** or Escape leaves the previous score alone;
+**Remove rating** clears it. Rating does not mark an issue read, advance your list or change a
+Reading List's enjoyment choice. Marking unread keeps the score. There is one editable score,
+not a history of first reads and rereads.
+
+Ratings travel in the ordinary reading-data JSON backup. Markdown exports do not include them.
+Restoring an older backup replaces reading data with that backup, including no ratings; **Undo
+last restore** can recover the previous data. Saved data now uses schema 4. Older builds cannot
+read it and enter their protective recovery mode, so keep a backup before changing versions and
+use a rating-capable build to restore a backup containing ratings.
+
 ## Privacy
 
 ### Your data stays with you
 
 There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
-Lists, progress, completion dates, enjoyment, notes, settings, overrides, and custom entries stay
+Lists, progress, issue ratings, completion dates, enjoyment, notes, settings, overrides, and custom entries stay
 on your device. You can export reading data, but not device settings. Completion history has
 its own backup.
 See the [privacy policy](PRIVACY.md) for details.
