@@ -148,7 +148,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:959-966`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:960-967`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1725,6 +1725,21 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 #marvel-ages-modern-all { min-height: 44px; }
 .publishing-grid { margin-top: 0; }
 .publishing-empty { margin-top: var(--space-6); }
+
+.mcu-prep-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-5); }
+.mcu-prep-search { flex: 1 1 22rem; min-width: 0; }
+.mcu-prep-sort { flex: 0 1 15rem; min-width: 0; }
+.mcu-prep-sort select {
+  width: 100%; min-height: 44px; padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--line-2); border-radius: 8px; background: var(--card-2); color: var(--text);
+}
+.mcu-prep-date-help { flex-basis: 100%; margin: 0; }
+.mcu-prep-phase + .mcu-prep-phase { margin-top: var(--space-6); }
+.mcu-prep-releases {
+  list-style: none; padding: 0; margin: var(--space-2) 0 var(--space-4);
+  color: var(--muted); font-size: var(--t-caption); overflow-wrap: anywhere;
+}
+.mcu-prep-releases li + li { margin-top: var(--space-2); }
 
 @media (max-width: 900px) {
   .home-paths-primary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }

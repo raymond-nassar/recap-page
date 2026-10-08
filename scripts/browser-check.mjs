@@ -3551,11 +3551,11 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep discovers Far From Home once in catalog MCU order',
+      t.check('actual MCU Prep discovers Far From Home once alongside every companion',
         screen.hash === '#/marvel-on-screen'
         && screen.count === `${expectedScreenNames.length} Reading Lists`
         && screen.cards === 1
-        && screen.titles.join('|') === expectedScreenNames.join('|'),
+        && [...screen.titles].sort().join('|') === [...expectedScreenNames].sort().join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',
         !screen.path && !screen.orientation, JSON.stringify(screen));
@@ -13945,10 +13945,10 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps every companion in the integrated catalog order`,
+      t.check(`${width}px: Browse keeps every companion exactly once`,
         browse.title === 'Browse MCU Prep' && browse.count === expectedScreenCount
         && browse.cards === expectedScreenTitles.length && browse.selectedCount === 1
-        && browse.titles.join('|') === expectedScreenTitles.join('|'), JSON.stringify(browse));
+        && [...browse.titles].sort().join('|') === [...expectedScreenTitles].sort().join('|'), JSON.stringify(browse));
       t.check(`${width}px: MCU Prep has no new shelf, timeline, path or horizontal overflow`,
         !browse.orientation && !browse.path && browse.scrollWidth <= browse.viewport
         && (width === 390 ? browse.columns === 1 : browse.columns > 1),
@@ -15013,7 +15013,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'mcu-prep-organization'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -16236,6 +16236,9 @@ SCENARIOS.push((await import('./browser-mcu-prep-she-hulk.mjs')).sheHulkActualDa
 SCENARIOS.push((await import('./browser-mcu-prep-ms-marvel.mjs')).msMarvelActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-captain-america-brave-new-world.mjs')).braveNewWorldActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
+const { mcuPrepOrganization, mcuPrepOrganizationMutation } = await import('./browser-mcu-prep-organization.mjs');
+SCENARIOS.push(mcuPrepOrganization);
+MUTATIONS.push(mcuPrepOrganizationMutation);
 const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
 const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
 for (const guide of readOwnerGuideRegistry().guides) {

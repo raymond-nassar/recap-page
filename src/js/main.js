@@ -58,6 +58,7 @@ import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
 import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
+import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
@@ -2434,6 +2435,7 @@ function ensurePublishingViews() {
       el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
         category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
+      ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
       ...(category.kind === 'publishing-index' ? [] : [el('section', {
         id: `${category.route}-categories`,
         class: 'publishing-periods',
@@ -2529,6 +2531,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
 
   if (!current()) return;
+  if (route === 'marvel-on-screen') {
+    await mcuPrepView.render(catalog, { isCurrent: current });
+    return;
+  }
   const allStories = catalogEntries(catalog.lists);
   if (category.kind === 'publishing-index') {
     renderPublishingIndex(category, allStories);
@@ -3172,6 +3178,30 @@ const catalogPresentation = createCatalogPresentation({
   }),
   paintCoverUrl,
   shortTitle,
+});
+
+const mcuPrepView = createMcuPrepView({
+  el,
+  elements: () => ({
+    count: $('#marvel-on-screen-count'),
+    results: $('#marvel-on-screen-results'),
+  }),
+  isCurrent: () => view === 'marvel-on-screen',
+  loadMetadata: async () => {
+    const response = await fetch('./data/mcu-prep.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  },
+  presentation: catalogPresentation,
+  clearLoadNotice: () => clearNotice('mcu-release-load'),
+  onLoadFailure: ({ error, isCurrent }) => reportBundledLoadFailure({
+    report: '#marvel-on-screen-report',
+    failure: `Release details could not be loaded: ${error.message}. Reading Lists are still available without release grouping. Your saved lists are unchanged.`,
+    key: 'mcu-release-load',
+    subject: 'MCU release details',
+    retry: () => $('#marvel-on-screen-retry').click(),
+    isCurrent,
+  }),
 });
 
 const catalogView = createCatalogView({
