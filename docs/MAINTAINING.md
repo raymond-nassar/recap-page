@@ -108,7 +108,7 @@ the page loads, and exits nonzero if a journey fails. Saved progress at the norm
 stays untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
-`defer-next`, `defer-lifecycle`, `defer-persistence`, and `order-only-export` journeys require
+`defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, and `mcu-prep-organization` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
@@ -580,8 +580,23 @@ only in the subsets named by its authored `spotlightKind`.
 For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selected`,
 `timeline` as `null`, and `beginner` as `false`. Confirm the shared Home and Browse gateways expose
 MCU Prep only when populated, and that its generated child page contains every selected card
-once in manifest order at desktop and narrow widths. Do not add a fourth canonical shelf or
+once at desktop and narrow widths. The page groups guides by screen-release phase and defaults
+to oldest release first; newest first reverses that order, with unassigned guides always last.
+Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
+
+Screen-release organization is authored separately in `src/data/mcu-prep.json`, never inferred
+from a guide title or its comic years. Add exact guide-to-release IDs there after verifying the
+U.S. theatrical date or U.S. Disney+ season premiere, with source URLs and retrieval dates.
+Use `released` only with release evidence; `scheduled` does not change automatically with the clock.
+Year-only dates remain four digits and are labeled as year-only, not padded with an invented day.
+Within the same year they follow day-dated releases before reversal; identical dates retain catalog
+order. A guide appears once at its earliest associated release in either direction, with every
+associated title displayed and searchable. New or general guides without an association remain
+under **More MCU reading**. Empty phases and releases without published guides are not shown.
+The registry is not a second catalog: `npm run vendor -- --catalog-only` continues to own the
+catalog and leaves this authored discovery file alone. Search and sort are page-local; they never
+change saved lists, backups, comic order, or the Storylines inventory.
 
 An owner-selected excerpt uses the existing local `sourceFile` compilation path. Link the exact
 owner input in `sourcePage`, explicitly credit its factual upstream in `sourceOrigin`, and retain
