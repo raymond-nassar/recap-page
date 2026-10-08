@@ -66,6 +66,8 @@ import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
 import { saveDownload } from './lib/download.js';
+import { setIssueRating } from './lib/model.js';
+import { createIssueRatingView } from './views/issue-rating.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -2608,6 +2610,7 @@ function renderAll() {
   addView.renderDestination();
   readerLinkView.refresh();
   issueView.refreshReader();
+  issueRatingView.refresh();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
@@ -2645,6 +2648,7 @@ export function boot() {
   wireNav();
   readingView.wireShortcuts();
   issueView.wire();
+  issueRatingView.wire();
   readerLinkView.wire();
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
@@ -2909,6 +2913,23 @@ const readerLinkView = createReaderLinkView({
   focusFallback: () => focusViewHeading(view),
 });
 
+const issueRatingView = createIssueRatingView({
+  elements: () => ({
+    ...Object.fromEntries([
+      'root', 'trigger', 'label', 'status', 'dialog', 'form', 'comic', 'input',
+      'decrease', 'increase', 'save', 'cancel', 'remove', 'error',
+    ].map((key) => [key, $(`#issue-rating-${key}`)])),
+    stars: document.querySelectorAll('#issue-rating-stars button'),
+  }),
+  getState: () => store.state,
+  isBlocked: () => store.blocked,
+  saveRating: (issueId, value) => {
+    store.update((state) => setIssueRating(state, issueId, value));
+    return { ok: store.lastUpdateOk, error: store.lastError };
+  },
+  announce,
+});
+
 const issueView = createIssueView({
   coverUrl,
   decorateResult: (result, { catalog }) => ({
@@ -2953,8 +2974,13 @@ const issueView = createIssueView({
   },
   onRead: openInReader,
   onReaderContext: (result) => {
-    if (result?.issue) readerLinkView.show(result.issue.issueId, { source: result.source });
-    else readerLinkView.leave();
+    if (result?.issue) {
+      readerLinkView.show(result.issue.issueId, { source: result.source });
+      issueRatingView.show(result.issue, { source: result.source });
+    } else {
+      readerLinkView.leave();
+      issueRatingView.leave();
+    }
   },
   onStaleContext: (route) => {
     if (issueRoute !== route) return;

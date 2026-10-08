@@ -9,8 +9,8 @@
 import { compareIssues } from './sort.js';
 import { allowedCoverUrl } from './coverHost.js';
 
-// Schema 2 rebuilds lists without unknown fields, so accepting deferral there would lose it on downgrade.
-export const SCHEMA_VERSION = 3;
+// Older schemas rebuild named fields and would silently discard ratings on their next save.
+export const SCHEMA_VERSION = 4;
 
 // The list map is keyed by ids that come from a restored backup, so a reader whose file happens to
 // contain a list called `__proto__` or `constructor` used to lose it. An ordinary object answers
@@ -41,6 +41,7 @@ export function createEmptyState() {
     // full orders overlap heavily, so a note attached to one path through an issue would be
     // invisible on the other while the reader was looking at the same comic.
     notes: {},
+    ratings: {},
     lists: emptyLists(),
     listOrder: [],
     active: null,
@@ -704,6 +705,24 @@ export function issueNote(state, issueId) {
   return state.notes?.[Number(issueId)] ?? '';
 }
 
+export function isIssueRating(value) {
+  return typeof value === 'number' && value >= 0.5 && value <= 5 && Number.isInteger(value * 2);
+}
+
+export function issueRating(state, issueId) {
+  return state.ratings?.[Number(issueId)] ?? null;
+}
+
+export function setIssueRating(state, issueId, value) {
+  const id = Number(issueId);
+  if (!Number.isSafeInteger(id) || id === 0) throw new TypeError('A rating needs a valid issue ID.');
+  if (value !== null && !isIssueRating(value)) throw new TypeError('Choose a rating from 0.5 to 5 in half-star increments.');
+  const ratings = { ...state.ratings };
+  if (value === null) delete ratings[id];
+  else ratings[id] = value;
+  return { ...state, ratings };
+}
+
 // The list's note lives on the list object rather than in a second map, because it dies with the
 // list. An issue note outlives every list that introduced the issue, exactly as read state does.
 export function setListNote(state, listId, text) {
@@ -895,7 +914,8 @@ export function migrate(raw) {
   const version = Number(raw.schemaVersion ?? 1);
 
   if (version === SCHEMA_VERSION) return coerce(raw);
-  if (version === 2) return coerce(raw, { legacy: true });
+  if (version === 3) return coerce(raw, { withRatings: false });
+  if (version === 2) return coerce(raw, { legacy: true, withRatings: false });
 
   if (version < 2) {
     // v1 stored full item objects inside each list, with a per-list `read` boolean.
@@ -973,7 +993,7 @@ export function migrate(raw) {
   throw new Error(`Unsupported schema version ${version}; this build understands ${SCHEMA_VERSION}.`);
 }
 
-function coerce(raw, { legacy = false } = {}) {
+function coerce(raw, { legacy = false, withRatings = true } = {}) {
   const base = createEmptyState();
   const issues = {};
   for (const v of Object.values(raw.issues ?? {})) {
@@ -997,6 +1017,19 @@ function coerce(raw, { legacy = false } = {}) {
     const id = Number(k);
     const note = normalizeNote(v);
     if (Number.isInteger(id) && id !== 0 && note) notes[id] = note;
+  }
+  const ratings = {};
+  if (withRatings && raw.ratings !== undefined) {
+    if (raw.ratings === null || typeof raw.ratings !== 'object' || Array.isArray(raw.ratings)) {
+      throw new TypeError('ratings must be an object.');
+    }
+    for (const [key, value] of Object.entries(raw.ratings)) {
+      const id = Number(key);
+      if (!Number.isSafeInteger(id) || id === 0 || String(id) !== key || !isIssueRating(value)) {
+        throw new TypeError('The backup contains an invalid issue rating.');
+      }
+      ratings[id] = value;
+    }
   }
   const lists = emptyLists();
   for (const [k, v] of Object.entries(raw.lists ?? {})) {
@@ -1046,6 +1079,7 @@ function coerce(raw, { legacy = false } = {}) {
     read,
     overrides,
     notes,
+    ratings,
     lists,
     listOrder,
     active: lists[raw.active] ? raw.active : (listOrder[0] ?? null),
@@ -1088,6 +1122,7 @@ export function validateBackup(raw) {
     ['read markers', raw.read, MAX_MARKERS],
     ['availability overrides', raw.overrides, MAX_MARKERS],
     ['notes', raw.notes, MAX_MARKERS],
+    ['ratings', raw.ratings, MAX_MARKERS],
     ['lists', raw.lists, MAX_LISTS],
   ]) {
     if (!value || typeof value !== 'object') continue;
@@ -1156,6 +1191,7 @@ export function exportBackup(state) {
     // does not name never reaches the backup file or localStorage at all. Measured: without this
     // line an issue note was absent from the exported JSON, not merely dropped on the way back in.
     notes: clean.notes ?? {},
+    ratings: clean.ratings ?? {},
     lists: clean.lists,
     listOrder: clean.listOrder,
     active: clean.active,

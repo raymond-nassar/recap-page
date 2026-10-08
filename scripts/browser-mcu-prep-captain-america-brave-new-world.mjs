@@ -100,7 +100,7 @@ async function saved(page) {
 }
 
 function checkSaved(t, label, actual) {
-  t.check(label, actual.matches === 1 && actual.listCount === 3 && actual.schemaVersion === 3
+  t.check(label, actual.matches === 1 && actual.listCount === 3 && actual.schemaVersion === 4
     && isDeepStrictEqual(actual.rows, expected)
     && isDeepStrictEqual(actual.priorHulk, seed.lists['brave-existing-hulk'])
     && isDeepStrictEqual(actual.priorHouse, seed.lists['brave-existing-house'])

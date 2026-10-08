@@ -146,8 +146,8 @@ test('510 round-trip keeps schema3 intent including read members and migrates ol
   let state = setDeferred(setDeferred(fixture(), '__proto__', -2), '__proto__', 1);
   state = markRead(state, 1, true, 510);
   const backup = JSON.parse(JSON.stringify(exportBackup(state)));
-  assert.equal(backup.schemaVersion, 3);
-  assert.equal(SCHEMA_VERSION, 3);
+  assert.equal(backup.schemaVersion, SCHEMA_VERSION);
+  assert.equal(SCHEMA_VERSION, 4);
   const restored = validateBackup(backup);
   assert.equal(restored.ok, true);
   assert.deepEqual(restored.state.lists, state.lists);
