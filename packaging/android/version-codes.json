@@ -50,7 +50,11 @@
       "productVersion": "4.0.1",
       "sourceRevision": "b31afa42eb675101cd872b653fbc1ab6ef815e01",
       "sourceTree": "0ebc385396dc9f7cbd2ef375cb97099a4d64cb56",
-      "artifact": null
+      "artifact": {
+        "name": "recap-page-android.aab",
+        "bytes": 3478976,
+        "sha256": "a0ca0db3f21e93894e2e037bf9b34a7c9a56cca2a124ae7a4f5ae4450d9dc32a"
+      }
     }
   ]
 }
