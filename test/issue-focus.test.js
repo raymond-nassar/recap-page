@@ -199,7 +199,7 @@ test('presentation derives shared facts without up-next or progress actions', ()
   assert.equal(shown.byline, 'Test Series · Writer One & Artist One');
   assert.equal(shown.description, 'Held for this tab.');
   assert.deepEqual(shown.facts.map(({ key, value }) => [key, value]), [
-    ['In Unlimited', `soon Scheduled ${futureMuDate}`],
+    ['Unlimited availability', `Scheduled ${futureMuDate}`],
     ['Pages', '24'],
     ['Released', '2026-08-26'],
     ['Position', '2 of 5'],
@@ -212,13 +212,14 @@ test('presentation derives shared facts without up-next or progress actions', ()
 
 test('the dedicated view has one heading and distinct Read, synopsis, and Info actions', () => {
   const html = read('src/index.html');
-  const view = html.match(/<section id="view-issue"[\s\S]*?<\/section>\s*<\/section>/)?.[0] ?? '';
+  const view = html.slice(html.indexOf('<section id="view-issue"'), html.indexOf('<!-- ---------------------------------------- library hub'));
   assert.match(view, /aria-labelledby="issue-focus-h"/);
   assert.match(view, /<h1 id="issue-focus-h">Issue details<\/h1>/);
   assert.match(view, /id="btn-issue-read"/);
   assert.match(view, /id="btn-issue-synopsis"/);
   assert.match(view, /id="btn-issue-info"[^>]*target="_blank"/);
   assert.equal((view.match(/<h1/g) ?? []).length, 1);
+  assert.match(view, /<div class="hero issue-focus" id="issue-focus-card" hidden>/);
 });
 
 test('an issue route branches before list adoption and never calls setActive', () => {
@@ -263,8 +264,16 @@ test('every issue-bearing surface uses the shared focus route while retaining re
 
   const library = read('src/js/views/library.js');
   assert.match(library, /view\.value === 'library-read'/);
-  assert.match(library, /surface: 'everything-read'/);
+  assert.match(library, /surface: view\.value === 'library-read' \? 'everything-read' : 'added-by-hand'/);
   assert.doesNotMatch(library, /kind: 'list'/);
+});
+
+test('manual Library Issue links remain unscoped so duplicate list names cannot invent Issue context', () => {
+  const library = read('src/js/views/library.js');
+  assert.match(library, /issueFocusAnchor\(issue, \{/);
+  assert.match(library, /'added-by-hand'/);
+  assert.doesNotMatch(library, /context:|kind: 'list'/);
+  assert.match(library, /getState\(\)\.lists\[id\]\?\.itemIds\.includes\(issue\.issueId\)/);
 });
 
 test('same-tab focus navigation stores an ephemeral opener and pushes exactly one destination', () => {

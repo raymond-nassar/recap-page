@@ -73,6 +73,30 @@ $env:MRT_CONTRACT_ORDER_ID='<order-id>'; $env:MRT_CONTRACT_ISSUE_ID='<issue-id>'
 
 Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.
 
+### Curated Storylines discovery metadata
+
+The editorial manifest owns secondary Storylines eligibility, not canonical placement. Ordinary
+lists may declare the literal boolean `storylines`; every variant in one group must agree.
+Partition parents use only `storylinesChildren`, an exact allowlist of existing ledger child IDs,
+and remain excluded from the visible catalog. Invalid declarations or unknown child IDs fail
+before generation outputs are written. Runtime invalid or conflicting eligibility fails catalog
+loading explicitly, without changing saved data.
+
+Issue-library relationship digests exclude exactly the list-level `storylines` and
+`storylinesChildren` selectors alongside existing classification metadata. Catalog discovery does
+not redefine approved issue-library evidence. All other manifest fields, paths, order membership
+and ordering, and issue vectors remain digest-bound; unknown or nested metadata is not ignored.
+
+The initial cohort contains 18 original groups and nine named generated arcs. It is a finite
+editorial selection, not an exhaustive taxonomy or permission to include every generated chapter.
+All original IDs, files, variants and canonical routes remain unchanged. Home counts and normal
+Storylines browsing, search and facets use the same pool.
+
+A pinned catalog-only rebuild does not refetch metadata. It may emit the catalog, chapter payloads
+and overlap evidence, so compare the complete pinned data boundary and ordered vectors. Only
+approved catalog eligibility may change. Preserve original raw bytes for noncatalog outputs,
+including checkout newline representation, rather than accepting JSON equality as equivalent.
+
 Install it once in a temporary directory. `MRT_PUPPETEER` may point to that directory, its
 `node_modules/puppeteer-core` package, or the absolute entry-file path. Then run:
 
@@ -108,7 +132,9 @@ the page loads, and exits nonzero if a journey fails. Saved progress at the norm
 stays untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
-`defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, and `mcu-prep-organization` journeys require
+`defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
+`import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
+`discovery-priorities` and `mcu-prep-organization` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.

@@ -69,8 +69,10 @@ export const orderOnlyExport = {
     }, state, sourceUrl);
 
     await page.goto(`${page.__origin}/#/home`, { waitUntil: 'networkidle0' });
-    await click(page, '#list-nav button[data-act="open"]');
+    await click(page, '#list-nav a[data-act="open"]');
     await page.waitForSelector('#view-read:not([hidden])');
+    await page.focus('#list-actions > summary');
+    await page.keyboard.press('Enter');
     await page.focus('#list-export > summary');
     await page.keyboard.press('Enter');
     await page.waitForSelector('#btn-export-order', { visible: true });
@@ -150,7 +152,7 @@ export const orderOnlyExport = {
     t.check('export sent zero external requests', external.length === 0, JSON.stringify(external));
     page.off('request', observeRequest);
 
-    await click(page, '#list-nav button[data-act="open"]');
+    await click(page, '#list-nav a[data-act="open"]');
     await click(page, '#btn-export-order');
     await page.waitForSelector('#ask[open]');
     await activateExport(page, '#ask-ok');
@@ -168,7 +170,12 @@ export const orderOnlyExport = {
     await page.waitForFunction(() => /Imported 3 issues/.test(document.querySelector('#import-report').textContent));
     const imported = await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
-      return { saved, report: document.querySelector('#import-report').textContent };
+      return {
+        saved, report: document.querySelector('#import-report').textContent,
+        unresolved: [...document.querySelectorAll('#import-report button[aria-label^="Find match"]')]
+          .map((button) => button.getAttribute('aria-label')),
+        draft: JSON.parse(localStorage.getItem('mrt.import.draft.v1')),
+      };
     });
     const list = imported.saved.lists[imported.saved.active];
     t.check('fresh import keeps supported identities and sections in their original order',
@@ -185,7 +192,10 @@ export const orderOnlyExport = {
       && Object.keys(imported.saved.overrides).length === 0 && !list.note
       && list.deferredIssueIds.length === 0, JSON.stringify(imported.saved));
     t.check('the unresolved manual position remains explicitly offered for resolution',
-      imported.report.includes('1 line had no Marvel issue link')
+      imported.unresolved.length === 1 && imported.unresolved[0] === `Find match: ${items[1].title}`
+      && imported.draft.occurrences[1].title === items[1].title
+      && imported.draft.occurrences[1].choice === null
+      && !imported.draft.occurrences[1].applied
       && imported.report.includes(items[1].title), imported.report);
 
     await page.evaluate(() => {

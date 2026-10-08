@@ -148,8 +148,8 @@ test('every approved list path records only its final cumulative operation resul
   assert.equal(
     [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length
       + [...ADD.matchAll(/onNonEmptyListSave\(/g)].length,
-    6,
-    'one definition and the import, two unresolved, manual, and curated paths must be explicit',
+    4,
+    'one definition, shared import outcome, manual, and curated paths must be explicit',
   );
   assert.match(
     MAIN,
@@ -157,7 +157,10 @@ test('every approved list path records only its final cumulative operation resul
     'the selection save no longer records its completed durable result',
   );
   assert.doesNotMatch(ADD, /const listId = ensureList\(/);
-  assert.match(ADD, /if \(!setupOk \|\| !operation\.ok\)/);
+  assert.match(ADD, /if \(result\.ok && result\.readerSaved && result\.added > 0\)/);
+  assert.equal([...ADD.matchAll(/showImportResult\(await importDraft\.resolve\(/g)].length, 2,
+    'both unresolved selection routes share the verified publication outcome');
+  assert.match(ADD, /showImportResult\(importDraft\.draft\?\.rawText === text \? await importDraft\.resume\(\) : await importDraft\.start\(text,/);
   assert.match(ADD, /if \(!operation\.ok \|\| added === 0\)/);
 });
 

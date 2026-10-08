@@ -101,15 +101,9 @@ export const PAIRS = [
   ['--accent', '--bg', LARGE, 'the cover-art switch in its on state, and the catalog Clear button, both on the page'],
   ['--accent', '--card', LARGE, 'the fill of a primary button on a card'],
   ['--accent', '--card-2', LARGE, 'the fill of a primary button on a raised card'],
-  // Found by the same review, one token over, and it is the reason the guard in test/theme.test.js
-  // now pins `--on-accent` too. The tick inside a checked checkbox is `--on-accent` on `--teal`
-  // (`src/styles.css:987` and `src/styles.css:989`), which is 1.93:1 in the dark theme. It is
-  // listed here and recorded below rather than fixed, because the colour decision belongs to
-  // BL-069 and this item is about measuring what nothing measured. The railed status dot is the
-  // other thing painted on `--teal` and it carries no foreground at all, since
-  // `.railed .rail-foot .pill` sets `color: transparent` at `src/styles.css:534-535`, so this is
-  // the only pair `--teal` backs.
-  ['--on-accent', '--teal', LARGE, 'the tick inside a checked read checkbox'],
+  // A read-specific foreground preserves the shared teal badge contrast while clearing the
+  // tick's 3:1 floor: existing --bg on --teal is 9.72:1 dark and 6.28:1 light.
+  ['--bg', '--teal', LARGE, 'the tick inside a checked read checkbox'],
   // BL-069, out of the BL-067 review, which found `--accent` painting three surfaces no pair reached.
   // Each was measured in Edge by hit testing what is actually behind the element rather than by
   // assuming, and all three clear the floor, so this is coverage rather than a repair.
@@ -119,8 +113,8 @@ export const PAIRS = [
   // own fixed palette, leaving this pair to describe the skip link alone.
   //
   // The accent bar is deliberately not on that entry. `.ri[aria-current]`
-  // sets its own background at `src/styles.css:474`, a tint over the rail, and the bar at
-  // `src/styles.css:478` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
+  // sets its own background at `src/styles.css:473`, a tint over the rail, and the bar at
+  // `src/styles.css:477` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
   // 5.35. Putting it on `--rail` with the other two would have read 4.09 and 6.37, overstating it
   // by 0.65 in the dark theme and 1.02 in the light one, which is the mistake hit testing was for.
   ['--accent', '--rail', LARGE, 'the skip link when focused on the rail'],
@@ -133,15 +127,20 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1939`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2002`'],
 ];
 
 export const STANDALONE_PAIRS = [
-  ['#f2f2f8', '#111117', BODY, 'body text on the launch page', 'body::color', 'body::background'],
-  ['#9191a4', '#111117', BODY, 'the launch-page caption', 'p::color', 'body::background'],
-  ['#7fb3ff', '#111117', BODY, 'the launch-page fallback link', 'a::color', 'body::background'],
-  ['#fff', '#8a53e1', BODY, 'the letter inside the launch-page mark', '.mark::color', '.mark::background'],
-];
+  [':root, :root[data-theme="dark"]', '#111117', '#f2f2f8', '#9191a4', '#7fb3ff', '#8a53e1'],
+  [':root[data-theme="light"]', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
+  [':root:not([data-theme="dark"])', '#fafaff', '#13131b', '#5c5c6e', '#17509c', '#6d28d9'],
+].flatMap(([selector, bg, text, muted, blue, accent]) => [
+  [text, bg, BODY, `${selector} body text`, `${selector}::--text`, `${selector}::--bg`],
+  [muted, bg, BODY, `${selector} status text`, `${selector}::--muted`, `${selector}::--bg`],
+  [blue, bg, BODY, `${selector} fallback and return links`, `${selector}::--blue`, `${selector}::--bg`],
+  ['#fff', accent, BODY, `${selector} letter inside the mark`, `${selector}::--on-accent`, `${selector}::--accent`],
+  [blue, bg, LARGE, `${selector} anchor focus outline`, `${selector}::--blue`, `${selector}::--bg`],
+]);
 
 // Two of the surfaces this stylesheet paints on are not tokens and have no hex value to read, so a
 // pair rendered on either could not be listed at all and both went ungated. That is the state this
@@ -169,13 +168,13 @@ export const SURFACES = {
     // 228 in blue. The ghost button below already carries the same correction.
     fraction: 20 / 255,
     on: '--rail',
-    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:474`',
+    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:473`',
   },
   'the unreadable-data banner': {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1915`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1978`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -185,7 +184,7 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:815`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:872`',
   },
 };
 
@@ -499,6 +498,29 @@ export function standaloneFindings(source, pairs = STANDALONE_PAIRS) {
       });
     }
   }
+  const text = stripComments(source, '.css');
+  const blocks = new Map([...text.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => [
+    match[1].replace(/\s+/g, ' ').trim(),
+    new Map([...match[2].matchAll(/([\w-]+)\s*:\s*([^;{}]+);/g)].map((declaration) => [
+      declaration[1], declaration[2].trim(),
+    ])),
+  ]));
+  for (const [selector, property, expected] of [
+    ['body', 'background', 'var(--bg)'], ['body', 'color', 'var(--text)'],
+    ['#p, #settings-status', 'color', 'var(--muted)'], ['a', 'color', 'var(--blue)'],
+    ['.mark', 'background', 'var(--accent)'], ['.mark', 'color', 'var(--on-accent)'],
+    ['a:focus-visible', 'outline', '3px solid var(--blue)'],
+    [':root, :root[data-theme="dark"]', 'color-scheme', 'dark'],
+    [':root[data-theme="light"]', 'color-scheme', 'light'],
+    [':root:not([data-theme="dark"])', 'color-scheme', 'light'],
+  ]) {
+    if (blocks.get(selector)?.get(property) !== expected) {
+      findings.push({ message: `${selector} ${property} must consume ${expected} on the launch page` });
+    }
+  }
+  if (!/@media\s*\(prefers-color-scheme:\s*light\)\s*\{\s*:root:not\(\[data-theme="dark"\]\)/.test(text)) {
+    findings.push({ message: 'The launch-page system-light palette must remain inside its light preference scope' });
+  }
   return findings;
 }
 
@@ -658,7 +680,7 @@ export function checkAll(css) {
   ];
 }
 
-// Five non-text pairs sit below 3:1 and are recorded rather than fixed. BL-065 raised the other four.
+// Four non-text pairs sit below 3:1 and are recorded rather than fixed. BL-065 raised the other four.
 //
 // All four are `--track` against something behind it, and the reason they stay is arithmetic rather
 // than reluctance. `--track` is the trough of a progress bar and the `--accent` fill sits directly on
@@ -683,7 +705,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1698` in the rail and `src/js/views/shared/saved-lists.js:31` in the
+// stated as text beside it, at `src/js/main.js:1832` in the rail and `src/js/views/shared/saved-lists.js:32` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when
@@ -702,47 +724,6 @@ export const KNOWN = [
   'light:--track:--card',
   'dark:--track:--rail',
   'light:--track:--rail',
-  // The fifth is a different case from the four above and is recorded for a different reason. The
-  // white tick inside a checked read checkbox is 1.93:1 on the dark `--teal` fill, and 6.54:1 on
-  // the light one, so only the dark theme is below the floor. BL-166 moved it from 2.30:1 when it
-  // replaced the old green fill with `#3fcfbb`, and re-affirmed the decision below on the new
-  // arithmetic rather than inheriting it: a pair already recorded is exactly the pair a later
-  // change is most able to worsen without anybody noticing.
-  //
-  // BL-069 was the item that had to choose, and it chose to leave it. The choice is arithmetic
-  // rather than preference, and the arithmetic is not the trough's. A trough clearing the card, the
-  // rail and its own fill while staying darker than that fill does not exist: a search of all
-  // 16,777,216 sRGB colours returns none. A fill clearing all three of its floors does exist, and
-  // 2,138,235 of them do, so this one was a genuine choice.
-  //
-  // What decided it is what the choice costs. White on a fill reaching 3:1 caps that fill's relative
-  // luminance at 0.3000, and the shipped teal is at 0.4927. Every fill under that cap reads at
-  // most 6.27:1 on the page and 5.80:1 on a card, against 9.72:1 and 8.99:1 today, so clearing the
-  // tick costs the available badge between 3.19 and 3.45 of its ratio, depending on which surface it
-  // is read against. The nearest feasible fill to the shipped one, #3aa2b3, lands exactly on 3.00:1
-  // with no margin at all.
-  //
-  // That is a trade of contrast on text for contrast on a glyph, and the glyph is the side that
-  // carries nothing. The badge is language a reader has to read. The tick is not read by anybody:
-  // the button takes its accessible name from the `aria-label` at   `src/js/views/reading.js:800`, which
-  // replaces the glyph in the name computation, and `aria-pressed` at   `src/js/views/reading.js:799`
-  // carries the state besides. The fill already says the box is checked, emphatically, at 8.99:1
-  // against a card and 9.72:1 against the page. Taking that much ratio away from words that are
-  // read, to give it to a symbol that is not, is a worse outcome for the reader who needs the
-  // contrast most.
-  //
-  // So the tick is reinforcement drawn on an already unmistakable fill, which is the same judgement
-  // BL-049 reached about the badge borders and BL-067 about the switch graphic. This line is what
-  // keeps the number visible, and the figures above are what a later change has to argue against
-  // rather than reopen from nothing.
-  //
-  // The classification is what makes this entry eligible at all, and it deserves stating rather
-  // than assuming, because the test below rejects any recorded pair carrying the 4.5:1 text floor.
-  // WCAG scopes text to characters that express something in human language. A tick is a symbol
-  // that happens to arrive as a font glyph, and here it is never language to anybody. It is a state
-  // indicator drawn on a control, so the floor is the 3:1 of 1.4.11 and not the 4.5:1 of 1.4.3.
-  // If that reading is ever overturned, this entry is not eligible and the green has to change.
-  'dark:--on-accent:--teal',
 ];
 
 export function unresolved(css) {

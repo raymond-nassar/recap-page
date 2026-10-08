@@ -135,6 +135,9 @@ test('an existing Preview Open keeps its exact list identity and does not Add', 
   const saved = { id: 'existing', catalogId: list.id };
   h.setState({ lists: { existing: saved }, listOrder: ['existing'] });
   await h.view.open(list);
+  assert.equal(h.nodes.add.children[0].href, '#/read/existing');
+  h.nodes.add.children[0].onclick({ button: 0, metaKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.deepEqual(h.calls.opened, []);
   assert.equal(h.nodes.add.children[0].onclick(), 1);
   assert.equal(h.calls.added, 0);
   assert.deepEqual(h.calls.opened, [[list, saved]]);
@@ -338,13 +341,15 @@ test('publishing refresh ignores stale success and failure after navigation', as
     const pending = deferred();
     const box = node();
     const periods = node();
+    const navigation = node();
     let reports = 0;
     let current = true;
     const context = {
       view: 'age-early-modern',
       publishingCategoryGeneration: 0,
       generatedCategoryByRoute: new Map([['age-early-modern', { route: 'age-early-modern' }]]),
-      $: (selector) => selector.endsWith('-results') ? box : periods,
+      $: (selector) => selector.endsWith('-results') ? box
+        : selector.endsWith('-navigation') ? navigation : periods,
       el: (_tag, props) => node(props),
       clearNotice: () => {},
       CATALOG_LOAD: 'catalog',

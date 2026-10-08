@@ -1,24 +1,39 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { resolveReadingPaths } from '../src/js/lib/catalog.js';
 
 import { createReadingPathsView, readingPathProgress } from '../src/js/views/reading-paths.js';
 
 function node(props = {}, children = []) {
-  return {
+  const result = {
     children: [].concat(children),
     dataset: {},
     hidden: false,
+    isConnected: true,
+    textContent: props.text ?? '',
     listeners: {},
-    value: '',
     addEventListener(name, listener) { this.listeners[name] = listener; },
     setAttribute(name, value) { this[name] = value; },
     focus() { this.focused = true; },
+    scrollIntoView(options) { this.scrolled = options; },
+    append(...next) { this.children.push(...next); },
     replaceChildren(...next) { this.children = next; },
     ...props,
   };
+  let value = props.value ?? '';
+  Object.defineProperty(result, 'value', {
+    get: () => value,
+    set: (next) => {
+      value = result.tagName === 'SELECT' && !result.children.some((option) => option.value === next)
+        ? '' : next;
+    },
+    configurable: true,
+  });
+  return result;
 }
 
-const element = (_tag, props = {}, children = []) => node(props, children);
+const element = (tag, props = {}, children = []) => node({ tagName: tag.toUpperCase(), ...props }, children);
 const list = (id) => ({
   id,
   file: `${id}.json`,
@@ -42,6 +57,7 @@ test('Reading Paths preserves selector identity and rejects stale catalog loads'
     description: node(),
     details: node(),
     name: node(),
+    navigation: node(),
     progressOutputs: () => [],
     select: node(),
     source: node(),
@@ -88,7 +104,7 @@ function actionFixture({ isCompleted } = {}) {
   let state = { lists: {}, listOrder: [], read: {} };
   const opened = [];
   const nodes = {
-    count: node(), description: node(), details: node(), name: node(),
+    count: node(), description: node(), details: node(), name: node(), navigation: node(),
     select: node(), source: node(), spine: node(), status: node(),
     progressOutputs: () => nodes.spine.children.map((row) => {
       const copy = row.children[1];
@@ -213,4 +229,196 @@ test('return focus resolves the original stop only after the selected path is re
   assert.ok(fixture.actions().every((action) => !action.focused));
   await fixture.view.render({ opener: { pathId: 'actions', stepId: 'missing' } });
   assert.ok(fixture.actions().every((action) => !action.focused));
+});
+
+const actualCatalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+const actualPaths = resolveReadingPaths(actualCatalog.paths, actualCatalog.lists);
+
+function jumpFixture(pathId = 'marvel-knights-to-planet-x') {
+  const h = actionFixture();
+  let state = { lists: {}, listOrder: [], read: {} };
+  let active = true;
+  let loader = () => Promise.resolve(actualCatalog);
+  const completed = new Set();
+  const focused = [];
+  const view = createReadingPathsView({
+    clearLoadNotice: () => {}, el: element, elements: () => h.nodes,
+    getRequestedPathId: () => pathId, getState: () => state, isCurrent: () => active,
+    isCompleted: (_state, id) => completed.has(id), loadCatalog: () => loader(),
+    onCanonicalPath: () => {}, onLoadFailure: ({ error }) => { throw error; },
+    onOpenStop: (...args) => h.opened.push(args), onSelectedPath: () => {},
+  });
+  view.wire();
+  function form() {
+    const result = h.nodes.navigation.children[0];
+    assert.ok(result?.tagName === 'FORM', 'UX10 native jump form exists on the accepted path surface');
+    return result;
+  }
+  function field() { return form().children.find((child) => child.tagName === 'SELECT'); }
+  function status() { return form().children.find((child) => child.role === 'status'); }
+  function submit(value, currentForm = form()) {
+    const select = currentForm.children.find((child) => child.tagName === 'SELECT');
+    select.value = value;
+    let prevented = false;
+    currentForm.onsubmit({ preventDefault: () => { prevented = true; } });
+    assert.equal(prevented, true);
+  }
+  function instrument() {
+    for (const action of h.actions()) {
+      action.focus = () => { focused.push(action.dataset.readingPathAction); action.focused = true; };
+    }
+  }
+  function own(stop, id = stop.stepId, done = false, itemIds = [1, 2]) {
+    state.lists[id] = { id, catalogId: stop.stepId, name: id, created: 2001, itemIds, collectedIn: {} };
+    state.listOrder.push(id);
+    if (done) completed.add(id);
+  }
+  return {
+    ...h, view, form, field, status, submit, instrument, focused, completed, own,
+    state: () => state, setState: (next) => { state = next; },
+    setActive: (next) => { active = next; }, setLoader: (next) => { loader = next; },
+  };
+}
+
+test('UX10 U01: the full 78-stop named jump focuses only the late action without opening or writing', async () => {
+  const h = jumpFixture();
+  await h.view.render();
+  const form = h.form();
+  const stops = h.view.selected().stops;
+  assert.equal(stops.length, 78);
+  assert.deepEqual(stops.map((stop) => stop.stepId),
+    actualPaths.find((entry) => entry.id === 'marvel-knights-to-planet-x').stops.map((stop) => stop.stepId));
+  assert.deepEqual(h.actions().map((action) => action.dataset.readingPathAction), stops.map((stop) => stop.stepId));
+  assert.deepEqual(h.field().children.filter((option) => option.value.startsWith('entry:')).map((option) => option.value),
+    stops.map((stop) => `entry:${stop.stepId}`));
+  h.instrument();
+  const before = JSON.stringify(h.state());
+  h.submit(`entry:${stops[77].stepId}`);
+  assert.deepEqual(h.focused, [stops[77].stepId]);
+  assert.deepEqual(h.actions()[77].scrolled, { block: 'nearest', behavior: 'auto' });
+  assert.equal(h.opened.length, 0);
+  assert.equal(JSON.stringify(h.state()), before);
+  assert.equal(h.form(), form);
+});
+
+test('UX10 U02: next unfinished uses only explicit completion, including unread, deferred and empty copies', async () => {
+  const h = jumpFixture();
+  await h.view.render();
+  h.form(); h.instrument();
+  const stops = h.view.selected().stops;
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[0].stepId);
+  stops.forEach((stop, index) => h.own(stop, stop.stepId, index !== 75));
+  h.state().read = { 1: 1, 2: 1 };
+  h.state().lists[stops[76].stepId].deferredIssueIds = [2];
+  h.state().lists[stops[76].stepId].itemIds = [3, 4];
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[75].stepId);
+  h.completed.add(stops[75].stepId);
+  h.completed.delete(stops[76].stepId);
+  h.state().lists[stops[76].stepId].itemIds = [];
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[76].stepId);
+});
+
+test('UX10 U03: duplicate exact and catalog sibling A-E transitions preserve explicit saved identity', async () => {
+  const h = jumpFixture('modern-avengers');
+  await h.view.render();
+  h.form(); h.instrument();
+  const stops = h.view.selected().stops;
+  stops.slice(0, 7).forEach((stop) => h.own(stop, stop.stepId, true));
+  const copies = [
+    ['ux10-hickman-first', 'hickman-minimal', false],
+    ['ux10-hickman-second', 'hickman-minimal', true],
+    ['ux10-hickman-full', 'hickman-full', true],
+    ['ux10-hickman-doomsday', 'avengers-doomsday-secret-wars', false],
+  ];
+  copies.forEach(([id, catalogId, done], index) => {
+    h.own({ stepId: catalogId }, id, done);
+    h.state().lists[id].created = 2001 + index;
+  });
+  h.state().active = 'ux10-hickman-full';
+  h.state().read = { 1: 1 };
+  const measure = (savedId, nextIndex, label) => {
+    h.view.refreshProgress();
+    const progress = readingPathProgress(h.state(), stops[7], { isCompleted: (_state, id) => h.completed.has(id) });
+    assert.equal(progress?.listId ?? null, savedId);
+    assert.equal(h.actions()[7].textContent, label);
+    if (progress) { assert.equal(progress.read, 1); assert.equal(progress.total, 2); }
+    const before = JSON.stringify(h.state());
+    h.submit('next-unfinished');
+    assert.equal(h.focused.at(-1), stops[nextIndex].stepId);
+    assert.equal(JSON.stringify(h.state()), before);
+  };
+  const remove = (id) => {
+    delete h.state().lists[id];
+    h.state().listOrder = h.state().listOrder.filter((entry) => entry !== id);
+  };
+  measure('ux10-hickman-first', 7, 'Open saved list');
+  remove('ux10-hickman-first'); measure('ux10-hickman-second', 8, 'Open saved list');
+  remove('ux10-hickman-second'); measure('ux10-hickman-full', 8, 'Open saved version');
+  h.completed.delete('ux10-hickman-full'); measure('ux10-hickman-full', 7, 'Open saved version');
+  remove('ux10-hickman-full'); remove('ux10-hickman-doomsday'); measure(null, 7, 'Preview');
+});
+
+test('UX10 U04: all-complete, unknown, reopened and removed imports resolve live without rebuilding focus', async () => {
+  const h = jumpFixture();
+  await h.view.render();
+  const form = h.form(); h.instrument();
+  const stops = h.view.selected().stops;
+  stops.forEach((stop) => h.own(stop, stop.stepId, true));
+  h.submit('next-unfinished');
+  assert.match(h.status().textContent, /All displayed stops are marked as completed/);
+  assert.equal(h.focused.length, 0);
+  h.completed.clear();
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[0].stepId);
+  stops.forEach((stop) => h.completed.add(stop.stepId));
+  h.completed.delete(stops[75].stepId);
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[75].stepId);
+  delete h.state().lists[stops[0].stepId];
+  h.state().listOrder.shift();
+  const action = h.actions()[75];
+  h.view.refreshProgress();
+  assert.equal(h.form(), form); assert.equal(h.actions()[75], action); assert.equal(action.focused, true);
+  h.submit('next-unfinished');
+  assert.equal(h.focused.at(-1), stops[0].stepId);
+});
+
+test('UX10 U05: stale, disconnected and invalid native choices never fall back or focus another path', async () => {
+  const h = jumpFixture();
+  await h.view.render();
+  const old = h.form(); h.instrument();
+  const id = h.view.selected().stops[77].stepId;
+  h.submit('unknown-value');
+  assert.equal(h.field().value, '');
+  assert.match(h.status().textContent, /Choose/);
+  h.field().append(element('option', { value: 'entry:missing', text: 'Missing' }));
+  h.submit('entry:missing');
+  assert.match(h.status().textContent, /no longer available/);
+  h.field().children.pop();
+  h.actions()[77].isConnected = false;
+  h.submit(`entry:${id}`);
+  assert.match(h.status().textContent, /no longer available/);
+  h.actions()[77].isConnected = true;
+  const removed = h.nodes.spine.children.pop();
+  h.submit(`entry:${id}`);
+  assert.match(h.status().textContent, /no longer available/);
+  h.nodes.spine.children.push(removed);
+  h.setActive(false); h.submit(`entry:${id}`); h.setActive(true);
+  assert.equal(h.focused.length, 0);
+  h.nodes.select.listeners.change({ target: { value: 'modern-avengers' } });
+  h.submit(`entry:${id}`, old);
+  assert.equal(h.focused.length, 0);
+  const latest = h.form();
+  let resolve;
+  h.setLoader(() => new Promise((done) => { resolve = done; }));
+  const loading = h.view.render();
+  h.submit(`entry:${h.view.selected().stops[0].stepId}`, latest);
+  assert.equal(h.focused.length, 0);
+  resolve(actualCatalog); await loading;
+  h.instrument();
+  h.submit(`entry:${id}`);
+  assert.deepEqual(h.focused, [id]);
 });

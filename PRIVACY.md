@@ -50,6 +50,26 @@ offers a separate completion-history backup containing saved list identities, co
 and optional thumbs. Each restore replaces only its own kind of data. A reading-data restore or
 its Undo does not replace completion history. Download both files to preserve both kinds of data.
 The separately labelled saved-value troubleshooting copy is not a normal history backup.
+Reading and history backup controls are adjacent. Settings are not part of this transfer.
+A reading restore keeps the exact prior reading-data bytes as a saved copy. A one-shot Undo
+is identified only in the tab that performed the restore. Undo, reload or a replaced snapshot
+leaves a clearly named saved-copy action instead, never an unlabeled reverse Undo. Replacement
+requires confirmation; changes made while that confirmation is open are refused.
+The saved copy can also be downloaded exactly, even when this version cannot restore it.
+
+Pasted imports retain exact source text, recognized source positions and selected matches in a
+separate local draft, including unresolved and duplicate occurrences. Source can contain arbitrary
+personal text. There is no automatic expiry or upload. For a complete transfer, also export the
+separately labeled import-draft file when present. Current reading/history formats remain unchanged.
+Draft restore changes only that draft; it preserves prior draft sources inside the new bounded file
+and requires explicit Resume review. A replacement that exceeds the size limit is refused.
+Reading restore and Undo retain source but invalidate automatic application. An uncertain interrupted
+operation never blindly replays historical read markers. Failed writes retain visible unsaved source
+or guarded recovery; when storage outcome cannot be verified, export retained source before reloading.
+That export includes adopted current source alongside failed source candidates. If their combined
+file exceeds the draft limit, export is refused explicitly and retained work stays guarded in the
+open page; no source is silently omitted to make a file fit.
+Browser downloads are requests, not confirmation that a file was saved.
 
 ## Direct network requests
 
@@ -106,7 +126,7 @@ enjoyment history are removed only after that verification and only while the ch
 and history values remain unchanged. Failed or unconfirmed history cleanup is reported as
 partial cleanup, not successful erasure of all data. Settings and sidebar preferences remain.
 Removal of pre-restore and staging copies is attempted afterwards; storage failures can leave copies
-behind. The app reports a retained pre-restore copy through **Undo last restore**.
+behind. The app reports a retained pre-restore copy through its saved reading-data copy controls.
 Old removal Undo and temporary reader links are withdrawn when reader erasure is verified,
 before later cleanup waits. New reading changes, their Undo, completion history, and restore copies
 made during those waits are kept. The final report checks current saved values and explicitly
@@ -116,6 +136,12 @@ Salvage copies kept after a failed read are not removed. Remove them separately 
 **Copies kept after a failed read**; a copy cannot be removed while it protects active unreadable
 data. Erase also requests metadata cache cleanup and reports cleanup failures; it does not erase
 offline app files. **Clear cached metadata** remains a separate control.
+
+Verified reading erase also removes the captured import draft and its retained source snapshots.
+If reading data or the draft changes during confirmation/cleanup, or removal cannot be verified,
+the draft is kept or its uncertain outcome is reported. Explicit draft discard removes source
+without removing published comics. Start fresh and clearing cached metadata do not discard drafts.
+Neither erase nor discard removes exported files.
 
 Use browser controls to clear desktop storage and caches; uninstalling the Windows package leaves
 them in place. On Android, clearing app data or uninstalling removes private app storage. These
@@ -144,7 +170,7 @@ GitHub receives the page request, not your saved reading data. Its privacy state
 
 ## Optional reading-list feedback
 
-Thumbs record a private enjoyment preference only. Choosing **Did not enjoy** opens instructions;
+Thumbs record a private enjoyment preference only. Choosing **Did not enjoy** does not open a report;
 it does not submit feedback. **Report a list problem** opens those instructions without changing
 your rating. On desktop and Android, **Open feedback form** deliberately opens Microsoft Forms
 outside Recap Page. No reader account, name or email is required.

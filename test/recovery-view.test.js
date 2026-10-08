@@ -82,18 +82,18 @@ test('render withdraws a prior incident download confirmation when recovery reso
   await nodes.btnStartFresh._fire();
 
   assert.deepEqual(starts, [
-    { confirmedDownloaded: true },
-    { confirmedDownloaded: false },
+    { verifiedCopyRaw: '{"incident":1}' },
+    { verifiedCopyRaw: null },
   ]);
 });
 
 // -- renderSalvage reads fresh data --
 
-test('recovery waits for a completed download and never trusts cancellation or different bytes', async () => {
-  for (const outcome of ['saved', 'cancelled', 'changed']) {
+test('recovery waits for a completed download and never trusts cancellation, different or unrepresentable bytes', async () => {
+  for (const outcome of ['saved', 'cancelled', 'changed', 'unrepresentable']) {
     const nodes = recoveryNodes();
     const starts = [];
-    let raw = '{"incident":1}';
+    let raw = outcome === 'unrepresentable' ? '{"incident":"\ud800"}' : '{"incident":1}';
     let complete;
     const view = makeView({
       elements: () => nodes,
@@ -106,15 +106,15 @@ test('recovery waits for a completed download and never trusts cancellation or d
     view.wire();
     const downloading = nodes.btnDownloadSalvage._fire();
     await nodes.btnStartFresh._fire();
-    assert.equal(starts.at(-1).confirmedDownloaded, false, 'an open picker is not a saved backup');
+    assert.equal(starts.at(-1).verifiedCopyRaw, null, 'an open picker is not a saved backup');
     if (outcome === 'changed') raw = '{"incident":2}';
     complete(outcome !== 'cancelled');
     await downloading;
     await nodes.btnStartFresh._fire();
-    assert.equal(starts.at(-1).confirmedDownloaded, outcome === 'saved', outcome);
+    assert.equal(starts.at(-1).verifiedCopyRaw, outcome === 'saved' ? raw : null, outcome);
     raw = '{"incident":3}';
     await nodes.btnStartFresh._fire();
-    assert.equal(starts.at(-1).confirmedDownloaded, false, 'a previous success never confirms other bytes');
+    assert.equal(starts.at(-1).verifiedCopyRaw, null, 'a previous success never confirms other bytes');
   }
 });
 
@@ -126,6 +126,98 @@ test('renderSalvage calls salvageCopies on every invocation', () => {
   view.renderSalvage();
   view.renderSalvage();
   assert.equal(callCount, 2, 'fresh read on every call, not cached');
+});
+
+test('a requested browser download never grants recovery permission or announces saved output', async () => {
+  const nodes = recoveryNodes();
+  const starts = [];
+  const said = [];
+  const view = makeView({
+    elements: () => nodes,
+    isBlocked: () => true,
+    salvagedRaw: () => 'original',
+    download: () => 'requested',
+    announce: (message) => said.push(message),
+    askConfirm: async () => true,
+    startFresh: (options) => { starts.push(options); return false; },
+  });
+  view.wire();
+  await nodes.btnDownloadSalvage._fire();
+  await nodes.btnStartFresh._fire();
+  assert.deepEqual(starts, [{ verifiedCopyRaw: null }]);
+  assert.deepEqual(said, []);
+});
+
+test('file verification grants permission only for exact locally readable incident bytes', async () => {
+  for (const outcome of ['exact', 'wrong', 'large', 'invalid-utf8', 'unreadable']) {
+    const nodes = recoveryNodes();
+    const starts = [];
+    const reports = [];
+    const bytes = new TextEncoder().encode(outcome === 'wrong' ? 'differen' : 'original');
+    const file = {
+      size: outcome === 'large' ? 100 : bytes.byteLength,
+      arrayBuffer: async () => {
+        if (outcome === 'unreadable') throw new Error('Permission denied');
+        return outcome === 'invalid-utf8' ? new Uint8Array([0xff]).buffer : bytes.buffer;
+      },
+    };
+    const view = makeView({
+      elements: () => nodes,
+      isBlocked: () => true,
+      salvagedRaw: () => 'original',
+      askConfirm: async () => true,
+      startFresh: (options) => { starts.push(options); return false; },
+      notify: (...args) => reports.push(args),
+    });
+    view.wire();
+    const input = { files: [file], value: 'chosen' };
+    await nodes.verifySalvage._fire({ target: input });
+    await nodes.btnStartFresh._fire();
+    assert.equal(starts.at(-1).verifiedCopyRaw, outcome === 'exact' ? 'original' : null, outcome);
+    assert.equal(input.value, '', 'the same file can be selected for another check');
+    assert.equal(reports.at(-1)[2], outcome === 'exact' ? 'ok'
+      : ['invalid-utf8', 'unreadable'].includes(outcome) ? 'error' : 'warn');
+  }
+});
+
+test('late file verification cannot confirm changed incidents or replace a newer verification', async () => {
+  const nodes = recoveryNodes();
+  const starts = [];
+  const reports = [];
+  let raw = 'original';
+  let finish;
+  const file = { size: 8, arrayBuffer: () => new Promise((resolve) => { finish = resolve; }) };
+  const view = makeView({
+    elements: () => nodes,
+    isBlocked: () => true,
+    salvagedRaw: () => raw,
+    askConfirm: async () => true,
+    startFresh: (options) => { starts.push(options); return false; },
+    notify: (...args) => reports.push(args),
+  });
+  view.wire();
+  const pending = nodes.verifySalvage._fire({ target: { files: [file] } });
+  raw = 'incident';
+  finish(new TextEncoder().encode('original').buffer);
+  await pending;
+  await nodes.btnStartFresh._fire();
+  assert.equal(starts.at(-1).verifiedCopyRaw, null);
+  const old = nodes.verifySalvage._fire({ target: { files: [file] } });
+  await nodes.verifySalvage._fire({
+    target: { files: [{ size: 8, arrayBuffer: async () => new TextEncoder().encode('incident').buffer }] },
+  });
+  const reportCount = reports.length;
+  finish(new TextEncoder().encode('original').buffer);
+  await old;
+  assert.equal(reports.length, reportCount, 'obsolete async work does not displace current feedback');
+  await nodes.btnStartFresh._fire();
+  assert.equal(starts.at(-1).verifiedCopyRaw, 'incident');
+});
+
+test('empty recovery inventory makes no claim about previous readability', () => {
+  const nodes = recoveryNodes();
+  makeView({ elements: () => nodes }).renderSalvage();
+  assert.equal(nodes.salvageList.children[0].props.text, 'Nothing is being kept aside.');
 });
 
 test('renderSalvage shows null-storage message when copies is null', () => {
@@ -252,6 +344,7 @@ function recoveryNodes(overrides = {}) {
     undoRestore: { hidden: false, ...(overrides.undoRestore || {}) },
     btnDownloadSalvage: listenerNode(),
     btnStartFresh: listenerNode(),
+    verifySalvage: listenerNode(),
     salvageList: {
       ...listenerNode(),
       replaceChildren(...args) { this.children = args; },

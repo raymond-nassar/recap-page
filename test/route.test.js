@@ -5,7 +5,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
-  VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
+  VIEWS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from '../src/js/lib/route.js';
 import {
   CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES,
@@ -21,6 +21,26 @@ const reading = read('src/js/views/reading.js');
 // These say what was looked for instead.
 const has = (text, re, what) => assert.ok(re.test(text), `expected to find ${what}`);
 const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to find ${what}`);
+
+test('route titles identify the current view list and resolved issue without invented metadata', () => {
+  assert.equal(routeTitle({ view: 'home' }), 'Home | Recap Page');
+  assert.equal(routeTitle({ view: 'library-manual' }), 'Added by hand | Recap Page');
+  assert.equal(routeTitle({ view: 'read', list: { name: 'My reading list' } }), 'My reading list | Recap Page');
+  assert.equal(routeTitle({ view: 'issue', issueTitle: 'Hand entered comic' }), 'Hand entered comic | Recap Page');
+  assert.equal(routeTitle({ view: 'issue' }), 'Issue details | Recap Page');
+  assert.equal(routeTitle({ view: 'issue', issueTitle: 'Issue unavailable' }), 'Issue unavailable | Recap Page');
+  assert.equal(routeTitle({ view: 'read' }), 'Reading List | Recap Page');
+  assert.equal(routeTitle({ view: 'about' }), 'About this app | Recap Page');
+});
+
+test('destination interception leaves modifiers middle click and prevented defaults native', () => {
+  assert.equal(isPlainNavigation({ button: 0 }), true);
+  for (const key of ['ctrlKey', 'metaKey', 'shiftKey', 'altKey', 'defaultPrevented']) {
+    assert.equal(isPlainNavigation({ button: 0, [key]: true }), false, key);
+  }
+  assert.equal(isPlainNavigation({ button: 1 }), false);
+  assert.equal(formatRoute({ view: 'read', listId: 'manual/a' }), '#/read/manual%2Fa');
+});
 
 test('completed lists have a real bookmarkable panel at the unchanged reading-data origin', () => {
   assert.ok(VIEWS.includes('completed'));

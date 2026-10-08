@@ -29,6 +29,29 @@ function parseCatalog(raw) {
   });
 }
 
+test('runtime Storylines declarations fail explicitly rather than dropping a variant or coercing eligibility', () => {
+  const entry = { id: 'one', name: 'One', file: 'one.json', count: 2, type: 'event' };
+  for (const storylines of [null, 'true', 1, []]) {
+    assert.throws(() => parseCatalog({ lists: [{ ...entry, storylines }] }), /storylines/i);
+  }
+  assert.equal(parseCatalog({ lists: [{ ...entry, storylines: true }] }).lists[0].storylines, true);
+  assert.equal(parseCatalog({ lists: [entry] }).lists[0].storylines, false);
+  assert.throws(() => parseCatalog({ lists: [
+    { ...entry, group: 'shared', storylines: true },
+    { ...entry, id: 'two', file: 'two.json', group: 'shared', storylines: false },
+  ] }), /storylines/i);
+});
+
+test('catalog facets expose only proper nonempty subsets and unknown facets still match nothing', () => {
+  const lists = [1, 2].map((id) => ({ id: String(id), type: 'event', count: 3, beginner: true }));
+  assert.deepEqual(catalogFacets(lists), [{ key: 'all', label: 'All', count: 2 }]);
+  lists.push({ id: 'third', type: 'creator-run', count: 80, beginner: false });
+  const facets = catalogFacets(lists);
+  assert.ok(facets.slice(1).every((facet) => facet.count > 0 && facet.count < lists.length));
+  assert.deepEqual(filterByFacet(lists, 'unknown'), []);
+  assert.equal(filterByFacet(lists, 'short').length, 2);
+});
+
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
   assert.equal(safeOrderFile('new-ultimate-universe.md'), 'new-ultimate-universe.md');
   assert.equal(safeOrderFile('  spaced.md  '), 'spaced.md');

@@ -52,6 +52,7 @@ export function createProgressView({
     const {
       method,
       methodText,
+      subject,
       radios,
       results,
       scope: scopeControl,
@@ -59,6 +60,9 @@ export function createProgressView({
     // With no active list, list scope has no subject and would render the same empty result as all
     // lists. Hide the choice rather than presenting a disabled pill that looks interactive.
     const scoped = scope === 'list' && Boolean(list);
+    subject.hidden = false;
+    subject.textContent = scoped ? `Reading List: ${list.name}`
+      : state.listOrder.length ? 'All saved Reading Lists' : 'No saved Reading Lists';
     scopeControl.hidden = !list;
     for (const radio of radios) radio.checked = radio.value === (scoped ? 'list' : 'all');
     methodText.textContent = scoped

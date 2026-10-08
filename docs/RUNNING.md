@@ -20,6 +20,18 @@ For an unread order with available source credit, choose **Export order only**.
 Neither `.md` file is a complete backup. Use **Download JSON backup** to keep a restorable copy
 of lists, notes, progress and other saved choices in Recap Page.
 
+## Jump within a long collection
+
+Reading paths have a **Jump to stop** selector. Long publishing-age pages have
+**Jump to Reading List**. Choose a named destination, then activate **Jump** to focus
+its existing action or title. Keyboard users can type a name or use the native arrow,
+Home and End keys, then Tab to Jump and press Enter. The full original order stays visible.
+
+In a reading path, **Next unfinished stop** means the first stop not explicitly marked
+completed in its current saved version. Reading every issue does not mark a list completed.
+Jump does not open a list, switch saved versions, change progress or save a destination.
+Activate the focused action separately to preview or open it.
+
 ## Choose how to run it
 
 All three routes use the same app and address. Switching between them does not move or lose progress.
@@ -302,10 +314,40 @@ Add starts with **Search issues** and **Find a series**. **More ways to add** co
 paste and manual-entry choices. Search keeps its alternatives in **Other ways to find comics**,
 and an empty result offers **Add an issue by hand** directly.
 
-Under **Backup & settings**, **Download backup** and **Restore from a backup** come first.
+Under **Backup & settings**, reading-data and completion-history backup controls are grouped
+together above exceptional recovery tools. For a complete reading and history transfer, download
+both files and the separate import-draft file when a draft or retained draft source is present.
+Settings are not included; these formats cannot be substituted for each other.
+
+Reading-data restore and saved-copy replacement ask for confirmation. The previous exact reading
+data is retained and downloadable. **Undo last restore** is a one-shot offer in the restoring tab.
+After Undo or reload, **Restore saved reading-data copy** names the retained copy without inventing
+its direction. The summary describes its scope and warns about intervening edits. A change while
+confirmation is open refuses replacement; review the current data before trying again.
+Completion history is independent. Its saved-value/retry tools are inside troubleshooting, which
+opens when history needs attention. A malformed backup leaves its data unchanged and names the
+correct backup file to choose before technical details.
 **Checklist and sharing options** contains the optional Markdown exports and their differences.
 The metadata-source form is under **Advanced**, inside **Metadata source**. Restore, undo,
 recovery copies and error reports are not hidden by these disclosures.
+
+### Checking a recovery download
+
+A desktop download request is not confirmation that a file was saved. Check the browser's
+downloads before relying on any exported backup.
+
+When saved data cannot be read, the original stays untouched while saving is paused.
+If the browser cannot keep a recovery copy, choose **Download a copy of the unreadable data**,
+then **Verify downloaded copy** and select that saved file. The app checks the whole file locally
+against the current unreadable data; it does not restore or upload it. Only a matching verified
+file, a completed Android file save, or an in-browser recovery copy permits **Start fresh**.
+Verification lasts only for this incident in this tab. A wrong, unreadable or cancelled file
+does not permit replacement. Keep the verified file outside browser storage.
+
+Reading-data storage and cached metadata use separate storage. **Clear cached metadata** cannot
+repair a reading-data quota failure. Download and check a backup before removing unneeded
+recovery copies or reading lists. After the same change saves successfully, its earlier
+not-saved warning disappears; unrelated warnings remain.
 
 ### Choosing when to see story summaries
 
@@ -376,6 +418,10 @@ importing a file with no issues does not create one.
 
 **Export personal checklist** opens a preview with read checkboxes by default and notes available
 only when selected. Notes do not re-import from either Markdown format.
+On a narrow reading screen, open **List actions**, then **Export**. The same editing and fetch
+commands remain available there. **Mark as Completed** and active fetch status/Stop controls stay
+outside the disclosure. Widening the screen opens it without moving focus; narrowing it returns
+focus to **List actions** before hiding a focused editing command.
 **Download JSON backup** preserves all reader data, including notes and progress. Use it to
 protect saved data, not to share a reading order.
 

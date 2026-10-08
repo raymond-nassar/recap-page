@@ -20,6 +20,30 @@ const valid = {
   expect: 40,
 };
 
+test('Storylines metadata is strict, whole-group and partition-parent-only', () => {
+  for (const storylines of [null, 'true', 1, []]) {
+    assert.ok(parseManifest({ lists: [{ ...valid, storylines }] }).errors.length,
+      `accepted invalid storylines ${JSON.stringify(storylines)}`);
+  }
+  const selected = parseManifest({ lists: [{ ...valid, storylines: true }] });
+  assert.deepEqual(selected.errors, []);
+  assert.equal(selected.entries[0].storylines, true);
+  const member = { ...valid, id: 'civil-war-long', out: 'long.json', group: 'civil-war',
+    groupName: 'Civil War', variant: 'Complete' };
+  assert.ok(parseManifest({ lists: [
+    { ...valid, group: 'civil-war', groupName: 'Civil War', variant: 'Essential', storylines: true },
+    member,
+  ] }).errors.length, 'mixed group eligibility must fail');
+  const parent = { ...valid, sourceUrl: undefined, sourceFile: 'civil_war.md',
+    partitionFile: 'parts.json', catalog: false };
+  for (const extra of [
+    { storylines: false }, { storylinesChildren: null }, { storylinesChildren: [' x'] },
+    { storylinesChildren: ['x', 'x'] }, { storylinesChildren: [1] },
+  ]) assert.ok(parseManifest({ lists: [{ ...parent, ...extra }] }).errors.length);
+  assert.ok(parseManifest({ lists: [{ ...valid, storylinesChildren: [] }] }).errors.length);
+  assert.deepEqual(parseManifest({ lists: [{ ...parent, storylinesChildren: [] }] }).errors, []);
+});
+
 test('a complete manifest entry is accepted as-is', () => {
   const { entries, errors } = parseManifest({ lists: [valid] });
   assert.deepEqual(errors, []);

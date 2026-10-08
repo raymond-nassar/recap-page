@@ -41,6 +41,22 @@ test('governed spacing accepts only the scale, token derivations and classified 
       `${property}: ${value} bypassed the governed grammar`,
     );
   }
+  const safeArea = 'var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom))';
+  const clearance = 'calc(var(--mobile-nav-height, 80px) + var(--space-6))';
+  for (const rule of [
+    `.sample { padding: ${safeArea}; }`,
+    `.rail-header { margin: ${safeArea}; }`,
+    `.rail-header { padding: ${safeArea.replace('inset-bottom', 'inset-top')}; }`,
+    `.rail-header { padding: ${safeArea.replace('var(--space-2) +', '3px +')}; }`,
+    `.rail-header { padding: ${safeArea.replace('--space-2', '--unknown')}; }`,
+    `.sample { padding-bottom: ${clearance}; }`,
+    `main { margin-bottom: ${clearance}; }`,
+    `main { padding-bottom: ${clearance.replace('80px', '81px')}; }`,
+    `main { padding-bottom: ${clearance.replace('var(--space-6)', '13px')}; }`,
+    `main { padding-bottom: ${clearance.replace('--mobile-nav-height', '--unknown')}; }`,
+  ]) {
+    assert.ok(grammarFindings(`${css}\n${rule}`).length, `unclassified geometry passed: ${rule}`);
+  }
 });
 
 test('the baseline inventory maps every normalized spacing value exactly once', () => {

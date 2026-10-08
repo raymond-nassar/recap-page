@@ -83,9 +83,14 @@ Give the reason before the mechanism. Keep the technical sections after this sum
 
 ## Interface design
 
-Apply this rule across the entire app: make the action clear and keep the screen quiet.
-Use concise labels and a prominent primary action for the task. Give secondary actions less
-visual weight, and avoid explanatory paragraphs after controls or repeated information.
+This is the local UI contract: make the action clear and keep the screen quiet across the app.
+Use concise labels and one prominent primary action per task group, not one for the whole page.
+Give secondary and repeated row actions less visual weight, and avoid explanatory paragraphs
+after controls or repeated information.
+
+Reading-list administration starts behind List actions on desktop and touch. Row commands use
+an explicit More actions disclosure, not a hover-only panel that reserves empty space. Preserve
+the reader's expanded/collapsed choice and focus when the viewport changes.
 
 Put supplementary guidance in concise tooltips available on both hover and keyboard focus.
 Connect nonredundant descriptions to their controls for screen readers. Keep required labels,
@@ -95,6 +100,108 @@ essential information or system feedback.
 Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
 and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),
 checked on 2026-10-03. This is an app-wide standard, not a convention limited to Add comics.
+
+### Controls and transitions
+
+- **Destinations and actions.** Use native anchors with meaningful `href` values for
+  destinations, including app hash routes. Intercept only plain primary activation; preserve
+  middle-click, modifier keys, browser Back and open-in-new-tab behavior. Use buttons for
+  commands, submissions and opening dialogs, with an explicit appropriate `type`. A clickable
+  container is not a substitute for either.
+- **Names.** Include the visible label text in the accessible name. Add context to repeated
+  controls, for example `Remove <list name>`, without changing the visible action's meaning.
+  Give icon-only buttons a meaningful name; keep decorative local icons out of the name.
+- **Dialogs and focus.** Reuse the shared in-page questions rather than browser-native
+  `alert`, `confirm` or `prompt`. Name the purpose and the confirmation action. Choose initial
+  focus for the task: the field for typing, a safe choice for destructive confirmation, or a
+  focusable heading when readers need to inspect structured content first. Keep modal focus
+  contained and provide Escape and a visible cancel/close control. Cancel leaves the action
+  unapplied. Restore a usable opener, or choose a logical successor when it is gone or the
+  task has advanced. Do not leave focus inside a hidden disclosure or stack modal questions.
+  Route headings retain focus for orientation, but pointer navigation must not force a focus box
+  around a page title. Keep normal `:focus-visible` indicators for keyboard navigation.
+- **Fields and errors.** Associate a visible label with each visible field. A placeholder is not a
+  label. Associate actionable error text with the field while preserving its hint; mark the
+  invalid state, reveal any containing disclosure and focus the field needing correction.
+  Clear stale invalid state as the reader edits. Explain what to correct, not just "invalid".
+- **State and feedback.** Define the affected idle, hover, focus, selected and disabled
+  states plus pending, success, error, empty, cancel and failed-save outcomes where relevant.
+  Pending work needs visible progress and duplicate-submit protection; restore usable controls
+  when it settles. Empty results need a next step. Failure needs an actionable explanation
+  and retained input or a safe recovery path. Retire stale feedback when its task changes;
+  announce updates through the existing feedback/live-region pattern without relying on colour.
+- **Truthful outcomes.** Show saved, added or completed only after the corresponding saved
+  state succeeds; distinguish a refused save from success and keep recovery available. A reader
+  handoff is not proof of availability or completed reading. Preserve the existing fresh-tab
+  user-activation path and keep help conditional when no tab appears. Report observed
+  validation or dispatch failures; a null `window.open` result with `noopener` does not prove
+  a popup was blocked. Keep the five availability distinctions required above.
+  External-reader success needs evidence from that environment.
+
+### Layout, tokens and preferences
+
+- Put optional detail and advanced controls behind the existing native disclosure pattern.
+  Use a meaningful `summary`, preserve draft state on expansion/collapse, and keep the task's
+  required controls and essential feedback reachable without guessing where they went.
+- Reuse the palette, spacing and type tokens and native-field styles in `src/styles.css`.
+  Use the existing checker owners for any new paint or geometry; do not bypass a gate or lower
+  a threshold to accept it. Selection, disabled and error states need a non-colour cue.
+- Check light, dark and system themes, keyboard focus, reduced motion and forced colours for
+  affected components. Preserve browser zoom and visible focus indicators. Use the current
+  responsive navigation and wrapping patterns so narrow or zoomed views retain labels,
+  controls, feedback and focus without clipping or avoidable horizontal page scrolling.
+- Preserve the existing larger hit targets. For changed pointer targets, meet the
+  [WCAG 2.2 AA minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+  of 24 by 24 CSS pixels or record the specifically applicable exception and its evidence.
+  A larger preferred target is not the AA minimum.
+
+### Accepted patterns and check owners
+
+Use these starting points rather than inventing another control/helper system. Select the
+owners for the changed contract; extend missing coverage with observable behavior assertions.
+
+| Contract | Local pattern to reuse | Existing check owners |
+|---|---|---|
+| Destinations and route intent | `formatRoute` and `isPlainNavigation` in `src/js/lib/route.js` | `test/route.test.js`; `semantic-destinations`, `narrow-navigation` |
+| Questions, cancellation and focus | `askConfirm`, `askText` and `askNote` in `src/js/ask.js` | `test/ask.test.js`; `responsive-controls` |
+| Field validation | `wireFieldValidation` in `src/js/views/shared/field-validation.js` | `test/add-view.test.js`; `responsive-controls` |
+| Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |
+| Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |
+| Theme and reflow | Tokens and native controls in `src/styles.css` | `test/theme.test.js`, `scripts/check-palette.mjs`; `responsive-reflow`, `responsive-controls` |
+| Spacing | `--space-*` and classified geometry in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
+
+The browser owner names in this table belong to [scripts/browser-check.mjs](scripts/browser-check.mjs).
+They are focused regression checks, not a claim that every screen or accessibility requirement
+is covered. Preserve the distinction between these evidence types:
+
+- **Enforced lint, unit and static gates:** `npm run lint` includes built-in `no-alert` for
+  production `src` JavaScript; only `src/dev-faults.js` is exempt from that rule for its
+  deliberate native fault-harness dialogs. Unit owners, `npm run palette` and `npm run spacing`
+  check their declared behavior and source contracts. They do not prove rendered interactions.
+- **Real-browser evidence:** exercise applicable owners with installed Edge as described in
+  [the checks](#the-checks). Record the surface, state/transition, expected and observed
+  result, exact command, checked revision and evidence location. A screenshot alone does not
+  prove keyboard operation, dialog focus, cancellation, zoom or a saved-state result.
+- **Manual, native and subjective evidence:** for each affected task, check label clarity
+  and action hierarchy; for changed semantics or focus, record the relevant native assistive-
+  technology observation; for changed handoff, record the external reader/subscription
+  outcome. Identify the surface, action/state, expected and observed result and environment.
+  Browser emulation and agent simulation are not those observations. If access or a reviewer
+  is unavailable, record the missing evidence, reason and rerun condition as unverified.
+
+Record justified exceptions for maintainer disposition with the affected rule, reason and
+evidence; do not silently weaken tests or mark human checks complete. Fill all UI entries in
+the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Non-UI changes may state
+`Not applicable` with a reason. Instructions and checks reduce risk; neither guarantees that
+future changes are free of UX defects.
+
+These requirements use the applicable interaction principles, not React-specific APIs, from
+[Fluent 2 dialog](https://fluent2.microsoft.design/components/web/react/core/dialog/usage),
+[field](https://fluent2.microsoft.design/components/web/react/core/field/usage),
+and [accessibility](https://fluent2.microsoft.design/accessibility). Context-dependent focus and naming also follow
+[WAI-ARIA modal dialog guidance](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) and
+[WCAG label in name](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html).
+These references and the target-size guidance were retrieved on 2026-10-07.
 
 ## The checks
 

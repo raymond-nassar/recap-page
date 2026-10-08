@@ -150,7 +150,7 @@ export const onslaughtActualData = {
 
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await storedRows(page);
     t.check('import creates exactly one Onslaught list', imported.matches === 1);
     checkVector(t, 'import persists all 74 source positions with two distinct gaps', imported.rows);

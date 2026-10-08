@@ -238,7 +238,9 @@ test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero To
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'operation-zero-tolerance');
-  assert.deepEqual(manifest.lists[position], packet.proposedManifest);
+  const { storylines, ...originalFields } = manifest.lists[position];
+  assert.equal(storylines, true);
+  assert.deepEqual(originalFields, packet.proposedManifest);
   assert.deepEqual(mapping.proposedManifest, packet.proposedManifest);
   assert.equal(manifest.lists[position].spotlightKind, undefined);
   assert.equal(manifest.lists[position].coverIssueId, 20767);

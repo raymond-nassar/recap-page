@@ -1,4 +1,4 @@
-// Android waits for the document provider; browsers retain their ordinary download behavior.
+// true confirms native output; requested means only that a browser download was asked for.
 let handler = browserDownload;
 
 export function setDownloadHandler(next) {
@@ -7,7 +7,12 @@ export function setDownloadHandler(next) {
 }
 
 export async function saveDownload(filename, text, type) {
-  return await handler({ filename, text, type }) === true;
+  const result = await handler({ filename, text, type });
+  return result === true || result === 'requested' ? result : false;
+}
+
+export function downloadMessage(result, name) {
+  return result === true ? `${name} downloaded.` : `${name} download requested. Check your browser's downloads to confirm it was saved.`;
 }
 
 export function browserDownload({ filename, text, type }) {
@@ -22,5 +27,5 @@ export function browserDownload({ filename, text, type }) {
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  return true;
+  return 'requested';
 }

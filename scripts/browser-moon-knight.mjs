@@ -187,7 +187,7 @@ export const moonKnightActualData = {
       document.querySelectorAll('#preview[open] .preview-issue-link').length === 17);
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await stored(page);
     checkVector(t, 'import saves the exact independent 17-original, three-volume vector', imported.rows);
     t.check('import creates one new list without duplicating shared issue metadata',

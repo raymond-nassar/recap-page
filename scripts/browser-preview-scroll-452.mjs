@@ -141,8 +141,24 @@ export const previewScroll452 = {
         { name: 'prefers-reduced-motion', value: cfg.forced ? 'reduce' : 'no-preference' },
       ] });
       const theme = cfg.name === 'narrow-dark' ? 'dark' : 'light';
-      await page.goto(`${page.__origin}/?preview452=${cfg.mode}&theme=${theme}#/catalog`, { waitUntil: 'load' });
+      const response = await page.goto(
+        `${page.__origin}/?preview452=${cfg.mode}&theme=${theme}&case=${encodeURIComponent(cfg.name)}#/catalog`,
+        { waitUntil: 'load' },
+      );
+      t.check(`${cfg.name}: independent case receives a successful new main document`,
+        response !== null && response.ok());
+      t.check(`${cfg.name}: independent case starts with no saved lists`,
+        await page.evaluate(() => {
+          const raw = localStorage.getItem('mrt.state.v2');
+          return raw === null || Object.keys(JSON.parse(raw).lists).length === 0;
+        }));
       await openPreview(page);
+      t.check(`${cfg.name}: independent case exposes the exact unsaved main Add button`,
+        await page.evaluate((key) => {
+          const add = document.querySelector('#preview-add button[data-act="main"]');
+          return add?.dataset.key === key && add.textContent.trim() === '+ Add to library'
+            && !document.querySelector('#preview-add a[data-act="main"]');
+        }, selectedId));
       t.check(`${cfg.name}: the named card opens only its own Preview without variant radios`,
         await page.$eval('#preview-h', (heading) => heading.textContent) === selected.name
         && await page.$eval('#preview-paths', (paths) => paths.hidden && paths.children.length === 0));
@@ -185,12 +201,21 @@ export const previewScroll452 = {
       await checkFocusedControl(page, t, `${cfg.name}: Add boundary focus`);
       await page.focus('#preview-add button');
       await page.keyboard.press('Enter');
-      await page.waitForFunction(() => document.querySelector('#preview-add button')?.textContent.includes('Open'));
+      await page.waitForFunction((key) => {
+        const raw = localStorage.getItem('mrt.state.v2');
+        if (raw === null) return false;
+        const state = JSON.parse(raw);
+        const list = Object.values(state.lists).find((entry) => entry.catalogId === key);
+        const open = document.querySelector('#preview-add a[data-act="main"]');
+        return list && open?.dataset.key === key
+          && open.getAttribute('href') === `#/read/${encodeURIComponent(list.id)}`
+          && open.textContent.includes('Open');
+      }, {}, selectedId);
       const saved = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
         .map((l) => ({ id: l.catalogId, count: l.itemIds.length })));
       t.check(`${cfg.name}: Add saves only the selected actual variant`,
         saved.length === 1 && saved[0].id === selectedId && saved[0].count === selected.count, JSON.stringify(saved));
-      await page.focus('#preview-add button');
+      await page.focus('#preview-add a[data-act="main"]');
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => !document.querySelector('#preview').open && !document.querySelector('#view-read').hidden);
       t.check(`${cfg.name}: Open dismisses Preview into Reading`, true);

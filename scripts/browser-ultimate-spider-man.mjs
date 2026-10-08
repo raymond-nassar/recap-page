@@ -177,7 +177,7 @@ export const ultimateSpiderManActualData = {
 
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await savedRows(page);
     t.check('import creates exactly one curated Ultimate Spider-Man list', imported.matches === 1,
       JSON.stringify(imported.matches));

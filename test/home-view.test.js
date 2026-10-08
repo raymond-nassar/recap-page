@@ -45,7 +45,7 @@ function node(props = {}, children = []) {
 }
 
 function element(_tag, props = {}, children = []) {
-  return node(props, children);
+  return { ...node(props, children), tag: _tag };
 }
 
 function findById(root, id) {
@@ -104,7 +104,7 @@ function harness({
     continueFallback: node(),
     continueSeries: node(),
     continueNumber: node(),
-    continueRead: node({ text: 'Read next' }),
+    continueRead: node({ text: 'Read' }),
     continueOpen: node({ text: 'Open Reading List' }),
     continueReview: node(),
     continueDeferred: node(),
@@ -211,6 +211,24 @@ test('510 Home distinguishes deferred work from completion and exposes a separat
   assert.equal(h.nodes.continueDeferred.hidden, true);
 });
 
+test('Home gateways and Continue expose native destinations without changing reading action callbacks', async () => {
+  const h = harness({ populated: true });
+  h.view.wire();
+  h.view.render();
+  await new Promise((resolve) => setImmediate(resolve));
+  const link = h.nodes.gateways[0].nodes.primary.children[0].children[0];
+  assert.equal(link.tag, 'a');
+  assert.equal(link.href, '#/catalog');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.deepEqual(h.calls.navigate, []);
+  assert.equal(h.nodes.continueOpen.attributes.href, '#/read/a');
+  h.nodes.continueOpen.listeners.click({ button: 0, metaKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  assert.equal(h.calls.open, 0);
+  h.nodes.continueOpen.listeners.click({ button: 0, preventDefault() {} });
+  assert.equal(h.calls.open, 1);
+  assert.equal(typeof h.nodes.continueRead.listeners.click, 'function');
+});
+
 test('Home view owns focused first-run choices, saved lists, and shared gateways', async () => {
   const h = harness();
   h.view.render();
@@ -240,7 +258,7 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   assert.equal(findById(firstRun, 'btn-home-recommended'), null);
   findById(firstRun, 'btn-home-browse').onclick();
   findById(firstRun, 'btn-home-add').onclick();
-  assert.deepEqual(h.calls.navigate, ['catalog', 'browse', 'add']);
+  assert.deepEqual(h.calls.navigate, ['catalog', 'catalog', 'add']);
 });
 
 test('first-run Home offers only Browse and Add without waiting for catalog load', () => {
@@ -253,10 +271,13 @@ test('first-run Home offers only Browse and Add without waiting for catalog load
   assert.equal(firstRun.hidden, false);
   assert.equal(findById(firstRun, 'home-recommended'), null);
   assert.equal(browse.children[0], 'Browse Reading Lists');
+  assert.equal(browse.href, '#/catalog');
+  assert.equal(browse.class, 'btn');
   assert.equal(add.children[0], 'Add comics');
+  assert.equal(add.class, 'btn btn-g');
   browse.onclick();
   add.onclick();
-  assert.deepEqual(h.calls.navigate, ['browse', 'add']);
+  assert.deepEqual(h.calls.navigate, ['catalog', 'add']);
   assert.deepEqual(h.state, before);
   h.state.listOrder.push('a');
   h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
@@ -282,13 +303,16 @@ test('453 Home refresh uses effective launchability and saved provenance without
   h.view.refreshReader();
   assert.equal(h.nodes.continueRead.hidden, false);
   assert.equal(h.nodes.continueRead.disabled, false);
-  assert.match(h.nodes.continueRead.attributes['aria-label'], /Read with temporary link/);
+  assert.equal(h.nodes.continueRead.textContent, 'Read');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Manual comic in Marvel Unlimited with temporary link');
+  assert.equal(h.nodes.continueNext.textContent, 'Next: Manual comic (temporary reader link)');
   h.nodes.continueRead.listeners.click({});
   assert.equal(h.calls.read.at(-1)[2], 'saved');
   assert.equal(h.calls.read.at(-1)[0].digitalId, undefined);
   temporary = false;
   h.view.refreshReader();
   assert.equal(h.nodes.continueRead.disabled, true);
+  assert.doesNotMatch(h.nodes.continueNext.textContent, /temporary/);
 });
 
 test('Home view paints populated Continue details and accessible actions', () => {
@@ -306,7 +330,8 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.nodes.continueNext.textContent, 'Next: Next issue');
   assert.equal(h.nodes.continueSeries.textContent, 'Series');
   assert.equal(h.nodes.continueNumber.textContent, '#3');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read next: Next issue in Marvel Unlimited');
+  assert.equal(h.nodes.continueRead.textContent, 'Read');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Next issue in Marvel Unlimited');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.calls.covers.length, 1);
 });
@@ -399,6 +424,7 @@ test('441 Home describes an empty saved list without claiming completion or chan
 
   assert.equal(h.nodes.continueSection.hidden, false);
   assert.equal(h.nodes.continueNext.textContent, 'No issues in this Reading List yet. Open it to add comics.');
+  assert.equal(h.nodes.continueSection.classList.contains('continue-empty'), true);
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
   assert.equal(h.nodes.continueFill.style.width, '0%');

@@ -2,6 +2,7 @@ import { labelledName } from '../lib/accname.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { isDeferred, isRead } from '../lib/model.js';
+import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 
 export function createIssueView({
   coverUrl,
@@ -16,6 +17,8 @@ export function createIssueView({
   loadOrder,
   onCancelSynopsis,
   onRead,
+  onToggleRead,
+  onEditNote,
   onReaderContext = () => {},
   onStaleContext,
   onStartSynopsis,
@@ -31,6 +34,7 @@ export function createIssueView({
   let activeLoad = null;
   let activeRoute = null;
   let currentResult = null;
+  let savedReference = null;
   let synopsisEpoch = 0;
 
   function paintDescription(issue) {
@@ -56,6 +60,9 @@ export function createIssueView({
   function paint(result) {
     const nodes = elements();
     const issue = result?.issue;
+    if (currentResult !== result) {
+      savedReference = result?.source === 'saved' ? savedReaderIssue(getState(), issue?.issueId) : null;
+    }
     currentResult = result;
     onReaderContext(result?.issue ? result : null);
     const retryable = !issue && activeRoute?.issueId > 0 && result?.failure === 'transient';
@@ -71,6 +78,7 @@ export function createIssueView({
       }
     }
     if (!issue) {
+      nodes.savedActions.hidden = true;
       nodes.card.hidden = true;
       nodes.heading.textContent = 'Issue unavailable';
       nodes.context.textContent = '';
@@ -107,10 +115,7 @@ export function createIssueView({
     paintBackground(nodes.background, issue);
     nodes.byline.textContent = presentation.byline;
     paintDescription(issue);
-    nodes.facts.replaceChildren(...presentation.facts.filter((item) => item.key !== 'In Unlimited').map((item) => (
-      fact(item.key, item.value, item.className)
-    )));
-    nodes.availability.replaceChildren(...presentation.facts.filter((item) => item.key === 'In Unlimited').map((item) => (
+    nodes.facts.replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className)
     )));
     nodes.note.textContent = context?.note ?? '';
@@ -148,8 +153,10 @@ export function createIssueView({
     activeLoad = controller;
     activeRoute = route;
     currentResult = null;
+    savedReference = null;
     onReaderContext(null);
     const nodes = elements();
+    nodes.savedActions.hidden = true;
     nodes.card.hidden = true;
     nodes.heading.textContent = 'Loading issue details';
     nodes.context.textContent = '';
@@ -202,6 +209,7 @@ export function createIssueView({
     activeLoad = null;
     activeRoute = null;
     currentResult = null;
+    savedReference = null;
     onReaderContext(null);
     elements().retry.hidden = true;
     resetSynopsis();
@@ -238,19 +246,51 @@ export function createIssueView({
   function refreshReader() {
     if (!currentResult?.issue) return;
     const nodes = elements();
+    const saved = currentSavedReference();
+    const actionFocused = [nodes.markRead, nodes.editNote].includes(nodes.markRead.ownerDocument?.activeElement)
+      && !nodes.savedActions.hidden;
+    nodes.savedActions.hidden = !saved;
+    nodes.markRead.textContent = saved && isRead(getState(), saved.issueId) ? 'Mark as unread' : 'Mark as read';
+    nodes.editNote.textContent = saved && getState().notes[saved.issueId] ? 'Edit note' : 'Add note';
+    for (const button of [nodes.markRead, nodes.editNote]) {
+      button.setAttribute('aria-label', labelledName(button.textContent, currentResult.issue.title));
+    }
+    nodes.note.textContent = getState().notes[currentResult.issue.issueId] ?? '';
+    nodes.note.hidden = !nodes.note.textContent;
+    if (actionFocused && !saved) {
+      nodes.heading.setAttribute('tabindex', '-1');
+      nodes.heading.focus({ preventScroll: true });
+    }
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    nodes.read.textContent = 'Read';
+    nodes.read.setAttribute('aria-label', labelledName('Read',
+      `${currentResult.issue.title} in Marvel Unlimited${temporary ? ' with temporary link' : ''}`));
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });
     }
   }
 
+  function currentSavedReference() {
+    return currentResult?.source === 'saved' && savedReference
+      && savedReaderIssue(getState(), currentResult.issue?.issueId) === savedReference
+      ? savedReference : null;
+  }
+
   function wire() {
     const nodes = elements();
+    for (const [button, action] of [[nodes.markRead, onToggleRead], [nodes.editNote, onEditNote]]) {
+      button.addEventListener('click', async () => {
+        const saved = currentSavedReference();
+        const result = currentResult;
+        if (!saved) return;
+        await action(saved, () => currentResult === result && currentSavedReference() === saved);
+        refreshReader();
+      });
+    }
     nodes.read.addEventListener('click', (event) => {
       if (currentResult?.issue) onRead(currentResult.issue, event, currentResult.source);
     });

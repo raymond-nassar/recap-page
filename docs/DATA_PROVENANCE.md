@@ -908,7 +908,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1040-1044`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1081-1085`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -949,13 +949,13 @@ link or a creator credit.
 
 Dropping that one field was smaller than it sounds, and the numbers are here so the decision can be
 read back rather than guessed at. 675 of those 1,473 records already carried no description, so the
-app renders that state today rather than hypothetically. Those 675 do not render it the same way:
-606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
-neither and get the sentence saying the snapshot has no record of the issue at all, which is the
-distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:588` and the issue-details view at
-`src/js/views/issue.js:95`. The function behind both already answers for the absence at
-`src/js/views/reading.js:79-87`, with a test asserting the sentence it returns. It is also reversible:
+app encounters that state rather than hypothetically. At removal, 606 carried a series or digital
+id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
+The interface now distinguishes a summary that has not been loaded from a completed request with
+no synopsis and from prose held only in memory after explicit consent. The shared presentation
+reaches the interface in the reading hero at `src/js/views/reading.js:606` and the issue-details view at
+`src/js/views/issue.js:103`. The function behind both already answers for the absence at
+`src/js/views/reading.js:75-83`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7244-7283`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7277-7316`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11340-11465`.
+`src/data/catalog.json:11371-11496`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves

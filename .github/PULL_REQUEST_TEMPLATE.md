@@ -56,6 +56,14 @@ Record numbers, not adjectives. Fill in what you ran and what it said.
 | `npm run anchors` |  |
 | `npm run publication` |  |
 | `npm run contract` |  |
+| UI states exercised | Surface/journey, states and transitions, with expected and observed outcomes. |
+| UI evidence | Exact commands/results, browser observations, checked revision and evidence location. |
+| UI limitations/manual evidence | Human/native environment and observations; missing evidence, reason and rerun condition. |
+
+<!--
+Fill all three UI rows; use "Not applicable: <reason>" for non-UI changes.
+Name unavailable evidence instead of claiming UX compliance from automated checks alone.
+-->
 
 <!--
 `npm run contract` calls a live third party and is deliberately outside CI, so run it by hand

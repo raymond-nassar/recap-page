@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   CATALOG_SHELVES,
+  HOME_CATEGORIES,
   PUBLISHING_AGES,
   catalogListShelf,
   decadeSections,
@@ -26,6 +27,7 @@ import {
   timelineYears,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 
 // The catalog is split across three screens. Three screens is three chances to drop a story, and a
 // story reachable from no screen at all is the worst outcome available here: it is bundled with the
@@ -37,6 +39,24 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
+
+test('Storylines discovery overlaps canonical shelves with complete original groups and no duplicate IDs', () => {
+  const projected = HOME_CATEGORIES.find((category) => category.key === 'storylines').select(stories);
+  const ids = projected.flatMap((story) => story.lists.map((list) => list.id));
+  for (const id of ['civil-war-essential', 'civil-war', 'civil-war-avengers',
+    'house-of-m', 'house-of-m-essential', 'secret-invasion', 'secret-invasion-essential',
+    'marvel-knights-to-planet-x-02', 'marvel-knights-to-planet-x-78']) {
+    assert.ok(ids.includes(id), `${id} missing from secondary discovery`);
+    assert.equal(catalogListShelf(catalog.lists, id), 'catalog');
+  }
+  assert.equal(ids.length, currentReadingCensus.storylines);
+  assert.equal(projected.length, currentReadingCensus.storylines - 7, 'existing variant groups keep their shared-card reduction');
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(ids.includes('marvel-knights-to-planet-x-01'), false);
+  for (const canonical of shelfLists(catalog.lists, 'lines')) assert.ok(ids.includes(canonical.id));
+  const hickman = projected.find((story) => story.lists.some((list) => list.id === 'hickman-minimal'));
+  assert.ok(hickman.lists.some((list) => list.id === 'avengers-doomsday-secret-wars'));
+});
 
 test('each bundled Reading List resolves through its grouped story to one canonical shelf', () => {
   for (const story of stories) {

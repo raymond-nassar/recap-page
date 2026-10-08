@@ -9,13 +9,24 @@ const DATA_VIEW = readFileSync(new URL('../src/js/views/data.js', import.meta.ur
 const RECOVERY_VIEW = readFileSync(new URL('../src/js/views/recovery.js', import.meta.url), 'utf8');
 const ALL_SOURCE = MAIN + DATA_VIEW + RECOVERY_VIEW;
 
+test('catalog load failures retain a catalog-specific actionable Retry in both connection branches', () => {
+  const reporter = MAIN.slice(MAIN.indexOf('async function reportBundledLoadFailure'),
+    MAIN.indexOf('async function checkHealth'));
+  assert.match(reporter, /Retry catalog/);
+  assert.match(reporter, /key === CATALOG_LOAD/);
+  const healthy = reporter.slice(reporter.indexOf('LOCAL_SERVER_STATUS.READY'), reporter.indexOf('return false;', reporter.indexOf('LOCAL_SERVER_STATUS.READY')));
+  assert.match(healthy, /localRecoveryAction/);
+  assert.match(reporter, /Try again/);
+  assert.match(reporter, /if \(!isCurrent\(\)\) return false/);
+});
+
 const VIEW = sliceElement(
   HTML,
   'section',
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'view-data')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 4, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 4, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'btn-export-json',
@@ -210,12 +221,27 @@ test('the local connection, API and cache reports stay with the controls they re
 
 test('each report pane hears only about the control it sits with', () => {
   // A cache clear used to overwrite a restore refusal, because all three shared one pane.
-  assert.equal(noticeTarget('That API URL is not usable'), '#api-report');
+  assert.match(ALL_SOURCE, /reportId: 'api-report',\s*reportError: \(message\) => notify\('#api-report', message, 'error'\)/);
+  assert.match(ALL_SOURCE, /apiValidation\.fail\('That API URL is not usable/);
   assert.equal(noticeTarget('API URL saved.'), '#api-report');
   assert.equal(noticeTarget('The local app connection is ready.'), '#local-connection-report');
   assert.equal(noticeTarget('Cached metadata cleared.'), '#cache-report');
-  assert.equal(noticeTarget('Restored. Your previous data was snapshotted'), '#restore-report');
-  assert.equal(noticeTarget('Restore undone.'), '#restore-report');
+  assert.match(DATA_VIEW, /if \(res\.ok\) notify\('#restore-report', success, 'ok'\)/);
+  assert.match(DATA_VIEW, /reportRestore\(res, 'Reading data restored/);
+  assert.match(DATA_VIEW, /Restore undone\. The replaced reading data/);
+});
+
+test('normal reading, history and draft transfers precede exceptional recovery with independent formats', () => {
+  assert.ok(idPosition(VIEW, 'btn-export-json') < idPosition(VIEW, 'normal-backup-history'));
+  assert.ok(idPosition(VIEW, 'normal-backup-history') < idPosition(VIEW, 'salvage-list'));
+  assert.ok(idPosition(VIEW, 'btn-export-draft') < idPosition(VIEW, 'salvage-list'));
+  assert.match(VIEW, /complete reading and history transfer/);
+  assert.match(VIEW, /Settings are not included/);
+  assert.match(VIEW, /draft or retained draft source/);
+  const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
+    .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
+  assert.ok(details.includes('btn-copy-history') && details.includes('btn-retry-history'));
+  assert.match(HTML, /saved-value copy preserves unreadable data exactly; it is not a normal backup/);
 });
 
 test('the local connection control names its status and recovery guidance', () => {

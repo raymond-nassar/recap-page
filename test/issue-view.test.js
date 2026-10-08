@@ -27,7 +27,7 @@ function node(textContent = '') {
 function harness({
   apiIssue, state, synopsis = null, loadCatalog, loadOrder,
   disclosure = createSynopsisDisclosure(), onStartSynopsis,
-  readerPresentation, onReaderContext,
+  readerPresentation, onReaderContext, onToggleRead, onEditNote,
 } = {}) {
   const nodes = {
     availability: node(),
@@ -51,10 +51,14 @@ function harness({
     status: node(),
     synopsis: node(),
     synopsisStatus: node(),
+    savedActions: node(),
+    markRead: node(),
+    editNote: node(),
   };
   const document = { activeElement: null };
   for (const value of Object.values(nodes)) value.ownerDocument = document;
   nodes.retry.hidden = true;
+  nodes.savedActions.hidden = true;
   nodes.description.id = 'issue-focus-desc';
   const calls = {
     breadcrumbs: 0,
@@ -84,6 +88,8 @@ function harness({
     loadOrder: loadOrder ?? (async () => ({ items: [] })),
     onCancelSynopsis: () => { calls.cancelSynopsis += 1; },
     onRead: (...args) => calls.read.push(args),
+    onToggleRead,
+    onEditNote,
     onReaderContext,
     readerPresentation,
     onStaleContext: (route) => calls.stale.push(route),
@@ -117,7 +123,7 @@ function issue(issueId = 42) {
   };
 }
 
-test('comic availability stays intact in troubleshooting instead of the main facts', async () => {
+test('comic availability stays intact in normal metadata instead of troubleshooting', async () => {
   const variants = [
     { unlimitedDate: null, override: null },
     { unlimitedDate: '2999-01-01', override: null },
@@ -131,12 +137,68 @@ test('comic availability stays intact in troubleshooting instead of the main fac
     const state = { issues: { 42: saved }, lists: {}, read: {}, notes: {}, overrides: override ? { 42: override } : {} };
     const h = harness({ state });
     await h.view.render({ issueId: 42, context: null });
-    assert.equal(h.nodes.availability.children?.length, 1);
-    assert.equal(h.nodes.availability.children[0].key, 'In Unlimited');
-    assert.ok(h.nodes.facts.children.every((item) => item.key !== 'In Unlimited'));
-    labels.push(h.nodes.availability.children[0].value);
+    assert.equal(h.nodes.read.textContent, 'Read');
+    assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited');
+    assert.equal(h.nodes.facts.children.filter((item) => item.key === 'Unlimited availability').length, 1);
+    labels.push(h.nodes.facts.children.find((item) => item.key === 'Unlimited availability').value);
   }
   assert.equal(new Set(labels).size, 5, 'The five availability meanings must remain distinct');
+});
+
+test('UX05 saved Issue actions bind to the actual saved comic and refresh shared read and note state', async () => {
+  const saved = issue();
+  const state = { issues: { 42: saved }, lists: {}, read: {}, notes: { 42: 'Saved note' }, overrides: {} };
+  const calls = [];
+  const h = harness({
+    state,
+    onToggleRead: (held, isCurrent) => { calls.push({ held, current: isCurrent() }); state.read[42] = 123; },
+    onEditNote: (held, isCurrent) => { calls.push({ held, current: isCurrent() }); state.notes[42] = 'Edited'; },
+  });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.savedActions.hidden, false);
+  assert.equal(h.nodes.markRead.textContent, 'Mark as read');
+  await h.nodes.markRead.listeners.click();
+  h.view.refreshReader();
+  assert.equal(h.nodes.markRead.textContent, 'Mark as unread');
+  await h.nodes.editNote.listeners.click();
+  h.view.refreshReader();
+  assert.equal(h.nodes.note.textContent, 'Edited');
+  assert.deepEqual(calls, [{ held: saved, current: true }, { held: saved, current: true }]);
+});
+
+test('UX05 replacing a saved Issue reference withdraws actions rather than binding silently', async () => {
+  const state = { issues: { 42: issue() }, lists: {}, read: {}, notes: {}, overrides: {} };
+  let writes = 0;
+  const h = harness({ state, onToggleRead: () => { writes += 1; } });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.savedActions.hidden, false);
+  state.issues[42] = { ...state.issues[42], title: 'Replacement' };
+  h.nodes.markRead.focus();
+  h.view.refreshReader();
+  assert.equal(h.nodes.savedActions.hidden, true);
+  assert.equal(h.nodes.heading.ownerDocument.activeElement, h.nodes.heading);
+  await h.nodes.markRead.listeners.click();
+  assert.equal(writes, 0);
+});
+
+test('UX05 unsaved-only Issue actions remain absent and a captured action expires on navigation', async () => {
+  const state = { issues: {}, lists: {}, read: {}, notes: {}, overrides: {} };
+  let isCurrent;
+  const h = harness({ state, apiIssue: async () => issue(), onEditNote: (_held, valid) => { isCurrent = valid; } });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.savedActions.hidden, true);
+  state.issues[42] = issue();
+  h.view.refreshReader();
+  assert.equal(h.nodes.savedActions.hidden, true, 'late saving does not turn a preview into write context');
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.savedActions.hidden, false);
+  await h.nodes.editNote.listeners.click();
+  assert.equal(isCurrent(), true);
+  h.view.cancel();
+  assert.equal(isCurrent(), false);
 });
 
 test('510 issue details report only saved-list deferral and refresh retained intent without restricting Read', async () => {
@@ -283,7 +345,8 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   temporary = true;
   h.view.refreshReader();
   assert.equal(h.nodes.read.hidden, false);
-  assert.equal(h.nodes.read.textContent, 'Read with temporary link');
+  assert.equal(h.nodes.read.textContent, 'Read');
+  assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited with temporary link');
   assert.equal(h.nodes.facts.children, facts);
   assert.equal(h.nodes.info.href, info);
   assert.equal(h.nodes.description.textContent, '');

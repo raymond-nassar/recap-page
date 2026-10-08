@@ -98,6 +98,15 @@ export default [
     rules: noEmDashInShippedCopy,
   },
   {
+    files: ['src/**/*.js'],
+    rules: { 'no-alert': 'error' },
+  },
+  {
+    // This developer harness deliberately uses native dialogs while exercising recovery faults.
+    files: ['src/dev-faults.js'],
+    rules: { 'no-alert': 'off' },
+  },
+  {
     // The server, the build scripts and the tests run in Node.
     files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },
@@ -119,6 +128,7 @@ export default [
       'scripts/browser-android-catalog-cards.mjs',
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
+      'scripts/browser-ordered-import.mjs',
       'scripts/browser-completion.mjs',
       'scripts/browser-issue-ratings.mjs',
       'scripts/browser-preview-scroll-452.mjs',

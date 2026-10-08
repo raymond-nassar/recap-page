@@ -62,19 +62,21 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
   const cacheStarted = deferred();
   const h = { storage, reader, history, calls, cacheStarted, undo: { list: reader.state.lists.old }, temporaryLink: 'old reference' };
   const dependencies = {
-    store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY,
+    store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY, IMPORT_DRAFT_KEY: 'mrt.import.draft.v1',
     eraseReaderAndHistory, eraseOutcome,
     cache: { async clear(...args) { calls.cache.push(args); cacheStarted.resolve(); return clear(h, ...args); } },
     readerLinkView: { reconcile(result) { calls.links.push(result); if (result.changed === true || result.changed === null) h.temporaryLink = null; } },
     readingView: { forgetDeleted() { calls.forget += 1; h.undo = null; } },
     recoveryView: { render() {}, renderSalvage() {} },
     renderAll() {},
+    draftExpected: null,
+    importDraft: { discard: async () => h.draftResult ?? ({ ok: true, changed: true }) },
     notify: (...args) => calls.notify.push(args),
     announce: (message) => calls.announce.push(message),
   };
   // Run the actual composed callback, not a parallel implementation that can miss its waits.
   const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
-  const bodies = [...source.matchAll(/\n {2}eraseHistory: true,\n {2}onErase: async \(\) => \{([\s\S]*?)\n {2}\},\n\}\);/g)];
+  const bodies = [...source.matchAll(/\n {2}eraseHistory: true,\n {2}onErase: async \(draftExpected\) => \{([\s\S]*?)\n {2}\},\n\}\);/g)];
   assert.equal(bodies.length, 1, 'the actual erase callback must resolve uniquely');
   const run = compileFunction(`return (async () => {${bodies[0][1]}\n})();`, Object.keys(dependencies));
   h.run = () => run(...Object.values(dependencies));
@@ -133,7 +135,7 @@ test('actual erase follow-through withdraws old offers before waits and preserve
     assert.equal(h.storage.getItem('mrt.state.prerestore'), newer.snapshotRaw, delayed);
     assert.ok(h.reader.state.lists.kept, delayed);
     assert.match(h.calls.notify.at(-1)[1], /Reading data changed after the erase/);
-    assert.match(h.calls.notify.at(-1)[1], /Undo last restore/);
+    assert.match(h.calls.notify.at(-1)[1], /saved reading-data copy controls/);
     assert.doesNotMatch(h.calls.notify.at(-1)[1], /copy could not be removed/);
     assert.doesNotMatch([...h.calls.announce, ...h.calls.notify.map((args) => args[1])].join(' '), /All local data erased/);
     assert.equal(h.calls.forget, 1, delayed);
@@ -141,7 +143,7 @@ test('actual erase follow-through withdraws old offers before waits and preserve
 });
 
 test('actual erase honors cache boolean policy and never reports unreadable final facts as verified absence', async () => {
-  for (const outcome of ['false', 'throw', 'unavailable', 'true', 'reader', 'history', 'snapshot', 'silent-reader']) {
+  for (const outcome of ['false', 'throw', 'unavailable', 'true', 'reader', 'history', 'snapshot', 'silent-reader', 'draft-retained', 'draft-unknown', 'draft-newer']) {
     const h = eraseFixture({
       clear: async (fixture, options) => {
         if (outcome === 'false') return false;
@@ -149,9 +151,16 @@ test('actual erase honors cache boolean policy and never reports unreadable fina
         if (outcome === 'unavailable') return ResponseCache.prototype.clear.call({ open: async () => null }, options);
         const key = { reader: KEY, history: LIST_HISTORY_KEY, snapshot: 'mrt.state.prerestore' }[outcome];
         if (key) fixture.storage.failReads.add(key);
+        if (outcome === 'draft-newer') fixture.storage.map.set('mrt.import.draft.v1', 'new source after cleanup');
+        if (outcome === 'draft-retained') fixture.storage.map.set('mrt.import.draft.v1', 'retained source after refused cleanup');
+        if (outcome === 'draft-unknown') fixture.storage.failReads.add('mrt.import.draft.v1');
         return true;
       },
     });
+    if (outcome === 'draft-retained' || outcome === 'draft-unknown') {
+      h.storage.map.set('mrt.import.draft.v1', 'source retained by refused cleanup');
+      h.draftResult = { ok: false, changed: outcome === 'draft-retained' ? false : null, error: 'Draft cleanup not verified.' };
+    }
     const originalUndo = h.undo;
     if (outcome === 'silent-reader') h.storage.silentWrites.add(KEY);
     await h.run();
@@ -166,6 +175,7 @@ test('actual erase honors cache boolean policy and never reports unreadable fina
       if (outcome === 'reader') assert.match(messages, /reading data could not be checked/i);
       if (outcome === 'history') assert.match(messages, /Completion history could not be checked/i);
       if (outcome === 'snapshot') assert.match(messages, /pre-restore copy could not be checked/i);
+      if (outcome.startsWith('draft-')) assert.match(messages, /import draft/i);
       if (outcome === 'silent-reader') {
         assert.equal(h.undo, originalUndo);
         assert.equal(h.calls.forget, 0);
@@ -201,7 +211,7 @@ test('post-erase newer reader data and unconfirmed history or cache cleanup neve
   assert.match(changed, /^Reading data changed after the erase\. Check your library before erasing again/);
   assert.doesNotMatch(changed, /newer data is still saved/);
   assert.match(changed, /may still be here/);
-  assert.match(changed, /Undo last restore/);
+  assert.match(changed, /saved reading-data copy controls/);
   assert.match(changed, /Copies kept after a failed read/);
   assert.doesNotMatch(changed, /All local data erased/);
   const cache = eraseOutcome(false, [], { cacheFailure: 'Cached metadata could not be cleared.' });
@@ -301,7 +311,7 @@ test('the snapshot sentence is unchanged when the snapshot is the only thing lef
   assert.equal(
     eraseOutcome(true, []),
     'Lists and reading progress erased. One copy could not be removed and is still in this browser, '
-      + 'behind "Undo last restore".',
+      + 'under the saved reading-data copy controls.',
   );
 });
 
@@ -317,7 +327,7 @@ test('a salvage copy that survives is named in the message, not only in the dial
 test('both survivors are reported when both survive', () => {
   const said = eraseOutcome(true, two);
   assert.match(said, /^Lists and reading progress erased\./);
-  assert.match(said, /"Undo last restore"/);
+  assert.match(said, /saved reading-data copy controls/);
   assert.match(said, /2 copies kept after a failed read are still here/);
 });
 
@@ -367,7 +377,7 @@ test('the erase dialog is built by the policy, not by a literal at the button', 
   const at = dataSrc.indexOf(lead);
   assert.ok(policy !== -1 && next > policy, 'the two policies must both still be there, in order');
   assert.ok(at > policy && at < next, 'and the lead has to sit inside the policy that composes it');
-  assert.match(dataSrc, /body: eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)/);
+  assert.match(dataSrc, /body: `\$\{eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)\}/);
   assert.match(dataSrc, /export function eraseDialogBody/);
   assert.match(mainSrc, /import.*eraseOutcome.*from.*views\/data\.js/);
 });

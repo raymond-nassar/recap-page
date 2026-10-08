@@ -16,7 +16,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { noticeEl, spoken } from '../src/js/main.js';
+import { noticeEl, spoken, retireRoutineNotices } from '../src/js/main.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const source = readFileSync(join(ROOT, 'src', 'js', 'views', 'reading.js'), 'utf8');
@@ -55,6 +55,18 @@ const labelOf = (b) => b.children.map((c) => c.text ?? '').join('');
 
 const UNDO = { label: 'Undo delete', onClick: () => {} };
 const DISMISS = { label: 'Dismiss', onClick: () => {} };
+
+test('navigation retires only routine success and retains errors, warnings and Undo offers', () => {
+  const notes = new Map([
+    ['routine', { kind: 'ok' }],
+    ['error', { kind: 'error' }],
+    ['recovery', { kind: 'warn' }],
+    ['undo', { kind: 'ok', action: UNDO }],
+    ['dismissible', { kind: 'ok', dismiss: DISMISS }],
+  ]);
+  retireRoutineNotices(notes);
+  assert.deepEqual([...notes.keys()], ['error', 'recovery', 'undo', 'dismissible']);
+});
 
 test('a notice offering an undo also offers a way to be finished with it', () => {
   const p = build({ msg: 'Deleted Essential Avengers. Reading progress was kept.', kind: 'ok', action: UNDO, dismiss: DISMISS });

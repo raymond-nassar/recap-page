@@ -279,6 +279,17 @@ function chapterSubjects(items) {
   )).filter(Boolean))];
 }
 
+export function validateStorylinesChildren(order, ledger) {
+  assert(!Object.hasOwn(order, 'storylines'), `${order.id} partition parent cannot declare storylines`);
+  const ids = Object.hasOwn(order, 'storylinesChildren') ? order.storylinesChildren : [];
+  const available = new Set(ledger.chapters.map((chapter) => chapter.id));
+  assert(Array.isArray(ids), `${order.id} storylinesChildren must be an array`);
+  assert(ids.every((id) => typeof id === 'string' && id && id === id.trim() && available.has(id)),
+    `${order.id} storylinesChildren contains an invalid or unknown child ID`);
+  assert(new Set(ids).size === ids.length, `${order.id} storylinesChildren contains duplicate child IDs`);
+  return new Set(ids);
+}
+
 export function buildChapterFamily({
   order,
   parsed,
@@ -287,6 +298,9 @@ export function buildChapterFamily({
   existingPathIds = [],
 }) {
   const ledger = validateChapterLedger(inputLedger);
+  const selectedChildren = validateStorylinesChildren(order, ledger);
+  const childBase = { ...order };
+  delete childBase.storylinesChildren;
   validateSourceAndParent(order, parsed, parentPayload, ledger);
   assert(!existingPathIds.includes(ledger.path.id), `Generated path id "${ledger.path.id}" duplicates an existing path`);
 
@@ -313,7 +327,8 @@ export function buildChapterFamily({
     return {
       chapter,
       order: {
-        ...order,
+        ...childBase,
+        storylines: selectedChildren.has(chapter.id),
         id: chapter.id,
         name: chapter.name,
         description,

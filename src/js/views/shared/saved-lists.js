@@ -6,6 +6,7 @@ import {
   deferredCount,
 } from '../../lib/model.js';
 import { labelledName } from '../../lib/accname.js';
+import { formatRoute, isPlainNavigation } from '../../lib/route.js';
 
 export function createSavedListsPresenter({
   el,
@@ -46,10 +47,14 @@ export function createSavedListsPresenter({
       const status = options.status?.(state, id);
       const detail = options.detail?.(state, id);
       const context = `issues read${deferred ? `; ${deferred} deferred` : ''}, ${status?.text ?? orderWord(completionState(read, total))}${detail ? `. ${detail}` : ''}. Open this list`;
-      return el('li', {}, el('button', {
-        type: 'button',
+      return el('li', {}, el('a', {
+        href: formatRoute({ view: 'read', listId: id }),
         'aria-label': labelledName(`${list.name} ${read} / ${total}`, context),
-        onclick: () => openList(id),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event?.preventDefault();
+          openList(id);
+        },
       }, tile(list, state, read, total, count, status, detail)));
     });
   }

@@ -644,6 +644,39 @@ export function moveItemTo(state, listId, issueId, index) {
   return moveItem(state, listId, issueId, clamp(index, 0, list.itemIds.length - 1) - from);
 }
 
+export function publishImportOccurrences(state, draft, inputs, indices, at) {
+  const destination = draft.destination;
+  let next = state;
+  if (destination.newList && !next.lists[destination.id]) {
+    next = createList(next, {
+      id: destination.id, name: destination.name, description: 'Imported from a pasted Reading List.',
+    });
+    const created = next.lists[destination.id];
+    const createdList = { ...created, created: destination.created };
+    next = { ...next, lists: withList(next.lists, destination.id, createdList) };
+  }
+  const result = addIssuesToList(next, destination.id, indices.map((index) => inputs[index]), { sort: false });
+  const original = new Set(destination.prefix);
+  const firstOccurrences = new Map();
+  for (const issue of inputs) if (issue && !firstOccurrences.has(issue.issueId)) firstOccurrences.set(issue.issueId, issue);
+  const owned = [...firstOccurrences.keys()].filter((id) => !original.has(id));
+  const list = result.state.lists[destination.id];
+  const itemIds = destination.prefix.concat(owned);
+  const collectedIn = { ...list.collectedIn };
+  for (const id of owned) {
+    const first = firstOccurrences.get(id);
+    if (first.collectedIn) collectedIn[id] = first.collectedIn;
+    else delete collectedIn[id];
+  }
+  next = { ...result.state, lists: withList(result.state.lists, destination.id, {
+    ...list, itemIds, collectedIn: normalizeCollectedIn(collectedIn, itemIds),
+  }) };
+  for (const index of indices) {
+    if (draft.occurrences[index].read) next = markRead(next, inputs[index].issueId, true, at);
+  }
+  return { ...result, state: setActive(next, destination.id) };
+}
+
 // ---------------------------------------------------------------- read state
 
 // The timestamp is coerced here rather than only in `coerce`, because `coerce` runs on the v2

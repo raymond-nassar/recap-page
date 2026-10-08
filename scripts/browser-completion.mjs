@@ -184,6 +184,12 @@ export const completionLifecycle = {
     t.check('completion and optional enjoyment survive reload without a reader write',
       await raw(page) === before && (await history(page)).records[0].rating === 'up');
     await click(page, '#btn-disliked-list');
+    await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-disliked-list').disabled);
+    t.check('negative enjoyment saves without interrupting reading or opening reporting',
+      !await page.$eval('#list-feedback', (dialog) => dialog.open)
+      && (await history(page)).records[0].rating === 'down' && feedbackRequests.length === 0);
+    await click(page, '#btn-list-feedback-guide');
     await page.waitForSelector('#list-feedback[open]');
     const feedback = await page.evaluate(() => ({
       href: document.querySelector('#list-feedback-link').href,
@@ -219,10 +225,10 @@ export const completionLifecycle = {
       && await page.$eval('#announcer', (node) => !/report.*(?:received|submitted|sent)/i.test(node.textContent)));
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => !document.querySelector('#list-feedback').open
-      && document.activeElement.id === 'btn-disliked-list');
-    t.check('feedback Escape restores visible thumb focus',
+      && document.activeElement.id === 'btn-list-feedback-guide');
+    t.check('feedback Escape restores visible explicit-report opener focus',
       await page.evaluate(() => !document.querySelector('#list-feedback').open
-        && document.activeElement.id === 'btn-disliked-list' && document.activeElement.checkVisibility()));
+        && document.activeElement.id === 'btn-list-feedback-guide' && document.activeElement.checkVisibility()));
     for (const [width, height] of [[1280, 900], [390, 844]]) {
       await page.setViewport({ width, height });
       await click(page, '#btn-list-feedback-guide');
@@ -243,21 +249,21 @@ export const completionLifecycle = {
     await go(page, 'completed');
     await click(page, 'input[name="completed-filter"][value="enjoyed"]');
     t.check('Enjoyed filters completed cards while showing actual partial comic progress',
-      await page.$eval('#completed-list', (node) => node.querySelectorAll('button').length === 1
+      await page.$eval('#completed-list', (node) => node.querySelectorAll('a[href^="#/read/"]').length === 1
         && node.textContent.includes('1 / 3') && node.textContent.includes('1 deferred')
         && node.textContent.includes('Enjoyed')));
     await page.setViewport({ width: 320, height: 900 });
     t.check('narrow completed collection has no document-level horizontal overflow',
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     await page.setViewport({ width: 1280, height: 900 });
-    await click(page, '#completed-list button');
+    await click(page, '#completed-list a[href^="#/read/"]');
     await page.waitForSelector('#view-read:not([hidden])');
     await go(page, 'home');
     t.check('Home and sidebar continue the same active next list, not the completed source',
       await page.$eval('#chero-h', (node) => node.textContent === 'Saved next fixture')
       && await page.$eval('#list-nav', (node) => node.textContent.includes('Saved next fixture')
         && !node.textContent.includes('Private completion fixture'))
-      && await page.$eval('#home-yours-list', (node) => node.querySelectorAll('button').length === 1)
+      && await page.$eval('#home-yours-list', (node) => node.querySelectorAll('a[href^="#/read/"]').length === 1)
       && await page.$eval('#home-first-run', (node) => node.hidden));
     await go(page, 'read');
     await click(page, '#btn-reopen-list');
@@ -283,8 +289,8 @@ export const completionLifecycle = {
     await go(page, 'completed');
     await click(page, 'input[name="completed-filter"][value="all"]');
     t.check('All completed shows both saved lists in recent-completion order without writing reader data',
-      await page.$eval('#completed-list', (node) => node.querySelectorAll('button').length === 2
-        && node.querySelector('button').textContent.includes('Saved next fixture'))
+      await page.$eval('#completed-list', (node) => node.querySelectorAll('a[href^="#/read/"]').length === 2
+        && node.querySelector('a[href^="#/read/"]').textContent.includes('Saved next fixture'))
       && await raw(page) === allCompletedReader);
     const legacy = fixture();
     legacy.lists[SOURCE].created = 0;
@@ -440,10 +446,12 @@ export const completionPersistence = {
       writeFileSync(emptyFile, JSON.stringify(exportBackup(createEmptyState())));
       const restoredHistory = await raw(page, LIST_HISTORY_KEY);
       await (await page.$('#restore-file')).uploadFile(emptyFile);
+      await confirm(page);
       await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 0);
       t.check('reader restore leaves history intact rather than replacing it with empty history',
         await raw(page, LIST_HISTORY_KEY) === restoredHistory);
       await click(page, '#btn-undo-restore');
+      await confirm(page);
       await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 2);
       t.check('reader Undo restores matching completed identity without rewriting history',
         await raw(page, LIST_HISTORY_KEY) === restoredHistory

@@ -7,7 +7,8 @@ App launch, or selecting the brand lockup in the sidebar.
 1. The page asks **"Where do you want to start?"**
 2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
    list**.
-3. **Browse Reading Lists** opens the Browse hub, and **Add comics** opens the Add hub without
+3. **Browse Reading Lists** is the primary action and opens the Modern Timeline; the secondary
+   **Add comics** action opens the Add hub without
    requiring the narrow Navigation menu or waiting for catalog load. The category tiles remain
    available below.
 4. Setup recommendation cards stay on the dedicated browsing pages rather than Home.
@@ -24,7 +25,8 @@ App launch, or selecting the brand lockup in the sidebar.
 
 ## State B: Library Has Lists
 1. **Continue reading** names the active Reading List, progress, next issue and direct actions.
-   An empty saved list retains **Open the list** but does not offer **Review earlier issues**.
+   An empty saved list retains a compact **Open the list** action without cover art or
+   **Review earlier issues**.
 2. **Your Reading Lists** shows every saved list as a compact progress tile.
 3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
@@ -53,7 +55,7 @@ an open dialog first, then visible narrow navigation, then Home news. Browser-st
 replace installed-device touch, system-text, Back or private-profile acceptance.
 
 ## Transitions
-- The first-run Browse and Add actions use their existing hubs, create browser history entries,
+- First-run Browse reaches the Modern Timeline, while Add reaches its existing hub. Both create browser history entries
   and move focus to the destination heading. Back returns to Home.
 - Primary or additional category tile opens its own browse subpage and creates a browser history entry.
 - Marvel Ages first shows populated earlier ages, then populated Modern periods. Its **Browse all
@@ -66,8 +68,9 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
   in 2004. Its 148 Reading Lists appear as 148 independently named cards representing 144 logical
   timeline stops. Alternate versions do not become additional required stops.
-- Setup to Modern Timeline is featured above the normal Modern Timeline cards through the same
-  Preview flow. It is not duplicated as a card and is not included in the timeline count.
+- Setup to Modern Timeline is featured above the unfiltered Modern Timeline cards through the same
+  Preview flow. Search and filters hide it so results or no-results lead; clearing restores it.
+  It is not duplicated as a card and is not included in the timeline count.
 - Modern Timeline marks the first story card that is not complete after the completed opening run.
   The position is rebuilt from imported Reading Lists and their issue read markers, not stored as a
   separate cursor. A logical story follows its shallowest imported option, or its shallowest option
@@ -90,6 +93,19 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   are shared with the fast track, while each saved list keeps its own name and list note.
 - Catalog title and source updates do not rewrite existing saved copies. Their names, issue order,
   collected-edition maps and notes remain unchanged.
+- Storylines browsing, search, facets and counts share one curated pool of existing original
+  readings, including selected named events and arcs with every genuine variant. Their canonical
+  Timeline, Storylines or Spotlight placement and saved identities remain unchanged.
+- Filters appear only when they narrow to a nonempty proper subset. Informational publishing
+  highlights are not styled as interactive filters.
+- Publishing periods describe where Reading Lists begin, not where every issue falls. Empty
+  Golden Age offers another age; Modern Age is a period chooser rather than the guided Timeline.
+- Library puts active reading before completed history. Known all-completed lists offer another
+  Modern Timeline journey; unreadable history remains unknown, with recovery guidance.
+- Progress visibly names the actual Reading List or all-list scope beside its controls, while
+  counting methodology stays collapsed.
+- A catalog failure offers **Retry catalog** whether the local connection is ready or unavailable.
+  Retry reloads bundled catalog data without changing saved reading progress.
 - Home has no breadcrumb because it has no route ancestors. Routed destinations reached from Home
   show their stable hierarchy, while Preview remains a dialog with no breadcrumb.
 - Returning with Back restores Home rather than creating a second navigation model.

@@ -179,7 +179,7 @@ export const ironFistActualData = {
 
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await storedRows(page);
     t.check('import creates one guide with a positive detail-refused original',
       imported.matches === 1 && imported.refused?.detailsRefused === true

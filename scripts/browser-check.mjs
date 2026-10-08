@@ -33,6 +33,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
+import { readingPathProgress } from '../src/js/views/reading-paths.js';
 
 import {
   LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
@@ -40,10 +42,13 @@ import {
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
-  shelfSections,
+  shelfSections, firstSentence, updatedLabel, modernTimelineFeaturedCard,
+  publishingCategoryStories, resolveReadingPaths, storyYear,
 } from '../src/js/lib/catalog.js';
+import { parseColour, ratio } from './check-palette.mjs';
+import { isDeepStrictEqual } from 'node:util';
 import { readerIssueId } from '../src/js/lib/markdown.js';
-import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import { SCHEMA_VERSION, addIssuesToList, createEmptyState, createList, normalizeIssue, pendingIssueIds } from '../src/js/lib/model.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
@@ -490,6 +495,53 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'storylines-canonical-only',
+    breaks: 'storylines-discovery-actual-data',
+    why: 'secondary Storylines projection wrongly excludes eligible canonical Timeline groups',
+    rewriteCatalog: (source) => source.replace(
+      /export function storylinesStories\(stories\) \{[\s\S]*?\n\}/,
+      "export function storylinesStories(stories) {\n  return shelfStories(stories, 'lines');\n}",
+    ),
+  },
+  {
+    id: 'catalog-healthy-retry-absent',
+    breaks: 'discovery-priorities',
+    why: 'a healthy local connection still leaves catalog failure without a recovery command',
+    rewriteMain: (source) => source.replace(
+      'key === CATALOG_LOAD ? localRecoveryAction(retryLabel, key, retry) : null',
+      'null',
+    ),
+  },
+  {
+    id: 'restore-copy-unlabeled-redo',
+    breaks: 'restore-copy-workflow',
+    why: 'consumed Undo is incorrectly minted again for the retained opposite-direction copy',
+    rewriteStorage: (source) => source.replace(
+      'this.undoSnapshot = recovering ? null : priorMain || null;',
+      'this.undoSnapshot = priorMain || null;',
+    ),
+  },
+  {
+    id: 'restore-copy-stale-confirmation',
+    breaks: 'restore-copy-workflow',
+    why: 'the captured reader/snapshot guard is bypassed after confirmation',
+    rewriteStorage: (source) => source.replace('if (expected) {', 'if (false && expected) {')
+      .replace('if (expected && (priorMain', 'if (false && expected && (priorMain'),
+  },
+  {
+    id: 'backup-guidance-regression',
+    breaks: 'backup-transfer-guidance',
+    why: 'parser-led refusals and closed incident tools remove actionable backup recovery guidance',
+    rewriteData: (source) => source.replaceAll(
+      'Reading data is unchanged. Choose a reading-data JSON backup from this app and try again.',
+      'Technical backup refusal.',
+    ),
+    rewriteCompletion: (source) => source.replace(
+      'nodes.historyTroubleshooting.open = true;',
+      'nodes.historyTroubleshooting.open = false;',
+    ),
+  },
+  {
     id: 'reorientation-return-lost-445',
     breaks: 'reorientation-445',
     why: 'Back loses the exact earlier-issue picker link and focuses the view heading instead',
@@ -687,7 +739,7 @@ const MUTATIONS = [
       addEventListener('click', (event) => {
         const button = event.target instanceof Element
           && event.target.closest('#preview-add [data-act="main"]');
-        if (!button?.textContent.includes('In library')) return;
+        if (!button?.textContent.includes('Open')) return;
         event.preventDefault(); event.stopImmediatePropagation();
       }, true);
     },
@@ -810,8 +862,8 @@ const MUTATIONS = [
     breaks: 'library-view-extraction',
     why: 'the shared presenter opens the first saved list instead of the tile that was pressed',
     rewriteSavedLists: (source) => source.replace(
-      'onclick: () => openList(id),',
-      'onclick: () => openList(state.listOrder[0]),',
+      '          openList(id);',
+      '          openList(state.listOrder[0]);',
     ),
   },
   {
@@ -819,8 +871,8 @@ const MUTATIONS = [
     breaks: 'library-view-extraction',
     why: 'Everything read invents saved-list context for an issue-wide result',
     rewriteLibrary: (source) => source.replace(
-      "surface: 'everything-read',",
-      "surface: 'everything-read', context: { kind: 'list', id: 'first' },",
+      "surface: view.value === 'library-read' ? 'everything-read' : 'added-by-hand',",
+      "surface: view.value === 'library-read' ? 'everything-read' : 'added-by-hand', context: { kind: 'list', id: 'first' },",
     ),
   },
   {
@@ -1625,6 +1677,24 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'comic-search-zero-form-expanded',
+    breaks: 'comic-search-selection-flow',
+    why: 'zero selections expose the full destination and naming form above comic results',
+    rewriteAdd: (source) => source.replace(
+      / {6}builder\.disclosure\.hidden = selected\.size === 0;\r?\n {6}if \(!selected\.size\) builder\.disclosure\.open = false;/,
+      '      builder.disclosure.hidden = false;\n      builder.disclosure.open = true;',
+    ),
+  },
+  {
+    id: 'comic-search-old-save-feedback',
+    breaks: 'comic-search-selection-flow',
+    why: 'a current query leaves older shared save feedback ahead of its own no-results or failure',
+    rewriteAdd: (source) => source.replace(
+      / {2}function beginSearch\(config\) \{\r?\n {4}clearSelectionReports\(\);/,
+      '  function beginSearch(config) {',
+    ),
+  },
+  {
     id: 'comic-search-forgets-selection',
     breaks: 'comic-search-builder',
     why: 'a new search discards comics chosen from an earlier search instead of building one selection',
@@ -1863,7 +1933,12 @@ const SCENARIOS = [
           t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
             const node = document.querySelector(hasLists ? '#home-continue' : '#home-first-run');
             return !document.querySelector('#home-updates').open && !node.hidden
-              && [...node.querySelectorAll('button')].some((button) => button.getClientRects().length);
+              && (hasLists
+                ? [...node.querySelectorAll('button')].some((button) => button.getClientRects().length)
+                : ['#btn-home-browse', '#btn-home-add'].every((selector) => {
+                  const target = node.querySelector(selector);
+                  return target?.matches('a[href]') && target.getClientRects().length;
+                }));
           }, populated));
           await openAllHomeUpdates(page, t, label);
           const layout = await page.evaluate(() => {
@@ -2127,12 +2202,6 @@ const SCENARIOS = [
         window.open = (...args) => { window.__link453.opens.push(args); return {}; };
       });
       await seedFixtureState(page);
-      const seed = fixtureReadingState();
-      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
-      seed.lists.fixture.itemIds.unshift(-8);
-      seed.notes[-8] = 'Private note excluded from reports';
-      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
-      await page.reload({ waitUntil: 'load' });
       const go = async (hash, selector) => {
         await page.evaluate((next) => {
           // Keep the synthetic route and its notification together: a background repaint can
@@ -2182,6 +2251,49 @@ const SCENARIOS = [
         before?.focus();
         return !node.getClientRects().length && excluded;
       });
+      const readLabel = async (selector, context, temporary = false, statusSelector = null) => {
+        const actual = await page.$eval(selector, (button, selectedStatus) => {
+          const status = selectedStatus ? document.querySelector(selectedStatus)
+            : button.closest('.ract, .tile')?.querySelector('[data-reader-temporary]');
+          return {
+            text: button.textContent.trim(),
+            name: button.getAttribute('aria-label') || button.textContent.trim(),
+            visible: button.getClientRects().length > 0,
+            status: status?.textContent.trim() ?? '',
+            statusVisible: Boolean(status?.getClientRects().length),
+          };
+        }, statusSelector);
+        const predicates = {
+          label: actual.text === 'Read',
+          name: actual.name.startsWith('Read') && actual.name.includes(context),
+          visible: actual.visible,
+          temporaryContext: !temporary || (/temporary link/.test(actual.name)
+            && /temporary reader link/i.test(actual.status) && actual.statusVisible),
+        };
+        console.log(`READER-LABEL ${JSON.stringify({ selector, context, temporary, actual, predicates })}`);
+        t.check(`${selector} keeps the Read label and ${temporary ? 'visible temporary' : 'comic'} context`,
+          Object.values(predicates).every(Boolean), JSON.stringify(actual));
+      };
+      await go('#/home', '#view-home:not([hidden])');
+      await readLabel('#btn-chero-read', ORDER.items[0].title);
+      await reading();
+      await readLabel('#btn-hero-read', ORDER.items[0].title);
+      const done = await page.$eval('#btn-hero-done', (button) => ({
+        text: button.textContent.trim(), shortcut: button.getAttribute('aria-keyshortcuts'),
+        help: button.dataset.tooltip,
+      }));
+      console.log(`READER-DONE ${JSON.stringify(done)}`);
+      t.check('Done remains the distinct mark-read-and-continue control',
+        done.text === 'Done' && done.shortcut === 'd'
+          && done.help === 'Mark read and continue. Keyboard shortcut: D', JSON.stringify(done));
+      await focusIssue(ORDER.items[0].issueId);
+      await readLabel('#btn-issue-read', ORDER.items[0].title);
+      const seed = fixtureReadingState();
+      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
+      seed.lists.fixture.itemIds.unshift(-8);
+      seed.notes[-8] = 'Private note excluded from reports';
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+      await page.reload({ waitUntil: 'load' });
       await focusIssue(-8);
       t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
       const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
@@ -2210,6 +2322,7 @@ const SCENARIOS = [
         !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
         && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
       )));
+      await readLabel('#btn-issue-read', seed.issues[-8].title, true, '#reader-link-temporary');
       await click(page, '#reader-link-reportToggle');
       t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
       t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
@@ -2228,12 +2341,17 @@ const SCENARIOS = [
       await click(page, '#btn-issue-read');
       await reading();
       t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await readLabel('#btn-hero-read', seed.issues[-8].title, true, '#hero-reader-temporary');
       await click(page, '#btn-hero-read');
       await page.focus('#order-name');
       await page.keyboard.press('Enter');
       await openFullOrder(page);
+      const toggle = '#rows [data-key="-8"][data-act="more"]';
+      if (await page.$eval(toggle, (button) => button.getAttribute('aria-expanded') !== 'true')) await click(page, toggle);
+      await readLabel('#rows [data-key="-8"][data-act="open"]', seed.issues[-8].title, true);
       await click(page, '#rows [data-key="-8"][data-act="open"]');
       await go('#/home', '#view-home:not([hidden])');
+      await readLabel('#btn-chero-read', seed.issues[-8].title, true, '#chero-next');
       await click(page, '#btn-chero-read');
       t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
         window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
@@ -2244,6 +2362,7 @@ const SCENARIOS = [
       const positive = ORDER.items[0].issueId;
       await use(positive, 55);
       await reading();
+      await readLabel(`#shelf [data-key="${positive}"][data-act="open"]`, 'Browser Check #1 2026', true);
       await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
       t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
         new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
@@ -2291,6 +2410,10 @@ const SCENARIOS = [
           input.files = transfer.files;
           input.dispatchEvent(new Event('change', { bubbles: true }));
         }, text);
+        if (text !== 'invalid json') {
+          await page.waitForSelector('#ask[open]');
+          await click(page, '#ask-ok');
+        }
         await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
         await focusIssue(-8);
       };
@@ -2308,6 +2431,8 @@ const SCENARIOS = [
       await use(-8, 44);
       await go('#/data', '#view-data:not([hidden])');
       await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
       await focusIssue(-8);
       t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
       await use(-8, 44);
@@ -2604,9 +2729,10 @@ const SCENARIOS = [
       });
       await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
       t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
-      await click(page, '#btn-review-earlier');
-      t.check('empty list has an explicit state and no candidate', await page.$eval('#review-position', (node) => /no comics in/.test(node.textContent))
-        && await page.$$eval('#review-candidate a', (nodes) => nodes.length === 0));
+      t.check('empty list withdraws review and offers Add comics instead',
+        await page.$eval('#btn-review-earlier', (node) => node.hidden)
+        && await page.$eval('#review-earlier', (node) => node.hidden)
+        && await page.$eval('#btn-empty-add', (node) => node.checkVisibility()));
       t.check('no page errors', errors.length === 0, errors.join('\n'));
     },
   },
@@ -3572,7 +3698,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const matches = Object.values(state.lists)
@@ -3590,7 +3716,7 @@ const SCENARIOS = [
         && imported.matches === 1 && imported.listCount === 1
         && imported.titles.join('|') === expectedTitles.join('|')
         && imported.previewOpen
-        && imported.openAction.includes('In library'),
+        && imported.openAction.includes('Open'),
         JSON.stringify(imported));
       const openSelector = '#preview-add [data-act="main"]';
       await page.focus(openSelector);
@@ -3612,7 +3738,7 @@ const SCENARIOS = [
         hash: location.hash,
         sameState: localStorage.getItem('mrt.state.v2') === state,
         focus: document.activeElement?.id,
-        action: document.querySelector(`${selector} button`)?.dataset.act,
+        action: document.querySelector(`${selector} a[data-act="open"]`)?.dataset.act,
       }), savedState, cardSelector);
       t.check('browser Back restores MCU Prep, its card, focus, and saved state',
         returned.sameState && returned.hash.startsWith('#/marvel-on-screen/')
@@ -3731,7 +3857,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const matches = Object.values(state.lists)
@@ -3819,7 +3945,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(async () => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const payload = await fetch('/data/hope_summers_reading_order.json')
@@ -3992,7 +4118,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       checkRows('import retains all 663 issue IDs and titles in source order', imported.rows);
       t.check('import preserves one negative gap, eight single canonical repeats and the endpoint',
@@ -4143,7 +4269,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates one 192-position list with the original #0 anthology identity',
         imported.matches === 1 && imported.anthology?.number === '0'
@@ -4271,7 +4397,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates exactly one X-23 Reading List without placeholders',
         imported.matches === 1 && imported.rows.every((row) => row.issueId > 0),
@@ -4418,7 +4544,7 @@ const SCENARIOS = [
       checkBoundaries('Nova preview keeps both gaps, 30 once-only repeats and no closed corrections', preview);
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('Nova import creates exactly one saved Reading List', imported.matches === 1);
       checkRows('Nova import retains every ID, title and canonical position', imported.rows);
@@ -4576,7 +4702,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       checkRows('Import retains all 94 source positions, original IDs and titles', imported.rows);
       t.check('Import keeps three negative gap identities and just one original Marvel Zombies #1',
@@ -4734,7 +4860,7 @@ const SCENARIOS = [
 
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await importedRows();
       t.check('import creates one Silk Reading List', imported.matches === 1, JSON.stringify(imported.matches));
       checkRows('import retains the complete 74-position original and gap vector', imported.rows);
@@ -4813,7 +4939,7 @@ const SCENARIOS = [
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       const imported = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const list = Object.values(state.lists)
@@ -4855,7 +4981,7 @@ const SCENARIOS = [
         question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
         distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
         recommendation: !!document.querySelector('#home-recommended'),
-        startActions: [...document.querySelectorAll('#home-first-run button')]
+        startActions: [...document.querySelectorAll('#home-first-run a')]
           .map((button) => button.textContent.trim()),
       }));
       t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
@@ -4895,7 +5021,7 @@ const SCENARIOS = [
       await page.focus('#btn-home-browse');
       await page.keyboard.press('Tab');
       await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden
-        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'Navigation',
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'More',
       { timeout: 3000 });
       t.check('keyboard focus reaches the named Add action with a visible indicator',
         await page.$eval('#btn-home-add', (button) => button === document.activeElement
@@ -4919,20 +5045,20 @@ const SCENARIOS = [
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
       t.check('Back from Add restores Home and heading focus', true);
       await click(page, '#btn-home-browse');
-      await page.waitForFunction(() => location.hash === '#/browse' && document.activeElement?.id === 'browse-h');
+      await page.waitForFunction(() => location.hash === '#/catalog' && document.activeElement?.id === 'catalog-h');
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
-      t.check('direct Browse uses the existing hub and Back restores Home focus', true);
+      t.check('prominent Browse reaches the Modern Timeline and Back restores Home focus', true);
 
       await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
       const enlarged = await page.evaluate(() => {
         const region = document.querySelector('#home-first-run');
-        const controls = [...region.querySelectorAll('button')];
+        const controls = [...region.querySelectorAll('#btn-home-browse, #btn-home-add')];
         return {
           rootFont: getComputedStyle(document.documentElement).fontSize,
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
           regionOverflow: region.scrollWidth > region.clientWidth,
-          controlsInViewport: controls.every((node) => {
+          controlsInViewport: controls.length === 2 && controls.every((node) => {
             const rect = node.getBoundingClientRect();
             return rect.width > 0 && rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
           }),
@@ -4975,7 +5101,7 @@ const SCENARIOS = [
       const narrow = await page.evaluate(() => {
         const region = document.querySelector('#home-first-run');
         const regionRect = region.getBoundingClientRect();
-        const controls = [...document.querySelectorAll('#home-first-run button')].map(
+        const controls = [...document.querySelectorAll('#home-first-run a')].map(
           (button) => button.getBoundingClientRect(),
         );
         return {
@@ -4995,7 +5121,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 1280, height: 900 });
       t.check('first-run actions stay 44 pixels high and unclipped at desktop width',
         await page.evaluate(() => {
-          const controls = [...document.querySelectorAll('#home-first-run button')];
+          const controls = [...document.querySelectorAll('#home-first-run a')];
           return controls.length === 2 && document.documentElement.scrollWidth <= innerWidth
             && controls.every((button) => {
               const rect = button.getBoundingClientRect();
@@ -5022,8 +5148,7 @@ const SCENARIOS = [
       t.check('a primary category uses real history and Back returns focus to Home', true);
 
       await click(page, '#btn-home-browse');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      await click(page, '#view-browse [data-category="timeline"]');
+      await page.waitForSelector('#view-catalog:not([hidden])');
       await page.waitForSelector('#catalog-results [data-act="preview"]');
       await click(page, '#catalog-results [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
@@ -5425,8 +5550,32 @@ const SCENARIOS = [
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return Object.values(state.lists).find((list) => list.catalogId === id)?.itemIds.length ?? 0;
         }, representative.id);
-        await click(page, '#preview-close');
-        await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+        const savedId = await page.evaluate((id) => {
+          const dialog = document.querySelector('#preview');
+          const observation = { delivered: false, dialog };
+          observation.listener = () => { observation.delivered = true; };
+          dialog.addEventListener('close', observation.listener, { once: true });
+          window.__timelineClose = observation;
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return Object.values(state.lists).find((list) => list.catalogId === id)?.id;
+        }, representative.id);
+        try {
+          await click(page, '#preview-close');
+          await page.waitForFunction((id, href) => {
+            const dialog = document.querySelector('#preview');
+            const openAction = document.querySelector(
+              `#catalog-results [data-story="list:${id}"] a[data-act="open"]`,
+            );
+            return window.__timelineClose?.delivered && !dialog?.open
+              && openAction?.dataset.key === id && openAction.getAttribute('href') === href;
+          }, {}, representative.id, formatRoute({ view: 'read', listId: savedId }));
+        } finally {
+          await page.evaluate(() => {
+            const observation = window.__timelineClose;
+            observation?.dialog.removeEventListener('close', observation.listener);
+            delete window.__timelineClose;
+          });
+        }
         representativeResults.push({ ...shown, savedCount });
       }
       t.check('representative first, corrected middle, and final chapters preview and save normally',
@@ -5468,7 +5617,7 @@ const SCENARIOS = [
           labelledBy: feature?.getAttribute('aria-labelledby') ?? '',
           context: feature?.querySelector('.setup-guide-context p:last-child')?.textContent.trim() ?? '',
           meta: card?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
-          actions: [...(card?.querySelectorAll('button') ?? [])].map((button) => ({
+          actions: [...(card?.querySelectorAll('a[data-act="open"], button[data-act="preview"]') ?? [])].map((button) => ({
             text: button.textContent.trim(),
             name: button.getAttribute('aria-label'),
             act: button.dataset.act,
@@ -5535,9 +5684,10 @@ const SCENARIOS = [
             right: rect.right,
             cardColumns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
             actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
-            controls: [...actions.querySelectorAll('button')].every((button) => (
-              button.getBoundingClientRect().height >= 44
-            )),
+            controls: actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]').length === 2
+              && [...actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]')].every((button) => (
+                button.getBoundingClientRect().height >= 44
+              )),
           };
         },
       );
@@ -5747,7 +5897,7 @@ const SCENARIOS = [
           === 'Daredevil & Black Widow Opening Sequence');
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-        ?.textContent.includes('In library'));
+        ?.textContent.includes('Open'));
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
         && document.querySelector('#order-name')?.textContent.trim()
@@ -6927,13 +7077,20 @@ const SCENARIOS = [
       await click(page, '[data-view="progress"]');
       await page.waitForFunction(() => !document.querySelector('#progress-method')?.hidden);
       const progress = await page.$eval('#view-progress', (section) => ({
-        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).map((node) => node.id),
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectOutsideMethod: !section.querySelector('#progress-method #progress-subject'),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         oldNote: Boolean(section.querySelector('#progress-note, #progress-sub')),
         methodOpen: section.querySelector('#progress-method')?.open,
         methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
       }));
       t.check('Progress keeps methodology in one collapsed disclosure',
-        progress.directNotes === 0 && !progress.oldNote
+        JSON.stringify(progress.directNotes) === JSON.stringify(['progress-subject'])
+        && progress.subject === 'Reading List: Browser Check Order'
+        && progress.subjectVisible && progress.subjectOutsideMethod
+        && progress.subjectAssociation === 'progress-subject' && !progress.oldNote
         && progress.methodOpen === false && progress.methodLabel === 'How counts work',
         JSON.stringify(progress));
 
@@ -6970,7 +7127,11 @@ const SCENARIOS = [
       const initial = await page.$eval('#view-progress', (section) => ({
         checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
-        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).map((node) => node.id),
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectOutsideMethod: !section.querySelector('#progress-method #progress-subject'),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         hash: location.hash,
         method: section.querySelector('#progress-method-text')?.textContent.trim(),
         methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
@@ -6987,7 +7148,10 @@ const SCENARIOS = [
         && initial.row === '0 of 3 tracked issues read (0%)',
         JSON.stringify(initial));
       t.check('Progress keeps methodology in one collapsed disclosure',
-        initial.directNotes === 0
+        JSON.stringify(initial.directNotes) === JSON.stringify(['progress-subject'])
+        && initial.subject === 'Reading List: Browser Check Order'
+        && initial.subjectVisible && initial.subjectOutsideMethod
+        && initial.subjectAssociation === 'progress-subject'
         && !initial.oldNote
         && initial.methodOpen === false
         && initial.methodLabel === 'How counts work',
@@ -6999,11 +7163,16 @@ const SCENARIOS = [
       await click(page, 'input[name="progress-scope"][value="all"]');
       const all = await page.$eval('#view-progress', (section) => ({
         checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
+        subject: section.querySelector('#progress-subject')?.textContent.trim(),
+        subjectVisible: Boolean(section.querySelector('#progress-subject')?.getClientRects().length),
+        subjectAssociation: section.querySelector('#progress-scope')?.getAttribute('aria-describedby'),
         method: section.querySelector('#progress-method-text')?.textContent.trim(),
         row: section.querySelector('.result-meta')?.textContent.trim(),
       }));
       t.check('the extracted scope wiring switches to all-list methodology and rerenders',
         all.checked === 'all'
+        && all.subject === 'All saved Reading Lists' && all.subjectVisible
+        && all.subjectAssociation === 'progress-subject'
         && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
         && all.row === initial.row,
         JSON.stringify(all));
@@ -7136,14 +7305,14 @@ const SCENARIOS = [
       await click(page, '.brand[data-view="home"]');
       const home = await page.$eval('#home-yours', (section) => ({
         summary: section.querySelector('.sec-note')?.textContent.trim(),
-        tiles: [...section.querySelectorAll('#home-yours-list button')]
+        tiles: [...section.querySelectorAll('#home-yours-list a')]
           .map((button) => button.getAttribute('aria-label')),
       }));
 
       await click(page, '.ri[data-view="library"]');
       const library = await page.$eval('#library-yours', (section) => ({
         summary: section.querySelector('.sec-note')?.textContent.trim(),
-        tiles: [...section.querySelectorAll('#library-yours-list button')]
+        tiles: [...section.querySelectorAll('#library-yours-list a')]
           .map((button) => button.getAttribute('aria-label')),
       }));
       t.check('Home and Library receive the same saved-list presentation',
@@ -7152,7 +7321,7 @@ const SCENARIOS = [
           && home.tiles.length === 2,
         JSON.stringify({ home, library }));
 
-      await click(page, '#library-yours-list li:nth-child(2) button');
+      await click(page, '#library-yours-list li:nth-child(2) a');
       const libraryOpen = await page.evaluate(() => ({
         active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
         hash: location.hash,
@@ -7162,7 +7331,7 @@ const SCENARIOS = [
         JSON.stringify(libraryOpen));
 
       await click(page, '.brand[data-view="home"]');
-      await click(page, '#home-yours-list li:first-child button');
+      await click(page, '#home-yours-list li:first-child a');
       const homeOpen = await page.evaluate(() => ({
         active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
         hash: location.hash,
@@ -7807,9 +7976,9 @@ const SCENARIOS = [
         action: notice.querySelector('button')?.textContent.trim(),
         state: localStorage.getItem('mrt.state.v2'),
       }));
-      t.check('a refused catalog load offers Try again without changing saved data',
+      t.check('a refused catalog load offers Retry catalog without changing saved data',
         catalogFailure.text.includes('catalog could not be loaded')
-        && catalogFailure.action === 'Try again',
+        && catalogFailure.action === 'Retry catalog',
         JSON.stringify(catalogFailure));
 
       await setMode(work, 'health', 'ready');
@@ -7819,7 +7988,7 @@ const SCENARIOS = [
         offer: Boolean(document.querySelector('#home-cat-report button')),
         pending: window.__mrtLocalPending.catalog.length,
       }));
-      t.check('catalog Try again withdraws the offer and reruns only the catalog request',
+      t.check('catalog Retry withdraws the offer and reruns only the catalog request',
         !catalogPending.offer && catalogPending.pending === 1, JSON.stringify(catalogPending));
       if (catalogPending.pending !== 1) return;
       await setMode(work, 'catalog', 'ready');
@@ -7981,6 +8150,151 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'restore-copy-workflow',
+    title: 'one-shot Undo and retained copies explain replacement and refuse stale confirmation',
+    async run(page, t) {
+      let five = createEmptyState();
+      for (let i = 0; i < 5; i += 1) five = createList(five, { id: `saved-${i}`, name: `Saved ${i}` });
+      await open(page, '/#/data');
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), five);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      const restored = createList(createEmptyState(), { id: 'one', name: 'One restored list' });
+      const pick = async () => {
+        await page.evaluate((state) => {
+          const files = new DataTransfer();
+          files.items.add(new File([JSON.stringify(state)], 'reading-backup.json', { type: 'application/json' }));
+          const input = document.querySelector('#restore-file');
+          input.files = files.files;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }, restored);
+        await page.waitForSelector('#ask[open]');
+      };
+      await pick();
+      t.check('file selection confirms replacement before changing five saved lists',
+        (await readState(page)).listOrder.length === 5
+          && await page.$eval('#ask-body', (node) => node.textContent.includes('Completion history and settings stay unchanged')));
+      await click(page, '#ask-cancel');
+      await page.waitForFunction(() => !document.querySelector('#restore-file').disabled);
+      t.check('cancel preserves reading data and returns focus after input reenables',
+        (await readState(page)).listOrder.length === 5
+          && await page.evaluate(() => document.activeElement.id === 'restore-file'));
+      await pick();
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Reading data restored'));
+      t.check('first restore offers one Undo with the five-list snapshot summary',
+        await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Undo last restore')
+          && await page.$eval('#restore-copy-summary', (node) => node.textContent.startsWith('5 lists')));
+      await page.evaluate(async () => {
+        const { Store } = await import('./js/storage.js');
+        const { createList } = await import('./js/lib/model.js');
+        const editor = new Store();
+        editor.load();
+        editor.update((state) => createList(state, { id: 'intervening', name: 'Intervening edit' }));
+      });
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      t.check('Undo confirmation explicitly warns that intervening edits will be replaced',
+        await page.$eval('#ask-body', (node) => node.textContent.includes('intervening edits')));
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restore undone'));
+      t.check('Undo recovers five lists and never offers the reverse swap under the Undo label',
+        (await readState(page)).listOrder.length === 5
+          && await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Restore saved reading-data copy'));
+      const retained = await page.evaluate(() => localStorage.getItem('mrt.state.prerestore'));
+      t.check('the opposite-direction copy retains the intervening edit rather than deleting recovery',
+        JSON.parse(retained).lists.intervening?.name === 'Intervening edit');
+      await click(page, '#btn-export-restore-copy');
+      await page.waitForFunction(() => window.__mrtDownloads.length > 0);
+      t.check('retained copy download requests exact raw bytes without claiming verified desktop save',
+        await page.evaluate((raw) => window.__mrtDownloads.some((entry) => entry.text === raw), retained));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      t.check('reload retains bytes and uses neutral direction, not a fabricated Undo',
+        await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Restore saved reading-data copy')
+          && await page.evaluate((raw) => localStorage.getItem('mrt.state.prerestore') === raw, retained));
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      const peer = await page.browserContext().newPage();
+      try {
+        peer.__denyExternal = true;
+        await preparePage(peer, page.__origin, page.__mutation);
+        await open(peer, '/#/data');
+        const foreign = await peer.evaluate(() => {
+          const raw = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          raw.writeToken = 'foreign-confirmation-value';
+          raw.lists['saved-0'].note = 'New work in another tab';
+          const text = JSON.stringify(raw);
+          localStorage.setItem('mrt.state.v2', text);
+          return text;
+        });
+        await peer.close();
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#btn-undo-restore').disabled);
+        t.check('cross-tab replacement while confirmation is open refuses the stale restore without overwrite',
+          await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, foreign)
+            && await page.$eval('#restore-report', (node) => node.textContent.includes('changed while you were choosing')));
+      } finally {
+        if (!peer.isClosed()) await peer.close();
+      }
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Saved reading-data copy restored'));
+      t.check('explicit saved-copy restoration deliberately recovers the two-list replacement',
+        (await readState(page)).listOrder.length === 2 && !!(await readState(page)).lists.intervening);
+    },
+  },
+  {
+    id: 'backup-transfer-guidance',
+    title: 'independent normal backups are adjacent and malformed input leads with useful recovery',
+    async run(page, t) {
+      await importOrder(page);
+      await click(page, '.ri[data-view="data"]');
+      t.check('reading and history normal backups are together above exceptional salvage tools', await page.evaluate(() => {
+        const history = document.querySelector('#completion-history-controls');
+        const card = document.querySelector('#btn-export-json').closest('.card');
+        return card.contains(history) && !!(history.compareDocumentPosition(document.querySelector('#salvage-list')) & Node.DOCUMENT_POSITION_FOLLOWING);
+      }));
+      t.check('complete transfer explicitly names retained draft source and excludes settings', await page.evaluate(() => {
+        const copy = document.querySelector('#btn-export-json').closest('.card').textContent;
+        return copy.includes('completion-history') && copy.includes('retained draft source') && copy.includes('Settings are not included');
+      }));
+      t.check('healthy history keeps troubleshooting behind a closed native disclosure',
+        await page.$eval('#history-troubleshooting', (node) => !node.open && node.contains(document.querySelector('#btn-copy-history'))
+          && node.contains(document.querySelector('#btn-retry-history'))));
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const files = new DataTransfer();
+        files.items.add(new File(['not JSON'], 'invalid.json', { type: 'application/json' }));
+        const input = document.querySelector('#restore-file');
+        input.files = files.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      await page.waitForFunction(() => !document.querySelector('#restore-file').disabled && document.querySelector('#restore-report').textContent.length > 0);
+      t.check('malformed backup names unchanged reading data and useful next action before technical detail',
+        await page.$eval('#restore-report', (node) => node.textContent.includes('Reading data is unchanged. Choose a reading-data JSON backup'))
+          && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw && !document.querySelector('#ask').open, before));
+      t.check('malformed backup focuses its enabled field with associated invalid status',
+        await page.evaluate(() => document.activeElement.id === 'restore-file'
+          && document.activeElement.getAttribute('aria-invalid') === 'true'
+          && document.activeElement.getAttribute('aria-describedby').includes('restore-report')));
+      await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'unreadable history fixture'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      const incident = await page.evaluate(() => ({
+        open: document.querySelector('#history-troubleshooting').open,
+        status: document.querySelector('#history-status').textContent,
+        disabled: document.querySelector('#btn-copy-history').disabled,
+      }));
+      t.check('an unreadable saved history automatically reveals copy and retry without hiding its error',
+        incident.open && incident.status.length > 0 && !incident.disabled, JSON.stringify(incident));
+      t.check('history incident leaves reading bytes and retained history untouched',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw
+          && localStorage.getItem('mrt.list-history.v1') === 'unreadable history fixture', before));
+    },
+  },
+  {
     id: 'persistence',
     title: 'progress survives a reload',
     async run(page, t) {
@@ -8008,6 +8322,50 @@ const SCENARIOS = [
 
       const others = await page.$$eval('button.cb[data-act="read"]', (els) => els.filter((e) => e.getAttribute('aria-pressed') === 'true').length);
       t.check('and only the issue that was marked is marked', others === 1, `${others} marked read`);
+
+      const savedBeforeFault = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const original = Storage.prototype.setItem;
+        window.__ux01Quota = true;
+        Storage.prototype.setItem = function (key, value) {
+          if (window.__ux01Quota && key === 'mrt.state.v2') throw new DOMException('Synthetic reading quota', 'QuotaExceededError');
+          return original.call(this, key, value);
+        };
+      });
+      await click(page, 'button.cb[data-act="read"][data-key="900002"]');
+      const refused = await page.$eval('#save-report', (el) => el.textContent);
+      t.check('a refused change preserves stored bytes and names the separate reading-data quota',
+        await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBeforeFault
+          && refused.includes('Reading-data storage is full')
+          && refused.includes('Clearing cached metadata does not free'), refused);
+      await page.evaluate(() => { window.__ux01Quota = false; });
+      await click(page, 'button.cb[data-act="read"][data-key="900002"]');
+      t.check('successful retry clears the resolved assertive reader-save failure',
+        await page.$eval('#save-report', (el) => el.textContent.trim()) === '');
+      const retry = await readState(page);
+      t.check('the retried exact change is saved', Object.hasOwn(retry.read, '900002'));
+
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#app-report', 'Synthetic routine completion.', 'ok', 'ux01-routine');
+      });
+      await click(page, '.ri[data-view="about"]');
+      t.check('routine success does not follow unrelated navigation',
+        !await page.$eval('#app-report', (el) => el.textContent.includes('Synthetic routine')));
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#app-report', 'Synthetic unrelated error.', 'error', 'ux01-unrelated');
+        notify('#save-report', 'Synthetic history save failed.', 'error', 'history-save');
+      });
+      await openFullOrder(page);
+      await page.evaluate(() => { window.__ux01Quota = true; });
+      await click(page, 'button.cb[data-act="read"][data-key="900003"]');
+      await page.evaluate(() => { window.__ux01Quota = false; });
+      await click(page, 'button.cb[data-act="read"][data-key="900003"]');
+      t.check('reader-save success does not clear a different save incident',
+        await page.$eval('#save-report', (el) => el.textContent.includes('Synthetic history save failed')));
+      t.check('unrelated error retains its necessary lifetime across navigation and successful writes',
+        await page.$eval('#app-report', (el) => el.textContent.includes('Synthetic unrelated error')));
     },
   },
   {
@@ -8369,11 +8727,8 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1042` hides the row
-      // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
-      // control out of reach, and the defaults are blind to it. Measured in the same Edge this
-      // drives: with the two buttons faded that way both rows passed while nothing sat under the
-      // pointer at either button's centre.
+      // `opacity: 0`. Measured in the same Edge this drives: with the two buttons faded that way
+      // both default checks passed while nothing visible sat under the pointer at either centre.
       const offers = await page.evaluate(() => {
         const banner = document.querySelector('#blocked-banner:not([hidden])');
         const usable = (sel) => {
@@ -8411,6 +8766,104 @@ const SCENARIOS = [
         kept === corrupt,
         kept === null ? 'the key is gone' : `${kept.length} bytes vs ${corrupt.length}`,
       );
+
+      const { mkdtemp, rm, writeFile } = await import('node:fs/promises');
+      const { tmpdir } = await import('node:os');
+      const directory = await mkdtemp(join(tmpdir(), 'recap-recovery-copy-'));
+      const session = await page.browser().target().createCDPSession();
+      const contextId = page.browserContext().id;
+      let terminal;
+      const completed = new Map();
+      session.on('Browser.downloadProgress', (event) => {
+        if (event.state !== 'completed' && event.state !== 'canceled') return;
+        completed.set(event.guid, event.state);
+        terminal?.(event);
+      });
+      const waitDownload = () => new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { terminal = null; reject(new Error('Native recovery download did not finish')); }, 15000);
+        terminal = (event) => { clearTimeout(timer); terminal = null; resolve(event); };
+      });
+      try {
+        await page.evaluateOnNewDocument(() => {
+          const set = Storage.prototype.setItem;
+          Storage.prototype.setItem = function (key, value) {
+            if (key.startsWith('mrt.state.salvage')) throw new DOMException('Synthetic salvage quota', 'QuotaExceededError');
+            return set.call(this, key, value);
+          };
+        });
+        await page.evaluate(() => {
+          for (const key of Object.keys(localStorage)) {
+            if (key.startsWith('mrt.state.salvage')) localStorage.removeItem(key);
+          }
+        });
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#blocked-banner:not([hidden])');
+        await session.send('Browser.setDownloadBehavior', { behavior: 'deny', browserContextId: contextId, eventsEnabled: true });
+        const denied = waitDownload();
+        await click(page, '#btn-download-salvage');
+        const denial = await denied;
+        t.check('the real browser denies the requested recovery download', denial.state === 'canceled');
+        const downloadReport = await page.$eval('#save-report', (el) => el.textContent);
+        t.check('denied output is reported as requested, never confirmed saved',
+          downloadReport.includes('not confirmed saved') && !downloadReport.includes('Downloaded a copy'), downloadReport);
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check('denied download plus failed salvage cannot replace the only saved bytes',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === corrupt);
+        t.check('no salvage copy was silently assumed',
+          !await page.evaluate(() => Object.keys(localStorage).some((key) => key.startsWith('mrt.state.salvage'))));
+
+        const verify = await page.$('#verify-salvage');
+        t.check('desktop recovery offers explicit local file verification', !!verify);
+        if (!verify) return;
+        await session.send('Browser.setDownloadBehavior', {
+          behavior: 'allowAndName', browserContextId: contextId, downloadPath: directory, eventsEnabled: true,
+        });
+        const saving = waitDownload();
+        await click(page, '#btn-download-salvage');
+        const saved = await saving;
+        t.check('a second real download completes', saved.state === 'completed');
+        const savedPath = join(directory, saved.guid);
+        t.check('completed output contains the entire exact incident', readFileSync(savedPath, 'utf8') === corrupt);
+        const wrong = join(directory, 'wrong.json');
+        await writeFile(wrong, corrupt.replace('newer', 'other'));
+        await verify.uploadFile(wrong);
+        await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('does not match'));
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check('a different file does not grant destructive recovery permission',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === corrupt);
+        await verify.uploadFile(savedPath);
+        await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Verified the saved file')
+          || document.querySelector('#save-report').textContent.includes('could not be verified')
+          || document.querySelector('#save-report').textContent.includes('does not match'));
+        const verificationReport = await page.$eval('#save-report', (el) => el.textContent);
+        t.check('the saved file is explicitly verified before replacement',
+          verificationReport.includes('Verified the saved file'), verificationReport);
+        await page.evaluate(async () => {
+          const { notify } = await import('/js/main.js');
+          notify('#save-report', 'Synthetic unrelated fixed-pane error.', 'error');
+        });
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => document.querySelector('#blocked-banner').hidden
+          || document.querySelector('#save-report').textContent.includes('Nothing was cleared'));
+        t.check('exact native-file read-back permits safe recovery with the external copy intact',
+          (await readState(page)).listOrder.length === 0 && readFileSync(savedPath, 'utf8') === corrupt);
+        t.check('the native observations include cancellation and completion',
+          [...completed.values()].includes('canceled') && [...completed.values()].includes('completed'));
+        await click(page, '.ri[data-view="about"]');
+        t.check('recovery resolution preserves an unrelated fixed-pane error across navigation',
+          await page.$eval('#save-report', (el) => el.textContent.includes('Synthetic unrelated fixed-pane error')));
+      } finally {
+        await session.detach();
+        await rm(directory, { recursive: true, force: true });
+      }
     },
   },
   {
@@ -8418,6 +8871,13 @@ const SCENARIOS = [
     title: 'the reader tab opens synchronously, inside the gesture',
     async run(page, t) {
       await importOrder(page);
+      page.__ux11Step = 'before-first-dispatch';
+      const beforeHandoff = await page.evaluate(() => ({
+        raw: localStorage.getItem('mrt.state.v2'),
+        helper: document.querySelector('#reader-handoff-help')?.checkVisibility() ?? false,
+      }));
+      ux11Receipt(page, t, 'H05:initial-help', { visible: false }, beforeHandoff,
+        { hidden: beforeHandoff.helper === false });
 
       // The proof that no await intervenes is that the call is recorded during the click's own
       // dispatch. A handler that opened the tab after any await would record it afterwards, and
@@ -8425,14 +8885,35 @@ const SCENARIOS = [
       // before the app loaded, in preparePage.
       await page.evaluate(() => { window.__opened = []; });
 
+      await revealReadingControl(page, 'button.mini[data-act="open"][data-key="900001"]');
       await page.evaluate(() => {
         const btn = document.querySelector('button.mini[data-act="open"][data-key="900001"]');
+        btn.focus();
         window.__dispatching = true;
         btn.click();
         window.__dispatching = false;
       });
 
       const opened = await page.evaluate(() => window.__opened);
+      const feedback = await page.evaluate(() => ({
+        text: document.querySelector('#reader-handoff-help')?.textContent ?? null,
+        visible: document.querySelector('#reader-handoff-help')?.checkVisibility() ?? false,
+        focused: document.activeElement?.dataset.key ?? null,
+        raw: localStorage.getItem('mrt.state.v2'),
+      }));
+      page.__ux11Step = 'after-known-dispatch';
+      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
+      ux11Receipt(page, t, 'H03/H05/H06:conditional-help', { text: helpCopy, visible: true,
+        focused: '900001', raw: beforeHandoff.raw }, feedback,
+      { exactCopy: feedback.text === helpCopy, rendered: feedback.visible,
+        focusRetained: feedback.focused === '900001', rawUnchanged: feedback.raw === beforeHandoff.raw });
+      const native = opened.length === 1 ? new URL(opened[0].url, page.__origin) : null;
+      ux11Receipt(page, t, 'H01:exact-native-intent', { origin: page.__origin, path: '/open.html',
+        d: '700001', i: '900001', target: '_blank', features: 'noopener' }, opened,
+      { count: opened.length === 1, duringGesture: opened[0]?.dispatching === true,
+        origin: native?.origin === page.__origin, path: native?.pathname === '/open.html',
+        digitalId: native?.searchParams.get('d') === '700001', issueId: native?.searchParams.get('i') === '900001',
+        target: opened[0]?.target === '_blank', features: opened[0]?.features === 'noopener' });
       t.check('clicking Read opens exactly one tab', opened.length === 1, `${opened.length} call(s)`);
       t.check('and it opens during the click itself, with no await in between', opened[0]?.dispatching === true);
 
@@ -8451,6 +8932,11 @@ const SCENARIOS = [
         window.__dispatching = false;
       });
       const second = await page.evaluate(() => window.__opened);
+      const secondUrl = second.length === 1 ? new URL(second[0].url, page.__origin) : null;
+      ux11Receipt(page, t, 'H02:lookup-native-intent', { i: '900002', d: null, target: '_blank', features: 'noopener' },
+        second, { count: second.length === 1, synchronous: second[0]?.dispatching === true,
+          issueId: secondUrl?.searchParams.get('i') === '900002', noBook: secondUrl !== null && !secondUrl.searchParams.has('d'),
+          target: second[0]?.target === '_blank', features: second[0]?.features === 'noopener' });
       t.check('an issue with no reference still opens a tab at once', second.length === 1 && second[0].dispatching === true, JSON.stringify(second));
       // Require the record before reading it. A bare negated substring reports this as satisfied
       // when nothing was opened at all, which is the one case it is meant to catch, and it reads
@@ -8981,8 +9467,8 @@ const SCENARIOS = [
       t.check('an answered synopsis is displayed on the current issue',
         running.description === `Fixture synopsis from ${new URL(DEFAULT_BASE).host} for ${LONG_ORDER.items[0].issueId}.`,
         running.description);
-      t.check('an issue already asked about no longer says details are unfetched',
-        running.description !== 'Details have not been fetched yet.',
+      t.check('an issue already asked about no longer says its story summary is unloaded',
+        running.description !== 'Story summary has not been loaded.',
         running.description);
 
       await click(page, '#btn-cancel-synopsis');
@@ -9071,6 +9557,170 @@ const SCENARIOS = [
       t.check('and the count a stop leaves behind is the one that was already on screen',
         !!running && !!stopped && running[1] === stopped[1], `${JSON.stringify(at.line)} then ${JSON.stringify(after.line)}`);
       t.check('the fetch button comes back once the run is stopped', after.fetchHidden === false, JSON.stringify(after));
+    },
+  },
+  {
+    id: 'comic-search-selection-flow',
+    title: 'comic results lead a compact shared selection and the current query owns feedback',
+    async run(page, t) {
+      let seed = createList(createEmptyState(), { id: 'existing', name: 'Exact destination' });
+      seed = addIssuesToList(seed, 'existing', [ORDER.items[0]]).state;
+      seed.read[900001] = 1234;
+      seed.notes[900001] = 'Retain this note';
+      await page.evaluateOnNewDocument((initial) => {
+        window.__mrtComicSearch = true;
+        window.__mrtComicSearchFlow = true;
+        if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(initial));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      }, seed);
+      await open(page, '/#/add-search');
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const field = async (selector, value, event = 'input') => page.$eval(selector, (node, text, type) => {
+        node.value = text;
+        node.dispatchEvent(new Event(type, { bubbles: true }));
+      }, value, event);
+      const query = async (prefix, value, result = 'input[data-comic-id]') => {
+        await field(`#${prefix}-q`, value);
+        await click(page, `#form-${prefix} button[type="submit"]`);
+        await page.waitForSelector(`#${prefix}-results ${result}`, { timeout: 15000 });
+      };
+      const count = async (prefix) => page.$eval(
+        `#${prefix}-selection-form .comic-selection-count`, (node) => node.textContent,
+      );
+      const openSave = async (prefix) => {
+        const summary = `#${prefix}-selection-form details > summary`;
+        if (await page.$(summary)) await click(page, summary);
+      };
+      for (const width of [1280, 320, 390]) {
+        await page.setViewport({ width, height: 900 });
+        for (const [prefix, value] of [
+          ['search', 'Fixture'], ['series', 'House of M (2015)'], ['creator', 'Brubaker'],
+        ]) {
+          await click(page, `[data-view="add-${prefix === 'search' ? 'search' : prefix}"]`);
+          await query(prefix, value);
+          const compact = await page.evaluate((mode) => {
+            const form = document.querySelector(`#${mode}-selection-form`);
+            const first = document.querySelector(`#${mode}-results .comic-choice`).getBoundingClientRect();
+            return {
+              destination: document.querySelector(`#${mode}-destination`).checkVisibility(),
+              name: document.querySelector(`#${mode}-list-name`).checkVisibility(),
+              height: form.getBoundingClientRect().height,
+              first: { top: first.top, bottom: first.bottom },
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+            };
+          }, prefix);
+          t.check(`${prefix} at ${width}px: zero selection stays compact and results lead`,
+            !compact.destination && !compact.name && compact.height <= 140
+              && !compact.overflow && compact.first.top >= 0 && compact.first.bottom <= 900,
+            JSON.stringify(compact));
+        }
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '[data-view="add-series"]');
+      await query('series', 'House of M', 'button[aria-label^="Browse comics"]');
+      const seriesCounts = await page.$$eval('#series-results .result-meta', (rows) => rows.map((row) => row.textContent));
+      t.check('series name choices use one comic and plural comics',
+        seriesCounts.includes('1 comic') && seriesCounts.includes('4 comics'), JSON.stringify(seriesCounts));
+      await click(page, '[data-view="add-creator"]');
+      await query('creator', 'Count Fixture', 'button[aria-label^="Browse comics"]');
+      const creatorCounts = await page.$$eval('#creator-results .result-meta', (rows) => rows.map((row) => row.textContent));
+      t.check('creator name choices preserve zero, one and unknown counts',
+        creatorCounts.includes('0 comics') && creatorCounts.includes('1 comic')
+          && creatorCounts.includes('An unknown number of comics'), JSON.stringify(creatorCounts));
+
+      await click(page, '[data-view="add-search"]');
+      await query('search', 'Fixture');
+      await page.focus('#search-results input[data-comic-id="97601"]');
+      await page.keyboard.press('Space');
+      t.check('one selection exposes a closed reachable native save step without stealing checkbox focus',
+        await count('search') === '1 comic selected' && await page.evaluate(() => {
+          const disclosure = document.querySelector('#search-selection-form details');
+          return disclosure?.checkVisibility() && !disclosure.open
+            && document.activeElement?.dataset.comicId === '97601'
+            && !document.querySelector('#search-destination').checkVisibility();
+        }));
+      await click(page, '#search-results input[data-comic-id="900001"]');
+      await openSave('search');
+      await field('#search-destination', 'existing', 'change');
+      t.check('opening save exposes the exact existing destination without an unused name',
+        await page.$eval('#search-destination', (node) => node.checkVisibility() && node.value === 'existing')
+          && await page.$eval('#search-list-name', (node) => !node.checkVisibility()));
+      await click(page, '#search-results a[data-issue-id="97601"]');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.activeElement?.dataset.issueId === '97601');
+      t.check('Issue inspection and Back retain two unsaved comics and exact title focus',
+        await count('search') === '2 comics selected'
+          && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+      for (const width of [1280, 320, 390]) {
+        await page.setViewport({ width, height: 900 });
+        for (const [prefix, value] of [['series', 'House of M (2015)'], ['creator', 'Brubaker'], ['search', 'Fixture']]) {
+          await click(page, `[data-view="add-${prefix}"]`);
+          await query(prefix, value);
+          const current = await page.$eval(`#${prefix}-selection-form`, (form) => form.querySelector('details')?.open ?? true);
+          if (!current) await openSave(prefix);
+          const controls = await page.evaluate((mode) => ({
+            destination: document.querySelector(`#${mode}-destination`).value,
+            visible: document.querySelector(`#${mode}-destination`).checkVisibility(),
+            disclosure: document.querySelector(`#${mode}-selection-form summary`)?.getBoundingClientRect().height ?? 0,
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          }), prefix);
+          t.check(`${prefix} at ${width}px: two comics and exact destination retain a reachable save flow`,
+            await count(prefix) === '2 comics selected' && controls.destination === 'existing'
+              && controls.visible && controls.disclosure >= 44 && !controls.overflow, JSON.stringify(controls));
+        }
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      for (const [filter, expected] of [['Search Fixture', '1 comic matches'], ['no matching title', '0 comics match'], ['', '2 comics match']]) {
+        await field('#search-comic-filter', filter);
+        await page.waitForFunction((start) => {
+          const text = document.querySelector('#announcer').textContent;
+          return text.includes(start.split(' match')[0]) && text.includes('this filter.');
+        }, {}, expected);
+        t.check(`filter feedback: ${expected}`, await page.$eval('#announcer', (node, start) => (
+          node.textContent.endsWith(`${start} this filter.`)
+        ), expected));
+      }
+      const disclosure = await page.$eval('#search-selection-form', (form) => form.querySelector('details')?.open ?? true);
+      if (!disclosure) await openSave('search');
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Added'));
+      const saved = await readState(page);
+      t.check('explicit save uses the chosen list and reports the exact duplicate count',
+        saved.active === 'existing' && saved.listOrder.length === 1
+          && JSON.stringify(saved.lists.existing.itemIds) === '[900001,97601]'
+          && saved.read[900001] === 1234 && saved.notes[900001] === 'Retain this note'
+          && await page.$eval('#search-selection-report', (node) => /Added 1 comic.*1 comic already in that list/.test(node.textContent)));
+      await query('search', 'UX06 none', '.notice');
+      await page.waitForFunction(() => document.querySelector('#search-results').textContent.includes('Nothing matched'));
+      t.check('a new empty query owns feedback instead of the previous save',
+        await page.$eval('#search-selection-report', (node) => node.textContent === '')
+          && await page.$eval('#search-results', (node) => node.checkVisibility() && /Nothing matched/.test(node.textContent)));
+
+      await query('search', 'Fixture');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await openSave('search');
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Added'));
+      await query('search', 'UX06 fail', '.notice');
+      await page.waitForFunction(() => document.querySelector('#search-results').textContent.includes('Could not load'));
+      t.check('a new failed query retires old success and exposes the current failure',
+        await page.$eval('#search-selection-report', (node) => node.textContent === '')
+          && await page.$eval('#search-results', (node) => /Could not load/.test(node.textContent)));
+
+      await query('search', 'Fixture');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await openSave('search');
+      await click(page, '#search-selection-form button[type="button"]');
+      t.check('clearing restores compact results, search focus and no unsaved warning',
+        await count('search') === '0 comics selected' && await page.evaluate(() => {
+          const event = new Event('beforeunload', { cancelable: true });
+          dispatchEvent(event);
+          const form = document.querySelector('#search-selection-form');
+          return !event.defaultPrevented && document.activeElement?.id === 'search-q'
+            && !document.querySelector('#search-destination').checkVisibility()
+            && (!form.querySelector('details') || !form.querySelector('details').open);
+        }));
     },
   },
   {
@@ -9192,6 +9842,7 @@ const SCENARIOS = [
         await selectedCount('search') === '4 comics selected'
           && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
 
+      await click(page, '#search-selection-form details > summary');
       for (const [width, zoom] of [[320, 1], [640, 2]]) {
         await page.setViewport({ width, height: 900 });
         await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
@@ -9265,6 +9916,7 @@ const SCENARIOS = [
           && JSON.stringify(reloaded.lists[newId].itemIds) === JSON.stringify([978001, 978002, 97601, 97201]));
       await query('search', 'Fixture');
       await click(page, '#search-results [data-act="select-all"]');
+      await click(page, '#search-selection-form details > summary');
       await setField('#search-destination', 'existing', 'change');
       await click(page, '#search-selection-form button[type="submit"]');
       const appended = await readState(page);
@@ -9357,6 +10009,7 @@ const SCENARIOS = [
       t.check('an unsearched route can save the shared draft',
         await page.$$eval('#series-results input[data-comic-id]', (nodes) => nodes.length === 0)
           && await page.$eval('#series-selection-form button[type="submit"]', (button) => !button.disabled));
+      await click(page, '#series-selection-form details > summary');
       await setField('#series-list-name', 'Overlapping picks');
       await click(page, '#series-selection-form button[type="submit"]');
       await page.waitForFunction(() => document.querySelector('#series-selection-report')?.textContent.includes('Created'));
@@ -9413,6 +10066,7 @@ const SCENARIOS = [
 
       await click(page, '[data-view="add-search"]');
       await click(page, '#search-results input[data-comic-id="97601"]');
+      await click(page, '#search-selection-form details > summary');
       await setField('#search-destination', 'existing', 'change');
       const nameVisibility = await page.$eval('#search-list-name', (input) => ({
         hidden: input.parentElement.hidden,
@@ -9540,6 +10194,7 @@ const SCENARIOS = [
         JSON.stringify({ ids: afterStale, status: afterStaleStatus }));
 
       await click(page, '#series-results input[data-comic-id="97201"]');
+      await click(page, '#series-selection-form details > summary');
       await page.$eval('#series-list-name', (input) => {
         input.value = 'Mixed search picks';
         input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -9608,6 +10263,7 @@ const SCENARIOS = [
           && JSON.stringify(finalIds) === '[97101,97201]',
         JSON.stringify({ failedCreator, finalIds }));
       await click(page, '#creator-results input[data-comic-id="97401"]');
+      await click(page, '#creator-selection-form details > summary');
       await click(page, '#creator-selection-form button[type="submit"]');
       const savedPartial = await storedIds();
       t.check('a deliberately saved failed-search selection appends only its chosen comic',
@@ -9775,11 +10431,11 @@ const SCENARIOS = [
       // than only by reading past it. This is the first aria-describedby in the page.
       const hint = await page.evaluate(() => {
         const input = document.querySelector('#manual-url');
-        const id = input?.getAttribute('aria-describedby') ?? null;
-        const p = id ? document.getElementById(id) : null;
-        return { id, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
+        const ids = (input?.getAttribute('aria-describedby') ?? '').split(/\s+/);
+        const p = ids.includes('manual-url-hint') ? document.getElementById('manual-url-hint') : null;
+        return { ids, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
       });
-      t.check('the address field names its own explanation', hint.id === 'manual-url-hint', JSON.stringify(hint.id));
+      t.check('the address field names its own explanation', hint.ids.includes('manual-url-hint'), JSON.stringify(hint.ids));
       t.check('and that explanation says where to get the address',
         /paste.*Marvel Unlimited.*Read/i.test(hint.text), hint.text.slice(0, 100));
 
@@ -9868,7 +10524,7 @@ const SCENARIOS = [
       t.check('hydration offers and requests nothing for the reader record',
         first.hydrateHidden && first.requests === 0, JSON.stringify(first));
 
-      await click(page, '#list-nav button[data-act="open"]');
+      await click(page, '#list-nav a[data-act="open"]');
       await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
       await openFullOrder(page);
       const actions = await page.evaluate((issueId) => ({
@@ -9910,7 +10566,10 @@ const SCENARIOS = [
           && exportedLinks[0] === `https://read.marvel.com/#/book/${READER_DIGITAL_ID}`,
         JSON.stringify(exportedLinks));
 
-      await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        localStorage.removeItem('mrt.import.draft.v1');
+      });
       await open(page, '/');
       await click(page, '[data-view="add-import"]');
       await page.evaluate((text) => {
@@ -10611,7 +11270,7 @@ const SCENARIOS = [
         };
       });
       const enabled = (value) => value.checked && value.aria === 'd'
-        && value.tooltip === 'Keyboard shortcut: D' && value.hook
+        && value.tooltip === 'Mark read and continue. Keyboard shortcut: D' && value.hook
         && value.description.includes('Turn off in Backup & settings');
       const disabled = (value) => !value.checked && value.aria === null
         && value.tooltip === null && !value.hook && value.description.startsWith('Disabled.');
@@ -10668,10 +11327,14 @@ const SCENARIOS = [
         input.files = files.files;
         input.dispatchEvent(new Event('change', { bubbles: true }));
       }, backup);
-      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restored.'));
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Reading data restored.'));
       t.check('restore leaves the disabled local preference and progress intact',
         disabled(await presentation()) && await count() === 5);
       await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
       t.check('undo restore also leaves the shortcut off', disabled(await presentation()));
       await click(page, '#opt-reading-shortcut');
       t.check('re-enabling restores all advertised D behavior', enabled(await presentation()));
@@ -10751,6 +11414,10 @@ const SCENARIOS = [
         ring: document.querySelector('#ring-sub').textContent,
         count: document.querySelector('#full-count').textContent,
         focused: document.activeElement?.id,
+        reviewHidden: document.querySelector('#btn-review-earlier').hidden,
+        fullHidden: document.querySelector('#full').hidden,
+        filtersHidden: document.querySelector('#reading-filters').hidden,
+        noMatch: document.querySelector('#rows').textContent.includes('Nothing matches'),
       }));
       const initial = await readingStatus();
       t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
@@ -10758,6 +11425,9 @@ const SCENARIOS = [
         && !initial.completed && !initial.hero
         && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
         && initial.focused === 'order-name', JSON.stringify(initial));
+      t.check('an empty list offers Add comics without review, filters or no-match controls',
+        initial.reviewHidden && initial.fullHidden && initial.filtersHidden && !initial.noMatch
+        && await page.$eval('#btn-empty-add', (button) => button.checkVisibility()), JSON.stringify(initial));
 
       await click(page, '.brand[data-view="home"]');
       const homeEmpty = await page.evaluate(() => ({
@@ -10879,6 +11549,7 @@ const SCENARIOS = [
         const px = (el) => (el ? Math.round(el.getBoundingClientRect().width) : 0);
         const shelf = document.querySelector('#shelf');
         const tiles = [...document.querySelectorAll('#shelf .tile')];
+        const rowActions = [...document.querySelectorAll('#rows .row-actions')];
         const size = (el) => (el ? parseFloat(getComputedStyle(el).fontSize) : 0);
         return {
           view: px(document.querySelector('#view-read')),
@@ -10915,6 +11586,11 @@ const SCENARIOS = [
           secondary: size(document.querySelector('#btn-hero-done')),
           linkFill: getComputedStyle(document.querySelector('#btn-hero-info')).backgroundColor,
           strip: getComputedStyle(document.querySelector('.list-tools')).borderTopWidth,
+          commandsClosed: !document.querySelector('#list-actions').open
+            && !document.querySelector('.list-actions-body').checkVisibility(),
+          compactRows: rowActions.length > 0 && rowActions.every((row) =>
+            row.querySelector('.row-actions-toggle').checkVisibility()
+            && !row.querySelector('.ract').checkVisibility()),
           toolNames: [...document.querySelectorAll('.list-tools .quiet')]
             .filter((el) => !el.hidden).map((el) => el.textContent.trim()),
           reachable: [...document.querySelectorAll('.list-tools .quiet')]
@@ -10936,9 +11612,41 @@ const SCENARIOS = [
       t.check('the percentage is no longer hidden in a tooltip', narrow.ringTitle === null, JSON.stringify(narrow.ringTitle));
       t.check('one call to action is larger than the rest', narrow.primary > narrow.secondary, `${narrow.primary} vs ${narrow.secondary}`);
       t.check('the way out of the app is drawn as a link, not a button', /, 0\)$/.test(narrow.linkFill), narrow.linkFill);
-      t.check('the demoted tools keep a bounding edge', parseFloat(narrow.strip) > 0, narrow.strip);
+      t.check('list administration starts closed without a permanent full-width command box',
+        narrow.commandsClosed && parseFloat(narrow.strip) === 0, JSON.stringify(narrow));
+      t.check('desktop rows expose More actions without reserving hidden command space',
+        narrow.compactRows, JSON.stringify(narrow));
       t.check('and every one of them is still there and still reachable',
         narrow.toolNames.length >= 5 && narrow.reachable, narrow.toolNames.join(' / '));
+
+      await page.click('.brand[data-view="home"]');
+      await page.waitForSelector('#btn-chero-open', { visible: true });
+      await page.click('#btn-chero-open');
+      const pointerHeading = await page.$eval('#order-name', (node) => ({
+        focused: document.activeElement === node,
+        visible: node.matches(':focus-visible'),
+        outline: getComputedStyle(node).outlineStyle,
+        width: parseFloat(getComputedStyle(node).outlineWidth),
+      }));
+      t.check('pointer navigation announces the destination without boxing its title',
+        pointerHeading.focused && !pointerHeading.visible
+          && (pointerHeading.outline === 'none' || pointerHeading.width === 0), JSON.stringify(pointerHeading));
+      await page.focus('.brand[data-view="home"]');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#btn-chero-open', { visible: true });
+      await page.focus('#btn-chero-open');
+      await page.keyboard.press('Enter');
+      await page.keyboard.press('Tab');
+      const keyboardFocus = await page.evaluate(() => {
+        const node = document.activeElement;
+        const style = getComputedStyle(node);
+        return { interactive: node.matches('button, a, summary, input, select'),
+          visible: node.matches(':focus-visible'), width: parseFloat(style.outlineWidth), outline: style.outlineStyle };
+      });
+      t.check('keyboard navigation retains a visible focus indicator on the next control',
+        keyboardFocus.interactive && keyboardFocus.visible && keyboardFocus.width > 0
+          && keyboardFocus.outline !== 'none', JSON.stringify(keyboardFocus));
+      await openFullOrder(page);
 
       await page.setViewport({ width: 2560, height: 1080 });
       const wide = await measure();
@@ -11403,7 +12111,7 @@ const SCENARIOS = [
 
       const library = fixtureReadingState();
       const saved = library.lists.fixture;
-      library.schemaVersion = 3;
+      library.schemaVersion = SCHEMA_VERSION;
       saved.deferredIssueIds = [];
       library.lists = {
         sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
@@ -11807,6 +12515,7 @@ const SCENARIOS = [
       await importOrder(page);
       await openFullOrder(page);
       await page.setViewport({ width: 1280, height: 900 });
+      await revealReadingControl(page, '#rows .row .ract [data-act="open"]');
 
       const reference = await page.evaluate(() => {
         const pixels = (style, property) => Number.parseFloat(style[property]);
@@ -11846,6 +12555,7 @@ const SCENARIOS = [
           button: sides('#btn-hero-read', 'padding'),
           card: sides('.card > summary', 'padding'),
           minimumTargetDistance: Math.min(...targetDistances),
+          minimumTargetSize: Math.min(...actions.flatMap((rect) => [rect.width, rect.height])),
         };
         cardProbe.remove();
         return result;
@@ -11861,8 +12571,9 @@ const SCENARIOS = [
         && reference.button.join('/') === '12/24/12/24'
         && reference.card.join('/') === '16/16/16/16',
         JSON.stringify(reference));
-      t.check('desktop row actions retain the target-spacing exception',
-        reference.minimumTargetDistance >= 24, `${reference.minimumTargetDistance}px`);
+      t.check('expanded desktop row actions retain full-sized targets and spacing',
+        reference.minimumTargetSize >= 44 && reference.minimumTargetDistance >= 24,
+        `${reference.minimumTargetSize}px targets, ${reference.minimumTargetDistance}px centres`);
 
       await page.setViewport({ width: 320, height: 900 });
       await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
@@ -12273,7 +12984,7 @@ const SCENARIOS = [
         await page.setViewport({ width, height: 900 });
         await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
         await page.waitForFunction(
-          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
           { timeout: 15000 },
         );
         const sample = await measureReading();
@@ -12316,7 +13027,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
         { timeout: 15000 },
       );
       const savedExpanded = await measureReading();
@@ -12335,7 +13046,7 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More',
         { timeout: 15000 },
       );
       const emptyHome = await measureHeading();
@@ -12384,10 +13095,47 @@ const SCENARIOS = [
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
-        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation'
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More'
           && document.querySelector('#sidebar-panel')?.hidden === true,
         { timeout: 15000 },
       );
+      await page.evaluate(() => {
+        const spacer = document.createElement('div');
+        spacer.id = 'navigation-scroll-fixture';
+        spacer.style.height = '1800px';
+        document.querySelector('#main').append(spacer);
+        document.querySelector('#main').tabIndex = -1;
+        document.querySelector('#main').focus();
+        window.scrollTo(0, 200);
+      });
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
+      t.check('downward scroll withdraws the bottom bar without writing progress',
+        await page.evaluate(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight));
+      await page.evaluate(() => window.scrollTo(0, 195));
+      await page.waitForFunction(() => scrollY === 195);
+      t.check('a five-pixel reversal does not jitter the bar visible',
+        await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => window.scrollTo(0, 175));
+      await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      t.check('upward scroll reveals all four labelled destinations and More',
+        await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
+          .every((node) => node.getBoundingClientRect().height >= 44)));
+      await page.evaluate(() => window.scrollTo(0, 250));
+      await page.waitForFunction(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
+      await page.focus('.mobile-link[data-view="library"]');
+      t.check('keyboard navigation reveals the bar without requiring a scroll gesture',
+        await page.evaluate(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => window.scrollTo(0, 350));
+      await page.waitForFunction(() => scrollY === 350);
+      t.check('focus within pins the mobile bar visible',
+        await page.evaluate(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await click(page, '.mobile-link[data-view="library"]');
+      t.check('routing reveals the bottom bar and selects the Library destination',
+        await page.evaluate(() => scrollY === 0
+          && document.querySelector('.mobile-link[data-view="library"]').getAttribute('aria-current') === 'page'
+          && !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
+      await page.evaluate(() => document.querySelector('#navigation-scroll-fixture').remove());
       const openNavigation = async () => {
         await page.$eval('#btn-rail-toggle', (button) => button.focus());
         const expanded = await page.$eval('#btn-rail-toggle', (button) => button.getAttribute('aria-expanded'));
@@ -12458,7 +13206,7 @@ const SCENARIOS = [
         };
       });
       t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
-        opened.ariaLabel === 'Navigation'
+        opened.ariaLabel === 'More'
         && opened.controlsId === 'sidebar-panel'
         && opened.expanded === 'true'
         && opened.focused === 'btn-rail-toggle'
@@ -12682,7 +13430,8 @@ const SCENARIOS = [
             top: rect.top,
             bottom: rect.bottom,
             visible: rect.bottom > 0 && rect.top < innerHeight,
-            unobscured: rect.top >= sidebarBottom,
+            unobscured: rect.top >= sidebarBottom
+              && rect.bottom <= document.querySelector('.rail-header').getBoundingClientRect().top,
           };
         })(),
         animations: document.getAnimations().length,
@@ -12865,7 +13614,7 @@ const SCENARIOS = [
             const toggle = document.querySelector('#btn-rail-toggle');
             const panel = document.querySelector('#sidebar-panel');
             const shell = document.querySelector('#shell');
-            const isNarrowNow = toggle?.getAttribute('aria-label') === 'Navigation';
+            const isNarrowNow = toggle?.getAttribute('aria-label') === 'More';
             if (wantNarrow !== null && isNarrowNow !== wantNarrow) return false;
             if (wantRailed !== null && shell?.classList.contains('railed') !== wantRailed) return false;
             if (wantHidden !== null && panel?.hidden !== wantHidden) return false;
@@ -12965,6 +13714,59 @@ const SCENARIOS = [
           savedFalseBeforeReload,
           savedFalseReload,
         }));
+
+      const crossingState = async (view) => page.evaluate((destination) => {
+        const describe = (node) => {
+          if (!node) return null;
+          const rect = node.getBoundingClientRect();
+          const style = getComputedStyle(node);
+          return {
+            tag: node.tagName, id: node.id, class: node.className,
+            view: node.dataset.view ?? null, href: node.getAttribute('href'),
+            display: style.display, visibility: style.visibility,
+            rect: { top: rect.top, left: rect.left, width: rect.width, height: rect.height },
+            rendered: rect.width > 0 && rect.height > 0
+              && style.display !== 'none' && style.visibility === 'visible',
+          };
+        };
+        const active = document.activeElement;
+        const desktop = document.querySelector(`.ri[data-view="${destination}"]`);
+        return {
+          active: describe(active), desktop: describe(desktop), activeIsDesktop: active === desktop,
+          route: location.href, history: history.length,
+          storage: Object.fromEntries(Object.keys(localStorage).sort().map((key) => [key, localStorage.getItem(key)])),
+        };
+      }, view);
+      for (const view of ['library', 'browse', 'add']) {
+        await resizeTo(880, { narrow: true, panelHidden: true });
+        await page.$eval(`.mobile-link[data-view="${view}"]`, (link) => link.focus());
+        const before = await crossingState(view);
+        await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+        const after = await crossingState(view);
+        const href = `#/${view}`;
+        t.check(`desktop return rescues focused mobile ${view} to its rendered identical destination`,
+          before.active?.tag === 'A' && before.active.view === view && before.active.href === href
+          && before.active.rendered && after.activeIsDesktop && after.active?.rendered
+          && after.active.view === view && after.active.href === href
+          && after.desktop?.view === view && after.desktop.href === href,
+          JSON.stringify({ before, after }));
+        t.check(`mobile ${view} focus crossing does not navigate or persist`,
+          before.route === after.route && before.history === after.history
+          && JSON.stringify(before.storage) === JSON.stringify(after.storage),
+          JSON.stringify({ before, after }));
+      }
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await page.$eval('.mobile-link[data-view="library"]', (link) => link.focus());
+      await page.$eval('#btn-hero-read', (button) => button.focus());
+      const mainBefore = await crossingState('library');
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      const mainAfter = await crossingState('library');
+      t.check('desktop return does not steal Reading focus after leaving a mobile destination',
+        mainBefore.active?.id === 'btn-hero-read' && mainAfter.active?.id === 'btn-hero-read'
+        && mainAfter.active.rendered && mainBefore.route === mainAfter.route
+        && mainBefore.history === mainAfter.history
+        && JSON.stringify(mainBefore.storage) === JSON.stringify(mainAfter.storage),
+        JSON.stringify({ mainBefore, mainAfter }));
 
       await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
       await page.$eval('.ri[data-view="library"]', (button) => button.focus());
@@ -13212,7 +14014,9 @@ const SCENARIOS = [
       const actions = [
         ['up', 'Move up'],
         ['down', 'Move down'],
-        ['override', 'Change Unlimited status'],
+        ['override-available', 'Mark as available'],
+        ['override-unavailable', 'Mark as unavailable'],
+        ['override-clear', 'Clear availability override'],
         ['remove', 'Remove from list'],
       ];
       const metadata = [
@@ -13220,7 +14024,7 @@ const SCENARIOS = [
         { mu: '2999-01-01', badge: 'scheduled' },
         { mu: '2000-01-01', badge: 'expected' },
       ];
-      const nextActions = ['Mark as available', 'Mark as unavailable', 'Clear availability override', 'Mark as available'];
+      const choices = ['override-available', 'override-unavailable', 'override-clear'];
       const normalize = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
       // The observed round trip changed only these write stamps, not any saved user content.
       const userState = ({ writeToken: _token, exportedAt: _stamp, ...content }) => content;
@@ -13246,18 +14050,16 @@ const SCENARIOS = [
             && [...document.querySelectorAll('#rows .row .cb')].map((button) => Number(button.dataset.key)).join(',') === ids.join(','),
           { timeout: 15000 }, saved.lists.fixture.itemIds);
           const before = userState(await readState(page));
-          for (let step = 0; step < nextActions.length; step += 1) {
+          for (let step = 0; step <= choices.length; step += 1) {
             const scope = `${width}px ${badge} step ${step}`;
             const row = '#rows .row:first-of-type';
             const expectedBadge = step === 1 ? 'override-available' : step === 2 ? 'override-unavailable' : badge;
             await page.waitForSelector(`${row} .badge-${expectedBadge}`, { timeout: 15000 });
-            if (width === 320) {
-              await click(page, `${row} [data-act="more"]`);
-              t.check(`${scope}: the first-row menu is open`,
-                await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
-            }
+            await revealReadingControl(page, `${row} [data-act="up"]`);
+            t.check(`${scope}: the first-row disclosure is open`,
+              await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
             await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
-            for (const [act, phrase] of step === 0 ? actions : [actions[2]]) {
+            for (const [act, phrase] of step === 0 ? actions : actions.filter(([act]) => act.startsWith('override-'))) {
               const button = await page.$(`${row} [data-act="${act}"]`);
               await button.focus();
               await page.waitForFunction((text) => {
@@ -13286,22 +14088,17 @@ const SCENARIOS = [
                 && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
                 JSON.stringify({ name, ...rendered }));
               t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
-                rendered.labelVisible === (width === 320) && rendered.iconDecorative && !rendered.iconFocusable
+                rendered.labelVisible && rendered.iconDecorative && !rendered.iconFocusable
                 && !exposesGlyph(computed)
                 && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
                 JSON.stringify(rendered));
-              if (act === 'override') {
-                t.check(`${scope}: the name and tooltip describe the next override action`,
-                  name.endsWith(nextActions[step]) && rendered.tooltip.endsWith(nextActions[step]),
-                  `${name} / ${rendered.tooltip}`);
-              }
             }
-            if (step < nextActions.length - 1) await click(page, `${row} [data-act="override"]`);
+            if (step < choices.length) await click(page, `${row} [data-act="${choices[step]}"]`);
           }
           const after = userState(await readState(page));
-          t.check(`${width}px ${badge}: cycling back to the metadata state preserves the saved list and progress`,
+          t.check(`${width}px ${badge}: clearing explicit overrides restores metadata without changing list or progress`,
             JSON.stringify(after) === JSON.stringify(before), JSON.stringify({ before, after }));
-          if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
+          await revealReadingControl(page, `#rows [data-key="${second.issueId}"][data-act="up"]`);
           const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
           const otherName = (await page.accessibility.snapshot({ root: other, interestingOnly: false }))?.name ?? '';
           t.check(`${width}px ${badge}: repeated Move up controls distinguish issue identities`,
@@ -13312,6 +14109,416 @@ const SCENARIOS = [
     },
   },
 ];
+
+SCENARIOS.push({
+  id: 'reading-state-clarity',
+  title: 'saved comic actions and availability keep their exact meaning without interrupting reading',
+  async run(page, t) {
+    page.__denyExternal = true;
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page, { openRead: true });
+    const first = ORDER.items[0];
+    const second = ORDER.items[1];
+    await openFullOrder(page);
+    const row = (id, act) => `#rows [data-key="${id}"][data-act="${act}"]`;
+    const before = await readState(page);
+    const movedIds = [...before.lists.fixture.itemIds];
+    [movedIds[0], movedIds[1]] = [movedIds[1], movedIds[0]];
+    await revealReadingControl(page, row(second.issueId, 'up'));
+    await page.focus(row(second.issueId, 'up'));
+    await click(page, row(second.issueId, 'up'));
+    await page.waitForFunction((title) => document.querySelector('#announcer').textContent
+      === `Moved ${title} to position 1 of 3.`, {}, second.title);
+    const moved = await readState(page);
+    t.check('reorder speaks the same comic and its final saved full-list position with identity focus',
+      moved.lists.fixture.itemIds.join() === movedIds.join()
+      && await page.$eval(row(second.issueId, 'up'), (button) => button === document.activeElement)
+      && JSON.stringify(moved.read) === JSON.stringify(before.read));
+    await click(page, row(second.issueId, 'down'));
+    await page.waitForFunction((title) => document.querySelector('#announcer').textContent
+      === `Moved ${title} to position 2 of 3.`, {}, second.title);
+
+    const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
+    t.check('the unchanged availability filter predicate has a visibly hedged label',
+      filter === 'Expected or marked available', filter);
+    for (const [act, badge, text] of [
+      ['override-unavailable', 'override-unavailable', 'You marked unavailable'],
+      ['override-available', 'override-available', 'You marked available'],
+      ['override-clear', 'expected', 'Expected in Unlimited'],
+    ]) {
+      await click(page, row(first.issueId, act));
+      const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
+      const hero = await page.$eval('#hero-facts', (node) => node.textContent);
+      t.check(`${act} is explicit and both row and hero retain the same state`,
+        visible === text && hero.includes(text), `${visible} / ${hero}`);
+    }
+
+    await click(page, '#btn-hero-inspect');
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    t.check('availability is visible normal metadata with no troubleshooting disclosure',
+      await page.$eval('#issue-focus-facts', (node) => node.textContent.includes('Expected in Unlimited'))
+      && !await page.$eval('#reader-link-help', (node) => node.open));
+    t.check('metadata hydration does not claim the story summary has already been fetched',
+      await page.$eval('#issue-focus-desc', (node) => node.textContent === 'Story summary has not been loaded.'));
+    t.check('original-link help has no temporary lifetime until an editor is explicitly opened',
+      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    await click(page, '#reader-link-heading');
+    await click(page, '#reader-link-edit');
+    t.check('a current draft explains its temporary lifetime',
+      await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    await click(page, '#reader-link-cancel');
+    t.check('cancel withdraws the lifetime claim for the original link',
+      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+
+    const opened = await readState(page);
+    await page.focus('#btn-issue-mark-read');
+    await click(page, '#btn-issue-mark-read');
+    await page.waitForFunction(() => document.querySelector('#btn-issue-mark-read').textContent === 'Mark as unread');
+    const marked = await readState(page);
+    t.check('Issue read action changes only the actual comic shared marker and retains focus',
+      Object.hasOwn(marked.read, first.issueId)
+      && JSON.stringify(marked.lists) === JSON.stringify(opened.lists)
+      && JSON.stringify(marked.notes) === JSON.stringify(opened.notes)
+      && await page.$eval('#btn-issue-mark-read', (button) => button === document.activeElement)
+      && !await page.$eval('#list-feedback', (dialog) => dialog.open));
+    await click(page, '#btn-issue-note');
+    await page.waitForSelector('#ask[open] #ask-area');
+    await page.$eval('#ask-area', (input) => { input.value = 'Synthetic contextual issue note'; });
+    await click(page, '#ask-ok');
+    await page.waitForFunction((issueId) => !document.querySelector('#ask').open
+      && JSON.parse(localStorage.getItem('mrt.state.v2')).notes[issueId] === 'Synthetic contextual issue note'
+      && document.querySelector('#issue-focus-note').textContent === 'Synthetic contextual issue note', {}, first.issueId);
+    const noted = await readState(page);
+    t.check('Issue note uses the same saved comic and appears immediately without changing list or progress',
+      noted.notes[first.issueId] === 'Synthetic contextual issue note'
+      && JSON.stringify(noted.read) === JSON.stringify(marked.read)
+      && JSON.stringify(noted.lists) === JSON.stringify(marked.lists)
+      && await page.$eval('#issue-focus-note', (node) => node.textContent === 'Synthetic contextual issue note'));
+
+    await click(page, '#btn-issue-note');
+    await page.waitForSelector('#ask[open] #ask-area');
+    await page.$eval('#ask-area', (input) => { input.value = 'Must not be saved after navigation'; });
+    await page.evaluate(() => { location.hash = '#/read/fixture'; });
+    await page.waitForSelector('#view-read:not([hidden])');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    t.check('a note prompt revalidates its Issue context after navigation and never saves stale text',
+      (await readState(page)).notes[first.issueId] === 'Synthetic contextual issue note');
+
+    await click(page, '#btn-complete-list');
+    await page.waitForFunction(() => !document.querySelector('#btn-disliked-list').hidden
+      && !document.querySelector('#btn-disliked-list').disabled);
+    const beforeRating = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.focus('#btn-disliked-list');
+    await click(page, '#btn-disliked-list');
+    await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-disliked-list').disabled);
+    const ratingObservation = await page.evaluate((beforeRaw) => {
+      const button = document.querySelector('#btn-disliked-list');
+      const active = document.activeElement;
+      const modalOpen = document.querySelector('#list-feedback').open;
+      const afterRaw = localStorage.getItem('mrt.state.v2');
+      return {
+        modalOpen, active: { id: active?.id ?? null, tag: active?.tagName ?? null,
+          expectedNode: active === button },
+        button: { id: button.id, connected: button.isConnected, visible: button.checkVisibility(),
+          pressed: button.getAttribute('aria-pressed'), disabled: button.disabled },
+        beforeRaw, afterRaw,
+        predicates: { modalClosed: !modalOpen, focusRetained: active === button,
+          readerBytesUnchanged: afterRaw === beforeRaw },
+      };
+    }, beforeRating);
+    console.log(`READING-STATE-RATING ${JSON.stringify({ expected: {
+      modalClosed: true, activeId: 'btn-disliked-list', readerRaw: beforeRating },
+    actual: ratingObservation })}`);
+    t.check('negative enjoyment saves without a report modal, reader mutation or focus interruption',
+      ratingObservation.predicates.modalClosed
+      && ratingObservation.predicates.focusRetained
+      && ratingObservation.predicates.readerBytesUnchanged);
+    await click(page, '#btn-list-feedback-guide');
+    t.check('reporting still requires a separate explicit action and contains no saved-data prefill',
+      await page.$eval('#list-feedback', (dialog) => dialog.open)
+      && await page.$eval('#list-feedback-link', (link) => !link.href.includes('fixture') && !link.href.includes('900001')));
+    await click(page, '#list-feedback-close');
+    await page.setViewport({ width: 390, height: 900 });
+    await click(page, '#btn-reopen-list');
+    await page.waitForFunction(() => !document.querySelector('#btn-complete-list').hidden);
+    await openFullOrder(page);
+    await click(page, row(second.issueId, 'more'));
+    t.check('explicit availability choices remain visible and fit at phone width',
+      await page.$$eval(`#rows .row [data-key="${second.issueId}"].availability-choice`, (buttons) => (
+        buttons.length === 3 && buttons.every((button) => {
+          const bounds = button.getBoundingClientRect();
+          return button.checkVisibility() && bounds.left >= 0 && bounds.right <= innerWidth;
+        })
+      )));
+    t.check('the journey has no application exceptions', errors.length === 0, errors.join(' / '));
+  },
+});
+
+SCENARIOS.push({
+  id: 'ux04-validation',
+  title: 'field corrections remain associated, visible and focused without saving invalid input',
+  async run(page, t) {
+    await seedFixtureState(page);
+    await open(page, '/#/read/fixture');
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await click(page, '#btn-rename-list');
+    await page.$eval('#ask-input', (input) => { input.value = '   '; });
+    await click(page, '#ask-ok');
+    t.check('whitespace naming stays open with an associated focused correction', await page.evaluate(() => {
+      const input = document.querySelector('#ask-input');
+      const error = document.getElementById(input.getAttribute('aria-describedby'));
+      return document.querySelector('#ask').open && document.activeElement === input
+        && input.getAttribute('aria-invalid') === 'true' && !!error?.textContent.trim();
+    }));
+    if (await page.$eval('#ask', (dialog) => dialog.open)) {
+      await page.$eval('#ask-input', (input) => {
+        input.value = 'Corrected name';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      t.check('typing a correction clears the naming error', await page.$eval('#ask-input',
+        (input) => !input.hasAttribute('aria-invalid')));
+      await click(page, '#ask-cancel');
+    }
+    await open(page, '/#/add-manual');
+    const fieldError = async (selector) => page.$eval(selector, (input) => {
+      const ids = (input.getAttribute('aria-describedby') ?? '').split(/\s+/);
+      return input.getAttribute('aria-invalid') === 'true' && document.activeElement === input
+        && ids.some((id) => document.getElementById(id)?.textContent.trim())
+        && input.getClientRects().length > 0;
+    });
+    await page.$eval('#manual-title', (input) => { input.value = '   '; });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('manual whitespace title receives a focused associated error', await fieldError('#manual-title'));
+    await page.$eval('#manual-title', (input) => {
+      input.value = 'Unsaved validation fixture';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    t.check('manual title correction clears invalid state', await page.$eval('#manual-title',
+      (input) => !input.hasAttribute('aria-invalid')));
+    await page.$eval('#manual-url', (input) => { input.value = 'not a URL'; input.closest('details').open = false; });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('native invalid optional URL opens its disclosure and focuses an associated error',
+      await fieldError('#manual-url')
+        && await page.$eval('#manual-url', (input) => input.closest('details').open));
+    await page.$eval('#manual-url', (input) => {
+      input.value = 'https://example.test/not-marvel';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await click(page, '#form-manual button[type="submit"]');
+    t.check('custom invalid URL uses the same associated focus contract', await fieldError('#manual-url'));
+    t.check('invalid submissions and cancelled naming leave reading data byte-identical',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+    await open(page, '/#/data');
+    await page.$eval('#api-base', (input) => { input.value = 'https://'; });
+    await page.$eval('#form-settings', (form) => form.requestSubmit());
+    t.check('native metadata URL correction is associated and focused', await fieldError('#api-base'));
+    await page.$eval('#api-base', (input) => {
+      input.value = 'http://example.test';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.$eval('#form-settings', (form) => form.requestSubmit());
+    t.check('custom metadata URL correction is associated and focused', await fieldError('#api-base'));
+    await page.evaluateOnNewDocument(() => { window.__mrtComicSearch = true; });
+    await open(page, '/?ux04=builder#/add-search');
+    await page.$eval('#search-q', (input) => { input.value = 'Fixture'; });
+    await click(page, '#form-search button[type="submit"]');
+    await page.waitForSelector('#search-results input[data-comic-id]');
+    await click(page, '#search-results [data-act="select-all"]');
+    await click(page, '#search-selection-form details > summary');
+    await page.$eval('#search-list-name', (input) => {
+      input.value = '   ';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await click(page, '#search-selection-form button[type="submit"]');
+    t.check('builder naming errors identify and focus the invalid field', await fieldError('#search-list-name'));
+    await open(page, '/?ux04=builder#/add-series');
+    await page.$eval('#series-list-name', (input) => {
+      input.value = 'Corrected draft';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    t.check('builder correction clears invalid state without saving',
+      await page.evaluate(() => ['search', 'series', 'creator'].every((prefix) => {
+        const input = document.querySelector(`#${prefix}-list-name`);
+        return input.value === 'Corrected draft' && !input.hasAttribute('aria-invalid');
+      }))
+        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+  },
+}, {
+  id: 'ux04-context',
+  title: 'explicit interactions retain action words, result context and cancellation focus',
+  async run(page, t) {
+    await page.evaluateOnNewDocument(() => { window.__mrtComicSearch = true; window.__mrtWiki = 'ok'; });
+    await seedFixtureState(page);
+    await open(page, '/#/read/fixture');
+    await page.waitForSelector('#shelf .tile-read:not([hidden])');
+    const read = await page.$('#shelf .tile-read:not([hidden])');
+    const name = (await page.accessibility.snapshot({ root: read, interestingOnly: false }))?.name ?? '';
+    t.check('Coming up Read retains its visible action in the computed name', /^Read\b/.test(name), name);
+    await click(page, '#shelf a[data-issue-id]');
+    await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+    const tree = await page.accessibility.snapshot({ interestingOnly: false });
+    const regions = [];
+    const collect = (entry) => {
+      if (entry?.role === 'region') regions.push(entry.name);
+      entry?.children?.forEach(collect);
+    };
+    collect(tree);
+    t.check('Issue details has no repeated same-name nested landmark',
+      regions.filter((value) => value === ORDER.items[1].title || value === ORDER.items[0].title).length <= 1,
+      JSON.stringify(regions));
+    for (const [kind, query, target] of [
+      ['series', 'House of M', 'House of M (2015)'],
+      ['creator', 'Hickman', 'Jonathan Hickman'],
+    ]) {
+      await open(page, `/?long-add=1#/add-${kind}`);
+      await page.$eval(`#${kind}-q`, (input, value) => { input.value = value; }, query);
+      await click(page, `#form-${kind} button[type="submit"]`);
+      const browse = `#${kind}-results button[aria-label="Browse comics ${kind === 'creator' ? 'by' : 'in'} ${target}"]`;
+      await page.waitForSelector(browse);
+      await page.focus(browse);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector(`#${kind}-results input[data-comic-id]`);
+      t.check(`${kind} explicit Browse focuses the new result heading`, await page.evaluate((prefix) => (
+        document.activeElement === document.querySelector(`#${prefix}-results h2`)
+      ), kind));
+      await page.keyboard.press('Tab');
+      t.check(`${kind} result heading gives a logical next Tab to its filter`,
+        await page.evaluate(() => document.activeElement.id) === `${kind}-comic-filter`);
+    }
+    await open(page, '/#/add-manual');
+    const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.$eval('#manual-title', (input) => { input.value = 'Fixture Vol 7 26'; });
+    await click(page, '#btn-manual-lookup');
+    await page.waitForSelector('#manual-candidates .result .btn');
+    const use = await page.$('#manual-candidates .result .btn');
+    const useName = (await page.accessibility.snapshot({ root: use, interestingOnly: false }))?.name ?? '';
+    t.check('wiki choice name retains Use this and identifies its candidate',
+      useName.includes('Use this') && useName.includes('Fixture Vol 7 26'), useName);
+    await click(page, '#manual-candidates .result .btn');
+    t.check('wiki choice is clearly selected and still unsaved with focus on the filled title',
+      await page.evaluate(() => document.activeElement.id === 'manual-title'
+        && /Selected/.test(document.querySelector('#manual-candidates').textContent)
+        && /not saved/.test(document.querySelector('#manual-candidates').textContent)
+        && document.querySelector('#manual-title').value === 'Fixture Vol 7 26'));
+    t.check('wiki selection alone leaves reading data byte-identical',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved);
+    await open(page, '/#/add-import');
+    await page.evaluate(() => {
+      document.querySelector('#import-text').value = '- [ ] Unresolved fixture';
+      document.querySelector('#import-new-list').checked = false;
+      document.querySelector('#form-import').requestSubmit();
+    });
+    await page.waitForSelector('#import-report button[aria-label^="Find match"]');
+    const find = await page.$('#import-report button[aria-label^="Find match"]');
+    const findName = (await page.accessibility.snapshot({ root: find, interestingOnly: false }))?.name ?? '';
+    t.check('unresolved action retains Find match and identifies its source line',
+      findName.includes('Find match') && findName.includes('Unresolved fixture'), findName);
+    await click(page, '#import-report button[aria-label^="Find match"]');
+    await page.waitForFunction(() => [...document.querySelectorAll('#import-report button')]
+      .some((button) => button.textContent === 'This one'));
+    const choices = await page.$$('#import-report button[aria-label^="This one"]');
+    const names = await Promise.all(choices.map(async (button) => (
+      await page.accessibility.snapshot({ root: button, interestingOnly: false })
+    )?.name ?? ''));
+    t.check('unresolved choices retain This one and identify candidate and source',
+      names.length === 2 && names.every((value) => value.includes('This one')
+        && value.includes('Unresolved fixture'))
+        && names.some((value) => value.includes('Search Fixture (2026) #1')), JSON.stringify(names));
+    await open(page, '/#/home');
+    await page.waitForSelector('.home-path-title');
+    const richNames = [];
+    for (const selector of ['.home-path', 'button:has(.yours-name)']) {
+      for (const card of await page.$$(selector)) {
+        if (!await card.evaluate((node) => !node.closest('[hidden]') && node.getClientRects().length > 0)) continue;
+        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent);
+        const accessible = await page.accessibility.snapshot({ root: card, interestingOnly: false });
+        if (title) richNames.push({ title, name: accessible?.name ?? '' });
+      }
+    }
+    t.check('rich navigation card names retain prominent titles despite supplemental text ordering',
+      richNames.length >= 6 && richNames.every((card) => card.name.includes(card.title)),
+      JSON.stringify(richNames));
+    await open(page, '/#/data');
+    await page.focus('#btn-wipe');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#ask[open]');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('#btn-wipe').disabled);
+    t.check('Erase cancellation restores its enabled opener',
+      await page.evaluate(() => document.activeElement.id === 'btn-wipe'));
+    const historyBefore = await page.evaluate(() => localStorage.getItem('mrt.list-history.v1'));
+    await page.$eval('#restore-history-file', (input) => {
+      const file = new File([JSON.stringify({ format: 'recap-page-list-history', version: 1, records: [] })],
+        'synthetic-history.json', { type: 'application/json' });
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      input.focus();
+      input.files = transfer.files;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#restore-history-file').disabled);
+    t.check('history restore cancellation focuses its re-enabled file control without writing history',
+      await page.evaluate(() => document.activeElement.id === 'restore-history-file')
+        && await page.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === historyBefore);
+    await open(page, '/dev-faults.html');
+    const main = await page.$('main');
+    const mainTree = main ? await page.accessibility.snapshot({ root: main, interestingOnly: false }) : null;
+    t.check('diagnostic utility exposes exactly one main landmark without changing its controls',
+      mainTree?.role === 'main' && await page.$$eval('main', (nodes) => nodes.length === 1)
+        && await page.$$eval('main button', (nodes) => nodes.length === 10));
+  },
+}, {
+  id: 'ux04-preview',
+  title: 'Preview padding is not backdrop and a saved guide retains an explicit Open action',
+  async run(page, t) {
+    await open(page, '/#/catalog');
+    const preview = '#catalog-results [data-story="list:browser-check"] [data-act="preview"]';
+    await page.waitForSelector(preview);
+    const show = async () => {
+      await click(page, preview);
+      await page.waitForSelector('#preview[open]');
+    };
+    await show();
+    const bounds = await page.$eval('#preview', (dialog) => {
+      const r = dialog.getBoundingClientRect();
+      return { x: r.left + 3, y: r.top + 3, outsideX: Math.max(1, r.left - 10), outsideY: r.top + 10 };
+    });
+    await page.mouse.click(bounds.x, bounds.y);
+    t.check('clicking Preview interior padding never dismisses it', await page.$eval('#preview', (dialog) => dialog.open));
+    if (!await page.$eval('#preview', (dialog) => dialog.open)) await show();
+    await page.mouse.click(bounds.outsideX, bounds.outsideY);
+    t.check('a true backdrop click dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await page.keyboard.press('Escape');
+    t.check('Escape dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await click(page, '#preview-close');
+    t.check('Close dismisses Preview', await page.$eval('#preview', (dialog) => !dialog.open));
+    await show();
+    await click(page, '#preview-add button');
+    await page.waitForFunction(() => {
+      const link = document.querySelector('#preview-add a[data-act="main"]');
+      return link?.hasAttribute('href') && /Open/.test(link.textContent);
+    });
+    const savedButton = await page.$('#preview-add a[data-act="main"]');
+    const accessible = await page.accessibility.snapshot({ root: savedButton, interestingOnly: false });
+    t.check('a newly saved guide keeps Open visible and named, with separate Added feedback',
+      accessible?.name.startsWith('Open')
+        && await page.$eval('#preview-add', (host) => host.querySelector('a[data-act="main"]').textContent.includes('Open')
+          && [...host.children].some((node) => node.getAttribute('role') === 'status' && /Added|In library/.test(node.textContent))),
+      JSON.stringify(accessible));
+    await click(page, '#preview-add a[data-act="main"]');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('saved Preview Open remains actionable and enters its Reading List',
+      await page.$eval('#view-read', (view) => !view.hidden));
+  },
+});
 
 SCENARIOS.push({
   id: 'issue-443-row-actions',
@@ -13380,7 +14587,10 @@ SCENARIOS.push({
         const hit = document.elementFromPoint(x, y);
         return hit === control || control.contains(hit) || hit?.contains(control);
       });
+      const filterBounds = document.querySelector('#reading-filters').getBoundingClientRect();
       return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+        filterBottom: filterBounds.bottom,
+        scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop,
         visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
           && bounds.right <= innerWidth && bounds.bottom <= innerHeight };
     });
@@ -13422,15 +14632,12 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'defer', 'up', 'down', 'override', 'remove'];
-        const narrow = viewport.width <= 620;
+        const actions = ['open', 'info', 'defer', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'remove'];
         await page.mouse.move(0, 0);
-        if (narrow) {
-          await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
-          await page.keyboard.press('Enter');
-          t.check(`${size} row ${index}: Enter opens More actions`,
-            await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
-        }
+        await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
+        await page.keyboard.press('Enter');
+        t.check(`${size} row ${index}: Enter opens More actions`,
+          await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
         const panel = `${row} .ract`;
         await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
         const panelBounds = await page.$eval(panel, (el) => {
@@ -13463,7 +14670,7 @@ SCENARIOS.push({
           pointers.length === actions.length && pointers.every((p) => p.visible && p.hits && !p.clips.length),
           JSON.stringify(pointers));
         await page.mouse.move(0, 0);
-        await page.$eval(narrow ? toggle : `${row} .rnote`, (el) => el.focus());
+        await page.$eval(toggle, (el) => el.focus());
         const keyboard = [];
         for (const act of actions) {
           await page.keyboard.press('Tab');
@@ -13476,40 +14683,38 @@ SCENARIOS.push({
           keyboard.length === actions.length && keyboard.every((g) => g.focused && g.ring > 0
             && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
         const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
-        t.check(`${size} row ${index}: all seven actions receive trusted pointer and keyboard activation`,
+        t.check(`${size} row ${index}: all nine actions receive trusted pointer and keyboard activation`,
           activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
-        if (narrow) {
-          const hintVisible = await page.evaluate(() => {
-            const control = document.activeElement;
-            const tip = document.querySelector('#action-tip');
-            return control?.matches('.has-tooltip') && tip && !tip.hidden
-              && tip.textContent === control.dataset.tooltip;
-          });
-          if (hintVisible) {
-            await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
-            await page.keyboard.press('Escape');
-            t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
-              await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
-                && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
-          }
+        const hintVisible = await page.evaluate(() => {
+          const control = document.activeElement;
+          const tip = document.querySelector('#action-tip');
+          return control?.matches('.has-tooltip') && tip && !tip.hidden
+            && tip.textContent === control.dataset.tooltip;
+        });
+        if (hintVisible) {
+          await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
           await page.keyboard.press('Escape');
-          const returned = await controlGeometry(toggle);
-          t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
-            returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
-              && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
-            JSON.stringify(returned));
-          await page.keyboard.press('Enter');
-          await page.keyboard.down('Shift');
-          try {
-            await page.keyboard.press('Tab');
-          } finally {
-            await page.keyboard.up('Shift');
-          }
-          t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
-            await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
-              && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
+          t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
+            await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
+              && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
         }
+        await page.keyboard.press('Escape');
+        const returned = await controlGeometry(toggle);
+        t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
+          returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
+            && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
+          JSON.stringify(returned));
+        await page.keyboard.press('Enter');
+        await page.keyboard.down('Shift');
+        try {
+          await page.keyboard.press('Tab');
+        } finally {
+          await page.keyboard.up('Shift');
+        }
+        t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
+          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+            && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
       }
     }
     await page.setViewport({ width: 320, height: 900 });
@@ -13599,6 +14804,150 @@ MUTATIONS.push(
   },
 );
 
+SCENARIOS.push({
+  id: 'semantic-destinations',
+  title: 'destinations expose native links, resolved titles and actual manual membership',
+  async run(page, t) {
+    let state = createList(createEmptyState(), { id: 'manual/a', name: 'Same name', catalogId: 'browser-check' });
+    state = createList(state, { id: 'manual-b', name: 'Same name' });
+    const manual = { issueId: -9001, title: 'Hand entered comic', source: 'manual' };
+    state = addIssuesToList(state, 'manual/a', [manual]).state;
+    state = addIssuesToList(state, 'manual-b', [manual]).state;
+    await page.evaluateOnNewDocument((saved) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, state);
+    await open(page, '/#/library-manual');
+    const manualRow = await page.evaluate(() => {
+      const root = document.querySelector('#view-library-manual .results');
+      return {
+        details: root.querySelector('a.result-focus')?.getAttribute('href') ?? null,
+        lists: [...root.querySelectorAll('.library-list-links a')].map((link) => link.getAttribute('href')),
+        title: document.title,
+      };
+    });
+    t.check('manual comic details are a real saved-identity destination',
+      manualRow.details === '#/issue/-9001', JSON.stringify(manualRow));
+    t.check('duplicate list names expose each actual saved ID in saved order',
+      JSON.stringify(manualRow.lists) === JSON.stringify(['#/read/manual%2Fa', '#/read/manual-b']),
+      JSON.stringify(manualRow));
+    t.check('manual collection title identifies its view and app',
+      manualRow.title === 'Added by hand | Recap Page', manualRow.title);
+    await click(page, '.brand[data-view="home"]');
+    await page.waitForSelector('#home-primary-paths .home-path');
+    const links = await page.evaluate(() => {
+      const selectors = ['.brand[data-view="home"]', '.ri[data-view="library"]',
+        '.ri[data-view="browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
+        '.ri[data-view="about"]', '#home-primary-paths .home-path', '#home-yours-list li > *',
+        '#btn-chero-open', '#view-add [data-view="add-search"]', 'footer [data-view="about"]'];
+      return selectors.map((selector) => {
+        const node = document.querySelector(selector);
+        return { selector, tag: node?.tagName, href: node?.getAttribute('href'),
+          sameOrigin: node?.href ? new URL(node.href).origin === location.origin : false };
+      });
+    });
+    t.check('every equivalent destination is a same-origin hash link',
+      links.every((node) => node.tag === 'A' && node.href?.startsWith('#/') && node.sameOrigin),
+      JSON.stringify(links));
+    const modifiers = await page.evaluate(() => ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
+      const link = document.querySelector('.ri[data-view="library"]');
+      const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
+      link.addEventListener('click', (seen) => { window.__nativeLinkDefault = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+      link.dispatchEvent(event);
+      return window.__nativeLinkDefault;
+    }));
+    t.check('modifier activation retains the browser default instead of same-tab interception',
+      modifiers.every(Boolean), JSON.stringify(modifiers));
+    const middle = await page.evaluate(() => {
+      const event = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+      const link = document.querySelector('.ri[data-view="library"]');
+      link.addEventListener('auxclick', (seen) => { window.__middleDefault = !seen.defaultPrevented; seen.preventDefault(); }, { once: true });
+      link.dispatchEvent(event);
+      return window.__middleDefault;
+    });
+    t.check('middle activation retains native link behavior', middle);
+    await page.focus('.ri[data-view="library"]');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-library:not([hidden])');
+    t.check('Enter navigates and focuses the Library heading',
+      await page.evaluate(() => document.activeElement?.id === 'library-h'
+        && document.title === 'Library | Recap Page'));
+    await click(page, '#view-library [data-view="library-manual"]');
+    const details = await page.$('#view-library-manual a.result-focus');
+    if (details) {
+      await details.dispose();
+      await click(page, '#view-library-manual a.result-focus');
+      await page.waitForSelector('#issue-focus-card:not([hidden])');
+      t.check('saved manual Issue has its resolved title without invented provider metadata',
+        await page.evaluate(() => document.title === 'Hand entered comic | Recap Page'
+          && document.querySelector('#issue-focus-h').textContent === 'Hand entered comic'));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.dataset.focusSource === 'added-by-hand');
+      t.check('Back restores the manual row opener', true);
+    }
+    await click(page, '.ri[data-view="browse"]');
+    await click(page, '#view-browse [data-category="timeline"]');
+    await page.waitForSelector('#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+    await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+    await page.waitForSelector('#preview[open]');
+    const preview = await page.$eval('#preview-add [data-act="main"]', (node) => ({
+      tag: node.tagName, href: node.getAttribute('href'),
+    }));
+    t.check('saved Preview Open exposes the actual saved identity as a native destination',
+      preview.tag === 'A' && preview.href === '#/read/manual%2Fa', JSON.stringify(preview));
+    if (preview.tag === 'A') {
+      const nativePreview = await page.evaluate(() => {
+        const event = new MouseEvent('click', { button: 0, ctrlKey: true, bubbles: true, cancelable: true });
+        const link = document.querySelector('#preview-add [data-act="main"]');
+        link.addEventListener('click', (seen) => {
+          window.__previewNative = !seen.defaultPrevented && document.querySelector('#preview').open;
+          seen.preventDefault();
+        }, { once: true });
+        link.dispatchEvent(event);
+        return window.__previewNative;
+      });
+      t.check('modified Preview Open preserves its session and the native default', nativePreview);
+    }
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('ordinary Preview Open still closes its modal and selects the exact saved list',
+      await page.evaluate(() => !document.querySelector('#preview').open
+        && location.hash.includes('manual%2Fa')));
+    const settings = await page.$eval('#save-education-settings', (node) => ({
+      tag: node.tagName, href: node.getAttribute('href'),
+    }));
+    t.check('reading save education exposes settings as a native destination',
+      settings.tag === 'A' && settings.href === '#/data', JSON.stringify(settings));
+    if (settings.tag === 'A') {
+      const nativeSettings = await page.evaluate(() => {
+        const before = location.hash;
+        const event = new MouseEvent('click', { button: 0, metaKey: true, bubbles: true, cancelable: true });
+        const link = document.querySelector('#save-education-settings');
+        link.addEventListener('click', (seen) => {
+          window.__settingsNative = !seen.defaultPrevented && location.hash === before;
+          seen.preventDefault();
+        }, { once: true });
+        link.dispatchEvent(event);
+        return window.__settingsNative;
+      });
+      t.check('modified settings activation leaves reading and browser defaults unchanged', nativeSettings);
+    }
+    await click(page, '#save-education-settings');
+    await page.waitForSelector('#view-data:not([hidden])');
+    t.check('ordinary settings activation retains view heading focus',
+      await page.evaluate(() => document.activeElement?.id === 'data-h'));
+  },
+});
+
+MUTATIONS.push({
+  id: 'semantic-destinations-intercept-modifiers',
+  breaks: 'semantic-destinations',
+  why: 'destination routing prevents the browser default for native modifier activation',
+  rewriteMain: (source) => source.replace(
+    /btn\.addEventListener\('click', \(event\) => \{\r?\n {6}if \(!isPlainNavigation\(event\)\) return;/,
+    "btn.addEventListener('click', (event) => {",
+  ),
+});
+
 // ------------------------------------------------------------------ page helpers
 
 MUTATIONS.push(
@@ -13641,8 +14990,8 @@ SCENARIOS.push({
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await open(page, '/');
     await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 12);
-    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].map((icon) => {
-      const button = icon.closest('button');
+    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) => !icon.closest('.mobile-link')).map((icon) => {
+      const button = icon.closest('button, a[href]');
       return {
         tag: icon.tagName,
         gateway: icon.classList.contains('home-path-icon') || icon.classList.contains('home-path-arrow'),
@@ -13665,7 +15014,7 @@ SCENARIOS.push({
       inventory.length === 49 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
-        .flatMap((root) => [...root.querySelectorAll('button.home-path')])
+        .flatMap((root) => [...root.querySelectorAll('a.home-path')])
         .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
@@ -13687,7 +15036,7 @@ SCENARIOS.push({
       const geometry = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) =>
         icon.getBoundingClientRect().width > 0).map((icon) => {
         const box = icon.getBoundingClientRect();
-        const target = icon.closest('button').getBoundingClientRect();
+        const target = icon.closest('button, a[href]').getBoundingClientRect();
         const paint = getComputedStyle(icon);
         return {
           symbol: icon.querySelector('use').getAttribute('href'),
@@ -13739,7 +15088,7 @@ SCENARIOS.push({
       const forced = await page.$eval(iconSelector, (el) => ({
         active: matchMedia('(forced-colors: active)').matches,
         stroke: getComputedStyle(el).stroke, color: getComputedStyle(el).color,
-        background: getComputedStyle(el.closest('button')).backgroundColor,
+        background: getComputedStyle(el.closest('button, a[href]')).backgroundColor,
         width: parseFloat(getComputedStyle(el).strokeWidth),
       }));
       t.check(`forced colours ${state}: search stroke follows a perceivable system colour`,
@@ -13792,7 +15141,7 @@ SCENARIOS.push({
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
           fits: visible.every((el) => {
             const icon = el.getBoundingClientRect();
-            const button = el.closest('button').getBoundingClientRect();
+            const button = el.closest('button, a[href]').getBoundingClientRect();
             return icon.left >= button.left && icon.right <= button.right
               && icon.top >= button.top && icon.bottom <= button.bottom;
           }),
@@ -13868,7 +15217,7 @@ SCENARIOS.push({
       new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
     ));
     const initial = fixtureReadingState();
-    initial.schemaVersion = 3;
+    initial.schemaVersion = SCHEMA_VERSION;
     initial.issues[20750] = { ...payload.items[0], source: 'curated' };
     initial.lists.fixture.itemIds.push(20750);
     initial.lists.fixture.collectedIn[20750] = 'Existing saved section';
@@ -13970,7 +15319,7 @@ SCENARIOS.push({
         )));
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => (
-        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library')
+        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open')
       ));
       const imported = await readState(page);
       const matches = Object.values(imported.lists).filter((list) => list.catalogId === id);
@@ -14035,7 +15384,7 @@ SCENARIOS.push({
       await click(page, homeSelector);
       await page.waitForSelector(cardSelector);
       t.check(`${width}px: returning to MCU Prep preserves saved bytes and exposes Open, not Add`,
-        await page.$eval(`${cardSelector} button`, (button) => button.dataset.act === 'open')
+        await page.$eval(`${cardSelector} a[data-act="open"]`, (link) => link.dataset.act === 'open')
         && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, savedState));
     }
     t.check('the owner-selection journey makes no external requests and has no browser errors',
@@ -14051,8 +15400,25 @@ async function open(page, path) {
 // page.click is unreliable here: an element the app has just rendered is frequently reported as
 // not clickable while it is perfectly present and wired. Dispatching the click from inside the
 // page is what the app's own handlers see anyway.
-async function click(page, selector) {
+async function revealReadingControl(page, selector) {
   await page.waitForSelector(selector, { timeout: 15000 });
+  await page.evaluate((s) => {
+    const target = document.querySelector(s);
+    if (target.closest('.list-actions-body')) {
+      const list = document.querySelector('#list-actions');
+      if (!list.open) list.querySelector('summary').click();
+      const exports = target.closest('#list-export');
+      if (exports && !exports.open && !exports.querySelector('summary').contains(target)) {
+        exports.querySelector('summary').click();
+      }
+    }
+    const row = target.closest('.ract')?.closest('.row-actions');
+    if (row && !row.classList.contains('is-open')) row.querySelector('.row-actions-toggle').click();
+  }, selector);
+}
+
+async function click(page, selector) {
+  await revealReadingControl(page, selector);
   await page.evaluate((s) => document.querySelector(s).click(), selector);
 }
 
@@ -14202,25 +15568,30 @@ async function manualReport(page) {
 
 // The stub is installed with evaluateOnNewDocument rather than after load, because the catalog is
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
-async function preparePage(page, origin, mutation) {
+async function preparePage(page, origin, mutation, scenarioId = null) {
   page.__origin = origin;
   page.__mutation = mutation;
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();
   for (const [path, rewrite] of [
+    ['/open.js', mutation?.rewriteOpen],
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/add.js', mutation?.rewriteAdd],
+    ['/js/views/data.js', mutation?.rewriteData],
+    ['/js/views/completion.js', mutation?.rewriteCompletion],
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
     ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
     ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
+    ['/js/views/shared/collection-navigation.js', mutation?.rewriteCollectionNavigation],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
+    ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
@@ -14232,6 +15603,33 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setRequestInterception(true);
   page.on('request', async (request) => {
+    if (scenarioId === 'reader-launcher-feedback') {
+      const visit = page.__ux11Visit;
+      if (visit && request.url() === `${origin}/open.js` && visit.tap) {
+        let source = rewrites.get(request.url()) ?? readFileSync(new URL('../src/open.js', import.meta.url), 'utf8');
+        source = ux11Splice(source, 'location.replace(url);',
+          'window.__ux11Tap(url); location.replace(url);', 'observation-tap');
+        await request.respond({ status: 200, contentType: 'application/javascript',
+          headers: { 'cache-control': 'no-store' }, body: source });
+        return;
+      }
+      if (new URL(request.url()).origin !== origin) {
+        const observedUrl = request.url();
+        const resource = new URL(observedUrl);
+        resource.hash = '';
+        const record = { url: observedUrl, derivedHttpIdentity: resource.href,
+          httpIdentityEvidence: 'DERIVED HTTP IDENTITY; not a second observed wire URL',
+          navigation: request.isNavigationRequest(),
+          mainFrame: request.frame() === page.mainFrame(), ordinal: (visit?.requests.length ?? 0) + 1,
+          nonce: visit?.nonce ?? null, time: Date.now() };
+        const expected = visit && record.navigation && record.mainFrame
+          && record.url === visit.intended && record.derivedHttpIdentity === visit.network && record.ordinal === 1;
+        if (visit) visit.requests.push({ ...record, accepted: Boolean(expected) });
+        if (expected) await request.respond({ status: 204, headers: { 'cache-control': 'no-store' } });
+        else await request.abort();
+        return;
+      }
+    }
     const rewritten = rewrites.get(request.url());
     if (rewritten) {
       await request.respond({
@@ -14391,6 +15789,17 @@ async function preparePage(page, origin, mutation) {
           return Promise.resolve(json(selectedOrder));
         }
         if (url.endsWith('data/creators-index.json')) {
+          if (window.__mrtComicSearchFlow) {
+            return Promise.resolve(json({
+              total: 4,
+              items: [
+                { id: 367, name: 'Ed Brubaker', issueCount: 239 },
+                { id: 11743, name: 'Count Fixture Zero', issueCount: 0 },
+                { id: 14264, name: 'Count Fixture One', issueCount: 1 },
+                { id: 14265, name: 'Count Fixture Unknown', issueCount: null },
+              ],
+            }));
+          }
           if (comicSearch || longAdd) {
             return Promise.resolve(json({
               generatedAt: '2026-01-01T00:00:00.000Z',
@@ -14483,6 +15892,12 @@ async function preparePage(page, origin, mutation) {
           }));
         }
         if (comicSearch && requestUrl.pathname.endsWith('/search/issues')) {
+          if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 none') {
+            return Promise.resolve(json({ items: [] }));
+          }
+          if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 fail') {
+            return Promise.resolve(json({ error: 'Fixture refused query' }, 400));
+          }
           const held = order.items[0];
           return Promise.resolve(json({
             items: [searchComic, {
@@ -14751,6 +16166,1376 @@ async function preparePage(page, origin, mutation) {
 
 // ------------------------------------------------------------------ running
 
+SCENARIOS.push(
+  {
+    id: 'storylines-discovery-actual-data',
+    title: 'one curated Storylines pool includes real event variants without moving canonical identity',
+    async run(page, t) {
+      try {
+        const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
+        await open(page, '/?catalog=actual#/lines');
+        await page.waitForFunction(() => document.querySelector('#lines-results .catalog-card'));
+        const initial = await page.evaluate(() => [...document.querySelectorAll(
+          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        )].map((node) => node.dataset.key));
+        const civilWar = ['civil-war-essential', 'civil-war', 'civil-war-avengers'];
+        t.check('normal Storylines browsing includes all three original Civil War readings',
+          civilWar.every((id) => initial.includes(id)), JSON.stringify(initial));
+        t.check('the secondary pool includes the current readings without duplicates or scaffold chapters',
+          initial.length === currentReadingCensus.storylines && new Set(initial).size === currentReadingCensus.storylines
+            && initial.includes('marvel-knights-to-planet-x-02')
+            && initial.includes('marvel-knights-to-planet-x-78')
+            && !initial.includes('marvel-knights-to-planet-x-01'), JSON.stringify(initial));
+        await page.evaluate(() => {
+          const query = document.querySelector('#lines-q');
+          query.value = 'Civil War';
+          query.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        await page.waitForFunction(() => !document.querySelector('#lines-results')?.textContent.includes('Loading the catalog'));
+        const searched = await page.evaluate(() => [...document.querySelectorAll(
+          '#lines-results [data-act="import"], #lines-results [data-act="open"]',
+        )].map((node) => node.dataset.key));
+        t.check('scoped Storylines search retains every genuine Civil War variant',
+          civilWar.every((id) => searched.includes(id)) && new Set(searched).size === searched.length,
+          JSON.stringify(searched));
+        if (!civilWar.every((id) => searched.includes(id))) return;
+        const actual = ACTUAL_CATALOG.lists.find((list) => list.id === 'civil-war-essential');
+        await click(page, '#lines-results [data-story="list:civil-war-essential"] [data-act="preview"]');
+        await page.waitForFunction(() => document.querySelector('#preview')?.open === true);
+        await click(page, '#preview-add [data-act="main"]');
+        await page.waitForFunction(() => {
+          const raw = localStorage.getItem('mrt.state.v2');
+          if (raw === null) return false;
+          return Object.values(JSON.parse(raw).lists)
+            .some((list) => list.catalogId === 'civil-war-essential');
+        });
+        const savedId = await page.evaluate(() => {
+          const dialog = document.querySelector('#preview');
+          const observation = { dialog, delivered: false };
+          observation.listener = () => { observation.delivered = true; };
+          dialog.addEventListener('close', observation.listener, { once: true });
+          window.__ux08Close = observation;
+          return Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+            .find((list) => list.catalogId === 'civil-war-essential').id;
+        });
+        const href = formatRoute({ view: 'read', listId: savedId });
+        try {
+          await click(page, '#preview-close');
+          await page.waitForFunction((expected) => window.__ux08Close?.delivered
+            && !document.querySelector('#preview')?.open
+            && document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') === expected,
+          {}, href);
+        } finally {
+          await page.evaluate(() => {
+            const observation = window.__ux08Close;
+            observation?.dialog.removeEventListener('close', observation.listener);
+            delete window.__ux08Close;
+          });
+        }
+        const identity = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const saved = state.lists[id];
+          return { catalogId: saved.catalogId, count: saved.itemIds.length,
+            href: document.querySelector('#lines-results a[data-key="civil-war-essential"]')?.getAttribute('href') };
+        }, savedId);
+        t.check('Preview save preserves the original catalog ID/count and the actual saved native destination',
+          identity.catalogId === actual.id && identity.count === actual.count && identity.href === href,
+          JSON.stringify(identity));
+        await click(page, '#lines-results a[data-key="civil-war-essential"]');
+        await page.waitForFunction((expected) => location.hash === expected, {}, href);
+        t.check('saved Open names the actual reading subject',
+          (await page.title()).includes(actual.name), await page.title());
+        await page.goBack();
+        await page.waitForFunction(() => location.hash.startsWith('#/lines'));
+        t.check('Back returns to the independent Storylines document',
+          await page.$eval('#view-lines', (node) => !node.hidden));
+        const beforeTimeline = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return { itemIds: state.lists[id].itemIds, read: state.read,
+            listOrder: state.listOrder, catalogId: state.lists[id].catalogId };
+        }, savedId);
+        await click(page, '.ri[data-view="browse"]');
+        await page.waitForSelector('#view-browse:not([hidden])');
+        await click(page, '#view-browse [data-category="timeline"]');
+        await page.waitForSelector('#catalog-results .catalog-card');
+        const reused = await page.evaluate((id) => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const anchor = document.querySelector('#catalog-results a[data-key="civil-war-essential"]');
+          return { href: anchor?.getAttribute('href') ?? null, savedId: state.lists[id]?.id,
+            itemIds: state.lists[id]?.itemIds, read: state.read, listOrder: state.listOrder,
+            catalogId: state.lists[id]?.catalogId,
+            copies: Object.values(state.lists).filter((list) => list.catalogId === 'civil-war-essential').length };
+        }, savedId);
+        t.check('canonical Timeline reuses the exact saved native destination without reimport or progress changes',
+          reused.href === href && reused.savedId === savedId && reused.copies === 1
+            && reused.catalogId === beforeTimeline.catalogId
+            && JSON.stringify(reused.itemIds) === JSON.stringify(beforeTimeline.itemIds)
+            && JSON.stringify(reused.read) === JSON.stringify(beforeTimeline.read)
+            && JSON.stringify(reused.listOrder) === JSON.stringify(beforeTimeline.listOrder),
+          JSON.stringify(reused));
+      } catch (error) {
+        console.error('storylines-discovery-actual-data original failure:', error.message, error.stack);
+        throw error;
+      }
+    },
+  },
+  {
+    id: 'discovery-priorities',
+    title: 'useful discovery leads first-run, scoped results and recoverable catalog failures',
+    async run(page, t) {
+      await open(page, '/');
+      await page.waitForSelector('#home-first-run:not([hidden])');
+      const first = await page.evaluate(() => {
+        const browse = document.querySelector('#btn-home-browse');
+        const add = document.querySelector('#btn-home-add');
+        return { href: browse?.getAttribute('href'), primary: browse?.classList.contains('btn-g') === false,
+          secondary: add?.classList.contains('btn-g') === true };
+      });
+      t.check('first-run Browse is primary and reaches actual Modern Timeline, with Add secondary',
+        first.href === '#/catalog' && first.primary && first.secondary, JSON.stringify(first));
+      await seedFixtureState(page);
+      await open(page, '/?catalog=browser-check#/progress');
+      await page.waitForFunction(() => document.querySelector('#series-progress')?.textContent.trim());
+      const subject = await page.evaluate(() => document.querySelector('#progress-subject')?.textContent.trim() ?? null);
+      t.check('Progress names the active saved list without opening methodology',
+        subject === `Reading List: ${ORDER.name}`, JSON.stringify(subject));
+      await open(page, '/?catalog=browser-check#/library');
+      await page.waitForFunction(() => !document.querySelector('#view-library')?.hidden);
+      const library = await page.evaluate(() => ({
+        order: [...document.querySelector('#view-library').children].map((node) => node.id),
+        historyHidden: document.querySelector('#library-completed')?.hidden,
+      }));
+      t.check('active Library precedes history and empty history is not a leading gateway',
+        library.order.indexOf('library-yours') < library.order.indexOf('library-completed')
+          && library.historyHidden === true, JSON.stringify(library));
+      await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+          format: 'recap-page-list-history', version: 1,
+          records: state.listOrder.map((id) => ({ listId: id, created: state.lists[id].created,
+            catalogId: state.lists[id].catalogId, completedAt: 123456, rating: null })),
+        }));
+      });
+      await page.reload({ waitUntil: 'load' });
+      const complete = await page.evaluate(() => {
+        const browse = document.querySelector('#library-completed-browse');
+        return { present: Boolean(browse), hidden: browse?.hidden, href: browse?.getAttribute('href') };
+      });
+      t.check('known all-completed Library offers a useful native Modern Timeline destination',
+        complete.present && !complete.hidden && complete.href === '#/catalog', JSON.stringify(complete));
+      await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+      await page.reload({ waitUntil: 'load' });
+      const unknown = await page.evaluate(() => ({
+        hidden: document.querySelector('#library-completed-browse')?.hidden,
+        copy: document.querySelector('#library-completed')?.textContent,
+      }));
+      t.check('unknown history keeps its incident guidance without claiming all-completed',
+        unknown.hidden === true && unknown.copy?.includes('unavailable'), JSON.stringify(unknown));
+      await page.evaluate(() => localStorage.removeItem('mrt.list-history.v1'));
+      await open(page, '/?catalog=actual#/age-golden');
+      await page.waitForFunction(() => document.querySelector('#age-golden-results .publishing-empty'));
+      const golden = await page.evaluate(() => ({
+        scope: document.querySelector('#view-age-golden .publishing-scope')?.textContent,
+        alternate: document.querySelector('#age-golden-results a')?.getAttribute('href'),
+      }));
+      t.check('empty Golden Age names beginning-in scope and offers populated alternative periods',
+        golden.scope?.includes('begin in this period') && golden.alternate === '#/marvel-ages',
+        JSON.stringify(golden));
+      await open(page, '/?catalog=actual#/marvel-on-screen');
+      await page.waitForFunction(() => document.querySelector('#marvel-on-screen-results .catalog-card'));
+      const highlights = await page.evaluate(() => [...document.querySelectorAll(
+        '#view-marvel-on-screen .publishing-highlights li',
+      )].map((node) => ({ tag: node.tagName, radius: getComputedStyle(node).borderRadius,
+        controls: node.querySelectorAll('button, input, a').length })));
+      t.check('MCU highlights look informational rather than like actionable facet pills',
+        highlights.length > 0 && highlights.every((entry) => entry.tag === 'LI'
+          && entry.radius === '0px' && entry.controls === 0), JSON.stringify(highlights));
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
+      await page.evaluate(() => {
+        const query = document.querySelector('#catalog-q');
+        query.value = 'no-ux08-guide-matches';
+        query.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelector('#catalog-results')?.textContent.includes('No Reading Lists'));
+      const narrow = await page.evaluate(() => ({
+        setupAbsent: !document.querySelector('#modern-timeline-feature')
+          || document.querySelector('#modern-timeline-feature').hidden,
+        cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+      }));
+      t.check('no-results leads ahead of unrelated earlier-story Setup',
+        narrow.setupAbsent && narrow.cards === 0, JSON.stringify(narrow));
+      for (const health of ['ready', 'down']) {
+        await open(page, `/?local-health=${health}&local-catalog=down#/catalog`);
+        await page.waitForFunction(() => document.querySelector('#catalog-report .notice'));
+        const recovery = await page.evaluate(() => ({
+          actions: [...document.querySelectorAll('#catalog-report .notice button')]
+            .map((node) => node.textContent.trim()),
+          failure: document.querySelector('#catalog-report .notice')?.textContent.trim(),
+          before: window.__mrtCatalogRequests ?? 0,
+        }));
+        const available = recovery.actions.includes('Retry catalog');
+        t.check(`${health} local connection leaves an explicitly actionable catalog Retry`,
+          available, JSON.stringify(recovery));
+        if (!available) continue;
+        await page.evaluate(() => {
+          window.__mrtLocalModes.health = 'ready';
+          window.__mrtLocalModes.catalog = 'ready';
+          [...document.querySelectorAll('#catalog-report .notice button')]
+            .find((node) => node.textContent.trim() === 'Retry catalog').click();
+        });
+        await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
+        t.check(`${health} Retry actually reloads catalog data and withdraws the failure`,
+          await page.evaluate((before) => window.__mrtCatalogRequests > before
+            && !document.querySelector('#catalog-report .notice'), recovery.before));
+      }
+    },
+  },
+);
+
+// Historical captured package text, not a claim about the currently installed build.
+// Retained HTML: 81811 bytes, SHA256 fb0d104f4f44a85d8fb4ac25b4c9b09766c14fb78ddb01684a86ed455ec77774.
+const RESPONSIVE_BUILD = 'windows-msix 3.2.0.0; candidate; source 8ae81a17805e2e67772bea932ee721e817b68157.';
+const RESPONSIVE_TITLE = ACTUAL_CATALOG.lists.find((list) => list.id === 'avengers-defenders-war'
+  && list.file === 'avengers_defenders_war.json');
+
+function responsiveOwner(scenario) {
+  const run = scenario.run;
+  return { ...scenario, async run(page, t) {
+    try {
+      await run(page, t);
+    } catch (error) {
+      console.error(`UX09-ORIGINAL-ERROR ${JSON.stringify({
+        owner: scenario.id, step: page.__ux09Step, name: error.name,
+        message: error.message, stack: error.stack,
+      })}`);
+      throw error;
+    }
+  } };
+}
+
+function responsiveStep(page, step) {
+  page.__ux09Step = step;
+  console.log(`UX09-STEP ${JSON.stringify({ owner: page.__ux09Owner, step })}`);
+}
+
+async function responsiveReceipt(page, t, id, name, measurements, ok) {
+  const mode = await page.evaluate(() => ({
+    viewport: [innerWidth, innerHeight],
+    theme: document.documentElement.dataset.theme ?? 'system',
+  }));
+  console.log(`UX09-MEASURE ${JSON.stringify({
+    owner: id.startsWith('RF') ? 'responsive-reflow' : 'responsive-controls',
+    id, role: t.responsiveRole, fixtureQualified: true,
+    expected: measurements.expected,
+    actual: measurements, subpredicates: measurements.subpredicates ?? { measuredPredicate: Boolean(ok) },
+    ...mode, ok: Boolean(ok),
+  })}`);
+  t.check(`${id} ${name}`, ok, JSON.stringify(measurements));
+}
+
+async function responsiveFrames(page) {
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+    () => requestAnimationFrame(resolve),
+  )));
+}
+
+async function responsiveReading(page, { checked = false } = {}) {
+  await page.evaluateOnNewDocument(() => {
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+    const original = window.fetch;
+    window.fetch = (input, init) => {
+      const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+      if (url.origin === location.origin) return original(input, init);
+      if (url.pathname.endsWith('/health')) {
+        return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 }), { status: 200 }));
+      }
+      const issue = /\/issues\/(90000[123])$/.exec(url.pathname);
+      if (!issue) return Promise.reject(new TypeError('Unexpected responsive fixture request'));
+      if (window.__ux09HoldDetails) {
+        return new Promise((resolve, reject) => {
+          const abort = () => {
+            window.__ux09Aborts = (window.__ux09Aborts ?? 0) + 1;
+            reject(new DOMException('Aborted', 'AbortError'));
+          };
+          if (init?.signal?.aborted) abort();
+          else init?.signal?.addEventListener('abort', abort, { once: true });
+        });
+      }
+      return Promise.resolve(new Response(JSON.stringify({
+        id: Number(issue[1]), description: `Synthetic plot 447 for ${issue[1]}.`,
+      }), { status: 200, headers: { 'content-type': 'application/json' } }));
+    };
+  });
+  responsiveStep(page, 'setup-import');
+  await importOrder(page);
+  if (checked) {
+    const seed = await readState(page);
+    seed.issues[900003] = normalizeIssue({
+      ...seed.issues[900003], source: 'markdown', seriesId: null, digitalId: null,
+      hydrated: undefined, detailsRefused: false,
+    });
+    if (JSON.stringify(pendingIssueIds(seed)) !== '[900003]') throw new Error('Normalized pending fixture is not exactly 900003');
+    await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+    responsiveStep(page, 'setup-pending-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    await openFullOrder(page);
+    const loaded = await readState(page);
+    const trigger = await page.$eval('#btn-hydrate', (node) => ({
+      hidden: node.hidden, disabled: node.disabled, text: node.textContent,
+    }));
+    const qualified = JSON.stringify(pendingIssueIds(loaded)) === '[900003]' && !trigger.hidden && !trigger.disabled;
+    console.log(`UX09-FIXTURE ${JSON.stringify({ pendingIssue: 900003,
+      normalized: loaded.issues[900003], pending: pendingIssueIds(loaded), trigger, qualified })}`);
+    if (!qualified) throw new Error('Fresh-document pending identity/trigger did not qualify');
+  }
+  const natural = await page.evaluate(() => ({
+    narrow: matchMedia('(max-width: 700px)').matches,
+    open: document.querySelector('#list-actions')?.open ?? null,
+  }));
+  console.log(`UX09-FIXTURE ${JSON.stringify({ naturalListActions: natural,
+    qualified: natural.open === false })}`);
+  if (natural.open !== false) throw new Error('Natural List actions closed state did not qualify');
+  if (!natural.open) await click(page, '#list-actions > summary');
+  await click(page, '#btn-synopsis');
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
+    === 'All synopses fetched, for this tab only.');
+  if (!natural.open) await click(page, '#list-actions > summary');
+  await page.focus('#btn-hero-description');
+  await page.keyboard.press('Enter');
+  if (checked) {
+    await click(page, '#rows .cb[data-key="900002"]');
+  }
+  const qualified = await page.evaluate((wantChecked) => {
+    const prose = document.querySelector('#hero-desc');
+    const button = document.querySelector('#btn-hero-description');
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return prose.textContent === 'Synthetic plot 447 for 900001.' && !prose.hidden
+      && prose.getBoundingClientRect().height > 0 && button.getAttribute('aria-expanded') === 'true'
+      && button.getAttribute('aria-controls') === 'hero-desc'
+      && !state.read[900001] && !state.read[900003]
+      && Boolean(state.read[900002]) === wantChecked;
+  }, checked);
+  console.log(`UX09-FIXTURE ${JSON.stringify({ heroIssue: 900001, checkedIssue: checked ? 900002 : null, qualified })}`);
+  if (!qualified) throw new Error('Responsive hero/read fixture did not qualify');
+  return page.evaluate(() => ({
+    state: localStorage.getItem('mrt.state.v2'),
+    history: localStorage.getItem('mrt.list-history.v1'),
+  }));
+}
+
+async function responsiveText(page, selector) {
+  return page.$eval(selector, (node) => {
+    const bounds = node.getBoundingClientRect();
+    const style = getComputedStyle(node);
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const rects = [...range.getClientRects()].filter((rect) => rect.width > 0)
+      .map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
+    return {
+      text: node.textContent, width: bounds.width, left: bounds.left, right: bounds.right,
+      top: bounds.top, bottom: bounds.bottom, rects,
+      lines: new Set(rects.map((rect) => Math.round(rect.top))).size,
+      bounded: rects.every((rect) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+        && rect.left >= -1 && rect.right <= innerWidth + 1),
+      overflow: style.overflow, textOverflow: style.textOverflow,
+      documentWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    };
+  });
+}
+
+async function responsiveRoute(page, hash, view) {
+  await page.evaluate((value) => { location.hash = value; }, hash);
+  await page.waitForSelector(`#view-${view}:not([hidden])`);
+  await responsiveFrames(page);
+}
+
+async function responsiveRule(page, rule) {
+  return page.evaluate((css) => {
+    const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+    const index = sheet.cssRules.length;
+    sheet.insertRule(css, index);
+    return index;
+  }, rule);
+}
+
+async function responsiveDeleteRule(page, index) {
+  await page.evaluate((position) => {
+    [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css')).deleteRule(position);
+  }, index);
+}
+
+async function responsiveCard(page) {
+  const selector = '.catalog-card:has([data-key="avengers-defenders-war"])';
+  await page.waitForSelector(selector);
+  const title = await responsiveText(page, `${selector} .catalog-card-title`);
+  const prose = await responsiveText(page, `${selector} .catalog-card-desc`);
+  const anatomy = await page.$eval(selector, (node) => {
+    const main = node.querySelector('.catalog-card-main');
+    const text = node.querySelector('.catalog-card-text').getBoundingClientRect();
+    const art = main.firstElementChild.getBoundingClientRect();
+    const rect = main.getBoundingClientRect();
+    const style = getComputedStyle(main);
+    const outer = node.getBoundingClientRect();
+    const parent = node.closest('.timeline-year-row');
+    return {
+      contentWidth: rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+      contentLeft: rect.left + parseFloat(style.paddingLeft),
+      contentRight: rect.right - parseFloat(style.paddingRight),
+      textWidth: text.width, textTop: text.top, artBottom: art.bottom,
+      left: outer.left, right: outer.right, viewport: innerWidth,
+      chronologyInset: parseFloat(getComputedStyle(parent).paddingLeft),
+      display: {
+        description: node.querySelector('.catalog-card-desc').textContent,
+        credit: node.querySelector('.result-source').textContent,
+        options: [...node.querySelectorAll('.catalog-card-actions button')].map((button) => button.textContent),
+      },
+    };
+  });
+  const expected = {
+    title: 'Avengers/Defenders War',
+    description: firstSentence(RESPONSIVE_TITLE.description),
+    credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
+    options: ['+ Add to library', 'Preview'],
+  };
+  const qualified = title.text === expected.title
+    && anatomy.display.description === expected.description
+    && anatomy.display.credit === expected.credit
+    && JSON.stringify(anatomy.display.options) === JSON.stringify(expected.options);
+  console.log(`UX09-FIXTURE ${JSON.stringify({ catalogId: RESPONSIVE_TITLE.id, expected, actual: anatomy.display, qualified })}`);
+  if (!qualified) throw new Error('Accepted card projection did not qualify');
+  return { ...anatomy, title, prose, expected, qualified };
+}
+
+async function responsiveHero(page) {
+  const title = await responsiveText(page, '#hero-title');
+  const prose = await responsiveText(page, '#hero-desc');
+  const geometry = await page.evaluate(() => {
+    const inner = document.querySelector('#hero .hero-in');
+    const rect = inner.getBoundingClientRect();
+    const style = getComputedStyle(inner);
+    const art = inner.querySelector('.art').getBoundingClientRect();
+    const action = document.querySelector('#btn-hero-read');
+    const box = action.getBoundingClientRect();
+    return {
+      contentWidth: rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+      artBottom: art.bottom, actionWidth: box.width, actionHeight: box.height,
+      actionHref: action.getAttribute('href'), actionLabel: action.textContent.trim(),
+      actions: [...inner.querySelectorAll('a,button')].map((node) => ({
+        id: node.id, label: node.textContent.trim(), href: node.getAttribute('href'),
+      })),
+      facts: document.querySelector('#hero').textContent.trim(),
+      revealed: !document.querySelector('#hero-desc').hidden,
+    };
+  });
+  if (prose.text !== 'Synthetic plot 447 for 900001.' || !geometry.revealed) {
+    throw new Error('Exact revealed hero fixture did not qualify');
+  }
+  return { ...geometry, title, prose, expected: { prose: 'Synthetic plot 447 for 900001.', minimumAction: 48 } };
+}
+
+async function responsiveCommands(page) {
+  const actual = await page.evaluate(() => {
+    const details = document.querySelector('#list-actions');
+    const complete = document.querySelector('#btn-complete-list');
+    const box = (node) => {
+      if (!node) return null;
+      const rect = node.getBoundingClientRect();
+      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+        width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
+    };
+    const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
+      open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
+      completeOutside: Boolean(details && !details.contains(complete)),
+      bodyPainted: Boolean(details?.querySelector('.list-actions-body')?.checkVisibility()) };
+    if (details) details.open = true;
+    document.querySelector('#list-export').open = true;
+    result.commands = ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+      'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list']
+      .map((id) => ({ id, ...box(document.getElementById(id)), hidden: document.getElementById(id).hidden }));
+    if (details) details.open = false;
+    return result;
+  });
+  const a = actual.complete;
+  const b = actual.summary;
+  const overlap = a && b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
+    * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : null;
+  return { ...actual, overlap, expected: { minimumTarget: 44, ordinaryHeightCap: 112,
+    expandedIds: ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+      'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list'] } };
+}
+
+function responsiveReflowPredicates(build, card, hero, commands, expanded = false) {
+  return {
+    about: build.text === RESPONSIVE_BUILD && build.lines >= 2 && build.bounded
+      && build.documentWidth === build.clientWidth,
+    title: card.title.text === 'Avengers/Defenders War' && card.title.bounded
+      && card.title.documentWidth === card.title.clientWidth && card.title.clientWidth === 320,
+    card: card.textWidth >= card.contentWidth - 2 && card.title.top >= card.artBottom
+      && card.prose.rects[0]?.top >= card.artBottom && card.prose.bounded && card.title.bounded
+      && Math.abs(card.prose.left - card.contentLeft) <= 1
+      && Math.abs(card.prose.right - card.contentRight) <= 1,
+    hero: hero.title.top >= hero.artBottom && hero.prose.rects[0]?.top >= hero.artBottom
+      && hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2
+      && hero.title.bounded && hero.prose.bounded && hero.actionWidth >= hero.contentWidth - 2
+      && hero.actionHeight >= 48,
+    gutter: card.left <= 16 && card.viewport - card.right <= 16
+      && card.left + card.viewport - card.right <= 32 && card.chronologyInset <= 16,
+    commands: commands.open === false && commands.completeOutside && !commands.bodyPainted
+      && commands.overlap === 0 && commands.summary?.width >= 44 && commands.summary?.height >= 44
+      && commands.complete?.width >= 44 && commands.complete?.height >= 44
+      && commands.height <= (expanded ? commands.summary.height + commands.complete.height + 24 : 112)
+      && commands.commands.every((node) => node.hidden || node.visible),
+  };
+}
+
+SCENARIOS.push(responsiveOwner({
+  id: 'responsive-reflow',
+  title: 'Exact historical build, ordinary title and narrow prose use available content width',
+  async run(page, t) {
+    page.__ux09Owner = 'responsive-reflow';
+    responsiveStep(page, 'RF01-about');
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+    });
+    await page.setViewport({ width: 320, height: 720 });
+    await open(page, '/?catalog=actual#/about');
+    await page.$eval('#about-build', (node, text) => { node.textContent = text; }, RESPONSIVE_BUILD);
+    const build = await responsiveText(page, '#about-build');
+    if (build.text !== RESPONSIVE_BUILD) throw new Error('Historical About fixture mismatch');
+    await responsiveReceipt(page, t, 'RF01', 'exact historical About wraps within 320 pixels',
+      { ...build, expected: { text: RESPONSIVE_BUILD, minimumLines: 2, documentWidth: 320, clientWidth: 320 },
+        subpredicates: { wraps: build.lines >= 2, bounded: build.bounded,
+          viewport: build.documentWidth === 320 && build.clientWidth === 320 } },
+      build.lines >= 2 && build.bounded && build.documentWidth === 320 && build.clientWidth === 320);
+
+    responsiveStep(page, 'RF02-03-05-catalog');
+    await open(page, '/?catalog=actual#/age-bronze');
+    const cardSelector = '.catalog-card:has([data-key="avengers-defenders-war"])';
+    await page.waitForSelector(cardSelector);
+    const title = await responsiveText(page, `${cardSelector} .catalog-card-title`);
+    const display = await page.$eval(cardSelector, (card) => ({
+      description: card.querySelector('.catalog-card-desc').textContent,
+      credit: card.querySelector('.result-source').textContent,
+      options: [...card.querySelectorAll('.catalog-card-actions button')].map((node) => node.textContent),
+    }));
+    const expected = {
+      description: firstSentence(RESPONSIVE_TITLE.description),
+      credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
+      options: ['+ Add to library', 'Preview'],
+    };
+    const qualified = title.text === 'Avengers/Defenders War'
+      && JSON.stringify(display) === JSON.stringify(expected);
+    console.log(`UX09-FIXTURE ${JSON.stringify({ catalogId: RESPONSIVE_TITLE.id, display, expected, qualified })}`);
+    if (!qualified) throw new Error('Accepted card display projection did not qualify');
+    await responsiveReceipt(page, t, 'RF02', 'ordinary Avengers/Defenders War title reflows',
+      { ...title, expected: { text: 'Avengers/Defenders War', wrapping: 'when needed', documentWidth: 320 },
+        subpredicates: { text: title.text === 'Avengers/Defenders War', bounded: title.bounded,
+          document: title.documentWidth === 320 && title.clientWidth === 320 } },
+      title.text === 'Avengers/Defenders War' && title.bounded
+        && title.documentWidth === 320 && title.clientWidth === 320);
+    const card = await responsiveCard(page);
+    const cardPredicates = {
+      fullWidth: card.textWidth >= card.contentWidth - 2,
+      clearArt: card.title.top >= card.artBottom && card.prose.rects[0]?.top >= card.artBottom,
+      ranges: card.title.bounded && card.prose.bounded,
+      contentEdges: Math.abs(card.prose.left - card.contentLeft) <= 1
+        && Math.abs(card.prose.right - card.contentRight) <= 1,
+      projection: card.qualified,
+    };
+    await responsiveReceipt(page, t, 'RF03', 'card prose clears artwork and uses the full content box',
+      { ...card, subpredicates: cardPredicates }, Object.values(cardPredicates).every(Boolean));
+    const gutter = await page.$eval(`${cardSelector}`, (node) => {
+      const rect = node.getBoundingClientRect();
+      const parent = node.closest('.timeline-year-row');
+      return { left: rect.left, right: rect.right, viewport: innerWidth,
+        chronologyInset: parent ? parseFloat(getComputedStyle(parent).paddingLeft) : null };
+    });
+    await responsiveReceipt(page, t, 'RF05', 'narrow chronology and gutters reserve at most 32 pixels',
+      { ...gutter, expected: { maximumEachGutter: 16, maximumCombined: 32, maximumChronologyInset: 16 },
+        subpredicates: { left: gutter.left <= 16, right: 320 - gutter.right <= 16,
+          chronology: gutter.chronologyInset !== null && gutter.chronologyInset <= 16,
+          combined: gutter.left + 320 - gutter.right <= 32 } },
+      gutter.left <= 16 && 320 - gutter.right <= 16 && gutter.chronologyInset !== null
+      && gutter.chronologyInset <= 16 && gutter.left + (320 - gutter.right) <= 32);
+
+    responsiveStep(page, 'RF04-06-reading');
+    const saved = await responsiveReading(page);
+    await page.setViewport({ width: 320, height: 720 });
+    await responsiveFrames(page);
+    const hero = await responsiveHero(page);
+    const heroPredicates = {
+      clearArt: hero.title.top >= hero.artBottom && hero.prose.rects[0]?.top >= hero.artBottom,
+      fullWidth: hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2,
+      ranges: hero.title.bounded && hero.prose.bounded,
+      action: hero.actionWidth >= hero.contentWidth - 2 && hero.actionHeight >= 48,
+      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Read',
+      secondaryAndFacts: hero.actions.some((node) => node.id === 'btn-hero-info' && node.href === ORDER.items[0].url)
+        && hero.facts.includes(ORDER.items[0].title),
+    };
+    await responsiveReceipt(page, t, 'RF04', 'qualified hero title and prose clear the cover',
+      { ...hero, subpredicates: heroPredicates },
+      Object.values(heroPredicates).every(Boolean));
+    const commands = await responsiveCommands(page);
+    const commandPredicates = {
+      nativeClosed: commands.open === false && !commands.bodyPainted,
+      independentComplete: commands.completeOutside && commands.complete.visible,
+      compact: commands.height <= 112,
+      targets: commands.summary?.height >= 44 && commands.summary?.width >= 44
+        && commands.complete.height >= 44 && commands.complete.width >= 44,
+      overlap: commands.overlap === 0,
+      expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
+    };
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact with independent Complete',
+      { ...commands, subpredicates: commandPredicates },
+      Object.values(commandPredicates).every(Boolean));
+    responsiveStep(page, 'RF07-text-modes');
+    const modes = [];
+    await open(page, '/?catalog=actual#/read/' + (await readState(page)).active);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    await click(page, '#btn-synopsis');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent === 'All synopses fetched, for this tab only.');
+    await click(page, '#list-actions > summary');
+    await page.focus('#btn-hero-description');
+    await page.keyboard.press('Enter');
+    const doubledRule = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return ':root { ' + ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+        .map((token) => `${token}: ${parseFloat(style.getPropertyValue(token)) * 2}px !important;`).join(' ') + ' }';
+    });
+    for (const [mode, rule] of [
+      ['doubled-text', doubledRule],
+      ['text-spacing', '@media all { * { line-height: 1.5 !important; letter-spacing: .12em !important; word-spacing: .16em !important; } p { margin-bottom: 2em !important; } }'],
+    ]) {
+      const index = await responsiveRule(page, rule);
+      await responsiveRoute(page, '#/about', 'about');
+      await page.$eval('#about-build', (node, text) => { node.textContent = text; }, RESPONSIVE_BUILD);
+      const modeBuild = await responsiveText(page, '#about-build');
+      if (mode === 'doubled-text' && modeBuild.documentWidth !== modeBuild.clientWidth) {
+        const overflow = await page.evaluate(() => [...document.querySelectorAll('#view-about *, .rail-header *, .app-footer *')]
+          .filter((node) => node.checkVisibility()).flatMap((node) => {
+            const box = node.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            const rects = [...range.getClientRects()].filter((rect) => rect.width > 0
+              && (rect.right > innerWidth + 1 || rect.left < -1))
+              .slice(0, 8).map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
+            if (box.right <= innerWidth + 1 && box.left >= -1 && rects.length === 0) return [];
+            const style = getComputedStyle(node);
+            return [{ id: node.id, tag: node.tagName, class: node.className,
+              text: node.textContent.slice(0, 160), left: box.left, right: box.right, rects,
+              font: style.font, wrap: style.overflowWrap, whiteSpace: style.whiteSpace,
+              minWidth: style.minWidth }];
+          }).slice(0, 30));
+        console.log(`UX09-OVERFLOW ${JSON.stringify({ mode, width: modeBuild.documentWidth,
+          viewport: modeBuild.clientWidth, overflow })}`);
+      }
+      await responsiveRoute(page, '#/age-bronze', 'age-bronze');
+      const modeCard = await responsiveCard(page);
+      await responsiveRoute(page, '#/read/' + (await readState(page)).active, 'read');
+      if (await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') !== 'true')) {
+        await page.focus('#btn-hero-description');
+        await page.keyboard.press('Enter');
+      }
+      const modeHero = await responsiveHero(page);
+      const modeCommands = await responsiveCommands(page);
+      const subpredicates = responsiveReflowPredicates(modeBuild, modeCard, modeHero, modeCommands, true);
+      modes.push({ mode, build: modeBuild, card: modeCard, hero: modeHero, commands: modeCommands, subpredicates });
+      await responsiveDeleteRule(page, index);
+    }
+    await page.setViewport({ width: 640, height: 450 });
+    const landscape = await responsiveHero(page);
+    modes.push({ mode: '640-reflow', hero: landscape, subpredicates: {
+      prose: landscape.prose.text === 'Synthetic plot 447 for 900001.',
+      bounded: landscape.title.bounded && landscape.prose.bounded
+        && landscape.prose.documentWidth === landscape.prose.clientWidth,
+    } });
+    await responsiveReceipt(page, t, 'RF07', 'retained text modes preserve qualified prose and reflow',
+      { modes, expected: { predicates: ['about', 'title', 'card', 'hero', 'gutter', 'commands'],
+        expandedStripCap: 'Complete height + summary height + 24', landscapeViewport: [640, 450] },
+      subpredicates: Object.fromEntries(modes.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.mode}:${key}`, value]))) },
+      modes.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RF08-active-scope');
+    await open(page, '/?catalog=actual#/progress');
+    const subject = await page.$eval('#progress-subject', (node) => node.textContent);
+    const preserved = await page.evaluate((before) => (
+      localStorage.getItem('mrt.state.v2') === before.state
+      && localStorage.getItem('mrt.list-history.v1') === before.history
+      && document.querySelector('#progress-scope').getAttribute('aria-describedby') === 'progress-subject'
+    ), saved);
+    await page.setViewport({ width: 320, height: 720 });
+    await responsiveRoute(page, '#/catalog', 'catalog');
+    await page.waitForSelector('#catalog-results .catalog-card');
+    const featureExpected = modernTimelineFeaturedCard(ACTUAL_CATALOG.lists, 'catalog')?.id ?? null;
+    const setup = await page.evaluate(() => {
+      const node = document.querySelector('#modern-timeline-feature');
+      return { present: Boolean(node), visible: Boolean(node?.checkVisibility()), id: node?.dataset.featuredList ?? null };
+    });
+    await page.$eval('#catalog-q', (node) => {
+      node.value = 'no-ux09-guide-matches';
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.waitForFunction(() => document.querySelector('#catalog-results').textContent.includes('No Reading Lists'));
+    const narrowing = await page.evaluate(() => ({
+      setupVisible: Boolean(document.querySelector('#modern-timeline-feature')?.checkVisibility()),
+      cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+    }));
+    await click(page, '#catalog-clear');
+    await page.waitForSelector('#catalog-results .catalog-card');
+    const cleared = await page.evaluate(() => Boolean(document.querySelector('#modern-timeline-feature')?.checkVisibility()));
+    await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+    responsiveStep(page, 'RF08-unknown-fresh-document');
+    await open(page, '/?catalog=actual#/library');
+    await page.reload({ waitUntil: 'load' });
+    const unknown = await page.evaluate(() => ({
+      browseHidden: document.querySelector('#library-completed-browse').hidden,
+      copy: document.querySelector('#library-completed').textContent,
+    }));
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      state.lists = {};
+      state.listOrder = [];
+      state.active = null;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+      localStorage.removeItem('mrt.list-history.v1');
+    });
+    responsiveStep(page, 'RF08-no-list-fresh-document');
+    await open(page, '/?catalog=actual#/progress');
+    await page.reload({ waitUntil: 'load' });
+    const noList = await page.evaluate(() => ({
+      subject: document.querySelector('#progress-subject').textContent,
+      scopeHidden: document.querySelector('#progress-scope').hidden,
+    }));
+    await page.evaluate((before) => {
+      localStorage.setItem('mrt.state.v2', before.state);
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    responsiveStep(page, 'RF08-restored-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    const restoredSubject = await page.$eval('#progress-subject', (node) => node.textContent);
+    const scopePredicates = {
+      activeScope: subject === `Reading List: ${ORDER.name}`, preserved,
+      eligible: setup.id === featureExpected && setup.visible === Boolean(featureExpected),
+      narrowed: !narrowing.setupVisible && narrowing.cards === 0,
+      cleared: cleared === Boolean(featureExpected),
+      unknown: unknown.browseHidden && unknown.copy.includes('unavailable'),
+      noList: noList.subject === 'No saved Reading Lists' && noList.scopeHidden,
+      restored: await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before.state
+        && localStorage.getItem('mrt.list-history.v1') === before.history, saved)
+        && restoredSubject === `Reading List: ${ORDER.name}`,
+    };
+    await responsiveReceipt(page, t, 'RF08', 'accepted scope and saved reading/history survive presentation',
+      { subject, preserved, setup, narrowing, cleared, unknown, noList, restoredSubject,
+        expected: { subject: `Reading List: ${ORDER.name}`, featuredId: featureExpected,
+          noList: 'No saved Reading Lists', unknownBrowseHidden: true }, subpredicates: scopePredicates },
+      Object.values(scopePredicates).every(Boolean));
+  },
+}));
+
+SCENARIOS.push(responsiveOwner({
+  id: 'responsive-controls',
+  title: 'Real read boxes, native fields and dialogs preserve focus, state and checked contrast',
+  async run(page, t) {
+    page.__ux09Owner = 'responsive-controls';
+    const saved = await responsiveReading(page, { checked: true });
+    await page.setViewport({ width: 320, height: 480 });
+    await responsiveFrames(page);
+    responsiveStep(page, 'RC01-read-targets');
+    const readBoxes = () => page.evaluate(() => {
+      const row = document.querySelector('#rows .cb[data-key="900002"]').closest('.row');
+      const control = row.querySelector('.cb');
+      const rect = control.getBoundingClientRect();
+      const collisions = [...row.querySelectorAll('a,button')].filter((node) => node !== control
+        && node.getClientRects().length).map((node) => {
+        const other = node.getBoundingClientRect();
+        return Math.max(0, Math.min(rect.right, other.right) - Math.max(rect.left, other.left))
+          * Math.max(0, Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top));
+      });
+      return { width: rect.width, height: rect.height, collisions,
+        track: parseFloat(getComputedStyle(row).gridTemplateColumns) };
+    });
+    const boxes = await readBoxes();
+    await page.setViewport({ width: 1024, height: 720 });
+    await responsiveFrames(page);
+    const wider = await readBoxes();
+    await page.setViewport({ width: 320, height: 480 });
+    await responsiveFrames(page);
+    const targetPredicates = {
+      narrow: boxes.width >= 44 && boxes.height >= 44,
+      wide: wider.width >= 24 && wider.height >= 24,
+      track: boxes.track >= boxes.width && wider.track >= wider.width,
+      intersections: [...boxes.collisions, ...wider.collisions].every((area) => area === 0),
+    };
+    await responsiveReceipt(page, t, 'RC01', 'actual read targets are allocated and do not overlap',
+      { boxes, wider, expected: { narrow: 44, wider: 24, intersectionArea: 0 },
+        subpredicates: targetPredicates }, Object.values(targetPredicates).every(Boolean));
+    responsiveStep(page, 'RC09-computed-paint');
+    const contrasts = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const paint = await page.$eval('#rows .cb[data-key="900002"]', (node) => {
+        const style = getComputedStyle(node);
+        let opacity = 1;
+        for (let parent = node; parent; parent = parent.parentElement) opacity *= Number(getComputedStyle(parent).opacity);
+        return { foreground: style.color, background: style.backgroundColor, opacity,
+          pressed: node.getAttribute('aria-pressed') };
+      });
+      const rgb = (value) => {
+        const match = /^rgb\((\d+), (\d+), (\d+)\)$/.exec(value);
+        return match ? parseColour(match.slice(1).join(' ')) : null;
+      };
+      const fg = rgb(paint.foreground);
+      const bg = rgb(paint.background);
+      contrasts.push({ theme, ...paint, ratio: fg && bg ? ratio(fg, bg) : null });
+    }
+    await responsiveReceipt(page, t, 'RC09', 'actual checked foreground clears 3:1 in both themes',
+      { contrasts, checkedIssue: 900002, expected: { minimumRatio: 3, opacity: 1, pressed: 'true' },
+        subpredicates: Object.fromEntries(contrasts.flatMap((entry) => [
+          [`${entry.theme}:contrast`, entry.ratio >= 3], [`${entry.theme}:opaque`, entry.opacity === 1],
+          [`${entry.theme}:pressed`, entry.pressed === 'true'],
+        ])) },
+      contrasts.every((entry) => entry.opacity === 1 && entry.ratio >= 3 && entry.pressed === 'true'));
+    responsiveStep(page, 'RC06-disclosure-crossing');
+    await page.setViewport({ width: 701, height: 480 });
+    await responsiveFrames(page);
+    const disclosure = await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      if (!details) return { exists: false };
+      const descriptor = Object.getOwnPropertyDescriptor(HTMLDetailsElement.prototype, 'open');
+      window.__ux09BeforeClose = [];
+      Object.defineProperty(details, 'open', {
+        get() { return descriptor.get.call(this); },
+        set(value) {
+          if (!value && descriptor.get.call(this)) {
+            window.__ux09BeforeClose.push({ activeId: document.activeElement.id,
+              summaryFocused: document.activeElement === this.querySelector('summary'),
+              stillOpen: this.open, summaryVisible: this.querySelector('summary').checkVisibility() });
+          }
+          descriptor.set.call(this, value);
+        },
+        configurable: true,
+      });
+      details.open = true;
+      document.querySelector('#list-export').open = true;
+      document.querySelector('#btn-export-md').focus();
+      return { exists: true, nestedOpen: document.querySelector('#list-export').open };
+    });
+    await page.setViewport({ width: 700, height: 480 });
+    await responsiveFrames(page);
+    const resized = await page.evaluate(() => ({
+      open: document.querySelector('#list-actions').open,
+      focused: document.activeElement === document.querySelector('#btn-export-md'),
+    }));
+    await page.keyboard.press('Escape');
+    const focused = await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      return { closed: details?.open === false,
+        focused: document.activeElement === details?.querySelector('summary'),
+        nestedOpen: document.querySelector('#list-export').open,
+        beforeClose: window.__ux09BeforeClose ?? [],
+        completeVisible: document.querySelector('#btn-complete-list').checkVisibility(),
+        completeOutside: Boolean(details && !details.contains(document.querySelector('#btn-complete-list'))),
+        pendingOutside: ['btn-cancel-hydrate', 'hydration-status', 'btn-cancel-synopsis', 'synopsis-status']
+          .every((id) => !details?.contains(document.getElementById(id))) };
+    });
+    await page.setViewport({ width: 701, height: 480 });
+    await responsiveFrames(page);
+    const wide = await page.evaluate(() => ({
+      open: document.querySelector('#list-actions')?.open,
+      focused: document.activeElement === document.querySelector('#list-actions > summary'),
+    }));
+    await page.evaluate(() => { window.__ux09HoldDetails = true; });
+    responsiveStep(page, 'RC06-pending-hydrate-trigger');
+    await click(page, '#list-actions > summary');
+    const pendingTrigger = await page.$eval('#btn-hydrate', (node) => ({
+      visible: node.checkVisibility(), enabled: !node.disabled && !node.hidden, text: node.textContent,
+    }));
+    console.log(`UX09-FIXTURE ${JSON.stringify({ pendingIssue: 900003, trigger: pendingTrigger,
+      qualified: pendingTrigger.visible && pendingTrigger.enabled })}`);
+    if (!pendingTrigger.visible || !pendingTrigger.enabled) throw new Error('Actual pending hydration trigger not painted/enabled');
+    await click(page, '#btn-hydrate');
+    responsiveStep(page, 'RC06-pending-hydrate-cancel-visible');
+    await page.waitForFunction(() => !document.querySelector('#btn-cancel-hydrate').hidden);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = false; });
+    const pending = await page.evaluate(() => ({
+      status: document.querySelector('#hydration-status').textContent,
+      statusVisible: document.querySelector('#hydration-status').checkVisibility(),
+      stopVisible: document.querySelector('#btn-cancel-hydrate').checkVisibility(),
+      outside: Boolean(document.querySelector('#list-actions')
+        && !document.querySelector('#list-actions').contains(document.querySelector('#btn-cancel-hydrate'))),
+    }));
+    await click(page, '#btn-cancel-hydrate');
+    responsiveStep(page, 'RC06-pending-hydrate-cancel-cleanup');
+    await page.waitForFunction(() => document.querySelector('#btn-cancel-hydrate').hidden);
+    responsiveStep(page, 'RC06-pending-synopsis-fresh-document');
+    await page.reload({ waitUntil: 'load' });
+    await page.evaluate(() => {
+      window.__ux09HoldDetails = true;
+      const node = document.querySelector('#list-actions');
+      if (node) node.open = true;
+    });
+    await click(page, '#btn-synopsis');
+    responsiveStep(page, 'RC06-pending-synopsis-confirm');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    responsiveStep(page, 'RC06-pending-synopsis-cancel-visible');
+    await page.waitForFunction(() => !document.querySelector('#btn-cancel-synopsis').hidden);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = false; });
+    const synopsisPending = await page.evaluate(() => ({
+      status: document.querySelector('#synopsis-status').textContent,
+      statusVisible: document.querySelector('#synopsis-status').checkVisibility(),
+      stopVisible: document.querySelector('#btn-cancel-synopsis').checkVisibility(),
+      outside: Boolean(document.querySelector('#list-actions')
+        && !document.querySelector('#list-actions').contains(document.querySelector('#btn-cancel-synopsis'))),
+    }));
+    await click(page, '#btn-cancel-synopsis');
+    responsiveStep(page, 'RC06-pending-synopsis-cancel-cleanup');
+    await page.waitForFunction(() => document.querySelector('#btn-cancel-synopsis').hidden);
+    await page.evaluate(() => { window.__ux09HoldDetails = false; });
+    responsiveStep(page, 'RC06-completed-fresh-document');
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const list = state.lists[state.active];
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    await page.reload({ waitUntil: 'load' });
+    const completedState = await page.evaluate(() => ({
+      completeHidden: document.querySelector('#btn-complete-list').hidden,
+      reopenVisible: document.querySelector('#btn-reopen-list').checkVisibility(),
+    }));
+    responsiveStep(page, 'RC06-unavailable-fresh-document');
+    await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
+    await page.reload({ waitUntil: 'load' });
+    const unavailable = await page.evaluate(() => ({
+      completeHidden: document.querySelector('#btn-complete-list').hidden,
+      completeDisabled: document.querySelector('#btn-complete-list').disabled,
+      guidance: document.querySelector('#list-completion-status').textContent,
+    }));
+    await page.evaluate((before) => {
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    await page.reload({ waitUntil: 'load' });
+    const disclosurePredicates = {
+      exists: disclosure.exists, rescueBeforeClose: focused.beforeClose.some((entry) => entry.summaryFocused
+        && entry.stillOpen && entry.summaryVisible),
+      resizePreservesChoice: resized.open && resized.focused,
+      escapeClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
+      completeIndependent: focused.completeOutside && focused.completeVisible,
+      pendingIndependent: focused.pendingOutside && pending.outside && pending.statusVisible
+        && pending.stopVisible && pending.status.includes('Fetching')
+        && synopsisPending.outside && synopsisPending.statusVisible && synopsisPending.stopVisible,
+      wideNoSteal: !wide.open && wide.focused,
+      completed: completedState.completeHidden && completedState.reopenVisible,
+      unavailable: !unavailable.completeHidden && unavailable.completeDisabled
+        && unavailable.guidance === 'Completion history is not valid JSON. Its saved value has been kept.',
+    };
+    await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
+      { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
+        expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
+          pending: 'painted outside editing disclosure', complete: 'active visible; completed hidden; unavailable disabled' },
+        subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
+
+    responsiveStep(page, 'RC04-native-note');
+    await page.setViewport({ width: 320, height: 360 });
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    await click(page, '#btn-list-note');
+    await page.waitForSelector('#ask[open]');
+    const ask = await page.evaluate(() => {
+      const dialog = document.querySelector('#ask');
+      document.querySelector('#ask-cancel').scrollIntoView({ block: 'center' });
+      document.querySelector('#ask-cancel').focus();
+      const rect = dialog.getBoundingClientRect();
+      const target = document.querySelector('#ask-cancel').getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, targetTop: target.top, targetBottom: target.bottom,
+        viewport: innerHeight, rows: document.querySelector('#ask-area').rows,
+        areaVisible: !document.querySelector('#ask-area-field').hidden,
+        barVisibility: getComputedStyle(document.querySelector('.rail-header')).visibility };
+    });
+    await responsiveReceipt(page, t, 'RC04', 'native Note scrolls to Cancel without bar obstruction',
+      { ...ask, expected: { rows: 5, viewportInset: 8, barVisibility: 'hidden' },
+        subpredicates: { fixture: ask.rows === 5 && ask.areaVisible,
+          dialog: ask.top >= 8 && ask.bottom <= ask.viewport - 8,
+          cancel: ask.targetTop >= ask.top && ask.targetBottom <= ask.bottom,
+          bar: ask.barVisibility === 'hidden' } },
+      ask.rows === 5 && ask.areaVisible && ask.top >= 8 && ask.bottom <= ask.viewport - 8
+      && ask.targetTop >= ask.top && ask.targetBottom <= ask.bottom && ask.barVisibility === 'hidden');
+    await click(page, '#ask-cancel');
+    responsiveStep(page, 'RC02-native-field-family');
+    const fields = [];
+    const fieldBox = (selector) => page.$eval(selector, (node) => ({
+      height: node.getBoundingClientRect().height, font: getComputedStyle(node).fontSize,
+      lineHeight: getComputedStyle(node).lineHeight, radius: getComputedStyle(node).borderRadius,
+      tag: node.tagName, label: document.querySelector(`label[for="${node.id}"]`)?.textContent ?? null,
+      required: node.required, options: node.options ? [...node.options].map((option) => option.value) : null,
+      describedby: node.getAttribute('aria-describedby'),
+    }));
+    for (const theme of ['dark', 'light']) {
+      await open(page, '/#/data');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const themeField = await fieldBox('#opt-theme');
+      await open(page, '/?catalog=actual#/reading-paths');
+      await page.waitForSelector('#reading-path-select option');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const pathField = await fieldBox('#reading-path-select');
+      await page.focus('#reading-path-select');
+      const selectedBefore = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      await page.keyboard.press('ArrowDown');
+      const selectedAfter = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      await page.keyboard.press('ArrowUp');
+      await open(page, '/#/add-manual');
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const manual = await fieldBox('#manual-title');
+      const manualUrl = await fieldBox('#manual-url');
+      const invalid = await page.$eval('#manual-title', (node) => ({
+        missing: node.validity.valueMissing, message: node.validationMessage,
+      }));
+      const family = [themeField, pathField, manual, manualUrl];
+      fields.push({ theme, themeField, pathField, manual, manualUrl, invalid,
+        selectedBefore, selectedAfter, subpredicates: {
+          geometry: family.every((field) => field.height >= 44),
+          typography: family.every((field) => field.font === manual.font
+            && field.lineHeight === manual.lineHeight && field.radius === manual.radius),
+          labels: family.every((field) => Boolean(field.label)),
+          native: themeField.tag === 'SELECT' && pathField.tag === 'SELECT' && manual.tag === 'INPUT',
+          options: JSON.stringify(themeField.options) === JSON.stringify(['system', 'dark', 'light'])
+            && pathField.options.length > 1 && selectedAfter === selectedBefore + 1,
+          validation: manual.required && invalid.missing && invalid.message.length > 0
+            && manual.describedby === 'manual-report'
+            && manualUrl.describedby === 'manual-url-hint manual-report',
+        } });
+    }
+    await responsiveReceipt(page, t, 'RC02', 'native Field family retains names and consistent 44px typography',
+      { fields, expected: { minimumHeight: 44, sameFontLineHeightRadius: true,
+        themeOptions: ['system', 'dark', 'light'],
+        describedby: { title: 'manual-report', url: 'manual-url-hint manual-report' } },
+      subpredicates: Object.fromEntries(fields.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.theme}:${key}`, value]))) },
+      fields.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RC03-markdown');
+    await open(page, '/#/add-import');
+    const preSelector = '.import-guide pre';
+    await page.$eval('#import-guide-h', (node) => { node.setAttribute('tabindex', '-1'); node.focus(); });
+    await page.keyboard.press('Tab');
+    const markdown = await page.$eval(preSelector, (node) => ({
+      tabindex: node.getAttribute('tabindex'), name: node.getAttribute('aria-labelledby'),
+      focused: document.activeElement === node, outline: getComputedStyle(node).outlineStyle,
+      text: node.textContent, scroll: node.scrollWidth, client: node.clientWidth,
+    }));
+    const overflowProbe = await responsiveRule(page, '.import-guide pre { white-space: pre !important; }');
+    const beforeArrow = await page.$eval(preSelector, (node) => ({
+      scroll: node.scrollWidth, client: node.clientWidth, left: node.scrollLeft, text: node.textContent,
+    }));
+    await page.focus(preSelector);
+    await page.keyboard.press('ArrowRight');
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    const afterArrow = await page.$eval(preSelector, (node) => node.scrollLeft);
+    await responsiveDeleteRule(page, overflowProbe);
+    const markdownPredicates = {
+      explicit: markdown.tabindex === '0' && markdown.name === 'import-guide-h',
+      focus: markdown.focused && markdown.outline !== 'none',
+      content: markdown.text.includes('Secret Wars (2015) #1') && beforeArrow.text === markdown.text,
+      overflowQualified: beforeArrow.scroll > beforeArrow.client,
+      arrow: beforeArrow.scroll > beforeArrow.client && afterArrow > beforeArrow.left,
+    };
+    await responsiveReceipt(page, t, 'RC03', 'Markdown example has portable focus and qualified ArrowRight scrolling',
+      { markdown, beforeArrow, afterArrow, expected: { tabindex: '0', heading: 'import-guide-h',
+        overflowProbe: 'existing content, temporary white-space:pre; require scrollWidth>clientWidth before ArrowRight' },
+      subpredicates: markdownPredicates },
+      Object.values(markdownPredicates).every(Boolean));
+    responsiveStep(page, 'RC05-low-height-dialogs');
+    await page.setViewport({ width: 720, height: 320 });
+    await open(page, '/?catalog=actual#/age-bronze');
+    const previewTrigger = '.catalog-card:has([data-key="avengers-defenders-war"]) [data-act="preview"]';
+    await page.focus(previewTrigger);
+    await click(page, previewTrigger);
+    await page.waitForSelector('#preview[open]');
+    const preview = await page.evaluate(() => {
+      const dialog = document.querySelector('#preview');
+      const close = document.querySelector('#preview-close');
+      close.scrollIntoView({ block: 'center' });
+      close.focus();
+      const rect = close.getBoundingClientRect();
+      return { open: dialog.open, top: rect.top, bottom: rect.bottom, height: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    const closed = await page.$eval('#preview', (node) => !node.open);
+    const previewFocus = await page.$eval(previewTrigger, (node) => node === document.activeElement);
+    const active = (await readState(page)).active;
+    await open(page, '/#/read/' + active);
+    await page.evaluate(() => {
+      const details = document.querySelector('#list-actions');
+      if (details) details.open = true;
+      document.querySelector('#list-export').open = true;
+    });
+    await page.focus('#btn-export-md');
+    await click(page, '#btn-export-md');
+    await page.waitForSelector('#markdown-export[open]');
+    const exportBox = await page.$eval('#markdown-export [data-action="cancel"]', (node) => {
+      node.scrollIntoView({ block: 'center' });
+      node.focus();
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    responsiveStep(page, 'RC05-export-native-close-removal');
+    await page.waitForFunction(() => !document.querySelector('#markdown-export')
+      && document.activeElement.id === 'btn-export-md');
+    const exportClosed = await page.evaluate(() => !document.querySelector('#markdown-export')
+      && document.activeElement.id === 'btn-export-md');
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const list = state.lists[state.active];
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.focus('#btn-list-feedback-guide');
+    await click(page, '#btn-list-feedback-guide');
+    await page.waitForSelector('#list-feedback[open]');
+    const feedback = await page.$eval('#list-feedback-close', (node) => {
+      node.scrollIntoView({ block: 'center' });
+      node.focus();
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+        barHidden: getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await page.keyboard.press('Escape');
+    const feedbackClosed = await page.evaluate(() => !document.querySelector('#list-feedback').open
+      && document.activeElement.id === 'btn-list-feedback-guide');
+    await page.evaluate((before) => {
+      if (before.history === null) localStorage.removeItem('mrt.list-history.v1');
+      else localStorage.setItem('mrt.list-history.v1', before.history);
+    }, saved);
+    const dialogPredicates = {
+      preview: preview.open && preview.top >= 0 && preview.bottom <= preview.height && preview.barHidden,
+      previewClose: closed && previewFocus,
+      export: exportBox.top >= 0 && exportBox.bottom <= exportBox.viewport && exportBox.barHidden,
+      exportClose: exportClosed,
+      feedback: feedback.top >= 0 && feedback.bottom <= feedback.viewport && feedback.barHidden,
+      feedbackClose: feedbackClosed,
+    };
+    await responsiveReceipt(page, t, 'RC05', 'low-height independent Preview keeps native close reachable',
+      { preview, closed, previewFocus, exportBox, exportClosed, feedback, feedbackClosed,
+        expected: { viewport: [720, 320], actions: 'fully visible', close: 'native Escape restores launcher',
+          bar: 'unpainted while modal' }, subpredicates: dialogPredicates },
+      Object.values(dialogPredicates).every(Boolean));
+    responsiveStep(page, 'RC07-safe-area-clearance');
+    await page.setViewport({ width: 390, height: 720 });
+    await open(page, '/#/add-manual');
+    const safeRule = await responsiveRule(page, '.rail-header { padding-bottom: calc(var(--space-2) + 20px) !important; }');
+    await page.focus('.rail-header a');
+    await page.waitForFunction(() => {
+      const header = document.querySelector('.rail-header');
+      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height'))
+        === header.getBoundingClientRect().height;
+    });
+    const bar = await page.evaluate(() => {
+      const node = document.querySelector('.rail-header');
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, paddingBottom: parseFloat(getComputedStyle(node).paddingBottom),
+        base: parseFloat(getComputedStyle(node).paddingTop),
+        reportedHeight: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height')),
+        targets: [...node.querySelectorAll('a,button')].filter((target) => target.getClientRects().length)
+          .map((target) => ({ label: target.textContent.trim(), width: target.getBoundingClientRect().width,
+            height: target.getBoundingClientRect().height })) };
+    });
+    await page.focus('#manual-title');
+    await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight
+      || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden');
+    const editable = await page.evaluate(() => ({
+      hidden: document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight
+        || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden',
+      focused: document.activeElement.id === 'manual-title',
+      top: document.querySelector('#manual-title').getBoundingClientRect().top,
+      bottom: document.querySelector('#manual-title').getBoundingClientRect().bottom,
+      viewport: innerHeight,
+    }));
+    await page.focus('#manual-url');
+    await page.$eval('#manual-url', (node) => node.scrollIntoView({ block: 'center' }));
+    await responsiveFrames(page);
+    const lastField = await page.evaluate(() => {
+      const rect = document.querySelector('#manual-url').getBoundingClientRect();
+      const barRect = document.querySelector('.rail-header').getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, viewport: innerHeight, barTop: barRect.top,
+        barHidden: barRect.top >= innerHeight || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden' };
+    });
+    await responsiveDeleteRule(page, safeRule);
+    await open(page, '/#/read/' + active);
+    await page.evaluate(() => { const node = document.querySelector('#list-actions'); if (node) node.open = true; });
+    const nativeWriteStart = await page.evaluate(() => Date.now());
+    await deleteActiveList(page);
+    await page.waitForSelector('#app-report .notice');
+    const noticeTarget = async (label) => {
+      await page.focus('.rail-header .brand');
+      await page.evaluate((text) => {
+        const node = [...document.querySelectorAll('#app-report button')].find((button) => button.textContent.trim() === text);
+        node.scrollIntoView({ block: 'center' });
+      }, label);
+      await responsiveFrames(page);
+      return page.evaluate((text) => {
+        const node = [...document.querySelectorAll('#app-report button')].find((button) => button.textContent.trim() === text);
+        const rect = node.getBoundingClientRect();
+        const barRect = document.querySelector('.rail-header').getBoundingClientRect();
+        return { label: node.textContent.trim(), top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+          barTop: barRect.top, barHidden: barRect.top >= innerHeight
+            || getComputedStyle(document.querySelector('.rail-header')).visibility === 'hidden',
+          visible: node.checkVisibility() };
+      }, label);
+    };
+    const undo = await noticeTarget('Undo removal');
+    const feedbackNotice = await noticeTarget('Dismiss');
+    await clickNoticeButton(page, 'Undo removal');
+    await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 1);
+    const beforeUndoSetup = JSON.parse(saved.state);
+    const afterUndoSetup = await readState(page);
+    const changedFields = [...new Set([...Object.keys(beforeUndoSetup), ...Object.keys(afterUndoSetup)])]
+      .filter((key) => !isDeepStrictEqual(beforeUndoSetup[key], afterUndoSetup[key]));
+    const setupHistory = await page.evaluate(() => localStorage.getItem('mrt.list-history.v1'));
+    const nativeWriteEnd = await page.evaluate(() => Date.now());
+    const exportedBefore = Date.parse(beforeUndoSetup.exportedAt);
+    const exportedAfter = Date.parse(afterUndoSetup.exportedAt);
+    const setupQualified = JSON.stringify(changedFields.sort()) === '["exportedAt","writeToken"]'
+      && typeof beforeUndoSetup.writeToken === 'string' && typeof afterUndoSetup.writeToken === 'string'
+      && beforeUndoSetup.writeToken.length > 0 && afterUndoSetup.writeToken.length > 0
+      && beforeUndoSetup.writeToken !== afterUndoSetup.writeToken && setupHistory === saved.history
+      && Number.isFinite(exportedBefore) && Number.isFinite(exportedAfter)
+      && new Date(exportedBefore).toISOString() === beforeUndoSetup.exportedAt
+      && new Date(exportedAfter).toISOString() === afterUndoSetup.exportedAt
+      && exportedAfter >= nativeWriteStart && exportedAfter <= nativeWriteEnd && exportedAfter > exportedBefore;
+    console.log(`UX09-FIXTURE ${JSON.stringify({ setup: 'native-delete-Undo',
+      allowedDelta: 'writeToken/exportedAt only during explicit native writes', changedFields,
+      nativeWriteStart, nativeWriteEnd, before: beforeUndoSetup, after: afterUndoSetup,
+      historyPreserved: setupHistory === saved.history, qualified: setupQualified })}`);
+    if (!setupQualified) throw new Error(`Undo setup changed unexpected reader fields: ${changedFields.join(', ')}`);
+    await open(page, '/#/add-manual');
+    await page.focus('#manual-title');
+    const clearance = (target) => target.top >= 0 && target.bottom <= target.viewport
+      && (target.barHidden || target.bottom <= target.barTop - 8);
+    const barPredicates = {
+      targets: bar.targets.length === 5 && bar.targets.every((target) => target.width >= 44 && target.height >= 44 && target.label),
+      safeArea: bar.paddingBottom === bar.base + 20 && bar.reportedHeight >= bar.bottom - bar.top,
+      editable: editable.hidden && editable.focused && editable.top >= 0 && editable.bottom <= editable.viewport,
+      lastField: clearance(lastField),
+      undo: clearance(undo) && undo.visible && !undo.barHidden,
+      feedback: clearance(feedbackNotice) && feedbackNotice.visible && !feedbackNotice.barHidden,
+    };
+    await responsiveReceipt(page, t, 'RC07', 'full-label bar targets and editable guard preserve clearance',
+      { bar, editable, lastField, undo, feedbackNotice,
+        expected: { safeAreaProbe: 20, targets: 44, clearance: 8, labels: 'five full destinations',
+          proxy: 'CSS arithmetic, not a physical notch' }, subpredicates: barPredicates },
+      Object.values(barPredicates).every(Boolean));
+    const crossingSnapshot = await page.evaluate(() => ({
+      state: localStorage.getItem('mrt.state.v2'), history: localStorage.getItem('mrt.list-history.v1'),
+    }));
+    console.log(`UX09-FIXTURE ${JSON.stringify({ setup: 'post-Undo immutable crossings', ...crossingSnapshot, qualified: true })}`);
+    responsiveStep(page, 'RC08-crossings-preferences');
+    await page.setViewport({ width: 880, height: 720 });
+    await responsiveFrames(page);
+    await page.setViewport({ width: 881, height: 720 });
+    await responsiveFrames(page);
+    const crossing = await page.evaluate((before) => ({
+      focused: document.activeElement.id === 'manual-title',
+      state: localStorage.getItem('mrt.state.v2') === before.state,
+      history: localStorage.getItem('mrt.list-history.v1') === before.history,
+      hash: location.hash,
+    }), crossingSnapshot);
+    const client = await page.createCDPSession();
+    const preferences = [];
+    for (const mode of ['dark', 'light', 'forced-reduced']) {
+      await client.send('Emulation.setEmulatedMedia', { features: [
+        { name: 'forced-colors', value: mode === 'forced-reduced' ? 'active' : 'none' },
+        { name: 'prefers-reduced-motion', value: mode === 'forced-reduced' ? 'reduce' : 'no-preference' },
+      ] });
+      await page.setViewport({ width: 390, height: 720 });
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value === 'light' ? 'light' : 'dark'; }, mode);
+      await page.focus('.rail-header .brand');
+      await responsiveFrames(page);
+      await page.evaluate(() => scrollBy(0, 80));
+      responsiveStep(page, `RC08-${mode}-pinned-transition-settlement`);
+      await page.waitForFunction(() => {
+        const node = document.querySelector('.rail-header');
+        return node.getAnimations().every((animation) => animation.playState === 'finished')
+          && node.getBoundingClientRect().bottom <= innerHeight;
+      });
+      const pinned = await page.evaluate(() => {
+        const node = document.querySelector('.rail-header');
+        const rect = node.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, viewport: innerHeight,
+          focused: node.contains(document.activeElement), transition: getComputedStyle(node).transitionDuration,
+          borderStyle: getComputedStyle(node).borderTopStyle,
+          forced: matchMedia('(forced-colors:active)').matches,
+          reduced: matchMedia('(prefers-reduced-motion:reduce)').matches };
+      });
+      await page.focus('#manual-title');
+      await page.waitForFunction(() => document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight);
+      const guarded = await page.evaluate(() => ({
+        hidden: document.querySelector('.rail-header').getBoundingClientRect().top >= innerHeight,
+        focused: document.activeElement.id === 'manual-title',
+      }));
+      preferences.push({ mode, pinned, guarded, subpredicates: {
+        pinning: pinned.focused && pinned.top >= 0 && pinned.bottom <= pinned.viewport + 1,
+        editableGuard: guarded.hidden && guarded.focused,
+        forcedReduced: mode !== 'forced-reduced'
+          || (pinned.forced && pinned.reduced && pinned.transition === '0s' && pinned.borderStyle === 'solid'),
+      } });
+    }
+    await client.send('Emulation.setEmulatedMedia', { features: [] });
+    await client.detach();
+    const afterPreferences = await page.evaluate((before) => ({
+      state: localStorage.getItem('mrt.state.v2') === before.state,
+      history: localStorage.getItem('mrt.list-history.v1') === before.history,
+    }), crossingSnapshot);
+    const crossingPredicates = {
+      focused: crossing.focused, reader: crossing.state, history: crossing.history,
+      route: crossing.hash === '#/add-manual',
+      preferenceReader: afterPreferences.state, preferenceHistory: afterPreferences.history,
+      ...Object.fromEntries(preferences.flatMap((entry) => Object.entries(entry.subpredicates)
+        .map(([key, value]) => [`${entry.mode}:${key}`, value]))),
+    };
+    await responsiveReceipt(page, t, 'RC08', 'field breakpoint crossings do not steal focus or write reader/history',
+      { crossing, preferences, afterPreferences, expected: { crossings: [880, 881], modes: ['dark', 'light', 'forced-reduced'],
+        focused: 'manual-title', readerHistory: 'byte-identical', transitionReduced: '0s' },
+      subpredicates: crossingPredicates },
+      Object.values(crossingPredicates).every(Boolean));
+  },
+}));
+
+MUTATIONS.push(
+  {
+    id: 'responsive-about-wrap-off',
+    breaks: 'responsive-reflow',
+    why: 'only the exact historical About token loses its new wrapping rule',
+    script: () => addEventListener('load', () => {
+      const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+      sheet.insertRule('#about-build { overflow-wrap: normal !important; }', sheet.cssRules.length);
+    }),
+  },
+  {
+    id: 'responsive-read-box-17',
+    breaks: 'responsive-controls',
+    why: 'only actual read-button dimensions return to 17 pixels while the repaired grid stays',
+    script: () => addEventListener('load', () => {
+      const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+      sheet.insertRule('.row .cb { width: 17px !important; height: 17px !important; }', sheet.cssRules.length);
+    }),
+  },
+);
+
 function tally() {
   const rows = [];
   return {
@@ -14764,6 +17549,9 @@ function tally() {
 async function runScenario(browser, origin, scenario, mutation, diagnostic = null) {
   let context;
   const t = tally();
+  if (scenario.id.startsWith('responsive-')) {
+    t.responsiveRole = mutation ? 'broken' : process.env.UX09_ROLE === 'restored' ? 'restored' : 'normal';
+  }
   let error = null;
   let prepared = false;
   let completed = false;
@@ -14803,7 +17591,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     }
     enter('prepare-page');
     if (diagnostic?.blank) await page.setViewport({ width: 1280, height: 900 });
-    else await preparePage(page, origin, mutation);
+    else await preparePage(page, origin, mutation, scenario.id);
     prepared = true;
     enter('run');
     await scenario.run(page, t);
@@ -15013,7 +17801,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'mcu-prep-organization'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -15355,6 +18143,7 @@ async function seedRemovalFixture(page, saved = fixtureReadingState()) {
 
 async function removeFixtureIssue(page, issueId) {
   const selector = `#rows [data-key="${issueId}"][data-act="remove"]`;
+  await revealReadingControl(page, selector);
   await page.waitForSelector(selector, { visible: true });
   await page.focus(selector);
   await page.evaluate((target) => document.querySelector(target).click(), selector);
@@ -15417,6 +18206,8 @@ async function restoreRemovalFixture(page, saved) {
     input.files = files.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
   }, saved);
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
   await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
 }
 
@@ -15474,6 +18265,7 @@ SCENARIOS.push(
       await seedRemovalFixture(page, saved);
       const before = await readState(page);
       const target = `#rows [data-key="${removedId}"][data-act="remove"]`;
+      await revealReadingControl(page, target);
       await page.focus(target);
       const scrolled = await page.$eval('#app-report', (node) => node.getBoundingClientRect().bottom < 0);
       t.check('the removal starts genuinely scrolled away from the notice pane', scrolled);
@@ -15495,7 +18287,7 @@ SCENARIOS.push(
 
       await switchRemovalList(page, 'other');
       await click(page, `#rows [data-key="${removedId}"][data-act="read"]`);
-      await click(page, `#rows [data-key="${removedId}"][data-act="override"]`);
+      await click(page, `#rows [data-key="${removedId}"][data-act="override-unavailable"]`);
       await editRemovalText(page, `#rows [data-key="${removedId}"][data-act="note"]`, '#ask-area', 'Later shared issue note');
       await switchRemovalList(page, 'fixture');
       await editRemovalText(page, '#btn-rename-list', '#ask-input', 'Renamed after removal');
@@ -15669,7 +18461,7 @@ SCENARIOS.push(
       const replaced = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.evaluate(() => window.__restoredSource444.click());
       t.check('backup restoration withdraws the offer and a stale action cannot change the restored dataset',
-        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Restored.'))
+        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Reading data restored.'))
         && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, replaced)
         && !(await removalNotice(page)).buttons.includes('Undo remove'));
 
@@ -15881,10 +18673,22 @@ SCENARIOS.push({
         (await tooltipVisual449(page, selector, tipId)).visible);
       t.check(`${name}: tooltip repaint does not add an announcement`,
         announcer === await page.$eval('#announcer', (node) => node.textContent));
-      await page.$eval(selector, (node) => { node.disabled = true; });
+      const disabledState = await page.$eval(selector, (node) => {
+        const native = node instanceof HTMLButtonElement;
+        const previous = native ? node.disabled : node.getAttribute('aria-disabled');
+        if (native) node.disabled = true;
+        else node.setAttribute('aria-disabled', 'true');
+        return { native, previous };
+      });
       await settle();
       t.check(`${name}: a disabled trigger withdraws its hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
-      await page.$eval(selector, (node) => { node.disabled = false; node.classList.remove('tooltip-repaint-449'); delete node.dataset.tooltipRepaint449; });
+      await page.$eval(selector, (node, state) => {
+        if (state.native) node.disabled = state.previous;
+        else if (state.previous === null) node.removeAttribute('aria-disabled');
+        else node.setAttribute('aria-disabled', state.previous);
+        node.classList.remove('tooltip-repaint-449');
+        delete node.dataset.tooltipRepaint449;
+      }, disabledState);
       await reset();
       await page.focus(selector);
       await page.$eval(selector, (node) => { node.hidden = true; });
@@ -15906,13 +18710,13 @@ SCENARIOS.push({
     t.check('withdrawing a shortcut withdraws its visible hint and shortcut metadata',
       !(await tooltipVisual449(page, action.selector, action.tipId)).visible
       && await page.$eval(action.selector, (node) => !node.hasAttribute('aria-keyshortcuts')));
-    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Mark read and continue. Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
     await reset();
 
     // The first Escape must not invoke the row menu's focus rescue; the second still must.
     await page.setViewport({ width: 320, height: 900 });
     await click(page, '#rows .row:first-child [data-act="more"]');
-    const rowAction = '#rows .row:first-child [data-act="override"]';
+    const rowAction = '#rows .row:first-child [data-act="override-available"]';
     await page.focus(rowAction);
     await page.keyboard.press('Escape');
     t.check('first Escape keeps focus in the open narrow row menu',
@@ -16046,6 +18850,9 @@ SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll4
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
+const orderedImport = await import('./browser-ordered-import.mjs');
+SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
+MUTATIONS.push(...orderedImport.importMutations);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence);
@@ -16150,7 +18957,7 @@ SCENARIOS.push({
     checkRows('preview retains all 191 first positions, IDs and titles', preview);
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const saved = await imported();
     t.check('import saves exactly one catalog-bound guide', saved.matches === 1, JSON.stringify(saved));
     checkRows('import retains all 191 positions, IDs and titles', saved.rows);
@@ -16258,6 +19065,1010 @@ if (ownerContracts.length) {
   if (SCENARIOS.some((entry) => entry.id === scenario.id)) throw new Error('Owner browser contract is already registered.');
   SCENARIOS.push(scenario);
 }
+
+const UX10_PATHS = resolveReadingPaths(ACTUAL_CATALOG.paths, ACTUAL_CATALOG.lists);
+const UX10_LONG = UX10_PATHS.find(({ id }) => id === 'marvel-knights-to-planet-x');
+const UX10_MODERN = UX10_PATHS.find(({ id }) => id === 'modern-avengers');
+const UX10_HISTORY_KEY = 'mrt.list-history.v1';
+const ux10PathAction = (id) => `[data-reading-path-action="${id}"]`;
+const ux10AgeCards = (key) => publishingCategoryStories(catalogEntries(ACTUAL_CATALOG.lists), key)
+  .map((story, index) => ({ story, index }))
+  .sort((a, b) => storyYear(a.story) - storyYear(b.story) || a.index - b.index)
+  .map(({ story }) => ({ id: story.key, name: story.lists[0].name }));
+
+function ux10Library(stops, { allComplete = false, identity = false } = {}) {
+  let state = createEmptyState();
+  const records = [];
+  const add = (catalogId, id, position, completed, created = 1000 + position) => {
+    state = createList(state, { id, name: id, catalogId });
+    state.lists[id].created = created;
+    state = addIssuesToList(state, id, [0, 1].map((offset) => ({
+      issueId: 910000 + position * 2 + offset, title: `UX10 synthetic ${position}/${offset}`,
+    }))).state;
+    const ids = state.lists[id].itemIds;
+    state.notes[ids[0]] = 'UX10 retained note';
+    state.overrides[ids[1]] = 'unavailable';
+    if (identity) state.read[ids[0]] = 123;
+    if (!identity && position === 76) ids.forEach((issueId) => { state.read[issueId] = 123; });
+    if (!identity && position === 77) state.lists[id].deferredIssueIds = [ids[1]];
+    records.push({ listId: id, created, catalogId, completedAt: completed ? 123456 : null, rating: null });
+  };
+  if (identity) {
+    stops.slice(0, 7).forEach((stop, index) => add(stop.stepId, `ux10-modern-prefix-${index + 1}`, index + 1, true, 3001 + index));
+    [
+      ['hickman-minimal', 'ux10-hickman-first', false],
+      ['hickman-minimal', 'ux10-hickman-second', true],
+      ['hickman-full', 'ux10-hickman-full', true],
+      ['avengers-doomsday-secret-wars', 'ux10-hickman-doomsday', false],
+    ].forEach(([catalogId, id, completed], index) => add(catalogId, id, 80 + index, completed, 2001 + index));
+    state.active = 'ux10-hickman-full';
+  } else {
+    stops.forEach((stop, index) => add(stop.stepId, `ux10-stop-${String(index + 1).padStart(2, '0')}`, index + 1, allComplete || index !== 75));
+  }
+  return { state, history: { format: 'recap-page-list-history', version: 1, records } };
+}
+
+async function runLongCollectionNavigation(page, t) {
+  let step = 'LC01 accepted-spine preflight';
+  const enter = (next) => { step = next; console.log(`UX10-STEP ${JSON.stringify({ owner: 'long-collection-navigation', step, mutation: page.__mutation?.id ?? null })}`); };
+  const errors = [];
+  const external = [];
+  page.on('pageerror', (error) => errors.push({ name: error.name, message: error.message }));
+  page.on('request', (request) => {
+    if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== page.__origin) external.push(request.url());
+  });
+  await page.evaluateOnNewDocument(() => localStorage.setItem('mrt.settings', JSON.stringify({ covers: false })));
+  const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const raw = () => page.evaluate(() => ({
+    reader: localStorage.getItem('mrt.state.v2'), history: localStorage.getItem('mrt.list-history.v1'),
+    settings: localStorage.getItem('mrt.settings'), hash: location.hash, historyLength: history.length,
+  }));
+  const receipt = (journey, branch, expected, actual, subpredicates, rawBefore = null, rawAfter = null) => {
+    console.log(`UX10-MEASURE ${JSON.stringify({ owner: 'long-collection-navigation', journey, branch, expected, actual, subpredicates, rawBefore, rawAfter })}`);
+    for (const [predicate, passed] of Object.entries(subpredicates)) {
+      console.log(`UX10-PREDICATE ${JSON.stringify({ journey, branch, predicate, passed, expected, actual })}`);
+      t.check(`${journey} ${branch}: ${predicate}`, passed, JSON.stringify({ expected, actual }));
+    }
+  };
+  const sameRaw = (before, after) => isDeepStrictEqual(before, after);
+  const pathUrl = (id = UX10_LONG.id, fixture = 'actual') => `/?catalog=${fixture}#/reading-paths?path=${id}`;
+  const ageUrl = (key) => `/?catalog=actual#/age-${key}`;
+  const pathReady = async (id = UX10_LONG.id, fixture = 'actual') => {
+    await open(page, pathUrl(id, fixture));
+    await page.waitForFunction((expected) => document.querySelector('#reading-path-select')?.value === expected
+      && document.querySelector('#reading-path-spine [data-reading-path-action]'), {}, id);
+    await settle();
+  };
+  const ageReady = async (key) => {
+    await open(page, ageUrl(key));
+    await page.waitForFunction((route) => document.querySelector(`#${route}-count`)?.textContent !== 'Loading Reading Lists'
+      && !document.querySelector(`#${route}-results > p[aria-hidden="true"]`), {}, `age-${key}`);
+    await settle();
+  };
+  const pathVector = () => page.$$eval('#reading-path-spine [data-reading-path-stop]', (rows) => rows.map((row) => row.dataset.readingPathStop));
+  const ageVector = (key) => page.$$eval(`#age-${key}-results .catalog-card`, (cards) => cards.map((card) => card.dataset.story));
+  const focus = () => page.evaluate(() => {
+    const target = document.activeElement;
+    const box = target.getBoundingClientRect();
+    const style = getComputedStyle(target);
+    const nav = document.querySelector('.rail-header');
+    const navBox = nav.getBoundingClientRect();
+    const navStyle = getComputedStyle(nav);
+    const bottom = navStyle.position === 'fixed' && navStyle.visibility !== 'hidden' && navBox.top < innerHeight
+      ? navBox.top : innerHeight;
+    const sticky = [...document.querySelectorAll('main [class]')].filter((node) => {
+      const css = getComputedStyle(node);
+      const rect = node.getBoundingClientRect();
+      return css.position === 'sticky' && css.top === '0px' && rect.top <= 0 && rect.bottom > 0;
+    }).reduce((max, node) => Math.max(max, node.getBoundingClientRect().bottom), 0);
+    return {
+      id: target.dataset.readingPathAction ?? target.closest('.catalog-card')?.dataset.story ?? target.id,
+      tag: target.tagName, tabindex: target.getAttribute('tabindex'),
+      rect: { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height },
+      outline: { width: parseFloat(style.outlineWidth), style: style.outlineStyle },
+      viewport: { width: innerWidth, height: innerHeight }, headerBottom: sticky, navTop: bottom,
+      usable: box.width > 0 && box.height > 0 && box.left >= 0 && box.right <= innerWidth
+        && box.top >= sticky && box.bottom <= bottom,
+    };
+  });
+  const jump = async (host, value, keyboard = false) => {
+    await page.focus(`${host} select`);
+    if (keyboard) await page.keyboard.press('End');
+    else await page.select(`${host} select`, value);
+    const selected = await page.$eval(`${host} select`, (select) => ({ value: select.value, focused: select === document.activeElement }));
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+    await settle();
+    return { selected, focus: await focus(), status: await page.$eval(`${host} [role="status"]`, (node) => node.textContent) };
+  };
+  const measureJump = async (journey, branch, host, value, expectedId, keyboard = false) => {
+    const before = await raw();
+    const actual = await jump(host, value, keyboard);
+    const after = await raw();
+    receipt(journey, branch, { target: expectedId, value }, actual, {
+      selectionInert: actual.selected.focused, exactTarget: actual.focus.id === expectedId,
+      visibleFocus: actual.focus.outline.width >= 1 && actual.focus.outline.style !== 'none',
+      targetUsable: actual.focus.usable, noWritesOrRouting: sameRaw(before, after),
+    }, before, after);
+    return actual;
+  };
+  const paintedExpectations = (stops, state, completion) => stops.map((stop) => {
+    const progress = readingPathProgress(state, stop, {
+      isCompleted: (current, id) => typeof completion !== 'string' && completion.records.some((record) => {
+        const saved = current.lists[id];
+        return record.listId === id && record.created === saved.created
+          && record.catalogId === saved.catalogId && record.completedAt !== null;
+      }),
+    });
+    return {
+      id: stop.stepId,
+      name: progress?.name ?? stop.name,
+      action: progress ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version') : 'Preview',
+      count: progress ? `${progress.read} of ${progress.total}` : null,
+      deferred: progress?.deferred ?? 0,
+      completed: Boolean(progress?.completed),
+      alternate: progress?.match === 'sibling',
+    };
+  });
+  const waitPainted = async (expected, fixture) => {
+    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'wait-painted', expected })}`);
+    await page.waitForFunction((expected) => expected.every((entry) => {
+      const row = document.querySelector(`[data-reading-path-stop="${entry.id}"]`);
+      if (!row) return false;
+      const action = row.querySelector('[data-reading-path-action]');
+      const text = row.querySelector('.reading-path-stop-progress').textContent;
+      return action.textContent === entry.action && action.getAttribute('aria-label').includes(entry.name)
+        && (entry.count === null ? text === 'Not added' : text.includes(entry.count) && text.includes(entry.name))
+        && text.includes('Marked as completed') === entry.completed
+        && text.includes('Alternate reading version.') === entry.alternate
+        && (entry.deferred === 0 ? !text.includes(' deferred.') : text.includes(`${entry.deferred} deferred.`));
+    }), {}, expected);
+    const actual = await page.evaluate((expected) => expected.map(({ id }) => {
+      const row = document.querySelector(`[data-reading-path-stop="${id}"]`);
+      const action = row.querySelector('[data-reading-path-action]');
+      return { id, action: action.textContent, label: action.getAttribute('aria-label'), progress: row.querySelector('.reading-path-stop-progress').textContent };
+    }), expected);
+    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'painted-qualified', expected, actual })}`);
+  };
+  const seed = async ({ state, history: completion }, url) => {
+    await page.evaluate((next, historyValue) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(next));
+      localStorage.setItem('mrt.list-history.v1', typeof historyValue === 'string' ? historyValue : JSON.stringify(historyValue));
+    }, state, completion);
+    await open(page, url);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#reading-path-spine [data-reading-path-action]');
+    const pathId = new URLSearchParams(new URL(url, page.__origin).hash.split('?')[1]).get('path');
+    const fixturePath = pathId === 'bc-path'
+      ? resolveReadingPaths([{
+        ...CATALOG.paths[0],
+        steps: ['browser-check', 'browser-check-two',
+          ...Array.from({ length: 9 }, (_, index) => `browser-check-extra-${index + 1}`),
+          'browser-check-three-short'],
+      }], CATALOG.lists)[0]
+      : UX10_PATHS.find(({ id }) => id === pathId);
+    if (!fixturePath) throw new Error(`UX10 seed has no declared fixture path ${pathId}`);
+    await waitPainted(paintedExpectations(fixturePath.stops, state, completion), `fresh seed ${pathId}`);
+    if (typeof completion === 'string') {
+      await page.waitForFunction((expected) => localStorage.getItem('mrt.list-history.v1') === expected
+        && document.body.textContent.includes('Completion history') && document.body.textContent.includes('kept'), {}, completion);
+    }
+    await settle();
+  };
+  try {
+    enter(step);
+    await pathReady();
+    const vector = await pathVector();
+    receipt('LC01', 'accepted full spine', UX10_LONG.stops.map(({ stepId }) => stepId), vector,
+      { count78: vector.length === 78, exactOrder: isDeepStrictEqual(vector, UX10_LONG.stops.map(({ stepId }) => stepId)) });
+    const exists = await page.$('#reading-path-navigation form');
+    receipt('LC01', 'desired native late-stop keyboard widget', 'native form/select/Jump/status', Boolean(exists), { desiredWidget: Boolean(exists) });
+    if (!exists) {
+      for (let index = 2; index <= 11; index += 1) console.log(`UX10-BLOCKED ${JSON.stringify({ journey: `LC${String(index).padStart(2, '0')}`, reason: 'LC01 desired widget absent', completed: false })}`);
+      const error = new Error('LC01 desired native jump widget absent after qualified 78-stop baseline');
+      error.name = 'UX10BaselineContractAbsent';
+      throw error;
+    }
+    const sourceBytes = {};
+    for (const modulePath of ['/js/views/reading-paths.js', '/js/views/shared/collection-navigation.js']) {
+      const original = readFileSync(new URL(`../src${modulePath}`, import.meta.url), 'utf8');
+      const served = await page.evaluate(async (path) => (await fetch(path)).text(), modulePath);
+      const originalSha256 = createHash('sha256').update(original).digest('hex');
+      const servedSha256 = createHash('sha256').update(served).digest('hex');
+      sourceBytes[modulePath] = { originalSha256, servedSha256, exactOriginal: served === original };
+    }
+    receipt('LC01', 'bound module responses and restoration', page.__mutation?.id ?? 'original source bytes', sourceBytes, {
+      readingModuleBound: sourceBytes['/js/views/reading-paths.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-read-is-complete'),
+      sharedModuleBound: sourceBytes['/js/views/shared/collection-navigation.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-wrong-target'),
+    });
+    const options = await page.$$eval('#reading-path-navigation option', (nodes) => nodes.filter((node) => node.value.startsWith('entry:')).map((node) => ({ id: node.value.slice(6), label: node.textContent })));
+    receipt('LC01', 'full name-first ordinal vector', UX10_LONG.stops.map(({ stepId, name, position }) => ({ id: stepId, label: `${name} (${position} of 78)` })), options, {
+      fullOrder: isDeepStrictEqual(options.map(({ id }) => id), vector),
+      namesAndOrdinals: options.every((option, index) => option.label === `${UX10_LONG.stops[index].name} (${index + 1} of 78)`),
+    });
+    await measureJump('LC01', 'three-key late stop', '#reading-path-navigation', `entry:${vector[77]}`, vector[77], true);
+    const typeaheadBefore = await raw();
+    await page.focus('#reading-path-navigation select');
+    await page.keyboard.press('Home');
+    await page.keyboard.type('Planet');
+    const typed = await page.$eval('#reading-path-navigation select', (node) => ({ value: node.value, focused: document.activeElement === node }));
+    await page.keyboard.press('Tab'); await page.keyboard.press('Enter'); await settle();
+    receipt('LC01', 'native typeahead', vector[77], { typed, focus: await focus() }, {
+      nameTypeahead: typed.value === `entry:${vector[77]}`, selectionInert: typed.focused,
+      exactTarget: (await focus()).id === vector[77],
+      orderRetained: isDeepStrictEqual(await pathVector(), vector),
+      noWritesOrRouting: sameRaw(typeaheadBefore, await raw()),
+      visibleFocus: (await focus()).outline.width >= 1 && (await focus()).outline.style !== 'none',
+      targetUsable: (await focus()).usable,
+    }, typeaheadBefore, await raw());
+
+    enter('LC02 Knights age');
+    await ageReady('marvel-knights-heroes-return');
+    const ageExpected = ux10AgeCards('marvel-knights-heroes-return');
+    const ageIds = await ageVector('marvel-knights-heroes-return');
+    const ageOptions = await page.$$eval('#age-marvel-knights-heroes-return-navigation option', (nodes) => nodes.filter((node) => node.value).map((node) => node.value.slice(6)));
+    receipt('LC02', '81 cards rather than 78 stops', ageExpected.map(({ id }) => id), ageIds, {
+      cards81: ageIds.length === 81, chapters75: ageIds.filter((id) => id.includes('marvel-knights-to-planet-x-')).length === 75,
+      guides6: ageIds.filter((id) => !id.includes('marvel-knights-to-planet-x-')).length === 6,
+      cardOrder: isDeepStrictEqual(ageIds, ageExpected.map(({ id }) => id)), optionOrder: isDeepStrictEqual(ageIds, ageOptions),
+    });
+    const lastAge = await measureJump('LC02', 'late title', '#age-marvel-knights-heroes-return-navigation', `entry:${ageIds[80]}`, 'list:marvel-knights-to-planet-x-78', true);
+    receipt('LC02', 'original heading and whole collection', { tag: 'H4', tabindex: '-1' }, lastAge.focus, {
+      headingPreserved: lastAge.focus.tag === 'H4' && lastAge.focus.tabindex === '-1',
+      fullVectorRetained: isDeepStrictEqual(await ageVector('marvel-knights-heroes-return'), ageIds),
+    });
+
+    enter('LC03 variants and cross-era chapters');
+    await ageReady('event-era');
+    const eventIds = await ageVector('event-era');
+    const expectedEvent = ux10AgeCards('event-era').map(({ id }) => id);
+    const linksBefore = await page.$$eval('#age-event-era-results .catalog-card', (cards) => cards.map((card) => ({
+      id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
+    })));
+    await measureJump('LC03', 'essential variant only', '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential');
+    const linksAfter = await page.$$eval('#age-event-era-results .catalog-card', (cards) => cards.map((card) => ({
+      id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
+    })));
+    receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
+      cards39: eventIds.length === 39, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
+      crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
+      linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),
+    });
+
+    enter('LC04 reusable long leaves and small exclusion');
+    for (const [key, count, last] of [
+      ['fresh-start', 13, 'king-in-black'], ['current', 13, 'fall-house-x-rise-powers-x'],
+      ['early-modern', 16, 'operation-zero-tolerance'],
+    ]) {
+      await ageReady(key);
+      const ids = await ageVector(key);
+      const structure = await page.$eval(`#age-${key}-navigation form`, (form) => ({
+        class: form.className, tags: [...form.children].map((child) => child.tagName),
+        next: [...form.querySelectorAll('option')].some((option) => option.value === 'next-unfinished'),
+      }));
+      receipt('LC04', key, { count, last: `list:${last}` }, { ids, structure }, {
+        count: ids.length === count, order: isDeepStrictEqual(ids, ux10AgeCards(key).map(({ id }) => id)),
+        reusedNativeForm: structure.class === 'collection-navigation' && structure.tags.join('/') === 'LABEL/SELECT/BUTTON/P',
+        noNext: !structure.next,
+      });
+      await measureJump('LC04', `${key} late keyboard`, `#age-${key}-navigation`, `entry:list:${last}`, `list:${last}`, true);
+    }
+    await ageReady('marvel-now');
+    const small = await ageVector('marvel-now');
+    receipt('LC04', 'small Marvel NOW retains variants', 10, small, {
+      count10: small.length === 10, bothHickmanVariants: small.includes('list:hickman-minimal') && small.includes('list:hickman-full'),
+      noForm: !(await page.$('#age-marvel-now-navigation form')),
+    });
+
+    enter('LC05 explicit completion synthetic 78');
+    const completionFixture = ux10Library(UX10_LONG.stops);
+    await seed(completionFixture, pathUrl());
+    const progress = await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent));
+    receipt('LC05', 'normalized exact completion fixture', { read76: 2, deferred77: 1 }, progress.slice(75, 77), {
+      readButUnmarked76: progress[75].includes('2 of 2') && !progress[75].includes('Marked as completed'),
+      completedUnreadDeferred77: progress[76].includes('0 of 2') && progress[76].includes('1 deferred') && progress[76].includes('Marked as completed'),
+    });
+    await measureJump('LC05', 'next skips only explicit completions', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[75].stepId);
+    receipt('LC05', 'progress and reader launch unchanged', progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent)), {
+      sameProgress: isDeepStrictEqual(progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent))),
+      noReaderTab: await page.evaluate(() => window.__opened.length === 0),
+    });
+
+    enter('LC06 empty, all-complete, unknown and empty age');
+    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl());
+    await measureJump('LC06', 'empty library first stop', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    await seed(ux10Library(UX10_LONG.stops, { allComplete: true }), pathUrl());
+    const completeBefore = await raw();
+    const complete = await jump('#reading-path-navigation', 'next-unfinished');
+    const completeAfter = await raw();
+    receipt('LC06', 'all explicitly complete', 'All displayed stops are marked as completed.', complete, {
+      explicitMessage: complete.status === 'All displayed stops are marked as completed.',
+      noTargetFocus: complete.focus.tag === 'BUTTON', retainedBytes: sameRaw(completeBefore, completeAfter),
+      unreadRetained: await page.$eval(`${ux10PathAction(UX10_LONG.stops[76].stepId)}`, (action) => action.parentElement.textContent.includes('0 of 2')),
+    }, completeBefore, completeAfter);
+    await seed({ state: completionFixture.state, history: '{UX10 corrupt history' }, pathUrl());
+    await measureJump('LC06', 'unknown history is unfinished', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    const unknown = await page.evaluate(() => ({ raw: localStorage.getItem('mrt.list-history.v1'), text: document.body.textContent }));
+    receipt('LC06', 'unknown history report is explicit', 'preserved corrupt history with guidance', unknown, {
+      rawPreserved: unknown.raw === '{UX10 corrupt history', explicitGuidance: unknown.text.includes('Completion history') && unknown.text.includes('kept'),
+    });
+    await ageReady('golden');
+    const empty = await page.$eval('#age-golden-results', (box) => ({ text: box.textContent, href: box.querySelector('a')?.getAttribute('href') }));
+    receipt('LC06', 'empty Golden Age', empty, empty, {
+      truthfulEmpty: empty.text.includes('No Reading Lists are published for this period yet.'),
+      alternative: empty.href === '#/marvel-ages', noForm: !(await page.$('#age-golden-navigation form')),
+    });
+
+    enter('LC07 live A-E exact duplicate and sibling identity');
+    const identity = ux10Library(UX10_MODERN.stops, { identity: true });
+    await seed(identity, pathUrl(UX10_MODERN.id));
+    await page.evaluate(() => {
+      window.__ux10Form = document.querySelector('#reading-path-navigation form');
+      window.__ux10Action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+    });
+    const adopt = async (key, value) => {
+      await page.evaluate((key, value) => {
+        const oldValue = localStorage.getItem(key); const newValue = JSON.stringify(value);
+        localStorage.setItem(key, newValue);
+        dispatchEvent(new StorageEvent('storage', { key, oldValue, newValue, storageArea: localStorage, url: location.href }));
+      }, key, value);
+      await settle();
+    };
+    const removeCopy = (id) => {
+      delete identity.state.lists[id];
+      identity.state.listOrder = identity.state.listOrder.filter((entry) => entry !== id);
+      if (identity.state.active === id) identity.state.active = identity.state.listOrder[0] ?? null;
+    };
+    for (const [stage, chosen, nextIndex, actionText] of [
+      ['A', 'ux10-hickman-first', 7, 'Open saved list'],
+      ['B', 'ux10-hickman-second', 8, 'Open saved list'],
+      ['C', 'ux10-hickman-full', 8, 'Open saved version'],
+      ['D', 'ux10-hickman-full', 7, 'Open saved version'],
+      ['E', null, 7, 'Preview'],
+    ]) {
+      if (stage === 'B') { removeCopy('ux10-hickman-first'); await adopt('mrt.state.v2', identity.state); }
+      if (stage === 'C') { removeCopy('ux10-hickman-second'); await adopt('mrt.state.v2', identity.state); }
+      if (stage === 'D') {
+        identity.history.records.find((record) => record.listId === 'ux10-hickman-full').completedAt = null;
+        await adopt(UX10_HISTORY_KEY, identity.history);
+      }
+      if (stage === 'E') {
+        removeCopy('ux10-hickman-full'); removeCopy('ux10-hickman-doomsday');
+        await adopt('mrt.state.v2', identity.state);
+      }
+      await waitPainted(paintedExpectations(UX10_MODERN.stops, identity.state, identity.history), `LC07 live ${stage}`);
+      const association = await page.evaluate(async () => {
+        const { readingPathProgress } = await import('/js/views/reading-paths.js');
+        const { parseListHistory, listHistoryIdentity } = await import('/js/lib/listHistory.js');
+        const { resolveReadingPaths } = await import('/js/lib/catalog.js');
+        const catalog = await (await fetch('/data/catalog.json')).json();
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const records = parseListHistory(localStorage.getItem('mrt.list-history.v1'));
+        const stop = resolveReadingPaths(catalog.paths, catalog.lists).find((path) => path.id === 'modern-avengers').stops[7];
+        const progress = readingPathProgress(state, stop, { isCompleted: (current, id) => Boolean(records.get(listHistoryIdentity(current.lists[id]))?.completedAt) });
+        const action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+        return {
+          chosen: progress?.listId ?? null, progress,
+          text: action.textContent, label: action.getAttribute('aria-label'), painted: action.parentElement.querySelector('.reading-path-stop-progress').textContent,
+          sameForm: window.__ux10Form === document.querySelector('#reading-path-navigation form'), sameAction: window.__ux10Action === action,
+        };
+      });
+      receipt('LC07', `${stage} chosen saved version`, { chosen, next: UX10_MODERN.stops[nextIndex].stepId, actionText }, association, {
+        exactChosen: association.chosen === chosen, actionLabel: association.text === actionText && association.label.includes(chosen ?? UX10_MODERN.stops[7].name),
+        truthfulProgress: chosen ? association.progress.read === 1 && association.progress.total === 2 && association.painted.includes('1 of 2') : association.painted === 'Not added',
+        alternateWording: stage === 'C' || stage === 'D' ? association.painted.includes('Alternate reading version.') : !association.painted.includes('Alternate reading version.'),
+        formAndActionIdentity: association.sameForm && association.sameAction,
+      });
+      await measureJump('LC07', `${stage} live next`, '#reading-path-navigation', 'next-unfinished', UX10_MODERN.stops[nextIndex].stepId);
+    }
+
+    enter('LC08 finite invalid native and stale generation handling');
+    await pathReady();
+    const invalid = async (branch, mode, expectedValue, expectedText) => {
+      const before = await raw();
+      const actual = await page.evaluate((mode) => {
+        const form = document.querySelector('#reading-path-navigation form');
+        const select = form.querySelector('select');
+        const originalValue = select.value;
+        let option;
+        if (mode === 'injected') {
+          option = new Option('Missing synthetic identity', 'entry:ux10-absent');
+          select.append(option); select.value = option.value;
+        } else select.value = mode === 'absent' ? 'ux10-absent' : '';
+        form.querySelector('button').focus();
+        form.requestSubmit();
+        const result = { value: select.value, text: form.querySelector('[role="status"]').textContent, focus: document.activeElement.tagName };
+        option?.remove(); select.value = originalValue;
+        return result;
+      }, mode);
+      const after = await raw();
+      receipt('LC08', branch, { value: expectedValue, text: expectedText }, actual, {
+        actualNativeValue: actual.value === expectedValue, explicitFeedback: actual.text.includes(expectedText),
+        noFallback: actual.focus === 'BUTTON', bytesUnchanged: sameRaw(before, after),
+      }, before, after);
+    };
+    await invalid('placeholder', 'empty', '', 'Choose');
+    await invalid('absent value deselects', 'absent', '', 'Choose');
+    await invalid('selected injected option rejects', 'injected', 'entry:ux10-absent', 'no longer available');
+    const disconnected = await page.evaluate((id) => {
+      const form = document.querySelector('#reading-path-navigation form');
+      const target = document.querySelector(`[data-reading-path-action="${id}"]`);
+      const parent = target.parentElement; const next = target.nextSibling;
+      target.remove(); form.querySelector('select').value = `entry:${id}`;
+      form.querySelector('button').focus(); form.requestSubmit();
+      const result = { text: form.querySelector('[role="status"]').textContent, target: document.activeElement.tagName };
+      parent.insertBefore(target, next);
+      return result;
+    }, UX10_LONG.stops[77].stepId);
+    receipt('LC08', 'detached target', 'unavailable/no fallback', disconnected, { unavailable: disconnected.text.includes('no longer available'), noFallback: disconnected.target === 'BUTTON' });
+    await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#reading-path-navigation form'); });
+    await page.select('#reading-path-select', UX10_MODERN.id);
+    await settle();
+    const stale = await page.evaluate(() => {
+      const before = document.activeElement;
+      window.__ux10OldForm.requestSubmit();
+      return { sameFocus: document.activeElement === before, newForm: window.__ux10OldForm !== document.querySelector('#reading-path-navigation form') };
+    });
+    receipt('LC08', 'path switch rejects old form', true, stale, { noStolenFocus: stale.sameFocus, newGeneration: stale.newForm });
+    await measureJump('LC08', 'current valid form remains usable', '#reading-path-navigation', `entry:${UX10_MODERN.stops[9].stepId}`, UX10_MODERN.stops[9].stepId);
+    await page.evaluate(() => { window.__ux10Inactive = document.querySelector('#reading-path-navigation form'); });
+    await click(page, '.brand[data-view="home"]'); await settle();
+    const away = await page.evaluate(() => { const before = document.activeElement; window.__ux10Inactive.requestSubmit(); return document.activeElement === before; });
+    receipt('LC08', 'navigation away rejects old form', true, away, { noFocusSteal: away });
+    await ageReady('event-era');
+    const reserved = await page.evaluate(() => {
+      const form = document.querySelector('#age-event-era-navigation form'); const select = form.querySelector('select');
+      const original = select.value; const option = new Option('Unexpected next', 'next-unfinished'); select.append(option); select.value = option.value;
+      form.querySelector('button').focus(); form.requestSubmit();
+      const result = { value: select.value, text: form.querySelector('[role="status"]').textContent, focus: document.activeElement.tagName };
+      option.remove(); select.value = original; return result;
+    });
+    receipt('LC08', 'age next token cannot invoke absent callback', 'unavailable', reserved, { nativeValue: reserved.value === 'next-unfinished', truthfulRejection: reserved.text.includes('no longer available'), noFallback: reserved.focus === 'BUTTON' });
+
+    enter('LC09 deep links and native Preview/Open return');
+    await pathReady();
+    const reloadBefore = await raw(); await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#reading-path-spine [data-reading-path-action]'); await settle();
+    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#reading-path-select', (node) => node.value), {
+      pathRetained: await page.$eval('#reading-path-select', (node) => node.value) === UX10_LONG.id,
+      hashRetained: (await raw()).hash === reloadBefore.hash,
+    });
+    await ageReady('event-era'); await page.reload({ waitUntil: 'load' }); await page.waitForSelector('#age-event-era-results .catalog-card'); await settle();
+    const ageBeforeNavigation = await raw();
+    await page.evaluate(() => { location.hash = '#/reading-paths?path=modern-avengers'; });
+    await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'modern-avengers'); await settle();
+    await page.evaluate(() => history.back());
+    await page.waitForFunction(() => document.activeElement?.id === 'age-event-era-h'); await settle();
+    const backed = await raw();
+    await page.evaluate(() => history.forward());
+    await page.waitForFunction(() => document.activeElement?.id === 'reading-paths-h'); await settle();
+    receipt('LC09', 'age/path Back Forward', { back: '#/age-event-era', forward: '#/reading-paths?path=modern-avengers' }, { back: backed, forward: await raw() }, {
+      backAge: backed.hash === ageBeforeNavigation.hash, forwardPath: (await raw()).hash === '#/reading-paths?path=modern-avengers',
+      headingFocus: await page.evaluate(() => document.activeElement.id === 'reading-paths-h'),
+    });
+    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
+    const previewJump = await measureJump('LC09', 'authored synthetic Preview jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    if (previewJump.focus.id === 'browser-check-three-short') {
+      const beforePreview = await raw();
+      await page.keyboard.press('Enter'); await page.waitForSelector('#preview[open] .preview-issue-link');
+      const preview = await page.evaluate(() => ({ title: document.querySelector('#preview-h').textContent, choices: document.querySelectorAll('#preview-paths input').length, key: document.querySelector('#preview-add button')?.dataset.key }));
+      receipt('LC09', 'exact authored Preview', 'Third Stop: The Short Way', preview, { correctTitle: preview.title === 'Third Stop: The Short Way', noChooser: preview.choices === 0, exactKey: preview.key === 'browser-check-three-short' });
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('#preview').open && document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      receipt('LC09', 'native close focus settlement', 'browser-check-three-short', await focus(), { exactReturn: (await focus()).id === 'browser-check-three-short', noSavedBytesChange: (await raw()).reader === beforePreview.reader && (await raw()).history === beforePreview.history });
+    } else receipt('LC09', 'activation refused after wrong-target fault', 'correct focus prerequisite', previewJump.focus, { exactTargetRequired: false });
+    const savedFixture = fixtureReadingState();
+    savedFixture.schemaVersion = SCHEMA_VERSION;
+    savedFixture.lists.fixture.catalogId = 'browser-check-three-short';
+    await seed({ state: savedFixture, history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
+    await open(page, '/?catalog=reading-path-stop-actions#/catalog');
+    await page.waitForFunction((expectedName) => {
+      const target = document.querySelector('#catalog-results [data-key="browser-check-three-short"][data-act="open"]');
+      return target?.tagName === 'A' && target.getAttribute('href') === '#/read/fixture'
+        && target.getAttribute('aria-label').includes(expectedName);
+    }, {}, CATALOG.lists.find(({ id }) => id === 'browser-check-three-short').name);
+    const modifiedBefore = await raw();
+    const modifier = await page.evaluate(() => {
+      const action = document.querySelector('#catalog-results [data-key="browser-check-three-short"][data-act="open"]');
+      let prevented;
+      action.addEventListener('click', (event) => { prevented = event.defaultPrevented; event.preventDefault(); }, { once: true });
+      action.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
+      return { prevented, tag: action.tagName, href: action.getAttribute('href') };
+    });
+    receipt('LC03', 'modified saved native destination', '#/read/fixture', modifier, {
+      appDoesNotIntercept: modifier.prevented === false, nativeSavedLink: modifier.tag === 'A' && modifier.href === '#/read/fixture',
+      noSelectionOrRouting: sameRaw(modifiedBefore, await raw()),
+    }, modifiedBefore, await raw());
+    await pathReady('bc-path', 'reading-path-stop-actions');
+    const savedJump = await measureJump('LC09', 'saved exact Open jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    if (savedJump.focus.id === 'browser-check-three-short') {
+      await page.keyboard.press('Enter'); await page.waitForSelector('#view-read:not([hidden])');
+      const reading = await page.evaluate(() => ({ active: JSON.parse(localStorage.getItem('mrt.state.v2')).active, hash: location.hash }));
+      receipt('LC09', 'explicit saved Open', 'fixture', reading, { sameSavedId: reading.active === 'fixture', readingRoute: reading.hash === '#/read/fixture' });
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      receipt('LC09', 'saved Back return', 'browser-check-three-short', await focus(), { exactActionReturn: (await focus()).id === 'browser-check-three-short', visibleReturn: (await focus()).usable });
+    } else receipt('LC09', 'Open refused after wrong-target fault', 'correct focus prerequisite', savedJump.focus, { exactTargetRequired: false });
+
+    enter('LC10 actual keyboard geometry');
+    for (const [width, height] of [[1280, 900], [320, 900], [320, 480]]) {
+      await page.setViewport({ width, height });
+      for (const [surface, host, value, target] of [
+        ['path', '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId],
+        ['age', '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential'],
+      ]) {
+        if (surface === 'path') await pathReady(); else await ageReady('event-era');
+        const before = await raw();
+        const geometry = await page.$eval(`${host} form`, (form) => {
+          const select = form.querySelector('select'); const button = form.querySelector('button');
+          const a = select.getBoundingClientRect(); const b = button.getBoundingClientRect();
+          return {
+            select: { width: a.width, height: a.height }, button: { width: b.width, height: b.height },
+            overlap: Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)),
+            label: [...select.labels].map((label) => label.textContent), docWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth,
+          };
+        });
+        receipt('LC10', `${surface} ${width}x${height} native boxes`, { minimum: 44, overlap: 0 }, geometry, {
+          labelAssociation: geometry.label.length === 1 && geometry.label[0].includes('Jump to'),
+          nativeTargets44: geometry.select.width >= 44 && geometry.select.height >= 44 && geometry.button.width >= 44 && geometry.button.height >= 44,
+          noOverlap: geometry.overlap === 0, noPageOverflow: geometry.docWidth === geometry.clientWidth,
+          layoutNoWrite: sameRaw(before, await raw()),
+        }, before, await raw());
+        await measureJump('LC10', `${surface} ${width}x${height} painted clearance`, host, value, target);
+      }
+      await page.evaluate(() => {
+        const details = document.querySelector('#list-actions');
+        if (details.open) details.querySelector('summary').click();
+      }); await settle();
+      const idle = await page.evaluate(() => ({ open: document.querySelector('#list-actions').open, statusInside: Boolean(document.querySelector('#list-actions .list-work')) }));
+      receipt('LC10', `${width}x${height} native idle restoration`, false, idle, { disclosureRestored: !idle.open, statusRemainsSibling: !idle.statusInside });
+    }
+
+    enter('LC11 preferences and error accounting');
+    await page.setViewport({ width: 1280, height: 900 });
+    const cdp = await page.createCDPSession();
+    for (const [mode, features] of [
+      ['forced-colors', [{ name: 'forced-colors', value: 'active' }]],
+      ['reduced-motion', [{ name: 'prefers-reduced-motion', value: 'reduce' }]],
+      ['normal', [{ name: 'forced-colors', value: 'none' }, { name: 'prefers-reduced-motion', value: 'no-preference' }]],
+    ]) {
+      await cdp.send('Emulation.setEmulatedMedia', { features });
+      await pathReady();
+      await measureJump('LC11', `${mode} path`, '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId);
+      await ageReady('event-era');
+      await measureJump('LC11', `${mode} age`, '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential');
+    }
+    await cdp.send('Emulation.setEmulatedMedia', { features: [] }); await cdp.detach();
+    receipt('LC11', 'error and remote accounting', { errors: [], external: [] }, { errors, external }, {
+      noPageErrors: errors.length === 0, noExternalRequests: external.length === 0,
+      noReaderLaunch: await page.evaluate(() => window.__opened.length === 0),
+      fullAgeOrder: isDeepStrictEqual(await ageVector('event-era'), expectedEvent),
+    });
+  } catch (error) {
+    console.log(`UX10-ORIGINAL-ERROR ${JSON.stringify({ step, name: error.name, message: error.message, stack: error.stack, mutation: page.__mutation?.id ?? null })}`);
+    throw error;
+  }
+}
+
+SCENARIOS.push({
+  id: 'long-collection-navigation',
+  title: 'native long collection jump preserves exact identities, explicit completion and local focus',
+  run: runLongCollectionNavigation,
+});
+function ux10Splice(source, before, after, id) {
+  const count = source.split(before).length - 1;
+  console.log(`UX10-SPLICE ${JSON.stringify({ id, expected: 1, actual: count })}`);
+  if (count !== 1) throw new Error(`${id} requires exactly one source splice; found ${count}`);
+  return source.replace(before, after);
+}
+MUTATIONS.push(
+  {
+    id: 'long-navigation-read-is-complete', title: 'read progress wrongly implies explicit completion',
+    breaks: 'long-collection-navigation',
+    rewriteReadingPaths: (source) => ux10Splice(source,
+      'return !readingPathProgress(getState(), stop, { isCompleted })?.completed;',
+      "return readingPathProgress(getState(), stop, { isCompleted })?.state !== 'done';", 'M01'),
+  },
+  {
+    id: 'long-navigation-wrong-target', title: 'late choice wrongly focuses first collection target',
+    breaks: 'long-collection-navigation',
+    rewriteCollectionNavigation: (source) => ux10Splice(source,
+      'getTarget(entry.id)', 'getTarget(entries[0].id)', 'M02'),
+  },
+);
+
+function ux11Splice(source, before, after, id) {
+  const count = source.split(before).length - 1;
+  console.log(`UX11-SPLICE ${JSON.stringify({ id, expected: 1, actual: count })}`);
+  if (count !== 1) throw new Error(`${id} requires one exact source target, found ${count}`);
+  return source.replace(before, after);
+}
+
+function ux11Receipt(page, t, oracle, expected, actual, subpredicates) {
+  const ok = Object.values(subpredicates).every(Boolean);
+  console.log(`UX11-MEASURE ${JSON.stringify({
+    owner: page.__ux11Owner ?? 'handoff', oracle, visit: page.__ux11Visit?.id ?? null,
+    role: page.__mutation ? 'fault' : process.env.UX11_ROLE ?? 'normal',
+    fault: page.__mutation?.id ?? null, origin: page.__origin,
+    nonce: page.__ux11Visit?.nonce ?? null, step: page.__ux11Step,
+    expected, actual, subpredicates, ok,
+  })}`);
+  t.check(`${oracle} reader handoff outcome`, ok, JSON.stringify({ expected, actual, subpredicates }));
+}
+
+async function ux11Snapshot(page) {
+  return page.evaluate(() => {
+    const h = document.getElementById('h');
+    const p = document.getElementById('p');
+    const fallback = document.getElementById('fallback');
+    const back = document.getElementById('return');
+    const settings = document.getElementById('settings-status');
+    const paint = (node, property) => node ? getComputedStyle(node)[property] : null;
+    const main = document.querySelector('main');
+    return {
+      nonce: window.__ux11?.nonce ?? null, url: location.href, title: document.title,
+      heading: h?.textContent ?? null, caption: p?.textContent ?? null,
+      state: document.documentElement.dataset.state ?? null,
+      theme: document.documentElement.dataset.theme ?? null,
+      scheme: paint(document.documentElement, 'colorScheme'),
+      paints: [paint(document.body, 'backgroundColor'), paint(document.body, 'color'),
+        paint(p, 'color'), paint(fallback, 'color'), paint(document.querySelector('.mark'), 'backgroundColor'),
+        paint(document.querySelector('.mark'), 'color')],
+      animation: paint(document.querySelector('.mark'), 'animationName'),
+      oldNodes: Boolean(h?.isConnected && p?.isConnected && fallback?.isConnected),
+      main: { count: document.querySelectorAll('main').length,
+        label: main?.getAttribute('aria-labelledby') ?? null,
+        contains: Boolean(main?.contains(h) && main?.contains(p) && main?.contains(fallback)) },
+      status: [p?.getAttribute('role'), p?.getAttribute('aria-live'), p?.getAttribute('aria-atomic')],
+      fallback: { href: fallback?.href ?? null, hidden: fallback?.hidden ?? false,
+        visible: fallback?.checkVisibility() ?? false },
+      back: { literal: back?.getAttribute('href') ?? null, href: back?.href ?? null,
+        target: back?.getAttribute('target') ?? null, visible: back?.checkVisibility() ?? false },
+      settings: { text: settings?.textContent ?? '', visible: settings?.checkVisibility() ?? false },
+      focus: document.activeElement?.id ?? '', openerNull: window.opener === null,
+      viewport: [innerWidth, innerHeight], overflow: document.documentElement.scrollWidth > innerWidth,
+      raw: localStorage.getItem('mrt.state.v2'), selected: localStorage.getItem('mrt.selectedList'),
+      fixture: window.__ux11 ? { calls: window.__ux11.calls, timers: window.__ux11.timers,
+        started: window.__ux11.started, settled: window.__ux11.settled, aborted: window.__ux11.aborted,
+        writes: window.__ux11.writes } : null,
+    };
+  });
+}
+
+async function ux11Preload(page, fixture) {
+  const script = await page.evaluateOnNewDocument((f) => {
+    if (!location.pathname.endsWith('/open.html')) return;
+    const originalFetch = window.fetch.bind(window);
+    const now = () => performance.timeOrigin + performance.now();
+    const state = window.__ux11 = { nonce: f.nonce, calls: [], timers: [],
+      started: now(), settled: null, aborted: null, writes: [] };
+    const originalSet = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      state.writes.push({ key, value });
+      return originalSet.call(this, key, value);
+    };
+    originalSet.call(localStorage, 'mrt.settings', JSON.stringify(f.settings));
+    if (f.readDenied) {
+      const originalGet = Storage.prototype.getItem;
+      Storage.prototype.getItem = function (key) {
+        if (this === localStorage && key === 'mrt.settings') throw new Error('Synthetic denied settings');
+        return originalGet.call(this, key);
+      };
+    }
+    const realTimeout = window.setTimeout.bind(window);
+    const realClear = window.clearTimeout.bind(window);
+    const clock = new Map();
+    window.setTimeout = (fn, delay, ...args) => {
+      const record = { delay, at: now(), fired: null, cleared: false };
+      const id = realTimeout(() => { record.fired = now(); fn(...args); }, delay);
+      clock.set(id, record);
+      if ([8000, 1400].includes(delay)) state.timers.push(record);
+      return id;
+    };
+    window.clearTimeout = (id) => {
+      if (clock.has(id)) clock.get(id).cleared = true;
+      realClear(id);
+    };
+    window.fetch = (input, init) => {
+      const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+      if (url.origin === location.origin) return originalFetch(input, init);
+      if (url.href !== (f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002')) {
+        throw new Error(`Unexpected synthetic metadata request ${url.href}`);
+      }
+      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept,
+        signal: init?.signal instanceof AbortSignal, at: now() });
+      return new Promise((resolve, reject) => {
+        const finish = () => {
+          state.settled = now();
+          if (f.mode === 'network') reject(new TypeError('Synthetic offline'));
+          else if (f.mode === 'json') resolve({ ok: true, json: async () => { throw new SyntaxError('Synthetic JSON'); } });
+          else resolve(new Response(JSON.stringify({ digitalId: f.mode === 'missing' ? null : 700002 }),
+            { status: f.mode === 'http' ? 503 : 200, headers: { 'content-type': 'application/json' } }));
+        };
+        state.release = finish;
+        init.signal.addEventListener('abort', () => {
+          state.aborted = now();
+          state.settled = state.aborted;
+          reject(new DOMException('Synthetic deadline', 'AbortError'));
+        }, { once: true });
+        if (!['hold', 'timeout'].includes(f.mode)) finish();
+      });
+    };
+    window.__ux11Tap = (url) => {
+      const node = (id) => document.getElementById(id);
+      const paint = (n, p) => n ? getComputedStyle(n)[p] : null;
+      console.log(`UX11-TAP ${JSON.stringify({
+        nonce: state.nonce, intendedUrl: url, title: document.title,
+        state: document.documentElement.dataset.state ?? null,
+        heading: node('h')?.textContent, caption: node('p')?.textContent,
+        animation: paint(document.querySelector('.mark'), 'animationName'),
+        focus: document.activeElement?.id ?? '', openerNull: window.opener === null,
+        raw: localStorage.getItem('mrt.state.v2'), fixture: state,
+      })}`);
+    };
+  }, fixture);
+  return script.identifier;
+}
+
+const UX11_TITLES = {
+  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited',
+  page: 'Opening Marvel issue page', 'no-reader-link': 'No direct reader link',
+  'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
+  'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
+};
+const UX11_CAPTIONS = {
+  pending: 'Looking up the recorded Marvel Unlimited link for this issue.',
+  resolved: 'Opening the recorded reader link. Reading progress has not changed.',
+  page: 'Opening the Marvel issue page. Reading progress has not changed.',
+  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel issue page instead.',
+  'lookup-error': 'The metadata lookup failed. Opening the Marvel issue page instead.',
+  timeout: 'The metadata lookup timed out. Opening the Marvel issue page instead.',
+  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel issue page instead.',
+  'missing-reference': 'This link was missing an issue reference.',
+};
+
+async function runReaderLauncherFeedback(page, t) {
+  page.__ux11Owner = 'reader-launcher-feedback';
+  const slug = 'https://www.marvel.com/comics/issue/900002/browser_check_2';
+  const canonical = 'https://www.marvel.com/comics/issue/900002/';
+  const book = 'https://read.marvel.com/#/book/700002';
+  const fixtures = [
+    { id: 'L06', query: 'd=700001&i=900001&t=Browser%20Check%20%282026%29%20%232', state: 'resolved',
+      intended: 'https://read.marvel.com/#/book/700001' },
+    { id: 'L01', theme: 'light', system: 'dark' }, { id: 'L02', theme: 'dark' },
+    { id: 'L03', theme: 'system' }, { id: 'L04', theme: 'system', system: 'dark' },
+    { id: 'L05', theme: 'unexpected' },
+    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1`, state: 'page', intended: slug },
+    { id: 'L08', mode: 'hold', state: 'resolved', intended: book },
+    { id: 'L09', mode: 'missing', state: 'no-reader-link', intended: slug },
+    { id: 'L10', mode: 'http', state: 'lookup-error', intended: slug },
+    { id: 'L11', mode: 'network', query: 'i=900002', state: 'lookup-error', intended: canonical },
+    { id: 'L12', mode: 'json', state: 'lookup-error', intended: slug },
+    { id: 'L13', mode: 'timeout', query: 'i=900002', state: 'timeout', intended: canonical },
+    { id: 'L14', state: 'lookup-unavailable', intended: slug, apiBase: 'ftp://127.0.0.1/v1' },
+    { id: 'L15', mode: 'hold', state: 'resolved', intended: book, reduce: true },
+    { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
+    { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
+      apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
+  ];
+  const rawState = {};
+  let useTap = false;
+  const taps = [];
+  const listener = (message) => {
+    if (message.text().startsWith('UX11-TAP ')) taps.push(JSON.parse(message.text().slice(9)));
+  };
+  page.on('console', listener);
+  try {
+    page.__ux11Step = 'synthetic-seed';
+    await open(page, '/');
+    await seedFixtureState(page);
+    Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
+      selected: localStorage.getItem('mrt.selectedList') })));
+    for (const f of fixtures) {
+      const query = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const nonce = `${f.id}-${Date.now()}`;
+      const expectedUrl = `${page.__origin}/open.html?${query}`;
+      page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,
+        requests: [], tap: useTap };
+      page.__ux11Step = `${f.id}:setup`;
+      console.log(`UX11-STEP ${JSON.stringify({ step: page.__ux11Step, fixture: f, nonce, expectedUrl, rawState })}`);
+      await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: f.system ?? 'light' },
+        { name: 'prefers-reduced-motion', value: f.reduce ? 'reduce' : 'no-preference' }]);
+      const preload = await ux11Preload(page, { ...f, nonce,
+        settings: { theme: f.theme ?? 'dark', ...(f.apiBase ? { apiBase: f.apiBase } : {}) } });
+      const loadVisit = async () => {
+        await page.goto(expectedUrl, { waitUntil: 'load' });
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        return ux11Snapshot(page);
+      };
+      let snapshot = await loadVisit();
+      if (!snapshot.oldNodes || snapshot.nonce !== nonce) throw new Error(`${f.id}: original launcher fixture failed`);
+      if (f.id === 'L06') {
+        await page.waitForFunction(() => document.getElementById('fallback')?.href === 'https://read.marvel.com/#/book/700001',
+          { timeout: 2000 });
+        snapshot = await ux11Snapshot(page);
+        if (snapshot.url !== expectedUrl || !snapshot.oldNodes) {
+          console.error(`UX11-RETENTION-FAIL ${JSON.stringify({ expectedUrl, snapshot, requests: page.__ux11Visit.requests })}`);
+          useTap = true;
+          page.__ux11Visit.tap = true;
+          page.__ux11Visit.requests = [];
+          snapshot = await loadVisit();
+          const tap = taps.findLast((item) => item.nonce === nonce);
+          if (!tap || tap.intendedUrl !== f.intended) throw new Error('Single alternate observer did not qualify');
+        }
+        const r = page.__ux11Visit.requests;
+        if (r.length !== 1 || !r[0].accepted || snapshot.fallback.href !== f.intended) {
+          throw new Error(`L06 two-layer native intent qualification failed: ${JSON.stringify({ snapshot, r })}`);
+        }
+        console.log(`UX11-QUALIFIED ${JSON.stringify({ nonce, mode: useTap ? 'pre-navigation' : 'retained204',
+          intendedExpected: f.intended, intendedActual: snapshot.fallback.href, rawObservedExpected: f.intended,
+          derivedHttpIdentityExpected: page.__ux11Visit.network, requests: r })}`);
+      }
+      page.__ux11Step = `${f.id}:post-setup`;
+      const measurePresentation = (actual, state) => ux11Receipt(page, t, `${f.id}:presentation`,
+        { state, title: `${UX11_TITLES[state]} - Recap Page`, caption: UX11_CAPTIONS[state],
+          animation: state === 'pending' && !f.reduce ? 'pulse' : 'none',
+          main: { count: 1, label: 'h', contains: true }, status: ['status', 'polite', 'true'] }, actual,
+        { state: actual.state === state, title: actual.title === `${UX11_TITLES[state]} - Recap Page`,
+          caption: actual.caption === UX11_CAPTIONS[state],
+          animation: state === 'pending' && !f.reduce ? actual.animation !== 'none' : actual.animation === 'none',
+          mainCount: actual.main.count === 1, mainName: actual.main.label === 'h', mainContains: actual.main.contains,
+          statusRole: actual.status[0] === 'status', live: actual.status[1] === 'polite', atomic: actual.status[2] === 'true' });
+      if (['hold', 'timeout'].includes(f.mode)) {
+        await page.waitForFunction(() => window.__ux11.calls.length === 1, { timeout: 2000 });
+        snapshot = await ux11Snapshot(page);
+        measurePresentation(snapshot, 'pending');
+        const expectedLookup = f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002';
+        ux11Receipt(page, t, `${f.id}:pending-request`, { url: expectedLookup,
+          accept: 'application/json', cache: 'no-store', delay: 8000, fallback: f.query === 'i=900002' ? canonical : slug },
+        snapshot, { count: snapshot.fixture.calls.length === 1,
+          exactUrl: snapshot.fixture.calls[0].url === expectedLookup,
+          accept: snapshot.fixture.calls[0].accept === 'application/json', cache: snapshot.fixture.calls[0].cache === 'no-store',
+          signal: snapshot.fixture.calls[0].signal, abortDelay: snapshot.fixture.timers[0]?.delay === 8000,
+          fallback: snapshot.fallback.href === (f.query === 'i=900002' ? canonical : slug),
+          noEarlyNativeIntent: page.__ux11Visit.requests.length === 0 });
+        if (f.mode === 'hold') {
+          if (f.id === 'L15') {
+            await page.focus('#fallback');
+            await page.keyboard.press('Tab');
+            await page.keyboard.down('Shift');
+            try { await page.keyboard.press('Tab'); } finally { await page.keyboard.up('Shift'); }
+          }
+          await page.evaluate(() => window.__ux11.release());
+        }
+      }
+      if (f.intended) {
+        page.__ux11Step = `${f.id}:native-settlement`;
+        const deadline = f.mode === 'timeout' ? 12000 : 2500;
+        const start = Date.now();
+        while (!page.__ux11Visit.requests.length && Date.now() - start < deadline) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        if (!page.__ux11Visit.requests.length) throw new Error(`${f.id} qualified native request absent at deadline`);
+        snapshot = await ux11Snapshot(page);
+        if (['L16', 'L17'].includes(f.id)) {
+          const message = f.id === 'L16'
+            ? 'Saved display settings could not be read. Using the system theme.'
+            : 'Saved theme is not recognized. Using the system theme.';
+          ux11Receipt(page, t, `${f.id}:settings-policy`, { message, visible: true, theme: null,
+            scheme: 'light', background: 'rgb(250, 250, 255)', raw: rawState.raw, writes: 0 }, snapshot,
+          { exactMessage: snapshot.settings.text === message, visible: snapshot.settings.visible,
+            systemAttribute: snapshot.theme === null, systemScheme: snapshot.scheme === 'light',
+            systemPaint: snapshot.paints[0] === 'rgb(250, 250, 255)', rawBytes: snapshot.raw === rawState.raw,
+            noWrites: snapshot.fixture.writes.length === 0 });
+        }
+        const tap = useTap ? taps.findLast((item) => item.nonce === nonce) : null;
+        if (useTap && !tap) throw new Error(`${f.id} alternate pre-navigation receipt absent`);
+        measurePresentation(snapshot, f.state);
+        const requests = page.__ux11Visit.requests;
+        const intendedActual = tap?.intendedUrl ?? snapshot.fallback.href;
+        ux11Receipt(page, t, `${f.id}:two-layer-intent`, { intended: f.intended, rawObservedUrl: f.intended,
+          derivedHttpIdentity: page.__ux11Visit.network,
+          httpIdentityEvidence: 'DERIVED HTTP IDENTITY; not a second observed wire URL',
+          nonce, count: 1 }, { intendedActual, requests, snapshot, tap },
+        { fullIntent: intendedActual === f.intended, rawObservedUrl: requests[0]?.url === f.intended,
+          derivedHttpIdentity: requests[0]?.derivedHttpIdentity === page.__ux11Visit.network,
+          ordinal: requests[0]?.ordinal === 1, mainFrame: requests[0]?.mainFrame === true,
+          navigation: requests[0]?.navigation === true, nonce: requests[0]?.nonce === nonce,
+          count: requests.length === 1, accepted: requests.every((r) => r.accepted),
+          opener: snapshot.openerNull, rawBytes: snapshot.raw === rawState.raw });
+        if (f.mode) {
+          const timers = snapshot.fixture.timers;
+          const fallbackTimer = timers.find((timer) => timer.delay === 1400);
+          const abort = timers.find((timer) => timer.delay === 8000);
+          ux11Receipt(page, t, `${f.id}:settled-clock`, { abort: 8000, fallback: ['hold'].includes(f.mode) ? null : 1400 },
+            { timers, fixture: snapshot.fixture, requests }, {
+              clearedAbort: abort?.cleared === true,
+              fallbackPolicy: f.mode === 'hold' ? !fallbackTimer : fallbackTimer?.delay === 1400,
+              notEarly: !fallbackTimer || requests[0].time >= fallbackTimer.at + 1400,
+              boundedDelay: !fallbackTimer || requests[0].time <= fallbackTimer.at + 2000,
+              realAbort: f.mode !== 'timeout' || snapshot.fixture.aborted >= abort.at + 8000,
+              boundedAbort: f.mode !== 'timeout' || snapshot.fixture.aborted <= abort.at + 10000,
+              retainedFocus: f.id !== 'L15' || snapshot.focus === 'fallback',
+            });
+        } else {
+          ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0 }, snapshot.fixture,
+            { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0 });
+        }
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        ux11Receipt(page, t, `${f.id}:no-duplicate`, 1, page.__ux11Visit.requests,
+          { one: page.__ux11Visit.requests.length === 1 });
+      } else {
+        measurePresentation(snapshot, 'missing-reference');
+        const light = f.theme === 'light' || (!['dark', 'light'].includes(f.theme) && f.system !== 'dark');
+        const paints = light ? ['rgb(250, 250, 255)', 'rgb(19, 19, 27)', 'rgb(92, 92, 110)',
+          'rgb(23, 80, 156)', 'rgb(109, 40, 217)', 'rgb(255, 255, 255)']
+          : ['rgb(17, 17, 23)', 'rgb(242, 242, 248)', 'rgb(145, 145, 164)',
+            'rgb(127, 179, 255)', 'rgb(138, 83, 225)', 'rgb(255, 255, 255)'];
+        const expectedTheme = ['light', 'dark'].includes(f.theme) ? f.theme : null;
+        ux11Receipt(page, t, `${f.id}:theme-and-missing`, { theme: expectedTheme, paints, scheme: light ? 'light' : 'dark',
+          noReference: true, limitation: f.id === 'L05' }, snapshot,
+        { theme: snapshot.theme === expectedTheme, ...Object.fromEntries(paints.map((value, i) => [`paint${i}`, value === snapshot.paints[i]])),
+          scheme: snapshot.scheme === (light ? 'light' : 'dark'), noFetch: snapshot.fixture.calls.length === 0,
+          noTimer: snapshot.fixture.timers.length === 0, noIntent: page.__ux11Visit.requests.length === 0,
+          fallbackHidden: !snapshot.fallback.visible && snapshot.fallback.hidden,
+          raw: snapshot.raw === rawState.raw, noProductWrites: snapshot.fixture.writes.length === 0,
+          unknownLimitation: f.id !== 'L05' || (snapshot.settings.visible
+            && snapshot.settings.text === 'Saved theme is not recognized. Using the system theme.') });
+        if (f.id === 'L03') {
+          await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+          await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(resolve)));
+          const live = await ux11Snapshot(page);
+          ux11Receipt(page, t, 'L03:live-system', { theme: null, background: 'rgb(17, 17, 23)', scheme: 'dark' }, live,
+            { attributeAbsent: live.theme === null, background: live.paints[0] === 'rgb(17, 17, 23)',
+              scheme: live.scheme === 'dark', raw: live.raw === rawState.raw });
+        }
+        if (f.id === 'L01') {
+          const expectedReturn = `${page.__origin}/#/home`;
+          ux11Receipt(page, t, 'L01:native-return-shape', { literal: './#/home', href: expectedReturn, target: null },
+            snapshot, { literal: snapshot.back.literal === './#/home', href: snapshot.back.href === expectedReturn,
+              sameTab: snapshot.back.target === null, rendered: snapshot.back.visible, noOverflow: !snapshot.overflow });
+          if (snapshot.back.visible) {
+            await page.keyboard.press('Tab');
+            const keyboard = await page.evaluate(() => {
+              const node = document.activeElement;
+              const style = getComputedStyle(node);
+              return { id: node.id, width: parseFloat(style.outlineWidth), color: style.outlineColor, style: style.outlineStyle };
+            });
+            ux11Receipt(page, t, 'L01:keyboard-return', { id: 'return', floor: 3, color: paints[3] }, keyboard,
+              { nativeOrder: keyboard.id === 'return', width: keyboard.width >= 3,
+                color: keyboard.color === paints[3], solid: keyboard.style === 'solid' });
+            const actionReady = keyboard.id === 'return';
+            if (actionReady) {
+              await page.keyboard.press('Enter');
+              await page.waitForFunction(() => location.hash === '#/home');
+            }
+            const returned = await page.evaluate(() => ({ hash: location.hash,
+              raw: localStorage.getItem('mrt.state.v2'), main: Boolean(document.querySelector('main')),
+              heading: Boolean(document.querySelector('#view-home h1')) }));
+            ux11Receipt(page, t, 'L01:returned-home', { actionTarget: 'return', action: 'native Enter',
+              hash: '#/home', raw: rawState.raw }, { ...returned, actionTarget: keyboard.id,
+              action: actionReady ? 'native Enter' : 'skipped: wrong measured focus' },
+            { actionPrerequisite: actionReady, hash: returned.hash === '#/home',
+              bytes: returned.raw === rawState.raw, main: returned.main, heading: returned.heading });
+          }
+        }
+      }
+      await page.removeScriptToEvaluateOnNewDocument(preload);
+    }
+  } catch (error) {
+    console.error(`UX11-ERROR ${JSON.stringify({ step: page.__ux11Step, name: error.name,
+      message: error.message, stack: error.stack, visit: page.__ux11Visit, taps })}`);
+    throw error;
+  } finally {
+    page.off('console', listener);
+  }
+}
+
+SCENARIOS.push({ id: 'reader-launcher-feedback', title: 'truthful theme-aware standalone reader handoff', run: runReaderLauncherFeedback });
+MUTATIONS.push(
+  { id: 'launcher-force-dark', title: 'chosen launcher theme is ignored', breaks: 'reader-launcher-feedback',
+    rewriteOpen: (source) => ux11Splice(source, 'const chosenTheme = themeAttribute(settings.theme);',
+      "const chosenTheme = 'dark';", 'launcher-force-dark') },
+  { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
+    rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
+);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

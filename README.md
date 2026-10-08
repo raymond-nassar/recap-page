@@ -73,9 +73,12 @@ match, including those beyond the first visible rows. Your selection stays with 
 three searches and while you inspect an issue. Title searches show up to 50 matches; narrow the
 search if you need a different comic.
 
-Give the new list a name and choose **Create Reading List**, or explicitly choose an existing
+With comics selected, open **Save selected comics**. Give the new list a name and choose
+**Create Reading List**, or explicitly choose an existing
 destination and use **Add to Reading List**. Existing lists keep their order and skip duplicate
 comics. If loading stops, you can select from the clearly marked partial results or search again.
+**Clear selection** returns to search without changing saved lists. A new search replaces earlier
+save feedback, but keeps your selected comics and destination.
 Unfinished selections are not saved across a reload; the browser warns before you leave with one.
 
 ### Finish a reading list without removing it
@@ -88,8 +91,8 @@ existing saved identity has been made stable.
 
 Thumb icons are optional and stay on your device. Hover over or focus one for its name.
 **Enjoyed** filters your completed collection;
-clicking a selected thumb clears that choice. **Did not enjoy** also opens instructions for
-reporting missing comics or a wrong order. **Report a list problem** opens the same instructions
+clicking a selected thumb clears that choice. **Did not enjoy** saves only that preference.
+**Report a list problem** separately opens instructions for missing comics or a wrong order
 without changing your thumb choice. Desktop and Android use the same optional Microsoft Forms
 link, with no reader account, name or email required. Your saved data and thumb choice are not
 attached. Reports are reviewed privately; private data-loss or security concerns use the separate
@@ -106,6 +109,15 @@ The existing **Undo removal** offer can put that copy back.
 
 Completion dates and enjoyment choices have their own export and restore controls in
 **Backup & settings**. Export both backups to carry both kinds of data to another device.
+If a pasted import draft is present, also download its separately labeled import-draft backup.
+These independent files do not include settings. Normal backup controls are grouped together.
+Reading-data replacement asks for confirmation and keeps the prior data as a downloadable saved
+copy. Undo is offered once in the restoring tab; after Undo or reload, the retained copy uses an
+explicit saved-copy action rather than a misleading Undo label.
+It contains the original source, unresolved positions and selected matches, not just saved comics.
+Resolved comics publish even when other positions remain unresolved. Matching a gap fills its
+source position; duplicate occurrences remain in the draft without duplicating list membership.
+Saved source has no automatic expiry: resume it after reload or explicitly discard it from Add comics.
 Restoring reading data does not replace completion history; matching saved lists can reveal
 their retained history again.
 
@@ -198,7 +210,8 @@ Microsoft Store installations receive product updates only through Microsoft Sto
 For a standalone archive or source copy:
 
 1. Export a reading backup from **Backup & settings**, and a completion-history backup if you
-   want to keep completion dates and enjoyment choices too.
+   want to keep completion dates and enjoyment choices too. Also export the separate import-draft
+   file when one is present.
 2. Stop the old copy.
 3. Download the latest archive or source.
 4. Start the new copy at <http://127.0.0.1:8787/>.

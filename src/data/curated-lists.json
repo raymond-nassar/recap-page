@@ -1312,6 +1312,7 @@
     },
     {
       "id": "house-of-m",
+      "storylines": true,
       "name": "House of M: Main Series and Branded Tie-Ins",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",
       "type": "event",
@@ -1351,6 +1352,7 @@
     },
     {
       "id": "house-of-m-essential",
+      "storylines": true,
       "name": "House of M: Main Series Only",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event: the eight-issue main series on its own, without the branded tie-in mini-series or the Decimation epilogue. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
@@ -1390,6 +1392,7 @@
     },
     {
       "id": "planet-hulk",
+      "storylines": true,
       "name": "Planet Hulk",
       "description": "Fifteen chapters taking Hulk from his arrival on Sakaar through the complete Planet Hulk storyline.",
       "type": "event",
@@ -1457,6 +1460,7 @@
     },
     {
       "id": "civil-war",
+      "storylines": true,
       "name": "Civil War: Main Series and Branded Tie-Ins",
       "description": "Marvel's 2006 superhuman registration war in publication order: the seven-issue main series plus every mini-series and one-shot Marvel branded with the Civil War name, from Front Line through The Confession. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Amazing Spider-Man #529-538.",
       "type": "event",
@@ -1497,6 +1501,7 @@
     },
     {
       "id": "civil-war-essential",
+      "storylines": true,
       "name": "Civil War: Main Series Only",
       "description": "Marvel's 2006 superhuman registration war: the seven-issue main series on its own, without the mini-series and one-shots branded with the Civil War name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
@@ -1536,6 +1541,7 @@
     },
     {
       "id": "annihilation",
+      "storylines": true,
       "name": "Annihilation",
       "description": "The 2006 cosmic war that rebuilt Marvel's space corner, in publication order: the Prologue, the four lead-in mini-series, the six-issue main series, and the Heralds of Galactus epilogue. Assembled from Marvel series metadata. Annihilation: Conquest is a separate 2007 sequel event and is not included here.",
       "type": "event",
@@ -1605,6 +1611,7 @@
     },
     {
       "id": "secret-invasion",
+      "storylines": true,
       "name": "Secret Invasion: Main Series and Branded Tie-Ins",
       "description": "The Skrull infiltration of 2008 in publication order: the eight-issue main series plus every mini-series and one-shot Marvel branded with the Secret Invasion name, ending with Dark Reign. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as New Avengers and Mighty Avengers.",
       "type": "event",
@@ -1647,6 +1654,7 @@
     },
     {
       "id": "secret-invasion-essential",
+      "storylines": true,
       "name": "Secret Invasion: Main Series Only",
       "description": "The Skrull infiltration of 2008: the eight-issue main series on its own, without the mini-series and one-shots branded with the Secret Invasion name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
@@ -1688,6 +1696,7 @@
     },
     {
       "id": "x-of-swords",
+      "storylines": true,
       "name": "X-Men: X of Swords",
       "description": "Krakoa's champions enter a sword tournament that decides the fate of Arakko.",
       "type": "event",
@@ -1718,6 +1727,7 @@
     },
     {
       "id": "king-in-black",
+      "storylines": true,
       "name": "King in Black",
       "description": "Knull brings the symbiote god-war to Earth in 2020-2021, in publication order: the five-issue main series plus its branded tie-in mini-series and one-shots. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Venom #30-35.",
       "type": "event",
@@ -5032,6 +5042,7 @@
     },
     {
       "id": "dark-phoenix-saga",
+      "storylines": true,
       "name": "Dark Phoenix Saga",
       "description": "Nine X-Men chapters covering the Dark Phoenix Saga.",
       "type": "event",
@@ -5062,6 +5073,7 @@
     },
     {
       "id": "days-of-future-past",
+      "storylines": true,
       "name": "Days of Future Past",
       "description": "Two X-Men chapters presenting Days of Future Past.",
       "type": "event",
@@ -5122,6 +5134,7 @@
     },
     {
       "id": "marvel-super-heroes-secret-wars",
+      "storylines": true,
       "name": "Marvel Super Heroes Secret Wars",
       "description": "Twelve chapters carrying Marvel's original Secret Wars from Battleworld's opening to its conclusion.",
       "type": "event",
@@ -5186,6 +5199,7 @@
     },
     {
       "id": "secret-wars-ii",
+      "storylines": true,
       "name": "Secret Wars II",
       "description": "Forty selected Secret Wars II chapters, omitting two nonessential tie-ins that are not discoverable through Marvel Unlimited.",
       "type": "event",
@@ -5218,6 +5232,7 @@
     },
     {
       "id": "mutant-massacre",
+      "storylines": true,
       "name": "Mutant Massacre",
       "description": "Eleven selected Mutant Massacre chapters, omitting one nonessential tie-in that is not discoverable through Marvel Unlimited.",
       "type": "event",
@@ -5282,6 +5297,7 @@
     },
     {
       "id": "kravens-last-hunt",
+      "storylines": true,
       "name": "Kraven's Last Hunt",
       "description": "Seven chapters following Kraven's Last Hunt through its later Soul of the Hunter epilogue.",
       "type": "event",
@@ -5344,6 +5360,7 @@
     },
     {
       "id": "inferno",
+      "storylines": true,
       "name": "Inferno",
       "description": "Thirty-nine chapters interleaving X-Men, X-Factor, New Mutants, Spider-Man, and related Inferno stories.",
       "type": "event",
@@ -5721,6 +5738,7 @@
     },
     {
       "id": "phalanx-covenant",
+      "storylines": true,
       "name": "Phalanx Covenant",
       "description": "Nine chapters following the X-Men teams through the Phalanx Covenant.",
       "type": "event",
@@ -5754,6 +5772,7 @@
     },
     {
       "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "storylines": true,
       "name": "X-Men: Onslaught",
       "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
       "type": "event",
@@ -5821,6 +5840,17 @@
     },
     {
       "id": "marvel-knights-to-planet-x",
+      "storylinesChildren": [
+        "marvel-knights-to-planet-x-02",
+        "marvel-knights-to-planet-x-10",
+        "marvel-knights-to-planet-x-20",
+        "marvel-knights-to-planet-x-26",
+        "marvel-knights-to-planet-x-39",
+        "marvel-knights-to-planet-x-47",
+        "marvel-knights-to-planet-x-49",
+        "marvel-knights-to-planet-x-61",
+        "marvel-knights-to-planet-x-78"
+      ],
       "name": "Marvel Knights to Planet X",
       "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
       "type": "event",
@@ -6175,6 +6205,7 @@
     },
     {
       "id": "civil-war-avengers",
+      "storylines": true,
       "name": "Civil War: Avengers and Aftermath Reading Order",
       "description": "The Avengers path through Civil War and out the other side, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It pairs the seven-issue event with the New Avengers issues that run alongside it, the Young Avengers and Runaways tie-in, and Warren Ellis and Mike Deodato's Thunderbolts, which is not an Avengers title but is what makes Dark Avengers make sense later. It then follows the split into Mighty Avengers, the Initiative, Avengers/Invaders and the Illuminati.",
       "type": "event",
@@ -6321,6 +6352,7 @@
     },
     {
       "id": "war-of-kings",
+      "storylines": true,
       "name": "War of Kings",
       "description": "Thirty-two chapters interleaving the six-part Kree and Shi'ar war with Nova, Guardians of the Galaxy, Darkhawk, and Ascension.",
       "type": "event",
@@ -6832,6 +6864,7 @@
     },
     {
       "id": "annihilation-conquest",
+      "storylines": true,
       "name": "Annihilation: Conquest",
       "description": "Twenty-nine chapters combining the prologue, lead-in mini-series, Nova, and the six-part cosmic event.",
       "type": "event",

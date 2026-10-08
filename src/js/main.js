@@ -20,7 +20,7 @@ import {
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
-import { Store, KEY as STATE_KEY } from './storage.js';
+import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
 import { createListRecommendationResolver } from './lib/listRecommendations.js';
 import { createCompletionView } from './views/completion.js';
@@ -39,7 +39,7 @@ import { lookupIssue } from './lib/wiki.js';
 import { DEFAULT_FILTER } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
 import {
-  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
+  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
@@ -61,11 +61,12 @@ import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
+import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
-import { saveDownload } from './lib/download.js';
+import { saveDownload, downloadMessage } from './lib/download.js';
 import { setIssueRating } from './lib/model.js';
 import { createIssueRatingView } from './views/issue-rating.js';
 
@@ -97,16 +98,26 @@ const store = new Store({
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
-    if (err) notify('#save-report', err, 'error');
+    if (err) notify('#save-report', err, 'error', 'reader-save');
+    else clearNotice('reader-save');
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
+const importDraft = new ImportDraftStore({
+  reader: store,
+  onChange: () => {
+    renderAll();
+    if (importDraft.error) notify('#save-report', importDraft.error, 'error', 'import-draft-save');
+    else clearNotice('import-draft-save');
+  },
+});
 const listHistory = new ListHistoryStore({
   readerStore: store,
   onChange: (_history, error) => {
     renderAll();
     readingPathsView.refreshProgress();
-    if (error) notify('#save-report', error, 'error');
+    if (error) notify('#save-report', error, 'error', 'history-save');
+    else clearNotice('history-save');
   },
 });
 const homeUpdatesSeen = createHomeUpdatesSeen({ storage: store.storage, locks: globalThis.navigator?.locks });
@@ -136,6 +147,14 @@ export function dispatchStorageEvent(
     historyStore = readerStore === store ? listHistory : null,
   } = {},
 ) {
+  if (readerStore === store && event.key === PRERESTORE_KEY) {
+    dataView.renderRestoreOffer();
+    return;
+  }
+  if (readerStore === store && (event.key === IMPORT_DRAFT_KEY || event.key === null)) {
+    importDraft.load();
+    renderAll();
+  }
   if (event.key === LIST_HISTORY_KEY) {
     historyStore?.load();
     return;
@@ -429,6 +448,18 @@ const API_BASE_REJECTED = 'api-base-rejected';
 // moving the nodes about instead left a copy behind in the pane the message started in, and with
 // two outstanding it kept whichever came first in the markup rather than the newer one.
 const notices = new Map();
+const fixedNotices = new Map();
+
+function placeFixedNotice(sel) {
+  const note = [...fixedNotices.values()].filter((entry) => entry.sel === sel).at(-1);
+  $(sel)?.replaceChildren(...(note ? [noticeEl(note)] : []));
+}
+
+export function retireRoutineNotices(notes) {
+  for (const [key, note] of notes) {
+    if (note.kind === 'ok' && !note.action && !note.dismiss) notes.delete(key);
+  }
+}
 
 // #app-report is above every view, so it is the only pane always available to a message whose own
 // pane the reader cannot see. Seven of the nine views carry no pane of their own.
@@ -533,7 +564,7 @@ function focusAfterDismiss(inDialog) {
 // after a delete. `dismiss` puts a second one there for a message the reader can be finished with
 // before anything replaces it, which is the only way a notice under a long-lived key ever leaves
 // the screen: these panes hold what they are given until something clears them.
-function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {
+export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {
   const own = $(sel);
   if (!own) return;
   // Only the general notice panes move. #save-report sits above every view and is assertive
@@ -541,6 +572,8 @@ function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null)
   // form that filled them, so relocating either would lose the context that makes it actionable
   // and would quietly change which channel it goes out on.
   if (!own.classList.contains('report')) {
+    if (sel === '#save-report') fixedNotices.delete(key);
+    if (sel === '#save-report') fixedNotices.set(key, { sel, msg, kind, action, dismiss });
     own.replaceChildren(noticeEl({
       msg, kind, action, dismiss,
     }));
@@ -572,6 +605,9 @@ export function spoken(msg, action, dismiss) {
 
 function clearNotice(key) {
   notices.delete(key);
+  const fixed = fixedNotices.get(key);
+  fixedNotices.delete(key);
+  if (fixed) placeFixedNotice(fixed.sel);
   placeNotices();
 }
 
@@ -1080,7 +1116,7 @@ function applyReadingShortcutSetting() {
   const done = $('#btn-hero-done');
   done.classList.toggle('has-tooltip', enabled);
   if (enabled) {
-    done.setAttribute('data-tooltip', 'Keyboard shortcut: D');
+    done.setAttribute('data-tooltip', 'Mark read and continue. Keyboard shortcut: D');
     done.setAttribute('aria-keyshortcuts', 'd');
   } else {
     done.removeAttribute('data-tooltip');
@@ -1133,8 +1169,8 @@ function renderSidebar() {
 
   if (isNarrow) {
     toggle.setAttribute('aria-expanded', String(narrowOpen));
-    toggle.setAttribute('aria-label', 'Navigation');
-    toggle.dataset.tip = 'Navigation · Ctrl+\\';
+    toggle.setAttribute('aria-label', 'More');
+    toggle.dataset.tip = 'More · Ctrl+\\';
   } else {
     const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
     toggle.setAttribute('aria-expanded', String(!railed));
@@ -1142,6 +1178,7 @@ function renderSidebar() {
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
   tooltips?.refresh();
+  revealMobileNavigation();
 }
 
 function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
@@ -1152,6 +1189,9 @@ function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
   if (!next && rescueFocus && activeInsidePanel) toggle.focus();
   narrowOpen = Boolean(next);
   renderSidebar();
+  if (next && !document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) {
+    panel.scrollIntoView({ block: 'start' });
+  }
   if (announceIt) announce(narrowOpen ? 'Navigation shown.' : 'Navigation hidden.');
 }
 
@@ -1178,6 +1218,16 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
 function wireSidebar() {
   const saved = loadRailed();
   const narrowMedia = window.matchMedia('(max-width: 880px)');
+  let mobileFocus = null;
+  document.addEventListener('focusin', (e) => {
+    mobileFocus = isNarrow && e.target instanceof Element && e.target.matches('.mobile-link')
+      ? e.target : null;
+  });
+  document.addEventListener('focusout', (e) => {
+    if (e.target !== mobileFocus) return;
+    // CSS can blur the disappearing link to BODY before the resize handler runs.
+    if (e.relatedTarget || narrowMedia.matches || mobileFocus.getClientRects().length) mobileFocus = null;
+  });
   wasCompact = window.innerWidth < RAIL_BREAKPOINT;
   isNarrow = narrowMedia.matches;
   narrowOpen = false;
@@ -1217,9 +1267,14 @@ function wireSidebar() {
       railed = compact || (loadRailed() ?? false);
     }
     const nextNarrow = narrowMedia.matches;
+    let returningFocus = null;
     if (nextNarrow !== isNarrow) {
       const panel = $('#sidebar-panel');
       const activeInside = panel?.contains(document.activeElement);
+      if (!nextNarrow && mobileFocus && !mobileFocus.getClientRects().length
+        && (document.activeElement === mobileFocus || document.activeElement === document.body)) {
+        returningFocus = mobileFocus;
+      }
       isNarrow = nextNarrow;
       if (nextNarrow) {
         narrowOpen = false;
@@ -1230,9 +1285,65 @@ function wireSidebar() {
       tooltips?.refresh();
     }
     renderSidebar();
+    if (returningFocus && (document.activeElement === returningFocus || document.activeElement === document.body)) {
+      const destination = [...$('#sidebar-panel').querySelectorAll('.ri[data-view]')].find((link) => (
+        link.dataset.view === returningFocus.dataset.view
+        && link.getAttribute('href') === returningFocus.getAttribute('href')
+        && link.getClientRects().length
+      ));
+      destination?.focus();
+    }
+    if (!isNarrow) mobileFocus = null;
   });
 
+  wireMobileNavigation();
   wireAppTooltips();
+}
+
+let revealMobileNavigation = () => {};
+function wireMobileNavigation() {
+  const header = document.querySelector('.rail-header');
+  const panel = $('#sidebar-panel');
+  let previousY = window.scrollY;
+  let distance = 0;
+  let frame = null;
+  const editable = () => document.activeElement?.matches('input, textarea, select, [contenteditable="true"]');
+  const obscuredViewport = () => Boolean(window.visualViewport
+    && window.visualViewport.height < window.innerHeight * 0.75);
+  const paint = (hide = false) => {
+    const focused = header.contains(document.activeElement) || panel.contains(document.activeElement);
+    header.classList.toggle('mobile-nav-hidden', isNarrow && !narrowOpen && !focused
+      && (hide || editable() || obscuredViewport()));
+    document.documentElement.style.setProperty('--mobile-nav-height', `${header.getBoundingClientRect().height}px`);
+  };
+  revealMobileNavigation = () => {
+    previousY = window.scrollY;
+    distance = 0;
+    paint();
+  };
+  const onScroll = () => {
+    frame = null;
+    const y = Math.max(0, window.scrollY);
+    const delta = y - previousY;
+    previousY = y;
+    if (Math.sign(delta) !== Math.sign(distance)) distance = 0;
+    distance += delta;
+    if (y <= 32 || distance <= -16) paint();
+    else if (distance >= 16) paint(true);
+  };
+  window.addEventListener('scroll', () => {
+    if (frame === null) frame = requestAnimationFrame(onScroll);
+  }, { passive: true });
+  document.addEventListener('focusin', () => {
+    if (header.contains(document.activeElement) || panel.contains(document.activeElement) || editable()) paint();
+  });
+  document.addEventListener('focusout', () => queueMicrotask(() => paint(
+    header.classList.contains('mobile-nav-hidden'),
+  )));
+  window.visualViewport?.addEventListener('resize', revealMobileNavigation);
+  window.visualViewport?.addEventListener('scroll', revealMobileNavigation);
+  new ResizeObserver(() => paint(header.classList.contains('mobile-nav-hidden'))).observe(header);
+  revealMobileNavigation();
 }
 
 let tooltips;
@@ -1306,16 +1417,24 @@ function issueFocusAnchor(issue, {
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
 function emptyAction({ label, view }) {
-  return el('button', {
+  return el('a', {
     class: 'btn btn-g',
-    type: 'button',
-    onclick: () => navigateTo(view),
+    href: formatRoute({ view }),
+    onclick: (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateTo(view);
+    },
   }, label);
 }
 
 function wireNav() {
   for (const btn of document.querySelectorAll('[data-view]')) {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.view));
+    btn.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateTo(btn.dataset.view);
+    });
   }
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
@@ -1492,6 +1611,12 @@ function showView(next, { focus = true, push = false } = {}) {
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
+  if (next !== view) {
+    retireRoutineNotices(notices);
+    const panes = new Set([...fixedNotices.values()].map((note) => note.sel));
+    retireRoutineNotices(fixedNotices);
+    for (const sel of panes) placeFixedNotice(sel);
+  }
   if (next !== 'issue' && view === 'issue') {
     issueView.cancel();
     issueRoute = null;
@@ -1510,7 +1635,7 @@ function showView(next, { focus = true, push = false } = {}) {
     if (panel) panel.hidden = name !== next;
   }
   const parent = railParentView(next);
-  for (const btn of document.querySelectorAll('.ri[data-view]')) {
+  for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {
     if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   }
@@ -1536,6 +1661,7 @@ function showView(next, { focus = true, push = false } = {}) {
   // screen rather than before reaching it, so that route repaints at its own call site.
   if (next === 'data') recoveryView.renderSalvage();
   window.scrollTo({ top: 0 });
+  revealMobileNavigation();
   // After the scroll to the top, so that bringing a message into view is not undone. Which pane
   // each outstanding notice belongs in has just changed, because a different view is showing.
   placeNotices();
@@ -1560,6 +1686,10 @@ function renderBreadcrumbs() {
     ? store.state.lists[activeId]
     : null;
   const issueResult = issueView.result();
+  document.title = routeTitle({
+    view, list: active, issueTitle: issueResult?.issue?.title
+      ?? (view === 'issue' ? $('#issue-focus-h')?.textContent : null),
+  });
   const resolvedContext = issueResult?.contextStatus === 'valid'
     ? {
       ...issueResult.context,
@@ -1684,12 +1814,16 @@ function renderRail() {
       const pct = total ? (read / total) * 100 : 0;
       const current = view === 'read' && activeListId() === id;
 
-      nav.append(el('li', {}, el('button', {
-        type: 'button',
+      nav.append(el('li', {}, el('a', {
+        href: formatRoute({ view: 'read', listId: id }),
         class: 'ri',
         'aria-current': current ? 'page' : null,
         dataset: { key: id, act: 'open', tip: ['Continue reading', `${list.name}:`, read, 'of', total, 'read'].join(' ') },
-        onclick: () => openSavedList(id),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event.preventDefault();
+          openSavedList(id);
+        },
       }, [
         el('span', { class: 'init', 'aria-hidden': true, text: (list.name || '?').trim().charAt(0) }),
         el('span', { class: 'lbl' }, [
@@ -1741,12 +1875,18 @@ function readerPresentation(issue, source) {
 
 function openInReader(issue, event, source) {
   event?.preventDefault();
-  if (!source) { announce('The comic source is missing. Open its current details and try again.'); return; }
+  const help = $('#reader-handoff-help');
+  function showHelp(message) {
+    help.textContent = message;
+    help.hidden = false;
+  }
+  function refuse(message) { showHelp(message); announce(message); }
+  if (!source) { refuse('The comic source is missing. Open its current details and try again.'); return; }
   const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
-  if (!resolved.ok) { announce(resolved.error); return; }
+  if (!resolved.ok) { refuse(resolved.error); return; }
   const res = openIssueTab(resolved.issue);
   if (!res.ok) {
-    announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
+    refuse(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
   }
   announce(res.target === 'reader'
@@ -1754,6 +1894,8 @@ function openInReader(issue, event, source) {
     : res.target === 'page'
       ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
       : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  showHelp("If no new tab appears, check your browser's popup controls for this site, "
+    + 'then choose Read again. Opening a comic does not mark it read.');
 }
 
 // ------------------------------------------------------------------ synopsis fetching
@@ -2027,8 +2169,9 @@ async function exportMarkdown() {
       items: listItems(store.state, id),
     });
     if (md === null) return;
-    if (!await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown')) return;
-    announce('Markdown Reading List downloaded.');
+    const result = await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown');
+    if (!result) return;
+    announce(downloadMessage(result, 'Markdown Reading List'));
   } catch (error) {
     notify('#app-report', `Could not export Markdown: ${error.message}`, 'error');
   }
@@ -2043,11 +2186,13 @@ const recoveryView = createRecoveryView({
     undoRestore: $('#btn-undo-restore'),
     btnDownloadSalvage: $('#btn-download-salvage'),
     btnStartFresh: $('#btn-start-fresh'),
+    verifySalvage: $('#verify-salvage'),
     salvageList: $('#salvage-list'),
   }),
   isBlocked: () => store.blocked,
   blockedReason: () => store.blockedReason,
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  clearRecoveryNotice: () => clearNotice('recovery-copy'),
   salvagedRaw: () => store.salvagedRaw(),
   salvageCopies: () => store.salvageCopies(),
   salvageRawAt: (key) => store.salvageRawAt(key),
@@ -2077,34 +2222,63 @@ const dataView = createDataView({
     restoreFile: $('#restore-file'),
     undoRestore: $('#btn-undo-restore'),
     formSettings: $('#form-settings'),
+    restoreCopySummary: $('#restore-copy-summary'),
+    btnExportRestoreCopy: $('#btn-export-restore-copy'),
     btnClearCache: $('#btn-clear-cache'),
     btnWipe: $('#btn-wipe'),
     cacheUsage: $('#cache-usage'),
     localConnectionReport: $('#local-connection-report'),
     localConnectionStatus: $('#local-connection-status'),
+    btnExportDraft: $('#btn-export-draft'),
+    restoreDraft: $('#restore-draft'),
   }),
   getApiBase: () => settings.apiBase,
   getSalvageCopies: () => store.salvageCopies(),
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  getRestoreOffer: () => store.restoreOffer(),
+  inspectBackup: (text) => store.inspectBackup(text),
   isAllowedApiBase,
   backupFileRefusal,
   askConfirm,
   notify,
+  captureDraft: () => importDraft.capture(),
+  draftFileRefusal: (file) => importDraft.fileRefusal(file),
+  onExportDraft: async () => {
+    try {
+      const result = await download('recap-import-draft.json', importDraft.exportText(), 'application/json');
+      if (result) announce(downloadMessage(result, 'Import draft'));
+    } catch (error) {
+      notify('#draft-transfer-report', `Could not export the import draft: ${error.message}`, 'error');
+    }
+  },
+  onRestoreDraft: (text, expected) => importDraft.restore(text, expected),
   onExportJson: async () => {
-    if (!await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json')) return;
-    announce('Backup downloaded.');
+    const result = await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
+    if (!result) return;
+    announce(downloadMessage(result, 'Backup'));
   },
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
-  onRestore: (text) => {
-    const res = store.restore(text);
+  onExportRestoreCopy: async () => {
+    const captured = store.captureRestore();
+    if (!captured.ok || !captured.snapshot) {
+      notify('#restore-report', captured.errors?.join(' ') || 'No saved reading-data copy is available.', 'error');
+      return;
+    }
+    const result = await download('recap-reading-data-saved-copy.json', captured.snapshot, 'application/json');
+    if (result) announce(downloadMessage(result, 'Saved reading-data copy'));
+  },
+  onRestore: (text, expected) => {
+    const res = store.restore(text, { expected });
     readerLinkView.reconcile({ changed: res.changed });
+    if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
-  onUndoRestore: () => {
-    const res = store.undoRestore();
+  onUndoRestore: (expected) => {
+    const res = store.undoRestore(expected);
     readerLinkView.reconcile({ changed: res.changed });
+    if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
@@ -2159,7 +2333,7 @@ const dataView = createDataView({
     }
   },
   eraseHistory: true,
-  onErase: async () => {
+  onErase: async (draftExpected) => {
     const result = await eraseReaderAndHistory(store, listHistory, {
       onReaderErased: () => {
         readerLinkView.reconcile({ changed: true });
@@ -2170,7 +2344,10 @@ const dataView = createDataView({
     let historyKept = result.historyKept;
     let snapshotKept = result.snapshotKept;
     let readerChanged = result.readerChanged;
+    let draftKept = null;
     if (result.readerErased === true) {
+      const draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
+      if (!draftRemoved.ok) notify('#save-report', `Reading data was erased, but import draft cleanup did not finish. ${draftRemoved.error}`, 'error', 'import-draft-save');
       try {
         if (await cache.clear() !== true) {
           cacheFailure = 'Cached metadata could not be cleared. Try Clear cached metadata in Backup & settings.';
@@ -2189,6 +2366,11 @@ const dataView = createDataView({
         readerChanged = null;
       }
       if (readerChanged !== false) store.load();
+      try {
+        draftKept = store.storage.getItem(IMPORT_DRAFT_KEY) !== null;
+      } catch {
+        draftKept = null;
+      }
     }
     // The button's visibility belongs to recoveryView.render(), and the withdrawal happens after
     // the repaint the erase itself triggered, so the question is put again here rather than left
@@ -2206,9 +2388,9 @@ const dataView = createDataView({
       return;
     }
     const outcome = eraseOutcome(snapshotKept, store.salvageCopies(), {
-      historyKept, readerChanged, cacheFailure, currentFacts: true,
+      historyKept, readerChanged, cacheFailure, currentFacts: true, draftKept,
     });
-    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure) notify('#save-report', outcome, 'warn');
+    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false) notify('#save-report', outcome, 'warn');
     else announce(outcome);
   },
 });
@@ -2311,8 +2493,10 @@ async function reportBundledLoadFailure({
 }) {
   const result = await runLocalConnectionProbe();
   if (!isCurrent()) return false;
+  const retryLabel = key === CATALOG_LOAD ? 'Retry catalog' : 'Try again';
   if (!result.current || result.status === LOCAL_SERVER_STATUS.READY) {
-    notify(report, failure, 'error', key);
+    notify(report, failure, 'error', key,
+      key === CATALOG_LOAD ? localRecoveryAction(retryLabel, key, retry) : null);
     return false;
   }
   notify(
@@ -2320,7 +2504,7 @@ async function reportBundledLoadFailure({
     `The local app connection is not available, so ${subject} could not be loaded. ${LOCAL_CONNECTION_STEPS}`,
     'warn',
     key,
-    localRecoveryAction('Try again', key, retry),
+    localRecoveryAction(retryLabel, key, retry),
   );
   return true;
 }
@@ -2445,6 +2629,7 @@ function ensurePublishingViews() {
         el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
         el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' }),
       ])]),
+      el('div', { id: `${category.route}-navigation` }),
       el('div', { id: `${category.route}-results`, class: 'results' }),
     ]), $('.app-footer'));
   }
@@ -2461,6 +2646,10 @@ function renderPublishingIndex(category, allStories) {
   const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
   $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
   box.replaceChildren();
+  box.append(el('p', {
+    class: 'rail-hint',
+    text: 'Choose a publishing period. The Modern Timeline is a guided route through later stories; Modern Age lets you choose a period instead.',
+  }));
   if (count === 0) {
     box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' }));
     return;
@@ -2482,13 +2671,17 @@ function renderPublishingIndex(category, allStories) {
     }, [
       el('div', { class: 'sec-h' }, [
         el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }),
-        el('button', {
+        el('a', {
           id: 'marvel-ages-modern-all',
-          type: 'button',
+          href: formatRoute({ view: 'age-modern' }),
           class: 'quiet',
           text: 'Browse all Modern Age Reading Lists',
           'aria-label': aggregateLabel,
-          onclick: () => showView('age-modern', { push: true }),
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event.preventDefault();
+            showView('age-modern', { push: true });
+          },
         }),
       ]),
       el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' }))),
@@ -2502,6 +2695,8 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   const generation = ++publishingCategoryGeneration;
   const current = () => generation === publishingCategoryGeneration && isCurrent();
   const box = $(`#${route}-results`);
+  const navigation = $(`#${route}-navigation`);
+  navigation.replaceChildren();
   const periods = $(`#${route}-categories`);
   const periodList = $(`#${route}-category-list`);
   box.replaceChildren(el('p', {
@@ -2540,6 +2735,13 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     renderPublishingIndex(category, allStories);
     return;
   }
+  if (PUBLISHING_CATEGORIES.some((candidate) => candidate.route === route)) {
+    box.before(el('p', {
+      class: 'rail-hint publishing-scope',
+      text: 'Reading Lists begin in this period and may continue into later years.',
+    }));
+    for (const old of [...box.parentElement.querySelectorAll('.publishing-scope')].slice(0, -1)) old.remove();
+  }
   catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
@@ -2552,7 +2754,10 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     (candidate) => candidate.key === category.key && candidate.route === category.route,
   );
   if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
-    box.replaceChildren();
+    box.replaceChildren(el('p', {
+      class: 'rail-hint',
+      text: 'Choose a period within Modern Age. For a guided starting route, browse the Modern Timeline.',
+    }));
     periodList.replaceChildren(...children.map((child) => homeView.categoryTile({
       ...child,
       tier: 'secondary',
@@ -2566,6 +2771,16 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     box.append(el('p', {
       class: 'rail-hint publishing-empty',
       text: 'No Reading Lists are published for this period yet.',
+    }));
+    if (isPublishingCategory) box.append(el('a', {
+      class: 'btn btn-g',
+      href: formatRoute({ view: 'marvel-ages' }),
+      text: 'Choose another Marvel Age',
+      onclick: (event) => {
+        if (!isPlainNavigation(event)) return;
+        event.preventDefault();
+        showView('marvel-ages', { push: true });
+      },
     }));
     return;
   }
@@ -2584,6 +2799,23 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
         localStoryKeys,
       },
     });
+    const cards = [...box.querySelectorAll('.catalog-card')];
+    if (cards.length > 12) navigation.replaceChildren(createCollectionNavigation({
+      el,
+      id: `${route}-jump`,
+      label: 'Jump to Reading List',
+      entries: cards.map((card) => ({
+        id: card.dataset.story,
+        name: card.querySelector('.catalog-card-title').textContent,
+      })),
+      isCurrent: () => current() && box.isConnected,
+      getTarget: (id) => {
+        const card = cards.find((candidate) => candidate.dataset.story === id);
+        const target = card.querySelector('.catalog-card-title');
+        if (target) target.setAttribute('tabindex', '-1');
+        return target;
+      },
+    }));
     return;
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
@@ -2615,6 +2847,7 @@ function renderAll() {
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
   recoveryView.render();
+  dataView.renderRestoreOffer();
   renderBreadcrumbs();
   // The active list changes at more than a dozen places that never navigate, among them
   // duplicating a list and restoring a backup. This is the one point every one of them passes
@@ -2802,6 +3035,7 @@ function ensureAddList(name) {
 const addView = createAddView({
   $,
   announce,
+  askConfirm,
   el,
   ensureList: ensureAddList,
   friendly,
@@ -2809,6 +3043,7 @@ const addView = createAddView({
   getState: () => store.state,
   hydrate: (listId) => hydrator.start(listId),
   issueFocusAnchor,
+  importDraft,
   lookupManual: lookupIssue,
   notify,
   onNonEmptyListSave: recordNonEmptyListSave,
@@ -2939,7 +3174,6 @@ const issueView = createIssueView({
       : null,
   }),
   elements: () => ({
-    availability: $('#issue-focus-availability'),
     background: $('#issue-focus-bg'),
     byline: $('#issue-focus-by'),
     cancelSynopsis: $('#btn-cancel-issue-synopsis'),
@@ -2960,6 +3194,9 @@ const issueView = createIssueView({
     status: $('#issue-focus-status'),
     synopsis: $('#btn-issue-synopsis'),
     synopsisStatus: $('#issue-synopsis-status'),
+    savedActions: $('#issue-saved-actions'),
+    markRead: $('#btn-issue-mark-read'),
+    editNote: $('#btn-issue-note'),
   }),
   fact,
   getApi: () => api,
@@ -2973,6 +3210,8 @@ const issueView = createIssueView({
     synopsisRunner.cancel();
   },
   onRead: openInReader,
+  onToggleRead: readingView.toggleSavedRead,
+  onEditNote: readingView.editIssueNote,
   onReaderContext: (result) => {
     if (result?.issue) {
       readerLinkView.show(result.issue.issueId, { source: result.source });
@@ -3003,6 +3242,7 @@ const progressView = createProgressView({
   elements: () => ({
     method: $('#progress-method'),
     methodText: $('#progress-method-text'),
+    subject: $('#progress-subject'),
     radios: document.querySelectorAll('input[name="progress-scope"]'),
     results: $('#series-progress'),
     scope: $('#progress-scope'),
@@ -3306,6 +3546,7 @@ const readingPathsView = createReadingPathsView({
     description: $('#reading-path-description'),
     details: $('#reading-path-details'),
     name: $('#reading-path-name'),
+    navigation: $('#reading-path-navigation'),
     progressOutputs: () => document.querySelectorAll('[data-reading-path-progress]'),
     select: $('#reading-path-select'),
     source: $('#reading-path-source'),
@@ -3390,6 +3631,8 @@ const completionView = createCompletionView({
     libraryYours: $('#library-yours'),
     dataSafety: $('#view-data .setgroup'),
     historyControls: $('#completion-history-controls'),
+    backupHistory: $('#normal-backup-history'),
+    historyTroubleshooting: $('#history-troubleshooting'),
     historyStatus: $('#history-status'),
     historyExport: $('#btn-export-history'),
     historyCopy: $('#btn-copy-history'),
@@ -3451,8 +3694,9 @@ async function exportReadingOrder() {
       confirmLabel: 'Download order only',
     });
     if (!yes) return;
-    if (!await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown')) return;
-    announce('Order-only Markdown downloaded. Your saved reading data is unchanged.');
+    const result = await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown');
+    if (!result) return;
+    announce(`${downloadMessage(result, 'Order-only Markdown')} Your saved reading data is unchanged.`);
   } catch (err) {
     notify('#app-report', `Could not export the reading order: ${err.message}. Your saved reading data is unchanged.`, 'error', 'order-export');
   }

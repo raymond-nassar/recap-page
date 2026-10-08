@@ -22,6 +22,58 @@ const css = read('src/styles.css');
 const main = read('src/js/main.js');
 const reading = read('src/js/views/reading.js');
 
+test('responsive read boxes allocate real nonoverlapping row space', () => {
+  assert.match(css, /\.cb \{[^}]*width: 24px; height: 24px/);
+  assert.match(css, /grid-template-columns: 44px 44px minmax\(0, 1fr\) auto/);
+  assert.match(css, /\.row \.cb \{ width: 44px; height: 44px; \}/);
+});
+
+test('narrow hero prose and idle list commands use their available width', () => {
+  assert.match(css, /#hero-title \{ clear: both; \}/);
+  assert.match(css, /\.list-tools \{[^}]*margin-bottom: var\(--space-4\)/);
+  assert.match(css, /\.list-actions > summary \{[^}]*min-height: 44px/);
+});
+
+test('native list actions start closed and retain completion and pending controls with focus before close', () => {
+  assert.match(html, /<details id="list-actions" class="list-actions action-disclosure">/);
+  const opener = html.indexOf('<details id="list-actions"');
+  assert.ok(opener >= 0, 'outer List actions opener is missing');
+  let depth = 0;
+  let end = null;
+  for (const match of html.slice(opener).matchAll(/<\/?details\b[^>]*>/g)) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) {
+      end = opener + match.index + match[0].length;
+      break;
+    }
+  }
+  assert.ok(end !== null, 'balanced outer List actions closer is missing');
+  const editing = html.slice(opener, end);
+  assert.match(editing, /<details id="list-export">/);
+  assert.doesNotMatch(editing, /id="(?:hydration-status|synopsis-status|btn-cancel-hydrate|btn-cancel-synopsis)"/);
+  assert.match(reading, /summary\.focus\(\);\s*details\.open = false/);
+  assert.doesNotMatch(reading, /details\.open = !narrow/);
+});
+
+test('page titles use ordinary focus-visible rather than a forced navigation box', () => {
+  assert.match(css, /:focus-visible \{\s*outline: 3px solid var\(--blue\)/);
+  assert.doesNotMatch(css, /\.view h1\[tabindex="-1"\]:focus(?!-visible)/);
+  assert.match(main, /heading\.setAttribute\('tabindex', '-1'\);\s*heading\.focus/);
+});
+
+test('mobile navigation reserves measured content space and cannot cover active forms or dialogs', () => {
+  assert.match(html, /<a href="#\/data"[^>]*id="save-education-settings"/);
+  assert.match(reading, /isPlainNavigation\(event\)[\s\S]*showView\('data', \{ push: true \}\)/);
+  assert.match(css, /main \{ padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
+  assert.match(css, /scroll-padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
+  assert.match(css, /env\(safe-area-inset-bottom\)/);
+  assert.match(css, /body:has\(dialog\[open\]\) \.rail-header \{ visibility: hidden; \}/);
+  assert.match(main, /new ResizeObserver/);
+  assert.match(main, /visualViewport\.height < window\.innerHeight \* 0\.75/);
+  assert.match(main, /hide \|\| editable\(\) \|\| obscuredViewport\(\)/);
+  assert.doesNotMatch(main.slice(main.indexOf('function wireMobileNavigation'), main.indexOf('let tooltips;')),
+    /localStorage|store\.update|history\./);
+});
 test('the reading view opts out of the prose measure, so a desktop is used rather than margined', () => {
   // BL-165 capped every view at the reading measure and gave home an opt-out because a catalog is a
   // grid. The reading view is the same kind of surface and was measured at 876px on a 2560 display
@@ -70,10 +122,13 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
   const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
   assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
-  for (const [id, key, ariaKey] of [['btn-hero-read', 'Enter', 'Enter'], ['btn-hero-done', 'D', 'd']]) {
+  for (const [id, tooltip, ariaKey] of [
+    ['btn-hero-read', 'Keyboard shortcut: Enter', 'Enter'],
+    ['btn-hero-done', 'Mark read and continue. Keyboard shortcut: D', 'd'],
+  ]) {
     const button = cta.match(new RegExp(`<button[^>]*id="${id}"[^>]*>`))?.[0] ?? '';
     assert.match(button, /class="[^"]*\bhas-tooltip\b/, `${id} has no tooltip hook`);
-    assert.match(button, new RegExp(`data-tooltip="Keyboard shortcut: ${key}"`), `${id} has no visible shortcut tooltip`);
+    assert.ok(button.includes(`data-tooltip="${tooltip}"`), `${id} has no visible action and shortcut tooltip`);
     assert.match(button, new RegExp(`aria-keyshortcuts="${ariaKey}"`), `${id} does not expose its shortcut accessibly`);
   }
   assert.match(html, /id="action-tip" hidden aria-hidden="true"/);
@@ -105,23 +160,30 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
   ]) {
     assert.ok(reading.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
   }
-  assert.match(reading, /availabilityOverrideAction\(item\.override\)/);
+  assert.match(reading, /tooltip: label/);
 });
 
-test('narrow reading rows use a labeled disclosure instead of unexplained symbols', () => {
+test('reading rows use a labeled disclosure at every width instead of hover-only commands', () => {
   assert.match(reading, /class: 'row-actions'/);
   assert.match(reading, /class: 'mini row-actions-toggle'[\s\S]*text: 'More actions'/);
   assert.match(reading, /'aria-expanded': 'false'/);
   assert.match(reading, /'aria-controls': panelId/);
   assert.match(reading, /'aria-label': `More actions for \$\{item\.title\}`/);
   assert.match(reading, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
-  for (const label of ['Move up', 'Move down', 'Change Unlimited status', 'Remove from list']) {
+  assert.match(reading, /setOpen\(false\);\s*focusRemovalTarget\(toggle, \{ avoidFilters: true \}\)/);
+  assert.match(reading, /filters\.getBoundingClientRect\(\)/);
+  assert.match(reading, /top: top - filterBounds\.bottom, left: 0, behavior: 'instant'/);
+  for (const label of ['Move up', 'Move down', 'Remove from list']) {
     assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
   }
+  for (const label of ['Mark as available', 'Mark as unavailable', 'Clear availability override']) {
+    assert.ok(reading.includes(`'${label}'`), `the explicit availability actions are missing ${label}`);
+  }
 
-  assert.match(css, /@media \(max-width: 620px\) \{[\s\S]*?\.row-actions-toggle \{\s*display: flex/);
+  assert.match(css, /\.row-actions-toggle \{\s*display: inline-flex/);
   assert.match(css, /\.row-actions:not\(\.is-open\) > \.ract \{ display: none; \}/);
-  assert.match(css, /\.row-actions\.is-open > \.ract \{[\s\S]*?flex-direction: column/);
+  assert.match(css, /\.row-actions\.is-open > \.ract \{[^}]*display: grid/);
+  assert.doesNotMatch(css, /\.row:hover \.ract/);
 });
 
 test('Coming up precedes the one native full Reading List disclosure', () => {
@@ -159,10 +221,11 @@ test('the full Reading List action and state hooks receive the accepted copy', (
   }
 });
 
-test('the list tools are demoted by moving the border to the strip, not by hiding a button', () => {
-  // Discoverability and keyboard access both have to survive the demotion, so the test is that the
-  // buttons are still there, still bordered when reached, and that the group carries an edge.
-  assert.match(css, /\.list-tools \{[^}]*border: 1px solid var\(--line\)/);
+test('all editing commands remain reachable through native List actions', () => {
+  assert.match(css, /\.list-actions-body \{[^}]*border: 1px solid var\(--line\)/);
+  const ordinaryStrip = css.match(/^\.list-tools \{[^}]*\}/m)?.[0] ?? '';
+  assert.match(ordinaryStrip, /display: flex/);
+  assert.doesNotMatch(ordinaryStrip, /border:/);
   assert.match(css, /\.list-tools \.quiet \{[^}]*border-color: transparent/);
   assert.match(css, /\.list-tools \.quiet:hover, \.list-tools \.quiet:focus-visible \{[^}]*border-color: var\(--line-2\)/);
   for (const id of ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md', 'btn-delete-list']) {

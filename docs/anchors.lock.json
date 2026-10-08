@@ -1479,8 +1479,8 @@
     "fp": "d06960e1a6a4cd39",
     "head": "export function compareIssueSets(candidateIds, existingIds) {"
   },
-  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:929-931|0": {
-    "anchor": "docs/UX_STUDY.md:929-931",
+  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:932-934|0": {
+    "anchor": "docs/UX_STUDY.md:932-934",
     "fp": "1e64d83a8ff9a25f",
     "head": "**Puppeteer was installed outside the repository, deliberately.** `node_modules/` is not covered by"
   },
@@ -1509,8 +1509,8 @@
     "fp": "6db2dec2e99dd8a3",
     "head": "if (/^\\s*absent:/.test(cell)) ranges.push([offset + from, offset + from + cell.length]);"
   },
-  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:11|0": {
-    "anchor": "src/js/storage.js:11",
+  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:16|0": {
+    "anchor": "src/js/storage.js:16",
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
@@ -1524,8 +1524,8 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:599-647|0": {
-    "anchor": "scripts/vendor-orders.mjs:599-647",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:602-650|0": {
+    "anchor": "scripts/vendor-orders.mjs:602-650",
     "fp": "98a893895e13e14e",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1534,8 +1534,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1850-1861|0": {
-    "anchor": "src/js/main.js:1850-1861",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1992-2003|0": {
+    "anchor": "src/js/main.js:1992-2003",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
@@ -1544,9 +1544,9 @@
     "fp": "843170c03f30cc68",
     "head": "// Must be called synchronously from a user gesture, or the browser will block the tab."
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/open.js:76-114|0": {
-    "anchor": "src/open.js:76-114",
-    "fp": "938356fe88cc93ab",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/open.js:132-170|0": {
+    "anchor": "src/open.js:132-170",
+    "fp": "333663abc5cc1d40",
     "head": "async function resolveAndGo(id, page = detailUrl(id)) {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/api.js:193-230|0": {
@@ -1559,173 +1559,173 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:663-665|0": {
-    "anchor": "src/js/lib/model.js:663-665",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:696-698|0": {
+    "anchor": "src/js/lib/model.js:696-698",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2600-2624|0": {
-    "anchor": "src/js/main.js:2600-2624",
-    "fp": "7216dd06b16d4b18",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2832-2857|0": {
+    "anchor": "src/js/main.js:2832-2857",
+    "fp": "5b78c8461daa65f9",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:318-320|0": {
-    "anchor": "src/js/main.js:318-320",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:337-339|0": {
+    "anchor": "src/js/main.js:337-339",
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:372-399|0": {
-    "anchor": "src/js/storage.js:372-399",
-    "fp": "b7d36f9e697421d1",
-    "head": "update(fn) {"
-  },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:518-584|0": {
-    "anchor": "src/js/storage.js:518-584",
-    "fp": "87bb22d2166d3fff",
-    "head": "restore(rawJson) {"
-  },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:647-655|0": {
-    "anchor": "src/js/storage.js:647-655",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:1009-1017|0": {
+    "anchor": "src/js/storage.js:1009-1017",
     "fp": "c10d8af0b6ad7801",
     "head": "// A successful restore is a deliberate overwrite, so it also clears the block."
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:85-117|0": {
-    "anchor": "src/js/storage.js:85-117",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:377-409|0": {
+    "anchor": "src/js/storage.js:377-409",
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1022-1026|0": {
-    "anchor": "src/js/views/add.js:1022-1026",
-    "fp": "685f975f82d16d65",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:673-700|0": {
+    "anchor": "src/js/storage.js:673-700",
+    "fp": "b7d36f9e697421d1",
+    "head": "update(fn) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:863-944|0": {
+    "anchor": "src/js/storage.js:863-944",
+    "fp": "ac161ff9c9fd46ca",
+    "head": "restore(rawJson, { expected, recovering = false } = {}) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1086-1090|0": {
+    "anchor": "src/js/views/add.js:1086-1090",
+    "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:29-66|0": {
-    "anchor": "src/js/views/add.js:29-66",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:30-67|0": {
+    "anchor": "src/js/views/add.js:30-67",
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:309-352|0": {
-    "anchor": "src/js/views/add.js:309-352",
-    "fp": "2a36cd330c02d6ce",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:326-368|0": {
+    "anchor": "src/js/views/add.js:326-368",
+    "fp": "181871c435b16f65",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:562-586|0": {
-    "anchor": "src/js/views/add.js:562-586",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:594-618|0": {
+    "anchor": "src/js/views/add.js:594-618",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:68-91|0": {
-    "anchor": "src/js/views/add.js:68-91",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:69-92|0": {
+    "anchor": "src/js/views/add.js:69-92",
     "fp": "2f677131e0096b88",
     "head": "export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:93-185|0": {
-    "anchor": "src/js/views/add.js:93-185",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:94-186|0": {
+    "anchor": "src/js/views/add.js:94-186",
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:40-48|0": {
-    "anchor": "src/js/views/reading.js:40-48",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1051-1064|0": {
+    "anchor": "src/js/views/reading.js:1051-1064",
+    "fp": "a4e20d502298d5da",
+    "head": "function toggleSavedRead(item, isCurrent = () => true) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:36-44|0": {
+    "anchor": "src/js/views/reading.js:36-44",
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:708|0": {
-    "anchor": "src/js/views/reading.js:708",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:734|0": {
+    "anchor": "src/js/views/reading.js:734",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:806-808|0": {
-    "anchor": "src/js/views/reading.js:806-808",
-    "fp": "962c8048b2876981",
-    "head": "onclick: () => {"
-  },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2600-2624|0": {
-    "anchor": "src/js/main.js:2600-2624",
-    "fp": "7216dd06b16d4b18",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2832-2857|0": {
+    "anchor": "src/js/main.js:2832-2857",
+    "fp": "5b78c8461daa65f9",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3207-3240|0": {
-    "anchor": "src/js/main.js:3207-3240",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3447-3480|0": {
+    "anchor": "src/js/main.js:3447-3480",
     "fp": "755e088f3b509ba2",
     "head": "const catalogView = createCatalogView({"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:138-180|0": {
-    "anchor": "src/js/views/catalog.js:138-180",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:139-181|0": {
+    "anchor": "src/js/views/catalog.js:139-181",
     "fp": "8809882e901984c6",
     "head": "function paintTimelineContext(context, { announceChange = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:27-69|0": {
-    "anchor": "src/js/views/catalog.js:27-69",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:28-70|0": {
+    "anchor": "src/js/views/catalog.js:28-70",
     "fp": "0b217d6debebf6b8",
     "head": "export function modernTimelinePosition(state, stories, { dropped = 0, isCompleted = () => false } = "
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:237-287|0": {
-    "anchor": "src/js/views/shared/catalog-presentation.js:237-287",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:243-293|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:243-293",
     "fp": "0a962c0efebbd6c1",
     "head": "function paintTimelinePosition(root, position, {"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:144-154|0": {
-    "anchor": "src/js/storage.js:144-154",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:436-446|0": {
+    "anchor": "src/js/storage.js:436-446",
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:169-195|0": {
-    "anchor": "test/storage.test.js:169-195",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:394-420|0": {
+    "anchor": "test/storage.test.js:394-420",
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|scripts/lib/chapter-orders.mjs:377-387|0": {
-    "anchor": "scripts/lib/chapter-orders.mjs:377-387",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|scripts/lib/chapter-orders.mjs:392-402|0": {
+    "anchor": "scripts/lib/chapter-orders.mjs:392-402",
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1409-1462|0": {
-    "anchor": "src/js/lib/catalog.js:1409-1462",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1440-1493|0": {
+    "anchor": "src/js/lib/catalog.js:1440-1493",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:684-702|0": {
-    "anchor": "src/js/lib/catalog.js:684-702",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:693-711|0": {
+    "anchor": "src/js/lib/catalog.js:693-711",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:161-196|0": {
-    "anchor": "src/js/lib/route.js:161-196",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:174-209|0": {
+    "anchor": "src/js/lib/route.js:174-209",
     "fp": "9e182e3c330f02d7",
     "head": "const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:143-167|0": {
-    "anchor": "src/js/main.js:143-167",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:162-186|0": {
+    "anchor": "src/js/main.js:162-186",
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3166-3299|0": {
-    "anchor": "src/js/main.js:3166-3299",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3406-3539|0": {
+    "anchor": "src/js/main.js:3406-3539",
     "fp": "f71444846c728e6b",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3301-3353|0": {
-    "anchor": "src/js/main.js:3301-3353",
-    "fp": "5518a9bfa859ea81",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3541-3594|0": {
+    "anchor": "src/js/main.js:3541-3594",
+    "fp": "5a2ca19771f5fc8b",
     "head": "const readingPathsView = createReadingPathsView({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:10-28|0": {
-    "anchor": "src/js/views/reading-paths.js:10-28",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:11-29|0": {
+    "anchor": "src/js/views/reading-paths.js:11-29",
     "fp": "1c501fdc14bba24f",
     "head": "export function readingPathProgress(state, stop, { isCompleted = () => false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:117-153|0": {
-    "anchor": "src/js/views/reading-paths.js:117-153",
-    "fp": "f4ea541e09e6fefa",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:134-171|0": {
+    "anchor": "src/js/views/reading-paths.js:134-171",
+    "fp": "07a37da5024b4cbe",
     "head": "async function render({ opener = null } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:156-162|0": {
-    "anchor": "src/js/views/reading-paths.js:156-162",
-    "fp": "e1555912dea4629f",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:174-181|0": {
+    "anchor": "src/js/views/reading-paths.js:174-181",
+    "fp": "a7ff77f50ed727ab",
     "head": "function wire() {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:54-69|0": {
-    "anchor": "src/js/views/reading-paths.js:54-69",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/views/reading-paths.js:55-70|0": {
+    "anchor": "src/js/views/reading-paths.js:55-70",
     "fp": "d3458e1050f77905",
     "head": "function refreshProgress(state = getState()) {"
   },
@@ -1759,14 +1759,14 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2126-2141|0": {
-    "anchor": "src/js/main.js:2126-2141",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2300-2315|0": {
+    "anchor": "src/js/main.js:2300-2315",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:87-119|0": {
-    "anchor": "src/js/main.js:87-119",
-    "fp": "4e5990fc504ced40",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:88-130|0": {
+    "anchor": "src/js/main.js:88-130",
+    "fp": "14ac15820b0f7830",
     "head": "const settings = loadSettings();"
   },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/synopsis.js:8-15|0": {
@@ -1774,13 +1774,13 @@
     "fp": "8afb6d479f5f3d20",
     "head": "// it in a Map that dies with the tab. Nothing here touches mrt.state.v2, nothing here is written to"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:135|0": {
-    "anchor": "src/dev-faults.html:135",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:137|0": {
+    "anchor": "src/dev-faults.html:137",
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1280|0": {
-    "anchor": "src/index.html:1280",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1327|0": {
+    "anchor": "src/index.html:1327",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1789,13 +1789,13 @@
     "fp": "4cd15120f1ae0634",
     "head": "import { boot } from './main.js';"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/open.html:19|0": {
-    "anchor": "src/open.html:19",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/open.html:21|0": {
+    "anchor": "src/open.html:21",
     "fp": "2c436fb3c32130cb",
     "head": "<script type=\"module\" src=\"./open.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:645-663|0": {
-    "anchor": "src/js/main.js:645-663",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:681-699|0": {
+    "anchor": "src/js/main.js:681-699",
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
   },
@@ -1809,38 +1809,38 @@
     "fp": "34a63c10ee7c6918",
     "head": "export function createSaveEducation({ storage } = {}) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:676-687|0": {
-    "anchor": "src/js/main.js:676-687",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:712-723|0": {
+    "anchor": "src/js/main.js:712-723",
     "fp": "d04eedd9cd784a4a",
     "head": "const serialized = JSON.stringify({"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:676-693|0": {
-    "anchor": "src/js/storage.js:676-693",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1038-1055|0": {
+    "anchor": "src/js/storage.js:1038-1055",
     "fp": "6a45bb40e47d2dfa",
     "head": "rewindSnapshot(held) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:695-712|0": {
-    "anchor": "src/js/storage.js:695-712",
-    "fp": "d0ddabeee321f509",
-    "head": "undoRestore() {"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1057-1074|0": {
+    "anchor": "src/js/storage.js:1057-1074",
+    "fp": "6c7b045c5fd6f21c",
+    "head": "undoRestore(expected) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:558-563|0": {
-    "anchor": "src/js/storage.js:558-563",
-    "fp": "226b51fd48953d63",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:902-914|0": {
+    "anchor": "src/js/storage.js:902-914",
+    "fp": "b3fd908f89413bfd",
     "head": "this.storage?.setItem(TEMP_KEY, serialized);"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:175-181|0": {
-    "anchor": "src/js/storage.js:175-181",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:467-473|0": {
+    "anchor": "src/js/storage.js:467-473",
     "fp": "b429c9cf55d87586",
     "head": "freeArchiveKey() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:461|0": {
-    "anchor": "src/js/storage.js:461",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:762|0": {
+    "anchor": "src/js/storage.js:762",
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1169-1176|0": {
-    "anchor": "src/js/main.js:1169-1176",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1209-1216|0": {
+    "anchor": "src/js/main.js:1209-1216",
     "fp": "ac2e0db17077fe22",
     "head": "function setRailed(next, { announceIt = false, persist = false } = {}) {"
   },
@@ -1874,25 +1874,30 @@
     "fp": "610c96e2c8507a76",
     "head": "export const SAVE_EDUCATION_KEY = 'mrt.saveEducation.v1';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:72-74|0": {
-    "anchor": "src/js/main.js:72-74",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:73-75|0": {
+    "anchor": "src/js/main.js:73-75",
     "fp": "b150c9694bbc2e50",
     "head": "const SETTINGS_KEY = 'mrt.settings';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:11-14|0": {
-    "anchor": "src/js/storage.js:11-14",
-    "fp": "a7459e56c471d9c8",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:16-20|0": {
+    "anchor": "src/js/storage.js:16-20",
+    "fp": "28ca251f3ab3db02",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:298-321|0": {
-    "anchor": "src/js/storage.js:298-321",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:599-622|0": {
+    "anchor": "src/js/storage.js:599-622",
     "fp": "a217fd173d10b27a",
     "head": "salvageCopies() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:65-74|0": {
-    "anchor": "src/open.js:65-74",
-    "fp": "fa8ba3a31fd21773",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:121-130|0": {
+    "anchor": "src/open.js:121-130",
+    "fp": "d2fa6a2fb3f63b5a",
     "head": "function apiBase() {"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:61-83|0": {
+    "anchor": "src/open.js:61-83",
+    "fp": "e284a005544dbbd3",
+    "head": "parsed = localStorage.getItem('mrt.settings');"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:44-55|0": {
     "anchor": "src/sw.js:44-55",
@@ -1929,33 +1934,33 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11340-11465|0": {
-    "anchor": "src/data/catalog.json:11340-11465",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11371-11496|0": {
+    "anchor": "src/data/catalog.json:11371-11496",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7244-7283|0": {
-    "anchor": "src/data/curated-lists.json:7244-7283",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7277-7316|0": {
+    "anchor": "src/data/curated-lists.json:7277-7316",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:95|0": {
-    "anchor": "src/js/views/issue.js:95",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:103|0": {
+    "anchor": "src/js/views/issue.js:103",
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:588|0": {
-    "anchor": "src/js/views/reading.js:588",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:606|0": {
+    "anchor": "src/js/views/reading.js:606",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:79-87|0": {
-    "anchor": "src/js/views/reading.js:79-87",
-    "fp": "b79dcc7a949b3231",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:75-83|0": {
+    "anchor": "src/js/views/reading.js:75-83",
+    "fp": "f49b08319d5bdd77",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1040-1044|0": {
-    "anchor": "src/index.html:1040-1044",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1081-1085|0": {
+    "anchor": "src/index.html:1081-1085",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2084,93 +2089,93 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:531-533|0": {
-    "anchor": "src/index.html:531-533",
-    "fp": "ab300ebb4156bcfc",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:560-563|0": {
+    "anchor": "src/index.html:560-563",
+    "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:47-92|0": {
-    "anchor": "src/index.html:47-92",
-    "fp": "40b8e4c7235d6233",
-    "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
-  },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:47-92|1": {
-    "anchor": "src/index.html:47-92",
-    "fp": "40b8e4c7235d6233",
-    "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
-  },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:494-527|0": {
-    "anchor": "src/index.html:494-527",
-    "fp": "fd069560bcd47f29",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:523-556|0": {
+    "anchor": "src/index.html:523-556",
+    "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
+  },
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:60-105|0": {
+    "anchor": "src/index.html:60-105",
+    "fp": "89df9badf1d976de",
+    "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
+  },
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:60-105|1": {
+    "anchor": "src/index.html:60-105",
+    "fp": "89df9badf1d976de",
+    "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:20-31|0": {
     "anchor": "src/js/lib/route.js:20-31",
     "fp": "926f2f59faf99041",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:61-138|0": {
-    "anchor": "src/js/lib/route.js:61-138",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:74-151|0": {
+    "anchor": "src/js/lib/route.js:74-151",
     "fp": "3c75afdf5cfc5638",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1550-1589|0": {
-    "anchor": "src/js/main.js:1550-1589",
-    "fp": "eb6ee0584d0f630d",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1676-1719|0": {
+    "anchor": "src/js/main.js:1676-1719",
+    "fp": "f344ddda7790e906",
     "head": "function renderBreadcrumbs() {"
   },
-  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:69-80|0": {
-    "anchor": "test/ux-completion.test.js:69-80",
+  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:83-94|0": {
+    "anchor": "test/ux-completion.test.js:83-94",
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:288-333|0": {
-    "anchor": "src/index.html:288-333",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|job-stories|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:312-313|0": {
-    "anchor": "src/index.html:312-313",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+  "docs/UX_STUDY.md|job-stories|src/index.html:337-338|0": {
+    "anchor": "src/index.html:337-338",
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:531-533|0": {
-    "anchor": "src/index.html:531-533",
-    "fp": "ab300ebb4156bcfc",
+  "docs/UX_STUDY.md|job-stories|src/index.html:560-563|0": {
+    "anchor": "src/index.html:560-563",
+    "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:532-536|0": {
-    "anchor": "src/index.html:532-536",
-    "fp": "3d856d97acb5205e",
-    "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
+  "docs/UX_STUDY.md|job-stories|src/index.html:562-566|0": {
+    "anchor": "src/index.html:562-566",
+    "fp": "2318f8472fc086b9",
+    "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1090-1121|0": {
-    "anchor": "src/js/lib/model.js:1090-1121",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1123-1154|0": {
+    "anchor": "src/js/lib/model.js:1123-1154",
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:129-143|0": {
-    "anchor": "src/js/views/preview.js:129-143",
-    "fp": "efda8a60d1291a90",
+  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:141-155|0": {
+    "anchor": "src/js/views/preview.js:141-155",
+    "fp": "060d81e45a5efe2e",
     "head": "function paint(list) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/progress.js:48-103|0": {
-    "anchor": "src/js/views/progress.js:48-103",
-    "fp": "d420778b2fabaf12",
+  "docs/UX_STUDY.md|job-stories|src/js/views/progress.js:48-107|0": {
+    "anchor": "src/js/views/progress.js:48-107",
+    "fp": "42161b2e4c7595a3",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:846-847|0": {
-    "anchor": "src/js/views/reading.js:846-847",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:868-869|0": {
+    "anchor": "src/js/views/reading.js:868-869",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:285-288|0": {
-    "anchor": "src/js/views/reading.js:285-288",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:295-298|0": {
+    "anchor": "src/js/views/reading.js:295-298",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:896|0": {
-    "anchor": "src/styles.css:896",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:953|0": {
+    "anchor": "src/styles.css:953",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2179,9 +2184,9 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:288-333|0": {
-    "anchor": "src/index.html:288-333",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|proto-persona#relationship-to-marvel-unlimited|src/js/reader.js:12|0": {
@@ -2189,48 +2194,48 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:846-847|0": {
-    "anchor": "src/js/views/reading.js:846-847",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:868-869|0": {
+    "anchor": "src/js/views/reading.js:868-869",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#10|src/index.html:47-92|0": {
-    "anchor": "src/index.html:47-92",
-    "fp": "40b8e4c7235d6233",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#10|src/index.html:60-105|0": {
+    "anchor": "src/index.html:60-105",
+    "fp": "89df9badf1d976de",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:33-38|0": {
-    "anchor": "src/js/views/reading.js:33-38",
-    "fp": "2435be3c1e7a1165",
-    "head": "const SHORT_LABEL = {"
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:865-867|0": {
+    "anchor": "src/js/views/reading.js:865-867",
+    "fp": "c79a9c5150900e20",
+    "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/index.html:118-133|0": {
-    "anchor": "src/index.html:118-133",
-    "fp": "8b3c07e445e71673",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/index.html:132-154|0": {
+    "anchor": "src/index.html:132-154",
+    "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:914-993|0": {
-    "anchor": "src/js/lib/model.js:914-993",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:947-1026|0": {
+    "anchor": "src/js/lib/model.js:947-1026",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#9|src/index.html:118-133|0": {
-    "anchor": "src/index.html:118-133",
-    "fp": "8b3c07e445e71673",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#9|src/index.html:132-154|0": {
+    "anchor": "src/index.html:132-154",
+    "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:558-563|0": {
-    "anchor": "src/index.html:558-563",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:588-593|0": {
+    "anchor": "src/index.html:588-593",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:419-448|0": {
-    "anchor": "src/js/views/catalog.js:419-448",
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:421-450|0": {
+    "anchor": "src/js/views/catalog.js:421-450",
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1880-1882|0": {
-    "anchor": "src/styles.css:1880-1882",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1943-1945|0": {
+    "anchor": "src/styles.css:1943-1945",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2239,8 +2244,8 @@
     "fp": "8e9f0b814f7bdc04",
     "head": ":focus-visible {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:701|0": {
-    "anchor": "src/styles.css:701",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:752|0": {
+    "anchor": "src/styles.css:752",
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
@@ -2249,20 +2254,20 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1880-1882|0": {
-    "anchor": "src/styles.css:1880-1882",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1943-1945|0": {
+    "anchor": "src/styles.css:1943-1945",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:701|0": {
-    "anchor": "src/styles.css:701",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:752|0": {
+    "anchor": "src/styles.css:752",
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:312-313|0": {
-    "anchor": "src/index.html:312-313",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:334-336|0": {
+    "anchor": "src/index.html:334-336",
+    "fp": "b22251e455876ddc",
+    "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
   "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:127-133|0": {
     "anchor": "src/styles.css:127-133",
@@ -2274,53 +2279,53 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:824|0": {
-    "anchor": "src/styles.css:824",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:881|0": {
+    "anchor": "src/styles.css:881",
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:968-969|0": {
-    "anchor": "src/styles.css:968-969",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1025-1026|0": {
+    "anchor": "src/styles.css:1025-1026",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:971|0": {
-    "anchor": "src/styles.css:971",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1028|0": {
+    "anchor": "src/styles.css:1028",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:288-333|0": {
-    "anchor": "src/index.html:288-333",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:735-742|0": {
-    "anchor": "src/styles.css:735-742",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:792-799|0": {
+    "anchor": "src/styles.css:792-799",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:985-988|0": {
-    "anchor": "src/styles.css:985-988",
-    "fp": "713b8b6372bfe540",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1042-1045|0": {
+    "anchor": "src/styles.css:1042-1045",
+    "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:916-1012|0": {
-    "anchor": "src/js/views/reading.js:916-1012",
-    "fp": "bbab0ff263bc0eb2",
-    "head": "function issueRowActions(item, listId) {"
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2290-2291|0": {
+    "anchor": "src/styles.css:2290-2291",
+    "fp": "216c8709fab455f9",
+    "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1042-1043|0": {
-    "anchor": "src/styles.css:1042-1043",
-    "fp": "0874e4ac50b18fce",
-    "head": ".row-actions { position: relative; }"
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:936-1048|0": {
+    "anchor": "src/js/views/reading.js:936-1048",
+    "fp": "91f84b1d128c3126",
+    "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1054-1071|0": {
-    "anchor": "src/styles.css:1054-1071",
-    "fp": "4516d2da0e913545",
-    "head": "@media (max-width: 620px) {"
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1099-1126|0": {
+    "anchor": "src/styles.css:1099-1126",
+    "fp": "444ef76011523544",
+    "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:108|0": {
-    "anchor": "src/index.html:108",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:121|0": {
+    "anchor": "src/index.html:121",
     "fp": "74bc1ff9b998e6b5",
     "head": "<div id=\"save-report\" role=\"alert\" aria-live=\"assertive\"></div>"
   },
@@ -2329,29 +2334,29 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:706|0": {
-    "anchor": "src/index.html:706",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:736|0": {
+    "anchor": "src/index.html:736",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:387-400|0": {
-    "anchor": "src/js/main.js:387-400",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:406-419|0": {
+    "anchor": "src/js/main.js:406-419",
     "fp": "d21a7a81a8feb563",
     "head": "// A message goes down exactly one channel. Writing into a container that is itself a live"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:393-400|0": {
-    "anchor": "src/js/main.js:393-400",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:412-419|0": {
+    "anchor": "src/js/main.js:412-419",
     "fp": "c8ff28f8e2ea386d",
     "head": "function isLive(node) {"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:536-561|0": {
-    "anchor": "src/js/main.js:536-561",
-    "fp": "192110749958f5f4",
-    "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:567-594|0": {
+    "anchor": "src/js/main.js:567-594",
+    "fp": "5386608e02c68058",
+    "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:288-333|0": {
-    "anchor": "src/index.html:288-333",
-    "fp": "7d7aa5af2b2a9350",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:313-359|0": {
+    "anchor": "src/index.html:313-359",
+    "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/index.html:10|0": {
@@ -2359,128 +2364,123 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1513-1515|0": {
-    "anchor": "src/js/main.js:1513-1515",
-    "fp": "49408e8173086b6e",
-    "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1638-1640|0": {
+    "anchor": "src/js/main.js:1638-1640",
+    "fp": "68f0263068782dee",
+    "head": "for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {"
   },
   "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:106|0": {
     "anchor": "src/styles.css:106",
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1880-1882|0": {
-    "anchor": "src/styles.css:1880-1882",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1943-1945|0": {
+    "anchor": "src/styles.css:1943-1945",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:33-38|0": {
-    "anchor": "src/js/views/reading.js:33-38",
-    "fp": "2435be3c1e7a1165",
-    "head": "const SHORT_LABEL = {"
-  },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:842-845|0": {
-    "anchor": "src/js/views/reading.js:842-845",
-    "fp": "531118c6bf7fabc3",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:865-867|0": {
+    "anchor": "src/js/views/reading.js:865-867",
+    "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:286-292|0": {
-    "anchor": "src/styles.css:286-292",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:285-291|0": {
+    "anchor": "src/styles.css:285-291",
     "fp": "e52389e0f9813d77",
     "head": ".rail {"
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:294-297|0": {
-    "anchor": "src/styles.css:294-297",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:293-296|0": {
+    "anchor": "src/styles.css:293-296",
     "fp": "87a8f4102a4a1266",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:312-313|0": {
-    "anchor": "src/index.html:312-313",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:337-338|0": {
+    "anchor": "src/index.html:337-338",
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/lib/shortcuts.js:26-60|0": {
     "anchor": "src/js/lib/shortcuts.js:26-60",
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1027-1047|0": {
-    "anchor": "src/js/views/reading.js:1027-1047",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1087-1107|0": {
+    "anchor": "src/js/views/reading.js:1087-1107",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2600-2624|0": {
-    "anchor": "src/js/main.js:2600-2624",
-    "fp": "7216dd06b16d4b18",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2832-2857|0": {
+    "anchor": "src/js/main.js:2832-2857",
+    "fp": "5b78c8461daa65f9",
     "head": "function renderAll() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:96-102|0": {
-    "anchor": "src/js/main.js:96-102",
-    "fp": "83f6821e890300f6",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:97-104|0": {
+    "anchor": "src/js/main.js:97-104",
+    "fp": "40aa5dfbe1353aab",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:56-100|0": {
-    "anchor": "src/js/ask.js:56-100",
-    "fp": "db818e7343a867ed",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-117|0": {
+    "anchor": "src/js/ask.js:70-117",
+    "fp": "82cad93ac99c5b16",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1906|0": {
-    "anchor": "src/js/main.js:1906",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2048|0": {
+    "anchor": "src/js/main.js:2048",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:536-561|0": {
-    "anchor": "src/js/main.js:536-561",
-    "fp": "192110749958f5f4",
-    "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:567-594|0": {
+    "anchor": "src/js/main.js:567-594",
+    "fp": "5386608e02c68058",
+    "head": "export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:348-356|0": {
-    "anchor": "src/js/views/reading.js:348-356",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:366-374|0": {
+    "anchor": "src/js/views/reading.js:366-374",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:373-387|0": {
-    "anchor": "src/js/views/reading.js:373-387",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:391-405|0": {
+    "anchor": "src/js/views/reading.js:391-405",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:207-212|0": {
-    "anchor": "src/js/views/data.js:207-212",
-    "fp": "ae14dd291f0e8f99",
-    "head": "nodes.undoRestore.addEventListener('click', () => {"
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:321-349|0": {
+    "anchor": "src/js/views/data.js:321-349",
+    "fp": "4de994265fe57895",
+    "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:373-387|0": {
-    "anchor": "src/js/views/reading.js:373-387",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:391-405|0": {
+    "anchor": "src/js/views/reading.js:391-405",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1057-1068|0": {
-    "anchor": "src/index.html:1057-1068",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1098-1109|0": {
+    "anchor": "src/index.html:1098-1109",
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:312-313|0": {
-    "anchor": "src/index.html:312-313",
-    "fp": "67edc8d71d895b29",
-    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:337-338|0": {
+    "anchor": "src/index.html:337-338",
+    "fp": "e7e623017953e08f",
+    "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1027-1047|0": {
-    "anchor": "src/js/views/reading.js:1027-1047",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1087-1107|0": {
+    "anchor": "src/js/views/reading.js:1087-1107",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1487-1547|0": {
-    "anchor": "src/js/main.js:1487-1547",
-    "fp": "83376be7cb9e8c94",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1606-1673|0": {
+    "anchor": "src/js/main.js:1606-1673",
+    "fp": "718cfcb13ccaf7ce",
     "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
   "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/lib/readingFilters.js:25-51|0": {
     "anchor": "src/js/lib/readingFilters.js:25-51",
-    "fp": "ff7905a67c2d7b97",
+    "fp": "cbdac3d793d1f28d",
     "head": "export const READING_FILTERS = ["
   },
-  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:147|0": {
-    "anchor": "src/js/views/reading.js:147",
+  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:143|0": {
+    "anchor": "src/js/views/reading.js:143",
     "fp": "b7554b1d675a5f56",
     "head": "let filter = DEFAULT_FILTER;"
   },
@@ -2489,13 +2489,13 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:494-527|0": {
-    "anchor": "src/index.html:494-527",
-    "fp": "fd069560bcd47f29",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:523-556|0": {
+    "anchor": "src/index.html:523-556",
+    "fp": "bd138a1352fe536e",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:847|0": {
-    "anchor": "src/js/views/reading.js:847",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:869|0": {
+    "anchor": "src/js/views/reading.js:869",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6024,11 +6024,6 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:1042|0": {
-    "anchor": "src/styles.css:1042",
-    "fp": "bad6625aa1fb228f",
-    "head": ".row-actions { position: relative; }"
-  },
   "scripts/check-anchors.mjs|preamble|scripts/check-contract.mjs:1|0": {
     "anchor": "scripts/check-contract.mjs:1",
     "fp": "4949218de757741f",
@@ -6059,70 +6054,45 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1698|0": {
-    "anchor": "src/js/main.js:1698",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1832|0": {
+    "anchor": "src/js/main.js:1832",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:799|0": {
-    "anchor": "src/js/views/reading.js:799",
-    "fp": "1c4f24ab55f1e36b",
-    "head": "'aria-pressed': String(item.read),"
-  },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:800|0": {
-    "anchor": "src/js/views/reading.js:800",
-    "fp": "6260601161fee24f",
-    "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
-  },
-  "scripts/check-palette.mjs|preamble|src/js/views/shared/saved-lists.js:31|0": {
-    "anchor": "src/js/views/shared/saved-lists.js:31",
+  "scripts/check-palette.mjs|preamble|src/js/views/shared/saved-lists.js:32|0": {
+    "anchor": "src/js/views/shared/saved-lists.js:32",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1915|0": {
-    "anchor": "src/styles.css:1915",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1978|0": {
+    "anchor": "src/styles.css:1978",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1939|0": {
-    "anchor": "src/styles.css:1939",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2002|0": {
+    "anchor": "src/styles.css:2002",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:474|0": {
-    "anchor": "src/styles.css:474",
+  "scripts/check-palette.mjs|preamble|src/styles.css:473|0": {
+    "anchor": "src/styles.css:473",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:474|1": {
-    "anchor": "src/styles.css:474",
+  "scripts/check-palette.mjs|preamble|src/styles.css:473|1": {
+    "anchor": "src/styles.css:473",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:478|0": {
-    "anchor": "src/styles.css:478",
+  "scripts/check-palette.mjs|preamble|src/styles.css:477|0": {
+    "anchor": "src/styles.css:477",
     "fp": "1a189415f7ffa207",
     "head": "width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:534-535|0": {
-    "anchor": "src/styles.css:534-535",
-    "fp": "c91a0a86b137ab9d",
-    "head": ".railed .rail-foot .pill { width: 10px; height: 10px; padding: 0; border-radius: 50%; overflow: hidd"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:815|0": {
-    "anchor": "src/styles.css:815",
+  "scripts/check-palette.mjs|preamble|src/styles.css:872|0": {
+    "anchor": "src/styles.css:872",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:987|0": {
-    "anchor": "src/styles.css:987",
-    "fp": "ab1b965d8a6c63ba",
-    "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
-  },
-  "scripts/check-palette.mjs|preamble|src/styles.css:989|0": {
-    "anchor": "src/styles.css:989",
-    "fp": "66318b8a9bc87d06",
-    "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
   "SECURITY.md|about-the-app|package.json:62-66|0": {
     "anchor": "package.json:62-66",
@@ -6164,13 +6134,13 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "src/js/views/data.js|preamble|src/js/storage.js:336-339|0": {
-    "anchor": "src/js/storage.js:336-339",
+  "src/js/views/data.js|preamble|src/js/storage.js:637-640|0": {
+    "anchor": "src/js/storage.js:637-640",
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
-  "src/styles.css|preamble|src/js/main.js:960-967|0": {
-    "anchor": "src/js/main.js:960-967",
+  "src/styles.css|preamble|src/js/main.js:996-1003|0": {
+    "anchor": "src/js/main.js:996-1003",
     "fp": "3545013deeb0c474",
     "head": "function fallbackHue(issue, fallbackName = '') {"
   },
@@ -6184,8 +6154,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:342-351|0": {
-    "anchor": "src/js/views/add.js:342-351",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:358-367|0": {
+    "anchor": "src/js/views/add.js:358-367",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

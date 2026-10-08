@@ -1,7 +1,207 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Store, KEY } from '../src/js/storage.js';
-import { createEmptyState, createList, addIssuesToList, markRead, isRead, exportBackup } from '../src/js/lib/model.js';
+import { Store, KEY, ImportDraftStore, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
+import { createEmptyState, createList, addIssuesToList, markRead, isRead, exportBackup, setIssueRating } from '../src/js/lib/model.js';
+
+const draftLocks = { request: async (_name, operation) => operation() };
+const importSource = '# Import\r\n\r\n- [x] [One](https://www.marvel.com/comics/issue/1/)\r\n- [ ] Two\r\n- [ ] [Three](https://www.marvel.com/comics/issue/3/)';
+function importFixture(storage = fakeStorage()) {
+  const reader = new Store({ storage });
+  reader.load();
+  return { storage, reader, draft: new ImportDraftStore({ reader, locks: draftLocks }) };
+}
+
+test('draft prepare throw, silent no-op and unknown readback refuse reader publication and retain source', async () => {
+  for (const mode of ['throw', 'silent', 'unknown']) {
+    const { storage, reader, draft } = importFixture();
+    if (mode === 'throw') storage.failKey = IMPORT_DRAFT_KEY;
+    if (mode === 'silent') storage.silentKey = IMPORT_DRAFT_KEY;
+    if (mode === 'unknown') {
+      const set = storage.setItem.bind(storage);
+      storage.setItem = (key, value) => { set(key, value); if (key === IMPORT_DRAFT_KEY) storage.failReadKey = key; };
+    }
+    const result = await draft.start(importSource);
+    assert.equal(result.ok, false, mode);
+    assert.equal(result.changed, mode === 'unknown' ? null : false, mode);
+    assert.deepEqual(reader.state.listOrder, []);
+    assert.equal(storage.writes.filter((key) => key === KEY).length, 0);
+    assert.ok(draft.exportText().includes('Two'));
+  }
+  for (const huge of [false, true]) {
+    const { storage, reader, draft } = importFixture();
+    const sourceA = `- [ ] Source A\n${huge ? 'a'.repeat(5 * 1024 * 1024) : 'private prose A'}`;
+    const sourceB = '- [ ] Source B\nprivate prose B';
+    storage.silentKey = IMPORT_DRAFT_KEY;
+    assert.equal((await draft.start(sourceA)).ok, false);
+    storage.silentKey = null;
+    const other = new ImportDraftStore({ reader, locks: draftLocks });
+    assert.equal((await other.start(huge ? `${sourceB}\n${'b'.repeat(5 * 1024 * 1024)}` : sourceB)).ok, true);
+    const adopted = storage.getItem(IMPORT_DRAFT_KEY);
+    draft.load();
+    if (huge) {
+      assert.throws(() => draft.exportText(), /8 MiB/, 'aggregate transfer must refuse overflow, not omit a source');
+      assert.equal(storage.getItem(IMPORT_DRAFT_KEY), adopted);
+      assert.ok(draft.recovery.length, 'overflow leaves the unsaved departure guard active');
+    } else {
+      const exported = draft.exportText();
+      const transferred = JSON.parse(exported);
+      assert.equal(transferred.rawText, sourceA);
+      assert.ok(transferred.previousSources.includes(adopted), 'complete transfer includes current B as well as failed A');
+      const fresh = importFixture();
+      assert.equal((await fresh.draft.restore(exported, null)).ok, true);
+      assert.ok(fresh.draft.draft.previousSources.includes(adopted));
+    }
+  }
+});
+
+test('failed reader write leaves durable pending source and retries with the same destination once', async () => {
+  const { storage, reader, draft } = importFixture();
+  reader.update((state) => setIssueRating(state, 9, 3.5));
+  storage.failKey = KEY;
+  const result = await draft.start(importSource);
+  assert.equal(result.ok, false);
+  const id = draft.draft.destination.id;
+  assert.ok(draft.draft.pending);
+  assert.equal(draft.draft.rawText, importSource);
+  assert.deepEqual(reader.state.listOrder, []);
+  storage.failKey = null;
+  assert.equal((await draft.resume()).ok, true);
+  assert.deepEqual(reader.state.listOrder, [id]);
+  assert.deepEqual(reader.state.lists[id].itemIds, [1, 3]);
+  assert.equal(reader.state.ratings[9], 3.5);
+  assert.equal(JSON.parse(storage.getItem(KEY)).ratings[9], 3.5);
+  assert.equal(exportBackup(reader.state).ratings[9], 3.5);
+  const writes = storage.writes.filter((key) => key === KEY).length;
+  assert.equal((await draft.resume()).ok, true);
+  assert.equal(storage.writes.filter((key) => key === KEY).length, writes);
+  const long = importFixture();
+  long.reader.update((state) => addIssuesToList(createList(state, { id: 'prefix', name: 'Prefix' }),
+    'prefix', [{ issueId: 9, title: 'Prefix', collectedIn: 'Keep' }]).state);
+  const raw = `## ${'x'.repeat(201)}\n- [ ] [One](https://www.marvel.com/comics/issue/1/)\n- [ ] Two`;
+  assert.equal((await long.draft.start(raw, { listId: 'prefix' })).ok, true);
+  assert.equal(long.draft.draft.pending, null);
+  long.reader.load();
+  long.draft.load();
+  assert.equal((await long.draft.resume()).ok, true);
+  assert.equal((await long.draft.resolve(1, { issueId: 2, title: 'Two' }, long.draft.capture())).ok, true);
+  assert.equal(long.draft.draft.rawText, raw);
+  assert.deepEqual(long.reader.state.lists.prefix.itemIds, [9, 1, 2]);
+  assert.equal(long.reader.state.lists.prefix.collectedIn[9], 'Keep');
+  assert.equal(long.reader.state.lists.prefix.collectedIn[1].length, 200);
+});
+
+test('foreign revisions, removed key and restored incarnation refuse late choices with explicit lock refusal', async () => {
+  const { storage, reader, draft } = importFixture();
+  const other = new ImportDraftStore({ reader, locks: draftLocks });
+  assert.equal((await draft.start(importSource)).ok, true);
+  assert.equal((await other.start(importSource)).ok, false);
+  other.load();
+  const captured = other.capture();
+  const exported = draft.exportText();
+  assert.equal((await draft.discard(draft.capture())).ok, true);
+  assert.equal((await other.resolve(1, { issueId: 2, title: 'Two' }, captured)).ok, false);
+  assert.equal((await draft.restore(exported, null)).ok, true);
+  assert.notEqual(draft.capture(), captured);
+  assert.equal((await other.resolve(1, { issueId: 2, title: 'Two' }, captured)).ok, false);
+  assert.equal((await draft.resume()).ok, true);
+  assert.equal((await draft.resolve(1, { issueId: 2, title: 'Two' }, draft.capture())).ok, true);
+  const denied = new ImportDraftStore({ reader, locks: null });
+  assert.match((await denied.resume()).error, /locks/);
+  assert.ok(storage.getItem(IMPORT_DRAFT_KEY));
+});
+
+test('deleted, recreated or edited destinations pause rather than retarget or overwrite source order', async () => {
+  for (const mode of ['deleted', 'recreated', 'edited']) {
+    const { reader, draft } = importFixture();
+    await draft.start(importSource);
+    const id = draft.draft.destination.id;
+    reader.update((state) => {
+      const next = structuredClone(state);
+      if (mode === 'deleted') delete next.lists[id];
+      if (mode === 'recreated') next.lists[id].created += 1;
+      if (mode === 'edited') next.lists[id].itemIds.reverse();
+      return next;
+    });
+    const before = JSON.stringify(reader.state);
+    assert.equal((await draft.resolve(1, { issueId: 2, title: 'Two' }, draft.capture())).ok, false);
+    assert.equal((await draft.resume()).ok, false);
+    assert.equal(JSON.stringify(reader.state), before);
+    assert.equal(draft.draft.rawText, importSource);
+  }
+});
+
+test('draft erase requires unchanged verified reader outcome, checks removal and prevents queued resurrection', async () => {
+  const { storage, reader, draft } = importFixture();
+  await draft.start(importSource);
+  const captured = draft.capture();
+  assert.equal((await draft.discard(captured, { readerRaw: 'not-current' })).ok, false);
+  assert.ok(storage.getItem(IMPORT_DRAFT_KEY));
+  storage.silentRemoveKey = IMPORT_DRAFT_KEY;
+  assert.equal((await draft.discard(captured, { readerRaw: storage.getItem(KEY) })).ok, false);
+  storage.silentRemoveKey = null;
+  assert.equal((await draft.discard(captured, { readerRaw: storage.getItem(KEY) })).ok, true);
+  assert.equal((await draft.resolve(1, { issueId: 2, title: 'Two' }, captured)).ok, false);
+  const foreign = importFixture();
+  await foreign.draft.start(importSource);
+  const originalRemove = foreign.storage.removeItem.bind(foreign.storage);
+  foreign.storage.removeItem = (key) => {
+    originalRemove(key);
+    foreign.storage.map.set(key, 'foreign-value-after-remove');
+  };
+  assert.equal((await foreign.draft.discard(foreign.draft.capture())).changed, null);
+  assert.equal(foreign.draft.uncertain, true, 'foreign removal outcome must guard retained source before departure');
+  foreign.draft.load();
+  assert.ok(foreign.draft.exportText().includes('Two'), 'adoption must not lose the removed source');
+  assert.equal(storage.getItem(IMPORT_DRAFT_KEY), null);
+  assert.deepEqual(reader.state.lists[reader.state.active].itemIds, [1, 3]);
+});
+
+test('separate draft restore preserves prior source and reports uncertain replacement without replaying historical markers', async () => {
+  const { storage, reader, draft } = importFixture();
+  const set = storage.setItem.bind(storage);
+  let count = 0;
+  storage.setItem = (key, value) => {
+    if (key === IMPORT_DRAFT_KEY && ++count === 3) return;
+    set(key, value);
+  };
+  const result = await draft.start(importSource);
+  assert.equal(result.ok, false);
+  assert.equal(result.readerSaved, true);
+  assert.ok(draft.draft.pending);
+  reader.update((state) => markRead(state, 1, false));
+  const reloaded = new ImportDraftStore({ reader, locks: draftLocks });
+  assert.equal((await reloaded.resume()).ok, false);
+  assert.equal(reader.state.read[1], undefined);
+  storage.setItem = set;
+  const current = storage.getItem(KEY);
+  const prior = reloaded.capture();
+  const exported = reloaded.exportText();
+  assert.equal((await reloaded.restore(exported, prior)).ok, true);
+  assert.ok(reloaded.draft.previousSources.includes(prior));
+  assert.notEqual(reloaded.capture(), prior);
+  assert.equal(storage.getItem(KEY), current);
+  assert.equal((await reloaded.resume()).ok, false);
+  assert.equal(reader.state.read[1], undefined);
+  for (const mode of ['silent', 'unknown', 'foreign']) {
+    const fixture = importFixture();
+    await fixture.draft.start('- [ ] Gap');
+    const previous = fixture.draft.capture();
+    const originalSet = fixture.storage.setItem.bind(fixture.storage);
+    fixture.storage.setItem = (key, value) => {
+      if (mode === 'silent') return;
+      originalSet(key, value);
+      if (mode === 'unknown') fixture.storage.failReadKey = IMPORT_DRAFT_KEY;
+      if (mode === 'foreign') fixture.storage.map.set(IMPORT_DRAFT_KEY, 'foreign');
+    };
+    const replacement = await fixture.draft.restore(exported, previous);
+    assert.equal(replacement.ok, false, mode);
+    assert.equal(replacement.changed, mode === 'silent' ? false : null, mode);
+    assert.ok(fixture.draft.exportText().includes('Two'));
+    assert.equal(fixture.storage.getItem(KEY), null);
+    if (mode === 'unknown') assert.ok(fixture.storage.map.get(IMPORT_DRAFT_KEY).includes('Gap'));
+    if (mode === 'foreign') assert.equal(fixture.storage.map.get(IMPORT_DRAFT_KEY), 'foreign');
+  }
+});
 
 // Minimal localStorage stand-in. `failWrites` simulates a full quota; `failKey` fails only
 // writes to one key, which is the realistic near-quota shape: copying the whole state aside
@@ -159,9 +359,34 @@ test('start fresh proceeds once the user has downloaded a copy themselves', () =
   assert.equal(store.salvagedRaw(), 'corrupt', 'so the download falls back to the live value');
   assert.equal(store.startFresh(), false, 'and the blind hatch stays shut');
 
-  assert.equal(store.startFresh({ confirmedDownloaded: true }), true);
+  assert.equal(store.startFresh({ verifiedCopyRaw: 'corrupt' }), true);
   assert.equal(store.blocked, false);
   assert.deepEqual(JSON.parse(storage.getItem(KEY)).listOrder, []);
+});
+
+test('unbound download permission and another tokenless incident cannot bypass failed salvage', () => {
+  const storage = fakeStorage({ [KEY]: 'original' });
+  storage.failKey = 'mrt.state.salvage';
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.startFresh({ confirmedDownloaded: true }), false);
+  assert.equal(storage.getItem(KEY), 'original');
+  storage.setItem(KEY, 'different');
+  assert.equal(store.startFresh({ verifiedCopyRaw: 'original' }), false);
+  assert.equal(storage.getItem(KEY), 'different');
+  assert.equal(store.blocked, true);
+});
+
+test('localStorage quota guidance does not present metadata cleanup as a remedy', () => {
+  const storage = fakeStorage();
+  const store = new Store({ storage });
+  store.load();
+  storage.setItem = () => { throw new DOMException('Full', 'QuotaExceededError'); };
+  store.update((s) => createList(s, { name: 'Cannot save' }));
+  assert.equal(store.lastUpdateOk, false);
+  assert.match(store.lastError, /Reading-data storage is full/);
+  assert.match(store.lastError, /Clearing cached metadata does not free this separate storage/);
+  assert.deepEqual(store.state.listOrder, []);
 });
 
 // A stale salvage from an old incident must not be presented as the current data, and must not
@@ -956,6 +1181,94 @@ test('a browser that will not say what it holds latches the store instead of gue
 // answering; a browser that stops answering reads stops for all of them, and the repaint that
 // follows a latch reads a second key. The store below is wired the way the app wires it.
 const PRERESTORE_KEY = 'mrt.state.prerestore';
+
+test('restore offer is one-shot by identity while raw copies survive Undo, edits and reload', () => {
+  const storage = fakeStorage({ [KEY]: goodBackup() });
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.restore(replacementBackup()).ok, true);
+  assert.equal(store.restoreOffer().kind, 'undo');
+  store.update((state) => createList(state, { id: 'edit', name: 'Edit' }));
+  assert.equal(store.restoreOffer().edited, true);
+  assert.equal(store.undoRestore(store.restoreOffer()).ok, true);
+  assert.equal(store.restoreOffer().kind, 'copy', 'consumption cannot offer an unlabeled Redo');
+  const raw = store.restoreOffer().snapshot;
+  assert.ok(raw.includes('Edit'), 'replaced edits remain recoverable exactly');
+  const reload = new Store({ storage });
+  reload.load();
+  assert.equal(reload.restoreOffer().kind, 'copy');
+  assert.equal(reload.restoreOffer().snapshot, raw);
+  assert.match(reload.restoreOffer().summary, /lists.*comics.*read marks/);
+  assert.equal(reload.undoRestore(reload.restoreOffer()).ok, true);
+  assert.ok(reload.state.lists.edit);
+});
+
+test('captured restore refuses changed reader or snapshot bytes and preserves all current values', () => {
+  for (const key of [KEY, PRERESTORE_KEY]) {
+    const storage = fakeStorage({ [KEY]: goodBackup() });
+    const store = new Store({ storage });
+    store.load();
+    store.restore(replacementBackup());
+    const captured = store.captureRestore();
+    storage.map.set(key, goodBackup());
+    const before = new Map(storage.map);
+    const result = store.undoRestore(captured);
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join(' '), /changed/);
+    assert.deepEqual(storage.map, before);
+    assert.equal(store.restoreOffer().kind, key === PRERESTORE_KEY ? 'copy' : 'undo');
+  }
+});
+
+test('silent snapshot preservation failure refuses reader replacement and keeps previous bytes', () => {
+  const storage = fakeStorage({ [KEY]: goodBackup(), [PRERESTORE_KEY]: 'older exact copy' });
+  const store = new Store({ storage });
+  store.load();
+  storage.silentKey = PRERESTORE_KEY;
+  const before = storage.getItem(KEY);
+  const result = store.restore(replacementBackup());
+  assert.equal(result.ok, false);
+  assert.equal(result.changed, false);
+  assert.equal(storage.getItem(KEY), before);
+  assert.equal(storage.getItem(PRERESTORE_KEY), 'older exact copy');
+  assert.match(result.errors.join(' '), /could not be preserved/);
+
+  storage.silentKey = null;
+  const get = storage.getItem.bind(storage);
+  let snapshotReads = 0;
+  storage.getItem = (key) => {
+    if (key === PRERESTORE_KEY && ++snapshotReads === 2) throw new Error('snapshot verification refused');
+    return get(key);
+  };
+  const refusedReadBack = store.restore(replacementBackup());
+  assert.equal(refusedReadBack.ok, false);
+  assert.equal(refusedReadBack.changed, false);
+  assert.equal(get(KEY), before);
+  assert.equal(get(PRERESTORE_KEY), 'older exact copy');
+  assert.match(refusedReadBack.errors.join(' '), /snapshot verification refused/);
+});
+
+test('legacy, invalid, missing and unreadable retained copies have truthful non-mutating offers', () => {
+  const rawBackup = goodBackup();
+  const storage = fakeStorage({ [KEY]: rawBackup, [PRERESTORE_KEY]: rawBackup });
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.restoreOffer().kind, 'copy');
+  assert.equal(store.restoreOffer().identical, true);
+  for (const raw of ['opaque bytes', JSON.stringify({ schemaVersion: 99 })]) {
+    storage.map.set(PRERESTORE_KEY, raw);
+    assert.equal(store.restoreOffer().snapshot, raw);
+    assert.match(store.restoreOffer().summary, /cannot be restored/);
+    const before = new Map(storage.map);
+    assert.equal(store.undoRestore(store.captureRestore()).ok, false);
+    assert.deepEqual(storage.map, before);
+  }
+  storage.map.delete(PRERESTORE_KEY);
+  assert.equal(store.restoreOffer().available, false);
+  storage.failReadKey = PRERESTORE_KEY;
+  assert.equal(store.restoreOffer().ok, false);
+  assert.match(store.restoreOffer().errors.join(' '), /Could not check/);
+});
 
 test('a browser that stops answering reads still gets its answer back to the reader', () => {
   const storage = fakeStorage({ [KEY]: goodBackup() });

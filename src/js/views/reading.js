@@ -19,8 +19,10 @@ import {
   coverUrl,
   isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
 } from '../lib/model.js';
-import { availability, describe, localDayString, SHORT, STATE } from '../lib/availability.js';
+import { availability, describe, localDayString, STATE } from '../lib/availability.js';
+import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
+import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
@@ -30,12 +32,6 @@ import { earlierIssueIds } from '../lib/reorientation.js';
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
 const UNDO_REMOVE = 'undo-remove';
-const SHORT_LABEL = {
-  [STATE.SCHEDULED]: 'scheduled',
-  [STATE.UNKNOWN]: 'unknown',
-  [STATE.OVERRIDE_AVAILABLE]: 'yours: available',
-  [STATE.OVERRIDE_UNAVAILABLE]: 'yours: not in MU',
-};
 
 export function commitRows(container, desired) {
   const wanted = new Set(desired);
@@ -78,12 +74,12 @@ function detailsBadge(el, item) {
 
 export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {
   if (typeof sessionEntry === 'string' && sessionEntry.trim()) return sessionEntry;
-  if (sessionEntry === noSynopsisMarker || (noSynopsisMarker === undefined && sessionEntry != null && typeof sessionEntry !== 'string')) {
+  if ((noSynopsisMarker !== undefined && sessionEntry === noSynopsisMarker)
+    || (sessionEntry != null && (typeof sessionEntry === 'string' || noSynopsisMarker === undefined))) {
     return 'No synopsis is recorded for this issue.';
   }
-  if (issue?.hydrated) return 'No synopsis is recorded for this issue.';
-  if (issue?.detailsRefused) return DETAILS_BADGE.norecord.hint;
-  return 'Details have not been fetched yet.';
+  if (!issue?.hydrated && issue?.detailsRefused) return DETAILS_BADGE.norecord.hint;
+  return 'Story summary has not been loaded.';
 }
 
 export function createReadingView({
@@ -164,6 +160,10 @@ export function createReadingView({
       announce('That Reading List is no longer available.');
       return;
     }
+    if (getState().lists[id].itemIds.length === 0) {
+      announce('There are no comics to review yet. Add comics to this Reading List.');
+      return;
+    }
     const ids = earlierIssueIds(getState(), id);
     review = { listId: id, issueId: ids.at(-1) ?? null, position: ids.length - 1 };
     renderReview();
@@ -172,7 +172,9 @@ export function createReadingView({
 
   function renderReview() {
     const region = $('#review-earlier');
-    if (review && review.listId !== activeListId()) {
+    const empty = listItems(getState(), activeListId()).length === 0;
+    $('#btn-review-earlier').hidden = empty;
+    if (review && (review.listId !== activeListId() || empty)) {
       review = null;
       if (region.contains(document.activeElement)) focusCurrentView();
     }
@@ -260,6 +262,14 @@ export function createReadingView({
   }
 
   function wire() {
+    const details = $('#list-actions');
+    const summary = details.querySelector('summary');
+    details.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !details.open) return;
+      event.preventDefault();
+      summary.focus();
+      details.open = false;
+    });
     $('#btn-review-earlier').addEventListener('click', openReview);
     $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
     $('#review-later-button').addEventListener('click', () => moveReview(1));
@@ -286,7 +296,11 @@ export function createReadingView({
       el('input', { type: 'radio', name: 'filter', value: option.value }),
       el('span', { text: option.label }),
     ])));
-    $('#save-education-settings').addEventListener('click', () => showView('data', { push: true }));
+    $('#save-education-settings').addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      showView('data', { push: true });
+    });
 
     // The toggle event can arrive after an already queued animation frame. Filling pending rows in
     // the click microtask keeps the opened disclosure ready for that frame; toggle still owns URL state.
@@ -335,6 +349,10 @@ export function createReadingView({
     }
 
     const group = $('#reading-filters');
+    const filterSize = new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--reading-filter-height', `${group.getBoundingClientRect().height}px`);
+    });
+    filterSize.observe(group);
     group.addEventListener('pointerdown', () => {
       arrowing = false;
       endFilterRun({ commit: true });
@@ -564,7 +582,7 @@ export function createReadingView({
     const id = activeListId();
     const completed = isCompleted(getState(), id);
     const issue = completed ? null : upNext(getState(), id);
-    const empty = !completed && getState().lists[id]?.itemIds.length === 0;
+    const empty = getState().lists[id]?.itemIds.length === 0;
     const { read, total, deferred } = listReadingProgress(getState(), id);
 
     $('#hero').hidden = !issue;
@@ -631,8 +649,14 @@ export function createReadingView({
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
     const reader = readerPresentation(issue, 'saved');
-    $('#btn-hero-read').hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
-    $('#btn-hero-read').textContent = reader.temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    const button = $('#btn-hero-read');
+    button.hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
+    button.textContent = 'Read';
+    button.setAttribute('aria-label', labelledName('Read', issue
+      ? `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}` : ''));
+    const temporary = $('#hero-reader-temporary');
+    temporary.hidden = button.hidden || !reader.temporary;
+    temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
   }
 
   function refreshReader() {
@@ -665,9 +689,8 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const readContext = 'Open in Marvel Unlimited';
-        const readName = readerPresentation(item, 'saved').temporary
-          ? labelledName('Read with temporary link', `${label}: ${readContext}`)
-          : labelledName(label, readContext);
+        const reader = readerPresentation(item, 'saved');
+        const readName = labelledName('Read', `${label}: ${readContext}${reader.temporary ? ' with temporary link' : ''}`);
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -683,15 +706,18 @@ export function createReadingView({
               ]),
             ],
           }),
+          ...(reader.temporary ? [el('span', {
+            class: 'lab', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
+          })] : []),
           el('button', {
             type: 'button',
             class: 'tile-read',
             title: `${label}: ${readContext}`,
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
-            hidden: !readerPresentation(item, 'saved').launchable,
+            hidden: !reader.launchable,
             onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
-          }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
+          }, 'Read'),
         ]));
       }
     }, {
@@ -711,10 +737,18 @@ export function createReadingView({
       if (!list) { commitRows(rows, desired); return; }
 
       const all = listItems(getState(), id);
+      const empty = all.length === 0;
+      $('#full').hidden = empty;
+      $('#reading-filters').hidden = empty;
       const unread = all.length - all.filter((item) => item.read).length;
       // The summary stays visible while the order is closed, so its count must be current even when
       // the expensive row build below is deferred.
       writeFullSummary(all, unread);
+      if (empty) {
+        rowsPending = false;
+        commitRows(rows, desired);
+        return;
+      }
 
       // A closed 219-row order has nothing to paint. Opening the native disclosure calls this again,
       // preserving output while avoiding hidden row construction on every progress update.
@@ -790,6 +824,7 @@ export function createReadingView({
         const fb = el('div', { class: 'rf cover-fallback', 'aria-hidden': true });
         paintCover(img, fb, item, 'portrait_incredible');
 
+        const expanded = entry?.node.querySelector('.row-actions')?.classList.contains('is-open') ?? false;
         const node = el('li', {
           class: `row${item.read ? ' is-read' : ''}${item.issueId === currentId ? ' now' : ''}`,
         }, [
@@ -804,19 +839,7 @@ export function createReadingView({
               tooltip: item.read ? 'Mark as unread' : 'Mark as read',
             },
             onclick: () => {
-              const wasRead = isRead(getState(), item.issueId);
-              const { state } = updateState((current) => toggleRead(current, item.issueId));
-              const transition = recordDirectProgressSave({
-                wasRead,
-                state,
-                issueId: item.issueId,
-              });
-              if (transition) {
-                announce(withSaveEducation(
-                  `${item.title} ${isRead(state, item.issueId) ? 'marked read' : 'marked unread'}.`,
-                  transition,
-                ));
-              }
+              toggleSavedRead(savedReaderIssue(getState(), item.issueId));
             },
           }, item.read ? '✓' : ''),
           issueFocusAnchor(item, {
@@ -840,8 +863,7 @@ export function createReadingView({
                 ? 'Read; deferral kept if marked unread' : 'Deferred in this list') : null,
               item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
               el('span', { class: `badge ${badgeClass}` }, [
-                `${SHORT[av.state]} ${av.state === STATE.EXPECTED ? 'Unlimited' : SHORT_LABEL[av.state] ?? 'unknown'}`,
-                el('span', { class: 'visually-hidden', text: `. ${describe(item, { override, today })}.` }),
+                describe(item, { override, today }),
               ]),
               detailsBadge(el, item),
               item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,
@@ -857,7 +879,7 @@ export function createReadingView({
               onclick: () => editIssueNote(item),
             }, item.note ? item.note : 'Add a note'),
           ]),
-          issueRowActions(item, id),
+          issueRowActions(item, id, expanded),
         ]);
         rowCache.set(item.issueId, { key: rowKey, readerKey, node });
         desired.push(node);
@@ -901,28 +923,30 @@ export function createReadingView({
     strip.replaceChildren(...children);
   }
 
-  function cycleOverride(item) {
-    const next = item.override === 'available' ? 'unavailable' : item.override === 'unavailable' ? null : 'available';
-    updateState((state) => setOverride(state, item.issueId, next));
-    announceIfSaved(`${item.title}: ${next ? `marked ${next}` : 'override cleared'}.`);
+  function moveSavedIssue(listId, issueId, delta) {
+    const before = getState().lists[listId]?.itemIds.indexOf(issueId) ?? -1;
+    if (before < 0) return;
+    const { ok, state } = updateState((current) => moveItem(current, listId, issueId, delta));
+    const list = state.lists[listId];
+    const after = list?.itemIds.indexOf(issueId) ?? -1;
+    if (!ok || after < 0 || after === before) return;
+    announce(`Moved ${state.issues[issueId]?.title ?? `Issue ${issueId}`} to position ${after + 1} of ${list.itemIds.length}.`);
   }
 
-  function availabilityOverrideAction(override) {
-    if (override === 'available') return 'Mark as unavailable';
-    if (override === 'unavailable') return 'Clear availability override';
-    return 'Mark as available';
-  }
-
-  function issueRowActions(item, listId) {
+  function issueRowActions(item, listId, expanded = false) {
     const panelId = `row-actions-${item.issueId}`;
+    const reader = readerPresentation(item, 'saved');
     const panel = el('div', { class: 'ract', id: panelId }, [
       el('button', {
         type: 'button', class: 'mini',
-        'aria-label': `Read ${item.title} in Marvel Unlimited${readerPresentation(item, 'saved').temporary ? ' with temporary link' : ''}`,
+        'aria-label': labelledName('Read', `${item.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
         dataset: { key: item.issueId, act: 'open' },
-        hidden: !readerPresentation(item, 'saved').launchable,
+        hidden: !reader.launchable,
         onclick: (e) => launch(item, e),
-      }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
+      }, 'Read'),
+      ...(reader.temporary ? [el('span', {
+        class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
+      })] : []),
       detailUrl(item)
         ? el('a', {
           class: 'mini has-tooltip',
@@ -947,7 +971,7 @@ export function createReadingView({
         class: 'mini has-tooltip',
         'aria-label': labelledName('Move up', item.title),
         dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
-        onclick: () => updateState((state) => moveItem(state, listId, item.issueId, -1)),
+        onclick: () => moveSavedIssue(listId, item.issueId, -1),
       }, [
         el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↑' }),
         el('span', { class: 'mini-label', text: 'Move up' }),
@@ -957,25 +981,36 @@ export function createReadingView({
         class: 'mini has-tooltip',
         'aria-label': labelledName('Move down', item.title),
         dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
-        onclick: () => updateState((state) => moveItem(state, listId, item.issueId, 1)),
+        onclick: () => moveSavedIssue(listId, item.issueId, 1),
       }, [
         el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↓' }),
         el('span', { class: 'mini-label', text: 'Move down' }),
       ]),
-      el('button', {
+      ...[
+        ['available', 'Mark as available'],
+        ['unavailable', 'Mark as unavailable'],
+        [null, 'Clear availability override'],
+      ].map(([value, label]) => el('button', {
         type: 'button',
-        class: 'mini has-tooltip',
-        'aria-label': labelledName('Change Unlimited status', `${item.title}; ${availabilityOverrideAction(item.override)}`),
+        class: 'mini has-tooltip availability-choice',
+        'aria-label': labelledName(label, item.title),
         dataset: {
           key: item.issueId,
-          act: 'override',
-          tooltip: labelledName('Change Unlimited status', availabilityOverrideAction(item.override)),
+          act: `override-${value ?? 'clear'}`,
+          tooltip: label,
         },
-        onclick: () => cycleOverride(item),
+        onclick: () => {
+          if (!getState().lists[listId]?.itemIds.includes(item.issueId)) {
+            announce('That comic is no longer in this Reading List.');
+            return;
+          }
+          const { ok } = updateState((state) => setOverride(state, item.issueId, value));
+          if (ok) announce(`${item.title}: ${value ? `you marked ${value}` : 'availability override cleared'}.`);
+        },
       }, [
         el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '⚑' }),
-        el('span', { class: 'mini-label', text: 'Change Unlimited status' }),
-      ]),
+        el('span', { class: 'mini-label', text: label }),
+      ])),
       el('button', {
         type: 'button',
         class: 'mini mini-danger has-tooltip',
@@ -999,6 +1034,7 @@ export function createReadingView({
       root.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
     };
+    setOpen(expanded);
     toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));
     root.addEventListener('focusout', (event) => {
       if (!root.contains(event.relatedTarget)) setOpen(false);
@@ -1007,21 +1043,45 @@ export function createReadingView({
       if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
       event.preventDefault();
       setOpen(false);
-      toggle.focus();
+      focusRemovalTarget(toggle, { avoidFilters: true });
     });
     return root;
   }
 
-  async function editIssueNote(item) {
+  function toggleSavedRead(item, isCurrent = () => true) {
+    if (!item || savedReaderIssue(getState(), item.issueId) !== item || !isCurrent()) {
+      announce('That saved comic changed. Open its current details before marking progress.');
+      return;
+    }
+    const wasRead = isRead(getState(), item.issueId);
+    const { ok, state } = updateState((current) => toggleRead(current, item.issueId));
+    if (!ok) return;
+    const transition = recordDirectProgressSave({ wasRead, state, issueId: item.issueId });
+    announce(withSaveEducation(
+      `${item.title} ${isRead(state, item.issueId) ? 'marked read' : 'marked unread'}.`,
+      transition,
+    ));
+  }
+
+  async function editIssueNote(item, isCurrent = () => true) {
+    const held = savedReaderIssue(getState(), item?.issueId);
+    if (!held || !isCurrent()) {
+      announce('That saved comic is no longer available for notes.');
+      return;
+    }
     const note = await askNote({
-      title: `Note on "${item.title}"`,
+      title: `Note on "${held.title}"`,
       body: 'Only you see this. It is saved on this device and travels in your backup file.',
       label: 'Your note about this issue',
-      value: item.note || '',
+      value: getState().notes[held.issueId] || '',
     });
     if (note === null) return;
-    updateState((state) => setIssueNote(state, item.issueId, note));
-    announceIfSaved(note ? `Note saved on ${item.title}.` : `Note removed from ${item.title}.`);
+    if (savedReaderIssue(getState(), held.issueId) !== held || !isCurrent()) {
+      announce('The saved comic or details context changed. Your note was not saved; open its current details to try again.');
+      return;
+    }
+    const { ok } = updateState((state) => setIssueNote(state, held.issueId, note));
+    if (ok) announce(note ? `Note saved on ${held.title}.` : `Note removed from ${held.title}.`);
   }
 
   function wireShortcuts() {
@@ -1127,10 +1187,22 @@ export function createReadingView({
     return true;
   }
 
-  function focusRemovalTarget(target) {
+  function focusRemovalTarget(target, { avoidFilters = false } = {}) {
     if (target && target !== document.body && target.isConnected && target.getClientRects().length) {
       target.focus();
       target.scrollIntoView({ block: 'nearest' });
+      const filters = avoidFilters ? $('#reading-filters') : null;
+      if (!filters || filters.hidden || !filters.getClientRects().length) return;
+      const filterBounds = filters.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
+      const style = getComputedStyle(target);
+      const ring = parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset));
+      const top = rect.top - ring;
+      if (filterBounds.bottom > 0 && filterBounds.top < window.innerHeight
+        && top < filterBounds.bottom && rect.bottom + ring > filterBounds.top
+        && rect.left - ring < filterBounds.right && rect.right + ring > filterBounds.left) {
+        window.scrollBy({ top: top - filterBounds.bottom, left: 0, behavior: 'instant' });
+      }
     } else {
       focusCurrentView();
     }
@@ -1252,6 +1324,8 @@ export function createReadingView({
   }
 
   return {
+    toggleSavedRead,
+    editIssueNote,
     openDeferred,
     currentFilter: () => filter,
     endFilterRun,

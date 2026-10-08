@@ -9,6 +9,54 @@ const html = read('../src/index.html');
 const add = read('../src/js/views/add.js');
 const catalog = read('../src/js/views/shared/catalog-presentation.js');
 
+test('shared reader handoff visibly distinguishes conditional intent and exact refusals without writes or focus', () => {
+  const source = read('../src/js/main.js');
+  const start = source.indexOf('function openInReader(');
+  const end = source.indexOf('\n// ------------------------------------------------------------------ synopsis', start);
+  assert.ok(start >= 0 && end > start, 'Actual shared function must be extractable');
+  const helper = { hidden: true, textContent: '' };
+  const issue = { title: 'Browser Check (2026) #2' };
+  const events = [];
+  let outcome = { ok: true, issue };
+  let opened = { ok: true, target: 'reader', window: null };
+  const state = { read: { 900002: false }, listOrder: ['fixture'] };
+  const before = JSON.stringify(state);
+  const context = {
+    $: (selector) => { assert.equal(selector, '#reader-handoff-help'); return helper; },
+    store: { state }, temporaryReaderLinks: { resolve: () => outcome },
+    openIssueTab: () => { events.push('open'); return opened; },
+    announce: (message) => events.push(message),
+  };
+  runInNewContext(`${source.slice(start, end)}\nthis.open = openInReader;`, context);
+  const rows = [];
+  const measure = (name, expected, actual) => {
+    const ok = JSON.stringify(expected) === JSON.stringify(actual);
+    console.log(`UX11-UNIT ${JSON.stringify({ owner: 'reader-first', name, expected, actual, ok })}`);
+    rows.push(ok);
+  };
+  measure('initial helper hidden', true, helper.hidden);
+  const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
+  for (const handle of [null, {}]) {
+    opened = { ok: true, target: 'reader', window: handle };
+    context.open(issue, { preventDefault() {} }, 'synthetic');
+    measure('valid visible conditional copy', [false, copy], [helper.hidden, helper.textContent]);
+  }
+  outcome = { ok: false, error: 'Synthetic comic source no longer exists.' };
+  context.open(issue, null, 'synthetic');
+  measure('resolver refusal visible', [false, outcome.error], [helper.hidden, helper.textContent]);
+  outcome = { ok: true, issue };
+  opened = { ok: false };
+  context.open(issue, null, 'synthetic');
+  measure('reference refusal visible', `${issue.title} has no Marvel reference recorded, so it cannot be opened.`, helper.textContent);
+  context.open(issue, null, null);
+  measure('source refusal visible', 'The comic source is missing. Open its current details and try again.', helper.textContent);
+  opened = { ok: true, target: 'reader', window: null };
+  context.open(issue, null, 'synthetic');
+  measure('valid resets refusal', copy, helper.textContent);
+  measure('saved bytes unchanged', before, JSON.stringify(state));
+  assert.ok(rows.every(Boolean), 'Every conditional/refusal branch must visibly retain its exact outcome');
+});
+
 function view(name) {
   const start = html.indexOf(`<section id="view-${name}"`);
   assert.ok(start >= 0, `Missing ${name} view`);
@@ -27,8 +75,13 @@ test('reading groups Read and Done together, with comic details and infrequent a
   const reading = view('read');
   const primary = reading.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)?.[0];
   assert.ok(primary, 'The primary reading group is missing');
-  assert.match(primary, /id="btn-hero-read"/);
-  assert.match(primary, /id="btn-hero-done"[\s\S]*?Done, next/);
+  for (const id of ['btn-chero-read', 'btn-hero-read', 'btn-issue-read']) {
+    assert.match(html, new RegExp(`<button\\b[^>]*id="${id}"[^>]*>\\s*Read\\s*<\\/button>`), id);
+  }
+  assert.match(primary, /id="btn-hero-done"[^>]*>\s*Done\s*<\/button>/);
+  assert.match(primary, /data-tooltip="Mark read and continue\. Keyboard shortcut: D"/);
+  assert.match(primary, /aria-keyshortcuts="d"/);
+  assert.match(reading, /id="hero-reader-temporary"[^>]*hidden/);
   assert.doesNotMatch(primary, /id="btn-hero-(inspect|defer|info)"/);
   assert.equal((primary.match(/\bbtn-lg\b/g) ?? []).length, 1);
   assert.match(reading, /id="btn-hero-inspect"[^>]*>\s*About this comic\s*</);
@@ -55,14 +108,15 @@ test('comic details put Read before artwork and technical help, with a separate 
     assert.ok(help.includes(`id="reader-link-${id}"`), `${id} must remain in troubleshooting`);
   }
   assert.doesNotMatch(help, /id="reader-link-temporary"/);
-  assert.match(help, /id="issue-focus-availability"/);
+  assert.doesNotMatch(help, /id="issue-focus-facts"/);
+  assert.ok(issue.indexOf('id="issue-focus-facts"') < helpAt, 'Normal availability belongs with the other metadata');
   assert.match(issue, /id="btn-issue-synopsis"[^>]*>\s*Show story summary \(may contain spoilers\)/);
 });
 
 test('a completed list has a Browse action without replacing deferred continuation', () => {
   const reading = view('read');
   const completed = reading.slice(reading.indexOf('<div id="all-read"'), reading.indexOf('<section id="all-deferred"'));
-  assert.match(completed, /data-view="browse">Browse Reading Lists<\/button>/);
+  assert.match(completed, /<a href="#\/browse" class="btn" data-view="browse">Browse Reading Lists<\/a>/);
   assert.doesNotMatch(completed, /id="btn-review-deferred"/);
   assert.match(reading, /id="all-deferred"[\s\S]*?id="btn-review-deferred">Review deferred/);
 });

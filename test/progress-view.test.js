@@ -32,6 +32,7 @@ function fixture() {
   const nodes = {
     method: { hidden: true },
     methodText: { textContent: '' },
+    subject: { textContent: '', hidden: false },
     results,
     scope: { hidden: false },
     radios,
@@ -87,6 +88,23 @@ function seededState() {
   state = markRead(state, 1, true, 1000);
   return { ...state, active: 'first' };
 }
+
+test('Progress names the actual subject visibly for list, all-list and no-list scopes', () => {
+  const h = fixture();
+  let state = seededState();
+  const view = createProgressView({ ...h.viewOptions,
+    getActiveListId: () => state.active, getState: () => state });
+  view.wire();
+  view.render();
+  assert.equal(h.nodes.subject.textContent, 'Reading List: First list');
+  assert.equal(h.nodes.subject.hidden, false);
+  h.nodes.radios[1].checked = true;
+  h.nodes.radios[1].listener();
+  assert.equal(h.nodes.subject.textContent, 'All saved Reading Lists');
+  state = createEmptyState();
+  view.render();
+  assert.equal(h.nodes.subject.textContent, 'No saved Reading Lists');
+});
 
 test('the Progress controller owns scope changes and renders list and all-list counts', () => {
   const harness = fixture();

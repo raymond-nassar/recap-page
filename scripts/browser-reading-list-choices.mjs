@@ -5,10 +5,16 @@ const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, im
 const catalog = data('catalog.json');
 const fastId = 'hickman-minimal';
 const movieId = 'avengers-doomsday-secret-wars';
-const wanted = new Set([
+const retainedLines = [
   fastId, 'hickman-full', movieId, 'new-ultimate-universe', 'new-ultimate-universe-trades',
+];
+const eligibleEvents = [
   'house-of-m', 'house-of-m-essential', 'civil-war', 'civil-war-essential', 'civil-war-avengers',
-  'secret-invasion', 'secret-invasion-essential', 'xmen-claremont', 'xmen-claremont-complete',
+  'secret-invasion', 'secret-invasion-essential',
+];
+const expectedLines = new Set([...retainedLines, ...eligibleEvents].map((id) => `list:${id}`));
+const wanted = new Set([
+  ...retainedLines, ...eligibleEvents, 'xmen-claremont', 'xmen-claremont-complete',
 ]);
 const lists = catalog.lists.filter(({ id }) => wanted.has(id));
 const orders = Object.fromEntries(lists.map((list) => [list.file, data(list.file)]));
@@ -71,7 +77,7 @@ export const readingListChoices = {
     if (firstCount !== 7) return;
 
     for (const [surface, expected] of [
-      ['catalog', 7], ['lines', 5], ['spotlights', 2], ['age-event-era', 7], ['marvel-on-screen', 1],
+      ['catalog', 7], ['lines', expectedLines.size], ['spotlights', 2], ['age-event-era', 7], ['marvel-on-screen', 1],
     ]) {
       await page.goto(`${page.__origin}/#/${surface}`, { waitUntil: 'load' });
       await page.waitForSelector(`#${surface}-results .catalog-card`);
@@ -79,10 +85,12 @@ export const readingListChoices = {
         key: card.dataset.story,
         title: card.querySelector('.catalog-card-title').textContent.trim(),
         preview: card.querySelector('[data-act="preview"]').textContent.trim(),
+        previewTag: card.querySelector('[data-act="preview"]').tagName,
       })));
       t.check(`${surface}: every choice has its own title and ordinary Preview button`,
         cards.length === expected && new Set(cards.map(({ key }) => key)).size === expected
-        && cards.every(({ key, title, preview }) => preview === 'Preview'
+        && (surface !== 'lines' || cards.every(({ key }) => expectedLines.has(key)))
+        && cards.every(({ key, title, preview, previewTag }) => preview === 'Preview' && previewTag === 'BUTTON'
           && lists.some((list) => `list:${list.id}` === key && list.name === title)),
         JSON.stringify(cards));
       for (const width of [1280, 640, 360]) {

@@ -34,13 +34,26 @@
                   aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar"
                   aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
             <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#menu"/></svg>
-            <span class="rail-toggle-label">Navigation</span>
+            <span class="rail-toggle-label">More</span>
           </button>
 
-          <button type="button" class="brand" data-view="home">
+          <a href="#/home" class="brand" data-view="home">
             <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
             <b class="lbl">Recap&nbsp;Page</b>
-          </button>
+            <span class="mobile-home-label">Home</span>
+          </a>
+          <a href="#/library" class="mobile-link" data-view="library">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
+            <span>Library</span>
+          </a>
+          <a href="#/browse" class="mobile-link" data-view="browse">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
+            <span>Browse</span>
+          </a>
+          <a href="#/add" class="mobile-link" data-view="add">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
+            <span>Add comics</span>
+          </a>
         </div>
 
         <div id="sidebar-panel">
@@ -50,24 +63,24 @@
                 <h2 id="rail-reading" class="rail-h">Reading</h2>
                 <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
                 <ul class="rail-list" aria-labelledby="rail-reading">
-                  <li><button type="button" class="ri" data-view="library">
+                  <li><a href="#/library" class="ri" data-view="library">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span class="lbl">Library</span>
-                  </button></li>
+                  </a></li>
                 </ul>
               </div>
 
               <div class="nav-group">
                 <h2 class="rail-h">Discover</h2>
                 <ul class="rail-list">
-                  <li><button type="button" class="ri" data-view="browse">
+                  <li><a href="#/browse" class="ri" data-view="browse">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
                     <span class="lbl">Browse</span>
-                  </button></li>
-                  <li><button type="button" class="ri" data-view="add">
+                  </a></li>
+                  <li><a href="#/add" class="ri" data-view="add">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
                     <span class="lbl">Add comics</span>
-                  </button></li>
+                  </a></li>
                 </ul>
               </div>
             </div>
@@ -80,14 +93,14 @@
             <div class="nav-group nav-foot">
               <h2 class="rail-h">App</h2>
               <ul class="rail-list">
-                <li><button type="button" class="ri" data-view="data">
+                <li><a href="#/data" class="ri" data-view="data">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#settings"/></svg>
                   <span class="lbl">Backup &amp; settings</span>
-                </button></li>
-                <li><button type="button" class="ri" data-view="about">
+                </a></li>
+                <li><a href="#/about" class="ri" data-view="about">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#info"/></svg>
                   <span class="lbl">About this app</span>
-                </button></li>
+                </a></li>
               </ul>
             </div>
           </nav>
@@ -114,6 +127,7 @@
                written, and moving it into an assertive region would say it a second time, which
                is what BL-027 removed. -->
           <div id="app-report" class="report"></div>
+          <p id="reader-handoff-help" class="rail-hint" hidden></p>
 
           <!-- Shown only when saved data could not be read. Saving stays paused until the
                user chooses, so the unreadable original is never overwritten. -->
@@ -121,7 +135,8 @@
             <h2>Your saved data could not be read</h2>
             <p id="blocked-why"></p>
             <p>It has <strong>not</strong> been changed or deleted, and saving is paused so it
-              cannot be overwritten. Download a copy first, then you can start fresh.</p>
+              cannot be overwritten. Download a copy first. If a recovery copy cannot be kept
+              in this browser, verify the downloaded file before starting fresh.</p>
             <div class="blocked-actions">
               <button type="button" class="btn" id="btn-download-salvage">Download a copy of the unreadable data</button>
               <!-- Ghost, not because it matters less, but because the paragraph above orders these
@@ -130,6 +145,12 @@
                    dialog, where the way out is the ghost and the action being asked for is not. -->
               <button type="button" class="btn btn-g" id="btn-start-fresh">Start fresh and resume saving</button>
             </div>
+            <div class="field-row">
+              <label for="verify-salvage">Verify downloaded copy</label>
+              <input type="file" id="verify-salvage" accept=".json,application/json" aria-describedby="verify-salvage-help">
+            </div>
+            <p class="rail-hint" id="verify-salvage-help">Select the saved unreadable-data file.
+              It is checked locally against the original, not restored or uploaded.</p>
           </section>
 
 
@@ -185,8 +206,8 @@
                   <p class="chero-count" id="chero-count"></p>
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta">
-                    <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
-                    <button type="button" class="btn btn-g" id="btn-chero-open">Open the list</button>
+                    <button type="button" class="btn" id="btn-chero-read">Read</button>
+                    <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
                   </div>
@@ -247,35 +268,39 @@
                 in Backup &amp; settings to protect your progress or move it to another browser profile
                 or computer.
               </p>
-              <button type="button" class="quiet" id="save-education-settings">Backup &amp; settings</button>
+              <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
             </aside>
 
             <div id="reading-body" hidden>
               <div class="list-tools">
-                <button type="button" class="quiet" id="btn-rename-list">Rename</button>
-                <button type="button" class="quiet" id="btn-list-note">Note</button>
-                <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                <details id="list-export">
-                  <summary class="quiet">Export</summary>
-                  <div class="field-row">
-                    <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
-                    <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                <details id="list-actions" class="list-actions action-disclosure">
+                  <summary>List actions</summary>
+                  <div class="list-actions-body">
+                    <button type="button" class="quiet" id="btn-rename-list">Rename</button>
+                    <button type="button" class="quiet" id="btn-list-note">Note</button>
+                    <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                    <details id="list-export">
+                      <summary class="quiet">Export</summary>
+                      <div class="field-row">
+                        <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                        <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                      </div>
+                    </details>
+                    <span class="grow"></span>
+                    <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
+                    <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
+                    <!-- Removal keeps comic progress but removes the reader's own order and note. -->
+                    <span class="tool-sep" aria-hidden="true"></span>
+                    <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
                   </div>
                 </details>
-                <span class="grow"></span>
+              </div>
+              <!-- Pending and terminal feedback stays visible without expanding the command strip. -->
+              <div class="list-work">
                 <span id="hydration-status" class="rail-hint" hidden></span>
-                <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
                 <button type="button" class="quiet" id="btn-cancel-hydrate" hidden>Stop</button>
-                <!-- Its own status line rather than sharing #hydration-status. The two runs can be
-                     going at once, they report different numbers, and one overwriting the other
-                     would show a reader a count that belongs to something they did not start. -->
                 <span id="synopsis-status" class="rail-hint" hidden></span>
-                <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
-                <!-- Keep removal separate from editing and export: it removes the reader's own
-                     order and note, even though the catalog and comic progress are kept. -->
-                <span class="tool-sep" aria-hidden="true"></span>
-                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
               </div>
 
               <!-- The reader's own note about this order. Sits above the hero because it is
@@ -307,12 +332,13 @@
                     <p class="byline" id="hero-by"></p>
                     <div class="cta" id="hero-primary-actions">
                       <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
-                        Open in Marvel Unlimited
+                        Read
                       </button>
-                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Keyboard shortcut: D" aria-keyshortcuts="d">
-                        Done, next
+                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark read and continue. Keyboard shortcut: D" aria-keyshortcuts="d">
+                        Done
                       </button>
                     </div>
+                    <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <dl class="facts" id="hero-facts"></dl>
                     <div class="reading-comic-actions">
                       <button type="button" class="btn btn-link" id="btn-hero-inspect">About this comic</button>
@@ -335,14 +361,14 @@
               <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
                 <h2 id="reading-empty-h">No issues yet</h2>
                 <p>No comics have been added to this Reading List. Add comics to start reading.</p>
-                <button type="button" class="btn" id="btn-empty-add" data-view="add">Add comics</button>
+                <a href="#/add" class="btn" id="btn-empty-add" data-view="add">Add comics</a>
               </section>
 
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
                 <h2 id="all-read-h" tabindex="-1">Every issue marked read</h2>
                 <p>Every issue in this list is marked read.</p>
-                <button type="button" class="btn" data-view="browse">Browse Reading Lists</button>
+                <a href="#/browse" class="btn" data-view="browse">Browse Reading Lists</a>
               </div>
 
               <section id="all-deferred" class="empty-state" hidden aria-labelledby="all-deferred-h">
@@ -408,14 +434,14 @@
             </div>
             <div id="issue-focus-status" class="report" role="status" aria-live="polite"></div>
             <button type="button" class="btn btn-g" id="btn-issue-retry" aria-describedby="issue-focus-status" hidden>Retry</button>
-            <section class="hero issue-focus" id="issue-focus-card" hidden aria-labelledby="issue-focus-h">
+            <div class="hero issue-focus" id="issue-focus-card" hidden>
               <div class="hero-bg" id="issue-focus-bg" aria-hidden="true"></div>
               <div class="hero-fade" aria-hidden="true"></div>
               <div class="hero-in">
                 <div class="issue-reading-controls">
                   <div class="cta">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
-                      Open in Marvel Unlimited
+                      Read
                     </button>
                   </div>
                   <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
@@ -440,6 +466,10 @@
                     <p id="issue-rating-status" class="rail-hint" hidden></p>
                   </div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
+                  <div class="cta" id="issue-saved-actions" hidden>
+                    <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
+                    <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
+                  </div>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
@@ -456,7 +486,6 @@
                     <details class="field-disclosure action-disclosure" id="reader-link-help">
                       <summary id="reader-link-heading">Trouble opening this comic?</summary>
                       <div class="stack">
-                        <dl class="facts" id="issue-focus-availability"></dl>
                         <p id="reader-link-summary" class="rail-hint"></p>
                         <div class="cta">
                           <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
@@ -487,7 +516,7 @@
                   </section>
                 </div>
               </div>
-            </section>
+            </div>
           </section>
 
           <!-- ---------------------------------------- library hub -->
@@ -505,23 +534,23 @@
             <section class="empty" id="library-empty" hidden>
               <h2>No Reading Lists yet</h2>
               <div class="actions">
-                <button type="button" class="btn primary" data-view="browse">Browse</button>
-                <button type="button" class="btn" data-view="add">Add comics</button>
+                <a href="#/browse" class="btn primary" data-view="browse">Browse</a>
+                <a href="#/add" class="btn" data-view="add">Add comics</a>
               </div>
             </section>
 
             <section class="search-hub library-tools" aria-labelledby="library-tools-h">
               <h2 id="library-tools-h">Across your library</h2>
               <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="library-read">
+                <a href="#/library-read" class="search-hub-card" data-view="library-read">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#check"/></svg><span>Everything read</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="progress">
+                </a>
+                <a href="#/progress" class="search-hub-card" data-view="progress">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#progress"/></svg><span>Progress by series</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="library-manual">
+                </a>
+                <a href="#/library-manual" class="search-hub-card" data-view="library-manual">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#edit"/></svg><span>Added by hand</span>
-                </button>
+                </a>
               </div>
             </section>
           </section>
@@ -529,7 +558,8 @@
           <!-- ---------------------------------------- progress view -->
           <section id="view-progress" class="view view-wide" hidden aria-labelledby="progress-h">
             <div class="head"><div class="head-left"><h1 id="progress-h">Progress by series</h1></div></div>
-            <fieldset class="filters" id="progress-scope">
+            <p class="rail-hint" id="progress-subject"></p>
+            <fieldset class="filters" id="progress-scope" aria-describedby="progress-subject">
               <legend class="visually-hidden">Choose what to count</legend>
               <label class="fp"><input type="radio" name="progress-scope" value="list" checked /><span>This list</span></label>
               <label class="fp"><input type="radio" name="progress-scope" value="all" /><span>All lists</span></label>
@@ -661,25 +691,25 @@
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
             <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
             <div class="search-hub-grid add-hub-grid" id="add-primary-methods">
-              <button type="button" class="search-hub-card" data-view="add-search">
+              <a href="#/add-search" class="search-hub-card" data-view="add-search">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
-              </button>
-              <button type="button" class="search-hub-card" data-view="add-series">
+              </a>
+              <a href="#/add-series" class="search-hub-card" data-view="add-series">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
-              </button>
+              </a>
             </div>
             <details class="field-disclosure action-disclosure add-other-methods" id="add-other-methods">
               <summary>More ways to add</summary>
               <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="add-creator">
+                <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-import">
+                </a>
+                <a href="#/add-import" class="search-hub-card" data-view="add-import">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-manual">
+                </a>
+                <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
-                </button>
+                </a>
               </div>
             </details>
           </section>
@@ -710,35 +740,35 @@
               <section class="search-hub" aria-labelledby="search-browse-h">
                 <h2 id="search-browse-h">Browse by</h2>
                 <div class="search-hub-grid">
-                  <button type="button" class="search-hub-card" data-view="add-series">
+                  <a href="#/add-series" class="search-hub-card" data-view="add-series">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span>Series</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="add-creator">
+                  </a>
+                  <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
                     <span>Creators</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="spotlights">
+                  </a>
+                  <a href="#/spotlights" class="search-hub-card" data-view="spotlights">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
                     <span>Characters</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="catalog">
+                  </a>
+                  <a href="#/catalog" class="search-hub-card" data-view="catalog">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
                     <span>Reading guides</span>
-                  </button>
+                  </a>
                 </div>
               </section>
               <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
                 <h2 id="search-other-h">Other ways to add</h2>
                 <div class="search-hub-grid">
-                  <button type="button" class="search-hub-card" data-view="add-import">
+                  <a href="#/add-import" class="search-hub-card" data-view="add-import">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
                     <span>Paste a Reading List</span>
-                  </button>
-                  <button type="button" class="search-hub-card" data-view="add-manual">
+                  </a>
+                  <a href="#/add-manual" class="search-hub-card" data-view="add-manual">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
                     <span>Add an issue by hand</span>
-                  </button>
+                  </a>
                 </div>
               </section>
             </details>
@@ -780,19 +810,19 @@
                 <p class="add-destination add-target"></p>
                 <div class="import-guide" aria-labelledby="import-guide-h">
                   <h2 id="import-guide-h">Markdown checklist</h2>
-                  <pre><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
+                  <pre tabindex="0" aria-labelledby="import-guide-h"><code>- [ ] [Secret Wars (2015) #1](https://www.marvel.com/comics/issue/49201/)
 - [x] Secret Wars (2015) #2
 [x] = already read; links are optional</code></pre>
                 </div>
                 <form id="form-import" class="stack">
                   <label for="import-text">Reading List</label>
-                  <textarea id="import-text" rows="8" spellcheck="false"></textarea>
+                  <textarea id="import-text" rows="8" spellcheck="false" aria-describedby="import-report"></textarea>
                   <div class="field-row">
                     <button type="submit" class="btn">Import</button>
                     <label class="checkbox"><input type="checkbox" id="import-new-list" checked /> Into a new list</label>
                   </div>
                 </form>
-                <div id="import-report" class="results"></div>
+                <div id="import-report" class="results" tabindex="-1"></div>
             </section>
           </section>
 
@@ -842,19 +872,30 @@
             <section class="setgroup">
               <h2>Data safety</h2>
               <div class="card card-static addpri">
-                <h3>Backup and restore</h3>
-                <p class="rail-hint">Back up regularly. Reading-data backups contain lists, notes, issue ratings, read progress and deferrals. Completion and enjoyment need the separate completion-history backup below.</p>
+                <h3>Back up reading data</h3>
+                <p class="rail-hint">Reading-data backups contain lists, notes, issue ratings, read progress and deferrals.</p>
+                <p class="rail-hint">For a complete reading and history transfer, download the reading-data and completion-history backups together, plus the separate import-draft file when a draft or retained draft source is present. Settings are not included. These are separate files, not interchangeable formats.</p>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
                 </div>
+                <div id="normal-backup-history"></div>
 
                 <h4>Restore from a backup</h4>
-                <p class="rail-hint">A snapshot of your current reading data is kept, so a restore can be undone once. Restoring or undoing reading data does not change completion and enjoyment history.</p>
+                <p class="rail-hint">Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces. Undo is offered once in this tab. After Undo or reload, use the clearly named saved-copy action instead. Completion and enjoyment history are unchanged.</p>
                 <div class="field-row">
-                  <input type="file" id="restore-file" accept="application/json,.json" aria-label="Backup file to restore" />
-                  <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
+                  <input type="file" id="restore-file" accept="application/json,.json" aria-label="Reading-data backup file to restore" aria-describedby="restore-report" />
+                  <button type="button" id="btn-undo-restore" class="btn btn-g" aria-describedby="restore-copy-summary" hidden>Undo last restore</button>
+                  <button type="button" id="btn-export-restore-copy" class="btn btn-g" hidden>Download saved reading-data copy</button>
                 </div>
-                <div id="restore-report" class="results"></div>
+                <p id="restore-copy-summary" class="rail-hint"></p>
+                <div id="restore-report" class="results" tabindex="-1"></div>
+                <h4>Separate import draft</h4>
+                <p class="rail-hint">Includes exact pasted source, source positions, selected matches and retained previous sources. No automatic expiry. Reading-data and completion-history backups do not include it. Restoring reading data keeps the draft but requires review before applying more comics.</p>
+                <div class="field-row">
+                  <button type="button" id="btn-export-draft" class="btn btn-g">Download import-draft backup</button>
+                  <input type="file" id="restore-draft" accept="application/json,.json" aria-label="Separate import draft file to restore" aria-describedby="draft-transfer-report" />
+                </div>
+                <div id="draft-transfer-report" class="results" tabindex="-1"></div>
                 <details class="field-disclosure action-disclosure" id="backup-export-options">
                   <summary>Checklist and sharing options</summary>
                   <div class="stack">
@@ -894,7 +935,7 @@
                 </p>
                 <details class="setting-more">
                   <summary>About this preference</summary>
-                  <p class="rail-hint" id="reading-shortcut-storage-help">Done, next still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
+                  <p class="rail-hint" id="reading-shortcut-storage-help">Done still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
                 </details>
                 <div id="reading-shortcut-report" class="results"></div>
               </div>
@@ -1113,7 +1154,7 @@
               </p>
             </div>
           </section>
-          <section id="view-reading-paths" class="view" hidden aria-labelledby="reading-paths-h"><div class="head"><div class="head-left"><h1 id="reading-paths-h">Reading paths</h1><p class="sub">See each connected sequence in one place.</p></div></div><div id="reading-paths-report" class="report"></div><p id="reading-path-status" class="rail-hint" role="status">Loading reading paths…</p><div class="reading-path-controls"><label for="reading-path-select">Reading path</label><select id="reading-path-select"></select></div><section id="reading-path-details" hidden aria-labelledby="reading-path-name"><div class="reading-path-summary"><div><h2 id="reading-path-name">Reading path</h2><p id="reading-path-description"></p><p id="reading-path-source" class="rail-hint"></p></div><strong id="reading-path-count" class="reading-path-count"></strong></div><ol id="reading-path-spine" class="reading-path-spine"></ol></section></section>
+          <section id="view-reading-paths" class="view" hidden aria-labelledby="reading-paths-h"><div class="head"><div class="head-left"><h1 id="reading-paths-h">Reading paths</h1><p class="sub">See each connected sequence in one place.</p></div></div><div id="reading-paths-report" class="report"></div><p id="reading-path-status" class="rail-hint" role="status">Loading reading paths…</p><div class="reading-path-controls"><label for="reading-path-select">Reading path</label><select id="reading-path-select"></select></div><section id="reading-path-details" hidden aria-labelledby="reading-path-name"><div class="reading-path-summary"><div><h2 id="reading-path-name">Reading path</h2><p id="reading-path-description"></p><p id="reading-path-source" class="rail-hint"></p></div><strong id="reading-path-count" class="reading-path-count"></strong></div><div id="reading-path-navigation"></div><ol id="reading-path-spine" class="reading-path-spine"></ol></section></section>
           <section id="view-completed" class="view view-wide" hidden aria-labelledby="completed-h">
             <div class="head"><div class="head-left"><h1 id="completed-h">Completed lists</h1><p id="completed-count" class="sub">Completed Reading Lists and the ones you enjoyed.</p></div></div>
             <fieldset class="reading-filters completion-filters">
@@ -1126,7 +1167,7 @@
               <div class="sec-h"><h2 id="completed-lists-h">Your completed Reading Lists</h2></div>
               <ul id="completed-list" class="yours"></ul>
             </section>
-            <button type="button" class="btn btn-g" data-view="data">Backup &amp; settings</button>
+            <a href="#/data" class="btn btn-g" data-view="data">Backup &amp; settings</a>
           </section>
           <section id="list-wrap-up" class="completion-wrapup card card-static" hidden aria-labelledby="list-wrap-up-h">
             <h2 id="list-wrap-up-h">Wrap up this Reading List</h2>
@@ -1149,20 +1190,25 @@
               <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><button type="button" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</button></div>
             </section>
           </section>
-          <section id="completion-history-controls" class="card card-static setting" aria-labelledby="completion-history-h">
-            <h3 id="completion-history-h">Completion history</h3>
-            <p class="rail-hint">Completion dates and enjoyment are saved separately from reading data. Download both backups to move everything to another browser. Reading-data restore and Undo leave this history alone; only matching saved lists display it.</p>
+          <section id="completion-history-controls" aria-labelledby="completion-history-h">
+            <h4 id="completion-history-h">Completion history</h4>
+            <p class="rail-hint">Completion dates and enjoyment are saved separately. Include this backup with reading data for a complete reading and history transfer, and include the separate import-draft file when draft source is retained. Settings are not included. Reading-data restore and Undo leave history alone; only matching saved lists display it.</p>
             <p id="history-status" class="rail-hint"></p>
-            <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button><button type="button" id="btn-copy-history" class="quiet">Download saved-value copy</button><button type="button" id="btn-retry-history" class="quiet">Retry reading history</button></div>
+            <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button></div>
             <label for="restore-history-file">Restore a completion-history backup</label>
             <input type="file" id="restore-history-file" accept="application/json,.json" />
-            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo. The saved-value copy preserves unreadable data for troubleshooting; it is not a normal backup.</p>
-            <div id="history-report" class="report"></div>
+            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.</p>
+            <div id="history-report" class="report" tabindex="-1"></div>
+            <details id="history-troubleshooting" class="field-disclosure action-disclosure">
+              <summary>Completion-history troubleshooting</summary>
+              <p class="rail-hint">The saved-value copy preserves unreadable data exactly; it is not a normal backup. Retry reading history after resolving a storage problem.</p>
+              <div class="field-row"><button type="button" id="btn-copy-history" class="quiet">Download saved-value copy</button><button type="button" id="btn-retry-history" class="quiet">Retry reading history</button></div>
+            </details>
           </section>
           <footer class="app-footer">
-            <button type="button" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">
+            <a href="#/about" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">
               Unofficial fan project. Metadata and links only. <span data-marvel-copyright>© MARVEL</span>
-            </button>
+            </a>
           </footer>
         </div>
       </main>
@@ -1224,7 +1270,8 @@
         <p id="ask-body" class="rail-hint"></p>
         <p id="ask-field" hidden>
           <label for="ask-input" id="ask-label"></label>
-          <input type="text" id="ask-input" maxlength="200" autocomplete="off" />
+          <input type="text" id="ask-input" maxlength="200" autocomplete="off" aria-describedby="ask-error" />
+          <span id="ask-error" role="status" aria-live="polite"></span>
         </p>
         <!-- A second field rather than a mode switch on the first. A note wants several lines and
              more than 200 characters, and every existing question is a single short answer, so

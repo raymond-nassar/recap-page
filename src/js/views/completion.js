@@ -1,6 +1,9 @@
 import { listReadingProgress } from '../lib/model.js';
 import { listHistoryIdentity, parseListHistory } from '../lib/listHistory.js';
 import { uiIcon } from '../lib/uiIcon.js';
+import { labelledName } from '../lib/accname.js';
+import { wireFieldValidation } from './shared/field-validation.js';
+import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -38,6 +41,7 @@ export function createCompletionView({
   let feedbackOpener = null;
   let feedbackIdentity = null;
   let restoreFeedbackFocus = true;
+  let historyValidation;
   const gateways = new Map();
 
   function currentList() {
@@ -102,8 +106,6 @@ export function createCompletionView({
       announce(rating === 'up' ? 'Enjoyment saved: enjoyed.'
         : rating === 'down' ? 'Enjoyment saved: did not enjoy.' : 'Enjoyment choice cleared.');
     }
-    if (kind === 'rate' && rating === 'down' && currentAction(frame, result)
-      && history.isCompleted(getState(), getListId())) showFeedback(opener);
   }
 
   function cancelRecommendations() {
@@ -161,6 +163,7 @@ export function createCompletionView({
               type: 'button', class: 'btn btn-g',
               dataset: { recommendation: suggestion.catalogId },
               text: suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List',
+              'aria-label': labelledName(suggestion.savedListId ? 'Open saved Reading List' : 'Preview Reading List', suggestion.name),
               onclick: () => {
                 if (!recommendationCurrent(held)) return;
                 if (suggestion.savedListId) openList(suggestion.savedListId);
@@ -251,19 +254,33 @@ export function createCompletionView({
       let gateway = gateways.get(name);
       if (!gateway) {
         const copy = el('p', { class: 'rail-hint' });
+        const browse = el('a', {
+          id: `${name}-completed-browse`,
+          class: 'btn',
+          href: formatRoute({ view: 'catalog' }),
+          text: 'Browse Reading Lists',
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            showView('catalog', { push: true });
+          },
+        });
         const section = el('section', {
           id: `${name}-completed`, class: 'sec completion-gateway',
           'aria-labelledby': `${name}-completed-h`,
         }, [
           el('div', { class: 'sec-h' }, el('h2', { id: `${name}-completed-h`, text: 'Completed lists' })),
           copy,
+          browse,
           el('button', { type: 'button', class: 'btn btn-g', text: 'View completed lists', onclick: () => showView('completed', { push: true }) }),
         ]);
-        parent.insertBefore(section, before);
-        gateway = { section, copy };
+        parent.insertBefore(section, name === 'library' ? before.nextSibling : before);
+        gateway = { section, copy, browse };
         gateways.set(name, gateway);
       }
-      gateway.section.hidden = state.listOrder.length === 0 || (name === 'home' && counts?.completed === 0);
+      gateway.section.hidden = state.listOrder.length === 0 || counts?.completed === 0;
+      gateway.browse.hidden = !counts || !state.listOrder.length
+        || counts.completed !== state.listOrder.length;
       gateway.copy.textContent = counts
         ? `${counts.completed} completed Reading ${counts.completed === 1 ? 'List' : 'Lists'}. ${counts.enjoyed} enjoyed.${counts.completed === state.listOrder.length && counts.completed ? ' All your saved lists are completed; choose another when you are ready.' : ''}`
         : 'Completion history is unavailable. Open the collection or Backup & settings to check it.';
@@ -278,6 +295,9 @@ export function createCompletionView({
     nodes.historyExport.disabled = !history.known || history.busy;
     nodes.historyRestore.disabled = restoring || history.busy || !!history.writeUnavailable || history.seenRaw === undefined;
     nodes.historyRetry.disabled = history.busy;
+    if ((!history.known || history.writeUnavailable || history.lastError) && nodes.historyTroubleshooting) {
+      nodes.historyTroubleshooting.open = true;
+    }
   }
 
   function render() {
@@ -293,7 +313,9 @@ export function createCompletionView({
     try {
       const text = copy ? history.exportStoredCopy() : history.exportBackup();
       const saved = await download(copy ? 'recap-page-completion-saved-copy.json' : 'recap-page-completion-history.json', text, 'application/json');
-      if (saved) announce(copy ? 'Completion-history saved-value copy downloaded.' : 'Completion-history backup downloaded.');
+      if (saved) announce(saved === true
+        ? copy ? 'Completion-history saved-value copy downloaded.' : 'Completion-history backup downloaded.'
+        : 'Completion-history download requested. Check your browser\'s downloads to confirm it was saved.');
     } catch (error) {
       notify('#history-report', `Completion history could not be exported (${error.message}). Its saved value is unchanged.`, 'error');
     }
@@ -306,40 +328,53 @@ export function createCompletionView({
     const generation = ++importGeneration;
     const refusal = backupFileRefusal(file);
     if (refusal) {
-      notify('#history-report', refusal, 'error');
+      historyValidation.fail(`Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. ${refusal}`);
       input.value = '';
       return;
     }
     restoring = true;
+    let cancelled = false;
+    let replacementReached = false;
     renderHistory();
     try {
       const text = await file.text();
       parseListHistory(text);
+      historyValidation.clear();
       if (generation !== importGeneration || getView() !== 'data') return;
       const yes = await askConfirm({
         title: 'Replace completion and enjoyment history?',
         body: 'This replaces completion dates and enjoyment choices only. Reading lists, notes and comic progress are unchanged. There is no automatic Undo; download a completion-history backup first to keep the current history.',
         confirmLabel: 'Restore completion history',
       });
+      if (!yes) cancelled = true;
       if (!yes || generation !== importGeneration || getView() !== 'data') return;
+      replacementReached = true;
       const result = await history.restore(text);
       if (result.ok) notify('#history-report', 'Completion history restored. Reading data is unchanged.', 'ok');
     } catch (error) {
-      notify('#history-report', `Completion-history restore refused (${error.message}).`, 'error');
+      if (replacementReached) notify('#history-report', `Completion-history restore did not finish (${error.message}). Check its saved value before retrying.`, 'error');
+      else historyValidation.fail(`Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. ${error.message}`);
     } finally {
       restoring = false;
       input.value = '';
       renderHistory();
+      if ((cancelled || input.getAttribute('aria-invalid') === 'true') && generation === importGeneration && getView() === 'data'
+        && input.isConnected && !input.disabled && !input.closest('[hidden]')) input.focus();
     }
   }
 
   function wire() {
     const nodes = elements();
+    historyValidation = wireFieldValidation({
+      field: nodes.historyRestore, reportId: 'history-report',
+      reportError: (message) => notify('#history-report', message, 'error'),
+      invalidMessage: 'Choose a completion-history JSON backup from this app.',
+    });
     nodes.icons.replaceChildren(createIcon('thumb-up', 'gi'));
     nodes.downIcons.replaceChildren(createIcon('thumb-down', 'gi'));
     nodes.listTools.prepend(nodes.complete);
     nodes.readBody.prepend(nodes.wrapup);
-    nodes.dataSafety.append(nodes.historyControls);
+    (nodes.backupHistory || nodes.dataSafety).append(nodes.historyControls);
     nodes.complete.addEventListener('click', () => { void change('complete', null, nodes.complete); });
     nodes.reopen.addEventListener('click', () => { void change('reopen', null, nodes.reopen); });
     for (const [button, rating] of [[nodes.up, 'up'], [nodes.down, 'down']]) {

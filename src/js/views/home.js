@@ -1,6 +1,7 @@
 import { uiIcon } from '../lib/uiIcon.js';
 import { isLaunchable } from '../reader.js';
 import { deferredCount } from '../lib/model.js';
+import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -48,7 +49,11 @@ export function createHomeView({
       const issue = upNext(getState(), getActiveListId());
       if (issue) onRead(issue, event, 'saved');
     });
-    nodes.continueOpen.addEventListener('click', onOpen);
+    nodes.continueOpen.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event?.preventDefault();
+      onOpen();
+    });
     nodes.continueReview.addEventListener('click', onReview);
     nodes.continueDeferred.addEventListener('click', onReviewDeferred);
   }
@@ -71,17 +76,25 @@ export function createHomeView({
         text: 'Browse curated Reading Lists. Add individual issues or your own list.',
       }),
       el('div', { class: 'cta home-start-actions' }, [
-        el('button', {
-          type: 'button',
-          class: 'btn btn-g',
-          id: 'btn-home-browse',
-          onclick: () => onNavigateHub('browse'),
-        }, 'Browse Reading Lists'),
-        el('button', {
-          type: 'button',
+        el('a', {
+          href: formatRoute({ view: 'catalog' }),
           class: 'btn',
+          id: 'btn-home-browse',
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            onNavigateHub('catalog');
+          },
+        }, 'Browse Reading Lists'),
+        el('a', {
+          href: formatRoute({ view: 'add' }),
+          class: 'btn btn-g',
           id: 'btn-home-add',
-          onclick: () => onNavigateHub('add'),
+          onclick: (event) => {
+            if (!isPlainNavigation(event)) return;
+            event?.preventDefault();
+            onNavigateHub('add');
+          },
         }, 'Add comics'),
       ]),
     ]);
@@ -93,6 +106,7 @@ export function createHomeView({
     const nodes = elements();
     const id = getActiveListId();
     const list = getState().lists[id];
+    nodes.continueOpen.setAttribute('href', formatRoute({ view: 'read', listId: id }));
     nodes.continueSection.hidden = !populated || !list;
     if (nodes.continueSection.hidden) {
       nodes.continueHeading.textContent = CONTINUE_NO_LIST;
@@ -100,6 +114,7 @@ export function createHomeView({
     }
 
     const { read, total } = listProgress(getState(), id);
+    nodes.continueSection.classList.toggle('continue-empty', total === 0);
     const deferred = deferredCount(getState(), id);
     const issue = upNext(getState(), id);
     nodes.continueHeading.textContent = list.name;
@@ -112,17 +127,17 @@ export function createHomeView({
     nodes.continueReview.hidden = total === 0;
 
     if (issue) {
-      nodes.continueNext.textContent = `Next: ${issue.title}`;
+      const reader = readerPresentation(issue, 'saved');
+      nodes.continueNext.textContent = `Next: ${issue.title}${reader.temporary ? ' (temporary reader link)' : ''}`;
       paintCover(nodes.continueImage, nodes.continueFallback, issue, 'portrait_incredible');
       nodes.continueSeries.textContent = seriesOnly(issue.seriesName);
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
-      const reader = readerPresentation(issue, 'saved');
       nodes.continueRead.hidden = false;
       nodes.continueRead.disabled = !reader.launchable;
-      nodes.continueRead.textContent = reader.temporary ? 'Read with temporary link' : 'Read next';
+      nodes.continueRead.textContent = 'Read';
       nodes.continueRead.setAttribute(
         'aria-label',
-        labelledName(nodes.continueRead.textContent, `${issue.title} in Marvel Unlimited`),
+        labelledName('Read', `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
       );
     } else {
       nodes.continueNext.textContent = total === 0
@@ -162,12 +177,16 @@ export function createHomeView({
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;
-    return el('li', {}, el('button', {
-      type: 'button',
+    return el('li', {}, el('a', {
+      href: formatRoute({ view: category.route }),
       class: `home-path home-path-${category.tier}`,
       'aria-label': `${category.heading}. ${category.label}. ${count}.`,
       dataset: { category: category.key },
-      onclick: () => onNavigateCategory(category),
+      onclick: (event) => {
+        if (!isPlainNavigation(event)) return;
+        event?.preventDefault();
+        onNavigateCategory(category);
+      },
     }, [
       createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
       el('span', { class: 'home-path-copy' }, [

@@ -45,6 +45,8 @@ export const readableMarkdownExport = {
       };
     }, SCHEMA_VERSION);
     await page.goto(`${page.__origin}/?catalog=browser-check#/read/markdown-fixture`, { waitUntil: 'load' });
+    await page.focus('#list-actions > summary');
+    await page.keyboard.press('Enter');
     await page.waitForSelector('#list-export > summary', { visible: true });
     await page.focus('#list-export > summary');
     await page.keyboard.press('Enter');

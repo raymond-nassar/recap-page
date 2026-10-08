@@ -180,7 +180,7 @@ export const namorActualData = {
       JSON.stringify({ got: preview.headings.length, expected: groups.length }));
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
-      ?.textContent.includes('In library'));
+      ?.textContent.includes('Open'));
     const imported = await savedRows(page);
     t.check('import adds exactly one Namor list', imported.matches === 1, String(imported.matches));
     checkVector(t, 'import saves the exact 700 identities, titles, bounded groups and refusal flags',

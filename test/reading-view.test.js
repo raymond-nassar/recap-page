@@ -58,6 +58,7 @@ function queryAll(root, selector) {
     if (selector === 'summary' && node.tag === 'summary') found.push(node);
     if (selector === '#reading-filters' && node.id === 'reading-filters') found.push(node);
     if (selector === '.order-strip' && node.className.split(/\s+/).includes('order-strip')) found.push(node);
+    if (selector === '.row-actions' && node.classList.contains('row-actions')) found.push(node);
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
   });
@@ -239,8 +240,9 @@ function harness(overrides = {}) {
   let writeFailures = 0;
   const notices = new Map();
   const nodes = {
+    documentElement: node({ tag: 'html' }),
     readingFilters: node({ id: 'reading-filters', tag: 'fieldset' }),
-    saveEducationSettings: node({ id: 'save-education-settings', tag: 'button' }),
+    saveEducationSettings: node({ id: 'save-education-settings', tag: 'a', href: '#/data' }),
     fullSummary: node({ tag: 'summary' }),
     fullAction: node({ id: 'full-action' }),
     fullCount: node({ id: 'full-count' }),
@@ -269,6 +271,7 @@ function harness(overrides = {}) {
     heroFacts: node({ id: 'hero-facts' }),
     btnHeroInfo: node({ id: 'btn-hero-info', text: 'Info', tag: 'a' }),
     btnHeroRead: node({ id: 'btn-hero-read', tag: 'button' }),
+    heroReaderTemporary: node({ id: 'hero-reader-temporary', hidden: true }),
     btnHeroInspect: node({ id: 'btn-hero-inspect', tag: 'button' }),
     btnHeroDone: node({ id: 'btn-hero-done', tag: 'button' }),
     btnRenameList: node({ id: 'btn-rename-list', tag: 'button' }),
@@ -290,8 +293,24 @@ function harness(overrides = {}) {
     allReadHeading: node({ id: 'all-read-h', tag: 'h2' }),
   };
   nodes.full = node({ id: 'full', tag: 'details', open: overrides.fullOpen ?? true }, [nodes.fullSummary, nodes.fullAction, nodes.fullCount, nodes.readingFilters]);
+  nodes.listActionsSummary = node({ tag: 'summary', text: 'List actions' });
+  nodes.listExport = node({ id: 'list-export', tag: 'details' }, [
+    node({ tag: 'summary', text: 'Export' }), nodes.btnExportMd, nodes.btnExportOrder,
+  ]);
+  nodes.listActions = node({ id: 'list-actions', tag: 'details' }, [
+    nodes.listActionsSummary,
+    node({ class: 'list-actions-body' }, [
+      nodes.btnRenameList, nodes.btnListNote, nodes.btnDuplicateList, nodes.listExport,
+      nodes.btnHydrate, nodes.btnSynopsis, nodes.btnDeleteList,
+    ]),
+  ]);
+  nodes.listTools = node({ class: 'list-tools' }, [nodes.listActions]);
+  nodes.listWork = node({ class: 'list-work' }, [
+    nodes.hydrationStatus, nodes.btnCancelHydrate, nodes.synopsisStatus, nodes.btnCancelSynopsis,
+  ]);
 
   const selectorMap = new Map([
+    ['#list-actions', nodes.listActions],
     ['#reading-filters', nodes.readingFilters],
     ['#save-education-settings', nodes.saveEducationSettings],
     ['#full', nodes.full],
@@ -309,6 +328,7 @@ function harness(overrides = {}) {
     ['#btn-synopsis', nodes.btnSynopsis],
     ['#btn-cancel-synopsis', nodes.btnCancelSynopsis],
     ['#btn-hero-read', nodes.btnHeroRead],
+    ['#hero-reader-temporary', nodes.heroReaderTemporary],
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
     ['#reading-body', nodes.readingBody],
@@ -354,6 +374,7 @@ function harness(overrides = {}) {
 
   const documentStub = {
     activeElement: null,
+    documentElement: nodes.documentElement,
     listeners: {},
     createElement(tag) { return node({ tag }); },
     createTextNode(text) { return { text, textContent: text }; },
@@ -440,7 +461,26 @@ function harness(overrides = {}) {
     ymd: (value) => (typeof value === 'string' ? value.slice(0, 10) : ''),
   });
 
+  const previousDocument = globalThis.document;
+  const previousMatchMedia = globalThis.matchMedia;
+  const previousResizeObserver = globalThis.ResizeObserver;
+  const observers = [];
   globalThis.document = documentStub;
+  globalThis.ResizeObserver = class {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe(target) { this.target = target; }
+  };
+  globalThis.matchMedia = (media) => {
+    assert.equal(media, '(max-width: 700px)');
+    return {
+      media, matches: false,
+      addEventListener(type, listener) {
+        assert.equal(type, 'change');
+        assert.equal(typeof listener, 'function');
+        this.listener = listener;
+      },
+    };
+  };
   if (readerStore) {
     readerStore.onChange = (next, error) => {
       state = next;
@@ -451,6 +491,7 @@ function harness(overrides = {}) {
   return {
     calls,
     nodes,
+    observers,
     notices,
     settings,
     setActive(listId) { state = setActive(state, listId); },
@@ -458,9 +499,154 @@ function harness(overrides = {}) {
     setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
     view,
-    restore() { delete globalThis.document; },
+    restore() {
+      if (previousDocument === undefined) delete globalThis.document;
+      else globalThis.document = previousDocument;
+      if (previousMatchMedia === undefined) delete globalThis.matchMedia;
+      else globalThis.matchMedia = previousMatchMedia;
+      if (previousResizeObserver === undefined) delete globalThis.ResizeObserver;
+      else globalThis.ResizeObserver = previousResizeObserver;
+    },
   };
 }
+
+test('reading filter geometry reserves actual sticky clearance without changing saved state', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    const observer = h.observers.find((entry) => entry.target === h.nodes.readingFilters);
+    assert.ok(observer, 'the actual filter band has no size observation');
+    const before = JSON.stringify(h.state());
+    for (const height of [93.75, 54, 0]) {
+      h.nodes.readingFilters.getBoundingClientRect = () => ({ height });
+      observer.callback();
+      assert.equal(h.nodes.documentElement.style['--reading-filter-height'], `${height}px`);
+      assert.equal(JSON.stringify(h.state()), before);
+    }
+  } finally {
+    h.restore();
+  }
+});
+
+test('list actions remain closed until opened and Escape restores focus before closing', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    assert.equal(h.nodes.listActions.open, false);
+    const before = JSON.stringify(h.state());
+    let open = true;
+    const closing = [];
+    Object.defineProperty(h.nodes.listActions, 'open', {
+      get: () => open,
+      set(value) {
+        if (!value && open) closing.push(globalThis.document.activeElement);
+        open = value;
+      },
+    });
+    h.nodes.listExport.open = true;
+    h.nodes.btnExportMd.focus();
+    let prevented = false;
+    h.nodes.listActions.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(h.nodes.listActions.open, false);
+    assert.deepEqual(closing, [h.nodes.listActionsSummary]);
+    assert.equal(h.nodes.listExport.open, true);
+    assert.equal(JSON.stringify(h.state()), before);
+  } finally {
+    h.restore();
+  }
+});
+
+test('an open row command disclosure survives its own saved-state rerender', () => {
+  const h = harness();
+  try {
+    const findAction = (act) => {
+      let found;
+      walk(h.nodes.rows, (entry) => {
+        if (entry.dataset?.key === 2 && entry.dataset.act === act) found = entry;
+      });
+      return found;
+    };
+    h.view.renderRows();
+    findAction('more').fire('click');
+    assert.equal(findAction('more').getAttribute('aria-expanded'), 'true');
+    findAction('override-available').fire('click');
+    h.view.renderRows();
+    assert.equal(findAction('more').getAttribute('aria-expanded'), 'true');
+    assert.equal(h.state().overrides[2], 'available');
+  } finally {
+    h.restore();
+  }
+});
+
+test('UX05 reorder announces the persisted comic position and never claims a failed move', () => {
+  const h = harness();
+  try {
+    h.view.renderRows();
+    const action = (id, act) => {
+      let found;
+      walk(h.nodes.rows, (entry) => {
+        if (entry.dataset?.key === id && entry.dataset?.act === act) found = entry;
+      });
+      return found;
+    };
+    action(2, 'up').fire('click');
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [2, 1, 3]);
+    assert.deepEqual(h.calls.announce, ['Moved Issue Two to position 1 of 3.']);
+    h.setWriteFailures(1);
+    action(2, 'down').fire('click');
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [2, 1, 3]);
+    assert.equal(h.calls.announce.length, 1);
+    action(2, 'up').fire('click');
+    assert.equal(h.calls.announce.length, 1, 'boundary no-op is not a move');
+  } finally { h.restore(); }
+});
+
+test('UX05 rows keep expected access hedged and offer explicit yes no and clear choices', () => {
+  const h = harness();
+  try {
+    h.state().issues[2].mu = '2000-01-01';
+    h.view.renderRows();
+    let badge;
+    const actions = [];
+    walk(h.nodes.rows, (entry) => {
+      if (entry.className?.includes('badge-expected')) badge = entry;
+      if (entry.dataset?.key === 2 && entry.dataset?.act?.startsWith('override')) actions.push(entry);
+    });
+    assert.equal(badge.childNodes[0], 'Expected in Unlimited');
+    assert.deepEqual(actions.map((entry) => entry.dataset.act), ['override-available', 'override-unavailable', 'override-clear']);
+    const before = structuredClone(h.state().read);
+    actions[1].fire('click');
+    assert.equal(h.state().overrides[2], 'unavailable');
+    actions[0].fire('click');
+    assert.equal(h.state().overrides[2], 'available');
+    actions[2].fire('click');
+    assert.equal(Object.hasOwn(h.state().overrides, 2), false);
+    assert.deepEqual(h.state().read, before);
+  } finally { h.restore(); }
+});
+
+test('UX05 synopsis copy distinguishes not loaded from a completed empty result and held text', () => {
+  const empty = Symbol('empty');
+  assert.equal(synopsisFallback({ hydrated: true }, null, empty), 'Story summary has not been loaded.');
+  assert.equal(synopsisFallback({ hydrated: false }, undefined, empty), 'Story summary has not been loaded.');
+  assert.equal(synopsisFallback({ hydrated: true }, empty, empty), 'No synopsis is recorded for this issue.');
+  assert.equal(synopsisFallback({ hydrated: true }, 'Held plot', empty), 'Held plot');
+});
+
+test('UX05 empty lists retain Add comics without review filters or no-match results', () => {
+  const state = createList(createEmptyState(), { id: 'empty', name: 'Empty' });
+  const h = harness({ state });
+  try {
+    h.view.render();
+    assert.equal(h.nodes.readingEmpty.hidden, false);
+    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
+    assert.equal(h.nodes.full.hidden, true);
+    assert.equal(h.nodes.readingFilters.hidden, true);
+    assert.equal(h.nodes.rows.childNodes.length, 0);
+    assert.deepEqual(h.state().read, {});
+  } finally { h.restore(); }
+});
 
 test('completed lists suppress queued hero, shelf and continuation banners without hiding the full order', () => {
   const state = setDeferred(seededState(), 'list-a', 3, true);
@@ -593,8 +779,9 @@ test('445 picker handles completion, empty ranges and missing identity metadata'
     h.view.openReview();
     assert.equal(h.view.restoreReview({ issueId: list.itemIds.at(-1), contextId: list.id }), true);
     list.itemIds = [];
-    h.view.openReview();
-    assert.match(h.nodes['review-position'].textContent, /no comics in/);
+    h.view.renderReview();
+    assert.equal(h.nodes['review-earlier'].hidden, true);
+    assert.equal(h.nodes['btn-review-earlier'].hidden, true);
     list.itemIds = [20];
     h.view.openReview();
     assert.match(h.nodes['review-position'].textContent, /no comics before/);
@@ -652,17 +839,35 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     temporary = true;
     h.view.refreshReader();
     assert.equal(h.nodes.btnHeroRead.hidden, false);
-    assert.match(h.nodes.btnHeroRead.textContent, /temporary/);
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
+    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Read: .* with temporary link$/);
+    assert.equal(h.nodes.heroReaderTemporary.hidden, false);
+    assert.equal(h.nodes.heroReaderTemporary.textContent, 'Using a temporary reader link.');
     assert.notDeepEqual(h.nodes.rows.childNodes, oldRows, 'effective presentation participates in cache key');
     const actions = [];
     walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'open') actions.push(entry); });
     assert.ok(actions.length);
     for (const action of actions) {
       assert.equal(action.hidden, false);
+      // This double keeps append() text in childNodes instead of aggregating textContent.
+      assert.equal(action.textContent || action.childNodes.join(''), 'Read');
       assert.match(action.attributes['aria-label'], /temporary/);
       action.fire('click', {});
       assert.equal(h.calls.launch.at(-1)[2], 'saved');
     }
+    const notices = [];
+    for (const container of [h.nodes.rows, h.nodes.shelf]) {
+      walk(container, (entry) => {
+        if (entry.dataset?.readerTemporary) notices.push(entry);
+        if (entry.dataset?.act === 'open') assert.equal(entry.textContent || entry.childNodes.join(''), 'Read');
+      });
+    }
+    assert.ok(notices.length);
+    assert.ok(notices.every((entry) => entry.textContent === 'Temporary reader link'));
+    temporary = false;
+    h.view.refreshReader();
+    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
+    assert.equal(h.nodes.heroReaderTemporary.textContent, '');
     assert.equal(h.nodes.heroDesc.textContent, oldDescription);
     assert.equal(JSON.stringify(h.state()), state);
   } finally {
@@ -672,6 +877,8 @@ test('453 reader presentation invalidates memoized buttons without changing stor
 
 test('wire and render build reading controls and call launch inside the same gesture turn', () => {
   const h = harness();
+  const originalWindow = globalThis.window;
+  const originalStyle = globalThis.getComputedStyle;
   try {
     h.view.wire();
     h.view.render();
@@ -680,6 +887,9 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.nodes.listNote.textContent, 'List note');
     assert.equal(h.nodes.btnListNote.textContent, 'Edit note');
     assert.equal(h.nodes.heroTitle.textContent, 'Issue Two');
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
+    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'], 'Read: Issue Two in Marvel Unlimited');
+    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
     assert.equal(h.nodes.readingFilters.querySelectorAll('input[name="filter"]').length, READING_FILTERS.length);
     assert.equal(typeof h.nodes.btnHeroRead.listeners.click[0], 'function');
 
@@ -688,7 +898,11 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.calls.launch.length, 1, 'launch must happen during the click, not after a later tick');
     assert.equal(h.calls.launch[0][0].title, 'Issue Two');
 
-    h.nodes.saveEducationSettings.fire('click');
+    let navigationPrevented = false;
+    h.nodes.saveEducationSettings.fire('click', {
+      button: 0, preventDefault() { navigationPrevented = true; },
+    });
+    assert.equal(navigationPrevented, true);
     assert.deepEqual(h.calls.showView.at(-1), { name: 'data', opts: { push: true } });
     h.nodes.btnHydrate.fire('click');
     h.nodes.btnSynopsis.fire('click');
@@ -696,7 +910,51 @@ test('wire and render build reading controls and call launch inside the same ges
     h.nodes.btnCancelSynopsis.fire('click');
     assert.deepEqual(h.calls.hydrate, ['list-a', 'cancel']);
     assert.deepEqual(h.calls.synopsis, ['start', 'cancel']);
+    let toggle;
+    walk(h.nodes.rows, (control) => { if (!toggle && control.dataset?.act === 'more') toggle = control; });
+    assert.ok(toggle);
+    const actions = toggle.parentNode;
+    const scrolls = [];
+    globalThis.window = { innerHeight: 900, scrollBy: (options) => scrolls.push(options) };
+    let outline = 5;
+    globalThis.getComputedStyle = () => ({ outlineWidth: `${outline - 2}px`, outlineOffset: '2px' });
+    toggle.getBoundingClientRect = () => ({ left: 42, right: 278, top: 120.125, bottom: 164.125 });
+    const filters = h.nodes.readingFilters;
+    let bounds = { left: 17, right: 303, top: 0, bottom: 133.171875 };
+    filters.getBoundingClientRect = () => bounds;
+    const before = JSON.stringify(h.state());
+    const announcements = h.calls.announce.length;
+    const launches = h.calls.launch.length;
+    for (const config of [
+      { bottom: 133.171875, outline: 5, delta: 115.125 - 133.171875 },
+      { bottom: 280.5, outline: 9, delta: 111.125 - 280.5 },
+      { bottom: 280.5, hidden: true },
+      { bottom: 90 },
+      { bottom: 280.5, left: 290 },
+    ]) {
+      outline = config.outline ?? 5;
+      bounds = { left: config.left ?? 17, right: 303, top: 0, bottom: config.bottom };
+      filters.hidden = config.hidden ?? false;
+      toggle.fire('click');
+      assert.equal(actions.classList.contains('is-open'), true);
+      let prevented = false;
+      const count = scrolls.length;
+      actions.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+      assert.equal(prevented, true);
+      assert.equal(globalThis.document.activeElement, toggle, 'Escape retains the exact More toggle');
+      assert.equal(actions.classList.contains('is-open'), false);
+      assert.deepEqual(toggle.scrolled, { block: 'nearest' }, 'nearest reveal retains bottom clearance');
+      assert.deepEqual(scrolls.slice(count), config.delta === undefined ? []
+        : [{ top: config.delta, left: 0, behavior: 'instant' }]);
+    }
+    assert.equal(JSON.stringify(h.state()), before);
+    assert.equal(h.calls.announce.length, announcements);
+    assert.equal(h.calls.launch.length, launches);
   } finally {
+    if (originalWindow === undefined) delete globalThis.window;
+    else globalThis.window = originalWindow;
+    if (originalStyle === undefined) delete globalThis.getComputedStyle;
+    else globalThis.getComputedStyle = originalStyle;
     h.restore();
   }
 });

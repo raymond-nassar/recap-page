@@ -15,10 +15,15 @@ function node(props = {}, children = []) {
     classList: { toggle(name, force) { if (force) classes.add(name); else classes.delete(name); } },
     addEventListener(name, listener) { this.listeners[name] = listener; },
     setAttribute(name, value) { this.attributes[name] = value; },
+    getAttribute(name) { return this.attributes[name] ?? null; },
+    removeAttribute(name) { delete this.attributes[name]; },
     replaceChildren(...next) { this.children = next; },
     prepend(child) { this.children.unshift(child); },
     append(child) { this.children.push(child); },
-    insertBefore(child, before) { this.children.splice(Math.max(0, this.children.indexOf(before)), 0, child); },
+    insertBefore(child, before) {
+      const index = this.children.indexOf(before);
+      this.children.splice(index < 0 ? this.children.length : index, 0, child);
+    },
     closest() { return this.hidden ? this : null; },
     focus() { this.focused = true; },
     showModal() { this.open = true; },
@@ -44,6 +49,7 @@ function fixture() {
     'recommendationBrowse', 'collectionCount', 'collectionStatus', 'collectionSection',
     'collectionResults', 'home', 'homeYours', 'library', 'libraryYours', 'dataSafety',
     'historyControls', 'historyStatus', 'historyExport', 'historyCopy', 'historyRetry', 'historyRestore',
+    'backupHistory', 'historyTroubleshooting',
   ].map((name) => [name, node()]));
   nodes.collectionFilters = [node({ value: 'all' }), node({ value: 'enjoyed' })];
   nodes.home.append(nodes.homeYours);
@@ -200,6 +206,44 @@ test('wrap-up completes and reopens at the existing visibility boundaries withou
   } finally { Date.now = originalNow; }
 });
 
+test('healthy history keeps exceptional tools disclosed and incidents open without moving focus', async () => {
+  const h = fixture();
+  await h.view.render();
+  assert.equal(h.nodes.library.children[0], h.nodes.libraryYours);
+  const gateway = h.nodes.library.children.find((section) => section.id === 'library-completed');
+  assert.ok(gateway);
+  assert.equal(gateway.hidden, true, 'zero completed history does not lead active reading');
+  await h.history.complete('a');
+  await h.view.render();
+  const browse = gateway.children.find((child) => child.id === 'library-completed-browse');
+  assert.equal(browse.href, '#/catalog');
+  assert.equal(browse.hidden, false);
+  browse.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
+  browse.onclick({ button: 0, preventDefault() {} });
+  assert.equal(h.current, 'catalog');
+  assert.equal(h.nodes.historyTroubleshooting.open, false);
+  assert.ok(h.nodes.backupHistory.children.includes(h.nodes.historyControls));
+  h.history.known = false;
+  h.history.lastError = 'Saved history could not be read';
+  await h.view.render();
+  assert.equal(browse.hidden, true, 'unknown history is not all-completed');
+  assert.equal(h.nodes.historyTroubleshooting.open, true);
+  assert.match(h.nodes.historyStatus.textContent, /could not be read/);
+  assert.equal(h.nodes.historyRetry.disabled, false);
+  assert.equal(h.nodes.historyCopy.disabled, false);
+  assert.equal(h.nodes.historyRetry.focused, undefined, 'passive errors must not steal focus');
+});
+
+test('invalid completion backup gives unchanged history and next action without replacement', async () => {
+  const h = fixture();
+  h.current = 'data';
+  h.nodes.historyRestore.files = [{ text: async () => 'not history JSON' }];
+  await h.nodes.historyRestore.listeners.change({ target: h.nodes.historyRestore });
+  assert.equal(h.calls.restored, undefined);
+  assert.match(h.calls.notify.at(-1)[1], /^Completion history is unchanged\..*Choose a completion-history JSON backup/);
+  assert.equal(h.nodes.historyRestore.disabled, false);
+});
+
 test('compact completion status exposes unavailable actions without healthy explanatory prose', async () => {
   const h = fixture();
   await h.history.complete('a');
@@ -256,7 +300,7 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   h.nodes.down.listeners.click();
   await h.flush();
   assert.equal(h.nodes.down.attributes['aria-pressed'], 'true');
-  assert.equal(h.nodes.feedbackDialog.open, true);
+  assert.equal(h.nodes.feedbackDialog.open, false, 'negative enjoyment saves without opening reporting');
   assert.equal(LIST_FEEDBACK_URL, feedbackUrl);
   assert.equal(h.nodes.feedbackLink.href, feedbackUrl);
   assert.equal(h.nodes.privateFeedbackLink.href, PRIVATE_FEEDBACK_URL);
@@ -265,9 +309,10 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   assert.deepEqual([...destination.searchParams.keys()], ['id']);
   assert.equal(destination.hash, '');
   assert.equal(h.nodes.feedbackLink.href.includes(h.state.lists.a.name), false);
+  h.nodes.feedbackGuide.listeners.click();
   h.nodes.feedbackDialog.listeners.cancel({ preventDefault() {} });
   assert.equal(h.nodes.feedbackDialog.open, false);
-  assert.equal(h.nodes.down.focused, true);
+  assert.equal(h.nodes.feedbackGuide.focused, true);
   h.nodes.feedbackGuide.listeners.click();
   assert.equal(h.nodes.feedbackDialog.open, true);
   assert.equal(h.records.get('a').rating, 'down');
@@ -285,7 +330,7 @@ test('thumb feedback remains opt-in, clears selected choices and restores dialog
   await h.flush();
   assert.equal(h.nodes.down.attributes['aria-pressed'], 'false');
   assert.equal(h.calls.announce.length, announcements);
-  assert.equal(h.nodes.feedbackDialog.open, true, 'instructions remain useful without claiming a saved rating');
+  assert.equal(h.nodes.feedbackDialog.open, false, 'failed rating does not open instructions either');
 });
 
 test('pending completion cannot steal focus or show stale suggestions after navigation or identity replacement', async () => {
@@ -345,6 +390,11 @@ test('suggestions open saved candidates or preview unsaved ones and expose failu
   });
   await h.view.render();
   assert.equal(h.nodes.suggestions.children.length, 2);
+  for (const suggestion of h.nodes.suggestions.children) {
+    const button = suggestion.children[2];
+    assert.ok(button['aria-label'].startsWith(button.text));
+    assert.ok(button['aria-label'].includes(suggestion.children[0].text));
+  }
   h.nodes.suggestions.children[0].children[2].onclick();
   h.nodes.suggestions.children[1].children[2].onclick();
   assert.deepEqual(h.calls.opened, ['b']);

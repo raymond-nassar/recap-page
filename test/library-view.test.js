@@ -114,3 +114,47 @@ test('main constructs Library once and delegates refreshes without a fallback', 
   assert.match(main, /function setCovers\([\s\S]*?\n {2}libraryView\.render\(\);/);
   assert.doesNotMatch(main, /libraryView\?\.(?:render|wire)|if \(libraryView\)/);
 });
+
+function manualRows(state) {
+  const results = resultsBox();
+  const focused = [];
+  const library = createLibraryView({
+    el: element, elements: () => ({ heading: {}, results }),
+    emptyAction: () => null, getState: () => state,
+    issueFocusAnchor: (issue, options) => {
+      focused.push({ issue, options });
+      return { tag: 'a', props: { href: `#/issue/${issue.issueId}` }, children: [] };
+    },
+    listUi: { cap: 100, summaryBand: () => null, shownLine: () => null },
+    paintCover: () => {}, preservingFocus: (_box, rebuild) => rebuild(),
+    seriesOnly: (name) => name,
+    views: [{ value: 'library-manual', label: 'Added by hand', sort: 'Newest first',
+      select: () => [{ issueId: -7, title: 'Manual comic', lists: ['Same name'], source: 'manual' }],
+      summarise: () => [] }],
+  });
+  library.render();
+  return { results, focused };
+}
+
+test('manual rows open the existing Issue surface and resolve duplicate membership names from actual IDs', () => {
+  const state = { listOrder: ['b/list', 'a'], lists: {
+    a: { name: 'Same name', itemIds: [-7] }, 'b/list': { name: 'Same name', itemIds: [-7] },
+  } };
+  const { results, focused } = manualRows(state);
+  const row = results.children.at(-1);
+  assert.equal(row.children[0].props.href, '#/issue/-7');
+  assert.deepEqual(row.children[1].children.slice(1).map(({ props }) => [props.href, props.text]),
+    [['#/read/b%2Flist', 'Same name'], ['#/read/a', 'Same name']]);
+  assert.equal(focused[0].options.surface, 'added-by-hand');
+  assert.equal('context' in focused[0].options, false);
+});
+
+test('orphan manual rows retain Issue details without fabricating a saved list or provider identity', () => {
+  const { results, focused } = manualRows({ listOrder: ['other'], lists: {
+    other: { name: 'Same name', itemIds: [77] },
+  } });
+  assert.equal(results.children.at(-1).props.href, '#/issue/-7');
+  assert.equal(focused[0].issue.issueId, -7);
+  assert.equal(focused[0].issue.url, undefined);
+  assert.equal(focused[0].issue.seriesId, undefined);
+});

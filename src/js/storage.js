@@ -6,11 +6,17 @@
 
 import {
   createEmptyState, migrate, exportBackup, validateBackup, withoutIssueDescriptions,
+  normalizeIssue, MAX_BACKUP_BYTES, publishImportOccurrences,
 } from './lib/model.js';
+import {
+  DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, listSignature, occurrenceIssue,
+  validateImportDraft, importProjection, pendingOutcome,
+} from './lib/importDraft.js';
 
 export const KEY = 'mrt.state.v2';
+export const IMPORT_DRAFT_KEY = 'mrt.import.draft.v1';
 const TEMP_KEY = 'mrt.state.restore.tmp';
-const PRERESTORE_KEY = 'mrt.state.prerestore';
+export const PRERESTORE_KEY = 'mrt.state.prerestore';
 const SALVAGE_KEY = 'mrt.state.salvage';
 
 // Recovery values preserve the exact bytes that existed when something went wrong. They can be
@@ -51,6 +57,289 @@ function tokenOf(raw) {
   return found ? found[1] : null;
 }
 
+export class ImportDraftStore {
+  constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {} }) {
+    this.reader = reader;
+    this.storage = storage;
+    this.locks = locks;
+    this.onChange = onChange;
+    this.raw = null;
+    this.draft = null;
+    this.error = null;
+    this.recovery = [];
+    this.uncertain = false;
+    this.blocked = false;
+    this.load();
+  }
+
+  load() {
+    if (this.uncertain) {
+      this.error = 'Import draft storage outcome is unknown. Export retained source before reloading; no further changes are allowed.';
+      return this.draft;
+    }
+    const prior = this.raw;
+    try {
+      const raw = this.storage.getItem(IMPORT_DRAFT_KEY);
+      this.raw = raw;
+      const draft = raw === null ? null : validateImportDraft(raw);
+      this.draft = draft;
+      this.error = null;
+      this.blocked = false;
+    } catch (error) {
+      if (prior && prior !== this.raw) this.recovery = [...new Set([...this.recovery, prior])];
+      this.error = `Could not read the import draft (${error.message}). It was not overwritten.`;
+      this.blocked = true;
+    }
+    return this.draft;
+  }
+
+  capture() {
+    return this.raw;
+  }
+
+  isCurrent(expected) {
+    return expected === this.raw && this.storage.getItem(IMPORT_DRAFT_KEY) === expected;
+  }
+
+  async locked(expected, operation) {
+    if (!this.locks?.request) return { ok: false, changed: false, error: 'Import draft saving needs browser storage locks. Source was kept; nothing was published.' };
+    try {
+      return await this.locks.request(IMPORT_DRAFT_KEY, () => {
+        if (this.uncertain) throw new Error('Draft storage outcome is unknown. Export the retained source before reloading; further changes are paused.');
+        if (!this.isCurrent(expected)) throw new Error('The import draft changed in another tab. Reopen Add comics to review the current draft.');
+        if (this.blocked) throw new Error(this.error);
+        const result = operation();
+        this.error = result.ok ? null : result.error;
+        return result;
+      });
+    } catch (error) {
+      this.error = error.message;
+      return { ok: false, changed: false, error: error.message };
+    } finally {
+      this.onChange();
+    }
+  }
+
+  write(next) {
+    const previous = this.raw;
+    const raw = JSON.stringify({
+      ...next, previousSources: [...new Set([...next.previousSources, ...this.recovery])], revision: newToken(),
+    });
+    validateImportDraft(raw);
+    if (!this.isCurrent(previous)) throw new Error('Another tab changed the draft before saving. Nothing was overwritten.');
+    let writeError = null;
+    try {
+      this.storage.setItem(IMPORT_DRAFT_KEY, raw);
+    } catch (error) {
+      writeError = error;
+    }
+    let actual;
+    try {
+      actual = this.storage.getItem(IMPORT_DRAFT_KEY);
+    } catch (error) {
+      this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
+      this.uncertain = true;
+      return { ok: false, changed: null, error: `Import draft verification failed (${error.message}). Storage outcome is unknown; retained source is available for export before reloading.` };
+    }
+    if (actual === raw) {
+      this.raw = raw;
+      this.draft = JSON.parse(raw);
+      this.error = null;
+      this.recovery = [];
+      return { ok: true, changed: true };
+    }
+    if (actual !== previous) {
+      this.recovery = [...new Set([...this.recovery, previous, raw].filter(Boolean))];
+      this.uncertain = true;
+      return { ok: false, changed: null, error: 'Another value replaced the draft. Storage outcome is uncertain; export retained source before reloading. No rollback was attempted.' };
+    }
+    const checkpointOnly = next.pending === null && this.draft?.pending
+      && next.incarnation === this.draft.incarnation && next.rawText === this.draft.rawText;
+    if (!checkpointOnly) this.recovery = [...new Set([...this.recovery, raw])];
+    return { ok: false, changed: false, error: `Import draft was not saved${writeError ? ` (${writeError.message})` : ''}. Previous saved source is unchanged; keep this page open or export the unsaved source.` };
+  }
+
+  start(rawText, { listId = null, name = 'Imported Reading List' } = {}) {
+    const expected = this.capture();
+    return this.locked(expected, () => {
+      if (this.draft) throw new Error('A saved import draft already exists. Resume or export and discard it before starting another.');
+      const occurrences = sourceOccurrences(rawText);
+      if (!occurrences.length) throw new Error('Could not find any issues in that text.');
+      const list = listId ? this.reader.state.lists[listId] : null;
+      if (listId && !list) throw new Error('That destination no longer exists. Nothing was imported.');
+      const draft = {
+        format: DRAFT_FORMAT, version: DRAFT_VERSION, rawText, occurrences,
+        incarnation: newToken(), revision: newToken(), previousSources: [],
+        destination: {
+          id: list?.id ?? newToken(), created: list?.created ?? Date.now(),
+          name: list?.name ?? name, newList: !list, prefix: list ? [...list.itemIds] : [],
+        },
+        expected: listSignature(list), readerToken: this.reader.seenToken, paused: false, pending: null,
+      };
+      const prepared = this.write(draft);
+      if (!prepared.ok) return prepared;
+      return this.publish();
+    });
+  }
+
+  resolve(index, candidate, expected) {
+    return this.locked(expected, () => {
+      if (!this.draft || this.draft.pending || this.draft.paused) throw new Error('Resume the saved draft before resolving a comic.');
+      const issue = normalizeIssue(candidate);
+      const entry = this.draft.occurrences[index];
+      if (!entry || occurrenceIssue(entry) || !issue || issue.issueId <= 0) throw new Error('That selection is no longer an unresolved source position.');
+      const occurrences = this.draft.occurrences.map((row, i) => i === index ? { ...row, choice: issue } : row);
+      const prepared = this.write({ ...this.draft, occurrences });
+      if (!prepared.ok) return prepared;
+      return this.publish();
+    });
+  }
+
+  publish() {
+    const draft = this.draft;
+    const readerRaw = this.storage.getItem(KEY);
+    if (this.reader.blocked || this.reader.foreignWriteSince()
+      || tokenOf(readerRaw) !== draft.readerToken
+      || listSignature(this.reader.state.lists[draft.destination.id]) !== draft.expected) {
+      throw new Error('The reading data or destination changed. Source is saved; review Resume before publishing.');
+    }
+    const indices = draft.occurrences.flatMap((entry, index) => !entry.applied && occurrenceIssue(entry) ? [index] : []);
+    if (!indices.length) return { ok: true, readerSaved: false, added: 0, listId: draft.destination.id };
+    const inputs = draft.occurrences.map(occurrenceIssue);
+    const at = Date.now();
+    const operation = publishImportOccurrences(this.reader.state, draft, inputs, indices, at);
+    const pending = {
+      before: importProjection(this.reader.state, draft, indices),
+      after: importProjection(operation.state, draft, indices),
+      beforeToken: tokenOf(readerRaw), beforeAbsent: readerRaw === null, indices, at,
+    };
+    const prepared = this.write({ ...draft, pending });
+    if (!prepared.ok) return prepared;
+    this.reader.update(() => operation.state);
+    let actualRaw;
+    let actualState;
+    try {
+      actualRaw = this.storage.getItem(KEY);
+      actualState = actualRaw ? migrate(JSON.parse(actualRaw)) : createEmptyState();
+    } catch (error) {
+      return { ok: false, readerSaved: null, error: `Reading-data verification failed (${error.message}). Source and pending choice are saved; no automatic retry.` };
+    }
+    if (!this.reader.lastUpdateOk || tokenOf(actualRaw) !== this.reader.seenToken
+      || importProjection(actualState, draft, indices) !== pending.after) {
+      this.reader.load();
+      const outcome = pendingOutcome(this.draft, actualState, tokenOf(actualRaw), actualRaw === null);
+      return { ok: false, readerSaved: outcome === 'before' ? false : null, error: 'Comic saving could not be confirmed. Source and pending choice are saved; use Resume to review, not a blind retry.' };
+    }
+    const checkpoint = this.finishPending(actualState, tokenOf(actualRaw));
+    return {
+      ...checkpoint, readerSaved: true, added: operation.added, listId: draft.destination.id,
+      error: checkpoint.ok ? null : `Comics were saved, but the draft checkpoint did not finish. ${checkpoint.error}`,
+    };
+  }
+
+  finishPending(state, token) {
+    const pending = this.draft.pending;
+    const indices = new Set(pending.indices);
+    return this.write({
+      ...this.draft, pending: null, paused: false, readerToken: token,
+      expected: listSignature(state.lists[this.draft.destination.id]),
+      destination: { ...this.draft.destination, newList: false },
+      occurrences: this.draft.occurrences.map((entry, index) => indices.has(index)
+        ? { ...entry, applied: true } : entry),
+    });
+  }
+
+  resume(expected = this.capture()) {
+    return this.locked(expected, () => {
+      if (!this.draft) throw new Error('There is no saved import draft.');
+      const raw = this.storage.getItem(KEY);
+      if (this.reader.blocked || this.reader.foreignWriteSince()) throw new Error('Reading data changed. Reload before reviewing this draft.');
+      if (this.draft.pending) {
+        const outcome = pendingOutcome(this.draft, this.reader.state, tokenOf(raw), raw === null);
+        if (outcome === 'after') return { ...this.finishPending(this.reader.state, tokenOf(raw)), readerSaved: true, added: 0, listId: this.draft.destination.id };
+        if (outcome !== 'before') throw new Error('The interrupted import outcome is uncertain. Source is retained; historical read markers will not be replayed.');
+        const cleared = this.write({ ...this.draft, pending: null });
+        if (!cleared.ok) return cleared;
+      }
+      if (listSignature(this.reader.state.lists[this.draft.destination.id]) !== this.draft.expected) throw new Error('The destination was deleted, replaced or edited. Source is retained, but cannot be applied to that changed list.');
+      const checked = this.write({ ...this.draft, readerToken: tokenOf(raw), paused: false });
+      if (!checked.ok) return checked;
+      return this.publish();
+    });
+  }
+
+  invalidate() {
+    const expected = this.capture();
+    return this.locked(expected, () => this.draft
+      ? this.write({
+        ...this.draft, paused: true, incarnation: newToken(),
+        pending: this.draft.pending ? { ...this.draft.pending, beforeToken: `invalidated:${newToken()}`, beforeAbsent: false } : null,
+      }) : { ok: true });
+  }
+
+  restore(text, expected) {
+    let candidate;
+    try {
+      candidate = validateImportDraft(text);
+    } catch (error) {
+      return Promise.resolve({ ok: false, changed: false, invalid: true, error: error.message });
+    }
+    return this.locked(expected, () => this.write({
+      ...candidate, incarnation: newToken(), revision: newToken(), paused: true,
+      pending: candidate.pending ? { ...candidate.pending, beforeToken: `restored:${newToken()}`, beforeAbsent: false } : null,
+      previousSources: [...candidate.previousSources, ...(this.raw ? [this.raw] : [])],
+    }));
+  }
+
+  discard(expected, { readerRaw = undefined } = {}) {
+    return this.locked(expected, () => {
+      if (readerRaw !== undefined && this.storage.getItem(KEY) !== readerRaw) throw new Error('Reading data changed before draft cleanup. The draft was kept.');
+      let removalError = null;
+      try { this.storage.removeItem(IMPORT_DRAFT_KEY); } catch (error) { removalError = error; }
+      let actual;
+      try { actual = this.storage.getItem(IMPORT_DRAFT_KEY); } catch (error) {
+        this.recovery = [...new Set([...this.recovery, this.raw].filter(Boolean))];
+        this.uncertain = true;
+        return { ok: false, changed: null, error: `Import draft removal is uncertain (${error.message}). Export retained source before reloading.` };
+      }
+      if (actual !== null) {
+        if (actual !== this.raw) {
+          this.recovery = [...new Set([...this.recovery, this.raw].filter(Boolean))];
+          this.uncertain = true;
+        }
+        return {
+          ok: false, changed: actual === this.raw ? false : null,
+          error: `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before reloading; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
+        };
+      }
+      this.raw = null;
+      this.draft = null;
+      this.recovery = [];
+      return { ok: true, changed: true };
+    });
+  }
+
+  exportText() {
+    if (this.recovery.length) {
+      const candidate = this.recovery[this.recovery.length - 1];
+      const draft = validateImportDraft(candidate);
+      const previousSources = [...new Set([
+        ...draft.previousSources, ...this.recovery.slice(0, -1),
+        ...(this.raw !== null && this.raw !== candidate ? [this.raw] : []),
+      ])];
+      const exported = JSON.stringify({ ...draft, previousSources });
+      validateImportDraft(exported);
+      return exported;
+    }
+    if (this.raw !== null) return this.raw;
+    throw new Error('There is no retained import draft to export.');
+  }
+
+  fileRefusal(file) {
+    return file?.size > MAX_BACKUP_BYTES ? 'The import draft exceeds the 8 MiB limit.' : null;
+  }
+}
+
 export class Store {
   constructor({ storage = globalThis.localStorage, onChange = () => {} } = {}) {
     this.storage = storage;
@@ -76,6 +365,9 @@ export class Store {
     // stale snapshot the refusal was about. Cleared by persist() on entry rather than by its reader,
     // so it describes one call and cannot be inherited by the next.
     this.conflicted = false;
+    this.undoSnapshot = null;
+    this.undoMain = null;
+    this.snapshotSummary = null;
   }
 
   // A failed load must never lead to data loss. Previously this fell back to empty state and
@@ -222,9 +514,9 @@ export class Store {
 
   // Deliberate, user-initiated escape hatch from the blocked state. Refuses unless a copy of
   // the unreadable data verifiably survives somewhere, so the button the banner tells the user
-  // to press cannot destroy their only copy. confirmedDownloaded is the way out when storage is
-  // too full to hold a copy: the user has already saved the file to disk themselves.
-  startFresh({ confirmedDownloaded = false } = {}) {
+  // to press cannot destroy their only copy. verifiedCopyRaw comes from completed native output
+  // or exact file read-back, never a browser anchor request.
+  startFresh({ verifiedCopyRaw = null } = {}) {
     // Withdrawn rather than refused when its premise is gone. This button names one specific value,
     // the one this tab could not read, and offers to set it aside and clear it. If another tab has
     // replaced that value since, the button no longer names anything that exists, and neither of
@@ -247,16 +539,25 @@ export class Store {
       this.onChange(this.state, this.lastError);
       return false;
     }
-    if (!this.salvage() && !confirmedDownloaded) {
+    let original;
+    try {
+      original = this.storage?.getItem(KEY);
+    } catch (error) {
+      this.lastError = `Nothing was cleared: the original could not be checked (${error.message}). Try again.`;
+      this.onChange(this.state, this.lastError);
+      return false;
+    }
+    if (!this.salvage() && (typeof original !== 'string' || verifiedCopyRaw !== original)) {
       this.lastError =
         'Nothing was cleared: a copy of your unreadable data could not be set aside '
-        + '(browser storage is probably full). Use "Download a copy" first, then try again.';
+        + '(browser storage is probably full). Download a copy, then use "Verify downloaded copy" '
+        + 'to check the saved file before you try again. A download request alone is not a saved copy.';
       this.onChange(this.state, this.lastError);
       return false;
     }
     this.blocked = false;
     this.state = createEmptyState();
-    const ok = this.persist(this.state);
+    const ok = this.persist(this.state, original);
     if (ok) {
       this.lastError = null;
       // Saving works again, so the reason it was paused is no longer true. Cleared here rather
@@ -464,7 +765,7 @@ export class Store {
     } catch (err) {
       this.lastError =
         err?.name === 'QuotaExceededError'
-          ? 'Browser storage is full, so that change was not saved. Export a backup, then clear the cache from Settings.'
+          ? 'Reading-data storage is full, so that change was not saved. Download and check a backup before removing unneeded recovery copies or reading lists in Backup & settings. Clearing cached metadata does not free this separate storage.'
           : `Could not save that change (${err.message}). It has been undone.`;
       return false;
     }
@@ -515,26 +816,68 @@ export class Store {
   // Hence `changed`, which every return now carries: false when the saved data is as it was, true
   // when it holds the backup, and null when storage will not say which. The message describes that
   // outcome instead of asserting one.
-  restore(rawJson) {
+  inspectBackup(rawJson) {
     let parsed;
     try {
       parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
     } catch (err) {
-      return { ok: false, changed: false, errors: [`Not valid JSON: ${err.message}`] };
+      return { ok: false, errors: [`Not valid JSON: ${err.message}`] };
     }
 
     const { ok, errors, state } = validateBackup(parsed);
-    if (!ok) return { ok: false, changed: false, errors };
+    return { ok, errors, state };
+  }
+
+  captureRestore() {
+    try {
+      if (!this.storage) throw new Error('Browser storage is unavailable');
+      return { ok: true, main: this.storage.getItem(KEY) ?? '', snapshot: this.storage.getItem(PRERESTORE_KEY) };
+    } catch (error) {
+      return { ok: false, errors: [`Could not check saved reading data and its recovery copy (${error.message}). Reload and try again.`] };
+    }
+  }
+
+  restoreOffer() {
+    const captured = this.captureRestore();
+    if (!captured.ok) return { ...captured, available: false };
+    const { main, snapshot } = captured;
+    if (!snapshot) return { ...captured, available: false };
+    if (this.snapshotSummary?.raw !== snapshot) {
+      const checked = this.inspectBackup(snapshot);
+      const state = checked.state;
+      this.snapshotSummary = {
+        raw: snapshot,
+        text: checked.ok
+          ? `${state.listOrder.length} lists, ${Object.keys(state.issues).length} comics and ${Object.keys(state.read).length} read marks.`
+          : 'This saved copy cannot be restored by this version. Download it before trying another version or troubleshooting.',
+      };
+    }
+    const undo = !this.blocked && this.undoSnapshot === snapshot;
+    return {
+      ...captured, available: true, kind: undo ? 'undo' : 'copy',
+      edited: undo && main !== this.undoMain, identical: main === snapshot,
+      summary: this.snapshotSummary.text,
+    };
+  }
+
+  restore(rawJson, { expected, recovering = false } = {}) {
+    const { ok, errors, state } = this.inspectBackup(rawJson);
+    if (!ok) return { ok: false, changed: false, invalid: true, errors };
+    if (expected) {
+      const current = this.captureRestore();
+      if (!current.ok) return { ok: false, changed: false, errors: current.errors };
+      if (current.main !== expected.main || current.snapshot !== expected.snapshot) {
+        return { ok: false, changed: false, errors: ['Reading data or the saved copy changed while you were choosing. Review the current data and try again; nothing was overwritten.'] };
+      }
+    }
 
     // Stamped like an ordinary write, so what lands here is the same shape persist() writes and this
     // tab's next edit compares against its own restore rather than against what it read at boot.
     //
-    // Not compared before writing, unlike persist(). A restore is the reader saying to replace
-    // everything with this file, which is what it does; refusing it because another tab had saved
-    // would be refusing the instruction rather than protecting it from an accident. What the other
-    // tab saved is not lost either: priorMain below is read from storage at this moment rather than
-    // from anything this tab held, so the snapshot behind Undo is that tab's work, not this one's
-    // stale view of it.
+    // Unlike persist(), a confirmed replacement may adopt a newer value already captured by the
+    // dialog. Any change after that capture refuses the replacement. Calls without a capture retain
+    // the legacy deliberate-overwrite behavior and preserve the current durable bytes, not this
+    // tab's stale in-memory view.
     const serialized = JSON.stringify({ [WRITE_TOKEN]: newToken(), ...exportBackup(state) });
     // Read before anything is written, because a restore that turns out not to have happened has
     // to put this slot back as it found it, and a slot cannot be put back to a value nobody read.
@@ -550,6 +893,7 @@ export class Store {
     // Set between the snapshot and the swap, so it answers the one question the catch cannot
     // answer for itself: whether the throw arrived before the main key was ever addressed.
     let swapReached = false;
+    let preservationReached = false;
     // What the main key held going in, kept so a read-back that matches neither the backup nor
     // this can be called what it is. Without it the mismatch branch said "Nothing was changed"
     // for every non-match, which is a claim about a value it had thrown away.
@@ -557,22 +901,38 @@ export class Store {
     try {
       this.storage?.setItem(TEMP_KEY, serialized);
       priorMain = this.storage?.getItem(KEY) ?? '';
+      if (expected && (priorMain !== expected.main || (this.storage?.getItem(PRERESTORE_KEY) ?? null) !== expected.snapshot)) {
+        throw new Error('Reading data or the saved copy changed before replacement. Review and try again');
+      }
+      preservationReached = true;
       this.storage?.setItem(PRERESTORE_KEY, priorMain);
+      if (this.storage && this.storage.getItem(PRERESTORE_KEY) !== priorMain) {
+        throw new Error('The previous reading data could not be preserved. Export a reading-data backup before trying again');
+      }
       swapReached = true;
       this.storage?.setItem(KEY, serialized);
       this.storage?.removeItem(TEMP_KEY);
     } catch (err) {
       this.discardStaging();
       if (!swapReached) {
-        // setItem throws instead of writing, so a throw here leaves the snapshot slot untouched
-        // as well as the main key. Nothing to rewind, and nothing to reconcile.
+        let copyStatus = '';
+        if (preservationReached) {
+          try {
+            if (typeof heldSnapshot === 'string') this.storage?.setItem(PRERESTORE_KEY, heldSnapshot);
+            copyStatus = (this.storage?.getItem(PRERESTORE_KEY) ?? null) === heldSnapshot
+              ? ' The earlier recovery copy is unchanged.'
+              : ' Check and download the retained recovery copy before trying again.';
+          } catch (copyError) {
+            copyStatus = ` Recovery-copy preservation could not be confirmed (${copyError.message}). Keep this page open and download any retained copy before trying again.`;
+          }
+        }
         return {
           ok: false,
           changed: false,
-          errors: [`Could not write the restored data: ${err.message}. Nothing was changed.`],
+          errors: [`Could not write the restored data: ${err.message}. Reading data was not replaced.${copyStatus}`],
         };
       }
-      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err });
+      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering });
     }
 
     // A swap that did not throw is not a swap that landed. setItem can report a success it did not
@@ -580,7 +940,7 @@ export class Store {
     // reads its own removal back. Taking the absence of a throw as proof is the inference this whole
     // path exists to remove, so the ordinary outcome is reconciled through the same read-back as the
     // failing one rather than being the one place that still assumes.
-    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err: null });
+    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err: null, recovering });
   }
 
   // What the saved data actually holds, once a write has been attempted.
@@ -589,7 +949,7 @@ export class Store {
   // the outcomes that reach here are indistinguishable from the outside: a swap that threw, a
   // cleanup that threw after the swap landed, and a swap that reported success without storing all
   // arrive looking alike. Storage has the answer, so it is asked.
-  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err }) {
+  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering }) {
     // With no storage at all every write above was a no-op through optional chaining, so there is
     // nothing to read back and nothing this could reconcile against. The app always constructs the
     // store with localStorage; this is the shape a test double takes.
@@ -623,6 +983,8 @@ export class Store {
       // The token that is now on disk, taken from what was read back rather than from what was
       // written, because this branch exists precisely because the two can differ.
       this.seenToken = tokenOf(durable);
+      this.undoSnapshot = recovering ? null : priorMain || null;
+      this.undoMain = recovering ? null : durable;
       return this.adoptRestored(state);
     }
 
@@ -692,7 +1054,7 @@ export class Store {
     }
   }
 
-  undoRestore() {
+  undoRestore(expected) {
     let prev;
     let live;
     try {
@@ -708,7 +1070,7 @@ export class Store {
     if (prev === live) {
       return { ok: false, changed: false, errors: ['There is nothing to undo: the snapshot matches your saved data.'] };
     }
-    return this.restore(prev);
+    return this.restore(prev, { expected, recovering: true });
   }
 
   // Asked on every repaint, including the repaint that follows a read failure, so a throw here

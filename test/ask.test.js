@@ -28,6 +28,9 @@ function makeElement(extra = {}) {
     disabled: false,
     inert: false,
     focusCalls: 0,
+    attributes: {},
+    setAttribute(name, value) { this.attributes[name] = value; },
+    removeAttribute(name) { delete this.attributes[name]; },
     focus() {
       this.focusCalls += 1;
       globalThis.document.activeElement = this;
@@ -39,8 +42,8 @@ function makeElement(extra = {}) {
       if (!listeners.has(type)) listeners.set(type, []);
       listeners.get(type).push(fn);
     },
-    fire(type) {
-      for (const fn of listeners.get(type) ?? []) fn();
+    fire(type, event) {
+      for (const fn of listeners.get(type) ?? []) fn(event);
     },
     ...extra,
   };
@@ -83,6 +86,7 @@ function installDom({ withDialog = true } = {}) {
     'ask-field': makeElement(),
     'ask-label': makeElement(),
     'ask-input': makeElement(),
+    'ask-error': makeElement(),
     'ask-ok': makeElement(),
     'ask-cancel': makeElement(),
   };
@@ -388,9 +392,9 @@ test('asking on a page with no dialog resolves no rather than throwing', async (
   }
 });
 
-test('a name is trimmed, and one that is only spaces is refused rather than saved', async () => {
+test('a name is trimmed, and whitespace stays open for a focused associated correction', async () => {
   try {
-    const { askText, dlg, input } = await wired();
+    const { askText, dlg, input, parts } = await wired();
 
     const trimmed = askText({ title: 'Rename', label: 'Name', value: 'Old' });
     input.value = '  Uncanny X-Men  ';
@@ -399,8 +403,19 @@ test('a name is trimmed, and one that is only spaces is refused rather than save
 
     const blank = askText({ title: 'Rename', label: 'Name', value: 'Old' });
     input.value = '   ';
-    dlg.close('ok');
-    assert.equal(await within(blank, 'blank to settle'), null, 'an all-whitespace name was accepted');
+    let prevented = false;
+    parts['ask-form'].fire('submit', { preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(dlg.isOpen, true);
+    assert.equal(globalThis.document.activeElement, input);
+    assert.equal(input.attributes['aria-invalid'], 'true');
+    assert.match(parts['ask-error'].textContent, /name/);
+    input.value = 'Corrected';
+    input.fire('input');
+    assert.equal(input.attributes['aria-invalid'], undefined);
+    assert.equal(parts['ask-error'].textContent, '');
+    dlg.close('');
+    assert.equal(await within(blank, 'blank to settle'), null);
   } finally {
     clearDom();
   }

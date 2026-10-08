@@ -138,6 +138,9 @@ export function safeOrderFile(v) {
 
 function normalizeEntry(raw) {
   if (!raw || typeof raw !== 'object') return null;
+  if (Object.hasOwn(raw, 'storylines') && typeof raw.storylines !== 'boolean') {
+    throw new Error(`Catalog list "${raw.id ?? '(unnamed)'}" has invalid storylines metadata`);
+  }
   const id = str(raw.id);
   const name = str(raw.name);
   const file = safeFile(raw.file);
@@ -165,6 +168,7 @@ function normalizeEntry(raw) {
     description: str(raw.description),
     type: LIST_TYPES.includes(raw.type) ? raw.type : null,
     depth: READING_DEPTHS.includes(raw.depth) ? raw.depth : null,
+    storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
@@ -235,6 +239,11 @@ export function parseCatalog(raw) {
     }
     seen.add(list.id);
     lists.push(list);
+  }
+  for (const story of groupCatalog(lists)) {
+    if (new Set(story.lists.map((list) => list.storylines)).size > 1) {
+      throw new Error(`Catalog group "${story.key}" has conflicting storylines metadata`);
+    }
   }
 
   // Sorted here rather than in each view, because the home grid shows only the first handful and
@@ -330,7 +339,7 @@ export function catalogFacets(lists) {
   const short = all.filter(isShortOrder).length;
   if (short) facets.push({ key: 'short', label: `Short (under ${SHORT_ORDER_MAX} issues)`, count: short });
 
-  return facets;
+  return facets.filter((facet) => facet.key === 'all' || facet.count < all.length);
 }
 
 // Logical stops stay distinct from visible choices: completing one reading of a story must not
@@ -764,7 +773,7 @@ export const CATALOG_SHELVES = [
     types: null,
     sections: 'decades',
     heading: 'Storylines',
-    blurb: 'Whole runs and on-screen companion picks rather than single events. Each one stands on its own, and several of them thread through the same years the events do.',
+    blurb: 'Selected named stories, events and arcs, whole runs, and on-screen companion picks. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
     empty: 'No storylines or on-screen companion picks are bundled with this build.',
   },
   {
@@ -798,6 +807,28 @@ export function shelfKey(story) {
 export function shelfStories(stories, key) {
   const all = Array.isArray(stories) ? stories : [];
   return all.filter((story) => shelfKey(story) === key);
+}
+
+export function storylinesStories(stories) {
+  const all = Array.isArray(stories) ? stories : [];
+  const eligible = new Set(groupCatalog(all.flatMap((story) => story.lists ?? []))
+    .filter((story) => shelfKey(story) === 'lines' || story.lists.every((list) => list.storylines === true))
+    .flatMap((story) => story.lists.map((list) => list.id)));
+  const seen = new Set();
+  return all.flatMap((story) => {
+    const lists = (story.lists ?? []).filter((list) => {
+      if (!eligible.has(list.id) || seen.has(list.id)) return false;
+      seen.add(list.id);
+      return true;
+    });
+    return lists.length ? [{ ...story, lists }] : [];
+  });
+}
+
+export function storylinesLists(lists) {
+  const ids = new Set(storylinesStories(groupCatalog(lists))
+    .flatMap((story) => story.lists.map((list) => list.id)));
+  return (Array.isArray(lists) ? lists : []).filter((list) => ids.has(list.id));
 }
 
 // The same question asked of raw readings rather than of grouped stories, for the callers that
@@ -1112,7 +1143,7 @@ export const HOME_CATEGORIES = [
     label: 'Browse complete arcs',
     icon: 'E8FD',
     tier: 'primary',
-    select: shelfCategory('lines'),
+    select: storylinesStories,
   },
   {
     key: 'character-spotlights',

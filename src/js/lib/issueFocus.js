@@ -1,5 +1,5 @@
 import { normalizeIssue } from './model.js';
-import { availability, describe, SHORT, STATE } from './availability.js';
+import { availability, describe, STATE } from './availability.js';
 import { detailUrl, isLaunchable } from '../reader.js';
 import { ApiError } from '../api.js';
 
@@ -23,8 +23,8 @@ export function issuePresentation(issue, {
   if (!issue) return null;
   const state = availability(issue, { override });
   const facts = [{
-    key: 'In Unlimited',
-    value: `${SHORT[state.state]} ${describe(issue, { override })}`,
+    key: 'Unlimited availability',
+    value: describe(issue, { override }),
     className: state.state === STATE.EXPECTED || state.state === STATE.OVERRIDE_AVAILABLE
       ? 'ok'
       : state.state === STATE.SCHEDULED ? 'warn' : '',

@@ -59,7 +59,7 @@ test('current shipped identity and short attribution use Recap Page', () => {
   assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 2);
   assert.match(
     html,
-    /<footer class="app-footer">\s*<button[^>]*data-view="about"[^>]*>[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*data-marvel-copyright/,
+    /<footer class="app-footer">\s*<a href="#\/about"[^>]*data-view="about"[^>]*>[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*data-marvel-copyright/,
   );
   assert.match(main, /download\('recap-page-backup\.json'/);
   assert.match(reading, /textContent = 'Recap Page'/);

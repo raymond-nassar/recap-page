@@ -13,7 +13,8 @@ import {
 import {
   ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
-import { KEY, Store } from '../src/js/storage.js';
+import { KEY, Store, ImportDraftStore, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
+import { wireFieldValidation } from '../src/js/views/shared/field-validation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -21,6 +22,67 @@ const html = read('src/index.html');
 const main = read('src/js/main.js');
 const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
+
+test('pasted import publishes new destination, activation, members and checked markers in one reader write', async () => {
+  const values = new Map();
+  const writes = [];
+  const storage = {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => { writes.push(key); values.set(key, value); },
+  };
+  const reader = new Store({ storage });
+  reader.load();
+  const draft = new ImportDraftStore({ reader, locks: { request: async (_key, fn) => fn() } });
+  const result = await draft.start('- [x] [One](https://www.marvel.com/comics/issue/1/)\n- [ ] Gap\n- [ ] [Three](https://www.marvel.com/comics/issue/3/)');
+  assert.equal(result.ok, true);
+  assert.equal(writes.filter((key) => key === KEY).length, 1);
+  assert.ok(writes.indexOf(IMPORT_DRAFT_KEY) < writes.indexOf(KEY));
+  assert.equal(reader.state.active, result.listId);
+  assert.deepEqual(reader.state.lists[result.listId].itemIds, [1, 3]);
+  assert.ok(reader.state.read[1]);
+  assert.equal(reader.state.read[3], undefined);
+});
+
+test('both unresolved match paths delegate captured source position to the same durable publisher', () => {
+  const resolving = add.slice(add.indexOf('  function unresolvedRow'), add.indexOf('  function showImportResult'));
+  assert.equal((resolving.match(/importDraft\.resolve\(entry\.index,/g) ?? []).length, 2);
+  assert.match(resolving, /importDraft\.isCurrent\(expected\)/);
+  assert.doesNotMatch(resolving, /addIssuesToList|markRead/);
+  assert.match(resolving, /Find match/);
+  assert.match(resolving, /This one/);
+  assert.match(add, /wireFieldValidation\(\{[\s\S]*field: \$\('#import-text'\)/);
+  assert.match(add, /selected\.size && \$\('#import-text'\)\.value === displayedSource/);
+});
+
+test('field validation preserves hints, expands containing disclosures and resets invalid state', () => {
+  const listeners = {};
+  const attributes = { 'aria-describedby': 'existing-hint' };
+  const outer = { tagName: 'DETAILS', open: false, parentElement: null };
+  const inner = { tagName: 'DETAILS', open: false, parentElement: outer };
+  const field = {
+    parentElement: inner, focused: false,
+    getAttribute: (name) => attributes[name] ?? null,
+    setAttribute: (name, value) => { attributes[name] = value; },
+    removeAttribute: (name) => { delete attributes[name]; },
+    addEventListener: (name, handler) => { listeners[name] = handler; },
+    focus() { this.focused = true; },
+  };
+  let message;
+  const validation = wireFieldValidation({
+    field, reportId: 'error', reportError: (text) => { message = text; }, invalidMessage: 'Complete the address.',
+  });
+  let prevented = false;
+  listeners.invalid({ preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.equal(message, 'Complete the address.');
+  assert.equal(attributes['aria-describedby'], 'existing-hint error');
+  assert.equal(attributes['aria-invalid'], 'true');
+  assert.equal(field.focused && inner.open && outer.open, true);
+  listeners.input();
+  assert.equal(attributes['aria-invalid'], undefined);
+  validation.fail('Custom error.');
+  assert.equal(message, 'Custom error.');
+});
 
 function prose(text) {
   return text
@@ -397,6 +459,23 @@ test('all search surfaces share selection controls rather than immediate Add act
   assert.doesNotMatch(add, /savePage|onAdd|addToActive|LongAddRunner|Add all issues/);
 });
 
+test('search saving stays in a native selected-only disclosure without moving checkbox focus', () => {
+  assert.match(add, /const disclosure = el\('details', \{ class: 'comic-save', hidden: true \}/);
+  assert.match(add, /builder\.disclosure\.hidden = selected\.size === 0/);
+  assert.match(add, /if \(!selected\.size\) builder\.disclosure\.open = false/);
+  assert.match(add, /el\('summary', \{ text: 'Save selected comics' \}\)/);
+  const checkbox = add.slice(add.indexOf("checkbox.addEventListener('change'"), add.indexOf('const metadata ='));
+  assert.doesNotMatch(checkbox, /\.focus\(|\.open = true/);
+});
+
+test('a current search retires shared save feedback without discarding the draft', () => {
+  const begin = add.slice(add.indexOf('  function beginSearch'), add.indexOf('  function wireNameSearch'));
+  assert.match(begin, /clearSelectionReports\(\)/);
+  assert.doesNotMatch(begin, /selected\.clear|destinationId =|draftName =/);
+  assert.match(add, /text: item\.issueCount == null \? 'An unknown number of comics' : comics\(item\.issueCount\)/);
+  assert.match(add, /matches\.length === 1 \? 'matches' : 'match'/);
+});
+
 test('the Add hub groups five routes with five dedicated pages', () => {
   assert.deepEqual(ADD_VIEWS, ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']);
   const hub = page('add');
@@ -596,7 +675,7 @@ test('composition constructs one Add boundary and delegates its lifecycle', () =
   assert.doesNotMatch(main, /function (renderResults|doImport|unresolvedRow|doManual)\(/);
   assert.doesNotMatch(
     add,
-    /from ['"](?:\.\.\/(?:api|cache|hydrate|main|storage|synopsis)\.js|\.\.\/lib\/limiter\.js|\.\/)/,
+    /from ['"](?:\.\.\/(?:api|cache|hydrate|main|storage|synopsis)\.js|\.\.\/lib\/limiter\.js|\.\/(?!shared\/))/,
     'Add must receive controller services and sibling views through composition',
   );
   for (const owner of ['Store', 'MarvelApi', 'ResponseCache', 'RateLimiter', 'Hydrator', 'SynopsisRunner']) {

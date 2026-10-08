@@ -6,6 +6,7 @@ import {
 } from '../src/js/lib/model.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
+import { waitForSavedPreviewLink } from './browser-owner-guide.mjs';
 
 const readJson = (file) => JSON.parse(readFileSync(new URL(file, import.meta.url), 'utf8'));
 const fixture = readJson('../test/fixtures/mcu-prep-captain-america-brave-new-world-vector.json');
@@ -177,8 +178,7 @@ export const braveNewWorldActualData = {
       if (width === 1280) await click(page, '#preview-close');
     }
     await click(page, '#preview-add [data-act="main"]');
-    await page.waitForFunction(() =>
-      document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library'));
+    await waitForSavedPreviewLink(page, id);
     checkSaved(t, 'Import preserves prior lists, all read/notes/overrides, deferral and separate completion history',
       await saved(page));
     await click(page, '#preview-add [data-act="main"]');

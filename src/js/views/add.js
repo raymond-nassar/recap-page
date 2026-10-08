@@ -3,7 +3,6 @@ import {
   createList,
   heldCount,
   MAX_NAME,
-  markRead,
   mergeIssueMetadata,
   normalizeIssue,
   setActive,
@@ -21,6 +20,8 @@ import { compareIssues } from '../lib/sort.js';
 import { updatedLabel } from '../lib/catalog.js';
 import { formatRoute } from '../lib/route.js';
 import { uiIcon } from '../lib/uiIcon.js';
+import { labelledName } from '../lib/accname.js';
+import { wireFieldValidation } from './shared/field-validation.js';
 
 const NAME_SEARCH_LIMIT = 40;
 const ISSUE_SEARCH_LIMIT = 50;
@@ -204,6 +205,7 @@ export function manualDetailUrl(url, digitalId) {
 export function createAddView({
   $,
   announce,
+  askConfirm,
   el,
   ensureList,
   friendly,
@@ -211,6 +213,7 @@ export function createAddView({
   getState,
   hydrate,
   issueFocusAnchor,
+  importDraft,
   lookupManual,
   notify,
   onNonEmptyListSave,
@@ -229,6 +232,14 @@ export function createAddView({
   let draftName = DEFAULT_LIST_NAME;
   let nameEdited = false;
   let saving = false;
+  let manualTitleValidation;
+  let manualUrlValidation;
+  let importValidation;
+  let displayedSource = '';
+  let pastedSource = null;
+  let importMessage = '';
+  let importBusy = false;
+  let lastDraftRender = null;
   const searches = [
     {
       prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
@@ -254,7 +265,10 @@ export function createAddView({
   };
 
   function clearSelectionReports() {
-    for (const config of searches) config.builder?.report.replaceChildren();
+    for (const config of searches) {
+      config.builder?.report.replaceChildren();
+      config.builder?.validation.clear();
+    }
   }
 
   function selectComics(items) {
@@ -283,6 +297,9 @@ export function createAddView({
       builder.host.hidden = !config.hasResults && selected.size === 0 && builder.report.childElementCount === 0;
       builder.count.textContent = `${comics(selected.size)} selected`;
       builder.clear.disabled = selected.size === 0 || saving;
+      builder.clear.hidden = selected.size === 0;
+      builder.disclosure.hidden = selected.size === 0;
+      if (!selected.size) builder.disclosure.open = false;
       builder.save.disabled = selected.size === 0 || saving || missing;
       builder.save.textContent = destinationId ? 'Add to Reading List' : 'Create Reading List';
       builder.nameRow.hidden = Boolean(destinationId);
@@ -315,8 +332,7 @@ export function createAddView({
       return;
     }
     if (!destinationId && (!draftName.trim() || draftName.trim().length > MAX_NAME)) {
-      notify(report, `Name the new Reading List using 1 to ${MAX_NAME} characters.`, 'warn');
-      builder.name.focus();
+      builder.validation.fail(`Name the new Reading List using 1 to ${MAX_NAME} characters.`);
       return;
     }
     const creating = !destinationId;
@@ -374,19 +390,30 @@ export function createAddView({
       text: 'That Reading List no longer exists. Choose another list.',
     });
     const report = el('div', { id: `${prefix}-selection-report`, class: 'results', tabindex: -1 });
+    const validation = wireFieldValidation({
+      field: name,
+      reportId: report.id,
+      reportError: (message) => notify(`#${prefix}-selection-report`, message, 'warn'),
+      invalidMessage: `Name the new Reading List using 1 to ${MAX_NAME} characters.`,
+    });
+    const disclosure = el('details', { class: 'comic-save', hidden: true }, [
+      el('summary', { text: 'Save selected comics' }),
+      el('div', { class: 'stack' }, [
+        el('label', { for: `${prefix}-destination`, text: 'Save to' }),
+        destination,
+        missing,
+        nameRow,
+        el('div', { class: 'field-row' }, [save]),
+      ]),
+    ]);
     const form = el('form', { class: 'stack', id: `${prefix}-selection-form` }, [
-      selectionCount,
-      el('label', { for: `${prefix}-destination`, text: 'Save to' }),
-      destination,
-      missing,
-      nameRow,
-      el('div', { class: 'field-row' }, [save, clear]),
+      el('div', { class: 'field-row comic-selection-tools' }, [selectionCount, clear]),
+      disclosure,
       el('span', { class: 'visually-hidden', id: `${prefix}-clear-help`, text: clearHelp }),
     ]);
     const host = el('section', {
-      class: 'comic-builder', hidden: true, 'aria-labelledby': `${prefix}-selection-h`,
+      class: 'comic-builder', hidden: true, 'aria-label': 'Comic selection',
     }, [
-      el('h2', { id: `${prefix}-selection-h`, text: 'Build a Reading List' }),
       form,
       report,
     ]);
@@ -414,7 +441,7 @@ export function createAddView({
     });
     $(config.results).before(host);
     config.builder = {
-      host, destination, name, nameRow, count: selectionCount, save, clear, missing, report,
+      host, destination, name, nameRow, count: selectionCount, save, clear, disclosure, missing, report, validation,
     };
   }
 
@@ -427,7 +454,8 @@ export function createAddView({
     const heading = config.kind === 'creator'
       ? `Comics credited to ${status.item.name}`
       : config.kind === 'series' ? `Comics in ${status.item.name}` : `Comics matching “${status.item.name}”`;
-    box.append(el('h2', { class: 'comic-results-heading', text: heading }));
+    const resultHeading = el('h2', { class: 'comic-results-heading', text: heading, tabindex: -1 });
+    box.append(resultHeading);
     if (status.phase !== 'complete') {
       const partial = status.total != null
         ? `${comics(items.length)} of ${count(status.total)}`
@@ -451,6 +479,8 @@ export function createAddView({
         box.append(el('p', { class: 'rail-hint', text: 'No comics to show. Try a different search.' }));
       }
       refreshBuilders();
+      if (config.focusResults) resultHeading.focus();
+      config.focusResults = false;
       return;
     }
 
@@ -543,7 +573,7 @@ export function createAddView({
     filter.addEventListener('input', () => {
       shown = RESULT_BATCH_SIZE;
       renderRows();
-      announce(`${comics(matches.length)} match this filter.`);
+      announce(`${comics(matches.length)} ${matches.length === 1 ? 'matches' : 'match'} this filter.`);
     });
     selectAll.addEventListener('click', () => {
       selectComics(matches);
@@ -557,6 +587,8 @@ export function createAddView({
       if (more.hidden) filter.focus({ preventScroll: true });
     });
     renderRows();
+    if (config.focusResults) resultHeading.focus();
+    config.focusResults = false;
   }
 
   for (const config of searches) {
@@ -587,6 +619,8 @@ export function createAddView({
   }
 
   function beginSearch(config) {
+    clearSelectionReports();
+    config.focusResults = false;
     config.epoch += 1;
     config.runner.cancel();
     config.hasResults = false;
@@ -640,13 +674,16 @@ export function createAddView({
           box.append(el('div', { class: 'result' }, [
             el('div', { class: 'result-main' }, [
               el('div', { class: 'result-title', text: item.name }),
-              el('div', { class: 'result-meta', text: `${item.issueCount ?? 'an unknown number of'} issues` }),
+              el('div', { class: 'result-meta', text: item.issueCount == null ? 'An unknown number of comics' : comics(item.issueCount) }),
             ]),
             el('button', {
               type: 'button',
               class: 'btn btn-g',
               'aria-label': `Browse comics ${kind === 'creator' ? 'by' : 'in'} ${item.name}`,
-              onclick: () => { void config.runner.start(item); },
+              onclick: () => {
+                config.focusResults = true;
+                void config.runner.start(item);
+              },
             }, 'Browse comics'),
           ]));
         }
@@ -671,45 +708,35 @@ export function createAddView({
       : `Adding to: new ${DEFAULT_LIST_NAME}`;
   }
 
-  function unresolvedRow(entry, listId) {
+  function unresolvedRow(entry) {
     const row = el('div', { class: 'result' });
     const main = el('div', { class: 'result-main' }, [
       el('div', { class: 'result-title', text: entry.title }),
-      el('div', { class: 'result-meta', text: 'No issue link, search to resolve' }),
+      el('div', { class: 'result-meta', text: `Source line ${entry.line}, position ${entry.index + 1}: no issue link, search to resolve` }),
     ]);
-    const button = el('button', { type: 'button', class: 'btn btn-g' }, 'Find match');
+    const button = el('button', {
+      type: 'button', class: 'btn btn-g', 'aria-label': labelledName('Find match', entry.title),
+    }, 'Find match');
     button.addEventListener('click', async () => {
+      const expected = importDraft.capture();
       button.disabled = true;
       try {
         const candidates = await search.issues(entry.title, { limit: 25 });
+        if (!importDraft.isCurrent(expected)) {
+          showImportResult({ ok: false, error: 'The draft changed while searching. Review the current source; that result was not applied.' });
+          return;
+        }
         const resolved = resolveUniqueExact(entry.title, candidates);
         if (resolved.status === 'resolved') {
-          let added = 0;
-          const saved = updateState((state) => {
-            const result = addIssuesToList(state, listId, [resolved.match], {});
-            added = result.added;
-            return result.state;
-          });
-          if (!saved.ok) {
-            button.disabled = false;
-            row.append(el('p', { class: 'notice notice-error', text: 'That match could not be saved.' }));
-            return;
-          }
-          if (entry.read && !updateState((state) => markRead(state, resolved.match.issueId, true)).ok) {
-            button.disabled = false;
-            return;
-          }
-          const transition = onNonEmptyListSave({ ok: true, added, listId });
-          row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Matched: ${resolved.match.title}` }));
-          announce(withSaveEducation(`Matched ${entry.title}.`, transition));
+          showImportResult(await importDraft.resolve(entry.index, resolved.match, expected));
           return;
         }
         const choices = el('div', { class: 'results' });
         const matches = resolved.matches.slice(0, 8);
         if (!matches.length) {
-          row.replaceChildren(el('p', {
+          row.append(el('p', {
             class: 'notice notice-warn',
-            text: `No candidates found for “${entry.title}”. Add it by hand if you still want to track it.`,
+            text: `No candidates found for “${entry.title}”. This source position is still saved. Try Find match again later.`,
           }));
           announce(`No candidates found for ${entry.title}.`);
           return;
@@ -727,24 +754,10 @@ export function createAddView({
             el('button', {
               type: 'button',
               class: 'btn btn-g',
-              onclick: () => {
-                let added = 0;
-                const saved = updateState((state) => {
-                  const result = addIssuesToList(state, listId, [candidate], {});
-                  added = result.added;
-                  return result.state;
-                });
-                if (!saved.ok) {
-                  row.replaceChildren(el('p', {
-                    class: 'notice notice-error',
-                    text: `${candidate.title} could not be saved.`,
-                  }));
-                  return;
-                }
-                if (entry.read && !updateState((state) => markRead(state, candidate.issueId, true)).ok) return;
-                const transition = onNonEmptyListSave({ ok: true, added, listId });
-                row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Added ${candidate.title}.` }));
-                announce(withSaveEducation(`Added ${candidate.title}.`, transition));
+              'aria-label': labelledName('This one', `${candidate.title} for ${entry.title}`),
+              onclick: async (event) => {
+                event.currentTarget.disabled = true;
+                showImportResult(await importDraft.resolve(entry.index, candidate, expected));
               },
             }, 'This one'),
           ]));
@@ -755,81 +768,117 @@ export function createAddView({
         const why = friendly(error);
         row.append(el('p', { class: 'notice notice-error', text: why }));
         announce(why);
+      } finally {
+        button.disabled = false;
       }
     });
     row.append(main, button);
     return row;
   }
 
-  function doImport() {
-    const text = $('#import-text').value;
-    if (!text.trim()) {
-      notify('#import-report', 'Paste a Reading List first.', 'warn');
-      return;
+  function showImportResult(result) {
+    const resolved = importDraft.draft?.occurrences.filter((entry) => entry.applied).length ?? 0;
+    const added = result.added ?? 0;
+    importMessage = result.ok
+      ? `Imported ${added} issue${added === 1 ? '' : 's'}, ${Math.max(0, resolved - added)} already present. Import source is saved. Resolved comics are in their source positions; gaps and duplicate occurrences remain in this draft.`
+      : result.error;
+    if (result.ok && result.readerSaved && result.added > 0) {
+      const transition = onNonEmptyListSave(result);
+      importMessage = withSaveEducation(importMessage, transition);
+      hydrate(result.listId);
     }
-    const { entries, unresolved, headings } = parseChecklist(text);
+    renderImportDraft();
+    announce(importMessage);
+    $('#import-report').focus();
+  }
+
+  function renderImportDraft() {
+    if (!importDraft) return;
+    const field = $('#import-text');
+    const draft = importDraft.draft;
+    const renderKey = [importDraft.capture(), importMessage, importDraft.error, field.value];
+    if (lastDraftRender && renderKey.every((value, index) => value === lastDraftRender[index])) return;
+    const dirty = Boolean(field.value && field.value !== displayedSource);
+    if (draft && (!dirty || field.value === draft.rawText.replace(/\r\n?/g, '\n'))) {
+      field.value = draft.rawText;
+      displayedSource = field.value;
+      field.readOnly = true;
+    } else if (!draft) {
+      if (field.readOnly && field.value === displayedSource) {
+        field.value = '';
+        displayedSource = '';
+      }
+      field.readOnly = false;
+    }
     const box = $('#import-report');
     box.replaceChildren();
-    if (!entries.length && !unresolved.length) {
-      notify('#import-report', 'Could not find any issues in that text.', 'warn');
-      return;
-    }
-    const intoNew = $('#import-new-list').checked;
-    let listId;
-    let setupOk;
-    if (intoNew) {
-      const name = headings[0] || `Imported ${new Date().toLocaleDateString()}`;
-      const created = updateState((state) => createList(state, {
-        name,
-        description: 'Imported from a pasted Reading List.',
-      }));
-      if (!created.ok) {
-        notify('#import-report', 'Could not create the list, so nothing was imported.', 'error');
-        return;
-      }
-      listId = created.state.listOrder[created.state.listOrder.length - 1];
-      setupOk = updateState((state) => setActive(state, listId)).ok;
-      if (!setupOk) return;
-    } else {
-      const setup = ensureList(DEFAULT_LIST_NAME);
-      listId = setup.listId;
-      setupOk = setup.ok;
-      if (!setupOk) {
-        notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
-        return;
-      }
-    }
-    const staged = entries.map(stageChecklistEntry);
-    let added = 0;
-    let skipped = 0;
-    const operation = updateState((state) => {
-      const result = addIssuesToList(state, listId, staged, {});
-      added = result.added;
-      skipped = result.skipped;
-      let next = result.state;
-      for (const entry of entries) if (entry.read) next = markRead(next, entry.issueId, true);
-      return next;
-    });
-    if (!setupOk || !operation.ok) {
-      notify('#import-report', 'Nothing was imported: that change could not be saved.', 'error');
-      return;
-    }
+    const message = importMessage || importDraft.error;
+    lastDraftRender = [importDraft.capture(), importMessage, importDraft.error, field.value];
+    if (message) box.append(el('p', { class: 'notice notice-warn', text: message }));
+    if (!draft) return;
     box.append(el('p', {
-      class: 'notice notice-ok',
-      text: `Imported ${added} issue${added === 1 ? '' : 's'}${skipped ? `, ${skipped} already present` : ''}. Details will be fetched in the background.`,
+      class: 'rail-hint',
+      text: `Saved source: ${draft.occurrences.length} positions for ${draft.destination.name}. Original text is retained until you discard it. Reader and completion-history backups do not include this draft. Download its separate file in Backup & settings for a complete transfer.`,
     }));
-    if (unresolved.length) {
-      box.append(el('p', {
-        class: 'notice notice-warn',
-        text: `${unresolved.length} line${unresolved.length === 1 ? '' : 's'} had no Marvel issue link. They are listed below rather than dropped, so you can resolve each one deliberately.`,
+    if (dirty && field.value !== draft.rawText.replace(/\r\n?/g, '\n')) box.append(el('p', {
+      class: 'notice notice-warn',
+      text: 'This tab also has unsaved text. It has not been replaced by the saved draft. Copy it before leaving.',
+    }));
+    box.append(el('button', {
+      type: 'button', class: 'btn btn-g', text: 'Resume saved import',
+      onclick: async () => showImportResult(await importDraft.resume()),
+    }));
+    box.append(el('button', {
+      type: 'button', class: 'btn btn-g', text: 'Discard saved import draft',
+      onclick: async (event) => {
+        const button = event.currentTarget;
+        const expected = importDraft.capture();
+        button.disabled = true;
+        const yes = await askConfirm({
+          title: 'Discard this import source?',
+          body: 'This removes the saved source, unresolved positions, selected matches and any previous source snapshots from this browser. Already saved comics and reading progress stay. Download the separate draft backup first if you need it.',
+          confirmLabel: 'Discard draft',
+        });
+        button.disabled = false;
+        if (!yes) {
+          if (button.isConnected) button.focus();
+          return;
+        }
+        const result = await importDraft.discard(expected);
+        if (result.ok && field.value === displayedSource) { field.value = ''; displayedSource = ''; }
+        showImportResult(result.ok ? { ok: false, error: 'Import draft discarded. Saved comics are unchanged.' } : result);
+      },
+    }));
+    for (const entry of draft.occurrences) {
+      if (entry.issueId == null && !entry.choice && !draft.pending && !draft.paused) box.append(unresolvedRow(entry));
+      else box.append(el('p', {
+        class: 'rail-hint',
+        text: `Position ${entry.index + 1} (line ${entry.line}): ${entry.title}. ${entry.applied ? 'Resolved, saved or already present.' : 'Retained; Resume reviews pending work.'}`,
       }));
-      const wrap = el('div', { class: 'results' });
-      for (const entry of unresolved) wrap.append(unresolvedRow(entry, listId));
-      box.append(wrap);
     }
-    const transition = onNonEmptyListSave({ ok: true, added, listId });
-    announce(withSaveEducation(`Imported ${added} issues.`, transition));
-    hydrate(listId);
+  }
+
+  async function doImport() {
+    if (importBusy) return;
+    const field = $('#import-text');
+    const text = pastedSource !== null && field.value === pastedSource.replace(/\r\n?/g, '\n')
+      ? pastedSource : field.value;
+    if (!text.trim()) {
+      importValidation.fail('Paste a Reading List first.');
+      return;
+    }
+    const { headings } = parseChecklist(text);
+    const intoNew = $('#import-new-list').checked;
+    importMessage = '';
+    importBusy = true;
+    try {
+      showImportResult(importDraft.draft?.rawText === text ? await importDraft.resume() : await importDraft.start(text, {
+        listId: intoNew ? null : getActiveListId(),
+        name: (intoNew ? headings[0] || `Imported ${new Date().toLocaleDateString()}` : DEFAULT_LIST_NAME).slice(0, MAX_NAME),
+      }));
+    } finally {
+      importBusy = false;
+    }
   }
 
   function clearManualMatch() {
@@ -860,18 +909,20 @@ export function createAddView({
     notify(
       '#manual-candidates',
       summary
-        ? `Filled from “${candidate.title}” on the wiki: ${summary}. Press Add issue to keep it.`
-        : `“${candidate.title}” carried no release date, page count or credits, so only the title was filled.`,
+        ? `Selected “${candidate.title}” from the wiki: ${summary}. It is not saved. Press Add issue to keep it.`
+        : `Selected “${candidate.title}” from the wiki. Only the title was filled. It is not saved. Press Add issue to keep it.`,
       summary ? 'ok' : 'warn',
       '#manual-candidates',
       { label: 'Discard', onClick: () => { clearManualMatch(); announce('Details from the wiki discarded.'); } },
     );
+    manualTitleValidation.clear();
+    $('#manual-title').focus();
   }
 
   async function doManualLookup() {
     const phrase = $('#manual-title').value.trim();
     if (!phrase) {
-      notify('#manual-report', 'Type a title first, then look it up.', 'warn');
+      manualTitleValidation.fail('Type a title first, then look it up.');
       return;
     }
     const button = $('#btn-manual-lookup');
@@ -902,6 +953,7 @@ export function createAddView({
           el('button', {
             type: 'button',
             class: 'btn btn-g',
+            'aria-label': labelledName('Use this', candidate.title),
             onclick: () => acceptManualMatch(candidate),
           }, 'Use this'),
         ]));
@@ -923,11 +975,11 @@ export function createAddView({
     const title = $('#manual-title').value.trim();
     const url = $('#manual-url').value.trim();
     if (!title) {
-      notify('#manual-report', 'A title is required.', 'warn');
+      manualTitleValidation.fail('A title is required.');
       return;
     }
     if (url && !isSafeMarvelUrl(url)) {
-      notify('#manual-report', 'That URL is not a marvel.com address. Leave it blank if you do not have one.', 'error');
+      manualUrlValidation.fail('That URL is not a marvel.com address. Leave it blank if you do not have one.');
       return;
     }
     const wikiId = manualMatch?.marvelIssueId ?? null;
@@ -1004,6 +1056,18 @@ export function createAddView({
   }
 
   function wire() {
+    manualTitleValidation = wireFieldValidation({
+      field: $('#manual-title'),
+      reportId: 'manual-report',
+      reportError: (message) => notify('#manual-report', message, 'warn'),
+      invalidMessage: 'A title is required.',
+    });
+    manualUrlValidation = wireFieldValidation({
+      field: $('#manual-url'),
+      reportId: 'manual-report',
+      reportError: (message) => notify('#manual-report', message, 'error'),
+      invalidMessage: 'Enter a complete marvel.com or Marvel Unlimited address, or leave it blank.',
+    });
     for (const config of searches) {
       createBuilder(config);
       if (config.kind === 'issue') {
@@ -1020,11 +1084,25 @@ export function createAddView({
     }
     refreshBuilders();
     globalThis.addEventListener('beforeunload', (event) => {
-      if (!selected.size) return;
+      if (!selected.size && $('#import-text').value === displayedSource && !importDraft?.recovery.length) return;
       event.preventDefault();
       event.returnValue = '';
     });
     $('#form-import').addEventListener('submit', (event) => { event.preventDefault(); doImport(); });
+    $('#import-text').addEventListener('paste', (event) => {
+      const field = event.currentTarget;
+      if (!field.readOnly && field.selectionStart === 0 && field.selectionEnd === field.value.length) {
+        pastedSource = event.clipboardData?.getData('text/plain') ?? null;
+      } else pastedSource = null;
+    });
+    $('#import-text').addEventListener('input', (event) => {
+      if (pastedSource !== null && event.currentTarget.value !== pastedSource.replace(/\r\n?/g, '\n')) pastedSource = null;
+    });
+    importValidation = wireFieldValidation({
+      field: $('#import-text'), reportId: 'import-report',
+      reportError: (message) => { importMessage = message; renderImportDraft(); },
+      invalidMessage: 'Paste a Reading List first.',
+    });
     $('#form-manual').addEventListener('submit', (event) => { event.preventDefault(); doManual(); });
     $('#btn-manual-lookup').addEventListener('click', doManualLookup);
     $('#manual-title').addEventListener('input', () => {
@@ -1042,12 +1120,18 @@ export function createAddView({
   function enter(name) {
     const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
     if (kind) void warmNameIndex(kind);
+    if (name === 'add-import' && importDraft && !importDraft.uncertain) {
+      importDraft.load();
+      importMessage = '';
+      renderImportDraft();
+    }
   }
 
   function renderDestination() {
     const text = addDestination();
     for (const target of document.querySelectorAll('.add-target')) target.textContent = text;
     refreshBuilders();
+    renderImportDraft();
   }
 
   return { enter, renderDestination, wire };

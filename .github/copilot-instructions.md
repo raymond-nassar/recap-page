@@ -9,11 +9,16 @@ someone who then broke it anyway.
 A local-first static site for tracking progress through curated Marvel reading orders. Vanilla ES
 modules, no build step, no runtime dependencies. `npm ci` installs lint tooling only, and nothing
 it installs reaches the browser. Reading progress lives in one `localStorage` key, `mrt.state.v2`,
-defined at `src/js/storage.js:11`. That module owns the other keys too, including the temporary,
+defined at `src/js/storage.js:16`. That module owns the other keys too, including the temporary,
 pre-restore and salvage keys the recovery paths depend on, so read it before touching persistence.
 
 Serve it with `npm start` and open it in a real browser. Do not try to verify UI behaviour in a
 sandboxed webview: it blocks the popups the reader launch depends on.
+
+For changes to markup, styles, or interaction, read the local
+[Interface design contract](../CONTRIBUTING.md#interface-design) and follow the
+[UI workflow](instructions/ui.instructions.md) before editing. Use this routing even when
+your host does not load path-specific instructions automatically.
 
 ## Use only as much workflow as the risk needs
 
@@ -570,7 +575,7 @@ Checks are written with `puppeteer-core` driving installed Edge, at
 
 **`puppeteer-core` is deliberately not a dependency of this repository and must not become one.**
 It is installed in a scratch directory outside the tree and imported by absolute path from there,
-ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:929-931` records that choice and the
+ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:932-934` records that choice and the
 reason: nothing was added to `package.json` and no dependency was introduced. If your first instinct
 is `npm i puppeteer-core`, that is the mistake this paragraph exists to stop.
 
