@@ -392,8 +392,14 @@ public final class NativeIntegrationTest {
                 number(web, "JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length"));
         stubDocument(Intent.ACTION_OPEN_DOCUMENT, FixtureDocumentProvider.saved(instrumentation.getContext()));
         tap(web, "#restore-file");
+        waitFor("Reading-data replacement requires confirmation", WAIT_MS,
+                () -> truth(web, "!!document.querySelector('#ask[open]')"
+                        + " && document.querySelector('#ask-title').textContent === 'Replace reading data with this backup?'"));
+        assertEquals("Selecting a backup does not replace reading data before confirmation", 0,
+                number(web, "JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length"));
+        tap(web, "#ask-ok");
         waitFor("Real WebView file callback restores provider bytes", WAIT_MS,
-                () -> truth(web, "document.querySelector('#restore-report').textContent.includes('Restored.')"));
+                () -> truth(web, "document.querySelector('#restore-report').textContent.includes('Reading data restored.')"));
         assertFixture();
         assertEquals("The restored fixture exactly matches its saved state", before, stateSummary());
         assertTrue("Restore reads through ContentResolver", provider("stats").getInt("reads") >= 1);
@@ -661,6 +667,9 @@ public final class NativeIntegrationTest {
         assertEquals("Dialog cancellation preserves progress", before, stateSummary());
 
         assertTrue("Phone layout exercises the collapsible navigation", number(web, "innerWidth") <= 880);
+        evaluate(web, "window.scrollTo(0, 0)");
+        waitFor("Scrolling to the top reveals bottom navigation", WAIT_MS,
+                () -> truth(web, "!document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')"));
         tap(web, "#btn-rail-toggle");
         waitFor("Navigation opened", WAIT_MS, () -> truth(web,
                 "document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'true'"));

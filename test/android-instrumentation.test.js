@@ -175,6 +175,22 @@ test('the negative control must fail its one aimed native completion assertion',
   assert.throws(() => verifyInstrumentation(output(['startupAndPersistence'], { code: -2, marker: 'NATIVE_SAVE_COMPLETION' }), options));
 });
 
+test('native restore confirms the current reading-data dialog before checking success', () => {
+  const source = readFileSync(new URL('../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java', import.meta.url), 'utf8');
+  const restore = source.slice(source.indexOf('tap(web, "#restore-file");'), source.indexOf('assertFixture();', source.indexOf('tap(web, "#restore-file");')));
+  assert.match(restore, /#ask\[open\][\s\S]*Replace reading data with this backup\?/);
+  assert.match(restore, /assertEquals\([^;]*0,[^;]*listOrder\.length/);
+  assert.match(restore, /tap\(web, "#ask-ok"\);[\s\S]*Reading data restored\./);
+  assert.doesNotMatch(restore, /includes\('Restored\.'\)/);
+});
+
+test('native Back journey reveals auto-hidden navigation before the trusted More tap', () => {
+  const source = readFileSync(new URL('../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java', import.meta.url), 'utf8');
+  const back = source.slice(source.indexOf('public void backAndRecreation()'), source.indexOf('public void fontRotationAndKeyboard()'));
+  assert.match(back, /window\.scrollTo\(0, ?0\)[\s\S]*waitFor\([^;]*mobile-nav-hidden[^;]*;[\s\S]*tap\(web, "#btn-rail-toggle"\)/);
+  assert.match(back, /device\.pressBack\(\);[\s\S]*Navigation dismissal does not consume history/);
+});
+
 test('Android CI stays explicitly opt-in and uses real offline Android with bounded evidence', () => {
   const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
