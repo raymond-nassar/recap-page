@@ -100,7 +100,21 @@ test -r /dev/kvm
 test -w /dev/kvm
 SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
 AVDMANAGER="$SDK/cmdline-tools/latest/bin/avdmanager"
-"$SDKMANAGER" --channel=0 "platforms;android-36" "build-tools;35.0.0" "system-images;android-36;google_apis;x86_64" < /dev/null
+for attempt in 1 2 3; do
+  if "$SDKMANAGER" --channel=0 "platforms;android-36" "build-tools;35.0.0" "system-images;android-36;google_apis;x86_64" < /dev/null; then
+    break
+  else
+    sdk_exit=$?
+  fi
+  if [[ "$attempt" == 3 ]]; then
+    printf '%s\n' 'Android SDK installation failed after 3 attempts' >&2
+    exit "$sdk_exit"
+  fi
+  printf 'Android SDK installation failed (exit %s); retrying with fresh download scratch.\n' "$sdk_exit" >&2
+  # A failed system-image unzip can leave an unusable archive in installer scratch.
+  rm -rf -- "$SDK/.temp" "$SDK/.downloadIntermediates"
+  sleep 5
+done
 # SDK Manager's stable emulator advances independently of the tested revision.
 EMULATOR_DOWNLOAD="$(mktemp -d "$RUNNER_TEMP/recap-emulator.XXXXXX")"
 curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 \
