@@ -4,6 +4,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
+import { waitForSavedPreviewLink } from './browser-owner-guide.mjs';
 
 const readJson = (file) => JSON.parse(readFileSync(new URL(file, import.meta.url), 'utf8'));
 const fixture = readJson('../test/fixtures/mcu-prep-ms-marvel-vector.json');
@@ -163,8 +164,7 @@ export const msMarvelActualData = {
       if (width === 1280) await click(page, '#preview-close');
     }
     await click(page, '#preview-add [data-act="main"]');
-    await page.waitForFunction(() =>
-      document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library'));
+    await waitForSavedPreviewLink(page, id);
     checkSaved(t, 'Import keeps eighteen originals and all existing First Steps reader/history state',
       await saved(page));
     await click(page, '#preview-add [data-act="main"]');

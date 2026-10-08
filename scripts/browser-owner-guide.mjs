@@ -13,6 +13,16 @@ const click = async (page, selector) => {
   await page.$eval(selector, (element) => element.click());
 };
 
+export async function waitForSavedPreviewLink(page, catalogId) {
+  await page.waitForFunction((key, id) => {
+    const raw = localStorage.getItem(key);
+    if (raw === null) return false;
+    const matches = Object.values(JSON.parse(raw).lists).filter((list) => list.catalogId === id);
+    const link = document.querySelector('#preview-add a[data-act="main"]');
+    return matches.length === 1 && link?.getAttribute('href') === `#/read/${encodeURIComponent(matches[0].id)}`;
+  }, {}, KEY, catalogId);
+}
+
 export function ownerPresentation(expected) {
   const headings = [];
   let storedGroup = null;
@@ -158,8 +168,7 @@ export function ownerGuideScenario(contract) {
         if (width === 1280) await click(page, '#preview-close');
       }
       await click(page, '#preview-add [data-act="main"]');
-      await page.waitForFunction(() =>
-        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library'));
+      await waitForSavedPreviewLink(page, contract.id);
       checkSaved(t, await readSaved(page));
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction((name) => !document.querySelector('#view-read')?.hidden
