@@ -32,6 +32,11 @@ function fixture() {
 
 const file = { filename: 'recap-page-backup.json', type: 'application/json', text: '{"notes":"Caf\u00e9"}' };
 
+test('Android More retains its 48px target over shared bottom-navigation styles', async () => {
+  const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: 48px/);
+});
+
 test('Android package identity comes from the shared reserved-build contract', async () => {
   const [build, rootBuild, properties] = await Promise.all([
     readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
