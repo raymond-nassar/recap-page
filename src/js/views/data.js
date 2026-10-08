@@ -39,7 +39,7 @@
 // and only the promise made beforehand had to be narrowed.
 export function eraseDialogBody(copies, { completionHistory = false } = {}) {
   const tail = ' Export a backup first if you are not sure. It cannot be undone.';
-  const lead = 'This clears every list and all reading progress. Your settings are kept.';
+  const lead = 'This clears every list and all reading progress. Notes and issue ratings are also erased. Your settings are kept.';
   const scope = completionHistory ? `${lead} Completion and enjoyment history will also be erased.` : lead;
   if (copies === null) {
     return `${scope} This browser will not let the app list what else it has stored, so anything `

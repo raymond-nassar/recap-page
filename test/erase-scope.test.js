@@ -353,7 +353,7 @@ test('the heading the wording names is the heading the page has, and it is above
 test('the erase dialog is built by the policy, not by a literal at the button', () => {
   const dataSrc = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
   const mainSrc = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
-  const lead = 'This clears every list and all reading progress. Your settings are kept.';
+  const lead = 'This clears every list and all reading progress. Notes and issue ratings are also erased. Your settings are kept.';
   const gone = 'clears everything this browser has stored for the tracker';
 
   assert.equal(dataSrc.split(lead).length - 1, 1, 'a second copy means a call site is building the body inline again');

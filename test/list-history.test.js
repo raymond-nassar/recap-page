@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Store, KEY } from '../src/js/storage.js';
 import {
-  MAX_LISTS, createEmptyState, createList, addIssuesToList,
+  MAX_LISTS, SCHEMA_VERSION, createEmptyState, createList, addIssuesToList,
   deleteList, restoreList, duplicateList, exportBackup,
 } from '../src/js/lib/model.js';
 import {
@@ -140,10 +140,10 @@ test('completion preserves current reader bytes, actual progress, deferral and r
   assert.deepEqual(h.reader.state.lists.a.deferredIssueIds, [3]);
   assert.equal(h.reader.state.lists.a.note, 'Keep my note');
   assert.equal(h.reader.state.notes[2], 'Keep my issue note');
-  assert.equal(h.reader.state.schemaVersion, 3);
+  assert.equal(h.reader.state.schemaVersion, SCHEMA_VERSION);
   assert.deepEqual(Object.keys(exportBackup(h.reader.state)), [
     'schemaVersion', 'exportedAt', 'app', 'issues', 'read', 'overrides',
-    'notes', 'lists', 'listOrder', 'active',
+    'notes', 'ratings', 'lists', 'listOrder', 'active',
   ]);
   assert.deepEqual(h.storage.writes, [LIST_HISTORY_KEY]);
 });
@@ -414,7 +414,7 @@ test('legacy completion stabilizes only canonical existing reader fields and sup
   assert.equal(result.ok, true);
   assert.notEqual(result.listId, oldId);
   const saved = JSON.parse(h.storage.getItem(KEY));
-  assert.equal(saved.schemaVersion, 3);
+  assert.equal(saved.schemaVersion, SCHEMA_VERSION);
   assert.equal(saved.read[1], 111);
   assert.equal(saved.lists[result.listId].id, result.listId);
   assert.equal(saved.active, result.listId);
@@ -464,14 +464,17 @@ test('failed, silent or unreadable legacy stabilization never writes completion 
   }
 });
 
-test('stable schema-two bytes are preserved, missing identities stabilize and unsupported reader versions refuse', async () => {
-  const versionTwo = exportBackup(seedState());
-  versionTwo.schemaVersion = 2;
-  delete versionTwo.lists.a.deferredIssueIds;
-  const oldRaw = JSON.stringify(versionTwo);
-  const h = harness({ readerRaw: oldRaw });
-  assert.equal((await h.history.complete('a')).ok, true);
-  assert.equal(h.storage.getItem(KEY), oldRaw);
+test('stable schema-two and schema-three bytes are preserved, missing identities stabilize and unsupported reader versions refuse', async () => {
+  for (const schemaVersion of [2, 3]) {
+    const legacy = exportBackup(seedState());
+    legacy.schemaVersion = schemaVersion;
+    delete legacy.ratings;
+    if (schemaVersion === 2) delete legacy.lists.a.deferredIssueIds;
+    const oldRaw = JSON.stringify(legacy);
+    const h = harness({ readerRaw: oldRaw });
+    assert.equal((await h.history.complete('a')).ok, true);
+    assert.equal(h.storage.getItem(KEY), oldRaw);
+  }
   const missing = exportBackup(seedState());
   missing.lists.a.created = 0;
   const prepared = harness({ readerRaw: JSON.stringify(missing) });
@@ -479,7 +482,7 @@ test('stable schema-two bytes are preserved, missing identities stabilize and un
   assert.ok(JSON.parse(prepared.storage.getItem(KEY)).lists.a.created > 0);
   prepared.reader.load();
   assert.equal(prepared.history.isCompleted(prepared.reader.state, 'a'), true);
-  for (const version of [4, 3.5, 'invalid', 0]) {
+  for (const version of [SCHEMA_VERSION + 1, 3.5, 'invalid', 0]) {
     const changed = harness();
     const input = JSON.parse(changed.storage.getItem(KEY));
     input.schemaVersion = version;

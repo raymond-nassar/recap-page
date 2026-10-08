@@ -5709,7 +5709,7 @@ const SCENARIOS = [
         };
       });
       t.check('schema load preserves the complete legacy list and its local/global fields',
-        loaded.schemaVersion === 3
+        loaded.schemaVersion === 4
         && loaded.name === 'Marvel Knights to Planet X'
         && loaded.catalogId === 'marvel-knights-to-planet-x'
         && loaded.note === 'Legacy list note'
@@ -5772,7 +5772,7 @@ const SCENARIOS = [
         };
       });
       t.check('an individually added chapter shares progress without splitting or changing the umbrella',
-        shared.schemaVersion === 3
+        shared.schemaVersion === 4
         && shared.listCount === 2
         && shared.legacyItems === 487
         && shared.legacyCatalogId === 'marvel-knights-to-planet-x'
@@ -16242,6 +16242,9 @@ for (const guide of readOwnerGuideRegistry().guides) {
   SCENARIOS.push(ownerGuideScenario(JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'))));
 }
 const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
+const { issueRatings, issueRatingMutations } = await import('./browser-issue-ratings.mjs');
+SCENARIOS.push(issueRatings);
+MUTATIONS.push(...issueRatingMutations);
 if (ownerContracts.length > 1) throw new Error('Use --owner-contract once for a representative existing guide.');
 if (ownerContracts.length) {
   const root = fileURLToPath(new URL('..', import.meta.url));
