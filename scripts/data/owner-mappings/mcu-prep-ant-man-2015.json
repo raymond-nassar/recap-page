@@ -1,0 +1,5377 @@
+{
+  "id": "mcu-prep-ant-man-2015",
+  "inventoryId": "mcu-prep-ant-man-2015",
+  "packetDigest": "f183ce3e406d826ca30274ef084da503516a3da6bd7aed96fbb49e5a3c7cba7b",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "80997a1766e2a5191935cab2028138fea97deacb1da804d8d3375935969db4f3",
+  "sourceRetrievalStatus": "frozen-owner-pasted-selection",
+  "approvedSourceCount": 22,
+  "excludedSourceReferences": [],
+  "proposedManifest": {
+    "id": "mcu-prep-ant-man-2015",
+    "name": "MCU Prep: Ant-Man (2015)",
+    "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-ant-man-2015.md",
+    "out": "mcu_prep_ant_man_2015.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Ant-Man",
+      "Wasp",
+      "Scott Lang",
+      "Eric O'Grady"
+    ],
+    "keywords": [
+      "ant-man"
+    ],
+    "coverIssueId": 32680,
+    "expect": 22
+  },
+  "candidateMetadata": [
+    {
+      "id": 32680,
+      "title": "Avengers Origins: Ant-Man & the Wasp",
+      "seriesId": 9860,
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "digitalId": 24550,
+      "providerProjection": {
+        "id": 32680,
+        "title": "Avengers Origins: Ant-Man & the Wasp (2011) #1",
+        "issueNumber": "1",
+        "detailUrl": "https://www.marvel.com/comics/issue/32680/avengers_origins_ant-man_the_wasp_2011_1",
+        "seriesId": 9860,
+        "seriesName": "Avengers Origins: Ant-Man & the Wasp (2011)",
+        "digitalId": 24550,
+        "onSaleDate": "2011-11-02T00:00:00+0000",
+        "unlimitedDate": "2016-09-14T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/f0/4eb00e5f7cbeb",
+          "extension": "jpg"
+        },
+        "pageCount": 40,
+        "creators": [
+          {
+            "id": 8924,
+            "name": "Lauren Sankovitch",
+            "role": "editor"
+          },
+          {
+            "id": 2133,
+            "name": "Tom Brevoort",
+            "role": "editor"
+          },
+          {
+            "id": 878,
+            "name": "Dave Lanphear",
+            "role": "letterer"
+          },
+          {
+            "id": 10288,
+            "name": "Marko Djurdjevic",
+            "role": "penciler"
+          },
+          {
+            "id": 10785,
+            "name": "Stephanie Hans",
+            "role": "unknown (0)"
+          },
+          {
+            "id": 13661,
+            "name": "Roberto Aguirre-Sacasa",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/32680",
+        "urlSha256": "ecb06d2a8da33380e48ebea0c3c77aa2411f6c8bf1ad6a4252df093de40ddfe0",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:16.778Z",
+        "bodySha256": "2f57f544c2e7a09614e7f93e38175fb655d7c9512189fb3c06b8d9a1a214684c"
+      }
+    },
+    {
+      "id": 5199,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "digitalId": 2043,
+      "providerProjection": {
+        "id": 5199,
+        "title": "The Irredeemable Ant-Man (2006) #1",
+        "issueNumber": "1",
+        "detailUrl": "https://www.marvel.com/comics/issue/5199/the_irredeemable_ant-man_2006_1",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 2043,
+        "onSaleDate": "2006-10-04T00:00:00+0000",
+        "unlimitedDate": "2006-10-04T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/70/58498477421c8",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5199",
+        "urlSha256": "f55ec44a073f9d482b15ff9c0cea24f76ebaedcf255a1626617af7708bad072d",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:19.101Z",
+        "bodySha256": "bda43b934a3bdb60eb8b6e6119ba85159202767549583cdf978275557f9f95e5"
+      }
+    },
+    {
+      "id": 5360,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "digitalId": 2044,
+      "providerProjection": {
+        "id": 5360,
+        "title": "The Irredeemable Ant-Man (2006) #2",
+        "issueNumber": "2",
+        "detailUrl": "https://www.marvel.com/comics/issue/5360/the_irredeemable_ant-man_2006_2",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 2044,
+        "onSaleDate": "2006-11-01T00:00:00+0000",
+        "unlimitedDate": "2006-11-01T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/60/584985c189045",
+          "extension": "jpg"
+        },
+        "pageCount": 48,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5360",
+        "urlSha256": "a48ddfda15c5b6c930063aebcff91369d628652cb62162f1ae53a8c1451836e4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:21.420Z",
+        "bodySha256": "547f6593574f88195eb0db9d22f3c069388e02ce6750522f8a0dfdddcee4a99f"
+      }
+    },
+    {
+      "id": 5628,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "digitalId": 2045,
+      "providerProjection": {
+        "id": 5628,
+        "title": "The Irredeemable Ant-Man (2006) #3",
+        "issueNumber": "3",
+        "detailUrl": "https://www.marvel.com/comics/issue/5628/the_irredeemable_ant-man_2006_3",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 2045,
+        "onSaleDate": "2006-12-06T00:00:00+0000",
+        "unlimitedDate": "2006-12-06T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/90/584986f8b9797",
+          "extension": "jpg"
+        },
+        "pageCount": 48,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5628",
+        "urlSha256": "12a7166bdd92cb0e1bffa969081061ceddfee15a6c8441520afdcfc122949cb4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:23.728Z",
+        "bodySha256": "a1e774cd40bed61c28e6e0020071f36280372393a303c3cd34d26e2c528f1ed5"
+      }
+    },
+    {
+      "id": 5775,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "digitalId": 7945,
+      "providerProjection": {
+        "id": 5775,
+        "title": "The Irredeemable Ant-Man (2006) #4",
+        "issueNumber": "4",
+        "detailUrl": "https://www.marvel.com/comics/issue/5775/the_irredeemable_ant-man_2006_4",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 7945,
+        "onSaleDate": "2007-01-03T00:00:00+0000",
+        "unlimitedDate": "2007-01-03T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/50/584987e1e7fba",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 832,
+            "name": "Val Staples",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5775",
+        "urlSha256": "d7cba51ec9a823ef3a8d72f8ed0d839f9147e73fc8d2e79df69c5d1dca8b879a",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:26.043Z",
+        "bodySha256": "5db709ca66c427ec42b53129091cb6d1f2a8c3899c32afa89096efd692ed098a"
+      }
+    },
+    {
+      "id": 5938,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "digitalId": 7946,
+      "providerProjection": {
+        "id": 5938,
+        "title": "The Irredeemable Ant-Man (2006) #5",
+        "issueNumber": "5",
+        "detailUrl": "https://www.marvel.com/comics/issue/5938/the_irredeemable_ant-man_2006_5",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 7946,
+        "onSaleDate": "2007-02-07T00:00:00+0000",
+        "unlimitedDate": "2007-02-07T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/90/584988ab7b1a0",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 832,
+            "name": "Val Staples",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5938",
+        "urlSha256": "a17061c4765afc51b93fda6b284ff84272e564aa12ffc6ae08dea81cee954ba7",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:28.310Z",
+        "bodySha256": "921b4f5ae7eba71c7f128d1b19ecb9b6b59383fb14b466cd646135035862700d"
+      }
+    },
+    {
+      "id": 6076,
+      "title": "The Irredeemable Ant-Man",
+      "seriesId": 977,
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "digitalId": 7947,
+      "providerProjection": {
+        "id": 6076,
+        "title": "The Irredeemable Ant-Man (2006) #6",
+        "issueNumber": "6",
+        "detailUrl": "https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6",
+        "seriesId": 977,
+        "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+        "digitalId": 7947,
+        "onSaleDate": "2007-03-14T00:00:00+0000",
+        "unlimitedDate": "2007-03-14T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/d0/517acfb8bcd0b",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 868,
+            "name": "Bill Crabtree",
+            "role": "colorist"
+          },
+          {
+            "id": 832,
+            "name": "Val Staples",
+            "role": "colorist"
+          },
+          {
+            "id": 870,
+            "name": "Ande Parks",
+            "role": "cover artist"
+          },
+          {
+            "id": 13151,
+            "name": "Vc Rus Wooton",
+            "role": "letterer"
+          },
+          {
+            "id": 869,
+            "name": "Phil Hester",
+            "role": "penciler"
+          },
+          {
+            "id": 553,
+            "name": "Robert Kirkman",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/6076",
+        "urlSha256": "6e8a334fbe417f23abf5c64cef7c03db488c4e5cb5487a359c11d56f8ce0f2c6",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:30.576Z",
+        "bodySha256": "87f99a5058279821bc3166305ded0034f8e306c5a571eb490af6850081964692"
+      }
+    },
+    {
+      "id": 51374,
+      "title": "Ant-Man",
+      "seriesId": 19275,
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "digitalId": 36159,
+      "providerProjection": {
+        "id": 51374,
+        "title": "Ant-Man (2015) #1",
+        "issueNumber": "1",
+        "detailUrl": "https://www.marvel.com/comics/issue/51374/ant-man_2015_1",
+        "seriesId": 19275,
+        "seriesName": "Ant-Man (2015)",
+        "digitalId": 36159,
+        "onSaleDate": "2015-01-07T00:00:00+0000",
+        "unlimitedDate": "2015-07-06T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/30/54a1970c6edc2",
+          "extension": "jpg"
+        },
+        "pageCount": 40,
+        "creators": [
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "inker"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51374",
+        "urlSha256": "35e4db46a00aa5b0f6be1bfdd5dfc1d3ee0fe0f2b9d4da1de2e7b0fb5c079121",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:32.963Z",
+        "bodySha256": "5eaffb646d58de51d27c59b73caba428348c21f1c291507561b7cf0c39637df3"
+      }
+    },
+    {
+      "id": 51382,
+      "title": "Ant-Man",
+      "seriesId": 19275,
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "digitalId": 36590,
+      "providerProjection": {
+        "id": 51382,
+        "title": "Ant-Man (2015) #2",
+        "issueNumber": "2",
+        "detailUrl": "https://www.marvel.com/comics/issue/51382/ant-man_2015_2",
+        "seriesId": 19275,
+        "seriesName": "Ant-Man (2015)",
+        "digitalId": 36590,
+        "onSaleDate": "2015-02-04T00:00:00+0000",
+        "unlimitedDate": "2015-08-03T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/54c13bc94157f",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "inker"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51382",
+        "urlSha256": "04d3ac6618b16358a3888091bff74e9e8da428fd0a6206200007f7b20faa3927",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:35.236Z",
+        "bodySha256": "64edf42abb353914327c28023755c00b9cb0d02121fd6d2a7d1d27d4b443e146"
+      }
+    },
+    {
+      "id": 51387,
+      "title": "Ant-Man",
+      "seriesId": 19275,
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "digitalId": 36900,
+      "providerProjection": {
+        "id": 51387,
+        "title": "Ant-Man (2015) #3",
+        "issueNumber": "3",
+        "detailUrl": "https://www.marvel.com/comics/issue/51387/ant-man_2015_3",
+        "seriesId": 19275,
+        "seriesName": "Ant-Man (2015)",
+        "digitalId": 36900,
+        "onSaleDate": "2015-03-11T00:00:00+0000",
+        "unlimitedDate": "2015-09-14T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/b0/54f772bc3553f",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "inker"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51387",
+        "urlSha256": "54ddf2868b1c09ed92f3cd28597bce2f38f76fd5c2e647fbe384606ffc21a9a1",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:37.570Z",
+        "bodySha256": "f458bc88319838ede30854d3124a11f20179db4231d5a73ad839b4f988d652c3"
+      }
+    },
+    {
+      "id": 51388,
+      "title": "Ant-Man",
+      "seriesId": 19275,
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "digitalId": 37336,
+      "providerProjection": {
+        "id": 51388,
+        "title": "Ant-Man (2015) #4",
+        "issueNumber": "4",
+        "detailUrl": "https://www.marvel.com/comics/issue/51388/ant-man_2015_4",
+        "seriesId": 19275,
+        "seriesName": "Ant-Man (2015)",
+        "digitalId": 37336,
+        "onSaleDate": "2015-04-08T00:00:00+0000",
+        "unlimitedDate": "2015-10-05T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/f0/551abd9a2edcd",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "inker"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51388",
+        "urlSha256": "5b06ffaedd95b4d747127d89d17df041b67090be99d192679a8065dc675fd692",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:39.921Z",
+        "bodySha256": "906ecb6fc2bbd74c47d114e9d723c5cbeb5a02071d1c4526dca02075a376bbc6"
+      }
+    },
+    {
+      "id": 51389,
+      "title": "Ant-Man",
+      "seriesId": 19275,
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "digitalId": 38146,
+      "providerProjection": {
+        "id": 51389,
+        "title": "Ant-Man (2015) #5",
+        "issueNumber": "5",
+        "detailUrl": "https://www.marvel.com/comics/issue/51389/ant-man_2015_5",
+        "seriesId": 19275,
+        "seriesName": "Ant-Man (2015)",
+        "digitalId": 38146,
+        "onSaleDate": "2015-05-06T00:00:00+0000",
+        "unlimitedDate": "2015-11-02T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5637b09098d1e",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "inker"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51389",
+        "urlSha256": "b3da010d7a8d1ea8ad2593f7844082ab8e28aabb9a3580e3c5686144a04309a9",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:42.276Z",
+        "bodySha256": "9026ac318efb2ed135ba3bbdcb696af901e613da7151d65aa1b77cdc74e7d035"
+      }
+    },
+    {
+      "id": 55336,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "digitalId": 41196,
+      "providerProjection": {
+        "id": 55336,
+        "title": "The Astonishing Ant-Man (2015) #5",
+        "issueNumber": "5",
+        "detailUrl": "https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 41196,
+        "onSaleDate": "2016-02-24T00:00:00+0000",
+        "unlimitedDate": "2016-08-22T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/b0/56c74af278216",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12986,
+            "name": "Jordan Boyd",
+            "role": "colorist"
+          },
+          {
+            "id": 561,
+            "name": "Wil Quintana",
+            "role": "colorist"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "cover artist"
+          },
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 12993,
+            "name": "Vc Travis Lanham",
+            "role": "letterer"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55336",
+        "urlSha256": "006e0d124b3f2f3b9056924630ad640cfafbd1b1390733722ef832784366d536",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:44.553Z",
+        "bodySha256": "b2d300e80845d976b568c61abe398991e6a3fd07e7fff9aebcfbc50e53166f86"
+      }
+    },
+    {
+      "id": 55338,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "digitalId": 41424,
+      "providerProjection": {
+        "id": 55338,
+        "title": "The Astonishing Ant-Man (2015) #6",
+        "issueNumber": "6",
+        "detailUrl": "https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 41424,
+        "onSaleDate": "2016-03-16T00:00:00+0000",
+        "unlimitedDate": "2016-09-19T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/c0/56e3339f1c86a",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 12801,
+            "name": "Annapaola Martello",
+            "role": "penciler"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55338",
+        "urlSha256": "9c2e72e9f9ce8e50b5d1cb45e7b37d7efb9ee76ccd81029c5fad94c5f9f90d9e",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:46.821Z",
+        "bodySha256": "72c6bd7b25e518e4d37bcb511cfb46cb21990b4e87a0c49006878b434c5c4205"
+      }
+    },
+    {
+      "id": 55339,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "digitalId": 41905,
+      "providerProjection": {
+        "id": 55339,
+        "title": "The Astonishing Ant-Man (2015) #7",
+        "issueNumber": "7",
+        "detailUrl": "https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 41905,
+        "onSaleDate": "2016-04-20T00:00:00+0000",
+        "unlimitedDate": "2016-10-24T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/570e98097351c",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 694,
+            "name": "Mark Brooks",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55339",
+        "urlSha256": "947ea4dcb098c3d77eba228093be8d8e185b9998fd8dffda7dcd7770c6f4660a",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:49.101Z",
+        "bodySha256": "7a2bad33c51edf7e920fd415e7478796328aec234c5675f3eb39cd3f921037b7"
+      }
+    },
+    {
+      "id": 55340,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "digitalId": 41587,
+      "providerProjection": {
+        "id": 55340,
+        "title": "The Astonishing Ant-Man (2015) #8",
+        "issueNumber": "8",
+        "detailUrl": "https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 41587,
+        "onSaleDate": "2016-05-18T00:00:00+0000",
+        "unlimitedDate": "2016-11-21T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/60/572bab571ffcf",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 12752,
+            "name": "Brent Schoonover",
+            "role": "penciler"
+          },
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55340",
+        "urlSha256": "782f1f2d89ba0ed722c11daaaaf4a28df0b6abb0b50e7e5ea18be9c2ee5eea64",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:51.367Z",
+        "bodySha256": "e27d05026c4a2e7b4186a9d488c0b3fbbb65f0fea4a275ed73156bf831f340c1"
+      }
+    },
+    {
+      "id": 55341,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "digitalId": 41815,
+      "providerProjection": {
+        "id": 55341,
+        "title": "The Astonishing Ant-Man (2015) #9",
+        "issueNumber": "9",
+        "detailUrl": "https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 41815,
+        "onSaleDate": "2016-06-15T00:00:00+0000",
+        "unlimitedDate": "2016-12-19T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/40/5751eef30325d",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55341",
+        "urlSha256": "f0a909578806d27594cab0eb764ace3a181cfa43f0e04a15cf04bdc6cc32d430",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:53.654Z",
+        "bodySha256": "7280c3aea1f1b285c835d16a7656839f19c5bd336b8fbd90642faeb345b377e7"
+      }
+    },
+    {
+      "id": 55342,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "digitalId": 42106,
+      "providerProjection": {
+        "id": 55342,
+        "title": "The Astonishing Ant-Man (2015) #10",
+        "issueNumber": "10",
+        "detailUrl": "https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 42106,
+        "onSaleDate": "2016-07-20T00:00:00+0000",
+        "unlimitedDate": "2017-01-23T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/30/5789068bb35d7",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12376,
+            "name": "Wilson Moss",
+            "role": "editor"
+          },
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55342",
+        "urlSha256": "3e8fb8a14b02fdc206d20700281b2e91bb8d975d21096a3b74dce2e4be61d1f9",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:56.015Z",
+        "bodySha256": "2b7931d8a63d4e70649d443b8362f3730ff65d7ba3968726c1473acf6257ad02"
+      }
+    },
+    {
+      "id": 55343,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "digitalId": 42345,
+      "providerProjection": {
+        "id": 55343,
+        "title": "The Astonishing Ant-Man (2015) #11",
+        "issueNumber": "11",
+        "detailUrl": "https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 42345,
+        "onSaleDate": "2016-08-31T00:00:00+0000",
+        "unlimitedDate": "2017-03-06T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/80/57bc9bbe31277",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55343",
+        "urlSha256": "db66fc930501af08309d3654601fa31686496dba0ab7b0e33cf22412db7777af",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:58.304Z",
+        "bodySha256": "bbbd1d059b26c2b2f9072b8d7ec4e1512957a4a6c2786293f18e7c786be534f1"
+      }
+    },
+    {
+      "id": 55344,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "digitalId": 42675,
+      "providerProjection": {
+        "id": 55344,
+        "title": "The Astonishing Ant-Man (2015) #12",
+        "issueNumber": "12",
+        "detailUrl": "https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 42675,
+        "onSaleDate": "2016-09-21T00:00:00+0000",
+        "unlimitedDate": "2017-03-27T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/90/57d2c6e84c70b",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 12752,
+            "name": "Brent Schoonover",
+            "role": "penciler"
+          },
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55344",
+        "urlSha256": "c5f8ab91bea05ca40d7ca59acd40ca70e6cafd2b8d6fae3a80b9d527e235b790",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:00.609Z",
+        "bodySha256": "049e7a6391ba21cc5c1d785e2c39127471deb68feca16aa5c37cf49814399053"
+      }
+    },
+    {
+      "id": 55345,
+      "title": "The Astonishing Ant-Man",
+      "seriesId": 20437,
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "digitalId": 42827,
+      "providerProjection": {
+        "id": 55345,
+        "title": "The Astonishing Ant-Man (2015) #13",
+        "issueNumber": "13",
+        "detailUrl": "https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13",
+        "seriesId": 20437,
+        "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+        "digitalId": 42827,
+        "onSaleDate": "2016-10-19T00:00:00+0000",
+        "unlimitedDate": "2017-04-24T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/00/57fe55f3d434f",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 11488,
+            "name": "Julian Totino Tedesco",
+            "role": "penciler"
+          },
+          {
+            "id": 9286,
+            "name": "Ramon Rosanas",
+            "role": "penciler"
+          },
+          {
+            "id": 11434,
+            "name": "Nick Spencer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55345",
+        "urlSha256": "61ae6b83c1b8579a68ed7b2e0d96290cccf74aa3a2b8d1fa03edeaff483e3db4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:02.885Z",
+        "bodySha256": "4bea9de82650144c1e53926d33c1e6730f96f46633b45297c4f1ce786c8dc478"
+      }
+    },
+    {
+      "id": 51933,
+      "title": "Guardians Team-Up",
+      "seriesId": 19453,
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "digitalId": 39126,
+      "providerProjection": {
+        "id": 51933,
+        "title": "Guardians Team-Up (2015) #7",
+        "issueNumber": "7",
+        "detailUrl": "https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7",
+        "seriesId": 19453,
+        "seriesName": "Guardians Team-Up (2015)",
+        "digitalId": 39126,
+        "onSaleDate": "2015-07-01T00:00:00+0000",
+        "unlimitedDate": "2015-12-28T00:00:00+0000",
+        "cover": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/559190649ce33",
+          "extension": "jpg"
+        },
+        "pageCount": 32,
+        "creators": [
+          {
+            "id": 9443,
+            "name": "Shawn Crystal",
+            "role": "inker"
+          },
+          {
+            "id": 12392,
+            "name": "David Lopez",
+            "role": "penciler"
+          },
+          {
+            "id": 12419,
+            "name": "Nick Giovannetti",
+            "role": "writer"
+          },
+          {
+            "id": 12418,
+            "name": "Paul Scheer",
+            "role": "writer"
+          }
+        ]
+      },
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51933",
+        "urlSha256": "efde1fe2ef004bb9bea6fea8bd4f772ec8c7dc8044a4130ded2722469e177e3c",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:05.216Z",
+        "bodySha256": "7ebf3ed49b7454a1603c63d40cb3f490ecae28bec245bb3069e097d56e260606"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Avengers Origins: Ant-Man & The Wasp (2011) #1",
+      "sourceRangeReference": "Avengers Origins: Ant-Man & the Wasp",
+      "normalizedSeriesTitle": "avengers origins ant man and the wasp",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "candidateIssueId": 32680,
+      "seriesId": 9860,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 32680,
+      "candidateIssueIds": [
+        "32680"
+      ],
+      "selectedIssueIds": [
+        "32680"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Avengers Origins: Ant-Man & the Wasp (2011) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32680/avengers_origins_ant-man_the_wasp_2011_1",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/32680",
+        "urlSha256": "ecb06d2a8da33380e48ebea0c3c77aa2411f6c8bf1ad6a4252df093de40ddfe0",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:16.778Z",
+        "bodySha256": "2f57f544c2e7a09614e7f93e38175fb655d7c9512189fb3c06b8d9a1a214684c"
+      }
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #1",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "candidateIssueId": 5199,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 5199,
+      "candidateIssueIds": [
+        "5199"
+      ],
+      "selectedIssueIds": [
+        "5199"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5199/the_irredeemable_ant-man_2006_1",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5199",
+        "urlSha256": "f55ec44a073f9d482b15ff9c0cea24f76ebaedcf255a1626617af7708bad072d",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:19.101Z",
+        "bodySha256": "bda43b934a3bdb60eb8b6e6119ba85159202767549583cdf978275557f9f95e5"
+      }
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #2",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "candidateIssueId": 5360,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 5360,
+      "candidateIssueIds": [
+        "5360"
+      ],
+      "selectedIssueIds": [
+        "5360"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5360/the_irredeemable_ant-man_2006_2",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5360",
+        "urlSha256": "a48ddfda15c5b6c930063aebcff91369d628652cb62162f1ae53a8c1451836e4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:21.420Z",
+        "bodySha256": "547f6593574f88195eb0db9d22f3c069388e02ce6750522f8a0dfdddcee4a99f"
+      }
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #3",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "candidateIssueId": 5628,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 5628,
+      "candidateIssueIds": [
+        "5628"
+      ],
+      "selectedIssueIds": [
+        "5628"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5628/the_irredeemable_ant-man_2006_3",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5628",
+        "urlSha256": "12a7166bdd92cb0e1bffa969081061ceddfee15a6c8441520afdcfc122949cb4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:23.728Z",
+        "bodySha256": "a1e774cd40bed61c28e6e0020071f36280372393a303c3cd34d26e2c528f1ed5"
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #4",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "candidateIssueId": 5775,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 5775,
+      "candidateIssueIds": [
+        "5775"
+      ],
+      "selectedIssueIds": [
+        "5775"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5775/the_irredeemable_ant-man_2006_4",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5775",
+        "urlSha256": "d7cba51ec9a823ef3a8d72f8ed0d839f9147e73fc8d2e79df69c5d1dca8b879a",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:26.043Z",
+        "bodySha256": "5db709ca66c427ec42b53129091cb6d1f2a8c3899c32afa89096efd692ed098a"
+      }
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #5",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "candidateIssueId": 5938,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 5938,
+      "candidateIssueIds": [
+        "5938"
+      ],
+      "selectedIssueIds": [
+        "5938"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5938/the_irredeemable_ant-man_2006_5",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/5938",
+        "urlSha256": "a17061c4765afc51b93fda6b284ff84272e564aa12ffc6ae08dea81cee954ba7",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:28.310Z",
+        "bodySha256": "921b4f5ae7eba71c7f128d1b19ecb9b6b59383fb14b466cd646135035862700d"
+      }
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "The Irredeemable Ant-Man (2006) #6",
+      "sourceRangeReference": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "normalizedSeriesTitle": "the irredeemable ant man",
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "candidateIssueId": 6076,
+      "seriesId": 977,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 6076,
+      "candidateIssueIds": [
+        "6076"
+      ],
+      "selectedIssueIds": [
+        "6076"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Irredeemable Ant-Man (2006) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/6076",
+        "urlSha256": "6e8a334fbe417f23abf5c64cef7c03db488c4e5cb5487a359c11d56f8ce0f2c6",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:30.576Z",
+        "bodySha256": "87f99a5058279821bc3166305ded0034f8e306c5a571eb490af6850081964692"
+      }
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Ant-Man (2015) #1",
+      "sourceRangeReference": "Ant-Man Vol. 1: Second-Chance Man",
+      "normalizedSeriesTitle": "ant man",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "candidateIssueId": 51374,
+      "seriesId": 19275,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51374,
+      "candidateIssueIds": [
+        "51374"
+      ],
+      "selectedIssueIds": [
+        "51374"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Ant-Man (2015) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51374/ant-man_2015_1",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51374",
+        "urlSha256": "35e4db46a00aa5b0f6be1bfdd5dfc1d3ee0fe0f2b9d4da1de2e7b0fb5c079121",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:32.963Z",
+        "bodySha256": "5eaffb646d58de51d27c59b73caba428348c21f1c291507561b7cf0c39637df3"
+      }
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Ant-Man (2015) #2",
+      "sourceRangeReference": "Ant-Man Vol. 1: Second-Chance Man",
+      "normalizedSeriesTitle": "ant man",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "candidateIssueId": 51382,
+      "seriesId": 19275,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51382,
+      "candidateIssueIds": [
+        "51382"
+      ],
+      "selectedIssueIds": [
+        "51382"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Ant-Man (2015) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51382/ant-man_2015_2",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51382",
+        "urlSha256": "04d3ac6618b16358a3888091bff74e9e8da428fd0a6206200007f7b20faa3927",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:35.236Z",
+        "bodySha256": "64edf42abb353914327c28023755c00b9cb0d02121fd6d2a7d1d27d4b443e146"
+      }
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Ant-Man (2015) #3",
+      "sourceRangeReference": "Ant-Man Vol. 1: Second-Chance Man",
+      "normalizedSeriesTitle": "ant man",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "candidateIssueId": 51387,
+      "seriesId": 19275,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51387,
+      "candidateIssueIds": [
+        "51387"
+      ],
+      "selectedIssueIds": [
+        "51387"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Ant-Man (2015) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51387/ant-man_2015_3",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51387",
+        "urlSha256": "54ddf2868b1c09ed92f3cd28597bce2f38f76fd5c2e647fbe384606ffc21a9a1",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:37.570Z",
+        "bodySha256": "f458bc88319838ede30854d3124a11f20179db4231d5a73ad839b4f988d652c3"
+      }
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Ant-Man (2015) #4",
+      "sourceRangeReference": "Ant-Man Vol. 1: Second-Chance Man",
+      "normalizedSeriesTitle": "ant man",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "candidateIssueId": 51388,
+      "seriesId": 19275,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51388,
+      "candidateIssueIds": [
+        "51388"
+      ],
+      "selectedIssueIds": [
+        "51388"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Ant-Man (2015) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51388/ant-man_2015_4",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51388",
+        "urlSha256": "5b06ffaedd95b4d747127d89d17df041b67090be99d192679a8065dc675fd692",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:39.921Z",
+        "bodySha256": "906ecb6fc2bbd74c47d114e9d723c5cbeb5a02071d1c4526dca02075a376bbc6"
+      }
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Ant-Man (2015) #5",
+      "sourceRangeReference": "Ant-Man Vol. 1: Second-Chance Man",
+      "normalizedSeriesTitle": "ant man",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "candidateIssueId": 51389,
+      "seriesId": 19275,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51389,
+      "candidateIssueIds": [
+        "51389"
+      ],
+      "selectedIssueIds": [
+        "51389"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Ant-Man (2015) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51389/ant-man_2015_5",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51389",
+        "urlSha256": "b3da010d7a8d1ea8ad2593f7844082ab8e28aabb9a3580e3c5686144a04309a9",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:42.276Z",
+        "bodySha256": "9026ac318efb2ed135ba3bbdcb696af901e613da7151d65aa1b77cdc74e7d035"
+      }
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #5",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "candidateIssueId": 55336,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55336,
+      "candidateIssueIds": [
+        "55336"
+      ],
+      "selectedIssueIds": [
+        "55336"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55336",
+        "urlSha256": "006e0d124b3f2f3b9056924630ad640cfafbd1b1390733722ef832784366d536",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:44.553Z",
+        "bodySha256": "b2d300e80845d976b568c61abe398991e6a3fd07e7fff9aebcfbc50e53166f86"
+      }
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #6",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "candidateIssueId": 55338,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55338,
+      "candidateIssueIds": [
+        "55338"
+      ],
+      "selectedIssueIds": [
+        "55338"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55338",
+        "urlSha256": "9c2e72e9f9ce8e50b5d1cb45e7b37d7efb9ee76ccd81029c5fad94c5f9f90d9e",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:46.821Z",
+        "bodySha256": "72c6bd7b25e518e4d37bcb511cfb46cb21990b4e87a0c49006878b434c5c4205"
+      }
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #7",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "candidateIssueId": 55339,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55339,
+      "candidateIssueIds": [
+        "55339"
+      ],
+      "selectedIssueIds": [
+        "55339"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55339",
+        "urlSha256": "947ea4dcb098c3d77eba228093be8d8e185b9998fd8dffda7dcd7770c6f4660a",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:49.101Z",
+        "bodySha256": "7a2bad33c51edf7e920fd415e7478796328aec234c5675f3eb39cd3f921037b7"
+      }
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #8",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "candidateIssueId": 55340,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55340,
+      "candidateIssueIds": [
+        "55340"
+      ],
+      "selectedIssueIds": [
+        "55340"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55340",
+        "urlSha256": "782f1f2d89ba0ed722c11daaaaf4a28df0b6abb0b50e7e5ea18be9c2ee5eea64",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:51.367Z",
+        "bodySha256": "e27d05026c4a2e7b4186a9d488c0b3fbbb65f0fea4a275ed73156bf831f340c1"
+      }
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #9",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "candidateIssueId": 55341,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55341,
+      "candidateIssueIds": [
+        "55341"
+      ],
+      "selectedIssueIds": [
+        "55341"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55341",
+        "urlSha256": "f0a909578806d27594cab0eb764ace3a181cfa43f0e04a15cf04bdc6cc32d430",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:53.654Z",
+        "bodySha256": "7280c3aea1f1b285c835d16a7656839f19c5bd336b8fbd90642faeb345b377e7"
+      }
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #10",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "candidateIssueId": 55342,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55342,
+      "candidateIssueIds": [
+        "55342"
+      ],
+      "selectedIssueIds": [
+        "55342"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55342",
+        "urlSha256": "3e8fb8a14b02fdc206d20700281b2e91bb8d975d21096a3b74dce2e4be61d1f9",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:56.015Z",
+        "bodySha256": "2b7931d8a63d4e70649d443b8362f3730ff65d7ba3968726c1473acf6257ad02"
+      }
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #11",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "candidateIssueId": 55343,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55343,
+      "candidateIssueIds": [
+        "55343"
+      ],
+      "selectedIssueIds": [
+        "55343"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55343",
+        "urlSha256": "db66fc930501af08309d3654601fa31686496dba0ab7b0e33cf22412db7777af",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:54:58.304Z",
+        "bodySha256": "bbbd1d059b26c2b2f9072b8d7ec4e1512957a4a6c2786293f18e7c786be534f1"
+      }
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #12",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "candidateIssueId": 55344,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55344,
+      "candidateIssueIds": [
+        "55344"
+      ],
+      "selectedIssueIds": [
+        "55344"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55344",
+        "urlSha256": "c5f8ab91bea05ca40d7ca59acd40ca70e6cafd2b8d6fae3a80b9d527e235b790",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:00.609Z",
+        "bodySha256": "049e7a6391ba21cc5c1d785e2c39127471deb68feca16aa5c37cf49814399053"
+      }
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "The Astonishing Ant-Man (2015) #13",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "normalizedSeriesTitle": "the astonishing ant man",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "candidateIssueId": 55345,
+      "seriesId": 20437,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 55345,
+      "candidateIssueIds": [
+        "55345"
+      ],
+      "selectedIssueIds": [
+        "55345"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "The Astonishing Ant-Man (2015) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/55345",
+        "urlSha256": "61ae6b83c1b8579a68ed7b2e0d96290cccf74aa3a2b8d1fa03edeaff483e3db4",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:02.885Z",
+        "bodySha256": "4bea9de82650144c1e53926d33c1e6730f96f46633b45297c4f1ce786c8dc478"
+      }
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Guardians Team-Up (2015) #7",
+      "sourceRangeReference": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "normalizedSeriesTitle": "guardians team up",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "candidateIssueId": 51933,
+      "seriesId": 19453,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 51933,
+      "candidateIssueIds": [
+        "51933"
+      ],
+      "selectedIssueIds": [
+        "51933"
+      ],
+      "note": "",
+      "resolvedIssueTitle": "Guardians Team-Up (2015) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/51933",
+        "urlSha256": "efde1fe2ef004bb9bea6fea8bd4f772ec8c7dc8044a4130ded2722469e177e3c",
+        "status": 200,
+        "fetchedAt": "2026-10-09T16:55:05.216Z",
+        "bodySha256": "7ebf3ed49b7454a1603c63d40cb3f490ecae28bec245bb3069e097d56e260606"
+      }
+    }
+  ],
+  "reviewStatus": "approved",
+  "mappingDigest": "fa4613c9eb7320f7010a8be79651213926e0ce7f877665b1319ff027d58f4025",
+  "packetReview": "Actual central source review of proposal a173e02dc9e21e8743f0be03ec82bde4bac93676c1f94e40f9fa9013fa897756",
+  "approvedManifest": {
+    "id": "mcu-prep-ant-man-2015",
+    "name": "MCU Prep: Ant-Man (2015)",
+    "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-ant-man-2015.md",
+    "out": "mcu_prep_ant_man_2015.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Ant-Man",
+      "Wasp",
+      "Scott Lang",
+      "Eric O'Grady"
+    ],
+    "keywords": [
+      "ant-man"
+    ],
+    "coverIssueId": 32680,
+    "expect": 22
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T17:20:02.005Z",
+    "proposalDigest": "a173e02dc9e21e8743f0be03ec82bde4bac93676c1f94e40f9fa9013fa897756",
+    "rationale": "Actual bounded review of305 current orders including78 generated children and one hidden parent, plus3 selected peers. Every exact shared-ID vector and distinct selection scope inspected; no exact duplicates and selected peers are disjoint. Retain all original positions.",
+    "packetDigest": "f183ce3e406d826ca30274ef084da503516a3da6bd7aed96fbb49e5a3c7cba7b",
+    "mappingDigest": "fa4613c9eb7320f7010a8be79651213926e0ce7f877665b1319ff027d58f4025",
+    "reportDigest": "f994bd3a78d895244589972ce84070b009f49b98f6122a4d5622f3e850005324",
+    "libraryDigest": "5672d971e9737f7eb35230df4ab41596895c0e9246b465ecd664e9c2cb60b365",
+    "peerDigests": {
+      "mcu-prep-avengers-age-of-ultron-2015": "b426ac9eead53be299e42f60bd09a5b7729792910b7001b327501ca4b0a7660f",
+      "mcu-prep-captain-america-the-winter-soldier-2014": "e33031038e79ff1bd28405be02bfc40bc7c0954279d436a438c9a51b54a6a785",
+      "mcu-prep-thor-the-dark-world-2013": "ef838d558688c57d6c11e8932205744efe378e418be632ad06703b293c087c89"
+    },
+    "insertionReview": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+      "reviewedAt": "2026-10-09T17:20:02.005Z",
+      "insertionAnchor": {
+        "beforeId": "doctor-strange-multiverse-of-madness"
+      },
+      "rationale": "Insert the four supplied guides in input order after prior early-film companions and before doctor-strange-multiverse-of-madness. Independent explicit screen associations determine displayed film-release order."
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "absolute-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "age-of-x-man",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "sharedCount": 22,
+        "sharedIds": [
+          "32680",
+          "5199",
+          "5360",
+          "5628",
+          "5775",
+          "5938",
+          "6076",
+          "51374",
+          "51382",
+          "51387",
+          "51388",
+          "51389",
+          "55336",
+          "55338",
+          "55339",
+          "55340",
+          "55341",
+          "55342",
+          "55343",
+          "55344",
+          "55345",
+          "51933"
+        ],
+        "relationship": "candidate-subset",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "The22-original film companion is a strict selected subset of the broader Ant-Man history, preserving the supplied legacy and Scott groups."
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "avengers-doomsday-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "axis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "bloodties",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "chaos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "childs-play",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "civil-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "civil-war-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "contest-of-champions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "contest-of-chaos",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "damnation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "dark-web",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "days-of-future-present",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "devils-reign",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "doomwar",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "eighth-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "essential-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "evolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "fatal-attractions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "gang-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "generations",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "groot-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "51933"
+        ],
+        "relationship": "partial",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Only Guardians Team-Up#7 is shared and remains the supplied Trial finale; no Guardians guide edit is implied."
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hickman-full",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hickman-minimal",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hickman-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "house-of-m",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "infinite-destinies",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "iron-fist-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "iron-man-2020",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "judgment-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "king-in-black",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "last-annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "loki-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "magneto-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-2099",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-01",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-02",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-03",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-04",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-05",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-06",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-07",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-08",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-09",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-10",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-11",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-12",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-13",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-14",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-15",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-16",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-17",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-18",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-19",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-20",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-21",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-22",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-23",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-24",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-25",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-26",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-27",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-28",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-29",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-30",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-31",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-32",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-33",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-34",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-35",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-36",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-37",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-38",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-39",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-40",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-41",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-42",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-43",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-44",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-45",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-46",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-47",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-48",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-49",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-50",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-51",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-52",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-53",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-54",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-55",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-56",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-57",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-58",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-59",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-60",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-61",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-62",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-63",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-64",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-65",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-66",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-67",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-68",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-69",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-70",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-71",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-72",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-73",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-74",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-75",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-76",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-77",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-78",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-what-if",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "maximum-security",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-agatha-all-along",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-brave-new-world",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-daredevil-born-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-deadpool-and-wolverine",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-eternals",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-fantastic-four-first-steps",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-guardians-of-the-galaxy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2-2010",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2008",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-3-2013",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-moon-knight",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-ms-marvel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-she-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-spider-man-brand-new-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-the-avengers-2012",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-the-incredible-hulk-2008",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-thor-2011",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-thor-the-dark-world-2013",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mcu-prep-thunderbolts",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "messiah-complex",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "messiah-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "midnight-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "minimum-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "muir-island-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mutant-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "namor-sub-mariner-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "necrosha",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "nova-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "original-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "planet-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "reckoning-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "revolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "second-coming",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "secret-invasion",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "secret-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "shadowland",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "silent-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-geddon",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-island",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "thanos-imperative",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "thanos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-death-of-ms-marvel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "thor-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "time-and-time-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "venom-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "venomverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "wandavision",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "war-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "wraith-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-extermination",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-schism",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-men-utopia",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-of-swords",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-termination",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "xmen-claremont",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "reviewedAt": "2026-10-09T17:20:02.005Z",
+        "decision": "approved",
+        "rationale": "Exact comparison has no shared original."
+      }
+    ],
+    "approvalDigest": "f9d4fb356104d0ad5b05e744e4c3f1b7bfd48b51eb960ae167909904a8358674"
+  }
+}

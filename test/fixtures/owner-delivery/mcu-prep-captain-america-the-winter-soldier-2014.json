@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+  "name": "MCU Prep: Captain America: The Winter Soldier (2014)",
+  "description": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
+  "groups": [
+    "Captain America: Man Out of Time",
+    "Captain America: Winter Soldier Vol. 1",
+    "Captain America: Winter Soldier Vol. 2"
+  ],
+  "rows": [
+    [
+      1,
+      34994,
+      "Captain America: Man Out of Time (2010) #1",
+      0
+    ],
+    [
+      2,
+      36179,
+      "Captain America: Man Out of Time (2010) #2",
+      0
+    ],
+    [
+      3,
+      36175,
+      "Captain America: Man Out of Time (2010) #3",
+      0
+    ],
+    [
+      4,
+      36371,
+      "Captain America: Man Out of Time (2010) #4",
+      0
+    ],
+    [
+      5,
+      36177,
+      "Captain America: Man Out of Time (2010) #5",
+      0
+    ],
+    [
+      6,
+      91,
+      "Captain America (2004) #1",
+      1
+    ],
+    [
+      7,
+      1492,
+      "Captain America (2004) #2",
+      1
+    ],
+    [
+      8,
+      1579,
+      "Captain America (2004) #3",
+      1
+    ],
+    [
+      9,
+      1668,
+      "Captain America (2004) #4",
+      1
+    ],
+    [
+      10,
+      1764,
+      "Captain America (2004) #5",
+      1
+    ],
+    [
+      11,
+      1870,
+      "Captain America (2004) #6",
+      1
+    ],
+    [
+      12,
+      1978,
+      "Captain America (2004) #7",
+      1
+    ],
+    [
+      13,
+      2190,
+      "Captain America (2004) #8",
+      2
+    ],
+    [
+      14,
+      2308,
+      "Captain America (2004) #9",
+      2
+    ],
+    [
+      15,
+      2421,
+      "Captain America (2004) #11",
+      2
+    ],
+    [
+      16,
+      2422,
+      "Captain America (2004) #12",
+      2
+    ],
+    [
+      17,
+      3084,
+      "Captain America (2004) #13",
+      2
+    ],
+    [
+      18,
+      3188,
+      "Captain America (2004) #14",
+      2
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 18,
+    "sourceIdentityCount": 18,
+    "includedIssueCount": 18,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "231445542c17e2c366ec6045e9f8a82c9ce85598e1ef578f943af908ada0f96c",
+  "proposalDigest": "6a40d9f11d956b3f7c1cbef9a8ddf97679ce20484b73a889cfce7d0f17e94a8f",
+  "approvalDigest": "c032b20e8cedcf3f07e5cb3d9c4cc26c0e8b757490cdba08cac33df93133e97a",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-thor-the-dark-world-2013",
+    "mcu-prep-avengers-age-of-ultron-2015",
+    "mcu-prep-ant-man-2015"
+  ],
+  "vectorSha256": "c8fb14222049e6ef98dbf81bc83841f4e79135868edaee751cca8bfb2a4bce80",
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-captain-america-the-winter-soldier-2014.json",
+    "scripts/data/owner-packets/mcu-prep-captain-america-the-winter-soldier-2014.json",
+    "scripts/data/owner-mappings/mcu-prep-captain-america-the-winter-soldier-2014.json",
+    "scripts/data/owner-overlaps/mcu-prep-captain-america-the-winter-soldier-2014.json"
+  ]
+}

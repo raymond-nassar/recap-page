@@ -1,0 +1,384 @@
+{
+  "id": "mcu-prep-thor-the-dark-world-2013",
+  "name": "MCU Prep: Thor: The Dark World (2013)",
+  "description": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T17:20:33.062Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 14,
+  "collections": 2,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 33865,
+      "title": "Thor: First Thunder (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/33865/thor_first_thunder_2010_1",
+      "seriesId": 10705,
+      "seriesName": "Thor: First Thunder (2010 - 2011)",
+      "onSale": "2010-09-15T00:00:00+0000",
+      "mu": "2011-10-07T00:00:00+0000",
+      "digitalId": 16058,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/59f7852d7b613",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan J.L. Glass",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: First Thunder"
+    },
+    {
+      "issueId": 33828,
+      "title": "Thor: First Thunder (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/33828/thor_first_thunder_2010_2",
+      "seriesId": 10705,
+      "seriesName": "Thor: First Thunder (2010 - 2011)",
+      "onSale": "2010-10-20T00:00:00+0000",
+      "mu": "2017-09-14T00:00:00+0000",
+      "digitalId": 16844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/59f78c5b85c8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Haberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan J.L. Glass",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: First Thunder"
+    },
+    {
+      "issueId": 33838,
+      "title": "Thor: First Thunder (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/33838/thor_first_thunder_2010_3",
+      "seriesId": 10705,
+      "seriesName": "Thor: First Thunder (2010 - 2011)",
+      "onSale": "2010-11-17T00:00:00+0000",
+      "mu": "2011-11-17T00:00:00+0000",
+      "digitalId": 17785,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/59f880af84c0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Tan Eng Huat",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan J.L. Glass",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: First Thunder"
+    },
+    {
+      "issueId": 33797,
+      "title": "Thor: First Thunder (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/33797/thor_first_thunder_2010_4",
+      "seriesId": 10705,
+      "seriesName": "Thor: First Thunder (2010 - 2011)",
+      "onSale": "2010-12-15T00:00:00+0000",
+      "mu": "2010-12-08T00:00:00+0000",
+      "digitalId": 18471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/59f8893bb306e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan J.L. Glass",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: First Thunder"
+    },
+    {
+      "issueId": 33868,
+      "title": "Thor: First Thunder (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/33868/thor_first_thunder_2010_5",
+      "seriesId": 10705,
+      "seriesName": "Thor: First Thunder (2010 - 2011)",
+      "onSale": "2011-01-19T00:00:00+0000",
+      "mu": "2011-01-19T00:00:00+0000",
+      "digitalId": 18928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/00/59f89ecc7765f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Tan Eng Huat",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan J.L. Glass",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: First Thunder"
+    },
+    {
+      "issueId": 11665,
+      "title": "Thor (1966) #337",
+      "number": "337",
+      "url": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1983-11-10T00:00:00+0000",
+      "mu": "2009-05-15T00:00:00+0000",
+      "digitalId": 11595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/4bb5cd6927cf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Walter M. Simonson",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11666,
+      "title": "Thor (1966) #338",
+      "number": "338",
+      "url": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1983-12-01T00:00:00+0000",
+      "mu": "1983-12-01T00:00:00+0000",
+      "digitalId": 11596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/4bb4ff0221713",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11667,
+      "title": "Thor (1966) #339",
+      "number": "339",
+      "url": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-01-01T00:00:00+0000",
+      "mu": "1984-01-01T00:00:00+0000",
+      "digitalId": 11597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb4fefc8119b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11668,
+      "title": "Thor (1966) #340",
+      "number": "340",
+      "url": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-02-01T00:00:00+0000",
+      "mu": "1984-02-01T00:00:00+0000",
+      "digitalId": 11598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/4bb4fef65de50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11669,
+      "title": "Thor (1966) #341",
+      "number": "341",
+      "url": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-03-01T00:00:00+0000",
+      "mu": "1984-03-01T00:00:00+0000",
+      "digitalId": 11599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/4bb4fef0b526c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11670,
+      "title": "Thor (1966) #342",
+      "number": "342",
+      "url": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-04-01T00:00:00+0000",
+      "mu": "1984-04-01T00:00:00+0000",
+      "digitalId": 11600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/4bb4feeb419ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11671,
+      "title": "Thor (1966) #343",
+      "number": "343",
+      "url": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-05-01T00:00:00+0000",
+      "mu": "1984-05-01T00:00:00+0000",
+      "digitalId": 11601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bb4fee522276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11672,
+      "title": "Thor (1966) #344",
+      "number": "344",
+      "url": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-06-01T00:00:00+0000",
+      "mu": "1984-06-01T00:00:00+0000",
+      "digitalId": 11602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/4bb4fedf5d068",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    },
+    {
+      "issueId": 11673,
+      "title": "Thor (1966) #345",
+      "number": "345",
+      "url": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-07-01T00:00:00+0000",
+      "mu": "1984-07-01T00:00:00+0000",
+      "digitalId": 11603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb4fd6105b90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor by Walt Simonson Vol. 1"
+    }
+  ]
+}

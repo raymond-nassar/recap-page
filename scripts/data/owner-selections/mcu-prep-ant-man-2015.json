@@ -1,0 +1,545 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-ant-man-2015",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+  "sourceIssueCount": 22,
+  "publishedIssueCount": 22,
+  "inputReceipt": {
+    "name": "mcu-prep-ant-man-2015.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "1b884099697132969ca4c85465bbe27fd80e931826892d128bcb91695fa7ec8c",
+    "snapshotBytes": 3263,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "descriptionReceipt": {
+    "name": "phase-two-descriptions.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "1fa71ac99d0a1f823ef8419d9c131cb4af9d6eb875656fa0ee77eca809f72ce2",
+    "snapshotBytes": 1445,
+    "bodySha256": "e8e253722f7f00202b552d31d795757844cc1904505d5cc0d1742066f9fa6082"
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-ant-man-2015-factual-projection.tsv",
+    "sha256": "48d914dd67c738124a553b331e1b27d3e561a7148dc8baf3f82406e6626429cb",
+    "bytes": 1788,
+    "basis": "Independent factual projection, not original pasted-snapshot or uploaded-file bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Avengers Origins: Ant-Man & the Wasp** (one-shot)",
+    "2. **Irredeemable Ant-Man Vol. 1: Low-Life** (collects #1\u20136)",
+    "3. **Ant-Man Vol. 1: Second-Chance Man** (collects Ant-Man (2015) #1\u20135)",
+    "4. **Astonishing Ant-Man Vol. 2: Small-Time Criminal** ",
+    "5. **Astonishing Ant-Man Vol. 3** \u2014 \u26a0\ufe0f *\"Family Business\" doesn't exist as a title; the real Vol. 3 is \"The Trial of Ant-Man\" (#10\u201313 + Guardians Team-Up #7)*"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "group": "Avengers Origins: Ant-Man & the Wasp",
+      "suppliedText": "- [Avengers Origins: Ant-Man & The Wasp (2011) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/32680/avengers-origins-ant-man-the-wasp-2011-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/32680/avengers-origins-ant-man-the-wasp-2011-1",
+      "suppliedCandidateId": 32680,
+      "suppliedReference": "Avengers Origins: Ant-Man & The Wasp (2011) #1",
+      "originalGroup": "Avengers Origins: Ant-Man & the Wasp",
+      "disposition": "included",
+      "selectedIssueId": 32680
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5199/irredeemable_ant-man_2006_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5199/irredeemable_ant-man_2006_1",
+      "suppliedCandidateId": 5199,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #1",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5199
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5360/)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5360/",
+      "suppliedCandidateId": 5360,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #2",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5360
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5628/irredeemable_ant-man_2006_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5628/irredeemable_ant-man_2006_3",
+      "suppliedCandidateId": 5628,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #3",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5628
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5775/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5775/read",
+      "suppliedCandidateId": 5775,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #4",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5775
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5938/irredeemable_ant-man_2006_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5938/irredeemable_ant-man_2006_5",
+      "suppliedCandidateId": 5938,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #5",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5938
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6",
+      "suppliedCandidateId": 6076,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #6",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 6076
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51374/ant-man_2015_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51374/ant-man_2015_1",
+      "suppliedCandidateId": 51374,
+      "suppliedReference": "Ant-Man (2015) #1",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51374
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51382/ant-man_2015_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51382/ant-man_2015_2",
+      "suppliedCandidateId": 51382,
+      "suppliedReference": "Ant-Man (2015) #2",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51382
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51387/)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51387/",
+      "suppliedCandidateId": 51387,
+      "suppliedReference": "Ant-Man (2015) #3",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51387
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51388/ant-man_2015_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51388/ant-man_2015_4",
+      "suppliedCandidateId": 51388,
+      "suppliedReference": "Ant-Man (2015) #4",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51388
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51389/ant-man_2015_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51389/ant-man_2015_5",
+      "suppliedCandidateId": 51389,
+      "suppliedReference": "Ant-Man (2015) #5",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51389
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5",
+      "suppliedCandidateId": 55336,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #5",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55336
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6",
+      "suppliedCandidateId": 55338,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #6",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55338
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7",
+      "suppliedCandidateId": 55339,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #7",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55339
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8",
+      "suppliedCandidateId": 55340,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #8",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55340
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9",
+      "suppliedCandidateId": 55341,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #9",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55341
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #10 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10",
+      "suppliedCandidateId": 55342,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #10",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55342
+    },
+    {
+      "sourcePosition": 19,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #11 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11",
+      "suppliedCandidateId": 55343,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #11",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55343
+    },
+    {
+      "sourcePosition": 20,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #12 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12",
+      "suppliedCandidateId": 55344,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #12",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55344
+    },
+    {
+      "sourcePosition": 21,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #13 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13",
+      "suppliedCandidateId": 55345,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #13",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55345
+    },
+    {
+      "sourcePosition": 22,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [Guardians Team-Up (2015) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7",
+      "suppliedCandidateId": 51933,
+      "suppliedReference": "Guardians Team-Up (2015) #7",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 51933
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "group": "Avengers Origins: Ant-Man & the Wasp",
+      "suppliedText": "- [Avengers Origins: Ant-Man & The Wasp (2011) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/32680/avengers-origins-ant-man-the-wasp-2011-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/32680/avengers-origins-ant-man-the-wasp-2011-1",
+      "suppliedCandidateId": 32680,
+      "suppliedReference": "Avengers Origins: Ant-Man & The Wasp (2011) #1",
+      "originalGroup": "Avengers Origins: Ant-Man & the Wasp",
+      "disposition": "included",
+      "selectedIssueId": 32680
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5199/irredeemable_ant-man_2006_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5199/irredeemable_ant-man_2006_1",
+      "suppliedCandidateId": 5199,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #1",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5199
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5360/)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5360/",
+      "suppliedCandidateId": 5360,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #2",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5360
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5628/irredeemable_ant-man_2006_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5628/irredeemable_ant-man_2006_3",
+      "suppliedCandidateId": 5628,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #3",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5628
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5775/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5775/read",
+      "suppliedCandidateId": 5775,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #4",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5775
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/5938/irredeemable_ant-man_2006_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5938/irredeemable_ant-man_2006_5",
+      "suppliedCandidateId": 5938,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #5",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 5938
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "suppliedText": "- [The Irredeemable Ant-Man (2006) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6",
+      "suppliedCandidateId": 6076,
+      "suppliedReference": "The Irredeemable Ant-Man (2006) #6",
+      "originalGroup": "Irredeemable Ant-Man Vol. 1: Low-Life",
+      "disposition": "included",
+      "selectedIssueId": 6076
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51374/ant-man_2015_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51374/ant-man_2015_1",
+      "suppliedCandidateId": 51374,
+      "suppliedReference": "Ant-Man (2015) #1",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51374
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51382/ant-man_2015_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51382/ant-man_2015_2",
+      "suppliedCandidateId": 51382,
+      "suppliedReference": "Ant-Man (2015) #2",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51382
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51387/)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51387/",
+      "suppliedCandidateId": 51387,
+      "suppliedReference": "Ant-Man (2015) #3",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51387
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51388/ant-man_2015_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51388/ant-man_2015_4",
+      "suppliedCandidateId": 51388,
+      "suppliedReference": "Ant-Man (2015) #4",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51388
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Ant-Man Vol. 1: Second-Chance Man",
+      "suppliedText": "- [Ant-Man (2015) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51389/ant-man_2015_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51389/ant-man_2015_5",
+      "suppliedCandidateId": 51389,
+      "suppliedReference": "Ant-Man (2015) #5",
+      "originalGroup": "Ant-Man Vol. 1: Second-Chance Man",
+      "disposition": "included",
+      "selectedIssueId": 51389
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5",
+      "suppliedCandidateId": 55336,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #5",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55336
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6",
+      "suppliedCandidateId": 55338,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #6",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55338
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7",
+      "suppliedCandidateId": 55339,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #7",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55339
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8",
+      "suppliedCandidateId": 55340,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #8",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55340
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9",
+      "suppliedCandidateId": 55341,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #9",
+      "originalGroup": "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+      "disposition": "included",
+      "selectedIssueId": 55341
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #10 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10",
+      "suppliedCandidateId": 55342,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #10",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55342
+    },
+    {
+      "sourcePosition": 19,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #11 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11",
+      "suppliedCandidateId": 55343,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #11",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55343
+    },
+    {
+      "sourcePosition": 20,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #12 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12",
+      "suppliedCandidateId": 55344,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #12",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55344
+    },
+    {
+      "sourcePosition": 21,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [The Astonishing Ant-Man (2015) #13 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13",
+      "suppliedCandidateId": 55345,
+      "suppliedReference": "The Astonishing Ant-Man (2015) #13",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 55345
+    },
+    {
+      "sourcePosition": 22,
+      "group": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man",
+      "suppliedText": "- [Guardians Team-Up (2015) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7",
+      "suppliedCandidateId": 51933,
+      "suppliedReference": "Guardians Team-Up (2015) #7",
+      "originalGroup": "Astonishing Ant-Man Vol. 3",
+      "disposition": "included",
+      "selectedIssueId": 51933
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Owner-selected original comics and exact approved description. No new collection expansion or source substitution.",
+    "Original pasted-message snapshots remain private and immutable; public facts are self-contained and separately hashed.",
+    "No Marvel or CDN resource was fetched. Metadata facts come from genuine configured-provider records; no synopsis prose or image bytes are published.",
+    "The Trial of Ant-Man correction is retained; library ISBN9780785199526 corroborates #10-13 plus Guardians Team-Up#7.",
+    "Irredeemable Ant-Man follows Eric O'Grady. The approved description frames the broader Ant-Man legacy, not every issue as Scott Lang.",
+    "Ant-Man2015#5 and Astonishing Ant-Man2015#5 remain distinct series and IDs. Astonishing#1-4 were not selected."
+  ],
+  "bibliography": [
+    {
+      "url": "https://openlibrary.org/isbn/9780785199526.json",
+      "finding": "The Trial of Ant-Man collects Astonishing#10-13 and Guardians Team-Up#7.",
+      "retrievedAt": "2026-10-09"
+    }
+  ],
+  "publicDependencies": []
+}

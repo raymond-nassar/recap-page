@@ -1,0 +1,700 @@
+{
+  "id": "mcu-prep-ant-man-2015",
+  "name": "MCU Prep: Ant-Man (2015)",
+  "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T17:20:41.889Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 22,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 32680,
+      "title": "Avengers Origins: Ant-Man & the Wasp (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/32680/avengers_origins_ant-man_the_wasp_2011_1",
+      "seriesId": 9860,
+      "seriesName": "Avengers Origins: Ant-Man & the Wasp (2011)",
+      "onSale": "2011-11-02T00:00:00+0000",
+      "mu": "2016-09-14T00:00:00+0000",
+      "digitalId": 24550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/4eb00e5f7cbeb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers Origins: Ant-Man & the Wasp"
+    },
+    {
+      "issueId": 5199,
+      "title": "The Irredeemable Ant-Man (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5199/the_irredeemable_ant-man_2006_1",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2006-10-04T00:00:00+0000",
+      "mu": "2006-10-04T00:00:00+0000",
+      "digitalId": 2043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/70/58498477421c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 5360,
+      "title": "The Irredeemable Ant-Man (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5360/the_irredeemable_ant-man_2006_2",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2006-11-01T00:00:00+0000",
+      "mu": "2006-11-01T00:00:00+0000",
+      "digitalId": 2044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/60/584985c189045",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 5628,
+      "title": "The Irredeemable Ant-Man (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5628/the_irredeemable_ant-man_2006_3",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2006-12-06T00:00:00+0000",
+      "mu": "2006-12-06T00:00:00+0000",
+      "digitalId": 2045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/584986f8b9797",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 5775,
+      "title": "The Irredeemable Ant-Man (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5775/the_irredeemable_ant-man_2006_4",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2007-01-03T00:00:00+0000",
+      "mu": "2007-01-03T00:00:00+0000",
+      "digitalId": 7945,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/584987e1e7fba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 5938,
+      "title": "The Irredeemable Ant-Man (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5938/the_irredeemable_ant-man_2006_5",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2007-02-07T00:00:00+0000",
+      "mu": "2007-02-07T00:00:00+0000",
+      "digitalId": 7946,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/584988ab7b1a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 6076,
+      "title": "The Irredeemable Ant-Man (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/6076/the_irredeemable_ant-man_2006_6",
+      "seriesId": 977,
+      "seriesName": "The Irredeemable Ant-Man (2006 - 2007)",
+      "onSale": "2007-03-14T00:00:00+0000",
+      "mu": "2007-03-14T00:00:00+0000",
+      "digitalId": 7947,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/517acfb8bcd0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Hester",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Irredeemable Ant-Man Vol. 1: Low-Life"
+    },
+    {
+      "issueId": 51374,
+      "title": "Ant-Man (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51374/ant-man_2015_1",
+      "seriesId": 19275,
+      "seriesName": "Ant-Man (2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/54a1970c6edc2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ant-Man Vol. 1: Second-Chance Man"
+    },
+    {
+      "issueId": 51382,
+      "title": "Ant-Man (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/51382/ant-man_2015_2",
+      "seriesId": 19275,
+      "seriesName": "Ant-Man (2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/54c13bc94157f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ant-Man Vol. 1: Second-Chance Man"
+    },
+    {
+      "issueId": 51387,
+      "title": "Ant-Man (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/51387/ant-man_2015_3",
+      "seriesId": 19275,
+      "seriesName": "Ant-Man (2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-09-14T00:00:00+0000",
+      "digitalId": 36900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/54f772bc3553f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ant-Man Vol. 1: Second-Chance Man"
+    },
+    {
+      "issueId": 51388,
+      "title": "Ant-Man (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/51388/ant-man_2015_4",
+      "seriesId": 19275,
+      "seriesName": "Ant-Man (2015)",
+      "onSale": "2015-04-08T00:00:00+0000",
+      "mu": "2015-10-05T00:00:00+0000",
+      "digitalId": 37336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/551abd9a2edcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ant-Man Vol. 1: Second-Chance Man"
+    },
+    {
+      "issueId": 51389,
+      "title": "Ant-Man (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/51389/ant-man_2015_5",
+      "seriesId": 19275,
+      "seriesName": "Ant-Man (2015)",
+      "onSale": "2015-05-06T00:00:00+0000",
+      "mu": "2015-11-02T00:00:00+0000",
+      "digitalId": 38146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5637b09098d1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ant-Man Vol. 1: Second-Chance Man"
+    },
+    {
+      "issueId": 55336,
+      "title": "The Astonishing Ant-Man (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55336/the_astonishing_ant-man_2015_5",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-22T00:00:00+0000",
+      "digitalId": 41196,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/56c74af278216",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Rosanas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 2: Small-Time Criminal"
+    },
+    {
+      "issueId": 55338,
+      "title": "The Astonishing Ant-Man (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55338/the_astonishing_ant-man_2015_6",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-03-16T00:00:00+0000",
+      "mu": "2016-09-19T00:00:00+0000",
+      "digitalId": 41424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/56e3339f1c86a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 2: Small-Time Criminal"
+    },
+    {
+      "issueId": 55339,
+      "title": "The Astonishing Ant-Man (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55339/the_astonishing_ant-man_2015_7",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 41905,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/570e98097351c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 2: Small-Time Criminal"
+    },
+    {
+      "issueId": 55340,
+      "title": "The Astonishing Ant-Man (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55340/the_astonishing_ant-man_2015_8",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41587,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/572bab571ffcf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brent Schoonover",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 2: Small-Time Criminal"
+    },
+    {
+      "issueId": 55341,
+      "title": "The Astonishing Ant-Man (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55341/the_astonishing_ant-man_2015_9",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-06-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 41815,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5751eef30325d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 2: Small-Time Criminal"
+    },
+    {
+      "issueId": 55342,
+      "title": "The Astonishing Ant-Man (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55342/the_astonishing_ant-man_2015_10",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42106,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/5789068bb35d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    },
+    {
+      "issueId": 55343,
+      "title": "The Astonishing Ant-Man (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55343/the_astonishing_ant-man_2015_11",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/57bc9bbe31277",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    },
+    {
+      "issueId": 55344,
+      "title": "The Astonishing Ant-Man (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57d2c6e84c70b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brent Schoonover",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    },
+    {
+      "issueId": 55345,
+      "title": "The Astonishing Ant-Man (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13",
+      "seriesId": 20437,
+      "seriesName": "The Astonishing Ant-Man (2015 - 2016)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57fe55f3d434f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    },
+    {
+      "issueId": 51933,
+      "title": "Guardians Team-Up (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7",
+      "seriesId": 19453,
+      "seriesName": "Guardians Team-Up (2015)",
+      "onSale": "2015-07-01T00:00:00+0000",
+      "mu": "2015-12-28T00:00:00+0000",
+      "digitalId": 39126,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/559190649ce33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Giovannetti",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Scheer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    }
+  ]
+}

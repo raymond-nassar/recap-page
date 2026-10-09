@@ -2341,6 +2341,115 @@
       "expect": 24
     },
     {
+      "id": "mcu-prep-thor-the-dark-world-2013",
+      "name": "MCU Prep: Thor: The Dark World (2013)",
+      "description": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-thor-the-dark-world-2013.md",
+      "out": "mcu_prep_thor_the_dark_world_2013.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Thor",
+        "Loki",
+        "Malekith"
+      ],
+      "keywords": [
+        "thor-the-dark-world"
+      ],
+      "coverIssueId": 33865,
+      "expect": 14
+    },
+    {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "name": "MCU Prep: Captain America: The Winter Soldier (2014)",
+      "description": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-captain-america-the-winter-soldier-2014.md",
+      "out": "mcu_prep_captain_america_the_winter_soldier_2014.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Captain America",
+        "Winter Soldier"
+      ],
+      "keywords": [
+        "captain-america-the-winter-soldier"
+      ],
+      "coverIssueId": 34994,
+      "expect": 18
+    },
+    {
+      "id": "mcu-prep-avengers-age-of-ultron-2015",
+      "name": "MCU Prep: Avengers: Age of Ultron (2015)",
+      "description": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-avengers-age-of-ultron-2015.md",
+      "out": "mcu_prep_avengers_age_of_ultron_2015.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#avengers-age-of-ultron-2015",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Avengers",
+        "Ultron",
+        "Hank Pym",
+        "Vision"
+      ],
+      "keywords": [
+        "avengers-age-of-ultron"
+      ],
+      "coverIssueId": 31151,
+      "expect": 25
+    },
+    {
+      "id": "mcu-prep-ant-man-2015",
+      "name": "MCU Prep: Ant-Man (2015)",
+      "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-ant-man-2015.md",
+      "out": "mcu_prep_ant_man_2015.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Ant-Man",
+        "Wasp",
+        "Scott Lang",
+        "Eric O'Grady"
+      ],
+      "keywords": [
+        "ant-man"
+      ],
+      "coverIssueId": 32680,
+      "expect": 22
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",

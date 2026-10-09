@@ -389,8 +389,17 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   }
   assert.deepEqual(currentOrders.filter((entry) => laterIds.includes(entry.orderId))
     .map((entry) => entry.orderId), [...laterIds].sort((left, right) => left.localeCompare(right)));
+  const expectedCurrentPartialPeers = [
+    ...expectedPartialPeers,
+    ['mcu-prep-captain-america-the-winter-soldier-2014', 13],
+  ].sort(([left], [right]) => left.localeCompare(right));
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship === 'partial')
+    .map((entry) => [entry.orderId, entry.sharedCount]), expectedCurrentPartialPeers);
+  assert.deepEqual(current.comparisons.find((entry) =>
+    entry.orderId === 'mcu-prep-captain-america-the-winter-soldier-2014').sharedIds,
+  expectedIds.slice(14, 27).map(String));
   assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
-    current.comparisonCount - expectedPartialPeers.length);
+    current.comparisonCount - expectedCurrentPartialPeers.length);
   assert.deepEqual(current.comparisons.filter((entry) => laterIds.includes(entry.orderId))
     .map((entry) => [entry.relationship, entry.sharedIds]), laterIds.map(() => ['none', []]));
 });

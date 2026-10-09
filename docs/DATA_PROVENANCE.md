@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7555-7594`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7664-7703`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11719-11844`.
+`src/data/catalog.json:11856-11981`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2733,3 +2733,57 @@ Explicit associations in [`src/data/mcu-prep.json`](../src/data/mcu-prep.json) u
 retrieved 2026-10-09: the first six films are Phase One and Iron Man 3 is Phase Two. Comic
 publication years do not determine film placement. Existing saved reading data and backups
 are unchanged.
+
+## Owner-authored Phase Two film companions
+
+The [four-guide intake](https://github.com/raymond-nassar/recap-page/issues/765) selects
+Thor: The Dark World (14 originals), Captain America: The Winter Soldier (18),
+Avengers: Age of Ultron (25), and Ant-Man (22). All 79 supplied linked positions are
+included in order, with no metadata gaps, owner exclusions or within-guide repeats.
+Guardians of the Galaxy is explicitly deferred; its existing guide and description are unchanged.
+The four new descriptions are the owner's exact approved copy.
+
+The source ledgers retain original links, group labels, escaped bold markers and annotations.
+Their receipts identify private UTF-8 pasted-message snapshots, not original uploaded files.
+Separate factual-projection digests do not replace the snapshot digests. Original source
+punctuation remains escaped provenance; reader-facing group labels omit separator dashes and
+warning emoji. No private path or original document is a public dependency.
+
+Thor retains all nine Simonson issues shared with the earlier Thor companion. Winter Soldier
+omits the unsupplied Captain America #10 and keeps candidate 1764 as Captain America #5.
+Ultron Unbound retains the owner's corrected eight-original group, not an invented miniseries:
+West Coast Avengers #89-91, Annual #8, and Vision (1994) #1-4. Library records confirm the
+book identity; independently verified physical contents order is not asserted.
+
+Rage of Ultron, issue ID 50076, is one standalone original graphic novel. Its supplied link
+label #1 remains source text, while the checklist and payload display the unnumbered work
+and preserve provider number 0 as metadata only. Age of Ultron IDs 47001 and 47003 match
+the exact supplied #1 and #2 originals; no physical-printing or cover-variant claim is made.
+The independently supported #10AI epilogue, ID 47072, remains separate from main #10,
+ID 45908. The existing checklist-number reconciliation preserves the display suffix while
+the mapping retains the provider's number 10.
+
+Ant-Man preserves the correction to The Trial of Ant-Man and the final Guardians Team-Up #7.
+The [library edition record](https://openlibrary.org/isbn/9780785199526.json), retrieved
+2026-10-09, corroborates those five selected originals. Ant-Man (2015) #5 and Astonishing
+Ant-Man (2015) #5 remain distinct series and IDs; no Astonishing #1-4 are inserted.
+Irredeemable Ant-Man concerns Eric O'Grady. The description frames the broader legacy rather
+than attributing every selected issue to Scott Lang.
+
+Each frozen report compares 305 existing source/visible orders, including 78 generated
+children and the hidden parent, plus three selected peers: 308 comparisons per guide.
+Actual central model review retains 16 meaningful library relationships; the four selected
+peer sets are disjoint. No exact duplicate is approved and no human review is claimed.
+Earlier source approvals and payloads remain unchanged.
+
+Explicit Phase Two movie associations use the
+[Phase Two release reference](https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe:_Phase_Two)
+and the independent US domestic dates for
+[Dark World](https://www.the-numbers.com/movie/Thor-The-Dark-World),
+[Winter Soldier](https://www.the-numbers.com/movie/Captain-America-The-Winter-Soldier),
+[Age of Ultron](https://www.the-numbers.com/movie/Avengers-Age-of-Ultron), and
+[Ant-Man](https://www.the-numbers.com/movie/Ant-Man), retrieved 2026-10-09.
+These are film-release associations, not comic chronology. Source credit remains the owner's
+MCU Prep selection, with no licence grant asserted. Only provider facts and cover URLs are
+vendored, never synopsis prose or image bytes. No Marvel or CDN pages were fetched.
+Saved reading data, runtime dependencies and application versions are unchanged.
