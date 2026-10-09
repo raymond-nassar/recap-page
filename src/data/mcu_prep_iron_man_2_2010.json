@@ -1,0 +1,976 @@
+{
+  "id": "mcu-prep-iron-man-2-2010",
+  "name": "MCU Prep: Iron Man 2 (2010)",
+  "description": "Demons in the bottle, enemies in the shadows, and War Machine on the horizon. Tony Stark learns that armor can't solve everything.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T15:22:06.162Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 29,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 9351,
+      "title": "Iron Man (1968) #120",
+      "number": "120",
+      "url": "https://www.marvel.com/comics/issue/9351/iron_man_1968_120",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-03-01T00:00:00+0000",
+      "mu": "1979-03-01T00:00:00+0000",
+      "digitalId": 691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5a6a48b7952cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9352,
+      "title": "Iron Man (1968) #121",
+      "number": "121",
+      "url": "https://www.marvel.com/comics/issue/9352/iron_man_1968_121",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-04-01T00:00:00+0000",
+      "mu": "1979-04-01T00:00:00+0000",
+      "digitalId": 6172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a6a4ea86d50f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9353,
+      "title": "Iron Man (1968) #122",
+      "number": "122",
+      "url": "https://www.marvel.com/comics/issue/9353/iron_man_1968_122",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-05-01T00:00:00+0000",
+      "mu": "1979-05-01T00:00:00+0000",
+      "digitalId": 6173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4d2514525f4aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carmine Infantino",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9354,
+      "title": "Iron Man (1968) #123",
+      "number": "123",
+      "url": "https://www.marvel.com/comics/issue/9354/iron_man_1968_123",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-06-01T00:00:00+0000",
+      "mu": "1979-06-01T00:00:00+0000",
+      "digitalId": 6174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/4d252593b95c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9355,
+      "title": "Iron Man (1968) #124",
+      "number": "124",
+      "url": "https://www.marvel.com/comics/issue/9355/iron_man_1968_124",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-07-01T00:00:00+0000",
+      "mu": "1979-07-01T00:00:00+0000",
+      "digitalId": 6175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4d24dfc8e5780",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9356,
+      "title": "Iron Man (1968) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/9356/iron_man_1968_125",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-08-01T00:00:00+0000",
+      "mu": "1979-08-01T00:00:00+0000",
+      "digitalId": 6176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4d24fd2e9dcf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9357,
+      "title": "Iron Man (1968) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/9357/iron_man_1968_126",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-09-01T00:00:00+0000",
+      "mu": "1979-09-01T00:00:00+0000",
+      "digitalId": 6177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5a6b52302964d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9358,
+      "title": "Iron Man (1968) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/9358/iron_man_1968_127",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-10-01T00:00:00+0000",
+      "mu": "1979-10-01T00:00:00+0000",
+      "digitalId": 6178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5a6b57474bf77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 9359,
+      "title": "Iron Man (1968) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/9359/iron_man_1968_128",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1979-11-01T00:00:00+0000",
+      "mu": "1979-11-01T00:00:00+0000",
+      "digitalId": 6179,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5a6b5cc843972",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Demon in a Bottle"
+    },
+    {
+      "issueId": 28058,
+      "title": "Iron Man Vs. Whiplash (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28058/iron_man_vs_whiplash_2009_1",
+      "seriesId": 9003,
+      "seriesName": "Iron Man Vs. Whiplash (2009 - 2010)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 13729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/4f882fe4d5a4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man vs. Whiplash"
+    },
+    {
+      "issueId": 28059,
+      "title": "Iron Man Vs. Whiplash (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28059/iron_man_vs_whiplash_2009_2",
+      "seriesId": 9003,
+      "seriesName": "Iron Man Vs. Whiplash (2009 - 2010)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 15991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5b687db262aee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philippe Briones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brannon Bragga",
+          "role": "writer"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man vs. Whiplash"
+    },
+    {
+      "issueId": 28060,
+      "title": "Iron Man Vs. Whiplash (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/28060/iron_man_vs_whiplash_2009_3",
+      "seriesId": 9003,
+      "seriesName": "Iron Man Vs. Whiplash (2009 - 2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 13737,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5b6892584d313",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brannon Bragga",
+          "role": "writer"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man vs. Whiplash"
+    },
+    {
+      "issueId": 28061,
+      "title": "Iron Man Vs. Whiplash (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/28061/iron_man_vs_whiplash_2009_4",
+      "seriesId": 9003,
+      "seriesName": "Iron Man Vs. Whiplash (2009 - 2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-12-02T00:00:00+0000",
+      "digitalId": 13943,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/516c20665f6a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brannon Bragga",
+          "role": "writer"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man vs. Whiplash"
+    },
+    {
+      "issueId": 28046,
+      "title": "Black Widow: Deadly Origin (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28046/black_widow_deadly_origin_2009_1",
+      "seriesId": 9000,
+      "seriesName": "Black Widow: Deadly Origin (2009 - 2010)",
+      "onSale": "2009-11-04T00:00:00+0000",
+      "mu": "2010-07-22T00:00:00+0000",
+      "digitalId": 13981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/56e070e596daa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Widow: Deadly Origin"
+    },
+    {
+      "issueId": 28047,
+      "title": "Black Widow: Deadly Origin (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28047/black_widow_deadly_origin_2009_2",
+      "seriesId": 9000,
+      "seriesName": "Black Widow: Deadly Origin (2009 - 2010)",
+      "onSale": "2009-12-09T00:00:00+0000",
+      "mu": "2015-06-10T16:45:53+0000",
+      "digitalId": 17336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/56e09683ee92f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Widow: Deadly Origin"
+    },
+    {
+      "issueId": 28048,
+      "title": "Black Widow: Deadly Origin (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/28048/black_widow_deadly_origin_2009_3",
+      "seriesId": 9000,
+      "seriesName": "Black Widow: Deadly Origin (2009 - 2010)",
+      "onSale": "2010-01-13T00:00:00+0000",
+      "mu": "2015-06-10T18:10:19+0000",
+      "digitalId": 17604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/56e09766be84e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Widow: Deadly Origin"
+    },
+    {
+      "issueId": 28049,
+      "title": "Black Widow: Deadly Origin (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/28049/black_widow_deadly_origin_2009_4",
+      "seriesId": 9000,
+      "seriesName": "Black Widow: Deadly Origin (2009 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-02-09T00:00:00+0000",
+      "digitalId": 13885,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/56e097db4c5ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "John Paul Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Widow: Deadly Origin"
+    },
+    {
+      "issueId": 9528,
+      "title": "Iron Man (1968) #280",
+      "number": "280",
+      "url": "https://www.marvel.com/comics/issue/9528/iron_man_1968_280",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "1992-05-01T00:00:00+0000",
+      "digitalId": 10005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/4c364ea040643",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9529,
+      "title": "Iron Man (1968) #281",
+      "number": "281",
+      "url": "https://www.marvel.com/comics/issue/9529/iron_man_1968_281",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 11120,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/4bb5bdf7b5686",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9530,
+      "title": "Iron Man (1968) #282",
+      "number": "282",
+      "url": "https://www.marvel.com/comics/issue/9530/iron_man_1968_282",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 11121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/519b99bb1d9f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9531,
+      "title": "Iron Man (1968) #283",
+      "number": "283",
+      "url": "https://www.marvel.com/comics/issue/9531/iron_man_1968_283",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 11122,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4bb5bded61185",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9532,
+      "title": "Iron Man (1968) #284",
+      "number": "284",
+      "url": "https://www.marvel.com/comics/issue/9532/iron_man_1968_284",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 11123,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/4d251e230bca6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9533,
+      "title": "Iron Man (1968) #285",
+      "number": "285",
+      "url": "https://www.marvel.com/comics/issue/9533/iron_man_1968_285",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 11124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4bb5b95147a84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9534,
+      "title": "Iron Man (1968) #286",
+      "number": "286",
+      "url": "https://www.marvel.com/comics/issue/9534/iron_man_1968_286",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 11125,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/4bb5b94c0dcdc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9535,
+      "title": "Iron Man (1968) #287",
+      "number": "287",
+      "url": "https://www.marvel.com/comics/issue/9535/iron_man_1968_287",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 11126,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4bb5b946a60de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9536,
+      "title": "Iron Man (1968) #288",
+      "number": "288",
+      "url": "https://www.marvel.com/comics/issue/9536/iron_man_1968_288",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 11127,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/4bb5b8ad6f58e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9537,
+      "title": "Iron Man (1968) #289",
+      "number": "289",
+      "url": "https://www.marvel.com/comics/issue/9537/iron_man_1968_289",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 11128,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bb5b7a808a5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brad Vancata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9539,
+      "title": "Iron Man (1968) #290",
+      "number": "290",
+      "url": "https://www.marvel.com/comics/issue/9539/iron_man_1968_290",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 11129,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5a79bd467fabf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Benson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 9540,
+      "title": "Iron Man (1968) #291",
+      "number": "291",
+      "url": "https://www.marvel.com/comics/issue/9540/iron_man_1968_291",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 11130,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5a7350d6970b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: War Machine"
+    }
+  ]
+}

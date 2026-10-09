@@ -11,6 +11,7 @@ import {
 
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
   historicalReadingChoiceManifest,
@@ -201,11 +202,11 @@ test('Nebula ships the full vector without placeholders and credits the exact so
   assert.equal(manifest.lists[manifestIndex - 2].id, 'thunderbolts-reading-order');
   assert.equal(manifest.lists[manifestIndex - 1].id, 'namor-sub-mariner-reading-order');
   assert.equal(manifest.lists[manifestIndex + 1].id, 'hawkeye-reading-order');
-  assert.equal(manifest.lists[manifestIndex + 2].id, packet.insertionAnchor.beforeId);
+  assert.equal(legacyOwnerPeers(manifest.lists.slice(manifestIndex + 2))[0].id, packet.insertionAnchor.beforeId);
   assert.equal(catalog.lists[catalogIndex - 2].id, 'thunderbolts-reading-order');
   assert.equal(catalog.lists[catalogIndex - 1].id, 'namor-sub-mariner-reading-order');
   assert.equal(catalog.lists[catalogIndex + 1].id, 'hawkeye-reading-order');
-  assert.equal(catalog.lists[catalogIndex + 2].id, packet.insertionAnchor.beforeId);
+  assert.equal(legacyOwnerPeers(catalog.lists.slice(catalogIndex + 2))[0].id, packet.insertionAnchor.beforeId);
   assert.deepEqual(parsed.entries.map((row) => row.issueId), approvedIssueIds);
   assert.equal(parsed.unresolved.length, 0);
   assert.deepEqual(payload.items.map((row) => row.issueId), approvedIssueIds);

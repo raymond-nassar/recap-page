@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-the-first-avenger-2011",
+  "inventoryId": "mcu-prep-captain-america-the-first-avenger-2011",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "d622f1dd197e1d09419c59fc8b0ed8bd71a1086a8ac9cfb6f12bb70ee990baad",
+  "sourceIssueBearingBlocksSha256": "dbec17bd8a325021e8e73b21b8e716d5d40ea685da5fd2ebbcef4d2767a05c01",
+  "sourceBoundary": "Owner-selected whole works; original positions include explicit exclusions and documented source gaps.",
+  "excludedSourceReferences": [
+    "Captain America: First Vengeance #5 (superseded digital-numbering reference)",
+    "Captain America: First Vengeance #6 (superseded digital-numbering reference)",
+    "Captain America: First Vengeance #7 (superseded digital-numbering reference)",
+    "Captain America: First Vengeance #8 (superseded digital-numbering reference)"
+  ],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "mcu-prep-captain-america-the-first-avenger-2011",
+    "name": "MCU Prep: Captain America: The First Avenger (2011)",
+    "description": "Before the legend, there was Steve Rogers. Go behind the shield with the people and battles that forged the First Avenger.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-captain-america-the-first-avenger-2011.md",
+    "out": "mcu_prep_captain_america_the_first_avenger_2011.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Captain America",
+      "Bucky Barnes"
+    ],
+    "keywords": [
+      "captain-america-the-first-avenger"
+    ],
+    "coverIssueId": 38423,
+    "expect": 4
+  },
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Captain America: First Vengeance (2010) #1",
+      "sourceRangeReference": "Captain America: First Vengeance",
+      "normalizedSeriesTitle": "captain america first vengeance",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "candidateIssueId": 38423,
+      "seriesId": 13844,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Captain America: First Vengeance (2010) #2",
+      "sourceRangeReference": "Captain America: First Vengeance",
+      "normalizedSeriesTitle": "captain america first vengeance",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "candidateIssueId": 38428,
+      "seriesId": 13844,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Captain America: First Vengeance (2010) #3",
+      "sourceRangeReference": "Captain America: First Vengeance",
+      "normalizedSeriesTitle": "captain america first vengeance",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "candidateIssueId": 38825,
+      "seriesId": 13844,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Captain America: First Vengeance (2011) #4",
+      "sourceRangeReference": "Captain America: First Vengeance",
+      "normalizedSeriesTitle": "captain america first vengeance",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "candidateIssueId": 38824,
+      "seriesId": 13844,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    }
+  ],
+  "sourceOccurrenceCount": 9,
+  "sourceGaps": [
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Captain America Spotlight (2011) #1",
+      "sourceRangeReference": "Captain America: First Vengeance",
+      "normalizedSeriesTitle": "captain america spotlight",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Exact2011 Captain America Spotlight#1 companion is documented; provider index has no exact series. Complete known Spotlight series1012 and15458 do not establish this identity. Candidate41483 has generic title and different creator evidence; no substitution.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/6580919/captain-america-spotlight-1",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/1012/issues?limit=100",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/15458/issues?limit=100",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/763",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "94b79c81963750e3b88b8b5dcbf8a691c678f8a1b1be995d0464fc6c802f2f5e"
+    }
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Captain America: First Vengeance #5 (superseded digital-numbering reference)",
+      "reason": "Owner selected four print issues; retain this digital-numbering reference as superseded, not an additional print issue.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Captain America: First Vengeance #6 (superseded digital-numbering reference)",
+      "reason": "Owner selected four print issues; retain this digital-numbering reference as superseded, not an additional print issue.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Captain America: First Vengeance #7 (superseded digital-numbering reference)",
+      "reason": "Owner selected four print issues; retain this digital-numbering reference as superseded, not an additional print issue.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Captain America: First Vengeance #8 (superseded digital-numbering reference)",
+      "reason": "Owner selected four print issues; retain this digital-numbering reference as superseded, not an additional print issue.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    }
+  ],
+  "packetDigest": "fbeabbc7aaca5049de42fdc49a1909c12d6df9b980589b2df95011e6f3ba2b08",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T15:20:43.801Z",
+    "proposalDigest": "0fd2c97e79d13bfb28c590cf780f2c4ece838321182629b74c10db85c9cd9e09",
+    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
+  }
+}

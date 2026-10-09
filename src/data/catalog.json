@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T02:03:17.054Z",
+  "generatedAt": "2026-10-09T15:22:14.578Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2623,6 +2623,236 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-29T06:20:20.617Z"
+    },
+    {
+      "id": "mcu-prep-iron-man-2008",
+      "file": "mcu_prep_iron_man_2008.json",
+      "name": "MCU Prep: Iron Man (2008)",
+      "description": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 16,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Iron Man"
+      ],
+      "keywords": [
+        "iron-man"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 9431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/50ad69c53882e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:21:01.409Z"
+    },
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
+      "file": "mcu_prep_the_incredible_hulk_2008.json",
+      "name": "MCU Prep: The Incredible Hulk (2008)",
+      "description": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Hulk",
+        "Betty Ross"
+      ],
+      "keywords": [
+        "the-incredible-hulk"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5b980f0495d14",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:04.093Z"
+    },
+    {
+      "id": "mcu-prep-iron-man-2-2010",
+      "file": "mcu_prep_iron_man_2_2010.json",
+      "name": "MCU Prep: Iron Man 2 (2010)",
+      "description": "Demons in the bottle, enemies in the shadows, and War Machine on the horizon. Tony Stark learns that armor can't solve everything.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 29,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 4,
+      "characters": [
+        "Iron Man",
+        "War Machine",
+        "Black Widow"
+      ],
+      "keywords": [
+        "iron-man-2"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 9351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5a6a48b7952cc",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:06.162Z"
+    },
+    {
+      "id": "mcu-prep-thor-2011",
+      "file": "mcu_prep_thor_2011.json",
+      "name": "MCU Prep: Thor (2011)",
+      "description": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 14,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "thor"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 46516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/57c749391809e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:08.282Z"
+    },
+    {
+      "id": "mcu-prep-captain-america-the-first-avenger-2011",
+      "file": "mcu_prep_captain_america_the_first_avenger_2011.json",
+      "name": "MCU Prep: Captain America: The First Avenger (2011)",
+      "description": "Before the legend, there was Steve Rogers. Go behind the shield with the people and battles that forged the First Avenger.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 1,
+      "characters": [
+        "Captain America",
+        "Bucky Barnes"
+      ],
+      "keywords": [
+        "captain-america-the-first-avenger"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 38423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/00/5cbde3a3013a0",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:10.370Z"
+    },
+    {
+      "id": "mcu-prep-the-avengers-2012",
+      "file": "mcu_prep_the_avengers_2012.json",
+      "name": "MCU Prep: The Avengers (2012)",
+      "description": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 15,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Avengers"
+      ],
+      "keywords": [
+        "the-avengers"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 47697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57c7407cc58f0",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:12.441Z"
+    },
+    {
+      "id": "mcu-prep-iron-man-3-2013",
+      "file": "mcu_prep_iron_man_3_2013.json",
+      "name": "MCU Prep: Iron Man 3 (2013)",
+      "description": "Upgrade the armor. Break the man. Rebuild the hero. Extremis, the Mandarin, and Tony Stark's worst nightmares test what it takes to be Iron Man.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 4,
+      "characters": [
+        "Iron Man",
+        "Mandarin"
+      ],
+      "keywords": [
+        "iron-man-3"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 92,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5a5fa982d26e4",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T15:22:14.578Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",

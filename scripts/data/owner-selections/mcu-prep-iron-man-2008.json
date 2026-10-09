@@ -1,0 +1,551 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-iron-man-2008",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+  "sourceIssueCount": 22,
+  "publishedIssueCount": 16,
+  "inputReceipt": {
+    "name": "mcu-prep-iron-man-2008.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "7841b65124589f34f824b06721a10c8cf935558a1e2ae5b19fa477ca0e30ae39",
+    "snapshotBytes": 2708,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-iron-man-2008-factual-projection.tsv",
+    "sha256": "aeebe2b50d6cda1c3e6f9b894ac1af7bc2cb62b160cd7c0b0d7717c11b8a8704",
+    "bytes": 831,
+    "basis": "Independent factual projection, not original uploaded-file or snapshot bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Iron Man: Extremis** (collects Iron Man (2004) #1-6)",
+    "2. **Iron Man: Iron Monger** (collects Iron Man (1968) #193-200)",
+    "4. **Iron Man: Armor Wars** (collects Iron Man (1968) #225-232)"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #1",
+      "suppliedCandidateId": 92,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/92/iron_man_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #2",
+      "suppliedCandidateId": 93,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/93/iron_man_2004_2",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #3",
+      "suppliedCandidateId": 1764,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1764/iron_man_2004_3",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #4",
+      "suppliedCandidateId": 1765,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1765/iron_man_2004_4",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #5",
+      "suppliedCandidateId": 1766,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1766/iron_man_2004_5",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #6",
+      "suppliedCandidateId": 3881,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3881/read",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #193",
+      "suppliedCandidateId": 9431,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9431/iron_man_1968_193",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9431
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #194",
+      "suppliedCandidateId": 9432,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9432/iron_man_1968_194",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9432
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #195",
+      "suppliedCandidateId": 9433,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9433/iron_man_1968_195",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9433
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #196",
+      "suppliedCandidateId": 9434,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9434/iron_man_1968_196",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9434
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #197",
+      "suppliedCandidateId": 9435,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9435/iron_man_1968_197",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9435
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #198",
+      "suppliedCandidateId": 9436,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9436/iron_man_1968_198",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9436
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #199",
+      "suppliedCandidateId": 9437,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9437/iron_man_1968_199",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9437
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #200",
+      "suppliedCandidateId": 9440,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9440/iron_man_1968_200",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9440
+    },
+    {
+      "sourcePosition": 15,
+      "originalBullet": 15,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #225",
+      "suppliedCandidateId": 9467,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9467/iron_man_1968_225",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9467
+    },
+    {
+      "sourcePosition": 16,
+      "originalBullet": 16,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #226",
+      "suppliedCandidateId": 9468,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9468/iron-man-1968-226",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9468
+    },
+    {
+      "sourcePosition": 17,
+      "originalBullet": 17,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #227",
+      "suppliedCandidateId": 9469,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9469/iron_man_1968_227",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9469
+    },
+    {
+      "sourcePosition": 18,
+      "originalBullet": 18,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #228",
+      "suppliedCandidateId": 9470,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9470/iron_man_1968_228",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9470
+    },
+    {
+      "sourcePosition": 19,
+      "originalBullet": 19,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #229",
+      "suppliedCandidateId": 9471,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9471/iron_man_1968_229",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9471
+    },
+    {
+      "sourcePosition": 20,
+      "originalBullet": 20,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #230",
+      "suppliedCandidateId": 9473,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9473/iron_man_1968_230",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9473
+    },
+    {
+      "sourcePosition": 21,
+      "originalBullet": 21,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #231",
+      "suppliedCandidateId": 9474,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9474/iron_man_1968_231",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9474
+    },
+    {
+      "sourcePosition": 22,
+      "originalBullet": 22,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #232",
+      "suppliedCandidateId": 9475,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9475/iron_man_1968_232",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9475
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #1",
+      "suppliedCandidateId": 92,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/92/iron_man_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #2",
+      "suppliedCandidateId": 93,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/93/iron_man_2004_2",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #3",
+      "suppliedCandidateId": 1764,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1764/iron_man_2004_3",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #4",
+      "suppliedCandidateId": 1765,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1765/iron_man_2004_4",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #5",
+      "suppliedCandidateId": 1766,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1766/iron_man_2004_5",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Iron Man: Extremis",
+      "suppliedReference": "The Invincible Iron Man (2004) #6",
+      "suppliedCandidateId": 3881,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3881/read",
+      "insideFormattingFence": false,
+      "disposition": "owner-excluded"
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #193",
+      "suppliedCandidateId": 9431,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9431/iron_man_1968_193",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9431
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #194",
+      "suppliedCandidateId": 9432,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9432/iron_man_1968_194",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9432
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #195",
+      "suppliedCandidateId": 9433,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9433/iron_man_1968_195",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9433
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #196",
+      "suppliedCandidateId": 9434,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9434/iron_man_1968_196",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9434
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #197",
+      "suppliedCandidateId": 9435,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9435/iron_man_1968_197",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9435
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #198",
+      "suppliedCandidateId": 9436,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9436/iron_man_1968_198",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9436
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #199",
+      "suppliedCandidateId": 9437,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9437/iron_man_1968_199",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9437
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Iron Man: Iron Monger",
+      "suppliedReference": "Iron Man (1968) #200",
+      "suppliedCandidateId": 9440,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9440/iron_man_1968_200",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9440
+    },
+    {
+      "sourcePosition": 15,
+      "originalBullet": 15,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #225",
+      "suppliedCandidateId": 9467,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9467/iron_man_1968_225",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9467
+    },
+    {
+      "sourcePosition": 16,
+      "originalBullet": 16,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #226",
+      "suppliedCandidateId": 9468,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9468/iron-man-1968-226",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9468
+    },
+    {
+      "sourcePosition": 17,
+      "originalBullet": 17,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #227",
+      "suppliedCandidateId": 9469,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9469/iron_man_1968_227",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9469
+    },
+    {
+      "sourcePosition": 18,
+      "originalBullet": 18,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #228",
+      "suppliedCandidateId": 9470,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9470/iron_man_1968_228",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9470
+    },
+    {
+      "sourcePosition": 19,
+      "originalBullet": 19,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #229",
+      "suppliedCandidateId": 9471,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9471/iron_man_1968_229",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9471
+    },
+    {
+      "sourcePosition": 20,
+      "originalBullet": 20,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #230",
+      "suppliedCandidateId": 9473,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9473/iron_man_1968_230",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9473
+    },
+    {
+      "sourcePosition": 21,
+      "originalBullet": 21,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #231",
+      "suppliedCandidateId": 9474,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9474/iron_man_1968_231",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9474
+    },
+    {
+      "sourcePosition": 22,
+      "originalBullet": 22,
+      "group": "Iron Man: Armor Wars",
+      "suppliedReference": "Iron Man (1968) #232",
+      "suppliedCandidateId": 9475,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/9475/iron_man_1968_232",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 9475
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #1",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #2",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #3",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #4",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #5",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #6",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    }
+  ],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Approved owner selections and descriptions; original pasted-message snapshots remain immutable and private.",
+    "No Marvel/CDN pages fetched. Supplied URLs are identity evidence; only configured-provider factual metadata is emitted.",
+    "Current ledger preserves all source positions, including explicit owner corrections and genuine metadata gaps."
+  ],
+  "publicDependencies": []
+}

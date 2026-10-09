@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-the-incredible-hulk-2008",
+  "inventoryId": "mcu-prep-the-incredible-hulk-2008",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "e43a90cb99ac4d2c962cac47684af34a617426992de28a94c83b597d0cbb993e",
+  "sourceIssueBearingBlocksSha256": "35275783f568247b0f188d05bde8fabca168803bc864b463e710ab920dd6d0b9",
+  "sourceBoundary": "Owner-selected whole works; original positions include explicit exclusions and documented source gaps.",
+  "excludedSourceReferences": [],
+  "expectedCount": 12,
+  "proposedManifest": {
+    "id": "mcu-prep-the-incredible-hulk-2008",
+    "name": "MCU Prep: The Incredible Hulk (2008)",
+    "description": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-the-incredible-hulk-2008.md",
+    "out": "mcu_prep_the_incredible_hulk_2008.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Hulk",
+      "Betty Ross"
+    ],
+    "keywords": [
+      "the-incredible-hulk"
+    ],
+    "coverIssueId": 365,
+    "expect": 12
+  },
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "rows": [
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Hulk: Gray (2003) #1",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "candidateIssueId": 365,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Hulk: Gray (2003) #2",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "candidateIssueId": 287,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Hulk: Gray (2003) #3",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "candidateIssueId": 340,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Hulk: Gray (2003) #4",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "candidateIssueId": 317,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Hulk: Gray (2003) #5",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "candidateIssueId": 383,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Hulk: Gray (2003) #6",
+      "sourceRangeReference": "Hulk: Gray",
+      "normalizedSeriesTitle": "hulk gray",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "candidateIssueId": 300,
+      "seriesId": 704,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Hulk (1999) #34",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "34",
+      "candidateIssueId": 14434,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Hulk (1999) #35",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "35",
+      "candidateIssueId": 14435,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Hulk (1999) #36",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "36",
+      "candidateIssueId": 14436,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Hulk (1999) #37",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "37",
+      "candidateIssueId": 14437,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Hulk (1999) #38",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "38",
+      "candidateIssueId": 14438,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Hulk (1999) #39",
+      "sourceRangeReference": "Incredible Hulk Vol. 1: Return of the Monster",
+      "normalizedSeriesTitle": "hulk",
+      "seriesYear": 1999,
+      "issueNumber": "39",
+      "candidateIssueId": 14439,
+      "seriesId": 465,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    }
+  ],
+  "sourceOccurrenceCount": 13,
+  "sourceGaps": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Hulk: Season One",
+      "normalizedSeriesTitle": "hulk season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Owner-selected standalone original; exact supplied candidate41502 returned404. No fabricated serial number or alternative edition.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://openlibrary.org/works/OL21040434W/editions.json?limit=5",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/41502",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/762",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "cc36f340651d51c5dab24e148b9240a92db3ea4b8e2343cff17d9eb1f68214bc"
+    }
+  ],
+  "packetDigest": "338ca493794973cc245fa3d9f2395224e8658e10a85634620ceddb755ccbe704",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T15:20:43.801Z",
+    "proposalDigest": "1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
+    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
+  }
+}

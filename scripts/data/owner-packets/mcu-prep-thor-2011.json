@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thor-2011",
+  "inventoryId": "mcu-prep-thor-2011",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "6739a9b7851997d5874157180b085f198b8539318cf0b214242eb2e367ca7ba3",
+  "sourceIssueBearingBlocksSha256": "e94fd33b8b56378995cef03c36c4f86e0befea7f76b072eeb365285d59f18e8f",
+  "sourceBoundary": "Owner-selected whole works; original positions include explicit exclusions and documented source gaps.",
+  "excludedSourceReferences": [],
+  "expectedCount": 14,
+  "proposedManifest": {
+    "id": "mcu-prep-thor-2011",
+    "name": "MCU Prep: Thor (2011)",
+    "description": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-thor-2011.md",
+    "out": "mcu_prep_thor_2011.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Thor",
+      "Loki"
+    ],
+    "keywords": [
+      "thor"
+    ],
+    "coverIssueId": 46516,
+    "expect": 14
+  },
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Thor: Season One (2013)",
+      "sourceRangeReference": "Thor: Season One",
+      "normalizedSeriesTitle": "thor season one",
+      "seriesYear": 2013,
+      "issueNumber": null,
+      "candidateIssueId": 46516,
+      "seriesId": 17573,
+      "manualSeriesSelectionApproved": false,
+      "metadataIssueNumber": "0",
+      "note": "Original standalone graphic novel. Provider0 is metadata-only, not a displayed or invented serial number; supplied issue URL preserves exact original identity."
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Loki (2004) #1",
+      "sourceRangeReference": "Thor & Loki: Blood Brothers",
+      "normalizedSeriesTitle": "loki",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "candidateIssueId": 608,
+      "seriesId": 530,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Loki (2004) #2",
+      "sourceRangeReference": "Thor & Loki: Blood Brothers",
+      "normalizedSeriesTitle": "loki",
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "candidateIssueId": 544,
+      "seriesId": 530,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Loki (2004) #3",
+      "sourceRangeReference": "Thor & Loki: Blood Brothers",
+      "normalizedSeriesTitle": "loki",
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "candidateIssueId": 751,
+      "seriesId": 530,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Loki (2004) #4",
+      "sourceRangeReference": "Thor & Loki: Blood Brothers",
+      "normalizedSeriesTitle": "loki",
+      "seriesYear": 2004,
+      "issueNumber": "4",
+      "candidateIssueId": 823,
+      "seriesId": 530,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Thor (1966) #337",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "337",
+      "candidateIssueId": 11665,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Thor (1966) #338",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "338",
+      "candidateIssueId": 11666,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Thor (1966) #339",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "339",
+      "candidateIssueId": 11667,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Thor (1966) #340",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "340",
+      "candidateIssueId": 11668,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Thor (1966) #341",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "341",
+      "candidateIssueId": 11669,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Thor (1966) #342",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "342",
+      "candidateIssueId": 11670,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Thor (1966) #343",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "343",
+      "candidateIssueId": 11671,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Thor (1966) #344",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "344",
+      "candidateIssueId": 11672,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Thor (1966) #345",
+      "sourceRangeReference": "Thor Visionaries: Walter Simonson Vol. 1",
+      "normalizedSeriesTitle": "thor",
+      "seriesYear": 1966,
+      "issueNumber": "345",
+      "candidateIssueId": 11673,
+      "seriesId": 2083,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    }
+  ],
+  "packetDigest": "cf00cebd6f6ea21e4c8a3cb584c749e6431a3b6f0f8ecba7f2723f22896bb78d",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T15:20:43.801Z",
+    "proposalDigest": "0f4fc6dbe6838e26af5d0519ba615acc6bff90d1a6fa4666d4772942198445e9",
+    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
+  }
+}

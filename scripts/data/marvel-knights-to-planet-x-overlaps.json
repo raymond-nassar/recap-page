@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-10-09T02:03:17.054Z",
-  "pairCount": 85,
+  "generatedAt": "2026-10-09T15:22:14.578Z",
+  "pairCount": 86,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 25,
-  "sharedOccurrenceCount": 456,
+  "existingListCount": 26,
+  "sharedOccurrenceCount": 462,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "bc4ee1a8f51aac00810eef18c2ac02813681aa5bcdd11fb0c14d521479dbaf30",
+  "matrixSha256": "f4d5fbac219caf47149f4df0f41e9983510dfed26b3c02f379b966b04e4c3aa0",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -62,6 +62,10 @@
     },
     {
       "id": "mcu-prep-spider-man-brand-new-day",
+      "sharedCount": 6
+    },
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
       "sharedCount": 6
     },
     {
@@ -358,6 +362,19 @@
         14943,
         14944,
         14945
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-17",
+      "existingListId": "mcu-prep-the-incredible-hulk-2008",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14434,
+        14435,
+        14436,
+        14437,
+        14438,
+        14439
       ]
     },
     {

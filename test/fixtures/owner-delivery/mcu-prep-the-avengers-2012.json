@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-the-avengers-2012",
+  "name": "MCU Prep: The Avengers (2012)",
+  "description": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Avengers: Season One",
+    "Avengers: Kree/Skrull War",
+    "Avengers Disassembled"
+  ],
+  "rows": [
+    [
+      1,
+      47697,
+      "Avengers: Season One (Trade Paperback)",
+      0
+    ],
+    [
+      2,
+      7342,
+      "Avengers (1963) #89",
+      1
+    ],
+    [
+      3,
+      7344,
+      "Avengers (1963) #90",
+      1
+    ],
+    [
+      4,
+      7345,
+      "Avengers (1963) #91",
+      1
+    ],
+    [
+      5,
+      7346,
+      "Avengers (1963) #92",
+      1
+    ],
+    [
+      6,
+      7347,
+      "Avengers (1963) #93",
+      1
+    ],
+    [
+      7,
+      7348,
+      "Avengers (1963) #94",
+      1
+    ],
+    [
+      8,
+      7349,
+      "Avengers (1963) #95",
+      1
+    ],
+    [
+      9,
+      7350,
+      "Avengers (1963) #96",
+      1
+    ],
+    [
+      10,
+      7351,
+      "Avengers (1963) #97",
+      1
+    ],
+    [
+      11,
+      532,
+      "Avengers (1998) #500",
+      2
+    ],
+    [
+      12,
+      767,
+      "Avengers (1998) #501",
+      2
+    ],
+    [
+      13,
+      845,
+      "Avengers (1998) #502",
+      2
+    ],
+    [
+      14,
+      923,
+      "Avengers (1998) #503",
+      2
+    ],
+    [
+      15,
+      90,
+      "AVENGERS FINALE 1 (2004) #1",
+      2
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 15,
+    "sourceIdentityCount": 15,
+    "includedIssueCount": 15,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "93b0e710a9939278d6b66825e76f0fc704420639c03ccf2a6b2ece367ef23594",
+  "proposalDigest": "98afd70d4ee8cfdc15698bc4816ffaa1b71a2b08986eb2201334bc1429e1cc05",
+  "approvalDigest": "3f9b10ee7ac2dd63cf851b809e267642e1a25913f4b8a7382dc5d0b5831f7edd",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-thor-2011",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-the-avengers-2012.json",
+    "scripts/data/owner-packets/mcu-prep-the-avengers-2012.json",
+    "scripts/data/owner-mappings/mcu-prep-the-avengers-2012.json",
+    "scripts/data/owner-overlaps/mcu-prep-the-avengers-2012.json"
+  ],
+  "vectorSha256": "06f2965f57c106415a26c7ed259f9e3ff9001530fafc2a7b1eed2adef5880bc5"
+}

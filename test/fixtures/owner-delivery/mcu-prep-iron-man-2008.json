@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-iron-man-2008",
+  "name": "MCU Prep: Iron Man (2008)",
+  "description": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Iron Man: Iron Monger",
+    "Iron Man: Armor Wars"
+  ],
+  "rows": [
+    [
+      7,
+      9431,
+      "Iron Man (1968) #193",
+      0
+    ],
+    [
+      8,
+      9432,
+      "Iron Man (1968) #194",
+      0
+    ],
+    [
+      9,
+      9433,
+      "Iron Man (1968) #195",
+      0
+    ],
+    [
+      10,
+      9434,
+      "Iron Man (1968) #196",
+      0
+    ],
+    [
+      11,
+      9435,
+      "Iron Man (1968) #197",
+      0
+    ],
+    [
+      12,
+      9436,
+      "Iron Man (1968) #198",
+      0
+    ],
+    [
+      13,
+      9437,
+      "Iron Man (1968) #199",
+      0
+    ],
+    [
+      14,
+      9440,
+      "Iron Man (1968) #200",
+      0
+    ],
+    [
+      15,
+      9467,
+      "Iron Man (1968) #225",
+      1
+    ],
+    [
+      16,
+      9468,
+      "Iron Man (1968) #226",
+      1
+    ],
+    [
+      17,
+      9469,
+      "Iron Man (1968) #227",
+      1
+    ],
+    [
+      18,
+      9470,
+      "Iron Man (1968) #228",
+      1
+    ],
+    [
+      19,
+      9471,
+      "Iron Man (1968) #229",
+      1
+    ],
+    [
+      20,
+      9473,
+      "Iron Man (1968) #230",
+      1
+    ],
+    [
+      21,
+      9474,
+      "Iron Man (1968) #231",
+      1
+    ],
+    [
+      22,
+      9475,
+      "Iron Man (1968) #232",
+      1
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 22,
+    "sourceIdentityCount": 16,
+    "includedIssueCount": 16,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "fc9eccd9d561dd30036180bebad62b924ec4bcd12d167d29f446114b6262668f",
+  "proposalDigest": "a047576e3a1d71914d2b9cb6280290865dfdb3ec3360d89b4b165c231e9146d6",
+  "approvalDigest": "3747032d35f8f3cb4ae8d6c30b7632bb5f50c3230445542861dad8830d4abb99",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-thor-2011",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-the-avengers-2012",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-iron-man-2008.json",
+    "scripts/data/owner-packets/mcu-prep-iron-man-2008.json",
+    "scripts/data/owner-mappings/mcu-prep-iron-man-2008.json",
+    "scripts/data/owner-overlaps/mcu-prep-iron-man-2008.json"
+  ],
+  "vectorSha256": "87753dfe488390f94792aa96a87aa13ccb2f6290999fdcdef84b044f82a3e761"
+}

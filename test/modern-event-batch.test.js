@@ -18,9 +18,10 @@ const ids = ['the-death-of-ms-marvel', 'contest-of-chaos', 'gang-war'];
 
 test('three independently registered events extend the library without becoming MCU or Storylines selections', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), ids);
+  const laterMcu = registeredOwnerContracts.filter((entry) => entry.surface !== 'modern-timeline').length - 2;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220, 297, 298]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [20, 66]);
+    [220 + laterMcu, 297 + laterMcu, 298 + laterMcu]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [20 + laterMcu, 66 + laterMcu]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const stories = groupCatalog(catalog.lists);

@@ -2160,6 +2160,187 @@
       "coverIssueId": 42768
     },
     {
+      "id": "mcu-prep-iron-man-2008",
+      "name": "MCU Prep: Iron Man (2008)",
+      "description": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-iron-man-2008.md",
+      "out": "mcu_prep_iron_man_2008.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Iron Man"
+      ],
+      "keywords": [
+        "iron-man"
+      ],
+      "coverIssueId": 9431,
+      "expect": 16
+    },
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
+      "name": "MCU Prep: The Incredible Hulk (2008)",
+      "description": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-the-incredible-hulk-2008.md",
+      "out": "mcu_prep_the_incredible_hulk_2008.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Hulk",
+        "Betty Ross"
+      ],
+      "keywords": [
+        "the-incredible-hulk"
+      ],
+      "coverIssueId": 365,
+      "expect": 12
+    },
+    {
+      "id": "mcu-prep-iron-man-2-2010",
+      "name": "MCU Prep: Iron Man 2 (2010)",
+      "description": "Demons in the bottle, enemies in the shadows, and War Machine on the horizon. Tony Stark learns that armor can't solve everything.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-iron-man-2-2010.md",
+      "out": "mcu_prep_iron_man_2_2010.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Iron Man",
+        "War Machine",
+        "Black Widow"
+      ],
+      "keywords": [
+        "iron-man-2"
+      ],
+      "coverIssueId": 9351,
+      "expect": 29
+    },
+    {
+      "id": "mcu-prep-thor-2011",
+      "name": "MCU Prep: Thor (2011)",
+      "description": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-thor-2011.md",
+      "out": "mcu_prep_thor_2011.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Thor",
+        "Loki"
+      ],
+      "keywords": [
+        "thor"
+      ],
+      "coverIssueId": 46516,
+      "expect": 14
+    },
+    {
+      "id": "mcu-prep-captain-america-the-first-avenger-2011",
+      "name": "MCU Prep: Captain America: The First Avenger (2011)",
+      "description": "Before the legend, there was Steve Rogers. Go behind the shield with the people and battles that forged the First Avenger.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-captain-america-the-first-avenger-2011.md",
+      "out": "mcu_prep_captain_america_the_first_avenger_2011.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Captain America",
+        "Bucky Barnes"
+      ],
+      "keywords": [
+        "captain-america-the-first-avenger"
+      ],
+      "coverIssueId": 38423,
+      "expect": 4
+    },
+    {
+      "id": "mcu-prep-the-avengers-2012",
+      "name": "MCU Prep: The Avengers (2012)",
+      "description": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-the-avengers-2012.md",
+      "out": "mcu_prep_the_avengers_2012.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Avengers"
+      ],
+      "keywords": [
+        "the-avengers"
+      ],
+      "coverIssueId": 47697,
+      "expect": 15
+    },
+    {
+      "id": "mcu-prep-iron-man-3-2013",
+      "name": "MCU Prep: Iron Man 3 (2013)",
+      "description": "Upgrade the armor. Break the man. Rebuild the hero. Extremis, the Mandarin, and Tony Stark's worst nightmares test what it takes to be Iron Man.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-iron-man-3-2013.md",
+      "out": "mcu_prep_iron_man_3_2013.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Iron Man",
+        "Mandarin"
+      ],
+      "keywords": [
+        "iron-man-3"
+      ],
+      "coverIssueId": 92,
+      "expect": 24
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",

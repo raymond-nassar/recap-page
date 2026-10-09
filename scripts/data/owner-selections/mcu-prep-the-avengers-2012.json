@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-the-avengers-2012",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+  "sourceIssueCount": 15,
+  "publishedIssueCount": 15,
+  "inputReceipt": {
+    "name": "mcu-prep-the-avengers-2012.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "ee4ffd2534db4b4e4847fa7a57a41900885cfb2dbab55df77d67043dce9cc174",
+    "snapshotBytes": 1881,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-the-avengers-2012-factual-projection.tsv",
+    "sha256": "e7fbf2debbdebd8fef9392ddb16726246c86d31788324a9e626a0e716e5996a7",
+    "bytes": 482,
+    "basis": "Independent factual projection, not original uploaded-file or snapshot bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Avengers: Season One** (standalone graphic novel)",
+    "2. **Avengers: Kree/Skrull War** (collects Avengers (1963) #89-97)",
+    "3. **Avengers Disassembled** (collects Avengers (1998) #500-503 + Avengers Finale)"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Avengers: Season One",
+      "suppliedReference": "Avengers: Season One",
+      "suppliedCandidateId": 47697,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47697/read",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 47697
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #89",
+      "suppliedCandidateId": 7342,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7342
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #90",
+      "suppliedCandidateId": 7344,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7344
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #91",
+      "suppliedCandidateId": 7345,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7345
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #92",
+      "suppliedCandidateId": 7346,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7346
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #93",
+      "suppliedCandidateId": 7347,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7347
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #94",
+      "suppliedCandidateId": 7348,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7348
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #95",
+      "suppliedCandidateId": 7349,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7349
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #96",
+      "suppliedCandidateId": 7350,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7350
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #97",
+      "suppliedCandidateId": 7351,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7351
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #500",
+      "suppliedCandidateId": 532,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/532/avengers_1998_500",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 532
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #501",
+      "suppliedCandidateId": 767,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/767/avengers_1998_501",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 767
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #502",
+      "suppliedCandidateId": 845,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/845/avengers_1998_502",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 845
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #503",
+      "suppliedCandidateId": 923,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 923
+    },
+    {
+      "sourcePosition": 15,
+      "originalBullet": 15,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers Finale (2005) #1",
+      "suppliedCandidateId": 90,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/90/avengers_finale_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 90
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Avengers: Season One",
+      "suppliedReference": "Avengers: Season One",
+      "suppliedCandidateId": 47697,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47697/read",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 47697
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #89",
+      "suppliedCandidateId": 7342,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7342
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #90",
+      "suppliedCandidateId": 7344,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7344
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #91",
+      "suppliedCandidateId": 7345,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7345
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #92",
+      "suppliedCandidateId": 7346,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7346
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #93",
+      "suppliedCandidateId": 7347,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7347
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #94",
+      "suppliedCandidateId": 7348,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7348
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #95",
+      "suppliedCandidateId": 7349,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7349
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #96",
+      "suppliedCandidateId": 7350,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7350
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Avengers: Kree/Skrull War",
+      "suppliedReference": "Avengers (1963) #97",
+      "suppliedCandidateId": 7351,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 7351
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #500",
+      "suppliedCandidateId": 532,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/532/avengers_1998_500",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 532
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #501",
+      "suppliedCandidateId": 767,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/767/avengers_1998_501",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 767
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #502",
+      "suppliedCandidateId": 845,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/845/avengers_1998_502",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 845
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers (1998) #503",
+      "suppliedCandidateId": 923,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 923
+    },
+    {
+      "sourcePosition": 15,
+      "originalBullet": 15,
+      "group": "Avengers Disassembled",
+      "suppliedReference": "Avengers Finale (2005) #1",
+      "suppliedCandidateId": 90,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/90/avengers_finale_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 90
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Approved owner selections and descriptions; original pasted-message snapshots remain immutable and private.",
+    "No Marvel/CDN pages fetched. Supplied URLs are identity evidence; only configured-provider factual metadata is emitted.",
+    "Current ledger preserves all source positions, including explicit owner corrections and genuine metadata gaps."
+  ],
+  "publicDependencies": []
+}

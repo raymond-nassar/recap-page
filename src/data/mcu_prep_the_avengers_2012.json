@@ -1,0 +1,531 @@
+{
+  "id": "mcu-prep-the-avengers-2012",
+  "name": "MCU Prep: The Avengers (2012)",
+  "description": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T15:22:12.441Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 15,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 47697,
+      "title": "Avengers: Season One (Trade Paperback)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/collection/47697/avengers_season_one_trade_paperback",
+      "seriesId": 17996,
+      "seriesName": "Avengers: Season One (2013)",
+      "onSale": "2013-03-13T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 28799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57c7407cc58f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 136,
+      "creators": [
+        {
+          "name": "Andrea Divito",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Season One"
+    },
+    {
+      "issueId": 7342,
+      "title": "Avengers (1963) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-06-01T00:00:00+0000",
+      "mu": "1971-06-01T00:00:00+0000",
+      "digitalId": 9967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/58700351e340e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7344,
+      "title": "Avengers (1963) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-07-01T00:00:00+0000",
+      "mu": "1971-07-01T00:00:00+0000",
+      "digitalId": 9968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/58700b30c48ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7345,
+      "title": "Avengers (1963) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-08-01T00:00:00+0000",
+      "mu": "1971-08-01T00:00:00+0000",
+      "digitalId": 9969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4bb65b78aa4d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7346,
+      "title": "Avengers (1963) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-09-01T00:00:00+0000",
+      "mu": "1971-09-01T00:00:00+0000",
+      "digitalId": 9970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4bb65b7358f8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7347,
+      "title": "Avengers (1963) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-11-01T00:00:00+0000",
+      "mu": "1971-11-01T00:00:00+0000",
+      "digitalId": 9971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5873be741053c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7348,
+      "title": "Avengers (1963) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-12-01T00:00:00+0000",
+      "mu": "1971-12-01T00:00:00+0000",
+      "digitalId": 9973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5873c760732ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7349,
+      "title": "Avengers (1963) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-01-01T00:00:00+0000",
+      "mu": "1972-01-01T00:00:00+0000",
+      "digitalId": 9972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5873d3374d463",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7350,
+      "title": "Avengers (1963) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-02-01T00:00:00+0000",
+      "mu": "1972-02-01T00:00:00+0000",
+      "digitalId": 9974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5873dc2eeb3a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alan Weiss",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7351,
+      "title": "Avengers (1963) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 9975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5873f0d16b860",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 532,
+      "title": "Avengers (1998) #500",
+      "number": "500",
+      "url": "https://www.marvel.com/comics/issue/532/avengers_1998_500",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-09-02T00:00:00+0000",
+      "mu": "2006-11-21T00:00:00+0000",
+      "digitalId": 88,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/4f5a50d019d82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Avengers Disassembled"
+    },
+    {
+      "issueId": 767,
+      "title": "Avengers (1998) #501",
+      "number": "501",
+      "url": "https://www.marvel.com/comics/issue/767/avengers_1998_501",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-09-09T00:00:00+0000",
+      "mu": "2004-09-01T00:00:00+0000",
+      "digitalId": 3901,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4f5a50236ebb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers Disassembled"
+    },
+    {
+      "issueId": 845,
+      "title": "Avengers (1998) #502",
+      "number": "502",
+      "url": "https://www.marvel.com/comics/issue/845/avengers_1998_502",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-09-22T00:00:00+0000",
+      "mu": "2004-09-22T00:00:00+0000",
+      "digitalId": 3902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/4f58d176985bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers Disassembled"
+    },
+    {
+      "issueId": 923,
+      "title": "Avengers (1998) #503",
+      "number": "503",
+      "url": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-11-03T00:00:00+0000",
+      "mu": "2004-11-03T00:00:00+0000",
+      "digitalId": 3903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/4f5a4f71e8dd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers Disassembled"
+    },
+    {
+      "issueId": 90,
+      "title": "AVENGERS FINALE 1 (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90/avengers_finale_1_2004_1",
+      "seriesId": 829,
+      "seriesName": "AVENGERS FINALE 1 (2004)",
+      "onSale": "2005-01-01T00:00:00+0000",
+      "mu": "2005-01-01T00:00:00+0000",
+      "digitalId": 5251,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/51e045c27a7b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Avon Oeming",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Gaydos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "David Mack",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers Disassembled"
+    }
+  ]
+}

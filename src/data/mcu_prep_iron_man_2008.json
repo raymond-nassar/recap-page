@@ -1,0 +1,560 @@
+{
+  "id": "mcu-prep-iron-man-2008",
+  "name": "MCU Prep: Iron Man (2008)",
+  "description": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T15:21:01.409Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 16,
+  "collections": 2,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 9431,
+      "title": "Iron Man (1968) #193",
+      "number": "193",
+      "url": "https://www.marvel.com/comics/issue/9431/iron_man_1968_193",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-04-01T00:00:00+0000",
+      "mu": "1985-04-01T00:00:00+0000",
+      "digitalId": 22263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/50ad69c53882e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9432,
+      "title": "Iron Man (1968) #194",
+      "number": "194",
+      "url": "https://www.marvel.com/comics/issue/9432/iron_man_1968_194",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-05-01T00:00:00+0000",
+      "mu": "1985-05-01T00:00:00+0000",
+      "digitalId": 22265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/50b4189ddd3a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9433,
+      "title": "Iron Man (1968) #195",
+      "number": "195",
+      "url": "https://www.marvel.com/comics/issue/9433/iron_man_1968_195",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-06-01T00:00:00+0000",
+      "mu": "1985-06-01T00:00:00+0000",
+      "digitalId": 22268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/52616da71c09d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9434,
+      "title": "Iron Man (1968) #196",
+      "number": "196",
+      "url": "https://www.marvel.com/comics/issue/9434/iron_man_1968_196",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-07-01T00:00:00+0000",
+      "mu": "1985-07-01T00:00:00+0000",
+      "digitalId": 22269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/50ad687b62acb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9435,
+      "title": "Iron Man (1968) #197",
+      "number": "197",
+      "url": "https://www.marvel.com/comics/issue/9435/iron_man_1968_197",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-08-01T00:00:00+0000",
+      "mu": "1985-08-01T00:00:00+0000",
+      "digitalId": 13092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/50ad67d140574",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9436,
+      "title": "Iron Man (1968) #198",
+      "number": "198",
+      "url": "https://www.marvel.com/comics/issue/9436/iron_man_1968_198",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-09-01T00:00:00+0000",
+      "mu": "1985-09-01T00:00:00+0000",
+      "digitalId": 22273,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/50ad66ff153d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9437,
+      "title": "Iron Man (1968) #199",
+      "number": "199",
+      "url": "https://www.marvel.com/comics/issue/9437/iron_man_1968_199",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-10-01T00:00:00+0000",
+      "mu": "1985-10-01T00:00:00+0000",
+      "digitalId": 22281,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/50aba5a408054",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9440,
+      "title": "Iron Man (1968) #200",
+      "number": "200",
+      "url": "https://www.marvel.com/comics/issue/9440/iron_man_1968_200",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1985-11-01T00:00:00+0000",
+      "mu": "1985-11-01T00:00:00+0000",
+      "digitalId": 10857,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/4bb5db83609e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'neil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Iron Monger"
+    },
+    {
+      "issueId": 9467,
+      "title": "Iron Man (1968) #225",
+      "number": "225",
+      "url": "https://www.marvel.com/comics/issue/9467/iron_man_1968_225",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1987-12-01T00:00:00+0000",
+      "mu": "1987-12-01T00:00:00+0000",
+      "digitalId": 1197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/52c5a385c00b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9468,
+      "title": "Iron Man (1968) #226",
+      "number": "226",
+      "url": "https://www.marvel.com/comics/issue/9468/iron_man_1968_226",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-01-01T00:00:00+0000",
+      "mu": "1988-01-01T00:00:00+0000",
+      "digitalId": 2034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/52c5a394851c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9469,
+      "title": "Iron Man (1968) #227",
+      "number": "227",
+      "url": "https://www.marvel.com/comics/issue/9469/iron_man_1968_227",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-02-01T00:00:00+0000",
+      "mu": "1988-02-01T00:00:00+0000",
+      "digitalId": 6184,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/52c5a39d06dbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9470,
+      "title": "Iron Man (1968) #228",
+      "number": "228",
+      "url": "https://www.marvel.com/comics/issue/9470/iron_man_1968_228",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-03-01T00:00:00+0000",
+      "mu": "1988-03-01T00:00:00+0000",
+      "digitalId": 6185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/52c5a3ac4aff7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9471,
+      "title": "Iron Man (1968) #229",
+      "number": "229",
+      "url": "https://www.marvel.com/comics/issue/9471/iron_man_1968_229",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-04-01T00:00:00+0000",
+      "mu": "1988-04-01T00:00:00+0000",
+      "digitalId": 6186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/52c5a3c2ce78c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9473,
+      "title": "Iron Man (1968) #230",
+      "number": "230",
+      "url": "https://www.marvel.com/comics/issue/9473/iron_man_1968_230",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-05-01T00:00:00+0000",
+      "mu": "1988-05-01T00:00:00+0000",
+      "digitalId": 6187,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/52c5a3cf73358",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9474,
+      "title": "Iron Man (1968) #231",
+      "number": "231",
+      "url": "https://www.marvel.com/comics/issue/9474/iron_man_1968_231",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-06-01T00:00:00+0000",
+      "mu": "1988-06-01T00:00:00+0000",
+      "digitalId": 6188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/52c5a3dabf156",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 9475,
+      "title": "Iron Man (1968) #232",
+      "number": "232",
+      "url": "https://www.marvel.com/comics/issue/9475/iron_man_1968_232",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1988-07-01T00:00:00+0000",
+      "mu": "1988-07-01T00:00:00+0000",
+      "digitalId": 6189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/52c5a3e5aff88",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Layton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "writer"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man: Armor Wars"
+    }
+  ]
+}

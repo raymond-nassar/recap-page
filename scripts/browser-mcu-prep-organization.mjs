@@ -82,7 +82,7 @@ export const mcuPrepOrganization = {
       count: document.querySelector('#marvel-on-screen-count').textContent.trim(),
     }));
     t.check('phase sections and default oldest-first ordering replace the flat inventory grid',
-      initial.phases.join('|') === 'phase-2|phase-3|phase-4|phase-5|phase-6|unassigned'
+      initial.phases.join('|') === 'phase-1|phase-2|phase-3|phase-4|phase-5|phase-6|unassigned'
       && initial.sort === 'oldest' && initial.count === `${allIds.length} Reading Lists`, JSON.stringify(initial));
     if (!initial.phases.length) return;
     const before = await saved(page);

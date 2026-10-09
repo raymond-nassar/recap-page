@@ -1,0 +1,376 @@
+{
+  "id": "mcu-prep-thor-2011",
+  "name": "MCU Prep: Thor (2011)",
+  "description": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T15:22:08.282Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 14,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 46516,
+      "title": "Thor: Season One (2013)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/46516/thor_season_one_2013",
+      "seriesId": 17573,
+      "seriesName": "Thor: Season One (2013)",
+      "onSale": "2013-10-02T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 31694,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/57c749391809e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 136,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Lilah Sturges",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor: Season One"
+    },
+    {
+      "issueId": 608,
+      "title": "Loki (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/608/loki_2004_1",
+      "seriesId": 530,
+      "seriesName": "Loki (2004)",
+      "onSale": "2004-07-07T00:00:00+0000",
+      "mu": "2004-07-07T00:00:00+0000",
+      "digitalId": 942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/4d24e58c2062a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rob Rodi",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor & Loki: Blood Brothers"
+    },
+    {
+      "issueId": 544,
+      "title": "Loki (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/544/loki_2004_2",
+      "seriesId": 530,
+      "seriesName": "Loki (2004)",
+      "onSale": "2004-07-21T00:00:00+0000",
+      "mu": "2004-07-21T00:00:00+0000",
+      "digitalId": 3380,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5c9a42387db20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rob Rodi",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor & Loki: Blood Brothers"
+    },
+    {
+      "issueId": 751,
+      "title": "Loki (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/751/loki_2004_3",
+      "seriesId": 530,
+      "seriesName": "Loki (2004)",
+      "onSale": "2004-08-18T00:00:00+0000",
+      "mu": "2004-08-18T00:00:00+0000",
+      "digitalId": 3381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5c9a49beba2b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rob Rodi",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor & Loki: Blood Brothers"
+    },
+    {
+      "issueId": 823,
+      "title": "Loki (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/823/loki_2004_4",
+      "seriesId": 530,
+      "seriesName": "Loki (2004)",
+      "onSale": "2004-10-06T00:00:00+0000",
+      "mu": "2004-10-06T00:00:00+0000",
+      "digitalId": 3382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5c9a50a4336b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rob Rodi",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor & Loki: Blood Brothers"
+    },
+    {
+      "issueId": 11665,
+      "title": "Thor (1966) #337",
+      "number": "337",
+      "url": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1983-11-10T00:00:00+0000",
+      "mu": "2009-05-15T00:00:00+0000",
+      "digitalId": 11595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/4bb5cd6927cf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Walter M. Simonson",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11666,
+      "title": "Thor (1966) #338",
+      "number": "338",
+      "url": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1983-12-01T00:00:00+0000",
+      "mu": "1983-12-01T00:00:00+0000",
+      "digitalId": 11596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/4bb4ff0221713",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11667,
+      "title": "Thor (1966) #339",
+      "number": "339",
+      "url": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-01-01T00:00:00+0000",
+      "mu": "1984-01-01T00:00:00+0000",
+      "digitalId": 11597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb4fefc8119b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11668,
+      "title": "Thor (1966) #340",
+      "number": "340",
+      "url": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-02-01T00:00:00+0000",
+      "mu": "1984-02-01T00:00:00+0000",
+      "digitalId": 11598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/4bb4fef65de50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11669,
+      "title": "Thor (1966) #341",
+      "number": "341",
+      "url": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-03-01T00:00:00+0000",
+      "mu": "1984-03-01T00:00:00+0000",
+      "digitalId": 11599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/4bb4fef0b526c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11670,
+      "title": "Thor (1966) #342",
+      "number": "342",
+      "url": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-04-01T00:00:00+0000",
+      "mu": "1984-04-01T00:00:00+0000",
+      "digitalId": 11600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/4bb4feeb419ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11671,
+      "title": "Thor (1966) #343",
+      "number": "343",
+      "url": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-05-01T00:00:00+0000",
+      "mu": "1984-05-01T00:00:00+0000",
+      "digitalId": 11601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bb4fee522276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11672,
+      "title": "Thor (1966) #344",
+      "number": "344",
+      "url": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-06-01T00:00:00+0000",
+      "mu": "1984-06-01T00:00:00+0000",
+      "digitalId": 11602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/4bb4fedf5d068",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 11673,
+      "title": "Thor (1966) #345",
+      "number": "345",
+      "url": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1984-07-01T00:00:00+0000",
+      "mu": "1984-07-01T00:00:00+0000",
+      "digitalId": 11603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb4fd6105b90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Walt Simonson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    }
+  ]
+}

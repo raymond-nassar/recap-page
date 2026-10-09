@@ -1,0 +1,384 @@
+{
+  "id": "mcu-prep-the-incredible-hulk-2008",
+  "name": "MCU Prep: The Incredible Hulk (2008)",
+  "description": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T15:22:04.093Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 2,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 365,
+      "title": "Hulk: Gray (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/365/hulk_gray_2003_1",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2003-10-15T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5b980f0495d14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 287,
+      "title": "Hulk: Gray (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/287/hulk_gray_2003_2",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2003-10-29T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5b98152f1f8d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 340,
+      "title": "Hulk: Gray (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/340/hulk_gray_2003_3",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2003-11-19T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/4bc32e691f112",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 317,
+      "title": "Hulk: Gray (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/317/hulk_gray_2003_4",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 1972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b9820f410dac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Sale",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 383,
+      "title": "Hulk: Gray (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/383/hulk_gray_2003_5",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5b9824e84c936",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marvel Knights",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Sale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 300,
+      "title": "Hulk: Gray (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/300/hulk_gray_2003_6",
+      "seriesId": 704,
+      "seriesName": "Hulk: Gray (2003 - 2004)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5b991b2ae1462",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marvel Knights",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Sale",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hulk: Gray"
+    },
+    {
+      "issueId": 14434,
+      "title": "Hulk (1999) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/14434/hulk_1999_34",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-11-21T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b33e946842da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    },
+    {
+      "issueId": 14435,
+      "title": "Hulk (1999) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/14435/hulk_1999_35",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2001-12-19T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5b34e2d7be9d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    },
+    {
+      "issueId": 14436,
+      "title": "Hulk (1999) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/14436/hulk_1999_36",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-01-16T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5b34f2be873fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    },
+    {
+      "issueId": 14437,
+      "title": "Hulk (1999) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/14437/hulk_1999_37",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-02-20T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b34fdf61f368",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    },
+    {
+      "issueId": 14438,
+      "title": "Hulk (1999) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/14438/hulk_1999_38",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-03-27T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/5b350a2740ae2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    },
+    {
+      "issueId": 14439,
+      "title": "Hulk (1999) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/14439/hulk_1999_39",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2002-04-17T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 3011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5b3513a9d4a46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Bruce Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk Vol. 1: Return of the Monster"
+    }
+  ]
+}
