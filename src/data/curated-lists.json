@@ -4964,8 +4964,8 @@
     },
     {
       "id": "spider-man-best-of",
-      "name": "The Best of Spider-Man",
-      "description": "A best-of path through Peter Parker's Spider-Man, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It runs from Amazing Fantasy #15 and the Lee and Ditko years through the Lee and Romita chapters, Roger Stern's Hobgoblin mystery, the death of Jean DeWolff, Kraven's Last Hunt read across all three titles in publication order, the decline of Harry Osborn, Straczynski's Coming Home, the Gauntlet and Grim Hunt, Dying Wish into Superior Spider-Man, and Life Story. The sections are the guide's and are kept in its order rather than sorted by publication date.",
+      "name": "10 Best Spider-Man (Peter Parker) Comics Reading List",
+      "description": "Ten Peter Parker selections, from the Lee-Ditko origins to Life Story. Includes the Lee-Romita opening chapters, Hobgoblin, Jean DeWolff, Kraven's Last Hunt, Harry Osborn, Coming Home, the Gauntlet and Superior Spider-Man. Optional preludes: Amazing Spider-Man #600, #606 and #611 before the Gauntlet, and Big Time #648-652 before Dying Wish. Compiled from the owner's exact outline of Comic Book Herald's guide.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
@@ -4998,7 +4998,7 @@
         "Life Story",
         "Comic Book Herald"
       ],
-      "expect": 230,
+      "expect": 233,
       "timeline": null
     },
     {

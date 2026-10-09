@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
 import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.mjs';
+import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const { sha256, ...evidence } = JSON.parse(readFileSync(
@@ -36,6 +37,18 @@ if (createHash('sha256').update(JSON.stringify(descriptionRevision)).digest('hex
 }
 const descriptions = new Map(descriptionRevision.entries.map((entry) => [entry.id, entry]));
 const descriptionFiles = new Map(descriptionRevision.entries.map((entry) => [entry.file, entry]));
+const { sha256: spiderSha256, ...spiderRevision } = JSON.parse(readFileSync(
+  new URL('../fixtures/spider-man-best-of-saved.json', import.meta.url), 'utf8',
+));
+if (createHash('sha256').update(JSON.stringify(spiderRevision)).digest('hex') !== spiderSha256
+  || spiderSha256 !== '9b5ad74db60d3b6f6dcf5437fbc6622e22e325a3aeaceb1297b84aae5b954d1c'
+  || spiderRevision.sourceCommit !== '6454d4897ecbfa9a7af0207d83747b92e6ce08f5'
+  || spiderRevision.payload.items.length !== 230
+  || spiderRevision.currentIssueIds.length !== 233) {
+  throw new Error('Spider-Man selection revision does not match its captured source inputs.');
+}
+const spiderOriginalIds = spiderRevision.payload.items.map((item) => String(item.issueId));
+export const spiderManSelectionItemDelta = spiderRevision.currentIssueIds.length - spiderOriginalIds.length;
 const tempDirs = new Set();
 let snapshotPromise;
 
@@ -88,15 +101,60 @@ export function historicalReadingChoiceManifest(manifest) {
     ...manifest,
     lists: historicalMcuDescriptionManifest(manifest).lists
       .filter(({ id }) => id !== 'avengers-doomsday-secret-wars' && !registeredOwnerGuideIds.includes(id))
-      .map((entry) => entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry),
+      .map((entry) => {
+        if (entry.id === spiderRevision.manifestEntry.id) {
+          if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
+            && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
+            throw new Error('Spider-Man manifest differs from both captured selection contracts.');
+          }
+          return structuredClone(spiderRevision.manifestEntry);
+        }
+        return entries.has(entry.id) ? structuredClone(entries.get(entry.id)) : entry;
+      }),
   };
 }
 
 export function historicalReadingChoiceIssueIds(id, currentIds) {
+  if (id === spiderRevision.manifestEntry.id) {
+    const ids = currentIds.map(String);
+    if (JSON.stringify(ids) !== JSON.stringify(spiderRevision.currentIssueIds)
+      && JSON.stringify(ids) !== JSON.stringify(spiderOriginalIds)) {
+      throw new Error('Spider-Man issue vector differs from both captured selection contracts.');
+    }
+    return [...spiderOriginalIds];
+  }
   return id === 'hickman-minimal' ? evidence.issueIds.map(String) : currentIds;
 }
 
+export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
+  const recordedManifest = {
+    ...manifest,
+    lists: manifest.lists.map((entry) => {
+      if (entry.id !== spiderRevision.manifestEntry.id) return entry;
+      if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
+        && JSON.stringify(entry) !== JSON.stringify(spiderRevision.manifestEntry)) {
+        throw new Error('Spider-Man manifest differs from both captured selection contracts.');
+      }
+      return structuredClone(spiderRevision.manifestEntry);
+    }),
+  };
+  const recordedOrders = orders.map((entry) => ({
+    ...entry,
+    issueIds: entry.id === spiderRevision.manifestEntry.id
+      ? historicalReadingChoiceIssueIds(entry.id, entry.issueIds) : entry.issueIds,
+  }));
+  return libraryDigestFor(recordedManifest, recordedOrders);
+}
+
 export function historicalReadingChoiceCatalogEntry(entry) {
+  if (entry.id === spiderRevision.manifestEntry.id) {
+    if (entry.name !== spiderRevision.currentManifestEntry.name
+      || entry.description !== spiderRevision.currentManifestEntry.description
+      || entry.count !== spiderRevision.currentIssueIds.length) {
+      throw new Error('Spider-Man catalog differs from the captured current selection.');
+    }
+    return structuredClone(spiderRevision.catalogEntry);
+  }
   const original = historicalMcuDescriptionEntry(entry);
   return catalogEntries.has(entry.id) ? structuredClone(catalogEntries.get(entry.id)) : original;
 }
@@ -108,6 +166,15 @@ export async function historicalReadingChoicePayloadText(file) {
     throw new Error('Historical payload sources must remain inside the repository.');
   }
   const payloadFile = path.relative(path.join(root, 'src', 'data'), sourcePath);
+  if (payloadFile === spiderRevision.manifestEntry.out) {
+    const payload = JSON.parse(await readFile(sourcePath, 'utf8'));
+    historicalReadingChoiceIssueIds(payload.id, issueIdsFromValue(payload));
+    if (payload.name !== spiderRevision.currentManifestEntry.name
+      || payload.description !== spiderRevision.currentManifestEntry.description) {
+      throw new Error('Spider-Man payload differs from the captured current editorial selection.');
+    }
+    return `${JSON.stringify(spiderRevision.payload, null, 2)}\n`;
+  }
   if (payloadFile === 'hickman_minimal.json') {
     throw new Error('The rewritten fast-track payload requires its original metadata, not only its historical vector.');
   }

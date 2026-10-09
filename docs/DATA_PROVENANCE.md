@@ -2862,3 +2862,31 @@ in [`src/data/mcu-prep.json`](../src/data/mcu-prep.json), not comic publication 
 Owner credit and unspecified source licence remain explicit. Provider responses supply
 factual metadata and cover URLs, never image bytes or synopsis prose. Saved reading,
 backups, availability distinctions and separate-tab reader launch remain unchanged.
+
+## Peter Parker best-of selection
+
+The [owner's ten selections](https://github.com/raymond-nassar/recap-page/issues/776),
+supplied on 2026-10-09, update the existing Spider-Man best-of spotlight rather than adding
+a duplicate. The title is **10 Best Spider-Man (Peter Parker) Comics Reading List**.
+Its [factual checklist](../src/data/orders/spider-man-best-of.md) contains 233 unique originals
+in ten sections. The original Comic Book Herald reference and unspecified source licence
+remain explicit; this is the owner's selected outline, not a newly scraped or exhaustive guide.
+
+The added Spectacular originals are #43, #45-52 and #54-61. Their exact series identities were
+checked against the [series 2271 listing](https://marvel.emreparker.com/v1/series/2271/issues?limit=100&offset=100)
+on 2026-10-09. Two reuse pinned metadata and 15 use individual provider responses. The five
+optional Big Time originals reuse pinned Amazing Spider-Man metadata. Reused availability
+hints are not claimed to have been refreshed or to prove subscription access.
+
+The Harry Osborn section selects only #178, #188-190 and #199-200, not the full #178-200
+span. Amazing Spider-Man #699.1 and Superior Spider-Man #6.5 are not selected. Coming Home
+uses the six 1999 #30-35 originals, not the unrelated 1963 issues; later legacy-numbered
+Amazing comics also resolve under provider series 454. Kraven's six crossover chapters
+remain interleaved. Highlight ranges and the Great Power collection note do not create
+duplicate comics. Gauntlet #600, #606 and #611 and Big Time #648-652 are labelled optional
+and placed before their respective main sequences.
+
+No source position is unresolved. Metadata contains factual publication details and cover
+URLs only, with synopsis prose omitted. Previously saved copies retain their own issue
+vectors, section labels, notes and progress. Future imports use the revised guide with the
+same catalog identity; no saved-data migration or backup step is required.
