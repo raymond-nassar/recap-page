@@ -1,0 +1,1808 @@
+{
+  "id": "mcu-prep-black-panther-2018",
+  "name": "MCU Prep: Black Panther (2018)",
+  "description": "T'Challa isn't just a king, he's the guardian of a hidden nation wrestling with its place in the world, and rivals challenge his right to rule. See Wakanda's isolationist legacy clash with global responsibility and watch T'Challa's rule get tested by politics as much as by claws.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T18:27:08.744Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 54,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 1637,
+      "title": "Black Panther (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1637/black_panther_2005_1",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-02-02T00:00:00+0000",
+      "mu": "2005-02-02T00:00:00+0000",
+      "digitalId": 1521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5744b9e7af758",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 1731,
+      "title": "Black Panther (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1731/black_panther_2005_2",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-03-16T00:00:00+0000",
+      "mu": "2005-03-16T00:00:00+0000",
+      "digitalId": 1528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5744be90eea32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 1838,
+      "title": "Black Panther (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1838/black_panther_2005_3",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-04-13T00:00:00+0000",
+      "mu": "2005-04-13T00:00:00+0000",
+      "digitalId": 1530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5745c0fd00165",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 1945,
+      "title": "Black Panther (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1945/black_panther_2005_4",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-05-18T00:00:00+0000",
+      "mu": "2005-05-18T00:00:00+0000",
+      "digitalId": 1532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5745c00112846",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 2053,
+      "title": "Black Panther (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/2053/black_panther_2005_5",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-06-22T00:00:00+0000",
+      "mu": "2005-06-22T00:00:00+0000",
+      "digitalId": 1534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5745bf6c5e959",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 2165,
+      "title": "Black Panther (2005) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/2165/black_panther_2005_6",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2005-07-27T00:00:00+0000",
+      "mu": "2005-07-27T00:00:00+0000",
+      "digitalId": 1536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5745beba12657",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Who Is the Black Panther?"
+    },
+    {
+      "issueId": 62639,
+      "title": "Jungle Action (1972) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/62639/jungle_action_1972_6",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1973-09-01T00:00:00+0000",
+      "mu": "1973-09-01T00:00:00+0000",
+      "digitalId": 44351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5a73a7423362a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 62640,
+      "title": "Jungle Action (1972) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/62640/jungle_action_1972_7",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1973-11-01T00:00:00+0000",
+      "mu": "1973-11-01T00:00:00+0000",
+      "digitalId": 44352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/5a73ab1b6c00b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70359,
+      "title": "Jungle Action (1972) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/70359/jungle_action_1972_8",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1974-01-01T00:00:00+0000",
+      "mu": "1974-01-01T00:00:00+0000",
+      "digitalId": 48070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5a9845d7980ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70360,
+      "title": "Jungle Action (1972) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/70360/jungle_action_1972_9",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1974-05-01T00:00:00+0000",
+      "mu": "1974-05-01T00:00:00+0000",
+      "digitalId": 48071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5a9845de04a70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70361,
+      "title": "Jungle Action (1972) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/70361/jungle_action_1972_10",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1974-07-01T00:00:00+0000",
+      "mu": "1974-07-01T00:00:00+0000",
+      "digitalId": 48072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5a984a29e209a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70362,
+      "title": "Jungle Action (1972) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/70362/jungle_action_1972_11",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1974-09-01T00:00:00+0000",
+      "mu": "1974-09-01T00:00:00+0000",
+      "digitalId": 48073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/5a98461655086",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70363,
+      "title": "Jungle Action (1972) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/70363/jungle_action_1972_12",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1974-11-01T00:00:00+0000",
+      "mu": "1974-11-01T00:00:00+0000",
+      "digitalId": 48074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5a9849fd3c658",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Rich Buckler",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70364,
+      "title": "Jungle Action (1972) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70364/jungle_action_1972_13",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-01-01T00:00:00+0000",
+      "mu": "1975-01-01T00:00:00+0000",
+      "digitalId": 48075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5a984cf563f04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "P. Craig Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70365,
+      "title": "Jungle Action (1972) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/70365/jungle_action_1972_14",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-03-01T00:00:00+0000",
+      "mu": "1975-03-01T00:00:00+0000",
+      "digitalId": 48076,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5a9849f845ada",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70366,
+      "title": "Jungle Action (1972) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/70366/jungle_action_1972_15",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-05-01T00:00:00+0000",
+      "mu": "1975-05-01T00:00:00+0000",
+      "digitalId": 48077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5a9849a5d758d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70367,
+      "title": "Jungle Action (1972) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/70367/jungle_action_1972_16",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-07-01T00:00:00+0000",
+      "mu": "1975-07-01T00:00:00+0000",
+      "digitalId": 48078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5a9849d5411c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70368,
+      "title": "Jungle Action (1972) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/70368/jungle_action_1972_17",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-09-01T00:00:00+0000",
+      "mu": "1975-09-01T00:00:00+0000",
+      "digitalId": 48080,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5a9849814485c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 70369,
+      "title": "Jungle Action (1972) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/70369/jungle_action_1972_18",
+      "seriesId": 22991,
+      "seriesName": "Jungle Action (1972 - 1976)",
+      "onSale": "1975-11-01T00:00:00+0000",
+      "mu": "1975-11-01T00:00:00+0000",
+      "digitalId": 48081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5a9849a79f0de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Billy Graham",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: Panther's Rage"
+    },
+    {
+      "issueId": 12575,
+      "title": "Black Panther (1998) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12575/black_panther_1998_1",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1998-11-01T00:00:00+0000",
+      "mu": "1998-11-01T00:00:00+0000",
+      "digitalId": 1520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/598dda98e24dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Texeira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12586,
+      "title": "Black Panther (1998) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/12586/black_panther_1998_2",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1998-12-01T00:00:00+0000",
+      "mu": "1998-12-01T00:00:00+0000",
+      "digitalId": 1527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/598ddc2e671f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Texeira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12597,
+      "title": "Black Panther (1998) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/12597/black_panther_1998_3",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 1529,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/598ddcf1391f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Texeira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12608,
+      "title": "Black Panther (1998) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/12608/black_panther_1998_4",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "1999-02-01T00:00:00+0000",
+      "digitalId": 1531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/598ddd6d5b1d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Texeira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12619,
+      "title": "Black Panther (1998) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/12619/black_panther_1998_5",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 1533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/598dde3d194c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vincent Evans",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12630,
+      "title": "Black Panther (1998) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/12630/black_panther_1998_6",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "1999-04-01T00:00:00+0000",
+      "digitalId": 1535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/598ddf04ec76a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Jusko",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12634,
+      "title": "Black Panther (1998) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/12634/black_panther_1998_7",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-05-01T00:00:00+0000",
+      "mu": "1999-05-01T00:00:00+0000",
+      "digitalId": 1537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/598ddfbf3d350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincent Evans",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Jusko",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12635,
+      "title": "Black Panther (1998) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/12635/black_panther_1998_8",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-06-01T00:00:00+0000",
+      "mu": "1999-06-01T00:00:00+0000",
+      "digitalId": 1540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/598de0b6048cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincent Evans",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amanda Conner",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Jusko",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12636,
+      "title": "Black Panther (1998) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/12636/black_panther_1998_9",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-07-01T00:00:00+0000",
+      "mu": "1999-07-01T00:00:00+0000",
+      "digitalId": 1542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4bc47b5a8157e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Manley",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12576,
+      "title": "Black Panther (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/12576/black_panther_1998_10",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-08-01T00:00:00+0000",
+      "mu": "1999-08-01T00:00:00+0000",
+      "digitalId": 1522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bc47c4c389a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Manley",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12577,
+      "title": "Black Panther (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/12577/black_panther_1998_11",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-09-01T00:00:00+0000",
+      "mu": "1999-09-01T00:00:00+0000",
+      "digitalId": 1524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5f4e71a91e8b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12578,
+      "title": "Black Panther (1998) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/12578/black_panther_1998_12",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-10-01T00:00:00+0000",
+      "mu": "1999-10-01T00:00:00+0000",
+      "digitalId": 1526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5f4e725b6a03e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12579,
+      "title": "Black Panther (1998) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/12579/black_panther_1998_13",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "1999-12-01T00:00:00+0000",
+      "mu": "1999-12-01T00:00:00+0000",
+      "digitalId": 10296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/56dda8539eab1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12580,
+      "title": "Black Panther (1998) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/12580/black_panther_1998_14",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "2000-01-01T00:00:00+0000",
+      "mu": "2000-01-01T00:00:00+0000",
+      "digitalId": 10356,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/56ddaa7657ec2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12581,
+      "title": "Black Panther (1998) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/12581/black_panther_1998_15",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 10357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/56ddac5fdcde5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12582,
+      "title": "Black Panther (1998) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/12582/black_panther_1998_16",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "2000-03-01T00:00:00+0000",
+      "mu": "2000-03-01T00:00:00+0000",
+      "digitalId": 10362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/56ddaecc33f48",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 12583,
+      "title": "Black Panther (1998) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/12583/black_panther_1998_17",
+      "seriesId": 2115,
+      "seriesName": "Black Panther (1998 - 2003)",
+      "onSale": "2000-04-01T00:00:00+0000",
+      "mu": "2000-04-01T00:00:00+0000",
+      "digitalId": 10363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/56ddd0ffe45a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Christopher Priest: Black Panther (1998) #1-17"
+    },
+    {
+      "issueId": 57382,
+      "title": "Black Panther (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57382/black_panther_2016_1",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/567065cfebad5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57383,
+      "title": "Black Panther (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57383/black_panther_2016_2",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/571e49e13973d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57384,
+      "title": "Black Panther (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57384/black_panther_2016_3",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41783,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/576964c7608b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57385,
+      "title": "Black Panther (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57385/black_panther_2016_4",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/579124ca43487",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57386,
+      "title": "Black Panther (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57386/black_panther_2016_5",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42282,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/57a35f88422fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57387,
+      "title": "Black Panther (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57387/black_panther_2016_6",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/57c9863d18b63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57388,
+      "title": "Black Panther (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57388/black_panther_2016_7",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42901,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/57f549f6748e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57389,
+      "title": "Black Panther (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57389/black_panther_2016_8",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-11-16T00:00:00+0000",
+      "mu": "2017-05-22T00:00:00+0000",
+      "digitalId": 43216,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/5817661862227",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57390,
+      "title": "Black Panther (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57390/black_panther_2016_9",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2016-12-28T00:00:00+0000",
+      "mu": "2017-07-03T00:00:00+0000",
+      "digitalId": 43404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/585a9b3746e89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57391,
+      "title": "Black Panther (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/57391/black_panther_2016_10",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43742,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5878fb16e91a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57392,
+      "title": "Black Panther (2016) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57392/black_panther_2016_11",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/58a20e8ace545",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 57393,
+      "title": "Black Panther (2016) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57393/black_panther_2016_12",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-03-22T00:00:00+0000",
+      "mu": "2017-09-25T00:00:00+0000",
+      "digitalId": 44269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/58c9ab3ee36c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther: A Nation Under Our Feet (2016) #1-12"
+    },
+    {
+      "issueId": 60929,
+      "title": "Black Panther (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60929/black_panther_2016_13",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-04-26T00:00:00+0000",
+      "mu": "2017-04-26T00:00:00+0000",
+      "digitalId": 44550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/58f7906eb4bfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wilfredo Torres",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 60930,
+      "title": "Black Panther (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60930/black_panther_2016_14",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-05-24T00:00:00+0000",
+      "mu": "2017-11-27T00:00:00+0000",
+      "digitalId": 44736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/591c9b69506ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Jacen Burrows",
+          "role": "penciler"
+        },
+        {
+          "name": "Wilfredo Torres",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 60931,
+      "title": "Black Panther (2016) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60931/black_panther_2016_15",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-06-28T00:00:00+0000",
+      "mu": "2018-01-01T00:00:00+0000",
+      "digitalId": 44961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/594c292184d2e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Wilfredo Torres",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 60932,
+      "title": "Black Panther (2016) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/60932/black_panther_2016_16",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-07-26T00:00:00+0000",
+      "mu": "2018-01-29T00:00:00+0000",
+      "digitalId": 45211,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/596d07f0bc7df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 60933,
+      "title": "Black Panther (2016) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60933/black_panther_2016_17",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45422,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/59934cc186f38",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 60934,
+      "title": "Black Panther (2016) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60934/black_panther_2016_18",
+      "seriesId": 20912,
+      "seriesName": "Black Panther (2016 - 2018)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45694,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/59c288209b15f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wilfredo Torres",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    }
+  ]
+}

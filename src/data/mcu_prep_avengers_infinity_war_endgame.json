@@ -1,0 +1,616 @@
+{
+  "id": "mcu-prep-avengers-infinity-war-endgame",
+  "name": "MCU Prep: Avengers: Infinity War (2018) & Avengers: Endgame",
+  "description": "The mad titan finally gets his hands on the stones, and the universe pays the price. Trace Thanos from obsessed outcast in love with Death herself to the genocidal collector who snaps away half of all life.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T18:27:11.060Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 19,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 46880,
+      "title": "Thanos Rising (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/46880/thanos_rising_2013_1",
+      "seriesId": 17661,
+      "seriesName": "Thanos Rising (2013)",
+      "onSale": "2013-04-03T00:00:00+0000",
+      "mu": "2013-10-07T00:00:00+0000",
+      "digitalId": 29147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5760124f3a335",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Rising"
+    },
+    {
+      "issueId": 46881,
+      "title": "Thanos Rising (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/46881/thanos_rising_2013_2",
+      "seriesId": 17661,
+      "seriesName": "Thanos Rising (2013)",
+      "onSale": "2013-05-01T00:00:00+0000",
+      "mu": "2013-11-04T00:00:00+0000",
+      "digitalId": 29664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/57601ee9de2d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Rising"
+    },
+    {
+      "issueId": 46882,
+      "title": "Thanos Rising (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/46882/thanos_rising_2013_3",
+      "seriesId": 17661,
+      "seriesName": "Thanos Rising (2013)",
+      "onSale": "2013-06-05T00:00:00+0000",
+      "mu": "2013-12-02T00:00:00+0000",
+      "digitalId": 29862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/576020afa6c1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Rising"
+    },
+    {
+      "issueId": 46883,
+      "title": "Thanos Rising (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/46883/thanos_rising_2013_4",
+      "seriesId": 17661,
+      "seriesName": "Thanos Rising (2013)",
+      "onSale": "2013-07-17T00:00:00+0000",
+      "mu": "2014-01-20T00:00:00+0000",
+      "digitalId": 30655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/51d726b94ac98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Rising"
+    },
+    {
+      "issueId": 46884,
+      "title": "Thanos Rising (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/46884/thanos_rising_2013_5",
+      "seriesId": 17661,
+      "seriesName": "Thanos Rising (2013)",
+      "onSale": "2013-08-28T00:00:00+0000",
+      "mu": "2014-02-24T00:00:00+0000",
+      "digitalId": 31339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/52138acc613d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Rising"
+    },
+    {
+      "issueId": 11448,
+      "title": "Thanos Quest (1990) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/11448/thanos_quest_1990_1",
+      "seriesId": 2081,
+      "seriesName": "Thanos Quest (1990)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "1990-08-01T00:00:00+0000",
+      "digitalId": 1286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/51f6a1e6d0128",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Thanos Quest"
+    },
+    {
+      "issueId": 11449,
+      "title": "Thanos Quest (1990) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/11449/thanos_quest_1990_2",
+      "seriesId": 2081,
+      "seriesName": "Thanos Quest (1990)",
+      "onSale": "1990-11-01T00:00:00+0000",
+      "mu": "1990-11-01T00:00:00+0000",
+      "digitalId": 7114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/51f6a1f505402",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Thanos Quest"
+    },
+    {
+      "issueId": 9286,
+      "title": "Infinity Gauntlet (1991) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9286/infinity_gauntlet_1991_1",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "1991-07-01T00:00:00+0000",
+      "digitalId": 2017,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9287,
+      "title": "Infinity Gauntlet (1991) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9287/infinity_gauntlet_1991_2",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 3361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/51f691126c221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9288,
+      "title": "Infinity Gauntlet (1991) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9288/infinity_gauntlet_1991_3",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 3362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/51f691085d7fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9289,
+      "title": "Infinity Gauntlet (1991) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 3363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/51f690fbd05fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Solotoff",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9290,
+      "title": "Infinity Gauntlet (1991) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "1991-11-01T00:00:00+0000",
+      "digitalId": 3364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/51f690f0e7b77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9291,
+      "title": "Infinity Gauntlet (1991) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "1991-12-01T00:00:00+0000",
+      "digitalId": 3365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/51f690e28c864",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet"
+    },
+    {
+      "issueId": 9292,
+      "title": "Infinity War (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9292/infinity_war_1992_1",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 2018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/51f696c2a1263",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    },
+    {
+      "issueId": 9293,
+      "title": "Infinity War (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9293/infinity_war_1992_2",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 3366,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/51f696b5ab49e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    },
+    {
+      "issueId": 9294,
+      "title": "Infinity War (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 3367,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/51f696aa57eb3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    },
+    {
+      "issueId": 9295,
+      "title": "Infinity War (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 3368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/51f6969dce931",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    },
+    {
+      "issueId": 9296,
+      "title": "Infinity War (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9296/infinity_war_1992_5",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 3369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/51f696959ffbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    },
+    {
+      "issueId": 9297,
+      "title": "Infinity War (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 3370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/51f69686e27c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War"
+    }
+  ]
+}

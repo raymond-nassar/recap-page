@@ -151,6 +151,30 @@ export function ownerGuideScenario(contract) {
         }), contract.sourceUrl);
         t.check(`Browse retains the independent name and owner source at ${width}px`,
           cardFacts.name === contract.name && cardFacts.source === contract.sourceUrl, JSON.stringify(cardFacts));
+        if (contract.screenReleases) {
+          const releaseFacts = await page.$eval(selector, (node) => ({
+            phase: node.closest('.mcu-prep-phase')?.dataset.phase,
+            labels: [...node.querySelectorAll('.mcu-prep-releases li')].map((entry) => entry.textContent.trim()),
+          }));
+          t.check(`The single guide displays every accepted film and date at ${width}px`,
+            releaseFacts.phase === `phase-${contract.screenReleases[0].phase}`
+            && releaseFacts.labels.length === contract.screenReleases.length
+            && contract.screenReleases.every((release, index) => releaseFacts.labels[index].includes(release.title)
+              && releaseFacts.labels[index].includes(release.label)), JSON.stringify(releaseFacts));
+          const matches = [];
+          for (const release of contract.screenReleases) {
+            await page.$eval('#marvel-on-screen-q', (node, title) => {
+              node.value = title;
+              node.dispatchEvent(new Event('input', { bubbles: true }));
+            }, release.title);
+            await page.waitForSelector(selector);
+            matches.push(await page.$$eval(selector, (nodes) => nodes.length));
+          }
+          t.check(`Every associated film finds the same accepted card once at ${width}px`,
+            matches.every((count) => count === 1), JSON.stringify(matches));
+          await click(page, '#marvel-on-screen-clear');
+          await page.waitForSelector(selector);
+        }
         if (event) {
           const placement = await page.$$eval('#catalog-results .catalog-card', (nodes, year) => ({
             sameYear: nodes.filter((node) => Number(node.dataset.year) === year)

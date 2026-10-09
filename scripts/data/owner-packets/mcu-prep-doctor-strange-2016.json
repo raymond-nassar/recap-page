@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-doctor-strange-2016",
+  "inventoryId": "mcu-prep-doctor-strange-2016",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "e49cf0be1e233db4c3756681e977e5087fb9f7793d1de845a03404df7a97aa40",
+  "sourceIssueBearingBlocksSha256": "3d7021d59ad93d255c97dbfce1126b5af591e18afe55e05d7cf6afba1552fb51",
+  "sourceBoundary": "Every owner-selected whole original in supplied order, with explicit source positions and documented gaps.",
+  "excludedSourceReferences": [],
+  "expectedCount": 16,
+  "proposedManifest": {
+    "id": "mcu-prep-doctor-strange-2016",
+    "name": "MCU Prep: Doctor Strange (2016)",
+    "description": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-doctor-strange-2016.md",
+    "out": "mcu_prep_doctor_strange_2016.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Doctor Strange"
+    ],
+    "keywords": [
+      "Doctor Strange"
+    ],
+    "coverIssueId": 5235,
+    "expect": 16
+  },
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "rows": [
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Doctor Strange: The Oath (2006) #1",
+      "sourceRangeReference": "Doctor Strange: The Oath",
+      "normalizedSeriesTitle": "doctor strange the oath",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "candidateIssueId": 5235,
+      "seriesId": 1096,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Doctor Strange: The Oath (2006) #2",
+      "sourceRangeReference": "Doctor Strange: The Oath",
+      "normalizedSeriesTitle": "doctor strange the oath",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "candidateIssueId": 5398,
+      "seriesId": 1096,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Doctor Strange: The Oath (2006) #3",
+      "sourceRangeReference": "Doctor Strange: The Oath",
+      "normalizedSeriesTitle": "doctor strange the oath",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "candidateIssueId": 5662,
+      "seriesId": 1096,
+      "manualSeriesSelectionApproved": false,
+      "note": "Exact selected title/year/number verified in complete series1096 and detail record; supplied candidate5399 rejected."
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Doctor Strange: The Oath (2006) #4",
+      "sourceRangeReference": "Doctor Strange: The Oath",
+      "normalizedSeriesTitle": "doctor strange the oath",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "candidateIssueId": 5801,
+      "seriesId": 1096,
+      "manualSeriesSelectionApproved": false,
+      "note": "Exact selected title/year/number verified in complete series1096 and detail record; supplied candidate5400 rejected."
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Doctor Strange: The Oath (2006) #5",
+      "sourceRangeReference": "Doctor Strange: The Oath",
+      "normalizedSeriesTitle": "doctor strange the oath",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "candidateIssueId": 5957,
+      "seriesId": 1096,
+      "manualSeriesSelectionApproved": false,
+      "note": "Exact selected title/year/number verified in complete series1096 and detail record; supplied candidate5401 rejected."
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Doctor Strange (2015) #1",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "candidateIssueId": 55415,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Doctor Strange (2015) #2",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "candidateIssueId": 55416,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Doctor Strange (2015) #3",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "candidateIssueId": 55417,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Doctor Strange (2015) #4",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "candidateIssueId": 55418,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Doctor Strange (2015) #5",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "candidateIssueId": 55419,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Doctor Strange (2015) #6",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "candidateIssueId": 55420,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Doctor Strange (2015) #7",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "candidateIssueId": 55421,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Doctor Strange (2015) #8",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "candidateIssueId": 55422,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Doctor Strange (2015) #9",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "candidateIssueId": 55423,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Doctor Strange (2015) #10",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "candidateIssueId": 55424,
+      "seriesId": 20457,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Doctor Strange: Last Days Of Magic (2016) #1",
+      "sourceRangeReference": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "normalizedSeriesTitle": "doctor strange last days of magic",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "candidateIssueId": 58278,
+      "seriesId": 21249,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    }
+  ],
+  "sourceOccurrenceCount": 18,
+  "sourceGaps": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Doctor Strange: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Doctor Strange: Season One",
+      "normalizedSeriesTitle": "doctor strange season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Exact owner-selected standalone candidate 41511 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://openlibrary.org/books/OL27629862M",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/41511",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Doctor%20Strange%20Season%20One&limit=50",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Strange%20Season&limit=200",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "7936dfe1abd531c33f40d01d100a6c50f69aebb64bd7fb63d8232a1e3bf10e8e"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "sourceRangeReference": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "normalizedSeriesTitle": "doctor strange what is it that disturbs you stephen",
+      "seriesYear": 1997,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Exact owner-selected standalone candidate 62446 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/62446",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Disturbs&limit=200",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=What%20Is%20It%20That%20Disturbs%20You&limit=50",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "21ca88e1e3804d4d076d036b412d862b2a10943bf6c0bc202e69f679bc92f845"
+    }
+  ],
+  "packetDigest": "bad064d3179d5a4cdbd6489c4495dc89f83a3d3d7062afa88bd4c211d8e7b634",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T18:26:13.966Z",
+    "proposalDigest": "4b15f860b3fbccb19dde6f42e58a78ef7da39e337af432d59accffb1d3ddac23",
+    "rationale": "Preserve all168 linked positions across six guides. The Oath5399/5400/5401 are rejected in favor of the exact selected#3/#4/#5 originals5662/5801/5957 established by complete series1096 and their individual title/year/number detail records. Wrong-work5400 is not a gap. Standalone41511/62446 remain source gaps linked to assigned Issue767 after404 and empty bounded searches. No unknown metadata body is invented, and no copy answer is treated as human issue-ID approval. Sixteen resolved originals plus explicit standalone gaps at source positions1/18 preserve the full18-position selection. Separately reviewed Oath corrections preserve exact source title/year/number, and58278 remains a distinct one-shot. The sole10-original overlap is the2015Aaron run already in the Multiverse of Madness guide; the additional Oath and distinct one-shot define this separate film selection. No exact duplicate; no fabricated creator metadata for missing62446."
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-doctor-strange-2016",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+  "suppliedDescription": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+  "descriptionProvenance": "Supplied opening description retained unchanged.",
+  "sourceIssueCount": 18,
+  "publishedIssueCount": 16,
+  "inputReceipt": {
+    "name": "mcu-prep-doctor-strange-2016.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "3418f2809a04e10e84ff8ee7ac1b580e7d16a0b2ac48662d188b7c9e31230200",
+    "snapshotBytes": 3108,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-doctor-strange-2016-factual-projection.tsv",
+    "sha256": "d12aca60145875c2bd0c2ed484e45e4b978e8c44c7974a104389c42b753947c1",
+    "bytes": 996,
+    "basis": "Independent factual projection, not original uploaded-file or snapshot bytes."
+  },
+  "originalGroupLabels": [
+    "1. Doctor Strange: Season One (standalone graphic novel)",
+    "2. Doctor Strange: The Oath (collects #1-5)",
+    "3. Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird (collects #1-5)",
+    "4. Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic (collects #6-10 + Last Days of Magic #1)",
+    "5. Doctor Strange: What Is It That Disturbs You, Stephen? (1997 one-shot) - ⚠️ *real credited creators are Marc Andreyko/P. Craig Russell, not Milligan/Martin*"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "originalGroupNumber": 1,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: Season One",
+      "group": "Doctor Strange: Season One",
+      "suppliedReference": "Doctor Strange: Season One (2012) #1",
+      "suppliedCandidateId": 41511,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1",
+      "disposition": "gap",
+      "selectedIssueId": null
+    },
+    {
+      "sourcePosition": 2,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #1",
+      "suppliedCandidateId": 5235,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5235/dr_strange_the_oath_2006_1",
+      "disposition": "included",
+      "selectedIssueId": 5235
+    },
+    {
+      "sourcePosition": 3,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #2",
+      "suppliedCandidateId": 5398,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5398/doctor_strange_the_oath_2006_2",
+      "disposition": "included",
+      "selectedIssueId": 5398
+    },
+    {
+      "sourcePosition": 4,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #3",
+      "suppliedCandidateId": 5399,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5399/doctor_strange_the_oath_2006_3",
+      "disposition": "included",
+      "selectedIssueId": 5662,
+      "identityCorrection": {
+        "reason": "Supplied candidate returned404; the complete exact series and individual detail record identify the selected original.",
+        "rejectedCandidateStatus": 404,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5662",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #4",
+      "suppliedCandidateId": 5400,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5400/doctor_strange_the_oath_2006_4",
+      "disposition": "included",
+      "selectedIssueId": 5801,
+      "identityCorrection": {
+        "reason": "Rejected successful response for a different work: Friendly Neighborhood Spider-Man (2005) #14.",
+        "rejectedCandidateStatus": 200,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5801",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 6,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #5",
+      "suppliedCandidateId": 5401,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5401/doctor_strange_the_oath_2006_5",
+      "disposition": "included",
+      "selectedIssueId": 5957,
+      "identityCorrection": {
+        "reason": "Supplied candidate returned404; the complete exact series and individual detail record identify the selected original.",
+        "rejectedCandidateStatus": 404,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5957",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 7,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #1",
+      "suppliedCandidateId": 55415,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55415/doctor_strange_2015_1",
+      "disposition": "included",
+      "selectedIssueId": 55415
+    },
+    {
+      "sourcePosition": 8,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #2",
+      "suppliedCandidateId": 55416,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55416/doctor_strange_2015_2",
+      "disposition": "included",
+      "selectedIssueId": 55416
+    },
+    {
+      "sourcePosition": 9,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #3",
+      "suppliedCandidateId": 55417,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55417/doctor_strange_2015_3",
+      "disposition": "included",
+      "selectedIssueId": 55417
+    },
+    {
+      "sourcePosition": 10,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #4",
+      "suppliedCandidateId": 55418,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55418/doctor_strange_2015_4",
+      "disposition": "included",
+      "selectedIssueId": 55418
+    },
+    {
+      "sourcePosition": 11,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #5",
+      "suppliedCandidateId": 55419,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55419/doctor_strange_2015_5",
+      "disposition": "included",
+      "selectedIssueId": 55419
+    },
+    {
+      "sourcePosition": 12,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #6",
+      "suppliedCandidateId": 55420,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55420/doctor_strange_2015_6",
+      "disposition": "included",
+      "selectedIssueId": 55420
+    },
+    {
+      "sourcePosition": 13,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #7",
+      "suppliedCandidateId": 55421,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55421/doctor_strange_2015_7",
+      "disposition": "included",
+      "selectedIssueId": 55421
+    },
+    {
+      "sourcePosition": 14,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #8",
+      "suppliedCandidateId": 55422,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55422/doctor_strange_2015_8",
+      "disposition": "included",
+      "selectedIssueId": 55422
+    },
+    {
+      "sourcePosition": 15,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #9",
+      "suppliedCandidateId": 55423,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55423/doctor_strange_2015_9",
+      "disposition": "included",
+      "selectedIssueId": 55423
+    },
+    {
+      "sourcePosition": 16,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #10",
+      "suppliedCandidateId": 55424,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55424/doctor_strange_2015_10",
+      "disposition": "included",
+      "selectedIssueId": 55424
+    },
+    {
+      "sourcePosition": 17,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange: Last Days Of Magic (2016) #1",
+      "suppliedCandidateId": 58278,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/58278/doctor_strange_last_days_of_magic_2016_1",
+      "disposition": "included",
+      "selectedIssueId": 58278
+    },
+    {
+      "sourcePosition": 18,
+      "originalGroupNumber": 5,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "group": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "suppliedReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "suppliedCandidateId": 62446,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997",
+      "disposition": "gap",
+      "selectedIssueId": null
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "originalGroupNumber": 1,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: Season One",
+      "group": "Doctor Strange: Season One",
+      "suppliedReference": "Doctor Strange: Season One (2012) #1",
+      "suppliedCandidateId": 41511,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1",
+      "disposition": "gap",
+      "selectedIssueId": null
+    },
+    {
+      "sourcePosition": 2,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #1",
+      "suppliedCandidateId": 5235,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5235/dr_strange_the_oath_2006_1",
+      "disposition": "included",
+      "selectedIssueId": 5235
+    },
+    {
+      "sourcePosition": 3,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #2",
+      "suppliedCandidateId": 5398,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5398/doctor_strange_the_oath_2006_2",
+      "disposition": "included",
+      "selectedIssueId": 5398
+    },
+    {
+      "sourcePosition": 4,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #3",
+      "suppliedCandidateId": 5399,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5399/doctor_strange_the_oath_2006_3",
+      "disposition": "included",
+      "selectedIssueId": 5662,
+      "identityCorrection": {
+        "reason": "Supplied candidate returned404; the complete exact series and individual detail record identify the selected original.",
+        "rejectedCandidateStatus": 404,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5662",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #4",
+      "suppliedCandidateId": 5400,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5400/doctor_strange_the_oath_2006_4",
+      "disposition": "included",
+      "selectedIssueId": 5801,
+      "identityCorrection": {
+        "reason": "Rejected successful response for a different work: Friendly Neighborhood Spider-Man (2005) #14.",
+        "rejectedCandidateStatus": 200,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5801",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 6,
+      "originalGroupNumber": 2,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: The Oath",
+      "group": "Doctor Strange: The Oath",
+      "suppliedReference": "Doctor Strange: The Oath (2006) #5",
+      "suppliedCandidateId": 5401,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/5401/doctor_strange_the_oath_2006_5",
+      "disposition": "included",
+      "selectedIssueId": 5957,
+      "identityCorrection": {
+        "reason": "Supplied candidate returned404; the complete exact series and individual detail record identify the selected original.",
+        "rejectedCandidateStatus": 404,
+        "evidenceSources": [
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/issues/5957",
+            "retrievedAt": "2026-10-09"
+          },
+          {
+            "kind": "metadata",
+            "url": "https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0",
+            "retrievedAt": "2026-10-09"
+          }
+        ]
+      }
+    },
+    {
+      "sourcePosition": 7,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #1",
+      "suppliedCandidateId": 55415,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55415/doctor_strange_2015_1",
+      "disposition": "included",
+      "selectedIssueId": 55415
+    },
+    {
+      "sourcePosition": 8,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #2",
+      "suppliedCandidateId": 55416,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55416/doctor_strange_2015_2",
+      "disposition": "included",
+      "selectedIssueId": 55416
+    },
+    {
+      "sourcePosition": 9,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #3",
+      "suppliedCandidateId": 55417,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55417/doctor_strange_2015_3",
+      "disposition": "included",
+      "selectedIssueId": 55417
+    },
+    {
+      "sourcePosition": 10,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #4",
+      "suppliedCandidateId": 55418,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55418/doctor_strange_2015_4",
+      "disposition": "included",
+      "selectedIssueId": 55418
+    },
+    {
+      "sourcePosition": 11,
+      "originalGroupNumber": 3,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "group": "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+      "suppliedReference": "Doctor Strange (2015) #5",
+      "suppliedCandidateId": 55419,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55419/doctor_strange_2015_5",
+      "disposition": "included",
+      "selectedIssueId": 55419
+    },
+    {
+      "sourcePosition": 12,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #6",
+      "suppliedCandidateId": 55420,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55420/doctor_strange_2015_6",
+      "disposition": "included",
+      "selectedIssueId": 55420
+    },
+    {
+      "sourcePosition": 13,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #7",
+      "suppliedCandidateId": 55421,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55421/doctor_strange_2015_7",
+      "disposition": "included",
+      "selectedIssueId": 55421
+    },
+    {
+      "sourcePosition": 14,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #8",
+      "suppliedCandidateId": 55422,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55422/doctor_strange_2015_8",
+      "disposition": "included",
+      "selectedIssueId": 55422
+    },
+    {
+      "sourcePosition": 15,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #9",
+      "suppliedCandidateId": 55423,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55423/doctor_strange_2015_9",
+      "disposition": "included",
+      "selectedIssueId": 55423
+    },
+    {
+      "sourcePosition": 16,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange (2015) #10",
+      "suppliedCandidateId": 55424,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55424/doctor_strange_2015_10",
+      "disposition": "included",
+      "selectedIssueId": 55424
+    },
+    {
+      "sourcePosition": 17,
+      "originalGroupNumber": 4,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "group": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic",
+      "suppliedReference": "Doctor Strange: Last Days Of Magic (2016) #1",
+      "suppliedCandidateId": 58278,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/58278/doctor_strange_last_days_of_magic_2016_1",
+      "disposition": "included",
+      "selectedIssueId": 58278
+    },
+    {
+      "sourcePosition": 18,
+      "originalGroupNumber": 5,
+      "sourceSection": null,
+      "suppliedGroup": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "group": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "suppliedReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "suppliedCandidateId": 62446,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997",
+      "disposition": "gap",
+      "selectedIssueId": null
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Doctor Strange: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Doctor Strange: Season One",
+      "normalizedSeriesTitle": "doctor strange season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Exact owner-selected standalone candidate 41511 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://openlibrary.org/books/OL27629862M",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/41511",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Doctor%20Strange%20Season%20One&limit=50",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Strange%20Season&limit=200",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "7936dfe1abd531c33f40d01d100a6c50f69aebb64bd7fb63d8232a1e3bf10e8e"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "sourceRangeReference": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "normalizedSeriesTitle": "doctor strange what is it that disturbs you stephen",
+      "seriesYear": 1997,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Exact owner-selected standalone candidate 62446 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/62446",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Disturbs&limit=200",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=What%20Is%20It%20That%20Disturbs%20You&limit=50",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "21ca88e1e3804d4d076d036b412d862b2a10943bf6c0bc202e69f679bc92f845"
+    }
+  ],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Owner-selected whole originals. Collection labels do not add tie-ins or change the explicit linked scope.",
+    "Original UTF-8 pasted-message snapshots remain private and unchanged; published labels are factual ASCII projections.",
+    "No Marvel or CDN page fetched. Candidate URL success alone is not exact identity verification.",
+    "Source creator correction Marc Andreyko/P. Craig Russell is independently corroborated for the1997original; no nonexistent provider credit is overwritten. Oath#3-5 IDs are separately model-reviewed exact corrections, not human-approved by the copy answer."
+  ],
+  "publicDependencies": []
+}
