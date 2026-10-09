@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-marvel-2019",
+  "name": "MCU Prep: Captain Marvel (2019)",
+  "description": "Carol Danvers has to unlearn everything she thinks she knows to become the hero she's meant to be. Dive into the Kree-Skrull conflict that shapes the galaxy she gets caught between and follow her adventures as Captain Marvel.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "groups": [
+    "Avengers: Kree/Skrull War",
+    "Captain Marvel: Higher, Further, Faster, More",
+    "Captain Marvel: Stay Fly",
+    "Captain Marvel: Alis Volat Propriis"
+  ],
+  "rows": [
+    [
+      1,
+      7342,
+      "Avengers (1963) #89",
+      0
+    ],
+    [
+      2,
+      7344,
+      "Avengers (1963) #90",
+      0
+    ],
+    [
+      3,
+      7345,
+      "Avengers (1963) #91",
+      0
+    ],
+    [
+      4,
+      7346,
+      "Avengers (1963) #92",
+      0
+    ],
+    [
+      5,
+      7347,
+      "Avengers (1963) #93",
+      0
+    ],
+    [
+      6,
+      7348,
+      "Avengers (1963) #94",
+      0
+    ],
+    [
+      7,
+      7349,
+      "Avengers (1963) #95",
+      0
+    ],
+    [
+      8,
+      7350,
+      "Avengers (1963) #96",
+      0
+    ],
+    [
+      9,
+      7351,
+      "Avengers (1963) #97",
+      0
+    ],
+    [
+      10,
+      49018,
+      "Captain Marvel (2014) #1",
+      1
+    ],
+    [
+      11,
+      49019,
+      "Captain Marvel (2014) #2",
+      1
+    ],
+    [
+      12,
+      49020,
+      "Captain Marvel (2014) #3",
+      1
+    ],
+    [
+      13,
+      49021,
+      "Captain Marvel (2014) #4",
+      1
+    ],
+    [
+      14,
+      49022,
+      "Captain Marvel (2014) #5",
+      1
+    ],
+    [
+      15,
+      49023,
+      "Captain Marvel (2014) #6",
+      1
+    ],
+    [
+      16,
+      49024,
+      "Captain Marvel (2014) #7",
+      2
+    ],
+    [
+      17,
+      49025,
+      "Captain Marvel (2014) #8",
+      2
+    ],
+    [
+      18,
+      49026,
+      "Captain Marvel (2014) #9",
+      2
+    ],
+    [
+      19,
+      49027,
+      "Captain Marvel (2014) #10",
+      2
+    ],
+    [
+      20,
+      49028,
+      "Captain Marvel (2014) #11",
+      2
+    ],
+    [
+      21,
+      49029,
+      "Captain Marvel (2014) #12",
+      3
+    ],
+    [
+      22,
+      51569,
+      "Captain Marvel (2014) #13",
+      3
+    ],
+    [
+      23,
+      51570,
+      "Captain Marvel (2014) #14",
+      3
+    ],
+    [
+      24,
+      51572,
+      "Captain Marvel (2014) #15",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 24,
+    "sourceIdentityCount": 24,
+    "includedIssueCount": 24,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "3f409a925e0de5af985ab1b86fb65b98fb4a8f3b86e2aca3c3f3bf5d1b537340",
+  "proposalDigest": "a02a81f6f1dcc9ad347b8d836e285e96078e3da9db1ab278230b6081148bfda9",
+  "approvalDigest": "52c1684ee5299d7716be58af8dee6ef55ee2648878ce03ddffe3f875d35e0946",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-captain-america-civil-war-2016",
+    "mcu-prep-thor-ragnarok-2017",
+    "mcu-prep-black-panther-2018",
+    "mcu-prep-avengers-infinity-war-endgame",
+    "mcu-prep-doctor-strange-2016"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-captain-marvel-2019.json",
+    "scripts/data/owner-packets/mcu-prep-captain-marvel-2019.json",
+    "scripts/data/owner-mappings/mcu-prep-captain-marvel-2019.json",
+    "scripts/data/owner-overlaps/mcu-prep-captain-marvel-2019.json"
+  ],
+  "vectorSha256": "1726eff1660db09b4bd542c633cf0b813bb3a6d98d4b2f59280b2d408c86d1df",
+  "screenReleases": [
+    {
+      "id": "captain-marvel",
+      "title": "Captain Marvel",
+      "date": "2019-03-08",
+      "label": "Mar 8, 2019",
+      "phase": 3
+    }
+  ]
+}

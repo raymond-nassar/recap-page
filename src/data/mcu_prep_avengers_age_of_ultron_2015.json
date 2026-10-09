@@ -1,0 +1,804 @@
+{
+  "id": "mcu-prep-avengers-age-of-ultron-2015",
+  "name": "MCU Prep: Avengers: Age of Ultron (2015)",
+  "description": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/765#avengers-age-of-ultron-2015",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T17:20:38.849Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 25,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 31151,
+      "title": "Avengers: The Origin (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31151/avengers_the_origin_2010_1",
+      "seriesId": 9020,
+      "seriesName": "Avengers: The Origin (2010)",
+      "onSale": "2010-04-07T00:00:00+0000",
+      "mu": "2010-04-07T00:00:00+0000",
+      "digitalId": 14253,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5c2e229039b13",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: The Origin"
+    },
+    {
+      "issueId": 31153,
+      "title": "Avengers: The Origin (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/31153/avengers_the_origin_2010_2",
+      "seriesId": 9020,
+      "seriesName": "Avengers: The Origin (2010)",
+      "onSale": "2010-05-05T00:00:00+0000",
+      "mu": "2011-02-01T00:00:00+0000",
+      "digitalId": 14470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5c2e2b4a11994",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Philip J. Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: The Origin"
+    },
+    {
+      "issueId": 31155,
+      "title": "Avengers: The Origin (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/31155/avengers_the_origin_2010_3",
+      "seriesId": 9020,
+      "seriesName": "Avengers: The Origin (2010)",
+      "onSale": "2010-06-03T00:00:00+0000",
+      "mu": "2011-05-10T00:00:00+0000",
+      "digitalId": 14814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5c2e32cc83896",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: The Origin"
+    },
+    {
+      "issueId": 31156,
+      "title": "Avengers: The Origin (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/31156/avengers_the_origin_2010_4",
+      "seriesId": 9020,
+      "seriesName": "Avengers: The Origin (2010)",
+      "onSale": "2010-07-08T00:00:00+0000",
+      "mu": "2011-05-31T00:00:00+0000",
+      "digitalId": 15175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5c2e3d80aa816",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: The Origin"
+    },
+    {
+      "issueId": 31158,
+      "title": "Avengers: The Origin (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/31158/avengers_the_origin_2010_5",
+      "seriesId": 9020,
+      "seriesName": "Avengers: The Origin (2010)",
+      "onSale": "2010-08-04T00:00:00+0000",
+      "mu": "2011-07-19T00:00:00+0000",
+      "digitalId": 15503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5c2e46123bc5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: The Origin"
+    },
+    {
+      "issueId": 17831,
+      "title": "West Coast Avengers (1985) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1992-12-10T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 37157,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/57bf51731fc4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Dann Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 17832,
+      "title": "West Coast Avengers (1985) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1993-01-10T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 37156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/57d2fefff2a1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Dann Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 17833,
+      "title": "West Coast Avengers (1985) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/17833/west_coast_avengers_1985_91",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1993-02-10T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 37158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/57d30600e02bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Dann Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 17846,
+      "title": "West Coast Avengers Annual (1986) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/17846/west_coast_avengers_annual_1986_8",
+      "seriesId": 3632,
+      "seriesName": "West Coast Avengers Annual (1986 - 1988)",
+      "onSale": "1993-01-08T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 37480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/57d318953805a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Maria Beccari",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Barreiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ray Mccarthy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "David Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "John Czop",
+          "role": "penciler"
+        },
+        {
+          "name": "Kris Renkewitz",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Kolins",
+          "role": "penciler"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 55073,
+      "title": "Vision (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55073/vision_1994_1",
+      "seriesId": 20352,
+      "seriesName": "Vision (1994 - 1995)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 37183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5850265591130",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manny Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 55074,
+      "title": "Vision (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55074/vision_1994_2",
+      "seriesId": 20352,
+      "seriesName": "Vision (1994 - 1995)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 37184,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/585027624e541",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manny Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 55075,
+      "title": "Vision (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55075/vision_1994_3",
+      "seriesId": 20352,
+      "seriesName": "Vision (1994 - 1995)",
+      "onSale": "1995-01-10T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 37185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5850285f4b1d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manny Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 55076,
+      "title": "Vision (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55076/vision_1994_4",
+      "seriesId": 20352,
+      "seriesName": "Vision (1994 - 1995)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 37186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/58502c562b1f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manny Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Ultron Unbound"
+    },
+    {
+      "issueId": 50076,
+      "title": "Avengers: Rage of Ultron (2015)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015",
+      "seriesId": 18790,
+      "seriesName": "Avengers: Rage of Ultron (2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 37115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/551ac0dd8a896",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 112,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Rage of Ultron"
+    },
+    {
+      "issueId": 47001,
+      "title": "Age of Ultron (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/47001/age_of_ultron_2013_1",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-03-06T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 28752,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/51ed8cf71fd82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 47003,
+      "title": "Age of Ultron (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/47003/age_of_ultron_2013_2",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-03-13T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 28781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5140f09c2c7fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 37405,
+      "title": "Age of Ultron (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-03-27T00:00:00+0000",
+      "mu": "2013-09-23T00:00:00+0000",
+      "digitalId": 30459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5150a48b883af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 37406,
+      "title": "Age of Ultron (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-04-03T00:00:00+0000",
+      "mu": "2013-10-07T00:00:00+0000",
+      "digitalId": 29071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/51ed8c042b354",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 37407,
+      "title": "Age of Ultron (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-04-10T00:00:00+0000",
+      "mu": "2013-10-07T00:00:00+0000",
+      "digitalId": 29298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/514889cd4fea5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 45904,
+      "title": "Age of Ultron (2013) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-04-17T00:00:00+0000",
+      "mu": "2013-10-14T00:00:00+0000",
+      "digitalId": 29355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5159b4df9e785",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 45905,
+      "title": "Age of Ultron (2013) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-05-01T00:00:00+0000",
+      "mu": "2013-11-04T00:00:00+0000",
+      "digitalId": 29496,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/516704b41e37d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 45906,
+      "title": "Age of Ultron (2013) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/45906/age_of_ultron_2013_8",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-05-15T00:00:00+0000",
+      "mu": "2013-11-11T00:00:00+0000",
+      "digitalId": 29497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5182c3fcdec76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 45907,
+      "title": "Age of Ultron (2013) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/45907/age_of_ultron_2013_9",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-06-05T00:00:00+0000",
+      "mu": "2013-12-02T00:00:00+0000",
+      "digitalId": 29498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/51968173ed3c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 45908,
+      "title": "Age of Ultron (2013) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-06-19T00:00:00+0000",
+      "mu": "2013-12-16T00:00:00+0000",
+      "digitalId": 29499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/51b630da6e792",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    },
+    {
+      "issueId": 47072,
+      "title": "Age of Ultron (2013) #10AI",
+      "number": "10AI",
+      "url": "https://www.marvel.com/comics/issue/47072/age_of_ultron_2013_10",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-06-26T00:00:00+0000",
+      "mu": "2013-12-23T00:00:00+0000",
+      "digitalId": 29500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/51c32aa4bd45e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age of Ultron"
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "id": "mcu-prep-captain-america-civil-war-2016",
+  "name": "MCU Prep: Captain America: Civil War (2016)",
+  "description": "Loyalty gets tested and friendships get shattered. Watch the lead-up to the government's registration crackdown, heroes choosing sides in open conflict, and the devastating fallout that follows.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T18:27:04.324Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 23,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 3503,
+      "title": "Captain America (2004) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/3503/captain_america_2004_15",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-02-22T00:00:00+0000",
+      "mu": "2006-02-22T00:00:00+0000",
+      "digitalId": 5361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/570bc887abd51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 3910,
+      "title": "Captain America (2004) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/3910/captain_america_2004_16",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-03-22T00:00:00+0000",
+      "mu": "2006-03-22T00:00:00+0000",
+      "digitalId": 5362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/570bc8fd6586d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4040,
+      "title": "Captain America (2004) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/4040/captain_america_2004_17",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-04-19T00:00:00+0000",
+      "mu": "2006-04-19T00:00:00+0000",
+      "digitalId": 5364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/570bc99cd1d9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4152,
+      "title": "Captain America (2004) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/4152/captain_america_2004_18",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-05-17T00:00:00+0000",
+      "mu": "2006-05-17T00:00:00+0000",
+      "digitalId": 1151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/570bca4eee4db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4326,
+      "title": "Captain America (2004) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/4326/captain_america_2004_19",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-06-21T00:00:00+0000",
+      "mu": "2006-06-21T00:00:00+0000",
+      "digitalId": 5384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/570bcae74ab0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4482,
+      "title": "Captain America (2004) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/4482/captain_america_2004_20",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 5393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/570bcbf76d9b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4798,
+      "title": "Captain America (2004) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/4798/captain_america_2004_21",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-09-13T00:00:00+0000",
+      "mu": "2006-09-13T00:00:00+0000",
+      "digitalId": 5402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/570bcc868f796",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Lead-up to Civil War: Captain America (2004) #15-21"
+    },
+    {
+      "issueId": 4216,
+      "title": "Civil War (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4216/civil_war_2006_1",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2006-05-03T00:00:00+0000",
+      "mu": "2006-05-03T00:00:00+0000",
+      "digitalId": 5486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/511307b2f1200",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 4313,
+      "title": "Civil War (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4313/civil_war_2006_2",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2006-06-14T00:00:00+0000",
+      "mu": "2006-06-14T00:00:00+0000",
+      "digitalId": 5487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/511307fb3f7bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 4468,
+      "title": "Civil War (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/4468/civil_war_2006_3",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2006-07-19T00:00:00+0000",
+      "mu": "2006-07-19T00:00:00+0000",
+      "digitalId": 5488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5113089c2a2cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 5086,
+      "title": "Captain America (2004) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/5086/captain_america_2004_22",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-09-27T00:00:00+0000",
+      "mu": "2006-09-27T00:00:00+0000",
+      "digitalId": 5409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/56f98fae9d219",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Captain America (2004) #22-24 - \"Drums of War\""
+    },
+    {
+      "issueId": 5239,
+      "title": "Captain America (2004) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/5239/captain_america_2004_23",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-10-25T00:00:00+0000",
+      "mu": "2006-10-25T00:00:00+0000",
+      "digitalId": 5411,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/56f99059cc0aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Captain America (2004) #22-24 - \"Drums of War\""
+    },
+    {
+      "issueId": 5402,
+      "title": "Captain America (2004) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/5402/captain_america_2004_24",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-11-29T00:00:00+0000",
+      "mu": "2006-11-29T00:00:00+0000",
+      "digitalId": 5413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/e0/56f990d564e99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Captain America (2004) #22-24 - \"Drums of War\""
+    },
+    {
+      "issueId": 4786,
+      "title": "Civil War (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/4786/civil_war_2006_4",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2006-09-20T00:00:00+0000",
+      "digitalId": 5489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5113086a9cc96",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 5075,
+      "title": "Civil War (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5075/civil_war_2006_5",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2006-11-15T00:00:00+0000",
+      "mu": "2006-11-15T00:00:00+0000",
+      "digitalId": 5490,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/511309057cd07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 5227,
+      "title": "Civil War (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/5227/civil_war_2006_6",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2007-01-03T00:00:00+0000",
+      "mu": "2007-01-03T00:00:00+0000",
+      "digitalId": 5491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/51130945d1273",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 5793,
+      "title": "Civil War (2006) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/5793/civil_war_2006_7",
+      "seriesId": 1067,
+      "seriesName": "Civil War (2006 - 2007)",
+      "onSale": "2007-02-21T00:00:00+0000",
+      "mu": "2007-02-21T00:00:00+0000",
+      "digitalId": 5492,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/511309c4e9172",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Civil War"
+    },
+    {
+      "issueId": 6010,
+      "title": "Captain America (2004) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/6010/captain_america_2004_25",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2007-03-21T00:00:00+0000",
+      "digitalId": 8054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/55b9488ef2727",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 6152,
+      "title": "Captain America (2004) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/6152/captain_america_2004_26",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-05-23T00:00:00+0000",
+      "mu": "2007-05-23T00:00:00+0000",
+      "digitalId": 8057,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4f75ae9b534a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 15824,
+      "title": "Captain America (2004) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/15824/captain_america_2004_27",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-06-20T00:00:00+0000",
+      "mu": "2007-06-20T00:00:00+0000",
+      "digitalId": 8058,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4f75af16a39fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "penciler (cover)"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 15941,
+      "title": "Captain America (2004) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/15941/captain_america_2004_28",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-07-18T00:00:00+0000",
+      "mu": "2007-07-18T00:00:00+0000",
+      "digitalId": 8059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/570bcd3b5599f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "penciler (cover)"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 16125,
+      "title": "Captain America (2004) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/16125/captain_america_2004_29",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-08-15T00:00:00+0000",
+      "mu": "2007-08-15T00:00:00+0000",
+      "digitalId": 8060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/4f75afb4eb768",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "penciler (cover)"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 16475,
+      "title": "Captain America (2004) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/16475/captain_america_2004_30",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2007-09-19T00:00:00+0000",
+      "mu": "2007-09-19T00:00:00+0000",
+      "digitalId": 8061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/570bcdd78571c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    }
+  ]
+}

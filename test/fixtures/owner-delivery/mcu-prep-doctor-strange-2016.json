@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-doctor-strange-2016",
+  "name": "MCU Prep: Doctor Strange (2016)",
+  "description": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "groups": [
+    "Doctor Strange: The Oath",
+    "Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird",
+    "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic"
+  ],
+  "rows": [
+    [
+      2,
+      5235,
+      "Doctor Strange: The Oath (2006) #1",
+      0
+    ],
+    [
+      3,
+      5398,
+      "Doctor Strange: The Oath (2006) #2",
+      0
+    ],
+    [
+      4,
+      5662,
+      "Doctor Strange: The Oath (2006) #3",
+      0
+    ],
+    [
+      5,
+      5801,
+      "Doctor Strange: The Oath (2006) #4",
+      0
+    ],
+    [
+      6,
+      5957,
+      "Doctor Strange: The Oath (2006) #5",
+      0
+    ],
+    [
+      7,
+      55415,
+      "Doctor Strange (2015) #1",
+      1
+    ],
+    [
+      8,
+      55416,
+      "Doctor Strange (2015) #2",
+      1
+    ],
+    [
+      9,
+      55417,
+      "Doctor Strange (2015) #3",
+      1
+    ],
+    [
+      10,
+      55418,
+      "Doctor Strange (2015) #4",
+      1
+    ],
+    [
+      11,
+      55419,
+      "Doctor Strange (2015) #5",
+      1
+    ],
+    [
+      12,
+      55420,
+      "Doctor Strange (2015) #6",
+      2
+    ],
+    [
+      13,
+      55421,
+      "Doctor Strange (2015) #7",
+      2
+    ],
+    [
+      14,
+      55422,
+      "Doctor Strange (2015) #8",
+      2
+    ],
+    [
+      15,
+      55423,
+      "Doctor Strange (2015) #9",
+      2
+    ],
+    [
+      16,
+      55424,
+      "Doctor Strange (2015) #10",
+      2
+    ],
+    [
+      17,
+      58278,
+      "Doctor Strange: Last Days of Magic (2016) #1",
+      2
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 18,
+    "sourceIdentityCount": 18,
+    "includedIssueCount": 16,
+    "sourceGapCount": 2,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "e49cf0be1e233db4c3756681e977e5087fb9f7793d1de845a03404df7a97aa40",
+  "proposalDigest": "4b15f860b3fbccb19dde6f42e58a78ef7da39e337af432d59accffb1d3ddac23",
+  "approvalDigest": "e39c083905067cc3e6b88b32e02e299a1a55fd70831c3a63ee34f5d5cd735720",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-captain-america-civil-war-2016",
+    "mcu-prep-thor-ragnarok-2017",
+    "mcu-prep-black-panther-2018",
+    "mcu-prep-avengers-infinity-war-endgame",
+    "mcu-prep-captain-marvel-2019"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-doctor-strange-2016.json",
+    "scripts/data/owner-packets/mcu-prep-doctor-strange-2016.json",
+    "scripts/data/owner-mappings/mcu-prep-doctor-strange-2016.json",
+    "scripts/data/owner-overlaps/mcu-prep-doctor-strange-2016.json"
+  ],
+  "vectorSha256": "1776bc809ac57dfafc9a73882550be1cbb114fd5ebe60505bb2c78e8d1f240de",
+  "screenReleases": [
+    {
+      "id": "doctor-strange",
+      "title": "Doctor Strange",
+      "date": "2016-11-04",
+      "label": "Nov 4, 2016",
+      "phase": 3
+    }
+  ]
+}

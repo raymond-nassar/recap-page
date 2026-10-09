@@ -51,6 +51,46 @@
     {
       "id": "mcu-prep-iron-man-3-2013",
       "contract": "test/fixtures/owner-delivery/mcu-prep-iron-man-3-2013.json"
+    },
+    {
+      "id": "mcu-prep-thor-the-dark-world-2013",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-thor-the-dark-world-2013.json"
+    },
+    {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-captain-america-the-winter-soldier-2014.json"
+    },
+    {
+      "id": "mcu-prep-avengers-age-of-ultron-2015",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-avengers-age-of-ultron-2015.json"
+    },
+    {
+      "id": "mcu-prep-ant-man-2015",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-ant-man-2015.json"
+    },
+    {
+      "id": "mcu-prep-captain-america-civil-war-2016",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-captain-america-civil-war-2016.json"
+    },
+    {
+      "id": "mcu-prep-thor-ragnarok-2017",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-thor-ragnarok-2017.json"
+    },
+    {
+      "id": "mcu-prep-black-panther-2018",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-black-panther-2018.json"
+    },
+    {
+      "id": "mcu-prep-avengers-infinity-war-endgame",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-avengers-infinity-war-endgame.json"
+    },
+    {
+      "id": "mcu-prep-captain-marvel-2019",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-captain-marvel-2019.json"
+    },
+    {
+      "id": "mcu-prep-doctor-strange-2016",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-doctor-strange-2016.json"
     }
   ]
 }

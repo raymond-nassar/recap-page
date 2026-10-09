@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thor-the-dark-world-2013",
+  "name": "MCU Prep: Thor: The Dark World (2013)",
+  "description": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
+  "groups": [
+    "Thor: First Thunder",
+    "Thor by Walt Simonson Vol. 1"
+  ],
+  "rows": [
+    [
+      1,
+      33865,
+      "Thor: First Thunder (2010) #1",
+      0
+    ],
+    [
+      2,
+      33828,
+      "Thor: First Thunder (2010) #2",
+      0
+    ],
+    [
+      3,
+      33838,
+      "Thor: First Thunder (2010) #3",
+      0
+    ],
+    [
+      4,
+      33797,
+      "Thor: First Thunder (2010) #4",
+      0
+    ],
+    [
+      5,
+      33868,
+      "Thor: First Thunder (2010) #5",
+      0
+    ],
+    [
+      6,
+      11665,
+      "Thor (1966) #337",
+      1
+    ],
+    [
+      7,
+      11666,
+      "Thor (1966) #338",
+      1
+    ],
+    [
+      8,
+      11667,
+      "Thor (1966) #339",
+      1
+    ],
+    [
+      9,
+      11668,
+      "Thor (1966) #340",
+      1
+    ],
+    [
+      10,
+      11669,
+      "Thor (1966) #341",
+      1
+    ],
+    [
+      11,
+      11670,
+      "Thor (1966) #342",
+      1
+    ],
+    [
+      12,
+      11671,
+      "Thor (1966) #343",
+      1
+    ],
+    [
+      13,
+      11672,
+      "Thor (1966) #344",
+      1
+    ],
+    [
+      14,
+      11673,
+      "Thor (1966) #345",
+      1
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 14,
+    "sourceIdentityCount": 14,
+    "includedIssueCount": 14,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "587ed0ec3c299551cecc9fd44ba5d115c0d3bb77431fe46f2e3ee63969e4d9d7",
+  "proposalDigest": "9f0c3dec3955b9c088920aa470f053baa77daec243d6716c926db624dab2f1a5",
+  "approvalDigest": "c7541aa42a31dae10a20e110c891dd5417f59d4ec2f850fc76ad489c550d207d",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-captain-america-the-winter-soldier-2014",
+    "mcu-prep-avengers-age-of-ultron-2015",
+    "mcu-prep-ant-man-2015"
+  ],
+  "vectorSha256": "74e6ad572a2f9fc653a8cfbc0d55916660916de5b2fc47ea6cac48ea086a2b30",
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-thor-the-dark-world-2013.json",
+    "scripts/data/owner-packets/mcu-prep-thor-the-dark-world-2013.json",
+    "scripts/data/owner-mappings/mcu-prep-thor-the-dark-world-2013.json",
+    "scripts/data/owner-overlaps/mcu-prep-thor-the-dark-world-2013.json"
+  ]
+}

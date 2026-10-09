@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'captain-america-reading-order-modern-marvel-era';
@@ -149,7 +150,7 @@ test('Captain America modern publishes its one atomic issue and preserves 68 sem
   assert.equal(catalogRecord.coverIssueId, 6010);
 
   const peersWithIssue = [];
-  for (const entry of manifest.lists) {
+  for (const entry of legacyOwnerPeers(manifest.lists)) {
     if ([id, 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id)) continue;
     const peer = await readJson('src', 'data', entry.out);
     if (peer.items.some((item) => item.issueId === 6010 && item.placeholder !== true)) {

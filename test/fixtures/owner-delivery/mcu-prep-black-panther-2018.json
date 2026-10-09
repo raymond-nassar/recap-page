@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-black-panther-2018",
+  "name": "MCU Prep: Black Panther (2018)",
+  "description": "T'Challa isn't just a king, he's the guardian of a hidden nation wrestling with its place in the world, and rivals challenge his right to rule. See Wakanda's isolationist legacy clash with global responsibility and watch T'Challa's rule get tested by politics as much as by claws.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "groups": [
+    "Black Panther: Who Is the Black Panther?",
+    "Black Panther: Panther's Rage",
+    "Black Panther by Christopher Priest: Black Panther (1998) #1-17",
+    "Black Panther: A Nation Under Our Feet (2016) #1-12",
+    "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+  ],
+  "rows": [
+    [
+      1,
+      1637,
+      "Black Panther (2005) #1",
+      0
+    ],
+    [
+      2,
+      1731,
+      "Black Panther (2005) #2",
+      0
+    ],
+    [
+      3,
+      1838,
+      "Black Panther (2005) #3",
+      0
+    ],
+    [
+      4,
+      1945,
+      "Black Panther (2005) #4",
+      0
+    ],
+    [
+      5,
+      2053,
+      "Black Panther (2005) #5",
+      0
+    ],
+    [
+      6,
+      2165,
+      "Black Panther (2005) #6",
+      0
+    ],
+    [
+      7,
+      62639,
+      "Jungle Action (1972) #6",
+      1
+    ],
+    [
+      8,
+      62640,
+      "Jungle Action (1972) #7",
+      1
+    ],
+    [
+      9,
+      70359,
+      "Jungle Action (1972) #8",
+      1
+    ],
+    [
+      10,
+      70360,
+      "Jungle Action (1972) #9",
+      1
+    ],
+    [
+      11,
+      70361,
+      "Jungle Action (1972) #10",
+      1
+    ],
+    [
+      12,
+      70362,
+      "Jungle Action (1972) #11",
+      1
+    ],
+    [
+      13,
+      70363,
+      "Jungle Action (1972) #12",
+      1
+    ],
+    [
+      14,
+      70364,
+      "Jungle Action (1972) #13",
+      1
+    ],
+    [
+      15,
+      70365,
+      "Jungle Action (1972) #14",
+      1
+    ],
+    [
+      16,
+      70366,
+      "Jungle Action (1972) #15",
+      1
+    ],
+    [
+      17,
+      70367,
+      "Jungle Action (1972) #16",
+      1
+    ],
+    [
+      18,
+      70368,
+      "Jungle Action (1972) #17",
+      1
+    ],
+    [
+      19,
+      70369,
+      "Jungle Action (1972) #18",
+      1
+    ],
+    [
+      20,
+      12575,
+      "Black Panther (1998) #1",
+      2
+    ],
+    [
+      21,
+      12586,
+      "Black Panther (1998) #2",
+      2
+    ],
+    [
+      22,
+      12597,
+      "Black Panther (1998) #3",
+      2
+    ],
+    [
+      23,
+      12608,
+      "Black Panther (1998) #4",
+      2
+    ],
+    [
+      24,
+      12619,
+      "Black Panther (1998) #5",
+      2
+    ],
+    [
+      25,
+      12630,
+      "Black Panther (1998) #6",
+      2
+    ],
+    [
+      26,
+      12634,
+      "Black Panther (1998) #7",
+      2
+    ],
+    [
+      27,
+      12635,
+      "Black Panther (1998) #8",
+      2
+    ],
+    [
+      28,
+      12636,
+      "Black Panther (1998) #9",
+      2
+    ],
+    [
+      29,
+      12576,
+      "Black Panther (1998) #10",
+      2
+    ],
+    [
+      30,
+      12577,
+      "Black Panther (1998) #11",
+      2
+    ],
+    [
+      31,
+      12578,
+      "Black Panther (1998) #12",
+      2
+    ],
+    [
+      32,
+      12579,
+      "Black Panther (1998) #13",
+      2
+    ],
+    [
+      33,
+      12580,
+      "Black Panther (1998) #14",
+      2
+    ],
+    [
+      34,
+      12581,
+      "Black Panther (1998) #15",
+      2
+    ],
+    [
+      35,
+      12582,
+      "Black Panther (1998) #16",
+      2
+    ],
+    [
+      36,
+      12583,
+      "Black Panther (1998) #17",
+      2
+    ],
+    [
+      37,
+      57382,
+      "Black Panther (2016) #1",
+      3
+    ],
+    [
+      38,
+      57383,
+      "Black Panther (2016) #2",
+      3
+    ],
+    [
+      39,
+      57384,
+      "Black Panther (2016) #3",
+      3
+    ],
+    [
+      40,
+      57385,
+      "Black Panther (2016) #4",
+      3
+    ],
+    [
+      41,
+      57386,
+      "Black Panther (2016) #5",
+      3
+    ],
+    [
+      42,
+      57387,
+      "Black Panther (2016) #6",
+      3
+    ],
+    [
+      43,
+      57388,
+      "Black Panther (2016) #7",
+      3
+    ],
+    [
+      44,
+      57389,
+      "Black Panther (2016) #8",
+      3
+    ],
+    [
+      45,
+      57390,
+      "Black Panther (2016) #9",
+      3
+    ],
+    [
+      46,
+      57391,
+      "Black Panther (2016) #10",
+      3
+    ],
+    [
+      47,
+      57392,
+      "Black Panther (2016) #11",
+      3
+    ],
+    [
+      48,
+      57393,
+      "Black Panther (2016) #12",
+      3
+    ],
+    [
+      49,
+      60929,
+      "Black Panther (2016) #13",
+      4
+    ],
+    [
+      50,
+      60930,
+      "Black Panther (2016) #14",
+      4
+    ],
+    [
+      51,
+      60931,
+      "Black Panther (2016) #15",
+      4
+    ],
+    [
+      52,
+      60932,
+      "Black Panther (2016) #16",
+      4
+    ],
+    [
+      53,
+      60933,
+      "Black Panther (2016) #17",
+      4
+    ],
+    [
+      54,
+      60934,
+      "Black Panther (2016) #18",
+      4
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 54,
+    "sourceIdentityCount": 54,
+    "includedIssueCount": 54,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "9ec077eeb918161aadeb04dbe82ac3de6bc194f0b3696ed7bec8a72246b3f9bd",
+  "proposalDigest": "d40a0a8d4a06ad7da47cdba27869f6108ba1259b3eb5146c4cd986f30c99a443",
+  "approvalDigest": "bbc05ea2a152d5acfb5ed1bf88bdcfc81d8e6d97a9a3802b43c9d1ad1298d719",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-captain-america-civil-war-2016",
+    "mcu-prep-thor-ragnarok-2017",
+    "mcu-prep-avengers-infinity-war-endgame",
+    "mcu-prep-captain-marvel-2019",
+    "mcu-prep-doctor-strange-2016"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-black-panther-2018.json",
+    "scripts/data/owner-packets/mcu-prep-black-panther-2018.json",
+    "scripts/data/owner-mappings/mcu-prep-black-panther-2018.json",
+    "scripts/data/owner-overlaps/mcu-prep-black-panther-2018.json"
+  ],
+  "vectorSha256": "378fdc66c136947fcfd8c1b733ca0722d8030632dcfebccd3067094f8808d64d",
+  "screenReleases": [
+    {
+      "id": "black-panther",
+      "title": "Black Panther",
+      "date": "2018-02-16",
+      "label": "Feb 16, 2018",
+      "phase": 3
+    }
+  ]
+}

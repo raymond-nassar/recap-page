@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thor-the-dark-world-2013",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+  "sourceIssueCount": 14,
+  "publishedIssueCount": 14,
+  "inputReceipt": {
+    "name": "mcu-prep-thor-the-dark-world-2013.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "73686c9dd10a9fd1458b1083262f2d2a8b4290005ca7dd596bc39e6399d714b5",
+    "snapshotBytes": 1712,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "descriptionReceipt": {
+    "name": "phase-two-descriptions.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "1fa71ac99d0a1f823ef8419d9c131cb4af9d6eb875656fa0ee77eca809f72ce2",
+    "snapshotBytes": 1445,
+    "bodySha256": "d99d968094c712dfb4835ffd19716666feac288bbdc1174aeed274a4ffe91aa9"
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-thor-the-dark-world-2013-factual-projection.tsv",
+    "sha256": "e3b9efadffba45e7be0e66a3963581cf57933d72adad697db679532a04a02944",
+    "bytes": 781,
+    "basis": "Independent factual projection, not original pasted-snapshot or uploaded-file bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Thor: First Thunder** (collects #1\u20135)",
+    "2. **Thor by Walt Simonson Vol. 1** (collects Thor (1966) #337\u2013345)"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33865/thor_first_thunder_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33865/thor_first_thunder_2010_1",
+      "suppliedCandidateId": 33865,
+      "suppliedReference": "Thor: First Thunder (2010) #1",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33865
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33828/thor_first_thunder_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33828/thor_first_thunder_2010_2",
+      "suppliedCandidateId": 33828,
+      "suppliedReference": "Thor: First Thunder (2010) #2",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33828
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33838/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33838/read",
+      "suppliedCandidateId": 33838,
+      "suppliedReference": "Thor: First Thunder (2010) #3",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33838
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33797/thor_first_thunder_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33797/thor_first_thunder_2010_4",
+      "suppliedCandidateId": 33797,
+      "suppliedReference": "Thor: First Thunder (2010) #4",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33797
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33868/thor_first_thunder_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33868/thor_first_thunder_2010_5",
+      "suppliedCandidateId": 33868,
+      "suppliedReference": "Thor: First Thunder (2010) #5",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33868
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #337 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11665/thor_1966_337)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "suppliedCandidateId": 11665,
+      "suppliedReference": "Thor (1966) #337",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11665
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #338 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11666/thor_1966_338)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "suppliedCandidateId": 11666,
+      "suppliedReference": "Thor (1966) #338",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11666
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #339 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11667/thor_1966_339)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "suppliedCandidateId": 11667,
+      "suppliedReference": "Thor (1966) #339",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11667
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #340 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11668/thor_1966_340)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "suppliedCandidateId": 11668,
+      "suppliedReference": "Thor (1966) #340",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11668
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #341 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11669/thor_1966_341)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "suppliedCandidateId": 11669,
+      "suppliedReference": "Thor (1966) #341",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11669
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #342 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11670/thor_1966_342)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "suppliedCandidateId": 11670,
+      "suppliedReference": "Thor (1966) #342",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11670
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #343 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11671/thor_1966_343)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "suppliedCandidateId": 11671,
+      "suppliedReference": "Thor (1966) #343",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11671
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #344 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11672/thor_1966_344)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "suppliedCandidateId": 11672,
+      "suppliedReference": "Thor (1966) #344",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11672
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #345 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11673/thor_1966_345)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "suppliedCandidateId": 11673,
+      "suppliedReference": "Thor (1966) #345",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11673
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33865/thor_first_thunder_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33865/thor_first_thunder_2010_1",
+      "suppliedCandidateId": 33865,
+      "suppliedReference": "Thor: First Thunder (2010) #1",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33865
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33828/thor_first_thunder_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33828/thor_first_thunder_2010_2",
+      "suppliedCandidateId": 33828,
+      "suppliedReference": "Thor: First Thunder (2010) #2",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33828
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33838/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33838/read",
+      "suppliedCandidateId": 33838,
+      "suppliedReference": "Thor: First Thunder (2010) #3",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33838
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33797/thor_first_thunder_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33797/thor_first_thunder_2010_4",
+      "suppliedCandidateId": 33797,
+      "suppliedReference": "Thor: First Thunder (2010) #4",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33797
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Thor: First Thunder",
+      "suppliedText": "- [Thor: First Thunder (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/33868/thor_first_thunder_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/33868/thor_first_thunder_2010_5",
+      "suppliedCandidateId": 33868,
+      "suppliedReference": "Thor: First Thunder (2010) #5",
+      "originalGroup": "Thor: First Thunder",
+      "disposition": "included",
+      "selectedIssueId": 33868
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #337 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11665/thor_1966_337)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "suppliedCandidateId": 11665,
+      "suppliedReference": "Thor (1966) #337",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11665
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #338 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11666/thor_1966_338)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "suppliedCandidateId": 11666,
+      "suppliedReference": "Thor (1966) #338",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11666
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #339 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11667/thor_1966_339)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "suppliedCandidateId": 11667,
+      "suppliedReference": "Thor (1966) #339",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11667
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #340 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11668/thor_1966_340)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "suppliedCandidateId": 11668,
+      "suppliedReference": "Thor (1966) #340",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11668
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #341 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11669/thor_1966_341)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "suppliedCandidateId": 11669,
+      "suppliedReference": "Thor (1966) #341",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11669
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #342 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11670/thor_1966_342)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "suppliedCandidateId": 11670,
+      "suppliedReference": "Thor (1966) #342",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11670
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #343 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11671/thor_1966_343)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "suppliedCandidateId": 11671,
+      "suppliedReference": "Thor (1966) #343",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11671
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #344 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11672/thor_1966_344)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "suppliedCandidateId": 11672,
+      "suppliedReference": "Thor (1966) #344",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11672
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Thor by Walt Simonson Vol. 1",
+      "suppliedText": "- [Thor (1966) #345 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/11673/thor_1966_345)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "suppliedCandidateId": 11673,
+      "suppliedReference": "Thor (1966) #345",
+      "originalGroup": "Thor by Walt Simonson Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 11673
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Owner-selected original comics and exact approved description. No new collection expansion or source substitution.",
+    "Original pasted-message snapshots remain private and immutable; public facts are self-contained and separately hashed.",
+    "No Marvel or CDN resource was fetched. Metadata facts come from genuine configured-provider records; no synopsis prose or image bytes are published.",
+    "All nine selected Simonson issues remain here and in the prior Thor guide."
+  ],
+  "bibliography": [],
+  "publicDependencies": []
+}

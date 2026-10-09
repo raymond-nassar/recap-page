@@ -1,0 +1,720 @@
+{
+  "id": "mcu-prep-captain-marvel-2019",
+  "name": "MCU Prep: Captain Marvel (2019)",
+  "description": "Carol Danvers has to unlearn everything she thinks she knows to become the hero she's meant to be. Dive into the Kree-Skrull conflict that shapes the galaxy she gets caught between and follow her adventures as Captain Marvel.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T18:27:13.402Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 24,
+  "collections": 4,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 7342,
+      "title": "Avengers (1963) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/7342/avengers_1963_89",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-06-01T00:00:00+0000",
+      "mu": "1971-06-01T00:00:00+0000",
+      "digitalId": 9967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/58700351e340e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7344,
+      "title": "Avengers (1963) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/7344/avengers_1963_90",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-07-01T00:00:00+0000",
+      "mu": "1971-07-01T00:00:00+0000",
+      "digitalId": 9968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/58700b30c48ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7345,
+      "title": "Avengers (1963) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/7345/avengers_1963_91",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-08-01T00:00:00+0000",
+      "mu": "1971-08-01T00:00:00+0000",
+      "digitalId": 9969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4bb65b78aa4d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7346,
+      "title": "Avengers (1963) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/7346/avengers_1963_92",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-09-01T00:00:00+0000",
+      "mu": "1971-09-01T00:00:00+0000",
+      "digitalId": 9970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4bb65b7358f8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7347,
+      "title": "Avengers (1963) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/7347/avengers_1963_93",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-11-01T00:00:00+0000",
+      "mu": "1971-11-01T00:00:00+0000",
+      "digitalId": 9971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5873be741053c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7348,
+      "title": "Avengers (1963) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/7348/avengers_1963_94",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1971-12-01T00:00:00+0000",
+      "mu": "1971-12-01T00:00:00+0000",
+      "digitalId": 9973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5873c760732ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7349,
+      "title": "Avengers (1963) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/7349/avengers_1963_95",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-01-01T00:00:00+0000",
+      "mu": "1972-01-01T00:00:00+0000",
+      "digitalId": 9972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5873d3374d463",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7350,
+      "title": "Avengers (1963) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/7350/avengers_1963_96",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-02-01T00:00:00+0000",
+      "mu": "1972-02-01T00:00:00+0000",
+      "digitalId": 9974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5873dc2eeb3a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alan Weiss",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 7351,
+      "title": "Avengers (1963) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/7351/avengers_1963_97",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 9975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5873f0d16b860",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Kree/Skrull War"
+    },
+    {
+      "issueId": 49018,
+      "title": "Captain Marvel (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49018/captain_marvel_2014_1",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-03-12T00:00:00+0000",
+      "mu": "2014-09-08T00:00:00+0000",
+      "digitalId": 33350,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5314d3e4534c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49019,
+      "title": "Captain Marvel (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49019/captain_marvel_2014_2",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-04-09T00:00:00+0000",
+      "mu": "2014-10-13T00:00:00+0000",
+      "digitalId": 33519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/533f0acbe5729",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49020,
+      "title": "Captain Marvel (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49020/captain_marvel_2014_3",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-05-14T00:00:00+0000",
+      "mu": "2014-11-10T00:00:00+0000",
+      "digitalId": 33851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/53692c3fc8c7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49021,
+      "title": "Captain Marvel (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49021/captain_marvel_2014_4",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-06-11T00:00:00+0000",
+      "mu": "2014-12-08T00:00:00+0000",
+      "digitalId": 33840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/538e0cfe954c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49022,
+      "title": "Captain Marvel (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/49022/captain_marvel_2014_5",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-07-09T00:00:00+0000",
+      "mu": "2015-01-12T00:00:00+0000",
+      "digitalId": 34111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/53b2c5589e1a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49023,
+      "title": "Captain Marvel (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/49023/captain_marvel_2014_6",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-08-13T00:00:00+0000",
+      "mu": "2015-02-09T00:00:00+0000",
+      "digitalId": 34557,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/53dfb6cf63705",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Higher, Further, Faster, More"
+    },
+    {
+      "issueId": 49024,
+      "title": "Captain Marvel (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/49024/captain_marvel_2014_7",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-09-10T00:00:00+0000",
+      "mu": "2015-03-09T00:00:00+0000",
+      "digitalId": 34761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/54077427cec17",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Stay Fly"
+    },
+    {
+      "issueId": 49025,
+      "title": "Captain Marvel (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/49025/captain_marvel_2014_8",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-10-08T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 34865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/542998fc8504f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Stay Fly"
+    },
+    {
+      "issueId": 49026,
+      "title": "Captain Marvel (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/49026/captain_marvel_2014_9",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-11-12T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/544fe8ad8722b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Stay Fly"
+    },
+    {
+      "issueId": 49027,
+      "title": "Captain Marvel (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/49027/captain_marvel_2014_10",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2015-06-15T00:00:00+0000",
+      "digitalId": 35781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/548f241c106f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Stay Fly"
+    },
+    {
+      "issueId": 49028,
+      "title": "Captain Marvel (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/49028/captain_marvel_2014_11",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2015-01-14T00:00:00+0000",
+      "mu": "2015-07-13T00:00:00+0000",
+      "digitalId": 36302,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/54ac21b09e09d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Stay Fly"
+    },
+    {
+      "issueId": 49029,
+      "title": "Captain Marvel (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/49029/captain_marvel_2014_12",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-10T00:00:00+0000",
+      "digitalId": 36670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/54cfa867d9522",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Alis Volat Propriis"
+    },
+    {
+      "issueId": 51569,
+      "title": "Captain Marvel (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/51569/captain_marvel_2014_13",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-09-14T00:00:00+0000",
+      "digitalId": 36904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/54f9f491c96ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Alis Volat Propriis"
+    },
+    {
+      "issueId": 51570,
+      "title": "Captain Marvel (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/51570/captain_marvel_2014_14",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2015-04-08T00:00:00+0000",
+      "mu": "2015-10-12T00:00:00+0000",
+      "digitalId": 37349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/551ac92f7e2c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Alis Volat Propriis"
+    },
+    {
+      "issueId": 51572,
+      "title": "Captain Marvel (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/51572/captain_marvel_2014_15",
+      "seriesId": 18455,
+      "seriesName": "Captain Marvel (2014 - 2015)",
+      "onSale": "2015-05-13T00:00:00+0000",
+      "mu": "2015-11-09T00:00:00+0000",
+      "digitalId": 38246,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5640d9d36c6fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel: Alis Volat Propriis"
+    }
+  ]
+}

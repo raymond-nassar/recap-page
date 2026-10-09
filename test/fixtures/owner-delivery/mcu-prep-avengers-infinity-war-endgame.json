@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-avengers-infinity-war-endgame",
+  "name": "MCU Prep: Avengers: Infinity War (2018) & Avengers: Endgame",
+  "description": "The mad titan finally gets his hands on the stones, and the universe pays the price. Trace Thanos from obsessed outcast in love with Death herself to the genocidal collector who snaps away half of all life.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "groups": [
+    "Thanos Rising",
+    "The Thanos Quest",
+    "Infinity Gauntlet",
+    "Infinity War"
+  ],
+  "rows": [
+    [
+      1,
+      46880,
+      "Thanos Rising (2013) #1",
+      0
+    ],
+    [
+      2,
+      46881,
+      "Thanos Rising (2013) #2",
+      0
+    ],
+    [
+      3,
+      46882,
+      "Thanos Rising (2013) #3",
+      0
+    ],
+    [
+      4,
+      46883,
+      "Thanos Rising (2013) #4",
+      0
+    ],
+    [
+      5,
+      46884,
+      "Thanos Rising (2013) #5",
+      0
+    ],
+    [
+      6,
+      11448,
+      "Thanos Quest (1990) #1",
+      1
+    ],
+    [
+      7,
+      11449,
+      "Thanos Quest (1990) #2",
+      1
+    ],
+    [
+      8,
+      9286,
+      "Infinity Gauntlet (1991) #1",
+      2
+    ],
+    [
+      9,
+      9287,
+      "Infinity Gauntlet (1991) #2",
+      2
+    ],
+    [
+      10,
+      9288,
+      "Infinity Gauntlet (1991) #3",
+      2
+    ],
+    [
+      11,
+      9289,
+      "Infinity Gauntlet (1991) #4",
+      2
+    ],
+    [
+      12,
+      9290,
+      "Infinity Gauntlet (1991) #5",
+      2
+    ],
+    [
+      13,
+      9291,
+      "Infinity Gauntlet (1991) #6",
+      2
+    ],
+    [
+      14,
+      9292,
+      "Infinity War (1992) #1",
+      3
+    ],
+    [
+      15,
+      9293,
+      "Infinity War (1992) #2",
+      3
+    ],
+    [
+      16,
+      9294,
+      "Infinity War (1992) #3",
+      3
+    ],
+    [
+      17,
+      9295,
+      "Infinity War (1992) #4",
+      3
+    ],
+    [
+      18,
+      9296,
+      "Infinity War (1992) #5",
+      3
+    ],
+    [
+      19,
+      9297,
+      "Infinity War (1992) #6",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 19,
+    "sourceIdentityCount": 19,
+    "includedIssueCount": 19,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "0dad6c02824a110e07daca87f7a67384709d754112577e774f9b83ed3900ffd7",
+  "proposalDigest": "0132a1c7d23b803f79c6f8a747b60d759bd7999250101c20a3148117f35d8a24",
+  "approvalDigest": "1490546aad3d5ba2799f571929cdc0e0530fb9683aacac453122d9bc36c31a5b",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-captain-america-civil-war-2016",
+    "mcu-prep-thor-ragnarok-2017",
+    "mcu-prep-black-panther-2018",
+    "mcu-prep-captain-marvel-2019",
+    "mcu-prep-doctor-strange-2016"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-avengers-infinity-war-endgame.json",
+    "scripts/data/owner-packets/mcu-prep-avengers-infinity-war-endgame.json",
+    "scripts/data/owner-mappings/mcu-prep-avengers-infinity-war-endgame.json",
+    "scripts/data/owner-overlaps/mcu-prep-avengers-infinity-war-endgame.json"
+  ],
+  "vectorSha256": "6733138250cdd482d3d34ed27c6983082ae8743a36b477106887df3280dd04f2",
+  "screenReleases": [
+    {
+      "id": "avengers-infinity-war",
+      "title": "Avengers: Infinity War",
+      "date": "2018-04-27",
+      "label": "Apr 27, 2018",
+      "phase": 3
+    },
+    {
+      "id": "avengers-endgame",
+      "title": "Avengers: Endgame",
+      "date": "2019-04-26",
+      "label": "Apr 26, 2019",
+      "phase": 3
+    }
+  ]
+}

@@ -2341,6 +2341,277 @@
       "expect": 24
     },
     {
+      "id": "mcu-prep-thor-the-dark-world-2013",
+      "name": "MCU Prep: Thor: The Dark World (2013)",
+      "description": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-thor-the-dark-world-2013.md",
+      "out": "mcu_prep_thor_the_dark_world_2013.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Thor",
+        "Loki",
+        "Malekith"
+      ],
+      "keywords": [
+        "thor-the-dark-world"
+      ],
+      "coverIssueId": 33865,
+      "expect": 14
+    },
+    {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "name": "MCU Prep: Captain America: The Winter Soldier (2014)",
+      "description": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-captain-america-the-winter-soldier-2014.md",
+      "out": "mcu_prep_captain_america_the_winter_soldier_2014.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Captain America",
+        "Winter Soldier"
+      ],
+      "keywords": [
+        "captain-america-the-winter-soldier"
+      ],
+      "coverIssueId": 34994,
+      "expect": 18
+    },
+    {
+      "id": "mcu-prep-avengers-age-of-ultron-2015",
+      "name": "MCU Prep: Avengers: Age of Ultron (2015)",
+      "description": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-avengers-age-of-ultron-2015.md",
+      "out": "mcu_prep_avengers_age_of_ultron_2015.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#avengers-age-of-ultron-2015",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Avengers",
+        "Ultron",
+        "Hank Pym",
+        "Vision"
+      ],
+      "keywords": [
+        "avengers-age-of-ultron"
+      ],
+      "coverIssueId": 31151,
+      "expect": 25
+    },
+    {
+      "id": "mcu-prep-ant-man-2015",
+      "name": "MCU Prep: Ant-Man (2015)",
+      "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-ant-man-2015.md",
+      "out": "mcu_prep_ant_man_2015.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Ant-Man",
+        "Wasp",
+        "Scott Lang",
+        "Eric O'Grady"
+      ],
+      "keywords": [
+        "ant-man"
+      ],
+      "coverIssueId": 32680,
+      "expect": 22
+    },
+    {
+      "id": "mcu-prep-captain-america-civil-war-2016",
+      "name": "MCU Prep: Captain America: Civil War (2016)",
+      "description": "Loyalty gets tested and friendships get shattered. Watch the lead-up to the government's registration crackdown, heroes choosing sides in open conflict, and the devastating fallout that follows.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-captain-america-civil-war-2016.md",
+      "out": "mcu_prep_captain_america_civil_war_2016.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Captain America",
+        "Winter Soldier",
+        "Iron Man",
+        "Sharon Carter"
+      ],
+      "keywords": [
+        "Captain America: Civil War"
+      ],
+      "coverIssueId": 3503,
+      "expect": 23
+    },
+    {
+      "id": "mcu-prep-thor-ragnarok-2017",
+      "name": "MCU Prep: Thor: Ragnarok (2017)",
+      "description": "Asgard burns and Thor has to decide what kind of king he'll be when the throne, the hammer, and even his home can't save him. Trace his journey from brash warrior to humbled hero, then dive into the literal comic story that shares the film's name and apocalyptic stakes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-thor-ragnarok-2017.md",
+      "out": "mcu_prep_thor_ragnarok_2017.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Thor",
+        "Hulk",
+        "Loki"
+      ],
+      "keywords": [
+        "Thor: Ragnarok"
+      ],
+      "coverIssueId": 46516,
+      "expect": 30
+    },
+    {
+      "id": "mcu-prep-black-panther-2018",
+      "name": "MCU Prep: Black Panther (2018)",
+      "description": "T'Challa isn't just a king, he's the guardian of a hidden nation wrestling with its place in the world, and rivals challenge his right to rule. See Wakanda's isolationist legacy clash with global responsibility and watch T'Challa's rule get tested by politics as much as by claws.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-black-panther-2018.md",
+      "out": "mcu_prep_black_panther_2018.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Black Panther",
+        "T'Challa",
+        "Wakanda"
+      ],
+      "keywords": [
+        "Black Panther"
+      ],
+      "coverIssueId": 1637,
+      "expect": 54
+    },
+    {
+      "id": "mcu-prep-avengers-infinity-war-endgame",
+      "name": "MCU Prep: Avengers: Infinity War (2018) & Avengers: Endgame",
+      "description": "The mad titan finally gets his hands on the stones, and the universe pays the price. Trace Thanos from obsessed outcast in love with Death herself to the genocidal collector who snaps away half of all life.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-avengers-infinity-war-endgame.md",
+      "out": "mcu_prep_avengers_infinity_war_endgame.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Thanos",
+        "Avengers",
+        "Adam Warlock"
+      ],
+      "keywords": [
+        "Avengers: Infinity War",
+        "Avengers: Endgame"
+      ],
+      "coverIssueId": 46880,
+      "expect": 19
+    },
+    {
+      "id": "mcu-prep-captain-marvel-2019",
+      "name": "MCU Prep: Captain Marvel (2019)",
+      "description": "Carol Danvers has to unlearn everything she thinks she knows to become the hero she's meant to be. Dive into the Kree-Skrull conflict that shapes the galaxy she gets caught between and follow her adventures as Captain Marvel.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-captain-marvel-2019.md",
+      "out": "mcu_prep_captain_marvel_2019.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Captain Marvel",
+        "Carol Danvers",
+        "Avengers"
+      ],
+      "keywords": [
+        "Captain Marvel"
+      ],
+      "coverIssueId": 7342,
+      "expect": 24
+    },
+    {
+      "id": "mcu-prep-doctor-strange-2016",
+      "name": "MCU Prep: Doctor Strange (2016)",
+      "description": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-doctor-strange-2016.md",
+      "out": "mcu_prep_doctor_strange_2016.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Doctor Strange"
+      ],
+      "keywords": [
+        "Doctor Strange"
+      ],
+      "coverIssueId": 5235,
+      "expect": 16
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",
