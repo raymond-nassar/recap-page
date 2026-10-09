@@ -539,6 +539,15 @@
               </div>
             </section>
 
+            <section class="sec" id="library-rated-shelf" aria-labelledby="library-rated-shelf-h">
+              <div class="sec-h">
+                <h2 id="library-rated-shelf-h">Top-rated comics</h2>
+                <a href="#/library-rated" class="btn btn-g" data-view="library-rated">See all ratings</a>
+              </div>
+              <p class="rail-hint" id="library-rated-shelf-status"></p>
+              <div class="results rated-shelf" id="library-rated-shelf-list"></div>
+            </section>
+
             <section class="search-hub library-tools" aria-labelledby="library-tools-h">
               <h2 id="library-tools-h">Across your library</h2>
               <div class="search-hub-grid">
@@ -550,6 +559,9 @@
                 </a>
                 <a href="#/library-manual" class="search-hub-card" data-view="library-manual">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#edit"/></svg><span>Added by hand</span>
+                </a>
+                <a href="#/library-rated" class="search-hub-card" data-view="library-rated">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#star"/></svg><span>Your ratings</span>
                 </a>
               </div>
             </section>
@@ -583,6 +595,54 @@
           <section id="view-library-manual" class="view view-wide" hidden aria-labelledby="library-manual-h">
             <div class="head"><div class="head-left"><h1 id="library-manual-h"></h1></div></div>
             <div class="results"></div>
+          </section>
+
+          <!-- ---------------------------------------- ratings browser -->
+          <section id="view-library-rated" class="view view-wide" hidden aria-labelledby="library-rated-h">
+            <div class="head"><div class="head-left"><h1 id="library-rated-h">Your ratings</h1></div></div>
+            <p class="rail-hint" id="library-rated-help">Every comic you have rated, from any list. A Character guide match means the comic is in a reading guide tagged with that character, not that the character appears in it.</p>
+            <form class="rated-controls" id="library-rated-form" aria-describedby="library-rated-help" novalidate>
+              <div class="rated-field">
+                <label for="rated-min">Minimum rating</label>
+                <select id="rated-min" name="min">
+                  <option value="">Any rating</option>
+                  <option value="5">5 stars</option>
+                  <option value="4.5">4.5 stars and up</option>
+                  <option value="4">4 stars and up</option>
+                  <option value="3.5">3.5 stars and up</option>
+                  <option value="3">3 stars and up</option>
+                  <option value="2.5">2.5 stars and up</option>
+                  <option value="2">2 stars and up</option>
+                  <option value="1.5">1.5 stars and up</option>
+                  <option value="1">1 star and up</option>
+                  <option value="0.5">0.5 stars and up</option>
+                </select>
+              </div>
+              <div class="rated-field">
+                <label for="rated-q">Title or series</label>
+                <input type="search" id="rated-q" name="q" maxlength="200" autocomplete="off" />
+              </div>
+              <div class="rated-field">
+                <label for="rated-character">Character guide</label>
+                <select id="rated-character" name="character">
+                  <option value="">Any character guide</option>
+                </select>
+              </div>
+              <div class="rated-field">
+                <label for="rated-sort">Sort</label>
+                <select id="rated-sort" name="sort">
+                  <option value="rating">Highest rated first</option>
+                  <option value="title">Title</option>
+                </select>
+              </div>
+              <div class="rated-actions">
+                <button type="submit" class="btn primary">Apply filters</button>
+                <button type="button" class="btn" id="rated-clear">Clear filters</button>
+              </div>
+            </form>
+            <p class="rated-count" id="library-rated-count"></p>
+            <div class="rated-notice" id="library-rated-notice"></div>
+            <div class="results" id="library-rated-results"></div>
           </section>
 
           <!-- ---------------------------------------- catalog view -->

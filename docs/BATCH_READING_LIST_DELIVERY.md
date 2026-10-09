@@ -261,7 +261,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:379-400`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:384-405`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 

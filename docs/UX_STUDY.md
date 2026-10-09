@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:97-104`, `src/js/main.js:2832-2857`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:99-106`, `src/js/main.js:2852-2878`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,8 +86,8 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2048`, `src/js/views/reading.js:366-374`, `src/js/views/reading.js:391-405`, against
-`src/js/main.js:567-594`
+Evidence: `src/js/main.js:2067`, `src/js/views/reading.js:366-374`, `src/js/views/reading.js:391-405`, against
+`src/js/main.js:569-596`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
 curated import failures through `alert()`, asks for a list name through `prompt()`, and confirms
@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1098-1109`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1158-1169`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:588-593`, `src/js/views/catalog.js:421-450`.
+  so the criterion is met. Evidence: `src/index.html:648-653`, `src/js/views/catalog.js:421-450`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1042-1045` and `src/styles.css:2290-2291`.
+`src/styles.css:1042-1045` and `src/styles.css:2306-2307`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -390,8 +390,8 @@ Severity: 2, single-rater estimate
 Rationale: affects every notice in the product, and duplicate speech is disruptive rather than
 blocking
 Confidence: Observed
-Evidence: `src/js/main.js:406-419`, `src/js/main.js:567-594`, `src/index.html:21`,
-`src/index.html:121`, `src/index.html:736`
+Evidence: `src/js/main.js:408-421`, `src/js/main.js:569-596`, `src/index.html:21`,
+`src/index.html:121`, `src/index.html:796`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
 then also calls `announce()`, which writes the same message into the dedicated `#announcer` live
@@ -400,7 +400,7 @@ nothing is missed, is right, but the effect is that every confirmation is spoken
 Recommendation: pick one channel per message, keeping `announce()` for events with no visible
 surface and letting the visible live region speak for itself everywhere else
 Backlog item: BL-027
-Resolved: which channel a message uses is now read off the container at `src/js/main.js:412-419`
+Resolved: which channel a message uses is now read off the container at `src/js/main.js:414-421`
 rather than decided by a list of ids, and the six result panes stopped being live regions. The
 Impact above describes the pre-fix behaviour and is kept as the record of why the item was
 raised. Measured on a first run with storage cleared, the surfaces that speak went from 9 to 3.
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1638-1640`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1656-1658`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -605,7 +605,7 @@ Rationale: affects findability of two whole classes of the reader's own data, bu
 workarounds through the existing list views
 Confidence: Observed
 Evidence: `design/mockups/5-longbox-focus.html:169-172`
-Resolution evidence: the current Library hub includes both views at `src/index.html:523-556`
+Resolution evidence: the current Library hub includes both views at `src/index.html:523-568`
 Source: Step 3 comparison of the adopted direction against the shipped rail
 Impact: the adopted direction's rail offers Everything read and Added by hand alongside Progress by
 series. Only Progress by series shipped. A reader therefore has no single place to see their whole
@@ -737,16 +737,16 @@ transition computes to `none` under the reduce preference. Evidence:
 Labelling is a strength. The rail groups by the reader's intent rather than by data type, using
 Reading, Discover and App, and the labels read as plain English tasks. Evidence: `src/index.html:60-105`.
 Library now holds saved lists, Everything read, Progress by series and Added by hand. Evidence:
-`src/index.html:523-556`.
+`src/index.html:523-568`.
 
 Navigation depth is shallow. The rail opens the Library, Browse and Add comics hubs, and each hub
 exposes its related destinations without making the rail itself scroll through them. The five ways
 to add comics remain separate addressable screens, while the Add comics address opens their hub.
-Evidence: `src/index.html:60-105`, `src/js/lib/route.js:20-31`.
+Evidence: `src/index.html:60-105`, `src/js/lib/route.js:22-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
-Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:74-151`,
-`src/js/main.js:1676-1719`, `test/ux-completion.test.js:83-94`.
+Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:77-154`,
+`src/js/main.js:1695-1738`, `test/ux-completion.test.js:83-94`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1606-1673`,
+src/ returning no matches`, `src/js/main.js:1624-1692`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No
@@ -849,9 +849,9 @@ sentence frames rather than quotations. Nobody said these words.
   control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1123-1154`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how
   far through this story I am rather than a total across everything I have ever imported.
-  Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:560-563`.
+  Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:572-575`.
   Resolved: BL-014 scoped the count to the active list and put the choice in the view at
-  `src/index.html:562-566`, with the subtitle naming whichever of the two is being counted.
+  `src/index.html:574-578`, with the subtitle naming whichever of the two is being counted.
 * When I read on my phone beside the reader, I want the list to be the first thing on screen, so I
   can mark an issue read without scrolling past the whole menu. Hypothesis, and the gap behind
   UX-D-001.
@@ -869,7 +869,7 @@ from observing anyone. Every low point cites a finding.
 | Settling into a rhythm | Marks read, returns, marks read again, uses D | Fluent until the shortcut stops responding | UX-D-003, UX-H-001 |
 | Filtering to what is left | Sets the Unread filter, works through the remainder | Efficient, until a reload resets it | UX-I-002 |
 | Reading on a phone | Opens the app beside the reader on a small screen | Frustrated. The list is a full screen away and the page scrolls sideways | UX-D-001, UX-D-002, UX-A-005 |
-| Checking progress | Opens Progress by series to see how far through the crossover they are | Confused. Counts include every other list they ever imported | Existing story 4.2, `src/index.html:560-563` |
+| Checking progress | Opens Progress by series to see how far through the crossover they are | Confused. Counts include every other list they ever imported | Existing story 4.2, `src/index.html:572-575` |
 | Going back | Presses the browser Back button after moving between views | Surprised. Back leaves the application entirely | UX-I-001 |
 | Tidying up | Deletes a list made by mistake | Uneasy. A native dialog, then no way back | UX-H-002, UX-H-003 |
 

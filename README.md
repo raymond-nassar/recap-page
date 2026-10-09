@@ -129,6 +129,13 @@ by half a star, then **Save rating**. **Cancel** or Escape leaves the previous s
 Reading List's enjoyment choice. Marking unread keeps the score. There is one editable score,
 not a history of first reads and rereads.
 
+Library shows up to six of your **Top-rated comics**, those scored four stars or higher.
+**See all ratings** opens **Your ratings**, which lists every comic you have rated, from any list,
+and filters by **Minimum rating**, **Title or series** and **Character guide**. A Character
+guide match means the comic sits in a reading guide tagged with that character. It is not a promise
+that the character appears in that issue. Filters live in the address, so Back and reload keep them,
+and browsing never changes your saved data.
+
 Ratings travel in the ordinary reading-data JSON backup. Markdown exports do not include them.
 Restoring an older backup replaces reading data with that backup, including no ratings; **Undo
 last restore** can recover the previous data. Saved data now uses schema 4. Older builds cannot

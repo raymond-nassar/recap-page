@@ -34,6 +34,11 @@ import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
 import {
+  RATED_GUIDE_INDEX_FILE,
+  buildRatedGuideIndex,
+  serializeRatedGuideIndex,
+} from '../src/js/lib/ratedComics.js';
+import {
   buildChapterFamily,
   buildChildOverlapEvidence,
   validateChapterLedger,
@@ -640,6 +645,12 @@ async function main() {
       lists: catalog,
       paths: [...paths, ...generatedPaths],
     }, null, 2)}\n`,
+  });
+  // Derived in the same batch as the catalog it describes, so the two can never be committed out
+  // of step: a malformed guide throws here and nothing at all is written.
+  outputs.push({
+    path: join(DATA_DIR, RATED_GUIDE_INDEX_FILE),
+    content: serializeRatedGuideIndex(buildRatedGuideIndex(catalog, payloadByCatalogId)),
   });
   const outputPaths = outputs.map((output) => output.path);
   if (new Set(outputPaths).size !== outputPaths.length) {

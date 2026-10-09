@@ -571,6 +571,14 @@ committed so the catalog audit can work from bytes in the repository rather than
 live requests. Names of series and of creators are facts about publications and about people; the
 selection here is not editorial, because it is simply all of them.
 
+### Rated-comics guide index
+
+[`src/data/rated-guide-index.json`](../src/data/rated-guide-index.json) is derived, not collected.
+`npm run vendor` builds it from the catalog already in this repository: each guide's `id`, `name`
+and editorial `characters` labels, and the `issueId` of every item in that guide's payload. It holds
+314 guides and 19,405 issue IDs. No new source, metadata field or artwork enters with it, and its
+character labels say which guide an issue belongs to, not who appears in the issue.
+
 ### Order checklists
 
 The 215 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 214 active
@@ -908,7 +916,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1081-1085`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1141-1145`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 

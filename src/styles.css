@@ -148,7 +148,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:996-1003`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:998-1005`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1230,7 +1230,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a file input are drawn by the platform in a style that belongs to no part of this app, and the
    file input in particular announces itself as "Choose File / No file chosen" in the middle of a
    surface where every other control is a labelled button. */
-#view-data select, .setting select, .reading-path-controls select, .collection-navigation select {
+#view-data select, .setting select, .reading-path-controls select, .collection-navigation select, .rated-controls select {
   appearance: none;
   background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
     linear-gradient(135deg, currentcolor 50%, transparent 50%);
@@ -1241,7 +1241,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: 44px;
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .collection-navigation select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: 1px solid var(--line-2);
   border-radius: 8px; padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
@@ -2238,6 +2238,22 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-controls { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
 .reading-path-controls label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
 .reading-path-controls select { width: 100%; min-height: 44px; }
+/* The ratings filters sit in one row on a wide screen and stack on a narrow one. Each control keeps a
+   visible label above it, the same caption treatment the reading path picker uses, because a
+   placeholder alone disappears the moment the reader starts typing. */
+.rated-controls {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-5); align-items: end; margin: var(--space-6) 0 var(--space-5);
+}
+.rated-field { display: grid; gap: var(--space-3); min-width: 0; }
+.rated-field label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.rated-field input[type="search"] { width: 100%; min-height: 44px; }
+.rated-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); grid-column: 1 / -1; }
+.rated-count { color: var(--muted); font-size: var(--t-caption); margin: 0; }
+.rated-notice:empty { display: none; }
+.rated-notice { margin-top: var(--space-5); }
+.rated-score { color: var(--text); font-weight: 600; }
+.rated-guides { color: var(--muted); font-size: var(--t-caption); margin: var(--space-1) 0 0; }
 .collection-navigation {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center;
   gap: var(--space-3); margin: var(--space-5) 0 var(--space-7); min-width: 0;
