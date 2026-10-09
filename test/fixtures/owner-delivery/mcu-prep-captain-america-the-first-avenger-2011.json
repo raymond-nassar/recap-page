@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-the-first-avenger-2011",
+  "name": "MCU Prep: Captain America: The First Avenger (2011)",
+  "description": "Before the legend, there was Steve Rogers. Go behind the shield with the people and battles that forged the First Avenger.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Captain America: First Vengeance"
+  ],
+  "rows": [
+    [
+      1,
+      38423,
+      "Captain America: First Vengeance (2010) #1",
+      0
+    ],
+    [
+      2,
+      38428,
+      "Captain America: First Vengeance (2010) #2",
+      0
+    ],
+    [
+      3,
+      38825,
+      "Captain America: First Vengeance (2010) #3",
+      0
+    ],
+    [
+      4,
+      38824,
+      "Captain America: First Vengeance (2010) #4",
+      0
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 9,
+    "sourceIdentityCount": 5,
+    "includedIssueCount": 4,
+    "sourceGapCount": 1,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "d622f1dd197e1d09419c59fc8b0ed8bd71a1086a8ac9cfb6f12bb70ee990baad",
+  "proposalDigest": "0fd2c97e79d13bfb28c590cf780f2c4ece838321182629b74c10db85c9cd9e09",
+  "approvalDigest": "208e553883ee69c566b009f0a951ad64f30bedcd11bfd613d9703e6cabdd0abd",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-thor-2011",
+    "mcu-prep-the-avengers-2012",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-captain-america-the-first-avenger-2011.json",
+    "scripts/data/owner-packets/mcu-prep-captain-america-the-first-avenger-2011.json",
+    "scripts/data/owner-mappings/mcu-prep-captain-america-the-first-avenger-2011.json",
+    "scripts/data/owner-overlaps/mcu-prep-captain-america-the-first-avenger-2011.json"
+  ],
+  "vectorSha256": "16d7b1d828171fff3df06f6c019a90a42a3dc392885e56a100bc8d253f132912"
+}

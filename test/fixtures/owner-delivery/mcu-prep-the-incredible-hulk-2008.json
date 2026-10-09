@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-the-incredible-hulk-2008",
+  "name": "MCU Prep: The Incredible Hulk (2008)",
+  "description": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Hulk: Gray",
+    "Incredible Hulk Vol. 1: Return of the Monster"
+  ],
+  "rows": [
+    [
+      2,
+      365,
+      "Hulk: Gray (2003) #1",
+      0
+    ],
+    [
+      3,
+      287,
+      "Hulk: Gray (2003) #2",
+      0
+    ],
+    [
+      4,
+      340,
+      "Hulk: Gray (2003) #3",
+      0
+    ],
+    [
+      5,
+      317,
+      "Hulk: Gray (2003) #4",
+      0
+    ],
+    [
+      6,
+      383,
+      "Hulk: Gray (2003) #5",
+      0
+    ],
+    [
+      7,
+      300,
+      "Hulk: Gray (2003) #6",
+      0
+    ],
+    [
+      8,
+      14434,
+      "Hulk (1999) #34",
+      1
+    ],
+    [
+      9,
+      14435,
+      "Hulk (1999) #35",
+      1
+    ],
+    [
+      10,
+      14436,
+      "Hulk (1999) #36",
+      1
+    ],
+    [
+      11,
+      14437,
+      "Hulk (1999) #37",
+      1
+    ],
+    [
+      12,
+      14438,
+      "Hulk (1999) #38",
+      1
+    ],
+    [
+      13,
+      14439,
+      "Hulk (1999) #39",
+      1
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 13,
+    "sourceIdentityCount": 13,
+    "includedIssueCount": 12,
+    "sourceGapCount": 1,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "e43a90cb99ac4d2c962cac47684af34a617426992de28a94c83b597d0cbb993e",
+  "proposalDigest": "1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
+  "approvalDigest": "89b79e546d77a9a31ee9c5003c275000605d399c08df9856a548a99798310c04",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-thor-2011",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-the-avengers-2012",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-the-incredible-hulk-2008.json",
+    "scripts/data/owner-packets/mcu-prep-the-incredible-hulk-2008.json",
+    "scripts/data/owner-mappings/mcu-prep-the-incredible-hulk-2008.json",
+    "scripts/data/owner-overlaps/mcu-prep-the-incredible-hulk-2008.json"
+  ],
+  "vectorSha256": "96b26a021df26644b089e3d5b2a5b7c322fe90ceca7abf02284b1f5dc8e40d70"
+}

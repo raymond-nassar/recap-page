@@ -509,8 +509,8 @@ partition: its 99 quoted source positions and 487 metadata-complete issues remai
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
 against the current visible catalog rather than copied into historical reports. Its current
-report records 85 overlapping child-and-peer pairs across 25 visible peers, including the
-three-issue Iron Fist, nine-issue Daredevil, seven-issue Fantastic Four and six-issue Brand New Day companion relationships,
+report records 86 overlapping child-and-peer pairs across 26 visible peers, including the
+three-issue Iron Fist, nine-issue Daredevil, seven-issue Fantastic Four and six-issue Brand New Day and Hulk companion relationships,
 while preserving all earlier pairs.
 
 ### Secret Wars fast track and MCU Prep
@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7374-7413`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7555-7594`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11489-11614`.
+`src/data/catalog.json:11719-11844`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2681,3 +2681,55 @@ Modern Timeline places the selections in the 2023 group as Death, Contest, then 
 before the 2024 Fall/Rise event. That is reviewed editorial placement, not a precise global
 continuity claim. Their new registrations do not increase MCU Prep or Storylines membership.
 Existing saved lists, progress, reader behavior and backup formats are unchanged.
+
+## Owner-authored early-film MCU Prep batch
+
+[The seven-guide intake](https://github.com/raymond-nassar/recap-page/issues/761) records the
+owner-approved selections and descriptions. The factual ledgers under
+[`scripts/data/owner-selections/`](../scripts/data/owner-selections) preserve the supplied
+candidate links, original positions, discontinuous group labels, explicit corrections and
+snapshot receipts. Those receipts describe saved UTF-8 pasted messages, not original uploaded
+files; original-file hashes and sizes are unavailable. Each factual projection has a separate
+digest. No private original is a public dependency.
+
+| MCU Prep guide | Included works | Metadata gaps | Owner-excluded references |
+|---|---:|---:|---:|
+| Iron Man (2008) | 16 | 0 | 6 |
+| The Incredible Hulk (2008) | 12 | 1 | 0 |
+| Iron Man 2 (2010) | 29 | 0 | 0 |
+| Thor (2011) | 14 | 0 | 0 |
+| Captain America: The First Avenger (2011) | 4 | 1 | 4 |
+| The Avengers (2012) | 15 | 0 | 0 |
+| Iron Man 3 (2013) | 24 | 0 | 0 |
+
+All 126 named source occurrences are accounted for: 114 included works, two metadata gaps
+and ten explicit owner exclusions, with no within-guide repeats. Extremis is excluded only
+from Iron Man (2008). Its Iron Man 3 selection retains the owner-approved corrections to
+issue IDs 1493, 1580 and 3347 for #2, #3 and #5. Captain America uses the four print issues,
+with #4 corrected to 38824; the supplied digital #5-8 references remain excluded provenance,
+not a claimed print-to-digital crosswalk. Spotlight remains selected.
+
+[Hulk: Season One](https://github.com/raymond-nassar/recap-page/issues/762) and
+[Captain America Spotlight #1](https://github.com/raymond-nassar/recap-page/issues/763)
+remain explicit source gaps with completed lookup evidence. No substitute edition or issue
+is inserted. Thor: Season One and Avengers: Season One each remain one standalone original
+with no displayed issue number. Their actual metadata number 0 is retained only as identity
+evidence. The supplied issue links identify their checklist rows; Avengers' provider
+collection URL is preserved unchanged as metadata. Finale retains candidate 90, with its
+supplied 2005 label and provider 2004 title separately recorded.
+
+The existing local-checklist route handles these reviewed whole works without changing the
+runtime parser or storage schema. Request-bound provider responses supply factual details and
+cover URLs, never cover bytes or synopsis prose. Source credit is the owner's MCU Prep
+selection, not Comic Book Herald; the source licence remains unspecified.
+
+Each frozen report covers 298 existing source/visible orders, including all generated children
+and the hidden parent, plus the other six selected guides. Actual central model review retains
+19 meaningful library relationships and all disjoint selected-peer relationships. This is
+model authority, not a human review; exact duplicates have no approval path.
+
+Explicit associations in [`src/data/mcu-prep.json`](../src/data/mcu-prep.json) use the
+[US film-release table](https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films),
+retrieved 2026-10-09: the first six films are Phase One and Iron Man 3 is Phase Two. Comic
+publication years do not determine film placement. Existing saved reading data and backups
+are unchanged.

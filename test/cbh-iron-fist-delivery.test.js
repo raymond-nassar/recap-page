@@ -211,9 +211,9 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     assert.equal(entry.sourceOrigin, "Compiled for this project from Comic Book Herald's guide");
     assert.equal(entry.sourceLicense, null);
   }
-  assert.equal(partition.pairCount, 85);
-  assert.equal(partition.existingListCount, 25);
-  assert.equal(partition.sharedOccurrenceCount, 456);
+  assert.equal(partition.pairCount, 86);
+  assert.equal(partition.existingListCount, 26);
+  assert.equal(partition.sharedOccurrenceCount, 462);
   assert.deepEqual(partition.pairs.filter((row) => row.existingListId === id), [{
     chapterId: 'marvel-knights-to-planet-x-26',
     existingListId: id,

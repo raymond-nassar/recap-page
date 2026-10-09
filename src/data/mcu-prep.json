@@ -6,7 +6,7 @@
     {
       "id": "mcu-films",
       "url": "https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films",
-      "retrievedAt": "2026-10-08"
+      "retrievedAt": "2026-10-09"
     },
     {
       "id": "mcu-series",
@@ -25,6 +25,13 @@
     }
   ],
   "releases": [
+    { "id": "iron-man", "title": "Iron Man", "phase": 1, "format": "movie", "date": "2008-05-02", "status": "released", "sources": ["mcu-films"] },
+    { "id": "the-incredible-hulk", "title": "The Incredible Hulk", "phase": 1, "format": "movie", "date": "2008-06-13", "status": "released", "sources": ["mcu-films"] },
+    { "id": "iron-man-2", "title": "Iron Man 2", "phase": 1, "format": "movie", "date": "2010-05-07", "status": "released", "sources": ["mcu-films"] },
+    { "id": "thor", "title": "Thor", "phase": 1, "format": "movie", "date": "2011-05-06", "status": "released", "sources": ["mcu-films"] },
+    { "id": "captain-america-the-first-avenger", "title": "Captain America: The First Avenger", "phase": 1, "format": "movie", "date": "2011-07-22", "status": "released", "sources": ["mcu-films"] },
+    { "id": "the-avengers", "title": "The Avengers", "phase": 1, "format": "movie", "date": "2012-05-04", "status": "released", "sources": ["mcu-films"] },
+    { "id": "iron-man-3", "title": "Iron Man 3", "phase": 2, "format": "movie", "date": "2013-05-03", "status": "released", "sources": ["mcu-films"] },
     {
       "id": "guardians-of-the-galaxy",
       "title": "Guardians of the Galaxy",
@@ -207,6 +214,13 @@
     }
   ],
   "guides": [
+    { "id": "mcu-prep-iron-man-2008", "releases": ["iron-man"] },
+    { "id": "mcu-prep-the-incredible-hulk-2008", "releases": ["the-incredible-hulk"] },
+    { "id": "mcu-prep-iron-man-2-2010", "releases": ["iron-man-2"] },
+    { "id": "mcu-prep-thor-2011", "releases": ["thor"] },
+    { "id": "mcu-prep-captain-america-the-first-avenger-2011", "releases": ["captain-america-the-first-avenger"] },
+    { "id": "mcu-prep-the-avengers-2012", "releases": ["the-avengers"] },
+    { "id": "mcu-prep-iron-man-3-2013", "releases": ["iron-man-3"] },
     { "id": "doctor-strange-multiverse-of-madness", "releases": ["doctor-strange-multiverse-of-madness"] },
     { "id": "spider-man-no-way-home", "releases": ["spider-man-no-way-home"] },
     { "id": "marvel-multiverse", "releases": [], "note": "General multiverse reading, not assigned to a single screen release." },

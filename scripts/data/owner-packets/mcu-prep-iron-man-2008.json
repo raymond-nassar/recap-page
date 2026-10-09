@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-iron-man-2008",
+  "inventoryId": "mcu-prep-iron-man-2008",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "fc9eccd9d561dd30036180bebad62b924ec4bcd12d167d29f446114b6262668f",
+  "sourceIssueBearingBlocksSha256": "bc9abb7f8b6b80112b5aa3b44f607c3b54f06fe845b3679fd74a104cd6d58e22",
+  "sourceBoundary": "Owner-selected whole works; original positions include explicit exclusions and documented source gaps.",
+  "excludedSourceReferences": [
+    "The Invincible Iron Man (2004) #1",
+    "The Invincible Iron Man (2004) #2",
+    "The Invincible Iron Man (2004) #3",
+    "The Invincible Iron Man (2004) #4",
+    "The Invincible Iron Man (2004) #5",
+    "The Invincible Iron Man (2004) #6"
+  ],
+  "expectedCount": 16,
+  "proposedManifest": {
+    "id": "mcu-prep-iron-man-2008",
+    "name": "MCU Prep: Iron Man (2008)",
+    "description": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": null,
+    "sourceFile": "mcu-prep-iron-man-2008.md",
+    "out": "mcu_prep_iron_man_2008.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Iron Man"
+    ],
+    "keywords": [
+      "iron-man"
+    ],
+    "coverIssueId": 9431,
+    "expect": 16
+  },
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "rows": [
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Iron Man (1968) #193",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "193",
+      "candidateIssueId": 9431,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Iron Man (1968) #194",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "194",
+      "candidateIssueId": 9432,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Iron Man (1968) #195",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "195",
+      "candidateIssueId": 9433,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Iron Man (1968) #196",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "196",
+      "candidateIssueId": 9434,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Iron Man (1968) #197",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "197",
+      "candidateIssueId": 9435,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Iron Man (1968) #198",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "198",
+      "candidateIssueId": 9436,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Iron Man (1968) #199",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "199",
+      "candidateIssueId": 9437,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Iron Man (1968) #200",
+      "sourceRangeReference": "Iron Man: Iron Monger",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "200",
+      "candidateIssueId": 9440,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Iron Man (1968) #225",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "225",
+      "candidateIssueId": 9467,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Iron Man (1968) #226",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "226",
+      "candidateIssueId": 9468,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Iron Man (1968) #227",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "227",
+      "candidateIssueId": 9469,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Iron Man (1968) #228",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "228",
+      "candidateIssueId": 9470,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Iron Man (1968) #229",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "229",
+      "candidateIssueId": 9471,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Iron Man (1968) #230",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "230",
+      "candidateIssueId": 9473,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Iron Man (1968) #231",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "231",
+      "candidateIssueId": 9474,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Iron Man (1968) #232",
+      "sourceRangeReference": "Iron Man: Armor Wars",
+      "normalizedSeriesTitle": "iron man",
+      "seriesYear": 1968,
+      "issueNumber": "232",
+      "candidateIssueId": 9475,
+      "seriesId": 2029,
+      "manualSeriesSelectionApproved": false,
+      "note": ""
+    }
+  ],
+  "sourceOccurrenceCount": 22,
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #1",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #2",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #3",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #4",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #5",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Invincible Iron Man (2004) #6",
+      "reason": "Owner explicitly restricted Extremis to Iron Man3.",
+      "decisionScope": "https://github.com/raymond-nassar/recap-page/issues/761"
+    }
+  ],
+  "packetDigest": "d581ce052ff31d34dc09860b86d1feed64d2948e4dc694aa0ce80959fec36804",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T15:20:43.801Z",
+    "proposalDigest": "a047576e3a1d71914d2b9cb6280290865dfdb3ec3360d89b4b165c231e9146d6",
+    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
+  }
+}

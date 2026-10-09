@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-iron-man-2-2010",
+  "name": "MCU Prep: Iron Man 2 (2010)",
+  "description": "Demons in the bottle, enemies in the shadows, and War Machine on the horizon. Tony Stark learns that armor can't solve everything.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Iron Man: Demon in a Bottle",
+    "Iron Man vs. Whiplash",
+    "Black Widow: Deadly Origin",
+    "Iron Man: War Machine"
+  ],
+  "rows": [
+    [
+      1,
+      9351,
+      "Iron Man (1968) #120",
+      0
+    ],
+    [
+      2,
+      9352,
+      "Iron Man (1968) #121",
+      0
+    ],
+    [
+      3,
+      9353,
+      "Iron Man (1968) #122",
+      0
+    ],
+    [
+      4,
+      9354,
+      "Iron Man (1968) #123",
+      0
+    ],
+    [
+      5,
+      9355,
+      "Iron Man (1968) #124",
+      0
+    ],
+    [
+      6,
+      9356,
+      "Iron Man (1968) #125",
+      0
+    ],
+    [
+      7,
+      9357,
+      "Iron Man (1968) #126",
+      0
+    ],
+    [
+      8,
+      9358,
+      "Iron Man (1968) #127",
+      0
+    ],
+    [
+      9,
+      9359,
+      "Iron Man (1968) #128",
+      0
+    ],
+    [
+      10,
+      28058,
+      "Iron Man Vs. Whiplash (2009) #1",
+      1
+    ],
+    [
+      11,
+      28059,
+      "Iron Man Vs. Whiplash (2009) #2",
+      1
+    ],
+    [
+      12,
+      28060,
+      "Iron Man Vs. Whiplash (2009) #3",
+      1
+    ],
+    [
+      13,
+      28061,
+      "Iron Man Vs. Whiplash (2009) #4",
+      1
+    ],
+    [
+      14,
+      28046,
+      "Black Widow: Deadly Origin (2009) #1",
+      2
+    ],
+    [
+      15,
+      28047,
+      "Black Widow: Deadly Origin (2009) #2",
+      2
+    ],
+    [
+      16,
+      28048,
+      "Black Widow: Deadly Origin (2009) #3",
+      2
+    ],
+    [
+      17,
+      28049,
+      "Black Widow: Deadly Origin (2009) #4",
+      2
+    ],
+    [
+      18,
+      9528,
+      "Iron Man (1968) #280",
+      3
+    ],
+    [
+      19,
+      9529,
+      "Iron Man (1968) #281",
+      3
+    ],
+    [
+      20,
+      9530,
+      "Iron Man (1968) #282",
+      3
+    ],
+    [
+      21,
+      9531,
+      "Iron Man (1968) #283",
+      3
+    ],
+    [
+      22,
+      9532,
+      "Iron Man (1968) #284",
+      3
+    ],
+    [
+      23,
+      9533,
+      "Iron Man (1968) #285",
+      3
+    ],
+    [
+      24,
+      9534,
+      "Iron Man (1968) #286",
+      3
+    ],
+    [
+      25,
+      9535,
+      "Iron Man (1968) #287",
+      3
+    ],
+    [
+      26,
+      9536,
+      "Iron Man (1968) #288",
+      3
+    ],
+    [
+      27,
+      9537,
+      "Iron Man (1968) #289",
+      3
+    ],
+    [
+      28,
+      9539,
+      "Iron Man (1968) #290",
+      3
+    ],
+    [
+      29,
+      9540,
+      "Iron Man (1968) #291",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 29,
+    "sourceIdentityCount": 29,
+    "includedIssueCount": 29,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "de9d45fe74a79dfe14124533759a10569f04c393bbeeccb8d31833129143b63a",
+  "proposalDigest": "57255b7b0290ba2638d8e1de55e330f83c25111eae5874b1b54c240083cc4b66",
+  "approvalDigest": "eb2f037cc5391ac4405fd704e947bf225cf5ca59ef33397f2637cc3932462582",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-thor-2011",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-the-avengers-2012",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-iron-man-2-2010.json",
+    "scripts/data/owner-packets/mcu-prep-iron-man-2-2010.json",
+    "scripts/data/owner-mappings/mcu-prep-iron-man-2-2010.json",
+    "scripts/data/owner-overlaps/mcu-prep-iron-man-2-2010.json"
+  ],
+  "vectorSha256": "c9ccc10a14367f280eb694fd1e3e3aba86b29709479c81bc1cb91559c62ab7ce"
+}

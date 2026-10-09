@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-iron-man-3-2013",
+  "name": "MCU Prep: Iron Man 3 (2013)",
+  "description": "Upgrade the armor. Break the man. Rebuild the hero. Extremis, the Mandarin, and Tony Stark's worst nightmares test what it takes to be Iron Man.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Iron Man: Extremis",
+    "Iron Man: Enter the Mandarin",
+    "Invincible Iron Man Vol. 1: The Five Nightmares",
+    "Invincible Iron Man Vol. 4: Stark Disassembled"
+  ],
+  "rows": [
+    [
+      1,
+      92,
+      "The Invincible Iron Man (2004) #1",
+      0
+    ],
+    [
+      2,
+      1493,
+      "The Invincible Iron Man (2004) #2",
+      0
+    ],
+    [
+      3,
+      1580,
+      "The Invincible Iron Man (2004) #3",
+      0
+    ],
+    [
+      4,
+      1765,
+      "The Invincible Iron Man (2004) #4",
+      0
+    ],
+    [
+      5,
+      3347,
+      "The Invincible Iron Man (2004) #5",
+      0
+    ],
+    [
+      6,
+      3881,
+      "The Invincible Iron Man (2004) #6",
+      0
+    ],
+    [
+      7,
+      16561,
+      "Iron Man: Enter the Mandarin (2007) #1",
+      1
+    ],
+    [
+      8,
+      16562,
+      "Iron Man: Enter the Mandarin (2007) #2",
+      1
+    ],
+    [
+      9,
+      17266,
+      "Iron Man: Enter the Mandarin (2007) #3",
+      1
+    ],
+    [
+      10,
+      17401,
+      "Iron Man: Enter the Mandarin (2007) #4",
+      1
+    ],
+    [
+      11,
+      17641,
+      "Iron Man: Enter the Mandarin (2007) #5",
+      1
+    ],
+    [
+      12,
+      20682,
+      "Iron Man: Enter the Mandarin (2007) #6",
+      1
+    ],
+    [
+      13,
+      21272,
+      "Invincible Iron Man (2008) #1",
+      2
+    ],
+    [
+      14,
+      21416,
+      "Invincible Iron Man (2008) #2",
+      2
+    ],
+    [
+      15,
+      21590,
+      "Invincible Iron Man (2008) #3",
+      2
+    ],
+    [
+      16,
+      21788,
+      "Invincible Iron Man (2008) #4",
+      2
+    ],
+    [
+      17,
+      22030,
+      "Invincible Iron Man (2008) #5",
+      2
+    ],
+    [
+      18,
+      22355,
+      "Invincible Iron Man (2008) #6",
+      2
+    ],
+    [
+      19,
+      22546,
+      "Invincible Iron Man (2008) #7",
+      2
+    ],
+    [
+      20,
+      25540,
+      "Invincible Iron Man (2008) #20",
+      3
+    ],
+    [
+      21,
+      28333,
+      "Invincible Iron Man (2008) #21",
+      3
+    ],
+    [
+      22,
+      28334,
+      "Invincible Iron Man (2008) #22",
+      3
+    ],
+    [
+      23,
+      28335,
+      "Invincible Iron Man (2008) #23",
+      3
+    ],
+    [
+      24,
+      30442,
+      "Invincible Iron Man (2008) #24",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 24,
+    "sourceIdentityCount": 24,
+    "includedIssueCount": 24,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "161e6de98d16bebb351cd91e02029ca89cbf39dae6a150ed50f8cff4bbc2c624",
+  "proposalDigest": "788728e6b1c1fddf8eaf417df15e7e744d25b59da3854d7c7dbddd5e42660ad6",
+  "approvalDigest": "b235038c119e24ecab9d856e62f90c9edccb5be310fdccd135e7fc4a018db2ea",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-thor-2011",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-the-avengers-2012"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-iron-man-3-2013.json",
+    "scripts/data/owner-packets/mcu-prep-iron-man-3-2013.json",
+    "scripts/data/owner-mappings/mcu-prep-iron-man-3-2013.json",
+    "scripts/data/owner-overlaps/mcu-prep-iron-man-3-2013.json"
+  ],
+  "vectorSha256": "3347c7173e402d3e07518cdc7addb2bb0a72d842ffc60dbf32d9809c09113382"
+}

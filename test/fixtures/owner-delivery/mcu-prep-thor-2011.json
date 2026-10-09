@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thor-2011",
+  "name": "MCU Prep: Thor (2011)",
+  "description": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "groups": [
+    "Thor: Season One",
+    "Thor & Loki: Blood Brothers",
+    "Thor Visionaries: Walter Simonson Vol. 1"
+  ],
+  "rows": [
+    [
+      1,
+      46516,
+      "Thor: Season One (2013)",
+      0
+    ],
+    [
+      2,
+      608,
+      "Loki (2004) #1",
+      1
+    ],
+    [
+      3,
+      544,
+      "Loki (2004) #2",
+      1
+    ],
+    [
+      4,
+      751,
+      "Loki (2004) #3",
+      1
+    ],
+    [
+      5,
+      823,
+      "Loki (2004) #4",
+      1
+    ],
+    [
+      6,
+      11665,
+      "Thor (1966) #337",
+      2
+    ],
+    [
+      7,
+      11666,
+      "Thor (1966) #338",
+      2
+    ],
+    [
+      8,
+      11667,
+      "Thor (1966) #339",
+      2
+    ],
+    [
+      9,
+      11668,
+      "Thor (1966) #340",
+      2
+    ],
+    [
+      10,
+      11669,
+      "Thor (1966) #341",
+      2
+    ],
+    [
+      11,
+      11670,
+      "Thor (1966) #342",
+      2
+    ],
+    [
+      12,
+      11671,
+      "Thor (1966) #343",
+      2
+    ],
+    [
+      13,
+      11672,
+      "Thor (1966) #344",
+      2
+    ],
+    [
+      14,
+      11673,
+      "Thor (1966) #345",
+      2
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 14,
+    "sourceIdentityCount": 14,
+    "includedIssueCount": 14,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "6739a9b7851997d5874157180b085f198b8539318cf0b214242eb2e367ca7ba3",
+  "proposalDigest": "0f4fc6dbe6838e26af5d0519ba615acc6bff90d1a6fa4666d4772942198445e9",
+  "approvalDigest": "08841328a8fb593b9aa4d392a441546ffa12900481c6cc3c32215fcd6ea5267b",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-iron-man-2008",
+    "mcu-prep-the-incredible-hulk-2008",
+    "mcu-prep-iron-man-2-2010",
+    "mcu-prep-captain-america-the-first-avenger-2011",
+    "mcu-prep-the-avengers-2012",
+    "mcu-prep-iron-man-3-2013"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-thor-2011.json",
+    "scripts/data/owner-packets/mcu-prep-thor-2011.json",
+    "scripts/data/owner-mappings/mcu-prep-thor-2011.json",
+    "scripts/data/owner-overlaps/mcu-prep-thor-2011.json"
+  ],
+  "vectorSha256": "201243e084283e9d8e88dcabb42d9fe882296ee04682b81d3b3005c9656a59c3"
+}

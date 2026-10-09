@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thor-2011",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+  "sourceIssueCount": 14,
+  "publishedIssueCount": 14,
+  "inputReceipt": {
+    "name": "mcu-prep-thor-2011.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "c3be0179f4e7f291025d7f0b6ae98861048ae693ad8ba55cd1c8b99b3c492423",
+    "snapshotBytes": 1818,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-thor-2011-factual-projection.tsv",
+    "sha256": "50e06910bd19c04c48809b5d4db9703d340ead10999657cee6cd532ccf8b6536",
+    "bytes": 396,
+    "basis": "Independent factual projection, not original uploaded-file or snapshot bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Thor: Season One** - standalone graphic novel. *Correction: the real creators are Lilah Sturges/Pepe Larraz, not Johnston/Del Mundo as I originally listed.*",
+    "2. **Thor & Loki: Blood Brothers** - *Correction: this actually collects Loki (2004) #1-4, not a \"Blood Oath\" title.*",
+    "3. **Thor Visionaries: Walter Simonson Vol. 1** (collects Thor (1966) #337-345)"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Thor: Season One",
+      "suppliedReference": "Thor: Season One (2013)",
+      "suppliedCandidateId": 46516,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/46516/thor_season_one_2013",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 46516
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #1",
+      "suppliedCandidateId": 608,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/608/loki_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 608
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #2",
+      "suppliedCandidateId": 544,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/544/loki_2004_2",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 544
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #3",
+      "suppliedCandidateId": 751,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/751/",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 751
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #4",
+      "suppliedCandidateId": 823,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/823/",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 823
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #337",
+      "suppliedCandidateId": 11665,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11665
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #338",
+      "suppliedCandidateId": 11666,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11666
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #339",
+      "suppliedCandidateId": 11667,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11667
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #340",
+      "suppliedCandidateId": 11668,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11668
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #341",
+      "suppliedCandidateId": 11669,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11669
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #342",
+      "suppliedCandidateId": 11670,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11670
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #343",
+      "suppliedCandidateId": 11671,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11671
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #344",
+      "suppliedCandidateId": 11672,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11672
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #345",
+      "suppliedCandidateId": 11673,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11673
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "originalBullet": 1,
+      "group": "Thor: Season One",
+      "suppliedReference": "Thor: Season One (2013)",
+      "suppliedCandidateId": 46516,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/46516/thor_season_one_2013",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 46516
+    },
+    {
+      "sourcePosition": 2,
+      "originalBullet": 2,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #1",
+      "suppliedCandidateId": 608,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/608/loki_2004_1",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 608
+    },
+    {
+      "sourcePosition": 3,
+      "originalBullet": 3,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #2",
+      "suppliedCandidateId": 544,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/544/loki_2004_2",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 544
+    },
+    {
+      "sourcePosition": 4,
+      "originalBullet": 4,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #3",
+      "suppliedCandidateId": 751,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/751/",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 751
+    },
+    {
+      "sourcePosition": 5,
+      "originalBullet": 5,
+      "group": "Thor & Loki: Blood Brothers",
+      "suppliedReference": "Loki (2004) #4",
+      "suppliedCandidateId": 823,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/823/",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 823
+    },
+    {
+      "sourcePosition": 6,
+      "originalBullet": 6,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #337",
+      "suppliedCandidateId": 11665,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11665/thor_1966_337",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11665
+    },
+    {
+      "sourcePosition": 7,
+      "originalBullet": 7,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #338",
+      "suppliedCandidateId": 11666,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11666/thor_1966_338",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11666
+    },
+    {
+      "sourcePosition": 8,
+      "originalBullet": 8,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #339",
+      "suppliedCandidateId": 11667,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11667/thor_1966_339",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11667
+    },
+    {
+      "sourcePosition": 9,
+      "originalBullet": 9,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #340",
+      "suppliedCandidateId": 11668,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11668/thor_1966_340",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11668
+    },
+    {
+      "sourcePosition": 10,
+      "originalBullet": 10,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #341",
+      "suppliedCandidateId": 11669,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11669/thor_1966_341",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11669
+    },
+    {
+      "sourcePosition": 11,
+      "originalBullet": 11,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #342",
+      "suppliedCandidateId": 11670,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11670/thor_1966_342",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11670
+    },
+    {
+      "sourcePosition": 12,
+      "originalBullet": 12,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #343",
+      "suppliedCandidateId": 11671,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11671/thor_1966_343",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11671
+    },
+    {
+      "sourcePosition": 13,
+      "originalBullet": 13,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #344",
+      "suppliedCandidateId": 11672,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11672/thor_1966_344",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11672
+    },
+    {
+      "sourcePosition": 14,
+      "originalBullet": 14,
+      "group": "Thor Visionaries: Walter Simonson Vol. 1",
+      "suppliedReference": "Thor (1966) #345",
+      "suppliedCandidateId": 11673,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/11673/thor_1966_345",
+      "insideFormattingFence": false,
+      "disposition": "included",
+      "selectedIssueId": 11673
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Approved owner selections and descriptions; original pasted-message snapshots remain immutable and private.",
+    "No Marvel/CDN pages fetched. Supplied URLs are identity evidence; only configured-provider factual metadata is emitted.",
+    "Current ledger preserves all source positions, including explicit owner corrections and genuine metadata gaps."
+  ],
+  "publicDependencies": []
+}
