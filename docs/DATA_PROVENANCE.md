@@ -576,7 +576,7 @@ selection here is not editorial, because it is simply all of them.
 [`src/data/rated-guide-index.json`](../src/data/rated-guide-index.json) is derived, not collected.
 `npm run vendor` builds it from the catalog already in this repository: each guide's `id`, `name`
 and editorial `characters` labels, and the `issueId` of every item in that guide's payload. It holds
-304 guides and 19,374 issue IDs. No new source, metadata field or artwork enters with it, and its
+314 guides and 19,405 issue IDs. No new source, metadata field or artwork enters with it, and its
 character labels say which guide an issue belongs to, not who appears in the issue.
 
 ### Order checklists
