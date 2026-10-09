@@ -569,6 +569,24 @@ test('catalog-only expands a noncatalog parent into ordinary children, a path, a
     [overlap.pairCount, overlap.chapterCountWithOverlap, overlap.existingListCount],
     [1, 1, 1],
   );
+  // Partition children are indexed from the payloads written in this same batch, so every
+  // child membership is present and the replaced parent is not.
+  const index = JSON.parse(readFileSync(path.join(data, 'rated-guide-index.json'), 'utf8'));
+  assert.deepEqual(index.guides.map(([id]) => id), ['atomic-parent-01', 'atomic-parent-02', 'peer']);
+  const issueOne = index.issueGuides.find(([id]) => id === 1);
+  assert.ok(issueOne?.[1].includes(0), 'issue 1 is associated with the first child');
+});
+
+test('the committed Character guide index matches the committed catalog and guides', async () => {
+  const { buildRatedGuideIndex, serializeRatedGuideIndex } = await import('../src/js/lib/ratedComics.js');
+  const data = path.join(root, 'src', 'data');
+  const catalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8')).lists;
+  const payloads = new Map(catalog.map((entry) => [
+    entry.id,
+    JSON.parse(readFileSync(path.join(data, entry.file), 'utf8')),
+  ]));
+  const committed = readFileSync(path.join(data, 'rated-guide-index.json'), 'utf8').replace(/\r\n/g, '\n');
+  assert.equal(serializeRatedGuideIndex(buildRatedGuideIndex(catalog, payloads)), committed);
 });
 
 test('catalog-only carries both gap counts and is byte-stable on a second run', (t) => {
@@ -582,6 +600,7 @@ test('catalog-only carries both gap counts and is byte-stable on a second run', 
   });
   assert.equal(first.status, 0, first.stderr);
   const firstBytes = readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8');
+  const firstIndex = readFileSync(path.join(fixture, 'src', 'data', 'rated-guide-index.json'), 'utf8');
   const catalog = JSON.parse(firstBytes);
   assert.equal(catalog.generatedAt, '2026-08-27T00:00:00.000Z');
   assert.deepEqual(
@@ -600,6 +619,10 @@ test('catalog-only carries both gap counts and is byte-stable on a second run', 
   assert.equal(
     readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
     firstBytes,
+  );
+  assert.equal(
+    readFileSync(path.join(fixture, 'src', 'data', 'rated-guide-index.json'), 'utf8'),
+    firstIndex,
   );
 });
 
@@ -651,6 +674,10 @@ test('an invalid partition leaves every generated output unchanged', (t) => {
   assert.equal(
     readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
     '{"sentinel":"existing catalog"}\n',
+  );
+  assert.deepEqual(
+    readdirSync(path.join(fixture, 'src', 'data')).filter((name) => name.startsWith('rated-guide-index')),
+    [],
   );
 });
 

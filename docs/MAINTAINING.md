@@ -357,6 +357,10 @@ npm run vendor -- --catalog-only
 npm run vendor -- --only=<parent-or-generated-child-id>
 ```
 
+Every vendor run, catalog-only included, also rewrites `src/data/rated-guide-index.json` from the
+same outputs, which the Library's Character guide filter reads. Commit it with the catalog; the
+unit suite fails if the two disagree.
+
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
 

@@ -48,6 +48,8 @@ import {
 } from './lib/saveEducation.js';
 import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
 import { createLibraryView } from './views/library.js';
+import { createRatedComicsView } from './views/rated-comics.js';
+import { createRatedGuideIndexLoader } from './lib/ratedComics.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createIssueView } from './views/issue.js';
@@ -1054,6 +1056,8 @@ function setCovers(on) {
   readingView.render();
   homeView.render();
   libraryView.render();
+  ratedView.renderShelf();
+  if (view === 'library-rated') ratedView.renderBrowser();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
 }
 
@@ -1433,6 +1437,9 @@ function wireNav() {
     btn.addEventListener('click', (event) => {
       if (!isPlainNavigation(event)) return;
       event.preventDefault();
+      // Every link to the ratings browser is labelled and addressed as the unfiltered list, so it
+      // must not reopen whatever filters the reader last committed there.
+      if (btn.dataset.view === 'library-rated') ratedView.setCommitted({});
       navigateTo(btn.dataset.view);
     });
   }
@@ -1496,13 +1503,15 @@ function syncHash({ push = false } = {}) {
   const sort = view === 'spotlights' ? catalogView.sort() : null;
   const next = view === 'issue' && issueRoute
     ? formatRoute(issueRoute)
-    : formatRoute({
-      view,
-      listId: activeListId(),
-      filter: showFilter ? shown : DEFAULT_FILTER,
-      full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-      sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null,
-    });
+    : view === 'library-rated'
+      ? formatRoute({ view, rated: ratedView.committed() })
+      : formatRoute({
+        view,
+        listId: activeListId(),
+        filter: showFilter ? shown : DEFAULT_FILTER,
+        full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
+        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null,
+      });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1558,6 +1567,15 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     }
     issueView.cancel();
     issueRoute = null; if (route.view === 'reading-paths') requestedReadingPathId = route.pathId;
+    // Ahead of the list and reading filter writes, because this address carries neither and
+    // applying it must leave both exactly as they were.
+    if (route.view === 'library-rated') {
+      readingView.endFilterRun({ commit: false });
+      ratedView.setCommitted(route.rated);
+      showView('library-rated', { focus });
+      if (focus) ratedView.restoreOpener(history.state?.issueFocusOpener);
+      return;
+    }
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
       if (!store.lastUpdateOk) {
@@ -1648,6 +1666,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
+  if (next === 'library-rated') ratedView.renderBrowser();
   if (next === 'browse') void homeView.renderGateways();
   if (next === 'read') readingView.renderHero();
   completionView.render();
@@ -1723,7 +1742,7 @@ function railParentView(next) {
   if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'browse';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
-  if (next === 'library' || next === 'progress' || next === 'completed' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
+  if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
   return next;
 }
 
@@ -2639,6 +2658,7 @@ function renderLibraryHub() {
   const yours = $('#library-yours');
   savedLists.render(yours, $('#library-yours-list'), { ids: listHistory.activeIds(store.state) });
   $('#library-empty').hidden = store.state.listOrder.length !== 0;
+  ratedView.renderShelf();
 }
 
 function renderPublishingIndex(category, allStories) {
@@ -2837,6 +2857,7 @@ function renderAll() {
   renderLibraryHub();
   progressView.render();
   libraryView.render();
+  if (view === 'library-rated') ratedView.renderBrowser();
   catalogView.refreshProgress();
   renderQueue();
   addView.renderDestination();
@@ -3389,6 +3410,37 @@ const libraryView = createLibraryView({
   paintCover,
   preservingFocus,
   seriesOnly,
+});
+
+const ratedView = createRatedComicsView({
+  el,
+  elements: () => ({
+    shelfStatus: $('#library-rated-shelf-status'),
+    shelfList: $('#library-rated-shelf-list'),
+    form: $('#library-rated-form'),
+    min: $('#rated-min'),
+    q: $('#rated-q'),
+    character: $('#rated-character'),
+    sort: $('#rated-sort'),
+    clear: $('#rated-clear'),
+    count: $('#library-rated-count'),
+    notice: $('#library-rated-notice'),
+    results: $('#library-rated-results'),
+    panel: $('#view-library-rated'),
+  }),
+  emptyAction,
+  getState: () => store.state,
+  isBlocked: () => store.blocked,
+  issueFocusAnchor,
+  listUi: { cap: LIBRARY_CAP, moreButton, shownLine, summaryBand },
+  paintCover,
+  preservingFocus,
+  seriesOnly,
+  announce,
+  loader: createRatedGuideIndexLoader(),
+  focusViewHeading,
+  matchingIssueOpener,
+  onCommit: () => syncHash({ push: true }),
 });
 
 let requestedReadingPathId = null;

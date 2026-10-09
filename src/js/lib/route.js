@@ -8,6 +8,8 @@
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
 import { CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catalog.js';
+import { MAX_NAME } from './model.js';
+import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedComics.js';
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
@@ -23,7 +25,7 @@ export const VIEWS = [
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
-  'data', 'about', 'completed', ...LIBRARY_VIEWS.map((v) => v.value),
+  'data', 'about', 'completed', ...LIBRARY_VIEWS.map((v) => v.value), 'library-rated',
 ];
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
@@ -44,6 +46,7 @@ const STATIC_VIEW_LABELS = new Map([
   ['add', 'Add comics'],
   ['progress', 'Progress by series'],
   ['completed', 'Completed lists'],
+  ['library-rated', 'Your ratings'],
   ['data', 'Backup & settings'],
   ['about', 'About this app'],
 ]);
@@ -143,7 +146,7 @@ export function breadcrumbHierarchy({
 
   const label = STATIC_VIEW_LABELS.get(view);
   if (label) {
-    const parent = view === 'progress' || view === 'completed' ? linked('library', 'Library') : null;
+    const parent = view === 'progress' || view === 'completed' || view === 'library-rated' ? linked('library', 'Library') : null;
     return [home, parent, current(label)].filter(Boolean);
   }
 
@@ -181,14 +184,64 @@ function issueId(value) {
   return Number.isSafeInteger(id) && id !== 0 && String(id) === raw ? id : null;
 }
 
+// The ratings browser carries its own committed filters and nothing else. It is reached from the
+// Library, not from a list, so neither the active list nor the reading filter belongs in its
+// address, and leaving them out means applying that address can never change either one.
+const RATED_KEYS = { min: 'min', q: 'q', character: 'character', sort: 'sort' };
+
+function ratedText(value) {
+  if (typeof value !== 'string') return '';
+  const text = value.trim();
+  return text.length <= MAX_NAME ? text : '';
+}
+
+export function normalizeRatedRoute(rated = {}) {
+  const min = Number(rated?.min);
+  return {
+    min: RATING_THRESHOLDS.includes(min) ? min : null,
+    q: ratedText(rated?.q),
+    character: ratedText(rated?.character),
+    sort: RATING_SORTS.includes(rated?.sort) ? rated.sort : DEFAULT_RATING_SORT,
+  };
+}
+
+function formatRatedRoute(rated) {
+  const { min, q, character, sort } = normalizeRatedRoute(rated);
+  const query = new URLSearchParams();
+  if (min != null) query.set(RATED_KEYS.min, String(min));
+  if (q) query.set(RATED_KEYS.q, q);
+  if (character) query.set(RATED_KEYS.character, character);
+  if (sort !== DEFAULT_RATING_SORT) query.set(RATED_KEYS.sort, sort);
+  const search = query.toString();
+  return `${PREFIX}library-rated${search ? `?${search}` : ''}`;
+}
+
+// A repeated key is ambiguous rather than wrong, so it falls back to that field's default instead
+// of picking one copy, and the other fields still apply.
+function parseRatedRoute(search) {
+  const params = new URLSearchParams(search);
+  const single = (key) => {
+    const values = params.getAll(key);
+    return values.length === 1 ? values[0] : undefined;
+  };
+  const rawMin = single(RATED_KEYS.min);
+  return normalizeRatedRoute({
+    min: rawMin === undefined || rawMin === '' ? null : rawMin,
+    q: single(RATED_KEYS.q),
+    character: single(RATED_KEYS.character),
+    sort: single(RATED_KEYS.sort),
+  });
+}
+
 // Like the active list, the filter rides along on every view rather than on the reading view alone.
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
+  if (canonical === 'library-rated') return formatRatedRoute(rated);
   if (canonical === 'issue') {
     const id = issueId(rawIssueId);
     if (id == null) return '';
@@ -242,7 +295,11 @@ export function parseRoute(hash) {
   }
 
   view = canonicalView(view);
-  if (!VIEWS.includes(view) || (view === 'reading-paths' && listId)) return null;
+  if (!VIEWS.includes(view) || ((view === 'reading-paths' || view === 'library-rated') && listId)) return null;
+
+  if (view === 'library-rated') {
+    return { view, listId: null, filter: null, full: false, rated: parseRatedRoute(search) };
+  }
 
   if (view === 'issue') {
     if (parts.length !== 2) return null;

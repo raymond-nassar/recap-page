@@ -7437,8 +7437,8 @@ const SCENARIOS = [
       const libraryChoices = await page.$$eval('#view-library .library-tools [data-view]', (buttons) => (
         buttons.map((button) => button.dataset.view)
       ));
-      t.check('Library groups its three library-wide destinations',
-        JSON.stringify(libraryChoices) === JSON.stringify(['library-read', 'progress', 'library-manual']),
+      t.check('Library groups its four library-wide destinations',
+        JSON.stringify(libraryChoices) === JSON.stringify(['library-read', 'progress', 'library-manual', 'library-rated']),
         JSON.stringify(libraryChoices));
       await click(page, '#view-library [data-view="progress"]');
       const libraryChild = await page.evaluate(() => ({
@@ -15003,17 +15003,17 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 25 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 26 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
         'Collapse sidebar', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app',
         'Enjoyed', 'Did not enjoy',
-        'Everything read', 'Progress by series', 'Added by hand', 'Search issues', 'Find a series',
+        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Search issues', 'Find a series',
         'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
         'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
         'Add an issue by hand', 'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 49 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 49 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 50 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 50 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
@@ -15055,7 +15055,7 @@ SCENARIOS.push({
         geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
         JSON.stringify(geometry));
     }
-    t.check('all 17 navigation and search symbol shapes were rendered', seen.size === 17, [...seen].join(', '));
+    t.check('all 18 navigation and search symbol shapes were rendered', seen.size === 18, [...seen].join(', '));
 
     await page.evaluate(() => { location.hash = '#/add-search'; });
     await page.waitForSelector('#view-add-search:not([hidden])');
@@ -15596,6 +15596,8 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
+    ['/js/views/rated-comics.js', mutation?.rewriteRatedView],
+    ['/js/lib/ratedComics.js', mutation?.rewriteRatedComics],
   ]) {
     if (!rewrite) continue;
     const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
@@ -19057,6 +19059,9 @@ const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-cont
 const { issueRatings, issueRatingMutations } = await import('./browser-issue-ratings.mjs');
 SCENARIOS.push(issueRatings);
 MUTATIONS.push(...issueRatingMutations);
+const { libraryRatings, libraryRatingsFailures, libraryRatingMutations } = await import('./browser-library-ratings.mjs');
+SCENARIOS.push(libraryRatings, libraryRatingsFailures);
+MUTATIONS.push(...libraryRatingMutations);
 if (ownerContracts.length > 1) throw new Error('Use --owner-contract once for a representative existing guide.');
 if (ownerContracts.length) {
   const root = fileURLToPath(new URL('..', import.meta.url));

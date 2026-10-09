@@ -65,6 +65,11 @@ test('every view the rail can reach survives a round trip', () => {
     const parsed = parseRoute(formatRoute({ view }));
     assert.deepEqual(parsed, {
       view, listId: null, filter: null, full: false, ...(view === 'reading-paths' ? { pathId: null } : {}),
+      ...(view === 'library-rated' ? {
+        rated: {
+          min: null, q: '', character: '', sort: 'rating',
+        },
+      } : {}),
     }, `round trip failed for ${view}`);
   }
 });
@@ -195,6 +200,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['completed', ['Home', 'Library', 'Completed lists']],
     ['library-read', ['Home', 'Library', 'Everything read']],
     ['library-manual', ['Home', 'Library', 'Added by hand']],
+    ['library-rated', ['Home', 'Library', 'Your ratings']],
     ['browse', ['Home', 'Browse']], ['reading-paths', ['Home', 'Browse', 'Reading paths']],
     ['add', ['Home', 'Add comics']],
     ['data', ['Home', 'Backup & settings']],
@@ -736,4 +742,40 @@ test('the controller retains path intent while the view permits only the current
     'an adopted cross-tab write refreshing only visible reading-path progress');
   has(main, /readerStore\.adoptForeignWrite\(null\); readingPathsView\.refreshProgress\(\);/,
     'an adopted cross-tab origin clear removing visible reading-path progress');
+});
+
+test('the ratings browser address carries only its own filters and omits defaults', () => {
+  assert.equal(formatRoute({ view: 'library-rated' }), '#/library-rated');
+  assert.equal(formatRoute({
+    view: 'library-rated', rated: { min: 4, q: '', character: '', sort: 'rating' },
+  }), '#/library-rated?min=4');
+  const href = formatRoute({
+    view: 'library-rated',
+    listId: 'list-a',
+    filter: 'unread',
+    rated: { min: 3.5, q: ' Spider ', character: 'Black Widow', sort: 'title' },
+  });
+  assert.equal(href, '#/library-rated?min=3.5&q=Spider&character=Black+Widow&sort=title');
+  assert.deepEqual(parseRoute(href), {
+    view: 'library-rated',
+    listId: null,
+    filter: null,
+    full: false,
+    rated: {
+      min: 3.5, q: 'Spider', character: 'Black Widow', sort: 'title',
+    },
+  });
+  assert.equal(routeTitle({ view: 'library-rated' }), 'Your ratings | Recap Page');
+});
+
+test('a malformed or repeated ratings filter falls back to its own default only', () => {
+  const parsed = parseRoute('#/library-rated?min=4.25&q=a&q=b&character=Thor&sort=newest&filter=unread');
+  assert.deepEqual(parsed.rated, {
+    min: null, q: '', character: 'Thor', sort: 'rating',
+  });
+  assert.equal(parsed.filter, null);
+  assert.equal(parseRoute('#/library-rated?min=0').rated.min, null);
+  assert.equal(parseRoute('#/library-rated?min=5').rated.min, 5);
+  assert.equal(parseRoute(`#/library-rated?q=${'x'.repeat(500)}`).rated.q, '');
+  assert.equal(parseRoute('#/library-rated/list-a'), null);
 });
