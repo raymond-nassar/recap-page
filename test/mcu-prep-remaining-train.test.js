@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, libraryDigestFor, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
@@ -16,7 +16,9 @@ import {
   assertCurrentReadingRoster, currentReadingCensus, registeredOwnerIds,
 } from './helpers/current-reading-library.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
-import { historicalMcuDescriptionManifest } from './helpers/reading-choice-history.mjs';
+import {
+  historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
+} from './helpers/reading-choice-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
@@ -174,7 +176,7 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
     let recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
     if (id === brand.id) recordedManifest = historicalMcuDescriptionManifest(recordedManifest);
-    const recordedDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+    const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
     })));
     assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);

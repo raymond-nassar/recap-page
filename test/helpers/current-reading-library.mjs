@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.mjs';
+import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -34,8 +35,8 @@ export const currentReadingCensus = Object.freeze({
   storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows,
-  totalItems: baseline.payloadCounts.total + addedRows,
+  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta,
+  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta,
   itemFiles: 297 + registrations.length,
 });
 

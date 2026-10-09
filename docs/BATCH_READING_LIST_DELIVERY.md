@@ -128,9 +128,9 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. `test/helpers/current-reading-library.mjs:6-40` retains the immutable
+the actual delivery plan. `test/helpers/current-reading-library.mjs:7-41` retains the immutable
 baseline and counts explicitly registered Modern Timeline events separately from MCU additions.
-Later-peer checks in `test/helpers/owner-delivery-contract.mjs:119-144` require registered
+Later-peer checks in `test/helpers/owner-delivery-contract.mjs:120-145` require registered
 contracts, current approval evidence and reciprocal dispositions.
 
 For an owner event, declare `surface: "modern-timeline"` in its owner-delivery registration and

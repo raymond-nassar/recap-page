@@ -5,12 +5,13 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson,
   sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
 import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
+import { historicalSpiderManSelectionLibraryDigest } from './helpers/reading-choice-history.mjs';
 import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/catalog.js';
 import {
   LIST_HISTORY_FORMAT, LIST_HISTORY_KEY, ListHistoryStore, parseListHistory,
@@ -157,7 +158,7 @@ test('Brave New World binds every current peer and the actual three-partial inde
   const recordedManifest = {
     ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
   };
-  const recordedDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+  const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
   assert.equal(report.comparisonCount, 292);

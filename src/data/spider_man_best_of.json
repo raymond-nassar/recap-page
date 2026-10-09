@@ -1,13 +1,13 @@
 {
   "id": "spider-man-best-of",
-  "name": "The Best of Spider-Man",
-  "description": "A best-of path through Peter Parker's Spider-Man, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It runs from Amazing Fantasy #15 and the Lee and Ditko years through the Lee and Romita chapters, Roger Stern's Hobgoblin mystery, the death of Jean DeWolff, Kraven's Last Hunt read across all three titles in publication order, the decline of Harry Osborn, Straczynski's Coming Home, the Gauntlet and Grim Hunt, Dying Wish into Superior Spider-Man, and Life Story. The sections are the guide's and are kept in its order rather than sorted by publication date.",
+  "name": "10 Best Spider-Man (Peter Parker) Comics Reading List",
+  "description": "Ten Peter Parker selections, from the Lee-Ditko origins to Life Story. Includes the Lee-Romita opening chapters, Hobgoblin, Jean DeWolff, Kraven's Last Hunt, Harry Osborn, Coming Home, the Gauntlet and Superior Spider-Man. Optional preludes: Amazing Spider-Man #600, #606 and #611 before the Gauntlet, and Big Time #648-652 before Dying Wish. Compiled from the owner's exact outline of Comic Book Herald's guide.",
   "source": "https://www.comicbookherald.com/the-best-spider-man-peter-parker-comics-of-all-time/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-17T04:10:56.788Z",
+  "generatedAt": "2026-10-09T22:39:52.068Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 230,
+  "count": 233,
   "collections": 10,
   "placeholders": 0,
   "unresolved": [],
@@ -38,7 +38,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6482,
@@ -70,7 +70,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6593,
@@ -98,7 +98,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6704,
@@ -126,7 +126,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6815,
@@ -154,7 +154,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6868,
@@ -182,7 +182,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6879,
@@ -210,7 +210,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6890,
@@ -238,7 +238,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6901,
@@ -270,7 +270,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6912,
@@ -298,7 +298,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6483,
@@ -326,7 +326,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6494,
@@ -354,7 +354,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6505,
@@ -382,7 +382,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6516,
@@ -410,7 +410,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6527,
@@ -438,7 +438,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6538,
@@ -466,7 +466,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6549,
@@ -494,7 +494,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6560,
@@ -522,7 +522,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6571,
@@ -550,7 +550,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6582,
@@ -578,7 +578,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6594,
@@ -606,7 +606,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6605,
@@ -634,7 +634,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6616,
@@ -662,7 +662,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6627,
@@ -690,7 +690,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6638,
@@ -718,7 +718,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6649,
@@ -746,7 +746,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6660,
@@ -774,7 +774,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6671,
@@ -802,7 +802,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6682,
@@ -830,7 +830,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6693,
@@ -858,7 +858,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6705,
@@ -886,7 +886,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6716,
@@ -914,7 +914,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6727,
@@ -942,7 +942,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6738,
@@ -970,7 +970,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6749,
@@ -998,7 +998,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6760,
@@ -1026,7 +1026,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6771,
@@ -1054,7 +1054,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6782,
@@ -1082,7 +1082,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6793,
@@ -1110,7 +1110,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Ditko Origins and Destiny"
+      "collectedIn": "1. The Lee-Ditko Era: Origins & Destiny"
     },
     {
       "issueId": 6804,
@@ -1142,7 +1142,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6816,
@@ -1174,7 +1174,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6827,
@@ -1206,7 +1206,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6838,
@@ -1234,7 +1234,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6849,
@@ -1262,7 +1262,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6860,
@@ -1290,7 +1290,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6863,
@@ -1318,7 +1318,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6864,
@@ -1346,7 +1346,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6865,
@@ -1374,7 +1374,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6866,
@@ -1402,7 +1402,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6867,
@@ -1430,7 +1430,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6869,
@@ -1462,7 +1462,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6870,
@@ -1494,7 +1494,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6871,
@@ -1526,7 +1526,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6872,
@@ -1558,7 +1558,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6873,
@@ -1590,7 +1590,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6874,
@@ -1622,7 +1622,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6875,
@@ -1654,7 +1654,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6876,
@@ -1690,7 +1690,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6877,
@@ -1726,7 +1726,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6878,
@@ -1762,7 +1762,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6880,
@@ -1798,7 +1798,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6881,
@@ -1834,7 +1834,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6882,
@@ -1870,7 +1870,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6883,
@@ -1906,7 +1906,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6884,
@@ -1942,7 +1942,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6885,
@@ -1974,7 +1974,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6886,
@@ -2010,7 +2010,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6887,
@@ -2042,7 +2042,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6888,
@@ -2074,7 +2074,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6889,
@@ -2106,7 +2106,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6891,
@@ -2138,7 +2138,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6892,
@@ -2170,7 +2170,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6893,
@@ -2206,7 +2206,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6894,
@@ -2242,7 +2242,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6895,
@@ -2274,7 +2274,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6896,
@@ -2306,7 +2306,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6897,
@@ -2338,7 +2338,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6898,
@@ -2370,7 +2370,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6899,
@@ -2402,7 +2402,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6900,
@@ -2434,7 +2434,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6902,
@@ -2466,7 +2466,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6903,
@@ -2498,7 +2498,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6904,
@@ -2530,7 +2530,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6905,
@@ -2562,7 +2562,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6906,
@@ -2594,7 +2594,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6907,
@@ -2626,7 +2626,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6908,
@@ -2658,7 +2658,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6909,
@@ -2690,7 +2690,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6910,
@@ -2722,7 +2722,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6911,
@@ -2754,7 +2754,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6913,
@@ -2786,7 +2786,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6914,
@@ -2818,7 +2818,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6915,
@@ -2850,7 +2850,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6916,
@@ -2878,7 +2878,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6917,
@@ -2910,7 +2910,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6918,
@@ -2942,7 +2942,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6919,
@@ -2974,7 +2974,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6920,
@@ -3006,7 +3006,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6921,
@@ -3038,7 +3038,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6922,
@@ -3070,7 +3070,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6484,
@@ -3102,7 +3102,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6485,
@@ -3138,7 +3138,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6486,
@@ -3170,7 +3170,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6487,
@@ -3202,7 +3202,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6488,
@@ -3234,7 +3234,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6489,
@@ -3266,7 +3266,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6490,
@@ -3298,7 +3298,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6491,
@@ -3330,7 +3330,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6492,
@@ -3358,7 +3358,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6493,
@@ -3386,7 +3386,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
     },
     {
       "issueId": 6495,
@@ -3414,7 +3414,563 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Lee/Romita Opening Chapters"
+      "collectedIn": "2. The Opening Chapters of the Lee-Romita Run"
+    },
+    {
+      "issueId": 14743,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/14743/peter_parker_the_spectacular_spider-man_1976_43",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-06-01T00:00:00+0000",
+      "mu": "1980-06-01T00:00:00+0000",
+      "digitalId": 6681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/5ceedc64d7949",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14745,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/14745/peter_parker_the_spectacular_spider-man_1976_45",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-08-10T00:00:00+0000",
+      "mu": "2009-10-12T00:00:00+0000",
+      "digitalId": 6683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5ceeeece169dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Alan Weiss",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14746,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/14746/peter_parker_the_spectacular_spider-man_1976_46",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-09-01T00:00:00+0000",
+      "mu": "1980-09-01T00:00:00+0000",
+      "digitalId": 6684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5cefdb4714e27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Zeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14747,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/14747/peter_parker_the_spectacular_spider-man_1976_47",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-10-01T00:00:00+0000",
+      "mu": "1980-10-01T00:00:00+0000",
+      "digitalId": 6685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5cefec5287ad4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14748,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/14748/peter_parker_the_spectacular_spider-man_1976_48",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-11-01T00:00:00+0000",
+      "mu": "1980-11-01T00:00:00+0000",
+      "digitalId": 6686,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5ceff8914530f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14749,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/14749/peter_parker_the_spectacular_spider-man_1976_49",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1980-12-01T00:00:00+0000",
+      "mu": "1980-12-01T00:00:00+0000",
+      "digitalId": 6687,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5cf007b6bcb8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14751,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-01-01T00:00:00+0000",
+      "mu": "1981-01-01T00:00:00+0000",
+      "digitalId": 6688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cf0286e8546f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14752,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-02-01T00:00:00+0000",
+      "mu": "1981-02-01T00:00:00+0000",
+      "digitalId": 6689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5cf036efc0ca4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Denys Cowan",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14753,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/14753/peter_parker_the_spectacular_spider-man_1976_52",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-03-01T00:00:00+0000",
+      "mu": "1981-03-01T00:00:00+0000",
+      "digitalId": 6690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5cf123e72f5dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14755,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/14755/peter_parker_the_spectacular_spider-man_1976_54",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-05-01T00:00:00+0000",
+      "mu": "2010-01-18T00:00:00+0000",
+      "digitalId": 6691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4c35fb82e71a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14756,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/14756/peter_parker_the_spectacular_spider-man_1976_55",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-06-01T00:00:00+0000",
+      "mu": "1981-06-01T00:00:00+0000",
+      "digitalId": 46624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a14b9d97ac4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Mcdonnell",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14757,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/14757/peter_parker_the_spectacular_spider-man_1976_56",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-07-01T00:00:00+0000",
+      "mu": "1981-07-01T00:00:00+0000",
+      "digitalId": 46625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5a14bb4be189c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14758,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/14758/peter_parker_the_spectacular_spider-man_1976_57",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-08-01T00:00:00+0000",
+      "mu": "1981-08-01T00:00:00+0000",
+      "digitalId": 46626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5a14ba0e14604",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14759,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/14759/peter_parker_the_spectacular_spider-man_1976_58",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-09-01T00:00:00+0000",
+      "mu": "1981-09-01T00:00:00+0000",
+      "digitalId": 46627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5a14ba41c18da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14760,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/14760/peter_parker_the_spectacular_spider-man_1976_59",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-10-01T00:00:00+0000",
+      "mu": "1981-10-01T00:00:00+0000",
+      "digitalId": 46628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/5a14ba2eba621",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14762,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/14762/peter_parker_the_spectacular_spider-man_1976_60",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-11-01T00:00:00+0000",
+      "mu": "1981-11-01T00:00:00+0000",
+      "digitalId": 46629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5a14baa5b7299",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
+    },
+    {
+      "issueId": 14763,
+      "title": "Peter Parker, the Spectacular Spider-Man (1976) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/14763/peter_parker_the_spectacular_spider-man_1976_61",
+      "seriesId": 2271,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
+      "onSale": "1981-12-01T00:00:00+0000",
+      "mu": "1981-12-01T00:00:00+0000",
+      "digitalId": 46630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5a14ba171e319",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6621,
@@ -3446,7 +4002,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6622,
@@ -3478,7 +4034,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6623,
@@ -3510,7 +4066,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6624,
@@ -3542,7 +4098,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6625,
@@ -3574,7 +4130,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6626,
@@ -3606,7 +4162,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6628,
@@ -3638,7 +4194,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6629,
@@ -3670,7 +4226,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6630,
@@ -3702,7 +4258,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6631,
@@ -3734,7 +4290,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6632,
@@ -3766,7 +4322,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6633,
@@ -3798,7 +4354,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6634,
@@ -3830,7 +4386,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6635,
@@ -3866,7 +4422,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6636,
@@ -3898,7 +4454,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6637,
@@ -3930,7 +4486,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6639,
@@ -3962,7 +4518,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6640,
@@ -3994,7 +4550,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6641,
@@ -4026,7 +4582,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6642,
@@ -4058,7 +4614,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6643,
@@ -4090,7 +4646,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6644,
@@ -4122,7 +4678,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6645,
@@ -4154,7 +4710,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6646,
@@ -4186,7 +4742,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6647,
@@ -4226,7 +4782,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6648,
@@ -4258,7 +4814,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6650,
@@ -4290,7 +4846,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 6651,
@@ -4326,7 +4882,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Roger Stern and John Romita Jr: The Hobgoblin Saga"
+      "collectedIn": "3. Origin of the Hobgoblin"
     },
     {
       "issueId": 14551,
@@ -4358,7 +4914,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14552,
@@ -4402,7 +4958,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14553,
@@ -4434,7 +4990,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14555,
@@ -4462,7 +5018,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14581,
@@ -4494,7 +5050,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14582,
@@ -4522,7 +5078,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 14583,
@@ -4550,7 +5106,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Peter David: The Death of Jean DeWolff"
+      "collectedIn": "4. The Death of Jean DeWolff"
     },
     {
       "issueId": 12027,
@@ -4582,7 +5138,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 6697,
@@ -4614,7 +5170,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 14578,
@@ -4646,7 +5202,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 12028,
@@ -4678,7 +5234,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 6698,
@@ -4710,7 +5266,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 14579,
@@ -4742,7 +5298,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: Kraven's Last Hunt"
+      "collectedIn": "5. Kraven's Last Hunt"
     },
     {
       "issueId": 14629,
@@ -4761,259 +5317,7 @@
       "description": null,
       "pageCount": 0,
       "creators": [],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14630,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #179",
-      "number": "179",
-      "url": "https://www.marvel.com/comics/issue/14630/peter_parker_the_spectacular_spider-man_1976_179",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1991-08-01T00:00:00+0000",
-      "mu": "1991-08-01T00:00:00+0000",
-      "digitalId": 75347,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/04/689cacdc679ea",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14632,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #180",
-      "number": "180",
-      "url": "https://www.marvel.com/comics/issue/14632/peter_parker_the_spectacular_spider-man_1976_180",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1991-09-01T00:00:00+0000",
-      "mu": "1991-09-01T00:00:00+0000",
-      "digitalId": 75348,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/689cacdc671bb",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14633,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #181",
-      "number": "181",
-      "url": "https://www.marvel.com/comics/issue/14633/peter_parker_the_spectacular_spider-man_1976_181",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1991-10-01T00:00:00+0000",
-      "mu": "1991-10-01T00:00:00+0000",
-      "digitalId": 75349,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/689cacdc6f1fd",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14634,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #182",
-      "number": "182",
-      "url": "https://www.marvel.com/comics/issue/14634/peter_parker_the_spectacular_spider-man_1976_182",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1991-11-01T00:00:00+0000",
-      "mu": "1991-11-01T00:00:00+0000",
-      "digitalId": 75350,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/689cacdc6feb4",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14635,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #183",
-      "number": "183",
-      "url": "https://www.marvel.com/comics/issue/14635/peter_parker_the_spectacular_spider-man_1976_183",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1991-12-01T00:00:00+0000",
-      "mu": "1991-12-01T00:00:00+0000",
-      "digitalId": 75351,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/689cae6008a75",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14636,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #184",
-      "number": "184",
-      "url": "https://www.marvel.com/comics/issue/14636/peter_parker_the_spectacular_spider-man_1976_184",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-01-01T00:00:00+0000",
-      "mu": "1992-01-01T00:00:00+0000",
-      "digitalId": 75352,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/689cada93b64d",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14637,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #185",
-      "number": "185",
-      "url": "https://www.marvel.com/comics/issue/14637/peter_parker_the_spectacular_spider-man_1976_185",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-02-01T00:00:00+0000",
-      "mu": "1992-02-01T00:00:00+0000",
-      "digitalId": 75353,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/689cada932673",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14638,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #186",
-      "number": "186",
-      "url": "https://www.marvel.com/comics/issue/14638/peter_parker_the_spectacular_spider-man_1976_186",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-03-01T00:00:00+0000",
-      "mu": "1992-03-01T00:00:00+0000",
-      "digitalId": 45198,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5bb79d36d2974",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14639,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #187",
-      "number": "187",
-      "url": "https://www.marvel.com/comics/issue/14639/peter_parker_the_spectacular_spider-man_1976_187",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-04-01T00:00:00+0000",
-      "mu": "1992-04-01T00:00:00+0000",
-      "digitalId": 45199,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5bb79dea18209",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 14640,
@@ -5041,7 +5345,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 14641,
@@ -5073,7 +5377,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 14643,
@@ -5101,231 +5405,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14644,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #191",
-      "number": "191",
-      "url": "https://www.marvel.com/comics/issue/14644/peter_parker_the_spectacular_spider-man_1976_191",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-08-01T00:00:00+0000",
-      "mu": "1992-08-01T00:00:00+0000",
-      "digitalId": 75354,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/689cada93cc31",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14645,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #192",
-      "number": "192",
-      "url": "https://www.marvel.com/comics/issue/14645/peter_parker_the_spectacular_spider-man_1976_192",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-09-01T00:00:00+0000",
-      "mu": "1992-09-01T00:00:00+0000",
-      "digitalId": 75355,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/689cadbd6e0a5",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14646,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #193",
-      "number": "193",
-      "url": "https://www.marvel.com/comics/issue/14646/peter_parker_the_spectacular_spider-man_1976_193",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-10-01T00:00:00+0000",
-      "mu": "1992-10-01T00:00:00+0000",
-      "digitalId": 75356,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/689cadbdde3c1",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14647,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #194",
-      "number": "194",
-      "url": "https://www.marvel.com/comics/issue/14647/peter_parker_the_spectacular_spider-man_1976_194",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-11-01T00:00:00+0000",
-      "mu": "1992-11-01T00:00:00+0000",
-      "digitalId": 75357,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/689cadbddf36a",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14648,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #195",
-      "number": "195",
-      "url": "https://www.marvel.com/comics/issue/14648/peter_parker_the_spectacular_spider-man_1976_195",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1992-12-01T00:00:00+0000",
-      "mu": "1992-12-01T00:00:00+0000",
-      "digitalId": 75358,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/689cae9ce0ba9",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14649,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #196",
-      "number": "196",
-      "url": "https://www.marvel.com/comics/issue/14649/peter_parker_the_spectacular_spider-man_1976_196",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1993-01-01T00:00:00+0000",
-      "mu": "1993-01-01T00:00:00+0000",
-      "digitalId": 75359,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/04/689cae9ce8fe1",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14650,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #197",
-      "number": "197",
-      "url": "https://www.marvel.com/comics/issue/14650/peter_parker_the_spectacular_spider-man_1976_197",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1993-02-01T00:00:00+0000",
-      "mu": "1993-02-01T00:00:00+0000",
-      "digitalId": 75360,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/689caf97c766f",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
-    },
-    {
-      "issueId": 14651,
-      "title": "Peter Parker, the Spectacular Spider-Man (1976) #198",
-      "number": "198",
-      "url": "https://www.marvel.com/comics/issue/14651/peter_parker_the_spectacular_spider-man_1976_198",
-      "seriesId": 2271,
-      "seriesName": "Peter Parker, the Spectacular Spider-Man (1976 - 1998)",
-      "onSale": "1993-03-01T00:00:00+0000",
-      "mu": "1993-03-01T00:00:00+0000",
-      "digitalId": 75361,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/689cae9cea0a9",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Sal Buscema",
-          "role": "cover artist"
-        },
-        {
-          "name": "J.M. DeMatteis",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 14652,
@@ -5353,7 +5433,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 14655,
@@ -5381,7 +5461,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J.M. DeMatteis: The Child Within and Harry Osborn's Decline"
+      "collectedIn": "6. The Decline & Death of Harry Osborn"
     },
     {
       "issueId": 3583,
@@ -5413,7 +5493,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 43123,
@@ -5445,7 +5525,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 43125,
@@ -5477,7 +5557,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 43128,
@@ -5496,7 +5576,7 @@
       "description": null,
       "pageCount": 0,
       "creators": [],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 43130,
@@ -5528,7 +5608,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 43132,
@@ -5547,7 +5627,7 @@
       "description": null,
       "pageCount": 0,
       "creators": [],
-      "collectedIn": "J. Michael Straczynski: Coming Home"
+      "collectedIn": "7. Coming Home"
     },
     {
       "issueId": 24407,
@@ -5615,7 +5695,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24413,
@@ -5651,7 +5731,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24418,
@@ -5679,7 +5759,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24419,
@@ -5711,7 +5791,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24420,
@@ -5743,7 +5823,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24421,
@@ -5767,7 +5847,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24422,
@@ -5791,7 +5871,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24423,
@@ -5819,7 +5899,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24424,
@@ -5847,7 +5927,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 24425,
@@ -5875,7 +5955,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 28224,
@@ -5899,7 +5979,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 28225,
@@ -5923,7 +6003,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 28226,
@@ -5967,7 +6047,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 28227,
@@ -6015,7 +6095,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30298,
@@ -6047,7 +6127,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30299,
@@ -6079,7 +6159,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30300,
@@ -6107,7 +6187,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30301,
@@ -6139,7 +6219,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30302,
@@ -6171,7 +6251,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30303,
@@ -6203,7 +6283,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30304,
@@ -6239,7 +6319,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30305,
@@ -6303,7 +6383,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30306,
@@ -6363,7 +6443,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30307,
@@ -6423,7 +6503,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30308,
@@ -6483,7 +6563,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30309,
@@ -6511,7 +6591,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30310,
@@ -6547,7 +6627,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30311,
@@ -6595,7 +6675,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
     },
     {
       "issueId": 30312,
@@ -6623,7 +6703,203 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "The Gauntlet, Shed and Grim Hunt"
+      "collectedIn": "8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)"
+    },
+    {
+      "issueId": 34135,
+      "title": "Amazing Spider-Man (1999) #648",
+      "number": "648",
+      "url": "https://www.marvel.com/comics/issue/34135/amazing_spider-man_1999_648",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-11-10T00:00:00+0000",
+      "mu": "2011-10-18T09:28:00+0000",
+      "digitalId": 17486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5813b47f01394",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
+    },
+    {
+      "issueId": 30324,
+      "title": "Amazing Spider-Man (1999) #649",
+      "number": "649",
+      "url": "https://www.marvel.com/comics/issue/30324/amazing_spider-man_1999_649",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-11-24T00:00:00+0000",
+      "mu": "2011-10-18T09:29:30+0000",
+      "digitalId": 17904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/58173f1742f1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
+    },
+    {
+      "issueId": 30325,
+      "title": "Amazing Spider-Man (1999) #650",
+      "number": "650",
+      "url": "https://www.marvel.com/comics/issue/30325/amazing_spider-man_1999_650",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-12-15T00:00:00+0000",
+      "mu": "2011-10-18T09:32:16+0000",
+      "digitalId": 18441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/5817407379f4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joseph M. Damon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
+    },
+    {
+      "issueId": 30326,
+      "title": "Amazing Spider-Man (1999) #651",
+      "number": "651",
+      "url": "https://www.marvel.com/comics/issue/30326/amazing_spider-man_1999_651",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2011-01-12T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 18853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/4e9746f71c165",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joseph M. Damon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
+    },
+    {
+      "issueId": 30327,
+      "title": "Amazing Spider-Man (1999) #652",
+      "number": "652",
+      "url": "https://www.marvel.com/comics/issue/30327/amazing_spider-man_1999_652",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2011-01-19T00:00:00+0000",
+      "mu": "2011-12-05T00:00:00+0000",
+      "digitalId": 18920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/58090b8967f2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Reilly Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 40120,
@@ -6647,7 +6923,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 40118,
@@ -6683,39 +6959,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
-    },
-    {
-      "issueId": 47160,
-      "title": "Amazing Spider-Man (1999) #699.1",
-      "number": "699.1",
-      "url": "https://www.marvel.com/comics/issue/47160/amazing_spider-man_1999_699.1",
-      "seriesId": 454,
-      "seriesName": "Amazing Spider-Man (1999 - 2013)",
-      "onSale": "2012-12-12T00:00:00+0000",
-      "mu": "2013-06-10T00:00:00+0000",
-      "digitalId": 28241,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/582f116e39d15",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Stefano Caselli",
-          "role": "penciler"
-        },
-        {
-          "name": "Dan Slott",
-          "role": "writer"
-        },
-        {
-          "name": "Joseph Keatinge",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 40128,
@@ -6763,7 +7007,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46462,
@@ -6791,7 +7035,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46469,
@@ -6823,7 +7067,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46472,
@@ -6851,7 +7095,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46474,
@@ -6879,7 +7123,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46476,
@@ -6907,7 +7151,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46478,
@@ -6935,35 +7179,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
-    },
-    {
-      "issueId": 47145,
-      "title": "Superior Spider-Man (2013) #6.5",
-      "number": "6.5",
-      "url": "https://www.marvel.com/comics/issue/47145/superior_spider-man_2013_6.5",
-      "seriesId": 17554,
-      "seriesName": "Superior Spider-Man (2013 - 2014)",
-      "onSale": "2013-03-27T00:00:00+0000",
-      "mu": "2013-09-30T00:00:00+0000",
-      "digitalId": 28780,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5757207a6aa61",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Marco Checchetto",
-          "role": "penciler"
-        },
-        {
-          "name": "Christos Gage",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46479,
@@ -6991,7 +7207,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46480,
@@ -7019,7 +7235,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 46481,
@@ -7047,7 +7263,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Dying Wish into Superior Spider-Man"
+      "collectedIn": "9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)"
     },
     {
       "issueId": 74803,
@@ -7079,7 +7295,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     },
     {
       "issueId": 74804,
@@ -7107,7 +7323,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     },
     {
       "issueId": 74805,
@@ -7139,7 +7355,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     },
     {
       "issueId": 74806,
@@ -7171,7 +7387,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     },
     {
       "issueId": 74807,
@@ -7203,7 +7419,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     },
     {
       "issueId": 74808,
@@ -7235,7 +7451,7 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Spider-Man: Life Story"
+      "collectedIn": "10. Life Story"
     }
   ]
 }

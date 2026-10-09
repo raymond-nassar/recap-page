@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson,
   sourceCountsForPacket, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
@@ -16,7 +16,9 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   addIssuesToList, createEmptyState, createList, exportBackup, SCHEMA_VERSION, validateBackup,
 } from '../src/js/lib/model.js';
-import { historicalMcuDescriptionManifest } from './helpers/reading-choice-history.mjs';
+import {
+  historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
+} from './helpers/reading-choice-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
@@ -125,7 +127,7 @@ test('Brand New Day binds actual approval to the complete current library', asyn
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
   });
-  const recordedDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+  const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
   assert.equal(report.comparisonCount, 289);

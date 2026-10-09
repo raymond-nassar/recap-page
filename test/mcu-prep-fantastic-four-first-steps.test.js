@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  digestCanonicalJson, libraryDigestFor, reportDigestFor, sourceCountsForPacket,
+  digestCanonicalJson, reportDigestFor, sourceCountsForPacket,
   validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
@@ -20,7 +20,7 @@ import {
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { ListHistoryStore, LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import {
-  historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
+  historicalMcuDescriptionEntry, historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 
@@ -196,7 +196,7 @@ test('First Steps reviews every active source and generated child without inheri
   });
   const unsigned = {
     ...current,
-    libraryDigest: libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+    libraryDigest: historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
     }))),
     ...buildComparisonReport({ candidateIds: issueIds, orders: recordedOrders }),
