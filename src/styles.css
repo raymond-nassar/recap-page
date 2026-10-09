@@ -663,7 +663,7 @@ a { color: var(--blue); }
   .rail-header.mobile-nav-hidden { transform: translateY(100%); }
   .rail-header:focus-within { transform: translateY(0); }
   .rail-header .brand, .rail-header .mobile-link, .rail-header .rail-toggle {
-    display: flex; flex-direction: column; justify-content: center; gap: var(--space-1);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
     min-width: 0; min-height: 44px; width: auto; height: auto; margin: 0;
     padding: var(--space-2); border: 1px solid transparent; border-radius: 6px;
     color: var(--text); text-align: center; overflow-wrap: anywhere;

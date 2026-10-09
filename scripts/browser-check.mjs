@@ -13551,6 +13551,24 @@ const SCENARIOS = [
         && forced.selectedBorderColor !== 'rgba(0, 0, 0, 0)',
         JSON.stringify(forced));
 
+      await page.setViewport({ width: 430, height: 900 });
+      const iconAlignment = await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
+        .map((control) => {
+          const icon = control.querySelector('svg.gi, img.mark');
+          const controlRect = control.getBoundingClientRect();
+          const iconRect = icon?.getBoundingClientRect();
+          return {
+            label: control.getAttribute('aria-label') || control.textContent.trim(),
+            offset: iconRect
+              ? Math.abs((iconRect.left + iconRect.right) / 2 - (controlRect.left + controlRect.right) / 2)
+              : null,
+          };
+        }));
+      t.check('bottom navigation icons are centred in each destination',
+        iconAlignment.length === 5 && iconAlignment.every((item) => item.offset !== null && item.offset <= 1),
+        JSON.stringify(iconAlignment));
+      await page.setViewport({ width: 320, height: 900 });
+
       await page.evaluate(() => {
         const root = document.documentElement;
         const names = ['--t-caption', '--t-body', '--t-subtitle', '--t-title', '--t-display', '--t-overline'];
