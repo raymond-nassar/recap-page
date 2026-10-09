@@ -303,7 +303,7 @@ Do not replace a full SHA with a floating tag such as `@v4`.
 
 ## Add a curated reading order
 
-To add a curated order, append one entry to `src/data/curated-lists.json`, then run:
+For multiple lists, use the [Modern Timeline batch workflow](BATCH_READING_LIST_DELIVERY.md). For one curated order, append an entry to `src/data/curated-lists.json`, then run:
 
 ```text
 npm run vendor
