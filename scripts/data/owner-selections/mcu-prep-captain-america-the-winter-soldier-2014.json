@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+  "sourceIssueCount": 18,
+  "publishedIssueCount": 18,
+  "inputReceipt": {
+    "name": "mcu-prep-captain-america-the-winter-soldier-2014.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "7b1ff0367f991fc7150f29c0c4de02487d098cb06e63e97dd4669c8dc6f14420",
+    "snapshotBytes": 2705,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "descriptionReceipt": {
+    "name": "phase-two-descriptions.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "1fa71ac99d0a1f823ef8419d9c131cb4af9d6eb875656fa0ee77eca809f72ce2",
+    "snapshotBytes": 1445,
+    "bodySha256": "3fe6b98088c67c2dbc72fd069e6e449d2afd07b643725275c73b3610e18fe12f"
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-captain-america-the-winter-soldier-2014-factual-projection.tsv",
+    "sha256": "1bdac6800a3e9bb231079e5dc19899a120844b1ccb7a04842063f0a19ca21962",
+    "bytes": 1367,
+    "basis": "Independent factual projection, not original pasted-snapshot or uploaded-file bytes."
+  },
+  "originalGroupLabels": [
+    "1. \\*\\*Captain America: Man Out of Time\\*\\* (collects #1\u20135)",
+    "2. \\*\\*Captain America: Winter Soldier Vol. 1\\*\\* (collects Captain America (2004) #1\u20137)",
+    "3. \\*\\*Captain America: Winter Soldier Vol. 2\\*\\* (collects #8\u20139, #11\u201314) \u2014 same issues as Phase 1 list above"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/34994/captain_america_man_out_of_time_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/34994/captain_america_man_out_of_time_2010_1",
+      "suppliedCandidateId": 34994,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #1",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 34994
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36179/captain_america_man_out_of_time_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36179/captain_america_man_out_of_time_2010_2",
+      "suppliedCandidateId": 36179,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #2",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36179
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36175/captain_america_man_out_of_time_2010_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36175/captain_america_man_out_of_time_2010_3",
+      "suppliedCandidateId": 36175,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #3",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36175
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36371/captain_america_man_out_of_time_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36371/captain_america_man_out_of_time_2010_4",
+      "suppliedCandidateId": 36371,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #4",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36371
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36177/captain_america_man_out_of_time_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36177/captain_america_man_out_of_time_2010_5",
+      "suppliedCandidateId": 36177,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #5",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36177
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/91/captain-america-2004-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/91/captain-america-2004-1",
+      "suppliedCandidateId": 91,
+      "suppliedReference": "Captain America (2004) #1",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 91
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1492/captain_america_2004_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1492/captain_america_2004_2",
+      "suppliedCandidateId": 1492,
+      "suppliedReference": "Captain America (2004) #2",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1492
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1579/captain-america-2004-3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1579/captain-america-2004-3",
+      "suppliedCandidateId": 1579,
+      "suppliedReference": "Captain America (2004) #3",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1579
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1668/captain_america_2004_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1668/captain_america_2004_4",
+      "suppliedCandidateId": 1668,
+      "suppliedReference": "Captain America (2004) #4",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1668
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1764/captain-america-2004-5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1764/captain-america-2004-5",
+      "suppliedCandidateId": 1764,
+      "suppliedReference": "Captain America (2004) #5",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1764
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1870/captain-america-2004-6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1870/captain-america-2004-6",
+      "suppliedCandidateId": 1870,
+      "suppliedReference": "Captain America (2004) #6",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1870
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1978/captain_america_2004_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1978/captain_america_2004_7",
+      "suppliedCandidateId": 1978,
+      "suppliedReference": "Captain America (2004) #7",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1978
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2190/captain_america_2004_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2190/captain_america_2004_8",
+      "suppliedCandidateId": 2190,
+      "suppliedReference": "Captain America (2004) #8",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2190
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2308/captain_america_2004_9)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2308/captain_america_2004_9",
+      "suppliedCandidateId": 2308,
+      "suppliedReference": "Captain America (2004) #9",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2308
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #11 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2421/captain_america_2004_11)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2421/captain_america_2004_11",
+      "suppliedCandidateId": 2421,
+      "suppliedReference": "Captain America (2004) #11",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2421
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #12 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2422/captain_america_2004_12)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2422/captain_america_2004_12",
+      "suppliedCandidateId": 2422,
+      "suppliedReference": "Captain America (2004) #12",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2422
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #13 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/3084/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3084/read",
+      "suppliedCandidateId": 3084,
+      "suppliedReference": "Captain America (2004) #13",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 3084
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #14 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/3188/captain_america_2004_14)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3188/captain_america_2004_14",
+      "suppliedCandidateId": 3188,
+      "suppliedReference": "Captain America (2004) #14",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 3188
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/34994/captain_america_man_out_of_time_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/34994/captain_america_man_out_of_time_2010_1",
+      "suppliedCandidateId": 34994,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #1",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 34994
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36179/captain_america_man_out_of_time_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36179/captain_america_man_out_of_time_2010_2",
+      "suppliedCandidateId": 36179,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #2",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36179
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36175/captain_america_man_out_of_time_2010_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36175/captain_america_man_out_of_time_2010_3",
+      "suppliedCandidateId": 36175,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #3",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36175
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36371/captain_america_man_out_of_time_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36371/captain_america_man_out_of_time_2010_4",
+      "suppliedCandidateId": 36371,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #4",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36371
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Captain America: Man Out of Time",
+      "suppliedText": "- [Captain America: Man Out Of Time (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/36177/captain_america_man_out_of_time_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/36177/captain_america_man_out_of_time_2010_5",
+      "suppliedCandidateId": 36177,
+      "suppliedReference": "Captain America: Man Out Of Time (2010) #5",
+      "originalGroup": "Captain America: Man Out of Time",
+      "disposition": "included",
+      "selectedIssueId": 36177
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/91/captain-america-2004-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/91/captain-america-2004-1",
+      "suppliedCandidateId": 91,
+      "suppliedReference": "Captain America (2004) #1",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 91
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1492/captain_america_2004_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1492/captain_america_2004_2",
+      "suppliedCandidateId": 1492,
+      "suppliedReference": "Captain America (2004) #2",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1492
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1579/captain-america-2004-3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1579/captain-america-2004-3",
+      "suppliedCandidateId": 1579,
+      "suppliedReference": "Captain America (2004) #3",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1579
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1668/captain_america_2004_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1668/captain_america_2004_4",
+      "suppliedCandidateId": 1668,
+      "suppliedReference": "Captain America (2004) #4",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1668
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1764/captain-america-2004-5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1764/captain-america-2004-5",
+      "suppliedCandidateId": 1764,
+      "suppliedReference": "Captain America (2004) #5",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1764
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1870/captain-america-2004-6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1870/captain-america-2004-6",
+      "suppliedCandidateId": 1870,
+      "suppliedReference": "Captain America (2004) #6",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1870
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Captain America: Winter Soldier Vol. 1",
+      "suppliedText": "- [Captain America (2004) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/1978/captain_america_2004_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/1978/captain_america_2004_7",
+      "suppliedCandidateId": 1978,
+      "suppliedReference": "Captain America (2004) #7",
+      "originalGroup": "Captain America: Winter Soldier Vol. 1",
+      "disposition": "included",
+      "selectedIssueId": 1978
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2190/captain_america_2004_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2190/captain_america_2004_8",
+      "suppliedCandidateId": 2190,
+      "suppliedReference": "Captain America (2004) #8",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2190
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2308/captain_america_2004_9)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2308/captain_america_2004_9",
+      "suppliedCandidateId": 2308,
+      "suppliedReference": "Captain America (2004) #9",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2308
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #11 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2421/captain_america_2004_11)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2421/captain_america_2004_11",
+      "suppliedCandidateId": 2421,
+      "suppliedReference": "Captain America (2004) #11",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2421
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #12 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/2422/captain_america_2004_12)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/2422/captain_america_2004_12",
+      "suppliedCandidateId": 2422,
+      "suppliedReference": "Captain America (2004) #12",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 2422
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #13 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/3084/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3084/read",
+      "suppliedCandidateId": 3084,
+      "suppliedReference": "Captain America (2004) #13",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 3084
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Captain America: Winter Soldier Vol. 2",
+      "suppliedText": "- [Captain America (2004) #14 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/3188/captain_america_2004_14)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/3188/captain_america_2004_14",
+      "suppliedCandidateId": 3188,
+      "suppliedReference": "Captain America (2004) #14",
+      "originalGroup": "Captain America: Winter Soldier Vol. 2",
+      "disposition": "included",
+      "selectedIssueId": 3188
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Owner-selected original comics and exact approved description. No new collection expansion or source substitution.",
+    "Original pasted-message snapshots remain private and immutable; public facts are self-contained and separately hashed.",
+    "No Marvel or CDN resource was fetched. Metadata facts come from genuine configured-provider records; no synopsis prose or image bytes are published.",
+    "Captain America#10 was not selected. The source overlap annotation is retained as context, not new authority. Candidate1764 is Captain America#5."
+  ],
+  "bibliography": [],
+  "publicDependencies": []
+}

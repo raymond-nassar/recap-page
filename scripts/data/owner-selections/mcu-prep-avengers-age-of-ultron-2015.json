@@ -1,0 +1,628 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-avengers-age-of-ultron-2015",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#avengers-age-of-ultron-2015",
+  "sourceRetrievedAt": "2026-10-09",
+  "readerDescription": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+  "sourceIssueCount": 25,
+  "publishedIssueCount": 25,
+  "inputReceipt": {
+    "name": "mcu-prep-avengers-age-of-ultron-2015.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "16db9369c6bd00591402ed60e2acaaef763fe5aa083bd142d10bca823636ddae",
+    "snapshotBytes": 3361,
+    "originalFileSha256": null,
+    "originalFileBytes": null
+  },
+  "descriptionReceipt": {
+    "name": "phase-two-descriptions.md",
+    "sourceKind": "pasted-message-snapshot",
+    "snapshotSha256": "1fa71ac99d0a1f823ef8419d9c131cb4af9d6eb875656fa0ee77eca809f72ce2",
+    "snapshotBytes": 1445,
+    "bodySha256": "192cb4630e87bb2dbef681ceaa6a16f7e04e9245cd7af6bb97a3684b6ca1d623"
+  },
+  "projectionReceipt": {
+    "name": "mcu-prep-avengers-age-of-ultron-2015-factual-projection.tsv",
+    "sha256": "f75189ad7b3414bd1a4c5a4f4ed6ae4d153bbd95c98f55a2b219f326794cf280",
+    "bytes": 1356,
+    "basis": "Independent factual projection, not original pasted-snapshot or uploaded-file bytes."
+  },
+  "originalGroupLabels": [
+    "1. **Avengers: The Origin** (collects #1\u20135)",
+    "2. **Avengers: Ultron Unbound** \u2014 \u26a0\ufe0f *not a standalone Ultron miniseries; actually collects West Coast Avengers #89\u201391 + Annual #8, and Vision (1994) #1\u20134*",
+    "3. **Avengers: Rage of Ultron** (standalone graphic novel)",
+    "4. **Age of Ultron** (10-issue miniseries + epilogue)"
+  ],
+  "selections": [
+    {
+      "sourcePosition": 1,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31151/avengers_the_origin_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31151/avengers_the_origin_2010_1",
+      "suppliedCandidateId": 31151,
+      "suppliedReference": "Avengers: The Origin (2010) #1",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31151
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31153/avengers_the_origin_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31153/avengers_the_origin_2010_2",
+      "suppliedCandidateId": 31153,
+      "suppliedReference": "Avengers: The Origin (2010) #2",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31153
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31155/avengers_the_origin_2010_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31155/avengers_the_origin_2010_3",
+      "suppliedCandidateId": 31155,
+      "suppliedReference": "Avengers: The Origin (2010) #3",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31155
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31156/avengers_the_origin_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31156/avengers_the_origin_2010_4",
+      "suppliedCandidateId": 31156,
+      "suppliedReference": "Avengers: The Origin (2010) #4",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31156
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31158/avengers_the_origin_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31158/avengers_the_origin_2010_5",
+      "suppliedCandidateId": 31158,
+      "suppliedReference": "Avengers: The Origin (2010) #5",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31158
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #89 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89",
+      "suppliedCandidateId": 17831,
+      "suppliedReference": "West Coast Avengers (1985) #89",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17831
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #90 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90",
+      "suppliedCandidateId": 17832,
+      "suppliedReference": "West Coast Avengers (1985) #90",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17832
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #91 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17833/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17833/read",
+      "suppliedCandidateId": 17833,
+      "suppliedReference": "West Coast Avengers (1985) #91",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17833
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers Annual (1986) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17846/west_coast_avengers_annual_1986_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17846/west_coast_avengers_annual_1986_8",
+      "suppliedCandidateId": 17846,
+      "suppliedReference": "West Coast Avengers Annual (1986) #8",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17846
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55073/vision_1994_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55073/vision_1994_1",
+      "suppliedCandidateId": 55073,
+      "suppliedReference": "Vision (1994) #1",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55073
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55074/vision_1994_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55074/vision_1994_2",
+      "suppliedCandidateId": 55074,
+      "suppliedReference": "Vision (1994) #2",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55074
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55075/vision_1994_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55075/vision_1994_3",
+      "suppliedCandidateId": 55075,
+      "suppliedReference": "Vision (1994) #3",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55075
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55076/vision_1994_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55076/vision_1994_4",
+      "suppliedCandidateId": 55076,
+      "suppliedReference": "Vision (1994) #4",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55076
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Avengers: Rage of Ultron",
+      "suppliedText": "- [Avengers: Rage of Ultron (2015) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015",
+      "suppliedCandidateId": 50076,
+      "suppliedReference": "Avengers: Rage of Ultron (2015) #1",
+      "originalGroup": "Avengers: Rage of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 50076,
+      "normalizationNote": "Supplied group explicitly selects a standalone graphic novel. Preserve the raw link label #1 in provenance; no serial number is displayed. Provider number0 remains metadata only."
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47001/age_of_ultron_2013-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47001/age_of_ultron_2013-1",
+      "suppliedCandidateId": 47001,
+      "suppliedReference": "Age Of Ultron (2013) #1",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47001,
+      "normalizationNote": "Exact supplied original identity matches provider title, series, number, creators and date. No physical-printing or cover-variant identity is asserted."
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47003/age-of-ultron-2013-2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47003/age-of-ultron-2013-2",
+      "suppliedCandidateId": 47003,
+      "suppliedReference": "Age Of Ultron (2013) #2",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47003,
+      "normalizationNote": "Exact supplied original identity matches provider title, series, number, creators and date. No physical-printing or cover-variant identity is asserted."
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3",
+      "suppliedCandidateId": 37405,
+      "suppliedReference": "Age Of Ultron (2013) #3",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37405
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4",
+      "suppliedCandidateId": 37406,
+      "suppliedReference": "Age Of Ultron (2013) #4",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37406
+    },
+    {
+      "sourcePosition": 19,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5",
+      "suppliedCandidateId": 37407,
+      "suppliedReference": "Age Of Ultron (2013) #5",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37407
+    },
+    {
+      "sourcePosition": 20,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6",
+      "suppliedCandidateId": 45904,
+      "suppliedReference": "Age Of Ultron (2013) #6",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45904
+    },
+    {
+      "sourcePosition": 21,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7",
+      "suppliedCandidateId": 45905,
+      "suppliedReference": "Age Of Ultron (2013) #7",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45905
+    },
+    {
+      "sourcePosition": 22,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45906/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45906/read",
+      "suppliedCandidateId": 45906,
+      "suppliedReference": "Age Of Ultron (2013) #8",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45906
+    },
+    {
+      "sourcePosition": 23,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45907/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45907/read",
+      "suppliedCandidateId": 45907,
+      "suppliedReference": "Age Of Ultron (2013) #9",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45907
+    },
+    {
+      "sourcePosition": 24,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #10 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10",
+      "suppliedCandidateId": 45908,
+      "suppliedReference": "Age Of Ultron (2013) #10",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45908
+    },
+    {
+      "sourcePosition": 25,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #10AI | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47072/age_of_ultron_2013_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47072/age_of_ultron_2013_10",
+      "suppliedCandidateId": 47072,
+      "suppliedReference": "Age Of Ultron (2013) #10AI",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47072,
+      "normalizationNote": "Supplied #10AI is the distinct Waid/Araujo epilogue, not main #10 ID45908. Provider title and number10 are retained as metadata; independent bibliography supports display suffix10AI."
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31151/avengers_the_origin_2010_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31151/avengers_the_origin_2010_1",
+      "suppliedCandidateId": 31151,
+      "suppliedReference": "Avengers: The Origin (2010) #1",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31151
+    },
+    {
+      "sourcePosition": 2,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31153/avengers_the_origin_2010_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31153/avengers_the_origin_2010_2",
+      "suppliedCandidateId": 31153,
+      "suppliedReference": "Avengers: The Origin (2010) #2",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31153
+    },
+    {
+      "sourcePosition": 3,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31155/avengers_the_origin_2010_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31155/avengers_the_origin_2010_3",
+      "suppliedCandidateId": 31155,
+      "suppliedReference": "Avengers: The Origin (2010) #3",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31155
+    },
+    {
+      "sourcePosition": 4,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31156/avengers_the_origin_2010_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31156/avengers_the_origin_2010_4",
+      "suppliedCandidateId": 31156,
+      "suppliedReference": "Avengers: The Origin (2010) #4",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31156
+    },
+    {
+      "sourcePosition": 5,
+      "group": "Avengers: The Origin",
+      "suppliedText": "- [Avengers: The Origin (2010) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/31158/avengers_the_origin_2010_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/31158/avengers_the_origin_2010_5",
+      "suppliedCandidateId": 31158,
+      "suppliedReference": "Avengers: The Origin (2010) #5",
+      "originalGroup": "Avengers: The Origin",
+      "disposition": "included",
+      "selectedIssueId": 31158
+    },
+    {
+      "sourcePosition": 6,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #89 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17831/west_coast_avengers_1985_89",
+      "suppliedCandidateId": 17831,
+      "suppliedReference": "West Coast Avengers (1985) #89",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17831
+    },
+    {
+      "sourcePosition": 7,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #90 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17832/west_coast_avengers_1985_90",
+      "suppliedCandidateId": 17832,
+      "suppliedReference": "West Coast Avengers (1985) #90",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17832
+    },
+    {
+      "sourcePosition": 8,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers (1985) #91 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17833/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17833/read",
+      "suppliedCandidateId": 17833,
+      "suppliedReference": "West Coast Avengers (1985) #91",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17833
+    },
+    {
+      "sourcePosition": 9,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [West Coast Avengers Annual (1986) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/17846/west_coast_avengers_annual_1986_8)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/17846/west_coast_avengers_annual_1986_8",
+      "suppliedCandidateId": 17846,
+      "suppliedReference": "West Coast Avengers Annual (1986) #8",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 17846
+    },
+    {
+      "sourcePosition": 10,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55073/vision_1994_1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55073/vision_1994_1",
+      "suppliedCandidateId": 55073,
+      "suppliedReference": "Vision (1994) #1",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55073
+    },
+    {
+      "sourcePosition": 11,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55074/vision_1994_2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55074/vision_1994_2",
+      "suppliedCandidateId": 55074,
+      "suppliedReference": "Vision (1994) #2",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55074
+    },
+    {
+      "sourcePosition": 12,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55075/vision_1994_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55075/vision_1994_3",
+      "suppliedCandidateId": 55075,
+      "suppliedReference": "Vision (1994) #3",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55075
+    },
+    {
+      "sourcePosition": 13,
+      "group": "Avengers: Ultron Unbound",
+      "suppliedText": "- [Vision (1994) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/55076/vision_1994_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/55076/vision_1994_4",
+      "suppliedCandidateId": 55076,
+      "suppliedReference": "Vision (1994) #4",
+      "originalGroup": "Avengers: Ultron Unbound",
+      "disposition": "included",
+      "selectedIssueId": 55076
+    },
+    {
+      "sourcePosition": 14,
+      "group": "Avengers: Rage of Ultron",
+      "suppliedText": "- [Avengers: Rage of Ultron (2015) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015",
+      "suppliedCandidateId": 50076,
+      "suppliedReference": "Avengers: Rage of Ultron (2015) #1",
+      "originalGroup": "Avengers: Rage of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 50076,
+      "normalizationNote": "Supplied group explicitly selects a standalone graphic novel. Preserve the raw link label #1 in provenance; no serial number is displayed. Provider number0 remains metadata only."
+    },
+    {
+      "sourcePosition": 15,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #1 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47001/age_of_ultron_2013-1)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47001/age_of_ultron_2013-1",
+      "suppliedCandidateId": 47001,
+      "suppliedReference": "Age Of Ultron (2013) #1",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47001,
+      "normalizationNote": "Exact supplied original identity matches provider title, series, number, creators and date. No physical-printing or cover-variant identity is asserted."
+    },
+    {
+      "sourcePosition": 16,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #2 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47003/age-of-ultron-2013-2)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47003/age-of-ultron-2013-2",
+      "suppliedCandidateId": 47003,
+      "suppliedReference": "Age Of Ultron (2013) #2",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47003,
+      "normalizationNote": "Exact supplied original identity matches provider title, series, number, creators and date. No physical-printing or cover-variant identity is asserted."
+    },
+    {
+      "sourcePosition": 17,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #3 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37405/age_of_ultron_2013_3",
+      "suppliedCandidateId": 37405,
+      "suppliedReference": "Age Of Ultron (2013) #3",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37405
+    },
+    {
+      "sourcePosition": 18,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #4 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37406/age_of_ultron_2013_4",
+      "suppliedCandidateId": 37406,
+      "suppliedReference": "Age Of Ultron (2013) #4",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37406
+    },
+    {
+      "sourcePosition": 19,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #5 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/37407/age_of_ultron_2013_5",
+      "suppliedCandidateId": 37407,
+      "suppliedReference": "Age Of Ultron (2013) #5",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 37407
+    },
+    {
+      "sourcePosition": 20,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #6 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45904/age_of_ultron_2013_6",
+      "suppliedCandidateId": 45904,
+      "suppliedReference": "Age Of Ultron (2013) #6",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45904
+    },
+    {
+      "sourcePosition": 21,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #7 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45905/age_of_ultron_2013_7",
+      "suppliedCandidateId": 45905,
+      "suppliedReference": "Age Of Ultron (2013) #7",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45905
+    },
+    {
+      "sourcePosition": 22,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #8 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45906/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45906/read",
+      "suppliedCandidateId": 45906,
+      "suppliedReference": "Age Of Ultron (2013) #8",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45906
+    },
+    {
+      "sourcePosition": 23,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #9 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45907/read)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45907/read",
+      "suppliedCandidateId": 45907,
+      "suppliedReference": "Age Of Ultron (2013) #9",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45907
+    },
+    {
+      "sourcePosition": 24,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #10 | Comic Issues | Marvel](https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/45908/age_of_ultron_2013_10",
+      "suppliedCandidateId": 45908,
+      "suppliedReference": "Age Of Ultron (2013) #10",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 45908
+    },
+    {
+      "sourcePosition": 25,
+      "group": "Age of Ultron",
+      "suppliedText": "- [Age Of Ultron (2013) #10AI | Comic Issues | Marvel](https://www.marvel.com/comics/issue/47072/age_of_ultron_2013_10)",
+      "suppliedUrl": "https://www.marvel.com/comics/issue/47072/age_of_ultron_2013_10",
+      "suppliedCandidateId": 47072,
+      "suppliedReference": "Age Of Ultron (2013) #10AI",
+      "originalGroup": "Age of Ultron",
+      "disposition": "included",
+      "selectedIssueId": 47072,
+      "normalizationNote": "Supplied #10AI is the distinct Waid/Araujo epilogue, not main #10 ID45908. Provider title and number10 are retained as metadata; independent bibliography supports display suffix10AI."
+    }
+  ],
+  "sourceGaps": [],
+  "excludedSourceRows": [],
+  "repeatedSourceReferences": [],
+  "sourceFacts": [
+    "Owner-selected original comics and exact approved description. No new collection expansion or source substitution.",
+    "Original pasted-message snapshots remain private and immutable; public facts are self-contained and separately hashed.",
+    "No Marvel or CDN resource was fetched. Metadata facts come from genuine configured-provider records; no synopsis prose or image bytes are published.",
+    "Ultron Unbound is the explicit owner-selected eight-original grouping, not a standalone Ultron miniseries. Library records confirm the book identity, but independently verified physical contents order is not asserted.",
+    "Rage of Ultron remains one unnumbered standalone work; the source link label #1 is retained only as source text.",
+    "The main Age of Ultron#10 and #10AI are separate original IDs; provider number10 does not collapse them."
+  ],
+  "bibliography": [
+    {
+      "url": "https://marvel.emreparker.com/v1/series/17318/issues?limit=50",
+      "finding": "Exact original IDs and distinct #10 records.",
+      "retrievedAt": "2026-10-09"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Age_of_Ultron",
+      "finding": "Waid/Araujo Hank Pym one-shot is #10 A.I.; aligns with candidate47072.",
+      "retrievedAt": "2026-10-09"
+    },
+    {
+      "url": "https://openlibrary.org/isbn/9780785192695.json",
+      "finding": "Ultron Unbound book identity; physical contents order is not independently asserted.",
+      "retrievedAt": "2026-10-09"
+    }
+  ],
+  "publicDependencies": []
+}

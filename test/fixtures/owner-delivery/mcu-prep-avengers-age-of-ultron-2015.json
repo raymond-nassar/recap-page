@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-avengers-age-of-ultron-2015",
+  "name": "MCU Prep: Avengers: Age of Ultron (2015)",
+  "description": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#avengers-age-of-ultron-2015",
+  "groups": [
+    "Avengers: The Origin",
+    "Avengers: Ultron Unbound",
+    "Avengers: Rage of Ultron",
+    "Age of Ultron"
+  ],
+  "rows": [
+    [
+      1,
+      31151,
+      "Avengers: The Origin (2010) #1",
+      0
+    ],
+    [
+      2,
+      31153,
+      "Avengers: The Origin (2010) #2",
+      0
+    ],
+    [
+      3,
+      31155,
+      "Avengers: The Origin (2010) #3",
+      0
+    ],
+    [
+      4,
+      31156,
+      "Avengers: The Origin (2010) #4",
+      0
+    ],
+    [
+      5,
+      31158,
+      "Avengers: The Origin (2010) #5",
+      0
+    ],
+    [
+      6,
+      17831,
+      "West Coast Avengers (1985) #89",
+      1
+    ],
+    [
+      7,
+      17832,
+      "West Coast Avengers (1985) #90",
+      1
+    ],
+    [
+      8,
+      17833,
+      "West Coast Avengers (1985) #91",
+      1
+    ],
+    [
+      9,
+      17846,
+      "West Coast Avengers Annual (1986) #8",
+      1
+    ],
+    [
+      10,
+      55073,
+      "Vision (1994) #1",
+      1
+    ],
+    [
+      11,
+      55074,
+      "Vision (1994) #2",
+      1
+    ],
+    [
+      12,
+      55075,
+      "Vision (1994) #3",
+      1
+    ],
+    [
+      13,
+      55076,
+      "Vision (1994) #4",
+      1
+    ],
+    [
+      14,
+      50076,
+      "Avengers: Rage of Ultron (2015)",
+      2
+    ],
+    [
+      15,
+      47001,
+      "Age of Ultron (2013) #1",
+      3
+    ],
+    [
+      16,
+      47003,
+      "Age of Ultron (2013) #2",
+      3
+    ],
+    [
+      17,
+      37405,
+      "Age of Ultron (2013) #3",
+      3
+    ],
+    [
+      18,
+      37406,
+      "Age of Ultron (2013) #4",
+      3
+    ],
+    [
+      19,
+      37407,
+      "Age of Ultron (2013) #5",
+      3
+    ],
+    [
+      20,
+      45904,
+      "Age of Ultron (2013) #6",
+      3
+    ],
+    [
+      21,
+      45905,
+      "Age of Ultron (2013) #7",
+      3
+    ],
+    [
+      22,
+      45906,
+      "Age of Ultron (2013) #8",
+      3
+    ],
+    [
+      23,
+      45907,
+      "Age of Ultron (2013) #9",
+      3
+    ],
+    [
+      24,
+      45908,
+      "Age of Ultron (2013) #10",
+      3
+    ],
+    [
+      25,
+      47072,
+      "Age of Ultron (2013) #10AI",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 25,
+    "sourceIdentityCount": 25,
+    "includedIssueCount": 25,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "817dbee7dff66bf50b50b11bb127ffd0e5306ff2fed18fd7ea04283e6fa85c2b",
+  "proposalDigest": "e14aa1dc650a57bfd5c199af725d39389622b81da08dfbc258f8a0804edc8c19",
+  "approvalDigest": "2ed191fd091b8406b29412274fae9f023b65fe27aba36c232bff808c37067bc6",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-thor-the-dark-world-2013",
+    "mcu-prep-captain-america-the-winter-soldier-2014",
+    "mcu-prep-ant-man-2015"
+  ],
+  "vectorSha256": "cca1906750e6e482817183d88739f37c3203bfcf59102f97d62f681174dc1d9c",
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-avengers-age-of-ultron-2015.json",
+    "scripts/data/owner-packets/mcu-prep-avengers-age-of-ultron-2015.json",
+    "scripts/data/owner-mappings/mcu-prep-avengers-age-of-ultron-2015.json",
+    "scripts/data/owner-overlaps/mcu-prep-avengers-age-of-ultron-2015.json"
+  ]
+}

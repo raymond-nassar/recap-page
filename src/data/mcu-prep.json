@@ -3,6 +3,11 @@
   "region": "US",
   "seriesDateKind": "premiere",
   "sources": [
+    { "id": "phase-two", "url": "https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe:_Phase_Two", "retrievedAt": "2026-10-09" },
+    { "id": "dark-world-us", "url": "https://www.the-numbers.com/movie/Thor-The-Dark-World", "retrievedAt": "2026-10-09" },
+    { "id": "winter-soldier-us", "url": "https://www.the-numbers.com/movie/Captain-America-The-Winter-Soldier", "retrievedAt": "2026-10-09" },
+    { "id": "age-of-ultron-us", "url": "https://www.the-numbers.com/movie/Avengers-Age-of-Ultron", "retrievedAt": "2026-10-09" },
+    { "id": "ant-man-us", "url": "https://www.the-numbers.com/movie/Ant-Man", "retrievedAt": "2026-10-09" },
     {
       "id": "mcu-films",
       "url": "https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films",
@@ -32,6 +37,8 @@
     { "id": "captain-america-the-first-avenger", "title": "Captain America: The First Avenger", "phase": 1, "format": "movie", "date": "2011-07-22", "status": "released", "sources": ["mcu-films"] },
     { "id": "the-avengers", "title": "The Avengers", "phase": 1, "format": "movie", "date": "2012-05-04", "status": "released", "sources": ["mcu-films"] },
     { "id": "iron-man-3", "title": "Iron Man 3", "phase": 2, "format": "movie", "date": "2013-05-03", "status": "released", "sources": ["mcu-films"] },
+    { "id": "thor-the-dark-world", "title": "Thor: The Dark World", "phase": 2, "format": "movie", "date": "2013-11-08", "status": "released", "sources": ["phase-two", "dark-world-us"] },
+    { "id": "captain-america-the-winter-soldier", "title": "Captain America: The Winter Soldier", "phase": 2, "format": "movie", "date": "2014-04-04", "status": "released", "sources": ["phase-two", "winter-soldier-us"] },
     {
       "id": "guardians-of-the-galaxy",
       "title": "Guardians of the Galaxy",
@@ -40,6 +47,24 @@
       "date": "2014-08-01",
       "status": "released",
       "sources": ["mcu-films"]
+    },
+    {
+      "id": "avengers-age-of-ultron",
+      "title": "Avengers: Age of Ultron",
+      "phase": 2,
+      "format": "movie",
+      "date": "2015-05-01",
+      "status": "released",
+      "sources": ["phase-two", "age-of-ultron-us"]
+    },
+    {
+      "id": "ant-man",
+      "title": "Ant-Man",
+      "phase": 2,
+      "format": "movie",
+      "date": "2015-07-17",
+      "status": "released",
+      "sources": ["phase-two", "ant-man-us"]
     },
     {
       "id": "spider-man-far-from-home",
@@ -221,6 +246,10 @@
     { "id": "mcu-prep-captain-america-the-first-avenger-2011", "releases": ["captain-america-the-first-avenger"] },
     { "id": "mcu-prep-the-avengers-2012", "releases": ["the-avengers"] },
     { "id": "mcu-prep-iron-man-3-2013", "releases": ["iron-man-3"] },
+    { "id": "mcu-prep-thor-the-dark-world-2013", "releases": ["thor-the-dark-world"] },
+    { "id": "mcu-prep-captain-america-the-winter-soldier-2014", "releases": ["captain-america-the-winter-soldier"] },
+    { "id": "mcu-prep-avengers-age-of-ultron-2015", "releases": ["avengers-age-of-ultron"] },
+    { "id": "mcu-prep-ant-man-2015", "releases": ["ant-man"] },
     { "id": "doctor-strange-multiverse-of-madness", "releases": ["doctor-strange-multiverse-of-madness"] },
     { "id": "spider-man-no-way-home", "releases": ["spider-man-no-way-home"] },
     { "id": "marvel-multiverse", "releases": [], "note": "General multiverse reading, not assigned to a single screen release." },

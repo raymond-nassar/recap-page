@@ -1,0 +1,576 @@
+{
+  "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+  "name": "MCU Prep: Captain America: The Winter Soldier (2014)",
+  "description": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T17:20:35.736Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 18,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 34994,
+      "title": "Captain America: Man Out of Time (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/34994/captain_america_man_out_of_time_2010_1",
+      "seriesId": 12288,
+      "seriesName": "Captain America: Man Out of Time (2010 - 2011)",
+      "onSale": "2010-11-03T00:00:00+0000",
+      "mu": "2014-05-01T14:26:16+0000",
+      "digitalId": 17289,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5715479323acb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Man Out of Time"
+    },
+    {
+      "issueId": 36179,
+      "title": "Captain America: Man Out of Time (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/36179/captain_america_man_out_of_time_2010_2",
+      "seriesId": 12288,
+      "seriesName": "Captain America: Man Out of Time (2010 - 2011)",
+      "onSale": "2010-12-15T00:00:00+0000",
+      "mu": "2012-01-27T00:00:00+0000",
+      "digitalId": 18462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57154850c16fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Man Out of Time"
+    },
+    {
+      "issueId": 36175,
+      "title": "Captain America: Man Out of Time (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/36175/captain_america_man_out_of_time_2010_3",
+      "seriesId": 12288,
+      "seriesName": "Captain America: Man Out of Time (2010 - 2011)",
+      "onSale": "2011-01-12T00:00:00+0000",
+      "mu": "2012-01-31T00:00:00+0000",
+      "digitalId": 18875,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/57154938859c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Man Out of Time"
+    },
+    {
+      "issueId": 36371,
+      "title": "Captain America: Man Out of Time (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/36371/captain_america_man_out_of_time_2010_4",
+      "seriesId": 12288,
+      "seriesName": "Captain America: Man Out of Time (2010 - 2011)",
+      "onSale": "2011-02-16T00:00:00+0000",
+      "mu": "2012-01-31T00:00:00+0000",
+      "digitalId": 19299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/571549e9a294d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Carlos Molina Manzanero",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Man Out of Time"
+    },
+    {
+      "issueId": 36177,
+      "title": "Captain America: Man Out of Time (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/36177/captain_america_man_out_of_time_2010_5",
+      "seriesId": 12288,
+      "seriesName": "Captain America: Man Out of Time (2010 - 2011)",
+      "onSale": "2011-03-23T00:00:00+0000",
+      "mu": "2012-01-31T00:00:00+0000",
+      "digitalId": 20147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5cc8a91146086",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Man Out of Time"
+    },
+    {
+      "issueId": 91,
+      "title": "Captain America (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/91/captain_america_2004_1",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2004-11-17T00:00:00+0000",
+      "mu": "2004-11-17T00:00:00+0000",
+      "digitalId": 74,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5728d2ec8b6dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1492,
+      "title": "Captain America (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1492/captain_america_2004_2",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-01-05T00:00:00+0000",
+      "mu": "2005-01-05T00:00:00+0000",
+      "digitalId": 4136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5140ad1091316",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Lark",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1579,
+      "title": "Captain America (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1579/captain_america_2004_3",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-02-09T00:00:00+0000",
+      "mu": "2005-02-09T00:00:00+0000",
+      "digitalId": 5425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5140b0df384eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Lark",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1668,
+      "title": "Captain America (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1668/captain_america_2004_4",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-03-16T00:00:00+0000",
+      "mu": "2005-03-16T00:00:00+0000",
+      "digitalId": 5430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5140b2a6ee8bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Lark",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1764,
+      "title": "Captain America (2004) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/1764/captain_america_2004_5",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-04-27T00:00:00+0000",
+      "mu": "2005-04-27T00:00:00+0000",
+      "digitalId": 5433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5728fbf9df067",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Lark",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1870,
+      "title": "Captain America (2004) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/1870/captain_america_2004_6",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-05-25T00:00:00+0000",
+      "mu": "2005-05-25T00:00:00+0000",
+      "digitalId": 1637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/572903ce72454",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 1978,
+      "title": "Captain America (2004) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/1978/captain_america_2004_7",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-06-22T00:00:00+0000",
+      "mu": "2005-06-22T00:00:00+0000",
+      "digitalId": 1037,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5140b840a1d88",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Paul Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 1"
+    },
+    {
+      "issueId": 2190,
+      "title": "Captain America (2004) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/2190/captain_america_2004_8",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-08-10T00:00:00+0000",
+      "mu": "2005-08-10T00:00:00+0000",
+      "digitalId": 536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5140b932ac375",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 2308,
+      "title": "Captain America (2004) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/2308/captain_america_2004_9",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-08-31T00:00:00+0000",
+      "mu": "2005-08-31T00:00:00+0000",
+      "digitalId": 1641,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5140ba3f5e524",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michael Lark",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 2421,
+      "title": "Captain America (2004) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/2421/captain_america_2004_11",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-10-26T00:00:00+0000",
+      "mu": "2005-10-26T00:00:00+0000",
+      "digitalId": 1601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4d24f03587b72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 2422,
+      "title": "Captain America (2004) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/2422/captain_america_2004_12",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-11-23T00:00:00+0000",
+      "mu": "2005-11-23T00:00:00+0000",
+      "digitalId": 1606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4d24f4f9b16b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Lark",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 3084,
+      "title": "Captain America (2004) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/3084/captain_america_2004_13",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2005-12-21T00:00:00+0000",
+      "mu": "2005-12-21T00:00:00+0000",
+      "digitalId": 1608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/4f75adcd27329",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Perkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 3188,
+      "title": "Captain America (2004) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/3188/captain_america_2004_14",
+      "seriesId": 832,
+      "seriesName": "Captain America (2004 - 2011)",
+      "onSale": "2006-02-01T00:00:00+0000",
+      "mu": "2006-02-01T00:00:00+0000",
+      "digitalId": 5360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/60/4bc60f02bc3bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    }
+  ]
+}

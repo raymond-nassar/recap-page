@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-ant-man-2015",
+  "name": "MCU Prep: Ant-Man (2015)",
+  "description": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
+  "groups": [
+    "Avengers Origins: Ant-Man & the Wasp",
+    "Irredeemable Ant-Man Vol. 1: Low-Life",
+    "Ant-Man Vol. 1: Second-Chance Man",
+    "Astonishing Ant-Man Vol. 2: Small-Time Criminal",
+    "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+  ],
+  "rows": [
+    [
+      1,
+      32680,
+      "Avengers Origins: Ant-Man & the Wasp (2011) #1",
+      0
+    ],
+    [
+      2,
+      5199,
+      "The Irredeemable Ant-Man (2006) #1",
+      1
+    ],
+    [
+      3,
+      5360,
+      "The Irredeemable Ant-Man (2006) #2",
+      1
+    ],
+    [
+      4,
+      5628,
+      "The Irredeemable Ant-Man (2006) #3",
+      1
+    ],
+    [
+      5,
+      5775,
+      "The Irredeemable Ant-Man (2006) #4",
+      1
+    ],
+    [
+      6,
+      5938,
+      "The Irredeemable Ant-Man (2006) #5",
+      1
+    ],
+    [
+      7,
+      6076,
+      "The Irredeemable Ant-Man (2006) #6",
+      1
+    ],
+    [
+      8,
+      51374,
+      "Ant-Man (2015) #1",
+      2
+    ],
+    [
+      9,
+      51382,
+      "Ant-Man (2015) #2",
+      2
+    ],
+    [
+      10,
+      51387,
+      "Ant-Man (2015) #3",
+      2
+    ],
+    [
+      11,
+      51388,
+      "Ant-Man (2015) #4",
+      2
+    ],
+    [
+      12,
+      51389,
+      "Ant-Man (2015) #5",
+      2
+    ],
+    [
+      13,
+      55336,
+      "The Astonishing Ant-Man (2015) #5",
+      3
+    ],
+    [
+      14,
+      55338,
+      "The Astonishing Ant-Man (2015) #6",
+      3
+    ],
+    [
+      15,
+      55339,
+      "The Astonishing Ant-Man (2015) #7",
+      3
+    ],
+    [
+      16,
+      55340,
+      "The Astonishing Ant-Man (2015) #8",
+      3
+    ],
+    [
+      17,
+      55341,
+      "The Astonishing Ant-Man (2015) #9",
+      3
+    ],
+    [
+      18,
+      55342,
+      "The Astonishing Ant-Man (2015) #10",
+      4
+    ],
+    [
+      19,
+      55343,
+      "The Astonishing Ant-Man (2015) #11",
+      4
+    ],
+    [
+      20,
+      55344,
+      "The Astonishing Ant-Man (2015) #12",
+      4
+    ],
+    [
+      21,
+      55345,
+      "The Astonishing Ant-Man (2015) #13",
+      4
+    ],
+    [
+      22,
+      51933,
+      "Guardians Team-Up (2015) #7",
+      4
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 22,
+    "sourceIdentityCount": 22,
+    "includedIssueCount": 22,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "80997a1766e2a5191935cab2028138fea97deacb1da804d8d3375935969db4f3",
+  "proposalDigest": "a173e02dc9e21e8743f0be03ec82bde4bac93676c1f94e40f9fa9013fa897756",
+  "approvalDigest": "f9d4fb356104d0ad5b05e744e4c3f1b7bfd48b51eb960ae167909904a8358674",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-thor-the-dark-world-2013",
+    "mcu-prep-captain-america-the-winter-soldier-2014",
+    "mcu-prep-avengers-age-of-ultron-2015"
+  ],
+  "vectorSha256": "943d7177f237f7c71d9800a5bae9f4c5d5bcf6c78ddfc9d6b0eeef0c69e4c8ad",
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-ant-man-2015.json",
+    "scripts/data/owner-packets/mcu-prep-ant-man-2015.json",
+    "scripts/data/owner-mappings/mcu-prep-ant-man-2015.json",
+    "scripts/data/owner-overlaps/mcu-prep-ant-man-2015.json"
+  ]
+}
