@@ -6,10 +6,12 @@ import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
+  validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
 import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
 import { OWNER_PROVIDER } from '../../scripts/lib/owner-guide.mjs';
+import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs';
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
 import {
@@ -22,10 +24,13 @@ export async function assertOwnerDeliveryContract(contract, {
   root = fileURLToPath(new URL('../..', import.meta.url)),
   contracts = registeredOwnerContracts,
   peerCount = currentReadingCensus.peers,
+  readJson = null,
 } = {}) {
   const text = (name) => readFile(path.join(root, name), 'utf8');
-  const json = async (name) => JSON.parse(await text(name));
+  const json = readJson ?? (async (name) => JSON.parse(await text(name)));
   const { id } = contract;
+  const event = contract.surface === 'modern-timeline';
+  const provider = event ? OWNER_EVENT_PROVIDER : OWNER_PROVIDER;
   const [sourceText, packet, mapping, report, manifest, catalog, markdown] = await Promise.all([
     text(`scripts/data/owner-selections/${id}.json`), json(`scripts/data/owner-packets/${id}.json`),
     json(`scripts/data/owner-mappings/${id}.json`), json(`scripts/data/owner-overlaps/${id}.json`),
@@ -70,8 +75,15 @@ export async function assertOwnerDeliveryContract(contract, {
       .map(({ name, role }) => ({ name, role })));
   }
   assert.equal(payload.description, contract.description);
-  assert.equal(payload.sourceOrigin, OWNER_PROVIDER.sourceOrigin);
+  assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
+  if (event) {
+    const entry = manifest.lists.find((row) => row.id === id);
+    assert.equal(entry.type, 'event');
+    assert.equal(entry.timeline, contract.timeline);
+    assert.equal(payload.sourceSection, contract.sourceSection);
+    assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
+  }
   assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
@@ -79,8 +91,21 @@ export async function assertOwnerDeliveryContract(contract, {
   const library = await loadCurrentOwnerLibrary(id, { root });
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: library.orders });
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
-  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
-  const recordedManifest = { ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)) };
+  const peerIds = contract.peerIds ?? [];
+  assert.equal(new Set(peerIds).size, peerIds.length);
+  assert.ok(!peerIds.includes(id));
+  assert.deepEqual(Object.keys(report.peerDigests).sort(), [...peerIds].sort());
+  const peerMappings = await Promise.all(peerIds.map(async (peerId) => {
+    assert.ok(contracts.some((entry) => entry.id === peerId), 'Selected peers require independent registered contracts.');
+    const peer = await json(`scripts/data/owner-mappings/${peerId}.json`);
+    assert.equal(peer.id, peerId);
+    return peer;
+  }));
+  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId) && !peerIds.includes(row.orderId));
+  const recordedManifest = {
+    ...library.manifest,
+    lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
+  };
   const currentLibraryDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
@@ -88,14 +113,31 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.equal(current.comparisonCount, peerCount);
   assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest,
-    expectedOrderIds: recordedOrders.map((row) => row.orderId), packetValidation: { provider: OWNER_PROVIDER },
+    peerMappings,
+    expectedOrderIds: [...recordedOrders.map((row) => row.orderId), ...peerIds], packetValidation: { provider },
   });
   for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
     const laterContract = contracts.find((entry) => entry.id === later.orderId);
     assert.ok(laterContract, 'Unregistered later peers require a new bounded relationship review.');
     const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
+    const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
+    validateMappingDigest(laterMapping);
+    validateReportDigest(laterReport);
+    validateApprovalDigest(laterMapping.relationshipReview, later.orderId);
+    assert.equal(laterMapping.reviewStatus, 'approved');
+    assert.equal(laterMapping.relationshipReview.approvalDigest, laterContract.approvalDigest);
+    assert.equal(laterMapping.relationshipReview.reportDigest, laterReport.reportDigest);
     const reciprocal = laterReport.comparisons.find((row) => row.orderId === id);
+    const authority = laterMapping.relationshipReview.dispositions.find((row) => row.orderId === id);
     assert.ok(reciprocal, 'New owner authority must include the complete earlier library.');
+    assert.ok(authority, 'New owner authority needs an explicit reciprocal disposition.');
+    assert.equal(authority.decision, 'approved');
+    assert.equal(authority.relationship, reciprocal.relationship);
+    assert.equal(authority.sharedCount, reciprocal.sharedCount);
+    assert.deepEqual(authority.sharedIds, reciprocal.sharedIds);
+    if (later.relationship !== 'none') {
+      assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
+    }
     const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
     assert.equal(later.relationship, inverse[reciprocal.relationship]);
     assert.equal(later.sharedCount, reciprocal.sharedCount);

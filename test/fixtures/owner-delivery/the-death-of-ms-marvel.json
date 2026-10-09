@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "the-death-of-ms-marvel",
+  "surface": "modern-timeline",
+  "name": "The Death of Ms. Marvel",
+  "description": "Follow the six-part Amazing Spider-Man story leading to Kamala Khan's death, then the Fallen Friend tribute one-shot.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "The Death of Ms. Marvel",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      102189,
+      "The Amazing Spider-Man (2022) #21",
+      null
+    ],
+    [
+      2,
+      102190,
+      "The Amazing Spider-Man (2022) #22",
+      null
+    ],
+    [
+      3,
+      102191,
+      "The Amazing Spider-Man (2022) #23",
+      null
+    ],
+    [
+      4,
+      102192,
+      "The Amazing Spider-Man (2022) #24",
+      null
+    ],
+    [
+      5,
+      102193,
+      "The Amazing Spider-Man (2022) #25",
+      null
+    ],
+    [
+      6,
+      102194,
+      "The Amazing Spider-Man (2022) #26",
+      null
+    ],
+    [
+      7,
+      110195,
+      "Fallen Friend (2023) #1",
+      null
+    ]
+  ],
+  "annotations": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    "Ms. Marvel dies in this issue",
+    "\"Fallen Friend: The Death of Ms. Marvel\" - tribute one-shot"
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 7,
+    "sourceIdentityCount": 7,
+    "includedIssueCount": 7,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "1dadd9e0b51332deca1fd46f0ec076d7efa72aabb124a19cd8bbd132597e2ffc",
+  "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+  "approvalDigest": "39da7a32d79a018b7cc8936d15b75afbb286a2887fd1ce43388dae4ac5e59fad",
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "timeline": 2023,
+  "sameYearOrder": [
+    "the-death-of-ms-marvel",
+    "contest-of-chaos",
+    "gang-war"
+  ],
+  "peerIds": [
+    "contest-of-chaos",
+    "gang-war"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/the-death-of-ms-marvel.json",
+    "scripts/data/owner-packets/the-death-of-ms-marvel.json",
+    "scripts/data/owner-mappings/the-death-of-ms-marvel.json",
+    "scripts/data/owner-overlaps/the-death-of-ms-marvel.json"
+  ],
+  "vectorSha256": "35e4df4e24b0df864cfc9e93ca78ad9906e6ad89128dbe34b494b7b1df44ea3c"
+}

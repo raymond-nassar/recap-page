@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "id": "contest-of-chaos",
+  "surface": "modern-timeline",
+  "name": "Contest of Chaos",
+  "description": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Contest of Chaos",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      109670,
+      "Scarlet Witch Annual (2023) #1",
+      null
+    ],
+    [
+      2,
+      110287,
+      "Spider-Man Annual (2023) #1",
+      null
+    ],
+    [
+      3,
+      110275,
+      "Iron Man Annual (2023) #1",
+      null
+    ],
+    [
+      4,
+      110270,
+      "Fantastic Four Annual (2023) #1",
+      null
+    ],
+    [
+      5,
+      110285,
+      "Moon Knight Annual (2023) #1",
+      null
+    ],
+    [
+      6,
+      110286,
+      "Spider-Gwen Annual (2023) #1",
+      null
+    ],
+    [
+      7,
+      110306,
+      "Venom Annual (2023) #1",
+      null
+    ],
+    [
+      8,
+      110311,
+      "X-Men Annual (2023) #1",
+      null
+    ],
+    [
+      9,
+      110269,
+      "Avengers Annual (2023) #1",
+      null
+    ]
+  ],
+  "annotations": [
+    "prelude: Agatha vs. Wanda",
+    "Spider-Man vs. Wolverine",
+    "Iron Man vs. Storm",
+    "Ghost Rider vs. Human Torch",
+    "Moon Knight vs. Taegukgi",
+    "Ghost-Spider vs. White Fox",
+    "Venom vs. Deadpool",
+    "Captain Marvel vs. Cyclops",
+    "finale"
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 9,
+    "sourceIdentityCount": 9,
+    "includedIssueCount": 9,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "5e4e34baf228dc0a3bd61198535d29d26e8930c00309ad4ed8888f8e70229628",
+  "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+  "approvalDigest": "366231c32a102433f973c08781054f7f9cfe7e30e2218af6d3788b18eaa01f28",
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "timeline": 2023,
+  "sameYearOrder": [
+    "the-death-of-ms-marvel",
+    "contest-of-chaos",
+    "gang-war"
+  ],
+  "peerIds": [
+    "the-death-of-ms-marvel",
+    "gang-war"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/contest-of-chaos.json",
+    "scripts/data/owner-packets/contest-of-chaos.json",
+    "scripts/data/owner-mappings/contest-of-chaos.json",
+    "scripts/data/owner-overlaps/contest-of-chaos.json"
+  ],
+  "vectorSha256": "a5bc36445edade26663f44e178c654349e33912c8cb19a6d69552bf33bec6b3d"
+}

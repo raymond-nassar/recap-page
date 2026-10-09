@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "contest-of-chaos",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Contest of Chaos",
+  "sourceRetrievedAt": "2026-10-08",
+  "readerDescription": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
+  "inputReceipt": {
+    "sourceKind": "pasted-message-snapshot",
+    "name": "contest-of-chaos.md",
+    "snapshotSha256": "72feac13a789b520e9683cd309507e4f1670fcf4603aacb239ec505c9a8bd3e4",
+    "snapshotBytes": 1863,
+    "originalFileSha256": null,
+    "originalFileBytes": null,
+    "handoffAt": null
+  },
+  "sourceIssueCount": 9,
+  "publishedIssueCount": 9,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "suppliedIssueId": 109670,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109670/scarlet_witch_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "prelude: Agatha vs. Wanda"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Spider-Man Annual (2023) #1",
+      "suppliedIssueId": 110287,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110287/spider-man_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Spider-Man vs. Wolverine"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Iron Man Annual (2023) #1",
+      "suppliedIssueId": 110275,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110275/iron_man_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Iron Man vs. Storm"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Fantastic Four Annual (2023) #1",
+      "suppliedIssueId": 110270,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110270/fantastic_four_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Ghost Rider vs. Human Torch"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Moon Knight Annual (2023) #1",
+      "suppliedIssueId": 110285,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110285/moon_knight_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Moon Knight vs. Taegukgi"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Spider-Gwen Annual (2023) #1",
+      "suppliedIssueId": 110286,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110286/spider-gwen_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Ghost-Spider vs. White Fox"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Venom Annual (2023) #1",
+      "suppliedIssueId": 110306,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110306/venom_annual_1_chaos_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Venom vs. Deadpool"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "X-Men Annual (2023) #1",
+      "suppliedIssueId": 110311,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110311/x-men_annual_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "Captain Marvel vs. Cyclops"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Avengers Annual (2023) #1",
+      "suppliedIssueId": 110269,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110269/avengers_annual_chaos_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "finale"
+    }
+  ],
+  "sourceGaps": [],
+  "repeatedSourceReferences": [],
+  "factualContext": [
+    "The supplied Contest of Chaos TPB note is collection context, not a tenth selected comic."
+  ],
+  "projectionBoundary": "Factual identities, order, headings and short annotations only. Supplied narrative overviews and conversational text are not reproduced. Typographic dashes in short annotations are normalized to ASCII.",
+  "chronology": {
+    "timeline": 2023,
+    "rationale": "The Scarlet Witch prelude and eight interconnected annuals form the 2023 summer event. Place after the Death of Ms. Marvel selection and before Gang War within the 2023 group.",
+    "sameYearOrder": [
+      "the-death-of-ms-marvel",
+      "contest-of-chaos",
+      "gang-war"
+    ]
+  },
+  "evidenceSources": [
+    {
+      "kind": "factual-event-reference",
+      "url": "https://aiptcomics.com/2023/05/18/marvels-contest-of-chaos-2023/",
+      "retrievedAt": "2026-10-08"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "id": "the-death-of-ms-marvel",
+  "inventoryId": "the-death-of-ms-marvel",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "The Death of Ms. Marvel",
+  "sourceRetrievedAt": "2026-10-08",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "1dadd9e0b51332deca1fd46f0ec076d7efa72aabb124a19cd8bbd132597e2ffc",
+  "sourceIssueBearingBlocksSha256": "9f0f5aa84942c817a66dc09f14904b3e37a3e99ae06d0b2bf1dd4609d55e797f",
+  "sourceBoundary": "Every supplied issue-bearing position, in supplied order; contextual collection notes do not add issues.",
+  "excludedSourceReferences": [],
+  "expectedCount": 7,
+  "proposedManifest": {
+    "id": "the-death-of-ms-marvel",
+    "name": "The Death of Ms. Marvel",
+    "description": "Follow the six-part Amazing Spider-Man story leading to Kamala Khan's death, then the Fallen Friend tribute one-shot.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "the-death-of-ms-marvel.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/759",
+    "sourceSection": "The Death of Ms. Marvel",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "the_death_of_ms_marvel.json",
+    "characters": [
+      "Spider-Man",
+      "Ms. Marvel",
+      "Mary Jane Watson"
+    ],
+    "keywords": [
+      "Kamala Khan",
+      "Fallen Friend",
+      "Zeb Wells",
+      "Death of Ms. Marvel"
+    ],
+    "expect": 7,
+    "timeline": 2023,
+    "coverIssueId": 110195
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #21",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "21",
+      "candidateIssueId": 102189,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "22",
+      "candidateIssueId": 102190,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "23",
+      "candidateIssueId": 102191,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #24",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "24",
+      "candidateIssueId": 102192,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "25",
+      "candidateIssueId": 102193,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "26",
+      "candidateIssueId": 102194,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Fallen Friend (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fallen Friend",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110195,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37668
+    }
+  ],
+  "packetDigest": "ac734c1026fc215b7c8c1c58c73ba3feaa8cda868bdccb028a75a5206f1b6b98",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+    "rationale": "Reviewed the factual public projections against the independently receipt-verified pasted selections and genuine metadata receipts. All 47 exact supplied IDs, titles, issue numbers and order match. Gang War retains 6/24/1 sections; Contest retains all nine matchup/prelude/finale annotations; Death retains both annotations and explicitly selected Fallen Friend 110195 without settling the unrelated broad-guide edition ambiguity. There are no gaps, repeats, implicit TPB expansions or substituted identities. Owner selection credit, selected depth, null source license and factual-only projection accurately describe this delivery.",
+    "reviewedAt": "2026-10-09T01:58:48.837Z",
+    "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+    "insertionReview": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+      "rationale": "Approve all three finite events/storylines with timeline start 2023. The factual sources establish the spring death/tribute storyline, summer Contest saga and late-year Gang War crossover. Approve editorial same-year order The Death of Ms. Marvel, Contest of Chaos, Gang War before the existing 2024 Fall/Rise event. This does not claim an exact in-universe total chronology, alter the supplied within-list order or classify a broad character run as an event.",
+      "reviewedAt": "2026-10-09T01:58:48.837Z",
+      "insertionAnchor": {
+        "beforeId": "fall-house-x-rise-powers-x"
+      }
+    }
+  }
+}

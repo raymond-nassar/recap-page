@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "id": "gang-war",
+  "inventoryId": "gang-war",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Gang War",
+  "sourceRetrievedAt": "2026-10-08",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "ff54a878f683d0af1cb65ff4c97d10b33474d815221f9d74eb8168bb7086e579",
+  "sourceIssueBearingBlocksSha256": "a5e88063a92652afd7870a545ff31c366964aad1308ef0e6628d40ed04462384",
+  "sourceBoundary": "Every supplied issue-bearing position, in supplied order; contextual collection notes do not add issues.",
+  "excludedSourceReferences": [],
+  "expectedCount": 31,
+  "proposedManifest": {
+    "id": "gang-war",
+    "name": "Gang War",
+    "description": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "gang-war.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/759",
+    "sourceSection": "Gang War",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "gang_war.json",
+    "characters": [
+      "Spider-Man",
+      "Miles Morales",
+      "Luke Cage",
+      "Daredevil",
+      "Spider-Woman",
+      "Shang-Chi",
+      "Jackpot"
+    ],
+    "keywords": [
+      "Gang War",
+      "First Strike",
+      "Tombstone",
+      "New York"
+    ],
+    "expect": 31,
+    "timeline": 2023,
+    "coverIssueId": 112117
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #37",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "37",
+      "candidateIssueId": 107957,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #38",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "38",
+      "candidateIssueId": 107958,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #12",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "12",
+      "candidateIssueId": 103619,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #1",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "Luke Cage: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 112218,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38657
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Spider-Woman (2023) #1",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 112294,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38661
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man: Gang War First Strike (2023) #1",
+      "sourceRangeReference": "Prelude: First Strike",
+      "normalizedSeriesTitle": "Amazing Spider-Man: Gang War First Strike",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 112117,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38646
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #39",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "39",
+      "candidateIssueId": 109626,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Daredevil: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 112126,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38648
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #13",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "13",
+      "candidateIssueId": 109738,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #2",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Luke Cage: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "candidateIssueId": 112219,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38657
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #40",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "40",
+      "candidateIssueId": 109627,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #2",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Daredevil: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "candidateIssueId": 112127,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38648
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #14",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "14",
+      "candidateIssueId": 109739,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Deadly Hands Of Kung Fu: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 112696,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38750
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Spider-Woman (2023) #2",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "candidateIssueId": 112295,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38661
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #3",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Luke Cage: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "candidateIssueId": 112220,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38657
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #41",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "41",
+      "candidateIssueId": 109628,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #15",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "15",
+      "candidateIssueId": 109740,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #42",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "42",
+      "candidateIssueId": 109629,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Woman (2023) #3",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "candidateIssueId": 112296,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38661
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Spider-Woman (2023) #4",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "candidateIssueId": 112297,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38661
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Jackpot (2024) #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Jackpot",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "candidateIssueId": 113825,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 39076
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #2",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Deadly Hands Of Kung Fu: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "candidateIssueId": 112699,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38750
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #3",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Deadly Hands Of Kung Fu: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "candidateIssueId": 112700,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38750
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #3",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Daredevil: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "candidateIssueId": 112128,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38648
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #16",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "16",
+      "candidateIssueId": 109741,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #43",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "43",
+      "candidateIssueId": 109630,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #4",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Luke Cage: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "candidateIssueId": 112221,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38657
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #44",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "44",
+      "candidateIssueId": 109631,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 32866
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #4",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "Daredevil: Gang War",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "candidateIssueId": 112129,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38648
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #17",
+      "sourceRangeReference": "Aftermath",
+      "normalizedSeriesTitle": "Miles Morales: Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "17",
+      "candidateIssueId": 112070,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 35645
+    }
+  ],
+  "packetDigest": "2cab6b086e3f6f875ff05bba9fbf125694effe9c22b3ab917536acf0adc709e6",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+    "rationale": "Reviewed the factual public projections against the independently receipt-verified pasted selections and genuine metadata receipts. All 47 exact supplied IDs, titles, issue numbers and order match. Gang War retains 6/24/1 sections; Contest retains all nine matchup/prelude/finale annotations; Death retains both annotations and explicitly selected Fallen Friend 110195 without settling the unrelated broad-guide edition ambiguity. There are no gaps, repeats, implicit TPB expansions or substituted identities. Owner selection credit, selected depth, null source license and factual-only projection accurately describe this delivery.",
+    "reviewedAt": "2026-10-09T01:58:48.837Z",
+    "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+    "insertionReview": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+      "rationale": "Approve all three finite events/storylines with timeline start 2023. The factual sources establish the spring death/tribute storyline, summer Contest saga and late-year Gang War crossover. Approve editorial same-year order The Death of Ms. Marvel, Contest of Chaos, Gang War before the existing 2024 Fall/Rise event. This does not claim an exact in-universe total chronology, alter the supplied within-list order or classify a broad character run as an event.",
+      "reviewedAt": "2026-10-09T01:58:48.837Z",
+      "insertionAnchor": {
+        "beforeId": "fall-house-x-rise-powers-x"
+      }
+    }
+  }
+}

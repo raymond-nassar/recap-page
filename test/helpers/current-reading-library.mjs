@@ -14,6 +14,7 @@ export const registeredOwnerIds = registrations.map(({ id }) => id);
 export const registeredOwnerContracts = registrations.map((entry) => {
   const contract = JSON.parse(readFileSync(new URL(`../../${entry.contract}`, import.meta.url), 'utf8'));
   assert.equal(contract.id, entry.id);
+  assert.equal(contract.surface, entry.surface, 'A delivery contract must retain its registered surface.');
   assert.ok(Array.isArray(contract.rows) && contract.rows.length > 0);
   assert.equal(new Set(contract.rows.map((row) => row[1])).size, contract.rows.length);
   assert.equal(contract.vectorSha256,
@@ -21,14 +22,18 @@ export const registeredOwnerContracts = registrations.map((entry) => {
   return contract;
 });
 const addedRows = registeredOwnerContracts.reduce((total, contract) => total + contract.rows.length, 0);
+const mcuContracts = registeredOwnerContracts.filter((contract) => contract.surface !== 'modern-timeline');
+export const registeredEventContracts = registeredOwnerContracts.filter((contract) => contract.surface === 'modern-timeline');
 export const currentReadingCensus = Object.freeze({
   sources: baseline.sourceIds.length + registrations.length,
   visible: baseline.catalogIds.length + registrations.length,
   allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + registrations.length,
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + registrations.length - 1,
-  mcu: baseline.mcuEntries.length + registrations.length,
+  mcu: baseline.mcuEntries.length + mcuContracts.length,
   // The qualified UX pool retains 46 non-MCU readings; new MCU guides share its canonical shelf.
-  storylines: 46 + baseline.mcuEntries.length + registrations.length,
+  storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
+  modernTimeline: 148 + registeredEventContracts.length,
+  modernTimelineStories: 144 + registeredEventContracts.length,
   complete: baseline.payloadCounts.complete + addedRows,
   totalItems: baseline.payloadCounts.total + addedRows,
   itemFiles: 297 + registrations.length,
@@ -62,7 +67,7 @@ export function legacyOwnerPeers(entries) {
 }
 
 export function expectedMcuTitles() {
-  const names = new Map([...baseline.mcuEntries, ...registeredOwnerContracts].map(({ id, name }) => [id, name]));
+  const names = new Map([...baseline.mcuEntries, ...mcuContracts].map(({ id, name }) => [id, name]));
   return expectedRosters(registeredOwnerContracts).expectedVisible.filter((id) => names.has(id)).map((id) => names.get(id));
 }
 

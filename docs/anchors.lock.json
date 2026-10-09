@@ -1924,14 +1924,14 @@
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:6-35|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:6-35",
-    "fp": "3b9b431354916ca5",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:6-40|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:6-40",
+    "fp": "7e473b52f7bfceff",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:93-102|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:93-102",
-    "fp": "bc71d7d4a9f195b5",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:119-144|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:119-144",
+    "fp": "73bb6210d7b25942",
     "head": "for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {"
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:379-400|0": {
@@ -1959,13 +1959,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11371-11496|0": {
-    "anchor": "src/data/catalog.json:11371-11496",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:11489-11614|0": {
+    "anchor": "src/data/catalog.json:11489-11614",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7277-7316|0": {
-    "anchor": "src/data/curated-lists.json:7277-7316",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7374-7413|0": {
+    "anchor": "src/data/curated-lists.json:7374-7413",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },

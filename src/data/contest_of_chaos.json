@@ -1,0 +1,356 @@
+{
+  "id": "contest-of-chaos",
+  "name": "Contest of Chaos",
+  "description": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Contest of Chaos",
+  "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T02:03:10.418Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 9,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 109670,
+      "title": "Scarlet Witch Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/109670/scarlet_witch_annual_2023_1",
+      "seriesId": 37548,
+      "seriesName": "Scarlet Witch Annual (2023)",
+      "onSale": "2023-06-21T00:00:00+0000",
+      "mu": "2023-06-02T15:56:00+0000",
+      "digitalId": 62781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/64873590edbd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Nieto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110287,
+      "title": "Spider-Man Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110287/spider-man_annual_2023_1",
+      "seriesId": 37695,
+      "seriesName": "Spider-Man Annual (2023)",
+      "onSale": "2023-08-09T00:00:00+0000",
+      "mu": "2023-07-11T09:54:00+0000",
+      "digitalId": 63181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/64d6451f90980",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110275,
+      "title": "Iron Man Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110275/iron_man_annual_2023_1",
+      "seriesId": 37692,
+      "seriesName": "Iron Man Annual (2023)",
+      "onSale": "2023-08-16T00:00:00+0000",
+      "mu": "2023-07-27T09:38:00+0000",
+      "digitalId": 63163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/64ecae90cce3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Cutler",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mobili",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Loo",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Renee Williams",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110270,
+      "title": "Fantastic Four Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110270/fantastic_four_annual_2023_1",
+      "seriesId": 37690,
+      "seriesName": "Fantastic Four Annual (2023)",
+      "onSale": "2023-08-23T00:00:00+0000",
+      "mu": "2023-08-14T08:31:00+0000",
+      "digitalId": 63154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/64ecae14ce143",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alan Robinson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Manna",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Gorman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110285,
+      "title": "Moon Knight Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110285/moon_knight_annual_2023_1",
+      "seriesId": 38652,
+      "seriesName": "Moon Knight Annual (2023)",
+      "onSale": "2023-08-30T00:00:00+0000",
+      "mu": "2023-08-29T09:38:00+0000",
+      "digitalId": 63172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/65299170d43c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110286,
+      "title": "Spider-Gwen Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110286/spider-gwen_annual_2023_1",
+      "seriesId": 37694,
+      "seriesName": "Spider-Gwen Annual (2023)",
+      "onSale": "2023-09-06T00:00:00+0000",
+      "mu": "2023-08-29T09:42:00+0000",
+      "digitalId": 63680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/6529911ad16b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marika Cresta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "R1c0",
+          "role": "penciler"
+        },
+        {
+          "name": "Karla Pacheco",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110306,
+      "title": "Venom Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110306/venom_annual_2023_1",
+      "seriesId": 37714,
+      "seriesName": "Venom Annual (2023)",
+      "onSale": "2023-09-13T00:00:00+0000",
+      "mu": "2023-08-30T09:36:00+0000",
+      "digitalId": 63697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/652990bc2bc94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Elisabetta D'AMICO",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Alyssa Wong",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110311,
+      "title": "X-Men Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110311/x-men_annual_2023_1",
+      "seriesId": 38831,
+      "seriesName": "X-Men Annual (2023)",
+      "onSale": "2023-09-20T00:00:00+0000",
+      "mu": "2023-09-07T10:31:00+0000",
+      "digitalId": 63703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/65299060dd42d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Miracolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Landini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Allor",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 110269,
+      "title": "Avengers Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/110269/avengers_annual_2023_1",
+      "seriesId": 38734,
+      "seriesName": "Avengers Annual (2023)",
+      "onSale": "2023-09-27T00:00:00+0000",
+      "mu": "2023-09-14T13:12:00+0000",
+      "digitalId": 63646,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/652990595bb69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Phillips",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

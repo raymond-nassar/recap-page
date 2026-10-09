@@ -5183,6 +5183,8 @@ const SCENARIOS = [
     id: 'modern-timeline-actual-data',
     title: 'the chosen 1998 timeline and setup guide stay distinct on actual data',
     async run(page, t) {
+      const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
+      const timelineCount = currentReadingCensus.modernTimeline;
       const externalRequests = [];
       const browserErrors = [];
       page.on('console', (message) => {
@@ -5215,10 +5217,10 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home omits Setup guidance and both gateways count 148 Reading Lists',
+      t.check(`Home omits Setup guidance and both gateways count ${timelineCount} Reading Lists`,
         !home.recommendation
-        && home.homeCount === '148 Reading Lists'
-        && browseCount === '148 Reading Lists',
+        && home.homeCount === `${timelineCount} Reading Lists`
+        && browseCount === `${timelineCount} Reading Lists`,
         JSON.stringify({ ...home, browseCount }));
       await open(page, '/?catalog=actual#/home');
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
@@ -5316,8 +5318,8 @@ const SCENARIOS = [
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
-      t.check('148 selected lists render as 148 distinct cards beginning with the owner chapters',
-        timeline.cards === 148
+      t.check(`${timelineCount} selected lists render as distinct cards beginning with the owner chapters`,
+        timeline.cards === timelineCount
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
           { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
@@ -5443,7 +5445,7 @@ const SCENARIOS = [
         emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
@@ -5460,7 +5462,7 @@ const SCENARIOS = [
         && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
       await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
 
       await page.setViewport({ width: 320, height: 900 });
       const denseYear = await page.evaluate(() => {
@@ -5588,7 +5590,7 @@ const SCENARIOS = [
         )),
         JSON.stringify(representativeResults));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
 
       const excluded = [
         ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
@@ -19338,7 +19340,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 13, 'fall-house-x-rise-powers-x'],
+      ['fresh-start', 13, 'king-in-black'], ['current', 16, 'fall-house-x-rise-powers-x'],
       ['early-modern', 16, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);

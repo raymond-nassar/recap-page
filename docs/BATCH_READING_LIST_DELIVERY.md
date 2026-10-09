@@ -128,16 +128,17 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. Today, `test/helpers/current-reading-library.mjs:6-35` pins an immutable
-baseline and extends its census through owner registrations counted as MCU entries. Later-peer
-checks in `test/helpers/owner-delivery-contract.mjs:93-102` expect registered owner contracts and
-reciprocal reports.
+the actual delivery plan. `test/helpers/current-reading-library.mjs:6-40` retains the immutable
+baseline and counts explicitly registered Modern Timeline events separately from MCU additions.
+Later-peer checks in `test/helpers/owner-delivery-contract.mjs:119-144` require registered
+contracts, current approval evidence and reciprocal dispositions.
 
-A new non-MCU batch therefore is not universally data-only. Agree the bounded compatibility edits
-needed for the actual selected lists before authoring. Do not register events as MCU, rewrite the
-baseline, re-sign old approvals or weaken assertions to pass. Keep that compatibility work with
-its owning delivery or approved prerequisite. If no correct bounded path is established, stop
-the affected delivery and record the blocker. This runbook does not implement that future path.
+For an owner event, declare `surface: "modern-timeline"` in its owner-delivery registration and
+independent contract; omission retains the MCU default. Use the reviewed local-checklist route,
+not the MCU author commands. Selected peer mappings must be frozen after source review and
+passed explicitly to the relationship validator. Renew exact-byte preflight after each serial
+emission, even when the ordinary-library digest excludes unchanged selected peers. Never rewrite
+the baseline, re-sign old approvals, relabel events as MCU or weaken assertions to pass.
 
 ## Prepare exact rows and reusable facts
 

@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "id": "gang-war",
+  "surface": "modern-timeline",
+  "name": "Gang War",
+  "description": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Gang War",
+  "groups": [
+    "Prelude: First Strike",
+    "Main Event",
+    "Aftermath"
+  ],
+  "rows": [
+    [
+      1,
+      107957,
+      "The Amazing Spider-Man (2022) #37",
+      0
+    ],
+    [
+      2,
+      107958,
+      "The Amazing Spider-Man (2022) #38",
+      0
+    ],
+    [
+      3,
+      103619,
+      "Miles Morales: Spider-Man (2022) #12",
+      0
+    ],
+    [
+      4,
+      112218,
+      "Luke Cage: Gang War (2023) #1",
+      0
+    ],
+    [
+      5,
+      112294,
+      "Spider-Woman (2023) #1",
+      0
+    ],
+    [
+      6,
+      112117,
+      "Amazing Spider-Man: Gang War First Strike (2023) #1",
+      0
+    ],
+    [
+      7,
+      109626,
+      "The Amazing Spider-Man (2022) #39",
+      1
+    ],
+    [
+      8,
+      112126,
+      "Daredevil: Gang War (2023) #1",
+      1
+    ],
+    [
+      9,
+      109738,
+      "Miles Morales: Spider-Man (2022) #13",
+      1
+    ],
+    [
+      10,
+      112219,
+      "Luke Cage: Gang War (2023) #2",
+      1
+    ],
+    [
+      11,
+      109627,
+      "The Amazing Spider-Man (2022) #40",
+      1
+    ],
+    [
+      12,
+      112127,
+      "Daredevil: Gang War (2023) #2",
+      1
+    ],
+    [
+      13,
+      109739,
+      "Miles Morales: Spider-Man (2022) #14",
+      1
+    ],
+    [
+      14,
+      112696,
+      "Deadly Hands of Kung Fu: Gang War (2023) #1",
+      1
+    ],
+    [
+      15,
+      112295,
+      "Spider-Woman (2023) #2",
+      1
+    ],
+    [
+      16,
+      112220,
+      "Luke Cage: Gang War (2023) #3",
+      1
+    ],
+    [
+      17,
+      109628,
+      "The Amazing Spider-Man (2022) #41",
+      1
+    ],
+    [
+      18,
+      109740,
+      "Miles Morales: Spider-Man (2022) #15",
+      1
+    ],
+    [
+      19,
+      109629,
+      "The Amazing Spider-Man (2022) #42",
+      1
+    ],
+    [
+      20,
+      112296,
+      "Spider-Woman (2023) #3",
+      1
+    ],
+    [
+      21,
+      112297,
+      "Spider-Woman (2023) #4",
+      1
+    ],
+    [
+      22,
+      113825,
+      "Jackpot (2024) #1",
+      1
+    ],
+    [
+      23,
+      112699,
+      "Deadly Hands of Kung Fu: Gang War (2023) #2",
+      1
+    ],
+    [
+      24,
+      112700,
+      "Deadly Hands of Kung Fu: Gang War (2023) #3",
+      1
+    ],
+    [
+      25,
+      112128,
+      "Daredevil: Gang War (2023) #3",
+      1
+    ],
+    [
+      26,
+      109741,
+      "Miles Morales: Spider-Man (2022) #16",
+      1
+    ],
+    [
+      27,
+      109630,
+      "The Amazing Spider-Man (2022) #43",
+      1
+    ],
+    [
+      28,
+      112221,
+      "Luke Cage: Gang War (2023) #4",
+      1
+    ],
+    [
+      29,
+      109631,
+      "The Amazing Spider-Man (2022) #44",
+      1
+    ],
+    [
+      30,
+      112129,
+      "Daredevil: Gang War (2023) #4",
+      1
+    ],
+    [
+      31,
+      112070,
+      "Miles Morales: Spider-Man (2022) #17",
+      2
+    ]
+  ],
+  "annotations": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 31,
+    "sourceIdentityCount": 31,
+    "includedIssueCount": 31,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "ff54a878f683d0af1cb65ff4c97d10b33474d815221f9d74eb8168bb7086e579",
+  "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+  "approvalDigest": "ae8cd92891e5d52ece89fb51fde51bdc75393bd82d6b0c0781ded21f096f9ebb",
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "timeline": 2023,
+  "sameYearOrder": [
+    "the-death-of-ms-marvel",
+    "contest-of-chaos",
+    "gang-war"
+  ],
+  "peerIds": [
+    "the-death-of-ms-marvel",
+    "contest-of-chaos"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/gang-war.json",
+    "scripts/data/owner-packets/gang-war.json",
+    "scripts/data/owner-mappings/gang-war.json",
+    "scripts/data/owner-overlaps/gang-war.json"
+  ],
+  "vectorSha256": "2bfad41f7eb1e2a318261286c1bd15a4edcc09866c8cee0bc5ebc448dba66d04"
+}

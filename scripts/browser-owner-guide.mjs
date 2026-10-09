@@ -39,6 +39,9 @@ export function ownerPresentation(expected) {
 }
 
 export function ownerGuideScenario(contract) {
+  const event = contract.surface === 'modern-timeline';
+  const category = event ? 'timeline' : 'marvel-on-screen';
+  const results = event ? '#catalog-results' : '#marvel-on-screen-results';
   const catalog = json('../src/data/catalog.json');
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
@@ -130,17 +133,17 @@ export function ownerGuideScenario(contract) {
         if (!localStorage.getItem(historyKey)) localStorage.setItem(historyKey, savedHistory);
         window.__mrtBlockExternal = true;
       }, KEY, seed, LIST_HISTORY_KEY, history);
-      const selector = `#marvel-on-screen-results [data-story="list:${contract.id}"]`;
+      const selector = `${results} [data-story="list:${contract.id}"]`;
       for (const width of [1280, 360]) {
         await page.setViewport({ width, height: 900 });
         await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
         await page.waitForSelector('#home-primary-paths .home-path');
-        await page.$eval('#home-more-paths', (node) => { node.open = true; });
-        await click(page, '#view-home [data-category="marvel-on-screen"]');
+        if (!event) await page.$eval('#home-more-paths', (node) => { node.open = true; });
+        await click(page, `#view-home [data-category="${category}"]`);
         await page.waitForSelector(selector);
         t.check(`Home exposes the accepted card once at ${width}px`, await page.$$eval(selector, (nodes) => nodes.length) === 1);
         await click(page, '.ri[data-view="browse"]');
-        await click(page, '#view-browse [data-category="marvel-on-screen"]');
+        await click(page, `#view-browse [data-category="${category}"]`);
         await page.waitForSelector(selector);
         const cardFacts = await page.$eval(selector, (node, url) => ({
           name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -148,6 +151,17 @@ export function ownerGuideScenario(contract) {
         }), contract.sourceUrl);
         t.check(`Browse retains the independent name and owner source at ${width}px`,
           cardFacts.name === contract.name && cardFacts.source === contract.sourceUrl, JSON.stringify(cardFacts));
+        if (event) {
+          const placement = await page.$$eval('#catalog-results .catalog-card', (nodes, year) => ({
+            sameYear: nodes.filter((node) => Number(node.dataset.year) === year)
+              .map((node) => node.dataset.story.replace(/^list:/, '')),
+            all: nodes.map((node) => node.dataset.story.replace(/^list:/, '')),
+          }), contract.timeline);
+          t.check(`Modern Timeline keeps the approved year and complete same-year sequence at ${width}px`,
+            isDeepStrictEqual(placement.sameYear, contract.sameYearOrder)
+            && contract.sameYearOrder.every((id) => placement.all.indexOf(id)
+              < placement.all.indexOf(contract.insertionAnchor.beforeId)), JSON.stringify(placement));
+        }
         const before = await readSaved(page);
         await click(page, `${selector} [data-act="preview"]`);
         await page.waitForFunction((count) =>
