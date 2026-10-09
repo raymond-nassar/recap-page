@@ -4,6 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
+export const OWNER_EVENT_PROVIDER = Object.freeze({
+  id: 'owner-authored', hosts: ['github.com'], sourceOrigin: 'Selected by raymond-nassar for Modern Timeline',
+  requireSourceContentSha256: true, requireSourceProvider: true, allowMissingCover: true,
+});
+
 export function readOwnerGuideRegistry(root = ROOT) {
   const unreadable = new Error('Owner delivery registry is unreadable or malformed; private input details are omitted.');
   let registry;
@@ -18,8 +23,9 @@ export function readOwnerGuideRegistry(root = ROOT) {
   }
   const ids = new Set();
   for (const guide of registry.guides) {
-    if (!guide || Object.keys(guide).some((key) => !['id', 'contract'].includes(key))
+    if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface'].includes(key))
       || typeof guide.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guide.id)
+      || (Object.hasOwn(guide, 'surface') && guide.surface !== 'modern-timeline')
       || ids.has(guide.id) || guide.contract !== `test/fixtures/owner-delivery/${guide.id}.json`) {
       throw new Error('Owner delivery registry contains an invalid or duplicate guide.');
     }

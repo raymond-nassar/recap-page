@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "contest-of-chaos",
+  "inventoryId": "contest-of-chaos",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Contest of Chaos",
+  "sourceRetrievedAt": "2026-10-08",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "5e4e34baf228dc0a3bd61198535d29d26e8930c00309ad4ed8888f8e70229628",
+  "sourceIssueBearingBlocksSha256": "11457fae7076584f5c6e3ef0164cb07b633e16116609bafa8e26dd643e665924",
+  "sourceBoundary": "Every supplied issue-bearing position, in supplied order; contextual collection notes do not add issues.",
+  "excludedSourceReferences": [],
+  "expectedCount": 9,
+  "proposedManifest": {
+    "id": "contest-of-chaos",
+    "name": "Contest of Chaos",
+    "description": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "contest-of-chaos.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/759",
+    "sourceSection": "Contest of Chaos",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "contest_of_chaos.json",
+    "characters": [
+      "Agatha Harkness",
+      "Scarlet Witch",
+      "Avengers",
+      "Spider-Man"
+    ],
+    "keywords": [
+      "Contest of Chaos",
+      "Darkhold",
+      "Annuals"
+    ],
+    "expect": 9,
+    "timeline": 2023,
+    "coverIssueId": 109670
+  },
+  "insertionAnchor": {
+    "beforeId": "fall-house-x-rise-powers-x"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 109670,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37548
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Spider-Man Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Man Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110287,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37695
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Iron Man Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Iron Man Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110275,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37692
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Fantastic Four Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110270,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37690
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Moon Knight Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Moon Knight Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110285,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38652
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Spider-Gwen Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Gwen Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110286,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37694
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Venom Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Venom Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110306,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 37714
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "X-Men Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110311,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38831
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Avengers Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "candidateIssueId": 110269,
+      "manualSeriesSelectionApproved": false,
+      "seriesId": 38734
+    }
+  ],
+  "packetDigest": "16902c10544fd7fa0478524d41885c9dfc9fca2ee519bd2dd223bd8aa793e512",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+    "rationale": "Reviewed the factual public projections against the independently receipt-verified pasted selections and genuine metadata receipts. All 47 exact supplied IDs, titles, issue numbers and order match. Gang War retains 6/24/1 sections; Contest retains all nine matchup/prelude/finale annotations; Death retains both annotations and explicitly selected Fallen Friend 110195 without settling the unrelated broad-guide edition ambiguity. There are no gaps, repeats, implicit TPB expansions or substituted identities. Owner selection credit, selected depth, null source license and factual-only projection accurately describe this delivery.",
+    "reviewedAt": "2026-10-09T01:58:48.837Z",
+    "proposalDigest": "c31e02be5960b664a082676128b0aadd2779d73744bc8fabd779a120fc54256d",
+    "insertionReview": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "Copilot central review (GPT-6 Astra)",
+      "rationale": "Approve all three finite events/storylines with timeline start 2023. The factual sources establish the spring death/tribute storyline, summer Contest saga and late-year Gang War crossover. Approve editorial same-year order The Death of Ms. Marvel, Contest of Chaos, Gang War before the existing 2024 Fall/Rise event. This does not claim an exact in-universe total chronology, alter the supplied within-list order or classify a broad character run as an event.",
+      "reviewedAt": "2026-10-09T01:58:48.837Z",
+      "insertionAnchor": {
+        "beforeId": "fall-house-x-rise-powers-x"
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { modernTimelinePosition } from '../src/js/views/catalog.js';
+import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 
 import {
   MODERN_TIMELINE_FEATURED_ID,
@@ -173,8 +174,8 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
     .filter(({ timeline }) => timeline < MODERN_TIMELINE_START_YEAR);
 
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
-  assert.equal(selectedLists.length, 148);
-  assert.equal(selectedStories.length, 144);
+  assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
+  assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
   assert.equal(olderEvents.length, 36);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),

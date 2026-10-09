@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T14:50:35.496Z",
+  "generatedAt": "2026-10-09T02:03:17.054Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1524,6 +1524,124 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T04:26:42.027Z"
+    },
+    {
+      "id": "the-death-of-ms-marvel",
+      "file": "the_death_of_ms_marvel.json",
+      "name": "The Death of Ms. Marvel",
+      "description": "Follow the six-part Amazing Spider-Man story leading to Kamala Khan's death, then the Fallen Friend tribute one-shot.",
+      "type": "event",
+      "depth": "selected",
+      "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Ms. Marvel",
+        "Mary Jane Watson"
+      ],
+      "keywords": [
+        "Kamala Khan",
+        "Fallen Friend",
+        "Zeb Wells",
+        "Death of Ms. Marvel"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2023,
+      "coverIssueId": 110195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/64b80996a60d8",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/759",
+      "sourceSection": "The Death of Ms. Marvel",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T02:01:46.838Z"
+    },
+    {
+      "id": "contest-of-chaos",
+      "file": "contest_of_chaos.json",
+      "name": "Contest of Chaos",
+      "description": "Agatha Harkness sets a magical contest in motion. Read the Scarlet Witch prelude and eight annuals in the supplied order through the Avengers finale.",
+      "type": "event",
+      "depth": "selected",
+      "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Agatha Harkness",
+        "Scarlet Witch",
+        "Avengers",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Contest of Chaos",
+        "Darkhold",
+        "Annuals"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2023,
+      "coverIssueId": 109670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/64873590edbd1",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/759",
+      "sourceSection": "Contest of Chaos",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T02:03:10.418Z"
+    },
+    {
+      "id": "gang-war",
+      "file": "gang_war.json",
+      "name": "Gang War",
+      "description": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
+      "type": "event",
+      "depth": "selected",
+      "count": 31,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Spider-Man",
+        "Miles Morales",
+        "Luke Cage",
+        "Daredevil",
+        "Spider-Woman",
+        "Shang-Chi",
+        "Jackpot"
+      ],
+      "keywords": [
+        "Gang War",
+        "First Strike",
+        "Tombstone",
+        "New York"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2023,
+      "coverIssueId": 112117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6553ccd72438e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/759",
+      "sourceSection": "Gang War",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T02:03:17.054Z"
     },
     {
       "id": "fall-house-x-rise-powers-x",

@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "id": "gang-war",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Gang War",
+  "sourceRetrievedAt": "2026-10-08",
+  "readerDescription": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
+  "inputReceipt": {
+    "sourceKind": "pasted-message-snapshot",
+    "name": "gang-war.md",
+    "snapshotSha256": "8ca18719c98bc26f2a6b4bf5402750a55c24e584b7d89eb2b3895ba44351d6b7",
+    "snapshotBytes": 4522,
+    "originalFileSha256": null,
+    "originalFileBytes": null,
+    "handoffAt": "2026-10-08T18:36:17.552-07:00"
+  },
+  "sourceIssueCount": 31,
+  "publishedIssueCount": 31,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #37",
+      "suppliedIssueId": 107957,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/107957/the_amazing_spider-man_2022_37",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #38",
+      "suppliedIssueId": 107958,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/107958/the_amazing_spider-man_2022_38",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #12",
+      "suppliedIssueId": 103619,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/103619/miles_morales_spider-man_2022_12",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #1",
+      "suppliedIssueId": 112218,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112218/",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Spider-Woman (2023) #1",
+      "suppliedIssueId": 112294,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112294/",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man: Gang War First Strike (2023) #1",
+      "suppliedIssueId": 112117,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112117/amazing_spider-man_gang_war_first_strike_2023_1",
+      "sourceRangeReference": "Prelude: First Strike",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #39",
+      "suppliedIssueId": 109626,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109626/the_amazing_spider-man_2022_39",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #1",
+      "suppliedIssueId": 112126,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112126/",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #13",
+      "suppliedIssueId": 109738,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109738/miles_morales_spider-man_2022_13",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #2",
+      "suppliedIssueId": 112219,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112219/read",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #40",
+      "suppliedIssueId": 109627,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109627/the_amazing_spider-man_2022_40",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #2",
+      "suppliedIssueId": 112127,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112127/daredevil_gang_war_2023_2",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #14",
+      "suppliedIssueId": 109739,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109739/miles_morales_spider-man_2022_14",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #1",
+      "suppliedIssueId": 112696,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112696/deadly_hands_of_kung_fu_gang_war_2023_1",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Spider-Woman (2023) #2",
+      "suppliedIssueId": 112295,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112295/spider-woman_2023_2",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #3",
+      "suppliedIssueId": 112220,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112220/luke_cage_gang_war_2023_3",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #41",
+      "suppliedIssueId": 109628,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109628/the_amazing_spider-man_2022_41",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #15",
+      "suppliedIssueId": 109740,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109740/miles_morales_spider-man_2022_15",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #42",
+      "suppliedIssueId": 109629,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109629/the_amazing_spider-man_2022_42",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Woman (2023) #3",
+      "suppliedIssueId": 112296,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112296/spider-woman_2023_3",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Spider-Woman (2023) #4",
+      "suppliedIssueId": 112297,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112297/spider-woman_2023_4",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Jackpot (2024) #1",
+      "suppliedIssueId": 113825,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/113825/jackpot_2024_1",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #2",
+      "suppliedIssueId": 112699,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112699/read",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Deadly Hands Of Kung Fu: Gang War (2023) #3",
+      "suppliedIssueId": 112700,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112700/deadly_hands_of_kung_fu_gang_war_2023_3",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #3",
+      "suppliedIssueId": 112128,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112128/daredevil_gang_war_2023_3",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #16",
+      "suppliedIssueId": 109741,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109741/miles_morales_spider-man_2022_16",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #43",
+      "suppliedIssueId": 109630,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109630/the_amazing_spider-man_2022_43",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Luke Cage: Gang War (2023) #4",
+      "suppliedIssueId": 112221,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112221/luke_cage_gang_war_2023_4",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #44",
+      "suppliedIssueId": 109631,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/109631/the_amazing_spider-man_2022_44",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Daredevil: Gang War (2023) #4",
+      "suppliedIssueId": 112129,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112129/read",
+      "sourceRangeReference": "Main Event",
+      "annotation": null
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Miles Morales: Spider-Man (2022) #17",
+      "suppliedIssueId": 112070,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/112070/miles_morales_spider-man_2022_17",
+      "sourceRangeReference": "Aftermath",
+      "annotation": null
+    }
+  ],
+  "sourceGaps": [],
+  "repeatedSourceReferences": [],
+  "factualContext": [
+    "The factual reference has a different prelude ordering; the supplied owner sequence is retained unchanged.",
+    "The three sections contain 6, 24 and 1 selected originals respectively."
+  ],
+  "projectionBoundary": "Factual identities, order, headings and short annotations only. Supplied narrative overviews and conversational text are not reproduced. Typographic dashes in short annotations are normalized to ASCII.",
+  "chronology": {
+    "timeline": 2023,
+    "rationale": "The post-Dark Web crossover begins in late 2023 and continues into 2024. Use 2023 as its timeline start, following the other two selected 2023 events.",
+    "sameYearOrder": [
+      "the-death-of-ms-marvel",
+      "contest-of-chaos",
+      "gang-war"
+    ]
+  },
+  "evidenceSources": [
+    {
+      "kind": "factual-event-reference",
+      "url": "https://www.comicbooktreasury.com/marvel-gang-war-reading-order/",
+      "retrievedAt": "2026-10-08"
+    }
+  ]
+}

@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7277-7316`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7374-7413`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11371-11496`.
+`src/data/catalog.json:11489-11614`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2634,3 +2634,50 @@ The general Marvel Multiverse guide has no single release assignment. Unassigned
 visible after the phase sections in either direction; search includes their ordinary catalog
 titles and characters. Multi-release guides retain one identity and expose every associated title.
 The catalog, comic vectors, source credit, imported list fields, progress and backups remain unchanged.
+
+## Owner-selected Modern Timeline events
+
+The [three-list delivery](https://github.com/raymond-nassar/recap-page/issues/759) preserves
+separate owner selections for **The Death of Ms. Marvel**, **Contest of Chaos** and **Gang War**.
+They are finite 2023 events/storylines, not MCU companions or new entries in a frozen CBH/CBRO
+inventory. Their authored depth is `selected`: the supplied boundary is preserved rather than
+claimed to be every possible tie-in or character appearance.
+
+| Selection | Published originals | Source boundary |
+|---|---:|---|
+| [The Death of Ms. Marvel](../scripts/data/owner-selections/the-death-of-ms-marvel.json) | 7 | Amazing Spider-Man (2022) #21-26, then the explicitly supplied Fallen Friend 110195 |
+| [Contest of Chaos](../scripts/data/owner-selections/contest-of-chaos.json) | 9 | Scarlet Witch prelude and eight annuals through the Avengers finale |
+| [Gang War](../scripts/data/owner-selections/gang-war.json) | 31 | Prelude: First Strike (6), Main Event (24), Aftermath (1), in supplied order |
+
+All 47 supplied positions resolve to exact supplied Marvel issue IDs, without gaps or repeats.
+The factual ledgers retain headings and short annotations, including the Contest matchups and
+the Death/tribute notes. The Contest TPB sentence is context, not a tenth comic. Supplied
+narrative overviews and conversational text are not reproduced. The public receipts identify
+saved pasted-message snapshots, not original uploaded-file bytes, and contain no private path.
+The unknown later handoff times and original-file hashes remain null.
+
+Factual event references, checked on 2026-10-08, are
+[Gang War at Comic Book Treasury](https://www.comicbooktreasury.com/marvel-gang-war-reading-order/),
+[Contest of Chaos at AIPT](https://aiptcomics.com/2023/05/18/marvels-contest-of-chaos-2023/), and
+[the death and Fallen Friend aftermath at AIPT](https://aiptcomics.com/2023/06/06/marvel-fallen-friend-the-death-of-ms-marvel-1-covers/).
+They verify event facts, not authorship of these selections. The supplied Gang War prelude order
+is retained even where the external reference differs. The selected Fallen Friend ID does not
+settle the separate broad Kamala guide's historical edition ambiguity.
+
+Request-bound responses from the configured metadata provider supply factual issue details and
+cover URLs. Comic image bytes, provider descriptions and external narrative prose are excluded.
+`sourceOrigin` credits the owner's Modern Timeline selection; `sourceLicense` remains null.
+The existing licence uncertainty above is not resolved by the project's MIT licence.
+
+The frozen reports compare each selection with 295 existing source/visible orders, including
+78 generated chapters and one hidden parent, plus the other two selected lists. Actual central
+model review approves five meaningful relationships: Gang War shares ten originals with the
+modern Spider-Man guide; Contest shares its prelude with both Agatha guides; Death is a
+seven-original subset of the Spider-Man guide and shares one original with Kamala's guide.
+No selected-peer or exact-set duplication exists. This is model authority, not a human review.
+All shared originals and earlier approvals remain unchanged.
+
+Modern Timeline places the selections in the 2023 group as Death, Contest, then Gang War,
+before the 2024 Fall/Rise event. That is reviewed editorial placement, not a precise global
+continuity claim. Their new registrations do not increase MCU Prep or Storylines membership.
+Existing saved lists, progress, reader behavior and backup formats are unchanged.

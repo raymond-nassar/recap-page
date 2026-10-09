@@ -8,6 +8,21 @@
     {
       "id": "mcu-prep-agatha-all-along",
       "contract": "test/fixtures/owner-delivery/mcu-prep-agatha-all-along.json"
+    },
+    {
+      "id": "the-death-of-ms-marvel",
+      "contract": "test/fixtures/owner-delivery/the-death-of-ms-marvel.json",
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "contest-of-chaos",
+      "contract": "test/fixtures/owner-delivery/contest-of-chaos.json",
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "gang-war",
+      "contract": "test/fixtures/owner-delivery/gang-war.json",
+      "surface": "modern-timeline"
     }
   ]
 }

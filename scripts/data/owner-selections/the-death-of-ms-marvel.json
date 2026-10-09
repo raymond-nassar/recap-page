@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "the-death-of-ms-marvel",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "The Death of Ms. Marvel",
+  "sourceRetrievedAt": "2026-10-08",
+  "readerDescription": "Follow the six-part Amazing Spider-Man story leading to Kamala Khan's death, then the Fallen Friend tribute one-shot.",
+  "inputReceipt": {
+    "sourceKind": "pasted-message-snapshot",
+    "name": "the-death-of-ms-marvel.md",
+    "snapshotSha256": "9f382c01107a6cbf1349818579da704c321a3e540cdd14e7adce2282d33866a3",
+    "snapshotBytes": 1767,
+    "originalFileSha256": null,
+    "originalFileBytes": null,
+    "handoffAt": null
+  },
+  "sourceIssueCount": 7,
+  "publishedIssueCount": 7,
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #21",
+      "suppliedIssueId": 102189,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102189/the_amazing_spider-man_2022_21",
+      "sourceRangeReference": null,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #22",
+      "suppliedIssueId": 102190,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102190/the_amazing_spider-man_2022_22",
+      "sourceRangeReference": null,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #23",
+      "suppliedIssueId": 102191,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102191/the_amazing_spider-man_2022_23",
+      "sourceRangeReference": null,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #24",
+      "suppliedIssueId": 102192,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102192/the_amazing_spider-man_2022_24",
+      "sourceRangeReference": null,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #25",
+      "suppliedIssueId": 102193,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102193/",
+      "sourceRangeReference": null,
+      "annotation": null
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Amazing Spider-Man (2022) #26",
+      "suppliedIssueId": 102194,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/102194/the_amazing_spider-man_2022_26",
+      "sourceRangeReference": null,
+      "annotation": "Ms. Marvel dies in this issue"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Fallen Friend (2023) #1",
+      "suppliedIssueId": 110195,
+      "suppliedUrl": "https://www.marvel.com/comics/issue/110195/fallen_friend_2023_1",
+      "sourceRangeReference": null,
+      "annotation": "\"Fallen Friend: The Death of Ms. Marvel\" - tribute one-shot"
+    }
+  ],
+  "sourceGaps": [],
+  "repeatedSourceReferences": [],
+  "factualContext": [
+    "The supplied year clarification identifies the 2023 arc, not a separate 2025 story.",
+    "Fallen Friend 110195 is the explicitly supplied exact ID; alternative 115784 is not selected and the older broad-guide ambiguity is not re-adjudicated."
+  ],
+  "projectionBoundary": "Factual identities, order, headings and short annotations only. Supplied narrative overviews and conversational text are not reproduced. Typographic dashes in short annotations are normalized to ASCII.",
+  "chronology": {
+    "timeline": 2023,
+    "rationale": "The supplied finite 2023 death storyline and its tribute follow Dark Web. Place before the summer Contest of Chaos and late-year Gang War; this is editorial timeline placement, not a claim of precise global continuity.",
+    "sameYearOrder": [
+      "the-death-of-ms-marvel",
+      "contest-of-chaos",
+      "gang-war"
+    ]
+  },
+  "evidenceSources": [
+    {
+      "kind": "factual-event-reference",
+      "url": "https://aiptcomics.com/2023/06/06/marvel-fallen-friend-the-death-of-ms-marvel-1-covers/",
+      "retrievedAt": "2026-10-08"
+    }
+  ]
+}

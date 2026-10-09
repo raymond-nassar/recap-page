@@ -1,0 +1,1025 @@
+{
+  "id": "gang-war",
+  "name": "Gang War",
+  "description": "Spider-Man and New York's street-level heroes face a citywide gang conflict. Follow the supplied prelude, main event and Miles Morales aftermath.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/759",
+  "sourceSection": "Gang War",
+  "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T02:03:17.054Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 31,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 107957,
+      "title": "The Amazing Spider-Man (2022) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/107957/the_amazing_spider-man_2022_37",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-11-08T00:00:00+0000",
+      "mu": "2023-11-02T00:00:00+0000",
+      "digitalId": 64073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/654bb0e66caad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Emilio Laiso",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 107958,
+      "title": "The Amazing Spider-Man (2022) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/107958/the_amazing_spider-man_2022_38",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-11-22T00:00:00+0000",
+      "mu": "2023-11-08T00:00:00+0000",
+      "digitalId": 64074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/654bb027d35e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Emilio Laiso",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 103619,
+      "title": "Miles Morales: Spider-Man (2022) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/103619/miles_morales_spider-man_2022_12",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2023-11-29T00:00:00+0000",
+      "mu": "2023-11-28T00:00:00+0000",
+      "digitalId": 64108,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/6553ccb903fa8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Partha Pratim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 112218,
+      "title": "Luke Cage: Gang War (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112218/luke_cage_gang_war_2023_1",
+      "seriesId": 38657,
+      "seriesName": "Luke Cage: Gang War (2023)",
+      "onSale": "2023-11-29T00:00:00+0000",
+      "mu": "2023-11-28T00:00:00+0000",
+      "digitalId": 64103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/6553ccbcb9855",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ramon Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Caanan White",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Barnes",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 112294,
+      "title": "Spider-Woman (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112294/spider-woman_2023_1",
+      "seriesId": 38661,
+      "seriesName": "Spider-Woman (2023 - Present)",
+      "onSale": "2023-11-29T00:00:00+0000",
+      "mu": "2023-11-28T00:00:00+0000",
+      "digitalId": 64120,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/6553cca0c0c41",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carola Borelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 112117,
+      "title": "Amazing Spider-Man: Gang War First Strike (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112117/amazing_spider-man_gang_war_first_strike_2023_1",
+      "seriesId": 38646,
+      "seriesName": "Amazing Spider-Man: Gang War First Strike (2023)",
+      "onSale": "2023-11-29T00:00:00+0000",
+      "mu": "2023-11-28T00:00:00+0000",
+      "digitalId": 64075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6553ccd72438e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Prelude: First Strike"
+    },
+    {
+      "issueId": 109626,
+      "title": "The Amazing Spider-Man (2022) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/109626/the_amazing_spider-man_2022_39",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-12-06T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/656f5454882d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112126,
+      "title": "Daredevil: Gang War (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112126/daredevil_gang_war_2023_1",
+      "seriesId": 38648,
+      "seriesName": "Daredevil: Gang War (2023 - Present)",
+      "onSale": "2023-12-13T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/6596e27ad35ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Schultz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109738,
+      "title": "Miles Morales: Spider-Man (2022) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/109738/miles_morales_spider-man_2022_13",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2023-12-13T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64326,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/6596e25e66efe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112219,
+      "title": "Luke Cage: Gang War (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112219/luke_cage_gang_war_2023_2",
+      "seriesId": 38657,
+      "seriesName": "Luke Cage: Gang War (2023)",
+      "onSale": "2023-12-13T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/6596e267724d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Caanan White",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Barnes",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109627,
+      "title": "The Amazing Spider-Man (2022) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/109627/the_amazing_spider-man_2022_40",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-12-20T00:00:00+0000",
+      "mu": "2023-12-07T00:00:00+0000",
+      "digitalId": 64297,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/6596e22d1bc73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112127,
+      "title": "Daredevil: Gang War (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112127/daredevil_gang_war_2023_2",
+      "seriesId": 38648,
+      "seriesName": "Daredevil: Gang War (2023 - Present)",
+      "onSale": "2024-01-10T00:00:00+0000",
+      "mu": "2024-01-04T00:00:00+0000",
+      "digitalId": 64501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/6596e12f09391",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Schultz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109739,
+      "title": "Miles Morales: Spider-Man (2022) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/109739/miles_morales_spider-man_2022_14",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2023-12-27T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/6596e1ab92fc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112696,
+      "title": "Deadly Hands of Kung Fu: Gang War (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/112696/deadly_hands_of_kung_fu_gang_war_2023_1",
+      "seriesId": 38750,
+      "seriesName": "Deadly Hands of Kung Fu: Gang War (2023 - Present)",
+      "onSale": "2023-12-27T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/6596e1c90b389",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Caio Majado",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112295,
+      "title": "Spider-Woman (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112295/spider-woman_2023_2",
+      "seriesId": 38661,
+      "seriesName": "Spider-Woman (2023 - Present)",
+      "onSale": "2023-12-27T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64338,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/6596e18fc6ac7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carola Borelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112220,
+      "title": "Luke Cage: Gang War (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112220/luke_cage_gang_war_2023_3",
+      "seriesId": 38657,
+      "seriesName": "Luke Cage: Gang War (2023)",
+      "onSale": "2024-01-10T00:00:00+0000",
+      "mu": "2024-01-04T00:00:00+0000",
+      "digitalId": 64516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/6596e1192e54d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Caanan White",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Barnes",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109628,
+      "title": "The Amazing Spider-Man (2022) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/109628/the_amazing_spider-man_2022_41",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2024-01-03T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64484,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/6596e1869cbb1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109740,
+      "title": "Miles Morales: Spider-Man (2022) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/109740/miles_morales_spider-man_2022_15",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2024-01-10T00:00:00+0000",
+      "mu": "2024-01-04T00:00:00+0000",
+      "digitalId": 64527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/6596e1176504a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federica Mancin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109629,
+      "title": "The Amazing Spider-Man (2022) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/109629/the_amazing_spider-man_2022_42",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2024-01-17T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/65a00c88b22b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112296,
+      "title": "Spider-Woman (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112296/spider-woman_2023_3",
+      "seriesId": 38661,
+      "seriesName": "Spider-Woman (2023 - Present)",
+      "onSale": "2024-01-24T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/65a93b0ef19c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carola Borelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112297,
+      "title": "Spider-Woman (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/112297/spider-woman_2023_4",
+      "seriesId": 38661,
+      "seriesName": "Spider-Woman (2023 - Present)",
+      "onSale": "2024-02-21T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/65cccf978dca5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carola Borelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 113825,
+      "title": "Jackpot (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/113825/jackpot_2024_1",
+      "seriesId": 39076,
+      "seriesName": "Jackpot (2024)",
+      "onSale": "2024-01-17T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/65a00c66c2c4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "Celeste Bronfman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112699,
+      "title": "Deadly Hands of Kung Fu: Gang War (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/112699/deadly_hands_of_kung_fu_gang_war_2023_2",
+      "seriesId": 38750,
+      "seriesName": "Deadly Hands of Kung Fu: Gang War (2023 - Present)",
+      "onSale": "2024-01-31T00:00:00+0000",
+      "mu": "2024-01-18T00:00:00+0000",
+      "digitalId": 64503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/65b2c8df2f3ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Caio Majado",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112700,
+      "title": "Deadly Hands of Kung Fu: Gang War (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112700/deadly_hands_of_kung_fu_gang_war_2023_3",
+      "seriesId": 38750,
+      "seriesName": "Deadly Hands of Kung Fu: Gang War (2023 - Present)",
+      "onSale": "2024-02-14T00:00:00+0000",
+      "mu": "2024-02-02T00:00:00+0000",
+      "digitalId": 64786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/65b7df66bffa2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Caio Majado",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112128,
+      "title": "Daredevil: Gang War (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/112128/daredevil_gang_war_2023_3",
+      "seriesId": 38648,
+      "seriesName": "Daredevil: Gang War (2023 - Present)",
+      "onSale": "2024-02-07T00:00:00+0000",
+      "mu": "2024-01-25T00:00:00+0000",
+      "digitalId": 64784,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/65b7d7b21328d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Schultz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109741,
+      "title": "Miles Morales: Spider-Man (2022) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/109741/miles_morales_spider-man_2022_16",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2024-02-14T00:00:00+0000",
+      "mu": "2024-02-02T00:00:00+0000",
+      "digitalId": 64800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/65b7df6b805ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federica Mancin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109630,
+      "title": "The Amazing Spider-Man (2022) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/109630/the_amazing_spider-man_2022_43",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2024-02-14T00:00:00+0000",
+      "mu": "2024-02-02T00:00:00+0000",
+      "digitalId": 64770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/65b7df4aebc97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112221,
+      "title": "Luke Cage: Gang War (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/112221/luke_cage_gang_war_2023_4",
+      "seriesId": 38657,
+      "seriesName": "Luke Cage: Gang War (2023)",
+      "onSale": "2024-02-21T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/65cccf7d0938e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Caanan White",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Barnes",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 109631,
+      "title": "The Amazing Spider-Man (2022) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/109631/the_amazing_spider-man_2022_44",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/65ca4d6b38185",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112129,
+      "title": "Daredevil: Gang War (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/112129/daredevil_gang_war_2023_4",
+      "seriesId": 38648,
+      "seriesName": "Daredevil: Gang War (2023 - Present)",
+      "onSale": "2024-03-06T00:00:00+0000",
+      "mu": "2024-02-22T00:00:00+0000",
+      "digitalId": 65668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/65e885c371b73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sergio Davila",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Schultz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 112070,
+      "title": "Miles Morales: Spider-Man (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/112070/miles_morales_spider-man_2022_17",
+      "seriesId": 35645,
+      "seriesName": "Miles Morales: Spider-Man (2022 - 2023)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/65ca4d4ba8671",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Partha Pratim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Federico Sabbatini",
+          "role": "penciler"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Aftermath"
+    }
+  ]
+}
