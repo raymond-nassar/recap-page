@@ -203,6 +203,10 @@ test('a character filter waits for the guide data and never presents an unfilter
   assert.deepEqual(h.log.announced, ['2 of 4 rated comics match.']);
   assert.match(texts(h.els.results), /In Character guide: Spider-Man Guide/);
   assert.ok(h.els.character.children.some((o) => o.props.value === 'Storm'));
+
+  h.view.setCommitted({ character: 'spider-man' });
+  assert.equal(h.els.character.value, 'Spider-Man', 'a folded match selects the offered label');
+  assert.ok(!h.els.character.children.some((o) => o.props.value === 'spider-man'));
 });
 
 test('a failed guide load says the filter is not applied and Retry loads again', async () => {
@@ -261,6 +265,17 @@ test('a focus return is dropped when the filters change or the reader acts befor
   second.settle(true);
   await tick();
   assert.deepEqual(typing.log.focused, [], 'typing in a field withdraws the pending return');
+
+  const third = deferredLoader();
+  const scrolling = harness({ ratings: { 1: 5 }, issues: { 1: issue(1, 'A') }, loader: third });
+  scrolling.view.setCommitted({ character: 'Spider-Man' });
+  scrolling.view.renderBrowser();
+  scrolling.view.restoreOpener({ view: 'library-rated', issueId: 1 });
+  scrolling.docListeners.wheel();
+  third.settle(true);
+  await tick();
+  assert.deepEqual(scrolling.log.focused, [], 'scrolling away withdraws the pending return');
+  assert.equal(scrolling.els.clear.focused, 0);
 
   const other = harness({ ratings: { 1: 5 }, issues: { 1: issue(1, 'A') } });
   other.view.renderBrowser();

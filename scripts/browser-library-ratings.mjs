@@ -344,6 +344,25 @@ export const libraryRatingsFailures = {
         && document.querySelector('#rated-q').value === 'abc' && location.hash === hash, hashBefore),
       await page.evaluate(() => `${document.activeElement?.id} ${document.querySelector('#rated-q').value} ${location.hash}`));
 
+    // The same return, but the reader scrolls away with the wheel instead of typing. Wheel input
+    // moves no focus and sends no key, so only the wheel listener can withdraw the return.
+    await boot(page, charHash);
+    await page.waitForFunction(() => typeof window.__ratedRelease === 'function');
+    const wheelRow = (await resultIds(page))[0];
+    await page.$eval(`#library-rated-results [data-issue-id="${wheelRow}"]`, (n) => n.click());
+    await page.waitForFunction(() => !document.querySelector('#view-issue').hidden);
+    await page.evaluate(() => history.back());
+    await panelShown(page);
+    await page.mouse.move(640, 450);
+    await page.mouse.wheel({ deltaY: 400 });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    await page.evaluate(() => window.__ratedRelease());
+    await page.waitForFunction(() => !document.querySelector('#library-rated-notice').textContent.includes('Loading'));
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    t.check('a late lookup after a return does not pull a reader who scrolled away back to the row',
+      await page.evaluate(() => !document.activeElement?.closest('#library-rated-results')),
+      await page.evaluate(() => document.activeElement?.outerHTML?.slice(0, 80)));
+
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
     await setMode(page, 'pass');
     await boot(page, '#/library');
@@ -379,5 +398,11 @@ export const libraryRatingMutations = [
     breaks: 'library-ratings-failures',
     why: 'a pending focus return survives the reader typing, so a late lookup steals focus',
     rewriteRatedView: (source) => source.replace('const withdraw = () => { ticket = null; };', 'const withdraw = () => {};'),
+  },
+  {
+    id: 'library-ratings-ignore-scroll',
+    breaks: 'library-ratings-failures',
+    why: 'a pending focus return survives the reader scrolling away, so a late lookup pulls them back',
+    rewriteRatedView: (source) => source.replace("'input', 'wheel', 'touchmove']", "'input']"),
   },
 ];

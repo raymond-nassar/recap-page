@@ -54,9 +54,14 @@ export function createRatedComicsView({
   // starts typing a new title filter while the guide data is still loading has moved on, and
   // focusing a row then would pull them out of the field mid-word. Any deliberate input withdraws
   // it. Focus events are not listened for, because the arrival's own heading focus fires them.
+  // Wheel and touch scrolling count too: a reader who scrolled away was pulled back to the opened
+  // row when a deferred lookup settled. Scroll events are not used, because the app's own
+  // programmatic scrolling fires them and wheel and touchmove do not.
   if (doc?.addEventListener) {
     const withdraw = () => { ticket = null; };
-    for (const type of ['pointerdown', 'keydown', 'input']) doc.addEventListener(type, withdraw, true);
+    for (const type of ['pointerdown', 'keydown', 'input', 'wheel', 'touchmove']) {
+      doc.addEventListener(type, withdraw, { capture: true, passive: true });
+    }
   }
 
   function row(data, surface) {
@@ -149,10 +154,13 @@ export function createRatedComicsView({
 
   // Rebuilt only when the set of choices changes, so a reader holding the control open is not
   // disturbed by a background repaint. A value that is no longer offered stays selectable rather
-  // than silently becoming "Any".
+  // than silently becoming "Any". Matching is folded, but a native select only takes an exact
+  // option value, so a folded match selects the offered label; assigning the address's spelling
+  // left the control blank and the next Apply dropped the filter.
   function syncCharacterOptions(select, index, rows, value) {
     const labels = characterOptions(index, rows);
-    if (value && !labels.some((label) => foldName(label) === foldName(value))) labels.push(value);
+    const offered = value ? labels.find((label) => foldName(label) === foldName(value)) : undefined;
+    if (value && !offered) labels.push(value);
     const signature = labels.join('\n');
     if (select.dataset.signature !== signature) {
       select.dataset.signature = signature;
@@ -161,7 +169,7 @@ export function createRatedComicsView({
         ...labels.map((label) => el('option', { value: label, text: label })),
       );
     }
-    select.value = value;
+    select.value = offered ?? value;
   }
 
   function commit(next) {
