@@ -1079,10 +1079,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7664-7703`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7826-7865`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:11856-11981`.
+`src/data/catalog.json:12060-12185`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2787,3 +2787,70 @@ These are film-release associations, not comic chronology. Source credit remains
 MCU Prep selection, with no licence grant asserted. Only provider facts and cover URLs are
 vendored, never synopsis prose or image bytes. No Marvel or CDN pages were fetched.
 Saved reading data, runtime dependencies and application versions are unchanged.
+
+## Owner-authored Phase Three MCU Prep batch
+
+[The six-guide intake](https://github.com/raymond-nassar/recap-page/issues/766) retains the
+owner's exact selections and limited copy corrections. Each guide has a self-contained
+source ledger, frozen packet, exact mapping and complete-library relationship report under
+[`scripts/data/`](../scripts/data). Snapshot receipts identify the private UTF-8 pasted
+messages, not unavailable original uploaded files. Factual projections have separate
+digests; private originals are not public dependencies.
+
+| MCU Prep guide | Supplied positions | Included works | Metadata gaps | Exclusions / repeats |
+|---|---:|---:|---:|---:|
+| Captain America: Civil War (2016) | 23 | 23 | 0 | 0 / 0 |
+| Thor: Ragnarok (2017) | 30 | 30 | 0 | 0 / 0 |
+| Black Panther (2018) | 54 | 54 | 0 | 0 / 0 |
+| Avengers: Infinity War (2018) & Avengers: Endgame | 19 | 19 | 0 | 0 / 0 |
+| Captain Marvel (2019) | 24 | 24 | 0 | 0 / 0 |
+| Doctor Strange (2016) | 18 | 16 | 2 | 0 / 0 |
+
+All 168 supplied positions remain accounted for: 166 resolved originals and two gaps.
+Civil War revision 2 inserts Captain America #22-24 between Civil War #3 and #4, retaining
+three sections and five blocks. Ragnarok retains source group numbers 1, 2, 3 and 5.
+Thor: Season One remains one unnumbered original with provider number 0 retained only as
+metadata. Its shared earlier Thor selections remain intentional. Candidate 27399 was
+verified as Hulk (1999) #103, not accepted merely because its request succeeded.
+
+The owner approved factual Priest #1-17 and Coates #1-12 display labels without shortening
+the linked Black Panther selections. The distinct
+[Priest #1-17 edition](https://openlibrary.org/books/OL27188329M/Black_Panther) is not silently
+equated with [The Client](https://openlibrary.org/books/OL8098387M/Black_Panther).
+Captain Marvel retains the 2014 series under Higher, Further, Faster, More, Stay Fly and
+Alis Volat Propriis, rather than the different Earth's Mightiest Hero reprints.
+The owner also approved two description phrase changes: Black Panther's rivals replace the
+film-specific cousin claim, and Carol's adventures replace the unsupported name-adoption
+claim. All other supplied description text remains unchanged. Bibliography was retrieved
+2026-10-09; each ledger preserves the original selection labels separately.
+
+Doctor Strange: The Oath #3-5 use exact originals 5662, 5801 and 5957, verified against the
+[complete five-issue series](https://marvel.emreparker.com/v1/series/1096/issues?limit=200&offset=0)
+and individual details on 2026-10-09. Supplied 5399 and 5401 returned 404; supplied 5400
+instead identifies Friendly Neighborhood Spider-Man #14 and is explicitly rejected.
+These are model-reviewed identity corrections, not human approvals inferred from the copy
+answer. The separate Last Days of Magic one-shot remains after the selected 2015 #6-10.
+
+[The two standalone gaps](https://github.com/raymond-nassar/recap-page/issues/767) retain
+source positions 1 and 18: Season One candidate 41511 and the 1997 What Is It That Disturbs
+You, Stephen? candidate 62446. Both details returned 404 and exact/shorter searches were
+empty. Independent bibliography verifies
+[Season One](https://openlibrary.org/books/OL27629862M) and corroborates
+[Marc Andreyko/P. Craig Russell for the 1997 original](https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1).
+No provider credit is invented or overwritten for a missing response. Neither gap means
+the comic is unavailable on Marvel Unlimited, and no replacement edition is selected.
+
+After Phase Two merged, each report and approval was renewed against 309 existing
+source/visible orders, including generated children and the retained hidden parent, plus
+five selected peers. Actual central GPT-6 Astra review approves 40 meaningful library
+relationships, including the nine Simonson originals shared by Ragnarok and Dark World,
+and the disjoint selected peers. Exact-set duplicates have no approval path. The compact
+movie selections remain distinct from broader event and character guides, with shared
+originals and older approvals unchanged.
+
+One Infinity War/Endgame guide associates both films and appears once at its earliest
+release. The seven Phase Three US theatrical dates are backed by the dated Wikidata sources
+in [`src/data/mcu-prep.json`](../src/data/mcu-prep.json), not comic publication years.
+Owner credit and unspecified source licence remain explicit. Provider responses supply
+factual metadata and cover URLs, never image bytes or synopsis prose. Saved reading,
+backups, availability distinctions and separate-tab reader launch remain unchanged.

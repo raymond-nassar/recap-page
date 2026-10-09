@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-captain-america-civil-war-2016",
+  "name": "MCU Prep: Captain America: Civil War (2016)",
+  "description": "Loyalty gets tested and friendships get shattered. Watch the lead-up to the government's registration crackdown, heroes choosing sides in open conflict, and the devastating fallout that follows.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/766",
+  "groups": [
+    "Lead-up to Civil War: Captain America (2004) #15-21",
+    "Civil War: Civil War",
+    "Civil War: Captain America (2004) #22-24 - \"Drums of War\"",
+    "Death of Captain America: Captain America: The Death of Captain America Book 1"
+  ],
+  "rows": [
+    [
+      1,
+      3503,
+      "Captain America (2004) #15",
+      0
+    ],
+    [
+      2,
+      3910,
+      "Captain America (2004) #16",
+      0
+    ],
+    [
+      3,
+      4040,
+      "Captain America (2004) #17",
+      0
+    ],
+    [
+      4,
+      4152,
+      "Captain America (2004) #18",
+      0
+    ],
+    [
+      5,
+      4326,
+      "Captain America (2004) #19",
+      0
+    ],
+    [
+      6,
+      4482,
+      "Captain America (2004) #20",
+      0
+    ],
+    [
+      7,
+      4798,
+      "Captain America (2004) #21",
+      0
+    ],
+    [
+      8,
+      4216,
+      "Civil War (2006) #1",
+      1
+    ],
+    [
+      9,
+      4313,
+      "Civil War (2006) #2",
+      1
+    ],
+    [
+      10,
+      4468,
+      "Civil War (2006) #3",
+      1
+    ],
+    [
+      11,
+      5086,
+      "Captain America (2004) #22",
+      2
+    ],
+    [
+      12,
+      5239,
+      "Captain America (2004) #23",
+      2
+    ],
+    [
+      13,
+      5402,
+      "Captain America (2004) #24",
+      2
+    ],
+    [
+      14,
+      4786,
+      "Civil War (2006) #4",
+      1
+    ],
+    [
+      15,
+      5075,
+      "Civil War (2006) #5",
+      1
+    ],
+    [
+      16,
+      5227,
+      "Civil War (2006) #6",
+      1
+    ],
+    [
+      17,
+      5793,
+      "Civil War (2006) #7",
+      1
+    ],
+    [
+      18,
+      6010,
+      "Captain America (2004) #25",
+      3
+    ],
+    [
+      19,
+      6152,
+      "Captain America (2004) #26",
+      3
+    ],
+    [
+      20,
+      15824,
+      "Captain America (2004) #27",
+      3
+    ],
+    [
+      21,
+      15941,
+      "Captain America (2004) #28",
+      3
+    ],
+    [
+      22,
+      16125,
+      "Captain America (2004) #29",
+      3
+    ],
+    [
+      23,
+      16475,
+      "Captain America (2004) #30",
+      3
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 23,
+    "sourceIdentityCount": 23,
+    "includedIssueCount": 23,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "d363164663e1f6f214ee90a5c3048fdfaf189912c0260654b88be734d4f686d7",
+  "proposalDigest": "63ff5de68495e84dfca1a4a3f255aec221846a0e75feafefc421bb16066f560f",
+  "approvalDigest": "cb4932bbc6f1b58106a253527ac4358b1d8bf521508b18ba4790002ebbe3c985",
+  "insertionAnchor": {
+    "beforeId": "doctor-strange-multiverse-of-madness"
+  },
+  "peerIds": [
+    "mcu-prep-thor-ragnarok-2017",
+    "mcu-prep-black-panther-2018",
+    "mcu-prep-avengers-infinity-war-endgame",
+    "mcu-prep-captain-marvel-2019",
+    "mcu-prep-doctor-strange-2016"
+  ],
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-captain-america-civil-war-2016.json",
+    "scripts/data/owner-packets/mcu-prep-captain-america-civil-war-2016.json",
+    "scripts/data/owner-mappings/mcu-prep-captain-america-civil-war-2016.json",
+    "scripts/data/owner-overlaps/mcu-prep-captain-america-civil-war-2016.json"
+  ],
+  "vectorSha256": "6c3bfa09b684b729337efa6869e406224191ece3bd79416636f6bd6db5ee4868",
+  "screenReleases": [
+    {
+      "id": "captain-america-civil-war",
+      "title": "Captain America: Civil War",
+      "date": "2016-05-06",
+      "label": "May 6, 2016",
+      "phase": 3
+    }
+  ]
+}
