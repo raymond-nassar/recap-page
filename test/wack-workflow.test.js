@@ -267,7 +267,10 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   const contextMode = { ...browserMode, diagnostic_target: 'ordinary-browser-context-isolation' };
   const completionMode = { ...browserMode, diagnostic_target: 'ordinary-browser-download-completion' };
   const exportMode = { ...browserMode, diagnostic_target: 'ordinary-browser-export-acceptance' };
-  assert.match(workflow, /options: \[console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation, ordinary-browser-download-completion, ordinary-browser-export-acceptance\]/);
+  const recoveryMode = { ...browserMode, diagnostic_target: 'ordinary-browser-recovery-completion' };
+  const ratingsMode = { ...browserMode, diagnostic_target: 'ordinary-browser-ratings-acceptance' };
+  const interactionMode = { ...browserMode, diagnostic_target: 'ordinary-browser-interaction-acceptance' };
+  assert.match(workflow, /options: \[console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation, ordinary-browser-download-completion, ordinary-browser-export-acceptance, ordinary-browser-recovery-completion, ordinary-browser-ratings-acceptance, ordinary-browser-interaction-acceptance\]/);
   const selected = (event, inputs) => jobs.filter((job) => {
     const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
     assert.ok(expression, 'each lane has an explicit route');
@@ -278,6 +281,9 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     ['workflow_dispatch', contextMode, ['browser-diagnostic']],
     ['workflow_dispatch', completionMode, ['browser-diagnostic']],
     ['workflow_dispatch', exportMode, ['browser-diagnostic']],
+    ['workflow_dispatch', recoveryMode, ['browser-diagnostic']],
+    ['workflow_dispatch', ratingsMode, ['browser-diagnostic']],
+    ['workflow_dispatch', interactionMode, ['browser-diagnostic']],
     ['workflow_dispatch', {}, ['native', 'certify', 'installed']],
     ['workflow_dispatch', { release_preparation: true }, ['native', 'certify', 'installed', 'preparation']],
     ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, ['native']],
@@ -285,8 +291,12 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     ['pull_request', contextMode, ['native', 'certify', 'installed']],
     ['pull_request', completionMode, ['native', 'certify', 'installed']],
     ['pull_request', exportMode, ['native', 'certify', 'installed']],
+    ['pull_request', recoveryMode, ['native', 'certify', 'installed']],
+    ['pull_request', ratingsMode, ['native', 'certify', 'installed']],
+    ['pull_request', interactionMode, ['native', 'certify', 'installed']],
   ]) assert.deepEqual(selected(event, inputs), expected);
-  const invalidModes = [browserMode, contextMode, completionMode, exportMode].flatMap((mode) => [
+  const modes = [browserMode, contextMode, completionMode, exportMode, recoveryMode, ratingsMode, interactionMode];
+  const invalidModes = modes.flatMap((mode) => [
     { ...mode, diagnostic_only: false },
     { ...mode, native_only: true },
     { ...mode, release_preparation: true },
@@ -304,27 +314,29 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.ok(browserDiagnostic.indexOf(browserGuard.trim().split('\n')[0])
     < browserDiagnostic.indexOf('actions/checkout@'));
   if (process.platform === 'win32') {
-    const cases = [browserMode, contextMode, completionMode, exportMode, ...invalidModes].map((inputs, index) => `
+    const cases = [...modes, ...invalidModes].map((inputs, index) => `
       $env:DIAGNOSTIC_TARGET = '${inputs.diagnostic_target}';
       $env:DIAGNOSTIC_ONLY = '${inputs.diagnostic_only}';
       $env:NATIVE_ONLY = '${inputs.native_only}';
       $env:RELEASE_PREPARATION = '${inputs.release_preparation}';
       $rejected = $false;
       try { & { ${browserGuard} } } catch { $rejected = $true }
-      if ($rejected -ne $${index >= 4}) { throw 'Browser diagnostic mode guard differs.' }
-      ${index < 4 ? '' : `
+      if ($rejected -ne $${index >= modes.length}) { throw 'Browser diagnostic mode guard differs.' }
+      ${index < modes.length ? '' : `
         $rejected = $false;
         try { & { ${nativeGuard} } } catch { $rejected = $true }
         if (-not $rejected) { throw 'Invalid browser mode reached native setup.' }
       `}
     `).join('\n');
-    const output = execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', `
+    const output = execFileSync('powershell.exe', [
+      '-NoProfile', '-NonInteractive', '-Command', 'Invoke-Expression ([Console]::In.ReadToEnd())',
+    ], { input: `
       $ErrorActionPreference = 'Stop';
       $env:GITHUB_EVENT_NAME = 'workflow_dispatch';
       ${cases}
-      Write-Output 'PASS browser-mode-guards cases=20';
-    `], { encoding: 'utf8', timeout: 15000 });
-    assert.match(output, /PASS browser-mode-guards cases=20/);
+      Write-Output 'PASS browser-mode-guards cases=${modes.length + invalidModes.length}';
+    `, encoding: 'utf8', timeout: 15000 });
+    assert.ok(output.includes(`PASS browser-mode-guards cases=${modes.length + invalidModes.length}`));
   }
   assert.match(browserDiagnostic, /runs-on: windows-2022/);
   assert.match(browserDiagnostic, /ref: \$\{\{ github\.sha \}\}/);
@@ -338,6 +350,10 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.match(execute, /npm run browser -- --diagnostic=context-export-isolation/);
   assert.match(execute, /elseif \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-download-completion'\)/);
   assert.match(execute, /npm run browser -- --diagnostic=native-export-completion/);
+  assert.match(execute, /elseif \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-recovery-completion'\)/);
+  assert.match(execute, /npm run browser -- --diagnostic=recovery-export-completion/);
+  assert.match(execute, /elseif \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-ratings-acceptance'\)/);
+  assert.match(execute, /npm run browser -- --only=library-ratings-failures/);
   assert.match(execute, /elseif \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-export-acceptance'\)/);
   assert.match(execute, /npm run browser -- --only=readable-markdown-export\r?\n {12}if \(\$LASTEXITCODE -ne 0\) \{ throw 'Readable Markdown export acceptance failed\.' }\r?\n {12}npm run browser -- --only=order-only-export/);
   assert.match(execute, /} else \{\r?\n {12}npm run browser\r?\n {10}}/);
@@ -351,8 +367,14 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     ['ordinary-browser', false], ['ordinary-browser-context-isolation', false],
     ['ordinary-browser-download-completion', false],
     ['ordinary-browser-export-acceptance', false],
+    ['ordinary-browser-recovery-completion', false],
+    ['ordinary-browser-ratings-acceptance', false],
+    ['ordinary-browser-interaction-acceptance', false],
     ['ordinary-browser-context-isolation', true], ['ordinary-browser-download-completion', true],
     ['ordinary-browser-export-acceptance', true],
+    ['ordinary-browser-recovery-completion', true],
+    ['ordinary-browser-ratings-acceptance', true],
+    ['ordinary-browser-interaction-acceptance', true],
     ['invalid', false],
   ]) {
     const records = [];
@@ -419,6 +441,36 @@ test('fixed export acceptance executes only its two selectors and stops on eithe
     Write-Output 'PASS fixed-export-route cases=3 max-commands=2 fail-fast=1';
   `], { encoding: 'utf8', timeout: 15000 });
   assert.match(output, /PASS fixed-export-route cases=3 max-commands=2 fail-fast=1/);
+});
+
+test('fixed interaction acceptance runs both owners and preserves either failure', () => {
+  const step = browserDiagnostic.match(/ {6}- name: Run the ordinary browser suite without qualification\r?\n([\s\S]*?)(?=\r?\n {6}-)/)?.[1];
+  const run = step?.match(/ {8}run: \|\r?\n([\s\S]*)/)?.[1].replace(/^ {10}/gm, '');
+  assert.ok(run);
+  assert.doesNotMatch(run, /--prove|continue-on-error/);
+  if (process.platform !== 'win32') return;
+  const output = execFileSync('powershell.exe', [
+    '-NoProfile', '-NonInteractive', '-Command', 'Invoke-Expression ([Console]::In.ReadToEnd())',
+  ], { input: `
+    $ErrorActionPreference = 'Stop';
+    $env:DIAGNOSTIC_TARGET = 'ordinary-browser-interaction-acceptance';
+    function npm {
+      $script:calls.Add(($args -join ' '));
+      $global:LASTEXITCODE = 0;
+      if ($script:calls.Count -eq $script:failAt) { $global:LASTEXITCODE = 1; }
+    }
+    foreach ($script:failAt in @(0, 1, 2)) {
+      $script:calls = New-Object 'Collections.Generic.List[string]';
+      $rejected = $false;
+      try { & { ${run} } } catch { $rejected = $true; }
+      if ($rejected -ne ($script:failAt -ne 0)) { throw 'Interaction route changed failure status.'; }
+      if (($script:calls -join '|') -cne 'run browser --only=defer-lifecycle|run browser --only=completion-lifecycle') {
+        throw 'Interaction route repeated, reordered or skipped an owner.';
+      }
+    }
+    Write-Output 'PASS fixed-interaction-route cases=3 commands=2';
+  `, encoding: 'utf8', timeout: 15000 });
+  assert.match(output, /PASS fixed-interaction-route cases=3 commands=2/);
 });
 
 test('native artifact transfer pins exact inputs and refuses digest mismatches', async (t) => {

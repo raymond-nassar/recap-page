@@ -169,16 +169,33 @@ export const deferLifecycle = {
     await page.setViewport({ width: 320, height: 900 });
     await full(page);
     for (const [label, expected] of [['Resume', false], ['Defer', true]]) {
-      await click(page, row(ids[1], 'more'));
+      const more = row(ids[1], 'more');
+      if (!await page.$eval(more, (element) => element.getAttribute('aria-expanded') === 'true')) {
+        await click(page, more);
+      }
       await page.focus(row(ids[1], 'defer'));
+      t.check(`320px ${label} starts on a visible keyboard action`,
+        await page.evaluate(() => document.activeElement.matches('#rows [data-key="510002"][data-act="defer"]')
+          && document.activeElement.checkVisibility()));
       await page.keyboard.press('Enter');
       const focus = await page.evaluate(() => {
         const active = document.activeElement;
         const rect = active.getBoundingClientRect();
+        const more = document.querySelector('#rows [data-key="510002"][data-act="more"]');
+        const panel = more && document.getElementById(more.getAttribute('aria-controls'));
         return { act: active.dataset.act, key: active.dataset.key, tag: active.tagName,
+          moreExpanded: more?.getAttribute('aria-expanded') === 'true',
+          panelVisible: Boolean(panel?.checkVisibility()),
           visible: active !== document.body && active.checkVisibility()
             && rect.top >= 0 && rect.bottom <= innerHeight };
       });
+      console.log('DEFER-FOCUS', JSON.stringify({
+        action: label === 'Resume' ? 'resume' : 'defer',
+        tag: ['BODY', 'BUTTON', 'INPUT'].includes(focus.tag) ? focus.tag : 'other',
+        act: ['more', 'defer', 'read'].includes(focus.act) ? focus.act : 'other',
+        actedRow: focus.key === String(ids[1]), visible: focus.visible === true,
+        moreExpanded: focus.moreExpanded === true, panelVisible: focus.panelVisible === true,
+      }));
       t.check(`320px ${label} retains visible keyboard focus in the acted row`,
         focus.visible && focus.key === String(ids[1])
         && (await saved(page)).lists[copyId].deferredIssueIds.includes(ids[1]) === expected,

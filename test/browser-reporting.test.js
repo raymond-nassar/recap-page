@@ -178,6 +178,8 @@ function diagnosticFixture(
     let closes = 0;
     let prepared = 0;
     let readerRuns = 0;
+    let recoveryRuns = 0;
+    const recoveryMode = process.argv.includes('--diagnostic=recovery-export-completion');
     let activePage;
     let activeBrowser;
     let elapsed = 0;
@@ -247,10 +249,11 @@ function diagnosticFixture(
       events.push('prepare-reader');
     };
     const SCENARIOS = [{
-      id: 'reader-round-trip', title: 'existing reader fixture',
+      id: recoveryMode ? 'restore-copy-workflow' : 'reader-round-trip', title: 'existing export fixture',
       nativeDownloads: expectedDownloads,
       async run(page, t) {
-        readerRuns += 1;
+        if (recoveryMode) recoveryRuns += 1;
+        else readerRuns += 1;
         activePage = page;
         events.push('reader-run');
         const count = fault === 'missing-last' ? expectedDownloads - 1
@@ -280,6 +283,12 @@ function diagnosticFixture(
           t.check('reader check ' + index, fault !== 'assertion' || index !== 4);
         }
         if (fault === 'primary-pending-close') throw failure('TypeError');
+        if (fault === 'primary-error') throw failure('TypeError');
+        if (fault === 'process-loss') {
+          activeBrowser.connected = false;
+          activeBrowser.emit('disconnected');
+          throw failure();
+        }
       },
     }, {
       id: 'after-reader', title: 'ordinary continuation',
@@ -366,7 +375,10 @@ function diagnosticFixture(
     } };
     ${source.slice(start, end)}
     await main();
-    console.log('FIXTURE ' + JSON.stringify({ launches, created, pages, closes, prepared, readerRuns, events }));
+    console.log('FIXTURE ' + JSON.stringify({
+      launches, created, pages, closes, prepared, readerRuns, events,
+      ...(recoveryMode ? { recoveryRuns } : {}),
+    }));
     console.log('CLOCK ' + JSON.stringify({ delays, elapsed, pending: timers.size }));
   `;
   const result = spawnSync(process.execPath, ['--input-type=module', '-', ...args], {
@@ -413,7 +425,8 @@ test('context isolation fixes two fresh arms and four contexts without changing 
   assert.equal((result.stdout.match(/ok {3}reader check/g) ?? []).length, 9);
   const readerBody = source.slice(source.indexOf("    id: 'reader-round-trip',"), source.indexOf("    id: 'undo-delete-dismiss',"));
   assert.equal((readerBody.match(/t\.check\(/g) ?? []).length, 9);
-  assert.match(source.slice(start, end), /SCENARIOS\.find\(\(scenario\) => scenario\.id === 'reader-round-trip'\)/);
+  assert.match(source.slice(start, end), /const exportId = recoveryComparison \? 'restore-copy-workflow' : 'reader-round-trip';/);
+  assert.match(source.slice(start, end), /SCENARIOS\.find\(\(scenario\) => scenario\.id === exportId\)/);
   assert.match(result.stdout, /arm=reader-path passed=10 failed=0/);
   assert.ok(result.downloads.every((record) => Number.isFinite(record.elapsedMs) && record.elapsedMs >= 0));
   const completed = result.downloads.find((record) => record.arm === 'reader-path'
@@ -587,8 +600,55 @@ test('the fixed completion comparison preserves a failing control and uses the o
   assert.match(result.stdout, /capability=Page-download-events policy-change=false completion-wait=true/);
 });
 
+test('recovery completion comparison preserves the failed control and one gated treatment', () => {
+  const result = diagnosticFixture('matched', ['--diagnostic=recovery-export-completion']);
+  assert.equal(result.status, 1, result.output);
+  assert.deepEqual(result.summary, {
+    diagnostic: 'recovery-export-completion', qualified: false, outcome: 'failure-observed',
+    arms: [
+      { arm: 'recovery-observe-only', code: 1, sentinel: { status: 'failed', reason: 'TargetCloseError' } },
+      { arm: 'recovery-completion', code: 0, sentinel: { status: 'completed', reason: null } },
+    ],
+  });
+  assert.equal(result.facts.launches, 2);
+  assert.equal(result.facts.created, 4);
+  assert.equal(result.facts.readerRuns, 0);
+  assert.equal(result.facts.recoveryRuns, 2);
+  assert.equal(result.downloads.filter((record) => record.stage === 'completion-wait').length, 1);
+  const pending = result.downloads.find((record) => record.arm === 'recovery-observe-only'
+    && record.stage === 'before-close' && record.context === 1);
+  assert.equal(pending.pending, 1);
+  const completed = result.downloads.find((record) => record.arm === 'recovery-completion'
+    && record.stage === 'before-close' && record.context === 1);
+  assert.equal(completed.completed, 1);
+  assert.equal(completed.pending, 0);
+});
+
+test('recovery sentinels run once after recoverable errors and account for unavailable evidence', () => {
+  const recovered = diagnosticFixture('primary-error', ['--diagnostic=recovery-export-completion']);
+  assert.equal(recovered.status, 1, recovered.output);
+  assert.equal(recovered.facts.created, 4);
+  assert.equal(recovered.facts.recoveryRuns, 2);
+  assert.equal(recovered.summary.outcome, 'failure-observed');
+  assert.ok(recovered.summary.arms.every((arm) => arm.code === 1
+    && arm.sentinel.status === 'completed'));
+  for (const [fault, reason, launches] of [
+    ['process-loss', 'process-unavailable', 2],
+    ['observe', 'observer-unavailable', 1],
+  ]) {
+    const unavailable = diagnosticFixture(fault, ['--diagnostic=recovery-export-completion']);
+    assert.equal(unavailable.status, 1, unavailable.output);
+    assert.equal(unavailable.facts.launches, launches);
+    assert.equal(unavailable.facts.created, launches);
+    assert.ok(unavailable.summary.arms.every((arm) => arm.sentinel.status === 'not-run'
+      && arm.sentinel.reason === reason));
+    assert.equal(unavailable.summary.outcome, fault === 'observe' ? 'setup-aborted' : 'comparison-incomplete');
+  }
+});
+
 test('all ordinary native-export scenarios declare their complete context totals', () => {
   for (const [file, id, count] of [
+    ['browser-check.mjs', 'restore-copy-workflow', 1],
     ['browser-check.mjs', 'reader-round-trip', 1],
     ['browser-check.mjs', 'reading-shortcut', 1],
     ['browser-markdown-export.mjs', 'readable-markdown-export', 4],

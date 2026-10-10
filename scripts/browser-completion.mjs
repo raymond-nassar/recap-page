@@ -20,6 +20,18 @@ const focusHeading = (page) => page.$eval('#order-name', (element) => {
   element.focus();
 });
 
+async function completionOperation(stage, operation) {
+  console.log('COMPLETION-STEP', JSON.stringify({ stage }));
+  try {
+    return await operation();
+  } catch (error) {
+    const code = ['TimeoutError', 'TargetCloseError', 'ProtocolError', 'Error', 'TypeError']
+      .includes(error?.name) ? error.name : 'unknown';
+    console.log('COMPLETION-FAIL', JSON.stringify({ stage, code }));
+    throw error;
+  }
+}
+
 function item(issueId, date = '2005-01-01') {
   return {
     issueId, title: `Completion fixture #${issueId}`, number: String(issueId),
@@ -223,9 +235,10 @@ export const completionLifecycle = {
       && feedbackRequests.length === 0 && await raw(page) === before
       && await raw(page, LIST_HISTORY_KEY) === feedbackHistory
       && await page.$eval('#announcer', (node) => !/report.*(?:received|submitted|sent)/i.test(node.textContent)));
-    await page.keyboard.press('Escape');
-    await page.waitForFunction(() => !document.querySelector('#list-feedback').open
-      && document.activeElement.id === 'btn-list-feedback-guide');
+    await completionOperation('guide-escape', () => page.keyboard.press('Escape'));
+    await completionOperation('guide-focus', () => page.waitForFunction(() =>
+      !document.querySelector('#list-feedback').open
+      && document.activeElement.id === 'btn-list-feedback-guide'));
     t.check('feedback Escape restores visible explicit-report opener focus',
       await page.evaluate(() => !document.querySelector('#list-feedback').open
         && document.activeElement.id === 'btn-list-feedback-guide' && document.activeElement.checkVisibility()));
@@ -238,16 +251,21 @@ export const completionLifecycle = {
         && feedbackRequests.length === 0
         && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth
           && document.querySelector('#list-feedback-link').checkVisibility()));
-      await page.keyboard.press('Escape');
-      await page.waitForFunction(() => !document.querySelector('#list-feedback').open
-        && document.activeElement.id === 'btn-list-feedback-guide');
+      await completionOperation(`report-escape-${width}`, () => page.keyboard.press('Escape'));
+      await completionOperation(`report-focus-${width}`, () => page.waitForFunction(() =>
+        !document.querySelector('#list-feedback').open
+        && document.activeElement.id === 'btn-list-feedback-guide'));
       t.check(`${width}px standalone report Escape restores its visible opener`,
         await page.$eval('#btn-list-feedback-guide', (node) => node === document.activeElement && node.checkVisibility()));
     }
-    await page.setViewport({ width: 1280, height: 900 });
-    await click(page, '#btn-enjoyed-list');
-    await go(page, 'completed');
-    await click(page, 'input[name="completed-filter"][value="enjoyed"]');
+    await completionOperation('rating-viewport', () => page.setViewport({ width: 1280, height: 900 }));
+    await completionOperation('final-rating', () => click(page, '#btn-enjoyed-list'));
+    await completionOperation('saved-rating', () => page.waitForFunction(() =>
+      document.querySelector('#btn-enjoyed-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-enjoyed-list').disabled));
+    await completionOperation('completed-navigation', () => page.evaluate(() => { location.hash = '#/completed'; }));
+    await completionOperation('completed-visible', () => page.waitForSelector('#view-completed:not([hidden])'));
+    await completionOperation('completed-filter', () => click(page, 'input[name="completed-filter"][value="enjoyed"]'));
     t.check('Enjoyed filters completed cards while showing actual partial comic progress',
       await page.$eval('#completed-list', (node) => node.querySelectorAll('a[href^="#/read/"]').length === 1
         && node.textContent.includes('1 / 3') && node.textContent.includes('1 deferred')

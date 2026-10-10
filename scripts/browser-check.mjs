@@ -8236,6 +8236,7 @@ const SCENARIOS = [
   },
   {
     id: 'restore-copy-workflow',
+    nativeDownloads: 1,
     title: 'one-shot Undo and retained copies explain replacement and refuse stale confirmation',
     async run(page, t) {
       let five = createEmptyState();
@@ -17896,7 +17897,7 @@ async function main() {
     const mode = process.argv[2]?.slice('--diagnostic='.length);
     if (process.argv.slice(2).length !== 1
       || process.argv[2] !== `--diagnostic=${mode}`
-      || !['context-export-isolation', 'native-export-completion'].includes(mode) || process.env.MRT_HEADED) {
+      || !['context-export-isolation', 'native-export-completion', 'recovery-export-completion'].includes(mode) || process.env.MRT_HEADED) {
       console.error('FAIL diagnostic=context-export-isolation stage=arguments');
       process.exitCode = 1;
       return;
@@ -18175,21 +18176,25 @@ async function runContextExportIsolation(mode) {
       || driverVersion(resolveDriver() ?? '') !== '25.7.0') {
       throw new Error('Diagnostic source or driver identity mismatch');
     }
-    const reader = SCENARIOS.find((scenario) => scenario.id === 'reader-round-trip');
-    if (!reader) throw new Error('Diagnostic reader scenario missing');
+    const recoveryComparison = mode === 'recovery-export-completion';
+    const exportId = recoveryComparison ? 'restore-copy-workflow' : 'reader-round-trip';
+    const exportScenario = SCENARIOS.find((scenario) => scenario.id === exportId);
+    if (!exportScenario) throw new Error('Diagnostic export scenario missing');
+    const reader = recoveryComparison ? { ...exportScenario, nativeDownloads: 1 } : exportScenario;
     const blank = {
       id: 'context-only', title: 'blank browser context without app navigation',
       async run(page, t) { t.check('the page remains blank', page.url() === 'about:blank'); },
     };
     const completionComparison = mode === 'native-export-completion';
-    const plannedArms = completionComparison
-      ? ['reader-observe-only', 'reader-completion'] : ['browser-only', 'reader-path'];
+    const plannedArms = recoveryComparison ? ['recovery-observe-only', 'recovery-completion']
+      : completionComparison ? ['reader-observe-only', 'reader-completion'] : ['browser-only', 'reader-path'];
     for (const arm of plannedArms) {
       console.log(`DIAGNOSTIC arm=${arm} stage=launch qualified=false`);
       const results = [];
       const observations = [];
       let processFailed = false;
-      const requireCompletion = arm === 'reader-completion';
+      let sentinel = { status: 'not-run', reason: 'setup-unavailable' };
+      const requireCompletion = arm === 'reader-completion' || arm === 'recovery-completion';
       const code = await withStack(async ({ browser, origin, driver }) => {
         try {
           await diagnosticBrowserIdentity(browser, driver, profiles, requireCompletion);
@@ -18211,7 +18216,23 @@ async function runContextExportIsolation(mode) {
           const result = await runScenario(browser, origin, scenario, null, observation);
           results.push(result);
           report([result]);
-          if (result.error || result.rows.some((row) => !row.ok) || !common.valid) break;
+          if (recoveryComparison) {
+            if (index === 1) {
+              sentinel = result.error || result.rows.some((row) => !row.ok)
+                ? { status: 'failed', reason: result.error?.split('code=')[1] ?? 'assertion-failed' }
+                : { status: 'completed', reason: null };
+              break;
+            }
+            const unavailable = browser.connected === false || processFailed ? 'process-unavailable'
+              : !common.valid || observation.failureReason ? 'observer-unavailable'
+                : result.infrastructure ? 'lifecycle-failed' : null;
+            if (unavailable) {
+              sentinel = { status: 'not-run', reason: unavailable };
+              break;
+            }
+          } else {
+            if (result.error || result.rows.some((row) => !row.ok) || !common.valid) break;
+          }
         }
         const totals = report(results, { quiet: true });
         console.log(`DIAGNOSTIC arm=${arm} passed=${totals.passed} failed=${totals.failed}`);
@@ -18219,7 +18240,8 @@ async function runContextExportIsolation(mode) {
         return totals.failed || !common.valid ? 1 : 0;
       }, { onCleanupFailure: () => { common.valid = false; } });
       const armCode = code !== 0 || processFailed || !common.valid ? 1 : 0;
-      arms.push({ arm, code: armCode });
+      if (recoveryComparison) console.log(`DIAGNOSTIC arm=${arm} sentinel=${JSON.stringify(sentinel)}`);
+      arms.push({ arm, code: armCode, ...(recoveryComparison ? { sentinel } : {}) });
       if (armCode !== 0) exitCode = 1;
       if (!common.valid) break;
     }
@@ -18229,7 +18251,8 @@ async function runContextExportIsolation(mode) {
     console.error(`FAIL diagnostic=${mode} stage=setup code=${failureCode(error)}`);
   }
   const outcome = !common.valid ? 'setup-aborted'
-    : exitCode ? 'failure-observed' : 'both-passed-inconclusive';
+    : arms.some((arm) => arm.sentinel?.status === 'not-run') ? 'comparison-incomplete'
+      : exitCode ? 'failure-observed' : 'both-passed-inconclusive';
   console.log(`DIAGNOSTIC ${JSON.stringify({
     diagnostic: mode, qualified: false, outcome, arms,
   })}`);
