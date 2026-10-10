@@ -179,6 +179,18 @@ Any arm failure remains nonzero, including when the treatment passes. A timeout 
 after observed completion rejects the candidate; both arms passing does not establish causality.
 Neither diagnostic proves a fix or satisfies full-suite or release acceptance.
 
+The fixed `diagnostic_target=ordinary-browser-recovery-completion` uses the same flags and
+toolchain gates for the retained reading-data copy export. It runs the existing
+`restore-copy-workflow` body twice in fresh browsers, first observing without a completion
+wait, then requiring one native completion before context teardown. Each arm has one blank
+sentinel, for at most four explicit contexts and twelve create/page/close calls, without retries.
+The ordinary scenario is not changed by selecting this diagnostic. A recoverable scenario error
+still permits its single sentinel; unavailable process/observer evidence or uncertain cleanup
+records the sentinel as not run and the comparison as incomplete. A failing control remains
+nonzero even when treatment passes. Both arms passing is inconclusive, and a completed treatment
+does not prove waiting caused success unless the timing actually exercises the wait.
+This diagnostic uploads no artifact and cannot qualify a release.
+
 To check repeated exports alone, `diagnostic_target=ordinary-browser-export-acceptance`
 uses the same guarded diagnostic-only job. It runs `readable-markdown-export` followed by
 `order-only-export` through their existing single-scenario selectors and stops on either failure.
