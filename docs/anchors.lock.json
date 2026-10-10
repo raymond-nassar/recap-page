@@ -1929,8 +1929,8 @@
     "fp": "d0726134c311ee9a",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:120-145|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:120-145",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:126-151|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:126-151",
     "fp": "73bb6210d7b25942",
     "head": "for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {"
   },
@@ -1959,13 +1959,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12060-12185|0": {
-    "anchor": "src/data/catalog.json:12060-12185",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12099-12224|0": {
+    "anchor": "src/data/catalog.json:12099-12224",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7826-7865|0": {
-    "anchor": "src/data/curated-lists.json:7826-7865",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7858-7897|0": {
+    "anchor": "src/data/curated-lists.json:7858-7897",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
@@ -6074,8 +6074,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:216-220|0": {
-    "anchor": "scripts/check-publication.mjs:216-220",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:225-229|0": {
+    "anchor": "scripts/check-publication.mjs:225-229",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

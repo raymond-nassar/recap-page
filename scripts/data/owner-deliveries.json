@@ -25,6 +25,11 @@
       "surface": "modern-timeline"
     },
     {
+      "id": "one-world-under-doom",
+      "contract": "test/fixtures/owner-delivery/one-world-under-doom.json",
+      "surface": "modern-timeline"
+    },
+    {
       "id": "mcu-prep-iron-man-2008",
       "contract": "test/fixtures/owner-delivery/mcu-prep-iron-man-2008.json"
     },

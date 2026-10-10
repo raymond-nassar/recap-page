@@ -22,9 +22,8 @@ import {
 // somewhere and place none of them twice. A bucket count asserts today's data; a partition asserts
 // the property the screen depends on, and it keeps holding when a boundary moves.
 //
-// The eras are closed at both ends, so a story can match no era at all. That is deliberate, and it
-// is why two of these tests are a pair failing in opposite directions: one that the fallback catches
-// a stray and names it, one that the fallback is empty on the shipped catalog.
+// The eras are closed at both ends, so a story can match no era at all. The fallback names those
+// stories, and the catalog assertion pins the only intentionally unplaced reading order.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
@@ -81,15 +80,16 @@ test('an order dated outside every era is caught by name, rather than lost', () 
   }
 });
 
-// The other half, failing in the opposite direction. The fallback exists for a state the app is
-// expected never to be in, and a fallback quietly holding real content is that state. Between the
-// two, it cannot become the place everything lands while the suite stays green.
-test('nothing in the shipped catalog needs the fallback', () => {
+// The 2025 event is intentionally held here until a named era covers its year. Pinning exact
+// membership keeps later out-of-range orders from quietly joining it.
+test('the approved 2025 event is the only shipped order held in the fallback', () => {
   const strays = events
     .filter((s) => eraKey(s) === fallback.key)
     .map((s) => `${s.name ?? s.lists[0].name} (${storyYear(s)})`);
-  assert.deepEqual(strays, [], `these are dated outside every era, so an era row is missing: ${strays.join(', ')}`);
-  assert.equal(sections.some((s) => s.fallback), false, 'the fallback section was drawn on the shipped catalog');
+  assert.deepEqual(strays, ['One World Under Doom (2025)']);
+  const fallbackStories = sections.filter((section) => section.fallback)
+    .flatMap((section) => section.stories);
+  assert.deepEqual(fallbackStories.map((story) => story.key), ['list:one-world-under-doom']);
 });
 
 // The fallback's rows share nothing but having been refused by every era, so a range over them would

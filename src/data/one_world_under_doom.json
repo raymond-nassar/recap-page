@@ -1,0 +1,2501 @@
+{
+  "id": "one-world-under-doom",
+  "name": "One World Under Doom",
+  "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/773",
+  "sourceSection": "One World Under Doom",
+  "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T22:38:53.342Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 75,
+  "collections": 9,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 119394,
+      "title": "Fantastic Four (2022) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/119394/fantastic_four_2022_28",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-01-22T00:00:00+0000",
+      "mu": "2025-01-08T00:00:00+0000",
+      "digitalId": 71098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/678030cc0d2df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Cummings",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Lead-in"
+    },
+    {
+      "issueId": 113858,
+      "title": "One World Under Doom (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/113858/one_world_under_doom_2025_1",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-02-12T00:00:00+0000",
+      "mu": "2025-01-30T00:00:00+0000",
+      "digitalId": 69572,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/67ab71bd04cda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 120391,
+      "title": "Storm (2024) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/120391/storm_2024_5",
+      "seriesId": 41989,
+      "seriesName": "Storm (2024 - Present)",
+      "onSale": "2025-02-19T00:00:00+0000",
+      "mu": "2025-02-05T00:00:00+0000",
+      "digitalId": 71647,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/67ab717ce533c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mateus Manhanini",
+          "role": "penciler"
+        },
+        {
+          "name": "Murewa Ayodele",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 116570,
+      "title": "X-Factor (2024) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/116570/x-factor_2024_7",
+      "seriesId": 39695,
+      "seriesName": "X-Factor (2024 - Present)",
+      "onSale": "2025-02-19T00:00:00+0000",
+      "mu": "2025-02-05T00:00:00+0000",
+      "digitalId": 69626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/67ab7161da979",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Russell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 120357,
+      "title": "Doom Academy (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/120357/doom_academy_2025_1",
+      "seriesId": 41980,
+      "seriesName": "Doom Academy (2025 - Present)",
+      "onSale": "2025-02-19T00:00:00+0000",
+      "mu": "2025-02-19T00:00:00+0000",
+      "digitalId": 69462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/67ab71af5bfcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "MacKenzie Cadenhead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 121352,
+      "title": "Thunderbolts: Doomstrike (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/121352/thunderbolts_doomstrike_2025_1",
+      "seriesId": 42319,
+      "seriesName": "Thunderbolts: Doomstrike (2025)",
+      "onSale": "2025-02-19T00:00:00+0000",
+      "mu": "2025-02-19T00:00:00+0000",
+      "digitalId": 69575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/67ab717b4a2d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tommaso Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 120217,
+      "title": "Weapon X-Men (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/120217/weapon_x-men_2025_1",
+      "seriesId": 41926,
+      "seriesName": "Weapon X-Men (2025 - Present)",
+      "onSale": "2025-02-19T00:00:00+0000",
+      "mu": "2025-02-19T00:00:00+0000",
+      "digitalId": 69611,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/67ab7161da04a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Cross",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 119395,
+      "title": "Fantastic Four (2022) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/119395/fantastic_four_2022_29",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-02-26T00:00:00+0000",
+      "mu": "2025-02-26T00:00:00+0000",
+      "digitalId": 69471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/67b74aaae7b72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 115549,
+      "title": "Red Hulk (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/115549/red_hulk_2025_1",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-02-26T00:00:00+0000",
+      "mu": "2025-02-11T00:00:00+0000",
+      "digitalId": 69527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/67b74aa519ca1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 123723,
+      "title": "Doctor Strange of Asgard (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/123723/doctor_strange_of_asgard_2025_1",
+      "seriesId": 42805,
+      "seriesName": "Doctor Strange of Asgard (2025 - Present)",
+      "onSale": "2025-03-05T00:00:00+0000",
+      "mu": "2025-02-20T00:00:00+0000",
+      "digitalId": 70884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/67b74aea50778",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 123724,
+      "title": "Doctor Strange of Asgard (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/123724/doctor_strange_of_asgard_2025_2",
+      "seriesId": 42805,
+      "seriesName": "Doctor Strange of Asgard (2025 - Present)",
+      "onSale": "2025-04-09T00:00:00+0000",
+      "mu": "2025-03-27T00:00:00+0000",
+      "digitalId": 70885,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/67915635c1d05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 123725,
+      "title": "Doctor Strange of Asgard (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/123725/doctor_strange_of_asgard_2025_3",
+      "seriesId": 42805,
+      "seriesName": "Doctor Strange of Asgard (2025 - Present)",
+      "onSale": "2025-05-14T00:00:00+0000",
+      "mu": "2025-05-01T00:00:00+0000",
+      "digitalId": 70886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/680f8729b9966",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 123726,
+      "title": "Doctor Strange of Asgard (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/123726/doctor_strange_of_asgard_2025_4",
+      "seriesId": 42805,
+      "seriesName": "Doctor Strange of Asgard (2025 - Present)",
+      "onSale": "2025-06-04T00:00:00+0000",
+      "mu": "2025-05-22T00:00:00+0000",
+      "digitalId": 70887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/6841c9e60fb18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 123727,
+      "title": "Doctor Strange of Asgard (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/123727/doctor_strange_of_asgard_2025_5",
+      "seriesId": 42805,
+      "seriesName": "Doctor Strange of Asgard (2025 - Present)",
+      "onSale": "2025-07-09T00:00:00+0000",
+      "mu": "2025-06-25T00:00:00+0000",
+      "digitalId": 70888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/685d4d0f7ad3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Landy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 1"
+    },
+    {
+      "issueId": 113859,
+      "title": "One World Under Doom (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/113859/one_world_under_doom_2025_2",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-03-19T00:00:00+0000",
+      "mu": "2025-02-27T00:00:00+0000",
+      "digitalId": 69807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/67d9b60b442d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 119396,
+      "title": "Fantastic Four (2022) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/119396/fantastic_four_2022_30",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-06T00:00:00+0000",
+      "digitalId": 71402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/67d99f111bb60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 114939,
+      "title": "Iron Man (2024) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/114939/iron_man_2024_6",
+      "seriesId": 39289,
+      "seriesName": "Iron Man (2024 - Present)",
+      "onSale": "2025-03-12T00:00:00+0000",
+      "mu": "2025-02-27T00:00:00+0000",
+      "digitalId": 70002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/67d9cefc6c9cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julius Ohta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Spencer Ackerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 115319,
+      "title": "Nyx (2024) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/115319/nyx_2024_9",
+      "seriesId": 39420,
+      "seriesName": "Nyx (2024 - 2025)",
+      "onSale": "2025-03-05T00:00:00+0000",
+      "mu": "2025-02-20T00:00:00+0000",
+      "digitalId": 71516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/67b74ae62069f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 123185,
+      "title": "The Amazing Spider-Man (2022) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/123185/the_amazing_spider-man_2022_69",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2025-03-12T00:00:00+0000",
+      "mu": "2025-02-27T00:00:00+0000",
+      "digitalId": 70941,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/67d9cefea5718",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 120358,
+      "title": "Doom Academy (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/120358/doom_academy_2025_2",
+      "seriesId": 41980,
+      "seriesName": "Doom Academy (2025 - Present)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-06T00:00:00+0000",
+      "digitalId": 71392,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/67d99f1155850",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "MacKenzie Cadenhead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 121368,
+      "title": "Doom's Division (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/121368/dooms_division_2025_1",
+      "seriesId": 42322,
+      "seriesName": "Doom's Division (2025 - Present)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-06T00:00:00+0000",
+      "digitalId": 71395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/67d99f10ead7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Yoon Ha Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 115550,
+      "title": "Red Hulk (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/115550/red_hulk_2025_2",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-06T00:00:00+0000",
+      "digitalId": 70003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/67d99edacd23c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 121353,
+      "title": "Thunderbolts: Doomstrike (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/121353/thunderbolts_doomstrike_2025_2",
+      "seriesId": 42319,
+      "seriesName": "Thunderbolts: Doomstrike (2025)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-06T00:00:00+0000",
+      "digitalId": 71480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/67d99ed7174b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tommaso Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 123186,
+      "title": "The Amazing Spider-Man (2022) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/123186/the_amazing_spider-man_2022_70",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2025-03-26T00:00:00+0000",
+      "mu": "2025-03-26T00:00:00+0000",
+      "digitalId": 70942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/67d99f12e25d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "C Cafu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 114940,
+      "title": "Iron Man (2024) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/114940/iron_man_2024_7",
+      "seriesId": 39289,
+      "seriesName": "Iron Man (2024 - Present)",
+      "onSale": "2025-04-16T00:00:00+0000",
+      "mu": "2025-04-04T00:00:00+0000",
+      "digitalId": 72583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/6791566e7d7a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julius Ohta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Spencer Ackerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 118634,
+      "title": "Superior Avengers (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/118634/superior_avengers_2025_1",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-04-16T00:00:00+0000",
+      "mu": "2025-04-04T00:00:00+0000",
+      "digitalId": 70169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/6791567871e1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 2"
+    },
+    {
+      "issueId": 113860,
+      "title": "One World Under Doom (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/113860/one_world_under_doom_2025_3",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-04-23T00:00:00+0000",
+      "mu": "2025-04-10T00:00:00+0000",
+      "digitalId": 69808,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/680f876e0d026",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 119397,
+      "title": "Fantastic Four (2022) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/119397/fantastic_four_2022_31",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-04-30T00:00:00+0000",
+      "mu": "2025-04-25T00:00:00+0000",
+      "digitalId": 71403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/680f8768b30db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 119398,
+      "title": "Fantastic Four (2022) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/119398/fantastic_four_2022_32",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-05-21T00:00:00+0000",
+      "mu": "2025-05-08T00:00:00+0000",
+      "digitalId": 71404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/6826064fdfcc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 119399,
+      "title": "Fantastic Four (2022) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/119399/fantastic_four_2022_33",
+      "seriesId": 34035,
+      "seriesName": "Fantastic Four (2022 - Present)",
+      "onSale": "2025-06-25T00:00:00+0000",
+      "mu": "2025-06-25T00:00:00+0000",
+      "digitalId": 72550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/67dc404333d33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 119374,
+      "title": "Avengers (2023) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/119374/avengers_2023_25",
+      "seriesId": 34716,
+      "seriesName": "Avengers (2023 - Present)",
+      "onSale": "2025-04-23T00:00:00+0000",
+      "mu": "2025-04-10T00:00:00+0000",
+      "digitalId": 72544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/680f877020d01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 115551,
+      "title": "Red Hulk (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/115551/red_hulk_2025_3",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-04-30T00:00:00+0000",
+      "mu": "2025-04-25T00:00:00+0000",
+      "digitalId": 70004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/680f8766a4c39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 120359,
+      "title": "Doom Academy (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/120359/doom_academy_2025_3",
+      "seriesId": 41980,
+      "seriesName": "Doom Academy (2025 - Present)",
+      "onSale": "2025-04-30T00:00:00+0000",
+      "mu": "2025-04-25T00:00:00+0000",
+      "digitalId": 71393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/680f876747beb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "MacKenzie Cadenhead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 121354,
+      "title": "Thunderbolts: Doomstrike (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/121354/thunderbolts_doomstrike_2025_3",
+      "seriesId": 42319,
+      "seriesName": "Thunderbolts: Doomstrike (2025)",
+      "onSale": "2025-04-30T00:00:00+0000",
+      "mu": "2025-04-25T00:00:00+0000",
+      "digitalId": 71481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/680f875e10f11",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tommaso Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 121369,
+      "title": "Doom's Division (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/121369/dooms_division_2025_2",
+      "seriesId": 42322,
+      "seriesName": "Doom's Division (2025 - Present)",
+      "onSale": "2025-04-30T00:00:00+0000",
+      "mu": "2025-04-25T00:00:00+0000",
+      "digitalId": 71397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/680f87687ecbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Yoon Ha Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 122796,
+      "title": "Fantastic Four (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/122796/fantastic_four_2025_1",
+      "seriesId": 42598,
+      "seriesName": "Fantastic Four (2025 - Present)",
+      "onSale": "2025-07-09T00:00:00+0000",
+      "mu": "2025-06-17T00:00:00+0000",
+      "digitalId": 70899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/685d4d10223ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 122797,
+      "title": "Fantastic Four (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/122797/fantastic_four_2025_2",
+      "seriesId": 42598,
+      "seriesName": "Fantastic Four (2025 - Present)",
+      "onSale": "2025-08-13T00:00:00+0000",
+      "mu": "2025-08-13T00:00:00+0000",
+      "digitalId": 70900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/688a67b7dc559",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 122798,
+      "title": "Fantastic Four (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/122798/fantastic_four_2025_3",
+      "seriesId": 42598,
+      "seriesName": "Fantastic Four (2025 - Present)",
+      "onSale": "2025-09-17T00:00:00+0000",
+      "mu": "2025-09-04T00:00:00+0000",
+      "digitalId": 70901,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/68b9f0d0234bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 3"
+    },
+    {
+      "issueId": 113861,
+      "title": "One World Under Doom (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/113861/one_world_under_doom_2025_4",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-05-14T00:00:00+0000",
+      "mu": "2025-05-01T00:00:00+0000",
+      "digitalId": 69809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/680f87256e85e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 115552,
+      "title": "Red Hulk (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/115552/red_hulk_2025_4",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-05-14T00:00:00+0000",
+      "mu": "2025-05-01T00:00:00+0000",
+      "digitalId": 70005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/680f87257bc2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 121355,
+      "title": "Thunderbolts: Doomstrike (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/121355/thunderbolts_doomstrike_2025_4",
+      "seriesId": 42319,
+      "seriesName": "Thunderbolts: Doomstrike (2025)",
+      "onSale": "2025-05-14T00:00:00+0000",
+      "mu": "2025-05-01T00:00:00+0000",
+      "digitalId": 71482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/680f870da6c46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tommaso Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 114941,
+      "title": "Iron Man (2024) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/114941/iron_man_2024_8",
+      "seriesId": 39289,
+      "seriesName": "Iron Man (2024 - Present)",
+      "onSale": "2025-05-21T00:00:00+0000",
+      "mu": "2025-05-08T00:00:00+0000",
+      "digitalId": 73111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/6826064f34403",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julius Ohta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Dowling",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Spencer Ackerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 120360,
+      "title": "Doom Academy (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/120360/doom_academy_2025_4",
+      "seriesId": 41980,
+      "seriesName": "Doom Academy (2025 - Present)",
+      "onSale": "2025-05-21T00:00:00+0000",
+      "mu": "2025-05-08T00:00:00+0000",
+      "digitalId": 71394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/68260651182d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "MacKenzie Cadenhead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 121356,
+      "title": "Thunderbolts: Doomstrike (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/121356/thunderbolts_doomstrike_2025_5",
+      "seriesId": 42319,
+      "seriesName": "Thunderbolts: Doomstrike (2025)",
+      "onSale": "2025-05-21T00:00:00+0000",
+      "mu": "2025-05-08T00:00:00+0000",
+      "digitalId": 72562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/20/6826063438c79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tommaso Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 118635,
+      "title": "Superior Avengers (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/118635/superior_avengers_2025_2",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-05-21T00:00:00+0000",
+      "mu": "2025-05-08T00:00:00+0000",
+      "digitalId": 70170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/6826064db1f28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 119375,
+      "title": "Avengers (2023) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/119375/avengers_2023_26",
+      "seriesId": 34716,
+      "seriesName": "Avengers (2023 - Present)",
+      "onSale": "2025-05-28T00:00:00+0000",
+      "mu": "2025-05-15T00:00:00+0000",
+      "digitalId": 72545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/6849a2c92a0d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 119376,
+      "title": "Avengers (2023) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/119376/avengers_2023_27",
+      "seriesId": 34716,
+      "seriesName": "Avengers (2023 - Present)",
+      "onSale": "2025-06-18T00:00:00+0000",
+      "mu": "2025-06-18T00:00:00+0000",
+      "digitalId": 72546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/6841d05d0a564",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Farid Karami",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 119377,
+      "title": "Avengers (2023) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/119377/avengers_2023_28",
+      "seriesId": 34716,
+      "seriesName": "Avengers (2023 - Present)",
+      "onSale": "2025-07-02T00:00:00+0000",
+      "mu": "2025-07-02T00:00:00+0000",
+      "digitalId": 72547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/685c54195912f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 121370,
+      "title": "Doom's Division (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/121370/dooms_division_2025_3",
+      "seriesId": 42322,
+      "seriesName": "Doom's Division (2025 - Present)",
+      "onSale": "2025-05-28T00:00:00+0000",
+      "mu": "2025-05-15T00:00:00+0000",
+      "digitalId": 71398,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/6849a2cae5c80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Yoon Ha Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 115553,
+      "title": "Red Hulk (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/115553/red_hulk_2025_5",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-06-04T00:00:00+0000",
+      "mu": "2025-05-22T00:00:00+0000",
+      "digitalId": 72551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/6841c9ffc867a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 4"
+    },
+    {
+      "issueId": 119482,
+      "title": "One World Under Doom (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/119482/one_world_under_doom_2025_5",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-06-11T00:00:00+0000",
+      "mu": "2025-05-30T00:00:00+0000",
+      "digitalId": 69810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6841ea178ae56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 123397,
+      "title": "Runaways (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/123397/runaways_2025_1",
+      "seriesId": 42756,
+      "seriesName": "Runaways (2025 - Present)",
+      "onSale": "2025-06-11T00:00:00+0000",
+      "mu": "2025-05-30T00:00:00+0000",
+      "digitalId": 72557,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/6841ea17a1e1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Elena Casagrande",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 128903,
+      "title": "DOOMED 2099 (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/128903/doomed_2099_2025_1",
+      "seriesId": 44243,
+      "seriesName": "DOOMED 2099 (2025 - Present)",
+      "onSale": "2025-08-27T00:00:00+0000",
+      "mu": "2025-07-23T00:00:00+0000",
+      "digitalId": 73102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/689ce5bd6fa2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derrick Chew",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 121371,
+      "title": "Doom's Division (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/121371/dooms_division_2025_4",
+      "seriesId": 42322,
+      "seriesName": "Doom's Division (2025 - Present)",
+      "onSale": "2025-06-18T00:00:00+0000",
+      "mu": "2025-06-18T00:00:00+0000",
+      "digitalId": 71399,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/6841d05e898e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Yoon Ha Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 120361,
+      "title": "Doom Academy (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/120361/doom_academy_2025_5",
+      "seriesId": 41980,
+      "seriesName": "Doom Academy (2025 - Present)",
+      "onSale": "2025-06-25T00:00:00+0000",
+      "mu": "2025-06-25T00:00:00+0000",
+      "digitalId": 72548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/67dc403f7da21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Villalobos",
+          "role": "penciler"
+        },
+        {
+          "name": "MacKenzie Cadenhead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 118636,
+      "title": "Superior Avengers (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/118636/superior_avengers_2025_3",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-06-25T00:00:00+0000",
+      "mu": "2025-06-25T00:00:00+0000",
+      "digitalId": 70171,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/67dc4cf99cbf4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 114942,
+      "title": "Iron Man (2024) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/114942/iron_man_2024_9",
+      "seriesId": 39289,
+      "seriesName": "Iron Man (2024 - Present)",
+      "onSale": "2025-06-18T00:00:00+0000",
+      "mu": "2025-06-18T00:00:00+0000",
+      "digitalId": 73475,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/6841d041232da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julius Ohta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Dowling",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Spencer Ackerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 128005,
+      "title": "G.O.D.S.: ONE WORLD UNDER DOOM (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/128005/gods_one_world_under_doom_2025_1",
+      "seriesId": 43988,
+      "seriesName": "G.O.D.S.: ONE WORLD UNDER DOOM (2025 - Present)",
+      "onSale": "2025-07-30T00:00:00+0000",
+      "mu": "2025-07-30T00:00:00+0000",
+      "digitalId": 72572,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/6876840472e5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 121372,
+      "title": "Doom's Division (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/121372/dooms_division_2025_5",
+      "seriesId": 42322,
+      "seriesName": "Doom's Division (2025 - Present)",
+      "onSale": "2025-07-23T00:00:00+0000",
+      "mu": "2025-07-10T00:00:00+0000",
+      "digitalId": 72549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/70/687678573d324",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Creees Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Yoon Ha Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 114943,
+      "title": "Iron Man (2024) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/114943/iron_man_2024_10",
+      "seriesId": 39289,
+      "seriesName": "Iron Man (2024 - Present)",
+      "onSale": "2025-07-23T00:00:00+0000",
+      "mu": "2025-07-23T00:00:00+0000",
+      "digitalId": 73476,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/6876786f59c36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Spencer Ackerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 121357,
+      "title": "Red Hulk (2025) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/121357/red_hulk_2025_6",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-07-09T00:00:00+0000",
+      "mu": "2025-06-25T00:00:00+0000",
+      "digitalId": 72552,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/685d4d07bf303",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 123398,
+      "title": "Runaways (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/123398/runaways_2025_2",
+      "seriesId": 42756,
+      "seriesName": "Runaways (2025 - Present)",
+      "onSale": "2025-07-23T00:00:00+0000",
+      "mu": "2025-07-10T00:00:00+0000",
+      "digitalId": 72558,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/6876787179d65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Elena Casagrande",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberta Ingranata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 118637,
+      "title": "Superior Avengers (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/118637/superior_avengers_2025_4",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-07-09T00:00:00+0000",
+      "mu": "2025-07-09T00:00:00+0000",
+      "digitalId": 70172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/685d4d1348efe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 5"
+    },
+    {
+      "issueId": 127112,
+      "title": "One World Under Doom (2025) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/127112/one_world_under_doom_2025_6",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-08-06T00:00:00+0000",
+      "mu": "2025-08-06T00:00:00+0000",
+      "digitalId": 71894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/688a5e7581cfd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 6"
+    },
+    {
+      "issueId": 121358,
+      "title": "Red Hulk (2025) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/121358/red_hulk_2025_7",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-08-06T00:00:00+0000",
+      "mu": "2025-08-05T00:00:00+0000",
+      "digitalId": 72553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/688a5e78dc76c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jethro Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 6"
+    },
+    {
+      "issueId": 118638,
+      "title": "Superior Avengers (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/118638/superior_avengers_2025_5",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-08-06T00:00:00+0000",
+      "mu": "2025-08-05T00:00:00+0000",
+      "digitalId": 70173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/688a5e7a10e72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 6"
+    },
+    {
+      "issueId": 118639,
+      "title": "Superior Avengers (2025) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/118639/superior_avengers_2025_6",
+      "seriesId": 41608,
+      "seriesName": "Superior Avengers (2025 - Present)",
+      "onSale": "2025-09-10T00:00:00+0000",
+      "mu": "2025-08-27T00:00:00+0000",
+      "digitalId": 70174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/68ae096de31ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 6"
+    },
+    {
+      "issueId": 123399,
+      "title": "Runaways (2025) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/123399/runaways_2025_3",
+      "seriesId": 42756,
+      "seriesName": "Runaways (2025 - Present)",
+      "onSale": "2025-08-27T00:00:00+0000",
+      "mu": "2025-08-21T00:00:00+0000",
+      "digitalId": 72559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/689ce5c0cb3cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Elena Casagrande",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberta Ingranata",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 6"
+    },
+    {
+      "issueId": 127113,
+      "title": "One World Under Doom (2025) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/127113/one_world_under_doom_2025_7",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-09-10T00:00:00+0000",
+      "mu": "2025-08-27T00:00:00+0000",
+      "digitalId": 71895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/68ae095f83362",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 7"
+    },
+    {
+      "issueId": 121359,
+      "title": "Red Hulk (2025) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/121359/red_hulk_2025_8",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-09-10T00:00:00+0000",
+      "mu": "2025-08-27T00:00:00+0000",
+      "digitalId": 72554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/68ae095f816a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 7"
+    },
+    {
+      "issueId": 123400,
+      "title": "Runaways (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/123400/runaways_2025_4",
+      "seriesId": 42756,
+      "seriesName": "Runaways (2025 - Present)",
+      "onSale": "2025-09-17T00:00:00+0000",
+      "mu": "2025-09-04T00:00:00+0000",
+      "digitalId": 72560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/68b9f0e1201b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Elena Casagrande",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Ferguson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberta Ingranata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 7"
+    },
+    {
+      "issueId": 121360,
+      "title": "Red Hulk (2025) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/121360/red_hulk_2025_9",
+      "seriesId": 39474,
+      "seriesName": "Red Hulk (2025 - Present)",
+      "onSale": "2025-10-01T00:00:00+0000",
+      "mu": "2025-09-18T00:00:00+0000",
+      "digitalId": 72555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/68c9b5d9da81f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Guzman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 7"
+    },
+    {
+      "issueId": 127114,
+      "title": "One World Under Doom (2025) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/127114/one_world_under_doom_2025_8",
+      "seriesId": 39085,
+      "seriesName": "One World Under Doom (2025 - Present)",
+      "onSale": "2025-10-15T00:00:00+0000",
+      "mu": "2025-10-02T00:00:00+0000",
+      "digitalId": 71896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/68de9bf3142f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "R.B. Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 8"
+    },
+    {
+      "issueId": 122799,
+      "title": "Fantastic Four (2025) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/122799/fantastic_four_2025_4",
+      "seriesId": 42598,
+      "seriesName": "Fantastic Four (2025 - Present)",
+      "onSale": "2025-10-22T00:00:00+0000",
+      "mu": "2025-10-08T00:00:00+0000",
+      "digitalId": 70902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/68e6707d1cc5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 8"
+    },
+    {
+      "issueId": 123401,
+      "title": "Runaways (2025) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/123401/runaways_2025_5",
+      "seriesId": 42756,
+      "seriesName": "Runaways (2025 - Present)",
+      "onSale": "2025-10-29T00:00:00+0000",
+      "mu": "2025-10-16T00:00:00+0000",
+      "digitalId": 72561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/68f114325b918",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Elena Casagrande",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Chunk 8"
+    }
+  ]
+}

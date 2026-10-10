@@ -5181,7 +5181,7 @@ const SCENARIOS = [
   },
   {
     id: 'modern-timeline-actual-data',
-    title: 'the chosen 1998 timeline and setup guide stay distinct on actual data',
+    title: 'the chosen 1998 timeline and 2025 Doom event stay distinct on actual data',
     async run(page, t) {
       const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
       const timelineCount = currentReadingCensus.modernTimeline;
@@ -5233,6 +5233,10 @@ const SCENARIOS = [
           && Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2'))?.lists ?? {}).length === 0));
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
+        const doomCards = cards.filter((card) => (
+          card.dataset.story === 'list:one-world-under-doom'
+        ));
+        const doomCard = doomCards[0];
         const feature = document.querySelector('#modern-timeline-feature');
         const featureCard = feature?.querySelector('.catalog-card');
         const featureImage = featureCard?.querySelector('.ocard-art img');
@@ -5265,6 +5269,13 @@ const SCENARIOS = [
           featureFallbackDisplay: featureFallback ? getComputedStyle(featureFallback).display : '',
           oldPlainAction: Boolean(document.querySelector('#btn-modern-timeline-feature')),
           cards: cards.length,
+          doom: {
+            count: doomCards.length,
+            title: doomCard?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+            year: Number(doomCard?.dataset.year),
+            description: doomCard?.querySelector('.catalog-card-desc')?.textContent.trim() ?? '',
+            meta: doomCard?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
+          },
           firstCards: cards.slice(0, 3).map((card) => ({
             title: card.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
             year: Number(card.dataset.year),
@@ -5320,6 +5331,12 @@ const SCENARIOS = [
         JSON.stringify(timeline));
       t.check(`${timelineCount} selected lists render as distinct cards beginning with the owner chapters`,
         timeline.cards === timelineCount
+        && timeline.doom.count === 1
+        && timeline.doom.title === 'One World Under Doom'
+        && timeline.doom.year === 2025
+        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
+        && timeline.doom.meta.startsWith('75 issues')
+        && timeline.cardYears.at(-1) === 2025
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
           { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
@@ -5327,6 +5344,12 @@ const SCENARIOS = [
           { title: 'Marvel Boy to Early X-Men Setup', year: 2000 },
         ]),
         JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
+      t.check('the 2025 Doom event follows the 2024 timeline entry without joining another surface',
+        timeline.doom.count === 1
+        && timeline.doom.title === 'One World Under Doom'
+        && timeline.doom.year === 2025
+        && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows'),
+        JSON.stringify(timeline.doom));
       t.check('the chapter years are derived exactly and only 1999 remains empty before 2004',
         timeline.spine[0]?.year === 1998
         && timeline.spine.every(({ year }) => year >= 1998)
@@ -5346,6 +5369,46 @@ const SCENARIOS = [
         && timeline.eras[1]?.copy.includes('final three Planet X bridge chapters share 2004')
         && timeline.operationCards === 0 && timeline.avengersCards === 1,
         JSON.stringify(timeline));
+
+      const doomPreviewSelector =
+        '#catalog-results [data-story="list:one-world-under-doom"] [data-act="preview"]';
+      const beforeDoomPreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      await page.focus(doomPreviewSelector);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'One World Under Doom');
+      await page.waitForSelector('#preview .preview-issue-link');
+      const doomPreview = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta')?.textContent ?? '',
+        description: document.querySelector('#preview-desc')?.textContent ?? '',
+        issues: document.querySelectorAll('#preview .preview-issue-link').length,
+      }));
+      t.check('Doom Preview shows the 75 resolved issues and both reviewed source annotations',
+        doomPreview.meta.includes('75 issues')
+        && doomPreview.description.includes(
+          'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
+        )
+        && doomPreview.description.includes('Read Fantastic Four (2025) #1-3 together.')
+        && doomPreview.issues === 75,
+        JSON.stringify(doomPreview));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.act === 'preview'
+        && document.activeElement?.dataset.key === 'list:one-world-under-doom');
+      const afterDoomPreview = await page.evaluate(() => ({
+        href: location.href,
+        history: history.length,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('Doom Preview returns to its keyboard opener without changing saved progress or route',
+        afterDoomPreview.href === beforeDoomPreview.href
+        && afterDoomPreview.history === beforeDoomPreview.history
+        && afterDoomPreview.state === beforeDoomPreview.state,
+        JSON.stringify({ beforeDoomPreview, afterDoomPreview }));
 
       const beforeFeaturePreview = await page.evaluate(() => ({
         href: location.href,
@@ -5465,6 +5528,26 @@ const SCENARIOS = [
       await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
 
       await page.setViewport({ width: 320, height: 900 });
+      const doomNarrow = await page.evaluate(() => {
+        const card = document.querySelector(
+          '#catalog-results [data-story="list:one-world-under-doom"]',
+        );
+        const rect = card?.getBoundingClientRect();
+        return {
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          left: rect?.left ?? null,
+          right: rect?.right ?? null,
+          title: card?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+        };
+      });
+      t.check('the Doom card stays visible and unclipped at 320 pixels',
+        doomNarrow.viewport === 320
+        && doomNarrow.scrollWidth <= doomNarrow.viewport + 1
+        && doomNarrow.left >= 0
+        && doomNarrow.right <= doomNarrow.viewport + 1
+        && doomNarrow.title === 'One World Under Doom',
+        JSON.stringify(doomNarrow));
       const denseYear = await page.evaluate(() => {
         const heading = document.querySelector('#timeline-year-2003');
         const row = heading?.closest('.timeline-year-row');
@@ -19363,7 +19446,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 16, 'fall-house-x-rise-powers-x'],
+      ['fresh-start', 13, 'king-in-black'], ['current', 17, 'one-world-under-doom'],
       ['early-modern', 16, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
