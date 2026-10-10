@@ -169,8 +169,14 @@ export const deferLifecycle = {
     await page.setViewport({ width: 320, height: 900 });
     await full(page);
     for (const [label, expected] of [['Resume', false], ['Defer', true]]) {
-      await click(page, row(ids[1], 'more'));
+      const more = row(ids[1], 'more');
+      if (!await page.$eval(more, (element) => element.getAttribute('aria-expanded') === 'true')) {
+        await click(page, more);
+      }
       await page.focus(row(ids[1], 'defer'));
+      t.check(`320px ${label} starts on a visible keyboard action`,
+        await page.evaluate(() => document.activeElement.matches('#rows [data-key="510002"][data-act="defer"]')
+          && document.activeElement.checkVisibility()));
       await page.keyboard.press('Enter');
       const focus = await page.evaluate(() => {
         const active = document.activeElement;
