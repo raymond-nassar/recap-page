@@ -31,12 +31,51 @@ async function installIndexFetch(page) {
 // A goto that differs from the current address only by its hash is a same-document navigation,
 // which would keep the app's state from before the seed and the loader's result from an earlier
 // mode. Passing through about:blank makes every boot a fresh document; sessionStorage survives it.
-async function boot(page, hash) {
+async function boot(page, hash, stage = () => {}) {
+  stage('malformed-blank');
   await page.goto('about:blank');
+  stage('malformed-library');
   await page.goto(`${page.__origin}/${hash}`, { waitUntil: 'load' });
 }
 
 const setMode = (page, mode) => page.evaluate((value) => sessionStorage.setItem('ratedMode', value), mode);
+
+const observationCode = (error) => ['Error', 'TypeError', 'TimeoutError', 'ProtocolError',
+  'TargetCloseError', 'AbortError'].includes(error?.name) ? error.name : 'unknown';
+
+async function reportMalformedFailure(page, stage, error, pageErrors) {
+  console.log('RATINGS-FAIL', JSON.stringify({ stage, code: observationCode(error) }));
+  let timer;
+  try {
+    const state = await Promise.race([
+      page.evaluate(() => ({
+        mode: sessionStorage.getItem('ratedMode'),
+        requests: window.__ratedRequests,
+        ratedVisible: document.querySelector('#view-library-rated')?.hidden === false,
+        libraryVisible: document.querySelector('#view-library')?.hidden === false,
+        retry: Boolean(document.querySelector('#library-rated-notice [data-act="retry"]')),
+      })),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(Object.assign(new Error(), { name: 'ObservationTimeout' })), 1000);
+      }),
+    ]);
+    console.log('RATINGS-STATE', JSON.stringify({
+      stage,
+      mode: ['pass', 'fail', 'malformed', 'defer'].includes(state.mode) ? state.mode : 'unknown',
+      requests: Number.isSafeInteger(state.requests) && state.requests >= 0 ? state.requests : 'unknown',
+      ratedVisible: state.ratedVisible === true,
+      libraryVisible: state.libraryVisible === true,
+      retry: state.retry === true,
+      pageErrors,
+    }));
+  } catch (snapshotError) {
+    console.log('RATINGS-OBSERVATION', JSON.stringify({
+      stage, code: snapshotError?.name === 'ObservationTimeout' ? 'observation-timeout' : observationCode(snapshotError),
+    }));
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // Picks a character label and its rated issues from the shipped index, so the scenario proves the
 // generated file the app actually loads rather than a hand-built stand-in.
@@ -281,12 +320,26 @@ export const libraryRatingsFailures = {
       `${(await resultIds(page)).length}/${fx.associated.length} ${await page.evaluate(() => document.activeElement?.outerHTML?.slice(0, 80))}`);
 
     await setMode(page, 'malformed');
-    await boot(page, '#/library');
-    await page.evaluate(() => { location.hash = '#/library-rated'; });
-    await page.waitForSelector('#library-rated-notice [data-act="retry"]');
-    t.check('a malformed index is reported as unavailable, not as no matches',
-      await page.$eval('#library-rated-notice', (n) => n.textContent.includes('Character guide choices could not be loaded.'))
-        && await page.$eval('#rated-character', (n) => n.options.length === 1));
+    let malformedStage;
+    const enterMalformed = (stage) => {
+      malformedStage = stage;
+      console.log('RATINGS-STEP', JSON.stringify({ stage }));
+    };
+    try {
+      await boot(page, '#/library', enterMalformed);
+      enterMalformed('malformed-navigation');
+      await page.evaluate(() => { location.hash = '#/library-rated'; });
+      enterMalformed('malformed-notice');
+      await page.waitForSelector('#library-rated-notice [data-act="retry"]');
+      enterMalformed('malformed-validation');
+      t.check('a malformed index is reported as unavailable, not as no matches',
+        await page.$eval('#library-rated-notice', (n) => n.textContent.includes('Character guide choices could not be loaded.'))
+          && await page.$eval('#rated-character', (n) => n.options.length === 1));
+      enterMalformed('malformed-complete');
+    } catch (error) {
+      await reportMalformedFailure(page, malformedStage, error, errors.length);
+      throw error;
+    }
 
     await setMode(page, 'pass');
     await boot(page, '#/library-rated?character=Nobody+Fixture');

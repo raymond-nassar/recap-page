@@ -200,6 +200,17 @@ native Enter input; cancellation and deliberate-failure actions are unchanged. T
 without changing download policy. It does not explain why earlier native starts were missing.
 It uploads no artifacts and is not full-suite or release qualification.
 
+The fixed `diagnostic_target=ordinary-browser-ratings-acceptance` uses the same guarded
+diagnostic-only job, exact source identity and pinned driver. It runs only
+`library-ratings-failures` once, with all its assertions and original deadlines, in one fresh
+browser and isolated context. `RATINGS-STEP` identifies each malformed-data operation;
+`RATINGS-FAIL` and a bounded `RATINGS-STATE` snapshot retain its original failure. If snapshot
+collection fails or exceeds 1000 ms, `RATINGS-OBSERVATION` reports that separately without
+replacing the original error. Output contains only fixed stages, allowlisted mode/error codes,
+request counts, visibility/Retry booleans and page-error counts, not storage, DOM copy or URLs.
+It uploads no artifact. An isolated pass cannot explain a full-suite-only timeout or qualify
+a release; full ordinary acceptance remains required.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
