@@ -1,0 +1,5 @@
+{
+  "version": "4.1.0",
+  "locale": "en-us",
+  "text": "- Find every rated comic in Library's Your ratings page. Filter by minimum stars, title or series, or a character's reading guides; a Top-rated shelf shows up to six favorites rated four stars or higher.\n- Explore seventeen new MCU Prep guides from Iron Man through Phase Three. Infinity War and Endgame share one guide, and missing provider details stay explicitly recorded.\n- Find Gang War, Contest of Chaos, The Death of Ms. Marvel and One World Under Doom in Modern Timeline, with selected reading order and source qualifications preserved.\n- Follow a shorter Miles Morales best-of guide alongside the comprehensive path, and a revised Peter Parker spotlight with ten selected sections and optional preludes. Existing saved copies are unchanged.\n- Use centered bottom navigation icons on narrow screens.\n- Reading-data schema 4 is unchanged; no migration is required from 4.0.0 or 4.0.1. Older pre-4.0.0 builds cannot edit ratings data or restore its backups. Keep a backup before upgrading from those builds. Completion history and unfinished imports still require separate exports."
+}
