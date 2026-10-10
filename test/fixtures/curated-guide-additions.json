@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "guides": [
+    {
+      "id": "miles-morales-best-of",
+      "contract": "test/fixtures/curated-guide-peer-contracts/miles-morales-best-of.json"
+    }
+  ]
+}

@@ -3801,12 +3801,12 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 70 && desktop.all.stories === 69
-        && desktop.all.cards === 70 && desktop.all.adamCards === 1
+        desktop.all.readings === 71 && desktop.all.stories === 70
+        && desktop.all.cards === 71 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
-        && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
-        && desktop.bestOf.cards === 7 && desktop.bestOf.adamCards === 0,
+        && desktop.bestOf.readings === 8 && desktop.bestOf.stories === 8
+        && desktop.bestOf.cards === 8 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -3817,12 +3817,12 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 70 && narrow.all.stories === 69
-        && narrow.all.cards === 70 && narrow.all.adamCards === 1
+        narrow.all.readings === 71 && narrow.all.stories === 70
+        && narrow.all.cards === 71 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
-        && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
-        && narrow.bestOf.cards === 7 && narrow.bestOf.adamCards === 0
+        && narrow.bestOf.readings === 8 && narrow.bestOf.stories === 8
+        && narrow.bestOf.cards === 8 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,
         JSON.stringify(narrow));
 
@@ -19355,7 +19355,7 @@ async function runLongCollectionNavigation(page, t) {
       id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
     })));
     receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
-      cards39: eventIds.length === 39, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      cards40: eventIds.length === 40, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
       variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
       crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
       linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),

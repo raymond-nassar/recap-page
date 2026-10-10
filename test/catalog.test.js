@@ -1,4 +1,4 @@
-import { currentReadingCensus, registeredOwnerIds } from './helpers/current-reading-library.mjs';
+import { currentReadingCensus, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -224,7 +224,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
 
     // The card art has to belong to the order it represents. A cover pinned from an issue
     // that is not in the file is how a catalog ends up illustrated with the wrong comic.
-    if (registeredOwnerIds.includes(list.id) && list.cover === null) {
+    if (registeredCatalogAdditionIds.includes(list.id) && list.cover === null) {
       assert.equal(list.coverIssueId, null, 'No representative artwork is claimed without metadata.');
       assert.ok(order.items.every((item) => item.cover == null), 'Missing optional cover metadata is explicit.');
     } else {
@@ -278,7 +278,7 @@ test('every catalog cover resolves to a variant URL the browser can request', as
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists } = parseCatalog(JSON.parse(await readFile(url, 'utf8')));
   for (const list of lists) {
-    if (registeredOwnerIds.includes(list.id) && list.cover === null) {
+    if (registeredCatalogAdditionIds.includes(list.id) && list.cover === null) {
       assert.equal(catalogCoverUrl(list), null, 'Absent metadata must not invent an image URL.');
     } else {
       assert.match(

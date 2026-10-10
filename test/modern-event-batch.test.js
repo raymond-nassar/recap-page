@@ -20,7 +20,7 @@ test('three independently registered events extend the library without becoming 
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), ids);
   const laterMcu = registeredOwnerContracts.filter((entry) => entry.surface !== 'modern-timeline').length - 2;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220 + laterMcu, 297 + laterMcu, 298 + laterMcu]);
+    [221 + laterMcu, 298 + laterMcu, 299 + laterMcu]);
   assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [20 + laterMcu, 66 + laterMcu]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);

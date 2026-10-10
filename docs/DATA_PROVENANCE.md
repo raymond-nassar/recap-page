@@ -1087,10 +1087,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7826-7865`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7858-7897`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12060-12185`.
+`src/data/catalog.json:12100-12225`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2862,3 +2862,12 @@ in [`src/data/mcu-prep.json`](../src/data/mcu-prep.json), not comic publication 
 Owner credit and unspecified source licence remain explicit. Provider responses supply
 factual metadata and cover URLs, never image bytes or synopsis prose. Saved reading,
 backups, availability distinctions and separate-tab reader launch remain unchanged.
+
+## Best Miles Morales Comics Reading List
+
+The locally authored [Best Miles Morales Comics Reading List](../src/data/orders/miles-morales-best-of.md)
+preserves the owner's supplied ten sections and 84 ordered issue occurrences as a separate
+character best-of path. It does not replace or extend the broader Comic Book Herald Miles Morales
+guide, and it does not claim an official Marvel reading order. Ultimate Spider-Man (2011) #200
+resolves to issue 50446 in series 17580; the supplied series URL did not identify that issue.
+The checklist source records the selection boundary and links back to this provenance record.

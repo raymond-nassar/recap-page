@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "miles-morales-best-of",
+  "surface": "best-of",
+  "sourceFile": "src/data/orders/miles-morales-best-of.md",
+  "payloadFile": "src/data/miles_morales_best_of.json",
+  "insertionAnchor": {
+    "beforeId": "miles-morales-spider-man-reading-order"
+  },
+  "rowCount": 84,
+  "reviewFile": "test/fixtures/curated-guide-peer-contracts/miles-morales-best-of-review.json"
+}

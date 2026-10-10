@@ -88,6 +88,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Young Avengers',
     'Runaways',
     'Amazing Spider-Man',
+    'Best Miles Morales Comics Reading List',
     'Vision',
     'Emma Frost',
     'Doctor Octopus / Otto Octavius',

@@ -15,8 +15,9 @@ import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
 import {
-  currentReadingCensus, registeredOwnerContracts,
+  currentReadingCensus, registeredCuratedPeerContracts, registeredOwnerContracts,
 } from './current-reading-library.mjs';
+import { readCuratedGuidePeerReview } from './curated-guide-peer-review.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -118,7 +119,25 @@ export async function assertOwnerDeliveryContract(contract, {
   });
   for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
     const laterContract = contracts.find((entry) => entry.id === later.orderId);
-    assert.ok(laterContract, 'Unregistered later peers require a new bounded relationship review.');
+    const curatedContract = registeredCuratedPeerContracts.find((entry) => entry.id === later.orderId);
+    assert.ok(laterContract || curatedContract, 'Unregistered later peers require a new bounded relationship review.');
+    if (curatedContract) {
+      const review = await readCuratedGuidePeerReview(curatedContract, { root });
+      const reciprocal = review.relationships.find((row) => row.orderId === id);
+      assert.equal(review.status, 'approved');
+      const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
+      const reviewedRelationship = reciprocal?.relationship ?? review.unlistedDisposition;
+      const reviewedSharedCount = reciprocal?.sharedCount ?? 0;
+      const reviewedSharedIds = reciprocal?.sharedIds ?? [];
+      assert.equal(later.relationship, inverse[reviewedRelationship]);
+      assert.equal(later.sharedCount, reviewedSharedCount);
+      const expectedSharedIds = reviewedSharedIds === 'candidate-vector'
+        ? (await json(`src/data/${curatedContract.payloadFile.replace(/^src\/data\//, '')}`))
+          .items.map((item) => String(item.issueId))
+        : reviewedSharedIds;
+      assert.deepEqual([...later.sharedIds].sort(), [...expectedSharedIds].sort());
+      continue;
+    }
     const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
     const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
     validateMappingDigest(laterMapping);

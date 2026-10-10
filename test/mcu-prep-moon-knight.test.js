@@ -1,5 +1,5 @@
 import test from 'node:test';
-import { legacyOwnerPeers, registeredOwnerIds } from './helpers/current-reading-library.mjs';
+import { legacyOwnerPeers, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -157,7 +157,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.emptyRecordCount, 0);
   assert.deepEqual(legacyOwnerPeers(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
     .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id)), expectedScreenIds);
-  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 70);
+  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 71);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${id}`), false);
@@ -316,7 +316,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     const current = buildComparisonReport({
       candidateIds: expectedIssueIds, orders: evidence.currentOrders,
     });
-    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredOwnerIds.length);
+    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredCatalogAdditionIds.length);
     assert.deepEqual(legacyOwnerPeers(current.comparisons), [
       ...evidence.report.comparisons,
       ...laterIds.map((orderId) => ({

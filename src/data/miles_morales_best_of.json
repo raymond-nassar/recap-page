@@ -1,0 +1,2439 @@
+{
+  "id": "miles-morales-best-of",
+  "name": "Best Miles Morales Comics Reading List",
+  "description": "A selected Miles Morales path from his Ultimate Comics Spider-Man origin through Spider-Men, Spider-Verse, Secret Wars, Sitting in a Tree, Gwenpool and Venom.",
+  "source": null,
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-09T23:06:37.215Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 84,
+  "collections": 10,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 38394,
+      "title": "Ultimate Comics Spider-Man (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/38394/ultimate_comics_spider-man_2011_1",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2011-09-14T00:00:00+0000",
+      "mu": "2011-09-14T00:00:00+0000",
+      "digitalId": 23712,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/4e67d6122b965",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38395,
+      "title": "Ultimate Comics Spider-Man (2011) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/38395/ultimate_comics_spider-man_2011_2",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2011-09-28T00:00:00+0000",
+      "mu": "2012-11-05T00:00:00+0000",
+      "digitalId": 23843,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/4e7ce8a3c4ae3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38396,
+      "title": "Ultimate Comics Spider-Man (2011) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/38396/ultimate_comics_spider-man_2011_3",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2011-10-12T00:00:00+0000",
+      "mu": "2012-11-06T00:00:00+0000",
+      "digitalId": 23930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/58ee2ef4a1f1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38400,
+      "title": "Ultimate Comics Spider-Man (2011) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/38400/ultimate_comics_spider-man_2011_4",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2011-11-09T00:00:00+0000",
+      "mu": "2012-11-07T00:00:00+0000",
+      "digitalId": 24567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/58ee3a35812bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38397,
+      "title": "Ultimate Comics Spider-Man (2011) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/38397/ultimate_comics_spider-man_2011_5",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2011-12-21T00:00:00+0000",
+      "mu": "2012-11-08T00:00:00+0000",
+      "digitalId": 18510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/58ee478c402a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38401,
+      "title": "Ultimate Comics Spider-Man (2011) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/38401/ultimate_comics_spider-man_2011_6",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-01-18T00:00:00+0000",
+      "mu": "2013-02-25T00:00:00+0000",
+      "digitalId": 25256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/56bb681c37957",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38403,
+      "title": "Ultimate Comics Spider-Man (2011) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/38403/ultimate_comics_spider-man_2011_7",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-02-22T00:00:00+0000",
+      "mu": "2013-02-25T00:00:00+0000",
+      "digitalId": 25592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/56bba73c3b493",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38402,
+      "title": "Ultimate Comics Spider-Man (2011) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/38402/ultimate_comics_spider-man_2011_8",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-03-07T00:00:00+0000",
+      "mu": "2013-02-25T00:00:00+0000",
+      "digitalId": 25697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/56bca2187ac5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38398,
+      "title": "Ultimate Comics Spider-Man (2011) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/38398/ultimate_comics_spider-man_2011_9",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-04-04T00:00:00+0000",
+      "mu": "2013-02-25T00:00:00+0000",
+      "digitalId": 25741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/4f7b1d707925f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 38399,
+      "title": "Ultimate Comics Spider-Man (2011) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/38399/ultimate_comics_spider-man_2011_10",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-05-02T00:00:00+0000",
+      "mu": "2013-04-08T17:00:04+0000",
+      "digitalId": 25742,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/56cb2e4ca37ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. Ultimate Comics Spider-Man, Vol. 1 & 2 (Miles Morales' origin)"
+    },
+    {
+      "issueId": 42579,
+      "title": "Spider-Men (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/42579/spider-men_2012_1",
+      "seriesId": 16264,
+      "seriesName": "Spider-Men (2012)",
+      "onSale": "2012-06-13T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5384ed27c4cd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Spider-Men"
+    },
+    {
+      "issueId": 42578,
+      "title": "Spider-Men (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/42578/spider-men_2012_2",
+      "seriesId": 16264,
+      "seriesName": "Spider-Men (2012)",
+      "onSale": "2012-06-27T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5384ed3685543",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Spider-Men"
+    },
+    {
+      "issueId": 42577,
+      "title": "Spider-Men (2012) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/42577/spider-men_2012_3",
+      "seriesId": 16264,
+      "seriesName": "Spider-Men (2012)",
+      "onSale": "2012-07-11T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 27166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5384ed41862a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Spider-Men"
+    },
+    {
+      "issueId": 42576,
+      "title": "Spider-Men (2012) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/42576/spider-men_2012_4",
+      "seriesId": 16264,
+      "seriesName": "Spider-Men (2012)",
+      "onSale": "2012-08-08T00:00:00+0000",
+      "mu": "2013-07-31T10:11:26+0000",
+      "digitalId": 27401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5384ed51dd2bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Spider-Men"
+    },
+    {
+      "issueId": 42575,
+      "title": "Spider-Men (2012) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/42575/spider-men_2012_5",
+      "seriesId": 16264,
+      "seriesName": "Spider-Men (2012)",
+      "onSale": "2012-09-19T00:00:00+0000",
+      "mu": "2013-07-31T10:12:00+0000",
+      "digitalId": 27681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5384ed61cc5e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Spider-Men"
+    },
+    {
+      "issueId": 46915,
+      "title": "Ultimate Comics Spider-Man (2011) #16.1",
+      "number": "16.1",
+      "url": "https://www.marvel.com/comics/issue/46915/ultimate_comics_spider-man_2011_16.1",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2012-10-31T00:00:00+0000",
+      "mu": "2012-10-31T00:00:00+0000",
+      "digitalId": 27904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5994b9afd6215",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Ultimate Comics Spider-Man by Brian Michael Bendis, Vol. 4"
+    },
+    {
+      "issueId": 41138,
+      "title": "Ultimate Comics Spider-Man (2011) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/41138/ultimate_comics_spider-man_2011_19",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2013-01-02T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 28305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/58f0fd7c48d12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Ultimate Comics Spider-Man by Brian Michael Bendis, Vol. 4"
+    },
+    {
+      "issueId": 41137,
+      "title": "Ultimate Comics Spider-Man (2011) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/41137/ultimate_comics_spider-man_2011_20",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2013-02-06T00:00:00+0000",
+      "mu": "2013-08-05T00:00:00+0000",
+      "digitalId": 28499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/58f1140178c53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Ultimate Comics Spider-Man by Brian Michael Bendis, Vol. 4"
+    },
+    {
+      "issueId": 46546,
+      "title": "Ultimate Comics Spider-Man (2011) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/46546/ultimate_comics_spider-man_2011_21",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2013-03-20T00:00:00+0000",
+      "mu": "2013-09-23T00:00:00+0000",
+      "digitalId": 28986,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/58ed334422b00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Ultimate Comics Spider-Man by Brian Michael Bendis, Vol. 4"
+    },
+    {
+      "issueId": 46547,
+      "title": "Ultimate Comics Spider-Man (2011) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/46547/ultimate_comics_spider-man_2011_22",
+      "seriesId": 13831,
+      "seriesName": "Ultimate Comics Spider-Man (2011 - 2013)",
+      "onSale": "2013-04-24T00:00:00+0000",
+      "mu": "2013-10-28T00:00:00+0000",
+      "digitalId": 29572,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5162df0dd5e27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3. Ultimate Comics Spider-Man by Brian Michael Bendis, Vol. 4"
+    },
+    {
+      "issueId": 49200,
+      "title": "Miles Morales: Ultimate Spider-Man (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49200/miles_morales_ultimate_spider-man_2014_1",
+      "seriesId": 18508,
+      "seriesName": "Miles Morales: Ultimate Spider-Man (2014 - 2015)",
+      "onSale": "2014-05-07T00:00:00+0000",
+      "mu": "2014-11-03T00:00:00+0000",
+      "digitalId": 33780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5363f70cef9f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 49202,
+      "title": "Miles Morales: Ultimate Spider-Man (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49202/miles_morales_ultimate_spider-man_2014_2",
+      "seriesId": 18508,
+      "seriesName": "Miles Morales: Ultimate Spider-Man (2014 - 2015)",
+      "onSale": "2014-06-04T00:00:00+0000",
+      "mu": "2014-12-01T00:00:00+0000",
+      "digitalId": 34051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/564cf1f21cd5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 49204,
+      "title": "Miles Morales: Ultimate Spider-Man (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49204/miles_morales_ultimate_spider-man_2014_3",
+      "seriesId": 18508,
+      "seriesName": "Miles Morales: Ultimate Spider-Man (2014 - 2015)",
+      "onSale": "2014-07-02T00:00:00+0000",
+      "mu": "2015-01-05T00:00:00+0000",
+      "digitalId": 34249,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/53ab2849b8b54",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 49205,
+      "title": "Miles Morales: Ultimate Spider-Man (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49205/miles_morales_ultimate_spider-man_2014_4",
+      "seriesId": 18508,
+      "seriesName": "Miles Morales: Ultimate Spider-Man (2014 - 2015)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/53d66cdc82583",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 49206,
+      "title": "Miles Morales: Ultimate Spider-Man (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/49206/miles_morales_ultimate_spider-man_2014_5",
+      "seriesId": 18508,
+      "seriesName": "Miles Morales: Ultimate Spider-Man (2014 - 2015)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-23T00:00:00+0000",
+      "digitalId": 34744,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5411fa6448c52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 50446,
+      "title": "Ultimate Spider-Man (2011) #200",
+      "number": "200",
+      "url": "https://www.marvel.com/comics/issue/50446/ultimate_spider-man_2011_200",
+      "seriesId": 17580,
+      "seriesName": "Ultimate Spider-Man (2011 - 2012)",
+      "onSale": "2014-04-02T00:00:00+0000",
+      "mu": "2014-10-06T00:00:00+0000",
+      "digitalId": 33477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5339a4c1c2672",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Miles Morales: Ultimate Spider-Man, Vol. 1: Revival"
+    },
+    {
+      "issueId": 49257,
+      "title": "All-New Ultimates (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49257/all-new_ultimates_2014_1",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-04-09T00:00:00+0000",
+      "mu": "2014-10-06T00:00:00+0000",
+      "digitalId": 33533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/533dbc0d606c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 49258,
+      "title": "All-New Ultimates (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49258/all-new_ultimates_2014_2",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-05-14T00:00:00+0000",
+      "mu": "2014-11-10T00:00:00+0000",
+      "digitalId": 33899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/53691442e73bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 49259,
+      "title": "All-New Ultimates (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49259/all-new_ultimates_2014_3",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-06-11T00:00:00+0000",
+      "mu": "2014-12-08T00:00:00+0000",
+      "digitalId": 33838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/538deeb6614b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 49260,
+      "title": "All-New Ultimates (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49260/all-new_ultimates_2014_4",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-06-25T00:00:00+0000",
+      "mu": "2014-12-22T00:00:00+0000",
+      "digitalId": 33877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/53976246b2e80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 49261,
+      "title": "All-New Ultimates (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/49261/all-new_ultimates_2014_5",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-07-23T00:00:00+0000",
+      "mu": "2015-01-19T00:00:00+0000",
+      "digitalId": 34268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/53c41fd6e42f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Michel Fiffe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 49262,
+      "title": "All-New Ultimates (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/49262/all-new_ultimates_2014_6",
+      "seriesId": 18524,
+      "seriesName": "All-New Ultimates (2014 - 2015)",
+      "onSale": "2014-08-20T00:00:00+0000",
+      "mu": "2015-02-16T00:00:00+0000",
+      "digitalId": 34605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/53f26973a42dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Michel Fiffe",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "5. All-New Ultimates, Vol. 1: Power for Power"
+    },
+    {
+      "issueId": 45806,
+      "title": "The Amazing Spider-Man (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/45806/the_amazing_spider-man_2014_7",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-10-08T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 34914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/54298bbf3eb62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 45807,
+      "title": "The Amazing Spider-Man (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/45807/the_amazing_spider-man_2014_8",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-10-22T00:00:00+0000",
+      "mu": "2015-04-20T00:00:00+0000",
+      "digitalId": 34917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/543832fa96b3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 45808,
+      "title": "The Amazing Spider-Man (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/45808/the_amazing_spider-man_2014_9",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/544018036c563",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 45809,
+      "title": "The Amazing Spider-Man (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/45809/the_amazing_spider-man_2014_10",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/546220a7a879a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 45810,
+      "title": "The Amazing Spider-Man (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/45810/the_amazing_spider-man_2014_11",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-01T00:00:00+0000",
+      "digitalId": 35762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5481e4efac784",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 45811,
+      "title": "The Amazing Spider-Man (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/45811/the_amazing_spider-man_2014_12",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 35764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/54a17618be321",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50350,
+      "title": "The Amazing Spider-Man (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/50350/the_amazing_spider-man_2014_13",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 35765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/54b431983083b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 51320,
+      "title": "The Amazing Spider-Man (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/51320/the_amazing_spider-man_2014_14",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/54cbf2d706709",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 51324,
+      "title": "The Amazing Spider-Man (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/51324/the_amazing_spider-man_2014_15",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-25T00:00:00+0000",
+      "mu": "2015-08-17T00:00:00+0000",
+      "digitalId": 36717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/54e36dc309b16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50924,
+      "title": "Superior Spider-Man (2013) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/50924/superior_spider-man_2013_32",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/53da9b744d937",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50960,
+      "title": "Superior Spider-Man (2013) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/50960/superior_spider-man_2013_33",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-23T00:00:00+0000",
+      "digitalId": 34846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/541204ca14924",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50554,
+      "title": "Spider-Verse (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50554/spider-verse_2014_1",
+      "seriesId": 18892,
+      "seriesName": "Spider-Verse (2014 - 2015)",
+      "onSale": "2014-11-12T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/545d017cdbb04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Katie Cook",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 53336,
+      "title": "Spider-Verse (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/53336/spider-verse_2014_2",
+      "seriesId": 18892,
+      "seriesName": "Spider-Verse (2014 - 2015)",
+      "onSale": "2015-01-14T00:00:00+0000",
+      "mu": "2015-01-14T00:00:00+0000",
+      "digitalId": 36320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/55b6423472961",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francisco Herrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lafuente",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Enrique Puig",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50555,
+      "title": "Spider-Verse Team-Up (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50555/spider-verse_team-up_2014_1",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5447fa3500c75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David a. Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50556,
+      "title": "Spider-Verse Team-Up (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50556/spider-verse_team-up_2014_2",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-08T00:00:00+0000",
+      "digitalId": 35775,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/548609b2af091",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50557,
+      "title": "Spider-Verse Team-Up (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50557/spider-verse_team-up_2014_3",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/54b5861aec4bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamal Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50537,
+      "title": "Scarlet Spiders (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50537/scarlet_spiders_2014_1",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2014-11-26T00:00:00+0000",
+      "mu": "2015-05-25T00:00:00+0000",
+      "digitalId": 35390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/546d053fade9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50538,
+      "title": "Scarlet Spiders (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50538/scarlet_spiders_2014_2",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2014-12-17T00:00:00+0000",
+      "digitalId": 35778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/548f0e2345c4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Diaz",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50539,
+      "title": "Scarlet Spiders (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50539/scarlet_spiders_2014_3",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/54b57dd8249f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50561,
+      "title": "Spider-Woman (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50561/spider-woman_2014_1",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2014-11-19T00:00:00+0000",
+      "digitalId": 35387,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5bb4df6192f3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50562,
+      "title": "Spider-Woman (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50562/spider-woman_2014_2",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2014-12-17T00:00:00+0000",
+      "digitalId": 35789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5491a2cb86d43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 49504,
+      "title": "Spider-Woman (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49504/spider-woman_2014_3",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/54b80f58c36a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 49511,
+      "title": "Spider-Woman (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49511/spider-woman_2014_4",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-17T00:00:00+0000",
+      "digitalId": 36688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/54cfc182556c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50546,
+      "title": "Spider-Man 2099 (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/50546/spider-man_2099_2014_6",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-11-26T00:00:00+0000",
+      "mu": "2015-05-25T00:00:00+0000",
+      "digitalId": 35452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/546d0a295a5e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50547,
+      "title": "Spider-Man 2099 (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/50547/spider-man_2099_2014_7",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/54a2cd44d8076",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 50548,
+      "title": "Spider-Man 2099 (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/50548/spider-man_2099_2014_8",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-28T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/54be7ca2bbfd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "6. Spider-Verse"
+    },
+    {
+      "issueId": 52447,
+      "title": "Secret Wars (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52447/secret_wars_2015_1",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-05-06T00:00:00+0000",
+      "mu": "2015-11-02T00:00:00+0000",
+      "digitalId": 38164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cb736a3cdd49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52450,
+      "title": "Secret Wars (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52450/secret_wars_2015_2",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-05-13T00:00:00+0000",
+      "mu": "2015-11-16T00:00:00+0000",
+      "digitalId": 38263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5cb737237a2de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52451,
+      "title": "Secret Wars (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52451/secret_wars_2015_3",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-06-03T00:00:00+0000",
+      "mu": "2015-12-07T00:00:00+0000",
+      "digitalId": 38820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5cb7377845092",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52452,
+      "title": "Secret Wars (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52452/secret_wars_2015_4",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-07-01T00:00:00+0000",
+      "mu": "2015-12-28T00:00:00+0000",
+      "digitalId": 39004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5cb73456184e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52453,
+      "title": "Secret Wars (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/52453/secret_wars_2015_5",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-08-12T00:00:00+0000",
+      "mu": "2016-02-08T00:00:00+0000",
+      "digitalId": 39684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5cb736208d76d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52454,
+      "title": "Secret Wars (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/52454/secret_wars_2015_6",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-10-07T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 39847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5cb73a17a642c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52455,
+      "title": "Secret Wars (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/52455/secret_wars_2015_7",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 40469,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5cb73c66beb33",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 52456,
+      "title": "Secret Wars (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/52456/secret_wars_2015_8",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/564ce8a2d5cde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 57620,
+      "title": "Secret Wars (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57620/secret_wars_2015_9",
+      "seriesId": 19648,
+      "seriesName": "Secret Wars (2015 - 2016)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-07-11T00:00:00+0000",
+      "digitalId": 40728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/569040820cfb9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "7. Secret Wars"
+    },
+    {
+      "issueId": 55706,
+      "title": "Spider-Man (2016) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55706/spider-man_2016_12",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/585c248ef3e9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 55707,
+      "title": "Spider-Man (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55707/spider-man_2016_13",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/589deb5c4a277",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 55708,
+      "title": "Spider-Man (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55708/spider-man_2016_14",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-03-15T00:00:00+0000",
+      "digitalId": 44315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58c17b9c3d332",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 55692,
+      "title": "Spider-Gwen (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/55692/spider-gwen_2015_16",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-01-18T00:00:00+0000",
+      "mu": "2017-07-24T00:00:00+0000",
+      "digitalId": 43839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5874030a84e36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 61063,
+      "title": "Spider-Gwen (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61063/spider-gwen_2015_17",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/58a48292dd791",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 61064,
+      "title": "Spider-Gwen (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61064/spider-gwen_2015_18",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-03-22T00:00:00+0000",
+      "mu": "2017-03-22T00:00:00+0000",
+      "digitalId": 44314,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/58cbef1162af8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "8. Spider-Man/Spider-Gwen: Sitting in a Tree"
+    },
+    {
+      "issueId": 60683,
+      "title": "The Unbelievable Gwenpool (2016) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/60683/the_unbelievable_gwenpool_2016_16",
+      "seriesId": 21490,
+      "seriesName": "The Unbelievable Gwenpool (2016 - 2018)",
+      "onSale": "2017-05-31T00:00:00+0000",
+      "mu": "2017-05-31T00:00:00+0000",
+      "digitalId": 44751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5925b5763e3d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Gwenpool, the Unbelievable Vol. 4: Beyond the Fourth Wall"
+    },
+    {
+      "issueId": 60684,
+      "title": "The Unbelievable Gwenpool (2016) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60684/the_unbelievable_gwenpool_2016_17",
+      "seriesId": 21490,
+      "seriesName": "The Unbelievable Gwenpool (2016 - 2018)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 44975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5939927ca524f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Gwenpool, the Unbelievable Vol. 4: Beyond the Fourth Wall"
+    },
+    {
+      "issueId": 60685,
+      "title": "The Unbelievable Gwenpool (2016) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60685/the_unbelievable_gwenpool_2016_18",
+      "seriesId": 21490,
+      "seriesName": "The Unbelievable Gwenpool (2016 - 2018)",
+      "onSale": "2017-07-26T00:00:00+0000",
+      "mu": "2018-01-29T00:00:00+0000",
+      "digitalId": 45291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/596d123e465f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Gwenpool, the Unbelievable Vol. 4: Beyond the Fourth Wall"
+    },
+    {
+      "issueId": 60686,
+      "title": "The Unbelievable Gwenpool (2016) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/60686/the_unbelievable_gwenpool_2016_19",
+      "seriesId": 21490,
+      "seriesName": "The Unbelievable Gwenpool (2016 - 2018)",
+      "onSale": "2017-08-16T00:00:00+0000",
+      "mu": "2018-02-19T00:00:00+0000",
+      "digitalId": 45483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/597bbb425456e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Gwenpool, the Unbelievable Vol. 4: Beyond the Fourth Wall"
+    },
+    {
+      "issueId": 60687,
+      "title": "The Unbelievable Gwenpool (2016) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/60687/the_unbelievable_gwenpool_2016_20",
+      "seriesId": 21490,
+      "seriesName": "The Unbelievable Gwenpool (2016 - 2018)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2017-09-13T00:00:00+0000",
+      "digitalId": 45763,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/59b04c46cb77e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "9. Gwenpool, the Unbelievable Vol. 4: Beyond the Fourth Wall"
+    },
+    {
+      "issueId": 67577,
+      "title": "Venom (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67577/venom_2018_1",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5aea3123880ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    },
+    {
+      "issueId": 70036,
+      "title": "Venom (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/70036/venom_2018_2",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48290,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5b170645cd139",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    },
+    {
+      "issueId": 70045,
+      "title": "Venom (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/70045/venom_2018_3",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5b2c18753dc80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    },
+    {
+      "issueId": 70051,
+      "title": "Venom (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/70051/venom_2018_4",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5b50b93347dae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    },
+    {
+      "issueId": 67293,
+      "title": "Venom (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/67293/venom_2018_5",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5b748dca25006",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    },
+    {
+      "issueId": 67294,
+      "title": "Venom (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/67294/venom_2018_6",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/5b999adc73adf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "10. Venom by Donny Cates, Vol. 1: Rex"
+    }
+  ]
+}
