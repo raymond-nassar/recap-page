@@ -13,6 +13,91 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.1.0
+
+### Find your rated comics and more reading guides
+
+- Find every comic you have rated on Library's Your ratings page, with filters for minimum
+  stars, title or series, and a character's reading guides. A Top-rated shelf shows up to six
+  favorites rated four stars or higher.
+- Explore seventeen new MCU Prep guides, from Iron Man through Phase Three, with Infinity War
+  and Endgame sharing one guide and missing provider details explicitly recorded.
+- Find Gang War, Contest of Chaos, The Death of Ms. Marvel and One World Under Doom in
+  Modern Timeline, preserving the selected reading paths and their source qualifications.
+- Follow a shorter, curated Miles Morales best-of path alongside the comprehensive guide,
+  and a revised Peter Parker spotlight with ten selected sections and optional preludes.
+- Use centered bottom navigation icons on narrow screens, with the larger Android More target
+  retained from 4.0.1.
+
+### Saved data and upgrading
+
+Reading-data schema 4 is unchanged. Existing lists, shared reading progress, notes, private
+ratings, availability overrides and deferrals remain compatible with 4.0.0 and 4.0.1.
+No new storage key, migration or backup format is introduced. Completion history and unfinished
+imports retain their separate backups; export each relevant kind when preserving or moving data.
+
+Existing imported Peter Parker copies keep their original issues and labels. New imports use the
+revised bundle. New guides do not alter saved lists, and older builds do not gain bundled catalog
+entries automatically.
+
+**Builds older than 4.0.0 cannot edit schema-4 reading data or restore its backups.** When upgrading
+from those builds, keep an independent pre-upgrade reading-data backup and follow the
+[4.0.0 compatibility guidance](#400). Keep the same installation/profile and fixed local address.
+Windows browser profiles and Android app storage remain separate, with no automatic transfer
+or cloud synchronization.
+
+This record prepares Android and Windows release source, including derived Windows Store version
+4.1.0.0. It does not announce availability or approve either Store publication. Android code
+reservation, exact-artifact qualification, physical-device acceptance and platform approvals
+remain separate.
+
+### New MCU Prep guides
+
+- **Early films:** Iron Man, The Incredible Hulk, Iron Man 2, Thor, Captain America:
+  The First Avenger, The Avengers and Iron Man 3. These seven guides include 114 selected
+  originals. Approved identity corrections are retained; Extremis stays in the Iron Man 3 guide.
+- **Phase Two:** Thor: The Dark World, Captain America: The Winter Soldier, Avengers:
+  Age of Ultron and Ant-Man, with all 79 selected comics. The Ultron epilogue stays separate,
+  and Rage of Ultron remains a standalone graphic novel. The existing Guardians guide is unchanged.
+- **Phase Three:** Captain America: Civil War, Doctor Strange, Thor: Ragnarok, Black Panther,
+  Avengers: Infinity War and Endgame together, and Captain Marvel. These six guides include
+  166 verified originals with approved wording corrections and Civil War additions.
+  The combined Infinity War/Endgame guide appears once at its earliest film association.
+
+The selected Hulk: Season One, Captain America Spotlight and two standalone Doctor Strange
+works remain documented metadata gaps in
+[#763](https://github.com/raymond-nassar/recap-page/issues/763),
+[#762](https://github.com/raymond-nassar/recap-page/issues/762) and
+[#767](https://github.com/raymond-nassar/recap-page/issues/767).
+Missing works are not invented, substituted or silently removed from the source record.
+
+### Modern Timeline and Character Spotlight
+
+Gang War, Contest of Chaos and The Death of Ms. Marvel preserve all 47 supplied comics in
+their separate 2023 reading lists. One World Under Doom adds a selected 2025 path with 75 matched
+comics. Its source record retains ten missing comics, both supplied positions of the repeated
+Fantastic Four issue, the optional Doctor Strange tie-in note and the Fantastic Four
+read-together instruction. The missing Doom metadata remains in
+[#772](https://github.com/raymond-nassar/recap-page/issues/772); this path does not claim every tie-in.
+
+The new Miles Morales best-of guide keeps 84 comics in ten sections, corrects the ambiguous
+Ultimate Spider-Man #200 identity and preserves the broader guide. The revised
+10 Best Spider-Man (Peter Parker) Comics Reading List contains 233 originals in ten selected
+sections, with optional preludes clearly labeled and highlights retained without duplicates.
+
+### Ratings browsing and release maintenance
+
+Library's Your ratings page reads existing scores without saving another copy. Combine minimum
+stars, title or series, and reading-guide character filters; sort by highest rating or title.
+Character choices describe guide membership, not verified character appearances in each comic.
+Filters survive Back, reload and bookmarks through the page address. Comics without full details
+remain visible by issue number, long results are paged, and guide-index failures offer Retry.
+
+Maintainers gain a reusable workflow for preparing several supplied Markdown reading lists in
+one reviewed delivery, preserving order, provenance and publication safeguards.
+Android candidate qualification retains the bounded SDK-download retry and current native
+navigation/restore checks from 4.0.1. No browser runtime dependency is added.
+
 ## 4.0.1
 
 ### Easier Android navigation
