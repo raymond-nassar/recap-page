@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "miles-morales-best-of",
+  "status": "approved",
+  "candidateCount": 84,
+  "comparisonCount": 316,
+  "vectorSha256": "ab08595930fdef2d9cf9237b11cfae34ce95ecb90ef132d559d56a3095d3894c",
+  "libraryDigest": "488bc0b4afbe93cdc5b54883465ecfbdcec7445754765263e1a138cef6986bc9",
+  "approvalDigest": "45fd1f1dcbd8cfcb7366ab9e6264fb9b1494b5184e0038ee4eb1a63170eefa97",
+  "relationshipCounts": {
+    "candidate-subset": 1,
+    "partial": 14,
+    "none": 301,
+    "exact": 0,
+    "existing-subset": 0
+  },
+  "authority": {
+    "type": "human",
+    "identity": "owner-supplied reading list",
+    "evidence": "src/data/orders/miles-morales-best-of.md",
+    "rationale": "The owner supplied this fixed ten-section selection. Preserve its issue identities and sequence as an intentional best-of path without changing the broader guide or any peer."
+  },
+  "unlistedDisposition": "none",
+  "relationships": [
+    {
+      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "relationship": "partial",
+      "sharedCount": 11,
+      "sharedIds": ["45806", "45807", "45808", "45809", "45810", "45811", "50350", "51320", "51324", "50924", "50960"],
+      "rationale": "The user-selected Spider-Verse event issues are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "avengers-doomsday-secret-wars",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "doctor-doom-primer",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "doctor-octopus-otto-octavius-reading-order",
+      "relationship": "partial",
+      "sharedCount": 26,
+      "sharedIds": ["45806", "45807", "45808", "45809", "45810", "45811", "50350", "51320", "51324", "50924", "50960", "50554", "53336", "50555", "50556", "50557", "50537", "50538", "50539", "50561", "50562", "49504", "49511", "50546", "50547", "50548"],
+      "rationale": "Spider-Verse and Spider-Man/Spider-Gwen crossover issues selected in sections 6 and 8 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "donny-cates-marvel-universe-reading-order-2017",
+      "relationship": "partial",
+      "sharedCount": 6,
+      "sharedIds": ["67577", "70036", "70045", "70051", "67293", "67294"],
+      "rationale": "Venom (2018) issues selected in section 10 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "hickman-full",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "hickman-minimal",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "miles-morales-spider-man-reading-order",
+      "relationship": "candidate-subset",
+      "sharedCount": 84,
+      "sharedIds": "candidate-vector",
+      "rationale": "This is the user-selected best-of subset; keep the existing broad guide unchanged."
+    },
+    {
+      "orderId": "namor-sub-mariner-reading-order",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "spider-gwen-reading-order",
+      "relationship": "partial",
+      "sharedCount": 32,
+      "sharedIds": ["45806", "45807", "45808", "45809", "45810", "45811", "50350", "51320", "51324", "50924", "50960", "50554", "53336", "50555", "50556", "50557", "50537", "50538", "50539", "50561", "50562", "49504", "49511", "50546", "50547", "50548", "55706", "55707", "55708", "55692", "61063", "61064"],
+      "rationale": "Spider-Verse issues and the six Spider-Man/Spider-Gwen crossover issues selected in sections 6 and 8 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "spider-man-2099-reading-order",
+      "relationship": "partial",
+      "sharedCount": 3,
+      "sharedIds": ["50546", "50547", "50548"],
+      "rationale": "Spider-Man 2099 (2014) issues selected in section 6 are intentionally reused as Spider-Verse tie-ins; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "spider-verse",
+      "relationship": "partial",
+      "sharedCount": 26,
+      "sharedIds": ["45806", "45807", "45808", "45809", "45810", "45811", "50350", "51320", "51324", "50924", "50960", "50554", "53336", "50555", "50556", "50557", "50537", "50538", "50539", "50561", "50562", "49504", "49511", "50546", "50547", "50548"],
+      "rationale": "Spider-Verse event and tie-in issues selected in section 6 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "ultimate-spider-man-reading-order",
+      "relationship": "partial",
+      "sharedCount": 32,
+      "sharedIds": ["38394", "38395", "38396", "38400", "38397", "38401", "38403", "38402", "38398", "38399", "42579", "42578", "42577", "42576", "42575", "46915", "41138", "41137", "46546", "46547", "49200", "49202", "49204", "49205", "49206", "50446", "49257", "49258", "49259", "49260", "49261", "49262"],
+      "rationale": "Ultimate Spider-Man and early Miles issues selected in sections 1 through 5 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "venom-reading-order",
+      "relationship": "partial",
+      "sharedCount": 6,
+      "sharedIds": ["67577", "70036", "70045", "70051", "67293", "67294"],
+      "rationale": "Venom (2018) issues selected in section 10 are intentionally reused; preserve the fixed best-of sequence."
+    },
+    {
+      "orderId": "winter-soldier-bucky-barnes-reading-order",
+      "relationship": "partial",
+      "sharedCount": 9,
+      "sharedIds": ["52447", "52450", "52451", "52452", "52453", "52454", "52455", "52456", "57620"],
+      "rationale": "Secret Wars issues selected in section 7 are intentionally reused; preserve the fixed best-of sequence."
+    }
+  ]
+}

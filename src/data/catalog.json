@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T22:39:52.068Z",
+  "generatedAt": "2026-10-10T01:15:39.703Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -11477,6 +11477,46 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "miles-morales-best-of",
+      "file": "miles_morales_best_of.json",
+      "name": "Best Miles Morales Comics Reading List",
+      "description": "A selected Miles Morales path from his Ultimate Comics Spider-Man origin through Spider-Men, Spider-Verse, Secret Wars, Sitting in a Tree, Gwenpool and Venom.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "best-of",
+      "count": 84,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 10,
+      "characters": [
+        "Miles Morales",
+        "Spider-Man",
+        "Spider-Gwen",
+        "Gwenpool",
+        "Venom"
+      ],
+      "keywords": [
+        "Miles Morales",
+        "Spider-Verse",
+        "Sitting in a Tree",
+        "Secret Wars"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": 2011,
+      "coverIssueId": 38394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/4e67d6122b965",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-10T01:15:39.703Z"
     },
     {
       "id": "miles-morales-spider-man-reading-order",

@@ -455,7 +455,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    70,
+    71,
     'Character Spotlight count differs from the merged catalog',
   );
 });

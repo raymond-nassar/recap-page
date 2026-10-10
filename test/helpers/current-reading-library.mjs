@@ -11,7 +11,6 @@ assert.equal(baseline.sourceCommit, 'de687692f4c42483d89ca7ddff5c199b603b3117');
 assert.equal(createHash('sha256').update(JSON.stringify(baseline)).digest('hex'), captureSha256);
 assert.equal(captureSha256, '3fce32e3d2bbd8617776704ce499fe4515eab5dc9c8e5826925a89ab991ad2a3');
 const registrations = readOwnerGuideRegistry().guides;
-export const registeredOwnerIds = registrations.map(({ id }) => id);
 export const registeredOwnerContracts = registrations.map((entry) => {
   const contract = JSON.parse(readFileSync(new URL(`../../${entry.contract}`, import.meta.url), 'utf8'));
   assert.equal(contract.id, entry.id);
@@ -22,14 +21,40 @@ export const registeredOwnerContracts = registrations.map((entry) => {
     createHash('sha256').update(JSON.stringify(contract.rows.map((row) => row[1]))).digest('hex'));
   return contract;
 });
-const addedRows = registeredOwnerContracts.reduce((total, contract) => total + contract.rows.length, 0);
+const curatedGuideRegistry = JSON.parse(readFileSync(
+  new URL('../fixtures/curated-guide-additions.json', import.meta.url), 'utf8',
+));
+assert.equal(curatedGuideRegistry.schemaVersion, 1);
+assert.ok(Array.isArray(curatedGuideRegistry.guides));
+export const registeredCuratedPeerContracts = curatedGuideRegistry.guides.map((entry) => {
+  assert.deepEqual(Object.keys(entry).sort(), ['contract', 'id']);
+  const contract = JSON.parse(readFileSync(new URL(`../../${entry.contract}`, import.meta.url), 'utf8'));
+  assert.equal(contract.schemaVersion, 1);
+  assert.equal(contract.id, entry.id);
+  assert.equal(contract.surface, 'best-of');
+  assert.ok(Number.isInteger(contract.rowCount) && contract.rowCount > 0);
+  assert.deepEqual(Object.keys(contract).sort(), [
+    'id', 'insertionAnchor', 'payloadFile', 'reviewFile', 'rowCount', 'schemaVersion', 'sourceFile', 'surface',
+  ]);
+  return contract;
+});
+assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedPeerContracts]
+  .map(({ id }) => id)).size, registeredOwnerContracts.length + registeredCuratedPeerContracts.length);
+export const registeredOwnerIds = registrations.map(({ id }) => id);
+export const registeredCatalogAdditionIds = [
+  ...registeredOwnerIds,
+  ...registeredCuratedPeerContracts.map(({ id }) => id),
+];
+const addedRows = registeredOwnerContracts.reduce((total, contract) => total + contract.rows.length, 0)
+  + registeredCuratedPeerContracts.reduce((total, contract) => total + contract.rowCount, 0);
 const mcuContracts = registeredOwnerContracts.filter((contract) => contract.surface !== 'modern-timeline');
 export const registeredEventContracts = registeredOwnerContracts.filter((contract) => contract.surface === 'modern-timeline');
+const rosterAdditionCount = registrations.length + registeredCuratedPeerContracts.length;
 export const currentReadingCensus = Object.freeze({
-  sources: baseline.sourceIds.length + registrations.length,
-  visible: baseline.catalogIds.length + registrations.length,
-  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + registrations.length,
-  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + registrations.length - 1,
+  sources: baseline.sourceIds.length + rosterAdditionCount,
+  visible: baseline.catalogIds.length + rosterAdditionCount,
+  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount,
+  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
   mcu: baseline.mcuEntries.length + mcuContracts.length,
   // The qualified UX pool retains 46 non-MCU readings; new MCU guides share its canonical shelf.
   storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
@@ -37,12 +62,12 @@ export const currentReadingCensus = Object.freeze({
   modernTimelineStories: 144 + registeredEventContracts.length,
   complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta,
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta,
-  itemFiles: 297 + registrations.length,
+  itemFiles: 297 + rosterAdditionCount,
 });
 
-function expectedRosters(contracts) {
+function expectedRosters(contracts, curatedGuides = registeredCuratedPeerContracts) {
   const expectedSources = [...baseline.sourceIds];
-  for (const contract of contracts) {
+  for (const contract of [...contracts, ...curatedGuides]) {
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
     assert.ok(at >= 0, 'Registered source insertion needs its approved anchor.');
     expectedSources.splice(at, 0, contract.id);
@@ -51,8 +76,10 @@ function expectedRosters(contracts) {
   return { expectedSources, expectedVisible };
 }
 
-export function assertCurrentReadingRoster(manifest, catalog, contracts = registeredOwnerContracts) {
-  const { expectedSources, expectedVisible } = expectedRosters(contracts);
+export function assertCurrentReadingRoster(
+  manifest, catalog, contracts = registeredOwnerContracts, curatedGuides = registeredCuratedPeerContracts,
+) {
+  const { expectedSources, expectedVisible } = expectedRosters(contracts, curatedGuides);
   assert.equal(new Set(expectedSources).size, expectedSources.length, 'Registration cannot replace a baseline source.');
   assert.equal(new Set(expectedVisible).size, expectedVisible.length, 'Registration cannot replace a baseline card.');
   assert.deepEqual(manifest.lists.map(({ id }) => id), expectedSources,
@@ -62,7 +89,7 @@ export function assertCurrentReadingRoster(manifest, catalog, contracts = regist
 }
 
 export function legacyOwnerPeers(entries) {
-  return entries.filter((entry) => !registeredOwnerIds.includes(
+  return entries.filter((entry) => !registeredCatalogAdditionIds.includes(
     typeof entry === 'string' ? entry : entry.id ?? entry.orderId,
   ));
 }

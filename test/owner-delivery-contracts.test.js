@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import {
-  assertCurrentReadingRoster, currentReadingCensus, registeredOwnerContracts,
+  assertCurrentReadingRoster, currentReadingCensus, registeredCuratedPeerContracts, registeredOwnerContracts,
 } from './helpers/current-reading-library.mjs';
+import { assertCuratedGuidePeerReview } from './helpers/curated-guide-peer-review.mjs';
 
 const json = async (name) => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'));
 
@@ -33,4 +34,9 @@ test('the live source and visible rosters match an independent baseline plus exp
 for (const contract of registeredOwnerContracts) {
   test(`${contract.id}: accepted input, public source, authority and generated surfaces agree`,
     () => assertOwnerDeliveryContract(contract));
+}
+
+for (const contract of registeredCuratedPeerContracts) {
+  test(`${contract.id}: local curated peer review binds the complete current library`,
+    async () => assertCuratedGuidePeerReview(contract));
 }

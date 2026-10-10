@@ -7350,6 +7350,38 @@
       "coverIssueId": 2453
     },
     {
+      "id": "miles-morales-best-of",
+      "name": "Best Miles Morales Comics Reading List",
+      "description": "A selected Miles Morales path from his Ultimate Comics Spider-Man origin through Spider-Men, Spider-Verse, Secret Wars, Sitting in a Tree, Gwenpool and Venom.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "selected",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "miles-morales-best-of.md",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "out": "miles_morales_best_of.json",
+      "characters": [
+        "Miles Morales",
+        "Spider-Man",
+        "Spider-Gwen",
+        "Gwenpool",
+        "Venom"
+      ],
+      "keywords": [
+        "Miles Morales",
+        "Spider-Verse",
+        "Sitting in a Tree",
+        "Secret Wars"
+      ],
+      "expect": 84,
+      "timeline": 2011,
+      "coverIssueId": 38394
+    },
+    {
       "id": "miles-morales-spider-man-reading-order",
       "name": "Spider-Man: Miles Morales",
       "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order.",

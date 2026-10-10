@@ -4710,8 +4710,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
   assert.equal(new Set(allBatchIds).size, 81);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 70);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);
+  assert.equal(characterRuns.length, 71);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 70);
 
 });
 

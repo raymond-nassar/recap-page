@@ -11,6 +11,10 @@ import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.
 import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
+const curatedGuideRegistry = JSON.parse(readFileSync(
+  new URL('../fixtures/curated-guide-additions.json', import.meta.url), 'utf8',
+));
+const registeredCuratedGuideIds = new Set(curatedGuideRegistry.guides.map(({ id }) => id));
 const { sha256, ...evidence } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-choice-history.json', import.meta.url), 'utf8',
 ));
@@ -100,7 +104,8 @@ export function historicalReadingChoiceManifest(manifest) {
   return {
     ...manifest,
     lists: historicalMcuDescriptionManifest(manifest).lists
-      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars' && !registeredOwnerGuideIds.includes(id))
+      .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
+        && !registeredOwnerGuideIds.includes(id) && !registeredCuratedGuideIds.has(id))
       .map((entry) => {
         if (entry.id === spiderRevision.manifestEntry.id) {
           if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)

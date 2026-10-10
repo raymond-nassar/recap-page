@@ -21,7 +21,7 @@ test('four independently registered events extend the library without becoming M
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerContracts.filter((entry) => entry.surface !== 'modern-timeline').length - 2;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220 + laterMcu + 1, 297 + laterMcu + 1, 298 + laterMcu + 1]);
+    [220 + laterMcu + 2, 297 + laterMcu + 2, 298 + laterMcu + 2]);
   assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [20 + laterMcu, 66 + laterMcu]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
