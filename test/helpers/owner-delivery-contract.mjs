@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
@@ -18,6 +18,7 @@ import {
   currentReadingCensus, registeredCuratedPeerContracts, registeredOwnerContracts,
 } from './current-reading-library.mjs';
 import { readCuratedGuidePeerReview } from './curated-guide-peer-review.mjs';
+import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -107,7 +108,7 @@ export async function assertOwnerDeliveryContract(contract, {
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
   };
-  const currentLibraryDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
+  const currentLibraryDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);

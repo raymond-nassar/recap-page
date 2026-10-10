@@ -1,38 +1,32 @@
-# The Best Spider-Man (Peter Parker) Comics: Issue-by-Issue Reading Checklist
+# 10 Best Spider-Man (Peter Parker) Comics Reading List
 
-Compiled by hand for this project from a reader's outline of Comic Book Herald's guide to the best
-Peter Parker Spider-Man comics, read as a reference and re-expressed here. It is not derived from
-Marvel metadata and cannot be checked against it; only the issue ids and titles come from Marvel, by
-resolving each issue the outline names. The sections are the outline's, and they are kept in the
-order it gives them rather than re-sorted into publication order.
+The [owner's ten-section selection](https://github.com/raymond-nassar/recap-page/issues/776)
+supplied on 2026-10-09 is the authority for this checklist. It updates the existing best-of
+spotlight rather than creating a second guide. The original reference is
+[Comic Book Herald's Peter Parker guide](https://www.comicbookherald.com/the-best-spider-man-peter-parker-comics-of-all-time/).
+Factual issue identities and metadata come from existing pinned records and the
+[metadata mirror](https://marvel.emreparker.com/v1/series/2271/issues), checked on 2026-10-09.
+No Marvel pages were scraped.
 
-A list holds an issue once, so four highlight rows naming a range inside a range already listed are
-not shipped again: If This Be My Destiny at #31-33 sits inside #1-38, the Green Goblin reveal at
-#39-43 sits inside #39-110, and Nothing Can Stop the Juggernaut at #229-230 and the Hobgoblin climax
-at #251 both sit inside #224-251.
+There are 233 unique original comics in ten sections. Highlights and collection guidance are
+notes, not additional checklist rows. Optional preludes are labelled in their section headings
+and placed before the arcs they introduce. Previously saved copies retain their own issues,
+section labels, notes and progress; this update changes the bundled guide for future imports.
 
-The Coming Home row is the outline's largest trap and the reason to state it plainly. It names
-Amazing Spider-Man #30-35, and there are two series that can answer to that: the 1963 volume, whose
-#30-35 are already in this list inside #1-38, and the 1999 volume, whose #30-35 are the six issues
-J. Michael Straczynski wrote to introduce Morlun. The 1999 issues are the ones here.
+The supplied official series references are identity hints, not issue lookups:
+[Amazing Fantasy (1962)](https://www.marvel.com/comics/series/2987/amazing_fantasy_1962),
+[Amazing Spider-Man (1963)](https://www.marvel.com/comics/series/1987/the_amazing_spiderman_1963_1998),
+[Spectacular Spider-Man (1976)](https://www.marvel.com/comics/series/2271/peter_parker_the_spectacular_spiderman_1976_1998),
+[Superior Spider-Man (2013)](https://www.marvel.com/comics/series/17554/superior_spider-man_2013_-_2014)
+and [Life Story (2019)](https://www.marvel.com/comics/series/26911/spiderman_life_story_2019).
+Coming Home and the later legacy-numbered Amazing issues use the 1999 provider volume as
+explained below, rather than substituting issues with the same number in the 1963 volume.
 
-Kraven's Last Hunt is named as a six-issue crossover with no issue numbers. It ran across the three
-Spider-Man titles of 1987 and is read interleaved rather than title by title, so it is shipped in
-publication order: Web of Spider-Man #31, Amazing Spider-Man #293, Peter Parker, the Spectacular
-Spider-Man #131, then #32, #294 and #132.
+See [data provenance](../../../docs/DATA_PROVENANCE.md) for source and reuse boundaries.
 
-The Gauntlet section lists its main sequence first and its preludes second. The preludes are shipped
-first, in publication order, because #600, #606 and #611 precede the arc they set up.
+## 1. The Lee-Ditko Era: Origins & Destiny
 
-Two issues are here that the outline's ranges do not spell out, because Marvel numbers them inside
-those ranges: Amazing Spider-Man #699.1 falls between #699 and #700, and Superior Spider-Man #6.5
-falls between #6 and #7.
-
-Because the selection cannot be verified against Marvel, the order says so on its catalog card
-rather than presenting it as Marvel's own. See
-[the data provenance record](../../../docs/DATA_PROVENANCE.md) for what that means for reuse.
-
-## Lee/Ditko Origins and Destiny
+Highlight: "If This Be My Destiny," Amazing Spider-Man #31-33, already included below. Collected in: Amazing Spider-Man Epic Collection: Great Power.
 
 - [ ] [Amazing Fantasy (1962) #15](https://www.marvel.com/comics/issue/16926/amazing_fantasy_1962_15)
 - [ ] [The Amazing Spider-Man (1963) #1](https://www.marvel.com/comics/issue/6482/the_amazing_spider-man_1963_1)
@@ -74,7 +68,9 @@ rather than presenting it as Marvel's own. See
 - [ ] [The Amazing Spider-Man (1963) #37](https://www.marvel.com/comics/issue/6782/the_amazing_spider-man_1963_37)
 - [ ] [The Amazing Spider-Man (1963) #38](https://www.marvel.com/comics/issue/6793/the_amazing_spider-man_1963_38)
 
-## Lee/Romita Opening Chapters
+## 2. The Opening Chapters of the Lee-Romita Run
+
+Highlight: #39-43, Green Goblin's identity revealed, the Rhino and Mary Jane introduced. These comics are included once in the range below.
 
 - [ ] [The Amazing Spider-Man (1963) #39](https://www.marvel.com/comics/issue/6804/the_amazing_spider-man_1963_39)
 - [ ] [The Amazing Spider-Man (1963) #40](https://www.marvel.com/comics/issue/6816/the_amazing_spider-man_1963_40)
@@ -149,8 +145,27 @@ rather than presenting it as Marvel's own. See
 - [ ] [The Amazing Spider-Man (1963) #109](https://www.marvel.com/comics/issue/6493/the_amazing_spider-man_1963_109)
 - [ ] [The Amazing Spider-Man (1963) #110](https://www.marvel.com/comics/issue/6495/the_amazing_spider-man_1963_110)
 
-## Roger Stern and John Romita Jr: The Hobgoblin Saga
+## 3. Origin of the Hobgoblin
 
+Read the supplied Spectacular selections before Amazing Spider-Man #224-251. Highlight: "Nothing Can Stop the Juggernaut," Amazing Spider-Man #229-230, already included.
+
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #43](https://www.marvel.com/comics/issue/14743/peter_parker_the_spectacular_spider-man_1976_43)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #45](https://www.marvel.com/comics/issue/14745/peter_parker_the_spectacular_spider-man_1976_45)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #46](https://www.marvel.com/comics/issue/14746/peter_parker_the_spectacular_spider-man_1976_46)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #47](https://www.marvel.com/comics/issue/14747/peter_parker_the_spectacular_spider-man_1976_47)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #48](https://www.marvel.com/comics/issue/14748/peter_parker_the_spectacular_spider-man_1976_48)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #49](https://www.marvel.com/comics/issue/14749/peter_parker_the_spectacular_spider-man_1976_49)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #50](https://www.marvel.com/comics/issue/14751/peter_parker_the_spectacular_spider-man_1976_50)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #51](https://www.marvel.com/comics/issue/14752/peter_parker_the_spectacular_spider-man_1976_51)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #52](https://www.marvel.com/comics/issue/14753/peter_parker_the_spectacular_spider-man_1976_52)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #54](https://www.marvel.com/comics/issue/14755/peter_parker_the_spectacular_spider-man_1976_54)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #55](https://www.marvel.com/comics/issue/14756/peter_parker_the_spectacular_spider-man_1976_55)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #56](https://www.marvel.com/comics/issue/14757/peter_parker_the_spectacular_spider-man_1976_56)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #57](https://www.marvel.com/comics/issue/14758/peter_parker_the_spectacular_spider-man_1976_57)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #58](https://www.marvel.com/comics/issue/14759/peter_parker_the_spectacular_spider-man_1976_58)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #59](https://www.marvel.com/comics/issue/14760/peter_parker_the_spectacular_spider-man_1976_59)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #60](https://www.marvel.com/comics/issue/14762/peter_parker_the_spectacular_spider-man_1976_60)
+- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #61](https://www.marvel.com/comics/issue/14763/peter_parker_the_spectacular_spider-man_1976_61)
 - [ ] [The Amazing Spider-Man (1963) #224](https://www.marvel.com/comics/issue/6621/the_amazing_spider-man_1963_224)
 - [ ] [The Amazing Spider-Man (1963) #225](https://www.marvel.com/comics/issue/6622/the_amazing_spider-man_1963_225)
 - [ ] [The Amazing Spider-Man (1963) #226](https://www.marvel.com/comics/issue/6623/the_amazing_spider-man_1963_226)
@@ -180,7 +195,9 @@ rather than presenting it as Marvel's own. See
 - [ ] [The Amazing Spider-Man (1963) #250](https://www.marvel.com/comics/issue/6650/the_amazing_spider-man_1963_250)
 - [ ] [The Amazing Spider-Man (1963) #251](https://www.marvel.com/comics/issue/6651/the_amazing_spider-man_1963_251)
 
-## Peter David: The Death of Jean DeWolff
+## 4. The Death of Jean DeWolff
+
+Spectacular #107-110, followed by the conclusion in #134-136.
 
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #107](https://www.marvel.com/comics/issue/14551/peter_parker_the_spectacular_spider-man_1976_107)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #108](https://www.marvel.com/comics/issue/14552/peter_parker_the_spectacular_spider-man_1976_108)
@@ -190,7 +207,9 @@ rather than presenting it as Marvel's own. See
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #135](https://www.marvel.com/comics/issue/14582/peter_parker_the_spectacular_spider-man_1976_135)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #136](https://www.marvel.com/comics/issue/14583/peter_parker_the_spectacular_spider-man_1976_136)
 
-## J.M. DeMatteis: Kraven's Last Hunt
+## 5. Kraven's Last Hunt
+
+The six 1987 crossover chapters are interleaved in story order across Web of Spider-Man, Amazing Spider-Man and Spectacular Spider-Man.
 
 - [ ] [Web of Spider-Man (1985) #31](https://www.marvel.com/comics/issue/12027/web_of_spider-man_1985_31)
 - [ ] [The Amazing Spider-Man (1963) #293](https://www.marvel.com/comics/issue/6697/the_amazing_spider-man_1963_293)
@@ -199,33 +218,20 @@ rather than presenting it as Marvel's own. See
 - [ ] [The Amazing Spider-Man (1963) #294](https://www.marvel.com/comics/issue/6698/the_amazing_spider-man_1963_294)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #132](https://www.marvel.com/comics/issue/14579/peter_parker_the_spectacular_spider-man_1976_132)
 
-## J.M. DeMatteis: The Child Within and Harry Osborn's Decline
+## 6. The Decline & Death of Harry Osborn
+
+The supplied "Child Within" selection is #178 only, not the full arc. Continue with #188-190 and #199. Finale: "Best of Enemies," #200.
 
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #178](https://www.marvel.com/comics/issue/14629/peter_parker_the_spectacular_spider-man_1976_178)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #179](https://www.marvel.com/comics/issue/14630/peter_parker_the_spectacular_spider-man_1976_179)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #180](https://www.marvel.com/comics/issue/14632/peter_parker_the_spectacular_spider-man_1976_180)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #181](https://www.marvel.com/comics/issue/14633/peter_parker_the_spectacular_spider-man_1976_181)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #182](https://www.marvel.com/comics/issue/14634/peter_parker_the_spectacular_spider-man_1976_182)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #183](https://www.marvel.com/comics/issue/14635/peter_parker_the_spectacular_spider-man_1976_183)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #184](https://www.marvel.com/comics/issue/14636/peter_parker_the_spectacular_spider-man_1976_184)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #185](https://www.marvel.com/comics/issue/14637/peter_parker_the_spectacular_spider-man_1976_185)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #186](https://www.marvel.com/comics/issue/14638/peter_parker_the_spectacular_spider-man_1976_186)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #187](https://www.marvel.com/comics/issue/14639/peter_parker_the_spectacular_spider-man_1976_187)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #188](https://www.marvel.com/comics/issue/14640/peter_parker_the_spectacular_spider-man_1976_188)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #189](https://www.marvel.com/comics/issue/14641/peter_parker_the_spectacular_spider-man_1976_189)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #190](https://www.marvel.com/comics/issue/14643/peter_parker_the_spectacular_spider-man_1976_190)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #191](https://www.marvel.com/comics/issue/14644/peter_parker_the_spectacular_spider-man_1976_191)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #192](https://www.marvel.com/comics/issue/14645/peter_parker_the_spectacular_spider-man_1976_192)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #193](https://www.marvel.com/comics/issue/14646/peter_parker_the_spectacular_spider-man_1976_193)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #194](https://www.marvel.com/comics/issue/14647/peter_parker_the_spectacular_spider-man_1976_194)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #195](https://www.marvel.com/comics/issue/14648/peter_parker_the_spectacular_spider-man_1976_195)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #196](https://www.marvel.com/comics/issue/14649/peter_parker_the_spectacular_spider-man_1976_196)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #197](https://www.marvel.com/comics/issue/14650/peter_parker_the_spectacular_spider-man_1976_197)
-- [ ] [Peter Parker, the Spectacular Spider-Man (1976) #198](https://www.marvel.com/comics/issue/14651/peter_parker_the_spectacular_spider-man_1976_198)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #199](https://www.marvel.com/comics/issue/14652/peter_parker_the_spectacular_spider-man_1976_199)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #200](https://www.marvel.com/comics/issue/14655/peter_parker_the_spectacular_spider-man_1976_200)
 
-## J. Michael Straczynski: Coming Home
+## 7. Coming Home
+
+J. Michael Straczynski's six-issue opening arc is Amazing Spider-Man (1999) #30-35. These are not the unrelated 1963 #30-35 already included in section 1. Later legacy numbers in sections 8 and 9 also resolve under provider series 454.
 
 - [ ] [Amazing Spider-Man (1999) #30](https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30)
 - [ ] [Amazing Spider-Man (1999) #31](https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31)
@@ -234,7 +240,9 @@ rather than presenting it as Marvel's own. See
 - [ ] [Amazing Spider-Man (1999) #34](https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34)
 - [ ] [Amazing Spider-Man (1999) #35](https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35)
 
-## The Gauntlet, Shed and Grim Hunt
+## 8. The Gauntlet / Shed / Grim Hunt (optional prelude: #600, #606, #611)
+
+Optional prelude: #600, #606 and #611 precede the main #612-637 sequence. The main sequence includes "Shed" and the finale "Grim Hunt."
 
 - [ ] [Amazing Spider-Man (1999) #600](https://www.marvel.com/comics/issue/24407/amazing_spider-man_1999_600)
 - [ ] [Amazing Spider-Man (1999) #606](https://www.marvel.com/comics/issue/24413/amazing_spider-man_1999_606)
@@ -266,11 +274,17 @@ rather than presenting it as Marvel's own. See
 - [ ] [Amazing Spider-Man (1999) #636](https://www.marvel.com/comics/issue/30311/amazing_spider-man_1999_636)
 - [ ] [Amazing Spider-Man (1999) #637](https://www.marvel.com/comics/issue/30312/amazing_spider-man_1999_637)
 
-## Dying Wish into Superior Spider-Man
+## 9. Dying Wish / My Own Worst Enemy / Troubled Mind (optional Big Time: #648-652)
 
+Optional prelude: "Big Time," Amazing Spider-Man #648-652. Then read "Dying Wish," #698-700, followed by Superior Spider-Man (2013) #1-9. The owner did not select Amazing Spider-Man #699.1 or Superior Spider-Man #6.5; neither is added.
+
+- [ ] [Amazing Spider-Man (1999) #648](https://www.marvel.com/comics/issue/34135/amazing_spider-man_1999_648)
+- [ ] [Amazing Spider-Man (1999) #649](https://www.marvel.com/comics/issue/30324/amazing_spider-man_1999_649)
+- [ ] [Amazing Spider-Man (1999) #650](https://www.marvel.com/comics/issue/30325/amazing_spider-man_1999_650)
+- [ ] [Amazing Spider-Man (1999) #651](https://www.marvel.com/comics/issue/30326/amazing_spider-man_1999_651)
+- [ ] [Amazing Spider-Man (1999) #652](https://www.marvel.com/comics/issue/30327/amazing_spider-man_1999_652)
 - [ ] [Amazing Spider-Man (1999) #698](https://www.marvel.com/comics/issue/40120/amazing_spider-man_1999_698)
 - [ ] [Amazing Spider-Man (1999) #699](https://www.marvel.com/comics/issue/40118/amazing_spider-man_1999_699)
-- [ ] [Amazing Spider-Man (1999) #699.1](https://www.marvel.com/comics/issue/47160/amazing_spider-man_1999_699.1)
 - [ ] [Amazing Spider-Man (1999) #700](https://www.marvel.com/comics/issue/40128/amazing_spider-man_1999_700)
 - [ ] [Superior Spider-Man (2013) #1](https://www.marvel.com/comics/issue/46462/superior_spider-man_2013_1)
 - [ ] [Superior Spider-Man (2013) #2](https://www.marvel.com/comics/issue/46469/superior_spider-man_2013_2)
@@ -278,12 +292,13 @@ rather than presenting it as Marvel's own. See
 - [ ] [Superior Spider-Man (2013) #4](https://www.marvel.com/comics/issue/46474/superior_spider-man_2013_4)
 - [ ] [Superior Spider-Man (2013) #5](https://www.marvel.com/comics/issue/46476/superior_spider-man_2013_5)
 - [ ] [Superior Spider-Man (2013) #6](https://www.marvel.com/comics/issue/46478/superior_spider-man_2013_6)
-- [ ] [Superior Spider-Man (2013) #6.5](https://www.marvel.com/comics/issue/47145/superior_spider-man_2013_6.5)
 - [ ] [Superior Spider-Man (2013) #7](https://www.marvel.com/comics/issue/46479/superior_spider-man_2013_7)
 - [ ] [Superior Spider-Man (2013) #8](https://www.marvel.com/comics/issue/46480/superior_spider-man_2013_8)
 - [ ] [Superior Spider-Man (2013) #9](https://www.marvel.com/comics/issue/46481/superior_spider-man_2013_9)
 
-## Spider-Man: Life Story
+## 10. Life Story
+
+Spider-Man: Life Story (2019) #1-6.
 
 - [ ] [Spider-Man: Life Story (2019) #1](https://www.marvel.com/comics/issue/74803/spider-man_life_story_2019_1)
 - [ ] [Spider-Man: Life Story (2019) #2](https://www.marvel.com/comics/issue/74804/spider-man_life_story_2019_2)

@@ -390,7 +390,7 @@ const spotlightRank = (rank, label, aliases = []) => ({ rank, label, aliases: [l
 // catalog already ships or a canonical label from the published Top 30 list; nothing here guesses
 // a subject from another field.
 export const SPOTLIGHT_POPULARITY_RANKS = [
-  spotlightRank(1, 'Spider-Man (Peter Parker)', ['Spider-Man', 'The Best of Spider-Man']),
+  spotlightRank(1, 'Spider-Man (Peter Parker)', ['Spider-Man', 'The Best of Spider-Man', '10 Best Spider-Man (Peter Parker) Comics Reading List']),
   spotlightRank(2, 'Wolverine'),
   spotlightRank(3, 'Iron Man'),
   spotlightRank(4, 'Captain America', ['The Best of Captain America']),

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.mjs';
+import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -39,9 +40,7 @@ export const registeredCuratedPeerContracts = curatedGuideRegistry.guides.map((e
 });
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedPeerContracts]
   .map(({ id }) => id)).size, registeredOwnerContracts.length + registeredCuratedPeerContracts.length);
-export const registeredOwnerIds = [
-  ...registrations.map(({ id }) => id),
-];
+export const registeredOwnerIds = registrations.map(({ id }) => id);
 export const registeredCatalogAdditionIds = [
   ...registeredOwnerIds,
   ...registeredCuratedPeerContracts.map(({ id }) => id),
@@ -57,12 +56,12 @@ export const currentReadingCensus = Object.freeze({
   allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount,
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
   mcu: baseline.mcuEntries.length + mcuContracts.length,
-  // The qualified UX pool retains 46 non-MCU readings; each curated addition joins its discovery shelf.
+  // The qualified UX pool retains 46 non-MCU readings; new MCU guides share its canonical shelf.
   storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows,
-  totalItems: baseline.payloadCounts.total + addedRows,
+  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta,
+  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta,
   itemFiles: 297 + rosterAdditionCount,
 });
 
