@@ -123,6 +123,27 @@ test('installed poll failures expose fixed operations and numeric errors, never 
   assert.match(cases, /installedPoll\(broken/);
 });
 
+test('semantic handshake reads retry only bounded transient stream failures', () => {
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  const retry = native.match(/auto retrySemanticRecordRead\([^{]+\{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(retry);
+  assert.match(retry, /catch \(const std::ios_base::failure&\)/);
+  assert.match(retry, /retry == SemanticRecordReadRetryLimit/);
+  assert.match(retry, /pause\(\)/);
+  assert.doesNotMatch(retry, /catch \(\.\.\.\)|catch \(const std::exception/);
+
+  const reader = native.match(/std::string readSemanticRecord\([^{]+\{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(reader);
+  assert.match(reader, /retrySemanticRecordRead\(\[&\]/);
+  assert.match(reader, /\[\] \{ Sleep\(20\); \}/);
+  assert.match(native, /void serverVerifierCases\(\) \{\s*installedPollCases\(\);\s*semanticRecordReadCases\(\);/);
+  const cases = native.match(/void semanticRecordReadCases\(\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(cases);
+  assert.match(cases, /transient semantic record read did not recover/);
+  assert.match(cases, /persistent semantic record read failure exceeded its retry bound/);
+  assert.match(cases, /non-I\/O semantic record failure was retried/);
+});
+
 test('proof DPI context is configured before COM initialization', () => {
   const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
   const startup = native.slice(native.indexOf('int wmain('));

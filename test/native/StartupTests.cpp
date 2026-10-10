@@ -676,17 +676,33 @@ void write(const fs::path& path, const std::string& text) {
     check(static_cast<bool>(output), "fixture output could not be written");
 }
 
+constexpr unsigned SemanticRecordReadRetryLimit = 25;
+
+template<class Read, class Pause>
+auto retrySemanticRecordRead(Read read, Pause pause) -> decltype(read()) {
+    for (unsigned retry = 0;; ++retry) {
+        try {
+            return read();
+        } catch (const std::ios_base::failure&) {
+            if (retry == SemanticRecordReadRetryLimit) throw;
+            pause();
+        }
+    }
+}
+
 std::string readSemanticRecord(const fs::path& path) {
-    const auto bytes = fs::file_size(path);
-    check(bytes && bytes <= proof::SemanticRecordLimit, "semantic record byte bound differs");
-    std::ifstream input;
-    input.exceptions(std::ios::badbit | std::ios::failbit);
-    input.open(path, std::ios::binary);
-    std::string text(static_cast<size_t>(bytes), '\0');
-    input.read(text.data(), static_cast<std::streamsize>(bytes));
-    check(input.peek() == std::char_traits<char>::eof() && text.find('\0') == std::string::npos &&
-          text.find('\r') == std::string::npos, "semantic record changed or has invalid controls");
-    return text;
+    return retrySemanticRecordRead([&] {
+        const auto bytes = fs::file_size(path);
+        check(bytes && bytes <= proof::SemanticRecordLimit, "semantic record byte bound differs");
+        std::ifstream input;
+        input.exceptions(std::ios::badbit | std::ios::failbit);
+        input.open(path, std::ios::binary);
+        std::string text(static_cast<size_t>(bytes), '\0');
+        input.read(text.data(), static_cast<std::streamsize>(bytes));
+        check(input.peek() == std::char_traits<char>::eof() && text.find('\0') == std::string::npos &&
+              text.find('\r') == std::string::npos, "semantic record changed or has invalid controls");
+        return text;
+    }, [] { Sleep(20); });
 }
 
 std::wstring semanticWide(const std::string& text) {
@@ -3395,8 +3411,49 @@ void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& e
     report.flush();
 }
 
+void semanticRecordReadCases() {
+    unsigned attempts = 0;
+    unsigned pauses = 0;
+    const auto recovered = retrySemanticRecordRead([&]() -> std::string {
+        if (++attempts < 3) throw std::ios_base::failure("private read detail");
+        return "complete";
+    }, [&] { ++pauses; });
+    check(recovered == "complete" && attempts == 3 && pauses == 2,
+          "transient semantic record read did not recover");
+
+    attempts = 0;
+    pauses = 0;
+    bool propagated = false;
+    try {
+        retrySemanticRecordRead([&]() -> std::string {
+            ++attempts;
+            throw std::ios_base::failure("private read detail");
+        }, [&] { ++pauses; });
+    } catch (const std::ios_base::failure&) {
+        propagated = true;
+    }
+    check(propagated && attempts == SemanticRecordReadRetryLimit + 1 &&
+          pauses == SemanticRecordReadRetryLimit,
+          "persistent semantic record read failure exceeded its retry bound");
+
+    attempts = 0;
+    pauses = 0;
+    propagated = false;
+    try {
+        retrySemanticRecordRead([&]() -> std::string {
+            ++attempts;
+            throw std::runtime_error("private non-I/O detail");
+        }, [&] { ++pauses; });
+    } catch (const std::runtime_error&) {
+        propagated = true;
+    }
+    check(propagated && attempts == 1 && pauses == 0,
+          "non-I/O semantic record failure was retried");
+}
+
 void serverVerifierCases() {
     installedPollCases();
+    semanticRecordReadCases();
     const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
         recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
     std::ostringstream fixtureReport;
