@@ -175,10 +175,21 @@ export const deferLifecycle = {
       const focus = await page.evaluate(() => {
         const active = document.activeElement;
         const rect = active.getBoundingClientRect();
+        const more = document.querySelector('#rows [data-key="510002"][data-act="more"]');
+        const panel = more && document.getElementById(more.getAttribute('aria-controls'));
         return { act: active.dataset.act, key: active.dataset.key, tag: active.tagName,
+          moreExpanded: more?.getAttribute('aria-expanded') === 'true',
+          panelVisible: Boolean(panel?.checkVisibility()),
           visible: active !== document.body && active.checkVisibility()
             && rect.top >= 0 && rect.bottom <= innerHeight };
       });
+      console.log('DEFER-FOCUS', JSON.stringify({
+        action: label === 'Resume' ? 'resume' : 'defer',
+        tag: ['BODY', 'BUTTON', 'INPUT'].includes(focus.tag) ? focus.tag : 'other',
+        act: ['more', 'defer', 'read'].includes(focus.act) ? focus.act : 'other',
+        actedRow: focus.key === String(ids[1]), visible: focus.visible === true,
+        moreExpanded: focus.moreExpanded === true, panelVisible: focus.panelVisible === true,
+      }));
       t.check(`320px ${label} retains visible keyboard focus in the acted row`,
         focus.visible && focus.key === String(ids[1])
         && (await saved(page)).lists[copyId].deferredIssueIds.includes(ids[1]) === expected,

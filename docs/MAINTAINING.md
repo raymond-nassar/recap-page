@@ -211,6 +211,16 @@ request counts, visibility/Retry booleans and page-error counts, not storage, DO
 It uploads no artifact. An isolated pass cannot explain a full-suite-only timeout or qualify
 a release; full ordinary acceptance remains required.
 
+The fixed `diagnostic_target=ordinary-browser-interaction-acceptance` runs `defer-lifecycle`
+and `completion-lifecycle` serially, each in a fresh browser with the same pinned driver.
+Both run even when the first fails; `INTERACTION-RESULT` records both exit codes and the
+step fails if either is nonzero. Existing assertions and deadlines remain authoritative.
+`DEFER-FOCUS` reports fixed action labels, allowlisted control facts and visibility booleans
+from the assertion's existing observation. `COMPLETION-STEP` and `COMPLETION-FAIL` identify
+fixed feedback, saved-rating and navigation operations without snapshots or private values.
+The completion check waits for the final enjoyment save to settle before changing its hash.
+This route uploads no artifacts and cannot replace full-suite or release qualification.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
