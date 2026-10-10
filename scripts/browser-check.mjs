@@ -8236,6 +8236,7 @@ const SCENARIOS = [
   },
   {
     id: 'restore-copy-workflow',
+    nativeDownloads: 1,
     title: 'one-shot Undo and retained copies explain replacement and refuse stale confirmation',
     async run(page, t) {
       let five = createEmptyState();

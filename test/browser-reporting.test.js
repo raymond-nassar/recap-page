@@ -648,6 +648,7 @@ test('recovery sentinels run once after recoverable errors and account for unava
 
 test('all ordinary native-export scenarios declare their complete context totals', () => {
   for (const [file, id, count] of [
+    ['browser-check.mjs', 'restore-copy-workflow', 1],
     ['browser-check.mjs', 'reader-round-trip', 1],
     ['browser-check.mjs', 'reading-shortcut', 1],
     ['browser-markdown-export.mjs', 'readable-markdown-export', 4],
