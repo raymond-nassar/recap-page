@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": 1,
+  "id": "one-world-under-doom",
+  "inventoryId": "one-world-under-doom",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/773",
+  "sourceSection": "One World Under Doom",
+  "sourceRetrievedAt": "2026-10-09",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "f20e9dc795b417707d299f81dc9d0f62948ec7af80a69e56379143227abaa801",
+  "sourceIssueBearingBlocksSha256": "a2149c3d9cd6dc7b037b3c3741a8e6b530ab5036eec83146448f3c847cb531a2",
+  "sourceBoundary": "The exact owner-selected One World Under Doom source. All supplied positions remain recorded in the 86-position vector; the 75 exact first occurrences form the proposed checklist, ten exact identities remain gaps, and one repeat points to its first occurrence. This is not a claim of event completeness.",
+  "excludedSourceReferences": [],
+  "canonicalSourcePositions": true,
+  "sourceOccurrenceCount": 86,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 70,
+      "canonicalRow": 36,
+      "sourceIssueReference": "Fantastic Four (2025) #1",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2025,
+      "issueNumber": "1"
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Avengers Academy Infinity Comic #43",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Avengers Academy Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "43",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 121580 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/7886502/avengers-academy-marvels-voices-infinity-comic-43",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/121580",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "7f86a7cee0875a653de698bec5684351500115b5c2794ee02fd77f4fcc2e0002"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Avengers Academy Infinity Comic #44",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Avengers Academy Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "44",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 121581 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/2556815/avengers-academy-marvels-voices-infinity-comic-44",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/121581",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "e83b58c1790a1712f8cef5d38a887001aa1a58f025f99be8ce8c91a3e433abab"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Avengers Academy Infinity Comic #45",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Avengers Academy Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "45",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 121582 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://comicvine.gamespot.com/avengers-academy-marvels-voices-infinity-comic-45-/4000-1112987/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/121582",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "ac3315c9a75526bdf47bb09bec40b9118de64237aa56adab6eef3195519c549b"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Astonishing Avengers Infinity Comic #21",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Astonishing Avengers Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "21",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 123208 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/5061841/astonishing-avengers-infinity-comic-21",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/123208",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "716be316a3ffbe5f1ad355c9d52c9d6e25247944df3283689ad9dcc5bb7e8916"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Astonishing Avengers Infinity Comic #22",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Astonishing Avengers Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "22",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 123209 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/7411100/astonishing-avengers-infinity-comic-22",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/123209",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "7be5836ea62de52af67b14056ab1cd8c04cbdfa72316320b6c8d67723f96f1f9"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Astonishing Avengers Infinity Comic #23",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Astonishing Avengers Infinity Comic",
+      "seriesYear": null,
+      "issueNumber": "23",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 123210 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://leagueofcomicgeeks.com/comic/4590682/astonishing-avengers-infinity-comic-23",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/123210",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "7094c9cd19c27599c5768d84c5dcc82b0aca597d7c64bb2ffbf033eba49ebc81"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Red Hulk (2025) #10",
+      "sourceRangeReference": "Chunk 8",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 121361 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://aiptcomics.com/2025/11/07/marvel-preview-red-hulk-10/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/121361",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "6798c13b091ed196183d23c8da269fd10493c792e776a0ecec6a224021ea7497"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "One World Under Doom (2025) #9",
+      "sourceRangeReference": "Finale",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 127115 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://aiptcomics.com/2025/11/19/one-world-under-doom-9-review/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/127115",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "49960fd38e05ef6774d3fc683758e5443a6ddcec84507ec5bc43ab9057bf5ea7"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "The Will of Doom (2025) #1",
+      "sourceRangeReference": "Finale",
+      "normalizedSeriesTitle": "The Will of Doom",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 126711 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://aiptcomics.com/2025/12/24/the-will-of-doom-1-review/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/126711",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "ea54b4e2609e8695ffce5bad676416aa4e0071e72239eefd71cf3adf7200f765"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Captain America (2025) #6",
+      "sourceRangeReference": "Finale",
+      "normalizedSeriesTitle": "Captain America",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Direct configured-provider detail lookup target 123361 returned HTTP 404 on 2026-10-09; independent bibliography supports the exact source identity. The request target is not an issue ID decision, and 404 does not establish nonexistence or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://aiptcomics.com/2025/09/12/doctor-doom-the-will-of-doom-1/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/123361",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "evidenceDigest": "170af5f5bf9087851d418ef034db5606ce61f36e5fb96e26f3b7b528e99cb264"
+    }
+  ],
+  "expectedCount": 75,
+  "proposedManifest": {
+    "id": "one-world-under-doom",
+    "name": "One World Under Doom",
+    "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": 2025,
+    "sourceFile": "one-world-under-doom.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/773",
+    "sourceSection": "One World Under Doom",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "one_world_under_doom.json",
+    "characters": [
+      "Doctor Doom",
+      "Fantastic Four",
+      "Avengers",
+      "Storm",
+      "Captain America"
+    ],
+    "keywords": [
+      "One World Under Doom",
+      "Doctor Doom",
+      "2025 event"
+    ],
+    "expect": 75,
+    "coverIssueId": 113858,
+    "group": null,
+    "groupName": null,
+    "variant": null
+  },
+  "insertionAnchor": {
+    "beforeId": "marvel-zombies-reading-order"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Fantastic Four (2022) #28",
+      "sourceRangeReference": "Lead-in",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "28",
+      "candidateIssueId": 119394,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "One World Under Doom (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 113858,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Storm (2023) #5",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Storm",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "candidateIssueId": 120391,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Owner-authorized identity correction to Storm (2024) #5; the supplied Storm (2023) #5 label and series URL remain unchanged in the source ledger."
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "X-Factor (2024) #7",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2024,
+      "issueNumber": "7",
+      "candidateIssueId": 116570,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Doom Academy (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doom Academy",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 120357,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Thunderbolts: Doomstrike (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Thunderbolts: Doomstrike",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 121352,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Weapon X-Men (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Weapon X-Men",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 120217,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Fantastic Four (2022) #29",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "29",
+      "candidateIssueId": 119395,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Red Hulk (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 115549,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Doctor Strange of Asgard (2025) #1",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doctor Strange of Asgard",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 123723,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Doctor Strange of Asgard (2025) #2",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doctor Strange of Asgard",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 123724,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Doctor Strange of Asgard (2025) #3",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doctor Strange of Asgard",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 123725,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Doctor Strange of Asgard (2025) #4",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doctor Strange of Asgard",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 123726,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Doctor Strange of Asgard (2025) #5",
+      "sourceRangeReference": "Chunk 1",
+      "normalizedSeriesTitle": "Doctor Strange of Asgard",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 123727,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "One World Under Doom (2025) #2",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 113859,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Fantastic Four (2022) #30",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "30",
+      "candidateIssueId": 119396,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Invincible Iron Man / Iron Man (2024) #6",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Invincible Iron Man / Iron Man",
+      "seriesYear": 2024,
+      "issueNumber": "6",
+      "candidateIssueId": 114939,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Nyx (2024) #9",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Nyx",
+      "seriesYear": 2024,
+      "issueNumber": "9",
+      "candidateIssueId": 115319,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Amazing Spider-Man (2022) #69",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "69",
+      "candidateIssueId": 123185,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Doom Academy (2025) #2",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Doom Academy",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 120358,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Doom's Division (2025) #1",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Doom's Division",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 121368,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Red Hulk (2025) #2",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 115550,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Thunderbolts: Doomstrike (2025) #2",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Thunderbolts: Doomstrike",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 121353,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Amazing Spider-Man (2022) #70",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "70",
+      "candidateIssueId": 123186,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Iron Man (2024) #7",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 2024,
+      "issueNumber": "7",
+      "candidateIssueId": 114940,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Superior Avengers (2025) #1",
+      "sourceRangeReference": "Chunk 2",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 118634,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "One World Under Doom (2025) #3",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 113860,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Fantastic Four (2022) #31",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "31",
+      "candidateIssueId": 119397,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Fantastic Four (2022) #32",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "32",
+      "candidateIssueId": 119398,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Fantastic Four (2022) #33",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2022,
+      "issueNumber": "33",
+      "candidateIssueId": 119399,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Avengers (2023) #25",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2023,
+      "issueNumber": "25",
+      "candidateIssueId": 119374,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Red Hulk (2025) #3",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 115551,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Doom Academy (2025) #3",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Doom Academy",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 120359,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Thunderbolts: Doomstrike (2025) #3",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Thunderbolts: Doomstrike",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 121354,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Doom's Division (2025) #2",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Doom's Division",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 121369,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Fantastic Four (2025) #1",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 122796,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Fantastic Four (2025) #2",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 122797,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Fantastic Four (2025) #3",
+      "sourceRangeReference": "Chunk 3",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 122798,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "One World Under Doom (2025) #4",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 113861,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Red Hulk (2025) #4",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 115552,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Thunderbolts: Doomstrike (2025) #4",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Thunderbolts: Doomstrike",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 121355,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Iron Man (2024) #8",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 2024,
+      "issueNumber": "8",
+      "candidateIssueId": 114941,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Doom Academy (2025) #4",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Doom Academy",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 120360,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Thunderbolts: Doomstrike (2025) #5",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Thunderbolts: Doomstrike",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 121356,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Superior Avengers (2025) #2",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 118635,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Avengers (2023) #26",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2023,
+      "issueNumber": "26",
+      "candidateIssueId": 119375,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Avengers (2023) #27",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2023,
+      "issueNumber": "27",
+      "candidateIssueId": 119376,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Avengers (2023) #28",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2023,
+      "issueNumber": "28",
+      "candidateIssueId": 119377,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Doom's Division (2025) #3",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Doom's Division",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 121370,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Red Hulk (2025) #5",
+      "sourceRangeReference": "Chunk 4",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 115553,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "One World Under Doom (2025) #5",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 119482,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Runaways (2025) #1",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Runaways",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 123397,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Doomed 2099 (2025) #1",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Doomed 2099",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 128903,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Doom's Division (2025) #4",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Doom's Division",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 121371,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Doom Academy (2025) #5",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Doom Academy",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 120361,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Superior Avengers (2025) #3",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 118636,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Iron Man (2024) #9",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 2024,
+      "issueNumber": "9",
+      "candidateIssueId": 114942,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "G.O.D.S.: One World Under Doom (2025) #1",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "G.O.D.S.: One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": 128005,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Doom's Division (2025) #5",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Doom's Division",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 121372,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Iron Man (2024) #10",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 2024,
+      "issueNumber": "10",
+      "candidateIssueId": 114943,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Red Hulk (2025) #6",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "candidateIssueId": 121357,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Runaways (2025) #2",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Runaways",
+      "seriesYear": 2025,
+      "issueNumber": "2",
+      "candidateIssueId": 123398,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Superior Avengers (2025) #4",
+      "sourceRangeReference": "Chunk 5",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 118637,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "One World Under Doom (2025) #6",
+      "sourceRangeReference": "Chunk 6",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "candidateIssueId": 127112,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Red Hulk (2025) #7",
+      "sourceRangeReference": "Chunk 6",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "7",
+      "candidateIssueId": 121358,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Superior Avengers (2025) #5",
+      "sourceRangeReference": "Chunk 6",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 118638,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Superior Avengers (2025) #6",
+      "sourceRangeReference": "Chunk 6",
+      "normalizedSeriesTitle": "Superior Avengers",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "candidateIssueId": 118639,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Runaways (2025) #3",
+      "sourceRangeReference": "Chunk 6",
+      "normalizedSeriesTitle": "Runaways",
+      "seriesYear": 2025,
+      "issueNumber": "3",
+      "candidateIssueId": 123399,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "One World Under Doom (2025) #7",
+      "sourceRangeReference": "Chunk 7",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "7",
+      "candidateIssueId": 127113,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Red Hulk (2025) #8",
+      "sourceRangeReference": "Chunk 7",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "8",
+      "candidateIssueId": 121359,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Runaways (2025) #4",
+      "sourceRangeReference": "Chunk 7",
+      "normalizedSeriesTitle": "Runaways",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 123400,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Red Hulk (2025) #9",
+      "sourceRangeReference": "Chunk 7",
+      "normalizedSeriesTitle": "Red Hulk",
+      "seriesYear": 2025,
+      "issueNumber": "9",
+      "candidateIssueId": 121360,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "One World Under Doom (2025) #8",
+      "sourceRangeReference": "Chunk 8",
+      "normalizedSeriesTitle": "One World Under Doom",
+      "seriesYear": 2025,
+      "issueNumber": "8",
+      "candidateIssueId": 127114,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Fantastic Four (2025) #4",
+      "sourceRangeReference": "Chunk 8",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 2025,
+      "issueNumber": "4",
+      "candidateIssueId": 122799,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Runaways (2025) #5",
+      "sourceRangeReference": "Chunk 8",
+      "normalizedSeriesTitle": "Runaways",
+      "seriesYear": 2025,
+      "issueNumber": "5",
+      "candidateIssueId": 123401,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "packetDigest": "3c35ee03e0cd915f4d4bc3232098f00e3618f8d249d1a0ac9b0d171ad8b4fcd8",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot central reviewer, GPT-6 Astra (gpt-6-astra), session e824c0af-3fc7-4082-bc3d-32478a41c387",
+    "rationale": "Approved as the owner's exact selection for this app, not a claim that the owner originally compiled the order. Keep Selected by raymond-nassar for Modern Timeline, unknown original compiler/source, and null sourceLicense; do not infer a broader license from the owner-authored schema route. Independently verified all 86 supplied positions, 75 exact first-occurrence provider identities, ten explicit gap identities, repeat 70 to source position 42 / issue 122796, and optional positions 10-14. The actual owner Storm correction answer was verified separately; retain the original 2023 label/URL and approved 2024 working identity. Gap Issue 772 is assigned and linked from guide Issue 773; preserve yearless source labels and the qualified indexed-only issue-level evidence for Avengers Academy #45. No failed lookup target becomes a selected issue ID. V2 now explicitly displays the optional Doctor Strange of Asgard #1-5 and Fantastic Four #1-3 read-together notes without altering Chunk groups or ordinary completion semantics. The exact 322-input preflight was independently rechecked; later authored/generated outputs remain subject to their own full-candidate preflight and required verification.",
+    "reviewedAt": "2026-10-09T21:42:07.186Z",
+    "proposalDigest": "74754066fa718a3048b82d7f554e2e404929d33818e9174de612794600d77a36"
+  }
+}

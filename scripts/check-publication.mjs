@@ -103,9 +103,14 @@ export const PATTERNS = [
 const FIXTURES_FILE = 'test/publication-gate.test.js';
 const STORE_PUBLISHER = 'F6D9045B-46F0-4EAC-' + '9524-4BFC8A75A472';
 const SHADOW_REVIEW_SESSION = '34c17dd0-fd0e-4422-' + 'a238-6505fd798c8e';
+const DOOM_REVIEW_SESSION = 'e824c0af-3fc7-' + '4082-bc3d-32478a41c387';
 const SHADOW_REVIEW_FILES = [
   'scripts/data/cbh-mappings/shadow-king-reading-order.json',
   'scripts/data/cbh-packets/shadow-king-reading-order.json',
+];
+const DOOM_REVIEW_FILES = [
+  'scripts/data/owner-packets/one-world-under-doom.json',
+  'scripts/data/owner-mappings/one-world-under-doom.json',
 ];
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
@@ -131,6 +136,10 @@ export const ALLOWED = new Map([
   ...SHADOW_REVIEW_FILES.map((file) => [
     `${file}|a session or workspace identifier|${SHADOW_REVIEW_SESSION}`,
     'the exact coordinator identity bound into the approved Shadow King review receipt',
+  ]),
+  ...DOOM_REVIEW_FILES.map((file) => [
+    `${file}|a session or workspace identifier|${DOOM_REVIEW_SESSION}`,
+    'the exact coordinator identity bound into the approved One World Under Doom source and relationship review',
   ]),
   ...STORE_PUBLISHER_FILES.map((file) => [
     `${file}|a session or workspace identifier|${STORE_PUBLISHER}`,

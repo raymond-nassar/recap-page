@@ -1682,6 +1682,45 @@
       "updatedAt": "2026-08-22T09:26:45.416Z"
     },
     {
+      "id": "one-world-under-doom",
+      "file": "one_world_under_doom.json",
+      "name": "One World Under Doom",
+      "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
+      "type": "event",
+      "depth": "selected",
+      "count": 75,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 9,
+      "characters": [
+        "Doctor Doom",
+        "Fantastic Four",
+        "Avengers",
+        "Storm",
+        "Captain America"
+      ],
+      "keywords": [
+        "One World Under Doom",
+        "Doctor Doom",
+        "2025 event"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2025,
+      "coverIssueId": 113858,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/67ab71bd04cda",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/773",
+      "sourceSection": "One World Under Doom",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-09T22:38:53.342Z"
+    },
+    {
       "id": "marvel-zombies-reading-order",
       "file": "marvel_zombies_reading_order.json",
       "name": "Marvel Zombies",

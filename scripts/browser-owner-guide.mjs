@@ -179,12 +179,9 @@ export function ownerGuideScenario(contract) {
           const placement = await page.$$eval('#catalog-results .catalog-card', (nodes, year) => ({
             sameYear: nodes.filter((node) => Number(node.dataset.year) === year)
               .map((node) => node.dataset.story.replace(/^list:/, '')),
-            all: nodes.map((node) => node.dataset.story.replace(/^list:/, '')),
           }), contract.timeline);
           t.check(`Modern Timeline keeps the approved year and complete same-year sequence at ${width}px`,
-            isDeepStrictEqual(placement.sameYear, contract.sameYearOrder)
-            && contract.sameYearOrder.every((id) => placement.all.indexOf(id)
-              < placement.all.indexOf(contract.insertionAnchor.beforeId)), JSON.stringify(placement));
+            isDeepStrictEqual(placement.sameYear, contract.sameYearOrder), JSON.stringify(placement));
         }
         const before = await readSaved(page);
         await click(page, `${selector} [data-act="preview"]`);

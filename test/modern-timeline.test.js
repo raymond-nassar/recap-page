@@ -159,7 +159,8 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const selectedLists = modernTimelineLists(catalog.lists);
   const selectedStories = modernTimelineStories(stories);
   const sections = eraSections(selectedStories);
-  const datedSections = sections.filter(({ span }) => span);
+  const datedSections = sections.filter(({ span, fallback }) => span && !fallback);
+  const unplacedSection = sections.find(({ key }) => key === 'unplaced');
   const excluded = shelfLists(catalog.lists, 'catalog')
     .filter(({ id, timeline }) => (
       timeline >= MODERN_TIMELINE_START_YEAR
@@ -176,6 +177,20 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
+  assert.deepEqual(selectedLists.slice(-2).map(({ id, timeline }) => [id, timeline]), [
+    ['fall-house-x-rise-powers-x', 2024],
+    ['one-world-under-doom', 2025],
+  ]);
+  assert.equal(selectedStories.at(-1).key, 'list:one-world-under-doom');
+  assert.equal(selectedStories.at(-1).lists.length, 1);
+  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+    'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
+  ), true);
+  assert.equal(selectedStories.at(-1).lists[0].description.includes(
+    'Read Fantastic Four (2025) #1-3 together.',
+  ), true);
+  assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
+  assert.ok(unplacedSection.stories.some(({ key }) => key === 'list:one-world-under-doom'));
   assert.equal(olderEvents.length, 36);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
