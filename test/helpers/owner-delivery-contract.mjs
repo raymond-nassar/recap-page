@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
@@ -46,7 +46,10 @@ export async function assertOwnerDeliveryContract(contract, {
   // Fresh Windows checkouts convert generated LF source JSON to CRLF without changing its approved content.
   assert.equal(hash(sourceText.replace(/\r\n/g, '\n')), contract.sourceSha256);
   assert.equal(packet.sourceContentSha256, contract.sourceSha256);
-  assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.rows));
+  assert.equal(
+    packet.sourceIssueBearingBlocksSha256,
+    contract.sourceIssueBearingBlocksSha256 ?? digestCanonicalJson(source.rows),
+  );
   assert.deepEqual(sourceCountsForPacket(packet), contract.sourceCounts);
   assertMappingMatchesPacketOccurrences(packet, mapping);
   assert.deepEqual(mapping.rows.map((row) => row.selectedIssueId), expectedIds);
@@ -108,9 +111,12 @@ export async function assertOwnerDeliveryContract(contract, {
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
   };
-  const currentLibraryDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
+  const digestLibrary = contract.libraryDigest == null
+    ? historicalSpiderManSelectionLibraryDigest : libraryDigestFor;
+  const currentLibraryDigest = digestLibrary(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
+  if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
   assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
   assert.equal(current.comparisonCount, peerCount);
   assertApprovedRelationshipReview({

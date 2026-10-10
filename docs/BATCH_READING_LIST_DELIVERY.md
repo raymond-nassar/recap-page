@@ -131,7 +131,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:7-66` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later-peer checks in
-`test/helpers/owner-delivery-contract.mjs:120-140` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:127-146` require registered contracts, current approval
 evidence and reciprocal dispositions.
 
 For an owner event, declare `surface: "modern-timeline"` in its owner-delivery registration and

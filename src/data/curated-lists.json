@@ -1374,6 +1374,38 @@
       "coverIssueId": 111661
     },
     {
+      "id": "one-world-under-doom",
+      "name": "One World Under Doom",
+      "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
+      "type": "event",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": 2025,
+      "sourceFile": "one-world-under-doom.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/773",
+      "sourceSection": "One World Under Doom",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "out": "one_world_under_doom.json",
+      "characters": [
+        "Doctor Doom",
+        "Fantastic Four",
+        "Avengers",
+        "Storm",
+        "Captain America"
+      ],
+      "keywords": [
+        "One World Under Doom",
+        "Doctor Doom",
+        "2025 event"
+      ],
+      "expect": 75,
+      "coverIssueId": 113858,
+      "group": null,
+      "groupName": null,
+      "variant": null
+    },
+    {
       "id": "marvel-zombies-reading-order",
       "name": "Marvel Zombies",
       "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",

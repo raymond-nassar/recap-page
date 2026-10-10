@@ -176,7 +176,7 @@ test('Miles Morales best-of classifies its relationships against the full curren
   assert.equal(report.comparisonCount, catalog.lists.length - 1);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'candidate-subset').length, 1);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 14);
-  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length, 299);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length, 300);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'existing-subset').length, 0);
   assert.deepEqual(report.comparisons.map((entry) => entry.orderId),

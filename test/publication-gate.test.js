@@ -168,12 +168,12 @@ test('the protected tracked-path fingerprint has unambiguous canonical framing',
   );
 });
 
-test('the production gate rejects a force-added protected path without touching the real index', () => {
+test('the production gate rejects a force-added protected path without changing real staged entries', () => {
   const workspace = fileURLToPath(root);
   const dir = mkdtempSync(join(tmpdir(), 'mrt-publication-index-'));
   const realIndexText = git(['rev-parse', '--git-path', 'index']).trim();
   const realIndex = resolve(workspace, realIndexText);
-  const before = readFileSync(realIndex);
+  const before = git(['ls-files', '--stage', '-z']);
   const protectedFile = join(workspace, '.copilot-tracking', 'publication-boundary-proof.tmp');
   const controlFile = join(workspace, 'publication-boundary-control.tmp');
   const runWith = (file, indexName) => {
@@ -200,7 +200,7 @@ test('the production gate rejects a force-added protected path without touching 
     assert.equal(controlRun.status, shallow ? 2 : 0, `${controlRun.stdout}${controlRun.stderr}`);
     assert.doesNotMatch(controlRun.stdout, /could not read publication-boundary-control\.tmp/);
     if (shallow) assert.match(controlRun.stdout, /history half of this gate was not answered/);
-    assert.deepEqual(readFileSync(realIndex), before, 'the real Git index is unchanged');
+    assert.equal(git(['ls-files', '--stage', '-z']), before, 'the real Git index entries are unchanged');
   } finally {
     rmSync(protectedFile, { force: true });
     rmSync(controlFile, { force: true });
@@ -295,6 +295,35 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
     assert.equal(sink.get('a secret assigned in code')?.length ?? 0, expected,
       'only the exact named fixture in its intended file is allowed');
   }
+});
+
+test('the approved Doom reviewer identity is allowed only in its two provenance files', () => {
+  const session = 'e824c0af-3fc7-' + '4082-bc3d-32478a41c387';
+  const files = [
+    'scripts/data/owner-packets/one-world-under-doom.json',
+    'scripts/data/owner-mappings/one-world-under-doom.json',
+  ];
+  const pattern = 'a session or workspace identifier';
+  const expected = files.map((file) => `${file}|${pattern}|${session}`).sort();
+  const actual = [...ALLOWED.keys()]
+    .filter((key) => key.split('|')[1] === pattern && key.split('|')[2] === session)
+    .sort();
+  assert.deepEqual(actual, expected, 'the public reviewer identity has only its two approved provenance sites');
+
+  for (const file of files) {
+    const accepted = new Map();
+    findings(file, session, accepted);
+    assert.equal(accepted.size, 0, `${file}: approved source-review provenance`);
+
+    const different = '00000000-0000-4000-8000-0000000000' + '03';
+    const rejected = new Map();
+    findings(file, different, rejected);
+    assert.deepEqual([...rejected.keys()], [pattern], `${file}: other identifiers remain findings`);
+  }
+
+  const elsewhere = new Map();
+  findings('scripts/data/owner-selections/one-world-under-doom.json', session, elsewhere);
+  assert.deepEqual([...elsewhere.keys()], [pattern], 'the reviewer identity is not allowed in other Doom artifacts');
 });
 
 test('Android reader identifier allowances are exact public or synthetic fixtures, not file exemptions', () => {

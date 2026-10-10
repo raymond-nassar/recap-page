@@ -3,14 +3,14 @@
   "id": "miles-morales-best-of",
   "status": "approved",
   "candidateCount": 84,
-  "comparisonCount": 315,
+  "comparisonCount": 316,
   "vectorSha256": "ab08595930fdef2d9cf9237b11cfae34ce95ecb90ef132d559d56a3095d3894c",
-  "libraryDigest": "6d24f6bd4066aced70654320382ea4d35e661a293bd79a5697f5f71f5ec66e96",
-  "approvalDigest": "0bb6708b147e1de4361296ecd8f4ae52606e8f24e80f019aec4d385087d1a6f5",
+  "libraryDigest": "488bc0b4afbe93cdc5b54883465ecfbdcec7445754765263e1a138cef6986bc9",
+  "approvalDigest": "45fd1f1dcbd8cfcb7366ab9e6264fb9b1494b5184e0038ee4eb1a63170eefa97",
   "relationshipCounts": {
     "candidate-subset": 1,
     "partial": 14,
-    "none": 300,
+    "none": 301,
     "exact": 0,
     "existing-subset": 0
   },
