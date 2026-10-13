@@ -6119,10 +6119,10 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "SECURITY.md|about-the-app|package.json:62-66|0": {
-    "anchor": "package.json:62-66",
-    "fp": "a7a19dc0dbfabe78",
-    "head": "\"devDependencies\": {"
+  "SECURITY.md|about-the-app|package.json:63-66|0": {
+    "anchor": "package.json:63-66",
+    "fp": "151cfbfc8d1c0015",
+    "head": "\"@eslint/js\": \"^10.0.1\","
   },
   "SECURITY.md|in-scope|.github/workflows/ci.yml:257-259|0": {
     "anchor": ".github/workflows/ci.yml:257-259",
