@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:99-106`, `src/js/main.js:2852-2878`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:94-101`, `src/js/main.js:2611-2637`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,8 +86,8 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2067`, `src/js/views/reading.js:366-374`, `src/js/views/reading.js:391-405`, against
-`src/js/main.js:569-596`
+Evidence: `src/js/main.js:1826`, `src/js/views/reading.js:366-374`, `src/js/views/reading.js:391-405`, against
+`src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
 curated import failures through `alert()`, asks for a list name through `prompt()`, and confirms
@@ -390,7 +390,7 @@ Severity: 2, single-rater estimate
 Rationale: affects every notice in the product, and duplicate speech is disruptive rather than
 blocking
 Confidence: Observed
-Evidence: `src/js/main.js:408-421`, `src/js/main.js:569-596`, `src/index.html:21`,
+Evidence: `src/js/views/shared/feedback.js:206-219`, `src/js/views/shared/feedback.js:229-252`, `src/index.html:21`,
 `src/index.html:121`, `src/index.html:796`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
@@ -400,7 +400,7 @@ nothing is missed, is right, but the effect is that every confirmation is spoken
 Recommendation: pick one channel per message, keeping `announce()` for events with no visible
 surface and letting the visible live region speak for itself everywhere else
 Backlog item: BL-027
-Resolved: which channel a message uses is now read off the container at `src/js/main.js:414-421`
+Resolved: which channel a message uses is now read off the container at `src/js/views/shared/feedback.js:212-219`
 rather than decided by a list of ids, and the six result panes stopped being live regions. The
 Impact above describes the pre-fix behaviour and is kept as the record of why the item was
 raised. Measured on a first run with storage cleared, the surfaces that speak went from 9 to 3.
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1656-1658`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1415-1417`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -746,7 +746,7 @@ Evidence: `src/index.html:60-105`, `src/js/lib/route.js:22-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:77-154`,
-`src/js/main.js:1695-1738`, `test/ux-completion.test.js:83-94`.
+`src/js/main.js:1454-1497`, `test/ux-completion.test.js:83-94`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1624-1692`,
+src/ returning no matches`, `src/js/main.js:1383-1451`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No
