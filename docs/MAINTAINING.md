@@ -397,6 +397,14 @@ unit suite fails if the two disagree.
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
 
+A named `--only=<peer>` run preserves the exact bytes of skipped partition parent and child
+payloads, including their newline representation. It still derives those families in memory to
+rebuild the complete catalog, generated paths and Character guide index. Cross-library overlap
+reports also refresh from every peer: a nonoverlapping new peer leaves the substantive report
+unchanged, while a genuinely shared original adds its pair without dropping prior relationships.
+The report timestamp may refresh even when the overlap matrix does not change. Use catalog-only
+or explicitly select the partition parent or a child when its child payloads need regeneration.
+
 ### Preserve source evidence
 
 Record enough evidence for another maintainer to reproduce every manually curated order.
