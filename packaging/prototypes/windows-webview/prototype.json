@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "prototype": "windows-webview",
+  "origin": "https://recap-page-prototype.invalid",
+  "host": "recap-page-prototype.invalid",
+  "readerHosts": [
+    "marvel.com",
+    "www.marvel.com",
+    "read.marvel.com"
+  ],
+  "metadataApiHost": "marvel.emreparker.com",
+  "localAppDataDirectory": "RecapPageWebViewPrototype\\UserData",
+  "windowsSdk": {
+    "version": "10.0.28000.0",
+    "source": "preinstalled",
+    "download": false
+  },
+  "webView2Sdk": {
+    "package": "Microsoft.Web.WebView2",
+    "version": "1.0.4078.44",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.4078.44/microsoft.web.webview2.1.0.4078.44.nupkg",
+    "sha512Base64": "MH7KiDIR3XXPbJCIdIK/pzhc5DUd8gsJBbFysIFVkakSBCEGjis5/UtyCqlViQbC1FtXTYh/lLZN6vHJNyGo3Q==",
+    "cacheOnly": true
+  },
+  "assetPolicy": {
+    "maximumBytes": 33554432,
+    "externalComicImages": "blocked"
+  },
+  "securityHeaders": {
+    "contentSecurityPolicy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://marvel.emreparker.com https://github.com https://forms.cloud.microsoft; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "xContentTypeOptions": "nosniff",
+    "referrerPolicy": "no-referrer",
+    "permissionsPolicy": "camera=(), microphone=(), geolocation=()",
+    "cacheControl": "no-store"
+  }
+}
