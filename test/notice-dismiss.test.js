@@ -16,7 +16,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { noticeEl, spoken, retireRoutineNotices } from '../src/js/main.js';
+import { createFeedback, spoken, retireRoutineNotices } from '../src/js/views/shared/feedback.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const source = readFileSync(join(ROOT, 'src', 'js', 'views', 'reading.js'), 'utf8');
@@ -41,13 +41,33 @@ function stubDocument() {
   return { createElement: make, createTextNode: (text) => ({ text }), querySelector: () => null };
 }
 
+function controller(doc) {
+  const createElement = (tag, props = {}, children = []) => {
+    const node = doc.createElement(tag);
+    for (const [key, value] of Object.entries(props)) {
+      if (key === 'class') node.className = value;
+      else if (key === 'text') node.textContent = value;
+      else if (key.startsWith('on')) node.addEventListener(key.slice(2), value);
+      else node.setAttribute(key, value === true ? '' : String(value));
+    }
+    for (const child of [].concat(children)) {
+      if (child != null) node.append(typeof child === 'string' ? doc.createTextNode(child) : child);
+    }
+    return node;
+  };
+  return createFeedback({
+    query: (selector) => doc.querySelector(selector),
+    getDocument: () => doc,
+    el: createElement,
+    schedule: () => {},
+    focusViewHeading: (view) => doc.querySelector(`#view-${view}`),
+    getCurrentView: () => 'read',
+  });
+}
+
 function build(note) {
-  globalThis.document = stubDocument();
-  try {
-    return noticeEl(note);
-  } finally {
-    delete globalThis.document;
-  }
+  const doc = stubDocument();
+  return controller(doc).noticeEl(note);
 }
 
 const buttons = (p) => p.children.filter((c) => c.tag === 'button');
@@ -121,11 +141,11 @@ test('pressing the way out runs the handler it was given', () => {
 // That is the answer it must never give, and it is the one answer it could give every time.
 function pressDismiss({ inDialog }) {
   const aimedAt = [];
-  globalThis.document = stubDocument();
-  globalThis.document.querySelector = (sel) => { aimedAt.push(sel); return null; };
+  const doc = stubDocument();
+  doc.querySelector = (sel) => { aimedAt.push(sel); return null; };
   try {
     let attached = true;
-    const p = noticeEl({
+    const p = controller(doc).noticeEl({
       msg: 'Essential Avengers is back from the catalog.',
       kind: 'ok',
       action: null,
