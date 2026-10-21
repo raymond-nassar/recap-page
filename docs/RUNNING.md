@@ -147,9 +147,11 @@ Use the install icon in Edge or Chrome's address bar, or **Add to Dock** in Safa
 Recap Page gets its own window and app icon without changing its storage.
 
 After a successful first visit, the installed window can open its cached app shell with the server
-stopped. Saved lists, progress and bundled content already cached by the worker remain available.
-A Reading List never requested before may be missing. Recap Page checks its local app connection
-and explains how to reconnect when an uncached Reading List needs the separate local copy.
+stopped. Saved lists and progress remain on this browser. In a curated Reading List preview,
+choose **Make available offline** to save and verify the selected list, its catalog and the app
+shell. Refreshing replaces the earlier completed copy only after the new one is confirmed. A list
+that has not been prepared may be missing. Recap Page checks its local app connection and explains
+how to reconnect when an uncached Reading List needs the separate local copy.
 
 Leave the installed window open. Start Recap Page with **Start on Windows.cmd**,
 **Start on macOS.command**, or the Microsoft Store installation. Return to the window and choose

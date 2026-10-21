@@ -63,6 +63,7 @@ import { createCatalogPresentation } from './views/shared/catalog-presentation.j
 import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
+import { createOfflineContent } from './lib/offlineContent.js';
 import { createReadingPathsView } from './views/reading-paths.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
@@ -3291,11 +3292,13 @@ const catalogView = createCatalogView({
   presentation: catalogPresentation,
 });
 
+const offlineContent = createOfflineContent();
 const previewView = createPreviewView({
   captureFocus,
   el,
   elements: () => ({
     add: $('#preview-add'),
+    offline: $('#preview-offline'),
     body: $('#preview-body'),
     close: $('#preview-close'),
     description: $('#preview-desc'),
@@ -3309,6 +3312,7 @@ const previewView = createPreviewView({
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   issueFocusAnchor,
   loadOrder: loadBundledOrder,
+  offlineContent,
   onAdd: (list, button) => importCurated(list, button, {
     navigate: false,
     report: '#preview-report',

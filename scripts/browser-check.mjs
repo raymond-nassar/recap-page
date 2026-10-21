@@ -1874,6 +1874,189 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
   }
 }
 
+async function checkOfflineSelectedList(browser, origin, t) {
+  const context = await browser.createBrowserContext();
+  let workerSession;
+  let pageSession;
+  try {
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.setCacheEnabled(false);
+    await page.setBypassServiceWorker(false);
+    await page.evaluateOnNewDocument((expectedOrigin) => {
+      if (location.origin !== expectedOrigin) return;
+      window.__offlineDocument = crypto.randomUUID();
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'light' }));
+    }, origin);
+    console.log('OFFLINE_CONTENT stage=real-worker-control');
+    await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
+    await page.reload({ waitUntil: 'load' });
+
+    const selected = await page.evaluate(async () => {
+      const response = await fetch('/data/catalog.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Catalog returned HTTP ${response.status}.`);
+      const catalog = await response.json();
+      const list = catalog.lists.find((entry) => entry.id === 'house-of-m');
+      if (!list?.file) throw new Error('House of M is missing from the actual catalog.');
+      return { id: list.id, name: list.name, file: list.file };
+    });
+    await openBrowseCategory(page, 'storylines');
+    await page.$eval('#lines-q', (input, name) => {
+      input.value = name;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, selected.name);
+    const card = `#lines-results [data-story="list:${selected.id}"]`;
+    await page.waitForSelector(card, { timeout: 15000 });
+    await click(page, `${card} [data-act="preview"]`);
+    await page.waitForSelector('#preview[open] #preview-offline [data-act="offline"]');
+    await page.waitForFunction(
+      () => document.querySelector('#preview-offline [data-act="offline"]')?.dataset.state === 'idle',
+      { timeout: 15000 },
+    );
+    const idle = await page.$eval('#preview-offline', (node) => ({
+      action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
+      disabled: node.querySelector('[data-act="offline"]')?.disabled,
+      status: node.querySelector('[role="status"]')?.textContent.trim(),
+    }));
+    t.check('selected Reading List starts as idle with an enabled offline action',
+      idle.action === 'Make available offline' && idle.disabled === false,
+      JSON.stringify(idle));
+
+    await click(page, '#preview-offline [data-act="offline"]');
+    await page.waitForFunction(
+      () => document.querySelector('#preview-offline [data-act="offline"]')?.dataset.state === 'ready',
+      { timeout: 30000 },
+    );
+    const ready = await page.$eval('#preview-offline', (node) => ({
+      action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
+      disabled: node.querySelector('[data-act="offline"]')?.disabled,
+      status: node.querySelector('[role="status"]')?.textContent.trim(),
+    }));
+    const inventory = await page.evaluate(async (listId, file) => {
+      const names = (await caches.keys()).filter((name) => name.startsWith('mrt-offline-content-v1-'));
+      const copies = [];
+      for (const name of names) {
+        const cache = await caches.open(name);
+        const response = await cache.match(`${location.origin}/__mrt_offline_content__/manifest.json`);
+        if (!response) continue;
+        const manifest = await response.json();
+        if (manifest.listId !== listId) continue;
+        const payload = await cache.match(`${location.origin}/data/${file}`);
+        copies.push({
+          complete: manifest.complete,
+          resources: manifest.resources.map(({ path, kind }) => ({ path, kind })),
+          payloadId: (await payload?.json())?.id ?? null,
+        });
+      }
+      return { names, copies };
+    }, selected.id, selected.file);
+    const copy = inventory.copies[0];
+    t.check('offline action reports verified readiness and stores only the selected bundle',
+      ready.action === 'Refresh offline copy' && !ready.disabled
+      && ready.status === 'Offline copy verified and ready on this device.'
+      && inventory.copies.length === 1 && copy?.complete === true
+      && copy.payloadId === selected.id
+      && copy.resources.some((resource) => resource.path === `/data/${selected.file}` && resource.kind === 'selected')
+      && copy.resources.every((resource) => resource.path.startsWith('/')),
+      JSON.stringify({ ready, selected, inventory }));
+
+    await page.waitForFunction(async (file) => {
+      const paths = ['/', '/js/main.js', '/data/catalog.json', `/data/${file}`];
+      for (const name of await caches.keys()) {
+        if (!name.startsWith('mrt-offline-') || name.startsWith('mrt-offline-content-v1-')) continue;
+        const cache = await caches.open(name);
+        const stored = await Promise.all(paths.map((path) => cache.match(`${location.origin}${path}`)));
+        if (stored.every(Boolean)) return true;
+      }
+      return false;
+    }, { timeout: 15000 }, selected.file);
+    const genericCacheRemoved = await page.evaluate(async (file) => {
+      const paths = ['/', '/js/main.js', '/data/catalog.json', `/data/${file}`];
+      let removed = 0;
+      for (const name of await caches.keys()) {
+        if (!name.startsWith('mrt-offline-') || name.startsWith('mrt-offline-content-v1-')) continue;
+        const cache = await caches.open(name);
+        for (const path of paths) {
+          if (await cache.delete(`${location.origin}${path}`)) removed += 1;
+        }
+      }
+      return removed;
+    }, selected.file);
+    t.check('the worker cache no longer contains a fallback copy of the selected journey',
+      genericCacheRemoved >= 4, `removed ${genericCacheRemoved} entries`);
+
+    const priorDocument = await page.evaluate(() => window.__offlineDocument);
+    const target = await browser.waitForTarget((candidate) => candidate.type() === 'service_worker'
+      && candidate.browserContext() === context && candidate.url() === `${origin}/sw.js`);
+    workerSession = await target.createCDPSession();
+    await workerSession.send('Network.enable');
+    await workerSession.send('Network.emulateNetworkConditions', {
+      offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0,
+    });
+    await page.setOfflineMode(true);
+    pageSession = await page.createCDPSession();
+    await pageSession.send('Network.enable');
+    await pageSession.send('Network.setCacheDisabled', { cacheDisabled: true });
+    const responses = new Map();
+    pageSession.on('Network.responseReceived', ({ response }) => {
+      const url = new URL(response.url);
+      if (url.origin === origin) responses.set(url.pathname, response.fromServiceWorker === true);
+    });
+    console.log('OFFLINE_CONTENT stage=fresh-offline-document');
+    await page.goto('about:blank');
+    await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    const fresh = await page.evaluate(() => ({
+      id: window.__offlineDocument,
+      home: Boolean(document.querySelector('#view-home:not([hidden])')),
+    }));
+    t.check('a genuinely new document and shell module load from the service worker offline',
+      fresh.id !== priorDocument && fresh.home
+      && responses.get('/') === true && responses.get('/js/main.js') === true,
+      JSON.stringify({ fresh, priorDocument, responses: [...responses] }));
+
+    await openBrowseCategory(page, 'storylines');
+    await page.$eval('#lines-q', (input, name) => {
+      input.value = name;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, selected.name);
+    await page.waitForSelector(card, { timeout: 15000 });
+    await click(page, `${card} [data-act="preview"]`);
+    await page.waitForSelector('#preview[open] .preview-issue-link', { timeout: 15000 });
+    const offlinePreview = await page.$eval('#preview-body', (body) => ({
+      issues: body.querySelectorAll('.preview-issue-link').length,
+      text: body.textContent.trim(),
+    }));
+    console.log('OFFLINE_CONTENT evidence=' + JSON.stringify({
+      list: selected,
+      documentIds: { previous: priorDocument, current: fresh.id },
+      inventoryCount: copy?.resources.length,
+      inventory: copy?.resources,
+      payloadId: copy?.payloadId,
+      renderedIssues: offlinePreview.issues,
+      fromServiceWorker: {
+        document: responses.get('/'),
+        shellModule: responses.get('/js/main.js'),
+        catalog: responses.get('/data/catalog.json'),
+        selectedPayload: responses.get(`/data/${selected.file}`),
+      },
+    }));
+    t.check('the selected payload is rendered from its verified cache bundle offline',
+      offlinePreview.issues > 0 && responses.get(`/data/${selected.file}`) === true,
+      JSON.stringify({ selected, offlinePreview, responses: [...responses] }));
+    t.check('offline selected-list journey has no page errors', errors.length === 0, JSON.stringify(errors));
+  } catch (error) {
+    console.error('OFFLINE_CONTENT real offline check failed:', error);
+    throw error;
+  } finally {
+    if (pageSession) await pageSession.detach();
+    if (workerSession) await workerSession.detach();
+    await context.close();
+  }
+}
+
 // Every scenario gets its own browser context, so its storage bucket is its own and the order
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
@@ -8186,6 +8369,7 @@ const SCENARIOS = [
         && seriesFailure.action === 'Try again',
         JSON.stringify(seriesFailure));
       await names.close();
+      await checkOfflineSelectedList(page.browser(), page.__origin, t);
     },
   },
   {
@@ -17907,7 +18091,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
