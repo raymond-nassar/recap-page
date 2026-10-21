@@ -1,8 +1,8 @@
 {
   "guideId": "shang-chi-master-of-kung-fu-reading-order",
-  "packetDigest": "03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be",
-  "mappingDigest": "3ca94a2657dca2348c7ed584af670210072201dbb6d783252d52df3f9f031698",
-  "relationshipApprovalDigest": "76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f",
+  "packetDigest": "280e0d605014d87d49290a6fba0fec959bdd67d87262eb26d116ba0ed4ed5dda",
+  "mappingDigest": "09c64cce6fa0b9d52fc6641726d7eedac1372e4884324133bbd3b8e8e274d62c",
+  "relationshipApprovalDigest": "cbf846a282df5e85d1b994f1bbf5df9351553e4b6b3cda75e97e523a9263fcb9",
   "sourceOccurrenceCount": 302,
   "retainedIdentities": 298,
   "repeatTargets": [

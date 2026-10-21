@@ -7,8 +7,9 @@ import {
   assertApprovedRelationshipReview, buildMarkdown,
 } from '../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, validateFrozenPacket,
-  validateMappingDigest, validateReportDigest,
+  approvalDigestFor, assertGapTransition, assertMappingMatchesPacketOccurrences, digestCanonicalJson,
+  gapEvidenceDigestFor, libraryDigestFor, mappingDigestFor, packetDigestFor, reportDigestFor,
+  validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
@@ -21,18 +22,120 @@ import {
 
 const id = 'shang-chi-master-of-kung-fu-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
-const [packet, mapping, report, ledger, manifest, fixture] = await Promise.all([
+const [packet, mapping, report, ledger, manifest, fixture, correction] = await Promise.all([
   readJson(`scripts/data/cbh-packets/${id}.json`),
   readJson(`scripts/data/cbh-mappings/${id}.json`),
   readJson(`scripts/data/cbh-overlaps/${id}.json`),
   readJson(`scripts/data/cbh-source-ledgers/${id}.json`),
   readJson('src/data/curated-lists.json'),
   readJson('test/fixtures/shang-chi-browser-vector.json'),
+  readJson(`scripts/data/cbh-source-ledgers/${id}-gap-link-correction.json`),
 ]);
 
+test('Shang-Chi gap evidence links each exact original comic to its real tracking issue', () => {
+  const issueUrl = (number) => `https://github.com/raymond-nassar/recap-page/issues/${number}`;
+  const expected = [
+    [42, 'The Deadly Hands of Kung Fu', 1974, '12', [issueUrl(627)]],
+    [49, 'Kung Fu Special', 1974, '1', [issueUrl(628)]],
+    ...Array.from({ length: 6 }, (_, index) => [
+      165 + index, 'Shang-Chi: Master of Kung Fu', 2002, String(index + 1), [issueUrl(626)],
+    ]),
+  ];
+  for (const [label, value] of [['packet', packet], ['mapping', mapping]]) {
+    assert.deepEqual(value.sourceGaps.map((gap) => [
+      gap.sourcePosition, gap.normalizedSeriesTitle, gap.seriesYear, gap.issueNumber,
+      gap.evidenceSources.filter((source) => source.kind === 'tracking-issue')
+        .map((source) => source.url),
+    ]), expected, label);
+    for (const gap of value.sourceGaps) {
+      assert.equal(gap.evidenceDigest, gapEvidenceDigestFor(gap));
+      assert.equal(gap.evidenceSources.find((source) => source.kind === 'tracking-issue')
+        .retrievedAt, '2026-10-21');
+    }
+  }
+  const review = correction.correctionReview;
+  assert.deepEqual(review.verifiedMapping.map((row) => [
+    row.sourcePosition, row.normalizedSeriesTitle, row.seriesYear, row.issueNumber, [row.trackingIssue],
+  ]), expected);
+  assert.equal(review.authorityIdentity, 'Copilot provenance reviewer for issue #647');
+  assert.equal(review.authorityType, 'stronger-model');
+  assert.equal(review.reviewedAt, '2026-10-21');
+  assert.ok(review.rationale);
+  assert.equal(correction.correctionIssue, issueUrl(647));
+  assert.deepEqual(
+    [review.packetDigest, review.mappingDigest, review.reportDigest, review.approvalDigest],
+    [packet.packetDigest, mapping.mappingDigest, report.reportDigest,
+      mapping.relationshipReview.approvalDigest],
+  );
+});
+
+test('Shang-Chi correction retains a reconstructible original publication and unchanged reader inputs', async () => {
+  const prior = correction.priorPublication;
+  assert.equal(prior.commit, 'b6e126f04cc388de8536881e8594865f64a39f86');
+  assert.deepEqual(
+    [prior.packetDigest, prior.mappingDigest, prior.reportDigest, prior.approvalDigest],
+    ['03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be',
+      '3ca94a2657dca2348c7ed584af670210072201dbb6d783252d52df3f9f031698',
+      '7d1728b99a201eaaa9f9ecac847d6568dabf0b3bbc122162e62e72887a5215d9',
+      '76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f'],
+  );
+  const oldPacket = structuredClone(packet);
+  assert.deepEqual(prior.trackingEvidence.map((row) => row.sourcePosition),
+    [42, 49, 165, 166, 167, 168, 169, 170]);
+  for (const retained of prior.trackingEvidence) {
+    const gap = oldPacket.sourceGaps.find((row) => row.sourcePosition === retained.sourcePosition);
+    gap.evidenceSources = gap.evidenceSources.map((source) =>
+      source.kind === 'tracking-issue' ? retained.trackingSource : source);
+    gap.evidenceDigest = retained.evidenceDigest;
+    assert.equal(gapEvidenceDigestFor(gap), retained.evidenceDigest);
+  }
+  oldPacket.packetDigest = prior.packetDigest;
+  assert.equal(packetDigestFor(oldPacket), prior.packetDigest);
+  assert.doesNotThrow(() => validateFrozenPacket(oldPacket));
+  assert.doesNotThrow(() => assertGapTransition(oldPacket, packet, mapping));
+  const oldMapping = structuredClone(mapping);
+  oldMapping.sourceGaps = oldPacket.sourceGaps;
+  oldMapping.packetDigest = prior.packetDigest;
+  oldMapping.mappingDigest = prior.mappingDigest;
+  Object.assign(oldMapping.relationshipReview, {
+    packetDigest: prior.packetDigest,
+    mappingDigest: prior.mappingDigest,
+    reportDigest: prior.reportDigest,
+    approvalDigest: prior.approvalDigest,
+  });
+  assert.equal(mappingDigestFor(oldMapping), prior.mappingDigest);
+  assert.equal(approvalDigestFor(oldMapping.relationshipReview), prior.approvalDigest);
+  const oldReport = {
+    ...report, packetDigest: prior.packetDigest, mappingDigest: prior.mappingDigest,
+    reportDigest: prior.reportDigest,
+  };
+  assert.equal(reportDigestFor(oldReport), prior.reportDigest);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet: oldPacket, mapping: oldMapping, report: oldReport,
+    currentLibraryDigest: oldReport.libraryDigest,
+    expectedOrderIds: oldReport.comparisons.map((row) => row.orderId),
+  }));
+  const oldFixture = {
+    ...fixture, packetDigest: prior.packetDigest, mappingDigest: prior.mappingDigest,
+    relationshipApprovalDigest: prior.approvalDigest,
+  };
+  const sha256 = (text) => createHash('sha256').update(text).digest('hex');
+  assert.equal(prior.browserFixtureSha256,
+    '7ef31593030ad78ef871d470921cc6b7f5938d99e2099dd67822383298a51a49');
+  assert.equal(sha256(`${JSON.stringify(oldFixture, null, 2)}\n`), prior.browserFixtureSha256);
+  assert.deepEqual(Object.keys(correction.preservedFiles).sort(), [
+    `scripts/data/cbh-source-ledgers/${id}.json`,
+    `src/data/orders/${id}.md`,
+    'src/data/shang_chi_master_of_kung_fu_reading_order.json',
+  ].sort());
+  for (const [file, hash] of Object.entries(correction.preservedFiles)) {
+    assert.equal(sha256((await readFile(file, 'utf8')).replace(/\r\n/g, '\n')), hash, file);
+  }
+});
+
 test('Shang-Chi conserves the corrected source boundary, original identities and eight qualified gaps', () => {
-  assert.equal(packet.packetDigest, '03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be');
-  assert.equal(mapping.mappingDigest, '3ca94a2657dca2348c7ed584af670210072201dbb6d783252d52df3f9f031698');
+  assert.equal(packet.packetDigest, '280e0d605014d87d49290a6fba0fec959bdd67d87262eb26d116ba0ed4ed5dda');
+  assert.equal(mapping.mappingDigest, '09c64cce6fa0b9d52fc6641726d7eedac1372e4884324133bbd3b8e8e274d62c');
   assert.equal(ledger.printedOccurrences.length, 375);
   assert.equal(ledger.printedVectorSha256,
     '6eca0f525cdd50e4ce47acb7878078891cf41e56d20f071bfac76e8fc6c51b1f');
@@ -90,10 +193,10 @@ test('Shang-Chi conserves the corrected source boundary, original identities and
 });
 
 test('Shang-Chi requires its renewed independent relationship approval against all 198 pinned peers', async () => {
-  assert.equal(report.reportDigest, '7d1728b99a201eaaa9f9ecac847d6568dabf0b3bbc122162e62e72887a5215d9');
+  assert.equal(report.reportDigest, '1e08eedef7d76e44d561331537a8e6f64350bf5bf797cfbbf6744c3361d4f50e');
   assert.equal(report.libraryDigest, '102ea0878763d021a849cd56e08b2d7b2552281c49aedeeacc8f75e95e4e617b');
   assert.equal(mapping.relationshipReview.approvalDigest,
-    '76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f');
+    'cbf846a282df5e85d1b994f1bbf5df9351553e4b6b3cda75e97e523a9263fcb9');
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
   const published = historicalReadingChoiceManifest(manifest).lists.filter((entry) => entry.id !== id
@@ -138,7 +241,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
     readFile('test/fixtures/shang-chi-browser-vector.json'),
   ]);
   assert.equal(createHash('sha256').update(fixtureBytes.toString('utf8').replace(/\r\n/g, '\n')).digest('hex'),
-    '7ef31593030ad78ef871d470921cc6b7f5938d99e2099dd67822383298a51a49');
+    '10f2c0ccb9821924383c87b8beeeadc8c925c8ac8b1387e8200ff99bc8765a93');
   assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
   const parsed = parseChecklist(markdown);
   const all = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
