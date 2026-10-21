@@ -444,7 +444,7 @@ async function main() {
   const payloadByCatalogId = new Map();
   const families = new Map();
   const outputs = [];
-  const addCatalogOutputs = (order, parsedOrder, payload) => {
+  const addCatalogOutputs = (order, parsedOrder, payload, { writeChildren = true } = {}) => {
     const ledger = partitionLedgers.get(order.id);
     if (!ledger) {
       catalogById.set(order.id, [catalogEntry(order, payload)]);
@@ -460,10 +460,12 @@ async function main() {
     });
     families.set(order.id, family);
     for (const child of family.children) {
-      outputs.push({
-        path: join(DATA_DIR, child.order.out),
-        content: `${JSON.stringify(child.payload, null, 2)}\n`,
-      });
+      if (writeChildren) {
+        outputs.push({
+          path: join(DATA_DIR, child.order.out),
+          content: `${JSON.stringify(child.payload, null, 2)}\n`,
+        });
+      }
       payloadByCatalogId.set(child.order.id, child.payload);
     }
     catalogById.set(
@@ -618,7 +620,7 @@ async function main() {
     const parsedOrder = order.partitionFile
       ? parseChecklist(await loadOrderText(order))
       : null;
-    addCatalogOutputs(order, parsedOrder, payload);
+    addCatalogOutputs(order, parsedOrder, payload, { writeChildren: catalogOnly });
   }
 
   const catalog = orders.flatMap((order) => catalogById.get(order.id));

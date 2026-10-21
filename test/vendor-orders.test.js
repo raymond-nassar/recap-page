@@ -646,6 +646,129 @@ test('a generated child id is a valid --only target for its complete family', (t
   }
 });
 
+for (const [label, issueIds] of [
+  ['nonoverlapping', [4]],
+  ['overlapping', [1, 2]],
+]) {
+  test(`named vendoring with ${label} peer preserves skipped partition bytes and refreshes overlaps`, (t) => {
+    const fixture = mkdtempSync(path.join(os.tmpdir(), `mrt-vendor-skipped-${label}-`));
+    t.after(() => rmSync(fixture, { recursive: true, force: true }));
+    writePartitionFixture(fixture);
+    const data = path.join(fixture, 'src', 'data');
+    const parentPath = path.join(data, 'atomic_parent.json');
+    const parent = JSON.parse(readFileSync(parentPath, 'utf8'));
+    const peerPath = path.join(data, 'peer.json');
+    const peer = JSON.parse(readFileSync(peerPath, 'utf8'));
+    peer.items = [parent.items[0], parent.items[2]];
+    peer.count = peer.items.length;
+    writeFileSync(peerPath, `${JSON.stringify(peer, null, 2)}\n`);
+    const fetchCount = path.join(fixture, 'fetch-count.txt');
+    writeFileSync(fetchCount, '0');
+    const hook = path.join(fixture, 'zero-fetch-hook.mjs');
+    writeFileSync(hook, `import { writeFileSync } from 'node:fs';
+globalThis.fetch = () => {
+  writeFileSync(process.env.MRT_FETCH_COUNT, '1');
+  throw new Error('skipped partition fixtures must not fetch');
+};
+`);
+    const run = (args) => spawnSync(process.execPath, [
+      '--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', ...args,
+    ], {
+      cwd: fixture,
+      encoding: 'utf8',
+      env: { ...process.env, MRT_FETCH_COUNT: fetchCount },
+    });
+    const baseline = run(['--catalog-only']);
+    assert.equal(baseline.status, 0, baseline.stderr);
+    const reportPath = path.join(fixture, 'scripts', 'data', 'atomic-parent-overlaps.json');
+    const oldReport = JSON.parse(readFileSync(reportPath, 'utf8'));
+    assert.deepEqual(oldReport.pairs, [
+      { chapterId: 'atomic-parent-01', existingListId: 'peer', sharedCount: 1, sharedIssueIds: [1] },
+      { chapterId: 'atomic-parent-02', existingListId: 'peer', sharedCount: 1, sharedIssueIds: [3] },
+    ]);
+    const oldCatalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8'));
+
+    const manifestPath = path.join(data, 'curated-lists.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.lists.push({
+      ...manifest.lists[1],
+      id: 'new-peer',
+      name: 'New peer',
+      sourceFile: 'new-peer.md',
+      out: 'new_peer.json',
+      coverIssueId: issueIds[0],
+      expect: issueIds.length,
+    });
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    writeFileSync(path.join(data, 'orders', 'new-peer.md'), issueIds.map((id) => (
+      `- [ ] [Atomic Parent #${id}](https://www.marvel.com/comics/issue/${id}/atomic_parent_${id})\n`
+    )).join(''));
+    const cache = writeMetadataCache(fixture, Object.fromEntries(issueIds.map((id) => (
+      [id, cachedAtomicIssue(id)]
+    ))));
+
+    const skippedFiles = ['atomic_parent.json', 'atomic_parent_01.json', 'atomic_parent_02.json'];
+    for (const [index, file] of skippedFiles.entries()) {
+      const filePath = path.join(data, file);
+      const text = readFileSync(filePath, 'utf8');
+      writeFileSync(filePath, index < 2 ? text.replace(/\n/g, '\r\n') : text.trimEnd());
+    }
+    const before = new Map([...skippedFiles, 'peer.json'].map((file) => (
+      [file, readFileSync(path.join(data, file))]
+    )));
+    const output = run(['--only=new-peer', `--metadata-cache=${cache}`]);
+    assert.equal(output.status, 0, output.stderr);
+    assert.equal(readFileSync(fetchCount, 'utf8'), '0');
+    for (const [file, bytes] of before) {
+      assert.deepEqual(readFileSync(path.join(data, file)), bytes, `${file} must remain byte-identical`);
+    }
+    const payload = JSON.parse(readFileSync(path.join(data, 'new_peer.json'), 'utf8'));
+    assert.deepEqual(payload.items.map((item) => item.issueId), issueIds);
+    assert.ok(payload.items.every((item) => item.digitalId === 101));
+    const catalog = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8'));
+    assert.deepEqual(catalog.lists.slice(0, -1), oldCatalog.lists);
+    assert.deepEqual(catalog.lists.map((entry) => [entry.id, entry.count]), [
+      ['atomic-parent-01', 2], ['atomic-parent-02', 1], ['peer', 2], ['new-peer', issueIds.length],
+    ]);
+    assert.deepEqual(catalog.paths, oldCatalog.paths);
+    const index = JSON.parse(readFileSync(path.join(data, 'rated-guide-index.json'), 'utf8'));
+    assert.deepEqual(index.guides.map(([id]) => id).sort(),
+      ['atomic-parent-01', 'atomic-parent-02', 'new-peer', 'peer']);
+    for (const id of [1, 2, 3, ...issueIds]) {
+      const memberships = index.issueGuides.find(([issueId]) => issueId === id)?.[1];
+      assert.ok(memberships, `issue ${id} must be indexed`);
+      assert.deepEqual(memberships.map((ordinal) => index.guides[ordinal][0]).sort(), [
+        ...(id <= 2 ? ['atomic-parent-01'] : id === 3 ? ['atomic-parent-02'] : []),
+        ...(issueIds.includes(id) ? ['new-peer'] : []),
+        ...([1, 3].includes(id) ? ['peer'] : []),
+      ]);
+    }
+
+    const report = JSON.parse(readFileSync(reportPath, 'utf8'));
+    const content = { ...report, generatedAt: oldReport.generatedAt };
+    const pairs = [...oldReport.pairs, ...(label === 'overlapping' ? [{
+      chapterId: 'atomic-parent-01',
+      existingListId: 'new-peer',
+      sharedCount: 2,
+      sharedIssueIds: [1, 2],
+    }] : [])].sort((left, right) => (
+      left.chapterId.localeCompare(right.chapterId)
+        || left.existingListId.localeCompare(right.existingListId)
+    ));
+    assert.deepEqual(content, label === 'nonoverlapping' ? oldReport : {
+      ...oldReport,
+      pairCount: 3,
+      existingListCount: 2,
+      sharedOccurrenceCount: 4,
+      matrixSha256: digestJson(pairs.map((pair) => [
+        pair.chapterId, pair.existingListId, pair.sharedCount, pair.sharedIssueIds,
+      ])),
+      existingLists: [{ id: 'new-peer', sharedCount: 2 }, { id: 'peer', sharedCount: 2 }],
+      pairs,
+    });
+  });
+}
+
 test('an invalid partition leaves every generated output unchanged', (t) => {
   const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-partition-atomic-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));

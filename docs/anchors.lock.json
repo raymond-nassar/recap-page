@@ -1524,9 +1524,9 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:607-661|0": {
-    "anchor": "scripts/vendor-orders.mjs:607-661",
-    "fp": "55461edc7054c708",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:609-663|0": {
+    "anchor": "scripts/vendor-orders.mjs:609-663",
+    "fp": "d7f8b76b9f7b7b8c",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
   "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/api.js:81-120|0": {
