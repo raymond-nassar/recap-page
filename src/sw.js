@@ -28,6 +28,8 @@
 // on the origin would be a worker reaching outside its own business.
 const CACHE_PREFIX = 'mrt-offline-';
 const CACHE = `${CACHE_PREFIX}v2`;
+const CONTENT_CACHE_PREFIX = 'mrt-offline-content-v1-';
+const CONTENT_MANIFEST_PATH = '/__mrt_offline_content__/manifest.json';
 
 self.addEventListener('install', () => {
   // Nothing is fetched here on purpose. A precache is a list of files somebody has to keep
@@ -45,7 +47,8 @@ self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const names = await self.caches.keys();
     for (const name of names) {
-      if (name.startsWith(CACHE_PREFIX) && name !== CACHE) await self.caches.delete(name);
+      if (name.startsWith(CACHE_PREFIX) && !name.startsWith(CONTENT_CACHE_PREFIX)
+        && name !== CACHE) await self.caches.delete(name);
     }
     // Claimed so the worker starts answering for the page that registered it, rather than from
     // the next launch. Safe here in a way it would not be under a cache-first strategy: a
@@ -82,6 +85,8 @@ async function networkThenCache(event) {
     event.waitUntil(remember(request, response.clone()));
     return response;
   } catch (networkError) {
+    const selected = await offlineContentResponse(request).catch(() => null);
+    if (selected) return selected;
     // Scoped to this worker's own cache. caches.match() searches every cache on the origin, and
     // activation deliberately leaves caches it did not create alone, so the unscoped form could
     // answer a reader with an entry written by something else served from 127.0.0.1:8787.
@@ -94,6 +99,53 @@ async function networkThenCache(event) {
     // would mean writing a second interface that only the unluckiest reader ever sees.
     throw networkError;
   }
+}
+
+function contentShellPath(path) {
+  return path === '/'
+    || path === '/index.html'
+    || path === '/styles.css'
+    || (/^\/js\/.+\.js$/).test(path);
+}
+
+function contentResourceMatches(path, resource, manifest) {
+  if (!resource || resource.path !== path) return false;
+  if (resource.kind === 'shell') return contentShellPath(path);
+  if (resource.kind === 'catalog') return path === '/data/catalog.json';
+  return resource.kind === 'selected'
+    && typeof manifest.file === 'string'
+    && /^[a-z0-9_-]+\.json$/.test(manifest.file)
+    && path === `/data/${manifest.file}`;
+}
+
+async function offlineContentResponse(request) {
+  const url = new URL(request.url);
+  if (url.search || request.headers?.has?.('range')) return null;
+  const names = await self.caches.keys();
+  for (const name of names.reverse()) {
+    if (!name.startsWith(CONTENT_CACHE_PREFIX)) continue;
+    const cache = await self.caches.open(name).catch(() => null);
+    if (!cache) continue;
+    const manifestResponse = await cache.match(
+      new URL(CONTENT_MANIFEST_PATH, self.location.origin).href,
+    ).catch(() => null);
+    if (!manifestResponse || manifestResponse.status !== 200) continue;
+    let manifest;
+    try {
+      manifest = await manifestResponse.json();
+    } catch {
+      continue;
+    }
+    if (!manifest || manifest.format !== 'mrt-offline-content' || manifest.version !== 1
+      || manifest.complete !== true || typeof manifest.listId !== 'string'
+      || !manifest.listId.trim() || !Array.isArray(manifest.resources)) continue;
+    const resource = manifest.resources.find((item) => contentResourceMatches(url.pathname, item, manifest));
+    if (!resource) continue;
+    const response = await cache.match(new URL(url.pathname, self.location.origin).href)
+      .catch(() => null);
+    if (response?.status === 200) return response;
+  }
+  return null;
 }
 
 // Storing is best effort, and the catch is the point of the function rather than decoration.
