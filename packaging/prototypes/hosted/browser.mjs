@@ -122,6 +122,44 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     });
     const pageErrors = [];
     page.on('pageerror', (error) => pageErrors.push(error.message));
+    const consoleErrors = [];
+    page.on('console', (message) => {
+      if (message.type() === 'error' || message.type() === 'warn') consoleErrors.push(message.text());
+    });
+    const responses = [];
+    page.on('response', (response) => {
+      if (response.url().startsWith(harness.origin)) responses.push(`${response.status()} ${response.url()}`);
+    });
+    page.on('requestfailed', (request) => {
+      responses.push(`FAILED ${request.failure()?.errorText} ${request.url()}`);
+    });
+    const diagnose = async (label, action) => {
+      try {
+        return await action();
+      } catch (error) {
+        const snapshot = await page.evaluate(() => ({
+          saveReport: document.querySelector('#save-report')?.textContent.trim(),
+          previewReport: document.querySelector('#preview-report')?.textContent.trim(),
+          catalogReport: document.querySelector('#catalog-report')?.textContent.trim(),
+          addAction: document.querySelector('#preview-add [data-act="main"]')?.textContent.trim(),
+          addControls: document.querySelector('#preview-add')?.textContent.trim(),
+          previewOpen: document.querySelector('#preview')?.open,
+          localStorageKeys: Object.keys(localStorage).sort(),
+          stateLists: (() => {
+            try {
+              const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+              return Object.values(state?.lists ?? {}).map((list) => list.catalogId ?? list.name);
+            } catch (parseError) {
+              return `unreadable: ${parseError.message}`;
+            }
+          })(),
+          stubbedExternal: window.__hostedEvidence?.externalRequests,
+        })).catch((snapshotError) => ({ snapshotError: snapshotError.message }));
+        console.error(JSON.stringify({ diagnostic: label, error: error.message, pageErrors, consoleErrors,
+          responses, snapshot }, null, 2));
+        throw error;
+      }
+    };
 
     await page.goto(`${harness.origin}${basePath}#/catalog`, { waitUntil: 'load' });
     await page.waitForSelector('#view-catalog:not([hidden])');
@@ -134,8 +172,11 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     await click(page, '#catalog-results [data-story="list:house-of-m"] [data-act="preview"]');
     await page.waitForFunction(() => document.querySelectorAll('#preview[open] #preview-body .preview-issue-link').length === 20);
     await click(page, '#preview-add [data-act="main"]');
-    await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
-      .some((list) => list.catalogId === 'house-of-m'));
+    await diagnose('preview-add', () => page.waitForFunction(() => document
+      .querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open')));
+    assert.ok(await page.evaluate(() => Object.values(
+      JSON.parse(localStorage.getItem('mrt.state.v2'))?.lists ?? {},
+    ).some((list) => list.catalogId === 'house-of-m')), 'preview add must persist the House of M list');
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForSelector('#view-read:not([hidden])');
     const fixtureState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
@@ -178,15 +219,21 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     evidence.checks.push('reader handoff opens the same-origin launcher under the selected base path');
     await target.page().then((popup) => popup.close()).catch(() => {});
 
+    const launcherBlocked = [];
     const failPage = await context.newPage();
     await failPage.setViewport({ width: 1280, height: 900 });
     await installBrowserStubs(failPage);
-    await blockExternalRequests(failPage, harness.origin, evidence.blockedNetworkRequests);
+    await blockExternalRequests(failPage, harness.origin, launcherBlocked);
     await failPage.goto(`${harness.origin}${basePath}open.html?i=900001&t=Synthetic`, { waitUntil: 'load' });
-    await failPage.waitForFunction(() => document.querySelector('#p')?.textContent.includes('could not be loaded'));
+    // open.js presents 'lookup-error' for a non-OK metadata response, then replaces itself with the
+    // Marvel issue page 1400 ms later. That fallback navigation is expected and is blocked here.
+    await failPage.waitForFunction(() => document.documentElement.dataset.state === 'lookup-error');
     assert.equal(await failPage.$eval('#fallback', (node) => new URL(node.href).hostname), 'www.marvel.com');
-    evidence.checks.push('failed noncredentialed metadata lookup remains an explicit failure with a manual link');
     await failPage.close();
+    assert.ok(launcherBlocked.every((url) => url === 'https://www.marvel.com/comics/issue/900001/'),
+      `launcher may only attempt its Marvel fallback page: ${JSON.stringify(launcherBlocked)}`);
+    evidence.launcherFallbackBlocked = launcherBlocked;
+    evidence.checks.push('failed noncredentialed metadata lookup remains an explicit failure with a manual link');
 
     await page.evaluate(() => { location.hash = '#/data'; });
     await page.waitForSelector('#view-data:not([hidden])');
@@ -195,8 +242,7 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     const readingBackup = await page.evaluate(() => window.__hostedEvidence.downloads[0].text);
     assert.equal(JSON.parse(readingBackup).schemaVersion, 4);
 
-    await page.evaluate(() => { location.hash = '#/completed'; });
-    await page.waitForSelector('#btn-export-history', { visible: true });
+    await page.waitForSelector('#btn-export-history:not([disabled])', { visible: true });
     await click(page, '#btn-export-history');
     await page.waitForFunction(() => window.__hostedEvidence.downloads.length === 2);
     const historyBackup = await page.evaluate(() => window.__hostedEvidence.downloads[1].text);
@@ -210,7 +256,12 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
       document.querySelector('#import-new-list').checked = true;
       document.querySelector('#form-import').requestSubmit();
     });
-    await page.waitForFunction(() => localStorage.getItem('mrt.import.draft.v1') !== null, { timeout: 20000 });
+    await diagnose('import-draft', () => page.waitForFunction(
+      () => localStorage.getItem('mrt.import.draft.v1') !== null, { timeout: 20000 },
+    ).catch(async (error) => {
+      console.error('import-report:', await page.$eval('#import-report', (node) => node.textContent.trim()));
+      throw error;
+    }));
     await page.evaluate(() => { location.hash = '#/data'; });
     await page.waitForSelector('#view-data:not([hidden])');
     await click(page, '#btn-export-draft');
@@ -229,7 +280,6 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     await page.waitForSelector('#ask:not([open])');
     assert.equal(await localStorageSnapshot(page), beforeRefusals, 'cancelled reading restore must not replace storage');
 
-    await page.evaluate(() => { location.hash = '#/completed'; });
     await page.waitForSelector('#restore-history-file', { visible: true });
     await uploadText(page, '#restore-history-file', 'completion-history.json', historyBackup);
     await page.waitForSelector('#ask[open]');
@@ -237,8 +287,6 @@ async function runJourney({ output, basePath, puppeteer, edge }) {
     await page.waitForSelector('#ask:not([open])');
     assert.equal(await localStorageSnapshot(page), beforeRefusals, 'cancelled history restore must not replace storage');
 
-    await page.evaluate(() => { location.hash = '#/data'; });
-    await page.waitForSelector('#view-data:not([hidden])');
     await uploadText(page, '#restore-draft', 'import-draft.json', draftBackup);
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-cancel');
