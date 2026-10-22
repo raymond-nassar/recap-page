@@ -202,9 +202,9 @@ test('the parser accounts for every step and every deadline the file declares', 
   assert.equal(foundDeadlines, declaredDeadlines, 'every deadline written in the file was attributed to a job or a step');
 });
 
-test('the Node matrix install allows eight minutes for slow dependency installs', () => {
+test('the Node matrix install allows ten minutes for slow dependency installs', () => {
   const testJob = jobs.find((job) => job.name === 'test');
   const installStep = testJob?.steps.find((step) => step.label === 'Install');
 
-  assert.equal(installStep?.timeout, 8, 'the Node matrix install has enough time to finish on a slow registry');
+  assert.equal(installStep?.timeout, 10, 'the Node matrix install has enough time to finish on a slow registry');
 });

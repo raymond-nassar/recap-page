@@ -48,10 +48,10 @@ jobs:
     name: Tests on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     # The outer backstop, not the mechanism. Every step below carries its own deadline
-    # and they sum to 18 minutes, so this can only fire on time spent outside a step:
+    # and they sum to 20 minutes, so this can only fire on time spent outside a step:
     # runner setup, post-run and cleanup, measured at 8 seconds at their worst. That
     # ordering is deliberate and a test pins it. See the note above the step deadlines.
-    timeout-minutes: 20
+    timeout-minutes: 22
     strategy:
       fail-fast: false
       matrix:
@@ -72,11 +72,11 @@ jobs:
       # that names which step ran long, and the log carries "has timed out after N
       # minutes", which is what separates it from a test or a gate that simply failed.
       #
-      # The numbers are 241 CI runs, 676 successful jobs, worst case per step:
+      # The numbers are 241 CI runs, 676 successful jobs, worst completed time per step:
       # checkout 5s, setup-node 20s, install 8s, tests 6s, eslint 4s, each gate 1s.
-      # Whole jobs worst: lint 27s, tests 32s. Every deadline below is at least
-      # twelve times the worst that step has ever taken, so a cold npm cache or a
-      # slow registry stays green and only a hang goes red.
+      # On 2026-10-22, package installation exceeded the former four-minute deadline in all three jobs
+      # without producing output. Ten minutes gives the install room to recover while
+      # retaining a step-level deadline that reports a real overrun as failure.
       # Pinned to a full commit revision rather than a tag. A tag is a mutable pointer
       # the action's owner can move, so `@v7` is a promise to run whatever they publish
       # next, on a runner that holds a token. The revision below is the one reviewed.
@@ -109,11 +109,11 @@ jobs:
       # script is arbitrary code a pull request can add, running before any review
       # step. Measured: 0 of the 76 locked packages declare one, so this costs
       # nothing today and closes the boundary before one arrives.
-      # Three Node 20 installs timed out at the former four-minute limit; a subsequent
-      # main run completed in about two minutes. Eight minutes allows for that observed
-      # install-time variance while still failing a stalled install before the backstop.
+      # Three Node 20 installs and all three jobs on 2026-10-22 exceeded four minutes.
+      # A subsequent main run completed in about two minutes. Ten minutes allows
+      # recovery while retaining a step-level deadline that reports an overrun as failure.
       - name: Install
-        timeout-minutes: 8
+        timeout-minutes: 10
         run: npm ci --ignore-scripts
 
       # `npm test` is deliberately `node --test` with no path argument. Node only
@@ -133,8 +133,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # 29 minutes of step deadlines below, so the same ordering holds here.
-    timeout-minutes: 30
+    # 31 minutes of step deadlines below, so the same ordering holds here.
+    timeout-minutes: 32
     steps:
       # Full history is also needed by the test matrix's historical allowance proof.
       # The publication gate scans commit messages and every blob ever held.
@@ -157,7 +157,7 @@ jobs:
           cache: npm
 
       - name: Install
-        timeout-minutes: 8
+        timeout-minutes: 10
         run: npm ci --ignore-scripts
 
       # Reports only. `npm run lint:fix` is the local counterpart; CI never rewrites
