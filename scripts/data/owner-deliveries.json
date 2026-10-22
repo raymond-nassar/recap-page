@@ -110,6 +110,36 @@
       "id": "mcu-prep-thunderbolts",
       "contract": "test/fixtures/owner-delivery/mcu-prep-thunderbolts.json",
       "baselineRowCount": 34
+    },
+    {
+      "id": "shang-chi-master-of-kung-fu-reading-order",
+      "contract": "test/fixtures/owner-delivery/shang-chi-master-of-kung-fu-reading-order.json",
+      "baselineRowCount": 298,
+      "sourceProvider": "comic-book-herald"
+    },
+    {
+      "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "contract": "test/fixtures/owner-delivery/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.json",
+      "baselineRowCount": 262,
+      "sourceProvider": "comic-book-herald"
+    },
+    {
+      "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "contract": "test/fixtures/owner-delivery/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.json",
+      "baselineRowCount": 74,
+      "sourceProvider": "comic-book-herald"
+    },
+    {
+      "id": "iron-fist-reading-order",
+      "contract": "test/fixtures/owner-delivery/iron-fist-reading-order.json",
+      "baselineRowCount": 414,
+      "sourceProvider": "comic-book-herald"
+    },
+    {
+      "id": "namor-sub-mariner-reading-order",
+      "contract": "test/fixtures/owner-delivery/namor-sub-mariner-reading-order.json",
+      "baselineRowCount": 700,
+      "sourceProvider": "comic-book-herald"
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CBH_SOURCE_PROVIDER } from './cbh-inventory.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
@@ -23,17 +24,28 @@ export function readOwnerGuideRegistry(root = ROOT) {
   }
   const ids = new Set();
   for (const guide of registry.guides) {
-    if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface', 'baselineRowCount'].includes(key))
+    if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface', 'baselineRowCount', 'sourceProvider'].includes(key))
       || typeof guide.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guide.id)
       || (Object.hasOwn(guide, 'surface') && guide.surface !== 'modern-timeline')
       || (Object.hasOwn(guide, 'baselineRowCount')
         && (!Number.isSafeInteger(guide.baselineRowCount) || guide.baselineRowCount < 1))
+      || (Object.hasOwn(guide, 'sourceProvider')
+        && (guide.sourceProvider !== CBH_SOURCE_PROVIDER.id
+          || !Object.hasOwn(guide, 'baselineRowCount') || Object.hasOwn(guide, 'surface')))
       || ids.has(guide.id) || guide.contract !== `test/fixtures/owner-delivery/${guide.id}.json`) {
       throw new Error('Owner delivery registry contains an invalid or duplicate guide.');
     }
     ids.add(guide.id);
   }
   return registry;
+}
+
+export function ownerGuideProvider(registration, ownerProvider) {
+  if (registration.sourceProvider === CBH_SOURCE_PROVIDER.id) return CBH_SOURCE_PROVIDER;
+  if (registration.surface === 'modern-timeline') return OWNER_EVENT_PROVIDER;
+  return registration.id === 'mcu-prep-thunderbolts'
+    ? { ...ownerProvider, sourceOrigin: 'Compiled by hand for this project from the owner-authored outline in GitHub issue #682' }
+    : ownerProvider;
 }
 
 const registrations = readOwnerGuideRegistry().guides;

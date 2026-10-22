@@ -131,7 +131,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:7-79` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:172-199` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:176-203` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest.
 
@@ -143,6 +143,26 @@ emission, even when the ordinary-library digest excludes unchanged selected peer
 the baseline, re-sign old approvals, relabel events as MCU or weaken assertions to pass.
 
 ## Prepare exact rows and reusable facts
+
+### Existing CBH guides awaiting owner-confirmed identities
+
+Shang-Chi, Age of Apocalypse, Onslaught, Iron Fist and Namor are registered
+baseline guides, not new library additions. Their owner-path artifacts capture
+the existing factual ledgers and source reviews without replacing the original
+CBH approvals. The registration generator is a one-time capture against its
+pinned source commit; it refuses changed historical inputs.
+
+Registration publishes no comics. The identity updater accepts their strict CBH
+source provenance and retains every unconfirmed placeholder at its existing
+position, with its exact identity and collection qualifier. Later publication
+still requires the owner's exact comic URL confirmation and separate proposal
+approval. Synthetic preparation belongs only in tests. Do not regenerate these
+registrations to erase a later publication: retain the original capture and add
+an exact historical inverse when updating its assertions.
+
+The maintained capture is [the baseline registration tool](../scripts/register-cbh-owner-baselines.mjs);
+its [eligibility checks](../test/older-owner-guides.test.js) bind the proposed
+payload and checklist bytes without applying any synthetic proposal.
 
 Reuse accepted bibliography and genuine recorded metadata for the same exact identity across
 lists. Share lookup effort, not the lists themselves. Preserve ordered title, series year, issue

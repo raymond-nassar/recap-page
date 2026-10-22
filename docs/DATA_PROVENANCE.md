@@ -2920,7 +2920,7 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:794-816`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:797-819`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
 (`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional

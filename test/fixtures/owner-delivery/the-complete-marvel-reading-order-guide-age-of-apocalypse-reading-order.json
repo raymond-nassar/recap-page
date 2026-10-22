@@ -1,0 +1,1624 @@
+{
+  "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+  "name": "Apocalypse / X-Men: Age of Apocalypse",
+  "description": "Follow Comic Book Herald's Age of Apocalypse reading order and separately grouped Apocalypse history, later returns and older-edition companion.",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceProvider": "comic-book-herald",
+  "groups": [
+    "Preferred modern Age of Apocalypse order: Alpha and Legion Quest",
+    "Preferred modern Age of Apocalypse order: Dawn",
+    "Preferred modern Age of Apocalypse order: Reign",
+    "Preferred modern Age of Apocalypse order: Omega",
+    "Preferred modern Age of Apocalypse order: Twilight",
+    "Apocalypse history and later Age of Apocalypse stories: Origins",
+    "Apocalypse history and later Age of Apocalypse stories: Return",
+    "Apocalypse history and later Age of Apocalypse stories: Messiah War and X-Force",
+    "Later Age of Apocalypse stories: 2012 series",
+    "Apocalypse history and later Age of Apocalypse stories: X-Force and Uncanny Avengers",
+    "Apocalypse history and later Age of Apocalypse stories: 2024 and 2025",
+    "Older-edition companion: The Chosen"
+  ],
+  "rows": [
+    [
+      1,
+      13861,
+      "Uncanny X-Men (1963) #320",
+      0
+    ],
+    [
+      2,
+      14329,
+      "X-Men (1991) #40",
+      0
+    ],
+    [
+      3,
+      13862,
+      "Uncanny X-Men (1963) #321",
+      0
+    ],
+    [
+      4,
+      14330,
+      "X-Men (1991) #41",
+      0
+    ],
+    [
+      5,
+      7394,
+      "Cable (1993) #20",
+      0
+    ],
+    [
+      6,
+      12386,
+      "X-Men: Alpha (1995) #1",
+      0
+    ],
+    [
+      7,
+      20038,
+      "Generation Next (1995) #1",
+      0
+    ],
+    [
+      8,
+      17735,
+      "Astonishing X-Men (1995) #1",
+      0
+    ],
+    [
+      9,
+      16077,
+      "Gambit and the X-Ternals (1995) #1",
+      0
+    ],
+    [
+      10,
+      18099,
+      "Weapon X (1995) #1",
+      0
+    ],
+    [
+      11,
+      20044,
+      "Factor X (1995) #1",
+      0
+    ],
+    [
+      12,
+      18177,
+      "X-Man (1995) #1",
+      0
+    ],
+    [
+      13,
+      18253,
+      "X-Calibre (1995) #1",
+      0
+    ],
+    [
+      14,
+      17731,
+      "Amazing X-Men (1995) #1",
+      0
+    ],
+    [
+      15,
+      -2013186194,
+      "X-Men: Age of Apocalypse Ashcan Edition #1",
+      0
+    ],
+    [
+      16,
+      18172,
+      "X-Men Chronicles (1995) #1",
+      1
+    ],
+    [
+      17,
+      18173,
+      "X-Men Chronicles (1995) #2",
+      1
+    ],
+    [
+      18,
+      18796,
+      "Tales from the Age of Apocalyspse: By the Light (1996) #1",
+      1
+    ],
+    [
+      19,
+      18797,
+      "Tales from the Age of Apocalypse: Sinster Bloodlines (1997) #1",
+      1
+    ],
+    [
+      20,
+      1930,
+      "X-MEN: AGE OF APOCALYPSE ONE-SHOT (2005) #1",
+      1
+    ],
+    [
+      21,
+      -67526843,
+      "X-Man (1995) #-1",
+      1
+    ],
+    [
+      22,
+      17870,
+      "Blink (2001) #1",
+      1
+    ],
+    [
+      23,
+      17871,
+      "Blink (2001) #2",
+      1
+    ],
+    [
+      24,
+      17872,
+      "Blink (2001) #3",
+      1
+    ],
+    [
+      25,
+      17873,
+      "Blink (2001) #4",
+      1
+    ],
+    [
+      26,
+      18174,
+      "X-Man Annual (1996) #1",
+      1
+    ],
+    [
+      27,
+      17736,
+      "Astonishing X-Men (1995) #2",
+      2
+    ],
+    [
+      28,
+      17732,
+      "Amazing X-Men (1995) #2",
+      2
+    ],
+    [
+      29,
+      16078,
+      "Gambit and the X-Ternals (1995) #2",
+      2
+    ],
+    [
+      30,
+      20039,
+      "Generation Next (1995) #2",
+      2
+    ],
+    [
+      31,
+      18100,
+      "Weapon X (1995) #2",
+      2
+    ],
+    [
+      32,
+      18254,
+      "X-Calibre (1995) #2",
+      2
+    ],
+    [
+      33,
+      20045,
+      "Factor X (1995) #2",
+      2
+    ],
+    [
+      34,
+      18188,
+      "X-Man (1995) #2",
+      2
+    ],
+    [
+      35,
+      18255,
+      "X-Calibre (1995) #3",
+      2
+    ],
+    [
+      36,
+      20046,
+      "Factor X (1995) #3",
+      2
+    ],
+    [
+      37,
+      17737,
+      "Astonishing X-Men (1995) #3",
+      2
+    ],
+    [
+      38,
+      17733,
+      "Amazing X-Men (1995) #3",
+      2
+    ],
+    [
+      39,
+      18199,
+      "X-Man (1995) #3",
+      2
+    ],
+    [
+      40,
+      18165,
+      "X-Universe (1995) #1",
+      2
+    ],
+    [
+      41,
+      18101,
+      "Weapon X (1995) #3",
+      3
+    ],
+    [
+      42,
+      20040,
+      "Generation Next (1995) #3",
+      3
+    ],
+    [
+      43,
+      16079,
+      "Gambit and the X-Ternals (1995) #3",
+      3
+    ],
+    [
+      44,
+      17738,
+      "Astonishing X-Men (1995) #4",
+      3
+    ],
+    [
+      45,
+      20041,
+      "Generation Next (1995) #4",
+      3
+    ],
+    [
+      46,
+      16080,
+      "Gambit and the X-Ternals (1995) #4",
+      3
+    ],
+    [
+      47,
+      18210,
+      "X-Man (1995) #4",
+      3
+    ],
+    [
+      48,
+      18256,
+      "X-Calibre (1995) #4",
+      3
+    ],
+    [
+      49,
+      20047,
+      "Factor X (1995) #4",
+      3
+    ],
+    [
+      50,
+      18102,
+      "Weapon X (1995) #4",
+      3
+    ],
+    [
+      51,
+      17734,
+      "Amazing X-Men (1995) #4",
+      3
+    ],
+    [
+      52,
+      18166,
+      "X-Universe (1995) #2",
+      3
+    ],
+    [
+      53,
+      12370,
+      "X-MEN OMEGA 1 (1995) #1",
+      3
+    ],
+    [
+      55,
+      24235,
+      "Hulk: Broken Worlds (2009) #2",
+      4
+    ],
+    [
+      56,
+      12371,
+      "X-MEN PRIME 1 (1995) #1",
+      4
+    ],
+    [
+      57,
+      18225,
+      "X-Man (1995) #53",
+      4
+    ],
+    [
+      58,
+      18226,
+      "X-Man (1995) #54",
+      4
+    ],
+    [
+      59,
+      1741,
+      "X-Men: Age of Apocalypse (2005) #1",
+      4
+    ],
+    [
+      60,
+      1742,
+      "X-Men: Age of Apocalypse (2005) #2",
+      4
+    ],
+    [
+      61,
+      1716,
+      "Exiles (2001) #60",
+      4
+    ],
+    [
+      62,
+      1717,
+      "Exiles (2001) #61",
+      4
+    ],
+    [
+      63,
+      1743,
+      "X-Men: Age of Apocalypse (2005) #3",
+      4
+    ],
+    [
+      64,
+      1744,
+      "X-Men: Age of Apocalypse (2005) #4",
+      4
+    ],
+    [
+      65,
+      1745,
+      "X-Men: Age of Apocalypse (2005) #5",
+      4
+    ],
+    [
+      66,
+      1853,
+      "X-Men: Age of Apocalypse (2005) #6",
+      4
+    ],
+    [
+      67,
+      4418,
+      "Exiles (2001) #84",
+      4
+    ],
+    [
+      68,
+      17659,
+      "EXILES: DAYS OF THEN AND NOW 1 (2008) #1",
+      4
+    ],
+    [
+      69,
+      18383,
+      "What If? (1989) #77",
+      4
+    ],
+    [
+      70,
+      18388,
+      "What If? (1989) #81",
+      4
+    ],
+    [
+      71,
+      5653,
+      "WHAT IF? X-MEN AGE OF APOCALYPSE 1 (2006) #1",
+      4
+    ],
+    [
+      72,
+      60189,
+      "Rise of Apocalypse (1996) #1",
+      5
+    ],
+    [
+      73,
+      60190,
+      "Rise of Apocalypse (1996) #2",
+      5
+    ],
+    [
+      74,
+      60191,
+      "Rise of Apocalypse (1996) #3",
+      5
+    ],
+    [
+      75,
+      60192,
+      "Rise of Apocalypse (1996) #4",
+      5
+    ],
+    [
+      76,
+      3527,
+      "X-Men: Apocalypse/Dracula (2006) #1",
+      5
+    ],
+    [
+      77,
+      3931,
+      "X-Men: Apocalypse/Dracula (2006) #2",
+      5
+    ],
+    [
+      78,
+      4057,
+      "X-Men: Apocalypse/Dracula (2006) #3",
+      5
+    ],
+    [
+      79,
+      4171,
+      "X-Men: Apocalypse/Dracula (2006) #4",
+      5
+    ],
+    [
+      80,
+      42826,
+      "BLACK KNIGHT: EXODUS 1 (1996) #1",
+      5
+    ],
+    [
+      81,
+      12994,
+      "Fantastic Four (1961) #19",
+      5
+    ],
+    [
+      82,
+      7134,
+      "Avengers (1963) #263",
+      5
+    ],
+    [
+      83,
+      13101,
+      "Fantastic Four (1961) #286",
+      5
+    ],
+    [
+      84,
+      12174,
+      "X-Factor (1986) #1",
+      5
+    ],
+    [
+      85,
+      12235,
+      "X-Factor (1986) #2",
+      5
+    ],
+    [
+      86,
+      12246,
+      "X-Factor (1986) #3",
+      5
+    ],
+    [
+      87,
+      12257,
+      "X-Factor (1986) #4",
+      5
+    ],
+    [
+      88,
+      12268,
+      "X-Factor (1986) #5",
+      5
+    ],
+    [
+      89,
+      12279,
+      "X-Factor (1986) #6",
+      5
+    ],
+    [
+      90,
+      12290,
+      "X-Factor (1986) #7",
+      5
+    ],
+    [
+      91,
+      12301,
+      "X-Factor (1986) #8",
+      5
+    ],
+    [
+      92,
+      12312,
+      "X-Factor (1986) #9",
+      5
+    ],
+    [
+      93,
+      23509,
+      "X-Factor Annual (1986) #1",
+      5
+    ],
+    [
+      94,
+      13751,
+      "Uncanny X-Men (1963) #210",
+      5
+    ],
+    [
+      96,
+      13752,
+      "Uncanny X-Men (1963) #211",
+      5
+    ],
+    [
+      97,
+      12175,
+      "X-Factor (1986) #10",
+      5
+    ],
+    [
+      98,
+      10384,
+      "New Mutants (1983) #46",
+      5
+    ],
+    [
+      99,
+      11701,
+      "Thor (1966) #373",
+      5
+    ],
+    [
+      100,
+      -118032769,
+      "Power Pack (1984) #27",
+      5
+    ],
+    [
+      101,
+      13753,
+      "Uncanny X-Men (1963) #212",
+      5
+    ],
+    [
+      102,
+      11702,
+      "Thor (1966) #374",
+      5
+    ],
+    [
+      103,
+      12186,
+      "X-Factor (1986) #11",
+      5
+    ],
+    [
+      104,
+      8227,
+      "Daredevil (1964) #238",
+      5
+    ],
+    [
+      105,
+      13754,
+      "Uncanny X-Men (1963) #213",
+      5
+    ],
+    [
+      106,
+      12233,
+      "X-Factor (1986) #18",
+      5
+    ],
+    [
+      107,
+      12234,
+      "X-Factor (1986) #19",
+      5
+    ],
+    [
+      108,
+      12236,
+      "X-Factor (1986) #20",
+      5
+    ],
+    [
+      109,
+      12237,
+      "X-Factor (1986) #21",
+      5
+    ],
+    [
+      110,
+      12238,
+      "X-Factor (1986) #22",
+      5
+    ],
+    [
+      111,
+      12239,
+      "X-Factor (1986) #23",
+      5
+    ],
+    [
+      112,
+      12240,
+      "X-Factor (1986) #24",
+      5
+    ],
+    [
+      113,
+      12241,
+      "X-Factor (1986) #25",
+      5
+    ],
+    [
+      114,
+      12242,
+      "X-Factor (1986) #26",
+      5
+    ],
+    [
+      115,
+      23285,
+      "Cable - Blood and Metal (1992) #1",
+      5
+    ],
+    [
+      116,
+      23286,
+      "Cable - Blood and Metal (1992) #2",
+      5
+    ],
+    [
+      117,
+      13835,
+      "Uncanny X-Men (1963) #294",
+      5
+    ],
+    [
+      118,
+      12306,
+      "X-Factor (1986) #84",
+      5
+    ],
+    [
+      119,
+      14300,
+      "X-Men (1991) #14",
+      5
+    ],
+    [
+      120,
+      17979,
+      "X-Force (1991) #16",
+      5
+    ],
+    [
+      121,
+      13836,
+      "Uncanny X-Men (1963) #295",
+      5
+    ],
+    [
+      122,
+      12307,
+      "X-Factor (1986) #85",
+      5
+    ],
+    [
+      123,
+      14301,
+      "X-Men (1991) #15",
+      5
+    ],
+    [
+      124,
+      17980,
+      "X-Force (1991) #17",
+      5
+    ],
+    [
+      125,
+      13837,
+      "Uncanny X-Men (1963) #296",
+      5
+    ],
+    [
+      126,
+      12308,
+      "X-Factor (1986) #86",
+      5
+    ],
+    [
+      127,
+      14302,
+      "X-Men (1991) #16",
+      5
+    ],
+    [
+      128,
+      17981,
+      "X-Force (1991) #18",
+      5
+    ],
+    [
+      129,
+      13838,
+      "Uncanny X-Men (1963) #297",
+      5
+    ],
+    [
+      130,
+      50992,
+      "Adventures of Cyclops & Phoenix (1994) #1",
+      5
+    ],
+    [
+      131,
+      -403745163,
+      "Adventures of Cyclops & Phoenix #2",
+      5
+    ],
+    [
+      132,
+      -454078020,
+      "Adventures of Cyclops & Phoenix #3",
+      5
+    ],
+    [
+      133,
+      -437300401,
+      "Adventures of Cyclops & Phoenix #4",
+      5
+    ],
+    [
+      134,
+      60185,
+      "Further Adventures of Cyclops & Phoenix (1996) #1",
+      5
+    ],
+    [
+      135,
+      60186,
+      "Further Adventures of Cyclops & Phoenix (1996) #2",
+      5
+    ],
+    [
+      136,
+      60187,
+      "Further Adventures of Cyclops & Phoenix (1996) #3",
+      5
+    ],
+    [
+      137,
+      60188,
+      "Further Adventures of Cyclops & Phoenix (1996) #4",
+      5
+    ],
+    [
+      138,
+      -286301830,
+      "Askani'son #1",
+      5
+    ],
+    [
+      139,
+      -269524211,
+      "Askani'son #2",
+      5
+    ],
+    [
+      140,
+      -521335591,
+      "Askani'son #3",
+      5
+    ],
+    [
+      141,
+      -538113210,
+      "Askani'son #4",
+      5
+    ],
+    [
+      142,
+      51001,
+      "X-Men: Phoenix (1999) #1",
+      5
+    ],
+    [
+      143,
+      51002,
+      "X-Men: Phoenix (1999) #2",
+      5
+    ],
+    [
+      144,
+      51003,
+      "X-Men: Phoenix (1999) #3",
+      5
+    ],
+    [
+      145,
+      51000,
+      "X-MEN: BOOKS OF ASKANI 1 (1995) #1",
+      5
+    ],
+    [
+      146,
+      18231,
+      "X-Man (1995) #59",
+      6
+    ],
+    [
+      147,
+      13917,
+      "Uncanny X-Men (1963) #376",
+      6
+    ],
+    [
+      148,
+      7454,
+      "Cable (1993) #75",
+      6
+    ],
+    [
+      149,
+      14390,
+      "X-Men (1991) #96",
+      6
+    ],
+    [
+      150,
+      14088,
+      "Wolverine (1988) #146",
+      6
+    ],
+    [
+      151,
+      14089,
+      "Wolverine (1988) #147",
+      6
+    ],
+    [
+      152,
+      23179,
+      "UNCANNY X-MEN ANNUAL 1 (1999) #1",
+      6
+    ],
+    [
+      153,
+      13918,
+      "Uncanny X-Men (1963) #377",
+      6
+    ],
+    [
+      154,
+      7455,
+      "Cable (1993) #76",
+      6
+    ],
+    [
+      155,
+      18233,
+      "X-Man (1995) #60",
+      6
+    ],
+    [
+      156,
+      14391,
+      "X-Men (1991) #97",
+      6
+    ],
+    [
+      157,
+      13919,
+      "Uncanny X-Men (1963) #378",
+      6
+    ],
+    [
+      158,
+      7456,
+      "Cable (1993) #77",
+      6
+    ],
+    [
+      159,
+      14090,
+      "Wolverine (1988) #148",
+      6
+    ],
+    [
+      160,
+      18128,
+      "X-Men Unlimited (1993) #26",
+      6
+    ],
+    [
+      161,
+      14392,
+      "X-Men (1991) #98",
+      6
+    ],
+    [
+      162,
+      23519,
+      "X-Men: The Search for Cyclops (2000) #1",
+      6
+    ],
+    [
+      163,
+      23520,
+      "X-Men: The Search for Cyclops (2000) #2",
+      6
+    ],
+    [
+      164,
+      23521,
+      "X-Men: The Search for Cyclops (2000) #3",
+      6
+    ],
+    [
+      165,
+      23522,
+      "X-Men: The Search for Cyclops (2000) #4",
+      6
+    ],
+    [
+      166,
+      3534,
+      "X-Men (2004) #182",
+      6
+    ],
+    [
+      167,
+      3539,
+      "X-Men (2004) #183",
+      6
+    ],
+    [
+      168,
+      3945,
+      "X-Men (2004) #184",
+      6
+    ],
+    [
+      169,
+      4068,
+      "X-Men (2004) #185",
+      6
+    ],
+    [
+      170,
+      4181,
+      "X-Men (2004) #186",
+      6
+    ],
+    [
+      171,
+      4281,
+      "X-Men (2004) #187",
+      6
+    ],
+    [
+      172,
+      23667,
+      "X-Men: The Times and Life of Lucas Bishop (2009) #1",
+      7
+    ],
+    [
+      173,
+      23848,
+      "X-Men: The Times and Life of Lucas Bishop (2009) #2",
+      7
+    ],
+    [
+      174,
+      24054,
+      "X-Men: The Times and Life of Lucas Bishop (2009) #3",
+      7
+    ],
+    [
+      175,
+      27620,
+      "X-FORCE/CABLE: MESSIAH WAR 1 (2009) #1",
+      7
+    ],
+    [
+      176,
+      23971,
+      "Cable (2008) #13",
+      7
+    ],
+    [
+      177,
+      23969,
+      "X-Force (2008) #14",
+      7
+    ],
+    [
+      178,
+      24171,
+      "Cable (2008) #14",
+      7
+    ],
+    [
+      179,
+      24170,
+      "X-Force (2008) #15",
+      7
+    ],
+    [
+      180,
+      24631,
+      "Cable (2008) #15",
+      7
+    ],
+    [
+      181,
+      27253,
+      "X-Force (2008) #16",
+      7
+    ],
+    [
+      182,
+      32595,
+      "Uncanny X-Force (2010) #8",
+      7
+    ],
+    [
+      183,
+      32597,
+      "Uncanny X-Force (2010) #9",
+      7
+    ],
+    [
+      184,
+      32574,
+      "Uncanny X-Force (2010) #10",
+      7
+    ],
+    [
+      185,
+      32577,
+      "Uncanny X-Force (2010) #11",
+      7
+    ],
+    [
+      186,
+      32578,
+      "Uncanny X-Force (2010) #12",
+      7
+    ],
+    [
+      187,
+      35294,
+      "Uncanny X-Force (2010) #13",
+      7
+    ],
+    [
+      188,
+      35300,
+      "Uncanny X-Force (2010) #14",
+      7
+    ],
+    [
+      189,
+      35298,
+      "Uncanny X-Force (2010) #15",
+      7
+    ],
+    [
+      190,
+      36153,
+      "Uncanny X-Force (2010) #16",
+      7
+    ],
+    [
+      191,
+      35296,
+      "Uncanny X-Force (2010) #17",
+      7
+    ],
+    [
+      192,
+      35297,
+      "Uncanny X-Force (2010) #18",
+      7
+    ],
+    [
+      193,
+      32573,
+      "Uncanny X-Force (2010) #1",
+      7
+    ],
+    [
+      194,
+      32581,
+      "Uncanny X-Force (2010) #2",
+      7
+    ],
+    [
+      195,
+      32585,
+      "Uncanny X-Force (2010) #3",
+      7
+    ],
+    [
+      196,
+      32586,
+      "Uncanny X-Force (2010) #4",
+      7
+    ],
+    [
+      197,
+      32589,
+      "Uncanny X-Force (2010) #5",
+      7
+    ],
+    [
+      198,
+      32591,
+      "Uncanny X-Force (2010) #6",
+      7
+    ],
+    [
+      199,
+      32593,
+      "Uncanny X-Force (2010) #7",
+      7
+    ],
+    [
+      211,
+      40454,
+      "Uncanny X-Force (2010) #19",
+      7
+    ],
+    [
+      212,
+      41162,
+      "Uncanny X-Force (2010) #19.1",
+      7
+    ],
+    [
+      213,
+      41274,
+      "Age of Apocalypse (2012) #1",
+      8
+    ],
+    [
+      214,
+      41270,
+      "Age of Apocalypse (2012) #2",
+      8
+    ],
+    [
+      215,
+      41264,
+      "Age of Apocalypse (2012) #3",
+      8
+    ],
+    [
+      216,
+      41268,
+      "Age of Apocalypse (2012) #4",
+      8
+    ],
+    [
+      217,
+      41269,
+      "Age of Apocalypse (2012) #5",
+      8
+    ],
+    [
+      218,
+      41273,
+      "Age of Apocalypse (2012) #6",
+      8
+    ],
+    [
+      219,
+      41263,
+      "Age of Apocalypse (2012) #7",
+      8
+    ],
+    [
+      220,
+      41267,
+      "Age of Apocalypse (2012) #8",
+      8
+    ],
+    [
+      221,
+      41265,
+      "Age of Apocalypse (2012) #9",
+      8
+    ],
+    [
+      222,
+      41271,
+      "Age of Apocalypse (2012) #10",
+      8
+    ],
+    [
+      223,
+      41272,
+      "Age of Apocalypse (2012) #11",
+      8
+    ],
+    [
+      224,
+      41266,
+      "Age of Apocalypse (2012) #12",
+      8
+    ],
+    [
+      225,
+      47069,
+      "Age of Apocalypse (2012) #13",
+      8
+    ],
+    [
+      226,
+      47070,
+      "Age of Apocalypse (2012) #14",
+      8
+    ],
+    [
+      227,
+      38576,
+      "Wolverine & the X-Men (2011) #4",
+      9
+    ],
+    [
+      228,
+      40444,
+      "Uncanny X-Force (2010) #25",
+      9
+    ],
+    [
+      229,
+      40443,
+      "Uncanny X-Force (2010) #26",
+      9
+    ],
+    [
+      230,
+      40447,
+      "Uncanny X-Force (2010) #27",
+      9
+    ],
+    [
+      231,
+      40445,
+      "Uncanny X-Force (2010) #28",
+      9
+    ],
+    [
+      232,
+      40440,
+      "Uncanny X-Force (2010) #29",
+      9
+    ],
+    [
+      233,
+      40442,
+      "Uncanny X-Force (2010) #30",
+      9
+    ],
+    [
+      234,
+      40449,
+      "Uncanny X-Force (2010) #31",
+      9
+    ],
+    [
+      235,
+      40438,
+      "Uncanny X-Force (2010) #32",
+      9
+    ],
+    [
+      236,
+      40439,
+      "Uncanny X-Force (2010) #33",
+      9
+    ],
+    [
+      237,
+      40446,
+      "Uncanny X-Force (2010) #34",
+      9
+    ],
+    [
+      238,
+      40450,
+      "Uncanny X-Force (2010) #35",
+      9
+    ],
+    [
+      239,
+      43339,
+      "Uncanny Avengers (2012) #1",
+      9
+    ],
+    [
+      240,
+      43338,
+      "Uncanny Avengers (2012) #2",
+      9
+    ],
+    [
+      241,
+      43337,
+      "Uncanny Avengers (2012) #3",
+      9
+    ],
+    [
+      242,
+      43336,
+      "Uncanny Avengers (2012) #4",
+      9
+    ],
+    [
+      243,
+      43335,
+      "Uncanny Avengers (2012) #5",
+      9
+    ],
+    [
+      244,
+      43334,
+      "Uncanny Avengers (2012) #6",
+      9
+    ],
+    [
+      245,
+      43333,
+      "Uncanny Avengers (2012) #7",
+      9
+    ],
+    [
+      246,
+      43332,
+      "Uncanny Avengers (2012) #8",
+      9
+    ],
+    [
+      247,
+      43331,
+      "Uncanny Avengers (2012) #9",
+      9
+    ],
+    [
+      248,
+      43330,
+      "Uncanny Avengers (2012) #10",
+      9
+    ],
+    [
+      249,
+      43329,
+      "Uncanny Avengers (2012) #11",
+      9
+    ],
+    [
+      250,
+      43328,
+      "Uncanny Avengers (2012) #12",
+      9
+    ],
+    [
+      251,
+      49216,
+      "Uncanny Avengers (2012) #13",
+      9
+    ],
+    [
+      252,
+      49217,
+      "Uncanny Avengers (2012) #14",
+      9
+    ],
+    [
+      253,
+      49218,
+      "Uncanny Avengers (2012) #15",
+      9
+    ],
+    [
+      254,
+      49219,
+      "Uncanny Avengers (2012) #16",
+      9
+    ],
+    [
+      255,
+      49220,
+      "Uncanny Avengers (2012) #17",
+      9
+    ],
+    [
+      256,
+      49221,
+      "Uncanny Avengers (2012) #18",
+      9
+    ],
+    [
+      257,
+      49222,
+      "Uncanny Avengers (2012) #19",
+      9
+    ],
+    [
+      258,
+      49223,
+      "Uncanny Avengers (2012) #20",
+      9
+    ],
+    [
+      259,
+      49224,
+      "Uncanny Avengers (2012) #21",
+      9
+    ],
+    [
+      260,
+      49225,
+      "Uncanny Avengers (2012) #22",
+      9
+    ],
+    [
+      261,
+      49226,
+      "Uncanny Avengers (2012) #23",
+      9
+    ],
+    [
+      262,
+      49227,
+      "Uncanny Avengers (2012) #24",
+      9
+    ],
+    [
+      263,
+      49228,
+      "Uncanny Avengers (2012) #25",
+      9
+    ],
+    [
+      264,
+      113671,
+      "X-Men: Heir of Apocalypse (2024) #1",
+      10
+    ],
+    [
+      265,
+      113672,
+      "X-Men: Heir of Apocalypse (2024) #2",
+      10
+    ],
+    [
+      266,
+      113673,
+      "X-Men: Heir of Apocalypse (2024) #3",
+      10
+    ],
+    [
+      267,
+      113674,
+      "X-Men: Heir of Apocalypse (2024) #4",
+      10
+    ],
+    [
+      268,
+      123234,
+      "GIANT-SIZE AGE OF APOCALYPSE (2025) #1",
+      10
+    ],
+    [
+      269,
+      -1595621581,
+      "X-Men of Apocalypse (2025) #1",
+      10
+    ],
+    [
+      270,
+      -1645807343,
+      "X-Men of Apocalypse (2025) #2",
+      10
+    ],
+    [
+      271,
+      -1662584962,
+      "X-Men of Apocalypse (2025) #3",
+      10
+    ],
+    [
+      272,
+      -1612252105,
+      "X-Men of Apocalypse (2025) #4",
+      10
+    ],
+    [
+      273,
+      -1629029724,
+      "X-Men of Apocalypse (2025) #5",
+      10
+    ],
+    [
+      274,
+      -1712917819,
+      "X-Men of Apocalypse (2025) #6",
+      10
+    ],
+    [
+      275,
+      17701,
+      "Age of Apocalypse: The Chosen (1995) #1",
+      11
+    ]
+  ],
+  "vectorSha256": "56ce69d82f3d1e817bf3f76a649b1a311a2a2c8802b642aa0a6dee0738b1bebb",
+  "sourceSha256": "5a7361b1651947d089d58777bfce4f62f76c0688bcfe56ccad9b7c18d84e87bb",
+  "sourceIssueBearingBlocksSha256": "15712416adefc942d187cf2cacd75bf0d7595d0837efff132724f4ebbcdbb2f4",
+  "sourceCounts": {
+    "sourceOccurrenceCount": 275,
+    "sourceIdentityCount": 262,
+    "includedIssueCount": 246,
+    "sourceGapCount": 16,
+    "repeatedSourceReferenceCount": 13
+  },
+  "libraryDigest": "c8e3e0bc193bbc1039988fb5e966859b37cb97a75c9f38a3541d49636d6c44e0",
+  "proposalDigest": "897f1adc76b54207e48ffbc665f586b22084e68e6ebf4d3321abce6e2421f4bb",
+  "approvalDigest": "ceaa4451d66b7800a51be03d82d998ecc215b82ca6d563df0a526c36a108b1f0",
+  "cbhBaseline": {
+    "sourceCommit": "f2c60a9410ba1b9eba76b8dd83a4b8ad01b167f9",
+    "files": {
+      "scripts/data/cbh-source-ledgers/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.json": "dc431ce26a06e09d5c817a0d78ca3e6c323565be0101af878400051c14057c23",
+      "scripts/data/cbh-packets/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.json": "ea2cb95558dca58554b65e59bd23d809ec893d3cdeda528259a407cd9c7b8808",
+      "scripts/data/cbh-mappings/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.json": "c5b6da97125bc02f94c92304dcc7c885a3f5fdd59dd8c590f5938ab99304661d",
+      "scripts/data/cbh-overlaps/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.json": "eb960776a0d2c435f5eff433736e0216b3600bb42deabc6ae3dc21cc9625ed1c",
+      "src/data/orders/the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.md": "bfefcf9215cdbb7215c5185c8fcfdfecba42b64a2d61a3c7a22d9b531f255b3b",
+      "src/data/the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json": "98fcb9505b7a3d84e4b2d7ec73b863d8ff2fecf85a2fa570c7b091850065677c"
+    },
+    "packetDigest": "274a748d6a65c2f756d24c30c3a73bf079264c178f9a4fa4e889cb5ff0f7ef90",
+    "mappingDigest": "259d1c984325a903788a6d549ce02da76aa9b24341628d802a77fdfdfbe82bbf",
+    "reportDigest": "872ddf8cb79ce05853864e7f2b8b9f6fd0ba9e9e49a1282df50bcc0f116d805b",
+    "approvalDigest": "c234efe111ea68e69d9c08ad7137b4af6c9888526a18a4dc80e42dcf8eafc945"
+  }
+}

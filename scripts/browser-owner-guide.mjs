@@ -39,6 +39,20 @@ export function ownerPresentation(expected) {
   return { rows, headings };
 }
 
+export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
+  if (guide.sourceProvider !== 'comic-book-herald') return false;
+  const scenarios = {
+    'shang-chi-master-of-kung-fu-reading-order': 'shang-chi-actual-data',
+    'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order': 'age-of-apocalypse-actual-data',
+    'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order': 'onslaught-actual-data',
+    'iron-fist-reading-order': 'iron-fist-actual-data',
+    'namor-sub-mariner-reading-order': 'namor-actual-data',
+  };
+  assert.ok(scenarioIds.includes(scenarios[guide.id]),
+    'A registered CBH baseline needs its existing dedicated actual-data browser scenario.');
+  return true;
+}
+
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';

@@ -1,0 +1,491 @@
+{
+  "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+  "name": "X-Men: Onslaught",
+  "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceProvider": "comic-book-herald",
+  "groups": [
+    "Road to Onslaught Vol. 1",
+    "Road to Onslaught Vol. 2",
+    "Road to Onslaught Vol. 3",
+    "Onslaught The Complete Epic, Book 1",
+    "Onslaught The Complete Epic, Book 2",
+    "Onslaught The Complete Epic, Book 3",
+    "Onslaught The Complete Epic, Book 4"
+  ],
+  "rows": [
+    [
+      1,
+      12371,
+      "X-MEN PRIME 1 (1995) #1",
+      0
+    ],
+    [
+      2,
+      13863,
+      "Uncanny X-Men (1963) #322",
+      0
+    ],
+    [
+      3,
+      14331,
+      "X-Men (1991) #42",
+      0
+    ],
+    [
+      4,
+      14332,
+      "X-Men (1991) #43",
+      0
+    ],
+    [
+      5,
+      14333,
+      "X-Men (1991) #44",
+      0
+    ],
+    [
+      6,
+      13864,
+      "Uncanny X-Men (1963) #323",
+      0
+    ],
+    [
+      7,
+      13865,
+      "Uncanny X-Men (1963) #324",
+      0
+    ],
+    [
+      8,
+      51107,
+      "X-Men Annual (1995) #1",
+      0
+    ],
+    [
+      9,
+      13866,
+      "Uncanny X-Men (1963) #325",
+      0
+    ],
+    [
+      10,
+      14334,
+      "X-Men (1991) #45",
+      0
+    ],
+    [
+      11,
+      13867,
+      "Uncanny X-Men (1963) #326",
+      0
+    ],
+    [
+      12,
+      18158,
+      "X-Men Unlimited (1993) #8",
+      0
+    ],
+    [
+      13,
+      51108,
+      "X-Men/Clandestine (1996) #1",
+      1
+    ],
+    [
+      14,
+      51109,
+      "X-Men/Clandestine (1996) #2",
+      1
+    ],
+    [
+      15,
+      51106,
+      "Uncanny X-Men Annual (1995) #1",
+      1
+    ],
+    [
+      16,
+      14335,
+      "X-Men (1991) #46",
+      1
+    ],
+    [
+      17,
+      14336,
+      "X-Men (1991) #47",
+      1
+    ],
+    [
+      18,
+      13868,
+      "Uncanny X-Men (1963) #327",
+      1
+    ],
+    [
+      19,
+      18159,
+      "X-Men Unlimited (1993) #9",
+      1
+    ],
+    [
+      20,
+      13869,
+      "Uncanny X-Men (1963) #328",
+      1
+    ],
+    [
+      21,
+      51105,
+      "Sabretooth Special (1995) #1",
+      1
+    ],
+    [
+      22,
+      14337,
+      "X-Men (1991) #48",
+      1
+    ],
+    [
+      23,
+      14338,
+      "X-Men (1991) #49",
+      1
+    ],
+    [
+      24,
+      -1915148978,
+      "X-Men Hotshots",
+      1
+    ],
+    [
+      25,
+      13870,
+      "Uncanny X-Men (1963) #329",
+      2
+    ],
+    [
+      26,
+      13871,
+      "Uncanny X-Men (1963) #330",
+      2
+    ],
+    [
+      27,
+      -1931926597,
+      "Archangel #1",
+      2
+    ],
+    [
+      28,
+      52991,
+      "X-Men Vs. the Brood (1996) #1",
+      2
+    ],
+    [
+      29,
+      52992,
+      "X-Men Vs. the Brood (1996) #2",
+      2
+    ],
+    [
+      30,
+      18111,
+      "X-Men Unlimited (1993) #10",
+      2
+    ],
+    [
+      31,
+      14340,
+      "X-Men (1991) #50",
+      2
+    ],
+    [
+      32,
+      13872,
+      "Uncanny X-Men (1963) #331",
+      2
+    ],
+    [
+      33,
+      13873,
+      "Uncanny X-Men (1963) #332",
+      2
+    ],
+    [
+      34,
+      14039,
+      "Wolverine (1988) #101",
+      2
+    ],
+    [
+      35,
+      14341,
+      "X-Men (1991) #51",
+      2
+    ],
+    [
+      36,
+      14342,
+      "X-Men (1991) #52",
+      2
+    ],
+    [
+      37,
+      52990,
+      "Xavier Institute Alumni Yearbook (1996) #1",
+      2
+    ],
+    [
+      38,
+      14343,
+      "X-Men (1991) #53",
+      3
+    ],
+    [
+      39,
+      13875,
+      "Uncanny X-Men (1963) #334",
+      3
+    ],
+    [
+      40,
+      14344,
+      "X-Men (1991) #54",
+      3
+    ],
+    [
+      41,
+      20767,
+      "Onslaught: X-Men (1996) #1",
+      3
+    ],
+    [
+      42,
+      7288,
+      "Avengers (1963) #401",
+      3
+    ],
+    [
+      43,
+      13245,
+      "Fantastic Four (1961) #415",
+      3
+    ],
+    [
+      44,
+      7409,
+      "Cable (1993) #34",
+      3
+    ],
+    [
+      45,
+      9255,
+      "Incredible Hulk (1962) #444",
+      3
+    ],
+    [
+      46,
+      8564,
+      "Excalibur (1988) #100",
+      4
+    ],
+    [
+      47,
+      14042,
+      "Wolverine (1988) #104",
+      4
+    ],
+    [
+      48,
+      12203,
+      "X-Factor (1986) #125",
+      4
+    ],
+    [
+      49,
+      12204,
+      "X-Factor (1986) #126",
+      4
+    ],
+    [
+      50,
+      51043,
+      "Sensational Spider-Man (1996) #8",
+      4
+    ],
+    [
+      51,
+      6833,
+      "The Amazing Spider-Man (1963) #415",
+      4
+    ],
+    [
+      52,
+      23910,
+      "Green Goblin (1995) #12",
+      4
+    ],
+    [
+      53,
+      10836,
+      "Spider-Man (1990) #72",
+      4
+    ],
+    [
+      54,
+      18186,
+      "X-Man (1995) #18",
+      4
+    ],
+    [
+      55,
+      18024,
+      "X-Force (1991) #57",
+      4
+    ],
+    [
+      56,
+      23391,
+      "Punisher (1995) #11",
+      4
+    ],
+    [
+      57,
+      14345,
+      "X-Men (1991) #55",
+      5
+    ],
+    [
+      58,
+      13877,
+      "Uncanny X-Men (1963) #336",
+      5
+    ],
+    [
+      59,
+      7410,
+      "Cable (1993) #35",
+      5
+    ],
+    [
+      60,
+      18025,
+      "X-Force (1991) #58",
+      5
+    ],
+    [
+      61,
+      18187,
+      "X-Man (1995) #19",
+      5
+    ],
+    [
+      62,
+      9256,
+      "Incredible Hulk (1962) #445",
+      5
+    ],
+    [
+      63,
+      9586,
+      "Iron Man (1968) #332",
+      5
+    ],
+    [
+      64,
+      7289,
+      "Avengers (1963) #402",
+      5
+    ],
+    [
+      65,
+      11830,
+      "Thor (1966) #502",
+      5
+    ],
+    [
+      66,
+      14043,
+      "Wolverine (1988) #105",
+      5
+    ],
+    [
+      67,
+      13246,
+      "Fantastic Four (1961) #416",
+      6
+    ],
+    [
+      68,
+      14346,
+      "X-Men (1991) #56",
+      6
+    ],
+    [
+      69,
+      10453,
+      "Onslaught: Marvel Universe (1996) #1",
+      6
+    ],
+    [
+      70,
+      7411,
+      "Cable (1993) #36",
+      6
+    ],
+    [
+      71,
+      13878,
+      "Uncanny X-Men (1963) #337",
+      6
+    ],
+    [
+      72,
+      14347,
+      "X-Men (1991) #57",
+      6
+    ],
+    [
+      73,
+      23388,
+      "Onslaught Epilogue (1997) #1",
+      6
+    ],
+    [
+      74,
+      16337,
+      "Iron Man (1996) #6",
+      6
+    ]
+  ],
+  "vectorSha256": "e3f790cbf2b93d06f02f62e0b866e94d6642ccbbac70ca1b62d0ef0c8b3d47fd",
+  "sourceSha256": "d89187e2fb46df94c17490300ef5960f15837d768f4fe1499e1c2cecc5fbf5c9",
+  "sourceIssueBearingBlocksSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
+  "sourceCounts": {
+    "sourceOccurrenceCount": 74,
+    "sourceIdentityCount": 74,
+    "includedIssueCount": 72,
+    "sourceGapCount": 2,
+    "repeatedSourceReferenceCount": 0
+  },
+  "libraryDigest": "b1499884bf66c936195acb2282e90cd89b1967a1caeefb40267008444b002839",
+  "proposalDigest": "7efc4bd456f9855064fa29cb2ecd7f8bea3f843deb38f2bde819e1df921b3b5d",
+  "approvalDigest": "09540e83eca39436dc36d5dd9fc1b5e9dd843eac2928c211cad3dc298222d010",
+  "cbhBaseline": {
+    "sourceCommit": "f2c60a9410ba1b9eba76b8dd83a4b8ad01b167f9",
+    "files": {
+      "scripts/data/cbh-source-ledgers/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.json": "9f183214fb791bf9021937dcfd27d37178a917215473fcd9e44bfc3561b011e0",
+      "scripts/data/cbh-packets/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.json": "efd5a3f6def5bf2f457792d985e4176a1ecaec9ae7316c765f82c4e997bd7e61",
+      "scripts/data/cbh-mappings/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.json": "569632b9b73d6b894f55ed10319a8500b7660c32e06fc2439c43de98b3bf69d5",
+      "scripts/data/cbh-overlaps/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.json": "a998d0a952da0a95b725d893b967c97f56c646ce41631bbd7fdbdd5614ad254e",
+      "src/data/orders/the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.md": "31e5c9f4bfcda73758f95f2e0b958e0681b463d06c89ae4ef86a74402a6f342a",
+      "src/data/the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json": "9373a49a4c513da640ebf8d66cfc99539ad3941e3c2a5409910d4e1165d3f8ca"
+    },
+    "packetDigest": "bb1acf2ec257462ed1e71bcf75c308bf9dc4726561e80c20158c0e5fa6f931d9",
+    "mappingDigest": "7a59e5fe9b7386e5a443ec213f74753fedd8d1fd0f60b4a19c76f453aaaef57f",
+    "reportDigest": "1ef070ad35dfd5507f78515c7465f988f0a3ded82fd416a3990ba81734d9b7bf",
+    "approvalDigest": "9afcd9cf0ac10dc87ba9d0a6c9fa5a334f34d4be75b806b9950ff9ca73cbcda8"
+  }
+}
