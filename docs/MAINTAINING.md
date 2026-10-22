@@ -143,7 +143,18 @@ The runner prints progress before creating each browser context and reports resu
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.
 Diagnostics include allowlisted browser and driver versions and observed numeric process exit
 or signal values. An unavailable cause is `unknown`, not proof of a crash, resource limit or app
-defect. Exits during requested cleanup are labelled separately.
+defect. Exits during requested cleanup are labelled separately. The unsigned hexadecimal exit
+and `disconnectedBeforeCleanup` flag distinguish a late native exit observation from a disconnect
+that first happened during cleanup; neither identifies the faulting component.
+
+Context and browser close each have a fixed 5-second cleanup deadline. A context-close failure
+stops further scenarios. A browser-close failure aborts only this invocation's launched browser
+through its launch signal, then attempts disconnect within 2 seconds. Server cleanup is still
+attempted, with its own 2-second deadline. A cleanup failure stays a failure even if all assertions
+passed. If driver handles or temporary-profile cleanup still retain the failed runner, a final
+5-second guard reports `stage=cleanup-exit` and exits 1. This guard does not certify profile
+removal or successful native shutdown. No scenario is retried and no execution or native-download
+deadline is increased.
 
 Ordinary export scenarios declare the total expected native downloads in their isolated context.
 Before closing it, the runner requires a browser `completed` event for every download within one

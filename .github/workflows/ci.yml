@@ -109,6 +109,9 @@ jobs:
       # script is arbitrary code a pull request can add, running before any review
       # step. Measured: 0 of the 76 locked packages declare one, so this costs
       # nothing today and closes the boundary before one arrives.
+      # Three Node 20 installs and all three jobs on 2026-10-22 exceeded four minutes.
+      # A subsequent main run completed in about two minutes. Ten minutes allows
+      # recovery while retaining a step-level deadline that reports an overrun as failure.
       - name: Install
         timeout-minutes: 10
         run: npm ci --ignore-scripts
