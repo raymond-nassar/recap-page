@@ -48,10 +48,10 @@ jobs:
     name: Tests on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     # The outer backstop, not the mechanism. Every step below carries its own deadline
-    # and they sum to 14 minutes, so this can only fire on time spent outside a step:
+    # and they sum to 18 minutes, so this can only fire on time spent outside a step:
     # runner setup, post-run and cleanup, measured at 8 seconds at their worst. That
     # ordering is deliberate and a test pins it. See the note above the step deadlines.
-    timeout-minutes: 16
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -110,7 +110,7 @@ jobs:
       # step. Measured: 0 of the 76 locked packages declare one, so this costs
       # nothing today and closes the boundary before one arrives.
       - name: Install
-        timeout-minutes: 4
+        timeout-minutes: 8
         run: npm ci --ignore-scripts
 
       # `npm test` is deliberately `node --test` with no path argument. Node only
