@@ -6124,8 +6124,8 @@
     "fp": "6b63cb2653c5f2b1",
     "head": "\"devDependencies\": {"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:257-259|0": {
-    "anchor": ".github/workflows/ci.yml:257-259",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:260-262|0": {
+    "anchor": ".github/workflows/ci.yml:260-262",
     "fp": "d7904643223f00ed",
     "head": "permissions:"
   },

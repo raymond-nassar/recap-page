@@ -68,7 +68,7 @@ If the report is declined, you may publish immediately and quote the reasoning.
 - **The workflows** in `.github/workflows/`. CI uses read-only repository permissions,
   declared at `.github/workflows/ci.yml:38-39`. The optional manual Android rehearsal also reads
   repository Actions run metadata to verify its origin, declared at
-  `.github/workflows/ci.yml:257-259`. Neither grants write or Play publication access. Changes
+  `.github/workflows/ci.yml:260-262`. Neither grants write or Play publication access. Changes
   that expand these permissions are in scope.
 
 ## Out of scope
