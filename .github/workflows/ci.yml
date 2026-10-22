@@ -133,8 +133,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # 25 minutes of step deadlines below, so the same ordering holds here.
-    timeout-minutes: 26
+    # 29 minutes of step deadlines below, so the same ordering holds here.
+    timeout-minutes: 30
     steps:
       # Full history is also needed by the test matrix's historical allowance proof.
       # The publication gate scans commit messages and every blob ever held.
@@ -157,7 +157,7 @@ jobs:
           cache: npm
 
       - name: Install
-        timeout-minutes: 4
+        timeout-minutes: 8
         run: npm ci --ignore-scripts
 
       # Reports only. `npm run lint:fix` is the local counterpart; CI never rewrites
