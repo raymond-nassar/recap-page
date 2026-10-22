@@ -12,6 +12,9 @@ import {
 import { validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
+import {
+  beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText, mcuEditorial,
+} from '../scripts/lib/mcu-editorial.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
@@ -375,6 +378,23 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
     cp(path.join(REPOSITORY_ROOT, 'test', 'fixtures', 'owner-delivery'),
       path.join(root, 'test', 'fixtures', 'owner-delivery'), { recursive: true }),
   ]);
+  // This identity-only fixture requires the original approval, not a later editorial overlay.
+  const manifestFile = path.join(root, 'src', 'data', 'curated-lists.json');
+  await writeFile(manifestFile, json(beforeMcuEditorialManifest(
+    await readJson(manifestFile), { restoreWithdrawal: true },
+  )));
+  const fixtureCatalogFile = path.join(root, 'src', 'data', 'catalog.json');
+  const fixtureCatalog = await readJson(fixtureCatalogFile);
+  fixtureCatalog.lists = fixtureCatalog.lists.map(beforeMcuEditorialEntry);
+  fixtureCatalog.lists.splice(
+    fixtureCatalog.lists.findIndex(({ id }) => id === mcuEditorial.withdrawal.beforeId),
+    0, structuredClone(mcuEditorial.withdrawal.catalogEntry),
+  );
+  await writeFile(fixtureCatalogFile, json(fixtureCatalog));
+  for (const { file } of mcuEditorial.entries) {
+    const payloadFile = path.join(root, 'src', 'data', file);
+    await writeFile(payloadFile, beforeMcuEditorialPayloadText(file, await readFile(payloadFile, 'utf8')));
+  }
   const request = {
     schemaVersion: 1,
     id: 'mcu-prep-the-incredible-hulk-2008',
