@@ -108,8 +108,7 @@ jobs:
       # `--ignore-scripts` because a manifest is contributor-editable: an install
       # script is arbitrary code a pull request can add, running before any review
       # step. Measured: 0 of the 76 locked packages declare one, so this costs
-      # nothing today and closes the boundary before one arrives. The npm advisory
-      # lookup is not a CI gate and can stall the install after packages are fetched.
+      # nothing today and closes that boundary; npm audit is not a CI gate but can stall installs.
       - name: Install
         timeout-minutes: 4
         run: npm ci --ignore-scripts --no-audit
