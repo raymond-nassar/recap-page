@@ -1438,7 +1438,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Iron Fist adds 38 distinct unresolved originals; #59301 remains a positive issue ID.
   // The owner-confirmed publication adds twelve exact identities without provider details.
   // Issue 62446 was already counted, so the distinct refused total rises by eleven.
-  assert.equal(refused.length, 1390);
+  // Hulk: Season One and five House of Harkness chapters add six distinct identity-only refusals.
+  assert.equal(refused.length, 1396);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

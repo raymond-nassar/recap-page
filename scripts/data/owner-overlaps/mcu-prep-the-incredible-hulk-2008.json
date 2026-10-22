@@ -1,8 +1,8 @@
 {
   "candidateId": "mcu-prep-the-incredible-hulk-2008",
-  "packetDigest": "338ca493794973cc245fa3d9f2395224e8658e10a85634620ceddb755ccbe704",
-  "mappingDigest": "6897a42b2384cbaf2e84cea6b429044d32a07ac73bf4bd0c6fe0cf35bccb4178",
-  "libraryDigest": "23fa7dcb8d7f0aee843f50ea05844e4277330611e47ae47fb3231ab6a560be8d",
+  "packetDigest": "2e42ba9e4452f9a7e4e1589b8a17257bf233f0439c94f6a02940e8126d6d8728",
+  "mappingDigest": "fc207246c638bc5eca93975eac50093b4d93756b0a84feeee31deb372c0876c8",
+  "libraryDigest": "b693b1180d5650a362f82d82b9722f56a44fdf311e8217e067d09c54b76df6f0",
   "peerDigests": {
     "mcu-prep-captain-america-the-first-avenger-2011": "6f370166055cfe0dc034d007dd9f5ea29eff5137e20d5287f844ea0a21d79be9",
     "mcu-prep-iron-man-2-2010": "205899e2c4fdf93890f41f439fdc7d12edf1d94fd734406af340081805a18267",
@@ -14,12 +14,13 @@
   "sourceCounts": {
     "sourceOccurrenceCount": 13,
     "sourceIdentityCount": 13,
-    "includedIssueCount": 12,
-    "sourceGapCount": 1,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 13,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 12,
-  "comparisonCount": 304,
+  "candidateCount": 13,
+  "comparisonCount": 316,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -1062,12 +1063,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "marvel-multiverse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "marvel-super-heroes-secret-wars",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1110,13 +1105,55 @@
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-ant-man-2015",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-avengers-infinity-war-endgame",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-black-panther-2018",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-captain-america-brave-new-world",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-captain-america-civil-war-2016",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-marvel-2019",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1129,6 +1166,12 @@
     },
     {
       "orderId": "mcu-prep-deadpool-and-wolverine",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-doctor-strange-2016",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1212,7 +1255,25 @@
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-thor-ragnarok-2017",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-thor-the-dark-world-2013",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-thunderbolts",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-visionquest",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1237,6 +1298,12 @@
     },
     {
       "orderId": "midnight-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "miles-morales-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1333,6 +1400,12 @@
     },
     {
       "orderId": "nova-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "one-world-under-doom",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1871,5 +1944,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8ecd2539afb1ebccc045571b82542aa85b3401bc5f38955465eaec81c7e16e6b"
+  "reportDigest": "6403ccff31acac7ef66c11ee0fc0476a15f47059d895310eb6829ee113e06d34"
 }

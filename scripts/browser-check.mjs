@@ -19439,7 +19439,10 @@ const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs'
 for (const guide of readOwnerGuideRegistry().guides) {
   const contract = JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'));
   SCENARIOS.push(ownerGuideScenario(contract));
-  if (guide.id === 'mcu-prep-visionquest') SCENARIOS.push(ownerGuideScenario(contract, { savedCopyOnly: true }));
+  const mapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${guide.id}.json`, import.meta.url), 'utf8'));
+  if (mapping.rows.some((row) => row.identityEvidenceKind === 'owner-confirmed-identity')) {
+    SCENARIOS.push(ownerGuideScenario(contract, { savedCopyOnly: true }));
+  }
 }
 const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
 const { issueRatings, issueRatingMutations } = await import('./browser-issue-ratings.mjs');

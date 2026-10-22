@@ -2240,7 +2240,7 @@
         "the-incredible-hulk"
       ],
       "coverIssueId": 365,
-      "expect": 12
+      "expect": 13
     },
     {
       "id": "mcu-prep-iron-man-2-2010",
@@ -3155,7 +3155,7 @@
     {
       "id": "mcu-prep-agatha-all-along",
       "name": "MCU Prep: Agatha All Along",
-      "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -3180,7 +3180,7 @@
         "House of Harkness"
       ],
       "coverIssueId": 13304,
-      "expect": 7
+      "expect": 12
     },
     {
       "id": "agents-of-atlas-reading-order",

@@ -65,9 +65,11 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   seed = markRead(seed, priorControl.issueId, true, 123456);
   seed = setDeferred(seed, 'owner-existing', house.items[2].issueId);
   seed = createList(seed, { id: 'owner-shared', name: 'An existing selection' });
-  seed = addIssuesToList(seed, 'owner-shared', [payload.items[0]]).state;
-  if (expected.length > 1) seed = markRead(seed, payload.items[0].issueId, true, 123456);
-  seed = setIssueNote(seed, payload.items[0].issueId, 'Preserve the original-level note');
+  const sharedOriginal = payload.items.find((item) =>
+    item.identityEvidenceKind !== 'owner-confirmed-identity') ?? payload.items[0];
+  seed = addIssuesToList(seed, 'owner-shared', [sharedOriginal]).state;
+  if (expected.length > 1) seed = markRead(seed, sharedOriginal.issueId, true, 123456);
+  seed = setIssueNote(seed, sharedOriginal.issueId, 'Preserve the original-level note');
   seed.overrides[priorControl.issueId] = 'unavailable';
   const ownerIdentityIds = payload.items
     .filter((item) => item.identityEvidenceKind === 'owner-confirmed-identity')
@@ -142,31 +144,35 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         if (url.protocol.startsWith('http') && url.origin !== page.__origin) external.push(url.origin);
       });
       if (savedCopyOnly) {
+        const savedId = 'saved-owner-guide';
+        const savedName = `My saved ${contract.name}`;
+        const previousItems = payload.items.filter((item) => !ownerIdentityIds.includes(item.issueId));
+        assert.ok(ownerIdentityIds.length > 0 && previousItems.length >= 4);
         let previous = createList(createEmptyState(), {
-          id: 'saved-visionquest', catalogId: contract.id, name: 'My saved VisionQuest',
+          id: savedId, catalogId: contract.id, name: savedName,
           note: 'Keep my list note', description: 'Keep my saved description',
         });
-        previous = addIssuesToList(previous, 'saved-visionquest',
-          payload.items.filter((item) => !ownerIdentityIds.includes(item.issueId))).state;
-        const ids = previous.lists['saved-visionquest'].itemIds;
-        assert.equal(ids.length, 39);
+        previous = addIssuesToList(previous, savedId, previousItems).state;
+        const ids = previous.lists[savedId].itemIds;
+        assert.equal(ids.length, contract.rows.length - ownerIdentityIds.length);
         previous = markRead(previous, ids[0], true, 123456);
         previous = setIssueNote(previous, ids[1], 'Keep my issue note');
-        previous = setDeferred(previous, 'saved-visionquest', ids[2]);
+        previous = setDeferred(previous, savedId, ids[2]);
         previous.overrides[ids[3]] = 'unavailable';
-        previous.lists['saved-visionquest'].itemIds = [ids[1], ids[0], ...ids.slice(2)];
+        previous.lists[savedId].itemIds = [ids[1], ids[0], ...ids.slice(2)];
         const expectedPrevious = JSON.parse(JSON.stringify(previous));
         await page.evaluateOnNewDocument((key, state) => {
           if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
           localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
           window.__mrtBlockExternal = true;
         }, KEY, previous);
-        await page.goto(`${page.__origin}/?catalog=actual#/read/saved-visionquest`, { waitUntil: 'load' });
-        await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim() === 'My saved VisionQuest');
+        await page.goto(`${page.__origin}/?catalog=actual#/read/${savedId}`, { waitUntil: 'load' });
+        await page.waitForFunction((name) =>
+          document.querySelector('#order-name')?.textContent.trim() === name, {}, savedName);
         for (let reload = 0; reload < 2; reload++) {
           if (reload) await page.reload({ waitUntil: 'load' });
           const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
-          t.check(`pre-publication saved VisionQuest preserves its 39 originals and reader facts after ${reload ? 'reload' : 'open'}`,
+          t.check(`pre-publication saved ${contract.name} preserves its ${ids.length} originals and reader facts after ${reload ? 'reload' : 'open'}`,
             isDeepStrictEqual(saved.lists, expectedPrevious.lists)
             && isDeepStrictEqual(saved.read, expectedPrevious.read)
             && isDeepStrictEqual(saved.notes, expectedPrevious.notes)

@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { beforeMcuEditorialManifest, mcuEditorial } from '../../scripts/lib/mcu-editorial.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
+import { beforeIdentityEntry, beforeIdentityOrders } from './owner-identity-history.mjs';
 
 const archived = JSON.parse(readFileSync(new URL('../../src/data/marvel_multiverse.json', import.meta.url), 'utf8'));
 const retiredId = mcuEditorial.withdrawal.manifestEntry.id;
@@ -24,7 +25,9 @@ export function withRetiredComparisons(comparisons, candidateIds, report) {
 }
 
 export function recordedEditorialDigest(manifest, orders) {
-  const original = beforeMcuEditorialManifest(manifest, { restoreWithdrawal: true });
-  return libraryDigestFor(original, withRetiredOrders(orders, new Set(original.lists.map(({ id }) => id)))
+  const original = beforeMcuEditorialManifest({
+    ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)),
+  }, { restoreWithdrawal: true });
+  return libraryDigestFor(original, withRetiredOrders(beforeIdentityOrders(orders), new Set(original.lists.map(({ id }) => id)))
     .map(({ id, issueIds }) => ({ id, issueIds })));
 }

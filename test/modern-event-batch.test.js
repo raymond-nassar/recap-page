@@ -9,6 +9,7 @@ import {
   groupCatalog, HOME_CATEGORIES, modernTimelineLists, parseCatalog,
 } from '../src/js/lib/catalog.js';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
+import { beforeIdentityJson, beforeIdentityText } from './helpers/owner-identity-history.mjs';
 import {
   currentReadingCensus, registeredEventContracts, registeredOwnerContracts,
 } from './helpers/current-reading-library.mjs';
@@ -146,17 +147,27 @@ test('the common event contract rejects a changed current peer mapping even when
   }), /peer mapping set changed/);
 });
 
-test('the common earlier-owner contract rejects missing meaningful reciprocal authority for a new event', async () => {
-  const agatha = registeredOwnerContracts.find((entry) => entry.id === 'mcu-prep-agatha-all-along');
+test('the historical earlier-owner contract rejects missing meaningful reciprocal authority for a new event', async () => {
+  const agatha = beforeIdentityJson('test/fixtures/owner-delivery/mcu-prep-agatha-all-along.json');
+  const historicalJson = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
+    || file.includes(agatha.id) || file.includes(agatha.id.replaceAll('-', '_'))
+    ? Promise.resolve(beforeIdentityJson(file)) : json(file);
+  const historicalText = (file) => file.includes(agatha.id)
+    ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+  const previousContracts = registeredOwnerContracts.map((entry) => entry.id === agatha.id ? agatha : entry);
+  await assertOwnerDeliveryContract(agatha, {
+    contracts: previousContracts, readJson: historicalJson, readText: historicalText,
+  });
   const peerFile = 'scripts/data/owner-mappings/contest-of-chaos.json';
   const changed = await json(peerFile);
   changed.relationshipReview.dispositions = changed.relationshipReview.dispositions
     .filter((entry) => entry.orderId !== agatha.id);
   changed.relationshipReview.approvalDigest = approvalDigestFor(changed.relationshipReview);
-  const contracts = registeredOwnerContracts.map((entry) => entry.id === changed.id
+  const contracts = previousContracts.map((entry) => entry.id === changed.id
     ? { ...entry, approvalDigest: changed.relationshipReview.approvalDigest } : entry);
   await assert.rejects(assertOwnerDeliveryContract(agatha, {
-    contracts, readJson: (file) => file === peerFile ? structuredClone(changed) : json(file),
+    contracts, readJson: (file) => file === peerFile ? structuredClone(changed) : historicalJson(file),
+    readText: historicalText,
   }), /explicit reciprocal disposition/);
 });
 
