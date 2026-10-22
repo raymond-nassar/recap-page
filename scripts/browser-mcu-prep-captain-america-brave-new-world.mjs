@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -16,7 +17,7 @@ const hulkCard = catalog.lists.find((row) => row.id === 'question-of-the-week-do
 const hulk = readJson(`../src/data/${hulkCard.file}`);
 const houseCard = catalog.lists.find((row) => row.id === 'house-of-m');
 const house = readJson(`../src/data/${houseCard.file}`);
-const { id, name, description, sourceUrl, groups } = fixture;
+const { id, name, description, sourceUrl, groups } = afterMcuEditorialEntry(fixture);
 const ownerCredit = 'Selected by raymond-nassar for MCU Prep';
 const expected = fixture.rows.map(([position, issueId, title, group]) => ({
   position, issueId, title, group: groups[group],

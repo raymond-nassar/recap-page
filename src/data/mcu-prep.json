@@ -283,7 +283,6 @@
     { "id": "mcu-prep-doctor-strange-2016", "releases": ["doctor-strange"] },
     { "id": "doctor-strange-multiverse-of-madness", "releases": ["doctor-strange-multiverse-of-madness"] },
     { "id": "spider-man-no-way-home", "releases": ["spider-man-no-way-home"] },
-    { "id": "marvel-multiverse", "releases": [], "note": "General multiverse reading, not assigned to a single screen release." },
     { "id": "marvel-what-if", "releases": ["what-if-season-1"], "note": "Placed at the series debut, not assumed to accompany every later season." },
     { "id": "wandavision", "releases": ["wandavision"] },
     { "id": "spider-man-far-from-home", "releases": ["spider-man-far-from-home"] },

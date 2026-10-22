@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import { legacyOwnerPeers, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -60,7 +61,7 @@ const expectedSelections = [
 const expectedIssueIds = expectedSelections.flatMap((selection) => selection.issueIds);
 const expectedGroups = expectedSelections.map((selection) => `${selection.title} (${selection.writer})`);
 const expectedScreenIds = [
-  'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
+  'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home',
   'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
   'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world',
   'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again',
@@ -261,10 +262,19 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
   const visibleOrders = await Promise.all(entries.map(async (entry) => ({
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
+  const archived = mcuEditorial.withdrawal.catalogEntry;
+  const recordedVisible = [...entries];
+  const archivedPosition = recordedVisible.findIndex(({ id }) => id === mcuEditorial.withdrawal.beforeId);
+  assert.ok(archivedPosition >= 0);
+  recordedVisible.splice(archivedPosition, 0, archived);
+  const recordedVisibleOrders = [...visibleOrders];
+  recordedVisibleOrders.splice(archivedPosition, 0, {
+    id: archived.id, issueIds: issueIdsFromValue(await readJson('src', 'data', archived.file)).map(String),
+  });
   const visibleDigest = libraryDigestFor({
-    lists: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id))
+    lists: legacyOwnerPeers(recordedVisible).filter((entry) => !laterIds.includes(entry.id))
       .map(historicalReadingChoiceCatalogEntry), paths: catalog.paths,
-  }, legacyOwnerPeers(visibleOrders).filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
+  }, legacyOwnerPeers(recordedVisibleOrders).filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   })));
   assert.deepEqual(ledger.sourceContentProjection, projectionFields);
@@ -289,7 +299,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     {
       report: visibleReport, review: mapping.visibleRelationshipReview,
       currentLibraryDigest: visibleDigest,
-      expectedOrderIds: legacyOwnerPeers(entries).filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
+      expectedOrderIds: legacyOwnerPeers(recordedVisible).filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
       currentOrders: visibleOrders,
       count: 280,
     },
@@ -316,9 +326,9 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     const current = buildComparisonReport({
       candidateIds: expectedIssueIds, orders: evidence.currentOrders,
     });
-    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredCatalogAdditionIds.length);
+    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredCatalogAdditionIds.length - 1);
     assert.deepEqual(legacyOwnerPeers(current.comparisons), [
-      ...evidence.report.comparisons,
+      ...evidence.report.comparisons.filter((row) => row.orderId !== archived.id),
       ...laterIds.map((orderId) => ({
         orderId, sharedCount: 0, sharedIds: [], relationship: 'none',
       })),

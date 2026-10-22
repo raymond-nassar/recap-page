@@ -1926,11 +1926,11 @@
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:7-60|0": {
     "anchor": "test/helpers/current-reading-library.mjs:7-60",
-    "fp": "e425759f7b3ef2fe",
+    "fp": "4ff9ac605de63a2c",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:149-176|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:149-176",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:153-180|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:153-180",
     "fp": "77d116d6f6eb531a",
     "head": "for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {"
   },
@@ -1994,13 +1994,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12224-12308|0": {
-    "anchor": "src/data/catalog.json:12224-12308",
-    "fp": "7491561a680f672d",
-    "head": "\"id\": \"marvel-knights-to-planet-x\","
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12146-12271|0": {
+    "anchor": "src/data/catalog.json:12146-12271",
+    "fp": "a679899453ea002c",
+    "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7926-7965|0": {
-    "anchor": "src/data/curated-lists.json:7926-7965",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7895-7934|0": {
+    "anchor": "src/data/curated-lists.json:7895-7934",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },

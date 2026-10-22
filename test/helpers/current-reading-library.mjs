@@ -45,22 +45,22 @@ const mcuContracts = registeredOwnerContracts.filter((contract) => contract.surf
 export const registeredEventContracts = registeredOwnerContracts.filter((contract) => contract.surface === 'modern-timeline');
 const rosterAdditionCount = registrations.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
-  sources: baseline.sourceIds.length + rosterAdditionCount,
-  visible: baseline.catalogIds.length + rosterAdditionCount,
-  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount,
-  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
-  mcu: baseline.mcuEntries.length + mcuContracts.length,
+  sources: baseline.sourceIds.length + rosterAdditionCount - 1,
+  visible: baseline.catalogIds.length + rosterAdditionCount - 1,
+  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
+  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
+  mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // The qualified UX pool retains 46 non-MCU readings; new MCU guides share its canonical shelf.
-  storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
+  storylines: 46 + baseline.mcuEntries.length + mcuContracts.length - 1,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta,
-  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta,
+  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta - 2,
+  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta - 2,
   itemFiles: 297 + rosterAdditionCount,
 });
 
 function expectedRosters(contracts, curatedGuides = registeredCuratedGuides) {
-  const expectedSources = [...baseline.sourceIds];
+  const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse');
   for (const contract of [...contracts, ...curatedGuides]) {
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
     assert.ok(at >= 0, 'Registered source insertion needs its approved anchor.');

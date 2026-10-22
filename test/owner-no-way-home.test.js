@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -320,11 +321,11 @@ test('archived owner No Way Home approval binds the actual packet, mapping and e
   assert.equal(report.comparisonCount, 280);
   assert.equal(report.librarySnapshot.entries.length, report.comparisonCount);
   const reviewedIds = new Set(report.librarySnapshot.entries.map(({ id }) => id));
-  const orders = await Promise.all(catalog.lists.filter(({ id }) => reviewedIds.has(id)).map(async (peer) => ({
+  const orders = withRetiredOrders(await Promise.all(catalog.lists.filter(({ id }) => reviewedIds.has(id)).map(async (peer) => ({
     orderId: peer.id,
     issueIds: historicalReadingChoiceIssueIds(peer.id,
       (await readJson('src', 'data', peer.file)).items.map(({ issueId }) => String(issueId))),
-  })));
+  }))), reviewedIds);
   assert.equal(orders.length, reviewedIds.size);
   for (const order of orders) {
     assert.equal(report.peerDigests[order.orderId], digestCanonicalJson(order.issueIds));
