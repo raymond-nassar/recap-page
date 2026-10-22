@@ -9,7 +9,7 @@ const end = source.indexOf('\nasync function seedRemovalFixture(', start);
 const entry = source.lastIndexOf('\nmain().catch(');
 assert.ok(start > 0 && end > start && entry > end, 'browser runner boundaries exist');
 
-function fixture(failAt) {
+function fixture(failAt, fault = '') {
   // Run the actual lifecycle and command entry, not a second implementation of its reporter.
   const script = `
     import assert from 'node:assert/strict';
@@ -17,6 +17,13 @@ function fixture(failAt) {
     import { constants } from 'node:os';
     import { dirname, join } from 'node:path';
     const failAt = ${JSON.stringify(failAt)};
+    const fault = ${JSON.stringify(fault)};
+    const nativeSetTimeout = globalThis.setTimeout;
+    globalThis.setTimeout = (callback, delay, ...args) =>
+      nativeSetTimeout(callback, [2000, 5000].includes(delay) ? 25 : delay, ...args);
+    let launchSignal;
+    const unrelated = new AbortController();
+    if (fault.includes('retained')) setInterval(() => {}, 1000);
     const secret = 'PRIVATE_PROFILE https://private.invalid/ PRIVATE_STDERR';
     const failure = (name) => Object.assign(new Error(secret), { name });
     const child = Object.assign(new EventEmitter(), { exitCode: null, signalCode: null });
@@ -34,7 +41,7 @@ function fixture(failAt) {
         console.log('FIXTURE create-context=' + contexts);
         if (contexts === failAt) {
           browser.connected = false;
-          if (failAt === 2) {
+          if (failAt === 2 && fault !== 'native-late') {
             child.exitCode = 37;
             child.emit('exit', 37, null);
           }
@@ -44,20 +51,43 @@ function fixture(failAt) {
         events.push('context-' + contexts);
         return {
           newPage: async () => { events.push('page-' + contexts); return {}; },
-          close: async () => { closed += 1; events.push('close-' + contexts); },
+          close: async () => {
+            closed += 1; events.push('close-' + contexts);
+            if (fault === 'context-hang') return new Promise(() => {});
+          },
         };
       },
       close: async () => {
         assert.equal(closed, contexts - (failAt ? 1 : 0));
         assert.equal(prepared, closed);
         console.log('FIXTURE browser-cleanup');
-        if (failAt) throw failure('ProtocolError');
-        child.exitCode = 0;
-        child.emit('exit', 0, null);
+        if (fault.startsWith('browser-hang')) return new Promise(() => {});
+        if (fault === 'browser-reject') throw failure('ProtocolError');
+        if (failAt && fault !== 'native-late') throw failure('ProtocolError');
+        child.exitCode = ['native-late', 'native-after-pass'].includes(fault) ? 3221225477 : 0;
+        child.emit('exit', child.exitCode, null);
         browser.emit('disconnected');
       },
     });
-    globalThis.fixtureDriver = { launch: async () => browser };
+    browser.disconnect = async () => {
+      console.log('FIXTURE disconnect');
+      browser.connected = false;
+      browser.emit('disconnected');
+    };
+    globalThis.fixtureDriver = { launch: async (options) => {
+      launchSignal = options.signal;
+      launchSignal?.addEventListener('abort', () => {
+        assert.equal(unrelated.signal.aborted, false);
+        console.log('FIXTURE owned-abort');
+        child.exitCode = 0;
+        child.emit('exit', 0, null);
+      });
+      process.on('exit', () => {
+        console.log('FIXTURE signal-aborted=' + launchSignal?.aborted);
+        assert.equal(unrelated.signal.aborted, false);
+      });
+      return browser;
+    } };
     const resolveDriver = () => secret;
     const resolveEdge = () => secret;
     const existsSync = () => true;
@@ -77,6 +107,7 @@ function fixture(failAt) {
       close: (done) => {
         console.log('FIXTURE server-cleanup');
         console.log('FIXTURE events=' + events.join(','));
+        if (fault.startsWith('server-hang')) return;
         done(failAt ? failure(secret) : undefined);
       },
     });
@@ -148,6 +179,63 @@ test('browser reporting preserves successful scenario order, totals and isolated
   assert.match(result.stdout, /FIXTURE events=context-1,page-1,prepare-1,run-first,close-1,context-2,page-2,prepare-2,run-second,close-2/);
   assert.match(result.stdout, /BROWSER stage=process-exit cleanup=true browser=HeadlessChrome\/140\.0\.7339\.0 driver=24\.31\.0 exit=0 signal=unknown/);
   assert.doesNotMatch(result.stdout, /stage=failure|stage=failed/);
+});
+
+test('browser cleanup deadlines stop continuation and retain primary failure and completed totals', () => {
+  const context = fixture(null, 'context-hang');
+  assert.equal(context.status, 1, context.output);
+  assert.match(context.output, /stage=close-context code=TimeoutError/);
+  assert.match(context.output, /SCENARIOS completed=0 planned=2 last-completed=none/);
+  assert.doesNotMatch(context.output, /SCENARIO id=second/);
+  const primary = fixture(2, 'browser-hang');
+  assert.equal(primary.status, 1, primary.output);
+  assert.match(primary.output, /FAIL scenario=second stage=create-context code=TargetCloseError/);
+  assert.match(primary.output, /1 assertion\(s\) passed, 1 failed/);
+  assert.match(primary.output, /FAIL stage=close-browser code=TimeoutError/);
+  assert.match(primary.output, /FIXTURE owned-abort/);
+  assert.match(primary.output, /FIXTURE disconnect/);
+  assert.match(primary.output, /FIXTURE signal-aborted=true/);
+  assert.doesNotMatch(primary.output, /PRIVATE_|private\.invalid|Error:|file:\/\/|data:text/);
+});
+
+test('cleanup-only browser and server failures never qualify otherwise passing scenarios', () => {
+  for (const fault of ['browser-hang', 'browser-reject', 'server-hang']) {
+    const result = fixture(null, fault);
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.output, /2 assertion\(s\) passed, 0 failed/);
+    assert.match(result.output, /SCENARIOS completed=2 planned=2 last-completed=second/);
+    assert.match(result.output, fault.startsWith('browser')
+      ? /FAIL stage=close-browser code=(TimeoutError|ProtocolError)/
+      : /FAIL stage=close-server code=TimeoutError/);
+    assert.match(result.output, new RegExp('FIXTURE signal-aborted=' + fault.startsWith('browser')));
+    assert.doesNotMatch(result.output, /PRIVATE_|private\.invalid|Error:|file:\/\/|data:text/);
+  }
+  assert.match(fixture(null).output, /FIXTURE signal-aborted=false/);
+});
+
+test('failed cleanup final guard exits despite retained driver handles', () => {
+  for (const fault of ['browser-hang-retained', 'server-hang-retained']) {
+    const result = fixture(null, fault);
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.output, /FAIL stage=cleanup-exit code=TimeoutError/);
+    assert.match(result.output, /FIXTURE server-cleanup/);
+    assert.match(result.output, /2 assertion\(s\) passed, 0 failed/);
+  }
+});
+
+test('native evidence distinguishes late exit observation from disconnect before cleanup', () => {
+  const failure = fixture(2);
+  assert.match(failure.output, /exit=37 signal=unknown exitHex=0x00000025 disconnectedBeforeCleanup=true/);
+  const unknown = fixture(1);
+  assert.match(unknown.output, /exit=unknown signal=unknown exitHex=unknown disconnectedBeforeCleanup=true/);
+  const success = fixture(null);
+  assert.match(success.output, /exit=0 signal=unknown exitHex=0x00000000 disconnectedBeforeCleanup=false/);
+  const late = fixture(2, 'native-late');
+  assert.equal(late.status, 1, late.output);
+  assert.match(late.output, /stage=process-exit cleanup=true .*exit=3221225477 signal=unknown exitHex=0xc0000005 disconnectedBeforeCleanup=true/);
+  const crashAfterPass = fixture(null, 'native-after-pass');
+  assert.equal(crashAfterPass.status, 1, crashAfterPass.output);
+  assert.match(crashAfterPass.output, /2 assertion\(s\) passed, 0 failed/);
 });
 
 function diagnosticFixture(
