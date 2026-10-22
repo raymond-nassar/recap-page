@@ -108,10 +108,11 @@ jobs:
       # `--ignore-scripts` because a manifest is contributor-editable: an install
       # script is arbitrary code a pull request can add, running before any review
       # step. Measured: 0 of the 76 locked packages declare one, so this costs
-      # nothing today and closes the boundary before one arrives.
+      # nothing today and closes the boundary before one arrives. The npm advisory
+      # lookup is not a CI gate and can stall the install after packages are fetched.
       - name: Install
         timeout-minutes: 4
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --no-audit
 
       # `npm test` is deliberately `node --test` with no path argument. Node only
       # began expanding glob patterns after 20, so a quoted pattern would be read
@@ -155,7 +156,7 @@ jobs:
 
       - name: Install
         timeout-minutes: 4
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --no-audit
 
       # Reports only. `npm run lint:fix` is the local counterpart; CI never rewrites
       # the tree, so formatting drift shows up as a failure rather than a surprise

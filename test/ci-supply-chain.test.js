@@ -162,6 +162,16 @@ test('no install step runs the dependency graph lifecycle scripts', () => {
   }
 });
 
+test('CI installs do not wait for npm registry audit requests', () => {
+  const ci = files.find(({ path }) => path === '.github/workflows/ci.yml');
+  const installs = ci.text.split(/\r?\n/).filter((line) => /\bnpm ci\b/.test(line));
+
+  assert.ok(installs.length > 0, 'the CI workflow has npm ci commands');
+  for (const line of installs) {
+    assert.match(line, /--no-audit/, 'CI dependency installation must not wait for npm audit');
+  }
+});
+
 // The flag above is only worth having if nothing undoes it afterwards. `npm rebuild` re-runs the
 // scripts the install skipped, and `npx` fetches and executes a package outright, so either one
 // reopens the boundary while every other check here stays green. Neither is forbidden anywhere
