@@ -118,9 +118,27 @@ function fixture(failAt, fault = '') {
     };
     const SCENARIOS = ['first', 'second'].map((id) => ({
       id, title: 'Fixture ' + id,
+      operations: ['peer-load-home', 'primary-activate', 'viewing-storage-ack', 'peer-viewing-ack'],
       run: async (_page, t) => {
         events.push('run-' + id);
         t.check(id + ' assertion', true);
+        if (id === 'first' && fault.startsWith('operation-')) {
+          const name = fault.slice('operation-'.length);
+          try {
+            await t.step(name === 'private' ? secret : name, async () => {
+              console.log('FIXTURE operation-invoked');
+              throw failure('TimeoutError');
+            });
+          } catch (error) {
+            if (name === 'private') assert.equal(error.message, 'Undeclared browser scenario operation');
+            throw error;
+          }
+        }
+        if (id === 'first' && fault === 'after-operation') {
+          const value = await t.step('peer-load-home', async () => 42);
+          assert.equal(value, 42);
+          throw failure('ProtocolError');
+        }
       },
     }));
     const MUTATIONS = [];
@@ -179,6 +197,34 @@ test('browser reporting preserves successful scenario order, totals and isolated
   assert.match(result.stdout, /FIXTURE events=context-1,page-1,prepare-1,run-first,close-1,context-2,page-2,prepare-2,run-second,close-2/);
   assert.match(result.stdout, /BROWSER stage=process-exit cleanup=true browser=HeadlessChrome\/140\.0\.7339\.0 driver=24\.31\.0 exit=0 signal=unknown/);
   assert.doesNotMatch(result.stdout, /stage=failure|stage=failed/);
+});
+
+test('browser operation diagnostics distinguish loading, activation and viewing acknowledgements without private data', () => {
+  for (const name of ['peer-load-home', 'primary-activate', 'viewing-storage-ack', 'peer-viewing-ack']) {
+    const result = fixture(null, `operation-${name}`);
+    assert.equal(result.status, 1, result.output);
+    const pending = result.stdout.indexOf(`stage=run operation=${name} state=pending`);
+    assert.ok(pending >= 0 && pending < result.stdout.indexOf('FIXTURE operation-invoked'));
+    assert.match(result.stdout, new RegExp(`FAIL scenario=first stage=run code=TimeoutError operation=${name}`));
+    assert.match(result.stdout, new RegExp(`first ran to the end\\s+stage=run code=TimeoutError operation=${name}`));
+    assert.doesNotMatch(result.output, /PRIVATE_|private\.invalid|Error:|file:\/\/|data:text|state=complete/);
+    assert.match(result.stdout, /SCENARIOS completed=1 planned=2 last-completed=second/);
+  }
+});
+
+test('completed operations preserve return values and do not mislabel a later failure', () => {
+  const result = fixture(null, 'after-operation');
+  assert.equal(result.status, 1, result.output);
+  assert.match(result.stdout, /stage=run operation=peer-load-home state=complete/);
+  assert.match(result.stdout, /FAIL scenario=first stage=run code=ProtocolError\r?\n/);
+  assert.doesNotMatch(result.output, /code=ProtocolError operation=|PRIVATE_|private\.invalid/);
+});
+
+test('undeclared browser operations fail before invocation without printing their names', () => {
+  const result = fixture(null, 'operation-private');
+  assert.equal(result.status, 1, result.output);
+  assert.match(result.stdout, /FAIL scenario=first stage=run code=TypeError\r?\n/);
+  assert.doesNotMatch(result.output, /FIXTURE operation-invoked|operation=|PRIVATE_|private\.invalid/);
 });
 
 test('browser cleanup deadlines stop continuation and retain primary failure and completed totals', () => {

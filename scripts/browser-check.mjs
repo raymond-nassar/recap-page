@@ -2191,6 +2191,11 @@ const SCENARIOS = [
   {
     id: 'home-updates-state',
     title: 'Real tab viewing, deletion, queued locks and feature-local faults preserve reading state',
+    operations: [
+      'reading-snapshot', 'peer-create-page', 'peer-prepare-page', 'peer-install-fixture',
+      'peer-load-home', 'viewing-click', 'viewing-storage-ack', 'peer-viewing-ack',
+      'viewing-ui-check', 'primary-activate',
+    ],
     async run(page, t) {
       await page.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
       await open(page, '/?catalog=actual#/home');
@@ -2216,21 +2221,23 @@ const SCENARIOS = [
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return state.lists['news-state-fixture'].itemIds.length === 3 && state.writeToken === 'news-state-proof';
         }));
-      const before = await homeUpdatesSnapshot(page);
+      const before = await t.step('reading-snapshot', () => homeUpdatesSnapshot(page));
       const context = page.browserContext();
-      const other = await context.newPage();
+      const other = await t.step('peer-create-page', () => context.newPage());
       try {
         other.__denyExternal = true;
-        await preparePage(other, page.__origin, null);
-        await other.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
-        await open(other, '/?catalog=actual#/home');
-        await click(page, '#home-updates-toggle');
-        await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
-        await other.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
-        t.check('explicit viewing clears New in both actual tabs', await page.evaluate(() => document.querySelector('#home-updates-new').hidden));
+        await t.step('peer-prepare-page', () => preparePage(other, page.__origin, null));
+        await t.step('peer-install-fixture', () => other.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; }));
+        await t.step('peer-load-home', () => open(other, '/?catalog=actual#/home'));
+        await t.step('viewing-click', () => click(page, '#home-updates-toggle'));
+        await t.step('viewing-storage-ack', () => page.waitForFunction(
+          (key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id));
+        await t.step('peer-viewing-ack', () => other.waitForFunction(() => document.querySelector('#home-updates-new').hidden));
+        t.check('explicit viewing clears New in both actual tabs',
+          await t.step('viewing-ui-check', () => page.evaluate(() => document.querySelector('#home-updates-new').hidden)));
         // Edge leaves this background tab's SVG load pending until activation. Reload the
         // visible tab, as a reader would, while keeping the peer alive for storage events.
-        await page.bringToFront();
+        await t.step('primary-activate', () => page.bringToFront());
         await click(page, '#home-updates-close');
         await page.reload({ waitUntil: 'load' });
         t.check('viewing survives reload while the entry stays available and closed',
@@ -17876,6 +17883,18 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     : null);
   const requireCompletion = exportsFiles && downloads?.requireCompletion === true;
   let stage = 'create-context';
+  let operation = null;
+  t.step = async (name, action) => {
+    if (!scenario.operations?.includes(name) || !/^[a-z]+(?:-[a-z]+)*$/.test(name)) {
+      throw new TypeError('Undeclared browser scenario operation');
+    }
+    operation = name;
+    console.log(`SCENARIO id=${scenario.id} stage=${stage} operation=${operation} state=pending`);
+    const result = await action();
+    console.log(`SCENARIO id=${scenario.id} stage=${stage} operation=${operation} state=complete`);
+    operation = null;
+    return result;
+  };
   const enter = (next) => {
     stage = next;
     console.log(`SCENARIO id=${scenario.id} stage=${stage}`);
@@ -17909,7 +17928,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     await scenario.run(page, t);
     completed = true;
   } catch (err) {
-    error = `stage=${stage} code=${failureCode(err)}`;
+    error = `stage=${stage} code=${failureCode(err)}${operation ? ` operation=${operation}` : ''}`;
     console.log(`FAIL scenario=${scenario.id} ${error}`);
     infrastructure = stage === 'create-context' || stage === 'create-page'
       || err?.name === 'TargetCloseError' || browser.connected === false;
