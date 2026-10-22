@@ -19,6 +19,7 @@ import {
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
 import { OWNER_EVENT_PROVIDER, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import { mcuEditorial } from './mcu-editorial.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 export const OWNER_PROVIDER = Object.freeze({
@@ -463,7 +464,7 @@ export function ownerChecklist(source, mapping) {
   return `${lines.join('\n')}\n`;
 }
 
-function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mapping) {
+export function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mapping) {
   let lines = existingMarkdown.replace(/\r\n/g, '\n').split('\n');
   const confirmedCount = mapping.rows
     .filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
@@ -502,7 +503,21 @@ function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mappin
     groups.get(key).push(row);
   }
   const insertions = [];
-  for (const [group, rows] of groups) {
+  const chunks = [...groups].flatMap(([group, rows]) => {
+    const existingPositions = previousMapping.rows
+      .filter((row) => row.sourceRangeReference === group)
+      .map((row) => row.sourcePosition);
+    const parts = [];
+    for (const row of rows) {
+      const last = parts.at(-1);
+      if (!last || existingPositions.some((position) => (
+        position > last.at(-1).sourcePosition && position < row.sourcePosition
+      ))) parts.push([row]);
+      else last.push(row);
+    }
+    return parts.map((part) => [group, part]);
+  });
+  for (const [group, rows] of chunks) {
     rows.sort((left, right) => left.sourcePosition - right.sourcePosition);
     const first = rows[0].sourcePosition;
     const last = rows.at(-1).sourcePosition;
@@ -743,8 +758,13 @@ function ownerIdentityParts(identity) {
 function validateIdentityUpdateRequest(request) {
   assert.equal(request?.schemaVersion, 1, 'Identity update schemaVersion must be 1.');
   assert.ok(Object.keys(request).every((key) => (
-    ['schemaVersion', 'id', 'generatedAt', 'identities'].includes(key)
+    ['schemaVersion', 'id', 'generatedAt', 'identities', 'description'].includes(key)
   )), 'Identity update request contains unsupported fields.');
+  if (Object.hasOwn(request, 'description')) {
+    assert.ok(typeof request.description === 'string' && request.description.trim()
+      && !/[\r\n\u2013\u2014]/.test(request.description),
+    'The reviewed description must be a nonempty single line with ASCII separators.');
+  }
   assert.match(request.id ?? '', /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
   assert.ok(Number.isFinite(Date.parse(request.generatedAt ?? ''))
     && new Date(request.generatedAt).toISOString() === request.generatedAt,
@@ -783,6 +803,10 @@ function assertRelationshipReportExtension(previous, current) {
   }
   const currentById = new Map(current.comparisons.map((entry) => [entry.orderId, entry]));
   for (const comparison of previous.comparisons) {
+    if (!currentById.has(comparison.orderId)
+      && comparison.orderId === mcuEditorial.withdrawal.manifestEntry.id
+      && comparison.relationship === 'none' && comparison.sharedCount === 0
+      && comparison.sharedIds.length === 0) continue;
     assert.equal(canonicalJson(currentById.get(comparison.orderId)), canonicalJson(comparison),
       `Current relationship report changed approved overlap with ${comparison.orderId}.`);
   }
@@ -964,6 +988,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   nextPacket.proposedManifest = {
     ...nextPacket.proposedManifest,
     expect: nextPacket.rows.length,
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
   };
   nextPacket.packetDigest = packetDigestFor(nextPacket);
 
@@ -1048,6 +1073,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const groups = [...new Set(nextMapping.rows.map((row) => row.sourceRangeReference).filter(Boolean))];
   const nextContract = {
     ...structuredClone(contract),
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
+    libraryDigest: nextReport.libraryDigest,
     groups,
     rows: nextMapping.rows.map((row) => [
       row.sourcePosition, row.selectedIssueId, row.resolvedIssueTitle,
@@ -1105,6 +1132,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   });
   const nextPayload = {
     ...payload,
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
     generatedAt: request.generatedAt,
     count: nextItems.length,
     items: nextItems,
@@ -1123,6 +1151,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     ...catalog,
     lists: catalog.lists.map((entry) => entry.id !== request.id ? entry : ({
       ...entry,
+      ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
       count: nextItems.length,
       placeholderCount: gaps.placeholders,
       emptyRecordCount: gaps.empty,

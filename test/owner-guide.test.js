@@ -7,11 +7,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   authorizeOwnerGuide, emitOwnerGuide, emitOwnerGuideIdentityUpdate, OWNER_PROVIDER, ownerApprovalRequest,
-  parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, verifyOwnerMetadataCache,
+  parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, updatedOwnerChecklist,
+  verifyOwnerMetadataCache,
 } from '../scripts/lib/owner-guide.mjs';
 import { validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
+import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText, mcuEditorial,
 } from '../scripts/lib/mcu-editorial.mjs';
@@ -381,15 +383,11 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
   // This identity-only fixture requires the original approval, not a later editorial overlay.
   const manifestFile = path.join(root, 'src', 'data', 'curated-lists.json');
   await writeFile(manifestFile, json(beforeMcuEditorialManifest(
-    await readJson(manifestFile), { restoreWithdrawal: true },
+    await readJson(manifestFile),
   )));
   const fixtureCatalogFile = path.join(root, 'src', 'data', 'catalog.json');
   const fixtureCatalog = await readJson(fixtureCatalogFile);
   fixtureCatalog.lists = fixtureCatalog.lists.map(beforeMcuEditorialEntry);
-  fixtureCatalog.lists.splice(
-    fixtureCatalog.lists.findIndex(({ id }) => id === mcuEditorial.withdrawal.beforeId),
-    0, structuredClone(mcuEditorial.withdrawal.catalogEntry),
-  );
   await writeFile(fixtureCatalogFile, json(fixtureCatalog));
   for (const { file } of mcuEditorial.entries) {
     const payloadFile = path.join(root, 'src', 'data', file);
@@ -399,6 +397,7 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
     schemaVersion: 1,
     id: 'mcu-prep-the-incredible-hulk-2008',
     generatedAt: '2026-10-22T12:00:00.000Z',
+    description: 'An owner-confirmed original with provider details still unavailable.',
     identities: [{
       sourcePosition: 1,
       issueId: 999999,
@@ -428,6 +427,8 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
     url: request.identities[0].url,
   }]);
   assert.deepEqual(proposal.review.exactDuplicates, []);
+  assert.ok(!proposal.review.relationshipChanges.some(({ orderId, after }) =>
+    orderId === mcuEditorial.withdrawal.manifestEntry.id && after !== null));
   assert.ok(proposal.outputs.every((output) => /^[a-f0-9]{64}$/.test(output.sha256)));
 
   const catalogFile = path.join(root, 'src', 'data', 'catalog.json');
@@ -448,6 +449,9 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
     ...request,
     identities: [{ ...request.identities[0], providerStatus: 200 }],
   }, { root }), /Only a recorded provider 404 can use owner-confirmed identity evidence/);
+  await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
+    ...request, description: 'Invalid\nmultiline copy',
+  }, { root }), /reviewed description/);
   await writeFile(catalogFile, originalCatalog);
   const freshProposal = await prepareOwnerGuideIdentityUpdate(request, { root });
   await emitOwnerGuideIdentityUpdate(freshProposal, {
@@ -465,4 +469,36 @@ test('owner-confirmed identity preparation binds a synthetic registered guide an
   assert.ok(updatedMarkdown.indexOf('## Hulk: Season One') < updatedMarkdown.indexOf('## Hulk: Gray'));
   assert.match(updatedMarkdown,
     /Hulk: Season One \(2012\) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->/);
+  for (const file of ['src/data/mcu_prep_the_incredible_hulk_2008.json',
+    'test/fixtures/owner-delivery/mcu-prep-the-incredible-hulk-2008.json']) {
+    assert.equal((await readJson(path.join(root, file))).description, request.description);
+  }
+  const updatedManifest = await readJson(manifestFile);
+  assert.equal(updatedManifest.lists.find(({ id }) => id === request.id).description, request.description);
+  assert.ok(!updatedManifest.lists.some(({ id }) => id === mcuEditorial.withdrawal.manifestEntry.id));
+  const updatedCatalog = await readJson(catalogFile);
+  assert.equal(updatedCatalog.lists.find(({ id }) => id === request.id).description, request.description);
+  assert.ok(!updatedCatalog.lists.some(({ id }) => id === mcuEditorial.withdrawal.manifestEntry.id));
+  assert.equal((await readJson(path.join(root, 'scripts/data/owner-packets', `${request.id}.json`)))
+    .proposedManifest.description, request.description);
+});
+
+test('identity checklist insertion keeps interleaved existing originals in exact source order', () => {
+  const row = (sourcePosition, confirmed = false) => ({
+    sourcePosition, selectedIssueId: 1000 + sourcePosition, sourceRangeReference: 'Same group',
+    resolvedIssueTitle: `Sample (2020) #${sourcePosition}`,
+    marvelIssueUrl: `https://www.marvel.com/comics/issue/${1000 + sourcePosition}/sample`,
+    ...(confirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
+  });
+  const previous = { rows: [row(2), row(7), row(9)] };
+  const mapping = { rows: [row(2), row(3, true), row(4, true), row(5, true),
+    row(6, true), row(7), row(8, true), row(9)] };
+  const markdown = '# Sample\n\nSource: owner selection.\nSelected by owner.\n\n## Same group\n\n'
+    + previous.rows.map((entry) =>
+      `- [ ] [${entry.resolvedIssueTitle} <!-- mrt:source-occurrence=${entry.sourcePosition} -->](${entry.marvelIssueUrl})\n`).join('');
+  const parsed = parseChecklist(updatedOwnerChecklist(markdown, { rows: [] }, previous, mapping));
+  assert.deepEqual(parsed.unresolved, []);
+  assert.deepEqual(parsed.entries.map(({ sourceKey }) => Number(sourceKey)), [2, 3, 4, 5, 6, 7, 8, 9]);
+  assert.deepEqual(parsed.entries.map(({ issueId }) => issueId), mapping.rows.map(({ selectedIssueId }) => selectedIssueId));
+  assert.ok(parsed.entries.every(({ section }) => section === 'Same group'));
 });

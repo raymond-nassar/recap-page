@@ -1093,7 +1093,7 @@ authored paths with 10 and 12 stops from the curated manifest at
 `src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12146-12271`.
+`src/data/catalog.json:12147-12272`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2920,7 +2920,7 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:719-740`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:734-755`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
 (`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
@@ -2999,16 +2999,19 @@ positions, with West Coast Avengers #51 deliberately before #42-50. The
 The private flat input is a projection, not the full brief; their separate
 basename, byte-count and hash receipts do not require private artifact access.
 
-The guide publishes 39 exactly resolved originals. Five West Coast Avengers
-issues, #42-45 and #47, remain explicit source gaps at positions 3-6 and 8,
-not placeholders or substituted issues. Exact provider requests for candidates
+The guide publishes all 44 selected originals: 39 provider-resolved records and five
+owner-confirmed West Coast Avengers identities, #42-45 and #47, at source positions
+3-6 and 8. These are not placeholders or substituted issues. Exact provider requests for candidates
 55231-55234 and 55236 returned HTTP 404; the complete 97-row series 3630 response
 also omits them. [Gap #813](https://github.com/raymond-nassar/recap-page/issues/813)
 records those lookups and the owner's later confirmation of all five full
 publisher URLs on October 21, 2026. That confirmation settles the selected
-identities, not missing provider metadata. The owner explicitly deferred publishing
-those five through a future owner-confirmed route to a separate follow-up.
-The reader description discloses the missing issues.
+identities, not missing provider metadata. The maintained identity-update route publishes
+the five with explicit identity evidence, null provider fields and no covers. The owner
+approved the exact proposal digest on October 22, 2026, after reviewing the five URLs,
+source positions, description replacement and overlap changes. The reader description
+discloses the missing provider details rather than claiming the issues are excluded.
+The factual source remains the original intake record; packet gap resolutions record this update.
 
 Provider responses retrieved on October 22, 2026 UTC supply the factual publication,
 creator, digital-ID and cover-URL fields. Vision (2015) #4 uses standard original
@@ -3020,11 +3023,14 @@ IDs do not establish current Marvel Unlimited access. Attribution remains
 `Selected by raymond-nassar for MCU Prep` and `sourceLicense` remains `null`.
 
 The [complete-library overlap report](../scripts/data/owner-overlaps/mcu-prep-visionquest.json)
-records 317 comparisons: 12 approved partial relationships and 305 with no shared
-original. The broad Vision guide shares 30 published originals and WandaVision
-shares three; neither duplicates this family-focused sequence. Older guides and
+records 316 comparisons: 12 approved partial relationships and 304 with no shared
+original. The withdrawn Marvel Multiverse guide is not part of the current library.
+The broad Vision guide shares 35 published originals and WandaVision
+shares eight; neither duplicates this family-focused sequence. Older guides and
 their approvals remain unchanged. Import is additive in the existing saved-data
-schema and preserves original-level reading progress and notes.
+schema and preserves original-level reading progress and notes. An already saved 39-row
+copy keeps its membership, custom order and progress when opened or reloaded; publishing
+the completed catalog guide does not silently insert issues into saved lists.
 
 Screen metadata uses the US series premiere, October 13, 2026, in Phase Six.
 The [US Disney+ article](https://www.disneyplus.com/explore/articles/marvel-visionquest)

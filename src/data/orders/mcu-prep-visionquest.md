@@ -2,7 +2,7 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/812).
 Selected by raymond-nassar for MCU Prep. Exact whole-original identities are retained in supplied order.
-Missing originals remain explicit in the factual source and its linked gap Issues, not silently substituted.
+5 owner-confirmed identities have no provider details or cover.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
 
 ## Billy and Tommy: origins of the twins
@@ -11,7 +11,12 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [West Coast Avengers (1985) #51 <!-- mrt:source-occurrence=2 -->](https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51)
 ## Vision Quest: reconstruction and memory
 
+- [ ] [West Coast Avengers (1985) #42 <!-- mrt:source-occurrence=3 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42)
+- [ ] [West Coast Avengers (1985) #43 <!-- mrt:source-occurrence=4 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43)
+- [ ] [West Coast Avengers (1985) #44 <!-- mrt:source-occurrence=5 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44)
+- [ ] [West Coast Avengers (1985) #45 <!-- mrt:source-occurrence=6 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45)
 - [ ] [West Coast Avengers (1985) #46 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46)
+- [ ] [West Coast Avengers (1985) #47 <!-- mrt:source-occurrence=8 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47)
 - [ ] [West Coast Avengers (1985) #48 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48)
 - [ ] [West Coast Avengers (1985) #49 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/17791/west_coast_avengers_1985_49)
 - [ ] [West Coast Avengers (1985) #50 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50)
