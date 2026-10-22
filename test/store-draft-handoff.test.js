@@ -220,7 +220,7 @@ test('handoff cleanup, pinned tools, deadlines and one-day retention bound accep
   assert.equal(deadlines.slice(1).reduce((sum, value) => sum + value, 0), 126);
   assert.equal(deadlines.length - 1, 15);
   assert.match(workflow, /group: store-draft-handoff\n {2}cancel-in-progress: false/);
-  assert.match(step('Set up build driver'), /setup-node@820762786026740c76f36085b0efc47a31fe5020/);
+  assert.match(step('Set up build driver'), /setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1/);
   assert.match(step('Set up build driver'), /node-version: '24\.20\.0'/);
   const winapp = step('Install checksum-verified WinApp CLI');
   assert.match(winapp, /F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8/);
@@ -240,7 +240,7 @@ test('handoff cleanup, pinned tools, deadlines and one-day retention bound accep
   assert.doesNotMatch(cleanup, /SilentlyContinue/);
   const upload = step('Upload temporary handoff');
   assert.match(upload, /if: success\(\) && steps\.staged\.outcome == 'success' && steps\.cleaned\.outcome == 'success'/);
-  assert.match(upload, /upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/);
+  assert.match(upload, /upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9/);
   assert.match(upload, /retention-days: 1\n {10}compression-level: 0/);
   assert.match(upload, /if-no-files-found: error/);
   assert.ok(upload.includes(`name: store-draft-handoff-\${{ github.run_id }}-\${{ github.run_attempt }}-\${{ github.workflow_sha }}-${application}`));
