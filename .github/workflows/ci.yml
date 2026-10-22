@@ -74,7 +74,7 @@ jobs:
       #
       # The numbers are 241 CI runs, 676 successful jobs, worst completed time per step:
       # checkout 5s, setup-node 20s, install 8s, tests 6s, eslint 4s, each gate 1s.
-      # On 2026-10-22, npm ci exceeded the former four-minute deadline in all three jobs
+      # On 2026-10-22, package installation exceeded the former four-minute deadline in all three jobs
       # without producing output. Ten minutes gives the install room to recover while
       # retaining a step-level deadline that reports a real overrun as failure.
       # Pinned to a full commit revision rather than a tag. A tag is a mutable pointer
