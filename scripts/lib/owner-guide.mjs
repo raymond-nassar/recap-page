@@ -14,12 +14,12 @@ import {
   approvalDigestFor, assertGapTransition, assertMappingMatchesPacketOccurrences, assertSourceGap, canonicalJson,
   digestCanonicalJson, gapEvidenceDigestFor, mappingDigestFor, packetDigestFor,
   sourceCountsForPacket, sourceGapResolutionDigestFor, sourceIdentityKey, sourcePositionsForPacket,
-  validateFrozenPacket, validateMappingDigest, validatePacketProposal, validateReportDigest,
+  validateApprovalDigest, validateFrozenPacket, validateMappingDigest, validatePacketProposal, validateReportDigest,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
 import { OWNER_EVENT_PROVIDER, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
-import { mcuEditorial } from './mcu-editorial.mjs';
+import { beforeMcuEditorialEntry, mcuEditorial } from './mcu-editorial.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 export const OWNER_PROVIDER = Object.freeze({
@@ -794,7 +794,7 @@ function outputBody(file, value) {
   return { file, content: typeof value === 'string' ? value : jsonText(value) };
 }
 
-function assertRelationshipReportExtension(previous, current) {
+export function assertRelationshipReportExtension(previous, current, laterGuides = []) {
   for (const field of [
     'candidateId', 'packetDigest', 'mappingDigest', 'peerDigests', 'sourceCounts', 'candidateCount',
   ]) {
@@ -812,9 +812,42 @@ function assertRelationshipReportExtension(previous, current) {
   }
   const previousIds = new Set(previous.comparisons.map((entry) => entry.orderId));
   const additions = current.comparisons.filter((entry) => !previousIds.has(entry.orderId));
-  assert.ok(additions.every((entry) => (
-    entry.relationship === 'none' && entry.sharedCount === 0 && entry.sharedIds.length === 0
-  )), 'New library entries with shared issues require a separate relationship review.');
+  for (const entry of additions) {
+    if (entry.relationship === 'none' && entry.sharedCount === 0 && entry.sharedIds.length === 0) continue;
+    assert.ok(current.candidateId === 'mcu-prep-agatha-all-along' && entry.orderId === 'contest-of-chaos'
+      && entry.relationship === 'partial' && entry.sharedCount === 1
+      && canonicalJson(entry.sharedIds) === canonicalJson(['109670']),
+    'New library entries with shared issues require a separate relationship review.');
+    const later = laterGuides.find(({ contract }) => contract.id === entry.orderId);
+    assert.ok(later, 'New library entries with shared issues require a separate relationship review.');
+    const { contract, mapping, report } = later;
+    validateMappingDigest(mapping);
+    validateReportDigest(report);
+    validateApprovalDigest(mapping.relationshipReview, contract.id);
+    assert.equal(mapping.id, contract.id);
+    assert.equal(report.candidateId, contract.id);
+    assert.equal(mapping.reviewStatus, 'approved');
+    const review = mapping.relationshipReview;
+    assert.equal(review.proposalDigest, contract.proposalDigest);
+    assert.equal(review.approvalDigest, contract.approvalDigest);
+    assert.equal(review.reportDigest, report.reportDigest);
+    assert.equal(review.mappingDigest, mapping.mappingDigest);
+    assert.equal(report.mappingDigest, mapping.mappingDigest);
+    const reciprocal = report.comparisons.find(({ orderId }) => orderId === current.candidateId);
+    const authority = review.dispositions.find(({ orderId }) => orderId === current.candidateId);
+    assert.ok(reciprocal && authority, 'Later owner authority must include this earlier guide.');
+    assert.equal(authority.decision, 'approved');
+    assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
+    const inverse = {
+      partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset',
+    };
+    assert.equal(entry.relationship, inverse[reciprocal.relationship]);
+    for (const value of [reciprocal, authority]) {
+      assert.equal(value.sharedCount, entry.sharedCount);
+      assert.deepEqual([...value.sharedIds].sort(), [...entry.sharedIds].sort());
+      assert.equal(value.relationship, reciprocal.relationship);
+    }
+  }
 }
 
 async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
@@ -833,10 +866,20 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const currentMappingForPaths = JSON.parse(await readFile(currentMappingFile, 'utf8'));
   const peerMappingFiles = Object.keys(currentMappingForPaths.relationshipReview?.peerDigests ?? {})
     .map((id) => path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`));
+  const previousReportForPaths = JSON.parse(await readFile(path.join(root, paths.report), 'utf8'));
+  const previousOrderIds = new Set(previousReportForPaths.comparisons.map(({ orderId }) => orderId));
+  const laterGuidePaths = registry.guides
+    .filter(({ id }) => id !== request.id && !previousOrderIds.has(id))
+    .map(({ id, contract }) => ({
+      contract: path.join(root, contract),
+      mapping: path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`),
+      report: path.join(root, 'scripts', 'data', 'owner-overlaps', `${id}.json`),
+    }));
   const targetPaths = Object.values(paths).map((name) => path.join(root, name));
   const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
   const inputPaths = [
     manifestFile, catalogFile, registryFile, payloadFile, ...targetPaths, ...peerMappingFiles,
+    ...laterGuidePaths.flatMap((entry) => Object.values(entry)),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
   ];
   const inputs = await readPublicationInputs({ root, paths: inputPaths });
@@ -864,7 +907,10 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   validateReportDigest(previousReport);
   assert.equal(mapping.packetDigest, packet.packetDigest);
   assert.equal(canonicalJson(mapping.proposedManifest), canonicalJson(packet.proposedManifest));
-  assert.equal(canonicalJson(manifest.lists.find((entry) => entry.id === request.id)),
+  const currentManifestEntry = manifest.lists.find((entry) => entry.id === request.id);
+  const approvedManifestEntry = canonicalJson(currentManifestEntry) === canonicalJson(packet.proposedManifest)
+    ? currentManifestEntry : beforeMcuEditorialEntry(currentManifestEntry);
+  assert.equal(canonicalJson(approvedManifestEntry),
     canonicalJson(packet.proposedManifest), 'The registered manifest differs from its approved packet.');
   assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
   assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);
@@ -883,7 +929,9 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     expectedOrderIds: previousReport.comparisons.map((entry) => entry.orderId),
     packetValidation: { provider },
   });
-  assertRelationshipReportExtension(previousReport, verifiedReport);
+  assertRelationshipReportExtension(previousReport, verifiedReport, laterGuidePaths.map((entry) => ({
+    contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
+  })));
 
   const gapByPosition = new Map((packet.sourceGaps ?? []).map((gap) => [gap.sourcePosition, gap]));
   const existingIds = new Set(mapping.rows.map((row) => Number(row.selectedIssueId)));
@@ -1164,7 +1212,10 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   };
   const nextManifest = {
     ...manifest,
-    lists: manifest.lists.map((entry) => entry.id === request.id ? nextPacket.proposedManifest : entry),
+    lists: manifest.lists.map((entry) => entry.id === request.id ? {
+      ...nextPacket.proposedManifest,
+      description: request.description ?? currentManifestEntry.description,
+    } : entry),
   };
   assert.deepEqual(parseManifest(nextManifest).errors, []);
   const outputValues = [

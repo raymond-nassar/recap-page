@@ -2703,10 +2703,10 @@
       "description": "Explore Bruce Banner's origins and life on the run to understand the man, monster and relationships behind The Incredible Hulk. Hulk: Gray revisits his early days and bond with Betty Ross, while Return of the Monster follows a hunted Banner. These comics explore the tension the film draws on rather than its exact events.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 12,
+      "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 2,
+      "collections": 3,
       "characters": [
         "Hulk",
         "Betty Ross"
@@ -2727,7 +2727,8 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-09T15:22:04.093Z"
+      "updatedAt": "2026-10-22T08:26:00.000Z",
+      "ownerConfirmedIdentityCount": 1
     },
     {
       "id": "mcu-prep-iron-man-2-2010",
@@ -3854,13 +3855,13 @@
       "id": "mcu-prep-agatha-all-along",
       "file": "mcu_prep_agatha_all_along.json",
       "name": "MCU Prep: Agatha All Along",
-      "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 7,
+      "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 2,
+      "collections": 3,
       "characters": [
         "Agatha Harkness",
         "Scarlet Witch",
@@ -3885,7 +3886,8 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/703",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-07T14:50:35.496Z"
+      "updatedAt": "2026-10-22T08:31:00.000Z",
+      "ownerConfirmedIdentityCount": 5
     },
     {
       "id": "agents-of-atlas-reading-order",

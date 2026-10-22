@@ -1093,7 +1093,7 @@ authored paths with 10 and 12 stops from the curated manifest at
 `src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12147-12272`.
+`src/data/catalog.json:12149-12274`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3041,3 +3041,47 @@ instead gives October 14; the maintained discovery metadata explicitly uses US
 premieres. The owner's editorial brief connects the reconstruction arc, the
 twins' origins and reunion, and Tom King's synthezoid family story as preparation,
 not a promise of issue-by-issue screen adaptation.
+
+## Owner-confirmed Hulk and Agatha identities
+
+The owner confirmed the exact publisher URLs on October 22, 2026, as recorded in the
+coordinator's attributed relays for
+[Hulk: Season One](https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990)
+and [House of Harkness](https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749).
+Hulk: Season One (2012), ID 41502, remains a standalone graphic novel with no displayed
+issue number. It fills source position 1 in The Incredible Hulk companion, taking
+the guide from 12 to 13 originals. House of Harkness Infinity Comic (2024) #1-5,
+IDs 121656-121660, fill positions 8-12 in Agatha All Along, taking that guide from
+seven to twelve originals.
+
+The maintained identity updater prepared each guide separately. The owner approved
+exact proposal digests
+`13f5b58fa23a9c71dc14b8cbef57cbe64d2558745bb3b648144ab073e39e82d7`
+and `abaa57ea4ee7cb894f048dc5fc6c7b3bbca2fce2f96e4d04b6bd470b99ca19e3`,
+respectively, through the coordinating session's chat prompts. Packet and mapping
+gap resolutions retain the original provider refusals and the identity confirmations;
+the factual intake stays historical. These six added rows have no provider details,
+cover, digital ID or availability assertion. No publisher page was fetched.
+
+Neither addition changes shared-issue overlap with any current guide. Agatha's
+existing Scarlet Witch Annual prelude still shares original 109670 with Contest of
+Chaos, whose earlier approved reciprocal disposition is retained and validated.
+The [identity revision record](../scripts/data/owner-identity-revisions.json)
+preserves the applied proposal digests and publication deltas. Historical tests
+replay the exact earlier artifacts from its pinned pre-publication commit instead
+of rewriting old approvals. The existing editorial recommendation is preserved for
+Hulk; Agatha's final sentence now describes the included identity-only chapters.
+
+Existing saved copies keep their previous membership, custom order, notes, progress,
+deferred comics and availability overrides. Publication does not silently add comics
+to saved lists; a fresh import uses the completed guide. There is no schema change
+or migration.
+
+[Captain America Spotlight](https://github.com/raymond-nassar/recap-page/issues/762)
+remains a gap because the owner found no publisher URL.
+[Thunderbolts #-1](https://github.com/raymond-nassar/recap-page/issues/687) has an
+owner-confirmed identity, but its older guide and negative numbering are outside
+the maintained updater's eligibility.
+[Venom Super Special](https://github.com/raymond-nassar/recap-page/issues/707) is
+confirmed too, but registration alone cannot preserve its older guide's qualified
+anthology groups. Both require bounded follow-ups rather than widening this update.

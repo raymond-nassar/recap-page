@@ -12,6 +12,7 @@ import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
 import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
 } from '../../scripts/lib/mcu-editorial.mjs';
+import { beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload } from './owner-identity-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -88,11 +89,14 @@ export function historicalMcuDescriptionEntry(entry) {
 }
 
 export function historicalMcuDescriptionManifest(manifest) {
-  const original = beforeMcuEditorialManifest(manifest, { restoreWithdrawal: true });
+  const original = beforeMcuEditorialManifest({
+    ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)),
+  }, { restoreWithdrawal: true });
   return { ...original, lists: original.lists.map(historicalMcuDescriptionEntry) };
 }
 
 export function historicalMcuDescriptionPayloadText(file, text) {
+  text = `${JSON.stringify(beforeIdentityPayload(file, JSON.parse(text)), null, 2)}\n`;
   text = beforeMcuEditorialPayloadText(file, text);
   const revision = descriptionFiles.get(file);
   if (!revision) return text;
@@ -138,6 +142,8 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
+  manifest = { ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)) };
+  orders = beforeIdentityOrders(orders);
   const earlier = new Map(manifest.lists.filter((entry) =>
     entry.description === descriptions.get(entry.id)?.before).map((entry) => [entry.id, entry.description]));
   manifest = beforeMcuEditorialManifest({

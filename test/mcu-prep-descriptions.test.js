@@ -12,6 +12,7 @@ import {
   historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
   historicalMcuDescriptionPayloadText,
 } from './helpers/reading-choice-history.mjs';
+import { beforeIdentityPayload, identityRevisions } from './helpers/owner-identity-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
@@ -124,9 +125,12 @@ test('all thirty recommendations identify the reading benefit with exact current
   for (const edit of mcuEditorial.entries) {
     const entry = manifest.lists.find(({ id }) => id === edit.id);
     const card = catalog.lists.find(({ id }) => id === edit.id);
-    const { description, ...payload } = await json(`src/data/${edit.file}`);
-    assert.equal(entry.description, edit.after, edit.id);
-    assert.equal(card.description, edit.after, edit.id);
+    const currentPayload = await json(`src/data/${edit.file}`);
+    const { description, ...payload } = beforeIdentityPayload(edit.file, currentPayload);
+    const currentDescription = identityRevisions.guides.find(({ id }) => id === edit.id)?.description ?? edit.after;
+    assert.equal(entry.description, currentDescription, edit.id);
+    assert.equal(card.description, currentDescription, edit.id);
+    assert.equal(currentPayload.description, currentDescription, edit.id);
     assert.equal(description, edit.after, edit.id);
     assert.equal(digestCanonicalJson(payload), edit.nonDescriptionSha256, edit.id);
     assert.ok(firstSentence(edit.after).length >= 90 && firstSentence(edit.after).length <= 140, edit.id);

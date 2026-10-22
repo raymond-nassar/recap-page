@@ -2,11 +2,12 @@
   "schemaVersion": 1,
   "id": "mcu-prep-agatha-all-along",
   "name": "MCU Prep: Agatha All Along",
-  "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+  "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable.",
   "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/703",
   "groups": [
     "Fantastic Four by Lee/Kirby: Agatha Harkness introduction",
-    "Scarlet Witch by Steve Orlando Vol. 1: The Last Door"
+    "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
+    "House of Harkness Infinity Comic (2024) #1-5"
   ],
   "rows": [
     [
@@ -50,18 +51,49 @@
       109670,
       "Scarlet Witch Annual (2023) #1",
       1
+    ],
+    [
+      8,
+      121656,
+      "House of Harkness Infinity Comic (2024) #1",
+      2
+    ],
+    [
+      9,
+      121657,
+      "House of Harkness Infinity Comic (2024) #2",
+      2
+    ],
+    [
+      10,
+      121658,
+      "House of Harkness Infinity Comic (2024) #3",
+      2
+    ],
+    [
+      11,
+      121659,
+      "House of Harkness Infinity Comic (2024) #4",
+      2
+    ],
+    [
+      12,
+      121660,
+      "House of Harkness Infinity Comic (2024) #5",
+      2
     ]
   ],
   "sourceCounts": {
     "sourceOccurrenceCount": 12,
     "sourceIdentityCount": 12,
-    "includedIssueCount": 7,
-    "sourceGapCount": 5,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 12,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
   "sourceSha256": "a2333e43bca925e1b5e4648e8ffcce7546adfb0f12cb3927ac139accd550baa8",
-  "proposalDigest": "e1fecd9a229d1bd93b0bc765bcbea234fe0ac8841b259497f24fb3a38ec06e01",
-  "approvalDigest": "4453058f04062fc4215b530d7a41bac9b84b4b18346fffa4e10d8a590d8e987b",
+  "proposalDigest": "b42d3b52b531db90bbc2a73fe6a1b9fec3ae669feaa4578b62d6cd8b1b544197",
+  "approvalDigest": "1f6521f1f18dadf8530410d2658b7a524debe20080ab5085a99402d0798d84a5",
   "insertionAnchor": {
     "beforeId": "agents-of-atlas-reading-order"
   },
@@ -71,5 +103,6 @@
     "scripts/data/owner-mappings/mcu-prep-agatha-all-along.json",
     "scripts/data/owner-overlaps/mcu-prep-agatha-all-along.json"
   ],
-  "vectorSha256": "d97d94e7af9a779b4036a4071bece3f7a8c8b90a35f657b841e5c5512dd3242a"
+  "vectorSha256": "e78776f8ffc30127ce5c3715ef3fbdb5c59ec913190a4ac946f5b20cb9b3084d",
+  "libraryDigest": "fe0b53e30af59b7398066933fc7b98775c393196d7fe74fe5b6350010cb016f6"
 }

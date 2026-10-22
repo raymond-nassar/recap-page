@@ -2,8 +2,12 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/761).
 Selected by raymond-nassar for MCU Prep. Exact whole-original identities are retained in supplied order.
-Missing originals remain explicit in the factual source and its linked gap Issues, not silently substituted.
+1 owner-confirmed identities have no provider details or cover.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
+
+## Hulk: Season One
+
+- [ ] [Hulk: Season One (2012) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/41502/hulk_season_one_2012_1)
 
 ## Hulk: Gray
 

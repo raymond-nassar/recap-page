@@ -9,7 +9,7 @@
   "sourceIssueBearingBlocksSha256": "35275783f568247b0f188d05bde8fabca168803bc864b463e710ab920dd6d0b9",
   "sourceBoundary": "Owner-selected whole works; original positions include explicit exclusions and documented source gaps.",
   "excludedSourceReferences": [],
-  "expectedCount": 12,
+  "expectedCount": 13,
   "proposedManifest": {
     "id": "mcu-prep-the-incredible-hulk-2008",
     "name": "MCU Prep: The Incredible Hulk (2008)",
@@ -34,12 +34,23 @@
       "the-incredible-hulk"
     ],
     "coverIssueId": 365,
-    "expect": 12
+    "expect": 13
   },
   "insertionAnchor": {
     "beforeId": "doctor-strange-multiverse-of-madness"
   },
   "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Hulk: Season One",
+      "normalizedSeriesTitle": "hulk season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
     {
       "sourcePosition": 2,
       "sourceIssueReference": "Hulk: Gray (2003) #1",
@@ -186,22 +197,38 @@
     }
   ],
   "sourceOccurrenceCount": 13,
-  "sourceGaps": [
+  "packetDigest": "2e42ba9e4452f9a7e4e1589b8a17257bf233f0439c94f6a02940e8126d6d8728",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T15:20:43.801Z",
+    "proposalDigest": "1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
+    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
+  },
+  "sourceGapResolutions": [
     {
       "sourcePosition": 1,
-      "sourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
-      "sourceRangeReference": "Hulk: Season One",
-      "normalizedSeriesTitle": "hulk season one",
-      "seriesYear": 2012,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "previousSourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
+      "previousSourceRangeReference": "Hulk: Season One",
+      "previousNormalizedSeriesTitle": "hulk season one",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "null",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 41502,
+      "resolvedNormalizedSeriesTitle": "hulk season one",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": null,
       "checkedAt": "2026-10-09",
-      "auditBasis": "Owner-selected standalone original; exact supplied candidate41502 returned404. No fabricated serial number or alternative edition.",
+      "auditBasis": "Owner-confirmed identity for Hulk: Season One (2012), recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-09; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "bibliography",
           "url": "https://openlibrary.org/works/OL21040434W/editions.json?limit=5",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/41502",
           "retrievedAt": "2026-10-09"
         },
         {
@@ -210,20 +237,26 @@
           "retrievedAt": "2026-10-09"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "tracking",
           "url": "https://github.com/raymond-nassar/recap-page/issues/762",
           "retrievedAt": "2026-10-09"
         }
       ],
-      "evidenceDigest": "cc36f340651d51c5dab24e148b9240a92db3ea4b8e2343cff17d9eb1f68214bc"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 41502,
+        "label": "Hulk: Season One (2012)",
+        "url": "https://www.marvel.com/comics/issue/41502/hulk_season_one_2012_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990"
+      },
+      "evidenceDigest": "364c93bf4fc4ad70da4e9cb2585b93a4a7169a4ce00ddf711b03734484e2e631"
     }
-  ],
-  "packetDigest": "338ca493794973cc245fa3d9f2395224e8658e10a85634620ceddb755ccbe704",
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-    "reviewedAt": "2026-10-09T15:20:43.801Z",
-    "proposalDigest": "1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
-    "rationale": "Reviewed the immutable snapshot receipt, approved description, exact source positions and candidate identities. Explicit Captain print and Extremis corrections retain original references; Hulk and Spotlight gaps retain separately assigned tracking evidence. Standalone originals retain null displayed numbering and genuine metadata0. No substitute issue, invented group or copied provider prose."
-  }
+  ]
 }

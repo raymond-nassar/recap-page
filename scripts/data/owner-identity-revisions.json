@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "f3a614417b22733cc68e15946e894fba8263454c",
+  "guides": [
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
+      "generatedAt": "2026-10-22T08:26:00.000Z",
+      "issueIds": [41502],
+      "proposalDigest": "13f5b58fa23a9c71dc14b8cbef57cbe64d2558745bb3b648144ab073e39e82d7"
+    },
+    {
+      "id": "mcu-prep-agatha-all-along",
+      "generatedAt": "2026-10-22T08:31:00.000Z",
+      "issueIds": [121656, 121657, 121658, 121659, 121660],
+      "proposalDigest": "abaa57ea4ee7cb894f048dc5fc6c7b3bbca2fce2f96e4d04b6bd470b99ca19e3",
+      "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable."
+    }
+  ]
+}

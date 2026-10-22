@@ -20,6 +20,7 @@ import {
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
+import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, identityRevisions } from './owner-identity-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -28,8 +29,9 @@ export async function assertOwnerDeliveryContract(contract, {
   contracts = registeredOwnerContracts,
   peerCount = currentReadingCensus.peers,
   readJson = null,
+  readText = null,
 } = {}) {
-  const text = (name) => readFile(path.join(root, name), 'utf8');
+  const text = readText ?? ((name) => readFile(path.join(root, name), 'utf8'));
   const json = readJson ?? (async (name) => JSON.parse(await text(name)));
   const { id } = contract;
   const event = contract.surface === 'modern-timeline';
@@ -99,7 +101,8 @@ export async function assertOwnerDeliveryContract(contract, {
       .filter((credit) => /writer|penciler|artist/i.test(credit.role))
       .map(({ name, role }) => ({ name, role })));
   }
-  assert.equal(beforeMcuEditorialEntry(payload).description, contract.description);
+  assert.equal(payload.description === contract.description
+    ? payload.description : beforeMcuEditorialEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
   if (event) {
@@ -109,7 +112,9 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
+  const currentEntry = manifest.lists.find((row) => row.id === id);
+  assert.deepEqual(currentEntry.description === packet.proposedManifest.description
+    ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
   assert.equal(
@@ -126,8 +131,13 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(Object.keys(report.peerDigests).sort(), [...peerIds].sort());
   const peerMappings = await Promise.all(peerIds.map(async (peerId) => {
     assert.ok(contracts.some((entry) => entry.id === peerId), 'Selected peers require independent registered contracts.');
-    const peer = await json(`scripts/data/owner-mappings/${peerId}.json`);
+    let peer = await json(`scripts/data/owner-mappings/${peerId}.json`);
     assert.equal(peer.id, peerId);
+    if (identityRevisions.guides.some((entry) => entry.id === peerId)
+      && peer.mappingDigest !== report.peerDigests[peerId]) {
+      peer = beforeIdentityJson(`scripts/data/owner-mappings/${peerId}.json`);
+      assert.equal(peer.mappingDigest, report.peerDigests[peerId]);
+    }
     return peer;
   }));
   const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
@@ -139,7 +149,11 @@ export async function assertOwnerDeliveryContract(contract, {
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
   const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
-  const recordedCurrentDigest = libraryDigestFor(recordedManifest, recordedVectors);
+  const identityUpdate = identityRevisions.guides.some((entry) => entry.id === id);
+  const cutoff = identityUpdate ? mapping.relationshipReview.reviewedAt : '';
+  const recordedCurrentDigest = libraryDigestFor({
+    ...recordedManifest, lists: recordedManifest.lists.map((entry) => beforeIdentityEntry(entry, cutoff)),
+  }, beforeIdentityOrders(recordedVectors, cutoff));
   const currentLibraryDigest = contract.libraryDigest === recordedCurrentDigest
     ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors);
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);

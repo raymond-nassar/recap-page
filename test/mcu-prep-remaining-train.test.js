@@ -22,8 +22,11 @@ import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-mar
 import {
   historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
+import { beforeIdentityText, identityRevisions } from './helpers/owner-identity-history.mjs';
 
-const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+const text = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
+  || identityRevisions.guides.some(({ id }) => file.includes(id) || file.includes(id.replaceAll('-', '_')))
+  ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const agathaId = 'mcu-prep-agatha-all-along';
@@ -65,7 +68,7 @@ async function evidence(id) {
   return { source, packet, mapping, report };
 }
 
-test('remaining MCU Prep train preserves six independent guides, six gaps and complete current authority', async () => {
+test('original remaining MCU Prep train preserves its six guides, six gaps and recorded authority', async () => {
   const [brand, sheHulk, msMarvel, brave, guardians, manifest, catalog, library] = await Promise.all([
     json('test/fixtures/mcu-prep-brand-new-day-vector.json'),
     json('test/fixtures/mcu-prep-she-hulk-vector.json'),

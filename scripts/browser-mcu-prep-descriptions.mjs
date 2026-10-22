@@ -8,7 +8,10 @@ import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory
 import { KEY } from '../src/js/storage.js';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
-const { entries: edits } = json('scripts/data/mcu-prep-description-revision.json');
+const identityRevisions = json('scripts/data/owner-identity-revisions.json');
+const edits = json('scripts/data/mcu-prep-description-revision.json').entries.map((edit) => ({
+  ...edit, after: identityRevisions.guides.find(({ id }) => id === edit.id)?.description ?? edit.after,
+}));
 const catalog = json('src/data/catalog.json');
 const orders = new Map(edits.map((edit) => [edit.id, json(`src/data/${edit.file}`)]));
 const companions = catalog.lists.filter((row) => row.type === 'screen-companion');

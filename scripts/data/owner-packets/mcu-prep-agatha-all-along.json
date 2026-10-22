@@ -9,11 +9,11 @@
   "sourceIssueBearingBlocksSha256": "7a94815e207ac9c7e07836827e37b7f74e5eb392f24fb3b6adaf5d0623667be8",
   "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
   "excludedSourceReferences": [],
-  "expectedCount": 7,
+  "expectedCount": 12,
   "proposedManifest": {
     "id": "mcu-prep-agatha-all-along",
     "name": "MCU Prep: Agatha All Along",
-    "description": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+    "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
@@ -38,7 +38,7 @@
       "House of Harkness"
     ],
     "coverIssueId": 13304,
-    "expect": 7
+    "expect": 12
   },
   "insertionAnchor": {
     "beforeId": "agents-of-atlas-reading-order"
@@ -134,15 +134,92 @@
       "inputPosition": 2,
       "sourceRangeReference": "Scarlet Witch by Steve Orlando Vol. 1: The Last Door",
       "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "house of harkness infinity comic",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "house of harkness infinity comic",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "house of harkness infinity comic",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "house of harkness infinity comic",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "normalizedSeriesTitle": "house of harkness infinity comic",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5"
     }
   ],
   "sourceOccurrenceCount": 12,
-  "sourceGaps": [
+  "packetDigest": "53841a49d0be7a794639af04277d8dd076815ef7f958643461a82cab39b66abc",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central coordinator independent owner-source authority",
+    "rationale": "Approve the corrected three-selection source with exactly12 intended positions, seven readable whole originals and five explicit gaps. Positions1-7 are13304,97133,97135,97136,97137,97138,109670, with intended groups1/6/5 and published1/6/0. Retain only Fantastic Four94 for the Lee/Kirby introduction and Orlando The Last Door, ISBN9780785194743, with its original publisher date and five issues plus Annual. Do not substitute Robinson, add103 or claim physical TOC verification. The actual owner replacement of Darkhold Diaries with House of Harkness1-5 is settled. Positions8-12 retain owner-supplied121656-121660 associations as unverified, exact old404 timestamps/hashes/supplied URLs and open gap728, never fabricated provider metadata or placeholders. Approve exact gap-aware reader copy and owner credit. All13 private originals were rehashed; seven genuine raw responses match historical hashes and factual fields; no gap retry occurred. Public source is self-contained, keeps truthful private name/hash/byte receipts and distinguishes derived corrected input from original owner bytes. This is actual model data authority, not human or formal code review.",
+    "reviewedAt": "2026-10-07T14:46:45.970Z",
+    "proposalDigest": "e1fecd9a229d1bd93b0bc765bcbea234fe0ac8841b259497f24fb3a38ec06e01"
+  },
+  "sourceGapResolutions": [
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 8,
+      "previousSourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
+      "previousSourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "previousNormalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "previousSeriesYear": 2024,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 121656,
+      "resolvedNormalizedSeriesTitle": "house of harkness infinity comic",
+      "resolvedSeriesYear": 2024,
+      "resolvedIssueNumber": "1",
       "checkedAt": "2026-10-06",
-      "auditBasis": "Owner-supplied association 121656, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121656 returned HTTP 404 at 2026-10-06T06:50:25.114Z; raw response SHA-256 a4df43e65bdd826a389ca9d0640f988804c9c85d52308605cde35a4fd490f229. Supplied link https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "auditBasis": "Owner-confirmed identity for House of Harkness Infinity Comic (2024) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-06; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
@@ -155,9 +232,19 @@
           "retrievedAt": "2026-10-05"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/121656",
+          "retrievedAt": "2026-10-06"
+        },
+        {
           "kind": "metadata",
           "url": "https://marvel.emreparker.com/v1/issues/121656",
           "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749",
+          "retrievedAt": "2026-10-22"
         },
         {
           "kind": "owner-correction",
@@ -170,20 +257,31 @@
           "retrievedAt": "2026-10-05"
         }
       ],
-      "sourcePosition": 8,
-      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #1",
-      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
-      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
-      "seriesYear": 2024,
-      "issueNumber": "1",
-      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
-      "evidenceDigest": "0168298d14b49f796b8065a2cd0c211bed4a1a8f8c5d6af1f54361a4642434c8"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 121656,
+        "label": "House of Harkness Infinity Comic (2024) #1",
+        "url": "https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749"
+      },
+      "evidenceDigest": "98512039ca4395c15155e868137bda55159ebcc2ee25d13bf3bab65d7a3100de"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 9,
+      "previousSourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
+      "previousSourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "previousNormalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "previousSeriesYear": 2024,
+      "previousIssueNumber": "2",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 121657,
+      "resolvedNormalizedSeriesTitle": "house of harkness infinity comic",
+      "resolvedSeriesYear": 2024,
+      "resolvedIssueNumber": "2",
       "checkedAt": "2026-10-06",
-      "auditBasis": "Owner-supplied association 121657, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121657 returned HTTP 404 at 2026-10-06T06:50:25.426Z; raw response SHA-256 3bc7739f12f7097e6794cc3b480c2bef0010edee18e504839619470cc8a5c9fa. Supplied link https://www.marvel.com/comics/issue/121657/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "auditBasis": "Owner-confirmed identity for House of Harkness Infinity Comic (2024) #2, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-06; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
@@ -196,9 +294,19 @@
           "retrievedAt": "2026-10-05"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/121657",
+          "retrievedAt": "2026-10-06"
+        },
+        {
           "kind": "metadata",
           "url": "https://marvel.emreparker.com/v1/issues/121657",
           "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749",
+          "retrievedAt": "2026-10-22"
         },
         {
           "kind": "owner-correction",
@@ -211,20 +319,31 @@
           "retrievedAt": "2026-10-05"
         }
       ],
-      "sourcePosition": 9,
-      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #2",
-      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
-      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
-      "seriesYear": 2024,
-      "issueNumber": "2",
-      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
-      "evidenceDigest": "93d1e1eaf3781e2b95d36de7fdd6e94407f5a7dce9411cc2d148ab89a25632b0"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 121657,
+        "label": "House of Harkness Infinity Comic (2024) #2",
+        "url": "https://www.marvel.com/comics/issue/121657/house_of_harkness_infinity_comic_2024_2",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749"
+      },
+      "evidenceDigest": "e9f534c8315d6c4b1e3f9e6f869e88ec875c8512b7a1bf4bf993d9e69cc4cd97"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 10,
+      "previousSourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
+      "previousSourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "previousNormalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "previousSeriesYear": 2024,
+      "previousIssueNumber": "3",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 121658,
+      "resolvedNormalizedSeriesTitle": "house of harkness infinity comic",
+      "resolvedSeriesYear": 2024,
+      "resolvedIssueNumber": "3",
       "checkedAt": "2026-10-06",
-      "auditBasis": "Owner-supplied association 121658, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121658 returned HTTP 404 at 2026-10-06T06:50:25.592Z; raw response SHA-256 8d64875ff169b0dd03a6f901d52c30a2075915b513a3688fddaae3e06da579e7. Supplied link https://www.marvel.com/comics/issue/121658/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "auditBasis": "Owner-confirmed identity for House of Harkness Infinity Comic (2024) #3, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-06; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
@@ -237,9 +356,19 @@
           "retrievedAt": "2026-10-05"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/121658",
+          "retrievedAt": "2026-10-06"
+        },
+        {
           "kind": "metadata",
           "url": "https://marvel.emreparker.com/v1/issues/121658",
           "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749",
+          "retrievedAt": "2026-10-22"
         },
         {
           "kind": "owner-correction",
@@ -252,20 +381,31 @@
           "retrievedAt": "2026-10-05"
         }
       ],
-      "sourcePosition": 10,
-      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #3",
-      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
-      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
-      "seriesYear": 2024,
-      "issueNumber": "3",
-      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
-      "evidenceDigest": "43cd993068cde56f67cbda2838b3fac4f3aaa12e7278f70fa4f3fdc8d21b8261"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 121658,
+        "label": "House of Harkness Infinity Comic (2024) #3",
+        "url": "https://www.marvel.com/comics/issue/121658/house_of_harkness_infinity_comic_2024_3",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749"
+      },
+      "evidenceDigest": "840c0868e6a714f2a31c40c4b512b70eed4b89d3476bec3141461b933969f012"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 11,
+      "previousSourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
+      "previousSourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "previousNormalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "previousSeriesYear": 2024,
+      "previousIssueNumber": "4",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 121659,
+      "resolvedNormalizedSeriesTitle": "house of harkness infinity comic",
+      "resolvedSeriesYear": 2024,
+      "resolvedIssueNumber": "4",
       "checkedAt": "2026-10-06",
-      "auditBasis": "Owner-supplied association 121659, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121659 returned HTTP 404 at 2026-10-06T06:50:25.775Z; raw response SHA-256 1c3620459de02a36e7dad98ed03832acc3a6ec519fa8a75da50672734ec05e86. Supplied link https://www.marvel.com/comics/issue/121659/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "auditBasis": "Owner-confirmed identity for House of Harkness Infinity Comic (2024) #4, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-06; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
@@ -278,9 +418,19 @@
           "retrievedAt": "2026-10-05"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/121659",
+          "retrievedAt": "2026-10-06"
+        },
+        {
           "kind": "metadata",
           "url": "https://marvel.emreparker.com/v1/issues/121659",
           "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749",
+          "retrievedAt": "2026-10-22"
         },
         {
           "kind": "owner-correction",
@@ -293,20 +443,31 @@
           "retrievedAt": "2026-10-05"
         }
       ],
-      "sourcePosition": 11,
-      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #4",
-      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
-      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
-      "seriesYear": 2024,
-      "issueNumber": "4",
-      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
-      "evidenceDigest": "d2e7573bc89c666a0dbc720efd66cb808f8a18b3dd44ae43e0fd5b7e9e8bf52e"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 121659,
+        "label": "House of Harkness Infinity Comic (2024) #4",
+        "url": "https://www.marvel.com/comics/issue/121659/house_of_harkness_infinity_comic_2024_4",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749"
+      },
+      "evidenceDigest": "91415675b1c3e0775942340d78dd7ea1d32a4ee98126afd7f96c87672e20a38f"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 12,
+      "previousSourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
+      "previousSourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
+      "previousNormalizedSeriesTitle": "House of Harkness Infinity Comic",
+      "previousSeriesYear": 2024,
+      "previousIssueNumber": "5",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 121660,
+      "resolvedNormalizedSeriesTitle": "house of harkness infinity comic",
+      "resolvedSeriesYear": 2024,
+      "resolvedIssueNumber": "5",
       "checkedAt": "2026-10-06",
-      "auditBasis": "Owner-supplied association 121660, not a provider-verified ID. Exact lookup https://marvel.emreparker.com/v1/issues/121660 returned HTTP 404 at 2026-10-06T06:50:25.947Z; raw response SHA-256 4474a72a6f6e31e7ad85b1e6e2a730795524bde61aa466805809d5fd3529e7c9. Supplied link https://www.marvel.com/comics/issue/121660/. Preserve this source position under https://github.com/raymond-nassar/recap-page/issues/728; no retry, substitution, detail or cover invented.",
+      "auditBasis": "Owner-confirmed identity for House of Harkness Infinity Comic (2024) #5, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-06; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
@@ -319,9 +480,19 @@
           "retrievedAt": "2026-10-05"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/121660",
+          "retrievedAt": "2026-10-06"
+        },
+        {
           "kind": "metadata",
           "url": "https://marvel.emreparker.com/v1/issues/121660",
           "retrievedAt": "2026-10-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749",
+          "retrievedAt": "2026-10-22"
         },
         {
           "kind": "owner-correction",
@@ -334,22 +505,16 @@
           "retrievedAt": "2026-10-05"
         }
       ],
-      "sourcePosition": 12,
-      "sourceIssueReference": "House of Harkness Infinity Comic (2024) #5",
-      "sourceRangeReference": "House of Harkness Infinity Comic (2024) #1-5",
-      "normalizedSeriesTitle": "House of Harkness Infinity Comic",
-      "seriesYear": 2024,
-      "issueNumber": "5",
-      "sourceGroup": "House of Harkness Infinity Comic (2024) #1-5",
-      "evidenceDigest": "c3cbd015b14a6cd0dd4a6dda3f088c2930b5af721c9ff25111153d361693a340"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 121660,
+        "label": "House of Harkness Infinity Comic (2024) #5",
+        "url": "https://www.marvel.com/comics/issue/121660/house_of_harkness_infinity_comic_2024_5",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749"
+      },
+      "evidenceDigest": "08b784df28c29a44a06e828d8519d01b55300b8497b785dad510cc611d8d4a68"
     }
-  ],
-  "packetDigest": "0c852f33a660dd747b2d0fd4a41264de9b8203a9c3ea8d2e12b76bac85061c73",
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central coordinator independent owner-source authority",
-    "rationale": "Approve the corrected three-selection source with exactly12 intended positions, seven readable whole originals and five explicit gaps. Positions1-7 are13304,97133,97135,97136,97137,97138,109670, with intended groups1/6/5 and published1/6/0. Retain only Fantastic Four94 for the Lee/Kirby introduction and Orlando The Last Door, ISBN9780785194743, with its original publisher date and five issues plus Annual. Do not substitute Robinson, add103 or claim physical TOC verification. The actual owner replacement of Darkhold Diaries with House of Harkness1-5 is settled. Positions8-12 retain owner-supplied121656-121660 associations as unverified, exact old404 timestamps/hashes/supplied URLs and open gap728, never fabricated provider metadata or placeholders. Approve exact gap-aware reader copy and owner credit. All13 private originals were rehashed; seven genuine raw responses match historical hashes and factual fields; no gap retry occurred. Public source is self-contained, keeps truthful private name/hash/byte receipts and distinguishes derived corrected input from original owner bytes. This is actual model data authority, not human or formal code review.",
-    "reviewedAt": "2026-10-07T14:46:45.970Z",
-    "proposalDigest": "e1fecd9a229d1bd93b0bc765bcbea234fe0ac8841b259497f24fb3a38ec06e01"
-  }
+  ]
 }

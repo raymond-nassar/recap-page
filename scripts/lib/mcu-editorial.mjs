@@ -13,6 +13,9 @@ assert.equal(new Set(record.entries.map(({ id }) => id)).size, 30);
 assert.equal(new Set(record.entries.map(({ file }) => file)).size, 30);
 const byId = new Map(record.entries.map((entry) => [entry.id, entry]));
 const byFile = new Map(record.entries.map((entry) => [entry.file, entry]));
+const identityRevisions = JSON.parse(readFileSync(
+  new URL('../data/owner-identity-revisions.json', import.meta.url), 'utf8',
+)).guides;
 
 // Source approvals describe their original copy, not later editorial recommendations.
 export function beforeMcuEditorialEntry(entry) {
@@ -22,12 +25,16 @@ export function beforeMcuEditorialEntry(entry) {
   for (const field of ['out', 'file']) {
     if (Object.hasOwn(entry, field)) assert.equal(entry[field], revision.file, 'MCU editorial file changed.');
   }
-  assert.ok(entry.description === revision.after || entry.description === revision.before,
-    `${entry.id}: unrecorded MCU editorial description.`);
+  const identity = identityRevisions.find(({ id }) => id === entry.id);
+  assert.ok(entry.description === revision.after || entry.description === revision.before
+    || (identity?.description && entry.description === identity.description),
+  `${entry.id}: unrecorded MCU editorial description.`);
   return { ...entry, description: revision.before };
 }
 
 export function afterMcuEditorialEntry(entry) {
+  const identity = identityRevisions.find(({ id }) => id === entry.id);
+  if (identity?.description && entry.description === identity.description) return entry;
   const original = beforeMcuEditorialEntry(entry);
   const revision = byId.get(original.id);
   return revision ? { ...original, description: revision.after } : original;
