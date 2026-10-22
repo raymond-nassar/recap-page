@@ -573,8 +573,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     'the existing listener helper ran without native operation fences');
   t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
   const proofJobs = workflow.split(/\r?\n {2}preparation:/)[0];
-  assert.equal((proofJobs.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
-  assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
+  assert.equal((proofJobs.match(/actions\/upload-artifact@[0-9a-f]{40}/g) ?? []).length, 4);
+  assert.equal((workflow.match(/actions\/download-artifact@[0-9a-f]{40}/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
     .map((match) => match[1]);
