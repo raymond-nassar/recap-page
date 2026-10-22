@@ -33,10 +33,10 @@ download comics or provide offline comic reading.
 
 ### Phone navigation and controls
 
-On narrow Android screens, the menu button shows only its icon and keeps its **Navigation**
-screen-reader name and 48px minimum touch target. The top bar is the only app branding, with
-the full app icon and no selected-page stripe. Home keeps **Browse. Choose. Read.** as its
-visible, focusable heading instead of repeating the large logo.
+On narrow Android screens, the menu button shows only its icon and keeps its **More**
+screen-reader name and 48px minimum touch target. The navigation bar is the only app branding,
+with the full app icon at the size of its other icons and no selected-page stripe. Home keeps
+**Browse. Choose. Read.** as its visible, focusable heading instead of repeating the large logo.
 
 Home offers **Browse Reading Lists** and **Add comics**, without a Setup recommendation.
 The existing Setup guide remains on Modern Timeline and the other browse pages.

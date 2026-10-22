@@ -2580,11 +2580,18 @@ try {
     });
     check(navigationToggle.labelVisible === (!!viewport.desktop && viewport.width <= 880),
       `${label}: Android navigation is icon-only; desktop label visibility is unchanged`);
-    check(navigationToggle.iconVisible && navigationToggle.controls === 'sidebar-panel'
-      && (viewport.width <= 880 ? navigationToggle.name === 'Navigation'
-        : /^(Expand|Collapse) sidebar$/.test(navigationToggle.name))
-      && (viewport.desktop || (navigationToggle.width >= 48 && navigationToggle.height >= 48)),
-    `${label}: navigation retains its icon, accessible name, controlled panel and touch target`);
+    // The narrow toggle opens the bottom bar's More panel, so main.js names it More, as the
+    // shared browser suite asserts. Each property is named on failure so a miss says which one.
+    const navigationMisses = [
+      !navigationToggle.iconVisible && 'icon hidden',
+      navigationToggle.controls !== 'sidebar-panel' && `controls ${navigationToggle.controls}`,
+      !(viewport.width <= 880 ? navigationToggle.name === 'More'
+        : /^(Expand|Collapse) sidebar$/.test(navigationToggle.name)) && `name ${navigationToggle.name}`,
+      !(viewport.desktop || (navigationToggle.width >= 48 && navigationToggle.height >= 48))
+        && `target ${navigationToggle.width}x${navigationToggle.height}`,
+    ].filter(Boolean);
+    check(!navigationMisses.length,
+      `${label}: navigation retains its icon, accessible name, controlled panel and touch target (${navigationMisses.join('; ')})`);
     const compactHome = !viewport.desktop && viewport.width <= 880;
     const homeBranding = await page.evaluate(() => {
       const heading = document.querySelector('#home-h');
@@ -2598,14 +2605,27 @@ try {
         marker: getComputedStyle(brand, '::before').content,
         iconLoaded: mark.complete && mark.naturalWidth > 0 && mark.naturalHeight > 0,
         iconWidth: bounds.width, iconHeight: bounds.height,
+        iconInside: (() => {
+          const box = brand.getBoundingClientRect();
+          return bounds.left >= box.left && bounds.right <= box.right
+            && bounds.top >= box.top && bounds.bottom <= box.bottom;
+        })(),
       };
     });
     check(homeBranding.heading === (compactHome ? 'Browse. Choose. Read.' : 'RECAP PAGE!')
       && (compactHome ? homeBranding.taglineDisplay === 'none' && homeBranding.transform === 'none'
         : homeBranding.taglineDisplay !== 'none'),
     `${label}: compact Android keeps top-only branding and one tagline; other mastheads are unchanged`);
-    check(homeBranding.iconLoaded && homeBranding.iconWidth === 28 && homeBranding.iconHeight === 28,
-      `${label}: the full app icon remains visible`);
+    // At 880px and below the brand is a bottom-bar destination, and styles.css sizes its mark
+    // with the other bar icons at 20px; wider windows keep the 28px rail mark.
+    const markSize = viewport.width <= 880 ? 20 : 28;
+    const markMisses = [
+      !homeBranding.iconLoaded && 'not loaded',
+      (homeBranding.iconWidth !== markSize || homeBranding.iconHeight !== markSize)
+        && `size ${homeBranding.iconWidth}x${homeBranding.iconHeight}, expected ${markSize}`,
+      !homeBranding.iconInside && 'clipped by its control',
+    ].filter(Boolean);
+    check(!markMisses.length, `${label}: the full app icon remains visible (${markMisses.join('; ')})`);
     check(!compactHome || homeBranding.marker === 'none',
       `${label}: the compact brand has no stray selected-page stripe`);
     if (homeUpdates) {
