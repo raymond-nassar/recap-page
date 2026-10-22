@@ -1087,10 +1087,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7890-7929`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7926-7965`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12139-12264`.
+`src/data/catalog.json:12182-12307`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2908,3 +2908,52 @@ character best-of path. It does not replace or extend the broader Comic Book Her
 guide, and it does not claim an official Marvel reading order. Ultimate Spider-Man (2011) #200
 resolves to issue 50446 in series 17580; the supplied series URL did not identify that issue.
 The checklist source records the selection boundary and links back to this provenance record.
+
+## Owner-authored MCU Prep: VisionQuest
+
+[The owner's selection](https://github.com/raymond-nassar/recap-page/issues/812)
+uses only the final Suggested Reading Order from the supplied brief: 44 original
+positions, with West Coast Avengers #51 deliberately before #42-50. The
+[factual source](../scripts/data/owner-selections/mcu-prep-visionquest.json),
+[packet](../scripts/data/owner-packets/mcu-prep-visionquest.json),
+[mapping](../scripts/data/owner-mappings/mcu-prep-visionquest.json) and
+[checklist](../src/data/orders/mcu-prep-visionquest.md) preserve that selection.
+The private flat input is a projection, not the full brief; their separate
+basename, byte-count and hash receipts do not require private artifact access.
+
+The guide publishes 39 exactly resolved originals. Five West Coast Avengers
+issues, #42-45 and #47, remain explicit source gaps at positions 3-6 and 8,
+not placeholders or substituted issues. Exact provider requests for candidates
+55231-55234 and 55236 returned HTTP 404; the complete 97-row series 3630 response
+also omits them. [Gap #813](https://github.com/raymond-nassar/recap-page/issues/813)
+records those lookups and the owner's later confirmation of all five full
+publisher URLs on October 21, 2026. That confirmation settles the selected
+identities, not missing provider metadata. The owner explicitly deferred publishing
+those five through a future owner-confirmed route to a separate follow-up.
+The reader description discloses the missing issues.
+
+Provider responses retrieved on October 22, 2026 UTC supply the factual publication,
+creator, digital-ID and cover-URL fields. Vision (2015) #4 uses standard original
+57312, digital ID 41079; the owner's unverified variant hint 58262 returned HTTP
+404 and is not selected. The provider retains West Coast Avengers for the same
+1985 volume after its print title becomes Avengers West Coast. No publisher
+pages, synopsis prose or image bytes were copied. Availability dates and digital
+IDs do not establish current Marvel Unlimited access. Attribution remains
+`Selected by raymond-nassar for MCU Prep` and `sourceLicense` remains `null`.
+
+The [complete-library overlap report](../scripts/data/owner-overlaps/mcu-prep-visionquest.json)
+records 317 comparisons: 12 approved partial relationships and 305 with no shared
+original. The broad Vision guide shares 30 published originals and WandaVision
+shares three; neither duplicates this family-focused sequence. Older guides and
+their approvals remain unchanged. Import is additive in the existing saved-data
+schema and preserves original-level reading progress and notes.
+
+Screen metadata uses the US series premiere, October 13, 2026, in Phase Six.
+The [US Disney+ article](https://www.disneyplus.com/explore/articles/marvel-visionquest)
+and [series reference](https://en.wikipedia.org/wiki/Visionquest), retrieved
+October 22, 2026 UTC, support the title, format, date and phase. The
+[UK Disney+ article](https://www.disneyplus.com/en-gb/explore/articles/marvel-visionquest)
+instead gives October 14; the maintained discovery metadata explicitly uses US
+premieres. The owner's editorial brief connects the reconstruction arc, the
+twins' origins and reunion, and Tom King's synthezoid family story as preparation,
+not a promise of issue-by-issue screen adaptation.

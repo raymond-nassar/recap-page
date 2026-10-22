@@ -96,6 +96,10 @@
     {
       "id": "mcu-prep-doctor-strange-2016",
       "contract": "test/fixtures/owner-delivery/mcu-prep-doctor-strange-2016.json"
+    },
+    {
+      "id": "mcu-prep-visionquest",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-visionquest.json"
     }
   ]
 }

@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-visionquest",
+  "name": "VisionQuest",
+  "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/812",
+  "groups": [
+    "Billy and Tommy: origins of the twins",
+    "Vision Quest: reconstruction and memory",
+    "Billy and Tommy: Young Avengers",
+    "Billy and Tommy: family reunion",
+    "Vision: a synthezoid family"
+  ],
+  "rows": [
+    [
+      1,
+      18458,
+      "Vision and the Scarlet Witch (1985) #12",
+      0
+    ],
+    [
+      2,
+      17793,
+      "West Coast Avengers (1985) #51",
+      0
+    ],
+    [
+      7,
+      17927,
+      "West Coast Avengers (1985) #46",
+      1
+    ],
+    [
+      9,
+      17790,
+      "West Coast Avengers (1985) #48",
+      1
+    ],
+    [
+      10,
+      17791,
+      "West Coast Avengers (1985) #49",
+      1
+    ],
+    [
+      11,
+      17792,
+      "West Coast Avengers (1985) #50",
+      1
+    ],
+    [
+      12,
+      1629,
+      "Young Avengers (2005) #1",
+      2
+    ],
+    [
+      13,
+      1721,
+      "Young Avengers (2005) #2",
+      2
+    ],
+    [
+      14,
+      1830,
+      "Young Avengers (2005) #3",
+      2
+    ],
+    [
+      15,
+      1941,
+      "Young Avengers (2005) #4",
+      2
+    ],
+    [
+      16,
+      2049,
+      "Young Avengers (2005) #5",
+      2
+    ],
+    [
+      17,
+      2162,
+      "Young Avengers (2005) #6",
+      2
+    ],
+    [
+      18,
+      2328,
+      "Young Avengers (2005) #7",
+      2
+    ],
+    [
+      19,
+      2448,
+      "Young Avengers (2005) #8",
+      2
+    ],
+    [
+      20,
+      3018,
+      "Young Avengers (2005) #9",
+      2
+    ],
+    [
+      21,
+      3359,
+      "Young Avengers (2005) #10",
+      2
+    ],
+    [
+      22,
+      3887,
+      "Young Avengers (2005) #11",
+      2
+    ],
+    [
+      23,
+      4252,
+      "Young Avengers (2005) #12",
+      2
+    ],
+    [
+      24,
+      31134,
+      "Avengers: The Children's Crusade (2010) #1",
+      3
+    ],
+    [
+      25,
+      31136,
+      "Avengers: The Children's Crusade (2010) #2",
+      3
+    ],
+    [
+      26,
+      31138,
+      "Avengers: The Children's Crusade (2010) #3",
+      3
+    ],
+    [
+      27,
+      31140,
+      "Avengers: The Children's Crusade (2010) #4",
+      3
+    ],
+    [
+      28,
+      31142,
+      "Avengers: The Children's Crusade (2010) #5",
+      3
+    ],
+    [
+      29,
+      31144,
+      "Avengers: The Children's Crusade (2010) #6",
+      3
+    ],
+    [
+      30,
+      31146,
+      "Avengers: The Children's Crusade (2010) #7",
+      3
+    ],
+    [
+      31,
+      31148,
+      "Avengers: The Children's Crusade (2010) #8",
+      3
+    ],
+    [
+      32,
+      34271,
+      "Avengers: The Children's Crusade (2010) #9",
+      3
+    ],
+    [
+      33,
+      57306,
+      "Vision (2015) #1",
+      4
+    ],
+    [
+      34,
+      57309,
+      "Vision (2015) #2",
+      4
+    ],
+    [
+      35,
+      57311,
+      "Vision (2015) #3",
+      4
+    ],
+    [
+      36,
+      57312,
+      "Vision (2015) #4",
+      4
+    ],
+    [
+      37,
+      57313,
+      "Vision (2015) #5",
+      4
+    ],
+    [
+      38,
+      57314,
+      "Vision (2015) #6",
+      4
+    ],
+    [
+      39,
+      57315,
+      "Vision (2015) #7",
+      4
+    ],
+    [
+      40,
+      57316,
+      "Vision (2015) #8",
+      4
+    ],
+    [
+      41,
+      57317,
+      "Vision (2015) #9",
+      4
+    ],
+    [
+      42,
+      57318,
+      "Vision (2015) #10",
+      4
+    ],
+    [
+      43,
+      57319,
+      "Vision (2015) #11",
+      4
+    ],
+    [
+      44,
+      57320,
+      "Vision (2015) #12",
+      4
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 44,
+    "sourceIdentityCount": 44,
+    "includedIssueCount": 39,
+    "sourceGapCount": 5,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "faa4b3808173988d9b4599dd4c692aa490067ce766423e384daa2255167a1f97",
+  "proposalDigest": "6b5c4a3f94db6b9ed08681689196b2aea77f6ec7223b5a3796b44c2227879035",
+  "libraryDigest": "adb5cd32d5d44efc98090be02c295ad19cc92faaf63f5d901d3e7876b7bd1a56",
+  "approvalDigest": "6800d80170847ecbadb867549c33bdb3cc78ba125ca998f6234c6ca2de87a709",
+  "insertionAnchor": {
+    "beforeId": "avengers-doomsday-secret-wars"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-visionquest.json",
+    "scripts/data/owner-packets/mcu-prep-visionquest.json",
+    "scripts/data/owner-mappings/mcu-prep-visionquest.json",
+    "scripts/data/owner-overlaps/mcu-prep-visionquest.json"
+  ],
+  "vectorSha256": "7050f2625f59c2eb88da5ec9135338519024db2b2b3660dfbad21885b58bc714",
+  "screenReleases": [
+    {
+      "id": "visionquest",
+      "title": "VisionQuest",
+      "date": "2026-10-13",
+      "label": "Oct 13, 2026",
+      "phase": 6
+    }
+  ]
+}

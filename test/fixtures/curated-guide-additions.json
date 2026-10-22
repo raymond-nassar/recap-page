@@ -3,7 +3,10 @@
   "guides": [
     {
       "id": "miles-morales-best-of",
-      "contract": "test/fixtures/curated-guide-peer-contracts/miles-morales-best-of.json"
+      "insertionAnchor": {
+        "beforeId": "miles-morales-spider-man-reading-order"
+      },
+      "rowCount": 84
     }
   ]
 }

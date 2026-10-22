@@ -14,10 +14,9 @@ import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/cat
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   assertCurrentReadingRoster, currentReadingCensus, registeredOwnerIds,
-  registeredCuratedPeerContracts,
+  registeredCuratedGuides,
 } from './helpers/current-reading-library.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
-import { assertCuratedGuidePeerReview } from './helpers/curated-guide-peer-review.mjs';
 import {
   historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
@@ -88,8 +87,6 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
   const mcu = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen').select(choices);
   const allEvidence = new Map(await Promise.all([...new Set([...cohort, ...registeredOwnerIds])]
     .map(async (id) => [id, await evidence(id)])));
-  const milesBestOf = registeredCuratedPeerContracts.find((entry) => entry.id === 'miles-morales-best-of');
-  const milesReview = milesBestOf ? await assertCuratedGuidePeerReview(milesBestOf) : null;
   const missing = [];
   const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
   let totalOriginals = 0;
@@ -196,14 +193,7 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
       assert.ok(disposition.authorityIdentity && disposition.rationale && disposition.reviewedAt);
     }
     for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
-      if (milesBestOf && later.orderId === milesBestOf.id) {
-        const reciprocal = milesReview.report.comparisons.find((row) => row.orderId === id);
-        assert.ok(reciprocal, `${id}: Miles best-of review must include this current peer`);
-        assert.equal(later.relationship, inverse[reciprocal.relationship]);
-        assert.equal(later.sharedCount, reciprocal.sharedCount);
-        assert.deepEqual([...later.sharedIds].sort(), [...reciprocal.sharedIds].sort());
-        continue;
-      }
+      if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
       const reviewed = allEvidence.get(later.orderId);
       assert.ok(reviewed, `${id}: later peer ${later.orderId} needs actual current authority`);
       validateMappingDigest(reviewed.mapping);

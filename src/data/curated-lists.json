@@ -6824,6 +6824,42 @@
       "timeline": 2006
     },
     {
+      "id": "mcu-prep-visionquest",
+      "name": "VisionQuest",
+      "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "timeline": null,
+      "sourceFile": "mcu-prep-visionquest.md",
+      "out": "mcu_prep_visionquest.json",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/812",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "characters": [
+        "Vision",
+        "Scarlet Witch",
+        "Wiccan",
+        "Speed",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "VisionQuest",
+        "Vision Quest",
+        "White Vision",
+        "Billy Kaplan",
+        "Tommy Shepherd",
+        "Tom King",
+        "John Byrne",
+        "WandaVision"
+      ],
+      "coverIssueId": 57306,
+      "expect": 39
+    },
+    {
       "id": "avengers-doomsday-secret-wars",
       "name": "Avengers: Doomsday & Avengers: Secret Wars",
       "description": "Doctor Doom at his most brilliant and ruthless, building toward the moment he becomes a literal god ruling over the wreckage of a shattered multiverse. This is the deep end of Marvel cosmic stakes, with Doom finally taking center stage.",
