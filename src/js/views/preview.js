@@ -17,6 +17,7 @@ export function createPreviewView({
   isInLibrary,
   issueFocusAnchor,
   loadOrder,
+  offlineContent,
   onAdd,
   onClose,
   onIssueLoadFailure,
@@ -28,11 +29,18 @@ export function createPreviewView({
   let loadToken = null;
   let previewList = null;
   let previewSession = null;
+  let offlineState = null;
+  let offlineController = null;
+  let offlineControls = null;
   let lifecycleToken = {};
 
   const isCurrent = (session) => session?.token === lifecycleToken;
 
   function invalidate() {
+    offlineController?.abort();
+    offlineController = null;
+    offlineState = null;
+    offlineControls = null;
     lifecycleToken = {};
     loadToken = null;
     previewList = null;
@@ -95,6 +103,140 @@ export function createPreviewView({
     ];
   }
 
+  function offlineActionLabel(state) {
+    if (state === 'checking') return 'Checking offline availability...';
+    if (state === 'preparing') return offlineState?.cancelling ? 'Cancelling...' : 'Preparing offline copy...';
+    if (state === 'ready') return 'Refresh offline copy';
+    if (state === 'stale') return 'Update offline copy';
+    if (state === 'failed' || state === 'cancelled') return 'Try again';
+    if (state === 'unsupported') return 'Offline preparation unavailable';
+    return 'Make available offline';
+  }
+
+  function offlineStatusText() {
+    if (!offlineState) return '';
+    if (offlineState.state === 'checking') return 'Checking whether this Reading List is ready offline.';
+    if (offlineState.state === 'preparing') {
+      const progress = offlineState.progress;
+      if (offlineState.cancelling) return 'Cancelling offline preparation...';
+      if (!progress) return 'Preparing and verifying this Reading List for offline use.';
+      const verb = progress.phase === 'write' ? 'Verified' : 'Fetched';
+      return `${verb} ${progress.completed} of ${progress.total} offline files.`;
+    }
+    if (offlineState.state === 'ready') return 'Offline copy verified and ready on this device.';
+    if (offlineState.state === 'stale') {
+      return offlineState.reason || 'The offline copy needs an update.';
+    }
+    if (offlineState.state === 'unsupported') {
+      return offlineState.error || 'Offline preparation is not supported in this browser.';
+    }
+    if (offlineState.state === 'cancelled') {
+      return 'Preparation cancelled. Any earlier completed offline copy is unchanged.';
+    }
+    if (offlineState.state === 'failed') {
+      return `Offline preparation failed: ${offlineState.error || 'The copy could not be verified.'}`;
+    }
+    return 'This Reading List is not saved for offline use.';
+  }
+
+  function syncOffline() {
+    if (!offlineControls) return;
+    const { action, cancel, status } = offlineControls;
+    const state = offlineState?.state || 'idle';
+    const label = offlineActionLabel(state);
+    action.textContent = label;
+    action.setAttribute('aria-label', labelledName(label, previewList.name));
+    action.dataset.state = state;
+    action.disabled = state === 'checking' || state === 'preparing' || state === 'unsupported';
+    cancel.hidden = state !== 'preparing';
+    cancel.disabled = Boolean(offlineState?.cancelling);
+    cancel.textContent = offlineState?.cancelling ? 'Cancelling...' : 'Cancel';
+    status.textContent = offlineStatusText();
+  }
+
+  function createOfflineControls(list) {
+    if (!elements().offline) return;
+    offlineState = { state: 'checking' };
+    const action = el('button', {
+      type: 'button',
+      class: 'btn btn-g',
+      dataset: { act: 'offline' },
+      onclick: () => { void prepareOffline(list); },
+    });
+    const cancel = el('button', {
+      type: 'button',
+      class: 'btn btn-g',
+      hidden: true,
+      onclick: cancelOffline,
+    }, 'Cancel');
+    const status = el('span', {
+      class: 'rail-hint',
+      role: 'status',
+      'aria-live': 'polite',
+    });
+    offlineControls = { action, cancel, status };
+    syncOffline();
+    return [action, cancel, status];
+  }
+
+  function cancelOffline() {
+    if (!offlineController || offlineState?.state !== 'preparing' || offlineState.cancelling) return;
+    offlineState = { ...offlineState, cancelling: true };
+    offlineController.abort();
+    syncOffline();
+  }
+
+  async function checkOffline(list, session) {
+    if (!offlineContent?.readiness || !offlineControls) {
+      offlineState = {
+        state: 'unsupported',
+        error: 'Offline preparation is not available in this browser.',
+      };
+      syncOffline();
+      return;
+    }
+    const controller = new AbortController();
+    offlineController = controller;
+    let result;
+    try {
+      result = await offlineContent.readiness(list.id, { signal: controller.signal });
+    } catch (error) {
+      result = { ok: false, state: 'failed', error: error.message };
+    }
+    if (!isCurrent(session) || session.closed || offlineController !== controller) return;
+    offlineController = null;
+    offlineState = result;
+    syncOffline();
+  }
+
+  async function prepareOffline(list) {
+    const session = previewSession;
+    if (!offlineContent?.prepare || !isCurrent(session) || session.closed
+      || offlineController || offlineState?.state === 'preparing'
+      || offlineState?.state === 'checking' || offlineState?.state === 'unsupported') return;
+    const controller = new AbortController();
+    offlineController = controller;
+    offlineState = { state: 'preparing', progress: null };
+    syncOffline();
+    let result;
+    try {
+      result = await offlineContent.prepare(list.id, {
+        signal: controller.signal,
+        onProgress: (progress) => {
+          if (!isCurrent(session) || session.closed || offlineController !== controller) return;
+          offlineState = { state: 'preparing', progress };
+          syncOffline();
+        },
+      });
+    } catch (error) {
+      result = { ok: false, state: 'failed', error: error.message };
+    }
+    if (!isCurrent(session) || session.closed || offlineController !== controller) return;
+    offlineController = null;
+    offlineState = result;
+    syncOffline();
+  }
+
   function syncAdd() {
     const nodes = elements();
     if (!previewList || !nodes.dialog.open) return;
@@ -152,6 +294,8 @@ export function createPreviewView({
     nodes.description.textContent = list.description || '';
     nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
     nodes.add.replaceChildren(...addControls(list));
+    const offline = elements().offline;
+    if (offline) offline.replaceChildren(...(createOfflineControls(list) || []));
   }
 
   async function loadIssues(list) {
@@ -211,6 +355,7 @@ export function createPreviewView({
     nodes.paths.hidden = true;
     paint(list);
     nodes.dialog.showModal();
+    void checkOffline(list, previewSession);
     await loadIssues(list);
   }
 
@@ -229,6 +374,10 @@ export function createPreviewView({
       previewSession = null;
       previewList = null;
       loadToken = null;
+      offlineController?.abort();
+      offlineController = null;
+      offlineState = null;
+      offlineControls = null;
       justAdded.clear();
       if (session) session.closed = true;
       await notifyClose(session);
