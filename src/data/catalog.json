@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T01:15:39.703Z",
+  "generatedAt": "2026-10-22T05:32:36.143Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -10823,6 +10823,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T04:10:56.797Z"
+    },
+    {
+      "id": "mcu-prep-visionquest",
+      "file": "mcu_prep_visionquest.json",
+      "name": "VisionQuest",
+      "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 39,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Vision",
+        "Scarlet Witch",
+        "Wiccan",
+        "Speed",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "VisionQuest",
+        "Vision Quest",
+        "White Vision",
+        "Billy Kaplan",
+        "Tommy Shepherd",
+        "Tom King",
+        "John Byrne",
+        "WandaVision"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 57306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5637ada325f34",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/812",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-22T05:32:36.143Z"
     },
     {
       "id": "avengers-doomsday-secret-wars",

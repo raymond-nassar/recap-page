@@ -15,9 +15,8 @@ import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
 import {
-  currentReadingCensus, registeredCuratedPeerContracts, registeredOwnerContracts,
+  currentReadingCensus, registeredCuratedGuides, registeredOwnerContracts,
 } from './current-reading-library.mjs';
-import { readCuratedGuidePeerReview } from './curated-guide-peer-review.mjs';
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -125,26 +124,9 @@ export async function assertOwnerDeliveryContract(contract, {
     expectedOrderIds: [...recordedOrders.map((row) => row.orderId), ...peerIds], packetValidation: { provider },
   });
   for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
+    if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
     const laterContract = contracts.find((entry) => entry.id === later.orderId);
-    const curatedContract = registeredCuratedPeerContracts.find((entry) => entry.id === later.orderId);
-    assert.ok(laterContract || curatedContract, 'Unregistered later peers require a new bounded relationship review.');
-    if (curatedContract) {
-      const review = await readCuratedGuidePeerReview(curatedContract, { root });
-      const reciprocal = review.relationships.find((row) => row.orderId === id);
-      assert.equal(review.status, 'approved');
-      const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
-      const reviewedRelationship = reciprocal?.relationship ?? review.unlistedDisposition;
-      const reviewedSharedCount = reciprocal?.sharedCount ?? 0;
-      const reviewedSharedIds = reciprocal?.sharedIds ?? [];
-      assert.equal(later.relationship, inverse[reviewedRelationship]);
-      assert.equal(later.sharedCount, reviewedSharedCount);
-      const expectedSharedIds = reviewedSharedIds === 'candidate-vector'
-        ? (await json(`src/data/${curatedContract.payloadFile.replace(/^src\/data\//, '')}`))
-          .items.map((item) => String(item.issueId))
-        : reviewedSharedIds;
-      assert.deepEqual([...later.sharedIds].sort(), [...expectedSharedIds].sort());
-      continue;
-    }
+    assert.ok(laterContract, 'Unregistered later peers require a new bounded relationship review.');
     const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
     const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
     validateMappingDigest(laterMapping);

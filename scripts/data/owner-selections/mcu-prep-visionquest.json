@@ -1,0 +1,906 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-visionquest",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/812",
+  "sourceRetrievedAt": "2026-10-22",
+  "readerDescription": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Vision and the Scarlet Witch (1985) #12",
+      "inputSha256": "e966fbd66fd6e3b4aad8404f7136386ad1c414e415a8e45c99f33ab489cedeaa",
+      "group": "Billy and Tommy: origins of the twins",
+      "interpretation": "Owner-confirmed whole originals in Suggested Reading Order only, excluding additional issues from the section tables.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 1
+    },
+    {
+      "inputPosition": 2,
+      "suppliedTitle": "West Coast Avengers (1985) #51",
+      "inputSha256": "f69056b23f7f09c0abdc4b2fb39c896070aea98bf7bb07924cc08c28fb4629ed",
+      "group": "Billy and Tommy: origins of the twins",
+      "interpretation": "Owner-confirmed whole originals in Suggested Reading Order only, excluding additional issues from the section tables.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 1
+    },
+    {
+      "inputPosition": 3,
+      "suppliedTitle": "West Coast Avengers (1985) #42-50",
+      "inputSha256": "1fe8baf5bc06423b9ea027cf8f424acd412eb1909353f554bfaf18586ee43af6",
+      "group": "Vision Quest: reconstruction and memory",
+      "interpretation": "Owner-selected whole originals #42-50, after #51. The print title becomes Avengers West Coast from #47 in the same 1985 volume. Five unresolved originals retain explicit source positions.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 9
+    },
+    {
+      "inputPosition": 4,
+      "suppliedTitle": "Young Avengers (2005) #1-12",
+      "inputSha256": "3f353ae0301557ef17a96d40a7111f0d0526538cbfb5594218ced39c11857ff5",
+      "group": "Billy and Tommy: Young Avengers",
+      "interpretation": "Owner-confirmed whole originals in Suggested Reading Order only, excluding additional issues from the section tables.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 12
+    },
+    {
+      "inputPosition": 5,
+      "suppliedTitle": "Avengers: The Children's Crusade (2010) #1-9",
+      "inputSha256": "aab2c697d757adcc2650713a5ebec84317e164d656a380c6667810d6f6df3f01",
+      "group": "Billy and Tommy: family reunion",
+      "interpretation": "Owner-confirmed whole originals in Suggested Reading Order only, excluding additional issues from the section tables.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 9
+    },
+    {
+      "inputPosition": 6,
+      "suppliedTitle": "Vision (2015) #1-12",
+      "inputSha256": "b538b6145bdd2fcd499ff53d1b7f56873ca4faaae67ece82a6b3e7a7f4836d3c",
+      "group": "Vision: a synthezoid family",
+      "interpretation": "Owner-confirmed whole originals in Suggested Reading Order only, excluding additional issues from the section tables.",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "originalCount": 12
+    }
+  ],
+  "sourceIssueCount": 44,
+  "publishedIssueCount": 39,
+  "rows": [
+    {
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #12",
+      "normalizedSeriesTitle": "Vision and the Scarlet Witch",
+      "seriesYear": 1985,
+      "issueNumber": "12",
+      "seriesId": 3655,
+      "candidateIssueId": 18458,
+      "originalIssueId": 18458,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": "Billy and Tommy: origins of the twins",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #51",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "51",
+      "seriesId": 3630,
+      "note": "The print title is Avengers West Coast from #47; the provider retains West Coast Avengers in the same 1985 volume.",
+      "candidateIssueId": 17793,
+      "originalIssueId": 17793,
+      "sourcePosition": 2,
+      "inputPosition": 2,
+      "sourceRangeReference": "Billy and Tommy: origins of the twins",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #42",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "seriesId": 3630,
+      "candidateIssueId": 55231,
+      "sourcePosition": 3,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #43",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "seriesId": 3630,
+      "candidateIssueId": 55232,
+      "sourcePosition": 4,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #44",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "seriesId": 3630,
+      "candidateIssueId": 55233,
+      "sourcePosition": 5,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #45",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "seriesId": 3630,
+      "candidateIssueId": 55234,
+      "sourcePosition": 6,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #46",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "46",
+      "seriesId": 3630,
+      "candidateIssueId": 17927,
+      "originalIssueId": 17927,
+      "sourcePosition": 7,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #47",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "seriesId": 3630,
+      "note": "The print title is Avengers West Coast from #47; the provider retains West Coast Avengers in the same 1985 volume.",
+      "candidateIssueId": 55236,
+      "sourcePosition": 8,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #48",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "48",
+      "seriesId": 3630,
+      "note": "The print title is Avengers West Coast from #47; the provider retains West Coast Avengers in the same 1985 volume.",
+      "candidateIssueId": 17790,
+      "originalIssueId": 17790,
+      "sourcePosition": 9,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #49",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "49",
+      "seriesId": 3630,
+      "note": "The print title is Avengers West Coast from #47; the provider retains West Coast Avengers in the same 1985 volume.",
+      "candidateIssueId": 17791,
+      "originalIssueId": 17791,
+      "sourcePosition": 10,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "West Coast Avengers (1985) #50",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "50",
+      "seriesId": 3630,
+      "note": "The print title is Avengers West Coast from #47; the provider retains West Coast Avengers in the same 1985 volume.",
+      "candidateIssueId": 17792,
+      "originalIssueId": 17792,
+      "sourcePosition": 11,
+      "inputPosition": 3,
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #1",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 756,
+      "candidateIssueId": 1629,
+      "originalIssueId": 1629,
+      "sourcePosition": 12,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #2",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 756,
+      "candidateIssueId": 1721,
+      "originalIssueId": 1721,
+      "sourcePosition": 13,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #3",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 756,
+      "candidateIssueId": 1830,
+      "originalIssueId": 1830,
+      "sourcePosition": 14,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #4",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "4",
+      "seriesId": 756,
+      "candidateIssueId": 1941,
+      "originalIssueId": 1941,
+      "sourcePosition": 15,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #5",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "5",
+      "seriesId": 756,
+      "candidateIssueId": 2049,
+      "originalIssueId": 2049,
+      "sourcePosition": 16,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #6",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "6",
+      "seriesId": 756,
+      "candidateIssueId": 2162,
+      "originalIssueId": 2162,
+      "sourcePosition": 17,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #7",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "7",
+      "seriesId": 756,
+      "candidateIssueId": 2328,
+      "originalIssueId": 2328,
+      "sourcePosition": 18,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #8",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "8",
+      "seriesId": 756,
+      "candidateIssueId": 2448,
+      "originalIssueId": 2448,
+      "sourcePosition": 19,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #9",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "9",
+      "seriesId": 756,
+      "candidateIssueId": 3018,
+      "originalIssueId": 3018,
+      "sourcePosition": 20,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #10",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "10",
+      "seriesId": 756,
+      "candidateIssueId": 3359,
+      "originalIssueId": 3359,
+      "sourcePosition": 21,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #11",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "11",
+      "seriesId": 756,
+      "candidateIssueId": 3887,
+      "originalIssueId": 3887,
+      "sourcePosition": 22,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Young Avengers (2005) #12",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2005,
+      "issueNumber": "12",
+      "seriesId": 756,
+      "candidateIssueId": 4252,
+      "originalIssueId": 4252,
+      "sourcePosition": 23,
+      "inputPosition": 4,
+      "sourceRangeReference": "Billy and Tommy: Young Avengers",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #1",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9864,
+      "candidateIssueId": 31134,
+      "originalIssueId": 31134,
+      "sourcePosition": 24,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #2",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9864,
+      "candidateIssueId": 31136,
+      "originalIssueId": 31136,
+      "sourcePosition": 25,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #3",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9864,
+      "candidateIssueId": 31138,
+      "originalIssueId": 31138,
+      "sourcePosition": 26,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #4",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9864,
+      "candidateIssueId": 31140,
+      "originalIssueId": 31140,
+      "sourcePosition": 27,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #5",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "seriesId": 9864,
+      "candidateIssueId": 31142,
+      "originalIssueId": 31142,
+      "sourcePosition": 28,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #6",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "6",
+      "seriesId": 9864,
+      "candidateIssueId": 31144,
+      "originalIssueId": 31144,
+      "sourcePosition": 29,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #7",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "7",
+      "seriesId": 9864,
+      "candidateIssueId": 31146,
+      "originalIssueId": 31146,
+      "sourcePosition": 30,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #8",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9864,
+      "candidateIssueId": 31148,
+      "originalIssueId": 31148,
+      "sourcePosition": 31,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Avengers: The Children's Crusade (2010) #9",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "9",
+      "seriesId": 9864,
+      "candidateIssueId": 34271,
+      "originalIssueId": 34271,
+      "sourcePosition": 32,
+      "inputPosition": 5,
+      "sourceRangeReference": "Billy and Tommy: family reunion",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #1",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20897,
+      "candidateIssueId": 57306,
+      "originalIssueId": 57306,
+      "sourcePosition": 33,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #2",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20897,
+      "candidateIssueId": 57309,
+      "originalIssueId": 57309,
+      "sourcePosition": 34,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #3",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20897,
+      "candidateIssueId": 57311,
+      "originalIssueId": 57311,
+      "sourcePosition": 35,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #4",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20897,
+      "candidateIssueId": 57312,
+      "originalIssueId": 57312,
+      "sourcePosition": 36,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #5",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20897,
+      "candidateIssueId": 57313,
+      "originalIssueId": 57313,
+      "sourcePosition": 37,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #6",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20897,
+      "candidateIssueId": 57314,
+      "originalIssueId": 57314,
+      "sourcePosition": 38,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #7",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20897,
+      "candidateIssueId": 57315,
+      "originalIssueId": 57315,
+      "sourcePosition": 39,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #8",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20897,
+      "candidateIssueId": 57316,
+      "originalIssueId": 57316,
+      "sourcePosition": 40,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #9",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20897,
+      "candidateIssueId": 57317,
+      "originalIssueId": 57317,
+      "sourcePosition": 41,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #10",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20897,
+      "candidateIssueId": 57318,
+      "originalIssueId": 57318,
+      "sourcePosition": 42,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #11",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20897,
+      "candidateIssueId": 57319,
+      "originalIssueId": 57319,
+      "sourcePosition": 43,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourceIssueReference": "Vision (2015) #12",
+      "normalizedSeriesTitle": "Vision",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20897,
+      "candidateIssueId": 57320,
+      "originalIssueId": 57320,
+      "sourcePosition": 44,
+      "inputPosition": 6,
+      "sourceRangeReference": "Vision: a synthezoid family",
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "sourceGaps": [
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Exact candidate 55231 lookup returned HTTP 404 at 2026-10-22T05:19:00.378Z; the complete 97-row series 3630 response omits issue #42. Candidate comes from the owner-supplied link, not a verified provider identity. Preserve source position 3 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/55231",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "sourcePosition": 3,
+      "sourceIssueReference": "West Coast Avengers (1985) #42",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "sourceGroup": "Vision Quest: reconstruction and memory",
+      "evidenceDigest": "5bd0e6682db1bc7321d072dbecd4fe8ebd0f0a04bbbb8dcc940dc140298a3265"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Exact candidate 55232 lookup returned HTTP 404 at 2026-10-22T05:19:00.714Z; the complete 97-row series 3630 response omits issue #43. Candidate comes from the owner-supplied link, not a verified provider identity. Preserve source position 4 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/55232",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "sourcePosition": 4,
+      "sourceIssueReference": "West Coast Avengers (1985) #43",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "sourceGroup": "Vision Quest: reconstruction and memory",
+      "evidenceDigest": "86ae99805a07da20cdcdc871bd059ea0626d1833d07831de36b427422e6c311f"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Exact candidate 55233 lookup returned HTTP 404 at 2026-10-22T05:19:00.956Z; the complete 97-row series 3630 response omits issue #44. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 5 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/55233",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "sourcePosition": 5,
+      "sourceIssueReference": "West Coast Avengers (1985) #44",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "sourceGroup": "Vision Quest: reconstruction and memory",
+      "evidenceDigest": "44ae4ea63d74de398c685f1122805eb63ad6efcbcffd37888d477fd4b68eb3af"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Exact candidate 55234 lookup returned HTTP 404 at 2026-10-22T05:19:01.128Z; the complete 97-row series 3630 response omits issue #45. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 6 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/55234",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "sourcePosition": 6,
+      "sourceIssueReference": "West Coast Avengers (1985) #45",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "sourceGroup": "Vision Quest: reconstruction and memory",
+      "evidenceDigest": "963c9805cc942d7f8186e9f1a7e7afb941ad8892654c85486491d2144c46fd38"
+    },
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Exact candidate 55236 lookup returned HTTP 404 at 2026-10-22T05:19:09.428Z; the complete 97-row series 3630 response omits issue #47. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 8 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "evidenceSources": [
+        {
+          "kind": "gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/55236",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/812",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "sourcePosition": 8,
+      "sourceIssueReference": "West Coast Avengers (1985) #47",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "sourceGroup": "Vision Quest: reconstruction and memory",
+      "evidenceDigest": "990a9a17929748f00f1e2316e9d35b285f35e8412e6101190a1087349ec152da"
+    }
+  ],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "visionquest-selected-order.md",
+        "sha256": "95eead422f38a200a05dd322018298dc281fbd47418cd342d4529dd9b59f8f55",
+        "bytes": 488
+      }
+    ]
+  },
+  "facts": {
+    "ownerOrder": "Suggested Reading Order only, explicitly confirmed by the owner; 44 positions, 39 exactly resolved published originals and five provider gaps.",
+    "editorialIntent": [
+      "Vision Quest: Vision is dismantled and reconstructed, with lost memories and a changed relationship to his family.",
+      "Billy and Tommy: the twins are born, lost, return as Wiccan and Speed and reunite with Wanda.",
+      "Tom King's Vision: a new suburban synthezoid family and tragedy provide the emotional reading context."
+    ],
+    "excludedSelections": [
+      "West Coast Avengers (1985) #53",
+      "Young Avengers Presents (2008) #3",
+      "X-Men: The Trial of Magneto (2021) #3",
+      "Marvel's Voices Infinity Comic (2022) #8",
+      "Avengers Academy: Marvel's Voices Infinity Comic (2024) #19"
+    ],
+    "editionDecision": "Vision (2015) #4 uses provider-verified standard original 57312, digitalId 41079. Owner variant hint 58262 returns HTTP 404 and is not selected.",
+    "originalBrief": {
+      "name": "visionquest-owner-request.md",
+      "sha256": "639ea4c9c07beea4a3215670ef371d97447ec37a72762de140107e45c35187c3",
+      "bytes": 5281
+    },
+    "inputProjection": "The private Markdown is a flat projection of the owner-confirmed Suggested Reading Order, not a byte-identical copy of the full brief. Its own receipt is separate.",
+    "screenRelease": {
+      "title": "VisionQuest",
+      "phase": 6,
+      "format": "series",
+      "date": "2026-10-13",
+      "region": "US",
+      "dateKind": "premiere",
+      "sources": [
+        {
+          "url": "https://www.disneyplus.com/explore/articles/marvel-visionquest",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Visionquest",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "dateQualification": "The US Disney+ page and corroborating series reference give October 13, 2026. The UK page gives October 14; use the US premiere convention rather than the UK date."
+    }
+  },
+  "publicDependencies": []
+}
