@@ -2,7 +2,7 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/773).
 Selected by raymond-nassar for Modern Timeline. This is a selected sequence, not an exhaustive event index.
-Ten supplied positions lack exact provider metadata and are not included as checkboxes. See the [assigned gap issue](https://github.com/raymond-nassar/recap-page/issues/772) and the source ledger.
+10 owner-confirmed identities have no provider details or cover.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
 
 ## Lead-in
@@ -39,7 +39,12 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [The Amazing Spider-Man (2022) #70 <!-- mrt:source-occurrence=24 -->](https://www.marvel.com/comics/issue/123186/the_amazing_spider-man_2022_70)
 - [ ] [Iron Man (2024) #7 <!-- mrt:source-occurrence=25 -->](https://www.marvel.com/comics/issue/114940/iron_man_2024_7)
 - [ ] [Superior Avengers (2025) #1 <!-- mrt:source-occurrence=26 -->](https://www.marvel.com/comics/issue/118634/superior_avengers_2025_1)
-Some supplied identities in this section remain metadata gaps. See the assigned gap issue.
+- [ ] [Avengers Academy: Marvel's Voices Infinity Comic (2024) #43 <!-- mrt:source-occurrence=27 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121580/avengers_academy_marvels_voices_infinity_comic_2024_43)
+- [ ] [Avengers Academy: Marvel's Voices Infinity Comic (2024) #44 <!-- mrt:source-occurrence=28 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121581/avengers_academy_marvels_voices_infinity_comic_2024_44)
+- [ ] [Avengers Academy: Marvel's Voices Infinity Comic (2024) #45 <!-- mrt:source-occurrence=29 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121582/avengers_academy_marvels_voices_infinity_comic_2024_45)
+- [ ] [Astonishing Avengers Infinity Comic (2025) #21 <!-- mrt:source-occurrence=30 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/123208/astonishing_avengers_infinity_comic_2025_21)
+- [ ] [Astonishing Avengers Infinity Comic (2025) #22 <!-- mrt:source-occurrence=31 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/123209/astonishing_avengers_infinity_comic_2025_22)
+- [ ] [Astonishing Avengers Infinity Comic (2025) #23 <!-- mrt:source-occurrence=32 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/123210/astonishing_avengers_infinity_comic_2025_23)
 
 ## Chunk 3
 
@@ -86,6 +91,7 @@ Some supplied identities in this section remain metadata gaps. See the assigned 
 - [ ] [Red Hulk (2025) #6 <!-- mrt:source-occurrence=67 -->](https://www.marvel.com/comics/issue/121357/red_hulk_2025_6)
 - [ ] [Runaways (2025) #2 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/123398/runaways_2025_2)
 - [ ] [Superior Avengers (2025) #4 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/118637/superior_avengers_2025_4)
+
 One supplied position repeats an issue already listed; its source position remains in the source ledger.
 
 ## Chunk 6
@@ -108,8 +114,10 @@ One supplied position repeats an issue already listed; its source position remai
 - [ ] [One World Under Doom (2025) #8 <!-- mrt:source-occurrence=80 -->](https://www.marvel.com/comics/issue/127114/one_world_under_doom_2025_8)
 - [ ] [Fantastic Four (2025) #4 <!-- mrt:source-occurrence=81 -->](https://www.marvel.com/comics/issue/122799/fantastic_four_2025_4)
 - [ ] [Runaways (2025) #5 <!-- mrt:source-occurrence=82 -->](https://www.marvel.com/comics/issue/123401/runaways_2025_5)
-Some supplied identities in this section remain metadata gaps. See the assigned gap issue.
+- [ ] [Red Hulk (2025) #10 <!-- mrt:source-occurrence=83 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121361/red_hulk_2025_10)
 
 ## Finale
 
-Some supplied identities in this section remain metadata gaps. See the assigned gap issue.
+- [ ] [One World Under Doom (2025) #9 <!-- mrt:source-occurrence=84 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/127115/one_world_under_doom_2025_9)
+- [ ] [The Will of Doom (2025) #1 <!-- mrt:source-occurrence=85 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/126711/the_will_of_doom_1_2025_1)
+- [ ] [Captain America (2025) #6 <!-- mrt:source-occurrence=86 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/123361/captain_america_2025_6)

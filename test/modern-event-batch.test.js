@@ -84,7 +84,7 @@ test('Doom independently accounts for exact rows, gaps, repeat and optional posi
   await assertOwnerDeliveryContract(contract);
   assert.equal(contract.sourceOccurrenceCount, 86);
   assert.equal(contract.sourceIdentityCount, 85);
-  assert.equal(contract.rows.length, 75);
+  assert.equal(contract.rows.length, 85);
   assert.deepEqual(contract.gapSourcePositions, [27, 28, 29, 30, 31, 32, 83, 84, 85, 86]);
   assert.deepEqual(contract.optionalSourcePositions, [10, 11, 12, 13, 14]);
   assert.deepEqual(contract.repeatedSourceReferences, [{

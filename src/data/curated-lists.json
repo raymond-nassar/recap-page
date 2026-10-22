@@ -1399,7 +1399,7 @@
         "Doctor Doom",
         "2025 event"
       ],
-      "expect": 75,
+      "expect": 85,
       "coverIssueId": 113858,
       "group": null,
       "groupName": null,
@@ -2641,7 +2641,7 @@
         "Doctor Strange"
       ],
       "coverIssueId": 5235,
-      "expect": 16
+      "expect": 18
     },
     {
       "id": "doctor-strange-multiverse-of-madness",

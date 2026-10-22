@@ -256,8 +256,8 @@
   },
   "sourceSha256": "faa4b3808173988d9b4599dd4c692aa490067ce766423e384daa2255167a1f97",
   "proposalDigest": "6b5c4a3f94db6b9ed08681689196b2aea77f6ec7223b5a3796b44c2227879035",
-  "libraryDigest": "adb5cd32d5d44efc98090be02c295ad19cc92faaf63f5d901d3e7876b7bd1a56",
-  "approvalDigest": "6800d80170847ecbadb867549c33bdb3cc78ba125ca998f6234c6ca2de87a709",
+  "libraryDigest": "fbd19de2ca558879a77938beb48e041733f1500a4056676913b7fdfebdd51b36",
+  "approvalDigest": "e17dbc4fe360799a2da50573ed49933b4942fe07322bb9cfda8d97c46de03340",
   "insertionAnchor": {
     "beforeId": "avengers-doomsday-secret-wars"
   },

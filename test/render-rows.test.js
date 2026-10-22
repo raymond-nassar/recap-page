@@ -176,6 +176,22 @@ test('a refusal is reported as a refusal even though the issue is also unhydrate
   assert.equal(detailsState({ hydrated: false, detailsRefused: true, source: 'import' }), 'norecord');
 });
 
+test('an owner-confirmed identity remains distinct from an ordinary provider refusal', () => {
+  const confirmed = {
+    hydrated: false,
+    detailsRefused: true,
+    source: 'curated',
+    identityEvidenceKind: 'owner-confirmed-identity',
+  };
+  assert.equal(detailsState(confirmed), 'owner-confirmed');
+  assert.equal(detailsState({ ...confirmed, hydrated: true }), null);
+  assert.equal(detailsState({ ...confirmed, identityEvidenceKind: undefined }), 'norecord');
+  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
+  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /owner confirmed this issue identity/);
+  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /no provider details or cover/);
+  assert.equal(synopsisFallback(confirmed), DETAILS_BADGE['owner-confirmed'].hint);
+});
+
 // The visible half of a badge is two or three words, so the reason has to live in the hidden half
 // or it is not written down anywhere, which is the finding BL-030 recorded about the availability
 // badge beside it. Both halves are checked here because the wording is the whole of the feature.
@@ -183,6 +199,7 @@ test('each details badge carries its reason in the half a screen reader gets', (
   assert.equal(DETAILS_BADGE.norecord.text, 'no details held');
   assert.match(DETAILS_BADGE.norecord.hint, /no record of this issue/);
   assert.match(DETAILS_BADGE.norecord.hint, /nothing to fetch|no details to fetch/);
+  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
   assert.equal(DETAILS_BADGE.pending.text, 'details pending');
   assert.match(DETAILS_BADGE.pending.hint, /have not been fetched yet/);
   for (const { text, hint } of Object.values(DETAILS_BADGE)) {

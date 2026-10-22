@@ -235,7 +235,7 @@ test('AoA vendor preserves the complete 262-position reading vector and qualifie
   assert.deepEqual(payload.unresolved.map((item) => Number(item.sourceKey)), gapPositions);
   assert.deepEqual(payload.items.filter((item) => item.placeholder).map((item) => item.issueId),
     parsed.unresolved.map((entry) => placeholderId(id, entry.title, entry.sourceKey)));
-  assert.deepEqual(countOrderGaps(payload), { placeholders: 16, empty: 0 });
+  assert.deepEqual(countOrderGaps(payload), { placeholders: 16, empty: 0, ownerConfirmed: 0 });
   assert.deepEqual([payload.count, payload.items.length, payload.placeholders, payload.collections],
     [262, 262, 16, 12]);
   assert.ok(payload.items.filter((item) => item.issueId > 0).every((item) =>

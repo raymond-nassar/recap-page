@@ -299,7 +299,7 @@ test('Marvel Zombies appears once on the across-eras Storylines shelf with its a
   assert.equal(card.placeholderCount, 3);
   assert.equal(card.emptyRecordCount, 0);
   assert.equal(card.collections, 26);
-  assert.deepEqual(countOrderGaps(payload), { placeholders: 3, empty: 0 });
+  assert.deepEqual(countOrderGaps(payload), { placeholders: 3, empty: 0, ownerConfirmed: 0 });
   assert.equal(card.coverIssueId, 3220);
   assert.deepEqual(card.cover, payload.items.find((item) => item.issueId === 3220).cover);
   assert.match(card.cover.path, /^https:\/\//);

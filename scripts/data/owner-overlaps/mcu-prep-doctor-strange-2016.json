@@ -1,8 +1,8 @@
 {
   "candidateId": "mcu-prep-doctor-strange-2016",
-  "packetDigest": "bad064d3179d5a4cdbd6489c4495dc89f83a3d3d7062afa88bd4c211d8e7b634",
-  "mappingDigest": "7c60242a2a3aa9cf648c4979f536124a314225bcda13d29053f6733cf23d4735",
-  "libraryDigest": "c71283b5206b7919b57e8a2d5a8a9c342cf374ec3523dc54a43e1eeceef72575",
+  "packetDigest": "a8fbf8501e6e8d93c404d8854bcac0a0d3bc650bd44ef40784634748dc71820b",
+  "mappingDigest": "890df3e92594af400124f62657187378bf96ea399dc055d057987110d6e1e596",
+  "libraryDigest": "317e87cc05a0923f8daeb230a9ef96ebea7f2e12ecd2d676d44f000e6f4cb025",
   "peerDigests": {
     "mcu-prep-avengers-infinity-war-endgame": "6ed7dbd309de2aa3deeec88806d5a5746f9f60f3f7225a8a96c72172bfdd34c2",
     "mcu-prep-black-panther-2018": "ab8f19488b75c8ed25524d7a7dd65d38261d699564edb3f776be4b3198a6a96c",
@@ -13,12 +13,13 @@
   "sourceCounts": {
     "sourceOccurrenceCount": 18,
     "sourceIdentityCount": 18,
-    "includedIssueCount": 16,
-    "sourceGapCount": 2,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 18,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 16,
-  "comparisonCount": 314,
+  "candidateCount": 18,
+  "comparisonCount": 316,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -315,9 +316,11 @@
     },
     {
       "orderId": "doctor-strange-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "62446"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "donny-cates-marvel-universe-reading-order-2017",
@@ -1298,6 +1301,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "miles-morales-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "miles-morales-spider-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1389,6 +1398,12 @@
     },
     {
       "orderId": "nova-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "one-world-under-doom",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1916,5 +1931,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8811a3f4399d81434e37822009dbe7b36baeada33fb5c278a2367a242c862a42"
+  "reportDigest": "4eb725ea05510ae3e1880a8601073bc859f1d3688256823dbb401e13890d3fda"
 }

@@ -13,12 +13,17 @@ const CHECKBOX_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[( |x|X)\\]\\s*\\[${LINK_TEX
 const CHECKBOX_PLAIN_RE = /^\s*[-*]\s*\[( |x|X)\]\s*(.+?)\s*$/;
 const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
 const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=((?:source-position:)?[1-9]\d*)\s*-->\s*$/;
+const IDENTITY_EVIDENCE_RE = /\s*<!--\s*mrt:identity-evidence=(owner-confirmed-identity)\s*-->\s*$/;
 
 function sourceIdentity(title) {
-  const match = SOURCE_OCCURRENCE_RE.exec(title);
-  return match
-    ? { title: title.slice(0, match.index).trim(), sourceKey: match[1] }
-    : { title, sourceKey: null };
+  const evidence = IDENTITY_EVIDENCE_RE.exec(title);
+  const withoutEvidence = evidence ? title.slice(0, evidence.index).trim() : title;
+  const occurrence = SOURCE_OCCURRENCE_RE.exec(withoutEvidence);
+  return {
+    title: occurrence ? withoutEvidence.slice(0, occurrence.index).trim() : withoutEvidence,
+    sourceKey: occurrence ? occurrence[1] : null,
+    ...(evidence ? { identityEvidenceKind: evidence[1] } : {}),
+  };
 }
 
 export function unescapeLinkText(s) {
@@ -181,6 +186,7 @@ export function parseChecklist(text) {
       entries.push({
         issueId, title, url: url, read, index: at, section,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+        ...(identified.identityEvidenceKind ? { identityEvidenceKind: identified.identityEvidenceKind } : {}),
       });
     } else if (digitalId != null) {
       entries.push({

@@ -1524,8 +1524,8 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:609-663|0": {
-    "anchor": "scripts/vendor-orders.mjs:609-663",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:614-668|0": {
+    "anchor": "scripts/vendor-orders.mjs:614-668",
     "fp": "d7f8b76b9f7b7b8c",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1559,8 +1559,8 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:696-698|0": {
-    "anchor": "src/js/lib/model.js:696-698",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:704-706|0": {
+    "anchor": "src/js/lib/model.js:704-706",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
@@ -1624,8 +1624,8 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1051-1064|0": {
-    "anchor": "src/js/views/reading.js:1051-1064",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1061-1074|0": {
+    "anchor": "src/js/views/reading.js:1061-1074",
     "fp": "a4e20d502298d5da",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
@@ -1634,8 +1634,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:734|0": {
-    "anchor": "src/js/views/reading.js:734",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:744|0": {
+    "anchor": "src/js/views/reading.js:744",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -1679,13 +1679,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1440-1493|0": {
-    "anchor": "src/js/lib/catalog.js:1440-1493",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1449-1502|0": {
+    "anchor": "src/js/lib/catalog.js:1449-1502",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:693-711|0": {
-    "anchor": "src/js/lib/catalog.js:693-711",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:702-720|0": {
+    "anchor": "src/js/lib/catalog.js:702-720",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -1914,13 +1914,13 @@
     "fp": "b2f041a8892481e9",
     "head": "async function networkThenCache(event) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:217-223|0": {
-    "anchor": "src/js/lib/catalog.js:217-223",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:220-226|0": {
+    "anchor": "src/js/lib/catalog.js:220-226",
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:864-887|0": {
-    "anchor": "src/js/lib/catalog.js:864-887",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:873-896|0": {
+    "anchor": "src/js/lib/catalog.js:873-896",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -1929,15 +1929,50 @@
     "fp": "e425759f7b3ef2fe",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:126-153|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:126-153",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:149-176|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:149-176",
     "fp": "77d116d6f6eb531a",
     "head": "for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:384-405|0": {
-    "anchor": "scripts/vendor-orders.mjs:384-405",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:385-406|0": {
+    "anchor": "scripts/vendor-orders.mjs:385-406",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:719-740|0": {
+    "anchor": "scripts/lib/owner-guide.mjs:719-740",
+    "fp": "e954c3f119f9bb27",
+    "head": "function ownerIdentityParts(identity) {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:419-423|0": {
+    "anchor": "scripts/vendor-orders.mjs:419-423",
+    "fp": "b5164475feb84ad2",
+    "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:486-487|0": {
+    "anchor": "scripts/vendor-orders.mjs:486-487",
+    "fp": "c089d2cbfead089a",
+    "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:530-531|0": {
+    "anchor": "scripts/vendor-orders.mjs:530-531",
+    "fp": "7b74eea9291f2eae",
+    "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|src/js/lib/model.js:223-225|0": {
+    "anchor": "src/js/lib/model.js:223-225",
+    "fp": "9e30991e28d2bcea",
+    "head": "...(input.identityEvidenceKind === 'owner-confirmed-identity'"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|src/js/views/reading.js:52|0": {
+    "anchor": "src/js/views/reading.js:52",
+    "fp": "23cb7579869f2774",
+    "head": "if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') return 'owner"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|src/js/views/reading.js:59-61|0": {
+    "anchor": "src/js/views/reading.js:59-61",
+    "fp": "138df4db53b454a3",
+    "head": "'owner-confirmed': {"
   },
   "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583|0": {
     "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583",
@@ -1959,10 +1994,10 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12182-12307|0": {
-    "anchor": "src/data/catalog.json:12182-12307",
-    "fp": "a679899453ea002c",
-    "head": "\"paths\": ["
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:12224-12308|0": {
+    "anchor": "src/data/catalog.json:12224-12308",
+    "fp": "7491561a680f672d",
+    "head": "\"id\": \"marvel-knights-to-planet-x\","
   },
   "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:7926-7965|0": {
     "anchor": "src/data/curated-lists.json:7926-7965",
@@ -1974,14 +2009,14 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:606|0": {
-    "anchor": "src/js/views/reading.js:606",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:616|0": {
+    "anchor": "src/js/views/reading.js:616",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:75-83|0": {
-    "anchor": "src/js/views/reading.js:75-83",
-    "fp": "f49b08319d5bdd77",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:80-92|0": {
+    "anchor": "src/js/views/reading.js:80-92",
+    "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
   "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1141-1145|0": {
@@ -2174,8 +2209,8 @@
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1123-1154|0": {
-    "anchor": "src/js/lib/model.js:1123-1154",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1131-1162|0": {
+    "anchor": "src/js/lib/model.js:1131-1162",
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
@@ -2189,13 +2224,13 @@
     "fp": "42161b2e4c7595a3",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:868-869|0": {
-    "anchor": "src/js/views/reading.js:868-869",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:878-879|0": {
+    "anchor": "src/js/views/reading.js:878-879",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:295-298|0": {
-    "anchor": "src/js/views/reading.js:295-298",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:305-308|0": {
+    "anchor": "src/js/views/reading.js:305-308",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
@@ -2219,8 +2254,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:868-869|0": {
-    "anchor": "src/js/views/reading.js:868-869",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:878-879|0": {
+    "anchor": "src/js/views/reading.js:878-879",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2229,8 +2264,8 @@
     "fp": "89df9badf1d976de",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:865-867|0": {
-    "anchor": "src/js/views/reading.js:865-867",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:875-877|0": {
+    "anchor": "src/js/views/reading.js:875-877",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2239,8 +2274,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:947-1026|0": {
-    "anchor": "src/js/lib/model.js:947-1026",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:955-1034|0": {
+    "anchor": "src/js/lib/model.js:955-1034",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
@@ -2339,8 +2374,8 @@
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:936-1048|0": {
-    "anchor": "src/js/views/reading.js:936-1048",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:946-1058|0": {
+    "anchor": "src/js/views/reading.js:946-1058",
     "fp": "91f84b1d128c3126",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
@@ -2404,8 +2439,8 @@
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:865-867|0": {
-    "anchor": "src/js/views/reading.js:865-867",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:875-877|0": {
+    "anchor": "src/js/views/reading.js:875-877",
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2429,8 +2464,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1087-1107|0": {
-    "anchor": "src/js/views/reading.js:1087-1107",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1097-1117|0": {
+    "anchor": "src/js/views/reading.js:1097-1117",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2454,13 +2489,13 @@
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:366-374|0": {
-    "anchor": "src/js/views/reading.js:366-374",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:376-384|0": {
+    "anchor": "src/js/views/reading.js:376-384",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:391-405|0": {
-    "anchor": "src/js/views/reading.js:391-405",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:401-415|0": {
+    "anchor": "src/js/views/reading.js:401-415",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2474,8 +2509,8 @@
     "fp": "4de994265fe57895",
     "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:391-405|0": {
-    "anchor": "src/js/views/reading.js:391-405",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:401-415|0": {
+    "anchor": "src/js/views/reading.js:401-415",
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2489,8 +2524,8 @@
     "fp": "e7e623017953e08f",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1087-1107|0": {
-    "anchor": "src/js/views/reading.js:1087-1107",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1097-1117|0": {
+    "anchor": "src/js/views/reading.js:1097-1117",
     "fp": "4b9ee972ccedb79f",
     "head": "function wireShortcuts() {"
   },
@@ -2504,8 +2539,8 @@
     "fp": "cbdac3d793d1f28d",
     "head": "export const READING_FILTERS = ["
   },
-  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:143|0": {
-    "anchor": "src/js/views/reading.js:143",
+  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:153|0": {
+    "anchor": "src/js/views/reading.js:153",
     "fp": "b7554b1d675a5f56",
     "head": "let filter = DEFAULT_FILTER;"
   },
@@ -2519,8 +2554,8 @@
     "fp": "ada84f9d8fc68202",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:869|0": {
-    "anchor": "src/js/views/reading.js:869",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:879|0": {
+    "anchor": "src/js/views/reading.js:879",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
