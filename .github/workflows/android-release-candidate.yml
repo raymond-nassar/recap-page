@@ -59,7 +59,7 @@ jobs:
           ref: ${{ github.workflow_sha }}
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         timeout-minutes: 4
         with:
           node-version: '24'
@@ -96,7 +96,7 @@ jobs:
           path: application
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         timeout-minutes: 4
         with:
           node-version: '24'
@@ -123,7 +123,7 @@ jobs:
             node scripts/check-android-instrumentation.mjs --validate-native-failure >> "$GITHUB_OUTPUT"
           fi
       - name: Retain only the verified rehearsal report
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         timeout-minutes: 3
         with:
           name: android-rehearsal-${{ github.run_id }}-${{ github.run_attempt }}
@@ -133,7 +133,7 @@ jobs:
 
       - name: Retain only validated nonpromotable native failure facts
         if: failure() && inputs.mode == 'Rehearsal' && steps.native_cleanup.outputs.failure_capsule == 'true'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         timeout-minutes: 1
         with:
           name: android-rehearsal-failure-${{ github.run_id }}-${{ github.run_attempt }}
@@ -175,7 +175,7 @@ jobs:
           path: application
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         timeout-minutes: 4
         with:
           node-version: '24'
@@ -210,7 +210,7 @@ jobs:
         timeout-minutes: 3
         run: bash scripts/android-release-candidate.sh cleanup
       - name: Retain only the fully verified candidate and proposed seal
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         timeout-minutes: 3
         with:
           name: android-candidate-${{ inputs.version_code }}-${{ github.run_id }}
