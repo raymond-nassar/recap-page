@@ -1,17 +1,35 @@
 {
   "id": "mcu-prep-doctor-strange-2016",
   "name": "MCU Prep: Doctor Strange (2016)",
-  "description": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+  "description": "Explore Doctor Strange's origins and life as a sorcerer to understand the magical responsibilities behind the film's hero. Season One introduces his beginnings, while The Oath tests his duties as a doctor and protector. The Way of the Weird, The Last Days of Magic and What Is It That Disturbs You, Stephen? explore the cost of defending a magical world.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/766",
   "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
   "sourceLicense": null,
-  "generatedAt": "2026-10-09T18:27:15.569Z",
+  "generatedAt": "2026-10-22T12:00:00.000Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 16,
-  "collections": 3,
+  "count": 18,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
+    {
+      "issueId": 41511,
+      "title": "Doctor Strange: Season One (2012)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Doctor Strange: Season One"
+    },
     {
       "issueId": 5235,
       "title": "Doctor Strange: The Oath (2006) #1",
@@ -523,6 +541,24 @@
         }
       ],
       "collectedIn": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic"
+    },
+    {
+      "issueId": 62446,
+      "title": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Doctor Strange: What Is It That Disturbs You, Stephen?"
     }
   ]
 }

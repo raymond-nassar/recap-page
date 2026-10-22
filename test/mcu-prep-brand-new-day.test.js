@@ -1,3 +1,5 @@
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
+import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 import test from 'node:test';
 import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
@@ -132,7 +134,7 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   })));
   assert.equal(report.comparisonCount, 289);
   assert.equal(report.libraryDigest, recordedDigest);
-  assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) => recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'),
     report.comparisons.filter((row) => row.relationship !== 'none'),
     'A new meaningful relationship needs its own central review');
@@ -190,7 +192,7 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   assert.equal(payload.collections, 3);
   assert.equal(payload.placeholders, 0);
   assert.deepEqual(payload.unresolved, []);
-  assert.equal(payload.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(payload).description, fixture.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.source, sourceUrl);
   assert.equal(payload.sourceLicense, null);
@@ -208,13 +210,13 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   }
   assert.deepEqual(payload.items.filter((row) => row.creators.length === 0).map((row) => row.issueId),
     [43128, 43132]);
-  assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
+  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);
   assert.deepEqual([card.type, card.depth, card.timeline, card.beginner, card.group, card.sourceLicense],
     ['screen-companion', 'selected', null, false, null, null]);
-  assert.equal(card.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(card).description, fixture.description);
   assert.equal(card.sourceOrigin, provider.sourceOrigin);
   assert.deepEqual(card.cover, payload.items[0].cover);
   const choices = catalogEntries(parseCatalog(catalog).lists);

@@ -1,19 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
-  authorizeOwnerGuide, emitOwnerGuide, OWNER_PROVIDER, ownerApprovalRequest, parseOwnerMarkdown, prepareOwnerGuide, verifyOwnerMetadataCache,
+  assertRelationshipReportExtension, authorizeOwnerGuide, emitOwnerGuide, emitOwnerGuideIdentityUpdate,
+  OWNER_PROVIDER, ownerApprovalRequest,
+  parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, updatedOwnerChecklist,
+  verifyOwnerMetadataCache,
 } from '../scripts/lib/owner-guide.mjs';
-import { validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
+import { approvalDigestFor, validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
+import { parseChecklist } from '../src/js/lib/markdown.js';
+import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
+import { beforeIdentityText } from './helpers/owner-identity-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+const REPOSITORY_ROOT = fileURLToPath(new URL('../', import.meta.url));
 
 async function setup(t, markdown = '# My reading list\n\n## First group\n- Sample Comic (2020) #1-2\n') {
   const root = await mkdtemp(path.join(tmpdir(), 'owner-guide-'));
@@ -361,4 +369,175 @@ test('review regression: mixed collection presentation does not rewrite null sto
     { rows: [{ group: null }, { group: null }], headings: [] });
   assert.deepEqual(ownerPresentation([{ group: 'Individual issues' }, { group: null }]).headings,
     ['Individual issues', 'Individual issues']);
+});
+
+for (const replaceDescription of [false, true]) {
+  test(`owner-confirmed identity preparation preserves editorial copy or binds its replacement (${replaceDescription})`, async (t) => {
+    const root = await mkdtemp(path.join(tmpdir(), 'owner-identity-guide-'));
+    t.after(() => rm(root, { recursive: true, force: true }));
+    await Promise.all([
+      cp(path.join(REPOSITORY_ROOT, 'src', 'data'), path.join(root, 'src', 'data'), { recursive: true }),
+      cp(path.join(REPOSITORY_ROOT, 'scripts', 'data'), path.join(root, 'scripts', 'data'), { recursive: true }),
+      cp(path.join(REPOSITORY_ROOT, 'test', 'fixtures', 'owner-delivery'),
+        path.join(root, 'test', 'fixtures', 'owner-delivery'), { recursive: true }),
+    ]);
+    const fixtureId = 'mcu-prep-the-incredible-hulk-2008';
+    for (const file of [
+      `scripts/data/owner-packets/${fixtureId}.json`,
+      `scripts/data/owner-mappings/${fixtureId}.json`,
+      `scripts/data/owner-overlaps/${fixtureId}.json`,
+      `test/fixtures/owner-delivery/${fixtureId}.json`,
+      `src/data/orders/${fixtureId}.md`,
+      'src/data/mcu_prep_the_incredible_hulk_2008.json',
+      'src/data/curated-lists.json', 'src/data/catalog.json',
+    ]) await writeFile(path.join(root, file), beforeIdentityText(file));
+    const manifestFile = path.join(root, 'src', 'data', 'curated-lists.json');
+    const originalManifest = await readJson(manifestFile);
+    const liveDescription = originalManifest.lists.find(({ id }) =>
+      id === 'mcu-prep-the-incredible-hulk-2008').description;
+    const originalContract = await readJson(path.join(root,
+      'test/fixtures/owner-delivery/mcu-prep-the-incredible-hulk-2008.json'));
+    const request = {
+      schemaVersion: 1,
+      id: 'mcu-prep-the-incredible-hulk-2008',
+      generatedAt: '2026-10-22T12:00:00.000Z',
+      ...(replaceDescription
+        ? { description: 'An owner-confirmed original with provider details still unavailable.' } : {}),
+      identities: [{
+        sourcePosition: 1,
+        issueId: 999999,
+        label: 'Hulk: Season One (2012)',
+        url: 'https://www.marvel.com/comics/issue/999999/hulk_season_one_2012',
+        confirmingActor: 'raymond-nassar',
+        confirmedAt: '2026-10-21',
+        confirmationSource: 'https://github.com/raymond-nassar/recap-page/issues/1000#issuecomment-1000',
+        confirmationRetrievedAt: '2026-10-22',
+        providerStatus: 404,
+        provider404At: '2026-10-21',
+      }],
+    };
+    const markdownFile = path.join(root, 'src', 'data', 'orders', 'mcu-prep-the-incredible-hulk-2008.md');
+    const originalMarkdown = await readFile(markdownFile, 'utf8');
+    const annotatedMarkdown = originalMarkdown.replace(
+      'See [data provenance]',
+      'This source-specific note must survive identity publication.\nSee [data provenance]',
+    );
+    await writeFile(markdownFile, annotatedMarkdown);
+    const proposal = await prepareOwnerGuideIdentityUpdate(request, { root });
+    assert.equal(proposal.status, 'awaiting-owner-approval');
+    assert.deepEqual(proposal.review.identities, [{
+      sourcePosition: 1,
+      issueId: 999999,
+      label: 'Hulk: Season One (2012)',
+      url: request.identities[0].url,
+    }]);
+    assert.deepEqual(proposal.review.exactDuplicates, []);
+    assert.ok(!proposal.review.relationshipChanges.some(({ orderId, after }) =>
+      orderId === mcuEditorial.withdrawal.manifestEntry.id && after !== null));
+    assert.ok(proposal.outputs.every((output) => /^[a-f0-9]{64}$/.test(output.sha256)));
+
+    const catalogFile = path.join(root, 'src', 'data', 'catalog.json');
+    const originalCatalog = await readFile(catalogFile, 'utf8');
+    const catalog = await readJson(catalogFile);
+    catalog.generatedAt = '2026-10-22T12:01:00.000Z';
+    await writeFile(catalogFile, json(catalog));
+    await assert.rejects(() => emitOwnerGuideIdentityUpdate(proposal, {
+      schemaVersion: 1,
+      proposalDigest: proposal.proposalDigest,
+      authorityType: 'human',
+      authorityIdentity: 'raymond-nassar',
+      rationale: 'Synthetic owner approval for stale-input rejection.',
+      reviewedAt: '2026-10-22T12:00:00.000Z',
+    }, { root }), /Registered guide inputs or outputs changed after identity update approval/);
+
+    await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
+      ...request,
+      identities: [{ ...request.identities[0], providerStatus: 200 }],
+    }, { root }), /Only a recorded provider 404 can use owner-confirmed identity evidence/);
+    await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
+      ...request, description: 'Invalid\nmultiline copy',
+    }, { root }), /reviewed description/);
+    await writeFile(catalogFile, originalCatalog);
+    const freshProposal = await prepareOwnerGuideIdentityUpdate(request, { root });
+    await emitOwnerGuideIdentityUpdate(freshProposal, {
+      schemaVersion: 1,
+      proposalDigest: freshProposal.proposalDigest,
+      authorityType: 'human',
+      authorityIdentity: 'raymond-nassar',
+      rationale: 'Synthetic owner approval for identity-only guide publication.',
+      reviewedAt: '2026-10-22T12:00:00.000Z',
+    }, { root });
+    const updatedMarkdown = await readFile(markdownFile, 'utf8');
+    assert.match(updatedMarkdown, /Selected by raymond-nassar for MCU Prep/);
+    assert.match(updatedMarkdown, /This source-specific note must survive identity publication\./);
+    assert.match(updatedMarkdown, /1 owner-confirmed identities have no provider details or cover\./);
+    assert.ok(updatedMarkdown.indexOf('## Hulk: Season One') < updatedMarkdown.indexOf('## Hulk: Gray'));
+    assert.match(updatedMarkdown,
+      /Hulk: Season One \(2012\) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->/);
+    assert.equal((await readJson(path.join(root, 'src/data/mcu_prep_the_incredible_hulk_2008.json')))
+      .description, request.description ?? liveDescription);
+    assert.equal((await readJson(path.join(root,
+      'test/fixtures/owner-delivery/mcu-prep-the-incredible-hulk-2008.json')))
+      .description, request.description ?? originalContract.description);
+    const updatedManifest = await readJson(manifestFile);
+    assert.equal(updatedManifest.lists.find(({ id }) => id === request.id).description,
+      request.description ?? liveDescription);
+    assert.ok(!updatedManifest.lists.some(({ id }) => id === mcuEditorial.withdrawal.manifestEntry.id));
+    const updatedCatalog = await readJson(catalogFile);
+    assert.equal(updatedCatalog.lists.find(({ id }) => id === request.id).description,
+      request.description ?? liveDescription);
+    assert.ok(!updatedCatalog.lists.some(({ id }) => id === mcuEditorial.withdrawal.manifestEntry.id));
+    assert.equal((await readJson(path.join(root, 'scripts/data/owner-packets', `${request.id}.json`)))
+      .proposedManifest.description, request.description ?? originalContract.description);
+  });
+}
+
+test('identity checklist insertion keeps interleaved existing originals in exact source order', () => {
+  const row = (sourcePosition, confirmed = false) => ({
+    sourcePosition, selectedIssueId: 1000 + sourcePosition, sourceRangeReference: 'Same group',
+    resolvedIssueTitle: `Sample (2020) #${sourcePosition}`,
+    marvelIssueUrl: `https://www.marvel.com/comics/issue/${1000 + sourcePosition}/sample`,
+    ...(confirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
+  });
+
+  const previous = { rows: [row(2), row(7), row(9)] };
+  const mapping = { rows: [row(2), row(3, true), row(4, true), row(5, true),
+    row(6, true), row(7), row(8, true), row(9)] };
+  const markdown = '# Sample\n\nSource: owner selection.\nSelected by owner.\n\n## Same group\n\n'
+    + previous.rows.map((entry) =>
+      `- [ ] [${entry.resolvedIssueTitle} <!-- mrt:source-occurrence=${entry.sourcePosition} -->](${entry.marvelIssueUrl})\n`).join('');
+  const parsed = parseChecklist(updatedOwnerChecklist(markdown, { rows: [] }, previous, mapping));
+  assert.deepEqual(parsed.unresolved, []);
+  assert.deepEqual(parsed.entries.map(({ sourceKey }) => Number(sourceKey)), [2, 3, 4, 5, 6, 7, 8, 9]);
+  assert.deepEqual(parsed.entries.map(({ issueId }) => issueId), mapping.rows.map(({ selectedIssueId }) => selectedIssueId));
+  assert.ok(parsed.entries.every(({ section }) => section === 'Same group'));
+});
+
+test('Agatha accepts only the recorded reciprocal Contest of Chaos prelude authority', async () => {
+  const jsonAt = (file) => readJson(path.join(REPOSITORY_ROOT, file));
+  const later = {
+    contract: await jsonAt('test/fixtures/owner-delivery/contest-of-chaos.json'),
+    mapping: await jsonAt('scripts/data/owner-mappings/contest-of-chaos.json'),
+    report: await jsonAt('scripts/data/owner-overlaps/contest-of-chaos.json'),
+  };
+  const previous = { candidateId: 'mcu-prep-agatha-all-along', comparisons: [] };
+  const overlap = { orderId: 'contest-of-chaos', sharedCount: 1, sharedIds: ['109670'], relationship: 'partial' };
+  const current = { ...previous, comparisons: [overlap] };
+  assert.doesNotThrow(() => assertRelationshipReportExtension(previous, current, [later]));
+  assert.throws(() => assertRelationshipReportExtension(previous, current), /separate relationship review/);
+  assert.throws(() => assertRelationshipReportExtension(previous, {
+    ...current, comparisons: [{ ...overlap, sharedIds: ['999999'] }],
+  }, [later]), /separate relationship review/);
+  assert.throws(() => assertRelationshipReportExtension({ ...previous, candidateId: 'another-guide' }, {
+    ...current, candidateId: 'another-guide',
+  }, [later]), /separate relationship review/);
+  const stale = structuredClone(later);
+  stale.contract.approvalDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [stale]));
+  const rejected = structuredClone(later);
+  rejected.mapping.relationshipReview.dispositions.find(({ orderId }) =>
+    orderId === previous.candidateId).decision = 'rejected';
+  rejected.mapping.relationshipReview.approvalDigest = approvalDigestFor(rejected.mapping.relationshipReview);
+  rejected.contract.approvalDigest = rejected.mapping.relationshipReview.approvalDigest;
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [rejected]));
 });

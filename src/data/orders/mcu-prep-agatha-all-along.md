@@ -2,7 +2,7 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/703).
 Selected by raymond-nassar for MCU Prep. Exact whole-original identities are retained in supplied order.
-Missing originals remain explicit in the factual source and its linked gap Issues, not silently substituted.
+5 owner-confirmed identities have no provider details or cover.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
 
 The [owner's correction](https://github.com/raymond-nassar/recap-page/issues/703#issuecomment-6011367864)
@@ -34,3 +34,10 @@ preserves each original lookup timestamp and response hash without a retry.
 - [ ] [Scarlet Witch (2023) #4 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/97137/scarlet_witch_2023_4)
 - [ ] [Scarlet Witch (2023) #5 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/97138/scarlet_witch_2023_5)
 - [ ] [Scarlet Witch Annual (2023) #1 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/109670/scarlet_witch_annual_2023_1)
+## House of Harkness Infinity Comic (2024) #1-5
+
+- [ ] [House of Harkness Infinity Comic (2024) #1 <!-- mrt:source-occurrence=8 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121656/house_of_harkness_infinity_comic_2024_1)
+- [ ] [House of Harkness Infinity Comic (2024) #2 <!-- mrt:source-occurrence=9 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121657/house_of_harkness_infinity_comic_2024_2)
+- [ ] [House of Harkness Infinity Comic (2024) #3 <!-- mrt:source-occurrence=10 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121658/house_of_harkness_infinity_comic_2024_3)
+- [ ] [House of Harkness Infinity Comic (2024) #4 <!-- mrt:source-occurrence=11 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121659/house_of_harkness_infinity_comic_2024_4)
+- [ ] [House of Harkness Infinity Comic (2024) #5 <!-- mrt:source-occurrence=12 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/121660/house_of_harkness_infinity_comic_2024_5)

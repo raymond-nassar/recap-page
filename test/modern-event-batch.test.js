@@ -9,6 +9,7 @@ import {
   groupCatalog, HOME_CATEGORIES, modernTimelineLists, parseCatalog,
 } from '../src/js/lib/catalog.js';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
+import { beforeIdentityJson, beforeIdentityText } from './helpers/owner-identity-history.mjs';
 import {
   currentReadingCensus, registeredEventContracts, registeredOwnerContracts,
 } from './helpers/current-reading-library.mjs';
@@ -21,8 +22,8 @@ test('four independently registered events extend the library without becoming M
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerContracts.filter((entry) => entry.surface !== 'modern-timeline').length - 2;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220 + laterMcu + 2, 297 + laterMcu + 2, 298 + laterMcu + 2]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [20 + laterMcu, 66 + laterMcu]);
+    [220 + laterMcu + 1, 297 + laterMcu + 1, 298 + laterMcu + 1]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 65 + laterMcu]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const doomIndex = catalog.lists.findIndex((entry) => entry.id === 'one-world-under-doom');
@@ -84,7 +85,7 @@ test('Doom independently accounts for exact rows, gaps, repeat and optional posi
   await assertOwnerDeliveryContract(contract);
   assert.equal(contract.sourceOccurrenceCount, 86);
   assert.equal(contract.sourceIdentityCount, 85);
-  assert.equal(contract.rows.length, 75);
+  assert.equal(contract.rows.length, 85);
   assert.deepEqual(contract.gapSourcePositions, [27, 28, 29, 30, 31, 32, 83, 84, 85, 86]);
   assert.deepEqual(contract.optionalSourcePositions, [10, 11, 12, 13, 14]);
   assert.deepEqual(contract.repeatedSourceReferences, [{
@@ -146,17 +147,27 @@ test('the common event contract rejects a changed current peer mapping even when
   }), /peer mapping set changed/);
 });
 
-test('the common earlier-owner contract rejects missing meaningful reciprocal authority for a new event', async () => {
-  const agatha = registeredOwnerContracts.find((entry) => entry.id === 'mcu-prep-agatha-all-along');
+test('the historical earlier-owner contract rejects missing meaningful reciprocal authority for a new event', async () => {
+  const agatha = beforeIdentityJson('test/fixtures/owner-delivery/mcu-prep-agatha-all-along.json');
+  const historicalJson = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
+    || file.includes(agatha.id) || file.includes(agatha.id.replaceAll('-', '_'))
+    ? Promise.resolve(beforeIdentityJson(file)) : json(file);
+  const historicalText = (file) => file.includes(agatha.id)
+    ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+  const previousContracts = registeredOwnerContracts.map((entry) => entry.id === agatha.id ? agatha : entry);
+  await assertOwnerDeliveryContract(agatha, {
+    contracts: previousContracts, readJson: historicalJson, readText: historicalText,
+  });
   const peerFile = 'scripts/data/owner-mappings/contest-of-chaos.json';
   const changed = await json(peerFile);
   changed.relationshipReview.dispositions = changed.relationshipReview.dispositions
     .filter((entry) => entry.orderId !== agatha.id);
   changed.relationshipReview.approvalDigest = approvalDigestFor(changed.relationshipReview);
-  const contracts = registeredOwnerContracts.map((entry) => entry.id === changed.id
+  const contracts = previousContracts.map((entry) => entry.id === changed.id
     ? { ...entry, approvalDigest: changed.relationshipReview.approvalDigest } : entry);
   await assert.rejects(assertOwnerDeliveryContract(agatha, {
-    contracts, readJson: (file) => file === peerFile ? structuredClone(changed) : json(file),
+    contracts, readJson: (file) => file === peerFile ? structuredClone(changed) : historicalJson(file),
+    readText: historicalText,
   }), /explicit reciprocal disposition/);
 });
 

@@ -1,7 +1,7 @@
 {
   "id": "mcu-prep-the-incredible-hulk-2008",
   "inventoryId": "mcu-prep-the-incredible-hulk-2008",
-  "packetDigest": "338ca493794973cc245fa3d9f2395224e8658e10a85634620ceddb755ccbe704",
+  "packetDigest": "2e42ba9e4452f9a7e4e1589b8a17257bf233f0439c94f6a02940e8126d6d8728",
   "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/761",
   "sourceRetrievedAt": "2026-10-09",
   "sourceProvider": "owner-authored",
@@ -33,7 +33,7 @@
       "the-incredible-hulk"
     ],
     "coverIssueId": 365,
-    "expect": 12
+    "expect": 13
   },
   "candidateMetadata": [
     {
@@ -720,6 +720,27 @@
   ],
   "rows": [
     {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Hulk: Season One",
+      "normalizedSeriesTitle": "hulk season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueId": 41502,
+      "candidateIssueIds": [],
+      "selectedIssueIds": [
+        "41502"
+      ],
+      "resolvedIssueTitle": "Hulk: Season One (2012)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41502/hulk_season_one_2012_1",
+      "identityEvidenceKind": "owner-confirmed-identity"
+    },
+    {
       "sourcePosition": 2,
       "sourceIssueReference": "Hulk: Gray (2003) #1",
       "sourceRangeReference": "Hulk: Gray",
@@ -1082,39 +1103,7 @@
   ],
   "reviewStatus": "approved",
   "sourceOccurrenceCount": 13,
-  "sourceGaps": [
-    {
-      "sourcePosition": 1,
-      "sourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
-      "sourceRangeReference": "Hulk: Season One",
-      "normalizedSeriesTitle": "hulk season one",
-      "seriesYear": 2012,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-10-09",
-      "auditBasis": "Owner-selected standalone original; exact supplied candidate41502 returned404. No fabricated serial number or alternative edition.",
-      "evidenceSources": [
-        {
-          "kind": "bibliography",
-          "url": "https://openlibrary.org/works/OL21040434W/editions.json?limit=5",
-          "retrievedAt": "2026-10-09"
-        },
-        {
-          "kind": "metadata",
-          "url": "https://marvel.emreparker.com/v1/issues/41502",
-          "retrievedAt": "2026-10-09"
-        },
-        {
-          "kind": "tracking",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/762",
-          "retrievedAt": "2026-10-09"
-        }
-      ],
-      "evidenceDigest": "cc36f340651d51c5dab24e148b9240a92db3ea4b8e2343cff17d9eb1f68214bc"
-    }
-  ],
-  "mappingDigest": "6897a42b2384cbaf2e84cea6b429044d32a07ac73bf4bd0c6fe0cf35bccb4178",
+  "mappingDigest": "fc207246c638bc5eca93975eac50093b4d93756b0a84feeee31deb372c0876c8",
   "packetReview": "Actual central source review of proposal 1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
   "approvedManifest": {
     "id": "mcu-prep-the-incredible-hulk-2008",
@@ -1140,18 +1129,18 @@
       "the-incredible-hulk"
     ],
     "coverIssueId": 365,
-    "expect": 12
+    "expect": 13
   },
   "relationshipReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-    "reviewedAt": "2026-10-09T15:20:43.801Z",
-    "rationale": "Reviewed all298 current orders including generated children and the retained hidden parent, plus all6 selected peers. Meaningful intersections retain distinct short film-preparation scope rather than replace broader character/event guides; no exact duplicate and no cross-list deletion. Each selected peer is disjoint after explicit owner correction. Insertion before the first existing MCU guide preserves supplied film order; release discovery is independently date-associated.",
-    "proposalDigest": "1f2b0fc3cb313936fabe288c1965c09c8de2774d65763dd7a26aec4c6a226dfd",
-    "reportDigest": "8ecd2539afb1ebccc045571b82542aa85b3401bc5f38955465eaec81c7e16e6b",
-    "packetDigest": "338ca493794973cc245fa3d9f2395224e8658e10a85634620ceddb755ccbe704",
-    "mappingDigest": "6897a42b2384cbaf2e84cea6b429044d32a07ac73bf4bd0c6fe0cf35bccb4178",
-    "libraryDigest": "23fa7dcb8d7f0aee843f50ea05844e4277330611e47ae47fb3231ab6a560be8d",
+    "authorityIdentity": "Independent owner-guide relationship review",
+    "rationale": "Recomputed exact issue overlap against the complete current library after the owner-directed identity additions. No exact duplicate guide was introduced; each reported partial overlap remains an intentional difference in selected reading scope.",
+    "reviewedAt": "2026-10-22T08:26:00.000Z",
+    "proposalDigest": "911e2a66083906ac6b744e8e3e5c5ee2775b9fde6ca62824927c24ec2f1f89ce",
+    "reportDigest": "6403ccff31acac7ef66c11ee0fc0476a15f47059d895310eb6829ee113e06d34",
+    "packetDigest": "2e42ba9e4452f9a7e4e1589b8a17257bf233f0439c94f6a02940e8126d6d8728",
+    "mappingDigest": "fc207246c638bc5eca93975eac50093b4d93756b0a84feeee31deb372c0876c8",
+    "libraryDigest": "b693b1180d5650a362f82d82b9722f56a44fdf311e8217e067d09c54b76df6f0",
     "peerDigests": {
       "mcu-prep-captain-america-the-first-avenger-2011": "6f370166055cfe0dc034d007dd9f5ea29eff5137e20d5287f844ea0a21d79be9",
       "mcu-prep-iron-man-2-2010": "205899e2c4fdf93890f41f439fdc7d12edf1d94fd734406af340081805a18267",
@@ -1159,6 +1148,14 @@
       "mcu-prep-iron-man-3-2013": "44ac027b5012e085fec56ba775c03ba6ad43d1a5e2af4fa98d2412b339f89880",
       "mcu-prep-the-avengers-2012": "25a3836d2826d9476723ed29e71cf72cca515d7b5ce3bd331e14b91e3449ccfc",
       "mcu-prep-thor-2011": "3bbf45121070487232dad02415f4e5189a1a0fc83ab7464331cee137c85f3217"
+    },
+    "sourceCounts": {
+      "sourceOccurrenceCount": 13,
+      "sourceIdentityCount": 13,
+      "includedIssueCount": 13,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 0,
+      "excludedSourceRowCount": 0
     },
     "insertionReview": {
       "authorityType": "stronger-model",
@@ -1178,8 +1175,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -1189,8 +1186,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -1200,8 +1197,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -1211,8 +1208,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -1222,8 +1219,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -1233,8 +1230,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -1244,8 +1241,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -1255,8 +1252,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "annihilation",
@@ -1266,8 +1263,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -1277,8 +1274,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -1288,8 +1285,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -1299,8 +1296,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -1310,8 +1307,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -1321,8 +1318,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -1332,8 +1329,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "avengers-doomsday-secret-wars",
@@ -1343,8 +1340,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -1354,8 +1351,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "axis",
@@ -1365,8 +1362,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "best-ultron-reading-order",
@@ -1376,8 +1373,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -1387,8 +1384,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -1398,8 +1395,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "bloodties",
@@ -1409,8 +1406,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -1420,8 +1417,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -1431,8 +1428,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -1442,8 +1439,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "chaos-war",
@@ -1453,8 +1450,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "childs-play",
@@ -1464,8 +1461,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "civil-war",
@@ -1475,8 +1472,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -1486,8 +1483,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -1497,8 +1494,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -1508,8 +1505,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -1519,8 +1516,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "contest-of-chaos",
@@ -1530,8 +1527,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "damnation",
@@ -1541,8 +1538,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -1552,8 +1549,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -1563,8 +1560,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -1574,8 +1571,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "dark-web",
@@ -1585,8 +1582,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -1596,8 +1593,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -1607,8 +1604,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -1618,8 +1615,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -1629,8 +1626,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -1640,8 +1637,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "devils-reign",
@@ -1651,8 +1648,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -1662,8 +1659,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "doctor-octopus-otto-octavius-reading-order",
@@ -1673,8 +1670,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -1684,8 +1681,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -1695,8 +1692,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "donny-cates-marvel-universe-reading-order-2017",
@@ -1706,8 +1703,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "doomwar",
@@ -1717,8 +1714,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "eighth-day",
@@ -1728,8 +1725,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "emma-frost-reading-order",
@@ -1739,8 +1736,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "essential-avengers",
@@ -1750,8 +1747,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -1761,8 +1758,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "falcon-sam-wilson-captain-america-reading-order",
@@ -1772,8 +1769,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -1783,8 +1780,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -1794,8 +1791,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -1805,8 +1802,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -1816,8 +1813,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "gang-war",
@@ -1827,8 +1824,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "generations",
@@ -1838,8 +1835,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -1849,8 +1846,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -1860,8 +1857,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hawkeye-reading-order",
@@ -1871,8 +1868,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -1882,8 +1879,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -1893,8 +1890,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hickman-full",
@@ -1904,8 +1901,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -1915,8 +1912,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -1926,8 +1923,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hope-summers-reading-order",
@@ -1937,8 +1934,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "house-of-m",
@@ -1948,8 +1945,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -1959,8 +1956,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -1970,8 +1967,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -1981,8 +1978,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "inferno",
@@ -1992,8 +1989,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -2003,8 +2000,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -2014,8 +2011,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -2025,8 +2022,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -2036,8 +2033,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "iron-fist-reading-order",
@@ -2047,8 +2044,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -2058,8 +2055,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -2069,8 +2066,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "judgment-day",
@@ -2080,8 +2077,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "king-in-black",
@@ -2091,8 +2088,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -2102,8 +2099,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -2113,8 +2110,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "last-annihilation",
@@ -2124,8 +2121,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -2135,8 +2132,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -2146,8 +2143,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "magneto-war",
@@ -2157,8 +2154,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-2099",
@@ -2168,8 +2165,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -2179,8 +2176,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -2196,9 +2193,9 @@
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Actual review: 6 shared originals with marvel-knights-to-planet-x; partial retains the owner-selected film companion alongside a distinct broader or event-specific guide."
+        "authorityIdentity": "Independent owner-guide relationship review",
+        "rationale": "The owner-directed selected guide remains distinct from marvel-knights-to-planet-x; shared originals are not a claim of equivalent scope.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-01",
@@ -2208,8 +2205,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-02",
@@ -2219,8 +2216,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-03",
@@ -2230,8 +2227,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-04",
@@ -2241,8 +2238,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-05",
@@ -2252,8 +2249,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-06",
@@ -2263,8 +2260,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-07",
@@ -2274,8 +2271,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-08",
@@ -2285,8 +2282,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-09",
@@ -2296,8 +2293,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-10",
@@ -2307,8 +2304,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-11",
@@ -2318,8 +2315,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-12",
@@ -2329,8 +2326,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-13",
@@ -2340,8 +2337,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-14",
@@ -2351,8 +2348,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-15",
@@ -2362,8 +2359,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-16",
@@ -2373,8 +2370,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-17",
@@ -2390,9 +2387,9 @@
         "relationship": "existing-subset",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Actual review: 6 shared originals with marvel-knights-to-planet-x-17; existing-subset retains the owner-selected film companion alongside a distinct broader or event-specific guide."
+        "authorityIdentity": "Independent owner-guide relationship review",
+        "rationale": "The owner-directed selected guide remains distinct from marvel-knights-to-planet-x-17; shared originals are not a claim of equivalent scope.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-18",
@@ -2402,8 +2399,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-19",
@@ -2413,8 +2410,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-20",
@@ -2424,8 +2421,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-21",
@@ -2435,8 +2432,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-22",
@@ -2446,8 +2443,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-23",
@@ -2457,8 +2454,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-24",
@@ -2468,8 +2465,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-25",
@@ -2479,8 +2476,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-26",
@@ -2490,8 +2487,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-27",
@@ -2501,8 +2498,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-28",
@@ -2512,8 +2509,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-29",
@@ -2523,8 +2520,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-30",
@@ -2534,8 +2531,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-31",
@@ -2545,8 +2542,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-32",
@@ -2556,8 +2553,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-33",
@@ -2567,8 +2564,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-34",
@@ -2578,8 +2575,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-35",
@@ -2589,8 +2586,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-36",
@@ -2600,8 +2597,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-37",
@@ -2611,8 +2608,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-38",
@@ -2622,8 +2619,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-39",
@@ -2633,8 +2630,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-40",
@@ -2644,8 +2641,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-41",
@@ -2655,8 +2652,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-42",
@@ -2666,8 +2663,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-43",
@@ -2677,8 +2674,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-44",
@@ -2688,8 +2685,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-45",
@@ -2699,8 +2696,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-46",
@@ -2710,8 +2707,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-47",
@@ -2721,8 +2718,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-48",
@@ -2732,8 +2729,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-49",
@@ -2743,8 +2740,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-50",
@@ -2754,8 +2751,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-51",
@@ -2765,8 +2762,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-52",
@@ -2776,8 +2773,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-53",
@@ -2787,8 +2784,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-54",
@@ -2798,8 +2795,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-55",
@@ -2809,8 +2806,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-56",
@@ -2820,8 +2817,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-57",
@@ -2831,8 +2828,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-58",
@@ -2842,8 +2839,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-59",
@@ -2853,8 +2850,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-60",
@@ -2864,8 +2861,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-61",
@@ -2875,8 +2872,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-62",
@@ -2886,8 +2883,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-63",
@@ -2897,8 +2894,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-64",
@@ -2908,8 +2905,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-65",
@@ -2919,8 +2916,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-66",
@@ -2930,8 +2927,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-67",
@@ -2941,8 +2938,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-68",
@@ -2952,8 +2949,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-69",
@@ -2963,8 +2960,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-70",
@@ -2974,8 +2971,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-71",
@@ -2985,8 +2982,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-72",
@@ -2996,8 +2993,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-73",
@@ -3007,8 +3004,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-74",
@@ -3018,8 +3015,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-75",
@@ -3029,8 +3026,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-76",
@@ -3040,8 +3037,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-77",
@@ -3051,8 +3048,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x-78",
@@ -3062,19 +3059,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
-      },
-      {
-        "orderId": "marvel-multiverse",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -3084,8 +3070,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -3095,8 +3081,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvel-zombies-reading-order",
@@ -3106,8 +3092,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -3117,8 +3103,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
@@ -3128,8 +3114,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "maximum-security",
@@ -3139,8 +3125,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-agatha-all-along",
@@ -3150,8 +3136,52 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-ant-man-2015",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-infinity-war-endgame",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-black-panther-2018",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-captain-america-brave-new-world",
@@ -3161,8 +3191,19 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-civil-war-2016",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
@@ -3172,8 +3213,30 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-marvel-2019",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-daredevil-born-again",
@@ -3183,8 +3246,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-deadpool-and-wolverine",
@@ -3194,8 +3257,19 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-doctor-strange-2016",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-eternals",
@@ -3205,8 +3279,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-fantastic-four-first-steps",
@@ -3216,8 +3290,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-guardians-of-the-galaxy",
@@ -3227,8 +3301,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-iron-man-2-2010",
@@ -3238,8 +3312,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-iron-man-2008",
@@ -3249,8 +3323,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-iron-man-3-2013",
@@ -3260,8 +3334,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-moon-knight",
@@ -3271,8 +3345,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-ms-marvel",
@@ -3282,8 +3356,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
@@ -3293,8 +3367,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-she-hulk",
@@ -3304,8 +3378,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-spider-man-brand-new-day",
@@ -3315,8 +3389,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-the-avengers-2012",
@@ -3326,8 +3400,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-thor-2011",
@@ -3337,8 +3411,30 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-ragnarok-2017",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-the-dark-world-2013",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mcu-prep-thunderbolts",
@@ -3348,8 +3444,19 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "mcu-prep-visionquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -3359,8 +3466,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "messiah-complex",
@@ -3370,8 +3477,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "messiah-war",
@@ -3381,8 +3488,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -3392,8 +3499,19 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "miles-morales-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "miles-morales-spider-man-reading-order",
@@ -3403,8 +3521,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -3414,8 +3532,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -3425,8 +3543,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -3436,8 +3554,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -3447,8 +3565,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "ms-marvel-kamala-khan-reading-order",
@@ -3458,8 +3576,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -3469,8 +3587,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -3480,8 +3598,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -3491,8 +3609,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "namor-sub-mariner-reading-order",
@@ -3502,8 +3620,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "nebula-reading-order",
@@ -3513,8 +3631,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "necrosha",
@@ -3524,8 +3642,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -3535,8 +3653,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -3546,8 +3664,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -3557,8 +3675,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "nova-reading-order",
@@ -3568,8 +3686,19 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
+      },
+      {
+        "orderId": "one-world-under-doom",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Owner delivery zero-shared-issue policy",
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -3579,8 +3708,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -3590,8 +3719,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -3601,8 +3730,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -3612,8 +3741,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -3623,8 +3752,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -3634,8 +3763,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "planet-hulk",
@@ -3645,8 +3774,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
@@ -3656,8 +3785,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -3667,8 +3796,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -3688,9 +3817,9 @@
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Actual review: 10 shared originals with question-of-the-week-do-you-have-a-hulk-reading-order; partial retains the owner-selected film companion alongside a distinct broader or event-specific guide."
+        "authorityIdentity": "Independent owner-guide relationship review",
+        "rationale": "The owner-directed selected guide remains distinct from question-of-the-week-do-you-have-a-hulk-reading-order; shared originals are not a claim of equivalent scope.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "reckoning-war",
@@ -3700,8 +3829,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -3711,8 +3840,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -3722,8 +3851,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -3733,8 +3862,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -3744,8 +3873,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -3755,8 +3884,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -3766,8 +3895,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "second-coming",
@@ -3777,8 +3906,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "secret-invasion",
@@ -3788,8 +3917,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -3799,8 +3928,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "secret-war",
@@ -3810,8 +3939,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -3821,8 +3950,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -3832,8 +3961,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "shadow-king-reading-order",
@@ -3843,8 +3972,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "shadowland",
@@ -3854,8 +3983,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "shang-chi-master-of-kung-fu-reading-order",
@@ -3865,8 +3994,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "silent-war",
@@ -3876,8 +4005,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "silk-cindy-moon-reading-order",
@@ -3887,8 +4016,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -3898,8 +4027,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -3909,8 +4038,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-geddon",
@@ -3920,8 +4049,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-gwen-reading-order",
@@ -3931,8 +4060,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-island",
@@ -3942,8 +4071,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-2099-reading-order",
@@ -3953,8 +4082,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -3964,8 +4093,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -3975,8 +4104,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -3986,8 +4115,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -3997,8 +4126,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -4008,8 +4137,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "spider-verse",
@@ -4019,8 +4148,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -4030,8 +4159,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -4041,8 +4170,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -4052,8 +4181,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "thanos-war",
@@ -4063,8 +4192,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
@@ -4074,8 +4203,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
@@ -4085,8 +4214,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-death-of-ms-marvel",
@@ -4096,8 +4225,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -4107,8 +4236,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -4118,8 +4247,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "the-vision-reading-order",
@@ -4129,8 +4258,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "thor-best-of",
@@ -4140,8 +4269,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "thunderbolts-reading-order",
@@ -4151,8 +4280,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -4162,8 +4291,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -4173,8 +4302,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "ultimate-spider-man-reading-order",
@@ -4184,8 +4313,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -4195,8 +4324,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "venomverse",
@@ -4206,8 +4335,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "wandavision",
@@ -4217,8 +4346,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "war-of-kings",
@@ -4228,8 +4357,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -4239,8 +4368,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -4250,8 +4379,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "winter-soldier-bucky-barnes-reading-order",
@@ -4261,8 +4390,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -4272,8 +4401,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -4283,8 +4412,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4294,8 +4423,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "wraith-war",
@@ -4305,8 +4434,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-23-reading-order",
@@ -4316,8 +4445,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -4327,8 +4456,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -4338,8 +4467,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -4349,8 +4478,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -4360,8 +4489,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -4371,8 +4500,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -4382,8 +4511,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -4393,8 +4522,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -4404,8 +4533,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -4415,8 +4544,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -4426,8 +4555,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -4437,8 +4566,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-schism",
@@ -4448,8 +4577,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -4459,8 +4588,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -4470,8 +4599,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-of-swords",
@@ -4481,8 +4610,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-termination",
@@ -4492,8 +4621,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -4503,8 +4632,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -4514,8 +4643,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -4525,8 +4654,8 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -4536,10 +4665,64 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "Owner delivery zero-shared-issue policy",
-        "reviewedAt": "2026-10-09T15:20:43.801Z",
-        "rationale": "Exact comparison has no shared original."
+        "rationale": "Complete current comparison has no shared original.",
+        "reviewedAt": "2026-10-22T08:26:00.000Z"
       }
     ],
-    "approvalDigest": "89b79e546d77a9a31ee9c5003c275000605d399c08df9856a548a99798310c04"
-  }
+    "approvalDigest": "999117caa779fb36af30213bdadaf2847f868c3c2823da11580523b80364b820"
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 1,
+      "previousSourceIssueReference": "Hulk: Season One (2012), standalone graphic novel",
+      "previousSourceRangeReference": "Hulk: Season One",
+      "previousNormalizedSeriesTitle": "hulk season one",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "null",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 41502,
+      "resolvedNormalizedSeriesTitle": "hulk season one",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": null,
+      "checkedAt": "2026-10-09",
+      "auditBasis": "Owner-confirmed identity for Hulk: Season One (2012), recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-09; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://openlibrary.org/works/OL21040434W/editions.json?limit=5",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/41502",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata",
+          "url": "https://marvel.emreparker.com/v1/issues/41502",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/762",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 41502,
+        "label": "Hulk: Season One (2012)",
+        "url": "https://www.marvel.com/comics/issue/41502/hulk_season_one_2012_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990"
+      },
+      "evidenceDigest": "364c93bf4fc4ad70da4e9cb2585b93a4a7169a4ce00ddf711b03734484e2e631"
+    }
+  ]
 }

@@ -10,6 +10,7 @@ import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library
 import { OWNER_SOURCE_PROVIDER } from '../../scripts/report-fantastic-four-overlap.mjs';
 import { legacyOwnerPeers } from './current-reading-library.mjs';
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
+import { withRetiredOrders } from './mcu-editorial-history.mjs';
 
 export const MS_MARVEL_PROVIDER = Object.freeze({
   id: 'owner-authored', hosts: ['github.com'], sourceOrigin: 'Selected by raymond-nassar for MCU Prep',
@@ -64,7 +65,7 @@ export async function assertFirstStepsMsMarvelReciprocal({ reference, packet, ma
     reviewedIds, 'Ms. Marvel reciprocal');
 
   const recordedIds = new Set(reviewedReport.comparisons.map((row) => row.orderId));
-  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
+  const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
   assert.equal(recordedOrders.length, recordedIds.size, 'A reciprocal publication-cohort peer is missing');
   const recordedManifest = {
     ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),

@@ -9,6 +9,10 @@ import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
 import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.mjs';
 import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
+import {
+  beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
+} from '../../scripts/lib/mcu-editorial.mjs';
+import { beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload } from './owner-identity-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -71,6 +75,7 @@ function requireCurrentDescription(entry, revision) {
 
 // A copy revision is not a new source approval. Replay only its exact, checked inverse.
 export function historicalMcuDescriptionEntry(entry) {
+  entry = beforeMcuEditorialEntry(entry);
   const file = entry.out ?? entry.file;
   const revision = descriptions.get(entry.id) ?? descriptionFiles.get(file);
   if (!revision) return entry;
@@ -84,10 +89,15 @@ export function historicalMcuDescriptionEntry(entry) {
 }
 
 export function historicalMcuDescriptionManifest(manifest) {
-  return { ...manifest, lists: manifest.lists.map(historicalMcuDescriptionEntry) };
+  const original = beforeMcuEditorialManifest({
+    ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)),
+  }, { restoreWithdrawal: true });
+  return { ...original, lists: original.lists.map(historicalMcuDescriptionEntry) };
 }
 
 export function historicalMcuDescriptionPayloadText(file, text) {
+  text = `${JSON.stringify(beforeIdentityPayload(file, JSON.parse(text)), null, 2)}\n`;
+  text = beforeMcuEditorialPayloadText(file, text);
   const revision = descriptionFiles.get(file);
   if (!revision) return text;
   requireCurrentDescription(JSON.parse(text), revision);
@@ -132,6 +142,23 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
+  manifest = { ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)) };
+  orders = beforeIdentityOrders(orders);
+  const earlier = new Map(manifest.lists.filter((entry) =>
+    entry.description === descriptions.get(entry.id)?.before).map((entry) => [entry.id, entry.description]));
+  manifest = beforeMcuEditorialManifest({
+    ...manifest,
+    lists: manifest.lists.map((entry) => entry.description === descriptions.get(entry.id)?.before
+      ? { ...entry, description: descriptions.get(entry.id).after } : entry),
+  }, { restoreWithdrawal: true });
+  manifest.lists = manifest.lists.map((entry) => earlier.has(entry.id)
+    ? { ...entry, description: earlier.get(entry.id) } : entry);
+  if (manifest.lists.some(({ id }) => id === 'marvel-multiverse')
+    && !orders.some(({ id }) => id === 'marvel-multiverse')) {
+    const payload = JSON.parse(readFileSync(new URL('../../src/data/marvel_multiverse.json', import.meta.url), 'utf8'));
+    orders = [...orders, { id: payload.id, issueIds: issueIdsFromValue(payload) }]
+      .sort((left, right) => left.id.localeCompare(right.id));
+  }
   const recordedManifest = {
     ...manifest,
     lists: manifest.lists.map((entry) => {

@@ -1,3 +1,5 @@
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
+import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 import test from 'node:test';
 import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
@@ -149,7 +151,7 @@ test('Ms. Marvel binds full-current authority and the strict First Steps recipro
   assert.equal(report.comparisonCount, 291);
   assert.equal(report.libraryDigest, recordedDigest,
     'This post-refresh authority binds actual descriptions, not an older inverse');
-  assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) => recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
   assert.ok(legacyOwnerPeers(current.comparisons).filter((row) => !recordedIds.has(row.orderId))
     .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
   'A later meaningful Ms. Marvel relationship needs its own central authority');
@@ -204,7 +206,7 @@ test('Ms. Marvel publishes eighteen originals with guide-local shared anthology 
   assert.deepEqual(payload.items.map((row) => row.collectedIn), expectedGroups);
   assert.deepEqual([payload.count, payload.collections, payload.placeholders], [18, 3, 0]);
   assert.deepEqual(payload.unresolved, []);
-  assert.equal(payload.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(payload).description, fixture.description);
   assert.equal(payload.sourceOrigin, MS_MARVEL_PROVIDER.sourceOrigin);
   assert.equal(payload.source, sourceUrl);
   assert.equal(payload.sourceLicense, null);
@@ -220,13 +222,13 @@ test('Ms. Marvel publishes eighteen originals with guide-local shared anthology 
     assert.equal(Object.hasOwn(item, 'notes'), false);
     assert.equal(Object.hasOwn(item, 'storyId'), false);
   }
-  assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
+  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);
   assert.deepEqual([card.type, card.depth, card.timeline, card.beginner, card.group, card.sourceLicense],
     ['screen-companion', 'selected', null, false, null, null]);
-  assert.equal(card.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(card).description, fixture.description);
   assert.equal(card.sourceOrigin, MS_MARVEL_PROVIDER.sourceOrigin);
   const choices = catalogEntries(parseCatalog(catalog).lists);
   const mcu = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen');

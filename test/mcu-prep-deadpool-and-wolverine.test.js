@@ -1,5 +1,7 @@
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
+import { withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
+import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -232,7 +234,7 @@ test('approved relationships cover the complete library including generated chil
   assert.deepEqual(legacyOwnerPeers(addedPeerIds), ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
     'mcu-prep-moon-knight', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
+    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected']);
   assert.deepEqual(current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)),
     recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)));
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => !recordedPeerIds.has(entry.orderId))
@@ -255,18 +257,27 @@ test('approved relationships cover the complete library including generated chil
   assert.ok(expectedPeers.some((entry) => !catalogIds.has(entry.id)));
   assert.ok(current.comparisons.every((comparison) => comparison.relationship !== 'exact'));
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
-  const reviewedPeers = expectedPeers.filter((entry) => publicationPeers.has(entry.id));
+  const reviewedPeers = withRetiredOrders(expectedPeers.filter((entry) => publicationPeers.has(entry.id)), publicationPeers);
   const reviewed = buildComparisonReport({ candidateIds: expectedVector.map(String), orders: reviewedPeers });
   assert.deepEqual(report.comparisons, reviewed.comparisons);
+  const archived = mcuEditorial.withdrawal.catalogEntry;
+  const historicalEntries = [...completeManifest.lists];
+  const archivedPosition = historicalEntries.findIndex(({ id }) => id === mcuEditorial.withdrawal.beforeId);
+  assert.ok(archivedPosition >= 0);
+  historicalEntries.splice(archivedPosition, 0, { ...archived, out: archived.file });
   const historicalManifest = {
     ...completeManifest,
-    lists: completeManifest.lists.map((entry) => ({
+    lists: historicalEntries.map((entry) => ({
       ...historicalReadingChoiceCatalogEntry(entry), out: entry.out,
     })),
   };
   const historicalOrders = orders.map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   }));
+  historicalOrders.splice(archivedPosition, 0, {
+    id: archived.id,
+    issueIds: (await readJson(`../src/data/${archived.file}`)).items.map((item) => String(item.issueId)),
+  });
   const libraryDigest = libraryDigestExcludingOrders(
     { manifest: historicalManifest, orderIssueIds: historicalOrders }, [id, ...laterIds, ...addedPeerIds],
   );

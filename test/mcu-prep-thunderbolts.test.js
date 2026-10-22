@@ -1,5 +1,6 @@
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
+import { beforeMcuEditorialEntry, mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -200,7 +201,7 @@ test('Thunderbolts keeps the exact minus-one gap without a guessed replacement o
     [62424, 'Thunderbolts (1997) #1', '1'],
   ]);
   const copy = await readJson('test/fixtures/mcu-prep-description-refresh.json');
-  assert.equal(manifest.lists.find((entry) => entry.id === id).description,
+  assert.equal(beforeMcuEditorialEntry(manifest.lists.find((entry) => entry.id === id)).description,
     copy.entries.find((entry) => entry.id === id).after);
 });
 
@@ -253,7 +254,7 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
     currentCompanions);
   assert.deepEqual(currentCompanions.filter((peerId) => MCU_SELECTED_IDS.includes(peerId)),
-    MCU_SELECTED_IDS);
+    MCU_SELECTED_IDS.filter((key) => key !== 'marvel-multiverse'));
   assert.equal(currentCompanions.filter((peerId) => peerId === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'lines').filter((entry) => entry.id === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((entry) => entry.id === id), false);
@@ -289,7 +290,12 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   }));
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
   const currentDescriptorsBefore = structuredClone(currentOrders.map((entry) => entry.descriptor));
-  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => {
+  const archived = mcuEditorial.withdrawal.catalogEntry;
+  const publicationOrders = [...currentOrders, {
+    orderId: archived.id, file: archived.file, descriptor: archived,
+    issueIds: (await readJson(`src/data/${archived.file}`)).items.map((item) => String(item.issueId)),
+  }].sort((left, right) => left.orderId.localeCompare(right.orderId));
+  const orders = publicationOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => {
     const descriptor = { ...historicalReadingChoiceCatalogEntry(entry.descriptor) };
     delete descriptor.storylines;
     delete descriptor.storylinesChildren;
@@ -337,7 +343,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
     'mcu-prep-ms-marvel', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-she-hulk', 'mcu-prep-spider-man-brand-new-day']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
+    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected']);
   assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),
     current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)));
   assert.equal(recorded.comparisonCount, 284);

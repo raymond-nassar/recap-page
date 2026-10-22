@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
@@ -181,7 +182,8 @@ test('Eternals preserves its frozen human approval and rechecks the complete cur
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
   const orders = await Promise.all([...publicationPeers].sort().map(async (orderId) => {
     const entry = catalog.lists.find(({ id }) => id === orderId)
-      ?? manifest.lists.find(({ id }) => id === orderId);
+      ?? manifest.lists.find(({ id }) => id === orderId)
+      ?? (orderId === 'marvel-multiverse' ? mcuEditorial.withdrawal.catalogEntry : null);
     assert.ok(entry, `Historical peer ${orderId} is missing`);
     const issueIds = issueIdsFromValue(await readJson(`src/data/${entry.file ?? entry.out}`));
     return { orderId, issueIds: historicalReadingChoiceIssueIds(orderId, issueIds) };

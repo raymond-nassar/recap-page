@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -38,7 +39,8 @@ export function ownerPresentation(expected) {
   return { rows, headings };
 }
 
-export function ownerGuideScenario(contract) {
+export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
+  const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
   const category = event ? 'timeline' : 'marvel-on-screen';
   const results = event ? '#catalog-results' : '#marvel-on-screen-results';
@@ -63,12 +65,23 @@ export function ownerGuideScenario(contract) {
   seed = markRead(seed, priorControl.issueId, true, 123456);
   seed = setDeferred(seed, 'owner-existing', house.items[2].issueId);
   seed = createList(seed, { id: 'owner-shared', name: 'An existing selection' });
-  seed = addIssuesToList(seed, 'owner-shared', [payload.items[0]]).state;
-  if (expected.length > 1) seed = markRead(seed, payload.items[0].issueId, true, 123456);
-  seed = setIssueNote(seed, payload.items[0].issueId, 'Preserve the original-level note');
+  const sharedOriginal = payload.items.find((item) =>
+    item.identityEvidenceKind !== 'owner-confirmed-identity') ?? payload.items[0];
+  seed = addIssuesToList(seed, 'owner-shared', [sharedOriginal]).state;
+  if (expected.length > 1) seed = markRead(seed, sharedOriginal.issueId, true, 123456);
+  seed = setIssueNote(seed, sharedOriginal.issueId, 'Preserve the original-level note');
   seed.overrides[priorControl.issueId] = 'unavailable';
-  const nextOriginal = payload.items.find((item) => !seed.read[item.issueId]);
+  const ownerIdentityIds = payload.items
+    .filter((item) => item.identityEvidenceKind === 'owner-confirmed-identity')
+    .map((item) => item.issueId);
+  const nextOriginal = payload.items.find((item) =>
+    item.identityEvidenceKind === 'owner-confirmed-identity' && !seed.read[item.issueId])
+    ?? payload.items.find((item) => !seed.read[item.issueId]);
   assert.ok(nextOriginal, 'The shared owner journey needs one unread original.');
+  const nextIndex = payload.items.indexOf(nextOriginal);
+  for (const item of payload.items.slice(0, nextIndex)) {
+    if (!seed.read[item.issueId]) seed = markRead(seed, item.issueId, true, 123456);
+  }
   const history = JSON.stringify({
     format: LIST_HISTORY_FORMAT, version: 1,
     records: [{ listId: 'owner-shared', created: seed.lists['owner-shared'].created,
@@ -84,6 +97,8 @@ export function ownerGuideScenario(contract) {
       raw, history: localStorage.getItem(historyKey), matches: matches.length,
       prior: state.lists['owner-existing'], shared: state.lists['owner-shared'],
       read: state.read, notes: state.notes, overrides: state.overrides, schemaVersion: state.schemaVersion,
+      ownerIdentityIds: (list?.itemIds ?? []).filter((issueId) =>
+        state.issues[issueId].identityEvidenceKind === 'owner-confirmed-identity'),
       rows: (list?.itemIds ?? []).map((issueId, index) => ({
         position: index + 1, issueId, title: state.issues[issueId].title,
         group: list.collectedIn?.[issueId] ?? null,
@@ -109,14 +124,15 @@ export function ownerGuideScenario(contract) {
   const checkSaved = (t, actual) => {
     t.check('import/reload keeps every accepted original and existing reader/history fact',
       actual.matches === 1 && actual.schemaVersion === seed.schemaVersion
-      && isDeepStrictEqual(actual.rows, expected) && actual.history === history
+      && isDeepStrictEqual(actual.rows, expected)
+      && isDeepStrictEqual(actual.ownerIdentityIds, ownerIdentityIds) && actual.history === history
       && isDeepStrictEqual(actual.prior, seed.lists['owner-existing'])
       && isDeepStrictEqual(actual.shared, seed.lists['owner-shared'])
       && isDeepStrictEqual(actual.read, seed.read) && isDeepStrictEqual(actual.notes, seed.notes)
       && isDeepStrictEqual(actual.overrides, seed.overrides), JSON.stringify(actual));
   };
   return {
-    id: `owner-guide-${contract.id}`,
+    id: `owner-guide-${contract.id}${savedCopyOnly ? '-saved-copy' : ''}`,
     title: `Registered owner guide: ${contract.name}`,
     async run(page, t) {
       const errors = [];
@@ -127,6 +143,45 @@ export function ownerGuideScenario(contract) {
         const url = new URL(request.url());
         if (url.protocol.startsWith('http') && url.origin !== page.__origin) external.push(url.origin);
       });
+      if (savedCopyOnly) {
+        const savedId = 'saved-owner-guide';
+        const savedName = `My saved ${contract.name}`;
+        const previousItems = payload.items.filter((item) => !ownerIdentityIds.includes(item.issueId));
+        assert.ok(ownerIdentityIds.length > 0 && previousItems.length >= 4);
+        let previous = createList(createEmptyState(), {
+          id: savedId, catalogId: contract.id, name: savedName,
+          note: 'Keep my list note', description: 'Keep my saved description',
+        });
+        previous = addIssuesToList(previous, savedId, previousItems).state;
+        const ids = previous.lists[savedId].itemIds;
+        assert.equal(ids.length, contract.rows.length - ownerIdentityIds.length);
+        previous = markRead(previous, ids[0], true, 123456);
+        previous = setIssueNote(previous, ids[1], 'Keep my issue note');
+        previous = setDeferred(previous, savedId, ids[2]);
+        previous.overrides[ids[3]] = 'unavailable';
+        previous.lists[savedId].itemIds = [ids[1], ids[0], ...ids.slice(2)];
+        const expectedPrevious = JSON.parse(JSON.stringify(previous));
+        await page.evaluateOnNewDocument((key, state) => {
+          if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+          window.__mrtBlockExternal = true;
+        }, KEY, previous);
+        await page.goto(`${page.__origin}/?catalog=actual#/read/${savedId}`, { waitUntil: 'load' });
+        await page.waitForFunction((name) =>
+          document.querySelector('#order-name')?.textContent.trim() === name, {}, savedName);
+        for (let reload = 0; reload < 2; reload++) {
+          if (reload) await page.reload({ waitUntil: 'load' });
+          const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
+          t.check(`pre-publication saved ${contract.name} preserves its ${ids.length} originals and reader facts after ${reload ? 'reload' : 'open'}`,
+            isDeepStrictEqual(saved.lists, expectedPrevious.lists)
+            && isDeepStrictEqual(saved.read, expectedPrevious.read)
+            && isDeepStrictEqual(saved.notes, expectedPrevious.notes)
+            && isDeepStrictEqual(saved.overrides, expectedPrevious.overrides));
+        }
+        t.check('saved-copy compatibility stays isolated with no browser errors',
+          errors.length === 0 && external.length === 0, JSON.stringify({ errors, external }));
+        return;
+      }
       await page.evaluateOnNewDocument((stateKey, state, historyKey, savedHistory) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
         if (!localStorage.getItem(stateKey)) localStorage.setItem(stateKey, JSON.stringify(state));
@@ -195,7 +250,7 @@ export function ownerGuideScenario(contract) {
           width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
         }));
         t.check(`Preview preserves approved copy, source and narrow layout at ${width}px`,
-          preview.description === contract.description && preview.source === contract.sourceUrl
+          preview.description === expectedDescription && preview.source === contract.sourceUrl
           && preview.scrollWidth <= preview.width, JSON.stringify(preview));
         const after = await readSaved(page);
         t.check(`Preview does not write reader or completion history at ${width}px`,
@@ -220,6 +275,22 @@ export function ownerGuideScenario(contract) {
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
       checkSaved(t, await readSaved(page));
+      if (nextOriginal.identityEvidenceKind === 'owner-confirmed-identity') {
+        const identityStatus = await page.$$eval('#rows .row', (nodes, id) => {
+          const row = nodes.find((node) => Number(node.querySelector('.rt')?.dataset.issueId) === id);
+          const badge = row?.querySelector('.badge-owner-confirmed');
+          return {
+            title: row?.querySelector('.rt')?.textContent.trim() ?? null,
+            badge: badge?.childNodes[0]?.textContent.trim() ?? null,
+            hint: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
+          };
+        }, nextOriginal.issueId);
+        t.check('owner-confirmed identity remains explicit after import and reload',
+          identityStatus.title === nextOriginal.title
+          && identityStatus.badge === 'identity confirmed'
+          && /owner confirmed this issue identity/.test(identityStatus.hint ?? '')
+          && /no provider details or cover/.test(identityStatus.hint ?? ''), JSON.stringify(identityStatus));
+      }
       await page.evaluate(() => {
         window.__dispatching = true;
         document.querySelector('#btn-hero-read').click();
@@ -227,7 +298,7 @@ export function ownerGuideScenario(contract) {
         window.__dispatching = false;
       });
       const opened = await page.evaluate(() => window.__opened);
-      t.check('reader launch remains synchronous with separate tabs and no per-story identity',
+      t.check('owner-confirmed reader launch remains synchronous with separate tabs',
         opened.length === 2 && opened.every((entry) => entry.dispatching && entry.target === '_blank'
           && entry.features === 'noopener' && new URL(entry.url).origin === page.__origin
           && (new URL(entry.url).searchParams.get('i') === String(nextOriginal.issueId)

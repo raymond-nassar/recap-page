@@ -191,7 +191,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:609-663`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:614-668`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:1771-1782`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
@@ -263,9 +263,9 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1051-1064` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1061-1074` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:696-698`. The write, result, and notification are handled together at
+`src/js/lib/model.js:704-706`. The write, result, and notification are handled together at
 `src/js/storage.js:673-700`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
@@ -282,7 +282,7 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:734`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:744`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:36-44`.
 
@@ -515,12 +515,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1440-1493`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1449-1502`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:392-402`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:693-711`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:702-720`.
 The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
 paths remains a separate stop in each sequence.
 

@@ -15,10 +15,12 @@ import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
 import {
-  currentReadingCensus, registeredCuratedPeerContracts, registeredOwnerContracts,
+  currentReadingCensus, registeredCuratedGuides, registeredOwnerContracts,
 } from './current-reading-library.mjs';
-import { readCuratedGuidePeerReview } from './curated-guide-peer-review.mjs';
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
+import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
+import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
+import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, identityRevisions } from './owner-identity-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -27,8 +29,9 @@ export async function assertOwnerDeliveryContract(contract, {
   contracts = registeredOwnerContracts,
   peerCount = currentReadingCensus.peers,
   readJson = null,
+  readText = null,
 } = {}) {
-  const text = (name) => readFile(path.join(root, name), 'utf8');
+  const text = readText ?? ((name) => readFile(path.join(root, name), 'utf8'));
   const json = readJson ?? (async (name) => JSON.parse(await text(name)));
   const { id } = contract;
   const event = contract.surface === 'modern-timeline';
@@ -61,12 +64,31 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(parsed.entries.map((row) => row.issueId), expectedIds);
   assert.deepEqual(parsed.entries.map((row) => Number(row.sourceKey)), expectedPositions);
   assert.deepEqual(parsed.entries.map((row) => row.section), expectedGroups);
+  assert.deepEqual(parsed.entries.map((row) => row.identityEvidenceKind ?? null),
+    mapping.rows.map((row) => row.identityEvidenceKind ?? null));
   assert.deepEqual(payload.items.map((row) => row.issueId), expectedIds);
   assert.deepEqual(payload.items.map((row) => row.collectedIn ?? null), expectedGroups);
   assert.deepEqual(payload.items.map((row) => row.title), contract.rows.map((row) => row[2]));
   assert.deepEqual([payload.count, payload.placeholders, payload.unresolved], [expectedIds.length, 0, []]);
-  assert.ok(payload.items.every((row) => row.description === null && !row.placeholder && !row.detailsRefused));
-  for (const item of payload.items) {
+  assert.ok(payload.items.every((row) => row.description === null && !row.placeholder));
+  for (const [index, item] of payload.items.entries()) {
+    const row = mapping.rows[index];
+    if (row.identityEvidenceKind === 'owner-confirmed-identity') {
+      assert.equal(item.detailsRefused, true);
+      assert.equal(item.identityEvidenceKind, 'owner-confirmed-identity');
+      assert.equal(item.url, row.marvelIssueUrl);
+      assert.equal(item.seriesId, null);
+      assert.equal(item.seriesName, null);
+      assert.equal(item.onSale, null);
+      assert.equal(item.mu, null);
+      assert.equal(item.digitalId, null);
+      assert.equal(item.cover, null);
+      assert.equal(item.pageCount, null);
+      assert.deepEqual(item.creators, []);
+      assert.equal(mapping.candidateMetadata.some((candidate) => candidate.id === item.issueId), false);
+      continue;
+    }
+    assert.ok(!item.detailsRefused);
     const metadata = mapping.candidateMetadata.find((row) => row.id === item.issueId)?.providerProjection;
     assert.ok(metadata, 'Every published original needs its approved metadata projection.');
     assert.equal(item.digitalId, metadata.digitalId);
@@ -79,7 +101,8 @@ export async function assertOwnerDeliveryContract(contract, {
       .filter((credit) => /writer|penciler|artist/i.test(credit.role))
       .map(({ name, role }) => ({ name, role })));
   }
-  assert.equal(payload.description, contract.description);
+  assert.equal(payload.description === contract.description
+    ? payload.description : beforeMcuEditorialEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
   if (event) {
@@ -89,9 +112,15 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
+  const currentEntry = manifest.lists.find((row) => row.id === id);
+  assert.deepEqual(currentEntry.description === packet.proposedManifest.description
+    ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
+  assert.equal(
+    catalog.lists.find((row) => row.id === id).ownerConfirmedIdentityCount ?? 0,
+    mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length,
+  );
 
   const library = await loadCurrentOwnerLibrary(id, { root });
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: library.orders });
@@ -102,22 +131,34 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(Object.keys(report.peerDigests).sort(), [...peerIds].sort());
   const peerMappings = await Promise.all(peerIds.map(async (peerId) => {
     assert.ok(contracts.some((entry) => entry.id === peerId), 'Selected peers require independent registered contracts.');
-    const peer = await json(`scripts/data/owner-mappings/${peerId}.json`);
+    let peer = await json(`scripts/data/owner-mappings/${peerId}.json`);
     assert.equal(peer.id, peerId);
+    if (identityRevisions.guides.some((entry) => entry.id === peerId)
+      && peer.mappingDigest !== report.peerDigests[peerId]) {
+      peer = beforeIdentityJson(`scripts/data/owner-mappings/${peerId}.json`);
+      assert.equal(peer.mappingDigest, report.peerDigests[peerId]);
+    }
     return peer;
   }));
-  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId) && !peerIds.includes(row.orderId));
+  const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
+    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
   const recordedManifest = {
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
   };
   const digestLibrary = contract.libraryDigest == null
-    ? historicalSpiderManSelectionLibraryDigest : libraryDigestFor;
-  const currentLibraryDigest = digestLibrary(recordedManifest, recordedOrders.map((row) => ({
-    id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+    ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
+  const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
+  const identityUpdate = identityRevisions.guides.some((entry) => entry.id === id);
+  const cutoff = identityUpdate ? mapping.relationshipReview.reviewedAt : '';
+  const recordedCurrentDigest = libraryDigestFor({
+    ...recordedManifest, lists: recordedManifest.lists.map((entry) => beforeIdentityEntry(entry, cutoff)),
+  }, beforeIdentityOrders(recordedVectors, cutoff));
+  const currentLibraryDigest = contract.libraryDigest === recordedCurrentDigest
+    ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors);
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
-  assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
+    recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
   assert.equal(current.comparisonCount, peerCount);
   assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest,
@@ -125,26 +166,9 @@ export async function assertOwnerDeliveryContract(contract, {
     expectedOrderIds: [...recordedOrders.map((row) => row.orderId), ...peerIds], packetValidation: { provider },
   });
   for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
+    if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
     const laterContract = contracts.find((entry) => entry.id === later.orderId);
-    const curatedContract = registeredCuratedPeerContracts.find((entry) => entry.id === later.orderId);
-    assert.ok(laterContract || curatedContract, 'Unregistered later peers require a new bounded relationship review.');
-    if (curatedContract) {
-      const review = await readCuratedGuidePeerReview(curatedContract, { root });
-      const reciprocal = review.relationships.find((row) => row.orderId === id);
-      assert.equal(review.status, 'approved');
-      const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
-      const reviewedRelationship = reciprocal?.relationship ?? review.unlistedDisposition;
-      const reviewedSharedCount = reciprocal?.sharedCount ?? 0;
-      const reviewedSharedIds = reciprocal?.sharedIds ?? [];
-      assert.equal(later.relationship, inverse[reviewedRelationship]);
-      assert.equal(later.sharedCount, reviewedSharedCount);
-      const expectedSharedIds = reviewedSharedIds === 'candidate-vector'
-        ? (await json(`src/data/${curatedContract.payloadFile.replace(/^src\/data\//, '')}`))
-          .items.map((item) => String(item.issueId))
-        : reviewedSharedIds;
-      assert.deepEqual([...later.sharedIds].sort(), [...expectedSharedIds].sort());
-      continue;
-    }
+    assert.ok(laterContract, 'Unregistered later peers require a new bounded relationship review.');
     const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
     const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
     validateMappingDigest(laterMapping);

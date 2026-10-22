@@ -1529,6 +1529,7 @@ async function issueNoteReadability(page, label, desktop) {
 }
 
 const READING_LIST = 'reading-composition';
+const READING_ISSUE_POSITION = 4;
 const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. It stays hidden until deliberately revealed, then wraps without covering any action.';
 const readingProfiles = [
   { id: 'M01', width: 360, height: 800 },
@@ -1539,13 +1540,17 @@ const readingProfiles = [
   { id: 'D01', width: 1280, height: 900, desktop: true },
 ];
 let readingOrder;
+let readingIssue;
 if (readingComposition || alignment) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
-  assert.equal(readingOrder.items.length, 89);
-  const item = readingOrder.items[3];
-  assert.deepEqual([item.issueId, item.digitalId, item.title], [43534, 28116, 'Avengers (2012) #4']);
+  assert.equal(readingOrder.items.length, 69);
+  readingIssue = readingOrder.items[READING_ISSUE_POSITION - 1];
+  assert.deepEqual(
+    [readingIssue.issueId, readingIssue.digitalId, readingIssue.title],
+    [10586, 3443, 'Secret Wars (1984) #4'],
+  );
 }
 
 function readingState(profile = {}) {
@@ -1557,13 +1562,13 @@ function readingState(profile = {}) {
   for (const item of readingOrder.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
   if (profile.long) {
     state.lists[READING_LIST].name = 'Hickman to Secret Wars: a deliberately long Reading List title with every word retained';
-    state.issues[43534].title = 'Avengers (2012) #4: a long issue title with each word kept and room to read at a larger text size';
+    state.issues[readingIssue.issueId].title = `${readingIssue.title}: a long issue title with each word kept and room to read at a larger text size`;
   }
   return state;
 }
 
 async function readingFixtures(page, profile) {
-  await page.evaluateOnNewDocument((state, key, educationKey, educationValue, synopsis, allowSynopsis) => {
+  await page.evaluateOnNewDocument((state, key, educationKey, educationValue, synopsis, allowSynopsis, fixtureIssueId) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
     localStorage.setItem(educationKey, educationValue);
     const original = window.fetch.bind(window);
@@ -1577,14 +1582,14 @@ async function readingFixtures(page, profile) {
       if (url.origin === location.origin) return original(input, options);
       if (url.pathname === '/v1/health') return json({ status: 'ok' });
       const match = /^\/v1\/issues\/(\d+)$/.exec(url.pathname);
-      if (allowSynopsis && match && Number(match[1]) === 43534) {
+      if (allowSynopsis && match && Number(match[1]) === fixtureIssueId) {
         window.__readingTest.requests.push(Number(match[1]));
-        return json({ ...state.issues[Number(match[1])], description: synopsis });
+        return json({ ...state.issues[fixtureIssueId], description: synopsis });
       }
       throw new Error(`Unexpected reading fixture request: ${url.href}`);
     };
   }, readingState(profile), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE,
-  READING_SYNOPSIS, profile.id === 'M05');
+  READING_SYNOPSIS, profile.id === 'M05', readingIssue.issueId);
 }
 
 async function readingGeometry(page) {
@@ -1663,10 +1668,12 @@ async function readingEvidence(page, profile, id = profile.id) {
   const result = await readingGeometry(page);
   result.sourceRevision = JSON.parse(await readFile(join(ANDROID_ASSET_DIR, 'build-info.json'), 'utf8')).sourceRevision;
   const state = readingState(profile);
-  const presentation = issuePresentation(state.issues[43534], { position: 4, total: 89 });
+  const presentation = issuePresentation(state.issues[readingIssue.issueId], {
+    position: READING_ISSUE_POSITION, total: readingOrder.items.length,
+  });
   assert.ok(result.readCount === 1 && result.readVisible && !result.readDisabled
     && Number.isFinite(result.read.bottom) && result.read.height > 0, `${id}: positive Read measurement`);
-  assert.equal(result.issue, state.issues[43534].title, `${id}: exact fixture issue`);
+  assert.equal(result.issue, state.issues[readingIssue.issueId].title, `${id}: exact fixture issue`);
   if (process.env.MRT_ANDROID_SCREENSHOTS) {
     const output = process.env.MRT_ANDROID_SCREENSHOTS;
     await mkdir(output, { recursive: true });
@@ -1677,7 +1684,7 @@ async function readingEvidence(page, profile, id = profile.id) {
   }
   console.log(`READING ${id}: ${JSON.stringify(result)}`);
   check(result.title === state.lists[READING_LIST].name && result.byline === presentation.byline
-    && result.count === '3 of 89 read', `${id}: full title, byline and progress preserved`);
+    && result.count === `3 of ${readingOrder.items.length} read`, `${id}: full title, byline and progress preserved`);
   check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.map(({ key, value }) => ({ key, value }))),
     `${id}: every exact factual value retained`);
   const scale = profile.textScale || 1;
@@ -1788,6 +1795,8 @@ async function readingReplaceState(page, state) {
 }
 
 async function readingSemantics(page) {
+  const nextIssue = readingOrder.items[READING_ISSUE_POSITION];
+  const followingIssue = readingOrder.items[READING_ISSUE_POSITION + 1];
   const saved = await page.evaluate((key) => localStorage.getItem(key), KEY);
   await click(page, '#order-desc > summary');
   check(await page.$eval('#order-desc', (node) => node.open), 'M01: About expands normally');
@@ -1798,8 +1807,8 @@ async function readingSemantics(page) {
     'M01: list-sheet Back restores focus');
   await page.focus('#btn-hero-inspect');
   await click(page, '#btn-hero-inspect');
-  await page.waitForFunction(() => document.querySelector('#view-issue')?.hidden === false
-    && document.querySelector('#issue-focus-h')?.textContent === 'Avengers (2012) #4');
+  await page.waitForFunction((title) => document.querySelector('#view-issue')?.hidden === false
+    && document.querySelector('#issue-focus-h')?.textContent === title, {}, readingIssue.title);
   await page.goBack();
   await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false
     && document.activeElement?.id === 'btn-hero-inspect');
@@ -1808,19 +1817,19 @@ async function readingSemantics(page) {
     && window.__readingTest.opens.length === 1 && window.__readingTest.requests.length === 0, KEY, saved),
   'M01: inspect/disclosure/inert Read preserve state and do not fetch or launch a real reader');
   await click(page, '#btn-hero-done');
-  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Avengers (2012) #5');
-  check(await page.evaluate((key) => {
+  await page.waitForFunction((title) => document.querySelector('#hero-title')?.textContent === title, {}, nextIssue.title);
+  check(await page.evaluate((key, issueId) => {
     const state = JSON.parse(localStorage.getItem(key));
-    return Object.keys(state.read).length === 4 && Object.hasOwn(state.read, 43534);
-  }, KEY), 'M01: Done marks exactly the current issue');
+    return Object.keys(state.read).length === 4 && Object.hasOwn(state.read, issueId);
+  }, KEY, readingIssue.issueId), 'M01: Done marks exactly the current issue');
   await click(page, '#hero-more-actions > summary');
   await click(page, '#btn-hero-defer');
-  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Avengers (2012) #6');
-  check(await page.evaluate((key, list) => {
+  await page.waitForFunction((title) => document.querySelector('#hero-title')?.textContent === title, {}, followingIssue.title);
+  check(await page.evaluate((key, list, issueId) => {
     const state = JSON.parse(localStorage.getItem(key));
-    return Object.keys(state.read).length === 4 && state.lists[list].deferredIssueIds.includes(43535)
-      && !Object.hasOwn(state.read, 43535);
-  }, KEY, READING_LIST), 'M01: Defer changes queue without marking read');
+    return Object.keys(state.read).length === 4 && state.lists[list].deferredIssueIds.includes(issueId)
+      && !Object.hasOwn(state.read, issueId);
+  }, KEY, READING_LIST, nextIssue.issueId), 'M01: Defer changes queue without marking read');
 
   for (const kind of ['completed', 'all-deferred', 'empty', 'manual']) {
     let state = readingState();
@@ -1854,8 +1863,8 @@ async function readingSemantics(page) {
     [null, 'unavailable', 'no You marked unavailable'],
   ]) {
     let state = readingState();
-    state.issues[43534].mu = mu;
-    if (override) state = setOverride(state, 43534, override);
+    state.issues[readingIssue.issueId].mu = mu;
+    if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
     await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
     check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'In Unlimited'),
@@ -1868,20 +1877,20 @@ async function readingSemantics(page) {
 async function readingCompositionCheck(page, profile) {
   await route(page, 'read');
   await page.waitForFunction((expected) => document.querySelector('#hero-title')?.textContent === expected,
-    {}, readingState(profile).issues[43534].title);
+    {}, readingState(profile).issues[readingIssue.issueId].title);
   const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
   if (profile.id === 'M05') {
     await page.focus('#btn-hero-inspect');
     await click(page, '#btn-hero-inspect');
-    await page.waitForFunction(() => document.querySelector('#view-issue')?.hidden === false
-      && document.querySelector('#issue-focus-h')?.textContent === 'Avengers (2012) #4');
+    await page.waitForFunction((title) => document.querySelector('#view-issue')?.hidden === false
+      && document.querySelector('#issue-focus-h')?.textContent === title, {}, readingIssue.title);
     await click(page, '#btn-issue-synopsis');
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
     await page.waitForFunction((text) => document.querySelector('#issue-focus-desc')?.textContent === text
       && document.querySelector('#btn-issue-description')?.getAttribute('aria-expanded') === 'true',
     {}, READING_SYNOPSIS);
-    assert.ok(await page.evaluate(() => JSON.stringify(window.__readingTest.requests) === '[43534]'),
+    assert.deepEqual(await page.evaluate(() => window.__readingTest.requests), [readingIssue.issueId],
       'M05: exactly one on-demand issue request, no bulk synopsis run');
     await click(page, '#btn-issue-description');
     await page.goBack();
@@ -1892,8 +1901,10 @@ async function readingCompositionCheck(page, profile) {
   }
   if (readingFactsAx) {
     const state = readingState(profile);
-    const presentation = issuePresentation(state.issues[43534], { position: 4, total: 89 });
-    await readingAccessibility(page, { ...presentation, issue: state.issues[43534].title }, profile.id);
+    const presentation = issuePresentation(state.issues[readingIssue.issueId], {
+      position: READING_ISSUE_POSITION, total: readingOrder.items.length,
+    });
+    await readingAccessibility(page, { ...presentation, issue: state.issues[readingIssue.issueId].title }, profile.id);
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), before,
       `${profile.id}: factual AX confirmation preserves saved state`);
     console.log(`FACTS AX ${profile.id}: four exact source/rendered/AX label-value pairs confirmed`);
@@ -2059,7 +2070,9 @@ async function alignmentCheck(page, profile) {
   await page.waitForFunction((populated) => document.querySelector('#home-continue').hidden === !populated, {}, !!profile.populated);
   check(await page.$eval('#view-home', (node) => !node.hidden), `${id}: actual Home route`);
   if (profile.populated) {
-    check(await page.$eval('#chero-count', (node) => node.textContent === '3 of 89 issues read'), `${id}: populated reading fixture on Home`);
+    check(await page.$eval('#chero-count', (node, total) => node.textContent === `3 of ${total} issues read`,
+      readingOrder.items.length),
+    `${id}: populated reading fixture on Home`);
   } else {
     check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
   }
@@ -2091,7 +2104,8 @@ async function alignmentCheck(page, profile) {
   }
   if (['A02', 'A06', 'A08'].includes(id)) {
     await route(page, 'read');
-    await page.waitForFunction(() => document.querySelector('#hero-title').textContent === 'Avengers (2012) #4');
+    await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title,
+      {}, readingIssue.title);
     const reading = await record('reading', ['#hero', '#hero-title', '#hero-by', '#hero-facts', '#btn-hero-read']);
     check(reading.nodes.slice(1, 4).every((node) => ['start', 'left'].includes(node.align)), `${id}: reading copy stays start-aligned`);
     if (id === 'A02') {
@@ -2566,11 +2580,18 @@ try {
     });
     check(navigationToggle.labelVisible === (!!viewport.desktop && viewport.width <= 880),
       `${label}: Android navigation is icon-only; desktop label visibility is unchanged`);
-    check(navigationToggle.iconVisible && navigationToggle.controls === 'sidebar-panel'
-      && (viewport.width <= 880 ? navigationToggle.name === 'Navigation'
-        : /^(Expand|Collapse) sidebar$/.test(navigationToggle.name))
-      && (viewport.desktop || (navigationToggle.width >= 48 && navigationToggle.height >= 48)),
-    `${label}: navigation retains its icon, accessible name, controlled panel and touch target`);
+    // The narrow toggle opens the bottom bar's More panel, so main.js names it More, as the
+    // shared browser suite asserts. Each property is named on failure so a miss says which one.
+    const navigationMisses = [
+      !navigationToggle.iconVisible && 'icon hidden',
+      navigationToggle.controls !== 'sidebar-panel' && `controls ${navigationToggle.controls}`,
+      !(viewport.width <= 880 ? navigationToggle.name === 'More'
+        : /^(Expand|Collapse) sidebar$/.test(navigationToggle.name)) && `name ${navigationToggle.name}`,
+      !(viewport.desktop || (navigationToggle.width >= 48 && navigationToggle.height >= 48))
+        && `target ${navigationToggle.width}x${navigationToggle.height}`,
+    ].filter(Boolean);
+    check(!navigationMisses.length,
+      `${label}: navigation retains its icon, accessible name, controlled panel and touch target (${navigationMisses.join('; ')})`);
     const compactHome = !viewport.desktop && viewport.width <= 880;
     const homeBranding = await page.evaluate(() => {
       const heading = document.querySelector('#home-h');
@@ -2584,14 +2605,27 @@ try {
         marker: getComputedStyle(brand, '::before').content,
         iconLoaded: mark.complete && mark.naturalWidth > 0 && mark.naturalHeight > 0,
         iconWidth: bounds.width, iconHeight: bounds.height,
+        iconInside: (() => {
+          const box = brand.getBoundingClientRect();
+          return bounds.left >= box.left && bounds.right <= box.right
+            && bounds.top >= box.top && bounds.bottom <= box.bottom;
+        })(),
       };
     });
     check(homeBranding.heading === (compactHome ? 'Browse. Choose. Read.' : 'RECAP PAGE!')
       && (compactHome ? homeBranding.taglineDisplay === 'none' && homeBranding.transform === 'none'
         : homeBranding.taglineDisplay !== 'none'),
     `${label}: compact Android keeps top-only branding and one tagline; other mastheads are unchanged`);
-    check(homeBranding.iconLoaded && homeBranding.iconWidth === 28 && homeBranding.iconHeight === 28,
-      `${label}: the full app icon remains visible`);
+    // At 880px and below the brand is a bottom-bar destination, and styles.css sizes its mark
+    // with the other bar icons at 20px; wider windows keep the 28px rail mark.
+    const markSize = viewport.width <= 880 ? 20 : 28;
+    const markMisses = [
+      !homeBranding.iconLoaded && 'not loaded',
+      (homeBranding.iconWidth !== markSize || homeBranding.iconHeight !== markSize)
+        && `size ${homeBranding.iconWidth}x${homeBranding.iconHeight}, expected ${markSize}`,
+      !homeBranding.iconInside && 'clipped by its control',
+    ].filter(Boolean);
+    check(!markMisses.length, `${label}: the full app icon remains visible (${markMisses.join('; ')})`);
     check(!compactHome || homeBranding.marker === 'none',
       `${label}: the compact brand has no stray selected-page stripe`);
     if (homeUpdates) {
@@ -2606,19 +2640,33 @@ try {
         const footer = document.querySelector('.app-footer');
         return {
           recommendation: !!document.querySelector('#home-recommended'),
-          startActions: [...document.querySelectorAll('#home-first-run button')]
-            .map((button) => button.textContent.trim()),
+          // Home's start actions and the footer About became native hash links so browser
+          // navigation gestures work, so both are found as links; buttons are still collected
+          // so an extra start action of either kind is reported.
+          startActions: [...document.querySelectorAll('#home-first-run :is(a[href], button)')]
+            .map((action) => action.textContent.trim()),
           footer: footer.textContent.replace(/\s+/g, ' ').trim(),
           expectedFooter: `Unofficial fan project. Metadata and links only. \u00a9 ${new Date().getFullYear()} MARVEL`,
           footerHeight: footer.getBoundingClientRect().height,
-          aboutAction: !!footer.querySelector('button[data-view="about"]'),
+          aboutAction: !!footer.querySelector('a[href="#/about"][data-view="about"]'),
         };
       });
-      check(!sharedCopy.recommendation
-        && JSON.stringify(sharedCopy.startActions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
-      `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation`);
-      check(sharedCopy.footer === sharedCopy.expectedFooter && sharedCopy.aboutAction,
-        `${label}: every platform keeps only the requested footer text and its About action`);
+      // Each property is named on failure, as the navigation and mark checks above do, so a miss
+      // says which measurement disagreed rather than only that the combined check did.
+      const homeMisses = [
+        sharedCopy.recommendation && 'Setup recommendation present',
+        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Browse Reading Lists', 'Add comics'])
+          && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
+      ].filter(Boolean);
+      check(!homeMisses.length,
+        `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation (${homeMisses.join('; ')})`);
+      const footerMisses = [
+        sharedCopy.footer !== sharedCopy.expectedFooter
+          && `footer ${JSON.stringify(sharedCopy.footer)}, expected ${JSON.stringify(sharedCopy.expectedFooter)}`,
+        !sharedCopy.aboutAction && 'About link to #/about missing',
+      ].filter(Boolean);
+      check(!footerMisses.length,
+        `${label}: every platform keeps only the requested footer text and its About action (${footerMisses.join('; ')})`);
       if (!viewport.desktop && !viewport.textScale && viewport.width >= 360 && viewport.width <= 412) {
         check(sharedCopy.footerHeight <= 90,
           `${label}: the compact footer is at most 90px tall (${sharedCopy.footerHeight})`);

@@ -2191,6 +2191,11 @@ const SCENARIOS = [
   {
     id: 'home-updates-state',
     title: 'Real tab viewing, deletion, queued locks and feature-local faults preserve reading state',
+    operations: [
+      'reading-snapshot', 'peer-create-page', 'peer-prepare-page', 'peer-install-fixture',
+      'peer-load-home', 'viewing-click', 'viewing-storage-ack', 'peer-viewing-ack',
+      'viewing-ui-check', 'primary-activate',
+    ],
     async run(page, t) {
       await page.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
       await open(page, '/?catalog=actual#/home');
@@ -2216,21 +2221,23 @@ const SCENARIOS = [
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
           return state.lists['news-state-fixture'].itemIds.length === 3 && state.writeToken === 'news-state-proof';
         }));
-      const before = await homeUpdatesSnapshot(page);
+      const before = await t.step('reading-snapshot', () => homeUpdatesSnapshot(page));
       const context = page.browserContext();
-      const other = await context.newPage();
+      const other = await t.step('peer-create-page', () => context.newPage());
       try {
         other.__denyExternal = true;
-        await preparePage(other, page.__origin, null);
-        await other.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
-        await open(other, '/?catalog=actual#/home');
-        await click(page, '#home-updates-toggle');
-        await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
-        await other.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
-        t.check('explicit viewing clears New in both actual tabs', await page.evaluate(() => document.querySelector('#home-updates-new').hidden));
+        await t.step('peer-prepare-page', () => preparePage(other, page.__origin, null));
+        await t.step('peer-install-fixture', () => other.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; }));
+        await t.step('peer-load-home', () => open(other, '/?catalog=actual#/home'));
+        await t.step('viewing-click', () => click(page, '#home-updates-toggle'));
+        await t.step('viewing-storage-ack', () => page.waitForFunction(
+          (key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id));
+        await t.step('peer-viewing-ack', () => other.waitForFunction(() => document.querySelector('#home-updates-new').hidden));
+        t.check('explicit viewing clears New in both actual tabs',
+          await t.step('viewing-ui-check', () => page.evaluate(() => document.querySelector('#home-updates-new').hidden)));
         // Edge leaves this background tab's SVG load pending until activation. Reload the
         // visible tab, as a reader would, while keeping the peer alive for storage events.
-        await page.bringToFront();
+        await t.step('primary-activate', () => page.bringToFront());
         await click(page, '#home-updates-close');
         await page.reload({ waitUntil: 'load' });
         t.check('viewing survives reload while the entry stays available and closed',
@@ -5518,7 +5525,10 @@ const SCENARIOS = [
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
         && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
-        && timeline.doom.meta.startsWith('75 issues')
+        && timeline.doom.meta.startsWith('85 issues')
+        && timeline.doom.meta.includes(
+          '10 issues have owner-confirmed identities but no provider details or covers',
+        )
         && timeline.cardYears.at(-1) === 2025
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
@@ -5570,13 +5580,16 @@ const SCENARIOS = [
         description: document.querySelector('#preview-desc')?.textContent ?? '',
         issues: document.querySelectorAll('#preview .preview-issue-link').length,
       }));
-      t.check('Doom Preview shows the 75 resolved issues and both reviewed source annotations',
-        doomPreview.meta.includes('75 issues')
+      t.check('Doom Preview shows all 85 issues, owner-confirmed identities and both reviewed source annotations',
+        doomPreview.meta.includes('85 issues')
+        && doomPreview.meta.includes(
+          '10 issues have owner-confirmed identities but no provider details or covers',
+        )
         && doomPreview.description.includes(
           'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
         )
         && doomPreview.description.includes('Read Fantastic Four (2025) #1-3 together.')
-        && doomPreview.issues === 75,
+        && doomPreview.issues === 85,
         JSON.stringify(doomPreview));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open
@@ -17836,6 +17849,22 @@ function tally() {
   };
 }
 
+async function cleanupDeadline(action, timeoutMs = 5000) {
+  let timer;
+  try {
+    return await Promise.race([
+      Promise.resolve().then(action),
+      new Promise((_, reject) => {
+        timer = globalThis.setTimeout(() => {
+          reject(Object.assign(new Error('Browser check cleanup deadline exceeded'), { name: 'TimeoutError' }));
+        }, timeoutMs);
+      }),
+    ]);
+  } finally {
+    globalThis.clearTimeout(timer);
+  }
+}
+
 async function runScenario(browser, origin, scenario, mutation, diagnostic = null) {
   let context;
   const t = tally();
@@ -17854,6 +17883,18 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     : null);
   const requireCompletion = exportsFiles && downloads?.requireCompletion === true;
   let stage = 'create-context';
+  let operation = null;
+  t.step = async (name, action) => {
+    if (!scenario.operations?.includes(name) || !/^[a-z]+(?:-[a-z]+)*$/.test(name)) {
+      throw new TypeError('Undeclared browser scenario operation');
+    }
+    operation = name;
+    console.log(`SCENARIO id=${scenario.id} stage=${stage} operation=${operation} state=pending`);
+    const result = await action();
+    console.log(`SCENARIO id=${scenario.id} stage=${stage} operation=${operation} state=complete`);
+    operation = null;
+    return result;
+  };
   const enter = (next) => {
     stage = next;
     console.log(`SCENARIO id=${scenario.id} stage=${stage}`);
@@ -17887,7 +17928,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     await scenario.run(page, t);
     completed = true;
   } catch (err) {
-    error = `stage=${stage} code=${failureCode(err)}`;
+    error = `stage=${stage} code=${failureCode(err)}${operation ? ` operation=${operation}` : ''}`;
     console.log(`FAIL scenario=${scenario.id} ${error}`);
     infrastructure = stage === 'create-context' || stage === 'create-page'
       || err?.name === 'TargetCloseError' || browser.connected === false;
@@ -17905,7 +17946,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
       enter('close-context');
       downloads?.snapshot('before-close');
       try {
-        await context.close();
+        await cleanupDeadline(() => context.close());
       } catch (err) {
         const cleanup = `stage=close-context code=${failureCode(err)}`;
         error ??= cleanup;
@@ -18006,10 +18047,12 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   }
 
   let browser;
+  const ownedBrowser = new AbortController();
   try {
     console.log('BROWSER stage=launch');
     browser = await puppeteer.launch({
       executablePath: edge,
+      signal: ownedBrowser.signal,
       headless: !process.env.MRT_HEADED,
       args: [
         '--no-first-run',
@@ -18032,13 +18075,26 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   let browserVersion = 'unknown';
   const driverRelease = driverVersion(driver);
   let closing = false;
+  let disconnectedBeforeCleanup = false;
+  let nativeFailed = false;
   const browserEvidence = (stage, exit = child?.exitCode, signal = child?.signalCode) => {
     const exitCode = Number.isInteger(exit) ? exit : 'unknown';
+    const exitHex = Number.isInteger(exit) && exit >= -2147483648 && exit <= 4294967295
+      ? `0x${(exit >>> 0).toString(16).padStart(8, '0')}` : 'unknown';
     const signalCode = Object.hasOwn(constants.signals, signal) ? constants.signals[signal] : 'unknown';
-    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode}`);
+    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode} exitHex=${exitHex} disconnectedBeforeCleanup=${disconnectedBeforeCleanup}`);
   };
-  child?.once('exit', (code, signal) => browserEvidence('process-exit', code, signal));
-  browser.once('disconnected', () => browserEvidence('disconnected'));
+  child?.once('exit', (code, signal) => {
+    if ((Number.isInteger(code) && code !== 0) || signal) {
+      nativeFailed = true;
+      process.exitCode = 1;
+    }
+    browserEvidence('process-exit', code, signal);
+  });
+  browser.once('disconnected', () => {
+    disconnectedBeforeCleanup = !closing;
+    browserEvidence('disconnected');
+  });
   let code = 1;
   let primaryError = null;
   try {
@@ -18056,24 +18112,44 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   } finally {
     if (primaryError || code !== 0) browserEvidence('failure');
     closing = true;
+    let cleanupFailed = false;
+    const close = Promise.resolve().then(() => browser.close());
     try {
-      await browser.close();
+      await cleanupDeadline(() => close);
     } catch (err) {
       console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
       onCleanupFailure?.();
       code = 1;
+      cleanupFailed = true;
+      console.log('BROWSER stage=abort-owned-launch cleanup=true');
+      ownedBrowser.abort();
+      try {
+        await cleanupDeadline(() => browser.disconnect(), 2000);
+      } catch (disconnectError) {
+        console.error(`FAIL stage=disconnect-browser code=${failureCode(disconnectError)}`);
+      }
     }
     try {
       server.closeAllConnections();
-      await new Promise((resolve, reject) => server.close((err) => err ? reject(err) : resolve()));
+      await cleanupDeadline(() => new Promise((resolve, reject) => {
+        server.close((err) => err ? reject(err) : resolve());
+      }), 2000);
     } catch (err) {
       console.error(`FAIL stage=close-server code=${failureCode(err)}`);
       onCleanupFailure?.();
       code = 1;
+      cleanupFailed = true;
+    }
+    if (cleanupFailed) {
+      // A raced driver close can still retain handles while removing its temporary profile.
+      globalThis.setTimeout(() => {
+        console.error('FAIL stage=cleanup-exit code=TimeoutError');
+        process.exit(1);
+      }, 5000).unref();
     }
   }
   if (primaryError) throw primaryError;
-  return code;
+  return nativeFailed ? 1 : code;
 }
 
 async function main() {
@@ -19361,7 +19437,12 @@ MUTATIONS.push(mcuPrepOrganizationMutation);
 const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
 const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
 for (const guide of readOwnerGuideRegistry().guides) {
-  SCENARIOS.push(ownerGuideScenario(JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'))));
+  const contract = JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'));
+  SCENARIOS.push(ownerGuideScenario(contract));
+  const mapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${guide.id}.json`, import.meta.url), 'utf8'));
+  if (mapping.rows.some((row) => row.identityEvidenceKind === 'owner-confirmed-identity')) {
+    SCENARIOS.push(ownerGuideScenario(contract, { savedCopyOnly: true }));
+  }
 }
 const ownerContracts = process.argv.filter((arg) => arg.startsWith('--owner-contract='));
 const { issueRatings, issueRatingMutations } = await import('./browser-issue-ratings.mjs');

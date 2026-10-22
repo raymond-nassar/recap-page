@@ -78,6 +78,27 @@ test('normalizeIssue rejects records without a usable id', () => {
   assert.equal(normalizeIssue(null), null);
 });
 
+test('the existing issue record carries only the recognized owner identity evidence kind', () => {
+  const confirmed = normalizeIssue({
+    issueId: 121580,
+    title: 'Avengers Academy: Marvel Voices Infinity Comic #43',
+    source: 'curated',
+    detailsRefused: true,
+    identityEvidenceKind: 'owner-confirmed-identity',
+    confirmingActor: 'raymond-nassar',
+  });
+  assert.equal(confirmed.identityEvidenceKind, 'owner-confirmed-identity');
+  assert.equal('confirmingActor' in confirmed, false, 'confirmation details stay in repository evidence');
+  assert.equal(confirmed.detailsRefused, true);
+  assert.equal(confirmed.hydrated, false);
+  assert.equal(SCHEMA_VERSION, 4);
+  assert.equal('identityEvidenceKind' in normalizeIssue({ issueId: 7, title: 'Ordinary issue' }), false);
+  assert.equal(
+    'identityEvidenceKind' in normalizeIssue({ issueId: 8, identityEvidenceKind: 'unrecognized' }),
+    false,
+  );
+});
+
 // Hand-added issues with no marvel.com URL are given a negative synthetic id. Rejecting those
 // meant the entry was silently discarded while the UI reported success.
 test('a hand-added issue with a synthetic negative id is accepted', () => {
@@ -937,7 +958,7 @@ test('the two kinds of gap in an order are counted apart', () => {
       { issueId: -4, seriesId: null, digitalId: null, placeholder: true },
     ],
   };
-  assert.deepEqual(countOrderGaps(order), { placeholders: 1, empty: 2 });
+  assert.deepEqual(countOrderGaps(order), { placeholders: 1, empty: 2, ownerConfirmed: 0 });
 });
 
 test('a placeholder is not also counted as an item that came back empty', () => {
@@ -962,14 +983,15 @@ test('a metadata-bearing legacy placeholder flag is not an openability gap', () 
     seriesId: null,
     digitalId: null,
   };
-  assert.deepEqual(countOrderGaps({ items: [launchable] }), { placeholders: 0, empty: 0 });
+  assert.deepEqual(countOrderGaps({ items: [launchable] }), { placeholders: 0, empty: 0, ownerConfirmed: 0 });
   assert.deepEqual(orderGapSentences({ items: [launchable] }), []);
-  assert.deepEqual(countOrderGaps({ items: [launchable, unlinked] }), { placeholders: 1, empty: 0 });
+  assert.deepEqual(countOrderGaps({ items: [launchable, unlinked] }),
+    { placeholders: 1, empty: 0, ownerConfirmed: 0 });
 });
 
 test('an order with neither kind of gap reports neither, and says nothing', () => {
   const order = { items: [{ issueId: 1, seriesId: 10, digitalId: 100 }, { issueId: 2, seriesId: 11, digitalId: 101 }] };
-  assert.deepEqual(countOrderGaps(order), { placeholders: 0, empty: 0 });
+  assert.deepEqual(countOrderGaps(order), { placeholders: 0, empty: 0, ownerConfirmed: 0 });
   assert.deepEqual(orderGapSentences(order), []);
 });
 
@@ -993,10 +1015,10 @@ test('the counts come from the items, not from the order payload that claims the
     placeholders: 0,
     items: [{ issueId: 1, seriesId: null, digitalId: null }, { issueId: -2, placeholder: true }],
   };
-  assert.deepEqual(countOrderGaps(order), { placeholders: 1, empty: 1 });
+  assert.deepEqual(countOrderGaps(order), { placeholders: 1, empty: 1, ownerConfirmed: 0 });
 
   const noItems = { placeholders: 7 };
-  assert.deepEqual(countOrderGaps(noItems), { placeholders: 0, empty: 0 });
+  assert.deepEqual(countOrderGaps(noItems), { placeholders: 0, empty: 0, ownerConfirmed: 0 });
 });
 
 test('both gaps are disclosed, and the second sentence does not repeat what the first one promises', () => {
@@ -1015,6 +1037,28 @@ test('both gaps are disclosed, and the second sentence does not repeat what the 
   // for it and the lookup fails there. Claiming it cannot be opened would be false in the
   // opposite direction from the silence this replaces.
   assert.ok(!said[1].includes('cannot be opened'));
+});
+
+test('owner-confirmed identity is distinct from missing metadata and makes no availability claim', () => {
+  const order = { items: [
+    {
+      issueId: 121580,
+      title: "Avengers Academy: Marvel's Voices Infinity Comic (2024) #43",
+      url: 'https://www.marvel.com/comics/issue/121580/avengers_academy',
+      detailsRefused: true,
+      identityEvidenceKind: 'owner-confirmed-identity',
+    },
+    { issueId: 99, seriesId: 10, digitalId: 100 },
+  ] };
+  assert.deepEqual(countOrderGaps(order), { placeholders: 0, empty: 0, ownerConfirmed: 1 });
+  const said = orderGapSentences(order);
+  assert.deepEqual(said, [
+    '1 of them have an owner-confirmed issue identity but no provider details or cover.',
+  ]);
+  assert.ok(!said.join(' ').includes('Marvel Unlimited'));
+  assert.deepEqual(countOrderGaps({
+    items: [{ issueId: 121580, seriesId: 10, identityEvidenceKind: 'owner-confirmed-identity' }],
+  }), { placeholders: 0, empty: 0, ownerConfirmed: 0 }, 'later metadata ends the identity-only gap');
 });
 
 test('a gap of one is not described in the plural', () => {
@@ -1392,7 +1436,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Onslaught adds two distinct unresolved originals, not subscription-availability claims.
   // Namor adds eight distinct source gaps; its three known-ID detail refusals share existing IDs.
   // Iron Fist adds 38 distinct unresolved originals; #59301 remains a positive issue ID.
-  assert.equal(refused.length, 1379);
+  // The owner-confirmed publication adds twelve exact identities without provider details.
+  // Issue 62446 was already counted, so the distinct refused total rises by eleven.
+  // Hulk: Season One and five House of Harkness chapters add six distinct identity-only refusals.
+  assert.equal(refused.length, 1396);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

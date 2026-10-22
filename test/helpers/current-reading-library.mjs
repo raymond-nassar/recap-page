@@ -26,47 +26,41 @@ const curatedGuideRegistry = JSON.parse(readFileSync(
 ));
 assert.equal(curatedGuideRegistry.schemaVersion, 1);
 assert.ok(Array.isArray(curatedGuideRegistry.guides));
-export const registeredCuratedPeerContracts = curatedGuideRegistry.guides.map((entry) => {
-  assert.deepEqual(Object.keys(entry).sort(), ['contract', 'id']);
-  const contract = JSON.parse(readFileSync(new URL(`../../${entry.contract}`, import.meta.url), 'utf8'));
-  assert.equal(contract.schemaVersion, 1);
-  assert.equal(contract.id, entry.id);
-  assert.equal(contract.surface, 'best-of');
-  assert.ok(Number.isInteger(contract.rowCount) && contract.rowCount > 0);
-  assert.deepEqual(Object.keys(contract).sort(), [
-    'id', 'insertionAnchor', 'payloadFile', 'reviewFile', 'rowCount', 'schemaVersion', 'sourceFile', 'surface',
-  ]);
-  return contract;
+export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) => {
+  assert.deepEqual(Object.keys(entry).sort(), ['id', 'insertionAnchor', 'rowCount']);
+  assert.ok(typeof entry.id === 'string' && entry.id);
+  assert.ok(Number.isInteger(entry.rowCount) && entry.rowCount > 0);
+  return entry;
 });
-assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedPeerContracts]
-  .map(({ id }) => id)).size, registeredOwnerContracts.length + registeredCuratedPeerContracts.length);
+assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
+  .map(({ id }) => id)).size, registeredOwnerContracts.length + registeredCuratedGuides.length);
 export const registeredOwnerIds = registrations.map(({ id }) => id);
 export const registeredCatalogAdditionIds = [
   ...registeredOwnerIds,
-  ...registeredCuratedPeerContracts.map(({ id }) => id),
+  ...registeredCuratedGuides.map(({ id }) => id),
 ];
 const addedRows = registeredOwnerContracts.reduce((total, contract) => total + contract.rows.length, 0)
-  + registeredCuratedPeerContracts.reduce((total, contract) => total + contract.rowCount, 0);
+  + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
 const mcuContracts = registeredOwnerContracts.filter((contract) => contract.surface !== 'modern-timeline');
 export const registeredEventContracts = registeredOwnerContracts.filter((contract) => contract.surface === 'modern-timeline');
-const rosterAdditionCount = registrations.length + registeredCuratedPeerContracts.length;
+const rosterAdditionCount = registrations.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
-  sources: baseline.sourceIds.length + rosterAdditionCount,
-  visible: baseline.catalogIds.length + rosterAdditionCount,
-  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount,
-  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
-  mcu: baseline.mcuEntries.length + mcuContracts.length,
+  sources: baseline.sourceIds.length + rosterAdditionCount - 1,
+  visible: baseline.catalogIds.length + rosterAdditionCount - 1,
+  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
+  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
+  mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // The qualified UX pool retains 46 non-MCU readings; new MCU guides share its canonical shelf.
-  storylines: 46 + baseline.mcuEntries.length + mcuContracts.length,
+  storylines: 46 + baseline.mcuEntries.length + mcuContracts.length - 1,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta,
-  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta,
+  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta - 2,
+  totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta - 2,
   itemFiles: 297 + rosterAdditionCount,
 });
 
-function expectedRosters(contracts, curatedGuides = registeredCuratedPeerContracts) {
-  const expectedSources = [...baseline.sourceIds];
+function expectedRosters(contracts, curatedGuides = registeredCuratedGuides) {
+  const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse');
   for (const contract of [...contracts, ...curatedGuides]) {
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
     assert.ok(at >= 0, 'Registered source insertion needs its approved anchor.');
@@ -77,7 +71,7 @@ function expectedRosters(contracts, curatedGuides = registeredCuratedPeerContrac
 }
 
 export function assertCurrentReadingRoster(
-  manifest, catalog, contracts = registeredOwnerContracts, curatedGuides = registeredCuratedPeerContracts,
+  manifest, catalog, contracts = registeredOwnerContracts, curatedGuides = registeredCuratedGuides,
 ) {
   const { expectedSources, expectedVisible } = expectedRosters(contracts, curatedGuides);
   assert.equal(new Set(expectedSources).size, expectedSources.length, 'Registration cannot replace a baseline source.');

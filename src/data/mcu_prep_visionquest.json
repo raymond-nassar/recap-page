@@ -1,0 +1,1114 @@
+{
+  "id": "mcu-prep-visionquest",
+  "name": "VisionQuest",
+  "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/812",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-22T08:00:00.000Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 44,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 18458,
+      "title": "Vision and the Scarlet Witch (1985) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/18458/vision_and_the_scarlet_witch_1985_12",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)",
+      "onSale": "1986-09-01T00:00:00+0000",
+      "mu": "1986-09-01T00:00:00+0000",
+      "digitalId": 7499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/5c9b7d3e9eff2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: origins of the twins"
+    },
+    {
+      "issueId": 17793,
+      "title": "West Coast Avengers (1985) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-11-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 9863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5ca4f9bcce7eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: origins of the twins"
+    },
+    {
+      "issueId": 55231,
+      "title": "West Coast Avengers (1985) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 55232,
+      "title": "West Coast Avengers (1985) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 55233,
+      "title": "West Coast Avengers (1985) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 55234,
+      "title": "West Coast Avengers (1985) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 17927,
+      "title": "West Coast Avengers (1985) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-07-01T00:00:00+0000",
+      "mu": "1989-07-01T00:00:00+0000",
+      "digitalId": 5263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5bd38531b88c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Machlan",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 55236,
+      "title": "West Coast Avengers (1985) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 17790,
+      "title": "West Coast Avengers (1985) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-09-01T00:00:00+0000",
+      "mu": "2009-11-10T00:00:00+0000",
+      "digitalId": 5265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6e93bd6e3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 17791,
+      "title": "West Coast Avengers (1985) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/17791/west_coast_avengers_1985_49",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-10-01T00:00:00+0000",
+      "mu": "2009-11-17T00:00:00+0000",
+      "digitalId": 5266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5ca4d87db55d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 17792,
+      "title": "West Coast Avengers (1985) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-11-01T00:00:00+0000",
+      "mu": "2009-11-24T00:00:00+0000",
+      "digitalId": 5267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ca4e179125a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "issueId": 1629,
+      "title": "Young Avengers (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1629/young_avengers_2005_1",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-02-09T00:00:00+0000",
+      "mu": "2009-03-01T00:00:00+0000",
+      "digitalId": 519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/564259ee974d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 1721,
+      "title": "Young Avengers (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1721/young_avengers_2005_2",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-03-16T00:00:00+0000",
+      "mu": "2005-03-16T00:00:00+0000",
+      "digitalId": 2929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/58878da90f39c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 1830,
+      "title": "Young Avengers (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1830/young_avengers_2005_3",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-04-20T00:00:00+0000",
+      "mu": "2005-04-20T00:00:00+0000",
+      "digitalId": 2930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/58878d8695065",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 1941,
+      "title": "Young Avengers (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1941/young_avengers_2005_4",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-05-18T00:00:00+0000",
+      "mu": "2005-05-18T00:00:00+0000",
+      "digitalId": 2931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/58878dfa36249",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 2049,
+      "title": "Young Avengers (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/2049/young_avengers_2005_5",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-06-29T00:00:00+0000",
+      "mu": "2005-06-29T00:00:00+0000",
+      "digitalId": 2932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58878dcba2afe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 2162,
+      "title": "Young Avengers (2005) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/2162/young_avengers_2005_6",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-08-31T00:00:00+0000",
+      "mu": "2005-08-31T00:00:00+0000",
+      "digitalId": 2933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/58878d91a7492",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 2328,
+      "title": "Young Avengers (2005) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/2328/young_avengers_2005_7",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-09-28T00:00:00+0000",
+      "mu": "2005-09-28T00:00:00+0000",
+      "digitalId": 2934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/58878ddcd1f50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 2448,
+      "title": "Young Avengers (2005) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/2448/young_avengers_2005_8",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-10-26T00:00:00+0000",
+      "mu": "2005-10-26T00:00:00+0000",
+      "digitalId": 2935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/58878dba5fc07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 3018,
+      "title": "Young Avengers (2005) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/3018/young_avengers_2005_9",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-11-23T00:00:00+0000",
+      "mu": "2005-11-23T00:00:00+0000",
+      "digitalId": 2936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/4bc32e9875641",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 3359,
+      "title": "Young Avengers (2005) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/3359/young_avengers_2005_10",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-02-08T00:00:00+0000",
+      "mu": "2006-02-08T00:00:00+0000",
+      "digitalId": 7886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/58878d6e8794f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 3887,
+      "title": "Young Avengers (2005) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/3887/young_avengers_2005_11",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-04-05T00:00:00+0000",
+      "mu": "2006-04-05T00:00:00+0000",
+      "digitalId": 7887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/58878e1059f24",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 4252,
+      "title": "Young Avengers (2005) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/4252/young_avengers_2005_12",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-06-28T00:00:00+0000",
+      "mu": "2006-06-28T00:00:00+0000",
+      "digitalId": 7888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/4d251d30321ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: Young Avengers"
+    },
+    {
+      "issueId": 31134,
+      "title": "Avengers: The Children's Crusade (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31134/avengers_the_childrens_crusade_2010_1",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-07-08T00:00:00+0000",
+      "mu": "2011-05-17T00:00:00+0000",
+      "digitalId": 15156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/4f6210eddab18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31136,
+      "title": "Avengers: The Children's Crusade (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/31136/avengers_the_childrens_crusade_2010_2",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-09-01T00:00:00+0000",
+      "mu": "2011-09-27T00:00:00+0000",
+      "digitalId": 15888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4f62106ddde29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31138,
+      "title": "Avengers: The Children's Crusade (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/31138/avengers_the_childrens_crusade_2010_3",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-11-10T00:00:00+0000",
+      "mu": "2011-11-15T00:00:00+0000",
+      "digitalId": 17520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/4f620fc064599",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31140,
+      "title": "Avengers: The Children's Crusade (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/31140/avengers_the_childrens_crusade_2010_4",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-01-05T00:00:00+0000",
+      "mu": "2013-03-20T14:44:00+0000",
+      "digitalId": 18833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5c335c7f44735",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31142,
+      "title": "Avengers: The Children's Crusade (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/31142/avengers_the_childrens_crusade_2010_5",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-04-06T00:00:00+0000",
+      "mu": "2012-03-06T00:00:00+0000",
+      "digitalId": 20383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/51685316004de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31144,
+      "title": "Avengers: The Children's Crusade (2010) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/31144/avengers_the_childrens_crusade_2010_6",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-06-29T00:00:00+0000",
+      "mu": "2012-03-06T00:00:00+0000",
+      "digitalId": 22119,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/b0/5168530750909",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31146,
+      "title": "Avengers: The Children's Crusade (2010) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/31146/avengers_the_childrens_crusade_2010_7",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-08-31T00:00:00+0000",
+      "mu": "2012-05-02T00:00:00+0000",
+      "digitalId": 23890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4e78b6fb32ad6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Justin Ponsor",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 31148,
+      "title": "Avengers: The Children's Crusade (2010) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/31148/avengers_the_childrens_crusade_2010_8",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-12-28T00:00:00+0000",
+      "mu": "2011-12-28T00:00:00+0000",
+      "digitalId": 25189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/10/514a0aea7b20c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 34271,
+      "title": "Avengers: The Children's Crusade (2010) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/34271/avengers_the_childrens_crusade_2010_9",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2012-03-07T00:00:00+0000",
+      "mu": "2013-02-26T00:00:00+0000",
+      "digitalId": 25765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/51684c6275d03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Billy and Tommy: family reunion"
+    },
+    {
+      "issueId": 57306,
+      "title": "Vision (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57306/vision_2015_1",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2015-11-04T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 40391,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5637ada325f34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57309,
+      "title": "Vision (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57309/vision_2015_2",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2015-12-02T00:00:00+0000",
+      "mu": "2016-06-06T00:00:00+0000",
+      "digitalId": 40640,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/591c57456e0f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57311,
+      "title": "Vision (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57311/vision_2015_3",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-01-06T00:00:00+0000",
+      "mu": "2016-07-11T00:00:00+0000",
+      "digitalId": 40814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/568aa87faf2ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57312,
+      "title": "Vision (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57312/vision_2015_4",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-02-03T00:00:00+0000",
+      "mu": "2016-08-01T00:00:00+0000",
+      "digitalId": 41079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/56a7c17f64377",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57313,
+      "title": "Vision (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57313/vision_2015_5",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": "2016-09-12T00:00:00+0000",
+      "digitalId": 41374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/56d9b84209ae9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco D'ALFONSO",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57314,
+      "title": "Vision (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57314/vision_2015_6",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/56fed74db493a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco D'ALFONSO",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57315,
+      "title": "Vision (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57315/vision_2015_7",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41563,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5727b3e39c805",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57316,
+      "title": "Vision (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57316/vision_2015_8",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 41862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/575076449d802",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57317,
+      "title": "Vision (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57317/vision_2015_9",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42086,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/577fcaea15961",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57318,
+      "title": "Vision (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/57318/vision_2015_10",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42292,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/57a36846ef3ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57319,
+      "title": "Vision (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57319/vision_2015_11",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42650,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/57d07176697ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    },
+    {
+      "issueId": 57320,
+      "title": "Vision (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57320/vision_2015_12",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/57f551c9b10ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom King",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Vision: a synthezoid family"
+    }
+  ]
+}

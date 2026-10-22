@@ -143,7 +143,27 @@ The runner prints progress before creating each browser context and reports resu
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.
 Diagnostics include allowlisted browser and driver versions and observed numeric process exit
 or signal values. An unavailable cause is `unknown`, not proof of a crash, resource limit or app
-defect. Exits during requested cleanup are labelled separately.
+defect. Exits during requested cleanup are labelled separately. The unsigned hexadecimal exit
+and `disconnectedBeforeCleanup` flag distinguish a late native exit observation from a disconnect
+that first happened during cleanup; neither identifies the faulting component.
+
+The `home-updates-state` journey also names pending and completed operations between its
+populated-reading fixture and first cross-tab viewing check, plus primary-tab activation.
+These distinguish peer creation, preparation and loading from the viewing write and the peer's
+storage-event UI acknowledgement. A failure retains the pending operation in its safe summary;
+a completed operation is cleared so it cannot label a later failure. Only scenario-declared
+literal labels are accepted. No page contents, storage values, URLs or exception messages are
+added to these diagnostics. They neither retry operations nor change existing waits. A passing
+isolated run does not explain an earlier full-suite timeout or establish an application defect.
+
+Context and browser close each have a fixed 5-second cleanup deadline. A context-close failure
+stops further scenarios. A browser-close failure aborts only this invocation's launched browser
+through its launch signal, then attempts disconnect within 2 seconds. Server cleanup is still
+attempted, with its own 2-second deadline. A cleanup failure stays a failure even if all assertions
+passed. If driver handles or temporary-profile cleanup still retain the failed runner, a final
+5-second guard reports `stage=cleanup-exit` and exits 1. This guard does not certify profile
+removal or successful native shutdown. No scenario is retried and no execution or native-download
+deadline is increased.
 
 Ordinary export scenarios declare the total expected native downloads in their isolated context.
 Before closing it, the runner requires a browser `completed` event for every download within one
@@ -204,6 +224,8 @@ The fixed `diagnostic_target=ordinary-browser-ratings-acceptance` uses the same 
 diagnostic-only job, exact source identity and pinned driver. It runs only
 `library-ratings-failures` once, with all its assertions and original deadlines, in one fresh
 browser and isolated context. `RATINGS-STEP` identifies each malformed-data operation;
+the malformed-data visit uses the wired Library shelf link so a concurrent repaint cannot
+overwrite an unhandled hash navigation before the ratings view is entered.
 `RATINGS-FAIL` and a bounded `RATINGS-STATE` snapshot retain its original failure. If snapshot
 collection fails or exceeds 1000 ms, `RATINGS-OBSERVATION` reports that separately without
 replacing the original error. Output contains only fixed stages, allowlisted mode/error codes,

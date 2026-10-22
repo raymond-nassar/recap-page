@@ -6,8 +6,11 @@ import { parseChecklist, serializeReadingOrder } from '../src/js/lib/markdown.js
 import { launchUrl } from '../src/js/reader.js';
 import { sourceCountsForPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
+import { beforeIdentityJson, identityRevisions } from './helpers/owner-identity-history.mjs';
 
-const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
+const json = (file) => identityRevisions.guides.some(({ id }) =>
+  file.includes(id) || file.includes(id.replaceAll('-', '_')))
+  ? beforeIdentityJson(file) : JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 const ids = [
   'mcu-prep-iron-man-2008', 'mcu-prep-the-incredible-hulk-2008', 'mcu-prep-iron-man-2-2010',
   'mcu-prep-thor-2011', 'mcu-prep-captain-america-the-first-avenger-2011',
@@ -28,7 +31,7 @@ const source = (id) => json(`scripts/data/owner-selections/${id}.json`);
 const packet = (id) => json(`scripts/data/owner-packets/${id}.json`);
 const payload = (id) => json(`src/data/${id.replaceAll('-', '_')}.json`);
 
-test('seven film guides retain independently accepted vectors and complete source position accounting', () => {
+test('original seven-film publication retains independently accepted vectors and source position accounting', () => {
   const totals = { included: 0, gap: 0, 'owner-excluded': 0 };
   for (const [index, id] of ids.entries()) {
     const contract = registeredOwnerContracts.filter((row) => row.id === id);

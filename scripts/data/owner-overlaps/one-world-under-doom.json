@@ -1,18 +1,19 @@
 {
   "candidateId": "one-world-under-doom",
-  "packetDigest": "3c35ee03e0cd915f4d4bc3232098f00e3618f8d249d1a0ac9b0d171ad8b4fcd8",
-  "mappingDigest": "50f3d8228e79d3c6cb683227f739efce6ea497bc8d6eeb9988c9b60509fbb8c7",
-  "libraryDigest": "6d24f6bd4066aced70654320382ea4d35e661a293bd79a5697f5f71f5ec66e96",
+  "packetDigest": "6762be2c5dd51ef849c1070e24fb0a644947368c8e61a1042bebc722efbaa4d5",
+  "mappingDigest": "895c7a090728b226321ff10a5b5a2f9fb4e51b0b507c45cb26ffde102dabcf8c",
+  "libraryDigest": "eb0a1fee7a98deb77d26ce3c87094ea629f4d58d8f60f5b39c127c3d7e631a02",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 86,
     "sourceIdentityCount": 85,
-    "includedIssueCount": 75,
-    "sourceGapCount": 10,
-    "repeatedSourceReferenceCount": 1
+    "includedIssueCount": 85,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 1,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 75,
-  "comparisonCount": 315,
+  "candidateCount": 85,
+  "comparisonCount": 316,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -1292,6 +1293,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "miles-morales-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "miles-morales-spider-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1910,5 +1917,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3e329219ab997ecce9cefec3f88e282baf7a66730eae0bfd148ca1e52ebd0015"
+  "reportDigest": "e0d51041ee8e4bbfd1dde8c7796a29ab232ddf3acc67393c1494b0bc49975b0c"
 }

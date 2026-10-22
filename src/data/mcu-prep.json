@@ -3,6 +3,8 @@
   "region": "US",
   "seriesDateKind": "premiere",
   "sources": [
+    { "id": "visionquest-us", "url": "https://www.disneyplus.com/explore/articles/marvel-visionquest", "retrievedAt": "2026-10-22" },
+    { "id": "visionquest-phase", "url": "https://en.wikipedia.org/wiki/Visionquest", "retrievedAt": "2026-10-22" },
     { "id": "civil-war-film", "url": "https://www.wikidata.org/wiki/Q18407657", "retrievedAt": "2026-10-09" },
     { "id": "doctor-strange-film", "url": "https://www.wikidata.org/wiki/Q18406872", "retrievedAt": "2026-10-09" },
     { "id": "ragnarok-film", "url": "https://www.wikidata.org/wiki/Q22665878", "retrievedAt": "2026-10-09" },
@@ -234,6 +236,15 @@
       "sources": ["mcu-films"]
     },
     {
+      "id": "visionquest",
+      "title": "VisionQuest",
+      "phase": 6,
+      "format": "series",
+      "date": "2026-10-13",
+      "status": "released",
+      "sources": ["visionquest-us", "visionquest-phase"]
+    },
+    {
       "id": "avengers-doomsday",
       "title": "Avengers: Doomsday",
       "phase": 6,
@@ -272,7 +283,6 @@
     { "id": "mcu-prep-doctor-strange-2016", "releases": ["doctor-strange"] },
     { "id": "doctor-strange-multiverse-of-madness", "releases": ["doctor-strange-multiverse-of-madness"] },
     { "id": "spider-man-no-way-home", "releases": ["spider-man-no-way-home"] },
-    { "id": "marvel-multiverse", "releases": [], "note": "General multiverse reading, not assigned to a single screen release." },
     { "id": "marvel-what-if", "releases": ["what-if-season-1"], "note": "Placed at the series debut, not assumed to accompany every later season." },
     { "id": "wandavision", "releases": ["wandavision"] },
     { "id": "spider-man-far-from-home", "releases": ["spider-man-far-from-home"] },
@@ -288,6 +298,7 @@
     { "id": "mcu-prep-guardians-of-the-galaxy", "releases": ["guardians-of-the-galaxy"], "note": "Associated with the title-matching original movie, not inferred sequels." },
     { "id": "mcu-prep-agatha-all-along", "releases": ["agatha-all-along"] },
     { "id": "mcu-prep-deadpool-and-wolverine", "releases": ["deadpool-and-wolverine"] },
+    { "id": "mcu-prep-visionquest", "releases": ["visionquest"], "note": "US series premiere. The UK October 14 date is not the US first-episode date." },
     { "id": "avengers-doomsday-secret-wars", "releases": ["avengers-doomsday", "avengers-secret-wars"] },
     { "id": "mcu-prep-daredevil-born-again", "releases": ["daredevil-born-again-season-1"] }
   ]

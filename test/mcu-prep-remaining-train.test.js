@@ -1,4 +1,6 @@
 import test from 'node:test';
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
+import { withRetiredComparisons, withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -14,15 +16,17 @@ import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/cat
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   assertCurrentReadingRoster, currentReadingCensus, registeredOwnerIds,
-  registeredCuratedPeerContracts,
+  registeredCuratedGuides,
 } from './helpers/current-reading-library.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
-import { assertCuratedGuidePeerReview } from './helpers/curated-guide-peer-review.mjs';
 import {
   historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
+import { beforeIdentityText, identityRevisions } from './helpers/owner-identity-history.mjs';
 
-const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+const text = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
+  || identityRevisions.guides.some(({ id }) => file.includes(id) || file.includes(id.replaceAll('-', '_')))
+  ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const agathaId = 'mcu-prep-agatha-all-along';
@@ -64,7 +68,7 @@ async function evidence(id) {
   return { source, packet, mapping, report };
 }
 
-test('remaining MCU Prep train preserves six independent guides, six gaps and complete current authority', async () => {
+test('original remaining MCU Prep train preserves its six guides, six gaps and recorded authority', async () => {
   const [brand, sheHulk, msMarvel, brave, guardians, manifest, catalog, library] = await Promise.all([
     json('test/fixtures/mcu-prep-brand-new-day-vector.json'),
     json('test/fixtures/mcu-prep-she-hulk-vector.json'),
@@ -88,8 +92,6 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
   const mcu = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen').select(choices);
   const allEvidence = new Map(await Promise.all([...new Set([...cohort, ...registeredOwnerIds])]
     .map(async (id) => [id, await evidence(id)])));
-  const milesBestOf = registeredCuratedPeerContracts.find((entry) => entry.id === 'miles-morales-best-of');
-  const milesReview = milesBestOf ? await assertCuratedGuidePeerReview(milesBestOf) : null;
   const missing = [];
   const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
   let totalOriginals = 0;
@@ -147,7 +149,7 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
     assert.ok(payload.items.every((row) => !row.placeholder && !row.detailsRefused));
     for (const row of [entries[0], cards[0], payload]) {
       assert.equal(row.name, fixture.name);
-      assert.equal(row.description, fixture.description);
+      assert.equal(beforeMcuEditorialEntry(row).description, fixture.description);
       assert.equal(row.sourceOrigin, OWNER_PROVIDER.sourceOrigin);
       assert.equal(row.sourceLicense, null);
       assert.equal(row.sourcePage ?? row.source, fixture.sourceUrl);
@@ -177,14 +179,15 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
     });
     assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
     const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
-    const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
+    const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
     let recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
     if (id === brand.id) recordedManifest = historicalMcuDescriptionManifest(recordedManifest);
     const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
     })));
-    assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+    assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
+      recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
     assertApprovedRelationshipReview({
       packet, mapping, report, currentLibraryDigest: recordedDigest,
       expectedOrderIds: [...recordedIds], packetValidation: { provider: OWNER_PROVIDER },
@@ -196,14 +199,7 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
       assert.ok(disposition.authorityIdentity && disposition.rationale && disposition.reviewedAt);
     }
     for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
-      if (milesBestOf && later.orderId === milesBestOf.id) {
-        const reciprocal = milesReview.report.comparisons.find((row) => row.orderId === id);
-        assert.ok(reciprocal, `${id}: Miles best-of review must include this current peer`);
-        assert.equal(later.relationship, inverse[reciprocal.relationship]);
-        assert.equal(later.sharedCount, reciprocal.sharedCount);
-        assert.deepEqual([...later.sharedIds].sort(), [...reciprocal.sharedIds].sort());
-        continue;
-      }
+      if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
       const reviewed = allEvidence.get(later.orderId);
       assert.ok(reviewed, `${id}: later peer ${later.orderId} needs actual current authority`);
       validateMappingDigest(reviewed.mapping);

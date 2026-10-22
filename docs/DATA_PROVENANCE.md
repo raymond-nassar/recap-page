@@ -41,12 +41,15 @@ streaming companion picks rather than events or single-character guides. Its mai
 records one canonical WordPress identity, current content and issue-bearing digests, explicit source
 boundary, delivery state, overlap ids, and follow-up or blocker for every user-selected title.
 
-Six guides publish 107 exact rows: 17 for Doctor Strange: Multiverse of Madness, 17 for Spider-Man:
+The original six-guide publication contained 107 exact rows: 17 for Doctor Strange: Multiverse of Madness, 17 for Spider-Man:
 No Way Home, 2 for Marvel Multiverse, 7 for Marvel What If?, 8 for Spider-Man: Far From Home, and
 56 for WandaVision. The card type is `screen-companion` and the reading depth is `selected`; both
-describe the project-authored product surface rather than a field copied from the source. All six
-use `timeline: null` because their selected issues span decades, and `beginner: false` so a small
+describe the project-authored product surface rather than a field copied from the source. Those six
+used `timeline: null` because their selected issues span decades, and `beginner: false` so a small
 subset does not become the featured starting point.
+Marvel Multiverse has since been withdrawn from discovery, leaving five active choices and
+105 rows from this original intake. Its archived two-issue payload and historical approvals remain
+unchanged; see [the withdrawal record](#marvel-multiverse-withdrawal).
 
 Collection-only recommendations, unnumbered picks, contextual issue mentions, and explicitly
 declined recommendations remain named exclusions. The two Marvel Multiverse issues are centrally
@@ -56,7 +59,7 @@ exact duplicate. No source commentary, branding, layout, movie imagery, or comic
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
 The separate owner-authored Daredevil companion does not change that fourteen-source CBH
-inventory or its six published selections. Its owner credit, five supplied positions and
+inventory or its original six published selections. Its owner credit, five supplied positions and
 approved six-collection expansion are recorded under
 [Owner-authored MCU Prep: Daredevil: Born Again](#owner-authored-mcu-prep-daredevil-born-again).
 
@@ -961,9 +964,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:606` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:616` and the issue-details view at
 `src/js/views/issue.js:103`. The function behind both already answers for the absence at
-`src/js/views/reading.js:75-83`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:80-92`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1087,10 +1090,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7890-7929`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12139-12264`.
+`src/data/catalog.json:12149-12274`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2376,6 +2379,48 @@ read progress, notes, overrides and separate completion/enjoyment history are
 unchanged. The original active No Way Home guide remains the selected target;
 the retired owner-selected guide remains archived and absent from discovery.
 
+### Reading-benefit editorial revision
+
+[Issue #811](https://github.com/raymond-nassar/recap-page/issues/811) refreshes all thirty
+MCU Prep descriptions in its original scope. None of those thirty was left unchanged.
+VisionQuest, added independently afterwards, is outside that copy scope. Each opening explains
+the selected character or storyline and its viewing context; Preview expands on the actual comics.
+This is context, not a claim that every listed comic inspired the adaptation. For example,
+Age of Ultron distinguishes the shared title from the film's plot, and Shang-Chi distinguishes
+later comics from the earlier film.
+
+The canonical [editorial revision](../scripts/data/mcu-prep-description-revision.json)
+binds exact before/after copy, unchanged payload metadata and the originating source commit.
+Run `node scripts/refresh-mcu-descriptions.mjs`, then
+`npm run vendor -- --catalog-only` to reproduce current outputs without metadata requests.
+The emitter checks the reviewed scope, identities, known copy and non-description payload
+fingerprints before atomic publication. It accepts an exact already-applied revision.
+Unknown copy or changed comics stop the update instead of silently overwriting them.
+
+This is an editorial layer over the original source approvals, not a replacement approval.
+Signed source ledgers, packets, mappings, reports, delivery fixtures and the immutable #731
+record retain their original bytes. Historical checks reverse only the recorded copy changes
+and restore withdrawn peers only for their publication cohorts. Separate checks continue
+to require exact current copy and the complete active library.
+No saved-data migration occurs: existing descriptions remain personal saved values; fresh
+imports receive the new recommendations. Comic identities, order, gaps, collection groups,
+dates, covers and source attribution are unchanged.
+
+### Marvel Multiverse withdrawal
+
+The same owner's [Issue #811](https://github.com/raymond-nassar/recap-page/issues/811)
+removes Marvel Multiverse from the active manifest, MCU associations, generated catalog and
+rated-guide index. It is no longer offered for new discovery or import.
+The archived payload, checklist, source inventory and signed overlap evidence are retained
+as historical records, not active registrations.
+
+Saved lists contain their own comic snapshots and do not require catalog membership to load.
+Withdrawal does not delete a saved list, rewrite its description, or remove its two originals.
+The isolated `mcu-prep-descriptions` browser scenario exercises a previously saved copy,
+Library reopening, read editing, reload and reader-backup round trip, with a deferred issue,
+notes, an override, unrelated progress and separate completion/enjoyment history preserved.
+Completion/enjoyment history remains a separate backup, as before.
+
 ## Owner-authored MCU Prep: Captain America: Brave New World
 
 [Issue #704](https://github.com/raymond-nassar/recap-page/issues/704) supplies three
@@ -2647,8 +2692,9 @@ before newest-first reversal, without assigning it a fabricated calendar day.
 
 The Guardians guide is associated with the original title-matching movie, not inferred sequels.
 What If and Daredevil are associated with the first supplied seasons, not all later seasons.
-The general Marvel Multiverse guide has no single release assignment. Unassigned guides remain
-visible after the phase sections in either direction; search includes their ordinary catalog
+The former general Marvel Multiverse recommendation had no single release assignment and has
+since been withdrawn. Any future unassigned guide would remain visible after the phase sections
+in either direction; search includes ordinary catalog
 titles and characters. Multi-release guides retain one identity and expose every associated title.
 The catalog, comic vectors, source credit, imported list fields, progress and backups remain unchanged.
 
@@ -2814,16 +2860,17 @@ source ledger, frozen packet, exact mapping and complete-library relationship re
 messages, not unavailable original uploaded files. Factual projections have separate
 digests; private originals are not public dependencies.
 
-| MCU Prep guide | Supplied positions | Included works | Metadata gaps | Exclusions / repeats |
+| MCU Prep guide | Supplied positions | Published identities | Provider-detail gaps | Exclusions / repeats |
 |---|---:|---:|---:|---:|
 | Captain America: Civil War (2016) | 23 | 23 | 0 | 0 / 0 |
 | Thor: Ragnarok (2017) | 30 | 30 | 0 | 0 / 0 |
 | Black Panther (2018) | 54 | 54 | 0 | 0 / 0 |
 | Avengers: Infinity War (2018) & Avengers: Endgame | 19 | 19 | 0 | 0 / 0 |
 | Captain Marvel (2019) | 24 | 24 | 0 | 0 / 0 |
-| Doctor Strange (2016) | 18 | 16 | 2 | 0 / 0 |
+| Doctor Strange (2016) | 18 | 18 | 2 | 0 / 0 |
 
-All 168 supplied positions remain accounted for: 166 resolved originals and two gaps.
+All 168 supplied positions are published: 166 provider-resolved originals and two owner-confirmed
+identities without provider details.
 Civil War revision 2 inserts Captain America #22-24 between Civil War #3 and #4, retaining
 three sections and five blocks. Ragnarok retains source group numbers 1, 2, 3 and 5.
 Thor: Season One remains one unnumbered original with provider number 0 retained only as
@@ -2848,14 +2895,45 @@ instead identifies Friendly Neighborhood Spider-Man #14 and is explicitly reject
 These are model-reviewed identity corrections, not human approvals inferred from the copy
 answer. The separate Last Days of Magic one-shot remains after the selected 2015 #6-10.
 
-[The two standalone gaps](https://github.com/raymond-nassar/recap-page/issues/767) retain
-source positions 1 and 18: Season One candidate 41511 and the 1997 What Is It That Disturbs
-You, Stephen? candidate 62446. Both details returned 404 and exact/shorter searches were
-empty. Independent bibliography verifies
+[The two former standalone gaps](https://github.com/raymond-nassar/recap-page/issues/767) remain
+at source positions 1 and 18 as owner-confirmed identities: Season One, issue ID 41511, and the
+1997 What Is It That Disturbs You, Stephen?, issue ID 62446. Their provider details returned
+404 and exact/shorter searches were empty. The owner supplied both issue-page URLs and confirmed
+the identities on 2026-10-21 in the linked
+[identity confirmation](https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303).
+Both are standalone works; no issue number is inferred. Independent bibliography verifies
 [Season One](https://openlibrary.org/books/OL27629862M) and corroborates
 [Marc Andreyko/P. Craig Russell for the 1997 original](https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1).
-No provider credit is invented or overwritten for a missing response. Neither gap means
-the comic is unavailable on Marvel Unlimited, and no replacement edition is selected.
+No provider credit is invented or overwritten for a missing response. Owner confirmation
+establishes identity only, not Marvel Unlimited availability, and neither row substitutes a
+different edition.
+
+### Owner-confirmed comic identities without provider details
+
+The same explicit evidence kind publishes the ten owner-confirmed identities in One World Under
+Doom (2025) at source positions 27-32 and 83-86. The six Avengers Academy and Astonishing Avengers
+Infinity Comic source labels remain yearless in the original selection; their fuller confirmed
+labels are recorded separately in the identity evidence. The owner's
+[One World Under Doom confirmation](https://github.com/raymond-nassar/recap-page/issues/772#issuecomment-6331455208)
+supplies the confirming actor, decision date, exact issue IDs, labels and URLs. Each record retains
+its original source position and provider 404 rather than turning owner evidence into a provider
+response.
+
+The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:734-755`).
+The vendor excludes these entries from metadata lookup and creates no provider projection
+(`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
+The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
+provider details and covers remain empty. No comic image bytes are stored and no Unlimited
+availability is inferred.
+
+The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
+record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
+provider record after import and reload (`src/js/lib/model.js:223-225`,
+`src/js/views/reading.js:52`, `src/js/views/reading.js:59-61`). The actor, date, URL and confirmation
+comment stay in the repository evidence. This additive marker does not change saved-data version 4;
+existing saves need no migration, and older builds may discard the marker without changing reading
+progress or issue identity.
 
 After Phase Two merged, each report and approval was renewed against 309 existing
 source/visible orders, including generated children and the retained hidden parent, plus
@@ -2908,3 +2986,102 @@ character best-of path. It does not replace or extend the broader Comic Book Her
 guide, and it does not claim an official Marvel reading order. Ultimate Spider-Man (2011) #200
 resolves to issue 50446 in series 17580; the supplied series URL did not identify that issue.
 The checklist source records the selection boundary and links back to this provenance record.
+
+## Owner-authored MCU Prep: VisionQuest
+
+[The owner's selection](https://github.com/raymond-nassar/recap-page/issues/812)
+uses only the final Suggested Reading Order from the supplied brief: 44 original
+positions, with West Coast Avengers #51 deliberately before #42-50. The
+[factual source](../scripts/data/owner-selections/mcu-prep-visionquest.json),
+[packet](../scripts/data/owner-packets/mcu-prep-visionquest.json),
+[mapping](../scripts/data/owner-mappings/mcu-prep-visionquest.json) and
+[checklist](../src/data/orders/mcu-prep-visionquest.md) preserve that selection.
+The private flat input is a projection, not the full brief; their separate
+basename, byte-count and hash receipts do not require private artifact access.
+
+The guide publishes all 44 selected originals: 39 provider-resolved records and five
+owner-confirmed West Coast Avengers identities, #42-45 and #47, at source positions
+3-6 and 8. These are not placeholders or substituted issues. Exact provider requests for candidates
+55231-55234 and 55236 returned HTTP 404; the complete 97-row series 3630 response
+also omits them. [Gap #813](https://github.com/raymond-nassar/recap-page/issues/813)
+records those lookups and the owner's later confirmation of all five full
+publisher URLs on October 21, 2026. That confirmation settles the selected
+identities, not missing provider metadata. The maintained identity-update route publishes
+the five with explicit identity evidence, null provider fields and no covers. The owner
+approved the exact proposal digest on October 22, 2026, after reviewing the five URLs,
+source positions, description replacement and overlap changes. The reader description
+discloses the missing provider details rather than claiming the issues are excluded.
+The factual source remains the original intake record; packet gap resolutions record this update.
+
+Provider responses retrieved on October 22, 2026 UTC supply the factual publication,
+creator, digital-ID and cover-URL fields. Vision (2015) #4 uses standard original
+57312, digital ID 41079; the owner's unverified variant hint 58262 returned HTTP
+404 and is not selected. The provider retains West Coast Avengers for the same
+1985 volume after its print title becomes Avengers West Coast. No publisher
+pages, synopsis prose or image bytes were copied. Availability dates and digital
+IDs do not establish current Marvel Unlimited access. Attribution remains
+`Selected by raymond-nassar for MCU Prep` and `sourceLicense` remains `null`.
+
+The [complete-library overlap report](../scripts/data/owner-overlaps/mcu-prep-visionquest.json)
+records 316 comparisons: 12 approved partial relationships and 304 with no shared
+original. The withdrawn Marvel Multiverse guide is not part of the current library.
+The broad Vision guide shares 35 published originals and WandaVision
+shares eight; neither duplicates this family-focused sequence. Older guides and
+their approvals remain unchanged. Import is additive in the existing saved-data
+schema and preserves original-level reading progress and notes. An already saved 39-row
+copy keeps its membership, custom order and progress when opened or reloaded; publishing
+the completed catalog guide does not silently insert issues into saved lists.
+
+Screen metadata uses the US series premiere, October 13, 2026, in Phase Six.
+The [US Disney+ article](https://www.disneyplus.com/explore/articles/marvel-visionquest)
+and [series reference](https://en.wikipedia.org/wiki/Visionquest), retrieved
+October 22, 2026 UTC, support the title, format, date and phase. The
+[UK Disney+ article](https://www.disneyplus.com/en-gb/explore/articles/marvel-visionquest)
+instead gives October 14; the maintained discovery metadata explicitly uses US
+premieres. The owner's editorial brief connects the reconstruction arc, the
+twins' origins and reunion, and Tom King's synthezoid family story as preparation,
+not a promise of issue-by-issue screen adaptation.
+
+## Owner-confirmed Hulk and Agatha identities
+
+The owner confirmed the exact publisher URLs on October 22, 2026, as recorded in the
+coordinator's attributed relays for
+[Hulk: Season One](https://github.com/raymond-nassar/recap-page/issues/763#issuecomment-6336250990)
+and [House of Harkness](https://github.com/raymond-nassar/recap-page/issues/728#issuecomment-6336249749).
+Hulk: Season One (2012), ID 41502, remains a standalone graphic novel with no displayed
+issue number. It fills source position 1 in The Incredible Hulk companion, taking
+the guide from 12 to 13 originals. House of Harkness Infinity Comic (2024) #1-5,
+IDs 121656-121660, fill positions 8-12 in Agatha All Along, taking that guide from
+seven to twelve originals.
+
+The maintained identity updater prepared each guide separately. The owner approved
+exact proposal digests
+`13f5b58fa23a9c71dc14b8cbef57cbe64d2558745bb3b648144ab073e39e82d7`
+and `abaa57ea4ee7cb894f048dc5fc6c7b3bbca2fce2f96e4d04b6bd470b99ca19e3`,
+respectively, through the coordinating session's chat prompts. Packet and mapping
+gap resolutions retain the original provider refusals and the identity confirmations;
+the factual intake stays historical. These six added rows have no provider details,
+cover, digital ID or availability assertion. No publisher page was fetched.
+
+Neither addition changes shared-issue overlap with any current guide. Agatha's
+existing Scarlet Witch Annual prelude still shares original 109670 with Contest of
+Chaos, whose earlier approved reciprocal disposition is retained and validated.
+The [identity revision record](../scripts/data/owner-identity-revisions.json)
+preserves the applied proposal digests and publication deltas. Historical tests
+replay the exact earlier artifacts from its pinned pre-publication commit instead
+of rewriting old approvals. The existing editorial recommendation is preserved for
+Hulk; Agatha's final sentence now describes the included identity-only chapters.
+
+Existing saved copies keep their previous membership, custom order, notes, progress,
+deferred comics and availability overrides. Publication does not silently add comics
+to saved lists; a fresh import uses the completed guide. There is no schema change
+or migration.
+
+[Captain America Spotlight](https://github.com/raymond-nassar/recap-page/issues/762)
+remains a gap because the owner found no publisher URL.
+[Thunderbolts #-1](https://github.com/raymond-nassar/recap-page/issues/687) has an
+owner-confirmed identity, but its older guide and negative numbering are outside
+the maintained updater's eligibility.
+[Venom Super Special](https://github.com/raymond-nassar/recap-page/issues/707) is
+confirmed too, but registration alone cannot preserve its older guide's qualified
+anthology groups. Both require bounded follow-ups rather than widening this update.

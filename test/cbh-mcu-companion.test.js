@@ -273,7 +273,7 @@ test('Far From Home binds the exact source, exclusions, overlap, and catalog rol
     HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
       .select(catalogEntries(catalog.lists))
       .map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
-    MCU_SELECTED_IDS,
+    MCU_SELECTED_IDS.filter((id) => id !== 'marvel-multiverse'),
   );
   assert.equal(catalog.paths.some(({ steps }) => steps.includes(record.id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${record.id}`), false);
@@ -384,8 +384,9 @@ test('an exact relationship remains unapprovable', async () => {
   }), /no approval path/i);
 });
 
-test('approved CBH evidence reaches six payloads within the shared MCU Prep group', async () => {
+test('approved CBH evidence retains five active MCU Prep choices and the withdrawn archive', async () => {
   const { inventory, entries } = await loadEvidence();
+  const active = MCU_SELECTED_IDS.filter((id) => id !== 'marvel-multiverse');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = parseCatalog(await readJson('src/data/catalog.json'));
   const manifestIndex = manifest.lists.findIndex((entry) => (
@@ -393,11 +394,11 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
   ));
   assert.ok(manifestIndex >= 0);
   assert.deepEqual(
-    manifest.lists.slice(manifestIndex, manifestIndex + MCU_SELECTED_IDS.length)
+    manifest.lists.slice(manifestIndex, manifestIndex + active.length)
       .map((entry) => entry.id),
-    MCU_SELECTED_IDS,
+    active,
   );
-  assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
+  assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 5);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
 
   assert.deepEqual(
@@ -407,7 +408,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
   );
 
   const mappingById = new Map(entries.map((entry) => [entry.id, entry.mapping]));
-  for (const id of MCU_SELECTED_IDS) {
+  for (const id of active) {
     const manifestEntry = manifest.lists.find((entry) => entry.id === id);
     const catalogEntry = catalog.lists.find((entry) => entry.id === id);
     const mapping = mappingById.get(id);
@@ -451,7 +452,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
     catalog.lists.filter(({ type }) => type === 'screen-companion').map(({ id }) => id));
   assert.deepEqual(
     screenDefinition.select(stories).map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
-    MCU_SELECTED_IDS,
+    active,
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,

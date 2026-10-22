@@ -9,7 +9,7 @@
   "sourceIssueBearingBlocksSha256": "3d7021d59ad93d255c97dbfce1126b5af591e18afe55e05d7cf6afba1552fb51",
   "sourceBoundary": "Every owner-selected whole original in supplied order, with explicit source positions and documented gaps.",
   "excludedSourceReferences": [],
-  "expectedCount": 16,
+  "expectedCount": 18,
   "proposedManifest": {
     "id": "mcu-prep-doctor-strange-2016",
     "name": "MCU Prep: Doctor Strange (2016)",
@@ -33,12 +33,23 @@
       "Doctor Strange"
     ],
     "coverIssueId": 5235,
-    "expect": 16
+    "expect": 18
   },
   "insertionAnchor": {
     "beforeId": "doctor-strange-multiverse-of-madness"
   },
   "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Doctor Strange: Season One (2012), standalone graphic novel",
+      "sourceRangeReference": "Doctor Strange: Season One",
+      "normalizedSeriesTitle": "doctor strange season one",
+      "seriesYear": 2012,
+      "issueNumber": null,
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
     {
       "sourcePosition": 2,
       "sourceIssueReference": "Doctor Strange: The Oath (2006) #1",
@@ -230,26 +241,53 @@
       "seriesId": 21249,
       "manualSeriesSelectionApproved": false,
       "note": ""
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "sourceRangeReference": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "normalizedSeriesTitle": "dr strange what is it that disturbs you stephen",
+      "seriesYear": 1997,
+      "issueNumber": null,
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
     }
   ],
   "sourceOccurrenceCount": 18,
-  "sourceGaps": [
+  "packetDigest": "a8fbf8501e6e8d93c404d8854bcac0a0d3bc650bd44ef40784634748dc71820b",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
+    "reviewedAt": "2026-10-09T18:26:13.966Z",
+    "proposalDigest": "4b15f860b3fbccb19dde6f42e58a78ef7da39e337af432d59accffb1d3ddac23",
+    "rationale": "Preserve all168 linked positions across six guides. The Oath5399/5400/5401 are rejected in favor of the exact selected#3/#4/#5 originals5662/5801/5957 established by complete series1096 and their individual title/year/number detail records. Wrong-work5400 is not a gap. Standalone41511/62446 remain source gaps linked to assigned Issue767 after404 and empty bounded searches. No unknown metadata body is invented, and no copy answer is treated as human issue-ID approval. Sixteen resolved originals plus explicit standalone gaps at source positions1/18 preserve the full18-position selection. Separately reviewed Oath corrections preserve exact source title/year/number, and58278 remains a distinct one-shot. The sole10-original overlap is the2015Aaron run already in the Multiverse of Madness guide; the additional Oath and distinct one-shot define this separate film selection. No exact duplicate; no fabricated creator metadata for missing62446."
+  },
+  "sourceGapResolutions": [
     {
       "sourcePosition": 1,
-      "sourceIssueReference": "Doctor Strange: Season One (2012), standalone graphic novel",
-      "sourceRangeReference": "Doctor Strange: Season One",
-      "normalizedSeriesTitle": "doctor strange season one",
-      "seriesYear": 2012,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-10-09",
-      "auditBasis": "Exact owner-selected standalone candidate 41511 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "previousSourceIssueReference": "Doctor Strange: Season One (2012), standalone graphic novel",
+      "previousSourceRangeReference": "Doctor Strange: Season One",
+      "previousNormalizedSeriesTitle": "doctor strange season one",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "null",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 41511,
+      "resolvedNormalizedSeriesTitle": "doctor strange season one",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": null,
+      "checkedAt": "2026-10-21",
+      "auditBasis": "Owner-confirmed identity for Doctor Strange: Season One (2012), recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-21; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "bibliography",
           "url": "https://openlibrary.org/books/OL27629862M",
           "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/41511",
+          "retrievedAt": "2026-10-21"
         },
         {
           "kind": "metadata",
@@ -267,29 +305,51 @@
           "retrievedAt": "2026-10-09"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "tracking",
           "url": "https://github.com/raymond-nassar/recap-page/issues/767",
           "retrievedAt": "2026-10-09"
         }
       ],
-      "evidenceDigest": "7936dfe1abd531c33f40d01d100a6c50f69aebb64bd7fb63d8232a1e3bf10e8e"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 41511,
+        "label": "Doctor Strange: Season One (2012)",
+        "url": "https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303"
+      },
+      "evidenceDigest": "902ccfb121ef9c5e46e1d818f5ca6116cf14d5146d24c983a649d154e255b363"
     },
     {
       "sourcePosition": 18,
-      "sourceIssueReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
-      "sourceRangeReference": "Doctor Strange: What Is It That Disturbs You, Stephen?",
-      "normalizedSeriesTitle": "doctor strange what is it that disturbs you stephen",
-      "seriesYear": 1997,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-10-09",
-      "auditBasis": "Exact owner-selected standalone candidate 62446 returned404. Exact-title and shorter provider searches were empty; no matching series-index record or substitute original.",
+      "previousSourceIssueReference": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "previousSourceRangeReference": "Doctor Strange: What Is It That Disturbs You, Stephen?",
+      "previousNormalizedSeriesTitle": "doctor strange what is it that disturbs you stephen",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "null",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62446,
+      "resolvedNormalizedSeriesTitle": "dr strange what is it that disturbs you stephen",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": null,
+      "checkedAt": "2026-10-21",
+      "auditBasis": "Owner-confirmed identity for Dr. Strange: What Is It That Disturbs You, Stephen? (1997), recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-21; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "bibliography",
           "url": "https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1",
           "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62446",
+          "retrievedAt": "2026-10-21"
         },
         {
           "kind": "metadata",
@@ -307,20 +367,26 @@
           "retrievedAt": "2026-10-09"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "tracking",
           "url": "https://github.com/raymond-nassar/recap-page/issues/767",
           "retrievedAt": "2026-10-09"
         }
       ],
-      "evidenceDigest": "21ca88e1e3804d4d076d036b412d862b2a10943bf6c0bc202e69f679bc92f845"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 62446,
+        "label": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+        "url": "https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303"
+      },
+      "evidenceDigest": "00c1c9e61db19f65f5e0875e0d9780b826ac7177802950b8961d186db235b0c9"
     }
-  ],
-  "packetDigest": "bad064d3179d5a4cdbd6489c4495dc89f83a3d3d7062afa88bd4c211d8e7b634",
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-6 Astra (gpt-6-astra), central bounded source and relationship reviewer",
-    "reviewedAt": "2026-10-09T18:26:13.966Z",
-    "proposalDigest": "4b15f860b3fbccb19dde6f42e58a78ef7da39e337af432d59accffb1d3ddac23",
-    "rationale": "Preserve all168 linked positions across six guides. The Oath5399/5400/5401 are rejected in favor of the exact selected#3/#4/#5 originals5662/5801/5957 established by complete series1096 and their individual title/year/number detail records. Wrong-work5400 is not a gap. Standalone41511/62446 remain source gaps linked to assigned Issue767 after404 and empty bounded searches. No unknown metadata body is invented, and no copy answer is treated as human issue-ID approval. Sixteen resolved originals plus explicit standalone gaps at source positions1/18 preserve the full18-position selection. Separately reviewed Oath corrections preserve exact source title/year/number, and58278 remains a distinct one-shot. The sole10-original overlap is the2015Aaron run already in the Multiverse of Madness guide; the additional Oath and distinct one-shot define this separate film selection. No exact duplicate; no fabricated creator metadata for missing62446."
-  }
+  ]
 }

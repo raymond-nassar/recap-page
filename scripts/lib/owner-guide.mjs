@@ -11,13 +11,15 @@ import { cleanText, loadCachedMetadata, writeOutputsAtomically } from '../vendor
 import { parseManifest } from '../../src/js/lib/curated.js';
 import { escapeLinkText, issueIdFromUrl, normalizeTitle, parseChecklist, stripInlineMarkdown } from '../../src/js/lib/markdown.js';
 import {
-  approvalDigestFor, assertMappingMatchesPacketOccurrences, assertSourceGap, canonicalJson, digestCanonicalJson, gapEvidenceDigestFor,
-  mappingDigestFor, packetDigestFor, sourceCountsForPacket, sourceIdentityKey,
-  sourcePositionsForPacket, validatePacketProposal,
+  approvalDigestFor, assertGapTransition, assertMappingMatchesPacketOccurrences, assertSourceGap, canonicalJson,
+  digestCanonicalJson, gapEvidenceDigestFor, mappingDigestFor, packetDigestFor,
+  sourceCountsForPacket, sourceGapResolutionDigestFor, sourceIdentityKey, sourcePositionsForPacket,
+  validateApprovalDigest, validateFrozenPacket, validateMappingDigest, validatePacketProposal, validateReportDigest,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
-import { readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import { OWNER_EVENT_PROVIDER, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import { beforeMcuEditorialEntry, mcuEditorial } from './mcu-editorial.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 export const OWNER_PROVIDER = Object.freeze({
@@ -429,11 +431,20 @@ export function ownerApprovalRequest(proposal) {
 }
 
 export function ownerChecklist(source, mapping) {
+  const confirmedCount = mapping.rows
+    .filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
+  const openGapCount = mapping.sourceGaps?.length ?? 0;
+  const sourceCredit = source.sourceCredit ?? OWNER_PROVIDER.sourceOrigin;
   const lines = [
     `# ${mapping.proposedManifest.name}`, '',
     `Source: [owner selection](${source.sourceUrl}).`,
-    `${OWNER_PROVIDER.sourceOrigin}. Exact whole-original identities are retained in supplied order.`,
-    'Missing originals remain explicit in the factual source and its linked gap Issues, not silently substituted.',
+    `${sourceCredit}. Exact whole-original identities are retained in supplied order.`,
+    ...(confirmedCount ? [
+      `${confirmedCount} owner-confirmed identities have no provider details or cover.`,
+    ] : []),
+    ...(openGapCount ? [
+      `${openGapCount} unresolved originals remain explicit in the factual source and linked gap Issues.`,
+    ] : []),
     'See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.', '',
   ];
   let group;
@@ -444,8 +455,124 @@ export function ownerChecklist(source, mapping) {
       if (group) lines.push(`## ${escapeLinkText(group)}`, '');
       else if (previous) lines.push('# Continued order', '');
     }
-    lines.push(`- [ ] [${escapeLinkText(row.resolvedIssueTitle)} <!-- mrt:source-occurrence=${row.sourcePosition} -->](${row.marvelIssueUrl})`);
+    const evidence = row.identityEvidenceKind === 'owner-confirmed-identity'
+      ? ' <!-- mrt:identity-evidence=owner-confirmed-identity -->' : '';
+    const annotation = source.rows.find((entry) => entry.sourcePosition === row.sourcePosition)?.annotation;
+    const title = `${row.resolvedIssueTitle}${annotation ? ` (${annotation})` : ''}`;
+    lines.push(`- [ ] [${escapeLinkText(title)} <!-- mrt:source-occurrence=${row.sourcePosition} -->${evidence}](${row.marvelIssueUrl})`);
   }
+  return `${lines.join('\n')}\n`;
+}
+
+export function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mapping) {
+  let lines = existingMarkdown.replace(/\r\n/g, '\n').split('\n');
+  const confirmedCount = mapping.rows
+    .filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
+  const openGapCount = mapping.sourceGaps?.length ?? 0;
+  const obsoleteNotice = /(?:supplied positions lack exact provider metadata|supplied identities in this section remain metadata gaps|missing originals remain explicit in the factual source and its linked gap issues|owner-confirmed identities have no provider details or cover|unresolved originals remain explicit in the factual source)/i;
+  lines = lines.filter((line) => !obsoleteNotice.test(line));
+
+  const notices = [
+    ...(confirmedCount ? [`${confirmedCount} owner-confirmed identities have no provider details or cover.`] : []),
+    ...(openGapCount ? [
+      `${openGapCount} unresolved source positions remain explicit in the factual source${source.gapIssueUrl
+        ? ` and the [assigned gap issue](${source.gapIssueUrl})` : ''}.`,
+    ] : []),
+  ];
+  if (notices.length) {
+    const creditIndex = lines.findIndex((line) => line.startsWith('Selected by '));
+    const sourceIndex = lines.findIndex((line) => line.startsWith('Source: '));
+    const insertionIndex = creditIndex >= 0 ? creditIndex + 1 : Math.max(sourceIndex + 1, 1);
+    lines.splice(insertionIndex, 0, ...notices);
+  }
+
+  const currentPositionLines = new Map();
+  for (let index = 0; index < lines.length; index++) {
+    const match = /<!--\s*mrt:source-occurrence=([1-9]\d*)\s*-->/.exec(lines[index]);
+    if (match) currentPositionLines.set(Number(match[1]), index);
+  }
+  const sourceRows = new Map(source.rows.map((row) => [row.sourcePosition, row]));
+  const newRows = mapping.rows.filter((row) => (
+    row.identityEvidenceKind === 'owner-confirmed-identity'
+      && !currentPositionLines.has(row.sourcePosition)
+  ));
+  const groups = new Map();
+  for (const row of newRows) {
+    const key = row.sourceRangeReference ?? null;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(row);
+  }
+  const insertions = [];
+  const chunks = [...groups].flatMap(([group, rows]) => {
+    const existingPositions = previousMapping.rows
+      .filter((row) => row.sourceRangeReference === group)
+      .map((row) => row.sourcePosition);
+    const parts = [];
+    for (const row of rows) {
+      const last = parts.at(-1);
+      if (!last || existingPositions.some((position) => (
+        position > last.at(-1).sourcePosition && position < row.sourcePosition
+      ))) parts.push([row]);
+      else last.push(row);
+    }
+    return parts.map((part) => [group, part]);
+  });
+  for (const [group, rows] of chunks) {
+    rows.sort((left, right) => left.sourcePosition - right.sourcePosition);
+    const first = rows[0].sourcePosition;
+    const last = rows.at(-1).sourcePosition;
+    const heading = group ? `## ${escapeLinkText(group)}` : null;
+    const headingIndex = heading ? lines.indexOf(heading) : -1;
+    const oldRows = previousMapping.rows
+      .filter((row) => row.sourceRangeReference === group && currentPositionLines.has(row.sourcePosition));
+    const upper = oldRows
+      .filter((row) => row.sourcePosition > last)
+      .sort((left, right) => left.sourcePosition - right.sourcePosition)[0];
+    const lower = oldRows
+      .filter((row) => row.sourcePosition < first)
+      .sort((left, right) => right.sourcePosition - left.sourcePosition)[0];
+    let index;
+    let addHeading = false;
+    if (upper) index = currentPositionLines.get(upper.sourcePosition);
+    else if (lower) index = currentPositionLines.get(lower.sourcePosition) + 1;
+    else if (headingIndex >= 0) {
+      index = headingIndex + 1;
+      if (lines[index] === '') index++;
+    } else {
+      const next = previousMapping.rows
+        .filter((row) => row.sourcePosition > last && currentPositionLines.has(row.sourcePosition))
+        .sort((left, right) => left.sourcePosition - right.sourcePosition)[0];
+      if (next) {
+        index = currentPositionLines.get(next.sourcePosition);
+        while (index > 0 && !/^## /.test(lines[index - 1])) index--;
+        if (index > 0) index--;
+      } else {
+        index = lines.length;
+        while (index > 0 && lines[index - 1] === '') index--;
+      }
+      addHeading = Boolean(heading);
+    }
+    const renderedRows = rows.map((row) => {
+      const annotation = sourceRows.get(row.sourcePosition)?.annotation;
+      const title = `${row.resolvedIssueTitle}${annotation ? ` (${annotation})` : ''}`;
+      return `- [ ] [${escapeLinkText(title)} <!-- mrt:source-occurrence=${row.sourcePosition} --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](${row.marvelIssueUrl})`;
+    });
+    insertions.push({
+      index,
+      start: first,
+      lines: [...(addHeading ? [heading, ''] : []), ...renderedRows, ...(addHeading ? [''] : [])],
+    });
+  }
+  const byIndex = new Map();
+  for (const insertion of insertions) {
+    if (!byIndex.has(insertion.index)) byIndex.set(insertion.index, []);
+    byIndex.get(insertion.index).push(insertion);
+  }
+  for (const [index, blocks] of [...byIndex.entries()].sort(([left], [right]) => right - left)) {
+    const block = blocks.sort((left, right) => left.start - right.start).flatMap((entry) => entry.lines);
+    lines.splice(index, 0, ...block);
+  }
+  while (lines.at(-1) === '') lines.pop();
   return `${lines.join('\n')}\n`;
 }
 
@@ -538,8 +665,14 @@ export async function verifyOwnerMetadataCache(proposal, cacheDir) {
   const ids = proposal.artifacts.mapping.rows.map((row) => row.selectedIssueId);
   const cached = await loadCachedMetadata(ids, cacheDir);
   for (const id of ids) {
-    const candidate = proposal.artifacts.mapping.candidateMetadata.find((row) => row.id === id);
+    const row = proposal.artifacts.mapping.rows.find((entry) => entry.selectedIssueId === id);
+    const candidate = proposal.artifacts.mapping.candidateMetadata.find((entry) => entry.id === id);
     const record = cached.records.get(id);
+    if (row?.identityEvidenceKind === 'owner-confirmed-identity') {
+      assert.ok(record.status === 404 && !candidate,
+        'An owner-confirmed identity must remain separate from unavailable provider metadata.');
+      continue;
+    }
     assert.ok(record.status === 200 && candidate, 'An approved original lost its exact metadata.');
     assert.equal(record.bodySha256, candidate.recordedHttpReceipt.bodySha256,
       'Metadata bytes changed after source review. Prepare and review a new proposal.');
@@ -589,4 +722,588 @@ export async function emitOwnerGuide(proposal, approval, { root = ROOT } = {}) {
     .map((directory) => mkdir(directory, { recursive: true })));
   await writeOutputsAtomically(outputs.map(({ file, content }) => ({ path: file, content })));
   return { status: 'authored-not-vendored', id: proposal.id, files: outputs.length, rows: artifacts.mapping.rows.length };
+}
+
+function validDate(value, label) {
+  assert.match(value ?? '', /^\d{4}-\d{2}-\d{2}$/, `${label} must be a YYYY-MM-DD date.`);
+  assert.ok(Number.isFinite(Date.parse(`${value}T00:00:00Z`))
+    && new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value,
+  `${label} must be a calendar date.`);
+}
+
+function ownerIdentityParts(identity) {
+  const match = /^(.*?)\s+\((\d{4})\)(?:\s+#(\d+(?:\.\d+)?))?$/.exec(identity.label ?? '');
+  assert.ok(match, 'An owner-confirmed label must state the exact series, year, and optional issue number.');
+  assert.ok(typeof identity.confirmingActor === 'string' && identity.confirmingActor.trim(),
+    'Owner confirmation needs a named actor.');
+  validDate(identity.confirmedAt, 'Owner confirmation date');
+  validDate(identity.confirmationRetrievedAt, 'Owner confirmation source date');
+  validDate(identity.provider404At, 'Provider 404 date');
+  assert.equal(identity.providerStatus, 404, 'Only a recorded provider 404 can use owner-confirmed identity evidence.');
+  assert.ok(Number.isSafeInteger(identity.issueId) && identity.issueId > 0);
+  assert.equal(issueIdFromUrl(identity.url), identity.issueId,
+    'The owner-supplied Marvel URL must identify the confirmed positive issue id.');
+  assert.match(identity.url ?? '', /^https:\/\/www\.marvel\.com\/comics\/issue\//,
+    'The identity URL must be the exact user-supplied HTTPS Marvel issue page.');
+  assert.match(identity.confirmationSource ?? '',
+    /^https:\/\/github\.com\/raymond-nassar\/recap-page\/issues\/[1-9]\d*#issuecomment-[1-9]\d+$/,
+    'Owner confirmation must link to a repository issue comment.');
+  return {
+    normalizedSeriesTitle: normalizeTitle(match[1]),
+    seriesYear: Number(match[2]),
+    issueNumber: match[3] ?? null,
+  };
+}
+
+function validateIdentityUpdateRequest(request) {
+  assert.equal(request?.schemaVersion, 1, 'Identity update schemaVersion must be 1.');
+  assert.ok(Object.keys(request).every((key) => (
+    ['schemaVersion', 'id', 'generatedAt', 'identities', 'description'].includes(key)
+  )), 'Identity update request contains unsupported fields.');
+  if (Object.hasOwn(request, 'description')) {
+    assert.ok(typeof request.description === 'string' && request.description.trim()
+      && !/[\r\n\u2013\u2014]/.test(request.description),
+    'The reviewed description must be a nonempty single line with ASCII separators.');
+  }
+  assert.match(request.id ?? '', /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+  assert.ok(Number.isFinite(Date.parse(request.generatedAt ?? ''))
+    && new Date(request.generatedAt).toISOString() === request.generatedAt,
+  'Identity update generatedAt must be a canonical ISO timestamp.');
+  assert.ok(Array.isArray(request.identities) && request.identities.length > 0,
+    'Identity update needs at least one owner-confirmed identity.');
+  const allowedIdentityFields = new Set([
+    'sourcePosition', 'issueId', 'label', 'url', 'confirmingActor', 'confirmedAt',
+    'confirmationSource', 'confirmationRetrievedAt', 'providerStatus', 'provider404At',
+  ]);
+  let previousPosition = 0;
+  const ids = new Set();
+  for (const identity of request.identities) {
+    assert.ok(identity && typeof identity === 'object' && !Array.isArray(identity));
+    assert.ok(Object.keys(identity).every((key) => allowedIdentityFields.has(key)),
+      'Owner-confirmed identity contains unsupported fields.');
+    assert.ok(Number.isInteger(identity.sourcePosition) && identity.sourcePosition > previousPosition,
+      'Owner-confirmed identities must be in unique source-position order.');
+    previousPosition = identity.sourcePosition;
+    assert.ok(!ids.has(identity.issueId), 'Owner-confirmed identities cannot reuse an issue id.');
+    ids.add(identity.issueId);
+    ownerIdentityParts(identity);
+  }
+}
+
+function outputBody(file, value) {
+  return { file, content: typeof value === 'string' ? value : jsonText(value) };
+}
+
+export function assertRelationshipReportExtension(previous, current, laterGuides = []) {
+  for (const field of [
+    'candidateId', 'packetDigest', 'mappingDigest', 'peerDigests', 'sourceCounts', 'candidateCount',
+  ]) {
+    assert.equal(canonicalJson(current[field]), canonicalJson(previous[field]),
+      `Current relationship report changed its approved ${field}.`);
+  }
+  const currentById = new Map(current.comparisons.map((entry) => [entry.orderId, entry]));
+  for (const comparison of previous.comparisons) {
+    if (!currentById.has(comparison.orderId)
+      && comparison.orderId === mcuEditorial.withdrawal.manifestEntry.id
+      && comparison.relationship === 'none' && comparison.sharedCount === 0
+      && comparison.sharedIds.length === 0) continue;
+    assert.equal(canonicalJson(currentById.get(comparison.orderId)), canonicalJson(comparison),
+      `Current relationship report changed approved overlap with ${comparison.orderId}.`);
+  }
+  const previousIds = new Set(previous.comparisons.map((entry) => entry.orderId));
+  const additions = current.comparisons.filter((entry) => !previousIds.has(entry.orderId));
+  for (const entry of additions) {
+    if (entry.relationship === 'none' && entry.sharedCount === 0 && entry.sharedIds.length === 0) continue;
+    assert.ok(current.candidateId === 'mcu-prep-agatha-all-along' && entry.orderId === 'contest-of-chaos'
+      && entry.relationship === 'partial' && entry.sharedCount === 1
+      && canonicalJson(entry.sharedIds) === canonicalJson(['109670']),
+    'New library entries with shared issues require a separate relationship review.');
+    const later = laterGuides.find(({ contract }) => contract.id === entry.orderId);
+    assert.ok(later, 'New library entries with shared issues require a separate relationship review.');
+    const { contract, mapping, report } = later;
+    validateMappingDigest(mapping);
+    validateReportDigest(report);
+    validateApprovalDigest(mapping.relationshipReview, contract.id);
+    assert.equal(mapping.id, contract.id);
+    assert.equal(report.candidateId, contract.id);
+    assert.equal(mapping.reviewStatus, 'approved');
+    const review = mapping.relationshipReview;
+    assert.equal(review.proposalDigest, contract.proposalDigest);
+    assert.equal(review.approvalDigest, contract.approvalDigest);
+    assert.equal(review.reportDigest, report.reportDigest);
+    assert.equal(review.mappingDigest, mapping.mappingDigest);
+    assert.equal(report.mappingDigest, mapping.mappingDigest);
+    const reciprocal = report.comparisons.find(({ orderId }) => orderId === current.candidateId);
+    const authority = review.dispositions.find(({ orderId }) => orderId === current.candidateId);
+    assert.ok(reciprocal && authority, 'Later owner authority must include this earlier guide.');
+    assert.equal(authority.decision, 'approved');
+    assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
+    const inverse = {
+      partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset',
+    };
+    assert.equal(entry.relationship, inverse[reciprocal.relationship]);
+    for (const value of [reciprocal, authority]) {
+      assert.equal(value.sharedCount, entry.sharedCount);
+      assert.deepEqual([...value.sharedIds].sort(), [...entry.sharedIds].sort());
+      assert.equal(value.relationship, reciprocal.relationship);
+    }
+  }
+}
+
+async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
+  validateIdentityUpdateRequest(request);
+  const paths = artifactPaths(request.id);
+  const manifestFile = path.join(root, 'src', 'data', 'curated-lists.json');
+  const catalogFile = path.join(root, 'src', 'data', 'catalog.json');
+  const registryFile = path.join(root, 'scripts', 'data', 'owner-deliveries.json');
+  const registry = readOwnerGuideRegistry(root);
+  const registration = registry.guides.find((entry) => entry.id === request.id);
+  assert.ok(registration, 'Only a registered owner guide can receive identity updates.');
+  assert.equal(registration.contract, paths.contract, 'The registered contract path differs from the guide identity.');
+  const provider = registration.surface === 'modern-timeline' ? OWNER_EVENT_PROVIDER : OWNER_PROVIDER;
+  const currentLibrary = await loadCurrentOwnerLibrary(request.id, { root });
+  const currentMappingFile = path.join(root, paths.mapping);
+  const currentMappingForPaths = JSON.parse(await readFile(currentMappingFile, 'utf8'));
+  const peerMappingFiles = Object.keys(currentMappingForPaths.relationshipReview?.peerDigests ?? {})
+    .map((id) => path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`));
+  const previousReportForPaths = JSON.parse(await readFile(path.join(root, paths.report), 'utf8'));
+  const previousOrderIds = new Set(previousReportForPaths.comparisons.map(({ orderId }) => orderId));
+  const laterGuidePaths = registry.guides
+    .filter(({ id }) => id !== request.id && !previousOrderIds.has(id))
+    .map(({ id, contract }) => ({
+      contract: path.join(root, contract),
+      mapping: path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`),
+      report: path.join(root, 'scripts', 'data', 'owner-overlaps', `${id}.json`),
+    }));
+  const targetPaths = Object.values(paths).map((name) => path.join(root, name));
+  const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
+  const inputPaths = [
+    manifestFile, catalogFile, registryFile, payloadFile, ...targetPaths, ...peerMappingFiles,
+    ...laterGuidePaths.flatMap((entry) => Object.values(entry)),
+    ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
+  ];
+  const inputs = await readPublicationInputs({ root, paths: inputPaths });
+  const source = inputs.json(path.join(root, paths.source));
+  const packet = inputs.json(path.join(root, paths.packet));
+  const mapping = inputs.json(path.join(root, paths.mapping));
+  const peerMappings = peerMappingFiles.map((file) => inputs.json(file));
+  assert.deepEqual(
+    peerMappings.map((peer) => peer.id).sort(),
+    Object.keys(mapping.relationshipReview?.peerDigests ?? {}).sort(),
+    'The approved peer mapping set changed while preparing the identity update.',
+  );
+  const previousReport = inputs.json(path.join(root, paths.report));
+  const contract = inputs.json(path.join(root, paths.contract));
+  const manifest = inputs.json(manifestFile);
+  const catalog = inputs.json(catalogFile);
+  const payload = inputs.json(payloadFile);
+  assert.equal(source.id, request.id);
+  assert.equal(packet.id, request.id);
+  assert.equal(mapping.id, request.id);
+  assert.equal(contract.id, request.id);
+  assert.equal(mapping.reviewStatus, 'approved');
+  validateFrozenPacket(packet, { expectedId: request.id, provider });
+  validateMappingDigest(mapping);
+  validateReportDigest(previousReport);
+  assert.equal(mapping.packetDigest, packet.packetDigest);
+  assert.equal(canonicalJson(mapping.proposedManifest), canonicalJson(packet.proposedManifest));
+  const currentManifestEntry = manifest.lists.find((entry) => entry.id === request.id);
+  const approvedManifestEntry = canonicalJson(currentManifestEntry) === canonicalJson(packet.proposedManifest)
+    ? currentManifestEntry : beforeMcuEditorialEntry(currentManifestEntry);
+  assert.equal(canonicalJson(approvedManifestEntry),
+    canonicalJson(packet.proposedManifest), 'The registered manifest differs from its approved packet.');
+  assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
+  assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);
+  assertMappingMatchesPacketOccurrences(packet, mapping);
+  assert.equal(canonicalJson(payload.items.map((item) => item.issueId)),
+    canonicalJson(mapping.rows.map((row) => row.selectedIssueId)),
+    'The current payload differs from its approved mapping.');
+  const parsedCurrent = parseChecklist(inputs.contents.get(paths.markdown).toString('utf8'));
+  assert.deepEqual(parsedCurrent.entries.map((entry) => entry.issueId), mapping.rows.map((row) => row.selectedIssueId));
+  assert.deepEqual(parsedCurrent.entries.map((entry) => Number(entry.sourceKey)), mapping.rows.map((row) => row.sourcePosition));
+
+  const { report: verifiedReport } = await buildCurrentOwnerOverlap(mapping, { root, peerMappings });
+  assertApprovedRelationshipReview({
+    packet, mapping, report: previousReport, currentLibraryDigest: previousReport.libraryDigest,
+    peerMappings,
+    expectedOrderIds: previousReport.comparisons.map((entry) => entry.orderId),
+    packetValidation: { provider },
+  });
+  assertRelationshipReportExtension(previousReport, verifiedReport, laterGuidePaths.map((entry) => ({
+    contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
+  })));
+
+  const gapByPosition = new Map((packet.sourceGaps ?? []).map((gap) => [gap.sourcePosition, gap]));
+  const existingIds = new Set(mapping.rows.map((row) => Number(row.selectedIssueId)));
+  const identityRows = request.identities.map((identity) => {
+    const gap = gapByPosition.get(identity.sourcePosition);
+    assert.ok(gap && gap.kind === 'published-metadata-gap' && gap.status === 'open',
+      `Source position ${identity.sourcePosition} is not an open published-metadata gap.`);
+    assert.ok(!mapping.rows.some((row) => row.sourcePosition === identity.sourcePosition),
+      `Source position ${identity.sourcePosition} is already published.`);
+    assert.ok(!existingIds.has(identity.issueId), `Issue ${identity.issueId} is already in this guide.`);
+    const parts = ownerIdentityParts(identity);
+    if (gap.issueNumber != null) {
+      assert.equal(parts.issueNumber, String(gap.issueNumber),
+        `Confirmed issue number differs from source position ${identity.sourcePosition}.`);
+    }
+    const identityEvidence = {
+      kind: 'owner-confirmed-identity',
+      confirmingActor: identity.confirmingActor,
+      confirmedAt: identity.confirmedAt,
+      issueId: identity.issueId,
+      label: identity.label,
+      url: identity.url,
+      confirmationSource: identity.confirmationSource,
+    };
+    const providerUrl = `https://marvel.emreparker.com/v1/issues/${identity.issueId}`;
+    const evidenceSources = [
+      ...(gap.evidenceSources ?? []),
+      { kind: 'metadata-provider-404', url: providerUrl, retrievedAt: identity.provider404At },
+      { kind: 'owner-confirmation', url: identity.confirmationSource, retrievedAt: identity.confirmationRetrievedAt },
+    ].filter((entry, index, all) => all.findIndex((other) => (
+      other.kind === entry.kind && other.url === entry.url && other.retrievedAt === entry.retrievedAt
+    )) === index).sort((left, right) => (
+      `${left.kind}\u0000${left.url}\u0000${left.retrievedAt}`.localeCompare(
+        `${right.kind}\u0000${right.url}\u0000${right.retrievedAt}`,
+      )
+    ));
+    const resolution = {
+      sourcePosition: gap.sourcePosition,
+      previousSourceIssueReference: gap.sourceIssueReference,
+      previousSourceRangeReference: gap.sourceRangeReference ?? null,
+      previousNormalizedSeriesTitle: gap.normalizedSeriesTitle,
+      previousSeriesYear: gap.seriesYear,
+      previousIssueNumber: String(gap.issueNumber),
+      resolutionKind: 'owner-confirmed-identity',
+      selectedIssueId: identity.issueId,
+      resolvedNormalizedSeriesTitle: parts.normalizedSeriesTitle,
+      resolvedSeriesYear: parts.seriesYear,
+      resolvedIssueNumber: parts.issueNumber,
+      checkedAt: identity.provider404At,
+      auditBasis: `Owner-confirmed identity for ${identity.label}, recorded by ${identity.confirmingActor} on ${identity.confirmedAt}. The configured metadata provider returned HTTP 404 on ${identity.provider404At}; no provider metadata or reading availability is inferred.`,
+      evidenceSources,
+      identityEvidence,
+    };
+    resolution.evidenceDigest = sourceGapResolutionDigestFor(resolution);
+    const packetRow = {
+      sourcePosition: gap.sourcePosition,
+      sourceIssueReference: gap.sourceIssueReference,
+      sourceRangeReference: gap.sourceRangeReference ?? null,
+      normalizedSeriesTitle: parts.normalizedSeriesTitle,
+      seriesYear: parts.seriesYear,
+      issueNumber: parts.issueNumber,
+      candidateIssueId: null,
+      seriesId: null,
+      manualSeriesSelectionApproved: false,
+      ...(Object.hasOwn(gap, 'sourceGroup') ? { sourceGroup: gap.sourceGroup } : {}),
+    };
+    const mappingRow = {
+      ...packetRow,
+      status: 'exact',
+      resolutionStatus: 'exact',
+      selectedIssueId: identity.issueId,
+      candidateIssueIds: [],
+      selectedIssueIds: [String(identity.issueId)],
+      resolvedIssueTitle: identity.label,
+      marvelIssueUrl: identity.url,
+      identityEvidenceKind: 'owner-confirmed-identity',
+    };
+    return { resolution, packetRow, mappingRow, identity };
+  });
+
+  const resolvedPositions = new Set(identityRows.map((entry) => entry.resolution.sourcePosition));
+  const nextPacket = structuredClone(packet);
+  nextPacket.rows = [...packet.rows, ...identityRows.map((entry) => entry.packetRow)]
+    .sort((left, right) => left.sourcePosition - right.sourcePosition);
+  const repeatedSourceReferences = (packet.repeatedSourceReferences ?? []).map((reference) => {
+    if (!Object.hasOwn(reference, 'canonicalRow')) return reference;
+    const canonicalSourcePosition = packet.rows[reference.canonicalRow - 1].sourcePosition;
+    const canonicalRow = nextPacket.rows.findIndex((row) => row.sourcePosition === canonicalSourcePosition) + 1;
+    assert.ok(canonicalRow > 0, 'Identity update lost a repeated reference canonical row.');
+    return { ...reference, canonicalRow };
+  });
+  if (repeatedSourceReferences.length) nextPacket.repeatedSourceReferences = repeatedSourceReferences;
+  else delete nextPacket.repeatedSourceReferences;
+  const remainingGaps = (packet.sourceGaps ?? []).filter((gap) => !resolvedPositions.has(gap.sourcePosition));
+  if (remainingGaps.length) nextPacket.sourceGaps = remainingGaps;
+  else delete nextPacket.sourceGaps;
+  nextPacket.sourceGapResolutions = [
+    ...(packet.sourceGapResolutions ?? []),
+    ...identityRows.map((entry) => entry.resolution),
+  ].sort((left, right) => left.sourcePosition - right.sourcePosition);
+  nextPacket.expectedCount = nextPacket.rows.length;
+  nextPacket.proposedManifest = {
+    ...nextPacket.proposedManifest,
+    expect: nextPacket.rows.length,
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
+  };
+  nextPacket.packetDigest = packetDigestFor(nextPacket);
+
+  const previousMappingRows = new Map(mapping.rows.map((row) => [row.sourcePosition, row]));
+  const identityMappingRows = new Map(identityRows.map((entry) => [entry.mappingRow.sourcePosition, entry.mappingRow]));
+  const nextMapping = {
+    ...structuredClone(mapping),
+    packetDigest: nextPacket.packetDigest,
+    proposedManifest: structuredClone(nextPacket.proposedManifest),
+    rows: sourcePositionsForPacket(nextPacket).map((position) => (
+      identityMappingRows.get(position) ?? previousMappingRows.get(position)
+    )),
+    sourceGapResolutions: nextPacket.sourceGapResolutions,
+    approvedManifest: structuredClone(nextPacket.proposedManifest),
+  };
+  if (nextPacket.repeatedSourceReferences) {
+    nextMapping.repeatedSourceReferences = nextPacket.repeatedSourceReferences;
+  } else delete nextMapping.repeatedSourceReferences;
+  if (nextPacket.sourceGaps) nextMapping.sourceGaps = nextPacket.sourceGaps;
+  else delete nextMapping.sourceGaps;
+  assert.ok(nextMapping.rows.every(Boolean), 'Identity update left a missing mapping row.');
+  nextMapping.mappingDigest = mappingDigestFor(nextMapping);
+  assertMappingMatchesPacketOccurrences(nextPacket, nextMapping);
+  assertGapTransition(packet, nextPacket, nextMapping, { provider });
+
+  const { report: nextReport, library: nextLibrary } = await buildCurrentOwnerOverlap(
+    nextMapping, { root, peerMappings },
+  );
+  assert.ok(nextReport.comparisons.every((entry) => entry.relationship !== 'exact'),
+    'Owner-confirmed identity update would make this guide an exact duplicate.');
+  const updateDigest = digestCanonicalJson({
+    schemaVersion: 1,
+    id: request.id,
+    request,
+    inputDigests: [...inputs.contents.entries()]
+      .map(([name, content]) => [name, hash(content)]).sort(([left], [right]) => left.localeCompare(right)),
+    packetDigest: nextPacket.packetDigest,
+    mappingDigest: nextMapping.mappingDigest,
+    reportDigest: nextReport.reportDigest,
+    libraryDigest: nextReport.libraryDigest,
+  });
+  const reviewedAt = request.generatedAt;
+  const reviewIdentity = {
+    authorityType: 'stronger-model',
+    authorityIdentity: 'Independent owner-guide relationship review',
+    rationale: 'Recomputed exact issue overlap against the complete current library after the owner-directed identity additions. No exact duplicate guide was introduced; each reported partial overlap remains an intentional difference in selected reading scope.',
+    reviewedAt,
+  };
+  const dispositions = nextReport.comparisons.map((comparison) => ({
+    ...comparison,
+    decision: 'approved',
+    authorityType: comparison.relationship === 'none' ? 'policy' : 'stronger-model',
+    authorityIdentity: comparison.relationship === 'none'
+      ? 'Owner delivery zero-shared-issue policy' : reviewIdentity.authorityIdentity,
+    rationale: comparison.relationship === 'none'
+      ? 'Complete current comparison has no shared original.'
+      : `The owner-directed selected guide remains distinct from ${comparison.orderId}; shared originals are not a claim of equivalent scope.`,
+    reviewedAt,
+  }));
+  const relationshipReview = {
+    ...reviewIdentity,
+    proposalDigest: updateDigest,
+    reportDigest: nextReport.reportDigest,
+    packetDigest: nextPacket.packetDigest,
+    mappingDigest: nextMapping.mappingDigest,
+    libraryDigest: nextReport.libraryDigest,
+    peerDigests: structuredClone(mapping.relationshipReview.peerDigests ?? {}),
+    sourceCounts: sourceCountsForPacket(nextPacket),
+    insertionReview: structuredClone(mapping.relationshipReview.insertionReview),
+    dispositions,
+  };
+  relationshipReview.approvalDigest = approvalDigestFor(relationshipReview);
+  nextMapping.relationshipReview = relationshipReview;
+  assertApprovedRelationshipReview({
+    packet: nextPacket, mapping: nextMapping, report: nextReport,
+    currentLibraryDigest: nextReport.libraryDigest,
+    peerMappings,
+    expectedOrderIds: nextLibrary.orders.map((entry) => entry.orderId),
+    packetValidation: { provider },
+  });
+
+  const groups = [...new Set(nextMapping.rows.map((row) => row.sourceRangeReference).filter(Boolean))];
+  const nextContract = {
+    ...structuredClone(contract),
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
+    libraryDigest: nextReport.libraryDigest,
+    groups,
+    rows: nextMapping.rows.map((row) => [
+      row.sourcePosition, row.selectedIssueId, row.resolvedIssueTitle,
+      row.sourceRangeReference ? groups.indexOf(row.sourceRangeReference) : null,
+    ]),
+    sourceCounts: sourceCountsForPacket(nextPacket),
+    proposalDigest: updateDigest,
+    approvalDigest: relationshipReview.approvalDigest,
+  };
+  nextContract.vectorSha256 = hash(JSON.stringify(nextContract.rows.map((row) => row[1])));
+  const previousComparisons = new Map(verifiedReport.comparisons.map((entry) => [entry.orderId, entry]));
+  const nextComparisons = new Map(nextReport.comparisons.map((entry) => [entry.orderId, entry]));
+  const relationshipChanges = [...new Set([
+    ...previousComparisons.keys(), ...nextComparisons.keys(),
+  ])].sort().flatMap((orderId) => {
+    const before = previousComparisons.get(orderId) ?? null;
+    const after = nextComparisons.get(orderId) ?? null;
+    return canonicalJson(before) === canonicalJson(after) ? [] : [{ orderId, before, after }];
+  });
+  const markdown = updatedOwnerChecklist(
+    inputs.contents.get(paths.markdown).toString('utf8'), source, mapping, nextMapping,
+  );
+  const parsed = parseChecklist(markdown);
+  assert.deepEqual(parsed.entries.map((entry) => entry.issueId), nextMapping.rows.map((row) => row.selectedIssueId));
+  assert.deepEqual(parsed.entries.map((entry) => Number(entry.sourceKey)), nextMapping.rows.map((row) => row.sourcePosition));
+  assert.deepEqual(parsed.entries.map((entry) => entry.identityEvidenceKind ?? null),
+    nextMapping.rows.map((row) => row.identityEvidenceKind ?? null));
+
+  const oldItems = new Map(payload.items.map((item) => [Number(item.issueId), structuredClone(item)]));
+  const nextItems = nextMapping.rows.map((row) => {
+    if (row.identityEvidenceKind !== 'owner-confirmed-identity') {
+      const existing = oldItems.get(Number(row.selectedIssueId));
+      assert.ok(existing, `Existing published issue ${row.selectedIssueId} is missing from the payload.`);
+      return existing;
+    }
+    const identity = identityRows.find((entry) => entry.mappingRow.sourcePosition === row.sourcePosition).identity;
+    return {
+      issueId: row.selectedIssueId,
+      title: identity.label,
+      number: row.issueNumber == null ? null : String(row.issueNumber),
+      url: identity.url,
+      seriesId: null,
+      seriesName: null,
+      onSale: null,
+      mu: null,
+      digitalId: null,
+      cover: null,
+      description: null,
+      pageCount: null,
+      creators: [],
+      detailsRefused: true,
+      identityEvidenceKind: 'owner-confirmed-identity',
+      ...(row.sourceRangeReference ? { collectedIn: cleanText(row.sourceRangeReference) } : {}),
+    };
+  });
+  const nextPayload = {
+    ...payload,
+    ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
+    generatedAt: request.generatedAt,
+    count: nextItems.length,
+    items: nextItems,
+    collections: new Set(nextItems.map((item) => item.collectedIn).filter(Boolean)).size,
+  };
+  const gaps = nextItems.reduce((counts, item) => {
+    if (item.placeholder === true && !item.seriesId && !item.digitalId) counts.placeholders += 1;
+    else if (item.identityEvidenceKind === 'owner-confirmed-identity'
+      && !item.seriesId && !item.digitalId) counts.ownerConfirmed += 1;
+    else if (!item.seriesId && !item.digitalId) counts.empty += 1;
+    return counts;
+  }, { placeholders: 0, empty: 0, ownerConfirmed: 0 });
+  const catalogEntry = catalog.lists.find((entry) => entry.id === request.id);
+  assert.ok(catalogEntry, 'Registered owner guide is missing from the catalog.');
+  const nextCatalog = {
+    ...catalog,
+    lists: catalog.lists.map((entry) => entry.id !== request.id ? entry : ({
+      ...entry,
+      ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
+      count: nextItems.length,
+      placeholderCount: gaps.placeholders,
+      emptyRecordCount: gaps.empty,
+      ...(gaps.ownerConfirmed
+        ? { ownerConfirmedIdentityCount: gaps.ownerConfirmed }
+        : { ownerConfirmedIdentityCount: 0 }),
+      collections: nextPayload.collections,
+      updatedAt: request.generatedAt,
+    })),
+  };
+  const nextManifest = {
+    ...manifest,
+    lists: manifest.lists.map((entry) => entry.id === request.id ? {
+      ...nextPacket.proposedManifest,
+      description: request.description ?? currentManifestEntry.description,
+    } : entry),
+  };
+  assert.deepEqual(parseManifest(nextManifest).errors, []);
+  const outputValues = [
+    outputBody(path.join(root, paths.packet), nextPacket),
+    outputBody(path.join(root, paths.mapping), nextMapping),
+    outputBody(path.join(root, paths.report), nextReport),
+    outputBody(path.join(root, paths.contract), nextContract),
+    outputBody(path.join(root, paths.markdown), markdown),
+    outputBody(payloadFile, nextPayload),
+    outputBody(catalogFile, nextCatalog),
+    outputBody(manifestFile, nextManifest),
+  ];
+  const publication = await preflightPublicationWrites({ root, inputs, outputs: outputValues });
+  requireCleanPreflight(publication);
+  const proposal = {
+    schemaVersion: 1,
+    status: 'awaiting-owner-approval',
+    id: request.id,
+    request: structuredClone(request),
+    review: {
+      identities: identityRows.map(({ mappingRow, identity }) => ({
+        sourcePosition: mappingRow.sourcePosition,
+        issueId: identity.issueId,
+        label: identity.label,
+        url: identity.url,
+      })),
+      relationshipChanges,
+      relationshipCounts: nextReport.comparisons.reduce((counts, entry) => {
+        counts[entry.relationship] = (counts[entry.relationship] ?? 0) + 1;
+        return counts;
+      }, {}),
+      exactDuplicates: nextReport.comparisons
+        .filter((entry) => entry.relationship === 'exact').map((entry) => entry.orderId),
+    },
+    inputDigests: [...inputs.contents.entries()]
+      .map(([name, content]) => ({ path: name, sha256: hash(content) }))
+      .sort((left, right) => left.path.localeCompare(right.path)),
+    outputs: outputValues.map(({ file, content }) => ({
+      path: path.relative(root, file).replaceAll(path.sep, '/'),
+      sha256: hash(content),
+    })),
+    packetDigest: nextPacket.packetDigest,
+    mappingDigest: nextMapping.mappingDigest,
+    reportDigest: nextReport.reportDigest,
+    libraryDigest: nextLibrary.libraryDigest,
+    publication,
+  };
+  proposal.proposalDigest = digestCanonicalJson(proposal);
+  return { proposal, inputs, outputs: outputValues };
+}
+
+export async function prepareOwnerGuideIdentityUpdate(request, options = {}) {
+  const { proposal } = await buildOwnerGuideIdentityUpdate(request, options);
+  return proposal;
+}
+
+export function ownerGuideIdentityUpdateApprovalRequest(proposal) {
+  assert.equal(proposal.status, 'awaiting-owner-approval');
+  return {
+    schemaVersion: 1,
+    proposalDigest: proposal.proposalDigest,
+    authorityType: null,
+    authorityIdentity: null,
+    rationale: null,
+    reviewedAt: null,
+  };
+}
+
+export async function emitOwnerGuideIdentityUpdate(proposal, approval, { root = ROOT } = {}) {
+  assert.equal(proposal.status, 'awaiting-owner-approval');
+  assert.equal(approval?.schemaVersion, 1);
+  assert.equal(approval.proposalDigest, proposal.proposalDigest,
+    'Owner authority does not name this exact identity update.');
+  assert.equal(approval.authorityType, 'human');
+  assert.equal(approval.authorityIdentity, 'raymond-nassar',
+    'Only the repository owner can authorize owner-confirmed identity publication.');
+  assert.ok(typeof approval.rationale === 'string' && approval.rationale.trim());
+  assert.ok(Number.isFinite(Date.parse(approval.reviewedAt ?? '')));
+  const fresh = await buildOwnerGuideIdentityUpdate(proposal.request, { root });
+  assert.equal(fresh.proposal.proposalDigest, proposal.proposalDigest,
+    'Registered guide inputs or outputs changed after identity update approval.');
+  await preflightPublicationWrites({ root, inputs: fresh.inputs, outputs: fresh.outputs });
+  await writeOutputsAtomically(fresh.outputs.map(({ file, content }) => ({ path: file, content })));
+  return {
+    status: 'updated',
+    id: proposal.id,
+    rowsAdded: proposal.request.identities.length,
+    files: fresh.outputs.length,
+    proposalDigest: proposal.proposalDigest,
+  };
 }

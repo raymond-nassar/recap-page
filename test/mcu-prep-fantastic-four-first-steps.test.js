@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -189,7 +190,7 @@ test('First Steps reviews every active source and generated child without inheri
   assert.equal(current.comparisonCount, peerIds.length);
   const recordedPeers = new Set(report.comparisons.map((row) => row.orderId));
   const library = await loadCurrentOwnerLibrary(id);
-  const recordedOrders = library.orders.filter((row) => recordedPeers.has(row.orderId));
+  const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedPeers.has(row.orderId)), recordedPeers);
   const recordedManifest = historicalMcuDescriptionManifest({
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedPeers.has(row.id)),

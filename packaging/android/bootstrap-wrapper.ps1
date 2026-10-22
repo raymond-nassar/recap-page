@@ -6,10 +6,10 @@ if (-not (Test-Path -LiteralPath $wrapper)) {
     $download = "$wrapper.download"
     try {
         Invoke-WebRequest -UseBasicParsing `
-            -Uri 'https://raw.githubusercontent.com/gradle/gradle/v9.8.0/gradle/wrapper/gradle-wrapper.jar' `
+            -Uri 'https://raw.githubusercontent.com/gradle/gradle/v9.8.1/gradle/wrapper/gradle-wrapper.jar' `
             -OutFile $download
         if ((Get-FileHash -LiteralPath $download -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) {
-            throw 'The Gradle wrapper checksum does not match the official Gradle 9.8.0 release.'
+            throw 'The Gradle wrapper checksum does not match the official Gradle 9.8.1 release.'
         }
         Move-Item -LiteralPath $download -Destination $wrapper
     } finally {
@@ -18,6 +18,6 @@ if (-not (Test-Path -LiteralPath $wrapper)) {
 }
 
 if ((Get-FileHash -LiteralPath $wrapper -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) {
-    throw 'The Gradle wrapper checksum does not match the official Gradle 9.8.0 release.'
+    throw 'The Gradle wrapper checksum does not match the official Gradle 9.8.1 release.'
 }
-Write-Output 'Gradle 9.8.0 wrapper verified.'
+Write-Output 'Gradle 9.8.1 wrapper verified.'
