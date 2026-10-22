@@ -12,10 +12,14 @@ const fixture = readJson('../test/fixtures/mcu-prep-brand-new-day-vector.json');
 const payload = readJson('../src/data/mcu_prep_spider_man_brand_new_day.json');
 const { id, name, description, sourceUrl, groups } = afterMcuEditorialEntry(fixture);
 const ownerCredit = 'Selected by raymond-nassar for MCU Prep';
-const expected = fixture.rows.map(([, issueId, title, group], index) => ({
-  position: index + 1, issueId, title, group: groups[group],
+const expected = [
+  ...fixture.rows.slice(0, 13),
+  [14, 59715, 'Venom Super Special (1995) #1', 1],
+  ...fixture.rows.slice(13),
+].map(([position, issueId, title, group]) => ({
+  position, issueId, title, group: groups[group],
 }));
-assert.equal(expected.length, 19);
+assert.equal(expected.length, 20);
 assert.deepEqual(payload.items.map((row) => row.issueId), expected.map((row) => row.issueId));
 const priorId = 'brand-existing-spidey';
 let seed = createList(createEmptyState(), { id: priorId, name: 'My previous Spidey list', note: 'Keep my list note' });
@@ -137,38 +141,38 @@ export const brandNewDayActualData = {
         source: node.querySelector('a[href*="/issues/705"]')?.href,
         sourceName: node.querySelector('a[href*="/issues/705"]')?.getAttribute('aria-label'),
       }));
-      t.check(`Browse finds one nineteen-original Brand card linked to the owner intake at ${width}px`,
+      t.check(`Browse finds one twenty-original Brand card linked to the owner intake at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1
-        && facts.name === name && facts.text.includes('19 issues')
+        && facts.name === name && facts.text.includes('20 issues')
         && facts.source === sourceUrl && facts.text.includes('Source: Recap Page')
         && facts.sourceName === `Source of ${name}: Recap Page`, JSON.stringify(facts));
       await click(page, `${card} [data-act="preview"]`);
       await page.waitForFunction(() =>
-        document.querySelectorAll('#preview[open] .preview-issue-link').length === 19);
-      checkRows(t, `Preview keeps all originals and 6/7/6 groups at ${width}px`, await rendered(page, true));
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 20);
+      checkRows(t, `Preview keeps all originals and 6/8/6 groups at ${width}px`, await rendered(page, true));
       const preview = await page.evaluate(() => ({
         description: document.querySelector('#preview-desc')?.textContent.trim(),
         source: document.querySelector('#preview-source')?.textContent.trim(),
         sourceLink: document.querySelector('#preview-source a')?.href,
-        gapCheckbox: [...document.querySelectorAll('#preview-body input, #preview-body [data-issue-id]')]
+        confirmedIdentityCheckbox: [...document.querySelectorAll('#preview-body input, #preview-body [data-issue-id]')]
           .some((node) => node.dataset.issueId === '59715'),
         viewport: innerWidth, scrollWidth: document.documentElement.scrollWidth,
       }));
-      t.check(`Preview preserves the natural copy, exact gap and whole-original qualification at ${width}px`,
+      t.check(`Preview includes the confirmed identity and preserves whole-original qualification at ${width}px`,
         preview.description === description && preview.source.includes(ownerCredit)
-        && preview.sourceLink === sourceUrl && !preview.gapCheckbox, JSON.stringify(preview));
+        && preview.sourceLink === sourceUrl && preview.confirmedIdentityCheckbox, JSON.stringify(preview));
       t.check(`Preview has no horizontal overflow at ${width}px`,
         preview.scrollWidth <= preview.viewport, JSON.stringify(preview));
       if (width === 1280) await click(page, '#preview-close');
     }
     await click(page, '#preview-add [data-act="main"]');
     await waitForSavedPreviewLink(page, id);
-    checkSaved(t, 'Import keeps nineteen originals and all prior reader/history state', await saved(page));
+    checkSaved(t, 'Import keeps twenty originals and all prior reader/history state', await saved(page));
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForFunction((title) => !document.querySelector('#view-read')?.hidden
       && document.querySelector('#order-name')?.textContent.trim() === title, {}, name);
     await page.$eval('#full', (node) => { node.open = true; });
-    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 19);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 20);
     for (const width of [1280, 360]) {
       await resize(page, width);
       checkRows(t, `The opened Reading List keeps the original/collection vector at ${width}px`,
@@ -183,8 +187,8 @@ export const brandNewDayActualData = {
     await page.waitForFunction((title) =>
       document.querySelector('#order-name')?.textContent.trim() === title, {}, name);
     await page.$eval('#full', (node) => { node.open = true; });
-    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 19);
-    checkRows(t, 'Reload keeps all nineteen originals and the last FCBD original', await rendered(page, false));
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 20);
+    checkRows(t, 'Reload keeps all twenty originals and the last FCBD original', await rendered(page, false));
     checkSaved(t, 'Reload preserves shared progress, notes, overrides, prior list and separate history', await saved(page));
     t.check('Brand journey uses only the isolated origin and reports no browser error',
       external.length === 0 && errors.length === 0, JSON.stringify({ external, errors }));

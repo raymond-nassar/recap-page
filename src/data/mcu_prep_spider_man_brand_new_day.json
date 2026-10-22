@@ -5,9 +5,9 @@
   "source": "https://github.com/raymond-nassar/recap-page/issues/705",
   "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
   "sourceLicense": null,
-  "generatedAt": "2026-10-06T14:03:24.518Z",
+  "generatedAt": "2026-10-22T17:46:42.630Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 19,
+  "count": 20,
   "collections": 3,
   "placeholders": 0,
   "unresolved": [],
@@ -428,6 +428,24 @@
           "role": "writer"
         }
       ],
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
+    },
+    {
+      "issueId": 59715,
+      "title": "Venom Super Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)"
     },
     {

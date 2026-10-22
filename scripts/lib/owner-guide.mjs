@@ -27,6 +27,14 @@ export const OWNER_PROVIDER = Object.freeze({
   requireSourceContentSha256: true, requireSourceProvider: true,
   allowMissingCover: true,
 });
+const THUNDERBOLTS_MISMATCH = Object.freeze({
+  guideId: 'mcu-prep-thunderbolts',
+  sourcePosition: 6,
+  issueId: 62424,
+  label: 'Thunderbolts (1997) #-1',
+  url: 'https://www.marvel.com/comics/issue/62424/thunderbolts_1997_1',
+  confirmationSource: 'https://github.com/raymond-nassar/recap-page/issues/687#issuecomment-6336250562',
+});
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const same = (left, right, reason) => assert.equal(canonicalJson(left), canonicalJson(right), reason);
@@ -464,8 +472,24 @@ export function ownerChecklist(source, mapping) {
   return `${lines.join('\n')}\n`;
 }
 
+export function ownerGuideDisplayGroups(markdown, mapping) {
+  const currentChecklist = parseChecklist(markdown);
+  const displayGroupBySourceRange = new Map();
+  for (const row of mapping.rows) {
+    if (!row.sourceRangeReference) continue;
+    const entry = currentChecklist.entries.find((candidate) => Number(candidate.sourceKey) === row.sourcePosition);
+    assert.ok(entry?.section, `Existing source position ${row.sourcePosition} needs a display group.`);
+    const previousLabel = displayGroupBySourceRange.get(row.sourceRangeReference);
+    assert.ok(previousLabel === undefined || previousLabel === entry.section,
+      `Source range ${row.sourceRangeReference} cannot resolve to multiple display groups.`);
+    displayGroupBySourceRange.set(row.sourceRangeReference, entry.section);
+  }
+  return displayGroupBySourceRange;
+}
+
 export function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mapping) {
   let lines = existingMarkdown.replace(/\r\n/g, '\n').split('\n');
+  const displayGroupBySourceRange = ownerGuideDisplayGroups(existingMarkdown, previousMapping);
   const confirmedCount = mapping.rows
     .filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length;
   const openGapCount = mapping.sourceGaps?.length ?? 0;
@@ -473,7 +497,9 @@ export function updatedOwnerChecklist(existingMarkdown, source, previousMapping,
   lines = lines.filter((line) => !obsoleteNotice.test(line));
 
   const notices = [
-    ...(confirmedCount ? [`${confirmedCount} owner-confirmed identities have no provider details or cover.`] : []),
+    ...(confirmedCount ? [
+      `${confirmedCount} owner-confirmed ${confirmedCount === 1 ? 'identity has' : 'identities have'} no provider details or cover.`,
+    ] : []),
     ...(openGapCount ? [
       `${openGapCount} unresolved source positions remain explicit in the factual source${source.gapIssueUrl
         ? ` and the [assigned gap issue](${source.gapIssueUrl})` : ''}.`,
@@ -496,6 +522,39 @@ export function updatedOwnerChecklist(existingMarkdown, source, previousMapping,
     row.identityEvidenceKind === 'owner-confirmed-identity'
       && !currentPositionLines.has(row.sourcePosition)
   ));
+  const staleCopyCorrections = {
+    'mcu-prep-spider-man-brand-new-day': [
+      [
+        'This checklist publishes nineteen exactly resolved originals in owner order. It does not replace the broader Spider-Man guides or claim these comics are a direct film adaptation.',
+        `This checklist publishes ${mapping.rows.length} exactly resolved originals in owner order. It does not replace the broader Spider-Man guides or claim these comics are a direct film adaptation.`,
+      ],
+      [
+        'Source position 14, selection 2, within-book position 8: **Venom Super Special (1995) #1**, source-identified original **59715**, remains a metadata gap under [Issue #707](https://github.com/raymond-nassar/recap-page/issues/707).',
+        'Source position 14, selection 2, within-book position 8: **Venom Super Special (1995) #1**, source-identified original **59715**, is now included by owner-confirmed identity under [Issue #707](https://github.com/raymond-nassar/recap-page/issues/707).',
+      ],
+      [
+        'It is intentionally not a checkbox, placeholder or neighboring special. Its identity and failed lookups remain in the nonempty source-gap ledger. This is not a claim about Marvel Unlimited availability.',
+        'Provider details and Marvel Unlimited availability remain unverified; the confirmed identity does not resolve either question.',
+      ],
+    ],
+    'mcu-prep-thunderbolts': [
+      [
+        'Thunderbolts (1997) #-1, source position 6, remains unresolved under [the assigned provider-gap issue](https://github.com/raymond-nassar/recap-page/issues/687).',
+        'Thunderbolts (1997) #-1, source position 6, is now included by owner-confirmed identity under [the assigned provider-gap issue](https://github.com/raymond-nassar/recap-page/issues/687). Its provider record identifies #1, not #-1, so no provider metadata or availability is inferred.',
+      ],
+      [
+        'The import publishes the other 34 originals without replacing that comic, adding a collection ID or making a placeholder identity.',
+        `The checklist publishes all ${mapping.rows.length} resolved originals without adding a collection ID or placeholder identity.`,
+      ],
+    ],
+  }[mapping.id];
+  if (newRows.length && staleCopyCorrections) {
+    for (const [before, after] of staleCopyCorrections) {
+      const index = lines.indexOf(before);
+      assert.ok(index >= 0, `Expected the stale ${mapping.id} checklist statement to be present.`);
+      lines[index] = after;
+    }
+  }
   const groups = new Map();
   for (const row of newRows) {
     const key = row.sourceRangeReference ?? null;
@@ -521,7 +580,8 @@ export function updatedOwnerChecklist(existingMarkdown, source, previousMapping,
     rows.sort((left, right) => left.sourcePosition - right.sourcePosition);
     const first = rows[0].sourcePosition;
     const last = rows.at(-1).sourcePosition;
-    const heading = group ? `## ${escapeLinkText(group)}` : null;
+    const displayGroup = group ? displayGroupBySourceRange.get(group) ?? group : null;
+    const heading = displayGroup ? `## ${escapeLinkText(displayGroup)}` : null;
     const headingIndex = heading ? lines.indexOf(heading) : -1;
     const oldRows = previousMapping.rows
       .filter((row) => row.sourceRangeReference === group && currentPositionLines.has(row.sourcePosition));
@@ -732,14 +792,20 @@ function validDate(value, label) {
 }
 
 function ownerIdentityParts(identity) {
-  const match = /^(.*?)\s+\((\d{4})\)(?:\s+#(\d+(?:\.\d+)?))?$/.exec(identity.label ?? '');
+  const match = /^(.*?)\s+\((\d{4})\)(?:\s+#(-1|\d+(?:\.\d+)?))?$/.exec(identity.label ?? '');
   assert.ok(match, 'An owner-confirmed label must state the exact series, year, and optional issue number.');
   assert.ok(typeof identity.confirmingActor === 'string' && identity.confirmingActor.trim(),
     'Owner confirmation needs a named actor.');
   validDate(identity.confirmedAt, 'Owner confirmation date');
   validDate(identity.confirmationRetrievedAt, 'Owner confirmation source date');
-  validDate(identity.provider404At, 'Provider 404 date');
-  assert.equal(identity.providerStatus, 404, 'Only a recorded provider 404 can use owner-confirmed identity evidence.');
+  if (identity.providerStatus === 404) {
+    validDate(identity.provider404At, 'Provider 404 date');
+    assert.equal(Object.hasOwn(identity, 'providerMismatchAt'), false);
+  } else {
+    assert.equal(identity.providerStatus, 200, 'Owner identity needs an exact recorded provider result.');
+    assert.equal(Object.hasOwn(identity, 'provider404At'), false);
+    validDate(identity.providerMismatchAt, 'Provider mismatch date');
+  }
   assert.ok(Number.isSafeInteger(identity.issueId) && identity.issueId > 0);
   assert.equal(issueIdFromUrl(identity.url), identity.issueId,
     'The owner-supplied Marvel URL must identify the confirmed positive issue id.');
@@ -773,7 +839,7 @@ function validateIdentityUpdateRequest(request) {
     'Identity update needs at least one owner-confirmed identity.');
   const allowedIdentityFields = new Set([
     'sourcePosition', 'issueId', 'label', 'url', 'confirmingActor', 'confirmedAt',
-    'confirmationSource', 'confirmationRetrievedAt', 'providerStatus', 'provider404At',
+    'confirmationSource', 'confirmationRetrievedAt', 'providerStatus', 'provider404At', 'providerMismatchAt',
   ]);
   let previousPosition = 0;
   const ids = new Set();
@@ -786,8 +852,74 @@ function validateIdentityUpdateRequest(request) {
     previousPosition = identity.sourcePosition;
     assert.ok(!ids.has(identity.issueId), 'Owner-confirmed identities cannot reuse an issue id.');
     ids.add(identity.issueId);
+    if (request.id === THUNDERBOLTS_MISMATCH.guideId
+      && identity.sourcePosition === THUNDERBOLTS_MISMATCH.sourcePosition) {
+      assert.equal(identity.providerStatus, 200,
+        'The confirmed Thunderbolts #-1 source position requires its recorded HTTP 200 mismatch evidence.');
+    }
+    if (identity.providerStatus === 200) {
+      assert.equal(request.id, THUNDERBOLTS_MISMATCH.guideId,
+        'Only the confirmed Thunderbolts #-1 source record permits an HTTP 200 identity mismatch.');
+      for (const [field, value] of Object.entries({
+        sourcePosition: THUNDERBOLTS_MISMATCH.sourcePosition,
+        issueId: THUNDERBOLTS_MISMATCH.issueId,
+        label: THUNDERBOLTS_MISMATCH.label,
+        url: THUNDERBOLTS_MISMATCH.url,
+        confirmationSource: THUNDERBOLTS_MISMATCH.confirmationSource,
+      })) {
+        assert.equal(identity[field], value, `Thunderbolts provider mismatch ${field} changed.`);
+      }
+    }
     ownerIdentityParts(identity);
   }
+}
+
+export function assertThunderboltsMismatchSource(sourceLedger) {
+  assert.equal(sourceLedger.id, THUNDERBOLTS_MISMATCH.guideId);
+  assert.equal(sourceLedger.sourceOccurrenceCount, 35);
+  assert.equal(sourceLedger.publishedIssueCount, 34);
+  assert.equal(sourceLedger.gapCount, 1);
+  assert.deepEqual(sourceLedger.rows.map((row) => row.sourcePosition),
+    Array.from({ length: 35 }, (_, index) => index + 1));
+  const sourceRow = sourceLedger.rows.find((row) => row.sourcePosition === THUNDERBOLTS_MISMATCH.sourcePosition);
+  assert.deepEqual(sourceRow, {
+    sourcePosition: 6, selection: 1, reference: THUNDERBOLTS_MISMATCH.label,
+    seriesId: 2296, issueId: null, status: 'provider-gap',
+  });
+  const gap = sourceLedger.gaps.find((entry) => entry.sourcePosition === THUNDERBOLTS_MISMATCH.sourcePosition);
+  assert.equal(sourceLedger.gaps.length, 1);
+  assert.equal(gap.issueUrl, 'https://github.com/raymond-nassar/recap-page/issues/687');
+  assert.equal(gap.relatedGuideGapUrl, 'https://github.com/raymond-nassar/recap-page/issues/558');
+  assert.equal(gap.checkedAt, '2026-10-03');
+  assert.equal(gap.reference, THUNDERBOLTS_MISMATCH.label);
+  assert.deepEqual(gap.failedLookups, [
+    {
+      url: 'https://marvel.emreparker.com/v1/series/2296/issues?limit=200&offset=0',
+      returnedRecords: 83,
+      result: 'No issueNumber -1 or exact #-1 title.',
+    },
+    {
+      url: 'https://marvel.emreparker.com/v1/search/issues?q=Thunderbolts%201997%20-1&limit=100',
+      returnedRecords: 84,
+      result: 'No issueNumber -1 or exact #-1 title.',
+    },
+  ]);
+  assert.deepEqual(gap.rejectedRelabelings.find((entry) => entry.issueId === 62424), {
+    issueId: 62424,
+    url: 'https://marvel.emreparker.com/v1/issues/62424',
+    title: 'Thunderbolts (1997) #1',
+    issueNumber: '1',
+    onSaleDate: '1997-07-01T00:00:00+0000',
+    digitalId: 43367,
+  });
+  assert.deepEqual(gap.rejectedRelabelings.find((entry) => entry.issueId === 15311), {
+    issueId: 15311,
+    url: 'https://marvel.emreparker.com/v1/issues/15311',
+    title: 'Thunderbolts (1997) #1',
+    issueNumber: '1',
+    onSaleDate: '1997-04-01T00:00:00+0000',
+    digitalId: 3162,
+  });
 }
 
 function outputBody(file, value) {
@@ -814,12 +946,10 @@ export function assertRelationshipReportExtension(previous, current, laterGuides
   const additions = current.comparisons.filter((entry) => !previousIds.has(entry.orderId));
   for (const entry of additions) {
     if (entry.relationship === 'none' && entry.sharedCount === 0 && entry.sharedIds.length === 0) continue;
-    assert.ok(current.candidateId === 'mcu-prep-agatha-all-along' && entry.orderId === 'contest-of-chaos'
-      && entry.relationship === 'partial' && entry.sharedCount === 1
-      && canonicalJson(entry.sharedIds) === canonicalJson(['109670']),
-    'New library entries with shared issues require a separate relationship review.');
-    const later = laterGuides.find(({ contract }) => contract.id === entry.orderId);
-    assert.ok(later, 'New library entries with shared issues require a separate relationship review.');
+    const later = laterGuides.find(({ registeredId, contract }) => (
+      registeredId === entry.orderId && contract?.id === entry.orderId
+    ));
+    assert.ok(later, `New library entries with shared issues require a registered reciprocal review: ${entry.orderId}`);
     const { contract, mapping, report } = later;
     validateMappingDigest(mapping);
     validateReportDigest(report);
@@ -860,7 +990,11 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const registration = registry.guides.find((entry) => entry.id === request.id);
   assert.ok(registration, 'Only a registered owner guide can receive identity updates.');
   assert.equal(registration.contract, paths.contract, 'The registered contract path differs from the guide identity.');
-  const provider = registration.surface === 'modern-timeline' ? OWNER_EVENT_PROVIDER : OWNER_PROVIDER;
+  const provider = registration.surface === 'modern-timeline'
+    ? OWNER_EVENT_PROVIDER
+    : (request.id === THUNDERBOLTS_MISMATCH.guideId
+      ? { ...OWNER_PROVIDER, sourceOrigin: 'Compiled by hand for this project from the owner-authored outline in GitHub issue #682' }
+      : OWNER_PROVIDER);
   const currentLibrary = await loadCurrentOwnerLibrary(request.id, { root });
   const currentMappingFile = path.join(root, paths.mapping);
   const currentMappingForPaths = JSON.parse(await readFile(currentMappingFile, 'utf8'));
@@ -871,15 +1005,18 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const laterGuidePaths = registry.guides
     .filter(({ id }) => id !== request.id && !previousOrderIds.has(id))
     .map(({ id, contract }) => ({
+      id,
       contract: path.join(root, contract),
       mapping: path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`),
       report: path.join(root, 'scripts', 'data', 'owner-overlaps', `${id}.json`),
     }));
   const targetPaths = Object.values(paths).map((name) => path.join(root, name));
   const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
+  const thunderboltsSourcePath = path.join(root, 'scripts', 'data', 'mcu-prep-thunderbolts-source.json');
   const inputPaths = [
     manifestFile, catalogFile, registryFile, payloadFile, ...targetPaths, ...peerMappingFiles,
-    ...laterGuidePaths.flatMap((entry) => Object.values(entry)),
+    ...(request.id === THUNDERBOLTS_MISMATCH.guideId ? [thunderboltsSourcePath] : []),
+    ...laterGuidePaths.flatMap(({ contract, mapping, report }) => [contract, mapping, report]),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
   ];
   const inputs = await readPublicationInputs({ root, paths: inputPaths });
@@ -897,6 +1034,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const manifest = inputs.json(manifestFile);
   const catalog = inputs.json(catalogFile);
   const payload = inputs.json(payloadFile);
+  const thunderboltsSource = request.id === THUNDERBOLTS_MISMATCH.guideId
+    ? inputs.json(thunderboltsSourcePath) : null;
   assert.equal(source.id, request.id);
   assert.equal(packet.id, request.id);
   assert.equal(mapping.id, request.id);
@@ -918,6 +1057,9 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   assert.equal(canonicalJson(payload.items.map((item) => item.issueId)),
     canonicalJson(mapping.rows.map((row) => row.selectedIssueId)),
     'The current payload differs from its approved mapping.');
+  if (request.identities.some((identity) => identity.providerStatus === 200)) {
+    assertThunderboltsMismatchSource(thunderboltsSource);
+  }
   const parsedCurrent = parseChecklist(inputs.contents.get(paths.markdown).toString('utf8'));
   assert.deepEqual(parsedCurrent.entries.map((entry) => entry.issueId), mapping.rows.map((row) => row.selectedIssueId));
   assert.deepEqual(parsedCurrent.entries.map((entry) => Number(entry.sourceKey)), mapping.rows.map((row) => row.sourcePosition));
@@ -930,6 +1072,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     packetValidation: { provider },
   });
   assertRelationshipReportExtension(previousReport, verifiedReport, laterGuidePaths.map((entry) => ({
+    registeredId: entry.id,
     contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
   })));
 
@@ -957,9 +1100,12 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       confirmationSource: identity.confirmationSource,
     };
     const providerUrl = `https://marvel.emreparker.com/v1/issues/${identity.issueId}`;
+    const providerEvidence = identity.providerStatus === 200
+      ? { kind: 'metadata-provider-200-mismatch', url: providerUrl, retrievedAt: identity.providerMismatchAt }
+      : { kind: 'metadata-provider-404', url: providerUrl, retrievedAt: identity.provider404At };
     const evidenceSources = [
       ...(gap.evidenceSources ?? []),
-      { kind: 'metadata-provider-404', url: providerUrl, retrievedAt: identity.provider404At },
+      providerEvidence,
       { kind: 'owner-confirmation', url: identity.confirmationSource, retrievedAt: identity.confirmationRetrievedAt },
     ].filter((entry, index, all) => all.findIndex((other) => (
       other.kind === entry.kind && other.url === entry.url && other.retrievedAt === entry.retrievedAt
@@ -980,8 +1126,10 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       resolvedNormalizedSeriesTitle: parts.normalizedSeriesTitle,
       resolvedSeriesYear: parts.seriesYear,
       resolvedIssueNumber: parts.issueNumber,
-      checkedAt: identity.provider404At,
-      auditBasis: `Owner-confirmed identity for ${identity.label}, recorded by ${identity.confirmingActor} on ${identity.confirmedAt}. The configured metadata provider returned HTTP 404 on ${identity.provider404At}; no provider metadata or reading availability is inferred.`,
+      checkedAt: identity.providerStatus === 200 ? identity.providerMismatchAt : identity.provider404At,
+      auditBasis: identity.providerStatus === 200
+        ? `Owner-confirmed identity for ${identity.label}, recorded by ${identity.confirmingActor} on ${identity.confirmedAt}. The stored provider record for ID 62424 returned HTTP 200 for Thunderbolts (1997) #1, issue number 1, digitalId 43367; it is not #-1 and supplies no metadata or reading availability for the confirmed identity.`
+        : `Owner-confirmed identity for ${identity.label}, recorded by ${identity.confirmingActor} on ${identity.confirmedAt}. The configured metadata provider returned HTTP 404 on ${identity.provider404At}; no provider metadata or reading availability is inferred.`,
       evidenceSources,
       identityEvidence,
     };
@@ -1118,7 +1266,11 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     packetValidation: { provider },
   });
 
-  const groups = [...new Set(nextMapping.rows.map((row) => row.sourceRangeReference).filter(Boolean))];
+  const currentChecklistText = inputs.contents.get(paths.markdown).toString('utf8');
+  const displayGroupBySourceRange = ownerGuideDisplayGroups(currentChecklistText, mapping);
+  const displayGroup = (row) => row.sourceRangeReference
+    ? displayGroupBySourceRange.get(row.sourceRangeReference) ?? row.sourceRangeReference : null;
+  const groups = [...new Set(nextMapping.rows.map(displayGroup).filter(Boolean))];
   const nextContract = {
     ...structuredClone(contract),
     ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
@@ -1126,7 +1278,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     groups,
     rows: nextMapping.rows.map((row) => [
       row.sourcePosition, row.selectedIssueId, row.resolvedIssueTitle,
-      row.sourceRangeReference ? groups.indexOf(row.sourceRangeReference) : null,
+      row.sourceRangeReference ? groups.indexOf(displayGroup(row)) : null,
     ]),
     sourceCounts: sourceCountsForPacket(nextPacket),
     proposalDigest: updateDigest,
@@ -1143,7 +1295,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     return canonicalJson(before) === canonicalJson(after) ? [] : [{ orderId, before, after }];
   });
   const markdown = updatedOwnerChecklist(
-    inputs.contents.get(paths.markdown).toString('utf8'), source, mapping, nextMapping,
+    currentChecklistText, source, mapping, nextMapping,
   );
   const parsed = parseChecklist(markdown);
   assert.deepEqual(parsed.entries.map((entry) => entry.issueId), nextMapping.rows.map((row) => row.selectedIssueId));
@@ -1175,7 +1327,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       creators: [],
       detailsRefused: true,
       identityEvidenceKind: 'owner-confirmed-identity',
-      ...(row.sourceRangeReference ? { collectedIn: cleanText(row.sourceRangeReference) } : {}),
+      ...(displayGroup(row) ? { collectedIn: cleanText(displayGroup(row)) } : {}),
     };
   });
   const nextPayload = {

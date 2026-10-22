@@ -21,7 +21,7 @@ import {
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { ListHistoryStore, LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import {
-  historicalMcuDescriptionEntry, historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
+  capturedReviewLibraryDigest, historicalMcuDescriptionEntry,
 } from './helpers/reading-choice-history.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 
@@ -191,15 +191,11 @@ test('First Steps reviews every active source and generated child without inheri
   const recordedPeers = new Set(report.comparisons.map((row) => row.orderId));
   const library = await loadCurrentOwnerLibrary(id);
   const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedPeers.has(row.orderId)), recordedPeers);
-  const recordedManifest = historicalMcuDescriptionManifest({
-    ...library.manifest,
-    lists: library.manifest.lists.filter((row) => recordedPeers.has(row.id)),
-  });
   const unsigned = {
     ...current,
-    libraryDigest: historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
+    libraryDigest: capturedReviewLibraryDigest(recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
-    }))),
+    })), report.libraryDigest),
     ...buildComparisonReport({ candidateIds: issueIds, orders: recordedOrders }),
   };
   const historical = { ...unsigned, reportDigest: reportDigestFor(unsigned) };

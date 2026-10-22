@@ -16,60 +16,7 @@
   ],
   "sourceOccurrenceCount": 20,
   "canonicalSourcePositions": true,
-  "sourceGaps": [
-    {
-      "sourcePosition": 14,
-      "sourceIssueReference": "Venom Super Special (1995) #1",
-      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
-      "sourceGroup": "Amazing Spider-Man: Brand New Day Vol. 1",
-      "normalizedSeriesTitle": "Venom Super Special",
-      "seriesYear": 1995,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-10-04",
-      "auditBasis": "Source-identified original 59715 remains selection 2, within-book 8, source position 14. Preserved 2026-10-04 receipts record HTTP 404 for the exact original, zero exact originals from both exact-title searches and no exact Venom original among 12 broader-query candidates. Open assigned Issue https://github.com/raymond-nassar/recap-page/issues/707 was read on 2026-10-06. Publish the other 19 exact originals without substituting a neighboring special, collection or guessed identity. This is a metadata gap, not a Marvel Unlimited availability claim.",
-      "evidenceSources": [
-        {
-          "kind": "bibliography",
-          "url": "https://books.google.com/books/about/Spider_Man.html?id=UYBTo1grbR4C",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "bibliography",
-          "url": "https://comicbookrealm.com/series/21532/211245/marvel-comics-amazing-spider-man-brand-new-day-tpb-1",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "bibliography",
-          "url": "https://www.simpletragic.com/products/venom-super-special-1995-1",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/issues/59715",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
-          "retrievedAt": "2026-10-04"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
-          "retrievedAt": "2026-10-04"
-        }
-      ],
-      "evidenceDigest": "f5984bb6978ade179feb7b5cb2d666366fe3321817860ae9dcf3a408597621f6"
-    }
-  ],
-  "expectedCount": 19,
+  "expectedCount": 20,
   "proposedManifest": {
     "id": "mcu-prep-spider-man-brand-new-day",
     "name": "MCU Prep: Spider-Man: Brand New Day",
@@ -99,7 +46,7 @@
       "Dan Slott",
       "Nick Spencer"
     ],
-    "expect": 19,
+    "expect": 20,
     "timeline": null,
     "coverIssueId": 3583
   },
@@ -313,6 +260,18 @@
       "legacyNumber": null
     },
     {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Venom Super Special (1995) #1",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "venom super special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Amazing Spider-Man: Brand New Day Vol. 1"
+    },
+    {
       "sourcePosition": 15,
       "selectionPosition": 3,
       "withinSelectionPosition": 1,
@@ -412,11 +371,85 @@
   "insertionAnchor": {
     "beforeId": "agents-of-atlas-reading-order"
   },
-  "packetDigest": "b91a14d5c03064000d2d82b1771c7ffb2a79b4dd410c3dfec6a9105f4b84c955",
+  "packetDigest": "d7c6957dfdd6f158001b242a47f0db523ed5f96e95132ee9a5869cd26263e3f4",
   "sourceReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GitHub Copilot (GPT-6 Astra), central coordinator independent of the Brand mapping owner",
     "rationale": "Approve the preserved three first-trade selections in owner order, with20 distinct intended source occurrences and19 exact published originals in6/7/6 groups. Source14 remains the known Venom Super Special1995#1/59715 metadata gap under Issue707; neither a neighboring special nor a collection is substituted. Swing Shift20809 stays source13 and whole FCBD66474 stays source20/published19 after Spencer#1-5. Retain exact source positions, whole-original bonus qualifications, physical-page-order limits and unchanged original3178fc80 research bytes. The user-directed natural description describes the post-reset setting rather than an omitted reset story. Nineteen genuinely captured detail responses match the exact identities and preserved response hashes. This is central model review, not a new human bibliography approval.",
     "reviewedAt": "2026-10-06T13:48:10.861Z"
-  }
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 14,
+      "previousSourceIssueReference": "Venom Super Special (1995) #1",
+      "previousSourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "previousNormalizedSeriesTitle": "Venom Super Special",
+      "previousSeriesYear": 1995,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 59715,
+      "resolvedNormalizedSeriesTitle": "venom super special",
+      "resolvedSeriesYear": 1995,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-04",
+      "auditBasis": "Owner-confirmed identity for Venom Super Special (1995) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-04; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://books.google.com/books/about/Spider_Man.html?id=UYBTo1grbR4C",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://comicbookrealm.com/series/21532/211245/marvel-comics-amazing-spider-man-brand-new-day-tpb-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://www.simpletragic.com/products/venom-super-special-1995-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/59715",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/59715",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/707#issuecomment-6336250156",
+          "retrievedAt": "2026-10-22"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 59715,
+        "label": "Venom Super Special (1995) #1",
+        "url": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/707#issuecomment-6336250156"
+      },
+      "evidenceDigest": "8716ba263612b94c1e45bf2a1327f10523df0f3687294b815c1c57eaacef3bb8"
+    }
+  ]
 }

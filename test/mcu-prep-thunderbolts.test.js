@@ -33,6 +33,7 @@ import {
   SCHEMA_VERSION,
 } from '../src/js/lib/model.js';
 import { assertCurrentLibraryExtension } from './helpers/owner-mcu-library-extension.mjs';
+import { beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
 import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
 import {
   historicalReadingChoiceCatalogEntry,
@@ -71,6 +72,7 @@ const expectedSections = [
 ];
 const expectedPositions = Array.from({ length: 35 }, (_, index) => index + 1)
   .filter((position) => position !== 6);
+const currentIds = [...expectedIds.slice(0, 5), 62424, ...expectedIds.slice(5)];
 const expectedPartialPeers = [
   ['black-widow-reading-order', 13],
   ['captain-america-best-of', 13],
@@ -138,29 +140,43 @@ test('Thunderbolts preserves five owner selections, approved editions and all 35
   assert.ok(!source.rows.some((row) => row.issueId === 2420 || row.issueId === 62424));
 });
 
-test('Thunderbolts checklist and payload publish exactly 34 ordered original identities', async () => {
+test('Thunderbolts publication preserves its original rows and adds only the confirmed #-1 identity', async () => {
   const [source, payload, parsed] = await Promise.all([
     readJson(sourceFile), readJson(payloadFile), readChecklist(),
   ]);
+  const originalPayload = beforeIdentityPayload(path.basename(payloadFile), payload);
+  const originalEntries = parsed.entries.filter((entry) => entry.issueId !== 62424);
+  const confirmed = parsed.entries.find((entry) => entry.issueId === 62424);
+  const confirmedItem = payload.items.find((item) => item.issueId === 62424);
   const resolved = source.rows.filter((row) => row.status === 'resolved');
   assert.deepEqual(resolved.map((row) => row.issueId), expectedIds);
   assert.deepEqual(resolved.map((row) => row.sourcePosition), expectedPositions);
-  assert.deepEqual(parsed.entries.map((entry) => entry.issueId), expectedIds);
-  assert.deepEqual(parsed.entries.map((entry) => Number(entry.sourceKey)), expectedPositions);
-  assert.deepEqual(parsed.entries.map((entry) => entry.title), expectedTitles);
-  assert.deepEqual(parsed.entries.map((entry) => entry.section), expectedSections);
+  assert.deepEqual(originalEntries.map((entry) => entry.issueId), expectedIds);
+  assert.deepEqual(originalEntries.map((entry) => Number(entry.sourceKey)), expectedPositions);
+  assert.deepEqual(originalEntries.map((entry) => entry.title), expectedTitles);
+  assert.deepEqual(originalEntries.map((entry) => entry.section), expectedSections);
+  assert.deepEqual(originalPayload.items.map((item) => item.issueId), expectedIds);
+  assert.deepEqual([confirmed.issueId, Number(confirmed.sourceKey), confirmed.title, confirmed.section],
+    [62424, 6, 'Thunderbolts (1997) #-1', 'Thunderbolts Classic Vol. 1']);
+  assert.deepEqual([confirmedItem.title, confirmedItem.number, confirmedItem.url], [
+    'Thunderbolts (1997) #-1', '-1', 'https://www.marvel.com/comics/issue/62424/thunderbolts_1997_1',
+  ]);
+  assert.ok(['seriesId', 'seriesName', 'onSale', 'mu', 'digitalId', 'cover'].every((field) =>
+    confirmedItem[field] === null));
+  assert.equal(confirmedItem.identityEvidenceKind, 'owner-confirmed-identity');
   assert.deepEqual(parsed.unresolved, []);
-  assert.deepEqual(payload.items.map((item) => item.issueId), expectedIds);
-  assert.deepEqual(payload.items.map((item) => item.title), expectedTitles);
-  assert.deepEqual(payload.items.map((item) => item.collectedIn ?? null), expectedSections);
-  assert.deepEqual(payload.items.map((item) => item.seriesId), resolved.map((row) => row.seriesId));
+  assert.deepEqual(payload.items.map((item) => item.issueId), currentIds);
+  assert.deepEqual(payload.items.filter((item) => item.issueId !== 62424).map((item) => item.title), expectedTitles);
+  assert.deepEqual(payload.items.filter((item) => item.issueId !== 62424)
+    .map((item) => item.collectedIn ?? null), expectedSections);
+  assert.deepEqual(originalPayload.items.map((item) => item.seriesId), resolved.map((row) => row.seriesId));
   assert.equal(payload.id, id);
   assert.equal(payload.name, name);
-  assert.equal(payload.count, 34);
+  assert.equal(payload.count, 35);
   assert.equal(payload.collections, 4);
   assert.equal(payload.placeholders, 0);
   assert.deepEqual(payload.unresolved, []);
-  assert.equal(new Set(expectedIds).size, 34);
+  assert.equal(new Set(currentIds).size, 35);
   assert.ok(payload.items.every((item) => Number.isInteger(item.issueId) && item.issueId > 0
     && item.placeholder !== true && item.description == null
     && issueIdFromUrl(item.url) === item.issueId));
@@ -235,9 +251,9 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   assert.equal(Object.hasOwn(authored, 'spotlightKind'), false);
   assert.equal(Object.hasOwn(rawCatalog.lists.find((entry) => entry.id === id), 'spotlightKind'), false);
   assert.equal(authored.out, 'mcu_prep_thunderbolts.json');
-  assert.equal(authored.expect, 34);
+  assert.equal(authored.expect, 35);
   assert.equal(card.source, 'https://github.com/raymond-nassar/recap-page/issues/682');
-  assert.equal(card.count, 34);
+  assert.equal(card.count, 35);
   assert.equal(card.collections, 4);
   assert.equal(inventory.records.length, 14);
   assert.equal(inventory.records.some((entry) => entry.id === id), false);
@@ -432,8 +448,8 @@ test('Thunderbolts import shares existing read progress without changing saved l
   assert.deepEqual(state.lists['existing-thunderbolts'], oldList);
   assert.deepEqual(state.read, oldRead);
   assert.deepEqual(state.overrides, oldOverrides);
-  assert.deepEqual(state.lists['owner-companion'].itemIds, expectedIds);
-  assert.deepEqual(listProgress(state, 'owner-companion'), { read: 1, total: 34 });
+  assert.deepEqual(state.lists['owner-companion'].itemIds, currentIds);
+  assert.deepEqual(listProgress(state, 'owner-companion'), { read: 1, total: 35 });
   assert.equal(isRead(state, 15311), true);
   assert.equal(state.listOrder.length, 2);
 });

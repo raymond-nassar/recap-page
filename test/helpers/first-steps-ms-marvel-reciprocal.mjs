@@ -9,7 +9,7 @@ import { buildComparisonReport, compareIssueSets } from '../../scripts/lib/cbh-o
 import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
 import { OWNER_SOURCE_PROVIDER } from '../../scripts/report-fantastic-four-overlap.mjs';
 import { legacyOwnerPeers } from './current-reading-library.mjs';
-import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
+import { capturedReviewLibraryDigest } from './reading-choice-history.mjs';
 import { withRetiredOrders } from './mcu-editorial-history.mjs';
 
 export const MS_MARVEL_PROVIDER = Object.freeze({
@@ -67,12 +67,9 @@ export async function assertFirstStepsMsMarvelReciprocal({ reference, packet, ma
   const recordedIds = new Set(reviewedReport.comparisons.map((row) => row.orderId));
   const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
   assert.equal(recordedOrders.length, recordedIds.size, 'A reciprocal publication-cohort peer is missing');
-  const recordedManifest = {
-    ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
-  };
-  const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
+  const recordedDigest = capturedReviewLibraryDigest(recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+  })), reference.recordedLibraryDigest);
   assert.equal(reference.recordedLibraryDigest, recordedDigest,
     'The reciprocal reference must bind its recorded post-refresh publication cohort');
   assert.deepEqual(buildComparisonReport({

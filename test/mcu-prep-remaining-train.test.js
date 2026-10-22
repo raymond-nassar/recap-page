@@ -15,17 +15,18 @@ import { OWNER_PROVIDER } from '../scripts/lib/owner-guide.mjs';
 import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
-  assertCurrentReadingRoster, currentReadingCensus, registeredOwnerIds,
+  assertCurrentReadingRoster, currentReadingCensus, registeredOwnerAdditionIds, registeredOwnerIds,
   registeredCuratedGuides,
 } from './helpers/current-reading-library.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 import {
-  historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
+  capturedReviewLibraryDigest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
 import { beforeIdentityText, identityRevisions } from './helpers/owner-identity-history.mjs';
 
 const text = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
-  || identityRevisions.guides.some(({ id }) => file.includes(id) || file.includes(id.replaceAll('-', '_')))
+  || identityRevisions.guides.some(({ id }) => id !== 'mcu-prep-thunderbolts'
+    && (file.includes(id) || file.includes(id.replaceAll('-', '_'))))
   ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -123,7 +124,7 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
       ?? groups.map((_, group) => rows.filter((row) => row[3] === group).length), publishedGroups[index]);
     assert.deepEqual(mapping.rows.map((row) => row.selectedIssueId), expectedIds);
     assert.deepEqual(mapping.rows.map((row) => row.sourcePosition), expectedPositions);
-    if (registeredOwnerIds.includes(id)) {
+    if (registeredOwnerAdditionIds.includes(id)) {
       assert.deepEqual(mapping.rows.map((row) => row.sourceRangeReference), expectedGroups);
     }
     if (source.publishedGroupLabels) assert.deepEqual(source.publishedGroupLabels, groups);
@@ -181,11 +182,15 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
     const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
     const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
-    let recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
-    if (id === brand.id) recordedManifest = historicalMcuDescriptionManifest(recordedManifest);
-    const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
+    const recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
+    const recordedIssueIds = recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
-    })));
+    }));
+    const isCapturedBrandReview = id === brand.id
+      && identityRevisions.reviewLibrarySnapshots.some((entry) => entry.libraryDigest === report.libraryDigest);
+    const recordedDigest = isCapturedBrandReview
+      ? capturedReviewLibraryDigest(recordedIssueIds, report.libraryDigest)
+      : historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedIssueIds);
     assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
       recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
     assertApprovedRelationshipReview({

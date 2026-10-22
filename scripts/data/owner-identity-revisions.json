@@ -1,6 +1,28 @@
 {
   "schemaVersion": 1,
   "baselineCommit": "f3a614417b22733cc68e15946e894fba8263454c",
+  "reviewLibrarySnapshots": [
+    {
+      "libraryDigest": "65a8075c0d23cbddb9ea79f695391004cf25e64f730315ddba2ef2e3d7e22d76",
+      "sourceCommit": "41420df951996bcf1bcd84357eb4d2f0b9ed74cf",
+      "excludedId": "mcu-prep-spider-man-brand-new-day"
+    },
+    {
+      "libraryDigest": "45cb53d87e1840d2232334b633804cb8a7cf40ba33b389bb6cf5c8b5be28eb61",
+      "sourceCommit": "01bf0ab12254aae91fdce43f27bd53790e2b9d67",
+      "excludedId": "mcu-prep-spider-man-brand-new-day"
+    },
+    {
+      "libraryDigest": "ec8277aa2653d0971af785bb737a18f5844c004accbceef6a4bff58c66dbf061",
+      "sourceCommit": "502c34d74b926132045e42fe97e9a9fd61d218bb",
+      "excludedId": "mcu-prep-fantastic-four-first-steps"
+    },
+    {
+      "libraryDigest": "c154907e7350e2780ed3dc8d3edf3ca05a6a97f36ccdf4f1bbef58b4fdcd68c0",
+      "sourceCommit": "551c7ba27e18a5e9d2da53daea56d8c9c6af5e01",
+      "excludedId": "mcu-prep-ms-marvel"
+    }
+  ],
   "guides": [
     {
       "id": "mcu-prep-the-incredible-hulk-2008",
@@ -14,6 +36,20 @@
       "issueIds": [121656, 121657, 121658, 121659, 121660],
       "proposalDigest": "abaa57ea4ee7cb894f048dc5fc6c7b3bbca2fce2f96e4d04b6bd470b99ca19e3",
       "description": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters have owner-confirmed identities, while provider details and covers remain unavailable."
+    },
+    {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "generatedAt": "2026-10-22T17:46:42.630Z",
+      "issueIds": [59715],
+      "proposalDigest": "cb4dd980c7bb443c46c1eb91be1f6b2a02d82a28586fcc7c99ea9b8822ecb0fb"
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "generatedAt": "2026-10-22T17:49:50.507Z",
+      "issueIds": [62424],
+      "proposalDigest": "a5ced8a65d42b9baa371f749a76219ed327af68aa09b94d39c3f0c4263e95641",
+      "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "publishedDescription": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability."
     }
   ]
 }

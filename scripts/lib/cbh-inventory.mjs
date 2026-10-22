@@ -645,7 +645,7 @@ function assertSourceGapResolution(
       .test(evidence.confirmationSource ?? '')) {
       throw new Error(`${label} identityEvidence confirmationSource must be a repository issue comment`);
     }
-    const title = /^(.*?)\s+\((\d{4})\)(?:\s+#(\d+(?:\.\d+)?))?$/.exec(evidence.label);
+    const title = /^(.*?)\s+\((\d{4})\)(?:\s+#(-1|\d+(?:\.\d+)?))?$/.exec(evidence.label);
     if (!title
       || normalizeTitle(title[1]) !== resolution.resolvedNormalizedSeriesTitle
       || Number(title[2]) !== resolution.resolvedSeriesYear
