@@ -86,11 +86,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/627",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "2dc1275a3cbcf428ce69b35385541358764a04fa1f3648c3cde498a5eb576e8a"
+      "evidenceDigest": "47d6e8cda305fe4d5b4de6e8d8351eb82108ae1486d6b36d921821b5054e8ea8"
     },
     {
       "sourcePosition": 49,
@@ -122,11 +122,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/627",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "13fb748d75a86c1c1e774efb6dd120a5f7eb92b8551db65772af100cac9fbf38"
+      "evidenceDigest": "85ee54c1117f40a9a23a4ad64e2cc3e3a8b7eefefc7654396c17f1c6becdff08"
     },
     {
       "sourcePosition": 165,
@@ -158,11 +158,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "0696771fc38f39446f7fb7fb82ebcf26a4fe37706b7d5dcfe68a6845932970c0"
+      "evidenceDigest": "b0b8bfae2c706718b3d62d4e519b474d7422f121dbda0d0463a849b85a344754"
     },
     {
       "sourcePosition": 166,
@@ -194,11 +194,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "afe8b5960214b29f89b31ac4150f8d793f9745eb77b2e721010d2199ccbd3bad"
+      "evidenceDigest": "700fadd52fd30fbe477abe173d942b38ab7635beec0e428c47c04ffa1982d0c9"
     },
     {
       "sourcePosition": 167,
@@ -230,11 +230,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "ed33a34d524299e6ed21ad3fe3433bf4228c6a3ce6ecddf9e985cf26f5da1d61"
+      "evidenceDigest": "3c0916bd1ac255e59d32e26a6daea5d300399c7aa9e48d5254299daf47570cc1"
     },
     {
       "sourcePosition": 168,
@@ -266,11 +266,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "49afae7335a394dbc7b2a7d2b3f2d4cc531522a47067c90431d52559d4ed523e"
+      "evidenceDigest": "d2df00c91d5c5f1a7e4467d9abb081ebd84eebe25254c3cba8683b2f8831b33d"
     },
     {
       "sourcePosition": 169,
@@ -302,11 +302,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "8d1510b49190b554213ac077a4bb61b194a61328d8ff8279a137a0ac16197a90"
+      "evidenceDigest": "a8df9cf0824fd7e1c879900a16bf7412056609443442efe9d6b8237d2285ba75"
     },
     {
       "sourcePosition": 170,
@@ -338,11 +338,11 @@
         },
         {
           "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
-          "retrievedAt": "2026-09-29"
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-10-21"
         }
       ],
-      "evidenceDigest": "41ee9e433c394de30e12431cf59520071d57592765818b06946911c8151b3f89"
+      "evidenceDigest": "47a0022d7263916c7b8e6bb66bf81e353abe3833f064bc21b926e9ca83ec9aa7"
     }
   ],
   "expectedCount": 290,
@@ -3912,5 +3912,5 @@
       "manualSeriesSelectionApproved": false
     }
   ],
-  "packetDigest": "03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be"
+  "packetDigest": "280e0d605014d87d49290a6fba0fec959bdd67d87262eb26d116ba0ed4ed5dda"
 }
