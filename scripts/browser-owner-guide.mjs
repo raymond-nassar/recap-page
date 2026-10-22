@@ -67,8 +67,17 @@ export function ownerGuideScenario(contract) {
   if (expected.length > 1) seed = markRead(seed, payload.items[0].issueId, true, 123456);
   seed = setIssueNote(seed, payload.items[0].issueId, 'Preserve the original-level note');
   seed.overrides[priorControl.issueId] = 'unavailable';
-  const nextOriginal = payload.items.find((item) => !seed.read[item.issueId]);
+  const ownerIdentityIds = payload.items
+    .filter((item) => item.identityEvidenceKind === 'owner-confirmed-identity')
+    .map((item) => item.issueId);
+  const nextOriginal = payload.items.find((item) =>
+    item.identityEvidenceKind === 'owner-confirmed-identity' && !seed.read[item.issueId])
+    ?? payload.items.find((item) => !seed.read[item.issueId]);
   assert.ok(nextOriginal, 'The shared owner journey needs one unread original.');
+  const nextIndex = payload.items.indexOf(nextOriginal);
+  for (const item of payload.items.slice(0, nextIndex)) {
+    if (!seed.read[item.issueId]) seed = markRead(seed, item.issueId, true, 123456);
+  }
   const history = JSON.stringify({
     format: LIST_HISTORY_FORMAT, version: 1,
     records: [{ listId: 'owner-shared', created: seed.lists['owner-shared'].created,
@@ -84,6 +93,8 @@ export function ownerGuideScenario(contract) {
       raw, history: localStorage.getItem(historyKey), matches: matches.length,
       prior: state.lists['owner-existing'], shared: state.lists['owner-shared'],
       read: state.read, notes: state.notes, overrides: state.overrides, schemaVersion: state.schemaVersion,
+      ownerIdentityIds: (list?.itemIds ?? []).filter((issueId) =>
+        state.issues[issueId].identityEvidenceKind === 'owner-confirmed-identity'),
       rows: (list?.itemIds ?? []).map((issueId, index) => ({
         position: index + 1, issueId, title: state.issues[issueId].title,
         group: list.collectedIn?.[issueId] ?? null,
@@ -109,7 +120,8 @@ export function ownerGuideScenario(contract) {
   const checkSaved = (t, actual) => {
     t.check('import/reload keeps every accepted original and existing reader/history fact',
       actual.matches === 1 && actual.schemaVersion === seed.schemaVersion
-      && isDeepStrictEqual(actual.rows, expected) && actual.history === history
+      && isDeepStrictEqual(actual.rows, expected)
+      && isDeepStrictEqual(actual.ownerIdentityIds, ownerIdentityIds) && actual.history === history
       && isDeepStrictEqual(actual.prior, seed.lists['owner-existing'])
       && isDeepStrictEqual(actual.shared, seed.lists['owner-shared'])
       && isDeepStrictEqual(actual.read, seed.read) && isDeepStrictEqual(actual.notes, seed.notes)
@@ -220,6 +232,22 @@ export function ownerGuideScenario(contract) {
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
       checkSaved(t, await readSaved(page));
+      if (nextOriginal.identityEvidenceKind === 'owner-confirmed-identity') {
+        const identityStatus = await page.$$eval('#rows .row', (nodes, id) => {
+          const row = nodes.find((node) => Number(node.querySelector('.rt')?.dataset.issueId) === id);
+          const badge = row?.querySelector('.badge-owner-confirmed');
+          return {
+            title: row?.querySelector('.rt')?.textContent.trim() ?? null,
+            badge: badge?.childNodes[0]?.textContent.trim() ?? null,
+            hint: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
+          };
+        }, nextOriginal.issueId);
+        t.check('owner-confirmed identity remains explicit after import and reload',
+          identityStatus.title === nextOriginal.title
+          && identityStatus.badge === 'identity confirmed'
+          && /owner confirmed this issue identity/.test(identityStatus.hint ?? '')
+          && /no provider details or cover/.test(identityStatus.hint ?? ''), JSON.stringify(identityStatus));
+      }
       await page.evaluate(() => {
         window.__dispatching = true;
         document.querySelector('#btn-hero-read').click();
@@ -227,7 +255,7 @@ export function ownerGuideScenario(contract) {
         window.__dispatching = false;
       });
       const opened = await page.evaluate(() => window.__opened);
-      t.check('reader launch remains synchronous with separate tabs and no per-story identity',
+      t.check('owner-confirmed reader launch remains synchronous with separate tabs',
         opened.length === 2 && opened.every((entry) => entry.dispatching && entry.target === '_blank'
           && entry.features === 'noopener' && new URL(entry.url).origin === page.__origin
           && (new URL(entry.url).searchParams.get('i') === String(nextOriginal.issueId)

@@ -9,7 +9,7 @@
   "sourceIssueBearingBlocksSha256": "a2149c3d9cd6dc7b037b3c3741a8e6b530ab5036eec83146448f3c847cb531a2",
   "mappingDigest": "50f3d8228e79d3c6cb683227f739efce6ea497bc8d6eeb9988c9b60509fbb8c7",
   "reportDigest": "3e329219ab997ecce9cefec3f88e282baf7a66730eae0bfd148ca1e52ebd0015",
-  "libraryDigest": "6d24f6bd4066aced70654320382ea4d35e661a293bd79a5697f5f71f5ec66e96",
+  "libraryDigest": "eb0a1fee7a98deb77d26ce3c87094ea629f4d58d8f60f5b39c127c3d7e631a02",
   "sourceOccurrenceCount": 86,
   "sourceIdentityCount": 85,
   "exactCanonicalIssueIds": [
@@ -1328,13 +1328,14 @@
   "sourceCounts": {
     "sourceOccurrenceCount": 86,
     "sourceIdentityCount": 85,
-    "includedIssueCount": 75,
-    "sourceGapCount": 10,
-    "repeatedSourceReferenceCount": 1
+    "includedIssueCount": 85,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 1,
+    "excludedSourceRowCount": 0
   },
   "sourceSha256": "f20e9dc795b417707d299f81dc9d0f62948ec7af80a69e56379143227abaa801",
-  "proposalDigest": "c20da920c8fd69f3eaa94d9bef145e1bd68dbcc8f18a40af0946712cf334e5ac",
-  "approvalDigest": "167664e5a9f0bdea113ca1c4b461dd7d8a4307cbc065830e9872216ef8503141",
+  "proposalDigest": "485dbbb3e1b8a1734ce9c677e8b099d830f45a6e990b6856deea7a7a3b35ffe9",
+  "approvalDigest": "08e0d22e7defa1a957820a231c571654324e072ee813091dc9c402617d3099f1",
   "insertionAnchor": {
     "beforeId": "marvel-zombies-reading-order"
   },
@@ -1513,6 +1514,42 @@
       26,
       118634,
       "Superior Avengers (2025) #1",
+      2
+    ],
+    [
+      27,
+      121580,
+      "Avengers Academy: Marvel's Voices Infinity Comic (2024) #43",
+      2
+    ],
+    [
+      28,
+      121581,
+      "Avengers Academy: Marvel's Voices Infinity Comic (2024) #44",
+      2
+    ],
+    [
+      29,
+      121582,
+      "Avengers Academy: Marvel's Voices Infinity Comic (2024) #45",
+      2
+    ],
+    [
+      30,
+      123208,
+      "Astonishing Avengers Infinity Comic (2025) #21",
+      2
+    ],
+    [
+      31,
+      123209,
+      "Astonishing Avengers Infinity Comic (2025) #22",
+      2
+    ],
+    [
+      32,
+      123210,
+      "Astonishing Avengers Infinity Comic (2025) #23",
       2
     ],
     [
@@ -1808,6 +1845,30 @@
       123401,
       "Runaways (2025) #5",
       8
+    ],
+    [
+      83,
+      121361,
+      "Red Hulk (2025) #10",
+      8
+    ],
+    [
+      84,
+      127115,
+      "One World Under Doom (2025) #9",
+      9
+    ],
+    [
+      85,
+      126711,
+      "The Will of Doom (2025) #1",
+      9
+    ],
+    [
+      86,
+      123361,
+      "Captain America (2025) #6",
+      9
     ]
   ],
   "annotations": [
@@ -1905,5 +1966,5 @@
     "scripts/data/owner-overlaps/one-world-under-doom.json",
     "src/data/orders/one-world-under-doom.md"
   ],
-  "vectorSha256": "5583139433711cd87cef7a4602f40c3c20adf6ee70b96cde6aaa024691dfa54f"
+  "vectorSha256": "ecf7ae981f59a21fbb766fa155e6d19473a208adfdfe9ddcc70ade0620ba788e"
 }

@@ -19,9 +19,9 @@ const digests = [
   '378fdc66c136947fcfd8c1b733ca0722d8030632dcfebccd3067094f8808d64d',
   '6733138250cdd482d3d34ed27c6983082ae8743a36b477106887df3280dd04f2',
   '1726eff1660db09b4bd542c633cf0b813bb3a6d98d4b2f59280b2d408c86d1df',
-  '1776bc809ac57dfafc9a73882550be1cbb114fd5ebe60505bb2c78e8d1f240de',
+  '144021e3ba9416216cae87bce3578045828c5b02b56aa228a997d5c1c3809243',
 ];
-const counts = [23, 30, 54, 19, 24, 16];
+const counts = [23, 30, 54, 19, 24, 18];
 const supplied = [23, 30, 54, 19, 24, 18];
 const blocks = [[7, 3, 3, 4, 6], [1, 9, 6, 14], [6, 13, 17, 12, 6], [5, 2, 6, 6], [9, 6, 5, 4], [1, 5, 5, 6, 1]];
 const source = (id) => json(`scripts/data/owner-selections/${id}.json`);
@@ -44,13 +44,24 @@ test('six Phase Three guides retain independent exact vectors and all168 source 
     assert.notEqual(ledger.inputReceipt.snapshotSha256, ledger.projectionReceipt.sha256);
     assert.deepEqual(ledger.rows.map((row) => row.sourcePosition), Array.from({ length: supplied[index] }, (_, n) => n + 1));
     assert.equal(sourceCountsForPacket(frozen).sourceOccurrenceCount, supplied[index]);
-    assert.deepEqual(ledger.rows.filter((row) => row.disposition === 'included').map((row) => row.selectedIssueId),
-      data.items.map((row) => row.issueId));
+    const identityOnlyIds = (frozen.sourceGapResolutions ?? [])
+      .filter((row) => row.resolutionKind === 'owner-confirmed-identity')
+      .map((row) => row.selectedIssueId);
+    assert.deepEqual(
+      ledger.rows.filter((row) => row.disposition === 'included').map((row) => row.selectedIssueId),
+      data.items.filter((row) => !identityOnlyIds.includes(row.issueId)).map((row) => row.issueId),
+    );
+    assert.deepEqual(
+      data.items.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').map((row) => row.issueId),
+      identityOnlyIds,
+    );
     const groups = [];
     for (const row of ledger.rows) {
       assert.ok(Object.hasOwn(totals, row.disposition));
       totals[row.disposition]++;
-      const evidence = row.disposition === 'gap' ? frozen.sourceGaps : frozen.rows;
+      const evidence = row.disposition === 'gap'
+        ? [...(frozen.sourceGaps ?? []), ...(frozen.sourceGapResolutions ?? [])]
+        : frozen.rows;
       assert.equal(evidence.filter((entry) => entry.sourcePosition === row.sourcePosition).length, 1);
       if (groups.at(-1)?.number !== row.originalGroupNumber) groups.push({ number: row.originalGroupNumber, count: 0 });
       groups.at(-1).count++;
@@ -59,7 +70,7 @@ test('six Phase Three guides retain independent exact vectors and all168 source 
     assert.deepEqual(ledger.excludedSourceRows, []);
     assert.deepEqual(ledger.repeatedSourceReferences, []);
     const report = json(`scripts/data/owner-overlaps/${id}.json`);
-    assert.equal(report.comparisonCount, 314);
+    assert.equal(report.comparisonCount, id === ids[5] ? 316 : 314);
     assert.deepEqual(Object.keys(report.peerDigests).sort(), ids.filter((peer) => peer !== id).sort());
   }
   assert.deepEqual(totals, { included: 166, gap: 2 });

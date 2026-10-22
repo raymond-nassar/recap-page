@@ -1805,7 +1805,7 @@
     "reviewedAt": "2026-10-09T18:26:13.966Z",
     "rationale": "The23-original film companion preserves five interleaved blocks and all three source sections. Eleven meaningful relationships retain the selected main-event issues and Captain America lead-up/fallout rather than replace broad character guides. Full containment in Falcon and Winter Soldier guides is an intentional shorter film-preparation selection; the one-issue and seven-issue existing subsets remain distinct. No exact duplicate.",
     "proposalDigest": "63ff5de68495e84dfca1a4a3f255aec221846a0e75feafefc421bb16066f560f",
-    "reportDigest": "92c932364e39ce1e473853c8b7f836bc851dee508df554f9f8f13dc21ebc2479",
+    "reportDigest": "e8bf51238201a1bc492fabb04da4474deeeb19440d625d7d6c84fb8bbb50f1c7",
     "packetDigest": "e7c75be2f8e8685379a1e5b4e9f1894979dedd3e3870d32c2dcfea786e2092fe",
     "mappingDigest": "1651542ad4cb467610c42d16c5d2ac6f6c005bef0452af2950145bbbcac3a9c2",
     "libraryDigest": "c71283b5206b7919b57e8a2d5a8a9c342cf374ec3523dc54a43e1eeceef72575",
@@ -1813,7 +1813,7 @@
       "mcu-prep-avengers-infinity-war-endgame": "6ed7dbd309de2aa3deeec88806d5a5746f9f60f3f7225a8a96c72172bfdd34c2",
       "mcu-prep-black-panther-2018": "ab8f19488b75c8ed25524d7a7dd65d38261d699564edb3f776be4b3198a6a96c",
       "mcu-prep-captain-marvel-2019": "d8b7bcdb3602fbcf4fca0cc489ce7937aec22c5ab8bf10f7d70c8a3c25d2298a",
-      "mcu-prep-doctor-strange-2016": "7c60242a2a3aa9cf648c4979f536124a314225bcda13d29053f6733cf23d4735",
+      "mcu-prep-doctor-strange-2016": "890df3e92594af400124f62657187378bf96ea399dc055d057987110d6e1e596",
       "mcu-prep-thor-ragnarok-2017": "96846208063e09d9d9509d87f8349412bc565e54035283f31220dca2972a1f65"
     },
     "insertionReview": {
@@ -5399,6 +5399,6 @@
         "rationale": "Complete current comparison has no shared original."
       }
     ],
-    "approvalDigest": "cb4932bbc6f1b58106a253527ac4358b1d8bf521508b18ba4790002ebbe3c985"
+    "approvalDigest": "e09d793757c8bd8321feffc7df6cf1b0c5815bfd32a30b9794271124374792db"
   }
 }

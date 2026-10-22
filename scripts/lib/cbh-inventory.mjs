@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { normalizeTitle } from '../../src/js/lib/markdown.js';
 
 export const GUIDE_TYPES = Object.freeze([
   'event',
@@ -188,6 +189,7 @@ const SOURCE_GAP_RESOLUTION_FIELDS = new Set([
   'checkedAt',
   'auditBasis',
   'evidenceSources',
+  'identityEvidence',
   'evidenceDigest',
 ]);
 const SOURCE_GAP_RESOLUTION_REQUIRED_FIELDS = new Set([
@@ -492,6 +494,7 @@ function assertSourceGapResolution(
     'canonical-repeat',
     'canonical-gap-repeat',
     'exact-issue',
+    'owner-confirmed-identity',
     'source-exclusion',
   ]);
   if (!validKinds.has(resolution.resolutionKind)) {
@@ -589,6 +592,71 @@ function assertSourceGapResolution(
         String(resolution.resolvedIssueNumber ?? ''),
         `${label} resolvedIssueNumber`,
       );
+    }
+  } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
+    if (!Number.isInteger(resolution.selectedIssueId) || resolution.selectedIssueId < 1) {
+      throw new Error(`${label} selectedIssueId must be a positive integer`);
+    }
+    if (Object.hasOwn(resolution, 'canonicalRow')
+      || Object.hasOwn(resolution, 'canonicalGapPosition')
+      || Object.hasOwn(resolution, 'exclusionReason')
+      || Object.hasOwn(resolution, 'decisionScope')) {
+      throw new Error(`${label} owner-confirmed identity contains unsupported disposition fields`);
+    }
+    assertNonEmptyString(
+      resolution.resolvedNormalizedSeriesTitle,
+      `${label} resolvedNormalizedSeriesTitle`,
+    );
+    if (!Number.isInteger(resolution.resolvedSeriesYear)) {
+      throw new Error(`${label} resolvedSeriesYear must be an integer`);
+    }
+    if (resolution.resolvedIssueNumber != null) {
+      assertNonEmptyString(String(resolution.resolvedIssueNumber), `${label} resolvedIssueNumber`);
+    }
+    const evidence = resolution.identityEvidence;
+    if (!isPlainObject(evidence)) {
+      throw new Error(`${label} identityEvidence must be an object`);
+    }
+    const evidenceFields = new Set([
+      'kind', 'confirmingActor', 'confirmedAt', 'issueId', 'label', 'url', 'confirmationSource',
+    ]);
+    const evidenceMissing = [...evidenceFields].filter((field) => !Object.hasOwn(evidence, field));
+    const evidenceUnexpected = Object.keys(evidence).filter((field) => !evidenceFields.has(field));
+    if (evidenceMissing.length > 0 || evidenceUnexpected.length > 0) {
+      throw new Error(`${label} identityEvidence has an invalid field set`);
+    }
+    if (evidence.kind !== 'owner-confirmed-identity'
+      || !Number.isInteger(evidence.issueId)
+      || evidence.issueId !== resolution.selectedIssueId) {
+      throw new Error(`${label} identityEvidence kind or issueId differs from the resolution`);
+    }
+    assertNonEmptyString(evidence.confirmingActor, `${label} identityEvidence confirmingActor`);
+    assertNonEmptyString(evidence.label, `${label} identityEvidence label`);
+    const confirmedAt = String(evidence.confirmedAt ?? '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(confirmedAt)
+      || !Number.isFinite(Date.parse(`${confirmedAt}T00:00:00Z`))
+      || new Date(`${confirmedAt}T00:00:00Z`).toISOString().slice(0, 10) !== confirmedAt) {
+      throw new Error(`${label} identityEvidence confirmedAt must be a calendar date`);
+    }
+    if (issueIdFromMarvelUrl(evidence.url) !== evidence.issueId) {
+      throw new Error(`${label} identityEvidence URL does not identify its issueId`);
+    }
+    if (!/^https:\/\/github\.com\/raymond-nassar\/recap-page\/issues\/[1-9]\d*#issuecomment-[1-9]\d+$/
+      .test(evidence.confirmationSource ?? '')) {
+      throw new Error(`${label} identityEvidence confirmationSource must be a repository issue comment`);
+    }
+    const title = /^(.*?)\s+\((\d{4})\)(?:\s+#(\d+(?:\.\d+)?))?$/.exec(evidence.label);
+    if (!title
+      || normalizeTitle(title[1]) !== resolution.resolvedNormalizedSeriesTitle
+      || Number(title[2]) !== resolution.resolvedSeriesYear
+      || (title[3] ?? null) !== (resolution.resolvedIssueNumber == null
+        ? null : String(resolution.resolvedIssueNumber))) {
+      throw new Error(`${label} identityEvidence label differs from its resolved identity`);
+    }
+    if (!resolution.evidenceSources.some((source) => (
+      source.kind === 'owner-confirmation' && source.url === evidence.confirmationSource
+    ))) {
+      throw new Error(`${label} identityEvidence confirmationSource is not in evidenceSources`);
     }
   } else {
     if (Object.hasOwn(resolution, 'canonicalRow')
@@ -1035,17 +1103,67 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
         || String(candidate.issueNumber) !== String(resolution.resolvedIssueNumber)) {
         throw new Error(`${packetId} exact source gap resolution at position ${resolution.sourcePosition} has no matching candidate metadata`);
       }
+    } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
+      const index = mappingRows.findIndex((row) => row.sourcePosition === resolution.sourcePosition);
+      const confirmedMapping = mappingRows[index];
+      const confirmedPacket = packet.rows[index];
+      const evidence = resolution.identityEvidence;
+      if (!confirmedMapping || !confirmedPacket
+        || Number(confirmedMapping.selectedIssueId) !== resolution.selectedIssueId
+        || confirmedMapping.identityEvidenceKind !== 'owner-confirmed-identity'
+        || confirmedMapping.resolvedIssueTitle !== evidence.label
+        || issueIdFromMarvelUrl(confirmedMapping.marvelIssueUrl) !== resolution.selectedIssueId
+        || confirmedMapping.marvelIssueUrl !== evidence.url
+        || sourceIdentityKey(confirmedMapping) !== sourceIdentityKey(confirmedPacket)
+        || confirmedPacket.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || confirmedMapping.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || confirmedPacket.seriesYear !== resolution.resolvedSeriesYear
+        || confirmedMapping.seriesYear !== resolution.resolvedSeriesYear
+        || (confirmedPacket.issueNumber == null ? null : String(confirmedPacket.issueNumber))
+          !== (resolution.resolvedIssueNumber == null ? null : String(resolution.resolvedIssueNumber))
+        || (confirmedMapping.issueNumber == null ? null : String(confirmedMapping.issueNumber))
+          !== (resolution.resolvedIssueNumber == null ? null : String(resolution.resolvedIssueNumber))
+        || Number(confirmedPacket.candidateIssueId ?? 0) !== 0
+        || Number(confirmedPacket.seriesId ?? 0) !== 0
+        || (confirmedMapping.candidateIssueIds?.length ?? 0) !== 0
+        || Object.hasOwn(confirmedMapping, 'providerProjection')
+        || Object.hasOwn(confirmedMapping, 'recordedHttpReceipt')) {
+        throw new Error(`${packetId} owner-confirmed identity at position ${resolution.sourcePosition} differs from its packet and mapping row`);
+      }
+      for (const field of [
+        'sourceIssueReference',
+        'sourceRangeReference',
+        'sourceGroup',
+      ]) {
+        if (canonicalJson(confirmedMapping[field] ?? null)
+          !== canonicalJson(confirmedPacket[field] ?? null)) {
+          throw new Error(`${packetId} owner-confirmed identity at position ${resolution.sourcePosition} changed its source position evidence`);
+        }
+      }
+      if ((mapping.candidateMetadata ?? []).some((candidate) => Number(candidate.id) === resolution.selectedIssueId)) {
+        throw new Error(`${packetId} owner-confirmed identity at position ${resolution.sourcePosition} has fabricated provider metadata`);
+      }
+    }
+  }
+  const confirmedPositions = new Set((packet.sourceGapResolutions ?? [])
+    .filter((resolution) => resolution.resolutionKind === 'owner-confirmed-identity')
+    .map((resolution) => resolution.sourcePosition));
+  for (const row of mappingRows) {
+    if ((row.identityEvidenceKind === 'owner-confirmed-identity')
+      !== confirmedPositions.has(row.sourcePosition)) {
+      throw new Error(`${packetId} mapping row ${row.sourcePosition} has unbound owner-confirmed identity evidence`);
     }
   }
   return true;
 }
 
-export function assertGapTransition(previousPacket, proposedPacket, proposedMapping) {
+export function assertGapTransition(previousPacket, proposedPacket, proposedMapping, { provider } = {}) {
   validateFrozenPacket(previousPacket, {
     enforceApprovedResolutionDigest: false,
     allowLegacySourceGapResolutions: true,
+    provider,
   });
-  validateFrozenPacket(proposedPacket);
+  validateFrozenPacket(proposedPacket, { provider });
   assertMappingMatchesPacketOccurrences(proposedPacket, proposedMapping);
   const previousGaps = previousPacket.sourceGaps ?? [];
   if (previousGaps.length === 0) return true;
@@ -1166,7 +1284,8 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
       previousSeriesYear: previous.seriesYear,
       previousIssueNumber: String(previous.issueNumber),
     };
-    const evidenceBoundIdentityChange = resolution?.resolutionKind === 'exact-issue'
+    const evidenceBoundIdentityChange = ['exact-issue', 'owner-confirmed-identity']
+      .includes(resolution?.resolutionKind)
       && resolution.selectedIssueId === Number(mappingRow.selectedIssueId)
       && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);
     if (!sameIdentity && !evidenceBoundIdentityChange) {

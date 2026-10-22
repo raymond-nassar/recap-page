@@ -100,6 +100,23 @@ test('quoted source positions retain their group and expanded item spans', () =>
   assert.equal(parsed.unresolved.length, 1);
 });
 
+test('owner-confirmed identity markers survive parsing without changing issue position', () => {
+  const parsed = parseChecklist(
+    '- [ ] [Sample Comic (2020) #1 <!-- mrt:source-occurrence=7 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/101/sample)',
+  );
+  assert.deepEqual(parsed.entries.map((entry) => ({
+    issueId: entry.issueId,
+    title: entry.title,
+    sourceKey: entry.sourceKey,
+    identityEvidenceKind: entry.identityEvidenceKind,
+  })), [{
+    issueId: 101,
+    title: 'Sample Comic (2020) #1',
+    sourceKey: '7',
+    identityEvidenceKind: 'owner-confirmed-identity',
+  }]);
+});
+
 test('ordinary checklists keep an empty additive source-position result', () => {
   assert.deepEqual(
     parseChecklist('- [ ] [One](https://www.marvel.com/comics/issue/1/one)').sourcePositions,

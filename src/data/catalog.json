@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T05:32:36.143Z",
+  "generatedAt": "2026-10-22T12:00:00.000Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1688,10 +1688,11 @@
       "description": "The selected One World Under Doom reading path follows its lead-in, cross-title tie-ins, main event and finale through 2025. Doctor Strange of Asgard (2025) #1-5 is an optional tie-in. Read Fantastic Four (2025) #1-3 together. This is not an exhaustive event index.",
       "type": "event",
       "depth": "selected",
-      "count": 75,
+      "count": 85,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 9,
+      "ownerConfirmedIdentityCount": 10,
+      "collections": 10,
       "characters": [
         "Doctor Doom",
         "Fantastic Four",
@@ -1718,7 +1719,7 @@
       "sourceSection": "One World Under Doom",
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
-      "updatedAt": "2026-10-09T22:38:53.342Z"
+      "updatedAt": "2026-10-22T12:00:00.000Z"
     },
     {
       "id": "marvel-zombies-reading-order",
@@ -3209,10 +3210,11 @@
       "description": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 16,
+      "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 3,
+      "ownerConfirmedIdentityCount": 2,
+      "collections": 5,
       "characters": [
         "Doctor Strange"
       ],
@@ -3232,7 +3234,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/766",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-09T18:27:15.569Z"
+      "updatedAt": "2026-10-22T12:00:00.000Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",

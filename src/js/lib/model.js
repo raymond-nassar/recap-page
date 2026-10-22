@@ -136,14 +136,16 @@ export function countOrderGaps(order) {
   const items = Array.isArray(order?.items) ? order.items : [];
   let placeholders = 0;
   let empty = 0;
+  let ownerConfirmed = 0;
   for (const item of items) {
     const metadata = hasMetadata(item);
     // Exclusive, because an unlinked placeholder holds no metadata either and would otherwise be
     // reported twice. A metadata-bearing legacy flag is neither gap: the issue can be launched.
     if (item?.placeholder === true && !metadata) placeholders += 1;
+    else if (item?.identityEvidenceKind === 'owner-confirmed-identity' && !metadata) ownerConfirmed += 1;
     else if (item?.placeholder !== true && !metadata) empty += 1;
   }
-  return { placeholders, empty };
+  return { placeholders, empty, ownerConfirmed };
 }
 
 // Said in the order a reader meets them. The second sentence deliberately claims nothing about
@@ -151,13 +153,16 @@ export function countOrderGaps(order) {
 // open a tab for them and the lookup fails in the tab. Repeating "cannot be opened" here would be
 // a false promise of the same shape as the silence it replaces.
 export function orderGapSentences(order) {
-  const { placeholders, empty } = countOrderGaps(order);
+  const { placeholders, empty, ownerConfirmed } = countOrderGaps(order);
   const out = [];
   if (placeholders) {
     out.push(`${placeholders} of them ${placeholders === 1 ? 'has' : 'have'} no Marvel Unlimited link yet and cannot be opened.`);
   }
   if (empty) {
     out.push(`${empty} of them came with no details at all, so ${empty === 1 ? 'it shows' : 'they show'} no cover and ${empty === 1 ? 'has' : 'have'} no Unlimited link.`);
+  }
+  if (ownerConfirmed) {
+    out.push(`${ownerConfirmed} of them have an owner-confirmed issue identity but no provider details or cover.`);
   }
   return out;
 }
@@ -215,6 +220,9 @@ export function normalizeIssue(input) {
     // A strict boolean, not clampScalar: this field never carries text, and a hand-edited backup
     // saying "yes" must not become a refusal the reader cannot clear.
     detailsRefused: refused || input.detailsRefused === true,
+    ...(input.identityEvidenceKind === 'owner-confirmed-identity'
+      ? { identityEvidenceKind: 'owner-confirmed-identity' }
+      : {}),
   };
 }
 

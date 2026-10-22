@@ -2,8 +2,12 @@
 
 Source: [owner selection](https://github.com/raymond-nassar/recap-page/issues/766).
 Selected by raymond-nassar for MCU Prep. Exact whole-original identities are retained in supplied order.
-Missing originals remain explicit in the factual source and its linked gap Issues, not silently substituted.
+2 owner-confirmed identities have no provider details or cover.
 See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boundary.
+
+## Doctor Strange: Season One
+
+- [ ] [Doctor Strange: Season One (2012) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1)
 
 ## Doctor Strange: The Oath
 
@@ -12,6 +16,7 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Doctor Strange: The Oath (2006) #3 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/5662/doctor_strange_the_oath_2006_3)
 - [ ] [Doctor Strange: The Oath (2006) #4 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/5801/doctor_strange_the_oath_2006_4)
 - [ ] [Doctor Strange: The Oath (2006) #5 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/5957/doctor_strange_the_oath_2006_5)
+
 ## Doctor Strange by Jason Aaron Vol. 1: The Way of the Weird
 
 - [ ] [Doctor Strange (2015) #1 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/55415/doctor_strange_2015_1)
@@ -19,6 +24,7 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Doctor Strange (2015) #3 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/55417/doctor_strange_2015_3)
 - [ ] [Doctor Strange (2015) #4 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/55418/doctor_strange_2015_4)
 - [ ] [Doctor Strange (2015) #5 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/55419/doctor_strange_2015_5)
+
 ## Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic
 
 - [ ] [Doctor Strange (2015) #6 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/55420/doctor_strange_2015_6)
@@ -27,3 +33,7 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Doctor Strange (2015) #9 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/55423/doctor_strange_2015_9)
 - [ ] [Doctor Strange (2015) #10 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/55424/doctor_strange_2015_10)
 - [ ] [Doctor Strange: Last Days of Magic (2016) #1 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/58278/doctor_strange_last_days_of_magic_2016_1)
+
+## Doctor Strange: What Is It That Disturbs You, Stephen?
+
+- [ ] [Dr. Strange: What Is It That Disturbs You, Stephen? (1997) <!-- mrt:source-occurrence=18 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997)
