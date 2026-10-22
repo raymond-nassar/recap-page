@@ -134,7 +134,7 @@ stays untouched. The targeted `cache-generations`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
 `import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
-`discovery-priorities` and `mcu-prep-organization` journeys require
+`discovery-priorities`, `mcu-prep-organization` and `local-server-recovery` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
@@ -143,7 +143,18 @@ The runner prints progress before creating each browser context and reports resu
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.
 Diagnostics include allowlisted browser and driver versions and observed numeric process exit
 or signal values. An unavailable cause is `unknown`, not proof of a crash, resource limit or app
-defect. Exits during requested cleanup are labelled separately.
+defect. Exits during requested cleanup are labelled separately. The unsigned hexadecimal exit
+and `disconnectedBeforeCleanup` flag distinguish a late native exit observation from a disconnect
+that first happened during cleanup; neither identifies the faulting component.
+
+Context and browser close each have a fixed 5-second cleanup deadline. A context-close failure
+stops further scenarios. A browser-close failure aborts only this invocation's launched browser
+through its launch signal, then attempts disconnect within 2 seconds. Server cleanup is still
+attempted, with its own 2-second deadline. A cleanup failure stays a failure even if all assertions
+passed. If driver handles or temporary-profile cleanup still retain the failed runner, a final
+5-second guard reports `stage=cleanup-exit` and exits 1. This guard does not certify profile
+removal or successful native shutdown. No scenario is retried and no execution or native-download
+deadline is increased.
 
 Ordinary export scenarios declare the total expected native downloads in their isolated context.
 Before closing it, the runner requires a browser `completed` event for every download within one
@@ -204,6 +215,8 @@ The fixed `diagnostic_target=ordinary-browser-ratings-acceptance` uses the same 
 diagnostic-only job, exact source identity and pinned driver. It runs only
 `library-ratings-failures` once, with all its assertions and original deadlines, in one fresh
 browser and isolated context. `RATINGS-STEP` identifies each malformed-data operation;
+the malformed-data visit uses the wired Library shelf link so a concurrent repaint cannot
+overwrite an unhandled hash navigation before the ratings view is entered.
 `RATINGS-FAIL` and a bounded `RATINGS-STATE` snapshot retain its original failure. If snapshot
 collection fails or exceeds 1000 ms, `RATINGS-OBSERVATION` reports that separately without
 replacing the original error. Output contains only fixed stages, allowlisted mode/error codes,
@@ -396,6 +409,14 @@ unit suite fails if the two disagree.
 
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
+
+A named `--only=<peer>` run preserves the exact bytes of skipped partition parent and child
+payloads, including their newline representation. It still derives those families in memory to
+rebuild the complete catalog, generated paths and Character guide index. Cross-library overlap
+reports also refresh from every peer: a nonoverlapping new peer leaves the substantive report
+unchanged, while a genuinely shared original adds its pair without dropping prior relationships.
+The report timestamp may refresh even when the overlap matrix does not change. Use catalog-only
+or explicitly select the partition parent or a child when its child payloads need regeneration.
 
 ### Preserve source evidence
 

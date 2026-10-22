@@ -11,6 +11,8 @@ import {
   announceChannel,
   stateAnnouncer,
   passiveAnnouncer,
+} from '../src/js/views/shared/feedback.js';
+import {
   hydrationAnnouncement,
   withSaveEducation,
 } from '../src/js/main.js';

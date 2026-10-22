@@ -1868,12 +1868,21 @@ to this volume's stated contents, not a claim that #72 is an alias, nonexistent 
 Original black-and-white magazines, the distinct 1974 special and the six numbered 2002
 MAX issues are not replaced by later collected editions. The eight unresolved metadata
 positions remain visible: the 1974 magazine #12, the 1974 special, and MAX #1-6. Their
-failed identity lookups are assigned in [#626](https://github.com/raymond-nassar/recap-page/issues/626),
-[#627](https://github.com/raymond-nassar/recap-page/issues/627) and
-[#628](https://github.com/raymond-nassar/recap-page/issues/628). The approved report
+failed identity lookups belong to [#627](https://github.com/raymond-nassar/recap-page/issues/627)
+for magazine #12, [#628](https://github.com/raymond-nassar/recap-page/issues/628) for the
+special, and [#626](https://github.com/raymond-nassar/recap-page/issues/626) for MAX #1-6. The approved report
 compares all 198 published peer guides: 16 partial original-issue overlaps and 182 with
 none. Shared originals are retained rather than dropped. The credited list adds no
 editorial synopsis, comic image bytes, inferred reader availability or saved-state change.
+
+[Issue #647](https://github.com/raymond-nassar/recap-page/issues/647) corrects rotated
+tracking links only. Live issue titles and bodies were checked on 2026-10-21.
+The [correction receipt](../scripts/data/cbh-source-ledgers/shang-chi-master-of-kung-fu-reading-order-gap-link-correction.json)
+retains the original publication commit, original tracking evidence and chain digests.
+Its separate correction review binds the renewed packet, mapping, report and approval
+digests without relabeling the historical reviewer or any of the 198 dispositions.
+The source selections, reading IDs, eight gap identities, four backward references,
+checklist, payload and saved progress are unchanged.
 
 ## X-Men: Onslaught source boundary
 

@@ -328,7 +328,9 @@ export const libraryRatingsFailures = {
     try {
       await boot(page, '#/library', enterMalformed);
       enterMalformed('malformed-navigation');
-      await page.evaluate(() => { location.hash = '#/library-rated'; });
+      // A competing render can restore Library before a queued hashchange runs. The shelf's
+      // wired navigation commits the view synchronously, so the same render preserves it.
+      await page.$eval('#library-rated-shelf a[data-view="library-rated"]', (n) => n.click());
       enterMalformed('malformed-notice');
       await page.waitForSelector('#library-rated-notice [data-act="retry"]');
       enterMalformed('malformed-validation');
