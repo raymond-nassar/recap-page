@@ -204,6 +204,8 @@ The fixed `diagnostic_target=ordinary-browser-ratings-acceptance` uses the same 
 diagnostic-only job, exact source identity and pinned driver. It runs only
 `library-ratings-failures` once, with all its assertions and original deadlines, in one fresh
 browser and isolated context. `RATINGS-STEP` identifies each malformed-data operation;
+the malformed-data visit uses the wired Library shelf link so a concurrent repaint cannot
+overwrite an unhandled hash navigation before the ratings view is entered.
 `RATINGS-FAIL` and a bounded `RATINGS-STATE` snapshot retain its original failure. If snapshot
 collection fails or exceeds 1000 ms, `RATINGS-OBSERVATION` reports that separately without
 replacing the original error. Output contains only fixed stages, allowlisted mode/error codes,

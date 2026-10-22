@@ -8,6 +8,7 @@ async function fixture(failAt, snapshot = 'ready') {
   let malformed = false;
   let mode = 'pass';
   let gotos = 0;
+  const navigation = [];
   const page = {
     __origin: 'http://127.0.0.1:12345',
     on() {},
@@ -27,6 +28,7 @@ async function fixture(failAt, snapshot = 'ready') {
         return;
       }
       if (malformed && body.includes("location.hash = '#/library-rated'")) {
+        navigation.push('hash');
         if (failAt === 'malformed-navigation') throw primary;
         return;
       }
@@ -41,6 +43,10 @@ async function fixture(failAt, snapshot = 'ready') {
       return true;
     },
     async $eval(selector) {
+      if (malformed && selector === '#library-rated-shelf a[data-view="library-rated"]') {
+        navigation.push(selector);
+        if (failAt === 'malformed-navigation') throw primary;
+      }
       if (selector === '#library-rated-count') return '1 rated comic. This count reflects rating and title matches only.';
       return true;
     },
@@ -57,8 +63,14 @@ async function fixture(failAt, snapshot = 'ready') {
   } finally {
     console.log = original;
   }
-  return { output: output.join('\n'), gotos, mode };
+  return { output: output.join('\n'), gotos, mode, navigation };
 }
+
+test('ratings malformed-data navigation uses the wired Library shelf before waiting for failure feedback', async () => {
+  const result = await fixture('malformed-notice');
+  assert.deepEqual(result.navigation, ['#library-rated-shelf a[data-view="library-rated"]']);
+  assert.match(result.output, /RATINGS-FAIL .*"stage":"malformed-notice"/);
+});
 
 test('ratings evidence identifies each malformed operation without leaking private values', async () => {
   for (const stage of ['malformed-blank', 'malformed-library', 'malformed-navigation', 'malformed-notice']) {
