@@ -2640,19 +2640,33 @@ try {
         const footer = document.querySelector('.app-footer');
         return {
           recommendation: !!document.querySelector('#home-recommended'),
-          startActions: [...document.querySelectorAll('#home-first-run button')]
-            .map((button) => button.textContent.trim()),
+          // Home's start actions and the footer About became native hash links so browser
+          // navigation gestures work, so both are found as links; buttons are still collected
+          // so an extra start action of either kind is reported.
+          startActions: [...document.querySelectorAll('#home-first-run :is(a[href], button)')]
+            .map((action) => action.textContent.trim()),
           footer: footer.textContent.replace(/\s+/g, ' ').trim(),
           expectedFooter: `Unofficial fan project. Metadata and links only. \u00a9 ${new Date().getFullYear()} MARVEL`,
           footerHeight: footer.getBoundingClientRect().height,
-          aboutAction: !!footer.querySelector('button[data-view="about"]'),
+          aboutAction: !!footer.querySelector('a[href="#/about"][data-view="about"]'),
         };
       });
-      check(!sharedCopy.recommendation
-        && JSON.stringify(sharedCopy.startActions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
-      `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation`);
-      check(sharedCopy.footer === sharedCopy.expectedFooter && sharedCopy.aboutAction,
-        `${label}: every platform keeps only the requested footer text and its About action`);
+      // Each property is named on failure, as the navigation and mark checks above do, so a miss
+      // says which measurement disagreed rather than only that the combined check did.
+      const homeMisses = [
+        sharedCopy.recommendation && 'Setup recommendation present',
+        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Browse Reading Lists', 'Add comics'])
+          && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
+      ].filter(Boolean);
+      check(!homeMisses.length,
+        `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation (${homeMisses.join('; ')})`);
+      const footerMisses = [
+        sharedCopy.footer !== sharedCopy.expectedFooter
+          && `footer ${JSON.stringify(sharedCopy.footer)}, expected ${JSON.stringify(sharedCopy.expectedFooter)}`,
+        !sharedCopy.aboutAction && 'About link to #/about missing',
+      ].filter(Boolean);
+      check(!footerMisses.length,
+        `${label}: every platform keeps only the requested footer text and its About action (${footerMisses.join('; ')})`);
       if (!viewport.desktop && !viewport.textScale && viewport.width >= 360 && viewport.width <= 412) {
         check(sharedCopy.footerHeight <= 90,
           `${label}: the compact footer is at most 90px tall (${sharedCopy.footerHeight})`);
