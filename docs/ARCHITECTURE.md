@@ -732,13 +732,33 @@ application. It selects CurrentUser DPAPI protection, verifies a unique syntheti
 probe before opening an account cache, and fails explicitly without a plaintext fallback.
 Unsupported hosts reject before loading native code.
 
-The factory is not yet connected to authentication, provider requests or app controls. Authentication
-packages remain qualification candidates rather than production dependencies. This component does
-not establish a working cloud backup or successful account, scope, restart or cross-platform proof.
+The factory is used by the native authentication component below, not by provider storage or app
+controls. It does not establish a working cloud backup or successful real-account, scope, restart
+or cross-platform proof.
 
 `host/cloudOAuth.mjs` holds short-lived desktop authorization transactions only in the Node host.
 It issues random state and S256 PKCE challenges, binds each attempt to its profile, provider,
 connection epoch and exact temporary loopback callback, and consumes valid attempts before token
 exchange. Replacement, cancellation and expiry invalidate pending attempts. Pending state is bounded;
 neither provider errors nor request failure diagnostics echo callback URLs or credentials.
-The transaction helper does not open a callback listener, start sign-in or exchange tokens yet.
+`host/cloudCallback.mjs` owns a temporary IPv4 loopback listener, separate from the app origin.
+It advertises localhost for Microsoft and numeric loopback for Google, accepts only exact-host
+GET navigations to its root callback, and closes after completion, denial, cancellation or expiry.
+Unexpected internal faults terminate sign-in explicitly; callback pages never reflect credentials.
+Cleanup is scoped to its own state so an older listener cannot cancel a newer profile attempt.
+
+`host/windowsCloudAuth.mjs` combines that listener with the native Microsoft and Google SDKs.
+Each provider has a separate CurrentUser-protected cache within the host-issued profile.
+Identity and required app-storage permission are checked before saving credentials; Google identity
+also requires a verified ID token and matching nonce. Native token refresh and cache writes are
+serialized, and connection-epoch checks run after asynchronous operations. Disconnect invalidates
+work immediately, waits for active operations, and verifies cache removal. A corrupt cache exposes
+an explicit reconnect-required state while keeping Disconnect available.
+
+SDK requests use bounded, non-redirecting host transport restricted to authentication endpoints.
+Sign-in returns account status only; access-token retrieval is a host-only method, not a browser API.
+These components are not yet connected to desktop control routes, app controls or provider storage.
+Actual SDK exchange, refresh and encrypted-cache reopening have been exercised with synthetic
+provider replies on Windows ARM64, not real accounts. Cross-platform permissions, storage identity
+and terminal upload outcomes remain unverified. Authentication packages are still qualification
+candidates, not production dependencies.
