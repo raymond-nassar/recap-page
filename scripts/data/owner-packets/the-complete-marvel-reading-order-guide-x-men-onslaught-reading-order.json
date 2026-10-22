@@ -17,7 +17,7 @@
     "Collection headings, omnibus alternatives, unnumbered linked events, reader comments and later Onslaught returns do not add whole publications to the selected sequence."
   ],
   "canonicalSourcePositions": true,
-  "expectedCount": 72,
+  "expectedCount": 73,
   "proposedManifest": {
     "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
     "storylines": true,
@@ -415,6 +415,18 @@
       "seriesId": 2258,
       "candidateIssueId": null,
       "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Archangel #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "archangel",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Road to Onslaught Vol. 3"
     },
     {
       "sourcePosition": 28,
@@ -1077,7 +1089,7 @@
       "manualSeriesSelectionApproved": false
     }
   ],
-  "packetDigest": "309db862c4ef369b0dcc873caa5d519c92cf9fafa7efda2ccec2d9a1fc67bf72",
+  "packetDigest": "14a6c82910da66e2bde144f3303b6cb8085cb21785bfeab5a9118d58d07c2fb5",
   "sourceOccurrenceCount": 74,
   "sourceGaps": [
     {
@@ -1120,19 +1132,23 @@
         }
       ],
       "evidenceDigest": "a69ee53867b4bcfe0f1b1e5a6106da1c5167f5c016340822d8976830e2259308"
-    },
+    }
+  ],
+  "sourceGapResolutions": [
     {
       "sourcePosition": 27,
-      "sourceIssueReference": "Archangel #1",
-      "sourceRangeReference": "Road to Onslaught Vol. 3",
-      "sourceGroup": "Road to Onslaught Vol. 3",
-      "normalizedSeriesTitle": "Archangel",
-      "seriesYear": 1996,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects Archangel #1. An independently indexed 1996 original is a provisional bibliographic lead; its detail page was inaccessible. Narrow issue searches with and without the unverified year returned HTTP 200 with zero items. This bounds only those queries, not publication, provider-wide metadata, or subscription availability.",
+      "previousSourceIssueReference": "Archangel #1",
+      "previousSourceRangeReference": "Road to Onslaught Vol. 3",
+      "previousNormalizedSeriesTitle": "Archangel",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 51178,
+      "resolvedNormalizedSeriesTitle": "archangel",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Archangel (1996) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "guide",
@@ -1150,12 +1166,31 @@
           "retrievedAt": "2026-09-30"
         },
         {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/51178",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/641#issuecomment-6352903514",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "tracking-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/641",
           "retrievedAt": "2026-09-30"
         }
       ],
-      "evidenceDigest": "d75884a273aab619a1ea3f4314ed05b7d2d6698767842aada54323d0f4aec345"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 51178,
+        "label": "Archangel (1996) #1",
+        "url": "https://www.marvel.com/comics/issue/51178/archangel_1996_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/641#issuecomment-6352903514"
+      },
+      "evidenceDigest": "ccf510452286e90319e2c5bccb28e5670337ea527b710e08dd366ab0c1aa02dc"
     }
   ]
 }

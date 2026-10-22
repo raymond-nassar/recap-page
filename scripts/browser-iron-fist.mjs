@@ -12,11 +12,19 @@ const readJson = (url) => JSON.parse(readFileSync(url, 'utf8'));
 const fixture = readJson(new URL('../test/fixtures/iron-fist-browser-vector.json', import.meta.url));
 const packet = readJson(new URL(`./data/cbh-packets/${id}.json`, import.meta.url));
 const mapping = readJson(new URL(`./data/cbh-mappings/${id}.json`, import.meta.url));
+const currentMapping = readJson(new URL(`./data/owner-mappings/${id}.json`, import.meta.url));
 const ledger = readJson(new URL(`./data/cbh-source-ledgers/${id}.json`, import.meta.url));
 const markdown = readFileSync(new URL(`../src/data/orders/${id}.md`, import.meta.url), 'utf8');
 const parsed = parseChecklist(markdown);
 const authored = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
-const expected = fixture.rows;
+const expected = fixture.rows.map((row) => {
+  const identity = currentMapping.rows.find((entry) => entry.sourcePosition === row.sourcePosition
+    && entry.identityEvidenceKind === 'owner-confirmed-identity');
+  if (!identity) return row;
+  assert.equal(row.placeholder, true);
+  return { ...row, issueId: identity.selectedIssueId, title: identity.resolvedIssueTitle,
+    placeholder: false, detailsRefused: true };
+});
 const visible = ({ position, issueId, title, section }) => ({ position, issueId, title, section });
 const previewExpected = expected.map(visible);
 const savedExpected = expected.map((row) => ({
@@ -31,7 +39,17 @@ const gaps = expected.filter((row) => row.placeholder);
 const gapIds = gaps.map((row) => row.issueId);
 
 assert.equal(mapping.reviewStatus, 'approved');
-assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
+const baselineMarkdown = buildMarkdown(mapping);
+const baselineLines = new Map(baselineMarkdown.split('\n').flatMap((line) => {
+  const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+  return position ? [[Number(position[1]), line]] : [];
+}));
+const identityPositions = new Set(currentMapping.rows.filter((row) =>
+  row.identityEvidenceKind === 'owner-confirmed-identity').map((row) => row.sourcePosition));
+assert.equal(markdown.replace(/\r\n/g, '\n').split('\n').map((line) => {
+  const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+  return position && identityPositions.has(Number(position[1])) ? baselineLines.get(Number(position[1])) : line;
+}).join('\n'), baselineMarkdown);
 assert.equal(fixture.packetDigest, packet.packetDigest);
 assert.equal(fixture.mappingDigest, mapping.mappingDigest);
 assert.equal(fixture.sourceOnlyDigest, digestCanonicalJson(ledger.sourceOnlyProjection));
@@ -52,8 +70,9 @@ for (const repeat of ledger.selectedOccurrences.filter((row) => row.repeatOf != 
     [first.originalTitle, first.originalSeriesYear, first.issue]);
   assert.ok(!expected.some((row) => row.sourcePosition === repeat.sourcePosition));
 }
-assert.equal(gaps.length, 38);
-assert.deepEqual(expected.filter((row) => row.detailsRefused).map((row) => row.issueId), [59301]);
+assert.equal(fixture.rows.filter((row) => row.placeholder).length, 38);
+assert.equal(gaps.length, currentMapping.sourceGaps.length);
+assert.deepEqual(fixture.rows.filter((row) => row.detailsRefused).map((row) => row.issueId), [59301]);
 assert.deepEqual(expected.filter((row) => row.sourcePosition >= 140 && row.sourcePosition <= 155)
   .map((row) => row.placeholder), Array(16).fill(true));
 assert.match(expected.find((row) => row.sourcePosition === 140).section,
@@ -171,7 +190,7 @@ export const ironFistActualData = {
         position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
         href: node.getAttribute('href'),
       })), gapIds);
-    t.check('all 38 exact source gaps have no fabricated Preview issue URL',
+    t.check(`all ${gaps.length} remaining source gaps have no fabricated Preview issue URL`,
       JSON.stringify(previewGaps.map((row) => row.issueId)) === JSON.stringify(gapIds)
         && previewGaps.every((row) => row.position === expected.find((entry) =>
           entry.issueId === row.issueId)?.position && !/^https?:/.test(row.href ?? '')),

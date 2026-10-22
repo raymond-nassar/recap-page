@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-30T01:11:28.509Z",
+  "generatedAt": "2026-10-22T22:50:39.538Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 262,
   "collections": 12,
-  "placeholders": 16,
+  "placeholders": 12,
   "unresolved": [
     {
       "title": "X-Men: Age of Apocalypse Ashcan Edition #1",
@@ -58,38 +58,6 @@
       "index": 130,
       "section": "Apocalypse history and later Age of Apocalypse stories: Origins",
       "sourceKey": "133"
-    },
-    {
-      "title": "Askani'son #1",
-      "url": null,
-      "read": false,
-      "index": 135,
-      "section": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceKey": "138"
-    },
-    {
-      "title": "Askani'son #2",
-      "url": null,
-      "read": false,
-      "index": 136,
-      "section": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceKey": "139"
-    },
-    {
-      "title": "Askani'son #3",
-      "url": null,
-      "read": false,
-      "index": 137,
-      "section": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceKey": "140"
-    },
-    {
-      "title": "Askani'son #4",
-      "url": null,
-      "read": false,
-      "index": 138,
-      "section": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceKey": "141"
     },
     {
       "title": "X-Men of Apocalypse (2025) #1",
@@ -4771,10 +4739,10 @@
       "collectedIn": "Apocalypse history and later Age of Apocalypse stories: Origins"
     },
     {
-      "issueId": -286301830,
-      "title": "Askani'son #1",
+      "issueId": 50996,
+      "title": "Askani'son (1996) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/50996/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4784,14 +4752,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Apocalypse history and later Age of Apocalypse stories: Origins"
     },
     {
-      "issueId": -269524211,
-      "title": "Askani'son #2",
+      "issueId": 50997,
+      "title": "Askani'son (1996) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/50997/askanison_1996_2",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4801,14 +4770,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Apocalypse history and later Age of Apocalypse stories: Origins"
     },
     {
-      "issueId": -521335591,
-      "title": "Askani'son #3",
+      "issueId": 50998,
+      "title": "Askani'son (1996) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/50998/askanison_1996_3",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4818,14 +4788,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Apocalypse history and later Age of Apocalypse stories: Origins"
     },
     {
-      "issueId": -538113210,
-      "title": "Askani'son #4",
+      "issueId": 50999,
+      "title": "Askani'son (1996) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/50999/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4835,7 +4806,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Apocalypse history and later Age of Apocalypse stories: Origins"
     },
     {

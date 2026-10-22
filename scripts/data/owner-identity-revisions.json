@@ -25,6 +25,42 @@
   ],
   "guides": [
     {
+      "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "baselineCommit": "6e73a1134b3c0dfd96779adaea1216b05cd11dec",
+      "placeholderReplacement": true,
+      "publicationOrder": 4,
+      "generatedAt": "2026-10-22T22:50:39.538Z",
+      "issueIds": [50996, 50997, 50998, 50999],
+      "proposalDigest": "f11ad402424d963f76a785feee93a690d5d018cb8f8290e7e9bb6315b5d2a1bf"
+    },
+    {
+      "id": "iron-fist-reading-order",
+      "baselineCommit": "6e73a1134b3c0dfd96779adaea1216b05cd11dec",
+      "placeholderReplacement": true,
+      "publicationOrder": 1,
+      "generatedAt": "2026-10-22T22:43:59.113Z",
+      "issueIds": [62415, 62416, 62418, 62419, 62420, 62421, 62422, 62004, 55126, 55125, 53674, 53675],
+      "proposalDigest": "d8e002d090bf95da28751bc60a9c57779f1eca7a98e36b4feacd7382ae4eb040"
+    },
+    {
+      "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "baselineCommit": "6e73a1134b3c0dfd96779adaea1216b05cd11dec",
+      "placeholderReplacement": true,
+      "publicationOrder": 2,
+      "generatedAt": "2026-10-22T22:48:20.824Z",
+      "issueIds": [51178],
+      "proposalDigest": "a0a12d1036fb13e2289dba7f9665c7ec01831a1ad8aa93ecbebd6534135739f9"
+    },
+    {
+      "id": "iron-fist-reading-order",
+      "baselineCommit": "6e73a1134b3c0dfd96779adaea1216b05cd11dec",
+      "placeholderReplacement": true,
+      "publicationOrder": 3,
+      "generatedAt": "2026-10-22T22:59:02.316Z",
+      "issueIds": [57520, 53676, 64530, 64531, 64532, 64533, 64563, 64818],
+      "proposalDigest": "12a51aa9004b7e94a7716ea975a9a5bfdc38f1acf20faa1af6f052b1a17533f5"
+    },
+    {
       "id": "mcu-prep-the-incredible-hulk-2008",
       "generatedAt": "2026-10-22T08:26:00.000Z",
       "issueIds": [41502],

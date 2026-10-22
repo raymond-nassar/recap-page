@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.mjs';
 import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
+import { identityRevisions } from './owner-identity-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -73,7 +74,9 @@ export const currentReadingCensus = Object.freeze({
   storylines: 46 + baseline.mcuEntries.length + mcuContracts.length - 1,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta - 2,
+  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta - 2
+    + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
+      .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta - 2,
   itemFiles: 297 + rosterAdditionCount,
 });

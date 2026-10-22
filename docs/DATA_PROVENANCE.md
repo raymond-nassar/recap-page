@@ -479,7 +479,7 @@ than being replaced with other issues. The five assigned question bundles are
 identity is not a claim about publication, provider-wide absence or reading availability.
 The [Iron Fist guide](https://www.comicbookherald.com/iron-fist-reading-order/) retains
 435 printed reading references and selects 430 ordered occurrences. Sixteen are
-backward references, leaving 414 canonical positions: 376 exact issue IDs and 38
+backward references, initially leaving 414 canonical positions: 376 exact issue IDs and 38
 visible original-identity gaps tracked in
 [#649](https://github.com/raymond-nassar/recap-page/issues/649) through
 [#656](https://github.com/raymond-nassar/recap-page/issues/656). Heroes for Hire (1997)
@@ -1093,7 +1093,7 @@ authored paths with 10 and 12 stops from the curated manifest at
 `src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12151-12276`.
+`src/data/catalog.json:12154-12279`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1892,12 +1892,12 @@ checklist, payload and saved progress are unchanged.
 The [exact Onslaught guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/)
 was retrieved on 2026-09-29. Its factual ledger preserves 100 printed references across the
 three Road to Onslaught volumes, an optional Prelude and four Complete Epic books. The selected
-sequence has 74 positions: 72 exact original issue identities and two unresolved references.
+sequence initially had 74 positions: 72 exact original issue identities and two unresolved references.
 [Issue #637](https://github.com/raymond-nassar/recap-page/issues/637) records the guide scope;
 [Hotshots](https://github.com/raymond-nassar/recap-page/issues/640) and
 [Archangel](https://github.com/raymond-nassar/recap-page/issues/641) each retain a placeholder
 where their exact original metadata identity could not be established by the bounded lookups.
-The checklist does not infer their identities or availability.
+The initial checklist inferred neither identity nor availability; later owner confirmations are recorded below.
 
 The 22 optional Prelude excerpts remain source provenance, including six references back to
 the selected Road; they are not an extra whole-issue pass. Fantastic Four #414 and Avengers
@@ -3085,3 +3085,50 @@ the maintained updater's eligibility.
 [Venom Super Special](https://github.com/raymond-nassar/recap-page/issues/707) is
 confirmed too, but registration alone cannot preserve its older guide's qualified
 anthology groups. Both require bounded follow-ups rather than widening this update.
+
+## Owner-confirmed older-guide identities
+
+On October 22, 2026, the owner supplied exact Marvel issue identities for twenty
+Iron Fist positions, Archangel in Onslaught, and four Askani'son positions in Age
+of Apocalypse. The attributed confirmation records cover
+[Power Man and Iron Fist #93-99](https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849),
+[Heroes for Hire #1, #10, #11, #15 and #16](https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212),
+[Cage #9](https://github.com/raymond-nassar/recap-page/issues/655#issuecomment-6353133168),
+[Heroes for Hire/Quicksilver Annual](https://github.com/raymond-nassar/recap-page/issues/652#issuecomment-6353132841),
+[Immortal Iron Fists #1-6](https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548),
+[Archangel #1](https://github.com/raymond-nassar/recap-page/issues/641#issuecomment-6352903514)
+and [Askani'son #1-4](https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832).
+Those comments were retrieved on October 22, 2026. They confirm identity, not
+publication permission or availability.
+
+The maintained identity updater prepared and applied four separately approved
+proposals in serial order. The exact applied digests and original placeholder
+inverses are retained in the
+[identity revision record](../scripts/data/owner-identity-revisions.json).
+Iron Fist retains 414 positions, now with 396 exact identities and 18 placeholders.
+Onslaught retains 74 positions, now with 73 exact identities and the Hot Shots
+placeholder. Age of Apocalypse retains 262 positions, now with 250 exact identities
+and twelve placeholders. Every unconfirmed source position and original group
+remains; neither the twenty-five replacements nor their new URLs change shared
+issue relationships with the rest of the library. Guide descriptions are unchanged.
+
+Exact requests to the configured metadata provider returned HTTP 404 for all
+twenty-five identities. Their supplied Marvel URLs are stored without fetching
+publisher pages. The new rows have no inferred provider metadata, cover, digital ID,
+on-sale date or availability. This is not evidence of global absence or a reading
+availability override. In particular, the owner-confirmed Power Man and Iron Fist
+identities retain the selected source labels even though the publisher's pages use
+the Power Man series title. No synopsis or image bytes are copied.
+
+Third-party Namor, Shang-Chi, Kung Fu special and Marvel Fanfare references remain
+research evidence in their open gap Issues, not substitute Marvel identities.
+Kung Fu Special and Deadly Hands of Kung Fu Special Edition retain separate source
+positions despite the owner's possible-alias evidence. Nearby issues, collections
+and guessed per-issue URLs are not substituted.
+
+Original source approvals and baseline captures remain unchanged. Historical checks
+reverse only the approved replacements to their exact original negative placeholder
+identities and checklist lines instead of rewriting snapshots. Publishing the new
+catalog leaves saved copies untouched, including their original placeholders,
+membership, custom order, notes, progress, deferral and availability overrides.
+A fresh import uses the updated guide. No saved-data schema or migration changes.

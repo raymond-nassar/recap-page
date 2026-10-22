@@ -5214,7 +5214,7 @@
       "depth": "partial",
       "spotlightKind": "other",
       "count": 414,
-      "placeholderCount": 38,
+      "placeholderCount": 18,
       "emptyRecordCount": 1,
       "collections": 48,
       "characters": [
@@ -5246,7 +5246,8 @@
       "source": "https://www.comicbookherald.com/iron-fist-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-30T04:55:50.710Z"
+      "updatedAt": "2026-10-22T22:59:02.316Z",
+      "ownerConfirmedIdentityCount": 20
     },
     {
       "id": "ultimate-spider-man-reading-order",
@@ -5618,7 +5619,7 @@
       "depth": "partial",
       "spotlightKind": "other",
       "count": 262,
-      "placeholderCount": 16,
+      "placeholderCount": 12,
       "emptyRecordCount": 0,
       "collections": 12,
       "characters": [
@@ -5653,7 +5654,8 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-30T01:11:28.509Z"
+      "updatedAt": "2026-10-22T22:50:39.538Z",
+      "ownerConfirmedIdentityCount": 4
     },
     {
       "id": "xmen-claremont",
@@ -7690,7 +7692,7 @@
       "depth": "partial",
       "storylines": true,
       "count": 74,
-      "placeholderCount": 2,
+      "placeholderCount": 1,
       "emptyRecordCount": 0,
       "collections": 7,
       "characters": [
@@ -7721,7 +7723,8 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-30T01:30:16.714Z"
+      "updatedAt": "2026-10-22T22:48:20.824Z",
+      "ownerConfirmedIdentityCount": 1
     },
     {
       "id": "operation-zero-tolerance",

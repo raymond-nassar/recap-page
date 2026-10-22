@@ -1,17 +1,18 @@
 {
   "candidateId": "iron-fist-reading-order",
-  "packetDigest": "1268ac4816f3fed217405c7eae4024c4cde8f0ad8c3a682cae666ad2fe274638",
-  "mappingDigest": "e48c7e646b0a53bd0eaaf45f4db56a55fe130f0e76c289912afe38de01509ade",
-  "libraryDigest": "f1c93506f486478e20d5cf568a072cefdf4e8f9a420be9f4da81068df96f09ba",
+  "packetDigest": "634c0ac7ad217bd096cebb0bec9229b747c76c522ef1ea5dced4d7ec7a4eb447",
+  "mappingDigest": "ea77dfad334650cf6d20e687d8e90045e191440061d9ec2a815f89082edd9a2b",
+  "libraryDigest": "93fea5cdebc6300a446becbeef965bed86a8bf8964a91358ca046ea631f4b5c4",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 430,
     "sourceIdentityCount": 414,
-    "includedIssueCount": 376,
-    "sourceGapCount": 38,
-    "repeatedSourceReferenceCount": 16
+    "includedIssueCount": 396,
+    "sourceGapCount": 18,
+    "repeatedSourceReferenceCount": 16,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 376,
+  "candidateCount": 396,
   "comparisonCount": 316,
   "comparisons": [
     {
@@ -2220,5 +2221,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "72d181dcd73a7695ee4bee6353ff4117bbd49044a575ce5cc5382338807adfc7"
+  "reportDigest": "d4abc310a28756fa08c99f60dfe256cdde41def0a73c67bafc94d999ae548746"
 }

@@ -1,4 +1,5 @@
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { beforeIdentityCatalog, beforeIdentityChecklist, beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -23,7 +24,12 @@ import {
 
 const id = 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/';
-const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+const readJson = async (file) => {
+  const value = JSON.parse(await readFile(file, 'utf8'));
+  return file === 'src/data/catalog.json' ? beforeIdentityCatalog(value)
+    : file === 'src/data/the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json'
+      ? beforeIdentityPayload('the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json', value) : value;
+};
 const packet = await readJson(`scripts/data/cbh-packets/${id}.json`);
 const mapping = await readJson(`scripts/data/cbh-mappings/${id}.json`);
 const ledger = await readJson(`scripts/data/cbh-source-ledgers/${id}.json`);
@@ -209,7 +215,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
 
 test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero Tolerance', async () => {
   const [markdown, manifest, inventory] = await Promise.all([
-    readFile(`src/data/orders/${id}.md`, 'utf8'),
+    readFile(`src/data/orders/${id}.md`, 'utf8').then((text) => beforeIdentityChecklist(id, text)),
     readJson('src/data/curated-lists.json'),
     readJson('scripts/data/cbh-character-inventory.json'),
   ]);

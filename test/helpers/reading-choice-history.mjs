@@ -14,7 +14,7 @@ import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
 } from '../../scripts/lib/mcu-editorial.mjs';
 import {
-  beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload, identityRevisions,
+  beforeIdentityCatalogEntry, beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload, identityRevisions,
 } from './owner-identity-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
@@ -239,6 +239,7 @@ export function capturedReviewLibraryDigest(orders, expectedDigest) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
+  entry = beforeIdentityCatalogEntry(entry);
   if (entry.id === spiderRevision.manifestEntry.id) {
     if (entry.name !== spiderRevision.currentManifestEntry.name
       || entry.description !== spiderRevision.currentManifestEntry.description

@@ -1,4 +1,5 @@
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { beforeIdentityCatalog, beforeIdentityChecklist, beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -24,7 +25,12 @@ import {
 
 const id = 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order';
 const source = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/';
-const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+const readJson = async (file) => {
+  const value = JSON.parse(await readFile(file, 'utf8'));
+  return file === 'src/data/catalog.json' ? beforeIdentityCatalog(value)
+    : file === 'src/data/the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json'
+      ? beforeIdentityPayload('the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json', value) : value;
+};
 const packet = await readJson(`scripts/data/cbh-packets/${id}.json`);
 const mapping = await readJson(`scripts/data/cbh-mappings/${id}.json`);
 const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
@@ -180,7 +186,7 @@ test('AoA relationship report is rebuilt from every peer at its review', async (
 
 test('AoA published checklist preserves 262 positions under factual section headings', async () => {
   const [markdown, manifest, inventory] = await Promise.all([
-    readFile(`src/data/orders/${id}.md`, 'utf8'),
+    readFile(`src/data/orders/${id}.md`, 'utf8').then((text) => beforeIdentityChecklist(id, text)),
     readJson('src/data/curated-lists.json'),
     readJson('scripts/data/cbh-character-inventory.json'),
   ]);
@@ -217,7 +223,7 @@ test('AoA published checklist preserves 262 positions under factual section head
 
 test('AoA vendor preserves the complete 262-position reading vector and qualified gaps', async () => {
   const [markdown, payload, catalogRaw, inventory] = await Promise.all([
-    readFile(`src/data/orders/${id}.md`, 'utf8'),
+    readFile(`src/data/orders/${id}.md`, 'utf8').then((text) => beforeIdentityChecklist(id, text)),
     readJson(`src/data/${packet.proposedManifest.out}`),
     readJson('src/data/catalog.json'),
     readJson('scripts/data/cbh-character-inventory.json'),

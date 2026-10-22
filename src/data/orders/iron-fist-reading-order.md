@@ -94,13 +94,13 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Power Man (1974) #90 <!-- mrt:source-occurrence=95 -->](https://www.marvel.com/comics/issue/62412/power_man_1974_90)
 - [ ] [Power Man (1974) #91 <!-- mrt:source-occurrence=96 -->](https://www.marvel.com/comics/issue/62413/power_man_1974_91)
 - [ ] [Power Man (1974) #92 <!-- mrt:source-occurrence=97 -->](https://www.marvel.com/comics/issue/62414/power_man_1974_92)
-- [ ] Power Man and Iron Fist (1978) #93 <!-- mrt:source-occurrence=98 -->
-- [ ] Power Man and Iron Fist (1978) #94 <!-- mrt:source-occurrence=99 -->
-- [ ] Power Man and Iron Fist (1978) #95 <!-- mrt:source-occurrence=100 -->
-- [ ] Power Man and Iron Fist (1978) #96 <!-- mrt:source-occurrence=101 -->
-- [ ] Power Man and Iron Fist (1978) #97 <!-- mrt:source-occurrence=102 -->
-- [ ] Power Man and Iron Fist (1978) #98 <!-- mrt:source-occurrence=103 -->
-- [ ] Power Man and Iron Fist (1978) #99 <!-- mrt:source-occurrence=104 -->
+- [ ] [Power Man and Iron Fist (1978) #93 <!-- mrt:source-occurrence=98 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62415/power_man_and_iron_fist_1978_93)
+- [ ] [Power Man and Iron Fist (1978) #94 <!-- mrt:source-occurrence=99 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62416/power_man_and_iron_fist_1978_94)
+- [ ] [Power Man and Iron Fist (1978) #95 <!-- mrt:source-occurrence=100 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62418/power_man_and_iron_fist_1978_95)
+- [ ] [Power Man and Iron Fist (1978) #96 <!-- mrt:source-occurrence=101 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62419/power_man_and_iron_fist_1978_96)
+- [ ] [Power Man and Iron Fist (1978) #97 <!-- mrt:source-occurrence=102 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62420/power_man_and_iron_fist_1978_97)
+- [ ] [Power Man and Iron Fist (1978) #98 <!-- mrt:source-occurrence=103 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62421/power_man_and_iron_fist_1978_98)
+- [ ] [Power Man and Iron Fist (1978) #99 <!-- mrt:source-occurrence=104 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62422/power_man_and_iron_fist_1978_99)
 - [ ] [Power Man (1974) #100 <!-- mrt:source-occurrence=105 -->](https://www.marvel.com/comics/issue/62423/power_man_1974_100)
 ## Power Man & Iron Fist #101 to #125
 - [ ] [Power Man (1974) #101 <!-- mrt:source-occurrence=106 -->](https://www.marvel.com/comics/issue/79521/power_man_1974_101)
@@ -156,7 +156,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Namor the Sub-Mariner (1990) #33 <!-- mrt:source-occurrence=154 -->
 - [ ] Namor the Sub-Mariner (1990) #34 <!-- mrt:source-occurrence=155 -->
 ## Cage #9
-- [ ] Cage (1992) #9 <!-- mrt:source-occurrence=156 -->
+- [ ] [Cage (1992) #9 <!-- mrt:source-occurrence=156 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/57520/cage_1992_9)
 ## Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141
 - [ ] [Marvel Comics Presents (1988) #111 <!-- mrt:source-occurrence=157 -->](https://www.marvel.com/comics/issue/10024/marvel_comics_presents_1988_111)
 - [ ] [Marvel Comics Presents (1988) #113 <!-- mrt:source-occurrence=158 -->](https://www.marvel.com/comics/issue/10026/marvel_comics_presents_1988_113)
@@ -182,7 +182,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Marvel Comics Presents (1988) #141 <!-- mrt:source-occurrence=178 -->](https://www.marvel.com/comics/issue/10057/marvel_comics_presents_1988_141)
 ## Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9
 - [ ] Marvel Fanfare (1996) #6 <!-- mrt:source-occurrence=179 -->
-- [ ] Heroes for Hire (1997) #1 <!-- mrt:source-occurrence=180 -->
+- [ ] [Heroes for Hire (1997) #1 <!-- mrt:source-occurrence=180 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62004/heroes_for_hire_1997_1)
 - [ ] [Heroes for Hire (1997) #2 <!-- mrt:source-occurrence=181 -->](https://www.marvel.com/comics/issue/62005/heroes_for_hire_1997_2)
 - [ ] [Heroes for Hire (1997) #3 <!-- mrt:source-occurrence=182 -->](https://www.marvel.com/comics/issue/62006/heroes_for_hire_1997_3)
 - [ ] [Heroes for Hire (1997) #4 <!-- mrt:source-occurrence=183 -->](https://www.marvel.com/comics/issue/62007/heroes_for_hire_1997_4)
@@ -192,16 +192,16 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Heroes for Hire (1997) #8 <!-- mrt:source-occurrence=187 -->](https://www.marvel.com/comics/issue/62011/heroes_for_hire_1997_8)
 - [ ] [Heroes For Hire (1997) #9 <!-- mrt:source-occurrence=188 -->](https://www.marvel.com/comics/issue/59301)
 ## Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19
-- [ ] Heroes for Hire (1997) #10 <!-- mrt:source-occurrence=189 -->
-- [ ] Heroes for Hire (1997) #11 <!-- mrt:source-occurrence=190 -->
+- [ ] [Heroes for Hire (1997) #10 <!-- mrt:source-occurrence=189 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55126/heroes_for_hire_1997_10)
+- [ ] [Heroes for Hire (1997) #11 <!-- mrt:source-occurrence=190 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/55125/heroes_for_hire_1997_11)
 - [ ] [Heroes for Hire (1997) #12 <!-- mrt:source-occurrence=191 -->](https://www.marvel.com/comics/issue/62012/heroes_for_hire_1997_12)
 - [ ] [Heroes for Hire (1997) #13 <!-- mrt:source-occurrence=192 -->](https://www.marvel.com/comics/issue/62013/heroes_for_hire_1997_13)
 - [ ] [Heroes for Hire (1997) #14 <!-- mrt:source-occurrence=193 -->](https://www.marvel.com/comics/issue/62014/heroes_for_hire_1997_14)
-- [ ] Heroes for Hire (1997) #15 <!-- mrt:source-occurrence=194 -->
+- [ ] [Heroes for Hire (1997) #15 <!-- mrt:source-occurrence=194 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/53674/)
 - [ ] [Quicksilver (1997) #11 <!-- mrt:source-occurrence=195 -->](https://www.marvel.com/comics/issue/53687/quicksilver_1997_11)
-- [ ] Heroes for Hire (1997) #16 <!-- mrt:source-occurrence=196 -->
+- [ ] [Heroes for Hire (1997) #16 <!-- mrt:source-occurrence=196 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/53675/)
 - [ ] [Quicksilver (1997) #12 <!-- mrt:source-occurrence=197 -->](https://www.marvel.com/comics/issue/53688/quicksilver_1997_12)
-- [ ] Heroes for Hire/Quicksilver Annual (1998) #1 <!-- mrt:source-occurrence=198 -->
+- [ ] [Heroes for Hire/Quicksilver Annual (1998) #1 <!-- mrt:source-occurrence=198 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/53676/heroes_for_hirequicksilver_annual_1998_1)
 - [ ] [Heroes for Hire (1997) #17 <!-- mrt:source-occurrence=199 -->](https://www.marvel.com/comics/issue/62015/heroes_for_hire_1997_17)
 - [ ] [Heroes for Hire (1997) #18 <!-- mrt:source-occurrence=200 -->](https://www.marvel.com/comics/issue/62016/heroes_for_hire_1997_18)
 - [ ] [Heroes for Hire (1997) #19 <!-- mrt:source-occurrence=201 -->](https://www.marvel.com/comics/issue/62017/heroes_for_hire_1997_19)
@@ -411,12 +411,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Defenders (2017) #9 <!-- mrt:source-occurrence=379 -->](https://www.marvel.com/comics/issue/65511/defenders_2017_9)
 - [ ] [Defenders (2017) #10 <!-- mrt:source-occurrence=380 -->](https://www.marvel.com/comics/issue/66276/defenders_2017_10)
 ## Issues : Immortal Iron Fists #1 to #6
-- [ ] Immortal Iron Fists (2017) #1 <!-- mrt:source-occurrence=381 -->
-- [ ] Immortal Iron Fists (2017) #2 <!-- mrt:source-occurrence=382 -->
-- [ ] Immortal Iron Fists (2017) #3 <!-- mrt:source-occurrence=383 -->
-- [ ] Immortal Iron Fists (2017) #4 <!-- mrt:source-occurrence=384 -->
-- [ ] Immortal Iron Fists (2017) #5 <!-- mrt:source-occurrence=385 -->
-- [ ] Immortal Iron Fists (2017) #6 <!-- mrt:source-occurrence=386 -->
+- [ ] [Immortal Iron Fists (2017) #1 <!-- mrt:source-occurrence=381 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64530/immortal_iron_fists_cmx_digital_comic_2017_1)
+- [ ] [Immortal Iron Fists (2017) #2 <!-- mrt:source-occurrence=382 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64531/)
+- [ ] [Immortal Iron Fists (2017) #3 <!-- mrt:source-occurrence=383 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64532/immortal_iron_fists_cmx_digital_comic_2017_3)
+- [ ] [Immortal Iron Fists (2017) #4 <!-- mrt:source-occurrence=384 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64533/)
+- [ ] [Immortal Iron Fists (2017) #5 <!-- mrt:source-occurrence=385 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64563/)
+- [ ] [Immortal Iron Fists (2017) #6 <!-- mrt:source-occurrence=386 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/64818/)
 ## Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17
 - [ ] [Doctor Strange: Damnation (2018) #1 <!-- mrt:source-occurrence=387 -->](https://www.marvel.com/comics/issue/66279/doctor_strange_damnation_2018_1)
 - [ ] [Doctor Strange: Damnation (2018) #2 <!-- mrt:source-occurrence=388 -->](https://www.marvel.com/comics/issue/66409/doctor_strange_damnation_2018_2)

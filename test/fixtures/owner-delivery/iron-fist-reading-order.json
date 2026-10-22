@@ -550,43 +550,43 @@
     ],
     [
       98,
-      -708834706,
+      62415,
       "Power Man and Iron Fist (1978) #93",
       4
     ],
     [
       99,
-      -692057087,
+      62416,
       "Power Man and Iron Fist (1978) #94",
       4
     ],
     [
       100,
-      -1524419230,
+      62418,
       "Power Man and Iron Fist (1978) #95",
       4
     ],
     [
       101,
-      -1507641611,
+      62419,
       "Power Man and Iron Fist (1978) #96",
       4
     ],
     [
       102,
-      -1490863992,
+      62420,
       "Power Man and Iron Fist (1978) #97",
       4
     ],
     [
       103,
-      -1474086373,
+      62421,
       "Power Man and Iron Fist (1978) #98",
       4
     ],
     [
       104,
-      -1457308754,
+      62422,
       "Power Man and Iron Fist (1978) #99",
       4
     ],
@@ -898,7 +898,7 @@
     ],
     [
       156,
-      -1120969317,
+      57520,
       "Cage (1992) #9",
       8
     ],
@@ -1042,7 +1042,7 @@
     ],
     [
       180,
-      -1257308840,
+      62004,
       "Heroes for Hire (1997) #1",
       10
     ],
@@ -1096,13 +1096,13 @@
     ],
     [
       189,
-      -1374752173,
+      55126,
       "Heroes for Hire (1997) #10",
       11
     ],
     [
       190,
-      -1156496031,
+      55125,
       "Heroes for Hire (1997) #11",
       11
     ],
@@ -1126,7 +1126,7 @@
     ],
     [
       194,
-      -1089385555,
+      53674,
       "Heroes for Hire (1997) #15",
       11
     ],
@@ -1138,7 +1138,7 @@
     ],
     [
       196,
-      -1122940793,
+      53675,
       "Heroes for Hire (1997) #16",
       11
     ],
@@ -1150,7 +1150,7 @@
     ],
     [
       198,
-      -1290716983,
+      53676,
       "Heroes for Hire/Quicksilver Annual (1998) #1",
       11
     ],
@@ -2242,37 +2242,37 @@
     ],
     [
       381,
-      -1806451215,
+      64530,
       "Immortal Iron Fists (2017) #1",
       39
     ],
     [
       382,
-      -1856784072,
+      64531,
       "Immortal Iron Fists (2017) #2",
       39
     ],
     [
       383,
-      -1840006453,
+      64532,
       "Immortal Iron Fists (2017) #3",
       39
     ],
     [
       384,
-      -1756118358,
+      64533,
       "Immortal Iron Fists (2017) #4",
       39
     ],
     [
       385,
-      -1739340739,
+      64563,
       "Immortal Iron Fists (2017) #5",
       39
     ],
     [
       386,
-      -1789673596,
+      64818,
       "Immortal Iron Fists (2017) #6",
       39
     ],
@@ -2541,19 +2541,20 @@
       47
     ]
   ],
-  "vectorSha256": "691a66e220d79bc130bfae49593cbc07720c7405a5df421392aee87d026836bf",
+  "vectorSha256": "99ede785cf3a1b194185aecae8014d10d11c7f828d6c4933921a5ee94e96ce75",
   "sourceSha256": "3b44e1c0a4d992820a9d9e560a13cc033a55ede8850c4f0351eaec03658e955c",
   "sourceIssueBearingBlocksSha256": "3ad765cfd6ccc172c54789e3cbff99689adfbd93d999a9bd502e057edd4443ee",
   "sourceCounts": {
     "sourceOccurrenceCount": 430,
     "sourceIdentityCount": 414,
-    "includedIssueCount": 376,
-    "sourceGapCount": 38,
-    "repeatedSourceReferenceCount": 16
+    "includedIssueCount": 396,
+    "sourceGapCount": 18,
+    "repeatedSourceReferenceCount": 16,
+    "excludedSourceRowCount": 0
   },
-  "libraryDigest": "f1c93506f486478e20d5cf568a072cefdf4e8f9a420be9f4da81068df96f09ba",
-  "proposalDigest": "ac20a327c99dfae315af6ec8811ce482395b3e4a0d4f28170a66b7d7eebc6909",
-  "approvalDigest": "9c4966d7635a708e3b53122c3ecfaeabb944f8c2b6d2ac7ef27a682fe9af09dd",
+  "libraryDigest": "93fea5cdebc6300a446becbeef965bed86a8bf8964a91358ca046ea631f4b5c4",
+  "proposalDigest": "5a652232205a17a8cfaf5960ede49e6ad820ec788e3727045c12641e1faae8a1",
+  "approvalDigest": "abd07a6ea0515f33391ce1e47aa535e05b1c0c150c56437b9f15e55d60e5e6f6",
   "cbhBaseline": {
     "sourceCommit": "f2c60a9410ba1b9eba76b8dd83a4b8ad01b167f9",
     "files": {

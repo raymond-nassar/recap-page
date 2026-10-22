@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-30T01:30:16.714Z",
+  "generatedAt": "2026-10-22T22:48:20.824Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 74,
   "collections": 7,
-  "placeholders": 2,
+  "placeholders": 1,
   "unresolved": [
     {
       "title": "X-Men Hotshots",
@@ -18,14 +18,6 @@
       "index": 23,
       "section": "Road to Onslaught Vol. 2",
       "sourceKey": "24"
-    },
-    {
-      "title": "Archangel #1",
-      "url": null,
-      "read": false,
-      "index": 26,
-      "section": "Road to Onslaught Vol. 3",
-      "sourceKey": "27"
     }
   ],
   "items": [
@@ -963,10 +955,10 @@
       "collectedIn": "Road to Onslaught Vol. 3"
     },
     {
-      "issueId": -1931926597,
-      "title": "Archangel #1",
+      "issueId": 51178,
+      "title": "Archangel (1996) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/51178/archangel_1996_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -976,7 +968,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Road to Onslaught Vol. 3"
     },
     {

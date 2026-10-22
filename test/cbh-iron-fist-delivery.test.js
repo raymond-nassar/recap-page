@@ -13,6 +13,7 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { beforeIdentityCatalog, beforeIdentityChecklist, beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
 
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -22,7 +23,11 @@ import {
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'iron-fist-reading-order';
-const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'));
+const readJson = async (path) => {
+  const value = JSON.parse(await readFile(path, 'utf8'));
+  return path === 'src/data/catalog.json' ? beforeIdentityCatalog(value)
+    : path === 'src/data/iron_fist_reading_order.json' ? beforeIdentityPayload('iron_fist_reading_order.json', value) : value;
+};
 const packetPath = `scripts/data/cbh-packets/${id}.json`;
 const mappingPath = `scripts/data/cbh-mappings/${id}.json`;
 const [packet, mapping, ledger] = await Promise.all([
@@ -132,7 +137,7 @@ test('Iron Fist retains its publication-time relationship review and unchanged n
   ['66014', '66015', '66016', '66017', '66018', '66019', '66020', '66021', '66022',
     '39757', '39762', '39763', '39758', '39759', '39761', '39760', '39767',
     '39766', '39765', '39764', '39756']);
-  const markdown = normalizeCrLf(markdownBytes.toString('utf8'));
+  const markdown = beforeIdentityChecklist(id, normalizeCrLf(markdownBytes.toString('utf8')));
   assert.equal(markdown, buildMarkdown(mapping));
   assert.ok(!markdown.includes('\r'));
   assert.equal(sha(markdown), 'ff8b02b7579de4469a00fc74c8cb98fe3f84c65ad7d6666d8714574dac6cafd3');
@@ -160,7 +165,7 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
   const [payload, catalog, markdown, manifest, partition, vector, inventory, report] = await Promise.all([
     readJson('src/data/iron_fist_reading_order.json'),
     readJson('src/data/catalog.json'),
-    readFile(`src/data/orders/${id}.md`, 'utf8').then(normalizeCrLf),
+    readFile(`src/data/orders/${id}.md`, 'utf8').then((text) => beforeIdentityChecklist(id, normalizeCrLf(text))),
     readJson('src/data/curated-lists.json'),
     readJson('scripts/data/marvel-knights-to-planet-x-overlaps.json'),
     readJson('test/fixtures/iron-fist-browser-vector.json'),

@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { CBH_OWNER_BASELINE_IDS, capturedCbhOwnerBaseline } from '../scripts/register-cbh-owner-baselines.mjs';
+import { CBH_OWNER_BASELINE_IDS } from '../scripts/register-cbh-owner-baselines.mjs';
 import { prepareOwnerGuideIdentityUpdate } from '../scripts/lib/owner-guide.mjs';
 import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs';
 import { assertCbhBaselinePayload } from '../scripts/lib/owner-cbh-baseline.mjs';
@@ -14,6 +15,9 @@ const read = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const textHash = async (file) => hash((await read(file)).replace(/\r\n/g, '\n'));
+const historicalText = (commit, file) => execFileSync('git', ['show', `${commit}:${file}`], {
+  encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
+}).replace(/\r\n/g, '\n');
 
 for (const [index, id] of CBH_OWNER_BASELINE_IDS.entries()) {
   test(`${id}: synthetic owner confirmation reaches a no-write proposal and preserves every other published row`, async () => {
@@ -61,6 +65,7 @@ for (const [index, id] of CBH_OWNER_BASELINE_IDS.entries()) {
     const expected = {
       ...payload, generatedAt, items: nextItems, count: nextItems.length,
       placeholders: payload.placeholders - 1,
+      unresolved: payload.unresolved.filter((row) => Number(row.sourceKey) !== gap.sourcePosition),
       collections: new Set(nextItems.map((item) => item.collectedIn).filter(Boolean)).size,
     };
     assert.equal(proposal.outputs.find((output) => output.path === payloadFile).sha256,
@@ -81,21 +86,54 @@ for (const [index, id] of CBH_OWNER_BASELINE_IDS.entries()) {
   });
 }
 
-test('the five CBH owner registrations are reproducible captures with untouched original approvals and shipped bytes', async () => {
+test('the five CBH owner registrations preserve exact historical captures and every unmodified shipped row', async () => {
   const registry = await json('scripts/data/owner-deliveries.json');
   for (const id of CBH_OWNER_BASELINE_IDS) {
-    const { registration, outputs } = await capturedCbhOwnerBaseline(id);
-    assert.deepEqual(registry.guides.find((row) => row.id === id), registration);
-    for (const [file, expected] of outputs) assert.equal((await read(file)).replace(/\r\n/g, '\n'), expected, file);
-    const contract = JSON.parse(outputs.get(registration.contract));
+    const contractFile = `test/fixtures/owner-delivery/${id}.json`;
+    const contract = await json(contractFile);
+    assert.deepEqual(registry.guides.find((row) => row.id === id), {
+      id, contract: contractFile, baselineRowCount: contract.rows.length, sourceProvider: 'comic-book-herald',
+    });
+    const payloadFile = Object.keys(contract.cbhBaseline.files).find((file) =>
+      file.startsWith('src/data/') && file.endsWith('.json'));
+    const markdownFile = `src/data/orders/${id}.md`;
+    const payload = await json(payloadFile);
+    const original = JSON.parse(historicalText(contract.cbhBaseline.sourceCommit, payloadFile));
+    const mapping = await json(`scripts/data/owner-mappings/${id}.json`);
+    const additions = new Map(mapping.rows.filter((row) =>
+      row.identityEvidenceKind === 'owner-confirmed-identity').map((row) => [row.sourcePosition, row]));
+    assert.equal(payload.items.length, original.items.length);
+    const inverseItems = payload.items.map((item, index) => {
+      const position = contract.rows[index][0];
+      const addition = additions.get(position);
+      if (!addition) return item;
+      assert.equal(original.items[index].placeholder, true);
+      assert.equal(item.issueId, addition.selectedIssueId);
+      assert.equal(item.url, addition.marvelIssueUrl);
+      assert.equal(item.identityEvidenceKind, 'owner-confirmed-identity');
+      return original.items[index];
+    });
+    assert.deepEqual(inverseItems, original.items, 'Only confirmed placeholder positions may differ.');
+    const originalMarkdown = historicalText(contract.cbhBaseline.sourceCommit, markdownFile);
+    const originalLines = new Map(originalMarkdown.split('\n').flatMap((line) => {
+      const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+      return position ? [[Number(position[1]), line]] : [];
+    }));
+    const inverseMarkdown = (await read(markdownFile)).replace(/\r\n/g, '\n').split('\n').map((line) => {
+      const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+      return position && additions.has(Number(position[1])) ? originalLines.get(Number(position[1])) : line;
+    }).join('\n');
+    assert.equal(inverseMarkdown, originalMarkdown, 'Every unmodified checklist line must survive.');
+    assertCbhBaselinePayload(contract, mapping, payload, await read(markdownFile));
     for (const [file, expected] of Object.entries(contract.cbhBaseline.files)) {
-      assert.equal(await textHash(file), expected, file);
+      assert.equal(hash(historicalText(contract.cbhBaseline.sourceCommit, file)), expected, file);
+      if (file !== payloadFile && file !== markdownFile) assert.equal(await textHash(file), expected, file);
     }
     const packet = await json(`scripts/data/cbh-packets/${id}.json`);
-    const mapping = await json(`scripts/data/cbh-mappings/${id}.json`);
+    const originalMapping = await json(`scripts/data/cbh-mappings/${id}.json`);
     const report = await json(`scripts/data/cbh-overlaps/${id}.json`);
     assert.deepEqual([
-      packet.packetDigest, mapping.mappingDigest, report.reportDigest, mapping.relationshipReview.approvalDigest,
+      packet.packetDigest, originalMapping.mappingDigest, report.reportDigest, originalMapping.relationshipReview.approvalDigest,
     ], [
       contract.cbhBaseline.packetDigest, contract.cbhBaseline.mappingDigest,
       contract.cbhBaseline.reportDigest, contract.cbhBaseline.approvalDigest,
