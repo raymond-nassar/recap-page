@@ -5,13 +5,31 @@
   "source": "https://github.com/raymond-nassar/recap-page/issues/766",
   "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
   "sourceLicense": null,
-  "generatedAt": "2026-10-09T18:27:15.569Z",
+  "generatedAt": "2026-10-22T12:00:00.000Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 16,
-  "collections": 3,
+  "count": 18,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
+    {
+      "issueId": 41511,
+      "title": "Doctor Strange: Season One (2012)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/41511/doctor_strange_season_one_2012_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Doctor Strange: Season One"
+    },
     {
       "issueId": 5235,
       "title": "Doctor Strange: The Oath (2006) #1",
@@ -523,6 +541,24 @@
         }
       ],
       "collectedIn": "Doctor Strange by Jason Aaron Vol. 2: The Last Days of Magic"
+    },
+    {
+      "issueId": 62446,
+      "title": "Dr. Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Doctor Strange: What Is It That Disturbs You, Stephen?"
     }
   ]
 }

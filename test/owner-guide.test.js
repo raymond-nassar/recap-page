@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
-  authorizeOwnerGuide, emitOwnerGuide, OWNER_PROVIDER, ownerApprovalRequest, parseOwnerMarkdown, prepareOwnerGuide, verifyOwnerMetadataCache,
+  authorizeOwnerGuide, emitOwnerGuide, emitOwnerGuideIdentityUpdate, OWNER_PROVIDER, ownerApprovalRequest,
+  parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, verifyOwnerMetadataCache,
 } from '../scripts/lib/owner-guide.mjs';
 import { validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
@@ -14,6 +16,7 @@ import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+const REPOSITORY_ROOT = fileURLToPath(new URL('../', import.meta.url));
 
 async function setup(t, markdown = '# My reading list\n\n## First group\n- Sample Comic (2020) #1-2\n') {
   const root = await mkdtemp(path.join(tmpdir(), 'owner-guide-'));
@@ -361,4 +364,85 @@ test('review regression: mixed collection presentation does not rewrite null sto
     { rows: [{ group: null }, { group: null }], headings: [] });
   assert.deepEqual(ownerPresentation([{ group: 'Individual issues' }, { group: null }]).headings,
     ['Individual issues', 'Individual issues']);
+});
+
+test('owner-confirmed identity preparation binds a synthetic registered guide and rejects stale approval', async (t) => {
+  const root = await mkdtemp(path.join(tmpdir(), 'owner-identity-guide-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await Promise.all([
+    cp(path.join(REPOSITORY_ROOT, 'src', 'data'), path.join(root, 'src', 'data'), { recursive: true }),
+    cp(path.join(REPOSITORY_ROOT, 'scripts', 'data'), path.join(root, 'scripts', 'data'), { recursive: true }),
+    cp(path.join(REPOSITORY_ROOT, 'test', 'fixtures', 'owner-delivery'),
+      path.join(root, 'test', 'fixtures', 'owner-delivery'), { recursive: true }),
+  ]);
+  const request = {
+    schemaVersion: 1,
+    id: 'mcu-prep-the-incredible-hulk-2008',
+    generatedAt: '2026-10-22T12:00:00.000Z',
+    identities: [{
+      sourcePosition: 1,
+      issueId: 999999,
+      label: 'Hulk: Season One (2012)',
+      url: 'https://www.marvel.com/comics/issue/999999/hulk_season_one_2012',
+      confirmingActor: 'raymond-nassar',
+      confirmedAt: '2026-10-21',
+      confirmationSource: 'https://github.com/raymond-nassar/recap-page/issues/1000#issuecomment-1000',
+      confirmationRetrievedAt: '2026-10-22',
+      providerStatus: 404,
+      provider404At: '2026-10-21',
+    }],
+  };
+  const markdownFile = path.join(root, 'src', 'data', 'orders', 'mcu-prep-the-incredible-hulk-2008.md');
+  const originalMarkdown = await readFile(markdownFile, 'utf8');
+  const annotatedMarkdown = originalMarkdown.replace(
+    'See [data provenance]',
+    'This source-specific note must survive identity publication.\nSee [data provenance]',
+  );
+  await writeFile(markdownFile, annotatedMarkdown);
+  const proposal = await prepareOwnerGuideIdentityUpdate(request, { root });
+  assert.equal(proposal.status, 'awaiting-owner-approval');
+  assert.deepEqual(proposal.review.identities, [{
+    sourcePosition: 1,
+    issueId: 999999,
+    label: 'Hulk: Season One (2012)',
+    url: request.identities[0].url,
+  }]);
+  assert.deepEqual(proposal.review.exactDuplicates, []);
+  assert.ok(proposal.outputs.every((output) => /^[a-f0-9]{64}$/.test(output.sha256)));
+
+  const catalogFile = path.join(root, 'src', 'data', 'catalog.json');
+  const originalCatalog = await readFile(catalogFile, 'utf8');
+  const catalog = await readJson(catalogFile);
+  catalog.generatedAt = '2026-10-22T12:01:00.000Z';
+  await writeFile(catalogFile, json(catalog));
+  await assert.rejects(() => emitOwnerGuideIdentityUpdate(proposal, {
+    schemaVersion: 1,
+    proposalDigest: proposal.proposalDigest,
+    authorityType: 'human',
+    authorityIdentity: 'raymond-nassar',
+    rationale: 'Synthetic owner approval for stale-input rejection.',
+    reviewedAt: '2026-10-22T12:00:00.000Z',
+  }, { root }), /Registered guide inputs or outputs changed after identity update approval/);
+
+  await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
+    ...request,
+    identities: [{ ...request.identities[0], providerStatus: 200 }],
+  }, { root }), /Only a recorded provider 404 can use owner-confirmed identity evidence/);
+  await writeFile(catalogFile, originalCatalog);
+  const freshProposal = await prepareOwnerGuideIdentityUpdate(request, { root });
+  await emitOwnerGuideIdentityUpdate(freshProposal, {
+    schemaVersion: 1,
+    proposalDigest: freshProposal.proposalDigest,
+    authorityType: 'human',
+    authorityIdentity: 'raymond-nassar',
+    rationale: 'Synthetic owner approval for identity-only guide publication.',
+    reviewedAt: '2026-10-22T12:00:00.000Z',
+  }, { root });
+  const updatedMarkdown = await readFile(markdownFile, 'utf8');
+  assert.match(updatedMarkdown, /Selected by raymond-nassar for MCU Prep/);
+  assert.match(updatedMarkdown, /This source-specific note must survive identity publication\./);
+  assert.match(updatedMarkdown, /1 owner-confirmed identities have no provider details or cover\./);
+  assert.ok(updatedMarkdown.indexOf('## Hulk: Season One') < updatedMarkdown.indexOf('## Hulk: Gray'));
+  assert.match(updatedMarkdown,
+    /Hulk: Season One \(2012\) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->/);
 });

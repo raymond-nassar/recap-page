@@ -961,9 +961,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:606` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:616` and the issue-details view at
 `src/js/views/issue.js:103`. The function behind both already answers for the absence at
-`src/js/views/reading.js:75-83`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:80-92`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1090,7 +1090,7 @@ authored paths with 10 and 12 stops from the curated manifest at
 `src/data/curated-lists.json:7890-7929`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12139-12264`.
+`src/data/catalog.json:12141-12266`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2814,16 +2814,17 @@ source ledger, frozen packet, exact mapping and complete-library relationship re
 messages, not unavailable original uploaded files. Factual projections have separate
 digests; private originals are not public dependencies.
 
-| MCU Prep guide | Supplied positions | Included works | Metadata gaps | Exclusions / repeats |
+| MCU Prep guide | Supplied positions | Published identities | Provider-detail gaps | Exclusions / repeats |
 |---|---:|---:|---:|---:|
 | Captain America: Civil War (2016) | 23 | 23 | 0 | 0 / 0 |
 | Thor: Ragnarok (2017) | 30 | 30 | 0 | 0 / 0 |
 | Black Panther (2018) | 54 | 54 | 0 | 0 / 0 |
 | Avengers: Infinity War (2018) & Avengers: Endgame | 19 | 19 | 0 | 0 / 0 |
 | Captain Marvel (2019) | 24 | 24 | 0 | 0 / 0 |
-| Doctor Strange (2016) | 18 | 16 | 2 | 0 / 0 |
+| Doctor Strange (2016) | 18 | 18 | 2 | 0 / 0 |
 
-All 168 supplied positions remain accounted for: 166 resolved originals and two gaps.
+All 168 supplied positions are published: 166 provider-resolved originals and two owner-confirmed
+identities without provider details.
 Civil War revision 2 inserts Captain America #22-24 between Civil War #3 and #4, retaining
 three sections and five blocks. Ragnarok retains source group numbers 1, 2, 3 and 5.
 Thor: Season One remains one unnumbered original with provider number 0 retained only as
@@ -2848,14 +2849,45 @@ instead identifies Friendly Neighborhood Spider-Man #14 and is explicitly reject
 These are model-reviewed identity corrections, not human approvals inferred from the copy
 answer. The separate Last Days of Magic one-shot remains after the selected 2015 #6-10.
 
-[The two standalone gaps](https://github.com/raymond-nassar/recap-page/issues/767) retain
-source positions 1 and 18: Season One candidate 41511 and the 1997 What Is It That Disturbs
-You, Stephen? candidate 62446. Both details returned 404 and exact/shorter searches were
-empty. Independent bibliography verifies
+[The two former standalone gaps](https://github.com/raymond-nassar/recap-page/issues/767) remain
+at source positions 1 and 18 as owner-confirmed identities: Season One, issue ID 41511, and the
+1997 What Is It That Disturbs You, Stephen?, issue ID 62446. Their provider details returned
+404 and exact/shorter searches were empty. The owner supplied both issue-page URLs and confirmed
+the identities on 2026-10-21 in the linked
+[identity confirmation](https://github.com/raymond-nassar/recap-page/issues/767#issuecomment-6331482303).
+Both are standalone works; no issue number is inferred. Independent bibliography verifies
 [Season One](https://openlibrary.org/books/OL27629862M) and corroborates
 [Marc Andreyko/P. Craig Russell for the 1997 original](https://leagueofcomicgeeks.com/comic/3052976/doctor-strange-what-is-it-that-disturbs-you-stephen-1).
-No provider credit is invented or overwritten for a missing response. Neither gap means
-the comic is unavailable on Marvel Unlimited, and no replacement edition is selected.
+No provider credit is invented or overwritten for a missing response. Owner confirmation
+establishes identity only, not Marvel Unlimited availability, and neither row substitutes a
+different edition.
+
+### Owner-confirmed comic identities without provider details
+
+The same explicit evidence kind publishes the ten owner-confirmed identities in One World Under
+Doom (2025) at source positions 27-32 and 83-86. The six Avengers Academy and Astonishing Avengers
+Infinity Comic source labels remain yearless in the original selection; their fuller confirmed
+labels are recorded separately in the identity evidence. The owner's
+[One World Under Doom confirmation](https://github.com/raymond-nassar/recap-page/issues/772#issuecomment-6331455208)
+supplies the confirming actor, decision date, exact issue IDs, labels and URLs. Each record retains
+its original source position and provider 404 rather than turning owner evidence into a provider
+response.
+
+The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:719-740`).
+The vendor excludes these entries from metadata lookup and creates no provider projection
+(`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
+The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
+provider details and covers remain empty. No comic image bytes are stored and no Unlimited
+availability is inferred.
+
+The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
+record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
+provider record after import and reload (`src/js/lib/model.js:223-225`,
+`src/js/views/reading.js:52`, `src/js/views/reading.js:59-61`). The actor, date, URL and confirmation
+comment stay in the repository evidence. This additive marker does not change saved-data version 4;
+existing saves need no migration, and older builds may discard the marker without changing reading
+progress or issue identity.
 
 After Phase Two merged, each report and approval was renewed against 309 existing
 source/visible orders, including generated children and the retained hidden parent, plus

@@ -128,6 +128,12 @@ test('catalog gap labels omit zero and preserve singular and plural meanings', (
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 2 }), [
     '2 issues have no details, covers, or Unlimited links',
   ]);
+  assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 1 }), [
+    '1 issue has an owner-confirmed identity but no provider details or cover',
+  ]);
+  assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 2 }), [
+    '2 issues have owner-confirmed identities but no provider details or covers',
+  ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
     '1 issue has no Marvel Unlimited link yet and cannot be opened',
     '2 issues have no details, covers, or Unlimited links',

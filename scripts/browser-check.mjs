@@ -5518,7 +5518,10 @@ const SCENARIOS = [
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
         && timeline.doom.description.startsWith('The selected One World Under Doom reading path follows')
-        && timeline.doom.meta.startsWith('75 issues')
+        && timeline.doom.meta.startsWith('85 issues')
+        && timeline.doom.meta.includes(
+          '10 issues have owner-confirmed identities but no provider details or covers',
+        )
         && timeline.cardYears.at(-1) === 2025
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
@@ -5570,13 +5573,16 @@ const SCENARIOS = [
         description: document.querySelector('#preview-desc')?.textContent ?? '',
         issues: document.querySelectorAll('#preview .preview-issue-link').length,
       }));
-      t.check('Doom Preview shows the 75 resolved issues and both reviewed source annotations',
-        doomPreview.meta.includes('75 issues')
+      t.check('Doom Preview shows all 85 issues, owner-confirmed identities and both reviewed source annotations',
+        doomPreview.meta.includes('85 issues')
+        && doomPreview.meta.includes(
+          '10 issues have owner-confirmed identities but no provider details or covers',
+        )
         && doomPreview.description.includes(
           'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
         )
         && doomPreview.description.includes('Read Fantastic Four (2025) #1-3 together.')
-        && doomPreview.issues === 75,
+        && doomPreview.issues === 85,
         JSON.stringify(doomPreview));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open

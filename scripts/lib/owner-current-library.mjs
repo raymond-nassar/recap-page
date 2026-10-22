@@ -62,19 +62,30 @@ export async function loadCurrentOwnerLibrary(candidateId, { root = ROOT } = {})
   };
 }
 
-export async function buildCurrentOwnerOverlap(mapping, options = {}) {
+export async function buildCurrentOwnerOverlap(mapping, { peerMappings = [], ...options } = {}) {
   validateMappingDigest(mapping);
   validateResolvedMapping(mapping.rows);
   if (mapping.rows.some((row) => row.resolutionStatus !== 'exact' || row.selectedIssueId == null)) {
     throw new Error('Current owner-library comparison requires only exactly resolved originals');
   }
   const library = await loadCurrentOwnerLibrary(mapping.id, options);
+  const peerIds = peerMappings.map((peer) => String(peer.id));
+  const peerIdSet = new Set(peerIds);
+  const reviewedManifest = peerIds.length
+    ? { ...library.manifest, lists: library.manifest.lists.filter((entry) => !peerIdSet.has(entry.id)) }
+    : library.manifest;
+  const reviewedOrders = library.orders.filter((entry) => !peerIdSet.has(entry.orderId)).map((entry) => ({
+    id: entry.orderId, issueIds: entry.issueIds.map(String),
+  }));
   const report = {
     candidateId: mapping.id,
     packetDigest: mapping.packetDigest,
     mappingDigest: mapping.mappingDigest,
-    libraryDigest: library.libraryDigest,
-    peerDigests: {},
+    libraryDigest: peerIds.length ? libraryDigestFor(reviewedManifest, reviewedOrders) : library.libraryDigest,
+    peerDigests: Object.fromEntries(peerMappings.map((peer) => {
+      validateMappingDigest(peer);
+      return [String(peer.id), peer.mappingDigest];
+    }).sort(([left], [right]) => left.localeCompare(right))),
     sourceCounts: sourceCountsForPacket(mapping),
     ...buildComparisonReport({
       candidateIds: mapping.rows.map((row) => row.selectedIssueId),

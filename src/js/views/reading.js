@@ -49,12 +49,17 @@ export function rowCacheKey(item, currentId, today, covers) {
 
 export function detailsState(item) {
   if (item?.hydrated) return null;
+  if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') return 'owner-confirmed';
   if (item?.detailsRefused) return 'norecord';
   if (item?.source !== 'manual') return 'pending';
   return null;
 }
 
 export const DETAILS_BADGE = {
+  'owner-confirmed': {
+    text: 'identity confirmed',
+    hint: 'The owner confirmed this issue identity. The metadata snapshot has no provider details or cover.',
+  },
   norecord: {
     text: 'no details held',
     hint: 'The metadata snapshot has no record of this issue, so there are no details to fetch.',
@@ -78,7 +83,12 @@ export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = 
     || (sessionEntry != null && (typeof sessionEntry === 'string' || noSynopsisMarker === undefined))) {
     return 'No synopsis is recorded for this issue.';
   }
-  if (!issue?.hydrated && issue?.detailsRefused) return DETAILS_BADGE.norecord.hint;
+  if (!issue?.hydrated && issue?.detailsRefused) {
+    if (issue.identityEvidenceKind === 'owner-confirmed-identity') {
+      return DETAILS_BADGE['owner-confirmed'].hint;
+    }
+    return DETAILS_BADGE.norecord.hint;
+  }
   return 'Story summary has not been loaded.';
 }
 

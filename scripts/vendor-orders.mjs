@@ -325,7 +325,7 @@ function catalogCover(order, payload) {
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
   const { coverIssueId, cover } = catalogCover(order, payload);
-  const { placeholders, empty } = countOrderGaps(payload);
+  const { placeholders, empty, ownerConfirmed } = countOrderGaps(payload);
   return {
     id: order.id,
     file: order.out,
@@ -338,6 +338,7 @@ function catalogEntry(order, payload) {
     count: payload.count,
     placeholderCount: placeholders,
     emptyRecordCount: empty,
+    ...(ownerConfirmed ? { ownerConfirmedIdentityCount: ownerConfirmed } : {}),
     // Derived from the payload for the same reason the issue count is: a number the reader
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
@@ -416,7 +417,9 @@ async function main() {
   }
 
   const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => (
-    parsedOrder.entries.map((entry) => entry.issueId)
+    parsedOrder.entries
+      .filter((entry) => entry.identityEvidenceKind !== 'owner-confirmed-identity')
+      .map((entry) => entry.issueId)
   )))];
   if (ids.length) {
     console.log(metadataCacheDir
@@ -480,7 +483,8 @@ async function main() {
     let missingCover = 0;
 
     const issueItems = entries.map((e) => {
-      const d = meta.get(e.issueId) ?? {};
+      const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
+      const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
       if (d.digitalId == null) missingDigital += 1;
       const cover = coverBase(d.cover);
       if (!cover) missingCover += 1;
@@ -523,7 +527,8 @@ async function main() {
           // when it is true, so an order with nothing refused re-vendors with no per-item change
           // at all. The file still differs, because generatedAt is a fresh wall clock on every
           // run, so an empty diff is not the thing to check a run against.
-          ...(refused.has(e.issueId) ? { detailsRefused: true } : {}),
+          ...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),
+          ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
           // The collected edition this issue belongs to, taken from the checklist's own
           // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
           // no collection record for anything published after 2023, so there is nothing

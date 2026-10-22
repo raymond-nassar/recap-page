@@ -61,12 +61,31 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(parsed.entries.map((row) => row.issueId), expectedIds);
   assert.deepEqual(parsed.entries.map((row) => Number(row.sourceKey)), expectedPositions);
   assert.deepEqual(parsed.entries.map((row) => row.section), expectedGroups);
+  assert.deepEqual(parsed.entries.map((row) => row.identityEvidenceKind ?? null),
+    mapping.rows.map((row) => row.identityEvidenceKind ?? null));
   assert.deepEqual(payload.items.map((row) => row.issueId), expectedIds);
   assert.deepEqual(payload.items.map((row) => row.collectedIn ?? null), expectedGroups);
   assert.deepEqual(payload.items.map((row) => row.title), contract.rows.map((row) => row[2]));
   assert.deepEqual([payload.count, payload.placeholders, payload.unresolved], [expectedIds.length, 0, []]);
-  assert.ok(payload.items.every((row) => row.description === null && !row.placeholder && !row.detailsRefused));
-  for (const item of payload.items) {
+  assert.ok(payload.items.every((row) => row.description === null && !row.placeholder));
+  for (const [index, item] of payload.items.entries()) {
+    const row = mapping.rows[index];
+    if (row.identityEvidenceKind === 'owner-confirmed-identity') {
+      assert.equal(item.detailsRefused, true);
+      assert.equal(item.identityEvidenceKind, 'owner-confirmed-identity');
+      assert.equal(item.url, row.marvelIssueUrl);
+      assert.equal(item.seriesId, null);
+      assert.equal(item.seriesName, null);
+      assert.equal(item.onSale, null);
+      assert.equal(item.mu, null);
+      assert.equal(item.digitalId, null);
+      assert.equal(item.cover, null);
+      assert.equal(item.pageCount, null);
+      assert.deepEqual(item.creators, []);
+      assert.equal(mapping.candidateMetadata.some((candidate) => candidate.id === item.issueId), false);
+      continue;
+    }
+    assert.ok(!item.detailsRefused);
     const metadata = mapping.candidateMetadata.find((row) => row.id === item.issueId)?.providerProjection;
     assert.ok(metadata, 'Every published original needs its approved metadata projection.');
     assert.equal(item.digitalId, metadata.digitalId);
@@ -92,6 +111,10 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
+  assert.equal(
+    catalog.lists.find((row) => row.id === id).ownerConfirmedIdentityCount ?? 0,
+    mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity').length,
+  );
 
   const library = await loadCurrentOwnerLibrary(id, { root });
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: library.orders });

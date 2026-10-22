@@ -151,6 +151,8 @@ function normalizeEntry(raw) {
   const emptyRecordCount = Number.isInteger(raw.emptyRecordCount) && raw.emptyRecordCount >= 0
     ? raw.emptyRecordCount
     : null;
+  const ownerConfirmedIdentityCount = Number.isInteger(raw.ownerConfirmedIdentityCount)
+    && raw.ownerConfirmedIdentityCount >= 0 ? raw.ownerConfirmedIdentityCount : 0;
   if (!id || !name || !file || count == null
     || placeholderCount == null || emptyRecordCount == null) return null;
 
@@ -161,6 +163,7 @@ function normalizeEntry(raw) {
     count,
     placeholderCount,
     emptyRecordCount,
+    ownerConfirmedIdentityCount,
     // How many collected editions the order is divided into, or 0 for an ordinary issue order.
     // A trade order is a different kind of reading commitment, so the number a reader weighs is
     // the number of books, not only the number of issues.
@@ -271,6 +274,12 @@ export function catalogGapLabels(list) {
     const count = list.emptyRecordCount;
     out.push(
       `${count} ${count === 1 ? 'issue has no details, cover, or Unlimited link' : 'issues have no details, covers, or Unlimited links'}`,
+    );
+  }
+  if (list?.ownerConfirmedIdentityCount > 0) {
+    const count = list.ownerConfirmedIdentityCount;
+    out.push(
+      `${count} ${count === 1 ? 'issue has an owner-confirmed identity' : 'issues have owner-confirmed identities'} but no provider details or ${count === 1 ? 'cover' : 'covers'}`,
     );
   }
   return out;
