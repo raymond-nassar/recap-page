@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "shang-chi-master-of-kung-fu-reading-order",
+  "correctionIssue": "https://github.com/raymond-nassar/recap-page/issues/647",
+  "priorPublication": {
+    "commit": "b6e126f04cc388de8536881e8594865f64a39f86",
+    "files": {
+      "packet": "scripts/data/cbh-packets/shang-chi-master-of-kung-fu-reading-order.json",
+      "mapping": "scripts/data/cbh-mappings/shang-chi-master-of-kung-fu-reading-order.json",
+      "report": "scripts/data/cbh-overlaps/shang-chi-master-of-kung-fu-reading-order.json",
+      "fixture": "test/fixtures/shang-chi-browser-vector.json"
+    },
+    "packetDigest": "03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be",
+    "mappingDigest": "3ca94a2657dca2348c7ed584af670210072201dbb6d783252d52df3f9f031698",
+    "reportDigest": "7d1728b99a201eaaa9f9ecac847d6568dabf0b3bbc122162e62e72887a5215d9",
+    "approvalDigest": "76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f",
+    "browserFixtureSha256": "7ef31593030ad78ef871d470921cc6b7f5938d99e2099dd67822383298a51a49",
+    "trackingEvidence": [
+      {
+        "sourcePosition": 42,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/626",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "2dc1275a3cbcf428ce69b35385541358764a04fa1f3648c3cde498a5eb576e8a"
+      },
+      {
+        "sourcePosition": 49,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/627",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "13fb748d75a86c1c1e774efb6dd120a5f7eb92b8551db65772af100cac9fbf38"
+      },
+      {
+        "sourcePosition": 165,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "0696771fc38f39446f7fb7fb82ebcf26a4fe37706b7d5dcfe68a6845932970c0"
+      },
+      {
+        "sourcePosition": 166,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "afe8b5960214b29f89b31ac4150f8d793f9745eb77b2e721010d2199ccbd3bad"
+      },
+      {
+        "sourcePosition": 167,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "ed33a34d524299e6ed21ad3fe3433bf4228c6a3ce6ecddf9e985cf26f5da1d61"
+      },
+      {
+        "sourcePosition": 168,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "49afae7335a394dbc7b2a7d2b3f2d4cc531522a47067c90431d52559d4ed523e"
+      },
+      {
+        "sourcePosition": 169,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "8d1510b49190b554213ac077a4bb61b194a61328d8ff8279a137a0ac16197a90"
+      },
+      {
+        "sourcePosition": 170,
+        "trackingSource": {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/628",
+          "retrievedAt": "2026-09-29"
+        },
+        "evidenceDigest": "41ee9e433c394de30e12431cf59520071d57592765818b06946911c8151b3f89"
+      }
+    ]
+  },
+  "correctionReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot provenance reviewer for issue #647",
+    "reviewedAt": "2026-10-21",
+    "rationale": "Read live titles and bodies of issues #626, #627 and #628. Correct only the rotated tracking URLs and their retrieval dates. Recompute the gap and downstream digest bindings without changing the source selection, original IDs, gap identities, saved-progress keys, 198-peer factual comparisons or historical relationship-review attribution and dispositions. The retained prior snapshot reconstructs every original chain digest. This review authorizes only the evidence correction, not new source or relationship decisions.",
+    "verifiedMapping": [
+      {
+        "sourcePosition": 42,
+        "normalizedSeriesTitle": "The Deadly Hands of Kung Fu",
+        "seriesYear": 1974,
+        "issueNumber": "12",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/627"
+      },
+      {
+        "sourcePosition": 49,
+        "normalizedSeriesTitle": "Kung Fu Special",
+        "seriesYear": 1974,
+        "issueNumber": "1",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+      },
+      {
+        "sourcePosition": 165,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "1",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      },
+      {
+        "sourcePosition": 166,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "2",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      },
+      {
+        "sourcePosition": 167,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "3",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      },
+      {
+        "sourcePosition": 168,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "4",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      },
+      {
+        "sourcePosition": 169,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "5",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      },
+      {
+        "sourcePosition": 170,
+        "normalizedSeriesTitle": "Shang-Chi: Master of Kung Fu",
+        "seriesYear": 2002,
+        "issueNumber": "6",
+        "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+      }
+    ],
+    "packetDigest": "280e0d605014d87d49290a6fba0fec959bdd67d87262eb26d116ba0ed4ed5dda",
+    "mappingDigest": "09c64cce6fa0b9d52fc6641726d7eedac1372e4884324133bbd3b8e8e274d62c",
+    "reportDigest": "1e08eedef7d76e44d561331537a8e6f64350bf5bf797cfbbf6744c3361d4f50e",
+    "approvalDigest": "cbf846a282df5e85d1b994f1bbf5df9351553e4b6b3cda75e97e523a9263fcb9"
+  },
+  "preservedFiles": {
+    "src/data/orders/shang-chi-master-of-kung-fu-reading-order.md": "f9808954667c3b1d03606d60a509582ef4f39197422dc7925bbb3e385cb42d4b",
+    "src/data/shang_chi_master_of_kung_fu_reading_order.json": "3b93d892f1a93eb5d763b16fe761b014c5bc9aea2d428027ff11df45c381bb6e",
+    "scripts/data/cbh-source-ledgers/shang-chi-master-of-kung-fu-reading-order.json": "d9b9341ebe76052455264bd8b9ea09b727d5bd547f4f2b568229969267a57445"
+  }
+}
