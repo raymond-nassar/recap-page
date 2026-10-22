@@ -5,11 +5,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, CBH_SOURCE_PROVIDER, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
-import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
+import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
 import { OWNER_PROVIDER } from '../../scripts/lib/owner-guide.mjs';
 import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs';
 import { parseChecklist } from '../../src/js/lib/markdown.js';
@@ -21,6 +21,7 @@ import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-hist
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, identityRevisions } from './owner-identity-history.mjs';
+import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -33,6 +34,9 @@ export async function assertOwnerDeliveryContract(contract, {
 } = {}) {
   const text = readText ?? ((name) => readFile(path.join(root, name), 'utf8'));
   const json = readJson ?? (async (name) => JSON.parse(await text(name)));
+  if (contract.sourceProvider === CBH_SOURCE_PROVIDER.id) {
+    return assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount });
+  }
   const { id } = contract;
   const event = contract.surface === 'modern-timeline';
   const provider = event ? OWNER_EVENT_PROVIDER : (contract.sourceOrigin
@@ -198,4 +202,47 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(later.sharedCount, reciprocal.sharedCount);
     assert.deepEqual([...later.sharedIds].sort(), [...reciprocal.sharedIds].sort());
   }
+}
+
+async function assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount }) {
+  const { id } = contract;
+  const [sourceText, packet, mapping, report, markdown, manifest, catalog] = await Promise.all([
+    text(`scripts/data/owner-selections/${id}.json`),
+    json(`scripts/data/owner-packets/${id}.json`),
+    json(`scripts/data/owner-mappings/${id}.json`),
+    json(`scripts/data/owner-overlaps/${id}.json`),
+    text(`src/data/orders/${id}.md`),
+    json('src/data/curated-lists.json'), json('src/data/catalog.json'),
+  ]);
+  const payload = await json(`src/data/${packet.proposedManifest.out}`);
+  const originalPacket = await json(`scripts/data/cbh-packets/${id}.json`);
+  const originalMapping = await json(`scripts/data/cbh-mappings/${id}.json`);
+  assert.deepEqual(packet.sourceReview, originalPacket.sourceReview);
+  assert.deepEqual(mapping.rows, originalMapping.rows);
+  assert.deepEqual(packet.sourceGaps, originalPacket.sourceGaps);
+  assert.equal(mapping.reviewStatus, 'approved');
+  assert.equal(hash(sourceText.replace(/\r\n/g, '\n')), contract.sourceSha256);
+  assert.equal(packet.sourceContentSha256, originalPacket.sourceContentSha256);
+  assert.equal(packet.sourceIssueBearingBlocksSha256, contract.sourceIssueBearingBlocksSha256);
+  assert.deepEqual(sourceCountsForPacket(packet), contract.sourceCounts);
+  assertMappingMatchesPacketOccurrences(packet, mapping);
+  assertCbhBaselinePayload(contract, mapping, payload, markdown);
+  assert.equal(payload.description, contract.description);
+  assert.equal(payload.sourceOrigin, contract.sourceOrigin);
+  assert.equal(contract.sourceOrigin, CBH_SOURCE_PROVIDER.sourceOrigin);
+  assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
+  assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
+  for (const [file, digest] of Object.entries(contract.cbhBaseline.files)) {
+    assert.equal(hash((await text(file)).replace(/\r\n/g, '\n')), digest, file);
+  }
+  const { report: current } = await buildCurrentOwnerOverlap(mapping, { root });
+  assert.deepEqual(current, report);
+  assert.equal(report.comparisonCount, peerCount);
+  assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
+  assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);
+  assertApprovedRelationshipReview({
+    packet, mapping, report, currentLibraryDigest: current.libraryDigest,
+    expectedOrderIds: current.comparisons.map((entry) => entry.orderId),
+    packetValidation: { provider: CBH_SOURCE_PROVIDER },
+  });
 }

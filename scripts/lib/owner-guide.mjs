@@ -18,7 +18,10 @@ import {
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
-import { OWNER_EVENT_PROVIDER, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import { ownerGuideProvider, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import {
+  assertCbhBaselinePayload, cbhBaselineContractRows, preserveCbhBaselinePlaceholders, updatedCbhBaselineChecklist,
+} from './owner-cbh-baseline.mjs';
 import { beforeMcuEditorialEntry, mcuEditorial } from './mcu-editorial.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -990,11 +993,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   const registration = registry.guides.find((entry) => entry.id === request.id);
   assert.ok(registration, 'Only a registered owner guide can receive identity updates.');
   assert.equal(registration.contract, paths.contract, 'The registered contract path differs from the guide identity.');
-  const provider = registration.surface === 'modern-timeline'
-    ? OWNER_EVENT_PROVIDER
-    : (request.id === THUNDERBOLTS_MISMATCH.guideId
-      ? { ...OWNER_PROVIDER, sourceOrigin: 'Compiled by hand for this project from the owner-authored outline in GitHub issue #682' }
-      : OWNER_PROVIDER);
+  const provider = ownerGuideProvider(registration, OWNER_PROVIDER);
+  const cbhBaseline = registration.sourceProvider === 'comic-book-herald';
   const currentLibrary = await loadCurrentOwnerLibrary(request.id, { root });
   const currentMappingFile = path.join(root, paths.mapping);
   const currentMappingForPaths = JSON.parse(await readFile(currentMappingFile, 'utf8'));
@@ -1054,9 +1054,13 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
   assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);
   assertMappingMatchesPacketOccurrences(packet, mapping);
-  assert.equal(canonicalJson(payload.items.map((item) => item.issueId)),
-    canonicalJson(mapping.rows.map((row) => row.selectedIssueId)),
-    'The current payload differs from its approved mapping.');
+  if (cbhBaseline) {
+    assertCbhBaselinePayload(contract, mapping, payload, inputs.contents.get(paths.markdown).toString('utf8'));
+  } else {
+    assert.equal(canonicalJson(payload.items.map((item) => item.issueId)),
+      canonicalJson(mapping.rows.map((row) => row.selectedIssueId)),
+      'The current payload differs from its approved mapping.');
+  }
   if (request.identities.some((identity) => identity.providerStatus === 200)) {
     assertThunderboltsMismatchSource(thunderboltsSource);
   }
@@ -1183,7 +1187,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   nextPacket.expectedCount = nextPacket.rows.length;
   nextPacket.proposedManifest = {
     ...nextPacket.proposedManifest,
-    expect: nextPacket.rows.length,
+    expect: nextPacket.rows.length + (cbhBaseline ? remainingGaps.length : 0),
     ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
   };
   nextPacket.packetDigest = packetDigestFor(nextPacket);
@@ -1268,15 +1272,17 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
 
   const currentChecklistText = inputs.contents.get(paths.markdown).toString('utf8');
   const displayGroupBySourceRange = ownerGuideDisplayGroups(currentChecklistText, mapping);
-  const displayGroup = (row) => row.sourceRangeReference
-    ? displayGroupBySourceRange.get(row.sourceRangeReference) ?? row.sourceRangeReference : null;
-  const groups = [...new Set(nextMapping.rows.map(displayGroup).filter(Boolean))];
+  const capturedGroups = new Map(contract.rows.map(([position, , , group]) =>
+    [position, group == null ? null : contract.groups[group]]));
+  const displayGroup = (row) => cbhBaseline ? capturedGroups.get(row.sourcePosition)
+    : (row.sourceRangeReference ? displayGroupBySourceRange.get(row.sourceRangeReference) ?? row.sourceRangeReference : null);
+  const groups = cbhBaseline ? contract.groups : [...new Set(nextMapping.rows.map(displayGroup).filter(Boolean))];
   const nextContract = {
     ...structuredClone(contract),
     ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
     libraryDigest: nextReport.libraryDigest,
     groups,
-    rows: nextMapping.rows.map((row) => [
+    rows: cbhBaseline ? cbhBaselineContractRows(contract, nextMapping) : nextMapping.rows.map((row) => [
       row.sourcePosition, row.selectedIssueId, row.resolvedIssueTitle,
       row.sourceRangeReference ? groups.indexOf(displayGroup(row)) : null,
     ]),
@@ -1294,9 +1300,9 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     const after = nextComparisons.get(orderId) ?? null;
     return canonicalJson(before) === canonicalJson(after) ? [] : [{ orderId, before, after }];
   });
-  const markdown = updatedOwnerChecklist(
-    currentChecklistText, source, mapping, nextMapping,
-  );
+  const markdown = cbhBaseline
+    ? updatedCbhBaselineChecklist(currentChecklistText, mapping, nextMapping)
+    : updatedOwnerChecklist(currentChecklistText, source, mapping, nextMapping);
   const parsed = parseChecklist(markdown);
   assert.deepEqual(parsed.entries.map((entry) => entry.issueId), nextMapping.rows.map((row) => row.selectedIssueId));
   assert.deepEqual(parsed.entries.map((entry) => Number(entry.sourceKey)), nextMapping.rows.map((row) => row.sourcePosition));
@@ -1304,7 +1310,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     nextMapping.rows.map((row) => row.identityEvidenceKind ?? null));
 
   const oldItems = new Map(payload.items.map((item) => [Number(item.issueId), structuredClone(item)]));
-  const nextItems = nextMapping.rows.map((row) => {
+  const mappedItems = nextMapping.rows.map((row) => {
     if (row.identityEvidenceKind !== 'owner-confirmed-identity') {
       const existing = oldItems.get(Number(row.selectedIssueId));
       assert.ok(existing, `Existing published issue ${row.selectedIssueId} is missing from the payload.`);
@@ -1330,11 +1336,14 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       ...(displayGroup(row) ? { collectedIn: cleanText(displayGroup(row)) } : {}),
     };
   });
+  const nextItems = cbhBaseline
+    ? preserveCbhBaselinePlaceholders(nextContract.rows, payload, mappedItems) : mappedItems;
   const nextPayload = {
     ...payload,
     ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
     generatedAt: request.generatedAt,
     count: nextItems.length,
+    ...(cbhBaseline ? { placeholders: remainingGaps.length } : {}),
     items: nextItems,
     collections: new Set(nextItems.map((item) => item.collectedIn).filter(Boolean)).size,
   };

@@ -19434,9 +19434,10 @@ SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDesc
 const { mcuPrepOrganization, mcuPrepOrganizationMutation } = await import('./browser-mcu-prep-organization.mjs');
 SCENARIOS.push(mcuPrepOrganization);
 MUTATIONS.push(mcuPrepOrganizationMutation);
-const { ownerGuideScenario } = await import('./browser-owner-guide.mjs');
+const { hasDedicatedCbhOwnerScenario, ownerGuideScenario } = await import('./browser-owner-guide.mjs');
 const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
 for (const guide of readOwnerGuideRegistry().guides) {
+  if (hasDedicatedCbhOwnerScenario(guide, SCENARIOS.map((scenario) => scenario.id))) continue;
   const contract = JSON.parse(readFileSync(new URL(`../${guide.contract}`, import.meta.url), 'utf8'));
   SCENARIOS.push(ownerGuideScenario(contract));
   const mapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${guide.id}.json`, import.meta.url), 'utf8'));

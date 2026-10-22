@@ -209,7 +209,7 @@ test('Thunderbolts identity checklist update replaces only its stale gap and cou
   const updated = updatedOwnerChecklist(markdown, source, previousMapping, mapping);
   const beforeEntries = parseChecklist(markdown).entries;
   const afterEntries = parseChecklist(updated).entries;
-  assert.deepEqual(updated, currentMarkdown);
+  assert.deepEqual(updated, currentMarkdown.replace(/\r\n/g, '\n'));
   assert.deepEqual(afterEntries.filter((entry) => Number(entry.sourceKey) !== 6)
     .map(withoutChecklistIndex), beforeEntries.map(withoutChecklistIndex));
   assert.match(updated, /Thunderbolts \(1997\) #-1, source position 6, is now included by owner-confirmed identity/);
