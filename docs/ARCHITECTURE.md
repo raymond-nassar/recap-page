@@ -735,3 +735,10 @@ Unsupported hosts reject before loading native code.
 The factory is not yet connected to authentication, provider requests or app controls. Authentication
 packages remain qualification candidates rather than production dependencies. This component does
 not establish a working cloud backup or successful account, scope, restart or cross-platform proof.
+
+`host/cloudOAuth.mjs` holds short-lived desktop authorization transactions only in the Node host.
+It issues random state and S256 PKCE challenges, binds each attempt to its profile, provider,
+connection epoch and exact temporary loopback callback, and consumes valid attempts before token
+exchange. Replacement, cancellation and expiry invalidate pending attempts. Pending state is bounded;
+neither provider errors nor request failure diagnostics echo callback URLs or credentials.
+The transaction helper does not open a callback listener, start sign-in or exchange tokens yet.

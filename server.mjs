@@ -111,10 +111,10 @@ export function createStaticServer(requestHandler = handle) {
   return createServer(async (req, res) => {
     try {
       await requestHandler(req, res);
-    } catch (err) {
+    } catch {
       // A request must never be able to kill the process. Without this, any throw in the handler
-      // becomes an unhandled rejection and Node exits, taking the user's session with it.
-      console.error(`Request failed: ${req.method} ${req.url}: ${err?.message ?? err}`);
+      // becomes an unhandled rejection and Node exits. URLs and thrown errors can contain tokens.
+      console.error('Request failed: internal server error');
       if (!res.headersSent) {
         res.writeHead(500, {
           ...SECURITY_HEADERS,

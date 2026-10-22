@@ -6151,7 +6151,7 @@
   },
   "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:274-315|0": {
     "anchor": "test/server-contract.test.js:274-315",
-    "fp": "7e7a6a6822d82b78",
+    "fp": "d6711c9e339d2dc9",
     "head": "test('every application response carries the security headers', async () => {"
   },
   "SECURITY.md|what-is-supported|src/js/lib/version.js:5-15|0": {

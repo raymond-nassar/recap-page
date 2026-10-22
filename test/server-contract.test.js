@@ -311,7 +311,27 @@ test('every application response carries the security headers', async () => {
     console.error = originalError;
   }
   assert.equal(errors.length, 2);
-  assert.ok(errors.every((message) => message.endsWith(': planned test failure')));
+  assert.ok(errors.every((message) => message === 'Request failed: internal server error'));
+});
+
+test('request failure diagnostics never disclose callback URLs, codes or thrown provider details', async () => {
+  const errors = [];
+  const originalError = console.error;
+  console.error = (...values) => errors.push(values);
+  try {
+    await withServer(async (port) => {
+      const response = await fetchPath(port, '/cloud/oauth/callback/private-path?code=private-code&state=private-state');
+      assert.equal(response.status, 500);
+      assert.equal(response.body.toString(), 'Internal error');
+    }, async () => {
+      const error = new Error('private-token provider failure');
+      error.name = 'private-error-name';
+      throw error;
+    });
+  } finally {
+    console.error = originalError;
+  }
+  assert.deepEqual(errors, [['Request failed: internal server error']]);
 });
 
 // ---------------------------------------------------------------- revalidation
