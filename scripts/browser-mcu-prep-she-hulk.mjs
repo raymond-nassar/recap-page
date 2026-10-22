@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
@@ -9,7 +10,7 @@ import { waitForSavedPreviewLink } from './browser-owner-guide.mjs';
 const readJson = (file) => JSON.parse(readFileSync(new URL(file, import.meta.url), 'utf8'));
 const fixture = readJson('../test/fixtures/mcu-prep-she-hulk-vector.json');
 const payload = readJson('../src/data/mcu_prep_she_hulk.json');
-const { id, name, description, sourceUrl, groups } = fixture;
+const { id, name, description, sourceUrl, groups } = afterMcuEditorialEntry(fixture);
 const ownerCredit = 'Selected by raymond-nassar for MCU Prep';
 const expected = fixture.rows.map(([, issueId, title, group], index) => ({
   position: index + 1, issueId, title, group: groups[group],

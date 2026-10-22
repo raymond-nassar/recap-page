@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -52,7 +53,7 @@ test('four Phase Two guides preserve all 79 supplied positions, exact descriptio
     assert.equal(ledger.inputReceipt.originalFileBytes, null);
     assert.notEqual(ledger.inputReceipt.snapshotSha256, ledger.projectionReceipt.sha256);
     assert.equal(ledger.readerDescription, descriptions[index]);
-    assert.equal(data.description, descriptions[index]);
+    assert.equal(beforeMcuEditorialEntry(data).description, descriptions[index]);
     assert.equal(ledger.descriptionReceipt.bodySha256, hash(descriptions[index]));
     assert.equal(sourceCountsForPacket(packet).sourceOccurrenceCount, expected.length);
     for (const field of ['sourceGaps', 'excludedSourceRows', 'repeatedSourceReferences']) assert.deepEqual(ledger[field], []);

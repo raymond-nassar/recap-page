@@ -41,12 +41,15 @@ streaming companion picks rather than events or single-character guides. Its mai
 records one canonical WordPress identity, current content and issue-bearing digests, explicit source
 boundary, delivery state, overlap ids, and follow-up or blocker for every user-selected title.
 
-Six guides publish 107 exact rows: 17 for Doctor Strange: Multiverse of Madness, 17 for Spider-Man:
+The original six-guide publication contained 107 exact rows: 17 for Doctor Strange: Multiverse of Madness, 17 for Spider-Man:
 No Way Home, 2 for Marvel Multiverse, 7 for Marvel What If?, 8 for Spider-Man: Far From Home, and
 56 for WandaVision. The card type is `screen-companion` and the reading depth is `selected`; both
-describe the project-authored product surface rather than a field copied from the source. All six
-use `timeline: null` because their selected issues span decades, and `beginner: false` so a small
+describe the project-authored product surface rather than a field copied from the source. Those six
+used `timeline: null` because their selected issues span decades, and `beginner: false` so a small
 subset does not become the featured starting point.
+Marvel Multiverse has since been withdrawn from discovery, leaving five active choices and
+105 rows from this original intake. Its archived two-issue payload and historical approvals remain
+unchanged; see [the withdrawal record](#marvel-multiverse-withdrawal).
 
 Collection-only recommendations, unnumbered picks, contextual issue mentions, and explicitly
 declined recommendations remain named exclusions. The two Marvel Multiverse issues are centrally
@@ -56,7 +59,7 @@ exact duplicate. No source commentary, branding, layout, movie imagery, or comic
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
 The separate owner-authored Daredevil companion does not change that fourteen-source CBH
-inventory or its six published selections. Its owner credit, five supplied positions and
+inventory or its original six published selections. Its owner credit, five supplied positions and
 approved six-collection expansion are recorded under
 [Owner-authored MCU Prep: Daredevil: Born Again](#owner-authored-mcu-prep-daredevil-born-again).
 
@@ -1087,10 +1090,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7926-7965`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12224-12308`.
+`src/data/catalog.json:12146-12271`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2376,6 +2379,48 @@ read progress, notes, overrides and separate completion/enjoyment history are
 unchanged. The original active No Way Home guide remains the selected target;
 the retired owner-selected guide remains archived and absent from discovery.
 
+### Reading-benefit editorial revision
+
+[Issue #811](https://github.com/raymond-nassar/recap-page/issues/811) refreshes all thirty
+MCU Prep descriptions in its original scope. None of those thirty was left unchanged.
+VisionQuest, added independently afterwards, is outside that copy scope. Each opening explains
+the selected character or storyline and its viewing context; Preview expands on the actual comics.
+This is context, not a claim that every listed comic inspired the adaptation. For example,
+Age of Ultron distinguishes the shared title from the film's plot, and Shang-Chi distinguishes
+later comics from the earlier film.
+
+The canonical [editorial revision](../scripts/data/mcu-prep-description-revision.json)
+binds exact before/after copy, unchanged payload metadata and the originating source commit.
+Run `node scripts/refresh-mcu-descriptions.mjs`, then
+`npm run vendor -- --catalog-only` to reproduce current outputs without metadata requests.
+The emitter checks the reviewed scope, identities, known copy and non-description payload
+fingerprints before atomic publication. It accepts an exact already-applied revision.
+Unknown copy or changed comics stop the update instead of silently overwriting them.
+
+This is an editorial layer over the original source approvals, not a replacement approval.
+Signed source ledgers, packets, mappings, reports, delivery fixtures and the immutable #731
+record retain their original bytes. Historical checks reverse only the recorded copy changes
+and restore withdrawn peers only for their publication cohorts. Separate checks continue
+to require exact current copy and the complete active library.
+No saved-data migration occurs: existing descriptions remain personal saved values; fresh
+imports receive the new recommendations. Comic identities, order, gaps, collection groups,
+dates, covers and source attribution are unchanged.
+
+### Marvel Multiverse withdrawal
+
+The same owner's [Issue #811](https://github.com/raymond-nassar/recap-page/issues/811)
+removes Marvel Multiverse from the active manifest, MCU associations, generated catalog and
+rated-guide index. It is no longer offered for new discovery or import.
+The archived payload, checklist, source inventory and signed overlap evidence are retained
+as historical records, not active registrations.
+
+Saved lists contain their own comic snapshots and do not require catalog membership to load.
+Withdrawal does not delete a saved list, rewrite its description, or remove its two originals.
+The isolated `mcu-prep-descriptions` browser scenario exercises a previously saved copy,
+Library reopening, read editing, reload and reader-backup round trip, with a deferred issue,
+notes, an override, unrelated progress and separate completion/enjoyment history preserved.
+Completion/enjoyment history remains a separate backup, as before.
+
 ## Owner-authored MCU Prep: Captain America: Brave New World
 
 [Issue #704](https://github.com/raymond-nassar/recap-page/issues/704) supplies three
@@ -2647,8 +2692,9 @@ before newest-first reversal, without assigning it a fabricated calendar day.
 
 The Guardians guide is associated with the original title-matching movie, not inferred sequels.
 What If and Daredevil are associated with the first supplied seasons, not all later seasons.
-The general Marvel Multiverse guide has no single release assignment. Unassigned guides remain
-visible after the phase sections in either direction; search includes their ordinary catalog
+The former general Marvel Multiverse recommendation had no single release assignment and has
+since been withdrawn. Any future unassigned guide would remain visible after the phase sections
+in either direction; search includes ordinary catalog
 titles and characters. Multi-release guides retain one identity and expose every associated title.
 The catalog, comic vectors, source credit, imported list fields, progress and backups remain unchanged.
 

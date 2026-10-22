@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
@@ -18,6 +18,8 @@ import {
   currentReadingCensus, registeredCuratedGuides, registeredOwnerContracts,
 } from './current-reading-library.mjs';
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
+import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
+import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
@@ -97,7 +99,7 @@ export async function assertOwnerDeliveryContract(contract, {
       .filter((credit) => /writer|penciler|artist/i.test(credit.role))
       .map(({ name, role }) => ({ name, role })));
   }
-  assert.equal(payload.description, contract.description);
+  assert.equal(beforeMcuEditorialEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
   if (event) {
@@ -107,7 +109,7 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
+  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.find((row) => row.id === id).source, contract.sourceUrl);
   assert.equal(
@@ -128,18 +130,20 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(peer.id, peerId);
     return peer;
   }));
-  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId) && !peerIds.includes(row.orderId));
+  const recordedOrders = withRetiredOrders(library.orders.filter((row) =>
+    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
   const recordedManifest = {
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id)),
   };
   const digestLibrary = contract.libraryDigest == null
-    ? historicalSpiderManSelectionLibraryDigest : libraryDigestFor;
+    ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
   const currentLibraryDigest = digestLibrary(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
-  assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
+    recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
   assert.equal(current.comparisonCount, peerCount);
   assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest,

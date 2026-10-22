@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -39,6 +40,7 @@ export function ownerPresentation(expected) {
 }
 
 export function ownerGuideScenario(contract) {
+  const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
   const category = event ? 'timeline' : 'marvel-on-screen';
   const results = event ? '#catalog-results' : '#marvel-on-screen-results';
@@ -207,7 +209,7 @@ export function ownerGuideScenario(contract) {
           width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
         }));
         t.check(`Preview preserves approved copy, source and narrow layout at ${width}px`,
-          preview.description === contract.description && preview.source === contract.sourceUrl
+          preview.description === expectedDescription && preview.source === contract.sourceUrl
           && preview.scrollWidth <= preview.width, JSON.stringify(preview));
         const after = await readSaved(page);
         t.check(`Preview does not write reader or completion history at ${width}px`,

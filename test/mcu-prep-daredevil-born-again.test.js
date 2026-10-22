@@ -1,5 +1,6 @@
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
+import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -135,6 +136,7 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     json('src/data/catalog.json'), json('src/data/curated-lists.json'),
   ]);
   const byId = new Map(catalog.lists.map((entry) => [entry.id, entry]));
+  byId.set('marvel-multiverse', mcuEditorial.withdrawal.catalogEntry);
   const visible = ledger.libraryReview.visibleOrderIds.map((orderId) => {
     const entry = byId.get(orderId);
     assert.ok(entry, `reviewed visible order ${orderId} is missing`);
@@ -196,13 +198,14 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     orderId: entry.id,
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
-  const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...currentReviewedOrders, ...laterOrders] });
+  const current = buildComparisonReport({ candidateIds: expectedIds,
+    orders: [...currentReviewedOrders, ...laterOrders].filter((row) => row.orderId !== 'marvel-multiverse') });
   assert.equal(current.comparisonCount, currentReadingCensus.peers);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
   assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
-  assert.equal(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship === 'none').length, 288);
+  assert.equal(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship === 'none').length, 287);
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => later.some((peer) => peer.id === entry.orderId))

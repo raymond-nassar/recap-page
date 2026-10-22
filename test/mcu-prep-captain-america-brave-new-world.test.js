@@ -1,3 +1,5 @@
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
+import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 import test from 'node:test';
 import { legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
@@ -164,7 +166,7 @@ test('Brave New World binds every current peer and the actual three-partial inde
   assert.equal(report.comparisonCount, 292);
   assert.equal(report.libraryDigest, recordedDigest,
     'Actual post-Ms.Marvel descriptions and vectors remain the authority basis');
-  assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) => recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
   assert.ok(legacyOwnerPeers(current.comparisons).filter((row) => !recordedIds.has(row.orderId))
     .every((row) => row.relationship === 'none' && row.sharedCount === 0 && row.sharedIds.length === 0),
   'Later meaningful relationships cannot inherit this frozen authority');
@@ -218,7 +220,7 @@ test('Brave New World publishes the exact nineteen-vector and preserves reader, 
   assert.deepEqual(payload.items.map((row) => row.collectedIn), expectedGroups);
   assert.deepEqual([payload.count, payload.collections, payload.placeholders], [19, 3, 0]);
   assert.deepEqual(payload.unresolved, []);
-  assert.equal(payload.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(payload).description, fixture.description);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.source, sourceUrl);
   assert.equal(payload.sourceLicense, null);
@@ -234,13 +236,13 @@ test('Brave New World publishes the exact nineteen-vector and preserves reader, 
     assert.equal(Object.hasOwn(item, 'notes'), false);
     assert.equal(Object.hasOwn(item, 'storyId'), false);
   }
-  assert.deepEqual(manifest.lists.find((row) => row.id === id), packet.proposedManifest);
+  assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   const card = catalog.lists.find((row) => row.id === id);
   assert.deepEqual([card.type, card.depth, card.timeline, card.beginner, card.group, card.sourceLicense],
     ['screen-companion', 'selected', null, false, null, null]);
-  assert.equal(card.description, fixture.description);
+  assert.equal(beforeMcuEditorialEntry(card).description, fixture.description);
   assert.equal(card.sourceOrigin, provider.sourceOrigin);
   const choices = catalogEntries(parseCatalog(catalog).lists);
   const mcu = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen');

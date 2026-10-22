@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "issue": "https://github.com/raymond-nassar/recap-page/issues/811",
+  "sourceCommit": "d030395e38177ac3b7660de28f4ada04ba07bf9e",
+  "entries": [
+    {
+      "id": "mcu-prep-agatha-all-along",
+      "file": "mcu_prep_agatha_all_along.json",
+      "before": "Agatha Harkness's witchy first appearance leads into a mentor-turned-rival showdown with Scarlet Witch. Magic, grudges, and a complicated teacher-student bond set the mood. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "after": "Meet the comics' Agatha Harkness and explore her tangled bond with Scarlet Witch for context on the show's elusive witch. Her Fantastic Four debut leads into The Last Door and a magical confrontation in Scarlet Witch Annual. The five selected House of Harkness school-rivalry chapters are still missing provider details and aren't included yet.",
+      "nonDescriptionSha256": "e8e77f3ec73478020f83a92434aa8d848236ae462057ef0836fb1a819f131b92"
+    },
+    {
+      "id": "mcu-prep-ant-man-2015",
+      "file": "mcu_prep_ant_man_2015.json",
+      "before": "An ex-con gets a second chance wearing a suit that shrinks him down and hits like a tank, pulled into one last heist by the hero who built it first. These books follow the legacy from Hank and Janet's earliest days through Scott Lang's scrappy, funny rise.",
+      "after": "Get to know Scott Lang's second-chance heroics and the Ant-Man legacy behind the film's shrinking suit. Hank Pym and Janet van Dyne's beginnings lead into Scott's struggles with work, crime and fatherhood. The Irredeemable Ant-Man introduces a different suit-wearer, Eric O'Grady, rather than another Scott Lang adventure.",
+      "nonDescriptionSha256": "658585e861a50b01daa03aa6fdcda1a259380cd8da5278e36575a69a5b296b74"
+    },
+    {
+      "id": "mcu-prep-avengers-age-of-ultron-2015",
+      "file": "mcu_prep_avengers_age_of_ultron_2015.json",
+      "before": "Tony's dream of a peacekeeping AI turns into humanity's worst nightmare the moment Ultron wakes up. This list traces Ultron's twisted origin as Hank Pym's creation straight through to the comic event that gave the film its name.",
+      "after": "Explore Ultron's comics history to understand the Avengers' mechanical enemy beyond the film's version. The Origin introduces the team, while Ultron Unbound and Rage of Ultron explore the robot's ties to Hank Pym and Vision. Age of Ultron supplies the film's title, not the same plot.",
+      "nonDescriptionSha256": "03a734f725e620f10460bcd39ff0d7c37f6314bc95e068cf0398f69a660312f6"
+    },
+    {
+      "id": "mcu-prep-avengers-infinity-war-endgame",
+      "file": "mcu_prep_avengers_infinity_war_endgame.json",
+      "before": "The mad titan finally gets his hands on the stones, and the universe pays the price. Trace Thanos from obsessed outcast in love with Death herself to the genocidal collector who snaps away half of all life.",
+      "after": "Follow Thanos and the Infinity Gauntlet to understand the comics behind the films' universe-threatening stakes. Thanos Rising and The Thanos Quest trace his past and pursuit of the gems before Infinity Gauntlet brings the heroes together against him. Infinity War follows with a different conflict, not a retelling of the film.",
+      "nonDescriptionSha256": "2644179e09cb1318a4dfdc18cb9f7404a46f463474fb87f3df13bc4a3eed5a24"
+    },
+    {
+      "id": "mcu-prep-black-panther-2018",
+      "file": "mcu_prep_black_panther_2018.json",
+      "before": "T'Challa isn't just a king, he's the guardian of a hidden nation wrestling with its place in the world, and rivals challenge his right to rule. See Wakanda's isolationist legacy clash with global responsibility and watch T'Challa's rule get tested by politics as much as by claws.",
+      "after": "Explore T'Challa's rule and Killmonger's rebellion to understand the struggle over Wakanda at the heart of Black Panther. Who Is the Black Panther? introduces the king and his nation, while Panther's Rage pits him against Killmonger. Later runs deepen Wakanda's politics and the tensions between royal duty and responsibility to its people.",
+      "nonDescriptionSha256": "7458de2d8d638a72e744adcc40f96746df2dbbdd9009b8014bcb2956a68e8e9d"
+    },
+    {
+      "id": "mcu-prep-captain-america-brave-new-world",
+      "file": "mcu_prep_captain_america_brave_new_world.json",
+      "before": "Red Hulk tears through the Marvel universe, while Sam Wilson settles into life with the shield and fights to earn the public's trust. Legacy, politics, and a hero proving himself.",
+      "after": "Get to know Sam Wilson as Captain America and meet Red Hulk, two comics foundations for Brave New World. Hydra Ascendant and Not My Captain America explore Sam's choices, the shield's legacy and public resistance to his role. The opening Hulk collection introduces Red Hulk in a separate story, not the film's plot.",
+      "nonDescriptionSha256": "ba30c2a35a1947ae6bba7993bb02a9c36298e33701ffc8e98e39823cb48791c3"
+    },
+    {
+      "id": "mcu-prep-captain-america-civil-war-2016",
+      "file": "mcu_prep_captain_america_civil_war_2016.json",
+      "before": "Loyalty gets tested and friendships get shattered. Watch the lead-up to the government's registration crackdown, heroes choosing sides in open conflict, and the devastating fallout that follows.",
+      "after": "Read Civil War to understand the comics' clash over superhero registration behind the film's divided Avengers. Captain America's surrounding issues follow the build-up, Steve Rogers' resistance and the conflict's aftermath. The comics involve a much wider superhero community than the film.",
+      "nonDescriptionSha256": "ea22ae136338615a6e6103ce186c17e020bfc3a9d375f55ea66c645bf84e088d"
+    },
+    {
+      "id": "mcu-prep-captain-america-the-first-avenger-2011",
+      "file": "mcu_prep_captain_america_the_first_avenger_2011.json",
+      "before": "Before the legend, there was Steve Rogers. Go behind the shield with the people and battles that forged the First Avenger.",
+      "after": "Read First Vengeance, the film's comics prelude, to meet the people who shape Steve Rogers' path to becoming Captain America. These four chapters add background to the allies, enemies and wartime experiences surrounding the First Avenger.",
+      "nonDescriptionSha256": "d34d7df4641bb35bf268aea56ec72b7df0a9bb65ce426a4b9b83a8c592490be9"
+    },
+    {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "file": "mcu_prep_captain_america_the_winter_soldier_2014.json",
+      "before": "Steve discovers the system he trusted has been rotten from the inside for decades, and the assassin hunting him turns out to be his best friend. This is spy thriller Marvel at its best, built around the very arc that created the Winter Soldier.",
+      "after": "Discover Bucky Barnes' return in Winter Soldier, the comics storyline behind the film's mysterious assassin. Man Out of Time first explores Steve Rogers' adjustment to the present, then the Winter Soldier arc turns his wartime past into a personal crisis. Expect a different conspiracy from the film's.",
+      "nonDescriptionSha256": "09a28e7ce1d5b9e96399f5879cf709211509d2968ad5e56722a409cc9272076e"
+    },
+    {
+      "id": "mcu-prep-captain-marvel-2019",
+      "file": "mcu_prep_captain_marvel_2019.json",
+      "before": "Carol Danvers has to unlearn everything she thinks she knows to become the hero she's meant to be. Dive into the Kree-Skrull conflict that shapes the galaxy she gets caught between and follow her adventures as Captain Marvel.",
+      "after": "Explore Carol Danvers as Captain Marvel and the Kree-Skrull conflict for background on the film's hero and warring empires. The Avengers' Kree/Skrull War introduces the cosmic struggle, while Carol's later space adventures show her leadership and independence. These are comics counterparts, not a retelling of her MCU origin.",
+      "nonDescriptionSha256": "0590951313466d3490a5ba9b7f107166b39a107f0dcc699e56ad2f208d6087d7"
+    },
+    {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "before": "Watch Kingpin learn Matt Murdock's secret and burn his whole life to the ground, straight from the comic that gave the show its name. This is Hell's Kitchen at its most brutal, with Fisk tightening his grip on the city while Matt fights to survive.",
+      "after": "Read Born Again to understand Kingpin's assault on Matt Murdock's life and the Daredevil story behind the show's title. The Man Without Fear introduces Matt's beginnings, then later runs test his exposed identity, conscience and place in Hell's Kitchen. The reading offers character background rather than a scene-by-scene guide to the series.",
+      "nonDescriptionSha256": "44f84c0722cce22397af8e3116ed699c4a073baf2a69f4da77524a37fca04529"
+    },
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "file": "mcu_prep_deadpool_and_wolverine.json",
+      "before": "Dive into Logan's Weapon X nightmare and Wade's chaotic mercenary life, then fast forward to a battered, future version of Wolverine who's finally ready to pop the claws again. Brutal experiments, outrageous mercenary jobs, and one very rough retirement: there's plenty of trouble to go around.",
+      "after": "Get to know Deadpool's chaotic humor and Wolverine's troubled past before their screen team-up. Weapon X explores Logan's brutal experimentation, while Deadpool's early adventures and Dead Presidents introduce Wade's mercenary world. Gifted adds X-Men context, and Old Man Logan visits an alternate future rather than the film's Wolverine.",
+      "nonDescriptionSha256": "8114be2ae73beedd0edaa9dd95244547a18399d069da08bffaf5a9f6d0d6f0fe"
+    },
+    {
+      "id": "mcu-prep-doctor-strange-2016",
+      "file": "mcu_prep_doctor_strange_2016.json",
+      "before": "Watch an arrogant surgeon lose everything and get rebuilt into the sorcerer who guards reality itself. See his humbling journey to Kamar-Taj, his first real test against a threat even magic can't easily fix, and the cosmic stakes that turn him into Earth's mystical protector.",
+      "after": "Explore Doctor Strange's origins and life as a sorcerer to understand the magical responsibilities behind the film's hero. Season One introduces his beginnings, while The Oath tests his duties as a doctor and protector. The Way of the Weird, The Last Days of Magic and What Is It That Disturbs You, Stephen? explore the cost of defending a magical world.",
+      "nonDescriptionSha256": "eff826f70791f3498deaf6d72bd1879d2ad5c4fb09bf0085c583395bfd001a66"
+    },
+    {
+      "id": "mcu-prep-eternals",
+      "file": "mcu_prep_eternals.json",
+      "before": "Ancient god-like beings have secretly shaped human history since the Stone Age, and these books peel back the mystery of who they really are. Expect secret identities, buried memories, and the kind of scale only cosmic beings can deliver.",
+      "after": "Meet the Eternals, Deviants and Celestials in the comics to make sense of the film's ancient cosmic family. The original Eternals run introduces their mythology, the 2006 miniseries explores forgotten identities, and Only Death Is Eternal examines their society. These versions provide background rather than the film's exact history.",
+      "nonDescriptionSha256": "8b2b7aed9a555ad383915715754bbf30d340125d03641d3eb74fc2a4aa230da9"
+    },
+    {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "file": "mcu_prep_fantastic_four_first_steps.json",
+      "before": "Start with the cosmic accident that made Marvel's First Family, then go straight to the arrival of Galactus and the Silver Surfer. Family, science, and world-ending stakes, all in one package. The Point One selection opens the whole anthology, including stories beyond its Silver Surfer material.",
+      "after": "Meet the Fantastic Four and read the Galactus Trilogy for the family and cosmic threats behind First Steps. Their earliest adventures introduce the team, Galactus and the Silver Surfer, then later stories deepen the family's scientific curiosity and bonds. New Dawn adds the Silver Surfer's own adventures beyond that first encounter. The Point One selection opens the whole anthology, including stories beyond its Silver Surfer material.",
+      "nonDescriptionSha256": "8dd22e0c1d557a265d7a936de857d82ade58b5b0fdaa863739135306b6f4deaa"
+    },
+    {
+      "id": "mcu-prep-guardians-of-the-galaxy",
+      "file": "mcu_prep_guardians_of_the_galaxy.json",
+      "before": "Watch this ragtag crew first become a team, then follow their scrappiest misadventures all the way to a more bruised, emotionally complicated lineup. Found family energy from start to finish.",
+      "after": "Discover the Guardians' comics formation and unlikely friendships for context on the films' found family. Annihilation: Conquest and Legacy bring the modern team together, followed by Rocket's solo misadventures and a later Guardians lineup. The comics' origins and team history differ from the films.",
+      "nonDescriptionSha256": "b567c9d4f7d16c3711a892dfd39a0a67b38614d58aa5d34ba9522ef7bcbdd89b"
+    },
+    {
+      "id": "mcu-prep-iron-man-2008",
+      "file": "mcu_prep_iron_man_2008.json",
+      "before": "Stolen armor. Corporate warfare. Tony Stark fights to reclaim his life and keep his greatest invention out of the wrong hands.",
+      "after": "Read Iron Monger and Armor Wars to understand Tony Stark's fight to keep his technology out of the wrong hands. Obadiah Stane's campaign against Tony gives context to the film's armored rival, while Armor Wars explores the consequences of stolen designs. These are battles over Tony's legacy, not a retelling of his origin.",
+      "nonDescriptionSha256": "3c455ba13a7b75a8ca5f96c1d06e49b84dab3eafe6174f64ab660f3dd45fb644"
+    },
+    {
+      "id": "mcu-prep-iron-man-2-2010",
+      "file": "mcu_prep_iron_man_2_2010.json",
+      "before": "Demons in the bottle, enemies in the shadows, and War Machine on the horizon. Tony Stark learns that armor can't solve everything.",
+      "after": "Explore Tony Stark's vulnerabilities and meet Whiplash, Black Widow and War Machine in comics that add context to Iron Man 2. Demon in a Bottle tests Tony beyond the armor, Deadly Origin explores Natasha's past, and the War Machine issues develop Rhodey's armored role. Iron Man vs. Whiplash offers a comics take on the villain rather than the film's exact story.",
+      "nonDescriptionSha256": "f68d8e05d91695320778e83504781aa1f59b72413e80ae150c45418c8742581a"
+    },
+    {
+      "id": "mcu-prep-iron-man-3-2013",
+      "file": "mcu_prep_iron_man_3_2013.json",
+      "before": "Upgrade the armor. Break the man. Rebuild the hero. Extremis, the Mandarin, and Tony Stark's worst nightmares test what it takes to be Iron Man.",
+      "after": "Read Extremis to understand the dangerous technology adapted for Iron Man 3 and the questions it raises about Tony Stark. Enter the Mandarin introduces a very different version of his enemy, while The Five Nightmares and Stark Disassembled test Tony's inventions, identity and resilience. The film reshapes these ideas rather than following every comics plot.",
+      "nonDescriptionSha256": "91e967381fd32d03cfc29e40963f4571ffe3f8b81f4601ac86fb564325e8fc9b"
+    },
+    {
+      "id": "mcu-prep-moon-knight",
+      "file": "mcu_prep_moon_knight.json",
+      "before": "Marc Spector's identities fight for control of his own mind while Egyptian gods pull the strings behind the scenes. Expect psychological horror, divine politics, and zero certainty about who's really driving.",
+      "after": "Explore Marc Spector's identities and bond with Khonshu for background on Moon Knight's troubled hero. From the Dead, Lunatic and The Midnight Mission offer different approaches to his street-level work, sense of reality and responsibilities. These are distinct comics interpretations, not the show's exact history.",
+      "nonDescriptionSha256": "dc62a8e00407452b17c926bc484dbbc502c31dff1680affa5dfea1d22f99083e"
+    },
+    {
+      "id": "mcu-prep-ms-marvel",
+      "file": "mcu_prep_ms_marvel.json",
+      "before": "Kamala Khan goes from ordinary Jersey City teen to shapeshifting hero overnight, then keeps growing into the role alongside her community and family. Pure heart, humor, and a hero finding her footing.",
+      "after": "Meet Kamala Khan in her earliest comics to understand the family, fandom and community behind the show's hero. No Normal and Generation Why follow her first steps as a Jersey City superhero, then Destined expands her adventures. Her comics powers and origin differ from the series, and the Point One selection opens the whole anthology.",
+      "nonDescriptionSha256": "cf36f5593f625966a853cdd96eaf41e1382c57bb1bc7d9b90ee0c1da39576ea3"
+    },
+    {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "before": "Shang-Chi's estranged siblings crawl out of his father's shadow to claim a deadly empire, while new allies and the Ten Rings pull him into fresh trouble. Family legacy and master assassin drama collide.",
+      "after": "Explore Shang-Chi's family legacy in modern comics for context on the film's conflict between duty and independence. Agents of Atlas and Sword Master introduce allies before Shang-Chi confronts his family's organization and later takes up the Ten Rings. Those later rings are comics counterparts to the film's weapons, not their original source; anthology selections open whole issues.",
+      "nonDescriptionSha256": "a180d47c2e897b48dd930f833520b02a202eab885cb32f7c07bc3b089c949ac5"
+    },
+    {
+      "id": "mcu-prep-she-hulk",
+      "file": "mcu_prep_she_hulk.json",
+      "before": "Jennifer Walters balances courtroom cases with life as a green-skinned powerhouse, building her own legal practice one chaotic client at a time. Smart, funny, and full of cases that only a superhero lawyer could take.",
+      "after": "Meet Jennifer Walters as both lawyer and She-Hulk to understand the superhero legal comedy behind the series. Her first appearance introduces her transformation, while Single Green Female and Law and Disorder explore the collisions between legal work, superhero clients and everyday life.",
+      "nonDescriptionSha256": "0846c71e42d0d11deadff38e40baa96832d1975a38ba1523fdd67773aa4883ab"
+    },
+    {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "file": "mcu_prep_spider_man_brand_new_day.json",
+      "before": "Peter's mythology gets cracked wide open, he navigates a whole new status quo, and he heads back to his roots all over again. A fresh start for Spidey, built on decades of fresh starts before it. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+      "after": "Explore Peter Parker's fresh starts in the comics, including Brand New Day, for background on the film's namesake era. Coming Home, Brand New Day and Back to Basics show different ways of rebuilding Spider-Man's life and responsibilities. This is character context, not a prediction of the film's plot. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
+      "nonDescriptionSha256": "0dab0d63a684ee0eb3d173378eb6e2674b8cd87e956a57085dcd2be520f911d8"
+    },
+    {
+      "id": "mcu-prep-the-avengers-2012",
+      "file": "mcu_prep_the_avengers_2012.json",
+      "before": "From first assembly to cosmic war and catastrophic collapse, discover what brings Earth's mightiest heroes together and what can tear them apart.",
+      "after": "Explore how the Avengers come together in the comics to understand the uneasy teamwork behind their first film. Season One revisits their beginnings, the Kree/Skrull War tests them on a cosmic scale, and Disassembled shows how fragile their unity can be. These later crises broaden the team's background rather than retelling the film.",
+      "nonDescriptionSha256": "01cff984fc9760f1cdcd5eaf5b340d563b93384a0031c85e97252fdbafc6cf1b"
+    },
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
+      "file": "mcu_prep_the_incredible_hulk_2008.json",
+      "before": "One man. One monster. No easy escape. Discover Bruce Banner's beginnings, his bond with Betty Ross, and the nightmare of life on the run.",
+      "after": "Explore Bruce Banner's origins and life on the run to understand the man, monster and relationships behind The Incredible Hulk. Hulk: Gray revisits his early days and bond with Betty Ross, while Return of the Monster follows a hunted Banner. These comics explore the tension the film draws on rather than its exact events.",
+      "nonDescriptionSha256": "611cdd2e8aaf0e56b32695d2403713b785d2bd330b73a69b2c8b7059cea7a833"
+    },
+    {
+      "id": "mcu-prep-thor-2011",
+      "file": "mcu_prep_thor_2011.json",
+      "before": "A prince learns humility. A brother tells his side. A new champion lifts the hammer. Enter a world of gods, grudges, and thunder.",
+      "after": "Meet Thor and Loki in the comics to understand the family rivalry and questions of worthiness behind Thor's first film. Season One revisits Thor's beginnings, Blood Brothers gives Loki's perspective, and the early Simonson issues introduce Beta Ray Bill, another wielder of Thor's power. Bill broadens the mythology rather than appearing in the film.",
+      "nonDescriptionSha256": "18273ce6b71da63ed872a55a11fe6531b30227c397e57b2f093d6befa04c751d"
+    },
+    {
+      "id": "mcu-prep-thor-ragnarok-2017",
+      "file": "mcu_prep_thor_ragnarok_2017.json",
+      "before": "Asgard burns and Thor has to decide what kind of king he'll be when the throne, the hammer, and even his home can't save him. Trace his journey from brash warrior to humbled hero, then dive into the literal comic story that shares the film's name and apocalyptic stakes.",
+      "after": "Read Ragnarok and Planet Hulk to explore the comics behind the film's Asgardian apocalypse and gladiator world. Earlier Thor adventures establish his mythic world before Ragnarok confronts its destruction. Planet Hulk follows Hulk on Sakaar, a story the film reshapes around Thor rather than adapting unchanged.",
+      "nonDescriptionSha256": "8b5e1cf1aabc0af96ccdcc31ca92b3e20bfa9fd2f1f5d8615e9d3be1912d27f3"
+    },
+    {
+      "id": "mcu-prep-thor-the-dark-world-2013",
+      "file": "mcu_prep_thor_the_dark_world_2013.json",
+      "before": "Ancient evil wakes up, and Thor has to lean on the brother who betrayed him to stop it. This stack traces Thor's origin through the saga that invented Malekith and the Dark Elves, with plenty of prickly, complicated brotherhood along the way.",
+      "after": "Meet Malekith and the Dark Elves in Thor's comics to understand the enemies brought to the screen in The Dark World. First Thunder revisits Thor's early days on Earth, then the opening Simonson run introduces Beta Ray Bill and Malekith's threat. The reading expands Asgard's mythology rather than retelling the film's Aether story.",
+      "nonDescriptionSha256": "5450f14b8d6e82006ccec5dffbe015864753cfad15a579c37173adfa02fdda41"
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "file": "mcu_prep_thunderbolts.json",
+      "before": "Meet the original team of villains playing at being heroes, then follow Bucky's Winter Soldier past, Natasha and Yelena's deadly rivalry, and Taskmaster's mercenary tricks. It's a crash course in trusting people you really shouldn't. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "after": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "nonDescriptionSha256": "c802cd202f95ea7463aa1b2aee3b231ddc80680a83fc7dfc2ac4aca150cad484"
+    }
+  ],
+  "withdrawal": {
+    "issue": "https://github.com/raymond-nassar/recap-page/issues/811",
+    "beforeId": "marvel-what-if",
+    "manifestEntry": {
+      "id": "marvel-multiverse",
+      "name": "Marvel Multiverse",
+      "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-multiverse.md",
+      "sourcePage": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvel_multiverse.json",
+      "characters": [
+        "X-Men",
+        "Kitty Pryde",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Multiverse",
+        "Days of Future Past",
+        "alternate reality",
+        "X-Men",
+        "Comic Book Herald"
+      ],
+      "expect": 2,
+      "timeline": null,
+      "coverIssueId": 13683
+    },
+    "catalogEntry": {
+      "id": "marvel-multiverse",
+      "file": "marvel_multiverse.json",
+      "name": "Marvel Multiverse",
+      "description": "The Days of Future Past two-parter, the only selection this ten-pick multiverse guide identifies by issue number.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Kitty Pryde",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Multiverse",
+        "Days of Future Past",
+        "alternate reality",
+        "X-Men",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 13683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/64e7620087cb6",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/10-great-comics-featuring-the-marvel-multiverse/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-24T01:03:59.239Z"
+    },
+    "discoveryEntry": {
+      "id": "marvel-multiverse",
+      "releases": [],
+      "note": "General multiverse reading, not assigned to a single screen release."
+    }
+  },
+  "sha256": "e23cde5bc6484ab5a41cb08d96ad0ac54d1562c656a5ce04f8e338880e7e92d8"
+}

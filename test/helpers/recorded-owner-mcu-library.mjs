@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { URL } from 'node:url';
 import { historicalReadingChoiceIssueIds } from './reading-choice-history.mjs';
+import { withRetiredOrders } from './mcu-editorial-history.mjs';
 
 export async function recordedOwnerMcuLibrary({ orders, extension, candidateId, originalReport }) {
   const added = extension.extensions.find((entry) => entry.candidateId === candidateId);
@@ -13,8 +14,9 @@ export async function recordedOwnerMcuLibrary({ orders, extension, candidateId, 
   ];
   assert.equal(new Set(recordedIds).size, recordedIds.length);
   assert.equal(recordedIds.length, extension.libraryOrderCount);
-  const available = new Map(orders.map((order) => [order.id ?? order.orderId, order]));
-  assert.equal(available.size, orders.length);
+  const historical = withRetiredOrders(orders, new Set(recordedIds));
+  const available = new Map(historical.map((order) => [order.id ?? order.orderId, order]));
+  assert.equal(available.size, historical.length);
   const packet = JSON.parse(await readFile(new URL(
     '../../scripts/data/owner-mcu-prep/spider-man-no-way-home-owner-selected.packet.json',
     import.meta.url,

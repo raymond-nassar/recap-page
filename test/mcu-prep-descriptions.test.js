@@ -4,6 +4,10 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { digestCanonicalJson } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import { firstSentence } from '../src/js/lib/catalog.js';
+import {
+  mcuEditorial, beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
+} from '../scripts/lib/mcu-editorial.mjs';
 import {
   historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
   historicalMcuDescriptionPayloadText,
@@ -19,7 +23,7 @@ const expectedIds = [
   'spider-man-no-way-home', 'mcu-prep-moon-knight', 'doctor-strange-multiverse-of-madness',
 ];
 
-test('MCU descriptions require the exact refreshed copy on every current surface', async () => {
+test('the immutable #731 revision remains exactly replayable after the later editorial revision', async () => {
   const [revision, manifest, catalog] = await Promise.all([
     json('test/fixtures/mcu-prep-description-refresh.json'),
     json('src/data/curated-lists.json'), json('src/data/catalog.json'),
@@ -30,12 +34,12 @@ test('MCU descriptions require the exact refreshed copy on every current surface
   assert.equal(sha256, '6333cf20651e02519060549f043a32883a64e0413af64621e5f19831c0b11e2a');
   assert.equal(hash(JSON.stringify(capture)), sha256);
   assert.deepEqual(capture.entries.map((entry) => entry.id), expectedIds);
-  const parsed = parseCatalog(catalog);
+  const parsed = parseCatalog({ ...catalog, lists: catalog.lists.map(beforeMcuEditorialEntry) });
   assert.equal(parsed.dropped, 0);
   for (const edit of capture.entries) {
-    const entry = manifest.lists.find((row) => row.id === edit.id);
-    const card = catalog.lists.find((row) => row.id === edit.id);
-    const payload = await json(`src/data/${edit.file}`);
+    const entry = beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === edit.id));
+    const card = beforeMcuEditorialEntry(catalog.lists.find((row) => row.id === edit.id));
+    const payload = beforeMcuEditorialEntry(await json(`src/data/${edit.file}`));
     assert.equal(manifest.lists.filter((row) => row.id === edit.id).length, 1, edit.id);
     assert.equal(catalog.lists.filter((row) => row.id === edit.id).length, 1, edit.id);
     assert.equal(entry.out, edit.file, edit.id);
@@ -65,9 +69,9 @@ test('MCU description history inverts only exact current copy and preserves ever
   ]);
   assert.equal(hash(historyText), revision.readingChoiceHistoryLfSha256);
   for (const edit of revision.entries) {
-    const entry = manifest.lists.find((row) => row.id === edit.id);
-    const card = catalog.lists.find((row) => row.id === edit.id);
-    const payloadText = await text(`src/data/${edit.file}`);
+    const entry = beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === edit.id));
+    const card = beforeMcuEditorialEntry(catalog.lists.find((row) => row.id === edit.id));
+    const payloadText = beforeMcuEditorialPayloadText(edit.file, await text(`src/data/${edit.file}`));
     const originalEntry = historicalMcuDescriptionEntry(entry);
     assert.notEqual(originalEntry, entry);
     assert.deepEqual(originalEntry, { ...entry, description: edit.before });
@@ -83,15 +87,15 @@ test('MCU description history inverts only exact current copy and preserves ever
     )), edit.payloadLfSha256, `${edit.id}: Windows line endings preserve the same original`);
     for (const description of [edit.before, 'Unrecorded copy.', undefined]) {
       assert.throws(() => historicalMcuDescriptionEntry({ ...entry, description }),
-        /expected exact current description/, edit.id);
+        /description/, edit.id);
     }
     assert.throws(() => historicalMcuDescriptionEntry({ ...entry, id: 'wrong-guide' }),
-      /identity does not match/, edit.id);
+      /identity/, edit.id);
     assert.throws(() => historicalMcuDescriptionEntry({ ...entry, out: 'wrong_payload.json' }),
-      /payload identity does not match/, edit.id);
+      /file|payload identity/, edit.id);
     assert.throws(() => historicalMcuDescriptionPayloadText(
       edit.file, JSON.stringify({ ...JSON.parse(payloadText), id: 'wrong-guide' }, null, 2),
-    ), /identity does not match/, edit.id);
+    ), /identity/, edit.id);
     const renamed = historicalMcuDescriptionEntry({ ...entry, name: 'Unapproved title' });
     assert.equal(renamed.name, 'Unapproved title');
     assert.notEqual(digestCanonicalJson(renamed), edit.manifestSha256, edit.id);
@@ -102,11 +106,51 @@ test('MCU description history inverts only exact current copy and preserves ever
     assert.notEqual(digestCanonicalJson(JSON.parse(redated)), edit.payloadSha256, edit.id);
   }
   const reconstructed = historicalMcuDescriptionManifest(manifest);
-  assert.deepEqual(reconstructed.lists.map((row) => row.id), manifest.lists.map((row) => row.id));
+  assert.deepEqual(reconstructed.lists.map((row) => row.id),
+    beforeMcuEditorialManifest(manifest, { restoreWithdrawal: true }).lists.map((row) => row.id));
   assert.deepEqual(reconstructed.paths, manifest.paths);
   assert.ok(reconstructed.lists.some((row) => row.id === 'avengers-doomsday-secret-wars'));
   for (const entry of manifest.lists.filter((row) => !expectedIds.includes(row.id))) {
-    assert.equal(historicalMcuDescriptionEntry(entry), entry, `${entry.id}: non-target identity`);
+    assert.deepEqual(historicalMcuDescriptionEntry(entry), beforeMcuEditorialEntry(entry),
+      `${entry.id}: only its recorded later copy can differ`);
   }
   assert.equal((await json('src/data/hickman_minimal.json')).count, 69);
+});
+
+test('all thirty recommendations identify the reading benefit with exact current copy and unchanged issue metadata', async () => {
+  const [manifest, catalog] = await Promise.all([json('src/data/curated-lists.json'), json('src/data/catalog.json')]);
+  assert.equal(mcuEditorial.issue, 'https://github.com/raymond-nassar/recap-page/issues/811');
+  assert.equal(mcuEditorial.sha256, 'e23cde5bc6484ab5a41cb08d96ad0ac54d1562c656a5ce04f8e338880e7e92d8');
+  for (const edit of mcuEditorial.entries) {
+    const entry = manifest.lists.find(({ id }) => id === edit.id);
+    const card = catalog.lists.find(({ id }) => id === edit.id);
+    const { description, ...payload } = await json(`src/data/${edit.file}`);
+    assert.equal(entry.description, edit.after, edit.id);
+    assert.equal(card.description, edit.after, edit.id);
+    assert.equal(description, edit.after, edit.id);
+    assert.equal(digestCanonicalJson(payload), edit.nonDescriptionSha256, edit.id);
+    assert.ok(firstSentence(edit.after).length >= 90 && firstSentence(edit.after).length <= 140, edit.id);
+    assert.doesNotMatch(edit.after, /[\u2013\u2014]/);
+  }
+});
+
+test('the current editorial inverse accepts only captured copy and never substitutes another identity', async () => {
+  for (const edit of mcuEditorial.entries) {
+    const current = { id: edit.id, file: edit.file, description: edit.after, name: 'Other values remain untouched' };
+    assert.deepEqual(beforeMcuEditorialEntry(current), { ...current, description: edit.before });
+    assert.throws(() => beforeMcuEditorialEntry({ ...current, description: 'Unrecorded copy.' }), /unrecorded/);
+    assert.throws(() => beforeMcuEditorialEntry({ ...current, id: 'wrong' }), /identity/);
+    assert.throws(() => beforeMcuEditorialEntry({ ...current, file: 'wrong.json' }), /file/);
+  }
+});
+
+test('Marvel Multiverse is withdrawn only from active discovery and retains its archived originals', async () => {
+  const [manifest, catalog, discovery, rated, archived] = await Promise.all([
+    json('src/data/curated-lists.json'), json('src/data/catalog.json'), json('src/data/mcu-prep.json'),
+    json('src/data/rated-guide-index.json'), json('src/data/marvel_multiverse.json'),
+  ]);
+  const id = mcuEditorial.withdrawal.manifestEntry.id;
+  for (const rows of [manifest.lists, catalog.lists, discovery.guides]) assert.ok(!rows.some((row) => row.id === id));
+  assert.ok(!rated.guides.some((row) => row[0] === id));
+  assert.deepEqual(archived.items.map(({ issueId }) => issueId), [13683, 13684]);
 });

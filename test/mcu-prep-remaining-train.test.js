@@ -1,4 +1,6 @@
 import test from 'node:test';
+import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
+import { withRetiredComparisons, withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -144,7 +146,7 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
     assert.ok(payload.items.every((row) => !row.placeholder && !row.detailsRefused));
     for (const row of [entries[0], cards[0], payload]) {
       assert.equal(row.name, fixture.name);
-      assert.equal(row.description, fixture.description);
+      assert.equal(beforeMcuEditorialEntry(row).description, fixture.description);
       assert.equal(row.sourceOrigin, OWNER_PROVIDER.sourceOrigin);
       assert.equal(row.sourceLicense, null);
       assert.equal(row.sourcePage ?? row.source, fixture.sourceUrl);
@@ -174,14 +176,15 @@ test('remaining MCU Prep train preserves six independent guides, six gaps and co
     });
     assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
     const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
-    const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
+    const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
     let recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
     if (id === brand.id) recordedManifest = historicalMcuDescriptionManifest(recordedManifest);
     const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
     })));
-    assert.deepEqual(current.comparisons.filter((row) => recordedIds.has(row.orderId)), report.comparisons);
+    assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
+      recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
     assertApprovedRelationshipReview({
       packet, mapping, report, currentLibraryDigest: recordedDigest,
       expectedOrderIds: [...recordedIds], packetValidation: { provider: OWNER_PROVIDER },

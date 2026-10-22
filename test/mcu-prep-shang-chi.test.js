@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
+import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 
 import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
 import { digestCanonicalJson, libraryDigestFor, reportDigestFor, validateSourceIdentities } from '../scripts/lib/cbh-inventory.mjs';
@@ -222,7 +223,8 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     expectedOrderIds: currentEntries.map((row) => row.id),
   }));
   const reviewedIds = new Set(report.comparisons.map((row) => row.orderId));
-  assert.deepEqual(current.comparisons.filter((row) => reviewedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
+    reviewedIds.has(row.orderId)), fixture.issueIds, report), report.comparisons);
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'), shared,
     'New meaningful relationships need central review, not inherited approval');
   assert.equal(current.comparisons.some((row) =>

@@ -1,16 +1,19 @@
 import { readFileSync } from 'node:fs';
 import { isDeepStrictEqual } from 'node:util';
-import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import {
+  addIssuesToList, createEmptyState, createList, setDeferred,
+} from '../src/js/lib/model.js';
+import { firstSentence } from '../src/js/lib/catalog.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
-const { entries: edits } = json('test/fixtures/mcu-prep-description-refresh.json');
+const { entries: edits } = json('scripts/data/mcu-prep-description-revision.json');
 const catalog = json('src/data/catalog.json');
 const orders = new Map(edits.map((edit) => [edit.id, json(`src/data/${edit.file}`)]));
 const companions = catalog.lists.filter((row) => row.type === 'screen-companion');
 const untouched = companions.filter((row) => !edits.some((edit) => edit.id === row.id));
-const firstSentence = (description) => description.slice(0, description.indexOf('.') + 1);
+const retiredOrder = json('src/data/marvel_multiverse.json');
 const cardSelector = (id) => `#marvel-on-screen-results [data-story="list:${id}"]`;
 let previous = createEmptyState();
 for (const edit of edits) {
@@ -32,7 +35,7 @@ let personal = createList(createEmptyState(), {
   note: 'Keep my list note.',
 });
 personal = addIssuesToList(personal, 'personal', [
-  { ...orders.get('spider-man-no-way-home').items[0], collectedIn: 'My own section' },
+  { ...json('src/data/spider_man_no_way_home.json').items[0], collectedIn: 'My own section' },
 ]).state;
 personal = { ...personal, read: { 43170: 123456 }, notes: previous.notes, overrides: previous.overrides };
 
@@ -44,6 +47,19 @@ const history = (state) => JSON.stringify({
 });
 const previousHistory = history(previous);
 const personalHistory = history(personal);
+let retired = createList(personal, {
+  id: 'saved-multiverse', catalogId: retiredOrder.id, name: 'My saved multiverse',
+  description: 'My original saved description.', note: 'Keep my multiverse list note.',
+});
+retired = addIssuesToList(retired, 'saved-multiverse', retiredOrder.items).state;
+retired = setDeferred(retired, 'saved-multiverse', retiredOrder.items[1].issueId);
+retired = {
+  ...retired, active: 'saved-multiverse',
+  read: { ...retired.read, [retiredOrder.items[0].issueId]: 123456 },
+  notes: { ...retired.notes, [retiredOrder.items[1].issueId]: 'Keep my future-past note.' },
+  overrides: { ...retired.overrides, [retiredOrder.items[1].issueId]: 'unavailable' },
+};
+const retiredHistory = history(retired);
 const click = async (page, selector) => {
   await page.waitForSelector(selector);
   await page.$eval(selector, (node) => node.click());
@@ -86,7 +102,8 @@ export const mcuPrepDescriptions = {
     const homeGateway = '#view-home [data-category="marvel-on-screen"]';
     await click(page, homeGateway);
     await page.waitForSelector(cardSelector(edits[0].id));
-    for (const surface of ['Home', 'Browse']) {
+    for (const [surface, width] of [['Home', 1280], ['Browse', 360]]) {
+      await page.setViewport({ width, height: 900 });
       if (surface === 'Browse') {
         await click(page, '.ri[data-view="browse"]');
         await click(page, '#view-browse [data-category="marvel-on-screen"]');
@@ -108,7 +125,19 @@ export const mcuPrepDescriptions = {
         t.check(`${surface}: ${entry.id} keeps its existing first sentence`,
           cards.find((row) => row.id === entry.id)?.description === firstSentence(entry.description));
       }
+      const fit = await page.evaluate(() => ({
+        page: document.documentElement.scrollWidth <= window.innerWidth + 1,
+        cards: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card')].every((card) => {
+          const rect = card.getBoundingClientRect();
+          return rect.width > 0 && rect.left >= -1 && rect.right <= window.innerWidth + 1;
+        }),
+      }));
+      t.check(`${width}px generated recommendation cards wrap without page or card overflow`, fit.page && fit.cards);
+      if (process.env.MRT_MCU_COPY_EVIDENCE) {
+        await page.screenshot({ path: `${process.env.MRT_MCU_COPY_EVIDENCE}-${width}.png` });
+      }
     }
+    await page.setViewport({ width: 1280, height: 900 });
     for (const entry of companions) {
       const expected = edits.find((edit) => edit.id === entry.id)?.after ?? entry.description;
       await click(page, `${cardSelector(entry.id)} [data-act="preview"]`);
@@ -149,7 +178,7 @@ export const mcuPrepDescriptions = {
       await page.waitForSelector(cardSelector(edits[0].id));
     }
     const imported = await stored(page);
-    t.check('The ten fresh imports have independent saved-list identities',
+    t.check('The thirty fresh imports have independent saved-list identities',
       Object.keys(imported.state.lists).length === edits.length + 1);
     checkProtected(t, 'After new imports', imported, personal, personalHistory);
     await page.reload({ waitUntil: 'load' });
@@ -163,6 +192,66 @@ export const mcuPrepDescriptions = {
     t.check('All newly imported list fields survive reload',
       isDeepStrictEqual(reloaded.state.lists, imported.state.lists));
     checkProtected(t, 'After new-import reload', reloaded, personal, personalHistory);
+
+    await page.evaluate((key, state, historyKey, historyText) => {
+      localStorage.setItem(key, JSON.stringify(state));
+      localStorage.setItem(historyKey, historyText);
+    }, KEY, retired, LIST_HISTORY_KEY, retiredHistory);
+    await page.reload({ waitUntil: 'load' });
+    await page.goto(`${page.__origin}/?catalog=actual#/read/saved-multiverse?full=1&filter=all`, { waitUntil: 'load' });
+    await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name
+      && document.querySelectorAll('#rows .rt').length === 2, {}, retired.lists['saved-multiverse'].name);
+    const route = await page.evaluate((key) => ({
+      hash: location.hash, active: JSON.parse(localStorage.getItem(key)).active,
+      lists: Object.keys(JSON.parse(localStorage.getItem(key)).lists),
+      rows: [...document.querySelectorAll('#rows .rt')].map((node) => Number(node.dataset.issueId)),
+    }), KEY);
+    t.check('The saved withdrawal fixture loads as the active reading route',
+      route.active === 'saved-multiverse' && route.rows.includes(retiredOrder.items[0].issueId), JSON.stringify(route));
+    checkProtected(t, 'Withdrawn list after startup', await stored(page), retired, retiredHistory);
+    await page.evaluate(() => { document.querySelector('#full').open = true; });
+    const rendered = await page.$$eval('#rows .rt', (nodes) => nodes.map((node) => Number(node.dataset.issueId)));
+    t.check('The withdrawn saved list still renders both exact originals in order',
+      isDeepStrictEqual(rendered, retiredOrder.items.map((item) => item.issueId)), JSON.stringify(rendered));
+    await page.goto(`${page.__origin}/?catalog=actual#/library`, { waitUntil: 'load' });
+    await page.waitForSelector('a[href="#/read/saved-multiverse"]');
+    await click(page, 'a[href="#/read/saved-multiverse"]');
+    await page.goto(`${page.__origin}/?catalog=actual#/read/saved-multiverse?full=1&filter=all`, { waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelectorAll('#rows .rt').length === 2);
+    const issueId = retiredOrder.items[0].issueId;
+    await click(page, `#rows [data-act="read"][data-key="${issueId}"]`);
+    await page.waitForFunction((key, id) => !JSON.parse(localStorage.getItem(key)).read[id], {}, KEY, issueId);
+    const edited = await stored(page);
+    const expectedRetired = { ...retired, read: { ...retired.read } };
+    delete expectedRetired.read[issueId];
+    checkProtected(t, 'After editing withdrawn progress', edited, expectedRetired, retiredHistory);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-read:not([hidden])');
+    checkProtected(t, 'Withdrawn list after reload', await stored(page), expectedRetired, retiredHistory);
+    const backup = await page.evaluate(async (key) => {
+      const { exportBackup, migrate } = await import('/js/lib/model.js');
+      const state = JSON.parse(localStorage.getItem(key));
+      return migrate(JSON.parse(JSON.stringify(exportBackup(state))));
+    }, KEY);
+    const expectedBackupLists = Object.fromEntries(Object.entries(expectedRetired.lists).map(([id, list]) => [
+      id, { ...list, catalogId: list.catalogId ?? null, deferredIssueIds: list.deferredIssueIds ?? [] },
+    ]));
+    t.check('A withdrawn saved list and its progress remain portable through a backup round trip',
+      isDeepStrictEqual(backup.lists, expectedBackupLists)
+      && isDeepStrictEqual(backup.read, expectedRetired.read)
+      && isDeepStrictEqual(backup.notes, expectedRetired.notes)
+      && isDeepStrictEqual(backup.overrides, expectedRetired.overrides),
+      JSON.stringify(backup.lists));
+    for (const route of ['marvel-on-screen', 'lines']) {
+      await page.goto(`${page.__origin}/?catalog=actual#/${route}`, { waitUntil: 'load' });
+      await page.waitForSelector('.catalog-card');
+      const withdrawal = await page.evaluate((id) => ({
+        cards: document.querySelectorAll(`[data-story="list:${id}"]`).length,
+        imports: document.querySelectorAll(`button[data-act="import"][data-key="${id}"]`).length,
+      }), retiredOrder.id);
+      t.check(`${route} offers no withdrawn card or import while its saved copy remains readable`,
+        withdrawal.cards === 0 && withdrawal.imports === 0);
+    }
     t.check('The description journey makes no external request or browser error',
       external.length === 0 && errors.length === 0, JSON.stringify({ external, errors }));
   },
