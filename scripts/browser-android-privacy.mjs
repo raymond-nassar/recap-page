@@ -80,11 +80,15 @@ try {
   await page.waitForSelector(link, { visible: true });
   const text = await page.$eval('#view-about', (node) => node.innerText);
   assert.match(text, /private Android app storage/);
-  assert.match(text, /automatic service requests do not upload your saved lists, progress or notes/);
+  assert.match(text, /no Recap Page account system/);
+  assert.match(text, /no analytics or tracking/);
+  assert.match(text, /Optional OneDrive or Google Drive backups send reading data, completion history, portable settings and saved import drafts/);
+  assert.match(text, /provider you connect after consent/);
+  assert.match(text, /removes only this local copy; it does not delete provider backups/);
   assert.match(text, /selected document provider[\s\S]*progress and notes/);
   assert.match(text, /not a guarantee[\s\S]*sync[\s\S]*retention/);
   assert.match(text, /Clearing app data or uninstalling/);
-  assert.doesNotMatch(text, /Your progress and your notes are never sent anywhere/);
+  assert.doesNotMatch(text, /automatic service requests do not upload your saved lists, progress or notes/);
   const before = await page.evaluate(() => globalThis.localStorage.getItem('mrt.state.v2'));
   assert.ok(before === null || JSON.parse(before).listOrder.length === 0, 'Only empty synthetic progress is used');
   assert.equal(remote.filter((url) => url === policyUrl).length, 0, 'Policy access is not automatic');

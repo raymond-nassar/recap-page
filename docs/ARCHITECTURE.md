@@ -597,7 +597,8 @@ Schema 4 adds ratings to the existing primary persistence, backup, restore/Undo 
 contract. Schemas 1 through 3 migrate with no ratings; schema-3 deferrals remain intact.
 Malformed schema-4 ratings are refused rather than silently dropped. Older builds cannot read
 schema 4 and preserve it through their existing unsupported-schema recovery path. No second
-ratings store, backup file or cloud service is introduced.
+ratings store or ratings-specific backup file is introduced. The optional composite cloud backup
+is a separate feature and does not change this persistence contract.
 
 The Library's Top-rated shelf and the `#/library-rated` browser are derived views over that same
 map, so they add no key, schema change or migration. Filters are route state only. Character guide
@@ -723,3 +724,14 @@ flowchart LR
 [Maintaining Recap Page](MAINTAINING.md) owns the exact form contract, deployment settings, hosted
 verification and rollback order. Removing source files alone does not unpublish an existing Page,
 and removing the form cannot recall an Issue or reply that GitHub has already published.
+
+## Optional cloud credential boundary, implementation in progress
+
+`host/cloudCredentials.mjs` is a Node-only credential-persistence factory outside the static
+application. It selects CurrentUser DPAPI protection, verifies a unique synthetic encrypt/decrypt
+probe before opening an account cache, and fails explicitly without a plaintext fallback.
+Unsupported hosts reject before loading native code.
+
+The factory is not yet connected to authentication, provider requests or app controls. Authentication
+packages remain qualification candidates rather than production dependencies. This component does
+not establish a working cloud backup or successful account, scope, restart or cross-platform proof.

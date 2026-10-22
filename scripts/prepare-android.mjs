@@ -109,8 +109,8 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   index = index.replace(privacyIntro, `${privacyHeading}
               <p class="rail-hint">
                 Your lists, progress and notes live in private Android app storage, separate from your desktop browser.
-                There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
-                Clearing app data or uninstalling removes this private state, so export and keep a backup outside the app first.
+                There is no Recap Page account system and no analytics or tracking. Optional OneDrive or Google Drive backups send reading data, completion history, portable settings and saved import drafts to the provider you connect after consent.
+                Clearing app data or uninstalling removes only this local copy; it does not delete provider backups.
               </p>
               <p class="rail-hint">
                 An export gives the selected document provider the file's contents, which can include progress and notes.

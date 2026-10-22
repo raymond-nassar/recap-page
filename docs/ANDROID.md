@@ -1,9 +1,10 @@
 # Android prototype
 
 This experimental version of Recap Page can be sideloaded on Android. It is not a Google Play
-release. It uses the existing app and reading lists with larger text and touch targets, without
-adding accounts, synchronization or reading features, or changing the saved-data format. The supported
-desktop installation and Windows release process are unchanged.
+release. It uses the existing app and reading lists with larger text and touch targets. The planned
+optional OneDrive and Google Drive backup requires provider sign-in and explicit restore; it does
+not add live synchronization or change the existing local saved-data formats. The supported desktop
+installation and Windows release process are unchanged.
 
 Give volunteer testers [the short Android beta checklist](ANDROID_BETA.md). No development tools
 are needed. Restore tests are optional and use throwaway data.
@@ -376,13 +377,15 @@ are disabled for this package. Uninstalling or clearing app data removes that pr
 Do not rely on an Android device backup to recover it.
 
 Use **Backup & settings** to export JSON, including progress and notes, and restore it on another
-device. Restore replaces the destination's reading data; it does not merge or sync.
-Settings stay device-specific, as on desktop.
+device. Restore replaces the destination's reading data; it does not merge or sync. Optional cloud
+backup is a separate composite that also covers completion history, portable settings and saved
+import drafts.
 
 Export opens Android's file picker. Choose a folder **on the device**, such as Downloads, to
 keep the file local. Recap Page requests local storage, but document providers control which
-locations they offer. Choosing a cloud location can upload the file through that provider.
-Recap Page has no upload service of its own.
+locations they offer. Choosing a cloud location can upload the file through that provider. The
+planned in-app cloud backup uses provider-owned storage and does not use a Recap Page upload
+service.
 
 Export reports success only after Android confirms the write. Do not count a cancelled or failed
 picker as a saved recovery copy. If the app closes while the picker is open, reopen it, repeat

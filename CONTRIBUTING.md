@@ -8,21 +8,26 @@ To use the app, start with [the running guide](docs/RUNNING.md).
 ## What this project is trying to be
 
 A local-first Marvel Unlimited companion that keeps your place in reading orders. There are no
-accounts, hosted backends, analytics, or automatic uploads of saved reading data. Desktop uses a local
-server and browser storage; Android has separate app storage. Readers can export their own backups.
+Recap Page accounts, hosted backends, analytics or telemetry. Reading data remains local unless a
+reader connects an optional OneDrive or Google Drive account for automatic backups. Desktop uses a
+local server and browser storage; Android has separate app storage. Readers can still export their
+own backups.
 Silent loss or corruption of saved reading progress is treated as a security issue.
 
 ## What will be declined, and why
 
 Check these constraints before starting. Changes that break them will be declined.
 
-- **Reading-data uploads, accounts, or new services.** Saved data stays local unless the reader
-  explicitly exports it.
+- **Unapproved reading-data uploads, accounts, or hosted services.** The approved optional
+  OneDrive and Google Drive backup feature is the only exception: it requires reader connection
+  and consent, uses provider-owned storage, and does not authorize a Recap Page backend or live
+  synchronization.
 - **Comic artwork in app-controlled storage.** Store cover URLs, never image bytes. Do not host,
   proxy, or cache comic artwork.
 - **Scraping Marvel's sites.** Link to them; get details from the third-party metadata service.
-- **Packages loaded by the browser.** Runtime dependencies stay at zero. Development and CI tools
-  may be added when justified.
+- **Packages loaded by the browser.** Browser runtime dependencies stay at zero. Narrowly reviewed
+  authentication libraries for the approved native and desktop host integrations are the only
+  feature-specific exception; development and CI tools may be added when justified.
 - **A different loopback address or port.** Each address has separate browser storage. Changing it
   makes saved progress look missing; the address is not a configurable default.
 - **Yes-or-no availability.** Keep unknown, scheduled, expected, explicitly available, and
@@ -302,7 +307,9 @@ For manifest fields and scripts, see
 
 ## Dependencies
 
-Runtime dependencies stay at zero. To propose a development tool, explain what it checks and why
+Browser runtime dependencies stay at zero. The approved host-side authentication exception must
+remain limited to reviewed Microsoft and Google libraries, required audited dependencies and
+native components. To propose other development tooling, explain what it checks and why
 automating that check is useful.
 
 Pin workflow actions to full commit revisions, not movable tags. Follow

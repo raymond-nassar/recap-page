@@ -447,6 +447,16 @@ read-only first. An API-created draft must continue through the API, not portal 
 separate recovery decision. A certification failure requires a corrected,
 higher-version release rather than moving or reusing the failed release tag.
 
+### Optional cloud backup disclosure for a future update
+
+Before a version with cloud backup ships, update its listing, privacy answers and capability
+explanation together. Recap Page has no account system of its own, advertising, analytics or
+telemetry. An optional OneDrive or Google Drive connection uses the provider's sign-in and sends
+reading data, completion history, portable settings and saved import drafts after explicit consent.
+Backups refresh after saved changes; restore is explicit, not live synchronization. Existing cloud
+copies remain after disconnect or local erase. This proposed disclosure does not alter the historical
+first-submission copy above or authorize a Store upload, certification submission or publication.
+
 ## Official sources
 
 Retrieved 2026-08-29 and 2026-08-30:

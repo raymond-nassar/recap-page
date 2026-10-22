@@ -1,8 +1,7 @@
 // The two requests behind the hand-entry lookup.
 //
-// This is deliberately the only file in the app that names a third party the reader did not ask
-// for by installing it. Constraint 3 promises no accounts, no cloud services and no telemetry, on
-// the basis that nothing is uploaded anywhere, so a new outbound request has to earn its place:
+// Cloud-backup consent does not authorize wiki requests or expand this lookup's payload.
+// Each wiki request still has to earn its place:
 //
 //   * it is never automatic. Nothing here runs unless the reader presses the lookup button.
 //   * it sends the words in the Title box and nothing else. No list, no progress, no issue id,

@@ -3,8 +3,9 @@
 **A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a tour and setup.
 
 Follow a Marvel story across series, open the next unread comic, and keep your place. Recap Page
-runs locally in your desktop browser without an account, with an Android app in development.
-No automatic device sync or offline comic reading.
+runs locally in your desktop browser without a Recap Page account, with an Android app in development.
+Optional OneDrive or Google Drive backups require a provider connection. No automatic device sync or
+offline comic reading. Restore is explicit.
 
 The [Android development build](docs/ANDROID.md) has phone-sized controls, Marvel Unlimited app
 links and a browser fallback. No computer needed. The
@@ -55,9 +56,9 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **Find comics.** Search curated lists in Browse, or issues, series, and creators in Add comics.
 - **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
   unavailable checks.
-- **Back up your progress.** Restore a backup on this device or another. Android and desktop save
-  separately. Reading data and completion history have separate backups; each restore replaces
-  only that kind of data.
+- **Back up your progress.** Optional OneDrive and Google Drive connections can back up saved
+  reading data, completion history, settings and import drafts on Windows and Android. Restore is
+  explicit; backups do not merge progress between devices.
 - **Share an order.** Preview a personal Markdown checklist or export an order without notes,
   reading history, or availability overrides.
 - **Choose your browser.** Use Edge, Chrome, Firefox, or Safari, or install Recap Page as a browser app.
@@ -146,10 +147,12 @@ use a rating-capable build to restore a backup containing ratings.
 
 ### Your data stays with you
 
-There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
-Lists, progress, issue ratings, completion dates, enjoyment, notes, settings, overrides, and custom entries stay
-on your device. You can export reading data, but not device settings. Completion history has
-its own backup.
+Recap Page has no account system of its own, analytics or tracking. Reading data stays local by
+default, and the app works without a cloud connection. Connect OneDrive or Google Drive and Recap
+Page uses that provider's sign-in to store backups after saved changes. Backups can contain reading
+data, completion history, portable settings and saved import drafts, including pasted source text.
+The provider receives those contents after you connect and consent. Manual files export reading
+data, but not device settings. The app does not operate a cloud backend or promise end-to-end encryption.
 See the [privacy policy](PRIVACY.md) for details.
 
 Some features make direct requests:
@@ -167,8 +170,10 @@ Some features make direct requests:
 - **Look up on Marvel Fandom** sends your hand-entered title to that wiki only when you choose it.
   It does not fetch a cover.
 
-These services can see your network address and the issue or search details needed for the request.
-They do not receive your saved lists, progress, or notes.
+These metadata services can see your network address and the issue or search details needed for
+each request. They do not receive your saved lists, progress, or notes. Optional OneDrive or
+Google Drive backup is separate and uploads the selected backup data only after you connect and
+consent.
 
 Recap Page stores cover URLs, not image bytes. It never hosts or proxies comic images.
 Your browser may cache images it loads from Marvel.

@@ -96,9 +96,12 @@ function claimSites() {
 
 // Routine service requests must stay separate from deliberate backup exports.
 const PROMISES = [
-  ['there is no account', /no account/i],
+  ['there is no Recap Page account system', /no (?:Recap Page )?account system/i],
   ['there is no analytics or tracking', /no analytics|analytics or tracking|tracking of any kind/i],
-  ['saved reading data is not uploaded automatically', /progress[^.]*never sent|never sent[^.]*progress|saved reading data is not uploaded automatically/i],
+  ['saved data is local by default', /(?:saved data|reading data|progress|lists)[^.]*local[^.]*default/i],
+  ['optional cloud backups are provider uploads after connection and consent',
+    /(?:optional|connect)[^.]{0,180}(?:OneDrive|Google Drive)[^.]{0,180}(?:backup|provider receives|provider account|provider's sign-in)/i],
+  ['provider uploads require connection and consent', /after (?:you )?connect(?:ion)? and consent|you connect after consent/i],
 ];
 
 // Made, and stated as made. A surface that lists the promises and omits these is the absolute
@@ -118,16 +121,16 @@ const PROMISES = [
 // reads as complete and omits the largest item is the defect this whole item exists to undo, so
 // the clause is held by a rule rather than left as prose somebody can quietly drop.
 const REQUESTS = [
-  ['metadata is fetched', /(?:sends?|asks|downloads)[^.]*(?:metadata API|comics database)/i],
+  ['metadata is fetched', /(?:sends?|asks|downloads)[^.]*(?:metadata API|comics\s+database)/i],
   ['the app contacts the API on startup', /(?:starts|startup|opening (?:the app|it))[^.]*reachable/i],
-  ['covers are fetched from Marvel', /cover[^.]*Marvel'?s? (?:own )?image servers/i],
+  ['covers are fetched from Marvel', /cover[^.]*Marvel'?s?\s+(?:own\s+)?image\s+servers/i],
   [
     'browsing a series or a creator fetches its comics',
     /browsing[^.;]*(?:series|creator)[^.;]*(?:asks|sends|requests)[^.;]*(?:issues|comics)/i,
   ],
   [
     'opening a reader resolves a missing reader link',
-    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)/i,
+    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata\s+(?:API|service)|comics\s+database)[^.]*(?:reader link|that link)/i,
   ],
   [
     'reader launch names both Marvel destinations',
@@ -135,7 +138,7 @@ const REQUESTS = [
   ],
   [
     'the requests disclose which issues',
-    /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers|issue or search details)/i,
+    /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issues requested|issue numbers|issue or search details)/i,
   ],
   // Added with BL-150, which put the first request to a host that is not Marvel and not the
   // metadata service anywhere in the app. A surface that enumerates the requests and omits an
@@ -173,7 +176,7 @@ test('README distinguishes reading-data exports from device settings', () => {
   const privacy = between(
     read('README.md'), '### Your data stays with you', '## Run it on your computer',
   );
-  assert.match(privacy, /export reading data, but not device settings/i);
+  assert.match(privacy, /export reading\s+data, but not device settings/i);
 });
 
 // The absolute itself, in the forms it has actually been written in here. "Nothing is uploaded"
@@ -687,15 +690,14 @@ test('no surface reinstates an unqualified claim that nothing is sent', () => {
   }
 });
 
-// The narrow promises are still allowed to be absolute, because they are true without
-// qualification: a theme choice and a reading position genuinely never go anywhere. Losing this
-// would make the rule above look satisfiable by deleting the promises instead of qualifying the
-// claim, which is the failure it exists to prevent.
-test('a promise about one thing may still be absolute, and one still is', () => {
+// Portable settings remain local by default and enter a provider backup only after connection and
+// consent. Losing this distinction would let a broad upload claim pass by removing the qualification.
+test('portable settings stay local by default and enter only the optional backup', () => {
   const html = read('src/index.html');
   const theme = section(html, '<h3>Theme</h3>', '<h3>Metadata source</h3>');
-  assert.match(theme, /never sent anywhere/i, 'the theme setting genuinely never leaves');
-  assert.doesNotMatch(theme, /nothing is uploaded/i, 'but it is a promise about the setting only');
+  assert.match(theme, /stays in this browser/i);
+  assert.match(theme, /includes it as a portable setting/i);
+  assert.doesNotMatch(theme, /never sent anywhere/i);
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

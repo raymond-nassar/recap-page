@@ -1,11 +1,14 @@
 # Recap Page privacy policy
 
-Last updated: 2026-10-07
+Last updated: 2026-10-21
 
 Recap Page keeps your reading progress, lists, issue ratings, completion dates, enjoyment choices, notes,
-settings, availability choices, and custom entries on your device. There is no account,
-advertising, analytics, behavioral tracking, or telemetry. Saved data is not uploaded or synced
-automatically. If you export it, the destination you choose receives that file's contents.
+settings, availability choices, and custom entries on your device. Recap Page has no account system
+of its own, advertising, analytics, behavioral tracking, or telemetry. Optional OneDrive and Google
+Drive connections use the provider's sign-in and storage. Once connected, saved changes can upload
+backups containing reading data, completion history, portable settings and saved import drafts.
+The provider receives those contents. Recap Page has no hosted cloud backend and makes no
+end-to-end-encryption promise.
 
 ## Data stored on the device
 
@@ -40,9 +43,9 @@ contain progress, issue ratings and notes. Desktop uses a browser download. Andr
 selected file provider supplies an import or receives the export's filename and contents. Both
 pickers request a local-only provider; this is not a guarantee against its own sync or retention.
 
-Choose a destination you trust and keep backups outside the app. Backups are not uploaded
-automatically, but saving transfers the chosen content to that destination. Manage previously
-exported files and any partial documents left by a failed save at the destination.
+For manual file exports, choose a destination you trust and keep files outside the app. Saving
+transfers the chosen content to that destination. Manage previously exported files and any partial
+documents left by a failed save at the destination.
 
 Issue ratings are part of reading-data JSON backups, not Markdown exports. Reading backups do not
 contain completion dates or list enjoyment choices. **Backup & settings**
@@ -50,7 +53,7 @@ offers a separate completion-history backup containing saved list identities, co
 and optional thumbs. Each restore replaces only its own kind of data. A reading-data restore or
 its Undo does not replace completion history. Download both files to preserve both kinds of data.
 The separately labelled saved-value troubleshooting copy is not a normal history backup.
-Reading and history backup controls are adjacent. Settings are not part of this transfer.
+Reading and history backup controls are adjacent. Settings are not part of these legacy exports.
 A reading restore keeps the exact prior reading-data bytes as a saved copy. A one-shot Undo
 is identified only in the tab that performed the restore. Undo, reload or a replaced snapshot
 leaves a clearly named saved-copy action instead, never an unlabeled reverse Undo. Replacement
@@ -59,8 +62,9 @@ The saved copy can also be downloaded exactly, even when this version cannot res
 
 Pasted imports retain exact source text, recognized source positions and selected matches in a
 separate local draft, including unresolved and duplicate occurrences. Source can contain arbitrary
-personal text. There is no automatic expiry or upload. For a complete transfer, also export the
-separately labeled import-draft file when present. Current reading/history formats remain unchanged.
+personal text. Drafts have no automatic expiry and are uploaded only through optional cloud backup
+after connection and consent. For a complete manual transfer, also export the separately labeled
+import-draft file when present. Current reading/history formats remain unchanged.
 Draft restore changes only that draft; it preserves prior draft sources inside the new bounded file
 and requires explicit Resume review. A replacement that exceeds the size limit is refused.
 Reading restore and Undo retain source but invalidate automatic application. An uncertain interrupted
@@ -70,6 +74,23 @@ That export includes adopted current source alongside failed source candidates. 
 file exceeds the draft limit, export is refused explicitly and retained work stays guarded in the
 open page; no source is silently omitted to make a file fit.
 Browser downloads are requests, not confirmation that a file was saved.
+
+## Optional cloud backups
+
+Connecting OneDrive or Google Drive is optional. Before connection, the app explains that successful
+saved changes can trigger automatic backups. The composite contains reading data, completion
+history, portable settings and an optional saved import draft. Drafts can include arbitrary pasted
+personal text. Do not connect if you do not want those categories sent to the selected provider.
+
+Each installation keeps its own backup stream with two rotating validated snapshots. A new
+installation shows existing backups before it may upload. Restore is an explicit replacement after
+review and confirmation; it does not merge devices or synchronize them. The app keeps a recoverable
+copy of local data during a restore and blocks backup while recovery is unresolved.
+
+The provider controls its account, storage, retention and deletion. A provider can retain its own
+copies or history; disconnecting and local erase do not remove remote backups. Provider storage
+encryption is not an end-to-end-encryption guarantee. While offline, changes remain local and
+pending until the app can verify a backup. Closing or force-stopping the app can delay retries.
 
 ## Direct network requests
 
@@ -113,7 +134,9 @@ Recap Page does not bypass Marvel Unlimited.
 
 The Microsoft Store package declares `runFullTrust` to start its local server and open your default
 browser through its bundled Node supervisor. It binds only to `127.0.0.1:8787` and requests no
-administrator privileges during ordinary use. It adds no account or telemetry.
+administrator privileges during ordinary use. The optional cloud connection uses Microsoft or
+Google provider authorization; Recap Page does not add its own account system, analytics or
+telemetry.
 
 Packaging and updates do not change where browser data is saved. Recap Page does not contact an
 external software update service. Store updates come only through Microsoft Store.

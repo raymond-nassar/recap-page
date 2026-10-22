@@ -5,9 +5,10 @@ sealed Android App Bundle. It never builds, signs, allocates a code, creates a P
 changes account permissions or publishes from a push, tag, merge or GitHub release event.
 It rejects production tracks. Production eligibility and permission remain separate owner decisions.
 
-This is maintainer tooling only. Readers still need no Recap Page account; their progress,
-notes and backups are not uploaded. The app's storage origin, schema and runtime dependencies
-are unchanged.
+This is maintainer tooling only. Readers still need no Recap Page account. Optional cloud backups
+upload selected progress, notes, settings and saved drafts to the connected provider after consent.
+The browser storage origin and saved-data schema are unchanged; any host-side auth dependencies are
+narrowly scoped to the approved backup feature.
 
 ## Prerequisites
 

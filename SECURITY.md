@@ -90,18 +90,18 @@ If the report is declined, you may publish immediately and quote the reasoning.
 
 Consider these safeguards when preparing a report:
 
-- There are no accounts or hosted reading-data services, and no analytics, tracking, or telemetry. On startup, the app
-  asks the comics database whether it is reachable. Issue searches send the words you type; browsing
-  a selected series or creator requests the comics it lists. Details requests name the comic,
-  and covers load from Marvel's own image servers. Those services see which issues you request;
-  the reachability check names none. Pressing **Read** opens Marvel Unlimited when a reader link
-  is known. Otherwise the launch tab asks the metadata service for that link and falls back to the
-  issue page on marvel.com. The hand-entry lookup sends your title to the Marvel Fandom wiki only
-  when you press the lookup button, with no cookie, referrer, or library data. The Android prototype
-  also sends the digital issue ID to Marvel's Bifrost service for an app link. That request sends
-  no credentials or referrer, bypasses caching, and saves no response. Marvel sees the digital ID
-  and network address. Saved progress and notes are never sent by these service requests.
-  The app has no software update check or download; Microsoft Store delivers Store package updates.
+- Reading data stays local by default; there is no Recap Page account system or hosted reading-data
+  service; no analytics, tracking or telemetry. Optional OneDrive or Google Drive backups use
+  reader-connected accounts; after connection and consent, the provider receives reading data,
+  completion history, portable settings and saved import drafts. On startup, the app asks the comics
+  database whether it is reachable. Issue searches send the words you type; browsing a selected
+  series or creator requests its comics. Details requests name the comic. Covers load from Marvel's
+  image servers, which see the issues requested; the reachability check names none. Pressing **Read**
+  opens Marvel Unlimited when a reader link is known. Otherwise the launch tab asks the metadata
+  service for that link and falls back to the issue page on marvel.com. The hand-entry lookup sends
+  your title to the Marvel Fandom wiki only when you press the lookup button, with no cookie, referrer or
+  library data. Android sends Bifrost the digital issue ID without credentials or referrer; Marvel sees its ID and network address.
+  Metadata and reader-link requests do not send saved progress or notes. Microsoft Store delivers updates; the app has no software update check or download.
 - Covers are requested only from Marvel's image host. A metadata service could return a hostile
   URL, so other hosts are rejected before any request. `src/js/lib/coverHost.js` supplies the
   allowed host to both normalization and the server's `img-src` policy.
