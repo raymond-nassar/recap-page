@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "mcu-prep-visionquest",
   "name": "VisionQuest",
-  "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+  "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
   "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/812",
   "groups": [
     "Billy and Tommy: origins of the twins",
@@ -25,9 +25,39 @@
       0
     ],
     [
+      3,
+      55231,
+      "West Coast Avengers (1985) #42",
+      1
+    ],
+    [
+      4,
+      55232,
+      "West Coast Avengers (1985) #43",
+      1
+    ],
+    [
+      5,
+      55233,
+      "West Coast Avengers (1985) #44",
+      1
+    ],
+    [
+      6,
+      55234,
+      "West Coast Avengers (1985) #45",
+      1
+    ],
+    [
       7,
       17927,
       "West Coast Avengers (1985) #46",
+      1
+    ],
+    [
+      8,
+      55236,
+      "West Coast Avengers (1985) #47",
       1
     ],
     [
@@ -250,14 +280,15 @@
   "sourceCounts": {
     "sourceOccurrenceCount": 44,
     "sourceIdentityCount": 44,
-    "includedIssueCount": 39,
-    "sourceGapCount": 5,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 44,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
   "sourceSha256": "faa4b3808173988d9b4599dd4c692aa490067ce766423e384daa2255167a1f97",
-  "proposalDigest": "6b5c4a3f94db6b9ed08681689196b2aea77f6ec7223b5a3796b44c2227879035",
-  "libraryDigest": "fbd19de2ca558879a77938beb48e041733f1500a4056676913b7fdfebdd51b36",
-  "approvalDigest": "e17dbc4fe360799a2da50573ed49933b4942fe07322bb9cfda8d97c46de03340",
+  "proposalDigest": "a08c9d5ce8057749801c139356c6d8df5ddf73f74d6759a22922ed14dfc9bd24",
+  "libraryDigest": "6083c55853c0dc8a23a6bff107d9b2d4914806e577f7faf51c63e939adf8bef9",
+  "approvalDigest": "93cc65ca1e5995f293d7ebceb99b49c68e393bf69f2d8e28e31eeb8eeafdc88d",
   "insertionAnchor": {
     "beforeId": "avengers-doomsday-secret-wars"
   },
@@ -267,7 +298,7 @@
     "scripts/data/owner-mappings/mcu-prep-visionquest.json",
     "scripts/data/owner-overlaps/mcu-prep-visionquest.json"
   ],
-  "vectorSha256": "7050f2625f59c2eb88da5ec9135338519024db2b2b3660dfbad21885b58bc714",
+  "vectorSha256": "ba077f391f03595cd766340c0f5051a2dba941962f18e3f0a4ce9b527e675684",
   "screenReleases": [
     {
       "id": "visionquest",

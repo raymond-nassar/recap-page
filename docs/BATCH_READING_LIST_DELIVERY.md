@@ -131,7 +131,7 @@ Before writing data, name the current roster, census and reciprocal relationship
 the actual delivery plan. `test/helpers/current-reading-library.mjs:7-60` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:153-180` require registered contracts, current approval
+`test/helpers/owner-delivery-contract.mjs:154-181` require registered contracts, current approval
 evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest.
 

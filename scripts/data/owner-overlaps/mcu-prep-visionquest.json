@@ -1,18 +1,19 @@
 {
   "candidateId": "mcu-prep-visionquest",
-  "packetDigest": "46945089d383127610e0c38fc240ae91e831a45312aaadfc8b6efcae3de80ccb",
-  "mappingDigest": "c570650ec8cf5a0b07c0cf73ec5c572ddd29b9701e3c0ef0dcf1a5372e2f40b2",
-  "libraryDigest": "fbd19de2ca558879a77938beb48e041733f1500a4056676913b7fdfebdd51b36",
+  "packetDigest": "8aa370b4367893efc54fef4d2f03bfed24a3eca206af3cf606fa080e597ba056",
+  "mappingDigest": "d6aa8c3b7108cf474ea4488474e8dc6a044115656f988c28ed41b7bdbacefdd1",
+  "libraryDigest": "6083c55853c0dc8a23a6bff107d9b2d4914806e577f7faf51c63e939adf8bef9",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 44,
     "sourceIdentityCount": 44,
-    "includedIssueCount": 39,
-    "sourceGapCount": 5,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 44,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 39,
-  "comparisonCount": 317,
+  "candidateCount": 44,
+  "comparisonCount": 316,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -437,10 +438,15 @@
     },
     {
       "orderId": "hawkeye-reading-order",
-      "sharedCount": 26,
+      "sharedCount": 31,
       "sharedIds": [
         "17793",
+        "55231",
+        "55232",
+        "55233",
+        "55234",
         "17927",
+        "55236",
         "17790",
         "17791",
         "17792",
@@ -1111,12 +1117,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "marvel-multiverse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "marvel-super-heroes-secret-wars",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1390,10 +1390,15 @@
     },
     {
       "orderId": "moon-knight-reading-order",
-      "sharedCount": 5,
+      "sharedCount": 10,
       "sharedIds": [
         "17793",
+        "55231",
+        "55232",
+        "55233",
+        "55234",
         "17927",
+        "55236",
         "17790",
         "17791",
         "17792"
@@ -1781,11 +1786,16 @@
     },
     {
       "orderId": "the-vision-reading-order",
-      "sharedCount": 30,
+      "sharedCount": 35,
       "sharedIds": [
         "18458",
         "17793",
+        "55231",
+        "55232",
+        "55233",
+        "55234",
         "17927",
+        "55236",
         "17790",
         "17791",
         "17792",
@@ -1860,9 +1870,14 @@
     },
     {
       "orderId": "wandavision",
-      "sharedCount": 3,
+      "sharedCount": 8,
       "sharedIds": [
+        "55231",
+        "55232",
+        "55233",
+        "55234",
         "17927",
+        "55236",
         "17790",
         "17791"
       ],
@@ -2065,5 +2080,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "be3d5fb679c6bdc68e3be3e6758cc645d00837eca4b19e2bd5e093a5a8104ce4"
+  "reportDigest": "c2a2a4e045a209a1bfd5dcdef2b02ffeb8b5bf38f6b9794fc61f2728ade71a04"
 }

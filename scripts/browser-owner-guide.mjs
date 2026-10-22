@@ -39,7 +39,7 @@ export function ownerPresentation(expected) {
   return { rows, headings };
 }
 
-export function ownerGuideScenario(contract) {
+export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
   const category = event ? 'timeline' : 'marvel-on-screen';
@@ -130,7 +130,7 @@ export function ownerGuideScenario(contract) {
       && isDeepStrictEqual(actual.overrides, seed.overrides), JSON.stringify(actual));
   };
   return {
-    id: `owner-guide-${contract.id}`,
+    id: `owner-guide-${contract.id}${savedCopyOnly ? '-saved-copy' : ''}`,
     title: `Registered owner guide: ${contract.name}`,
     async run(page, t) {
       const errors = [];
@@ -141,6 +141,41 @@ export function ownerGuideScenario(contract) {
         const url = new URL(request.url());
         if (url.protocol.startsWith('http') && url.origin !== page.__origin) external.push(url.origin);
       });
+      if (savedCopyOnly) {
+        let previous = createList(createEmptyState(), {
+          id: 'saved-visionquest', catalogId: contract.id, name: 'My saved VisionQuest',
+          note: 'Keep my list note', description: 'Keep my saved description',
+        });
+        previous = addIssuesToList(previous, 'saved-visionquest',
+          payload.items.filter((item) => !ownerIdentityIds.includes(item.issueId))).state;
+        const ids = previous.lists['saved-visionquest'].itemIds;
+        assert.equal(ids.length, 39);
+        previous = markRead(previous, ids[0], true, 123456);
+        previous = setIssueNote(previous, ids[1], 'Keep my issue note');
+        previous = setDeferred(previous, 'saved-visionquest', ids[2]);
+        previous.overrides[ids[3]] = 'unavailable';
+        previous.lists['saved-visionquest'].itemIds = [ids[1], ids[0], ...ids.slice(2)];
+        const expectedPrevious = JSON.parse(JSON.stringify(previous));
+        await page.evaluateOnNewDocument((key, state) => {
+          if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+          window.__mrtBlockExternal = true;
+        }, KEY, previous);
+        await page.goto(`${page.__origin}/?catalog=actual#/read/saved-visionquest`, { waitUntil: 'load' });
+        await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim() === 'My saved VisionQuest');
+        for (let reload = 0; reload < 2; reload++) {
+          if (reload) await page.reload({ waitUntil: 'load' });
+          const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
+          t.check(`pre-publication saved VisionQuest preserves its 39 originals and reader facts after ${reload ? 'reload' : 'open'}`,
+            isDeepStrictEqual(saved.lists, expectedPrevious.lists)
+            && isDeepStrictEqual(saved.read, expectedPrevious.read)
+            && isDeepStrictEqual(saved.notes, expectedPrevious.notes)
+            && isDeepStrictEqual(saved.overrides, expectedPrevious.overrides));
+        }
+        t.check('saved-copy compatibility stays isolated with no browser errors',
+          errors.length === 0 && external.length === 0, JSON.stringify({ errors, external }));
+        return;
+      }
       await page.evaluateOnNewDocument((stateKey, state, historyKey, savedHistory) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
         if (!localStorage.getItem(stateKey)) localStorage.setItem(stateKey, JSON.stringify(state));

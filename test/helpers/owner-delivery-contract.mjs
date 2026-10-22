@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, digestCanonicalJson, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
@@ -138,9 +138,10 @@ export async function assertOwnerDeliveryContract(contract, {
   };
   const digestLibrary = contract.libraryDigest == null
     ? historicalSpiderManSelectionLibraryDigest : recordedEditorialDigest;
-  const currentLibraryDigest = digestLibrary(recordedManifest, recordedOrders.map((row) => ({
-    id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+  const recordedVectors = recordedOrders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
+  const recordedCurrentDigest = libraryDigestFor(recordedManifest, recordedVectors);
+  const currentLibraryDigest = contract.libraryDigest === recordedCurrentDigest
+    ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors);
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
   assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
     recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);

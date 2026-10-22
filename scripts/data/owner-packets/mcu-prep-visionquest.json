@@ -9,11 +9,11 @@
   "sourceIssueBearingBlocksSha256": "ed80533087cdd0e9a7333c55492e85c2a7901cca3a20d80f0e27c4941c7a1a77",
   "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
   "excludedSourceReferences": [],
-  "expectedCount": 39,
+  "expectedCount": 44,
   "proposedManifest": {
     "id": "mcu-prep-visionquest",
     "name": "VisionQuest",
-    "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+    "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
     "type": "screen-companion",
     "depth": "selected",
     "beginner": false,
@@ -44,7 +44,7 @@
       "WandaVision"
     ],
     "coverIssueId": 57306,
-    "expect": 39
+    "expect": 44
   },
   "insertionAnchor": {
     "beforeId": "avengers-doomsday-secret-wars"
@@ -77,6 +77,54 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 3,
+      "sourceIssueReference": "West Coast Avengers (1985) #42",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "west coast avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "West Coast Avengers (1985) #43",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "west coast avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "West Coast Avengers (1985) #44",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "west coast avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Vision Quest: reconstruction and memory"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "West Coast Avengers (1985) #45",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "west coast avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Vision Quest: reconstruction and memory"
+    },
+    {
       "sourceIssueReference": "West Coast Avengers (1985) #46",
       "normalizedSeriesTitle": "West Coast Avengers",
       "seriesYear": 1985,
@@ -88,6 +136,18 @@
       "inputPosition": 3,
       "sourceRangeReference": "Vision Quest: reconstruction and memory",
       "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "West Coast Avengers (1985) #47",
+      "sourceRangeReference": "Vision Quest: reconstruction and memory",
+      "normalizedSeriesTitle": "west coast avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Vision Quest: reconstruction and memory"
     },
     {
       "sourceIssueReference": "West Coast Avengers (1985) #48",
@@ -559,16 +619,38 @@
     }
   ],
   "sourceOccurrenceCount": 44,
-  "sourceGaps": [
+  "packetDigest": "8aa370b4367893efc54fef4d2f03bfed24a3eca206af3cf606fa080e597ba056",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Independent full-capability reviewer (GitHub Copilot)",
+    "rationale": "Approved after actual independent review of the original owner brief, confirmed final Suggested Reading Order, request, exact frozen proposal and genuine cached provider responses. Independently reconstructed all 44 source positions: Vision and the Scarlet Witch (1985) #12, West Coast Avengers #51 then #42-50, Young Avengers (2005) #1-12, Avengers: The Children's Crusade (2010) #1-9 and Vision (2015) #1-12. All 39 publication identities and digital IDs agree with exact series/year/number provider bodies. Five positions 3, 4, 5, 6 and 8 remain explicit WCA #42-45/#47 gaps linked to assigned Issue #813, with individual 404s and complete 97-row series omission evidence. Standard Vision #4 57312 / 41079 is verified; variant hint 58262 is 404 and excluded. Grouping, standalone first-sentence description and editorial context match the owner's reconstruction, twins and synthezoid-family intent. Section-table extras are excluded, original and projection receipts remain distinct, and no availability or issue-by-issue adaptation claim is approved.",
+    "reviewedAt": "2026-10-22T05:28:59.202Z",
+    "proposalDigest": "6b5c4a3f94db6b9ed08681689196b2aea77f6ec7223b5a3796b44c2227879035"
+  },
+  "sourceGapResolutions": [
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 3,
+      "previousSourceIssueReference": "West Coast Avengers (1985) #42",
+      "previousSourceRangeReference": "Vision Quest: reconstruction and memory",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "42",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55231,
+      "resolvedNormalizedSeriesTitle": "west coast avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "42",
       "checkedAt": "2026-10-22",
-      "auditBasis": "Exact candidate 55231 lookup returned HTTP 404 at 2026-10-22T05:19:00.378Z; the complete 97-row series 3630 response omits issue #42. Candidate comes from the owner-supplied link, not a verified provider identity. Preserve source position 3 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "auditBasis": "Owner-confirmed identity for West Coast Avengers (1985) #42, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55231",
           "retrievedAt": "2026-10-22"
         },
         {
@@ -582,29 +664,50 @@
           "retrievedAt": "2026-10-22"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "owner-selection",
           "url": "https://github.com/raymond-nassar/recap-page/issues/812",
           "retrievedAt": "2026-10-22"
         }
       ],
-      "sourcePosition": 3,
-      "sourceIssueReference": "West Coast Avengers (1985) #42",
-      "sourceRangeReference": "Vision Quest: reconstruction and memory",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "42",
-      "sourceGroup": "Vision Quest: reconstruction and memory",
-      "evidenceDigest": "5bd0e6682db1bc7321d072dbecd4fe8ebd0f0a04bbbb8dcc940dc140298a3265"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 55231,
+        "label": "West Coast Avengers (1985) #42",
+        "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628"
+      },
+      "evidenceDigest": "376122cddeefeca4ddce223f88622ae84d65469a203f5bc88b35dcd8862bb9bb"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 4,
+      "previousSourceIssueReference": "West Coast Avengers (1985) #43",
+      "previousSourceRangeReference": "Vision Quest: reconstruction and memory",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "43",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55232,
+      "resolvedNormalizedSeriesTitle": "west coast avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "43",
       "checkedAt": "2026-10-22",
-      "auditBasis": "Exact candidate 55232 lookup returned HTTP 404 at 2026-10-22T05:19:00.714Z; the complete 97-row series 3630 response omits issue #43. Candidate comes from the owner-supplied link, not a verified provider identity. Preserve source position 4 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "auditBasis": "Owner-confirmed identity for West Coast Avengers (1985) #43, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55232",
           "retrievedAt": "2026-10-22"
         },
         {
@@ -618,29 +721,50 @@
           "retrievedAt": "2026-10-22"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "owner-selection",
           "url": "https://github.com/raymond-nassar/recap-page/issues/812",
           "retrievedAt": "2026-10-22"
         }
       ],
-      "sourcePosition": 4,
-      "sourceIssueReference": "West Coast Avengers (1985) #43",
-      "sourceRangeReference": "Vision Quest: reconstruction and memory",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "43",
-      "sourceGroup": "Vision Quest: reconstruction and memory",
-      "evidenceDigest": "86ae99805a07da20cdcdc871bd059ea0626d1833d07831de36b427422e6c311f"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 55232,
+        "label": "West Coast Avengers (1985) #43",
+        "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628"
+      },
+      "evidenceDigest": "87fe9ef901d6fa0332eddf6e2700e28452f5c82040c02ab051698c58ce0ddf7c"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 5,
+      "previousSourceIssueReference": "West Coast Avengers (1985) #44",
+      "previousSourceRangeReference": "Vision Quest: reconstruction and memory",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "44",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55233,
+      "resolvedNormalizedSeriesTitle": "west coast avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "44",
       "checkedAt": "2026-10-22",
-      "auditBasis": "Exact candidate 55233 lookup returned HTTP 404 at 2026-10-22T05:19:00.956Z; the complete 97-row series 3630 response omits issue #44. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 5 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "auditBasis": "Owner-confirmed identity for West Coast Avengers (1985) #44, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55233",
           "retrievedAt": "2026-10-22"
         },
         {
@@ -654,29 +778,50 @@
           "retrievedAt": "2026-10-22"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "owner-selection",
           "url": "https://github.com/raymond-nassar/recap-page/issues/812",
           "retrievedAt": "2026-10-22"
         }
       ],
-      "sourcePosition": 5,
-      "sourceIssueReference": "West Coast Avengers (1985) #44",
-      "sourceRangeReference": "Vision Quest: reconstruction and memory",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "44",
-      "sourceGroup": "Vision Quest: reconstruction and memory",
-      "evidenceDigest": "44ae4ea63d74de398c685f1122805eb63ad6efcbcffd37888d477fd4b68eb3af"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 55233,
+        "label": "West Coast Avengers (1985) #44",
+        "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628"
+      },
+      "evidenceDigest": "7c8d1c0a3d3cfd0e50cc5a002e5fa4fe2dc317ab73eef7e4c2f89ba488912e5c"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 6,
+      "previousSourceIssueReference": "West Coast Avengers (1985) #45",
+      "previousSourceRangeReference": "Vision Quest: reconstruction and memory",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "45",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55234,
+      "resolvedNormalizedSeriesTitle": "west coast avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "45",
       "checkedAt": "2026-10-22",
-      "auditBasis": "Exact candidate 55234 lookup returned HTTP 404 at 2026-10-22T05:19:01.128Z; the complete 97-row series 3630 response omits issue #45. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 6 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "auditBasis": "Owner-confirmed identity for West Coast Avengers (1985) #45, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55234",
           "retrievedAt": "2026-10-22"
         },
         {
@@ -690,29 +835,50 @@
           "retrievedAt": "2026-10-22"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "owner-selection",
           "url": "https://github.com/raymond-nassar/recap-page/issues/812",
           "retrievedAt": "2026-10-22"
         }
       ],
-      "sourcePosition": 6,
-      "sourceIssueReference": "West Coast Avengers (1985) #45",
-      "sourceRangeReference": "Vision Quest: reconstruction and memory",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "45",
-      "sourceGroup": "Vision Quest: reconstruction and memory",
-      "evidenceDigest": "963c9805cc942d7f8186e9f1a7e7afb941ad8892654c85486491d2144c46fd38"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 55234,
+        "label": "West Coast Avengers (1985) #45",
+        "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628"
+      },
+      "evidenceDigest": "4e7d5051a00b2b95f5ec39d31e65397268cfd30d0a2adeb24cee0ac828599358"
     },
     {
-      "kind": "published-metadata-gap",
-      "status": "open",
+      "sourcePosition": 8,
+      "previousSourceIssueReference": "West Coast Avengers (1985) #47",
+      "previousSourceRangeReference": "Vision Quest: reconstruction and memory",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "47",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55236,
+      "resolvedNormalizedSeriesTitle": "west coast avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "47",
       "checkedAt": "2026-10-22",
-      "auditBasis": "Exact candidate 55236 lookup returned HTTP 404 at 2026-10-22T05:19:09.428Z; the complete 97-row series 3630 response omits issue #47. Candidate comes from the retained Vision/WandaVision source checklists, not a verified provider identity. Preserve source position 8 under https://github.com/raymond-nassar/recap-page/issues/813; no neighboring issue or collection substituted.",
+      "auditBasis": "Owner-confirmed identity for West Coast Avengers (1985) #47, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
       "evidenceSources": [
         {
           "kind": "gap-issue",
           "url": "https://github.com/raymond-nassar/recap-page/issues/813",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55236",
           "retrievedAt": "2026-10-22"
         },
         {
@@ -726,27 +892,26 @@
           "retrievedAt": "2026-10-22"
         },
         {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628",
+          "retrievedAt": "2026-10-22"
+        },
+        {
           "kind": "owner-selection",
           "url": "https://github.com/raymond-nassar/recap-page/issues/812",
           "retrievedAt": "2026-10-22"
         }
       ],
-      "sourcePosition": 8,
-      "sourceIssueReference": "West Coast Avengers (1985) #47",
-      "sourceRangeReference": "Vision Quest: reconstruction and memory",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "47",
-      "sourceGroup": "Vision Quest: reconstruction and memory",
-      "evidenceDigest": "990a9a17929748f00f1e2316e9d35b285f35e8412e6101190a1087349ec152da"
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 55236,
+        "label": "West Coast Avengers (1985) #47",
+        "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/813#issuecomment-6333542628"
+      },
+      "evidenceDigest": "2a94106e417cb973c7601a72974dd59d436830efbbec0e42ce34ffa8269cf88e"
     }
-  ],
-  "packetDigest": "46945089d383127610e0c38fc240ae91e831a45312aaadfc8b6efcae3de80ccb",
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "Independent full-capability reviewer (GitHub Copilot)",
-    "rationale": "Approved after actual independent review of the original owner brief, confirmed final Suggested Reading Order, request, exact frozen proposal and genuine cached provider responses. Independently reconstructed all 44 source positions: Vision and the Scarlet Witch (1985) #12, West Coast Avengers #51 then #42-50, Young Avengers (2005) #1-12, Avengers: The Children's Crusade (2010) #1-9 and Vision (2015) #1-12. All 39 publication identities and digital IDs agree with exact series/year/number provider bodies. Five positions 3, 4, 5, 6 and 8 remain explicit WCA #42-45/#47 gaps linked to assigned Issue #813, with individual 404s and complete 97-row series omission evidence. Standard Vision #4 57312 / 41079 is verified; variant hint 58262 is 404 and excluded. Grouping, standalone first-sentence description and editorial context match the owner's reconstruction, twins and synthezoid-family intent. Section-table extras are excluded, original and projection receipts remain distinct, and no availability or issue-by-issue adaptation claim is approved.",
-    "reviewedAt": "2026-10-22T05:28:59.202Z",
-    "proposalDigest": "6b5c4a3f94db6b9ed08681689196b2aea77f6ec7223b5a3796b44c2227879035"
-  }
+  ]
 }

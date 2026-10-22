@@ -10792,10 +10792,10 @@
       "id": "mcu-prep-visionquest",
       "file": "mcu_prep_visionquest.json",
       "name": "VisionQuest",
-      "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues still lack provider details and are not included yet.",
+      "description": "West Coast Avengers' Vision Quest and Tom King's Vision underpin Marvel Studios' Disney+ series VisionQuest, preparing you for Vision's search for identity and family. Begin with the twins' birth and loss, then Vision's dismantling and reconstruction, Billy and Tommy's return in Young Avengers, their reunion with Wanda in The Children's Crusade, and Vision's new synthezoid family. Five selected Vision Quest issues have owner-confirmed identities but no provider details or covers.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 39,
+      "count": 44,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 5,
@@ -10829,7 +10829,8 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/812",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T05:32:36.143Z"
+      "updatedAt": "2026-10-22T08:00:00.000Z",
+      "ownerConfirmedIdentityCount": 5
     },
     {
       "id": "avengers-doomsday-secret-wars",
