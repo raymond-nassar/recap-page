@@ -100,6 +100,16 @@
     {
       "id": "mcu-prep-visionquest",
       "contract": "test/fixtures/owner-delivery/mcu-prep-visionquest.json"
+    },
+    {
+      "id": "mcu-prep-spider-man-brand-new-day",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-spider-man-brand-new-day.json",
+      "baselineRowCount": 19
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "contract": "test/fixtures/owner-delivery/mcu-prep-thunderbolts.json",
+      "baselineRowCount": 34
     }
   ]
 }

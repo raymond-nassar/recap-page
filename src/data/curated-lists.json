@@ -2840,7 +2840,7 @@
     {
       "id": "mcu-prep-thunderbolts",
       "name": "MCU Prep: Thunderbolts*",
-      "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2869,7 +2869,7 @@
         "There Is No High Road",
         "Taskmaster"
       ],
-      "expect": 34,
+      "expect": 35,
       "timeline": null,
       "coverIssueId": 15311
     },
@@ -3008,7 +3008,7 @@
         "Dan Slott",
         "Nick Spencer"
       ],
-      "expect": 19,
+      "expect": 20,
       "timeline": null,
       "coverIssueId": 3583
     },

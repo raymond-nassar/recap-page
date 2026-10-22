@@ -1,21 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { digestCanonicalJson } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import {
-  mcuEditorial, beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
+  mcuEditorial, afterMcuEditorialEntry, beforeMcuEditorialEntry, beforeMcuEditorialManifest,
+  beforeMcuEditorialPayloadText,
 } from '../scripts/lib/mcu-editorial.mjs';
 import {
   historicalMcuDescriptionEntry, historicalMcuDescriptionManifest,
   historicalMcuDescriptionPayloadText,
 } from './helpers/reading-choice-history.mjs';
-import { beforeIdentityPayload, identityRevisions } from './helpers/owner-identity-history.mjs';
+import {
+  beforeIdentityEntry, beforeIdentityPayload, identityRevisions,
+} from './helpers/owner-identity-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
+const root = fileURLToPath(new URL('..', import.meta.url));
 const hash = (value) => createHash('sha256').update(value.replace(/\r\n/g, '\n')).digest('hex');
 const expectedIds = [
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again', 'mcu-prep-thunderbolts',
@@ -63,26 +69,34 @@ test('the immutable #731 revision remains exactly replayable after the later edi
 });
 
 test('MCU description history inverts only exact current copy and preserves every other value', async () => {
-  const [revision, manifest, catalog, historyText] = await Promise.all([
+  const [revision, manifest, historyText] = await Promise.all([
     json('test/fixtures/mcu-prep-description-refresh.json'),
-    json('src/data/curated-lists.json'), json('src/data/catalog.json'),
+    json('src/data/curated-lists.json'),
     text('test/fixtures/reading-choice-history.json'),
   ]);
+  const catalogAtRevision = JSON.parse(execFileSync('git', [
+    'show', `${revision.sourceCommit}:src/data/catalog.json`,
+  ], { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));
   assert.equal(hash(historyText), revision.readingChoiceHistoryLfSha256);
   for (const edit of revision.entries) {
-    const entry = beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === edit.id));
-    const card = beforeMcuEditorialEntry(catalog.lists.find((row) => row.id === edit.id));
+    const entry = beforeMcuEditorialEntry(beforeIdentityEntry(
+      manifest.lists.find((row) => row.id === edit.id),
+    ));
+    const card = catalogAtRevision.lists.find((row) => row.id === edit.id);
     const payloadText = beforeMcuEditorialPayloadText(edit.file, await text(`src/data/${edit.file}`));
     const originalEntry = historicalMcuDescriptionEntry(entry);
     assert.notEqual(originalEntry, entry);
     assert.deepEqual(originalEntry, { ...entry, description: edit.before });
     assert.equal(entry.description, edit.after);
     assert.equal(digestCanonicalJson(originalEntry), edit.manifestSha256, edit.id);
-    assert.equal(digestCanonicalJson(historicalMcuDescriptionEntry(card)), edit.catalogSha256, edit.id);
+    assert.equal(card.description, edit.before, edit.id);
+    assert.equal(digestCanonicalJson(card), edit.catalogSha256, edit.id);
     const originalText = historicalMcuDescriptionPayloadText(edit.file, payloadText);
     assert.equal(hash(originalText), edit.payloadLfSha256, `${edit.id}: complete original payload bytes`);
     assert.equal(digestCanonicalJson(JSON.parse(originalText)), edit.payloadSha256, edit.id);
-    assert.deepEqual(JSON.parse(originalText), { ...JSON.parse(payloadText), description: edit.before });
+    assert.deepEqual(JSON.parse(originalText), {
+      ...beforeIdentityPayload(edit.file, JSON.parse(payloadText)), description: edit.before,
+    });
     assert.equal(hash(historicalMcuDescriptionPayloadText(
       edit.file, payloadText.replace(/\r\n/g, '\n').replace(/\n/g, '\r\n'),
     )), edit.payloadLfSha256, `${edit.id}: Windows line endings preserve the same original`);
@@ -100,11 +114,13 @@ test('MCU description history inverts only exact current copy and preserves ever
     const renamed = historicalMcuDescriptionEntry({ ...entry, name: 'Unapproved title' });
     assert.equal(renamed.name, 'Unapproved title');
     assert.notEqual(digestCanonicalJson(renamed), edit.manifestSha256, edit.id);
-    const redated = historicalMcuDescriptionPayloadText(edit.file,
-      `${JSON.stringify({ ...JSON.parse(payloadText), generatedAt: '2099-01-01T00:00:00.000Z' }, null, 2)}\n`);
-    assert.equal(JSON.parse(redated).generatedAt, '2099-01-01T00:00:00.000Z');
-    assert.notEqual(hash(redated), edit.payloadLfSha256, edit.id);
-    assert.notEqual(digestCanonicalJson(JSON.parse(redated)), edit.payloadSha256, edit.id);
+    if (!identityRevisions.guides.some(({ id }) => id === edit.id)) {
+      const redated = historicalMcuDescriptionPayloadText(edit.file,
+        `${JSON.stringify({ ...JSON.parse(payloadText), generatedAt: '2099-01-01T00:00:00.000Z' }, null, 2)}\n`);
+      assert.equal(JSON.parse(redated).generatedAt, '2099-01-01T00:00:00.000Z');
+      assert.notEqual(hash(redated), edit.payloadLfSha256, edit.id);
+      assert.notEqual(digestCanonicalJson(JSON.parse(redated)), edit.payloadSha256, edit.id);
+    }
   }
   const reconstructed = historicalMcuDescriptionManifest(manifest);
   assert.deepEqual(reconstructed.lists.map((row) => row.id),
@@ -127,15 +143,24 @@ test('all thirty recommendations identify the reading benefit with exact current
     const card = catalog.lists.find(({ id }) => id === edit.id);
     const currentPayload = await json(`src/data/${edit.file}`);
     const { description, ...payload } = beforeIdentityPayload(edit.file, currentPayload);
-    const currentDescription = identityRevisions.guides.find(({ id }) => id === edit.id)?.description ?? edit.after;
-    assert.equal(entry.description, currentDescription, edit.id);
-    assert.equal(card.description, currentDescription, edit.id);
-    assert.equal(currentPayload.description, currentDescription, edit.id);
+    const identity = identityRevisions.guides.find(({ id }) => id === edit.id);
+    const publishedDescription = identity?.publishedDescription ?? identity?.description ?? edit.after;
+    assert.equal(entry.description, publishedDescription, edit.id);
+    assert.equal(card.description, publishedDescription, edit.id);
+    assert.equal(currentPayload.description, publishedDescription, edit.id);
     assert.equal(description, edit.after, edit.id);
     assert.equal(digestCanonicalJson(payload), edit.nonDescriptionSha256, edit.id);
     assert.ok(firstSentence(edit.after).length >= 90 && firstSentence(edit.after).length <= 140, edit.id);
     assert.doesNotMatch(edit.after, /[\u2013\u2014]/);
   }
+});
+
+test('the browser description expectation preserves separately approved owner-published copy', async () => {
+  const contract = await json('test/fixtures/owner-delivery/mcu-prep-thunderbolts.json');
+  const identity = identityRevisions.guides.find(({ id }) => id === contract.id);
+  assert.ok(identity?.publishedDescription);
+  assert.equal(contract.description, identity.publishedDescription);
+  assert.equal(afterMcuEditorialEntry(contract).description, identity.publishedDescription);
 });
 
 test('the current editorial inverse accepts only captured copy and never substitutes another identity', async () => {

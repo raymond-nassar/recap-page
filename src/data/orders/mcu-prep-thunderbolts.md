@@ -1,11 +1,12 @@
 # MCU Prep: Thunderbolts*: Issue-by-Issue Reading Checklist
+1 owner-confirmed identity has no provider details or cover.
 
 The owner selected these five readings in [the intake](https://github.com/raymond-nassar/recap-page/issues/682).
 This is not Comic Book Herald's full Thunderbolts guide or a claim that the comics match the film's roster.
 The [ordered source record](../../../scripts/data/mcu-prep-thunderbolts-source.json) retains the original outline, verified collection contents, edition decisions, exact identities and failed lookups.
 Within each collection, originals follow the verified contents-list order, not an asserted physical table of contents or a new publication chronology.
-Thunderbolts (1997) #-1, source position 6, remains unresolved under [the assigned provider-gap issue](https://github.com/raymond-nassar/recap-page/issues/687).
-The import publishes the other 34 originals without replacing that comic, adding a collection ID or making a placeholder identity.
+Thunderbolts (1997) #-1, source position 6, is now included by owner-confirmed identity under [the assigned provider-gap issue](https://github.com/raymond-nassar/recap-page/issues/687). Its provider record identifies #1, not #-1, so no provider metadata or availability is inferred.
+The checklist publishes all 35 resolved originals without adding a collection ID or placeholder identity.
 Only factual publication metadata and cover URLs are reused; no external narrative or image bytes are copied. The maintained [data provenance](../../../docs/DATA_PROVENANCE.md) records the publication boundary.
 
 ## Thunderbolts Classic Vol. 1
@@ -15,6 +16,7 @@ Only factual publication metadata and cover URLs are reused; no external narrati
 - [ ] [Thunderbolts (1997) #3 <!-- mrt:source-occurrence=3 -->](https://www.marvel.com/comics/issue/15333/thunderbolts_1997_3)
 - [ ] [Thunderbolts (1997) #4 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/15344/thunderbolts_1997_4)
 - [ ] [Thunderbolts (1997) #5 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/15355/thunderbolts_1997_5)
+- [ ] [Thunderbolts (1997) #-1 <!-- mrt:source-occurrence=6 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62424/thunderbolts_1997_1)
 - [ ] [Incredible Hulk (1962) #449 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/9260/incredible_hulk_1962_449)
 - [ ] [Tales of the Marvel Universe (1996) #1 <!-- mrt:source-occurrence=8 -->](https://www.marvel.com/comics/issue/48062/tales_of_the_marvel_universe_1996_1)
 - [ ] [Spider-Man Team-Up (1995) #7 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/48061/spider-man_team-up_1995_7)

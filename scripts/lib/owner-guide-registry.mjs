@@ -23,9 +23,11 @@ export function readOwnerGuideRegistry(root = ROOT) {
   }
   const ids = new Set();
   for (const guide of registry.guides) {
-    if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface'].includes(key))
+    if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface', 'baselineRowCount'].includes(key))
       || typeof guide.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guide.id)
       || (Object.hasOwn(guide, 'surface') && guide.surface !== 'modern-timeline')
+      || (Object.hasOwn(guide, 'baselineRowCount')
+        && (!Number.isSafeInteger(guide.baselineRowCount) || guide.baselineRowCount < 1))
       || ids.has(guide.id) || guide.contract !== `test/fixtures/owner-delivery/${guide.id}.json`) {
       throw new Error('Owner delivery registry contains an invalid or duplicate guide.');
     }
@@ -34,4 +36,8 @@ export function readOwnerGuideRegistry(root = ROOT) {
   return registry;
 }
 
-export const registeredOwnerGuideIds = Object.freeze(readOwnerGuideRegistry().guides.map(({ id }) => id));
+const registrations = readOwnerGuideRegistry().guides;
+export const registeredOwnerGuideIds = Object.freeze(registrations.map(({ id }) => id));
+export const registeredOwnerAdditionIds = Object.freeze(
+  registrations.filter((guide) => !Object.hasOwn(guide, 'baselineRowCount')).map(({ id }) => id),
+);

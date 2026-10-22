@@ -27,14 +27,16 @@ export function beforeMcuEditorialEntry(entry) {
   }
   const identity = identityRevisions.find(({ id }) => id === entry.id);
   assert.ok(entry.description === revision.after || entry.description === revision.before
-    || (identity?.description && entry.description === identity.description),
+    || (identity?.description && entry.description === identity.description)
+    || (identity?.publishedDescription && entry.description === identity.publishedDescription),
   `${entry.id}: unrecorded MCU editorial description.`);
   return { ...entry, description: revision.before };
 }
 
 export function afterMcuEditorialEntry(entry) {
   const identity = identityRevisions.find(({ id }) => id === entry.id);
-  if (identity?.description && entry.description === identity.description) return entry;
+  if ((identity?.description && entry.description === identity.description)
+    || (identity?.publishedDescription && entry.description === identity.publishedDescription)) return entry;
   const original = beforeMcuEditorialEntry(entry);
   const revision = byId.get(original.id);
   return revision ? { ...original, description: revision.after } : original;

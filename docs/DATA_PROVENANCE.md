@@ -1093,7 +1093,7 @@ authored paths with 10 and 12 stops from the curated manifest at
 `src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12149-12274`.
+`src/data/catalog.json:12151-12276`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2920,7 +2920,7 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:734-755`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:794-816`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
 (`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional

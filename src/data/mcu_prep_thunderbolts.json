@@ -1,13 +1,13 @@
 {
   "id": "mcu-prep-thunderbolts",
   "name": "MCU Prep: Thunderbolts*",
-  "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+  "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/682",
   "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
   "sourceLicense": null,
-  "generatedAt": "2026-10-03T18:45:49.066Z",
+  "generatedAt": "2026-10-22T17:54:21.821Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 34,
+  "count": 35,
   "collections": 4,
   "placeholders": 0,
   "unresolved": [],
@@ -170,6 +170,24 @@
           "role": "writer"
         }
       ],
+      "collectedIn": "Thunderbolts Classic Vol. 1"
+    },
+    {
+      "issueId": 62424,
+      "title": "Thunderbolts (1997) #-1",
+      "number": "-1",
+      "url": "https://www.marvel.com/comics/issue/62424/thunderbolts_1997_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Thunderbolts Classic Vol. 1"
     },
     {

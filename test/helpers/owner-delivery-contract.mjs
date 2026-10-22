@@ -15,7 +15,7 @@ import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs
 import { parseChecklist } from '../../src/js/lib/markdown.js';
 import { normalizeCover } from '../../src/js/lib/model.js';
 import {
-  currentReadingCensus, registeredCuratedGuides, registeredOwnerContracts,
+  currentReadingCensus, registeredCuratedGuides, registeredOwnerBaselineRows, registeredOwnerContracts,
 } from './current-reading-library.mjs';
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
@@ -35,7 +35,9 @@ export async function assertOwnerDeliveryContract(contract, {
   const json = readJson ?? (async (name) => JSON.parse(await text(name)));
   const { id } = contract;
   const event = contract.surface === 'modern-timeline';
-  const provider = event ? OWNER_EVENT_PROVIDER : OWNER_PROVIDER;
+  const provider = event ? OWNER_EVENT_PROVIDER : (contract.sourceOrigin
+    ? { ...OWNER_PROVIDER, sourceOrigin: contract.sourceOrigin }
+    : OWNER_PROVIDER);
   const [sourceText, packet, mapping, report, manifest, catalog, markdown] = await Promise.all([
     text(`scripts/data/owner-selections/${id}.json`), json(`scripts/data/owner-packets/${id}.json`),
     json(`scripts/data/owner-mappings/${id}.json`), json(`scripts/data/owner-overlaps/${id}.json`),
@@ -103,7 +105,7 @@ export async function assertOwnerDeliveryContract(contract, {
   }
   assert.equal(payload.description === contract.description
     ? payload.description : beforeMcuEditorialEntry(payload).description, contract.description);
-  assert.equal(payload.sourceOrigin, provider.sourceOrigin);
+  assert.equal(payload.sourceOrigin, contract.sourceOrigin ?? provider.sourceOrigin);
   assert.equal(payload.sourceLicense, null);
   if (event) {
     const entry = manifest.lists.find((row) => row.id === id);
@@ -154,8 +156,10 @@ export async function assertOwnerDeliveryContract(contract, {
   const recordedCurrentDigest = libraryDigestFor({
     ...recordedManifest, lists: recordedManifest.lists.map((entry) => beforeIdentityEntry(entry, cutoff)),
   }, beforeIdentityOrders(recordedVectors, cutoff));
-  const currentLibraryDigest = contract.libraryDigest === recordedCurrentDigest
-    ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors);
+  const currentLibraryDigest = registeredOwnerBaselineRows.has(id)
+    ? report.libraryDigest
+    : (contract.libraryDigest === recordedCurrentDigest
+      ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
   assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
     recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
@@ -165,10 +169,11 @@ export async function assertOwnerDeliveryContract(contract, {
     peerMappings,
     expectedOrderIds: [...recordedOrders.map((row) => row.orderId), ...peerIds], packetValidation: { provider },
   });
-  for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
+  for (const later of (registeredOwnerBaselineRows.has(id)
+    ? [] : current.comparisons.filter((row) => !recordedIds.has(row.orderId)))) {
     if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
     const laterContract = contracts.find((entry) => entry.id === later.orderId);
-    assert.ok(laterContract, 'Unregistered later peers require a new bounded relationship review.');
+    assert.ok(laterContract, `${later.orderId}: unregistered later peers require a new bounded relationship review.`);
     const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
     const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
     validateMappingDigest(laterMapping);

@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
@@ -7,12 +8,14 @@ import { after } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { buildReportForMapping, loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
-import { registeredOwnerGuideIds } from '../../scripts/lib/owner-guide-registry.mjs';
+import { registeredOwnerAdditionIds } from '../../scripts/lib/owner-guide-registry.mjs';
 import { libraryDigestFor } from '../../scripts/lib/cbh-inventory.mjs';
 import {
   beforeMcuEditorialEntry, beforeMcuEditorialManifest, beforeMcuEditorialPayloadText,
 } from '../../scripts/lib/mcu-editorial.mjs';
-import { beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload } from './owner-identity-history.mjs';
+import {
+  beforeIdentityEntry, beforeIdentityOrders, beforeIdentityPayload, identityRevisions,
+} from './owner-identity-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -59,6 +62,7 @@ const spiderOriginalIds = spiderRevision.payload.items.map((item) => String(item
 export const spiderManSelectionItemDelta = spiderRevision.currentIssueIds.length - spiderOriginalIds.length;
 const tempDirs = new Set();
 let snapshotPromise;
+const capturedReviewLibraries = new Map();
 
 after(async () => {
   await Promise.all([...tempDirs].map((dir) => rm(dir, { recursive: true, force: true })));
@@ -115,7 +119,7 @@ export function historicalReadingChoiceManifest(manifest) {
     ...manifest,
     lists: historicalMcuDescriptionManifest(manifest).lists
       .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
-        && !registeredOwnerGuideIds.includes(id) && !registeredCuratedGuideIds.has(id))
+        && !registeredOwnerAdditionIds.includes(id) && !registeredCuratedGuideIds.has(id))
       .map((entry) => {
         if (entry.id === spiderRevision.manifestEntry.id) {
           if (JSON.stringify(entry) !== JSON.stringify(spiderRevision.currentManifestEntry)
@@ -138,6 +142,8 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
     }
     return [...spiderOriginalIds];
   }
+  const identityOriginal = beforeIdentityOrders([{ id, issueIds: currentIds }])[0];
+  if (identityOriginal.issueIds !== currentIds) return identityOriginal.issueIds;
   return id === 'hickman-minimal' ? evidence.issueIds.map(String) : currentIds;
 }
 
@@ -176,6 +182,60 @@ export function historicalSpiderManSelectionLibraryDigest(manifest, orders) {
       ? historicalReadingChoiceIssueIds(entry.id, entry.issueIds) : entry.issueIds,
   }));
   return libraryDigestFor(recordedManifest, recordedOrders);
+}
+
+function capturedReviewLibrary(sourceCommit) {
+  if (!/^[a-f0-9]{40}$/.test(sourceCommit)) throw new Error('Review library source commit is invalid.');
+  if (capturedReviewLibraries.has(sourceCommit)) return capturedReviewLibraries.get(sourceCommit);
+  const readAtReview = (file) => JSON.parse(execFileSync('git', [
+    'show', `${sourceCommit}:${file}`,
+  ], { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));
+  const manifest = readAtReview('src/data/curated-lists.json');
+  const catalog = readAtReview('src/data/catalog.json');
+  const files = new Map(manifest.lists.map(({ id, out }) => [id, out]));
+  for (const entry of catalog.lists) {
+    if (files.has(entry.id) && files.get(entry.id) !== entry.file) {
+      throw new Error(`Review payload differs between rosters for ${entry.id}.`);
+    }
+    files.set(entry.id, entry.file);
+  }
+  if (!files.has('marvel-multiverse')) files.set('marvel-multiverse', 'marvel_multiverse.json');
+  const ids = new Set(files.keys());
+  const orders = [...ids].sort().map((id) => {
+    const file = files.get(id) ?? (id === 'marvel-multiverse' ? 'marvel_multiverse.json' : null);
+    if (!file) throw new Error(`Review payload is missing for ${id}.`);
+    const payload = readAtReview(`src/data/${file}`);
+    return { id, issueIds: issueIdsFromValue(payload).map(String) };
+  });
+  const snapshot = { manifest, orders };
+  capturedReviewLibraries.set(sourceCommit, snapshot);
+  return snapshot;
+}
+
+export function capturedReviewLibraryDigest(orders, expectedDigest) {
+  const orderIds = new Set(orders.map((entry) => String(entry.id ?? entry.orderId)));
+  if (orderIds.size !== orders.length || !orderIds.size) {
+    throw new Error('Recorded review library contains duplicate or missing peer IDs.');
+  }
+  if (!Array.isArray(identityRevisions.reviewLibrarySnapshots)) {
+    throw new Error('Captured review library snapshots are missing.');
+  }
+  const review = identityRevisions.reviewLibrarySnapshots.find(({ libraryDigest }) =>
+    libraryDigest === expectedDigest);
+  if (!review) throw new Error(`Review library digest ${expectedDigest} has no captured source commit.`);
+  const snapshot = capturedReviewLibrary(review.sourceCommit);
+  const sourceIds = new Set(snapshot.orders.map(({ id }) => id));
+  if (orderIds.has(review.excludedId) || [...orderIds].some((id) => !sourceIds.has(id))) {
+    throw new Error('Recorded review peers differ from their captured source roster.');
+  }
+  const digest = libraryDigestFor({
+    ...snapshot.manifest,
+    lists: snapshot.manifest.lists.filter(({ id }) => orderIds.has(id)),
+  }, snapshot.orders.filter(({ id }) => orderIds.has(id)));
+  if (digest !== expectedDigest) {
+    throw new Error(`Captured review library digest ${digest} differs from approved ${expectedDigest}.`);
+  }
+  return digest;
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {

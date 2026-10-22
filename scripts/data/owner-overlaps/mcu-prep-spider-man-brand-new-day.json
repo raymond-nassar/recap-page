@@ -1,18 +1,19 @@
 {
   "candidateId": "mcu-prep-spider-man-brand-new-day",
-  "packetDigest": "b91a14d5c03064000d2d82b1771c7ffb2a79b4dd410c3dfec6a9105f4b84c955",
-  "mappingDigest": "f538fcadfd7e7be6c7c03aee1ddf390e571f2009c033cc929c5bbe817bfd7f1f",
-  "libraryDigest": "65a8075c0d23cbddb9ea79f695391004cf25e64f730315ddba2ef2e3d7e22d76",
+  "packetDigest": "d7c6957dfdd6f158001b242a47f0db523ed5f96e95132ee9a5869cd26263e3f4",
+  "mappingDigest": "97e3ec6e6bbc88e86d4980c2d1165faec29e6bdbeb7cbdf280f77251d810313a",
+  "libraryDigest": "45cb53d87e1840d2232334b633804cb8a7cf40ba33b389bb6cf5c8b5be28eb61",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 20,
     "sourceIdentityCount": 20,
-    "includedIssueCount": 19,
-    "sourceGapCount": 1,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 20,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 19,
-  "comparisonCount": 289,
+  "candidateCount": 20,
+  "comparisonCount": 316,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -58,7 +59,7 @@
     },
     {
       "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 12,
+      "sharedCount": 13,
       "sharedIds": [
         "3583",
         "43123",
@@ -71,7 +72,8 @@
         "17341",
         "17581",
         "17582",
-        "17583"
+        "17583",
+        "59715"
       ],
       "relationship": "partial"
     },
@@ -215,6 +217,12 @@
     },
     {
       "orderId": "contest-of-champions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "contest-of-chaos",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -378,6 +386,12 @@
     },
     {
       "orderId": "fatal-attractions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "gang-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1063,12 +1077,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "marvel-multiverse",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "marvel-super-heroes-secret-wars",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1105,6 +1113,66 @@
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-agatha-all-along",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-ant-man-2015",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-avengers-infinity-war-endgame",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-black-panther-2018",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-america-brave-new-world",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-america-civil-war-2016",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-captain-marvel-2019",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-daredevil-born-again",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1112,6 +1180,12 @@
     },
     {
       "orderId": "mcu-prep-deadpool-and-wolverine",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-doctor-strange-2016",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1129,7 +1203,37 @@
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-guardians-of-the-galaxy",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-iron-man-2-2010",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-iron-man-2008",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-iron-man-3-2013",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-moon-knight",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-ms-marvel",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1141,7 +1245,49 @@
       "relationship": "none"
     },
     {
+      "orderId": "mcu-prep-she-hulk",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-the-avengers-2012",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-the-incredible-hulk-2008",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-thor-2011",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-thor-ragnarok-2017",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-thor-the-dark-world-2013",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "mcu-prep-thunderbolts",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mcu-prep-visionquest",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1166,6 +1312,12 @@
     },
     {
       "orderId": "midnight-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "miles-morales-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1262,6 +1414,12 @@
     },
     {
       "orderId": "nova-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "one-world-under-doom",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1550,6 +1708,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "the-death-of-ms-marvel",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "the-defenders-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1790,5 +1954,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8886fb582bca7082fe9a771f447a460ae146475057e28e5e05ff41625f2b7b12"
+  "reportDigest": "02ff04a50a79317ec4b2a34a1fa07bd3b9bf7d2e2cacfa37aa264c355408d096"
 }

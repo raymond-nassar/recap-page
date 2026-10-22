@@ -1,0 +1,248 @@
+{
+  "id": "mcu-prep-thunderbolts",
+  "name": "MCU Prep: Thunderbolts*",
+  "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/682",
+  "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
+  "groups": [
+    "Thunderbolts Classic Vol. 1",
+    "Black Widow by Kelly Thompson Vol. 1: The Ties That Bind",
+    "Captain America: Winter Soldier Ultimate Collection",
+    "Thunderbolts Vol. 1: There Is No High Road"
+  ],
+  "rows": [
+    [
+      1,
+      15311,
+      "Thunderbolts (1997) #1",
+      0
+    ],
+    [
+      2,
+      15322,
+      "Thunderbolts (1997) #2",
+      0
+    ],
+    [
+      3,
+      15333,
+      "Thunderbolts (1997) #3",
+      0
+    ],
+    [
+      4,
+      15344,
+      "Thunderbolts (1997) #4",
+      0
+    ],
+    [
+      5,
+      15355,
+      "Thunderbolts (1997) #5",
+      0
+    ],
+    [
+      6,
+      62424,
+      "Thunderbolts (1997) #-1",
+      0
+    ],
+    [
+      7,
+      9260,
+      "Incredible Hulk (1962) #449",
+      0
+    ],
+    [
+      8,
+      48062,
+      "Tales of the Marvel Universe (1996) #1",
+      0
+    ],
+    [
+      9,
+      48061,
+      "Spider-Man Team-Up (1995) #7",
+      0
+    ],
+    [
+      10,
+      48063,
+      "THUNDERBOLTS ANNUAL 1 (1997) #1",
+      0
+    ],
+    [
+      11,
+      84365,
+      "Black Widow (2020) #1",
+      1
+    ],
+    [
+      12,
+      84366,
+      "Black Widow (2020) #2",
+      1
+    ],
+    [
+      13,
+      84367,
+      "Black Widow (2020) #3",
+      1
+    ],
+    [
+      14,
+      84368,
+      "Black Widow (2020) #4",
+      1
+    ],
+    [
+      15,
+      84369,
+      "Black Widow (2020) #5",
+      1
+    ],
+    [
+      16,
+      91,
+      "Captain America (2004) #1",
+      2
+    ],
+    [
+      17,
+      1492,
+      "Captain America (2004) #2",
+      2
+    ],
+    [
+      18,
+      1579,
+      "Captain America (2004) #3",
+      2
+    ],
+    [
+      19,
+      1668,
+      "Captain America (2004) #4",
+      2
+    ],
+    [
+      20,
+      1764,
+      "Captain America (2004) #5",
+      2
+    ],
+    [
+      21,
+      1870,
+      "Captain America (2004) #6",
+      2
+    ],
+    [
+      22,
+      1978,
+      "Captain America (2004) #7",
+      2
+    ],
+    [
+      23,
+      2190,
+      "Captain America (2004) #8",
+      2
+    ],
+    [
+      24,
+      2308,
+      "Captain America (2004) #9",
+      2
+    ],
+    [
+      25,
+      2421,
+      "Captain America (2004) #11",
+      2
+    ],
+    [
+      26,
+      2422,
+      "Captain America (2004) #12",
+      2
+    ],
+    [
+      27,
+      3084,
+      "Captain America (2004) #13",
+      2
+    ],
+    [
+      28,
+      3188,
+      "Captain America (2004) #14",
+      2
+    ],
+    [
+      29,
+      57233,
+      "Thunderbolts (2016) #1",
+      3
+    ],
+    [
+      30,
+      57236,
+      "Thunderbolts (2016) #2",
+      3
+    ],
+    [
+      31,
+      57238,
+      "Thunderbolts (2016) #3",
+      3
+    ],
+    [
+      32,
+      57239,
+      "Thunderbolts (2016) #4",
+      3
+    ],
+    [
+      33,
+      57240,
+      "Thunderbolts (2016) #5",
+      3
+    ],
+    [
+      34,
+      57241,
+      "Thunderbolts (2016) #6",
+      3
+    ],
+    [
+      35,
+      78850,
+      "Taskmaster (2020) #1",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 35,
+    "sourceIdentityCount": 35,
+    "includedIssueCount": 35,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
+  },
+  "sourceSha256": "57a101e75dce2c045f705cdf48b301dd80f3ad046ebec102d7c23015d7795d3b",
+  "sourceIssueBearingBlocksSha256": "8049e8538112e99fb65b5aa7bbbfeaf4d41f2f52755c1c167b5fb955547fb7bc",
+  "proposalDigest": "cc46088910c8f7e2461f501c41af9df02b0c4252eea5151879e1a2f4e1bb9afa",
+  "approvalDigest": "50d7d37fa382f0448c9447ab259456a153be584e080d06012efe8fe80db296b8",
+  "insertionAnchor": {
+    "beforeId": "agents-of-atlas-reading-order"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/mcu-prep-thunderbolts.json",
+    "scripts/data/owner-packets/mcu-prep-thunderbolts.json",
+    "scripts/data/owner-mappings/mcu-prep-thunderbolts.json",
+    "scripts/data/owner-overlaps/mcu-prep-thunderbolts.json"
+  ],
+  "vectorSha256": "0b190c126ef813c9ff36e69de6d8b7e7c00930097eab3b73a4014869e37e30b2",
+  "libraryDigest": "9881531aca0992e7ab0da6fcdddeaa9dd520a274077064d69969961092f8e0e0"
+}

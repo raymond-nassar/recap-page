@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import {
   assertRelationshipReportExtension, authorizeOwnerGuide, emitOwnerGuide, emitOwnerGuideIdentityUpdate,
   OWNER_PROVIDER, ownerApprovalRequest,
-  parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, updatedOwnerChecklist,
+  ownerGuideDisplayGroups, parseOwnerMarkdown, prepareOwnerGuide, prepareOwnerGuideIdentityUpdate, updatedOwnerChecklist,
   verifyOwnerMetadataCache,
 } from '../scripts/lib/owner-guide.mjs';
 import { approvalDigestFor, validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
@@ -21,6 +21,9 @@ import { beforeIdentityText } from './helpers/owner-identity-history.mjs';
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+const withoutChecklistIndex = (entry) => Object.fromEntries(
+  Object.entries(entry).filter(([key]) => key !== 'index'),
+);
 const REPOSITORY_ROOT = fileURLToPath(new URL('../', import.meta.url));
 
 async function setup(t, markdown = '# My reading list\n\n## First group\n- Sample Comic (2020) #1-2\n') {
@@ -119,6 +122,100 @@ test('numbered owner trades preserve the exact supplied scope without inventing 
     ['Owner compilation', 'Original first trade']);
   request.selections[0].inputSha256 = '0'.repeat(64);
   await assert.rejects(() => prepareOwnerGuide(request, { root }), /exact supplied Markdown/);
+});
+
+test('identity checklist insertion retains the existing Brand New Day group qualifiers', async () => {
+  const id = 'mcu-prep-spider-man-brand-new-day';
+  const source = await readJson(path.join(REPOSITORY_ROOT, 'scripts', 'data', 'owner-selections', `${id}.json`));
+  const mapping = JSON.parse(beforeIdentityText(`scripts/data/owner-mappings/${id}.json`));
+  const markdown = beforeIdentityText(`src/data/orders/${id}.md`);
+  const displayGroups = ownerGuideDisplayGroups(markdown, mapping);
+  assert.equal(displayGroups.get('Amazing Spider-Man: Brand New Day Vol. 1'),
+    'Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)');
+  const identity = {
+    sourcePosition: 14,
+    selectedIssueId: 59715,
+    resolvedIssueTitle: 'Venom Super Special (1995) #1',
+    marvelIssueUrl: 'https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1',
+    sourceRangeReference: 'Amazing Spider-Man: Brand New Day Vol. 1',
+    identityEvidenceKind: 'owner-confirmed-identity',
+  };
+  const nextMapping = {
+    ...mapping,
+    sourceGaps: mapping.sourceGaps.filter((gap) => gap.sourcePosition !== identity.sourcePosition),
+    rows: [...mapping.rows, identity].sort((left, right) => left.sourcePosition - right.sourcePosition),
+  };
+  const updated = updatedOwnerChecklist(markdown, source, mapping, nextMapping);
+  const beforeEntries = parseChecklist(markdown).entries;
+  const afterEntries = parseChecklist(updated).entries;
+  const withoutPosition = (entries) => entries
+    .filter((entry) => Number(entry.sourceKey) !== identity.sourcePosition)
+    .map(withoutChecklistIndex);
+  assert.deepEqual(withoutPosition(afterEntries), withoutPosition(beforeEntries));
+  assert.equal(afterEntries.find((entry) => Number(entry.sourceKey) === identity.sourcePosition).section,
+    'Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)');
+  assert.ok(updated.includes('Amazing Spider-Man: Brand New Day Vol. 1 (whole Swing Shift original; Venom material gap)'));
+  assert.ok(updated.includes('Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)'));
+  assert.ok(updated.includes('This checklist publishes 20 exactly resolved originals in owner order.'));
+  assert.ok(!updated.includes('This checklist publishes nineteen exactly resolved originals in owner order.'));
+  assert.ok(updated.includes('is now included by owner-confirmed identity under [Issue #707]'));
+  assert.ok(!updated.includes('is intentionally not a checkbox'));
+});
+
+test('published Thunderbolts identity preserves the exact #-1 source and rejects substitutions', async () => {
+  const [source, mapping, payload] = await Promise.all([
+    readJson(path.join(REPOSITORY_ROOT, 'scripts', 'data', 'mcu-prep-thunderbolts-source.json')),
+    readJson(path.join(REPOSITORY_ROOT, 'scripts', 'data', 'owner-mappings', 'mcu-prep-thunderbolts.json')),
+    readJson(path.join(REPOSITORY_ROOT, 'src', 'data', 'mcu_prep_thunderbolts.json')),
+  ]);
+  const row = mapping.rows.find((entry) => entry.sourcePosition === 6);
+  const item = payload.items.find((entry) => entry.issueId === 62424);
+  assert.equal(row.sourceIssueReference, 'Thunderbolts (1997) #-1');
+  assert.equal(row.identityEvidenceKind, 'owner-confirmed-identity');
+  assert.equal(item.title, 'Thunderbolts (1997) #-1');
+  assert.equal(item.number, '-1');
+  assert.equal(item.url, 'https://www.marvel.com/comics/issue/62424/thunderbolts_1997_1');
+  assert.equal(item.seriesId, null);
+  assert.equal(item.seriesName, null);
+  assert.equal(item.onSale, null);
+  assert.equal(item.mu, null);
+  assert.equal(item.digitalId, null);
+  assert.equal(item.cover, null);
+  assert.equal(item.detailsRefused, true);
+  assert.equal(mapping.rows.some((entry) => entry.sourcePosition === 6 && entry.selectedIssueId === 15311), false);
+
+  const { assertThunderboltsMismatchSource } = await import('../scripts/lib/owner-guide.mjs');
+  assert.doesNotThrow(() => assertThunderboltsMismatchSource(source));
+  const missingRecord = structuredClone(source);
+  missingRecord.gaps[0].rejectedRelabelings = missingRecord.gaps[0].rejectedRelabelings
+    .filter((entry) => entry.issueId !== 62424);
+  assert.throws(() => assertThunderboltsMismatchSource(missingRecord));
+  const changedRecord = structuredClone(source);
+  changedRecord.gaps[0].rejectedRelabelings
+    .find((entry) => entry.issueId === 62424).digitalId = 3162;
+  assert.throws(() => assertThunderboltsMismatchSource(changedRecord));
+});
+
+test('Thunderbolts identity checklist update replaces only its stale gap and count copy', async () => {
+  const id = 'mcu-prep-thunderbolts';
+  const source = await readJson(path.join(REPOSITORY_ROOT, 'scripts', 'data', `${id}-source.json`));
+  const mapping = await readJson(path.join(REPOSITORY_ROOT, 'scripts', 'data', 'owner-mappings', `${id}.json`));
+  const markdown = beforeIdentityText(`src/data/orders/${id}.md`);
+  const currentMarkdown = await readFile(path.join(REPOSITORY_ROOT, 'src', 'data', 'orders', `${id}.md`), 'utf8');
+  const previousMapping = {
+    ...mapping,
+    rows: mapping.rows.filter((row) => row.identityEvidenceKind !== 'owner-confirmed-identity'),
+  };
+  const updated = updatedOwnerChecklist(markdown, source, previousMapping, mapping);
+  const beforeEntries = parseChecklist(markdown).entries;
+  const afterEntries = parseChecklist(updated).entries;
+  assert.deepEqual(updated, currentMarkdown);
+  assert.deepEqual(afterEntries.filter((entry) => Number(entry.sourceKey) !== 6)
+    .map(withoutChecklistIndex), beforeEntries.map(withoutChecklistIndex));
+  assert.match(updated, /Thunderbolts \(1997\) #-1, source position 6, is now included by owner-confirmed identity/);
+  assert.match(updated, /Its provider record identifies #1, not #-1, so no provider metadata or availability is inferred\./);
+  assert.match(updated, /The checklist publishes all 35 resolved originals/);
+  assert.doesNotMatch(updated, /remains unresolved under|other 34 originals/);
 });
 
 test('plain issue Markdown resolves through genuine cache receipts and every current library descriptor', async (t) => {
@@ -453,7 +550,7 @@ for (const replaceDescription of [false, true]) {
     await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
       ...request,
       identities: [{ ...request.identities[0], providerStatus: 200 }],
-    }, { root }), /Only a recorded provider 404 can use owner-confirmed identity evidence/);
+    }, { root }), /Only the confirmed Thunderbolts #-1 source record permits an HTTP 200 identity mismatch/);
     await assert.rejects(() => prepareOwnerGuideIdentityUpdate({
       ...request, description: 'Invalid\nmultiline copy',
     }, { root }), /reviewed description/);
@@ -470,7 +567,7 @@ for (const replaceDescription of [false, true]) {
     const updatedMarkdown = await readFile(markdownFile, 'utf8');
     assert.match(updatedMarkdown, /Selected by raymond-nassar for MCU Prep/);
     assert.match(updatedMarkdown, /This source-specific note must survive identity publication\./);
-    assert.match(updatedMarkdown, /1 owner-confirmed identities have no provider details or cover\./);
+    assert.match(updatedMarkdown, /1 owner-confirmed identity has no provider details or cover\./);
     assert.ok(updatedMarkdown.indexOf('## Hulk: Season One') < updatedMarkdown.indexOf('## Hulk: Gray'));
     assert.match(updatedMarkdown,
       /Hulk: Season One \(2012\) <!-- mrt:source-occurrence=1 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->/);
@@ -516,6 +613,7 @@ test('identity checklist insertion keeps interleaved existing originals in exact
 test('Agatha accepts only the recorded reciprocal Contest of Chaos prelude authority', async () => {
   const jsonAt = (file) => readJson(path.join(REPOSITORY_ROOT, file));
   const later = {
+    registeredId: 'contest-of-chaos',
     contract: await jsonAt('test/fixtures/owner-delivery/contest-of-chaos.json'),
     mapping: await jsonAt('scripts/data/owner-mappings/contest-of-chaos.json'),
     report: await jsonAt('scripts/data/owner-overlaps/contest-of-chaos.json'),
@@ -524,16 +622,28 @@ test('Agatha accepts only the recorded reciprocal Contest of Chaos prelude autho
   const overlap = { orderId: 'contest-of-chaos', sharedCount: 1, sharedIds: ['109670'], relationship: 'partial' };
   const current = { ...previous, comparisons: [overlap] };
   assert.doesNotThrow(() => assertRelationshipReportExtension(previous, current, [later]));
-  assert.throws(() => assertRelationshipReportExtension(previous, current), /separate relationship review/);
+  assert.throws(() => assertRelationshipReportExtension(previous, current), /registered reciprocal review/);
   assert.throws(() => assertRelationshipReportExtension(previous, {
     ...current, comparisons: [{ ...overlap, sharedIds: ['999999'] }],
-  }, [later]), /separate relationship review/);
+  }, [later]));
   assert.throws(() => assertRelationshipReportExtension({ ...previous, candidateId: 'another-guide' }, {
     ...current, candidateId: 'another-guide',
-  }, [later]), /separate relationship review/);
+  }, [later]));
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [{
+    ...later, registeredId: 'unregistered-guide',
+  }]), /registered reciprocal review/);
   const stale = structuredClone(later);
   stale.contract.approvalDigest = '0'.repeat(64);
   assert.throws(() => assertRelationshipReportExtension(previous, current, [stale]));
+  const staleMapping = structuredClone(later);
+  staleMapping.mapping.mappingDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [staleMapping]));
+  const staleReport = structuredClone(later);
+  staleReport.report.reportDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [staleReport]));
+  const staleApproval = structuredClone(later);
+  staleApproval.mapping.relationshipReview.approvalDigest = '0'.repeat(64);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [staleApproval]));
   const rejected = structuredClone(later);
   rejected.mapping.relationshipReview.dispositions.find(({ orderId }) =>
     orderId === previous.candidateId).decision = 'rejected';

@@ -35,15 +35,34 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
   .map(({ id }) => id)).size, registeredOwnerContracts.length + registeredCuratedGuides.length);
 export const registeredOwnerIds = registrations.map(({ id }) => id);
+const baselineRegistrations = registrations.filter((entry) => Object.hasOwn(entry, 'baselineRowCount'));
+const baselineOwnerIds = new Set(baselineRegistrations.map(({ id }) => id));
+for (const registration of baselineRegistrations) {
+  assert.ok(baseline.sourceIds.includes(registration.id) && baseline.catalogIds.includes(registration.id),
+    `${registration.id}: a baseline registration must already exist in both captured rosters.`);
+  const contract = registeredOwnerContracts.find(({ id }) => id === registration.id);
+  assert.ok(contract && contract.rows.length >= registration.baselineRowCount,
+    `${registration.id}: current contract rows cannot be fewer than its captured baseline rows.`);
+}
+export const registeredOwnerAdditionIds = registrations
+  .filter((entry) => !Object.hasOwn(entry, 'baselineRowCount')).map(({ id }) => id);
+export const registeredOwnerBaselineRows = new Map(baselineRegistrations
+  .map(({ id, baselineRowCount }) => [id, baselineRowCount]));
+export const registeredOwnerAdditionContracts = registeredOwnerContracts
+  .filter(({ id }) => registeredOwnerAdditionIds.includes(id));
 export const registeredCatalogAdditionIds = [
-  ...registeredOwnerIds,
+  ...registeredOwnerAdditionIds,
   ...registeredCuratedGuides.map(({ id }) => id),
 ];
-const addedRows = registeredOwnerContracts.reduce((total, contract) => total + contract.rows.length, 0)
+const addedRows = registeredOwnerContracts.reduce((total, contract) => {
+  const registration = registrations.find((entry) => entry.id === contract.id);
+  return total + contract.rows.length - (registration.baselineRowCount ?? 0);
+}, 0)
   + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
-const mcuContracts = registeredOwnerContracts.filter((contract) => contract.surface !== 'modern-timeline');
-export const registeredEventContracts = registeredOwnerContracts.filter((contract) => contract.surface === 'modern-timeline');
-const rosterAdditionCount = registrations.length + registeredCuratedGuides.length;
+const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface !== 'modern-timeline');
+export const registeredEventContracts = registeredOwnerAdditionContracts
+  .filter((contract) => contract.surface === 'modern-timeline');
+const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
   sources: baseline.sourceIds.length + rosterAdditionCount - 1,
   visible: baseline.catalogIds.length + rosterAdditionCount - 1,
@@ -62,6 +81,7 @@ export const currentReadingCensus = Object.freeze({
 function expectedRosters(contracts, curatedGuides = registeredCuratedGuides) {
   const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse');
   for (const contract of [...contracts, ...curatedGuides]) {
+    if (baselineOwnerIds.has(contract.id)) continue;
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
     assert.ok(at >= 0, 'Registered source insertion needs its approved anchor.');
     expectedSources.splice(at, 0, contract.id);

@@ -19,16 +19,24 @@ import {
   addIssuesToList, createEmptyState, createList, exportBackup, SCHEMA_VERSION, validateBackup,
 } from '../src/js/lib/model.js';
 import {
-  historicalMcuDescriptionManifest, historicalSpiderManSelectionLibraryDigest,
+  capturedReviewLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
+import { beforeIdentityJson } from './helpers/owner-identity-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
 const fixture = await json('test/fixtures/mcu-prep-brand-new-day-vector.json');
 const { id, groups, sourceUrl } = fixture;
 const expectedIds = fixture.rows.map((row) => row[1]);
-const expectedPositions = fixture.rows.map((row) => row[0]);
-const expectedGroups = fixture.rows.map((row) => groups[row[3]]);
+const publishedRows = [
+  ...fixture.rows.slice(0, 13),
+  [14, 59715, 'Venom Super Special (1995) #1', 1],
+  ...fixture.rows.slice(13),
+];
+const publishedIds = publishedRows.map((row) => row[1]);
+const publishedPositions = publishedRows.map((row) => row[0]);
+const publishedGroups = publishedRows.map((row) => groups[row[3]]);
+const publishedTitles = publishedRows.map((row) => row[2]);
 const provider = {
   id: 'owner-authored', hosts: ['github.com'], sourceOrigin: 'Selected by raymond-nassar for MCU Prep',
   requireSourceProvider: true, requireSourceContentSha256: true,
@@ -43,16 +51,19 @@ const evidence = async () => {
   return { source, packet, mapping, report };
 };
 
-test('Brand New Day accounts for twenty source positions and nineteen exact originals', async () => {
+test('Brand New Day keeps its source gap while publishing twenty exact originals', async () => {
   const { source, packet, mapping } = await evidence();
   assert.deepEqual(source.sourceGaps?.map((row) => row.sourcePosition), [14],
     'Source position 14 must remain in the explicit nonempty source-gap ledger');
-  assert.deepEqual(source.sourceGaps, packet.sourceGaps);
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
+  assert.deepEqual(mapping.sourceGapDetails, source.sourceGapDetails);
+  assert.deepEqual(packet.sourceGapResolutions.map((row) => [
+    row.sourcePosition, row.resolutionKind, row.selectedIssueId,
+  ]), [[14, 'owner-confirmed-identity', 59715]]);
   const gap = source.sourceGapDetails[0];
   assert.deepEqual([gap.sourcePosition, gap.selectionPosition, gap.withinSelectionPosition,
     gap.originalIssueId, gap.selectedIssueId, gap.seriesId, gap.coverUrl],
   [14, 2, 8, 59715, null, null, null]);
+  assert.equal(gap.identityStatus, 'known-original-provider-refusal-not-unresolved-book');
   assert.equal(gap.issue.url, fixture.gapUrl);
   assert.equal(gap.receipt.httpStatus, 404);
   assert.deepEqual(gap.lookupBundle.map((lookup) => lookup.receipt.httpStatus), [200, 200, 200, 404]);
@@ -60,22 +71,21 @@ test('Brand New Day accounts for twenty source positions and nineteen exact orig
   assert.equal(source.selectionCount, 3);
   assert.deepEqual(source.sourceGroupCounts, [6, 8, 6]);
   assert.deepEqual(source.publishedGroupCounts, [6, 7, 6]);
-  assert.deepEqual(source.rows.map((row) => row.sourcePosition),
-    Array.from({ length: 20 }, (_, index) => index + 1));
-  assert.deepEqual(source.rows.map((row) => row.originalIssueId),
-    [...expectedIds.slice(0, 13), 59715, ...expectedIds.slice(13)]);
+  assert.deepEqual(source.rows.map((row) => row.sourcePosition), publishedPositions);
+  assert.deepEqual(source.rows.map((row) => row.originalIssueId), publishedIds);
   assert.deepEqual(source.rows.filter((row) => row.resolutionStatus === 'exact')
     .map((row) => row.selectedIssueId), expectedIds);
-  assert.equal(packet.expectedCount, 19);
-  assert.equal(packet.proposedManifest.expect, 19);
+  assert.equal(packet.expectedCount, 20);
+  assert.equal(packet.proposedManifest.expect, 20);
   assert.equal(mapping.approvedSourceCount, 20);
   assert.deepEqual(sourceCountsForPacket(packet), {
-    sourceOccurrenceCount: 20, sourceIdentityCount: 20, includedIssueCount: 19,
-    sourceGapCount: 1, repeatedSourceReferenceCount: 0,
+    sourceOccurrenceCount: 20, sourceIdentityCount: 20, includedIssueCount: 20,
+    sourceGapCount: 0, repeatedSourceReferenceCount: 0, excludedSourceRowCount: 0,
   });
-  assert.deepEqual(packet.rows.map((row) => row.candidateIssueId), expectedIds);
-  assert.deepEqual(mapping.rows.map((row) => row.selectedIssueId), expectedIds);
-  assert.deepEqual(mapping.rows.map((row) => row.sourcePosition), expectedPositions);
+  assert.deepEqual(packet.rows.filter((row) => row.candidateIssueId != null)
+    .map((row) => row.candidateIssueId), expectedIds);
+  assert.deepEqual(mapping.rows.map((row) => row.selectedIssueId), publishedIds);
+  assert.deepEqual(mapping.rows.map((row) => row.sourcePosition), publishedPositions);
   assert.equal(hashText(JSON.stringify(expectedIds)), fixture.vectorSha256);
   assert.equal(hashText(await text(sourceFile)), packet.sourceContentSha256);
   assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.rows));
@@ -92,6 +102,13 @@ test('Brand New Day accounts for twenty source positions and nineteen exact orig
   assert.equal(mapping.candidateMetadata.length, 19);
   for (const row of mapping.rows) {
     assert.equal(row.resolutionStatus, 'exact');
+    if (row.identityEvidenceKind === 'owner-confirmed-identity') {
+      assert.equal(row.selectedIssueId, 59715);
+      assert.deepEqual(row.candidateIssueIds, []);
+      assert.deepEqual(row.selectedIssueIds, ['59715']);
+      assert.equal(mapping.candidateMetadata.some((entry) => entry.id === row.selectedIssueId), false);
+      continue;
+    }
     assert.equal(resolveRow(row, mapping.candidateMetadata).selectedIssueId, String(row.selectedIssueId));
     const candidate = mapping.candidateMetadata.find((entry) => entry.id === row.selectedIssueId);
     const fresh = candidate.freshMetadataEvidence;
@@ -116,6 +133,7 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   const [{ report: current, library }, manifest, catalog] = await Promise.all([
     buildCurrentOwnerOverlap(mapping), json('src/data/curated-lists.json'), json('src/data/catalog.json'),
   ]);
+  const historicalReport = beforeIdentityJson(`scripts/data/owner-overlaps/${id}.json`);
   const peerIds = [...new Set([...manifest.lists, ...catalog.lists].map((row) => row.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
@@ -125,20 +143,12 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   assert.ok(!peerIds.includes('spider-man-no-way-home-owner-selected'));
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
   const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
-  const recordedManifest = historicalMcuDescriptionManifest({
-    ...library.manifest,
-    lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
-  });
-  const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
+  const recordedDigest = capturedReviewLibraryDigest(recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
-  assert.equal(report.comparisonCount, 289);
-  assert.equal(report.libraryDigest, recordedDigest);
-  assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) => recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
-  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'),
-    report.comparisons.filter((row) => row.relationship !== 'none'),
-    'A new meaningful relationship needs its own central review');
-  assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
+  })), report.libraryDigest);
+  assert.equal(historicalReport.comparisonCount, 289);
+  assert.equal(historicalReport.comparisons.filter((row) => row.relationship === 'none').length, 284);
+  assert.deepEqual(historicalReport.comparisons.filter((row) => row.relationship !== 'none')
     .map((row) => [row.orderId, row.relationship, row.sharedCount]), [
     ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 12],
     ['doctor-octopus-otto-octavius-reading-order', 'partial', 6],
@@ -146,7 +156,23 @@ test('Brand New Day binds actual approval to the complete current library', asyn
     ['marvel-knights-to-planet-x-07', 'partial', 6],
     ['spider-man-best-of', 'partial', 6],
   ]);
-  assert.equal(report.comparisons.filter((row) => row.relationship === 'none').length, 284);
+  assert.equal(report.comparisonCount, 316);
+  assert.equal(report.libraryDigest, recordedDigest);
+  assert.deepEqual(withRetiredComparisons(
+    current.comparisons.filter((row) => recordedIds.has(row.orderId)), publishedIds, report,
+  ), report.comparisons);
+  assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((row) => row.relationship !== 'none'),
+    report.comparisons.filter((row) => row.relationship !== 'none'),
+    'A new meaningful relationship needs its own central review');
+  assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
+    .map((row) => [row.orderId, row.relationship, row.sharedCount]), [
+    ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 13],
+    ['doctor-octopus-otto-octavius-reading-order', 'partial', 6],
+    ['marvel-knights-to-planet-x', 'partial', 6],
+    ['marvel-knights-to-planet-x-07', 'partial', 6],
+    ['spider-man-best-of', 'partial', 6],
+  ]);
+  assert.equal(report.comparisons.filter((row) => row.relationship === 'none').length, 311);
   validateFrozenPacket(packet, { provider });
   assertMappingMatchesPacketOccurrences(packet, mapping);
   validateMappingDigest(mapping);
@@ -157,12 +183,13 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   });
   assert.equal(packet.sourceReview.authorityType, 'stronger-model');
   assert.equal(mapping.relationshipReview.authorityType, 'stronger-model');
-  assert.match(mapping.relationshipReview.authorityIdentity, /central coordinator independent/);
+  assert.equal(mapping.relationshipReview.authorityIdentity, 'Independent owner-guide relationship review');
   assert.equal(mapping.relationshipReview.approvalDigest,
-    'f4caf353a23d71c80f59e2338c3ce18001b1dc6ddf8d70367bd815aa444b9d5e');
+    '5496fb4e80a865ac9090f92524f020c65748fa2888ba58378f38fb5267e9404f');
   const chapter = mapping.relationshipReview.dispositions.find((row) =>
     row.orderId === 'marvel-knights-to-planet-x-07');
-  assert.match(chapter.rationale, /seven-original generated chapter shares six Coming Home/);
+  assert.equal(chapter.rationale,
+    'The owner-directed selected guide remains distinct from marvel-knights-to-planet-x-07; shared originals are not a claim of equivalent scope.');
   assert.deepEqual(packet.insertionAnchor, { beforeId: 'agents-of-atlas-reading-order' });
   const position = manifest.lists.findIndex((row) => row.id === id);
   assert.equal(manifest.lists[position - 1].id, 'mcu-prep-fantastic-four-first-steps');
@@ -178,17 +205,19 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
     text(`src/data/orders/${id}.md`), json('scripts/data/cbh-mcu-companion-inventory.json'),
   ]);
   const parsed = parseChecklist(markdown);
-  assert.deepEqual(parsed.entries.map((row) => row.issueId), expectedIds);
-  assert.deepEqual(parsed.entries.map((row) => Number(row.sourceKey)), expectedPositions);
-  assert.deepEqual(parsed.entries.map((row) => row.section), expectedGroups);
-  assert.deepEqual(parsed.entries.map((row) => row.title), fixture.rows.map((row) => row[2]));
+  assert.deepEqual(parsed.entries.map((row) => row.issueId), publishedIds);
+  assert.deepEqual(parsed.entries.map((row) => Number(row.sourceKey)), publishedPositions);
+  assert.deepEqual(parsed.entries.map((row) => row.section), publishedGroups);
+  assert.deepEqual(parsed.entries.map((row) => row.title), publishedTitles);
   assert.deepEqual(parsed.unresolved, []);
   assert.match(markdown, /Source position 14, selection 2, within-book position 8/);
   assert.ok(markdown.includes(fixture.gapUrl));
-  assert.doesNotMatch(markdown, /- \[[ x]\].*Venom Super Special|[\u2013\u2014]/);
-  assert.deepEqual(payload.items.map((row) => row.issueId), expectedIds);
-  assert.deepEqual(payload.items.map((row) => row.collectedIn), expectedGroups);
-  assert.equal(payload.count, 19);
+  assert.match(markdown,
+    /- \[ \] \[Venom Super Special \(1995\) #1 <!-- mrt:source-occurrence=14 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->\]/);
+  assert.doesNotMatch(markdown, /[\u2013\u2014]/);
+  assert.deepEqual(payload.items.map((row) => row.issueId), publishedIds);
+  assert.deepEqual(payload.items.map((row) => row.collectedIn), publishedGroups);
+  assert.equal(payload.count, 20);
   assert.equal(payload.collections, 3);
   assert.equal(payload.placeholders, 0);
   assert.deepEqual(payload.unresolved, []);
@@ -198,6 +227,21 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   assert.equal(payload.sourceLicense, null);
   for (const item of payload.items) {
     const candidate = mapping.candidateMetadata.find((row) => row.id === item.issueId);
+    if (item.identityEvidenceKind === 'owner-confirmed-identity') {
+      assert.equal(item.issueId, 59715);
+      assert.equal(item.url, 'https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1');
+      assert.equal(item.detailsRefused, true);
+      assert.equal(item.seriesId, null);
+      assert.equal(item.seriesName, null);
+      assert.equal(item.onSale, null);
+      assert.equal(item.mu, null);
+      assert.equal(item.digitalId, null);
+      assert.equal(item.cover, null);
+      assert.equal(item.pageCount, null);
+      assert.deepEqual(item.creators, []);
+      assert.equal(candidate, undefined);
+      continue;
+    }
     assert.equal(item.title, candidate.providerProjection.title);
     assert.equal(item.digitalId, candidate.digitalId);
     assert.deepEqual(item.cover, candidate.normalizedCover);
@@ -209,7 +253,7 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
     assert.equal(Object.hasOwn(item, 'storyId'), false);
   }
   assert.deepEqual(payload.items.filter((row) => row.creators.length === 0).map((row) => row.issueId),
-    [43128, 43132]);
+    [43128, 43132, 59715]);
   assert.deepEqual(beforeMcuEditorialEntry(manifest.lists.find((row) => row.id === id)), packet.proposedManifest);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
@@ -248,14 +292,14 @@ test('Brand New Day publishes one qualified guide without changing saved reader 
   state = addIssuesToList(state, 'brand', payload.items).state;
   assert.equal(state.schemaVersion, SCHEMA_VERSION);
   assert.deepEqual(state.lists['existing-spidey'], priorList);
-  assert.deepEqual(state.lists.brand.itemIds, expectedIds);
+  assert.deepEqual(state.lists.brand.itemIds, publishedIds);
   assert.equal(state.lists.brand.collectedIn[3583], groups[0]);
   assert.equal(Object.hasOwn(state.issues[3583], 'collectedIn'), false);
   assert.equal(Object.keys(state.issues).filter((key) => key === '3583').length, 1);
   const backup = exportBackup(state);
   const restored = validateBackup(backup);
   assert.equal(restored.ok, true, restored.errors.join('; '));
-  assert.deepEqual(restored.state.lists.brand.itemIds, expectedIds);
+  assert.deepEqual(restored.state.lists.brand.itemIds, publishedIds);
   assert.deepEqual(restored.state.lists['existing-spidey'], priorList);
   assert.equal(restored.state.read[3583], 123456);
   assert.equal(restored.state.notes[3583], 'My existing Spidey note');

@@ -1,8 +1,9 @@
 # MCU Prep: Spider-Man: Brand New Day
 
 Selected by raymond-nassar in [the owner intake](https://github.com/raymond-nassar/recap-page/issues/705).
+1 owner-confirmed identity has no provider details or cover.
 The [ordered source ledger](../../../scripts/data/owner-selections/mcu-prep-spider-man-brand-new-day.json) preserves all three first-trade selections, twenty intended original positions and the original research.
-This checklist publishes nineteen exactly resolved originals in owner order. It does not replace the broader Spider-Man guides or claim these comics are a direct film adaptation.
+This checklist publishes 20 exactly resolved originals in owner order. It does not replace the broader Spider-Man guides or claim these comics are a direct film adaptation.
 The 2018 Spencer run is the newest of these three selected starts, not the latest Spider-Man run.
 Only factual metadata and cover URLs are reused; no comic image bytes or external narrative are copied.
 The maintained [data provenance](../../../docs/DATA_PROVENANCE.md#owner-authored-mcu-prep-spider-man-brand-new-day) records this publication boundary and its current-library review.
@@ -32,9 +33,10 @@ The published contents enumeration is retained; no physical table of contents wa
 - [ ] [Amazing Spider-Man (1999) #550 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550)
 - [ ] [Amazing Spider-Man (1999) #551 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551)
 - [ ] [FREE COMIC BOOK DAY 2007 1 (2007) #1 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1)
+- [ ] [Venom Super Special (1995) #1 <!-- mrt:source-occurrence=14 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1)
 
-Source position 14, selection 2, within-book position 8: **Venom Super Special (1995) #1**, source-identified original **59715**, remains a metadata gap under [Issue #707](https://github.com/raymond-nassar/recap-page/issues/707).
-It is intentionally not a checkbox, placeholder or neighboring special. Its identity and failed lookups remain in the nonempty source-gap ledger. This is not a claim about Marvel Unlimited availability.
+Source position 14, selection 2, within-book position 8: **Venom Super Special (1995) #1**, source-identified original **59715**, is now included by owner-confirmed identity under [Issue #707](https://github.com/raymond-nassar/recap-page/issues/707).
+Provider details and Marvel Unlimited availability remain unverified; the confirmed identity does not resolve either question.
 
 ## Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics (whole FCBD original; Spider-Man material)
 

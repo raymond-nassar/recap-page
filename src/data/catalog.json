@@ -3477,10 +3477,10 @@
       "id": "mcu-prep-thunderbolts",
       "file": "mcu_prep_thunderbolts.json",
       "name": "MCU Prep: Thunderbolts*",
-      "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
+      "description": "Meet the comics' Thunderbolts and explore Bucky, Natasha, Yelena and Taskmaster for background on the film's uneasy alliances. The original Thunderbolts conceal villainous identities, while later selections explore Bucky's Winter Soldier past, his own Thunderbolts team and Black Widow's world. This is not the film's exact team or origin. The guide includes all 35 selected originals, including Thunderbolts (1997) #-1 by owner-confirmed identity without inferred provider metadata or availability.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 34,
+      "count": 35,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 4,
@@ -3514,7 +3514,8 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/682",
       "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
       "sourceLicense": null,
-      "updatedAt": "2026-10-03T18:45:49.066Z"
+      "updatedAt": "2026-10-22T17:54:21.821Z",
+      "ownerConfirmedIdentityCount": 1
     },
     {
       "id": "mcu-prep-moon-knight",
@@ -3650,7 +3651,7 @@
       "description": "Explore Peter Parker's fresh starts in the comics, including Brand New Day, for background on the film's namesake era. Coming Home, Brand New Day and Back to Basics show different ways of rebuilding Spider-Man's life and responsibilities. This is character context, not a prediction of the film's plot. Venom Super Special (1995) #1 is still missing provider details; the bonus-story selections open their whole original comics.",
       "type": "screen-companion",
       "depth": "selected",
-      "count": 19,
+      "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 3,
@@ -3681,7 +3682,8 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/705",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-06T14:03:24.518Z"
+      "updatedAt": "2026-10-22T17:46:42.630Z",
+      "ownerConfirmedIdentityCount": 1
     },
     {
       "id": "mcu-prep-she-hulk",
