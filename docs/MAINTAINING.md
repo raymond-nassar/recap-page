@@ -147,6 +147,15 @@ defect. Exits during requested cleanup are labelled separately. The unsigned hex
 and `disconnectedBeforeCleanup` flag distinguish a late native exit observation from a disconnect
 that first happened during cleanup; neither identifies the faulting component.
 
+The `home-updates-state` journey also names pending and completed operations between its
+populated-reading fixture and first cross-tab viewing check, plus primary-tab activation.
+These distinguish peer creation, preparation and loading from the viewing write and the peer's
+storage-event UI acknowledgement. A failure retains the pending operation in its safe summary;
+a completed operation is cleared so it cannot label a later failure. Only scenario-declared
+literal labels are accepted. No page contents, storage values, URLs or exception messages are
+added to these diagnostics. They neither retry operations nor change existing waits. A passing
+isolated run does not explain an earlier full-suite timeout or establish an application defect.
+
 Context and browser close each have a fixed 5-second cleanup deadline. A context-close failure
 stops further scenarios. A browser-close failure aborts only this invocation's launched browser
 through its launch signal, then attempts disconnect within 2 seconds. Server cleanup is still
