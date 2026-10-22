@@ -17836,6 +17836,22 @@ function tally() {
   };
 }
 
+async function cleanupDeadline(action, timeoutMs = 5000) {
+  let timer;
+  try {
+    return await Promise.race([
+      Promise.resolve().then(action),
+      new Promise((_, reject) => {
+        timer = globalThis.setTimeout(() => {
+          reject(Object.assign(new Error('Browser check cleanup deadline exceeded'), { name: 'TimeoutError' }));
+        }, timeoutMs);
+      }),
+    ]);
+  } finally {
+    globalThis.clearTimeout(timer);
+  }
+}
+
 async function runScenario(browser, origin, scenario, mutation, diagnostic = null) {
   let context;
   const t = tally();
@@ -17905,7 +17921,7 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
       enter('close-context');
       downloads?.snapshot('before-close');
       try {
-        await context.close();
+        await cleanupDeadline(() => context.close());
       } catch (err) {
         const cleanup = `stage=close-context code=${failureCode(err)}`;
         error ??= cleanup;
@@ -18006,10 +18022,12 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   }
 
   let browser;
+  const ownedBrowser = new AbortController();
   try {
     console.log('BROWSER stage=launch');
     browser = await puppeteer.launch({
       executablePath: edge,
+      signal: ownedBrowser.signal,
       headless: !process.env.MRT_HEADED,
       args: [
         '--no-first-run',
@@ -18032,13 +18050,26 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   let browserVersion = 'unknown';
   const driverRelease = driverVersion(driver);
   let closing = false;
+  let disconnectedBeforeCleanup = false;
+  let nativeFailed = false;
   const browserEvidence = (stage, exit = child?.exitCode, signal = child?.signalCode) => {
     const exitCode = Number.isInteger(exit) ? exit : 'unknown';
+    const exitHex = Number.isInteger(exit) && exit >= -2147483648 && exit <= 4294967295
+      ? `0x${(exit >>> 0).toString(16).padStart(8, '0')}` : 'unknown';
     const signalCode = Object.hasOwn(constants.signals, signal) ? constants.signals[signal] : 'unknown';
-    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode}`);
+    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode} exitHex=${exitHex} disconnectedBeforeCleanup=${disconnectedBeforeCleanup}`);
   };
-  child?.once('exit', (code, signal) => browserEvidence('process-exit', code, signal));
-  browser.once('disconnected', () => browserEvidence('disconnected'));
+  child?.once('exit', (code, signal) => {
+    if ((Number.isInteger(code) && code !== 0) || signal) {
+      nativeFailed = true;
+      process.exitCode = 1;
+    }
+    browserEvidence('process-exit', code, signal);
+  });
+  browser.once('disconnected', () => {
+    disconnectedBeforeCleanup = !closing;
+    browserEvidence('disconnected');
+  });
   let code = 1;
   let primaryError = null;
   try {
@@ -18056,24 +18087,44 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   } finally {
     if (primaryError || code !== 0) browserEvidence('failure');
     closing = true;
+    let cleanupFailed = false;
+    const close = Promise.resolve().then(() => browser.close());
     try {
-      await browser.close();
+      await cleanupDeadline(() => close);
     } catch (err) {
       console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
       onCleanupFailure?.();
       code = 1;
+      cleanupFailed = true;
+      console.log('BROWSER stage=abort-owned-launch cleanup=true');
+      ownedBrowser.abort();
+      try {
+        await cleanupDeadline(() => browser.disconnect(), 2000);
+      } catch (disconnectError) {
+        console.error(`FAIL stage=disconnect-browser code=${failureCode(disconnectError)}`);
+      }
     }
     try {
       server.closeAllConnections();
-      await new Promise((resolve, reject) => server.close((err) => err ? reject(err) : resolve()));
+      await cleanupDeadline(() => new Promise((resolve, reject) => {
+        server.close((err) => err ? reject(err) : resolve());
+      }), 2000);
     } catch (err) {
       console.error(`FAIL stage=close-server code=${failureCode(err)}`);
       onCleanupFailure?.();
       code = 1;
+      cleanupFailed = true;
+    }
+    if (cleanupFailed) {
+      // A raced driver close can still retain handles while removing its temporary profile.
+      globalThis.setTimeout(() => {
+        console.error('FAIL stage=cleanup-exit code=TimeoutError');
+        process.exit(1);
+      }, 5000).unref();
     }
   }
   if (primaryError) throw primaryError;
-  return code;
+  return nativeFailed ? 1 : code;
 }
 
 async function main() {
