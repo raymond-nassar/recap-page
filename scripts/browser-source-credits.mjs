@@ -113,5 +113,91 @@ export const sourceCredits = {
       await page.evaluate(() => { location.hash = '#/catalog'; });
       await page.waitForSelector('#catalog-results .catalog-card', { visible: true });
     }
+
+    // Source checkouts omit the unbroken revision that expanded the packaged About page.
+    const buildLabel = 'android 3000002; development; source 2997ac444933e92250d1e7910d8f8dddc55e7b21.';
+    const profiles = [
+      { width: 360, body: 24, theme: 'light' },
+      { width: 320, body: 32, theme: 'dark' },
+      { width: 412, body: 24, theme: 'system' },
+      { width: 1280, body: 14, theme: 'dark', desktop: true },
+    ];
+    for (const profile of profiles) {
+      const label = `About ${profile.width}px/${profile.body}px ${profile.theme}`;
+      await page.setViewport({ width: profile.width, height: 900, isMobile: !profile.desktop });
+      await page.emulateMediaFeatures([
+        { name: 'prefers-color-scheme', value: 'light' },
+        { name: 'prefers-reduced-motion', value: 'reduce' },
+      ]);
+      await page.goto(`${page.__origin}/?about-reflow=${profile.width}#/about`, { waitUntil: 'load' });
+      await page.waitForSelector('#view-about:not([hidden])');
+      await page.evaluate(({ body, theme, desktop }, buildLabel) => {
+        const root = document.documentElement;
+        root.removeAttribute('style');
+        if (theme === 'system') root.removeAttribute('data-theme');
+        else root.dataset.theme = theme;
+        const ramp = desktop ? [12, 14, 18, 20, 28, 40] : [14, 16, 18, 20, 28, 32];
+        const names = ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg'];
+        names.forEach((name, index) => root.style.setProperty(name, `${ramp[index] * body / ramp[1]}px`));
+        document.querySelector('#about-build').textContent = buildLabel;
+        document.querySelector('#view-about details').open = false;
+      }, profile, buildLabel);
+      await page.evaluate(() => document.fonts.ready);
+
+      for (const expanded of [false, true]) {
+        if (expanded) {
+          await page.focus('#view-about summary');
+          await page.keyboard.press('Enter');
+        }
+        const geometry = await page.evaluate(() => {
+          const root = document.documentElement, about = document.querySelector('#view-about');
+          const viewport = visualViewport, clipped = [];
+          const walker = document.createTreeWalker(about, NodeFilter.SHOW_TEXT);
+          let ranges = 0;
+          while (walker.nextNode()) {
+            const node = walker.currentNode;
+            if (!node.textContent.trim() || !node.parentElement.checkVisibility()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            for (const box of range.getClientRects()) {
+              if (!box.width || !box.height) continue;
+              ranges++;
+              if (box.left < viewport.offsetLeft - 1 || box.right > viewport.offsetLeft + viewport.width + 1) {
+                clipped.push(node.textContent.trim().slice(0, 80));
+              }
+              for (let parent = node.parentElement; parent; parent = parent.parentElement) {
+                const style = getComputedStyle(parent), edge = parent.getBoundingClientRect();
+                if (/(hidden|clip)/.test(style.overflowX) && (box.left < edge.left - 1 || box.right > edge.right + 1)) {
+                  clipped.push(`clipping ancestor: ${parent.tagName}`);
+                }
+              }
+            }
+          }
+          return {
+            root: root.clientWidth, scroll: root.scrollWidth, inner: innerWidth,
+            visual: viewport.width, scale: viewport.scale, ranges, clipped,
+            body: parseFloat(getComputedStyle(document.body).fontSize),
+            build: document.querySelector('#about-build').textContent,
+            open: about.querySelector('details').open,
+            rows: about.querySelectorAll('.keys tr').length,
+            rootOverflow: getComputedStyle(root).overflowX,
+            bodyOverflow: getComputedStyle(document.body).overflowX,
+          };
+        });
+        t.check(`${label}, disclosure ${expanded ? 'open' : 'closed'}: requested viewport and text size retained`,
+          geometry.root === profile.width && Math.abs(geometry.visual - profile.width) <= 1
+          && geometry.scale === 1 && geometry.body === profile.body && geometry.open === expanded,
+          JSON.stringify(geometry));
+        t.check(`${label}, disclosure ${expanded ? 'open' : 'closed'}: all About text fits without root clipping`,
+          geometry.scroll <= geometry.root + 1 && geometry.inner === geometry.root
+          && geometry.ranges > 20 && geometry.clipped.length === 0
+          && !/(hidden|clip)/.test(geometry.rootOverflow) && !/(hidden|clip)/.test(geometry.bodyOverflow)
+          && geometry.build === buildLabel && geometry.rows === 3, JSON.stringify(geometry));
+      }
+      await page.focus('#view-about a');
+      t.check(`${label}: provider link keeps keyboard focus and its indicator`,
+        await page.$eval('#view-about a', (node) => document.activeElement === node
+          && node.matches(':focus-visible') && getComputedStyle(node).outlineStyle !== 'none'));
+    }
   },
 };
