@@ -9,9 +9,21 @@ const id = 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-orde
 const name = 'X-Men: Onslaught';
 const packet = JSON.parse(readFileSync(new URL(`./data/cbh-packets/${id}.json`, import.meta.url)));
 const mapping = JSON.parse(readFileSync(new URL(`./data/cbh-mappings/${id}.json`, import.meta.url)));
+const currentMapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${id}.json`, import.meta.url)));
 const ledger = JSON.parse(readFileSync(new URL(`./data/cbh-source-ledgers/${id}.json`, import.meta.url)));
 const markdown = readFileSync(new URL(`../src/data/orders/${id}.md`, import.meta.url), 'utf8');
-assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
+const baselineMarkdown = buildMarkdown(mapping);
+const baselineLines = new Map(baselineMarkdown.split('\n').flatMap((line) => {
+  const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+  return position ? [[Number(position[1]), line]] : [];
+}));
+const identityPositions = new Set(currentMapping.rows.filter((row) =>
+  row.identityEvidenceKind === 'owner-confirmed-identity').map((row) => row.sourcePosition));
+assert.equal(markdown.replace(/\r\n/g, '\n').split('\n').map((line) => {
+  const position = /<!-- mrt:source-occurrence=(\d+) -->/.exec(line);
+  return position && identityPositions.has(Number(position[1])) ? baselineLines.get(Number(position[1])) : line;
+}).join('\n'), baselineMarkdown);
+const baselineParsed = parseChecklist(baselineMarkdown);
 const parsed = parseChecklist(markdown);
 const authored = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
 const selected = ledger.printedPositions.filter((row) => row.sourcePosition != null);
@@ -30,17 +42,20 @@ assert.equal(ledger.printedPositions.length, 100);
 assert.equal(packet.sourceOccurrenceCount, 74);
 assert.equal(mapping.reviewStatus, 'approved');
 assert.equal(authored.length, 74);
-assert.equal(parsed.entries.length, 72);
-assert.equal(parsed.unresolved.length, 2);
+assert.equal(baselineParsed.entries.length, 72);
+assert.equal(baselineParsed.unresolved.length, 2);
+assert.equal(parsed.entries.length, currentMapping.rows.length);
+assert.equal(parsed.unresolved.length, currentMapping.sourceGaps.length);
 assert.deepEqual(authored.map((row) => Number(row.sourceKey)),
   Array.from({ length: 74 }, (_, index) => index + 1));
 assert.deepEqual(selected.map((row) => row.sourcePosition),
   sourceRows.map((row) => row.sourcePosition));
 assert.deepEqual(authored.map((row) => row.section),
   sourceRows.map((row) => row.sourceRangeReference ?? row.sourceGroup));
-assert.deepEqual(parsed.entries.map((row) => row.issueId), mapping.rows.map((row) => row.selectedIssueId));
-assert.deepEqual(parsed.unresolved.map((row) => Number(row.sourceKey)), [24, 27]);
-assert.deepEqual([expected[23].issueId, expected[26].issueId], [-1915148978, -1931926597]);
+assert.deepEqual(parsed.entries.map((row) => row.issueId), currentMapping.rows.map((row) => row.selectedIssueId));
+assert.deepEqual(baselineParsed.unresolved.map((row) => Number(row.sourceKey)), [24, 27]);
+assert.deepEqual(baselineParsed.unresolved.map((row) => placeholderId(id, row.title, row.sourceKey)),
+  [-1915148978, -1931926597]);
 assert.deepEqual(groups, [...new Set(selected.map((row) => row.sourceGroup))]);
 assert.equal(expected[36].issueId, 52990);
 assert.equal(selected[36].disposition, 'selected-qualified-companion');
@@ -98,7 +113,7 @@ async function storedRows(page) {
 
 export const onslaughtActualData = {
   id: 'onslaught-actual-data',
-  title: 'Onslaught retains 74 approved source positions, two unresolved originals and its reference companion',
+  title: 'Onslaught retains 74 approved source positions, remaining gaps and its reference companion',
   async run(page, t) {
     const errors = [];
     const externalRequests = [];
@@ -136,15 +151,15 @@ export const onslaughtActualData = {
     checkVector(t, 'Preview renders all 74 source positions, issue IDs, titles and sections', preview.rows);
     t.check('Preview retains all seven selected Road and Epic sections',
       JSON.stringify(preview.headings) === JSON.stringify(groups), JSON.stringify(preview.headings));
-    const gapIds = [expected[23].issueId, expected[26].issueId];
+    const gapIds = expected.filter((row) => row.issueId < 0).map((row) => row.issueId);
     const previewGaps = await page.$$eval('#preview-body .preview-issue-link', (nodes, ids) =>
       nodes.filter((node) => ids.includes(Number(node.dataset.issueId))).map((node) => ({
         issueId: Number(node.dataset.issueId),
         position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
         href: node.getAttribute('href'),
       })), gapIds);
-    t.check('both unresolved source originals have no fabricated issue links',
-      previewGaps.length === 2 && previewGaps.every((row) =>
+    t.check('remaining unresolved source originals have no fabricated issue links',
+      previewGaps.length === gapIds.length && previewGaps.every((row) =>
         row.position === expected.find((entry) => entry.issueId === row.issueId)?.position
           && !/^https?:/.test(row.href ?? '')), JSON.stringify(previewGaps));
 
@@ -153,7 +168,7 @@ export const onslaughtActualData = {
       ?.textContent.includes('Open'));
     const imported = await storedRows(page);
     t.check('import creates exactly one Onslaught list', imported.matches === 1);
-    checkVector(t, 'import persists all 74 source positions with two distinct gaps', imported.rows);
+    checkVector(t, 'import persists all 74 source positions with remaining distinct gaps', imported.rows);
 
     await page.$eval('#preview-add [data-act="main"]', (node) => node.click());
     await page.waitForFunction((title) => !document.querySelector('#view-read')?.hidden
@@ -172,8 +187,8 @@ export const onslaughtActualData = {
         openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
         hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
       })), gapIds);
-    t.check('both unresolved originals have neither reader nor fabricated issue page',
-      gapActions.length === 2 && gapActions.every((row) => row.openHidden && !row.hasInfo),
+    t.check('remaining unresolved originals have neither reader nor fabricated issue page',
+      gapActions.length === gapIds.length && gapActions.every((row) => row.openHidden && !row.hasInfo),
       JSON.stringify(gapActions));
 
     await page.reload({ waitUntil: 'load' });

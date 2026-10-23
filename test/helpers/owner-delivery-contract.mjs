@@ -5,11 +5,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertApprovedRelationshipReview } from '../../scripts/author-cbh-packet.mjs';
 import {
-  assertMappingMatchesPacketOccurrences, CBH_SOURCE_PROVIDER, digestCanonicalJson, libraryDigestFor, sourceCountsForPacket,
+  assertMappingMatchesPacketOccurrences, CBH_SOURCE_PROVIDER, digestCanonicalJson, libraryDigestFor, reportDigestFor, sourceCountsForPacket,
   validateApprovalDigest, validateMappingDigest, validateReportDigest,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport } from '../../scripts/lib/cbh-overlap.mjs';
-import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
+import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library.mjs';
 import { OWNER_PROVIDER } from '../../scripts/lib/owner-guide.mjs';
 import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs';
 import { parseChecklist } from '../../src/js/lib/markdown.js';
@@ -20,7 +20,7 @@ import {
 import { historicalSpiderManSelectionLibraryDigest } from './reading-choice-history.mjs';
 import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { recordedEditorialDigest, withRetiredComparisons, withRetiredOrders } from './mcu-editorial-history.mjs';
-import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, identityRevisions } from './owner-identity-history.mjs';
+import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -218,8 +218,13 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   const originalPacket = await json(`scripts/data/cbh-packets/${id}.json`);
   const originalMapping = await json(`scripts/data/cbh-mappings/${id}.json`);
   assert.deepEqual(packet.sourceReview, originalPacket.sourceReview);
-  assert.deepEqual(mapping.rows, originalMapping.rows);
-  assert.deepEqual(packet.sourceGaps, originalPacket.sourceGaps);
+  const identities = mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity');
+  const identityPositions = new Set(identities.map((row) => row.sourcePosition));
+  assert.deepEqual(mapping.rows.filter((row) => !identityPositions.has(row.sourcePosition)), originalMapping.rows);
+  assert.ok(identities.every((row) => originalPacket.sourceGaps.some((gap) =>
+    gap.sourcePosition === row.sourcePosition)));
+  assert.deepEqual(packet.sourceGaps, originalPacket.sourceGaps.filter((gap) =>
+    !identityPositions.has(gap.sourcePosition)));
   assert.equal(mapping.reviewStatus, 'approved');
   assert.equal(hash(sourceText.replace(/\r\n/g, '\n')), contract.sourceSha256);
   assert.equal(packet.sourceContentSha256, originalPacket.sourceContentSha256);
@@ -233,9 +238,23 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   for (const [file, digest] of Object.entries(contract.cbhBaseline.files)) {
-    assert.equal(hash((await text(file)).replace(/\r\n/g, '\n')), digest, file);
+    assert.equal(hash(beforeIdentityText(file, contract.cbhBaseline.sourceCommit).replace(/\r\n/g, '\n')), digest, file);
   }
-  const { report: current } = await buildCurrentOwnerOverlap(mapping, { root });
+  const library = await loadCurrentOwnerLibrary(id, { root });
+  const publication = identityRevisions.guides.filter((revision) =>
+    revision.id === id && revision.placeholderReplacement).at(-1);
+  if (publication) assert.equal(mapping.relationshipReview.reviewedAt, publication.generatedAt);
+  const orders = beforeIdentityOrders(library.orders, '',
+    identityRevisions.guides.filter((revision) => revision.placeholderReplacement
+      && revision.publicationOrder > (publication?.publicationOrder ?? 0)));
+  const current = {
+    candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
+    libraryDigest: libraryDigestFor(library.manifest,
+      orders.map((entry) => ({ id: entry.orderId, issueIds: entry.issueIds.map(String) }))),
+    peerDigests: {}, sourceCounts: sourceCountsForPacket(mapping),
+    ...buildComparisonReport({ candidateIds: mapping.rows.map((row) => row.selectedIssueId), orders }),
+  };
+  current.reportDigest = reportDigestFor(current);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, peerCount);
   assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);

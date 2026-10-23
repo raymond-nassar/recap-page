@@ -147,10 +147,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Further Adventures of Cyclops & Phoenix (1996) #2 <!-- mrt:source-occurrence=135 -->](https://www.marvel.com/comics/issue/60186/further_adventures_of_cyclops_phoenix_1996_2)
 - [ ] [Further Adventures of Cyclops & Phoenix (1996) #3 <!-- mrt:source-occurrence=136 -->](https://www.marvel.com/comics/issue/60187/further_adventures_of_cyclops_phoenix_1996_3)
 - [ ] [Further Adventures of Cyclops & Phoenix (1996) #4 <!-- mrt:source-occurrence=137 -->](https://www.marvel.com/comics/issue/60188/further_adventures_of_cyclops_phoenix_1996_4)
-- [ ] Askani'son #1 <!-- mrt:source-occurrence=138 -->
-- [ ] Askani'son #2 <!-- mrt:source-occurrence=139 -->
-- [ ] Askani'son #3 <!-- mrt:source-occurrence=140 -->
-- [ ] Askani'son #4 <!-- mrt:source-occurrence=141 -->
+- [ ] [Askani'son (1996) #1 <!-- mrt:source-occurrence=138 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/50996/)
+- [ ] [Askani'son (1996) #2 <!-- mrt:source-occurrence=139 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/50997/askanison_1996_2)
+- [ ] [Askani'son (1996) #3 <!-- mrt:source-occurrence=140 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/50998/askanison_1996_3)
+- [ ] [Askani'son (1996) #4 <!-- mrt:source-occurrence=141 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/50999/)
 - [ ] [X-Men: Phoenix (1999) #1 <!-- mrt:source-occurrence=142 -->](https://www.marvel.com/comics/issue/51001/x-men_phoenix_1999_1)
 - [ ] [X-Men: Phoenix (1999) #2 <!-- mrt:source-occurrence=143 -->](https://www.marvel.com/comics/issue/51002/x-men_phoenix_1999_2)
 - [ ] [X-Men: Phoenix (1999) #3 <!-- mrt:source-occurrence=144 -->](https://www.marvel.com/comics/issue/51003/x-men_phoenix_1999_3)

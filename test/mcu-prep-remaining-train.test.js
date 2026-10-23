@@ -24,10 +24,13 @@ import {
 } from './helpers/reading-choice-history.mjs';
 import { beforeIdentityText, identityRevisions } from './helpers/owner-identity-history.mjs';
 
-const text = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
-  || identityRevisions.guides.some(({ id }) => id !== 'mcu-prep-thunderbolts'
-    && (file.includes(id) || file.includes(id.replaceAll('-', '_'))))
-  ? Promise.resolve(beforeIdentityText(file)) : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+const text = (file) => {
+  const revision = identityRevisions.guides.find(({ id }) => id !== 'mcu-prep-thunderbolts'
+    && (file.includes(id) || file.includes(id.replaceAll('-', '_'))));
+  return ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file) || revision
+    ? Promise.resolve(beforeIdentityText(file, revision?.baselineCommit))
+    : readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+};
 const json = async (file) => JSON.parse(await text(file));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const agathaId = 'mcu-prep-agatha-all-along';

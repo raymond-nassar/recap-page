@@ -1,17 +1,18 @@
 {
   "candidateId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
-  "packetDigest": "309db862c4ef369b0dcc873caa5d519c92cf9fafa7efda2ccec2d9a1fc67bf72",
-  "mappingDigest": "33c117fec1e05ae7c0d6c6fac33b92c1fa09e4a1708d31ce7262660cf942e51a",
-  "libraryDigest": "b1499884bf66c936195acb2282e90cd89b1967a1caeefb40267008444b002839",
+  "packetDigest": "14a6c82910da66e2bde144f3303b6cb8085cb21785bfeab5a9118d58d07c2fb5",
+  "mappingDigest": "510040d8d40ea04af08a34dfb18b3c64bc5a336adabe671a54c42abe15f01f98",
+  "libraryDigest": "093676b01e4bea10a9dea40f396e456c013878747f343abc5158e73e084e3990",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 74,
     "sourceIdentityCount": 74,
-    "includedIssueCount": 72,
-    "sourceGapCount": 2,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 73,
+    "sourceGapCount": 1,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 72,
+  "candidateCount": 73,
   "comparisonCount": 316,
   "comparisons": [
     {
@@ -1940,5 +1941,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "0babc0940da188e9054e50ca5cf32c980ac1b9b0acd9ff9591b9b30334dc1c0a"
+  "reportDigest": "3ffeadce7016dd1213d2a8882f6bf9b2ebff5aadd223a056641ebb5ad2443471"
 }

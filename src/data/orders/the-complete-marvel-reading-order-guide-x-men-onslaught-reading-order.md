@@ -34,7 +34,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 ## Road to Onslaught Vol. 3
 - [ ] [Uncanny X-Men (1963) #329 <!-- mrt:source-occurrence=25 -->](https://www.marvel.com/comics/issue/13870/uncanny_x-men_1963_329)
 - [ ] [Uncanny X-Men (1963) #330 <!-- mrt:source-occurrence=26 -->](https://www.marvel.com/comics/issue/13871/uncanny_x-men_1963_330)
-- [ ] Archangel #1 <!-- mrt:source-occurrence=27 -->
+- [ ] [Archangel (1996) #1 <!-- mrt:source-occurrence=27 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/51178/archangel_1996_1)
 - [ ] [X-Men Vs. the Brood (1996) #1 <!-- mrt:source-occurrence=28 -->](https://www.marvel.com/comics/issue/52991/x-men_vs_the_brood_1996_1)
 - [ ] [X-Men Vs. the Brood (1996) #2 <!-- mrt:source-occurrence=29 -->](https://www.marvel.com/comics/issue/52992/x-men_vs_the_brood_1996_2)
 - [ ] [X-Men Unlimited (1993) #10 <!-- mrt:source-occurrence=30 -->](https://www.marvel.com/comics/issue/18111/x-men_unlimited_1993_10)

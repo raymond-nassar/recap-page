@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/iron-fist-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-30T04:55:50.710Z",
+  "generatedAt": "2026-10-22T22:59:02.316Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 414,
   "collections": 48,
-  "placeholders": 38,
+  "placeholders": 18,
   "unresolved": [
     {
       "title": "Deadly Hands of Kung Fu Special Edition (1974) #1",
@@ -18,62 +18,6 @@
       "index": 11,
       "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
       "sourceKey": "12"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #93",
-      "url": null,
-      "read": false,
-      "index": 82,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "98"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #94",
-      "url": null,
-      "read": false,
-      "index": 83,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "99"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #95",
-      "url": null,
-      "read": false,
-      "index": 84,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "100"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #96",
-      "url": null,
-      "read": false,
-      "index": 85,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "101"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #97",
-      "url": null,
-      "read": false,
-      "index": 86,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "102"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #98",
-      "url": null,
-      "read": false,
-      "index": 87,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "103"
-    },
-    {
-      "title": "Power Man and Iron Fist (1978) #99",
-      "url": null,
-      "read": false,
-      "index": 88,
-      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceKey": "104"
     },
     {
       "title": "Namor the Sub-Mariner (1990) #19",
@@ -204,116 +148,12 @@
       "sourceKey": "155"
     },
     {
-      "title": "Cage (1992) #9",
-      "url": null,
-      "read": false,
-      "index": 140,
-      "section": "Cage #9",
-      "sourceKey": "156"
-    },
-    {
       "title": "Marvel Fanfare (1996) #6",
       "url": null,
       "read": false,
       "index": 163,
       "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
       "sourceKey": "179"
-    },
-    {
-      "title": "Heroes for Hire (1997) #1",
-      "url": null,
-      "read": false,
-      "index": 164,
-      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
-      "sourceKey": "180"
-    },
-    {
-      "title": "Heroes for Hire (1997) #10",
-      "url": null,
-      "read": false,
-      "index": 173,
-      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceKey": "189"
-    },
-    {
-      "title": "Heroes for Hire (1997) #11",
-      "url": null,
-      "read": false,
-      "index": 174,
-      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceKey": "190"
-    },
-    {
-      "title": "Heroes for Hire (1997) #15",
-      "url": null,
-      "read": false,
-      "index": 178,
-      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceKey": "194"
-    },
-    {
-      "title": "Heroes for Hire (1997) #16",
-      "url": null,
-      "read": false,
-      "index": 180,
-      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceKey": "196"
-    },
-    {
-      "title": "Heroes for Hire/Quicksilver Annual (1998) #1",
-      "url": null,
-      "read": false,
-      "index": 182,
-      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceKey": "198"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #1",
-      "url": null,
-      "read": false,
-      "index": 364,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "381"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #2",
-      "url": null,
-      "read": false,
-      "index": 365,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "382"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #3",
-      "url": null,
-      "read": false,
-      "index": 366,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "383"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #4",
-      "url": null,
-      "read": false,
-      "index": 367,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "384"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #5",
-      "url": null,
-      "read": false,
-      "index": 368,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "385"
-    },
-    {
-      "title": "Immortal Iron Fists (2017) #6",
-      "url": null,
-      "read": false,
-      "index": 369,
-      "section": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceKey": "386"
     }
   ],
   "items": [
@@ -3139,10 +2979,10 @@
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -708834706,
+      "issueId": 62415,
       "title": "Power Man and Iron Fist (1978) #93",
       "number": "93",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62415/power_man_and_iron_fist_1978_93",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3152,14 +2992,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -692057087,
+      "issueId": 62416,
       "title": "Power Man and Iron Fist (1978) #94",
       "number": "94",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62416/power_man_and_iron_fist_1978_94",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3169,14 +3010,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -1524419230,
+      "issueId": 62418,
       "title": "Power Man and Iron Fist (1978) #95",
       "number": "95",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62418/power_man_and_iron_fist_1978_95",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3186,14 +3028,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -1507641611,
+      "issueId": 62419,
       "title": "Power Man and Iron Fist (1978) #96",
       "number": "96",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62419/power_man_and_iron_fist_1978_96",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3203,14 +3046,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -1490863992,
+      "issueId": 62420,
       "title": "Power Man and Iron Fist (1978) #97",
       "number": "97",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62420/power_man_and_iron_fist_1978_97",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3220,14 +3064,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -1474086373,
+      "issueId": 62421,
       "title": "Power Man and Iron Fist (1978) #98",
       "number": "98",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62421/power_man_and_iron_fist_1978_98",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3237,14 +3082,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
-      "issueId": -1457308754,
+      "issueId": 62422,
       "title": "Power Man and Iron Fist (1978) #99",
       "number": "99",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62422/power_man_and_iron_fist_1978_99",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3254,7 +3100,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100"
     },
     {
@@ -4505,10 +4352,10 @@
       "collectedIn": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)"
     },
     {
-      "issueId": -1120969317,
+      "issueId": 57520,
       "title": "Cage (1992) #9",
       "number": "9",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/57520/cage_1992_9",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4518,7 +4365,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Cage #9"
     },
     {
@@ -5831,10 +5679,10 @@
       "collectedIn": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9"
     },
     {
-      "issueId": -1257308840,
+      "issueId": 62004,
       "title": "Heroes for Hire (1997) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62004/heroes_for_hire_1997_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -5844,7 +5692,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9"
     },
     {
@@ -6089,10 +5938,10 @@
       "collectedIn": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9"
     },
     {
-      "issueId": -1374752173,
+      "issueId": 55126,
       "title": "Heroes for Hire (1997) #10",
       "number": "10",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/55126/heroes_for_hire_1997_10",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6102,14 +5951,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
-      "issueId": -1156496031,
+      "issueId": 55125,
       "title": "Heroes for Hire (1997) #11",
       "number": "11",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/55125/heroes_for_hire_1997_11",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6119,7 +5969,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
@@ -6219,10 +6070,10 @@
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
-      "issueId": -1089385555,
+      "issueId": 53674,
       "title": "Heroes for Hire (1997) #15",
       "number": "15",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/53674/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6232,7 +6083,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
@@ -6272,10 +6124,10 @@
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
-      "issueId": -1122940793,
+      "issueId": 53675,
       "title": "Heroes for Hire (1997) #16",
       "number": "16",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/53675/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6285,7 +6137,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
@@ -6325,10 +6178,10 @@
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
-      "issueId": -1290716983,
+      "issueId": 53676,
       "title": "Heroes for Hire/Quicksilver Annual (1998) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/53676/heroes_for_hirequicksilver_annual_1998_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6338,7 +6191,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19"
     },
     {
@@ -12138,10 +11992,10 @@
       "collectedIn": "Issues : Defenders (2017) #6 to #10"
     },
     {
-      "issueId": -1806451215,
+      "issueId": 64530,
       "title": "Immortal Iron Fists (2017) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64530/immortal_iron_fists_cmx_digital_comic_2017_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12151,14 +12005,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {
-      "issueId": -1856784072,
+      "issueId": 64531,
       "title": "Immortal Iron Fists (2017) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64531/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12168,14 +12023,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {
-      "issueId": -1840006453,
+      "issueId": 64532,
       "title": "Immortal Iron Fists (2017) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64532/immortal_iron_fists_cmx_digital_comic_2017_3",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12185,14 +12041,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {
-      "issueId": -1756118358,
+      "issueId": 64533,
       "title": "Immortal Iron Fists (2017) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64533/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12202,14 +12059,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {
-      "issueId": -1739340739,
+      "issueId": 64563,
       "title": "Immortal Iron Fists (2017) #5",
       "number": "5",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64563/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12219,14 +12077,15 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {
-      "issueId": -1789673596,
+      "issueId": 64818,
       "title": "Immortal Iron Fists (2017) #6",
       "number": "6",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64818/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12236,7 +12095,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Issues : Immortal Iron Fists #1 to #6"
     },
     {

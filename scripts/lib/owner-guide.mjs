@@ -1311,12 +1311,13 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
 
   const oldItems = new Map(payload.items.map((item) => [Number(item.issueId), structuredClone(item)]));
   const mappedItems = nextMapping.rows.map((row) => {
-    if (row.identityEvidenceKind !== 'owner-confirmed-identity') {
+    const addition = identityRows.find((entry) => entry.mappingRow.sourcePosition === row.sourcePosition);
+    if (!addition) {
       const existing = oldItems.get(Number(row.selectedIssueId));
       assert.ok(existing, `Existing published issue ${row.selectedIssueId} is missing from the payload.`);
       return existing;
     }
-    const identity = identityRows.find((entry) => entry.mappingRow.sourcePosition === row.sourcePosition).identity;
+    const identity = addition.identity;
     return {
       issueId: row.selectedIssueId,
       title: identity.label,
@@ -1343,7 +1344,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
     generatedAt: request.generatedAt,
     count: nextItems.length,
-    ...(cbhBaseline ? { placeholders: remainingGaps.length } : {}),
+    ...(cbhBaseline ? { placeholders: remainingGaps.length, unresolved: parsed.unresolved } : {}),
     items: nextItems,
     collections: new Set(nextItems.map((item) => item.collectedIn).filter(Boolean)).size,
   };

@@ -173,8 +173,8 @@
     ],
     [
       27,
-      -1931926597,
-      "Archangel #1",
+      51178,
+      "Archangel (1996) #1",
       2
     ],
     [
@@ -460,19 +460,20 @@
       6
     ]
   ],
-  "vectorSha256": "e3f790cbf2b93d06f02f62e0b866e94d6642ccbbac70ca1b62d0ef0c8b3d47fd",
+  "vectorSha256": "8f70bc71a6c59fb6dabe471076626e66c50c6dbb910c3f488d8131d0214e169f",
   "sourceSha256": "d89187e2fb46df94c17490300ef5960f15837d768f4fe1499e1c2cecc5fbf5c9",
   "sourceIssueBearingBlocksSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
   "sourceCounts": {
     "sourceOccurrenceCount": 74,
     "sourceIdentityCount": 74,
-    "includedIssueCount": 72,
-    "sourceGapCount": 2,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 73,
+    "sourceGapCount": 1,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 0
   },
-  "libraryDigest": "b1499884bf66c936195acb2282e90cd89b1967a1caeefb40267008444b002839",
-  "proposalDigest": "7efc4bd456f9855064fa29cb2ecd7f8bea3f843deb38f2bde819e1df921b3b5d",
-  "approvalDigest": "09540e83eca39436dc36d5dd9fc1b5e9dd843eac2928c211cad3dc298222d010",
+  "libraryDigest": "093676b01e4bea10a9dea40f396e456c013878747f343abc5158e73e084e3990",
+  "proposalDigest": "40a043b28325a9d3024960fe4353cdd574a966f2901fdfdf3229f28209707cef",
+  "approvalDigest": "e8ce5770bb605d0a072f2c2b505e49d3a4cf2cc0c881c37315eca032c7014f45",
   "cbhBaseline": {
     "sourceCommit": "f2c60a9410ba1b9eba76b8dd83a4b8ad01b167f9",
     "files": {

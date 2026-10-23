@@ -154,7 +154,7 @@
     },
     {
       "sourcePosition": 264,
-      "canonicalRow": 215,
+      "canonicalRow": 229,
       "sourceIssueReference": "Immortal Iron Fist (2006) #16",
       "sourceRangeReference": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
       "normalizedSeriesTitle": "Immortal Iron Fist",
@@ -203,293 +203,6 @@
         }
       ],
       "evidenceDigest": "4c0290b5ee8263561763ce339996bd65b988c6f912b4d35e77c80049a5884343"
-    },
-    {
-      "sourcePosition": 98,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #93",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "93",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "af764395cbcddd47fceb5307f83da53ee9684321e9900b536d59dbc6f92f8bff"
-    },
-    {
-      "sourcePosition": 99,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #94",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "94",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "2ae235f9cae05836c806893379dfe392b9ca0120e1223abf0801ec8f7642f981"
-    },
-    {
-      "sourcePosition": 100,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #95",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "95",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "1850aaecfc14ef3f3f1b8ed1d7ea18977eda1bb44af56e9f7f37afbeeb32364b"
-    },
-    {
-      "sourcePosition": 101,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #96",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "96",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "8cbc5f0bdfcd55fc4f314cc32fce7a813e3b924323681bc97ac54afa941670eb"
-    },
-    {
-      "sourcePosition": 102,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #97",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "97",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "186fd36b775f05df4e17369d40f658f3d0fbd61688c891ac8bdf84b7300e2e59"
-    },
-    {
-      "sourcePosition": 103,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #98",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "98",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "526c05aea4e06c6c5d3df68a9debb8192fb81ec80b0f7f8c231d59c2ff2e8179"
-    },
-    {
-      "sourcePosition": 104,
-      "sourceIssueReference": "Power Man and Iron Fist (1978) #99",
-      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
-      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire",
-      "normalizedSeriesTitle": "Power Man and Iron Fist",
-      "seriesYear": 1978,
-      "issueNumber": "99",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source prints the retitled run without a year. Working 1978 title/year and observed provider Power Man (1974) series 20674 are a narrowly approved continuity normalization for the surrounding rows, not proof of these missing originals. Its complete 68/68 page omits #93-99; alias-label searches at #93 and #99 returned zero results, not individual checks for #94-98. A separate punctuation-bearing #93 query failed HTTP 500 and is not absence evidence. Do not add source-omitted #73 or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "b5a6fef4f68810f7ce7b4c8b27806cf83e6760a82d632136f08080c41454100c"
     },
     {
       "sourcePosition": 140,
@@ -1148,42 +861,6 @@
       "evidenceDigest": "df53740c86f3a0d57786abc79e93c555bb13393970c677a6619fe9630bf14622"
     },
     {
-      "sourcePosition": 156,
-      "sourceIssueReference": "Cage (1992) #9",
-      "sourceRangeReference": "Cage #9",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Cage",
-      "seriesYear": 1992,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source names Cage (1992) #9 only, not the entire run. The complete series 20944 page contained one different issue (#4); the narrow #9 search returned one result but no exact original. Do not substitute another number or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Cage%201992%209&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20944/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/655",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "a95a9f6c4f6359fe1c6149383c0808422f6f2ae310ce9d466f33022f6902f01e"
-    },
-    {
       "sourcePosition": 179,
       "sourceIssueReference": "Marvel Fanfare (1996) #6",
       "sourceRangeReference": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
@@ -1218,466 +895,9 @@
         }
       ],
       "evidenceDigest": "65cc347a92c20cb8428a7f7b740d9b0f5237ac4d6bb08b3e00a31760c8437184"
-    },
-    {
-      "sourcePosition": 180,
-      "sourceIssueReference": "Heroes for Hire (1997) #1",
-      "sourceRangeReference": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire",
-      "seriesYear": 1997,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects five individually unresolved 1997 originals in its precise Quicksilver interleave. Complete provider series 20084 (13/13) omits #1, #10-11 and #15-16. Searches for #1 and #10 returned 13 non-exact and zero results respectively; #11, #15 and #16 were not searched individually. Approved published Punisher mapping and payload independently retain Heroes for Hire (1997) #9 (ID 59301) despite that page also omitting #9. Do not infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "349cdb5c525eb416c5bf4ccc07c068a339081ee06a92d74919c77e80799a237d"
-    },
-    {
-      "sourcePosition": 189,
-      "sourceIssueReference": "Heroes for Hire (1997) #10",
-      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire",
-      "seriesYear": 1997,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects five individually unresolved 1997 originals in its precise Quicksilver interleave. Complete provider series 20084 (13/13) omits #1, #10-11 and #15-16. Searches for #1 and #10 returned 13 non-exact and zero results respectively; #11, #15 and #16 were not searched individually. Approved published Punisher mapping and payload independently retain Heroes for Hire (1997) #9 (ID 59301) despite that page also omitting #9. Do not infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "3ec558218ddeae206ca8485d181c270c40cc80d802130746818e3a553f31d024"
-    },
-    {
-      "sourcePosition": 190,
-      "sourceIssueReference": "Heroes for Hire (1997) #11",
-      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire",
-      "seriesYear": 1997,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects five individually unresolved 1997 originals in its precise Quicksilver interleave. Complete provider series 20084 (13/13) omits #1, #10-11 and #15-16. Searches for #1 and #10 returned 13 non-exact and zero results respectively; #11, #15 and #16 were not searched individually. Approved published Punisher mapping and payload independently retain Heroes for Hire (1997) #9 (ID 59301) despite that page also omitting #9. Do not infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "4c038580fa29634e258082f3d8764f5cccde510971b9269241877fa3050ffbf1"
-    },
-    {
-      "sourcePosition": 194,
-      "sourceIssueReference": "Heroes for Hire (1997) #15",
-      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire",
-      "seriesYear": 1997,
-      "issueNumber": "15",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects five individually unresolved 1997 originals in its precise Quicksilver interleave. Complete provider series 20084 (13/13) omits #1, #10-11 and #15-16. Searches for #1 and #10 returned 13 non-exact and zero results respectively; #11, #15 and #16 were not searched individually. Approved published Punisher mapping and payload independently retain Heroes for Hire (1997) #9 (ID 59301) despite that page also omitting #9. Do not infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "71fc1fcc1fb0516bfe2e777d90f1f05c015bc77a8b1d5bf1968624872ccd69db"
-    },
-    {
-      "sourcePosition": 196,
-      "sourceIssueReference": "Heroes for Hire (1997) #16",
-      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire",
-      "seriesYear": 1997,
-      "issueNumber": "16",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects five individually unresolved 1997 originals in its precise Quicksilver interleave. Complete provider series 20084 (13/13) omits #1, #10-11 and #15-16. Searches for #1 and #10 returned 13 non-exact and zero results respectively; #11, #15 and #16 were not searched individually. Approved published Punisher mapping and payload independently retain Heroes for Hire (1997) #9 (ID 59301) despite that page also omitting #9. Do not infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "fc5b19fcc4610cf8d43c4020b213360c8bcfcc43f7b7c63d82a3f7227b200091"
-    },
-    {
-      "sourcePosition": 198,
-      "sourceIssueReference": "Heroes for Hire/Quicksilver Annual (1998) #1",
-      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
-      "sourceGroup": "III) Iron Fist in the 90’s",
-      "normalizedSeriesTitle": "Heroes for Hire/Quicksilver Annual",
-      "seriesYear": 1998,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects one joint (1998) annual after Quicksilver #12 and before Heroes for Hire #17, not a solo annual or two different publications. Searches under the joint title and Quicksilver Annual returned zero results. Do not substitute another publication or infer nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%20Quicksilver%20Annual%201998&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Quicksilver%20Annual%201998&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/652",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "601a9673e4aeb081e978b78a91f1e388ad06124258f476b87dc1fa9a31ed9608"
-    },
-    {
-      "sourcePosition": 381,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #1",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "c17c3f98b5d6f4b7cff7cf241ebd7e9ddb6a0fe09c6d20a70fd1b61772657c25"
-    },
-    {
-      "sourcePosition": 382,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #2",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "f4b53598130dffa0559ae214ed58845a4174db28590bb8bd1d918598b3330b56"
-    },
-    {
-      "sourcePosition": 383,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #3",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "880d037359264db21c5afb6b0f3dc6899a2cf7dd79bc57bf592ff5a7d2070f05"
-    },
-    {
-      "sourcePosition": 384,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #4",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "1ff04e7c3beae57bfcbcb2d7112b01b64cbf30a76a2dc5947abe75cdc205209f"
-    },
-    {
-      "sourcePosition": 385,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #5",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "6cdbd0c0e94d0379a737b93804a64f283f0f214061d2f171a33005b70955c5bd"
-    },
-    {
-      "sourcePosition": 386,
-      "sourceIssueReference": "Immortal Iron Fists (2017) #6",
-      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Immortal Iron Fists",
-      "seriesYear": 2017,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-30",
-      "auditBasis": "The source selects the plural Immortal Iron Fists (2017) #1-6, separate from singular The Immortal Iron Fist (2006), a trade or a print compilation. Two narrow first-issue plural-title searches returned zero results; issues #2-6 were not individually searched. Verify format and original identities without inferring nonpublication or reading availability.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
-          "retrievedAt": "2026-09-30"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
-          "retrievedAt": "2026-09-30"
-        }
-      ],
-      "evidenceDigest": "0da38bf6a645d4b687eba69d16a192d923977dce13ae7c0c1ba9e503ade17444"
     }
   ],
-  "expectedCount": 376,
+  "expectedCount": 396,
   "proposedManifest": {
     "id": "iron-fist-reading-order",
     "name": "Iron Fist",
@@ -2706,6 +1926,90 @@
       "manualSeriesSelectionApproved": true
     },
     {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #93",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "93",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #94",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "94",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #95",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "95",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #96",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "96",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #97",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "97",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #98",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "98",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Power Man and Iron Fist (1978) #99",
+      "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "normalizedSeriesTitle": "power man and iron fist",
+      "seriesYear": 1978,
+      "issueNumber": "99",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "II) Power Man & Iron Fist: Heroes for Hire"
+    },
+    {
       "sourcePosition": 105,
       "sourceIssueReference": "Power Man and Iron Fist (1978) #100",
       "sourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
@@ -3126,6 +2430,18 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 156,
+      "sourceIssueReference": "Cage (1992) #9",
+      "sourceRangeReference": "Cage #9",
+      "normalizedSeriesTitle": "cage",
+      "seriesYear": 1992,
+      "issueNumber": "9",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
       "sourcePosition": 157,
       "sourceIssueReference": "Marvel Comics Presents (1988) #111",
       "sourceRangeReference": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
@@ -3390,6 +2706,18 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 180,
+      "sourceIssueReference": "Heroes for Hire (1997) #1",
+      "sourceRangeReference": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "normalizedSeriesTitle": "heroes for hire",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
       "sourcePosition": 181,
       "sourceIssueReference": "Heroes for Hire (1997) #2",
       "sourceRangeReference": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
@@ -3486,6 +2814,30 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 189,
+      "sourceIssueReference": "Heroes for Hire (1997) #10",
+      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "normalizedSeriesTitle": "heroes for hire",
+      "seriesYear": 1997,
+      "issueNumber": "10",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
+      "sourcePosition": 190,
+      "sourceIssueReference": "Heroes for Hire (1997) #11",
+      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "normalizedSeriesTitle": "heroes for hire",
+      "seriesYear": 1997,
+      "issueNumber": "11",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
       "sourcePosition": 191,
       "sourceIssueReference": "Heroes for Hire (1997) #12",
       "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
@@ -3522,6 +2874,18 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 194,
+      "sourceIssueReference": "Heroes for Hire (1997) #15",
+      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "normalizedSeriesTitle": "heroes for hire",
+      "seriesYear": 1997,
+      "issueNumber": "15",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
       "sourcePosition": 195,
       "sourceIssueReference": "Quicksilver (1997) #11",
       "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
@@ -3534,6 +2898,18 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 196,
+      "sourceIssueReference": "Heroes for Hire (1997) #16",
+      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "normalizedSeriesTitle": "heroes for hire",
+      "seriesYear": 1997,
+      "issueNumber": "16",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
+    },
+    {
       "sourcePosition": 197,
       "sourceIssueReference": "Quicksilver (1997) #12",
       "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
@@ -3544,6 +2920,18 @@
       "seriesId": 20086,
       "candidateIssueId": 53688,
       "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 198,
+      "sourceIssueReference": "Heroes for Hire/Quicksilver Annual (1998) #1",
+      "sourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "normalizedSeriesTitle": "heroes for hire quicksilver annual",
+      "seriesYear": 1998,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "III) Iron Fist in the 90’s"
     },
     {
       "sourcePosition": 199,
@@ -5720,9 +5108,81 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourcePosition": 381,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #1",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
+      "sourcePosition": 382,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #2",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
+      "sourcePosition": 383,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #3",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
+      "sourcePosition": 384,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #4",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
+      "sourcePosition": 385,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #5",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
+      "sourcePosition": 386,
+      "sourceIssueReference": "Immortal Iron Fists (2017) #6",
+      "sourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "normalizedSeriesTitle": "immortal iron fists",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Latest Additions:"
+    },
+    {
       "sourcePosition": 387,
       "sourceIssueReference": "Doctor Strange: Damnation (2018) #1",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange: Damnation",
       "seriesYear": 2018,
@@ -5734,7 +5194,7 @@
     {
       "sourcePosition": 388,
       "sourceIssueReference": "Doctor Strange: Damnation (2018) #2",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange: Damnation",
       "seriesYear": 2018,
@@ -5746,7 +5206,7 @@
     {
       "sourcePosition": 389,
       "sourceIssueReference": "Doctor Strange: Damnation (2018) #3",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange: Damnation",
       "seriesYear": 2018,
@@ -5758,7 +5218,7 @@
     {
       "sourcePosition": 390,
       "sourceIssueReference": "Doctor Strange: Damnation (2018) #4",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange: Damnation",
       "seriesYear": 2018,
@@ -5770,7 +5230,7 @@
     {
       "sourcePosition": 391,
       "sourceIssueReference": "Damnation: Johnny Blaze - Ghost Rider (2018) #1",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Damnation: Johnny Blaze - Ghost Rider",
       "seriesYear": 2018,
@@ -5782,7 +5242,7 @@
     {
       "sourcePosition": 392,
       "sourceIssueReference": "Doctor Strange (2015) #386",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange",
       "seriesYear": 2015,
@@ -5794,7 +5254,7 @@
     {
       "sourcePosition": 393,
       "sourceIssueReference": "Doctor Strange (2015) #387",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange",
       "seriesYear": 2015,
@@ -5806,7 +5266,7 @@
     {
       "sourcePosition": 394,
       "sourceIssueReference": "Doctor Strange (2015) #388",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange",
       "seriesYear": 2015,
@@ -5818,7 +5278,7 @@
     {
       "sourcePosition": 395,
       "sourceIssueReference": "Doctor Strange (2015) #389",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Doctor Strange",
       "seriesYear": 2015,
@@ -5830,7 +5290,7 @@
     {
       "sourcePosition": 396,
       "sourceIssueReference": "Iron Fist (2017) #78",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Iron Fist",
       "seriesYear": 2017,
@@ -5842,7 +5302,7 @@
     {
       "sourcePosition": 397,
       "sourceIssueReference": "Iron Fist (2017) #79",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Iron Fist",
       "seriesYear": 2017,
@@ -5854,7 +5314,7 @@
     {
       "sourcePosition": 398,
       "sourceIssueReference": "Iron Fist (2017) #80",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Iron Fist",
       "seriesYear": 2017,
@@ -5866,7 +5326,7 @@
     {
       "sourcePosition": 399,
       "sourceIssueReference": "Ben Reilly: Scarlet Spider (2017) #15",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Ben Reilly: Scarlet Spider",
       "seriesYear": 2017,
@@ -5878,7 +5338,7 @@
     {
       "sourcePosition": 400,
       "sourceIssueReference": "Ben Reilly: Scarlet Spider (2017) #16",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Ben Reilly: Scarlet Spider",
       "seriesYear": 2017,
@@ -5890,7 +5350,7 @@
     {
       "sourcePosition": 401,
       "sourceIssueReference": "Ben Reilly: Scarlet Spider (2017) #17",
-      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze \u2014 Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "sourceRangeReference": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze — Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
       "sourceGroup": "Latest Additions:",
       "normalizedSeriesTitle": "Ben Reilly: Scarlet Spider",
       "seriesYear": 2017,
@@ -6257,5 +5717,1207 @@
       "manualSeriesSelectionApproved": false
     }
   ],
-  "packetDigest": "1268ac4816f3fed217405c7eae4024c4cde8f0ad8c3a682cae666ad2fe274638"
+  "packetDigest": "634c0ac7ad217bd096cebb0bec9229b747c76c522ef1ea5dced4d7ec7a4eb447",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 98,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #93",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "93",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62415,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "93",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #93, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62415",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62415,
+        "label": "Power Man and Iron Fist (1978) #93",
+        "url": "https://www.marvel.com/comics/issue/62415/power_man_and_iron_fist_1978_93",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "9dab4de65950e239061b4e283a1173c927660d1f6da9899c81a4fe2765b6ebfa"
+    },
+    {
+      "sourcePosition": 99,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #94",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "94",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62416,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "94",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #94, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62416",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62416,
+        "label": "Power Man and Iron Fist (1978) #94",
+        "url": "https://www.marvel.com/comics/issue/62416/power_man_and_iron_fist_1978_94",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "e6cd9140b66025fb3fa6399e7865cb91084f05f09fa8994d46d1dc4c43cddd51"
+    },
+    {
+      "sourcePosition": 100,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #95",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "95",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62418,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "95",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #95, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62418",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62418,
+        "label": "Power Man and Iron Fist (1978) #95",
+        "url": "https://www.marvel.com/comics/issue/62418/power_man_and_iron_fist_1978_95",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "b2098d33ae252b8de14230b16c646e713186dc8867e98dc0adcc099058e18db5"
+    },
+    {
+      "sourcePosition": 101,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #96",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "96",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62419,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "96",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #96, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62419",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62419,
+        "label": "Power Man and Iron Fist (1978) #96",
+        "url": "https://www.marvel.com/comics/issue/62419/power_man_and_iron_fist_1978_96",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "8ed910fef4d2dbac5c06d26bb73ece7f481ae25cc902533f96652efe5933cd71"
+    },
+    {
+      "sourcePosition": 102,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #97",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "97",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62420,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "97",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #97, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62420",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62420,
+        "label": "Power Man and Iron Fist (1978) #97",
+        "url": "https://www.marvel.com/comics/issue/62420/power_man_and_iron_fist_1978_97",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "68883c86fa0208bb17b76bf8b69ad20186dac32bedcf5ed6eeab8b7200afb586"
+    },
+    {
+      "sourcePosition": 103,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #98",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "98",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62421,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "98",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #98, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62421",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62421,
+        "label": "Power Man and Iron Fist (1978) #98",
+        "url": "https://www.marvel.com/comics/issue/62421/power_man_and_iron_fist_1978_98",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "f365250c3e7eacdfc9906bcfd116047b19d14b2c8c9f8bcdddcdfde7ab5a9035"
+    },
+    {
+      "sourcePosition": 104,
+      "previousSourceIssueReference": "Power Man and Iron Fist (1978) #99",
+      "previousSourceRangeReference": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "previousNormalizedSeriesTitle": "Power Man and Iron Fist",
+      "previousSeriesYear": 1978,
+      "previousIssueNumber": "99",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62422,
+      "resolvedNormalizedSeriesTitle": "power man and iron fist",
+      "resolvedSeriesYear": 1978,
+      "resolvedIssueNumber": "99",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Power Man and Iron Fist (1978) #99, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2093&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Power%20Man%201974%2099&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20674/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62422",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/653",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62422,
+        "label": "Power Man and Iron Fist (1978) #99",
+        "url": "https://www.marvel.com/comics/issue/62422/power_man_and_iron_fist_1978_99",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/653#issuecomment-6352902849"
+      },
+      "evidenceDigest": "bfd3d489b4850aec10fe82b7fe30d18c39e192ae25471c54a5917a4ca2718388"
+    },
+    {
+      "sourcePosition": 156,
+      "previousSourceIssueReference": "Cage (1992) #9",
+      "previousSourceRangeReference": "Cage #9",
+      "previousNormalizedSeriesTitle": "Cage",
+      "previousSeriesYear": 1992,
+      "previousIssueNumber": "9",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 57520,
+      "resolvedNormalizedSeriesTitle": "cage",
+      "resolvedSeriesYear": 1992,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Cage (1992) #9, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Cage%201992%209&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20944/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/57520",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/655#issuecomment-6353133168",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/655",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 57520,
+        "label": "Cage (1992) #9",
+        "url": "https://www.marvel.com/comics/issue/57520/cage_1992_9",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/655#issuecomment-6353133168"
+      },
+      "evidenceDigest": "5ef649b223692ae7dbe7466ec17782dd39e630a3a4015ce0de26397378bf8006"
+    },
+    {
+      "sourcePosition": 180,
+      "previousSourceIssueReference": "Heroes for Hire (1997) #1",
+      "previousSourceRangeReference": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "previousNormalizedSeriesTitle": "Heroes for Hire",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 62004,
+      "resolvedNormalizedSeriesTitle": "heroes for hire",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire (1997) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/62004",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 62004,
+        "label": "Heroes for Hire (1997) #1",
+        "url": "https://www.marvel.com/comics/issue/62004/heroes_for_hire_1997_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212"
+      },
+      "evidenceDigest": "99177a03106d99b5e9dc64198768cdd6f06e354a42907606f3d7c95269f7fd31"
+    },
+    {
+      "sourcePosition": 189,
+      "previousSourceIssueReference": "Heroes for Hire (1997) #10",
+      "previousSourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "previousNormalizedSeriesTitle": "Heroes for Hire",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "10",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55126,
+      "resolvedNormalizedSeriesTitle": "heroes for hire",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire (1997) #10, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55126",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 55126,
+        "label": "Heroes for Hire (1997) #10",
+        "url": "https://www.marvel.com/comics/issue/55126/heroes_for_hire_1997_10",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212"
+      },
+      "evidenceDigest": "82701c73b518b9488b9bd1dcd88216e473003529e03e2519a6eecdf22b4b47dd"
+    },
+    {
+      "sourcePosition": 190,
+      "previousSourceIssueReference": "Heroes for Hire (1997) #11",
+      "previousSourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "previousNormalizedSeriesTitle": "Heroes for Hire",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "11",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 55125,
+      "resolvedNormalizedSeriesTitle": "heroes for hire",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "11",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire (1997) #11, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/55125",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 55125,
+        "label": "Heroes for Hire (1997) #11",
+        "url": "https://www.marvel.com/comics/issue/55125/heroes_for_hire_1997_11",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212"
+      },
+      "evidenceDigest": "1ee10ea42f779a5969efc783c71ad1feff70070595aad0e2106129dec861ef02"
+    },
+    {
+      "sourcePosition": 194,
+      "previousSourceIssueReference": "Heroes for Hire (1997) #15",
+      "previousSourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "previousNormalizedSeriesTitle": "Heroes for Hire",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "15",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 53674,
+      "resolvedNormalizedSeriesTitle": "heroes for hire",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "15",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire (1997) #15, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/53674",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 53674,
+        "label": "Heroes for Hire (1997) #15",
+        "url": "https://www.marvel.com/comics/issue/53674/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212"
+      },
+      "evidenceDigest": "a03f88d19e49fa2e4357f61d3cd7b33e39bebf0ac29d72aebb32553fa8255d19"
+    },
+    {
+      "sourcePosition": 196,
+      "previousSourceIssueReference": "Heroes for Hire (1997) #16",
+      "previousSourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "previousNormalizedSeriesTitle": "Heroes for Hire",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "16",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 53675,
+      "resolvedNormalizedSeriesTitle": "heroes for hire",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "16",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire (1997) #16, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%201997%2010&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20084/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/53675",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/650",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 53675,
+        "label": "Heroes for Hire (1997) #16",
+        "url": "https://www.marvel.com/comics/issue/53675/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/650#issuecomment-6352903212"
+      },
+      "evidenceDigest": "3212ac7fd4c2091694801a102d10f8f437d5d375121236cea17c13240501db96"
+    },
+    {
+      "sourcePosition": 198,
+      "previousSourceIssueReference": "Heroes for Hire/Quicksilver Annual (1998) #1",
+      "previousSourceRangeReference": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "previousNormalizedSeriesTitle": "Heroes for Hire/Quicksilver Annual",
+      "previousSeriesYear": 1998,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 53676,
+      "resolvedNormalizedSeriesTitle": "heroes for hire quicksilver annual",
+      "resolvedSeriesYear": 1998,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Heroes for Hire/Quicksilver Annual (1998) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Heroes%20for%20Hire%20Quicksilver%20Annual%201998&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Quicksilver%20Annual%201998&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/53676",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/652#issuecomment-6353132841",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/652",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 53676,
+        "label": "Heroes for Hire/Quicksilver Annual (1998) #1",
+        "url": "https://www.marvel.com/comics/issue/53676/heroes_for_hirequicksilver_annual_1998_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/652#issuecomment-6353132841"
+      },
+      "evidenceDigest": "34a3ec658bde2baab914e25d5e89018be662c4e354e5fc416220d8f46395cb66"
+    },
+    {
+      "sourcePosition": 381,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #1",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64530,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64530",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64530,
+        "label": "Immortal Iron Fists (2017) #1",
+        "url": "https://www.marvel.com/comics/issue/64530/immortal_iron_fists_cmx_digital_comic_2017_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "146291207f188cd65350da51333cf1d39a69f01a9f27757b169886c0401210d6"
+    },
+    {
+      "sourcePosition": 382,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #2",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "2",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64531,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #2, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64531",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64531,
+        "label": "Immortal Iron Fists (2017) #2",
+        "url": "https://www.marvel.com/comics/issue/64531/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "de342c1309def872a2f115b3b0be7736582efcd8cb46e9c6cc8af9a27df58978"
+    },
+    {
+      "sourcePosition": 383,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #3",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "3",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64532,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #3, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64532",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64532,
+        "label": "Immortal Iron Fists (2017) #3",
+        "url": "https://www.marvel.com/comics/issue/64532/immortal_iron_fists_cmx_digital_comic_2017_3",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "89e4c84e516e99e7eb85c656f9dcf88a10176a81a789a452b42e8a7063f7eb7e"
+    },
+    {
+      "sourcePosition": 384,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #4",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "4",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64533,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #4, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64533",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64533,
+        "label": "Immortal Iron Fists (2017) #4",
+        "url": "https://www.marvel.com/comics/issue/64533/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "c4009fbafe620a22288348b1bc12a95d78afe36d7f983640ecf1b3a2c347eba0"
+    },
+    {
+      "sourcePosition": 385,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #5",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "5",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64563,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "5",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #5, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64563",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64563,
+        "label": "Immortal Iron Fists (2017) #5",
+        "url": "https://www.marvel.com/comics/issue/64563/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "3d373553526f2a3673a0f927d931fb9d9da16bd88629bd7e473c5b68efbaa651"
+    },
+    {
+      "sourcePosition": 386,
+      "previousSourceIssueReference": "Immortal Iron Fists (2017) #6",
+      "previousSourceRangeReference": "Issues : Immortal Iron Fists #1 to #6",
+      "previousNormalizedSeriesTitle": "Immortal Iron Fists",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "6",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 64818,
+      "resolvedNormalizedSeriesTitle": "immortal iron fists",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "6",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Immortal Iron Fists (2017) #6, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/iron-fist-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Immortal%20Iron%20Fists%201%202017&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=The%20Immortal%20Iron%20Fists%202017%201&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/64818",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/656",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 64818,
+        "label": "Immortal Iron Fists (2017) #6",
+        "url": "https://www.marvel.com/comics/issue/64818/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/656#issuecomment-6353133548"
+      },
+      "evidenceDigest": "e83ad12e92fb18c6b9c0da2640b80e2b32d9899a5cc2a6021013cc30b248d0e1"
+    }
+  ]
 }

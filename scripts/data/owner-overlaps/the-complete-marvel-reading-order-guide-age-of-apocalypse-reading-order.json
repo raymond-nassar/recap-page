@@ -1,17 +1,18 @@
 {
   "candidateId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
-  "packetDigest": "274a748d6a65c2f756d24c30c3a73bf079264c178f9a4fa4e889cb5ff0f7ef90",
-  "mappingDigest": "259d1c984325a903788a6d549ce02da76aa9b24341628d802a77fdfdfbe82bbf",
-  "libraryDigest": "c8e3e0bc193bbc1039988fb5e966859b37cb97a75c9f38a3541d49636d6c44e0",
+  "packetDigest": "a534ed138de1884bddee68c280a8d1fc59fd8e0870a2f8adc93ad21c8b7cc430",
+  "mappingDigest": "9a417429b0310d8a3b53d6d16943fa1fbcc819a7fa7695deb713b6a9715fe9a0",
+  "libraryDigest": "a8f050b30cd2bfb2af0a9d9fc355c3c2df63e37425da984bd6397ade87bcc402",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 275,
     "sourceIdentityCount": 262,
-    "includedIssueCount": 246,
-    "sourceGapCount": 16,
-    "repeatedSourceReferenceCount": 13
+    "includedIssueCount": 250,
+    "sourceGapCount": 12,
+    "repeatedSourceReferenceCount": 13,
+    "excludedSourceRowCount": 0
   },
-  "candidateCount": 246,
+  "candidateCount": 250,
   "comparisonCount": 316,
   "comparisons": [
     {
@@ -2244,5 +2245,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b1598928b40e4829821961bf9d8c4e7d56f90fd8060f8216c35a103556505f5d"
+  "reportDigest": "3b24cc4ba7c8d4eb671948b761fd3a442305d0c620fa2dcdfc47a66dae89e32c"
 }

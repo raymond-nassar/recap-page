@@ -32,7 +32,7 @@
     },
     {
       "sourcePosition": 200,
-      "canonicalRow": 170,
+      "canonicalRow": 174,
       "sourceIssueReference": "Uncanny X-Force (2010) #8",
       "sourceRangeReference": "Uncanny X-Force (2010) #8",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -41,7 +41,7 @@
     },
     {
       "sourcePosition": 201,
-      "canonicalRow": 171,
+      "canonicalRow": 175,
       "sourceIssueReference": "Uncanny X-Force (2010) #9",
       "sourceRangeReference": "Uncanny X-Force (2010) #9",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -50,7 +50,7 @@
     },
     {
       "sourcePosition": 202,
-      "canonicalRow": 172,
+      "canonicalRow": 176,
       "sourceIssueReference": "Uncanny X-Force (2010) #10",
       "sourceRangeReference": "Uncanny X-Force (2010) #10",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -59,7 +59,7 @@
     },
     {
       "sourcePosition": 203,
-      "canonicalRow": 173,
+      "canonicalRow": 177,
       "sourceIssueReference": "Uncanny X-Force (2010) #11",
       "sourceRangeReference": "Uncanny X-Force (2010) #11",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -68,7 +68,7 @@
     },
     {
       "sourcePosition": 204,
-      "canonicalRow": 174,
+      "canonicalRow": 178,
       "sourceIssueReference": "Uncanny X-Force (2010) #12",
       "sourceRangeReference": "Uncanny X-Force (2010) #12",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -77,7 +77,7 @@
     },
     {
       "sourcePosition": 205,
-      "canonicalRow": 175,
+      "canonicalRow": 179,
       "sourceIssueReference": "Uncanny X-Force (2010) #13",
       "sourceRangeReference": "Uncanny X-Force (2010) #13",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -86,7 +86,7 @@
     },
     {
       "sourcePosition": 206,
-      "canonicalRow": 176,
+      "canonicalRow": 180,
       "sourceIssueReference": "Uncanny X-Force (2010) #14",
       "sourceRangeReference": "Uncanny X-Force (2010) #14",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -95,7 +95,7 @@
     },
     {
       "sourcePosition": 207,
-      "canonicalRow": 177,
+      "canonicalRow": 181,
       "sourceIssueReference": "Uncanny X-Force (2010) #15",
       "sourceRangeReference": "Uncanny X-Force (2010) #15",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -104,7 +104,7 @@
     },
     {
       "sourcePosition": 208,
-      "canonicalRow": 178,
+      "canonicalRow": 182,
       "sourceIssueReference": "Uncanny X-Force (2010) #16",
       "sourceRangeReference": "Uncanny X-Force (2010) #16",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -113,7 +113,7 @@
     },
     {
       "sourcePosition": 209,
-      "canonicalRow": 179,
+      "canonicalRow": 183,
       "sourceIssueReference": "Uncanny X-Force (2010) #17",
       "sourceRangeReference": "Uncanny X-Force (2010) #17",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -122,7 +122,7 @@
     },
     {
       "sourcePosition": 210,
-      "canonicalRow": 180,
+      "canonicalRow": 184,
       "sourceIssueReference": "Uncanny X-Force (2010) #18",
       "sourceRangeReference": "Uncanny X-Force (2010) #18",
       "normalizedSeriesTitle": "Uncanny X-Force",
@@ -348,150 +348,6 @@
       "evidenceDigest": "f327f22b3863a051b7de2bb971767b14cfd3e9f40a2b6f1171377a7e02f4ba1f"
     },
     {
-      "sourcePosition": 138,
-      "sourceIssueReference": "Askani'son #1",
-      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "normalizedSeriesTitle": "Askani'son",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-29",
-      "auditBasis": "Source selects Askani'son #1-4. Narrow searches returned X-Men: Books of Askani #1 in series 19097, a different title; do not substitute the book for the four numbered originals. Scope issue #621; gap issue #631. These were bounded list/search results only; the exact original identity remains unresolved. No provider-wide absence, publication or availability determination is claimed.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
-          "retrievedAt": "2026-09-29"
-        }
-      ],
-      "evidenceDigest": "53d90a85e5e51241fc6e7566dda439f7b7579de92636f31a92b13064cd914998"
-    },
-    {
-      "sourcePosition": 139,
-      "sourceIssueReference": "Askani'son #2",
-      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "normalizedSeriesTitle": "Askani'son",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-29",
-      "auditBasis": "Source selects Askani'son #1-4. Narrow searches returned X-Men: Books of Askani #1 in series 19097, a different title; do not substitute the book for the four numbered originals. Scope issue #621; gap issue #631. These were bounded list/search results only; the exact original identity remains unresolved. No provider-wide absence, publication or availability determination is claimed.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
-          "retrievedAt": "2026-09-29"
-        }
-      ],
-      "evidenceDigest": "e691adbacb8fe1f4993933c14a5f1ec3b321c5629844269573f7482f90ef43a8"
-    },
-    {
-      "sourcePosition": 140,
-      "sourceIssueReference": "Askani'son #3",
-      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "normalizedSeriesTitle": "Askani'son",
-      "seriesYear": null,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-29",
-      "auditBasis": "Source selects Askani'son #1-4. Narrow searches returned X-Men: Books of Askani #1 in series 19097, a different title; do not substitute the book for the four numbered originals. Scope issue #621; gap issue #631. These were bounded list/search results only; the exact original identity remains unresolved. No provider-wide absence, publication or availability determination is claimed.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
-          "retrievedAt": "2026-09-29"
-        }
-      ],
-      "evidenceDigest": "712ce2ab5ea6b59c7260ec5945700b8d29d3d0c6b168e0bd09e6dbcf88659946"
-    },
-    {
-      "sourcePosition": 141,
-      "sourceIssueReference": "Askani'son #4",
-      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins",
-      "normalizedSeriesTitle": "Askani'son",
-      "seriesYear": null,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-29",
-      "auditBasis": "Source selects Askani'son #1-4. Narrow searches returned X-Men: Books of Askani #1 in series 19097, a different title; do not substitute the book for the four numbered originals. Scope issue #621; gap issue #631. These were bounded list/search results only; the exact original identity remains unresolved. No provider-wide absence, publication or availability determination is claimed.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
-          "retrievedAt": "2026-09-29"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
-          "retrievedAt": "2026-09-29"
-        }
-      ],
-      "evidenceDigest": "2d065433f3bca64b63cd623163bd3a8660f67d03772b299f0bc24c7f2ea2d78d"
-    },
-    {
       "sourcePosition": 269,
       "sourceIssueReference": "X-Men of Apocalypse (2025) #1",
       "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: 2024 and 2025",
@@ -708,7 +564,7 @@
       "evidenceDigest": "9595e80344b7bdee5bd85b003acf47e1f5ccc1ae04721ffe9cde9ef7e0107260"
     }
   ],
-  "expectedCount": 246,
+  "expectedCount": 250,
   "proposedManifest": {
     "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
     "name": "Apocalypse / X-Men: Age of Apocalypse",
@@ -2438,6 +2294,54 @@
       "selectionNote": "Exact issue number and original series matched recorded metadata."
     },
     {
+      "sourcePosition": 138,
+      "sourceIssueReference": "Askani'son #1",
+      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "normalizedSeriesTitle": "askani son",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins"
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "Askani'son #2",
+      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "normalizedSeriesTitle": "askani son",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "Askani'son #3",
+      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "normalizedSeriesTitle": "askani son",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins"
+    },
+    {
+      "sourcePosition": 141,
+      "sourceIssueReference": "Askani'son #4",
+      "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "normalizedSeriesTitle": "askani son",
+      "seriesYear": 1996,
+      "issueNumber": "4",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false,
+      "sourceGroup": "Apocalypse history and later Age of Apocalypse stories: Origins"
+    },
+    {
       "sourcePosition": 142,
       "sourceIssueReference": "X-Men: Phoenix #1",
       "sourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
@@ -3959,5 +3863,235 @@
       "selectionNote": "Exact issue number and original series matched recorded metadata."
     }
   ],
-  "packetDigest": "274a748d6a65c2f756d24c30c3a73bf079264c178f9a4fa4e889cb5ff0f7ef90"
+  "packetDigest": "a534ed138de1884bddee68c280a8d1fc59fd8e0870a2f8adc93ad21c8b7cc430",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 138,
+      "previousSourceIssueReference": "Askani'son #1",
+      "previousSourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "previousNormalizedSeriesTitle": "Askani'son",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 50996,
+      "resolvedNormalizedSeriesTitle": "askani son",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Askani'son (1996) #1, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/50996",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 50996,
+        "label": "Askani'son (1996) #1",
+        "url": "https://www.marvel.com/comics/issue/50996/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832"
+      },
+      "evidenceDigest": "e5ea9295c02d61f6951db6033083cfb8a85b52ebda777e4aab8d52b543b68264"
+    },
+    {
+      "sourcePosition": 139,
+      "previousSourceIssueReference": "Askani'son #2",
+      "previousSourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "previousNormalizedSeriesTitle": "Askani'son",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 50997,
+      "resolvedNormalizedSeriesTitle": "askani son",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Askani'son (1996) #2, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/50997",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 50997,
+        "label": "Askani'son (1996) #2",
+        "url": "https://www.marvel.com/comics/issue/50997/askanison_1996_2",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832"
+      },
+      "evidenceDigest": "625caf79f4b869163821756ce447ead1d7df92314c08063463822feacc5c31f6"
+    },
+    {
+      "sourcePosition": 140,
+      "previousSourceIssueReference": "Askani'son #3",
+      "previousSourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "previousNormalizedSeriesTitle": "Askani'son",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "3",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 50998,
+      "resolvedNormalizedSeriesTitle": "askani son",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Askani'son (1996) #3, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/50998",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 50998,
+        "label": "Askani'son (1996) #3",
+        "url": "https://www.marvel.com/comics/issue/50998/askanison_1996_3",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832"
+      },
+      "evidenceDigest": "d999c3292aea3fe061c11285b8ed5b5bde0e117e0781179ba8d50b52a08a99de"
+    },
+    {
+      "sourcePosition": 141,
+      "previousSourceIssueReference": "Askani'son #4",
+      "previousSourceRangeReference": "Apocalypse history and later Age of Apocalypse stories: Origins",
+      "previousNormalizedSeriesTitle": "Askani'son",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "4",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 50999,
+      "resolvedNormalizedSeriesTitle": "askani son",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-10-22",
+      "auditBasis": "Owner-confirmed identity for Askani'son (1996) #4, recorded by raymond-nassar on 2026-10-22. The configured metadata provider returned HTTP 404 on 2026-10-22; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Askani%20son&limit=100",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/50999",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/631",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-22",
+        "issueId": 50999,
+        "label": "Askani'son (1996) #4",
+        "url": "https://www.marvel.com/comics/issue/50999/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/631#issuecomment-6352931832"
+      },
+      "evidenceDigest": "4f858727ec6c74c4731bf565e45874fe0cedfaca90c1c3d48c1cca0caa33e147"
+    }
+  ]
 }

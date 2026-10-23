@@ -2,11 +2,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
+import { buildMarkdown } from './author-cbh-packet.mjs';
 
 const id = 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order';
 const name = 'Apocalypse / X-Men: Age of Apocalypse';
 const packet = JSON.parse(readFileSync(new URL(`./data/cbh-packets/${id}.json`, import.meta.url)));
 const mapping = JSON.parse(readFileSync(new URL(`./data/cbh-mappings/${id}.json`, import.meta.url)));
+const currentMapping = JSON.parse(readFileSync(new URL(`./data/owner-mappings/${id}.json`, import.meta.url)));
 const ledger = JSON.parse(readFileSync(new URL(`./data/cbh-source-ledgers/${id}.json`, import.meta.url)));
 const payload = JSON.parse(readFileSync(new URL(
   '../src/data/the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json',
@@ -31,7 +33,8 @@ assert.equal(ledger.selectedOccurrences.length, 275);
 assert.equal(packet.repeatedSourceReferences.length, 13);
 assert.equal(selected.length, 262);
 assert.equal(authored.length, 262);
-assert.equal(parsed.unresolved.length, 16);
+assert.equal(parseChecklist(buildMarkdown(mapping)).unresolved.length, 16);
+assert.equal(parsed.unresolved.length, currentMapping.sourceGaps.length);
 assert.deepEqual(mapping.rows.map((row) => row.sourcePosition),
   packet.rows.map((row) => row.sourcePosition));
 assert.deepEqual(expected.map((row) => Number(row.sourceKey)), selected.map((row) => row.selectedPosition));
@@ -144,8 +147,8 @@ export async function checkAgeOfApocalypseActualData(page, t) {
       index: Number(node.closest('li')?.querySelector('.pn')?.textContent) - 1,
       href: node.getAttribute('href'),
     })), gaps.map((row) => row.issueId));
-  t.check('all 16 unresolved preview positions have no fabricated issue links',
-    previewGaps.length === 16 && previewGaps.every((row) => (
+  t.check(`all ${gaps.length} unresolved preview positions have no fabricated issue links`,
+    previewGaps.length === gaps.length && previewGaps.every((row) => (
       row.index === expected.find((entry) => entry.issueId === row.issueId)?.index
         && !/^https?:/.test(row.href ?? '')
     )), JSON.stringify(previewGaps));
@@ -172,8 +175,8 @@ export async function checkAgeOfApocalypseActualData(page, t) {
       openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
       hasInfo: !!node.closest('.row')?.querySelector('.ract a[data-act="info"]'),
     })), gaps.map((row) => row.issueId));
-  t.check('all 16 unresolved originals offer neither a reader nor a fabricated issue page',
-    gapActions.length === 16 && gapActions.every((row) => row.openHidden && !row.hasInfo),
+  t.check(`all ${gaps.length} unresolved originals offer neither a reader nor a fabricated issue page`,
+    gapActions.length === gaps.length && gapActions.every((row) => row.openHidden && !row.hasInfo),
     JSON.stringify(gapActions));
 
   await page.reload({ waitUntil: 'load' });

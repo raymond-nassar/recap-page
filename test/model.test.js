@@ -1189,8 +1189,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Onslaught adds two distinct unresolved source originals.
   // Namor adds eight distinct unresolved originals and three known-ID optional-detail refusals.
   // Iron Fist adds 38 original-identity gaps and one positive-ID optional-detail refusal.
-  assert.equal(claimed, 1149, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1149, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Twenty-five owner-confirmed older-guide identities replace only their original placeholders.
+  assert.equal(claimed, 1124, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1124, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 229);
   assert.equal(affected, 23);
 });
