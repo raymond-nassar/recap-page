@@ -183,15 +183,25 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
 }
 
 @media (max-width: 700px) {
-  .catalog-card-main { flex-wrap: wrap; gap: 0 var(--space-5); }
+  /* The shared narrow rule stacks this as a column for desktop browsers. With the full-width prose
+     below, a column spread every card sideways: at 360px Modern Timeline measured 1,341px wide. */
+  .catalog-card-main { flex-direction: row; flex-wrap: wrap; gap: 0 var(--space-5); }
   .catalog-card-text { display: contents; }
   .catalog-card .ocard-art { margin-bottom: var(--space-4); }
+  /* The shared title rule breaks words anywhere, which shrinks min-content to a single letter, so at
+     200 per cent text a long title split its words beside the art instead of moving below it. */
   .catalog-card-title {
     flex: 1 1 0; min-width: min-content; max-width: 100%; margin-bottom: var(--space-4);
+    overflow-wrap: normal;
   }
   .catalog-card-text > :not(.catalog-card-title) { flex: 0 0 100%; min-width: 0; }
   .catalog-card-text > .timeline-position-current { order: -1; }
 
+  /* The year dots below sit in the era's one inset, left of the year text. The shared narrow rule
+     drops that inset and pads the text instead, which put every dot 32px left of the rail. */
+  .timeline-era, .timeline-year-row { padding-left: var(--space-9); }
+  .timeline-era-head { padding-left: var(--space-5); }
+  .timeline-year-marker { padding-left: 0; }
   .timeline-era .timeline-year-row { padding-left: 0; }
   .timeline-year-marker::before {
     left: calc(var(--timeline-axis) - var(--space-9) + 1px);

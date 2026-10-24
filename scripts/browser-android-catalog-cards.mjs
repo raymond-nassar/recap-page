@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { labelledName, labelWords } from '../src/js/lib/accname.js';
 import {
-  catalogCoverUrl, catalogGapLabels, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
+  catalogCoverUrl, catalogEntryKey, catalogGapLabels, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
   modernTimelineFeaturedCard, modernTimelineLists, parseCatalog, pathPlacements, searchCatalog,
   shelfLists, sortSpotlightStories, sourceLabel, sourceLink, updatedLabel,
 } from '../src/js/lib/catalog.js';
@@ -545,8 +545,14 @@ async function withoutCatalogComposition(page, selector) {
 
 async function spotlightInteractions(page, catalog, check, click) {
   const mine = shelfLists(catalog.lists, 'spotlights');
+  // Since 2026-09-30, phone widths reach sort and guide kind only inside the Filters and sort sheet,
+  // so the in-page radios this step clicked were never visible at M05's 360px and it timed out.
+  await click(page, '#android-spotlight-options');
+  await page.waitForSelector('#android-spotlight-sheet[open]', { timeout: 5000 });
   await click(page, 'input[name="spotlights-sort"][value="popularity"]');
   await click(page, 'input[name="spotlights-kind"][value="complete-guide"]');
+  await click(page, '#android-spotlight-sheet .android-sheet-header button');
+  await page.waitForFunction(() => document.querySelector('#android-spotlight-sheet')?.open === false, { timeout: 5000 });
   await page.type('#spotlights-q', 'Spider');
   const expected = sortSpotlightStories(groupCatalog(searchCatalog(filterBySpotlightKind(mine, 'complete-guide'), 'Spider')), 'popularity').map((story) => story.key);
   assert.ok(expected.length > 0);
@@ -566,6 +572,9 @@ async function spotlightInteractions(page, catalog, check, click) {
 async function readingOptionInteractions(page, primary, catalog, check, click, route) {
   const button = `${primary} [data-act="preview"]`;
   const selected = catalog.lists.find((list) => list.id === 'hickman-full');
+  // Since 2026-10-03 each reading has its own card and Preview offers no reading choice, so the
+  // alternative reading is added from its own card instead of being chosen inside Preview.
+  const selectedCard = `#view-lines .catalog-card[data-story="${catalogEntryKey(selected)}"]`;
   const requests = [], failures = [];
   const onRequest = (request) => {
     if (new URL(request.url()).pathname.startsWith('/data/')) requests.push(request.url());
@@ -582,11 +591,9 @@ async function readingOptionInteractions(page, primary, catalog, check, click, r
       'M13: full Preview description remains accessible');
     check(await page.$eval('#preview-source', (node, credit) => node.textContent.includes(credit), first.sourceOrigin),
       'M13: full Preview provenance retained');
-    await click(page, '#preview-paths input[data-key="hickman-full"]');
-    await page.waitForFunction((text) => document.querySelector('#preview-desc').textContent === text, {}, selected.description);
     await click(page, '#preview-close');
     await page.waitForSelector('#preview:not([open])');
-    const add = `${primary} [data-act="import"][data-key="${selected.id}"]:not([disabled])`;
+    const add = `${selectedCard} [data-act="import"][data-key="${selected.id}"]:not([disabled])`;
     await page.waitForSelector(add);
     check(await page.$eval(button, (node) => document.activeElement === node), 'M13: Preview close restores card action focus');
     console.log(`CATALOG M13 before Add: ${JSON.stringify(await page.$eval(add, (node, key) => ({
@@ -615,20 +622,20 @@ async function readingOptionInteractions(page, primary, catalog, check, click, r
       === JSON.stringify([...new Set(order.items.map((item) => item.issueId))])
       && Object.keys(saved.read).length === 0, 'M13: Add preserves exact selected issue order without marking read');
     await route(page, 'lines');
-    await page.waitForSelector(`${primary} [data-act="open"][data-key="${selected.id}"]`);
+    await page.waitForSelector(`${selectedCard} [data-act="open"][data-key="${selected.id}"]`);
     check(true, 'M13: selected reading option adds exact list and becomes Open');
   } catch (error) {
     console.error('CATALOG M13 diagnostic', JSON.stringify({
       expected: { key: selected.id, file: selected.file }, requests, failures,
-      actual: await page.evaluate((key) => ({
+      actual: await page.evaluate(({ key, card }) => ({
         route: location.hash,
         state: localStorage.getItem(key) === null ? null
           : Object.values(JSON.parse(localStorage.getItem(key)).lists).map((list) => ({ name: list.name, catalogId: list.catalogId })),
         dialogs: [...document.querySelectorAll('dialog[open]')].map((node) => ({ id: node.id, text: node.textContent.slice(0, 800) })),
         reports: [...document.querySelectorAll('.report, #android-report')].map((node) => node.textContent).filter(Boolean),
-        actions: [...document.querySelectorAll('#view-lines .catalog-card[data-story="hickman-secret-wars"] button')]
+        actions: [...document.querySelectorAll(`${card} button`)]
           .map((node) => ({ key: node.dataset.key, act: node.dataset.act, disabled: node.disabled, text: node.textContent })),
-      }), KEY),
+      }), { key: KEY, card: selectedCard }),
     }));
     throw error;
   } finally {
@@ -653,10 +660,11 @@ export async function catalogCardReadability({
   const compact = !profile.desktop && profile.width <= 700;
   const scale = profile.textScale ?? 1;
   const stories = groupCatalog(catalog.lists);
+  // Cards are keyed per reading since 2026-10-03, so a grouped reading's story key matches nothing.
   const selectorFor = (id) => {
-    const story = stories.find((entry) => entry.lists.some((list) => list.id === id));
-    assert.ok(story, `Real catalog fixture missing: ${id}`);
-    return `#view-${profile.route} .catalog-card[data-story="${story.key}"]`;
+    const list = catalog.lists.find((entry) => entry.id === id);
+    assert.ok(list, `Real catalog fixture missing: ${id}`);
+    return `#view-${profile.route} .catalog-card[data-story="${catalogEntryKey(list)}"]`;
   };
   await page.evaluate((theme) => { document.documentElement.dataset.theme = theme; }, profile.theme);
   await route(page, profile.route);

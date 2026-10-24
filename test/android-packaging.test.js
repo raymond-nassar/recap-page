@@ -37,6 +37,19 @@ test('Android More retains its 48px target over shared bottom-navigation styles'
   assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: 48px/);
 });
 
+test('Android phone catalog cards and timelines keep their composition over shared narrow rules', async () => {
+  const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  const start = css.indexOf('@media (max-width: 700px) {');
+  assert.notEqual(start, -1, 'the Android 700px block exists');
+  const block = css.slice(start, css.indexOf('@media', start + 1));
+  assert.match(block, /\.catalog-card-main \{[^}]*flex-direction: row;[^}]*flex-wrap: wrap;/);
+  assert.match(block, /\.catalog-card-title \{[^}]*min-width: min-content;[^}]*overflow-wrap: normal;/);
+  assert.match(block, /\.timeline-era, \.timeline-year-row \{ padding-left: var\(--space-9\); \}/);
+  assert.match(block, /\.timeline-era-head \{ padding-left: var\(--space-5\); \}/);
+  assert.match(block, /\.timeline-year-marker \{ padding-left: 0; \}/);
+  assert.match(block, /\.timeline-era \.timeline-year-row \{ padding-left: 0; \}/);
+});
+
 test('Android package identity comes from the shared reserved-build contract', async () => {
   const [build, rootBuild, properties] = await Promise.all([
     readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
