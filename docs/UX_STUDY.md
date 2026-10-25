@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1042-1045` and `src/styles.css:2307-2308`.
+`src/styles.css:1042-1045` and `src/styles.css:2309-2310`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 

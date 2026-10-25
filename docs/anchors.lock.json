@@ -2369,8 +2369,8 @@
     "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2307-2308|0": {
-    "anchor": "src/styles.css:2307-2308",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2309-2310|0": {
+    "anchor": "src/styles.css:2309-2310",
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
