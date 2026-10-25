@@ -1,7 +1,8 @@
 // UX-02 (#829): Done's visible result and its Undo, in a real browser. Undo is recovery code in the
 // progress path, so this presses it in the states that make recovery dangerous: twice, after the
 // list or the comic changed, when the save fails, at the end of the queue and after navigating.
-// Runs on the ephemeral port like every scenario not listed for the app origin.
+// UX-05 (#829): what Done tells assistive technology it does, with D on and off.
+// Both run on the ephemeral port like every scenario not listed for the app origin.
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { DONE_RESULT_MS } from '../src/js/views/reading.js';
 
@@ -283,6 +284,69 @@ export const doneUndo = {
     t.check('the journey raises no page errors', errors.length === 0, errors.join(' / '));
   },
 };
+
+// The owner kept the one-word label on 2026-10-24 and approved a description instead. The
+// description says nothing about D, so turning D off, which strips the tooltip and the shortcut,
+// must leave it in place. Its element is hidden rather than visually hidden: a hidden node that
+// aria-describedby names directly still describes, and browse mode then reads it only once.
+const DESCRIPTION = 'Marks this comic read and shows the next one.';
+
+export const doneDescription = {
+  id: 'done-description',
+  title: 'Done keeps its short label and describes what it does to assistive technology, with D on or off',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await setup(page, 1280);
+    const exposed = async () => {
+      const done = await page.accessibility.snapshot({ root: await page.$('#btn-hero-done'), interestingOnly: false });
+      const hero = await page.accessibility.snapshot({ root: await page.$('#hero'), interestingOnly: false });
+      const repeated = [];
+      const visit = (node) => {
+        if (`${node.name ?? ''}`.includes('Marks this comic read')) repeated.push(node.role);
+        for (const child of node.children ?? []) visit(child);
+      };
+      visit(hero);
+      return {
+        role: done?.role, name: done?.name, description: done?.description ?? null,
+        keys: done?.keyshortcuts ?? null, repeated,
+        label: await page.$eval('#btn-hero-done', (button) => button.textContent.trim()),
+        boxes: await page.$$eval('#hero-done-help', (nodes) => nodes.map((node) => node.getClientRects().length)),
+      };
+    };
+    const wide = await exposed();
+    t.check('Done keeps the visible label Done and is described as marking the comic read and showing the next one',
+      wide.role === 'button' && wide.name === 'Done' && wide.label === 'Done' && wide.keys === 'd'
+      && wide.description === DESCRIPTION, JSON.stringify(wide));
+
+    await click(page, '.ri[data-view="data"]');
+    await page.waitForSelector('#view-data:not([hidden])');
+    await click(page, '#opt-reading-shortcut');
+    await page.goBack();
+    await page.waitForSelector('#view-read:not([hidden])');
+    const off = await exposed();
+    t.check('turning D off removes the shortcut but keeps the description',
+      off.keys === null && off.name === 'Done' && off.description === DESCRIPTION, JSON.stringify(off));
+
+    await page.setViewport({ width: 390, height: 844 });
+    const narrow = await exposed();
+    t.check('the description draws nothing and is not read a second time in the hero, wide or narrow',
+      [wide, narrow].every((seen) => seen.boxes.join() === '0' && seen.repeated.length === 0)
+      && narrow.description === DESCRIPTION, JSON.stringify({ wide, narrow }));
+    t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const doneDescriptionMutations = [
+  {
+    id: 'done-description-dropped-with-d-off', breaks: 'done-description',
+    why: 'turning D off also disconnects the description, though it says nothing about the key',
+    rewriteMain: (source) => source.replace(
+      "    done.removeAttribute('aria-keyshortcuts');",
+      "    done.removeAttribute('aria-keyshortcuts');\n    done.removeAttribute('aria-describedby');",
+    ),
+  },
+];
 
 export const doneUndoMutations = [
   {

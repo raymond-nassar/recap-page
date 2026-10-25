@@ -19171,7 +19171,9 @@ SCENARIOS.push({
       t.check(`${name}: hovering the hint keeps it readable`,
         (await tooltipVisual449(page, selector, tipId)).visible);
       await reset();
-      t.check(`${name}: leaving both surfaces closes the hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
+      const closed = await tooltipVisual449(page, selector, tipId);
+      const closedAccessible = await page.accessibility.snapshot({ root: await page.$(selector), interestingOnly: false });
+      t.check(`${name}: leaving both surfaces closes the hint`, !closed.visible);
 
       await page.focus(selector);
       await settle();
@@ -19179,9 +19181,14 @@ SCENARIOS.push({
       const control = await page.$(selector);
       const accessible = await page.accessibility.snapshot({ root: control, interestingOnly: false });
       const announcer = await page.$eval('#announcer', (node) => node.textContent);
+      // Done has carried its own description since UX-05 (#829), so the claim is now about the hint
+      // itself: it is never named as a description, and opening it leaves the description unchanged.
       t.check(`${name}: focus opens a purely visual supplement to a sufficient name`,
         focused.visible && focused.focus && accessible?.name?.length > 0
-        && focused.ariaHidden === 'true' && focused.live === null && focused.described === null, JSON.stringify({ focused, accessible }));
+        && focused.ariaHidden === 'true' && focused.live === null
+        && !(focused.described ?? '').split(/\s+/).includes(tipId) && focused.described === closed.described
+        && (accessible?.description ?? '') === (closedAccessible?.description ?? ''),
+        JSON.stringify({ focused, accessible, closed: { described: closed.described, description: closedAccessible?.description } }));
       await page.keyboard.press('Escape');
       await settle();
       const dismissed = await tooltipVisual449(page, selector, tipId);
@@ -19371,6 +19378,18 @@ MUTATIONS.push({
 `),
 });
 
+// The way the hint contract would most plausibly break: following the general advice to connect a
+// tooltip with aria-describedby, which tooltips.js deliberately does not do.
+MUTATIONS.push({
+  id: 'tooltip-hint-described-449',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'showing an action hint names it as a description of its control, so it stops being purely visual',
+  rewriteMain: (source) => source.replace(
+    "if (action) return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip };",
+    "if (action) { action.setAttribute('aria-describedby', ((action.getAttribute('aria-describedby') || '') + ' action-tip').trim()); return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip }; }",
+  ),
+});
+
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
@@ -19383,8 +19402,8 @@ const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');
-SCENARIOS.push(doneUndo.doneUndo);
-MUTATIONS.push(...doneUndo.doneUndoMutations);
+SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription);
+MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',
