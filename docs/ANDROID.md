@@ -476,6 +476,14 @@ uses an original local test image, never publisher artwork. Use `--case=M02` for
 presented as a clean accessibility result. These are Edge web checks,
 not physical Android, native fontScale or TalkBack acceptance.
 
+`npm run android:browser -- --only=done-hint` checks that no visual hint covers Done's result
+in the reading view at 412x915 and 360x800 with 200% text tokens, and at 360x800, 412x915 and
+800x360. It taps Done and Undo as a finger would, refuses one save to reach Try again, and raises
+Done's hint by keyboard focus with Done near the top of the screen, where the only room left for
+it is over the result. A first case without a result requires the hint to still show below Done.
+Home is not visited because no hint shows there on a phone. Use `--viewport=412x915@2` for the
+reported case. These are Edge web checks, not native fontScale or TalkBack acceptance.
+
 ## Native emulator checks without a local emulator
 
 The optional **native_mode=debug** selection in **CI** runs the APK in a full

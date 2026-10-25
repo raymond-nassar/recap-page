@@ -2306,3 +2306,35 @@ test('UX-41 a change Undo could not reverse withdraws the Home offer, and a refu
     assert.equal(globalThis.document.activeElement, h.nodes.btnCheroDone, 'the retry that succeeds lands on Home\'s Done');
   } finally { h.restore(); }
 });
+
+// #855: each phase reports, or fails to report, a change to saved progress, so each carries the
+// marker that keeps visual hints off it, in both places Done stands.
+test('855 every phase of Done\'s result, in the reading view and on Home, is kept clear of hints', () => {
+  for (const [place, make, press] of [['reading view', removalHarness, pressDone], ['Home', homeHarness, pressHomeDone]]) {
+    const h = make();
+    try {
+      const done = press(h);
+      done.button.focus();
+      h.storage.failWrites = 1;
+      done.button.fire('click');
+      const retry = doneParts(h);
+      retry.button.fire('click');
+      const phases = [['offer', done], ['Try again', retry], ['confirmation', doneParts(h)]];
+      assert.deepEqual(phases.map(([, parts]) => parts.kind),
+        ['notice notice-ok notice-act', 'notice notice-error notice-act', 'notice notice-ok'], place);
+      for (const [phase, parts] of phases) assert.equal(parts.result.dataset.keepUncovered, '', `${place}: ${phase}`);
+    } finally { h.restore(); }
+
+    const refused = make();
+    try {
+      const done = press(refused);
+      done.button.focus();
+      const foreign = JSON.stringify({ writeToken: 'foreign-855', ...exportBackup(markRead(refused.state(), 3, true, 855)) });
+      refused.storage.map.set(KEY, foreign);
+      done.button.fire('click');
+      const parts = doneParts(refused);
+      assert.equal(parts.kind, 'notice notice-warn', `${place}: the refusal`);
+      assert.equal(parts.result.dataset.keepUncovered, '', `${place}: refusal`);
+    } finally { refused.restore(); }
+  }
+});

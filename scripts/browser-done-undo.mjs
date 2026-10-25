@@ -3,6 +3,7 @@
 // list or the comic changed, when the save fails, at the end of the queue and after navigating.
 // UX-05 (#829): what Done tells assistive technology it does, with D on and off.
 // UX-41 (#829): Done on Home's Continue reading, sharing that result and Undo.
+// #855: no visual hint covers that result, in either place.
 // All run on the ephemeral port like every scenario not listed for the app origin.
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { DONE_RESULT_MS } from '../src/js/views/reading.js';
@@ -515,5 +516,168 @@ export const doneUndoMutations = [
       'if (doneResult && !doneResult.settling && !doneResultHolds(doneResult)) withdrawDoneResult(doneResult);',
       '// withdrawal on repaint removed',
     ),
+  },
+];
+
+// #855: Done's result is the confirmation, or the failure, of the change just made, so no visual
+// hint may sit over it. With Done near the top of the window a hint has no room above it, and the
+// next side it tries, below, is over the result: measured on main, Done's hint and Read's both
+// landed there, and on a short window Home's result scrolls level with the collapsed rail's first
+// destination, whose hint then covers its start. There the hint gives way. Where it fits clear of
+// the result it shows as before, which is checked too, so giving way cannot pass by hiding every hint.
+function hints(page, trigger = '#btn-hero-done') {
+  return page.evaluate((selector) => {
+    const box = (element) => {
+      const rect = element.getBoundingClientRect();
+      return { top: Math.round(rect.top), bottom: Math.round(rect.bottom), left: Math.round(rect.left),
+        right: Math.round(rect.right) };
+    };
+    const node = document.querySelector('#done-result');
+    const result = node?.getClientRects().length ? box(node) : null;
+    const tips = [...document.querySelectorAll('.visual-tooltip')]
+      .filter((tip) => !tip.hidden && tip.getClientRects().length)
+      .map((tip) => ({ id: tip.id, side: tip.dataset.side, text: tip.textContent, box: box(tip) }));
+    const anchor = document.querySelector(selector);
+    return {
+      text: node?.querySelector('.grow')?.textContent ?? null, result, tips,
+      covered: !!result && tips.some(({ box: tip }) => tip.left < result.right && result.left < tip.right
+        && tip.top < result.bottom && result.top < tip.bottom),
+      anchor: anchor.getClientRects().length ? box(anchor) : null,
+    };
+  }, trigger);
+}
+
+const settle = (page) => page.evaluate(() => new Promise((resolve) => {
+  requestAnimationFrame(() => requestAnimationFrame(resolve));
+}));
+
+// The control 12px from the top of the window, where its hint has no room above it. Read sits
+// beside Done when wide and above it when narrow, so each is put there in turn.
+async function toTop(page, selector) {
+  await page.$eval(selector, (control) => scrollBy(0, control.getBoundingClientRect().top - 12));
+  await settle(page);
+}
+
+// A hint raised as a reader raises it, by keyboard focus or by pointer, from a start with neither.
+async function raise(page, selector, how) {
+  await page.mouse.move(1, 1);
+  await page.evaluate(() => document.activeElement?.blur());
+  if (how === 'focus') await page.focus(selector);
+  else await page.hover(selector);
+  await settle(page);
+}
+
+async function refuseSaves(page) {
+  await page.evaluate((key) => {
+    const set = Storage.prototype.setItem;
+    window.__hintRestoreSet = () => { Storage.prototype.setItem = set; };
+    Storage.prototype.setItem = function (name, value) {
+      if (name === key) throw new DOMException('Fixture save refused', 'QuotaExceededError');
+      return set.call(this, name, value);
+    };
+  }, KEY);
+}
+
+async function heroHints(page, t, width) {
+  await full(page);
+  await wait(500);
+  await toTop(page, '#btn-hero-done');
+  await raise(page, '#btn-hero-done', 'focus');
+  const clear = await hints(page);
+  t.check(`${width}px: with nothing to keep clear, Done's hint at the top of the window shows below Done as before`,
+    clear.result === null && clear.anchor?.top <= 20
+    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'), JSON.stringify(clear));
+
+  // Each pass starts wherever the last left the list, so Done is followed by the hero changing
+  // rather than by a particular comic.
+  const heroChanges = async (action) => {
+    const before = await page.$eval('#hero-title', (node) => node.textContent);
+    await action();
+    await page.waitForFunction((was) => document.querySelector('#hero-title').textContent !== was, {}, before);
+  };
+  const rows = [];
+  for (const phase of ['offer', 'confirmation', 'Try again']) {
+    if (phase === 'offer') {
+      await heroChanges(() => press(page, '#btn-hero-done'));
+    } else if (phase === 'confirmation') {
+      await heroChanges(() => press(page, '#done-result button'));
+    } else {
+      await heroChanges(() => press(page, '#btn-hero-done'));
+      await page.waitForSelector('#done-result button');
+      await refuseSaves(page);
+      await press(page, '#done-result button');
+      await page.waitForFunction(() => document.querySelector('#done-result button')?.textContent === 'Try again');
+      await page.evaluate(() => window.__hintRestoreSet());
+    }
+    await page.waitForSelector('#done-result');
+    for (const selector of ['#btn-hero-done', '#btn-hero-read']) {
+      for (const how of ['focus', 'pointer']) {
+        await toTop(page, selector);
+        await raise(page, selector, how);
+        rows.push({ phase, trigger: selector, how, ...(await hints(page, selector)) });
+      }
+    }
+  }
+  const wrong = rows.filter((row) => !row.result || !(row.anchor?.top <= 20) || row.covered);
+  t.check(`${width}px: no hint raised by focus or pointer on Done or Read covers the offer, the confirmation after Undo, or Try again after a refused save`,
+    rows.length === 12 && wrong.length === 0, JSON.stringify(wrong.length ? wrong : rows));
+
+  await page.evaluate(() => scrollTo(0, 0));
+  await raise(page, '#btn-hero-done', 'focus');
+  const natural = await hints(page);
+  t.check(`${width}px: where Done's hint fits clear of the result it still shows, above Done`,
+    !!natural.result && !natural.covered && natural.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'top'),
+    JSON.stringify(natural));
+}
+
+export const doneHint = {
+  id: 'done-hint',
+  title: 'No visual hint covers Done\'s result, in the reading view or on Home, wide or narrow',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await setup(page, 1280);
+    await heroHints(page, t, 1280);
+    await page.setViewport({ width: 390, height: 900 });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-read:not([hidden])');
+    await heroHints(page, t, 390);
+
+    await page.setViewport({ width: 1280, height: 700 });
+    await page.evaluate(() => { location.hash = '#/home'; });
+    await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done');
+    if (await page.$eval('#btn-rail-toggle', (toggle) => toggle.getAttribute('aria-expanded') === 'true')) {
+      await click(page, '#btn-rail-toggle');
+    }
+    await page.waitForFunction(() => document.querySelector('#sidebar').getBoundingClientRect().width < 60);
+    await wait(500);
+    await press(page, '#btn-chero-done');
+    await page.waitForSelector('#done-result button');
+    await page.$eval('#done-result', (result) => {
+      const item = document.querySelector('#list-nav .ri').getBoundingClientRect();
+      const box = result.getBoundingClientRect();
+      scrollBy(0, (box.top + box.height / 2) - (item.top + item.height / 2));
+    });
+    await settle(page);
+    await raise(page, '#list-nav .ri', 'pointer');
+    const level = await hints(page, '#list-nav .ri');
+    await page.evaluate(() => scrollTo(0, 0));
+    await settle(page);
+    await raise(page, '#list-nav .ri', 'pointer');
+    const apart = await hints(page, '#list-nav .ri');
+    t.check('on Home, the collapsed rail\'s hint gives way to the result scrolled level with it, and shows once it is not',
+      !!level.result && !!level.anchor && level.result.top < level.anchor.bottom && level.anchor.top < level.result.bottom
+      && !level.covered && !!apart.result && !apart.covered
+      && apart.tips.some((tip) => tip.id === 'rail-tip' && tip.text.startsWith('Continue reading')),
+      JSON.stringify({ level, apart }));
+    t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const doneHintMutations = [
+  {
+    id: 'done-hint-unmarked', breaks: 'done-hint',
+    why: 'without the marker the result is not kept clear, so hints take their usual spot over it',
+    rewriteReading: (source) => source.replace("dataset: { keepUncovered: '' },", ''),
   },
 ];
