@@ -1844,8 +1844,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 }
 /* "In library" is a state, so it is named in the label as well as coloured. */
 .btn-added { background: rgb(var(--tint-base) / 5.882%); color: var(--teal); border-color: rgb(var(--teal-line) / 33.333%); font-weight: 600; }
-
-.attribution { margin: var(--space-6) var(--space-1) 0; }
+/* The credit's domain has no break opportunity: at 200% text it measured 339px in a 284px line. */
+.attribution { margin: var(--space-6) var(--space-1) 0; overflow-wrap: anywhere; }
 
 /* ---------------------------------------------------------- preview dialog */
 

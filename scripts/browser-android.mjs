@@ -1420,6 +1420,24 @@ async function categoryLabelReadability(page, label, viewport) {
         `${label} ${view}: ${category.key}: desktop grid and eyebrow treatment retained`);
       }
     }
+    if (view === 'browse') {
+      // The credit names its metadata source as one unbroken domain, which at 200% text on a 320px
+      // phone ran past its paragraph and widened Browse (#841).
+      const credit = await page.$eval('#view-browse .attribution', (node) => {
+        const box = node.getBoundingClientRect();
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+        return {
+          exact: node.textContent === `Marvel metadata via marvel.emreparker.com. © ${new Date().getFullYear()} MARVEL`,
+          width: box.width, lines: rects.length, widest: Math.max(...rects.map((rect) => rect.right)) - box.left,
+          inside: rects.every((rect) => rect.left >= box.left - 1 && rect.right <= box.right + 1),
+          onScreen: box.left >= 0 && box.right <= document.documentElement.clientWidth,
+        };
+      });
+      check(credit.exact && credit.lines > 0 && credit.inside && credit.onScreen,
+        `${label} browse: metadata credit wraps inside its paragraph ${JSON.stringify(credit)}`);
+    }
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
     console.log(`CHECKED ${label} ${view}: ${result.cards.length} categories, ${result.cards.reduce((n, card) => n + card.words.length, 0)} words; Publication ${JSON.stringify(result.cards.find((card) => card.key === 'marvel-ages'))}`);
