@@ -1445,7 +1445,11 @@ export function createReadingView({
       type: 'button', class: 'quiet', 'aria-label': labelledName(label, `mark ${result.title} unread`),
       onclick: () => undoDone(result),
     }, label) : null;
-    const node = el('p', { id: 'done-result', class: `notice notice-${kind}${button ? ' notice-act' : ''}` }, [
+    // Every phase is the confirmation, or the failure, of a change to saved progress, so no hint may
+    // sit over it (#855): tooltips.js keeps hints clear of content marked this way.
+    const node = el('p', {
+      id: 'done-result', class: `notice notice-${kind}${button ? ' notice-act' : ''}`, dataset: { keepUncovered: '' },
+    }, [
       el('span', { class: 'grow', text: msg }), ...(button ? [button] : []),
     ]);
     node.addEventListener('pointerenter', () => holdDoneResult(result, 'pointer', true));

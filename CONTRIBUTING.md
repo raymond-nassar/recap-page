@@ -95,7 +95,9 @@ the reader's expanded/collapsed choice and focus when the viewport changes.
 Put supplementary guidance in concise tooltips available on both hover and keyboard focus.
 Connect nonredundant descriptions to their controls for screen readers. Keep required labels,
 meaningful status, errors, save confirmation and safety warnings visible; tooltips do not replace
-essential information or system feedback.
+essential information or system feedback. Nor do they cover it: mark such feedback that appears
+near a control with a tooltip `data-keep-uncovered`, and a tooltip whose place would overlap it
+is not shown.
 
 Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
 and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),

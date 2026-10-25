@@ -18,6 +18,31 @@ export function tooltipRegions(box, viewport, preferRight = false) {
     .filter((region) => region.width > 0 && region.height > 0);
 }
 
+// Picks the side a hint goes on: the first side where it fits, else the roomiest with internal
+// scrolling, as it always has. If that spot would cover content marked data-keep-uncovered, such as
+// Done's result, which confirms the change just made or says it failed (#855), the hint gives way and
+// is not shown. Measured on 2026-10-25, with Done near the top of the window the spot was below Done,
+// over the result, for Done's hint and for Read's. The hint does not move to another side instead: on
+// a phone the only other room is a 25px sliver beside a full-width button, and at 1280px Read's hint,
+// moved to its right, sat on Done. A hint is a supplement, and Fluent's tooltip guidance asks that a
+// tooltip not obscure important information.
+export function tooltipPlacement(regions, measure, keep = []) {
+  const covers = (spot) => keep.some((other) => spot.left < other.right && other.left < spot.right
+    && spot.top < other.bottom && other.top < spot.bottom);
+  const spots = new Map();
+  let chosen = null;
+  for (const region of regions) {
+    const { fits, spot } = measure(region);
+    spots.set(region, spot);
+    if (fits) {
+      chosen = region;
+      break;
+    }
+  }
+  chosen ??= regions.reduce((best, region) => (!best || region.width * region.height > best.width * best.height ? region : best), null);
+  return chosen && !covers(spots.get(chosen)) ? chosen : null;
+}
+
 // Both families are visual supplements. Names and shortcut metadata stay on the controls;
 // repainting a hint must not create another accessible description or live announcement.
 export function wireTooltips({ resolve, document: doc = document, window: win = window }) {
@@ -61,28 +86,35 @@ export function wireTooltips({ resolve, document: doc = document, window: win = 
     if (box.right <= visible.left || box.left >= visible.left + visible.width
         || box.bottom <= visible.top || box.top >= visible.top + visible.height) return dismiss();
     const regions = tooltipRegions(box, visible, preferRight);
-    // Try the preferred side first, then the alternatives before allowing internal scrolling.
-    let chosen = null;
-    for (const region of regions) {
+    const keep = [...doc.querySelectorAll('[data-keep-uncovered]')]
+      .filter((node) => node.getClientRects().length).map((node) => node.getBoundingClientRect());
+    const size = (region) => {
       tip.style.maxWidth = `${Math.min(320, region.width)}px`;
       content.style.maxHeight = `${Math.max(0, region.height - 2)}px`;
-      if (content.scrollWidth <= content.clientWidth && content.scrollHeight <= content.clientHeight) {
-        chosen = region;
-        break;
-      }
-    }
-    chosen ??= regions.reduce((best, region) => !best || region.width * region.height > best.width * best.height ? region : best, null);
-    if (!chosen) return dismiss();
-    tip.style.maxWidth = `${Math.min(320, chosen.width)}px`;
-    content.style.maxHeight = `${Math.max(0, chosen.height - 2)}px`;
-    const size = tip.getBoundingClientRect();
+    };
     const clamp = (value, low, high) => Math.max(low, Math.min(value, high));
-    let left = clamp(box.left + (box.width - size.width) / 2, chosen.left, chosen.left + chosen.width - size.width);
-    let top = clamp(box.top + (box.height - size.height) / 2, chosen.top, chosen.top + chosen.height - size.height);
-    if (chosen.side === 'top') top = box.top - GAP - size.height;
-    if (chosen.side === 'bottom') top = box.bottom + GAP;
-    if (chosen.side === 'left') left = box.left - GAP - size.width;
-    if (chosen.side === 'right') left = box.right + GAP;
+    // Where the hint lands on a side, at the size that side allows.
+    const spot = (region) => {
+      const { width, height } = tip.getBoundingClientRect();
+      let left = clamp(box.left + (box.width - width) / 2, region.left, region.left + region.width - width);
+      let top = clamp(box.top + (box.height - height) / 2, region.top, region.top + region.height - height);
+      if (region.side === 'top') top = box.top - GAP - height;
+      if (region.side === 'bottom') top = box.bottom + GAP;
+      if (region.side === 'left') left = box.left - GAP - width;
+      if (region.side === 'right') left = box.right + GAP;
+      return { left, top, right: left + width, bottom: top + height };
+    };
+    // Try the preferred side first, then the alternatives before allowing internal scrolling.
+    const chosen = tooltipPlacement(regions, (region) => {
+      size(region);
+      return {
+        fits: content.scrollWidth <= content.clientWidth && content.scrollHeight <= content.clientHeight,
+        spot: spot(region),
+      };
+    }, keep);
+    if (!chosen) return dismiss();
+    size(chosen);
+    const { left, top } = spot(chosen);
     tip.style.left = `${left}px`;
     tip.style.top = `${top}px`;
     tip.dataset.side = chosen.side;

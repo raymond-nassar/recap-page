@@ -28,6 +28,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
+  'done-hint',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -51,6 +52,7 @@ const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
+const doneHint = process.argv.includes('--only=done-hint');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
 const alignmentBaseline = process.argv.includes('--alignment-baseline');
@@ -2593,6 +2595,115 @@ async function mobileLayout(page, label, narrow) {
     `${label}: widening restores original actions outside the sheet`);
 }
 
+// #855: no visual hint may cover Done's result, the confirmation or the failure of the change just
+// made. On a phone Done spans the screen, so with it near the top the only room left for its hint is
+// below, over the result, and there the hint gives way. It was reported at 412x915 with text at 200
+// per cent, where the first Done retires the save note above the hero and lifts Done to the top.
+// Home is not visited: its commands carry no hints, and the rail's show only on wide screens.
+const hintTitle = (n) => `Hint fixture (2026) #${n}`;
+async function doneHintFixtures(page) {
+  let state = createList(createEmptyState(), { id: 'hint', name: 'Hint fixture' });
+  state = addIssuesToList(state, 'hint', [1, 2, 3, 4].map((n) => ({
+    issueId: 855100 + n, title: hintTitle(n), number: String(n), seriesName: 'Hint fixture (2026)', seriesId: 855,
+    digitalId: 855200 + n, url: `https://www.marvel.com/comics/issue/${855100 + n}/fixture`, source: 'manual',
+  }))).state;
+  await page.evaluateOnNewDocument((saved, key) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    // The fallback below answers any outside request with another order's comic, which could
+    // retitle a fixture comic mid-check, so outside requests fail here as they do offline.
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Hint fixture blocks outside requests'));
+    };
+  }, state, KEY);
+}
+
+async function doneHintGeometry(page, label) {
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  const look = () => page.evaluate(() => {
+    const box = (node) => {
+      const rect = node.getBoundingClientRect();
+      return { left: Math.round(rect.left), top: Math.round(rect.top), right: Math.round(rect.right), bottom: Math.round(rect.bottom) };
+    };
+    const node = document.querySelector('#done-result');
+    const result = node?.getClientRects().length ? box(node) : null;
+    const tips = [...document.querySelectorAll('.visual-tooltip')]
+      .filter((tip) => !tip.hidden && tip.getClientRects().length)
+      .map((tip) => ({ id: tip.id, side: tip.dataset.side ?? null, box: box(tip) }));
+    const done = document.querySelector('#btn-hero-done');
+    return {
+      text: node?.querySelector('.grow')?.textContent ?? null, result, tips,
+      covered: !!result && tips.some(({ box: tip }) => tip.left < result.right && result.left < tip.right
+        && tip.top < result.bottom && result.top < tip.bottom),
+      done: done.getClientRects().length ? box(done) : null,
+    };
+  });
+  // The fixed bottom bar can sit over a control, so a target is brought to the middle only when a
+  // finger could not reach it where the app left it, and the tap must then reach it.
+  const tap = async (selector) => {
+    const reachable = () => page.$eval(selector, (node) => {
+      const rect = node.getBoundingClientRect();
+      return node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+    });
+    if (!await reachable()) {
+      await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+      await settle();
+    }
+    check(await reachable(), `${label}: a tap on ${selector} reaches it`);
+    await page.tap(selector);
+  };
+  // Done 12px from the top, where its hint has no room above, raised again by keyboard focus.
+  const focusAtTop = async () => {
+    await page.$eval('#btn-hero-done', (done) => scrollBy(0, done.getBoundingClientRect().top - 12));
+    await page.evaluate(() => document.activeElement?.blur());
+    await page.focus('#btn-hero-done');
+    await settle();
+    return look();
+  };
+  await page.evaluate(() => { location.hash = '#/read/hint'; });
+  await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
+  await settle();
+  const clear = await focusAtTop();
+  check(clear.result === null && clear.done?.top <= 20
+    && clear.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'bottom'),
+  `${label}: with nothing to keep clear, Done's hint at the top shows below Done as before ${JSON.stringify(clear)}`);
+
+  const rows = [];
+  await page.evaluate(() => scrollTo(0, 0));
+  await tap('#btn-hero-done');
+  await page.waitForSelector('#done-result button');
+  await settle();
+  rows.push({ step: 'offer after a tap on Done', ...(await look()) });
+  rows.push({ step: 'offer at the top', ...(await focusAtTop()) });
+  await tap('#done-result button');
+  await page.waitForFunction(() => document.querySelector('#done-result') && !document.querySelector('#done-result button'));
+  await settle();
+  rows.push({ step: 'confirmation after a tap on Undo', ...(await look()) });
+  rows.push({ step: 'confirmation at the top', ...(await focusAtTop()) });
+  await tap('#btn-hero-done');
+  await page.waitForSelector('#done-result button');
+  await page.evaluate((key) => {
+    const set = Storage.prototype.setItem;
+    window.__hintRestoreSet = () => { Storage.prototype.setItem = set; };
+    Storage.prototype.setItem = function (name, value) {
+      if (name === key) throw new DOMException('Fixture save refused', 'QuotaExceededError');
+      return set.call(this, name, value);
+    };
+  }, KEY);
+  await tap('#done-result button');
+  await page.waitForFunction(() => document.querySelector('#done-result button')?.textContent === 'Try again');
+  await page.evaluate(() => window.__hintRestoreSet());
+  rows.push({ step: 'Try again at the top', ...(await focusAtTop()) });
+  const wrong = rows.filter((row) => !row.result || row.covered || (row.step.endsWith('at the top') && !(row.done?.top <= 20)));
+  check(rows.length === 5 && !wrong.length,
+    `${label}: no hint covers Done's result after a tap on Done or Undo, or after a refused save ${JSON.stringify(wrong)}`);
+  console.log(`CHECKED ${label}: Done's hint and result ${JSON.stringify(rows.map((row) => [row.step, row.tips.map((tip) => tip.side).join() || 'none']))}`);
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
@@ -2651,6 +2762,13 @@ try {
     { width: 1280, height: 900, desktop: true },
   ];
   if (alignment) viewports = alignmentProfiles;
+  if (doneHint) viewports = [
+    { width: 412, height: 915, textScale: 2 },
+    { width: 360, height: 800, textScale: 2 },
+    { width: 412, height: 915 },
+    { width: 360, height: 800 },
+    { width: 800, height: 360 },
+  ];
   const newsProfiles = [
     { width: 390, height: 844, theme: 'light', homeUpdates: true },
     { width: 390, height: 844, theme: 'dark', homeUpdates: true },
@@ -2683,6 +2801,7 @@ try {
     if (readingComposition) await readingFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
+    if (doneHint) await doneHintFixtures(page);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
@@ -2926,6 +3045,12 @@ try {
     }
     if (marvelAgesTarget) {
       await marvelAgesTouchTarget(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (doneHint) {
+      await doneHintGeometry(page, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
