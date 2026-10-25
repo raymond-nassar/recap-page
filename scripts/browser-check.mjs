@@ -20287,6 +20287,7 @@ async function ux11Snapshot(page) {
       raw: localStorage.getItem('mrt.state.v2'), selected: localStorage.getItem('mrt.selectedList'),
       fixture: window.__ux11 ? { calls: window.__ux11.calls, timers: window.__ux11.timers,
         started: window.__ux11.started, settled: window.__ux11.settled, aborted: window.__ux11.aborted,
+        abortedAfterDeadline: window.__ux11.abortedAfterDeadline, navigations: window.__ux11.navigations,
         writes: window.__ux11.writes } : null,
     };
   });
@@ -20297,8 +20298,8 @@ async function ux11Preload(page, fixture) {
     if (!location.pathname.endsWith('/open.html')) return;
     const originalFetch = window.fetch.bind(window);
     const now = () => performance.timeOrigin + performance.now();
-    const state = window.__ux11 = { nonce: f.nonce, calls: [], timers: [],
-      started: now(), settled: null, aborted: null, writes: [] };
+    const state = window.__ux11 = { nonce: f.nonce, calls: [], timers: [], navigations: [],
+      started: now(), settled: null, aborted: null, abortedAfterDeadline: null, writes: [] };
     const originalSet = Storage.prototype.setItem;
     Storage.prototype.setItem = function (key, value) {
       state.writes.push({ key, value });
@@ -20326,6 +20327,18 @@ async function ux11Preload(page, fixture) {
       if (clock.has(id)) clock.get(id).cleared = true;
       realClear(id);
     };
+    // #854: settled-clock compared the time Node saw the fallback request with this page's clock, and
+    // those are two clocks. In the full run that failed L12 and L13, Node's clock put four of the five
+    // fallback requests before this page's own record of the timer firing that sent them. One clock is
+    // not exact either: it is clamped to 100 microseconds, and measured in Edge 155, 22 of 3,000 timers
+    // appeared to fire 0.1 ms before their delay. So the not-early bounds ask the page which came first.
+    // A timer never runs before its delay, so a navigation or abort that begins once its timer has fired
+    // is not early at any resolution, and every early one begins before it. That is stricter than timing:
+    // a navigation another timer started after the delay would fail too, and the launcher has no such path.
+    const timerFired = (delay) => state.timers.some((timer) => timer.delay === delay && timer.fired !== null);
+    window.navigation?.addEventListener('navigate', (event) => {
+      state.navigations.push({ url: event.destination.url, at: now(), afterFallback: timerFired(1400) });
+    });
     window.fetch = (input, init) => {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
       if (url.origin === location.origin) return originalFetch(input, init);
@@ -20345,6 +20358,7 @@ async function ux11Preload(page, fixture) {
         state.release = finish;
         init.signal.addEventListener('abort', () => {
           state.aborted = now();
+          state.abortedAfterDeadline = timerFired(8000);
           state.settled = state.aborted;
           reject(new DOMException('Synthetic deadline', 'AbortError'));
         }, { once: true });
@@ -20533,13 +20547,17 @@ async function runReaderLauncherFeedback(page, t) {
           const timers = snapshot.fixture.timers;
           const fallbackTimer = timers.find((timer) => timer.delay === 1400);
           const abort = timers.find((timer) => timer.delay === 8000);
+          // Every bound reads the page's own records, and the two not-early ones its order rather than
+          // its clock (#854, see ux11Preload). The first navigation is the one timed, so an early one
+          // cannot hide behind a later correct one.
+          const navigation = snapshot.fixture.navigations[0];
           ux11Receipt(page, t, `${f.id}:settled-clock`, { abort: 8000, fallback: ['hold'].includes(f.mode) ? null : 1400 },
             { timers, fixture: snapshot.fixture, requests }, {
               clearedAbort: abort?.cleared === true,
               fallbackPolicy: f.mode === 'hold' ? !fallbackTimer : fallbackTimer?.delay === 1400,
-              notEarly: !fallbackTimer || requests[0].time >= fallbackTimer.at + 1400,
-              boundedDelay: !fallbackTimer || requests[0].time <= fallbackTimer.at + 2000,
-              realAbort: f.mode !== 'timeout' || snapshot.fixture.aborted >= abort.at + 8000,
+              notEarly: !fallbackTimer || navigation?.afterFallback === true,
+              boundedDelay: !fallbackTimer || (navigation !== undefined && navigation.at <= fallbackTimer.at + 2000),
+              realAbort: f.mode !== 'timeout' || snapshot.fixture.abortedAfterDeadline === true,
               boundedAbort: f.mode !== 'timeout' || snapshot.fixture.aborted <= abort.at + 10000,
               retainedFocus: f.id !== 'L15' || snapshot.focus === 'fallback',
             });
@@ -20624,6 +20642,10 @@ MUTATIONS.push(
       "const chosenTheme = 'dark';", 'launcher-force-dark') },
   { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
     rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
+  { id: 'launcher-early-fallback', breaks: 'reader-launcher-feedback',
+    why: 'the fallback page opens as soon as the lookup ends, while the 1400 ms timer still stands (#854)',
+    rewriteOpen: (source) => ux11Splice(source, 'setTimeout(() => go(page), 1400);',
+      'setTimeout(() => {}, 1400); go(page);', 'launcher-early-fallback') },
 );
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
