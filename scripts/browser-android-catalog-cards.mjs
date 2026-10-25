@@ -129,7 +129,11 @@ async function geometry(page, selector) {
       body: parseFloat(getComputedStyle(document.body).fontSize),
       theme: document.documentElement.dataset.theme,
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      // Phone emulation widens innerWidth to fit an overflowing page, up to four times the screen.
+      // Against the stylesheet from before the 2026-10-24 card fix, comparing with innerWidth reported
+      // overflow only at M11; the root's client width, which stays the screen width, reports it at
+      // every phone case from M01 to M13.
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     };
   });
 }
@@ -543,6 +547,38 @@ async function withoutCatalogComposition(page, selector) {
   }
 }
 
+// M11 is the one 200 per cent case on a 320px phone, where the Storylines and MCU Prep search
+// fields once made the page 409px wide; 360px overflowed the same way, so it is measured here too.
+async function searchFieldReflow(page, profile, check, route) {
+  for (const [width, height] of [[320, 740], [360, 800]]) {
+    await page.setViewport({ width, height, isMobile: true, hasTouch: true });
+    for (const [view, form] of [['lines', '#form-lines-search'], ['marvel-on-screen', '.mcu-prep-search']]) {
+      await route(page, view);
+      const selector = `#view-${view} ${form}`;
+      await page.waitForSelector(`${selector} input[type="search"]`, { visible: true });
+      const fit = await page.$eval(selector, async (node) => {
+        await document.fonts.ready;
+        await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+        const root = document.documentElement;
+        const parts = [node, node.querySelector('label'), node.querySelector('.field-row'), node.querySelector('input')];
+        return {
+          scroll: root.scrollWidth, client: root.clientWidth,
+          font: parseFloat(getComputedStyle(parts[1]).fontSize),
+          parts: parts.map((part) => {
+            const { left, right, width: size } = part.getBoundingClientRect();
+            return { left, right, width: size };
+          }),
+        };
+      });
+      const name = `${profile.id} ${view} search at ${width}px`;
+      check(fit.font === 16 * profile.textScale, `${name}: label keeps the profile's text size (${fit.font}px)`);
+      check(fit.scroll <= fit.client + 1, `${name}: no document overflow (${fit.scroll}/${fit.client})`);
+      check(fit.parts.every((part) => part.width > 0 && part.left >= -1 && part.right <= fit.client + 1),
+        `${name}: form, label, field row and input stay on screen ${JSON.stringify(fit.parts)}`);
+    }
+  }
+}
+
 async function spotlightInteractions(page, catalog, check, click) {
   const mine = shelfLists(catalog.lists, 'spotlights');
   // Since 2026-09-30, phone widths reach sort and guide kind only inside the Filters and sort sheet,
@@ -853,6 +889,9 @@ export async function catalogCardReadability({
   }
   if (profile.id === 'M05' && !mutation) {
     await spotlightInteractions(page, catalog, check, click);
+  }
+  if (profile.id === 'M11' && !mutation) {
+    await searchFieldReflow(page, profile, check, route);
   }
   if (profile.id === 'M13' && !mutation) {
     await readingOptionInteractions(page, primary, catalog, check, click, route);

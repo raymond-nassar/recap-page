@@ -15,7 +15,7 @@ import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEduc
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
-import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
+import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
 import {
@@ -209,7 +209,7 @@ async function homeUpdatesCheck(page, label) {
     hash: location.hash,
     entries: Object.fromEntries(Object.keys(localStorage).filter((name) => name !== key)
       .sort().map((name) => [name, localStorage.getItem(name)])),
-    overflow: document.documentElement.scrollWidth > innerWidth + 1,
+    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
   }), HOME_UPDATES_SEEN_KEY);
   check(JSON.stringify(after.entries) === JSON.stringify(before.entries) && after.hash === before.hash && !after.overflow,
     `${label}: news preserves all other storage, route and page width`);
@@ -261,7 +261,10 @@ async function measure(page, label) {
       .filter((node) => !node.closest('dialog:not([open])'));
     return {
       body: parseFloat(getComputedStyle(document.body).fontSize),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      // Phone emulation widens innerWidth to fit an overflowing page, up to four times the screen:
+      // measured in Edge 155 at 360px, a 1,360px page reported an innerWidth of 1,360, so comparing
+      // with it passed. The root's client width stays the screen width, so overflow is measured there.
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       small: targets.map((node) => {
         const box = node.getBoundingClientRect();
         return { name: node.id || node.textContent.trim().slice(0, 45), w: box.width, h: box.height };
@@ -308,7 +311,7 @@ async function spotlightSnapshot(page) {
       },
       body: parseFloat(getComputedStyle(document.body).fontSize),
       rootSize: parseFloat(getComputedStyle(document.documentElement).fontSize),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
       heading: box(document.querySelector('#spotlights-h')),
       search: box(document.querySelector('#form-spotlights-search')),
@@ -637,7 +640,9 @@ async function spotlightControlCheck(page, profile) {
   assert.ok(!parsed.dropped && groupCatalog(mine).length > 12 && facets.length > 1,
     'Spotlight fixture must parse completely and expose search/categories');
   const state = { kind: 'all', facet: 'all', query: '', sort: null };
-  const stories = () => sortSpotlightStories(groupCatalog(searchCatalog(
+  // Spotlight cards are keyed per reading since 2026-10-03, so a grouped story's key matched no card
+  // and every settle waited out its five seconds.
+  const stories = () => sortSpotlightStories(catalogEntries(searchCatalog(
     filterByFacet(filterBySpotlightKind(mine, state.kind), state.facet), state.query,
   )), state.sort);
   const summaryText = () => {
@@ -1163,7 +1168,7 @@ async function seriesResultReadability(page, label, desktop) {
         }
       }
     }
-    return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > innerWidth + 1 };
+    return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
   });
   check(words.measured > 30, `${label}: measured ordinary words in every result (${words.measured})`);
   check(words.broken.length === 0, `${label}: whole rendered words ${JSON.stringify(words.broken)}`);
@@ -1249,20 +1254,22 @@ async function marvelAgesTouchTarget(page, label, viewport) {
     return {
       width, height, words, broken, clipped,
       text: node.textContent, name: node.getAttribute('aria-label'),
-      tag: node.tagName, type: node.type, tabIndex: node.tabIndex, disabled: node.disabled,
+      tag: node.tagName, href: node.getAttribute('href'), tabIndex: node.tabIndex,
       font: parseFloat(style.fontSize), padding: style.padding,
       minHeight: style.minHeight, direction: getComputedStyle(node.parentElement).flexDirection,
       androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     };
   });
-  const { modern } = publishingAgeGroups(groupCatalog(catalog.lists));
+  // Marvel Ages counts each reading since 2026-10-03, as the app's own publishing index does.
+  const { modern } = publishingAgeGroups(catalogEntries(catalog.lists));
   assert.ok(modern, 'Bundled catalog must expose the Modern Age navigation action');
   check(result.text === 'Browse all Modern Age Reading Lists'
     && result.name === `${result.text}: ${modern.label}, ${modern.count} Reading Lists`,
   `${label}: exact visible and accessible labels`);
-  check(result.tag === 'BUTTON' && result.type === 'button' && result.tabIndex === 0 && !result.disabled,
-    `${label}: incumbent native navigation button semantics`);
+  // A destination, so since 2026-10-06 it is a native hash link that keeps browser navigation gestures.
+  check(result.tag === 'A' && parseRoute(result.href)?.view === 'age-modern' && result.tabIndex === 0,
+    `${label}: native link to the Modern Age destination`);
   check(result.androidStyle === !viewport.desktop, `${label}: actual platform entry stylesheet`);
   check(result.font === (viewport.desktop ? 14 : 16 * (viewport.textScale || 1)) && result.padding === '4px 12px',
     `${label}: unchanged text scale and padding ${JSON.stringify(result)}`);
@@ -1309,7 +1316,8 @@ async function marvelAgesTouchTarget(page, label, viewport) {
 }
 
 async function categoryLabelReadability(page, label, viewport) {
-  const categories = availableHomeCategories(groupCatalog(catalog.lists), HOME_CATEGORIES,
+  // Home counts each reading since 2026-10-03, as the app's own categoriesForCatalog does.
+  const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES,
     resolveReadingPaths(catalog.paths, catalog.lists));
   assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
   const scale = viewport.textScale || 1;
@@ -1329,7 +1337,7 @@ async function categoryLabelReadability(page, label, viewport) {
         androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
         body: parseFloat(getComputedStyle(document.body).fontSize),
         root: parseFloat(getComputedStyle(document.documentElement).fontSize),
-        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         cards: [...document.querySelectorAll(`#view-${id} .home-path`)].map((card) => {
           const copy = card.querySelector('.home-path-copy');
           const words = [], broken = [], clipped = [];
@@ -1497,7 +1505,7 @@ async function issueNoteReadability(page, label, desktop) {
         body: parseFloat(getComputedStyle(document.body).fontSize),
         wrap: getComputedStyle(node).overflowWrap,
         androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
-        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       };
     });
     const prefix = `${label} ${name}`;
@@ -1654,7 +1662,7 @@ async function readingGeometry(page) {
       issueBox: box(document.querySelector('#hero-title')), factsBox: box(document.querySelector('#hero-facts')),
       controls, read: box(read), readVisible: visible(read), readDisabled: read.disabled,
       readCount: document.querySelectorAll('#btn-hero-read').length,
-      ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       image: { shown: visible(document.querySelector('#hero-img')), loaded: document.querySelector('#hero-img').naturalWidth > 0 },
     };
   });
@@ -2219,10 +2227,14 @@ async function phoneHeaderCheck(page, label, viewport) {
 
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
-  check(await page.$eval('#home-first-run', (region) => (
-    !region.querySelector('#home-recommended')
-      && region.querySelectorAll('button').length === 2
-  )), `${label}: Home contains only the Browse and Add starting choices`);
+  // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
+  // are, so an extra start action of either kind is reported, as the phone-header owner does.
+  const home = await page.$eval('#home-first-run', (region) => ({
+    recommended: !!region.querySelector('#home-recommended'),
+    actions: [...region.querySelectorAll(':is(a[href], button)')].map((action) => action.textContent.trim()),
+  }));
+  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
+    `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
   if (narrow) await click(page, '#btn-rail-toggle');
@@ -2345,10 +2357,13 @@ async function mobileLayout(page, label, narrow) {
     check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
       `${label}: ${action} cancellation returns to visible list options`);
   }
-  check(await page.evaluate(() => {
+  // Add saves the order file's own name, and this reading was renamed on 2026-10-03.
+  const minimal = catalog.lists.find((entry) => entry.id === 'hickman-minimal');
+  const minimalName = JSON.parse(await readFile(new URL(`../src/data/${minimal.file}`, import.meta.url))).name;
+  check(await page.evaluate((name) => {
     const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-    return state.listOrder.length === 1 && state.lists[state.listOrder[0]].name === 'Hickman to Secret Wars: minimal';
-  }), `${label}: cancelling management leaves the list intact`);
+    return state.listOrder.length === 1 && state.lists[state.listOrder[0]].name === name;
+  }, minimalName), `${label}: cancelling management leaves the list intact`);
   await click(page, '#android-list-options');
   await click(page, '#list-export > summary');
   await click(page, '#btn-export-order');
@@ -2850,7 +2865,7 @@ try {
     const launch = await page.evaluate(() => ({
       font: parseFloat(getComputedStyle(document.querySelector('#p')).fontSize),
       target: document.querySelector('#fallback').getBoundingClientRect().height,
-      fits: document.documentElement.scrollWidth <= innerWidth + 1,
+      fits: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
     }));
     check(launch.font >= 16 && launch.target >= 48 && launch.fits, `${label}: launcher copy and manual fallback remain readable and tappable`);
     check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
