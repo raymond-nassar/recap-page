@@ -129,7 +129,11 @@ async function geometry(page, selector) {
       body: parseFloat(getComputedStyle(document.body).fontSize),
       theme: document.documentElement.dataset.theme,
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      // Phone emulation widens innerWidth to fit an overflowing page, up to four times the screen.
+      // Against the stylesheet from before the 2026-10-24 card fix, comparing with innerWidth reported
+      // overflow only at M11; the root's client width, which stays the screen width, reports it at
+      // every phone case from M01 to M13.
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     };
   });
 }

@@ -209,7 +209,7 @@ async function homeUpdatesCheck(page, label) {
     hash: location.hash,
     entries: Object.fromEntries(Object.keys(localStorage).filter((name) => name !== key)
       .sort().map((name) => [name, localStorage.getItem(name)])),
-    overflow: document.documentElement.scrollWidth > innerWidth + 1,
+    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
   }), HOME_UPDATES_SEEN_KEY);
   check(JSON.stringify(after.entries) === JSON.stringify(before.entries) && after.hash === before.hash && !after.overflow,
     `${label}: news preserves all other storage, route and page width`);
@@ -261,7 +261,10 @@ async function measure(page, label) {
       .filter((node) => !node.closest('dialog:not([open])'));
     return {
       body: parseFloat(getComputedStyle(document.body).fontSize),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      // Phone emulation widens innerWidth to fit an overflowing page, up to four times the screen:
+      // measured in Edge 155 at 360px, a 1,360px page reported an innerWidth of 1,360, so comparing
+      // with it passed. The root's client width stays the screen width, so overflow is measured there.
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       small: targets.map((node) => {
         const box = node.getBoundingClientRect();
         return { name: node.id || node.textContent.trim().slice(0, 45), w: box.width, h: box.height };
@@ -308,7 +311,7 @@ async function spotlightSnapshot(page) {
       },
       body: parseFloat(getComputedStyle(document.body).fontSize),
       rootSize: parseFloat(getComputedStyle(document.documentElement).fontSize),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
       heading: box(document.querySelector('#spotlights-h')),
       search: box(document.querySelector('#form-spotlights-search')),
@@ -1163,7 +1166,7 @@ async function seriesResultReadability(page, label, desktop) {
         }
       }
     }
-    return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > innerWidth + 1 };
+    return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
   });
   check(words.measured > 30, `${label}: measured ordinary words in every result (${words.measured})`);
   check(words.broken.length === 0, `${label}: whole rendered words ${JSON.stringify(words.broken)}`);
@@ -1253,7 +1256,7 @@ async function marvelAgesTouchTarget(page, label, viewport) {
       font: parseFloat(style.fontSize), padding: style.padding,
       minHeight: style.minHeight, direction: getComputedStyle(node.parentElement).flexDirection,
       androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
-      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     };
   });
   const { modern } = publishingAgeGroups(groupCatalog(catalog.lists));
@@ -1329,7 +1332,7 @@ async function categoryLabelReadability(page, label, viewport) {
         androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
         body: parseFloat(getComputedStyle(document.body).fontSize),
         root: parseFloat(getComputedStyle(document.documentElement).fontSize),
-        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         cards: [...document.querySelectorAll(`#view-${id} .home-path`)].map((card) => {
           const copy = card.querySelector('.home-path-copy');
           const words = [], broken = [], clipped = [];
@@ -1497,7 +1500,7 @@ async function issueNoteReadability(page, label, desktop) {
         body: parseFloat(getComputedStyle(document.body).fontSize),
         wrap: getComputedStyle(node).overflowWrap,
         androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
-        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       };
     });
     const prefix = `${label} ${name}`;
@@ -1654,7 +1657,7 @@ async function readingGeometry(page) {
       issueBox: box(document.querySelector('#hero-title')), factsBox: box(document.querySelector('#hero-facts')),
       controls, read: box(read), readVisible: visible(read), readDisabled: read.disabled,
       readCount: document.querySelectorAll('#btn-hero-read').length,
-      ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       image: { shown: visible(document.querySelector('#hero-img')), loaded: document.querySelector('#hero-img').naturalWidth > 0 },
     };
   });
@@ -2850,7 +2853,7 @@ try {
     const launch = await page.evaluate(() => ({
       font: parseFloat(getComputedStyle(document.querySelector('#p')).fontSize),
       target: document.querySelector('#fallback').getBoundingClientRect().height,
-      fits: document.documentElement.scrollWidth <= innerWidth + 1,
+      fits: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
     }));
     check(launch.font >= 16 && launch.target >= 48 && launch.fits, `${label}: launcher copy and manual fallback remain readable and tappable`);
     check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
