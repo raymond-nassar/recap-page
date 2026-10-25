@@ -2775,8 +2775,13 @@ try {
         check(await page.$eval('#fallback', (node) => node.href === 'https://read.marvel.com/#/book/38811'
           && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48),
         `${label} ${mode}: readable browser escape preserves digital identity`);
-        check(await page.$$eval('a:not(#fallback)', (links) => links.every((node) => !node.getClientRects().length)),
-          `${label} ${mode}: no app action without a validated identifier`);
+        // The shared launch page has offered "Back to Recap Page" since d6a995d1. It is a same-origin
+        // route to Home, not a Marvel Unlimited action, so it is allowed only in exactly that form.
+        const links = await page.$$eval('a', (nodes) => nodes.filter((node) => node.getClientRects().length)
+          .map((node) => ({ id: node.id, href: node.href, target: node.target })));
+        check(links.every((link) => link.id === 'fallback'
+          || (link.id === 'return' && link.href === `${origin}/#/home` && !link.target)),
+        `${label} ${mode}: no app action without a validated identifier ${JSON.stringify(links)}`);
         check(await page.$eval('#h', (node) => node.textContent.includes('<img>') && !node.querySelector('img')),
           `${label} ${mode}: title remains text, not markup`);
         check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),

@@ -422,7 +422,9 @@ transport is a test double, not an Android runtime.
 
 `npm run android:browser -- --only=launcher --viewport=412x915` checks the generated launcher's
 empty-result, invalid-identifier and offline explanations, browser escape, safe title rendering
-and unchanged reading state. It uses fabricated responses and never opens a real Marvel app.
+and unchanged reading state. After a failed lookup, the only other visible link must be the
+same-origin **Back to Recap Page** route to Home. It uses fabricated responses and never opens a
+real Marvel app.
 
 `npm run android:browser -- --only=mobile-ui` checks reported phone layout defects using the
 bundled recommendation, full catalog and Hickman minimal guide. Alongside the three viewport
