@@ -78,7 +78,7 @@ export function createCompletionView({
   }
 
   async function change(kind, rating = null, opener = null) {
-    if (pendingAction || getView() !== 'read' || !currentList()) return;
+    if (pendingAction || history.busy || getView() !== 'read' || !currentList()) return;
     const frame = capture();
     pendingAction = true;
     render();
@@ -211,9 +211,18 @@ export function createCompletionView({
     nodes.ratings.hidden = !completed;
     nodes.complete.disabled = nodes.reopen.disabled = pendingAction || !history.canSave;
     nodes.feedbackGuide.hidden = !completed;
+    // #858: the pressed rating keeps keyboard focus while its save is in flight. Disabling it did
+    // not: measured in Edge 155, a focused button disabled across a rendered frame sends focus to
+    // the page for good, and the save spans frames whenever the history lock is not granted at once.
+    // aria-disabled still tells assistive technology the button is unavailable, and change() ignores
+    // a press until the save settles. The history store is busy for the whole save, so that counts
+    // as saving too. A history that cannot save at all keeps the native disable.
+    const saving = pendingAction || history.busy;
     for (const [button, rating] of [[nodes.up, 'up'], [nodes.down, 'down']]) {
       button.setAttribute('aria-pressed', String(record?.rating === rating));
-      button.disabled = pendingAction || !history.canSave;
+      button.disabled = !saving && !history.canSave;
+      if (saving) button.setAttribute('aria-disabled', 'true');
+      else button.removeAttribute('aria-disabled');
     }
     if (nodes.feedbackDialog.open && (!completed || feedbackIdentity !== listHistoryIdentity(list))) {
       closeFeedback();
