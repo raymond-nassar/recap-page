@@ -233,6 +233,7 @@ function harness(overrides = {}) {
     paintBackground: 0,
     paintCover: 0,
     renderSaveEducation: 0,
+    retireReaderHelp: 0,
     saveSettings: 0,
     showView: [],
     synopsis: [],
@@ -285,6 +286,7 @@ function harness(overrides = {}) {
     btnSynopsis: node({ id: 'btn-synopsis', tag: 'button' }),
     btnCancelSynopsis: node({ id: 'btn-cancel-synopsis', tag: 'button' }),
     readingBody: node({ id: 'reading-body' }),
+    viewRead: node({ id: 'view-read' }),
     ringWrap: node({ id: 'ring-wrap' }),
     shelf: node({ id: 'shelf', tag: 'ul' }),
     rows: node({ id: 'rows', tag: 'ul' }),
@@ -332,6 +334,7 @@ function harness(overrides = {}) {
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
     ['#reading-body', nodes.readingBody],
+    ['#view-read', nodes.viewRead],
     ['#ring-wrap', nodes.ringWrap],
     ['#order-name', nodes.orderName],
     ['#order-sub', nodes.orderSub],
@@ -437,6 +440,7 @@ function harness(overrides = {}) {
     recordDirectProgressSave: overrides.recordDirectProgressSave ?? (() => ({ kind: 'saved' })),
     readerPresentation: overrides.readerPresentation,
     renderSaveEducation: () => { calls.renderSaveEducation += 1; },
+    retireReaderHelp: () => { calls.retireReaderHelp += 1; },
     saveSettings: () => { calls.saveSettings += 1; },
     seriesOnly: (name) => name?.replace(/\s+\(.*/, '') ?? '',
     shortTitle: (title) => title,
@@ -1037,6 +1041,30 @@ test('wireShortcuts keeps Reading-local launch and done actions inside the view'
   }
 });
 
+test('Done and D retire the reader hint, and Enter places it beside the hero Read', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.wireShortcuts();
+    h.view.render();
+    globalThis.document.listeners.keydown({ key: 'Enter', preventDefault() {}, altKey: false, ctrlKey: false, metaKey: false });
+    assert.equal(h.calls.launch.length, 1);
+    assert.equal(h.calls.launch[0][3], h.nodes.btnHeroRead, 'Enter launches what the hero offers, so its hint goes there');
+    h.nodes.btnHeroRead.fire('click', { preventDefault() {} });
+    assert.equal(h.calls.launch.length, 2);
+    assert.equal(h.calls.launch[1][3], undefined, 'a click names its own control through the event');
+    assert.equal(h.calls.retireReaderHelp, 0, 'reading and rendering leave the hint in place');
+    h.nodes.btnHeroDone.fire('click');
+    assert.equal(h.calls.retireReaderHelp, 1, 'Done retires the hint');
+    assert.ok(h.state().read['2'], 'and still marks the comic it was pressed for');
+    globalThis.document.listeners.keydown({ key: 'd', preventDefault() {}, altKey: false, ctrlKey: false, metaKey: false });
+    assert.equal(h.calls.retireReaderHelp, 2, 'D retires the hint');
+    assert.ok(h.state().read['3']);
+  } finally {
+    h.restore();
+  }
+});
+
 test('disabled D leaves progress and the key alone, while re-enabled D works on Done next', () => {
   const h = harness();
   try {
@@ -1253,6 +1281,32 @@ test('undo delete stays inside the view through retry, dismiss, and controller i
 
     h.view.forgetDeleted();
     assert.equal(h.calls.clearNotice.at(-1), 'undo-delete');
+  } finally {
+    h.restore();
+  }
+});
+
+test('arriving with no list leaves focus alone, while removing the active list still focuses Home', async () => {
+  const arrival = harness({ state: createEmptyState() });
+  try {
+    arrival.nodes.viewRead.hidden = true;
+    arrival.view.render();
+    assert.deepEqual(arrival.calls.showView.filter((call) => call.name), [{ name: 'home', opts: { focus: false } }],
+      'boot renders before any view is shown, so there is no reading view to leave');
+  } finally {
+    arrival.restore();
+  }
+
+  let solo = createList(createEmptyState(), { id: 'solo', name: 'Solo' });
+  solo = setActive(addIssuesToList(solo, 'solo', [issue(1, 'Issue One')], {}).state, 'solo');
+  const h = removalHarness({ state: solo });
+  try {
+    h.calls.showView.length = 0;
+    h.nodes.btnDeleteList.focus();
+    await h.nodes.btnDeleteList.fire('click');
+    assert.equal(Boolean(h.state().lists.solo), false);
+    assert.deepEqual(h.calls.showView.filter((call) => call.name), [{ name: 'home', opts: { focus: true } }],
+      'the reader was on the reading view, so the Home heading takes focus');
   } finally {
     h.restore();
   }

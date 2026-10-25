@@ -9,12 +9,88 @@ const html = read('../src/index.html');
 const add = read('../src/js/views/add.js');
 const catalog = read('../src/js/views/shared/catalog-presentation.js');
 
+// The page reduced to what the hand-off reads: class selectors for closest, sibling order for after
+// and nextElementSibling, and lookup by id. Each surface keeps the shape it has in the app.
+function handoffPage() {
+  function node(tag, { id = null, className = '', dataset = {} } = {}, children = []) {
+    const made = {
+      tag, id, className, dataset: { ...dataset }, parent: null, children: [], textContent: '',
+      get nextElementSibling() {
+        const siblings = this.parent?.children ?? [];
+        return siblings[siblings.indexOf(this) + 1] ?? null;
+      },
+      append(...next) {
+        for (const child of next) {
+          child.remove();
+          child.parent = this;
+          this.children.push(child);
+        }
+        return this;
+      },
+      after(child) {
+        child.remove();
+        child.parent = this.parent;
+        this.parent.children.splice(this.parent.children.indexOf(this) + 1, 0, child);
+      },
+      remove() {
+        if (!this.parent) return;
+        this.parent.children.splice(this.parent.children.indexOf(this), 1);
+        this.parent = null;
+      },
+      closest(selector) {
+        const wanted = selector.slice(1);
+        for (let at = this; at; at = at.parent) if (at.className.split(' ').includes(wanted)) return at;
+        return null;
+      },
+    };
+    made.append(...children);
+    return made;
+  }
+  const root = node('main');
+  const all = (from = root) => [from, ...from.children.flatMap((child) => all(child))];
+  const controls = {
+    hero: node('button', { id: 'btn-hero-read', className: 'btn btn-lg has-tooltip' }),
+    tile: node('button', { className: 'tile-read', dataset: { act: 'open' } }),
+    row: node('button', { className: 'mini', dataset: { act: 'open' } }),
+    plainRow: node('button', { className: 'mini', dataset: { act: 'open' } }),
+    continue: node('button', { id: 'btn-chero-read', className: 'btn' }),
+    issue: node('button', { id: 'btn-issue-read', className: 'btn btn-lg' }),
+  };
+  const groups = {
+    appReport: node('div', { id: 'app-report', className: 'report' }),
+    hero: node('div', { id: 'hero-primary-actions', className: 'cta' }, [controls.hero, node('button', { id: 'btn-hero-done' })]),
+    shelf: node('ol', { id: 'shelf', className: 'shelf' }, [node('li', { className: 'tile' }, [controls.tile])]),
+    rowNote: node('span', { className: 'rail-hint', dataset: { readerTemporary: 'true' } }),
+    continue: node('div', { className: 'cta' }, [controls.continue, node('a', { id: 'btn-chero-open' })]),
+    issue: node('div', { className: 'cta' }, [controls.issue]),
+  };
+  root.append(
+    groups.appReport,
+    node('div', { className: 'hero-body' }, [groups.hero, node('p', { id: 'hero-reader-temporary' })]),
+    node('section', { id: 'shelf-sec', className: 'sec' }, [groups.shelf]),
+    node('div', { className: 'ract' }, [controls.row, groups.rowNote, node('a', { dataset: { act: 'info' } })]),
+    node('div', { className: 'ract' }, [controls.plainRow, node('a', { dataset: { act: 'info' } })]),
+    groups.continue,
+    node('div', { className: 'issue-reading-controls' }, [groups.issue, node('p', { id: 'reader-link-temporary' })]),
+  );
+  const document = { getElementById: (id) => all().find((entry) => entry.id === id) ?? null };
+  const el = (tag, props) => Object.assign(node(tag, { id: props.id, className: props.class }), {
+    textContent: props.text, props,
+  });
+  return {
+    controls, groups, document, el,
+    $: (selector) => all().find((entry) => `#${entry.id}` === selector) ?? null,
+    hints: () => all().filter((entry) => entry.id === 'reader-handoff-help'),
+  };
+}
+
 test('shared reader handoff visibly distinguishes conditional intent and exact refusals without writes or focus', () => {
   const source = read('../src/js/main.js');
-  const start = source.indexOf('function openInReader(');
+  const start = source.indexOf('function retireReaderHelp(');
   const end = source.indexOf('\n// ------------------------------------------------------------------ synopsis', start);
-  assert.ok(start >= 0 && end > start, 'Actual shared function must be extractable');
-  const helper = { hidden: true, textContent: '' };
+  assert.ok(start >= 0 && end > start && source.indexOf('function openInReader(', start) < end,
+    'Actual shared functions must be extractable');
+  const dom = handoffPage();
   const issue = { title: 'Browser Check (2026) #2' };
   const events = [];
   let outcome = { ok: true, issue };
@@ -22,39 +98,93 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   const state = { read: { 900002: false }, listOrder: ['fixture'] };
   const before = JSON.stringify(state);
   const context = {
-    $: (selector) => { assert.equal(selector, '#reader-handoff-help'); return helper; },
+    $: dom.$, el: dom.el, document: dom.document,
     store: { state }, temporaryReaderLinks: { resolve: () => outcome },
     openIssueTab: () => { events.push('open'); return opened; },
     announce: (message) => events.push(message),
   };
-  runInNewContext(`${source.slice(start, end)}\nthis.open = openInReader;`, context);
+  runInNewContext(`${source.slice(start, end)}\nthis.open = openInReader;\nthis.retire = retireReaderHelp;`, context);
   const rows = [];
   const measure = (name, expected, actual) => {
     const ok = JSON.stringify(expected) === JSON.stringify(actual);
     console.log(`UX11-UNIT ${JSON.stringify({ owner: 'reader-first', name, expected, actual, ok })}`);
     rows.push(ok);
   };
-  measure('initial helper hidden', true, helper.hidden);
+  const helper = () => dom.document.getElementById('reader-handoff-help');
+  const shown = () => [dom.hints().length, helper()?.textContent ?? null];
+  const click = (control) => ({ currentTarget: control, preventDefault() {} });
+  measure('initial helper hidden', true, helper() === null);
   const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
   for (const handle of [null, {}]) {
     opened = { ok: true, target: 'reader', window: handle };
-    context.open(issue, { preventDefault() {} }, 'synthetic');
-    measure('valid visible conditional copy', [false, copy], [helper.hidden, helper.textContent]);
+    context.open(issue, click(dom.controls.hero), 'synthetic');
+    measure('valid visible conditional copy', [1, copy], shown());
   }
+  measure('plain paragraph, not a second live announcement', ['class', 'id', 'text'],
+    Object.keys(helper().props).sort());
   outcome = { ok: false, error: 'Synthetic comic source no longer exists.' };
-  context.open(issue, null, 'synthetic');
-  measure('resolver refusal visible', [false, outcome.error], [helper.hidden, helper.textContent]);
+  context.open(issue, click(dom.controls.issue), 'synthetic');
+  measure('resolver refusal visible', [1, outcome.error], shown());
   outcome = { ok: true, issue };
   opened = { ok: false };
-  context.open(issue, null, 'synthetic');
-  measure('reference refusal visible', `${issue.title} has no Marvel reference recorded, so it cannot be opened.`, helper.textContent);
-  context.open(issue, null, null);
-  measure('source refusal visible', 'The comic source is missing. Open its current details and try again.', helper.textContent);
+  context.open(issue, click(dom.controls.issue), 'synthetic');
+  measure('reference refusal visible', [1, `${issue.title} has no Marvel reference recorded, so it cannot be opened.`], shown());
+  context.open(issue, click(dom.controls.issue), null);
+  measure('source refusal visible', [1, 'The comic source is missing. Open its current details and try again.'], shown());
+  measure('refusal beside the control that was refused', true, dom.groups.issue.nextElementSibling === helper());
   opened = { ok: true, target: 'reader', window: null };
+  context.open(issue, click(dom.controls.issue), 'synthetic');
+  measure('valid resets refusal', [1, copy], shown());
+
+  // Each Read retires the last hint and places one after its own control's group, so nothing above
+  // the control moves and no earlier hint survives somewhere else on the page.
+  for (const [name, control, anchor] of [
+    ['hero Read', dom.controls.hero, dom.groups.hero],
+    ['row Read after its temporary-link note', dom.controls.row, dom.groups.rowNote],
+    ['row Read', dom.controls.plainRow, dom.controls.plainRow],
+    ['Coming up tile below the shelf', dom.controls.tile, dom.groups.shelf],
+    ['Continue reading', dom.controls.continue, dom.groups.continue],
+    ['issue details Read', dom.controls.issue, dom.groups.issue],
+  ]) {
+    context.open(issue, click(control), 'saved');
+    measure(`${name} hint placement`, [1, true, copy],
+      [dom.hints().length, anchor.nextElementSibling === helper(), helper()?.textContent]);
+  }
+  context.open(issue, { currentTarget: dom.document, preventDefault() {} }, 'saved', dom.controls.hero);
+  measure('a named control wins over the event target', [1, true],
+    [dom.hints().length, dom.groups.hero.nextElementSibling === helper()]);
   context.open(issue, null, 'synthetic');
-  measure('valid resets refusal', copy, helper.textContent);
+  measure('no control falls back to the page report area', [1, true],
+    [dom.hints().length, dom.groups.appReport.nextElementSibling === helper()]);
+  context.retire();
+  measure('retiring removes the hint', [0, null], shown());
+  context.retire();
+  measure('retiring twice is harmless', 0, dom.hints().length);
+
+  events.length = 0;
+  for (const [target, said] of [
+    ['reader', `Opening ${issue.title} in Marvel Unlimited in a new tab.`],
+    ['page', `Opening the Marvel issue page for ${issue.title} in a new tab.`],
+    ['lookup', `Opening ${issue.title} in a new tab and looking up its Unlimited link.`],
+  ]) {
+    opened = { ok: true, target, window: null };
+    context.open(issue, click(dom.controls.hero), 'saved');
+    measure(`${target} announcement unchanged`, ['open', said], events.splice(0));
+  }
   measure('saved bytes unchanged', before, JSON.stringify(state));
   assert.ok(rows.every(Boolean), 'Every conditional/refusal branch must visibly retain its exact outcome');
+});
+
+test('every navigation retires the reader hint and no page-top slot remains for it', () => {
+  const source = read('../src/js/main.js');
+  assert.match(source, /function showView\(next, \{ focus = true, push = false \} = \{\}\) \{\n {2}retireReaderHelp\(\);\n/);
+  assert.doesNotMatch(html, /id="reader-handoff-help"/);
+});
+
+test('the hero background is never a scroll anchor, so the hint cannot scroll the page under the reader', () => {
+  // The Android mobile-ui owner measures the scroll at 800x360. Browser owners do not run in CI, so the
+  // rule is held here too: without it the scaled layer's top moves with every growth of the hero.
+  assert.match(read('../src/styles.css'), /\.hero-bg \{[^}]*transform: scale\(1\.3\);[^}]*overflow-anchor: none;/);
 });
 
 function view(name) {

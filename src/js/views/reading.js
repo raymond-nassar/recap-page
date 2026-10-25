@@ -132,6 +132,7 @@ export function createReadingView({
   recordDirectProgressSave,
   readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
+  retireReaderHelp,
   saveSettings,
   seriesOnly,
   shortTitle,
@@ -144,7 +145,7 @@ export function createReadingView({
   withSaveEducation,
   ymd,
 }) {
-  const launch = (issue, event) => launchSaved(issue, event, 'saved');
+  const launch = (issue, event, control) => launchSaved(issue, event, 'saved', control);
   // The hero is hidden when there is no next issue, but its heading stays non-empty so the
   // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
@@ -523,6 +524,7 @@ export function createReadingView({
   }
 
   function markCurrentRead() {
+    retireReaderHelp();
     if (isCompleted(getState(), activeListId())) return;
     const issue = upNext(getState(), activeListId());
     if (!issue) return;
@@ -552,7 +554,11 @@ export function createReadingView({
     if (!list) {
       $('#order-name').textContent = 'Recap Page';
       $('#order-sub').textContent = 'Curated Reading Lists, tracked locally, linked into the Unlimited reader.';
-      if (isCurrent()) showView('home');
+      // Boot passes through here before it has shown any view whenever there is no list to resume,
+      // and isCurrent() already answers yes because the reading view is where the app starts out.
+      // The default focus move then put a ring around the Home logotype on every first launch.
+      // Only a reader who was looking at the reading view has a place to lose.
+      if (isCurrent()) showView('home', { focus: !$('#view-read').hidden });
       return;
     }
 
@@ -1107,7 +1113,7 @@ export function createReadingView({
         const issue = upNext(getState(), activeListId());
         if (!issue) return;
         e.preventDefault();
-        launch(issue, e);
+        launch(issue, e, $('#btn-hero-read'));
       } else if (e.key === 'd' || e.key === 'D') {
         if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();
