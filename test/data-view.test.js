@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createDataView, eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -253,6 +254,79 @@ test('unknown or changed restore outcomes never claim unchanged reading data', a
   }
 });
 
+// -- what a reading-data restore replaces --
+
+// Taken from the model rather than from any copy on screen: every map a reading-data backup
+// carries, and the words the screens use for it. A restore swaps the whole saved value for the
+// backup's, so each of these is replaced. Deferrals are stored on each list but named apart, as
+// the backup card already named them. Of the issue map, only the entries added by hand were
+// written by the reader; the rest are details that arrive with the lists holding those comics.
+const BACKUP_ENVELOPE = ['schemaVersion', 'exportedAt', 'app'];
+const REPLACED = {
+  lists: ['lists', 'deferrals'],
+  listOrder: ['lists'],
+  active: ['lists'],
+  issues: ['issues added by hand'],
+  read: ['reading progress'],
+  overrides: ['availability overrides'],
+  notes: ['notes'],
+  ratings: ['issue ratings'],
+};
+const REPLACED_WORDS = [...new Set(Object.values(REPLACED).flat())];
+
+test('every map a reading-data backup carries is named for the reader', () => {
+  const carried = Object.keys(exportBackup(createEmptyState())).filter((key) => !BACKUP_ENVELOPE.includes(key));
+  assert.deepEqual(carried.sort(), Object.keys(REPLACED).sort());
+  const [list] = Object.values(exportBackup(createList(createEmptyState(), { name: 'Fixture' })).lists);
+  assert.ok(Object.hasOwn(list, 'deferredIssueIds'), 'deferrals travel inside each saved list');
+});
+
+// The three questions asked before reading data is replaced: a chosen backup file, the one-shot
+// Undo, and the retained copy offered after Undo or a reload. Each is cancelled, so nothing applies.
+async function restoreQuestions() {
+  const nodes = stubElements();
+  const asked = [];
+  let offer = { ok: true, available: true, kind: 'copy', main: 'current', snapshot: 'copy', summary: '5 lists.' };
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    getRestoreOffer: () => offer,
+    inspectBackup: () => ({ ok: true }),
+    askConfirm: async (options) => { asked.push(options); return false; },
+  }));
+  view.wire();
+  nodes.restoreFile.files = [{ text: async () => 'backup' }];
+  await nodes.restoreFile._fire({ target: nodes.restoreFile });
+  offer = { ...offer, kind: 'undo' };
+  await nodes.undoRestore._fire();
+  offer = { ...offer, kind: 'copy' };
+  await nodes.undoRestore._fire();
+  return { nodes, asked };
+}
+
+test('restore, Undo and saved-copy confirmations name every kind of data they replace', async () => {
+  const { asked } = await restoreQuestions();
+  assert.deepEqual(asked.map(({ title, confirmLabel }) => [title, confirmLabel]), [
+    ['Replace reading data with this backup?', 'Restore reading data'],
+    ['Undo the last reading-data restore?', 'Undo restore'],
+    ['Replace reading data with the saved copy?', 'Restore saved copy'],
+  ]);
+  for (const { title, body } of asked) {
+    for (const words of REPLACED_WORDS) assert.ok(body.includes(words), `"${title}" does not name ${words}: ${body}`);
+  }
+});
+
+test('one phrase feeds the backup card and all three restore confirmations', async () => {
+  const { nodes, asked } = await restoreQuestions();
+  const card = nodes.backupContents.textContent;
+  const contents = /^Reading-data backups contain (.+)\.$/.exec(card)?.[1];
+  assert.ok(contents, `the backup card names no contents: "${card}"`);
+  for (const words of REPLACED_WORDS) assert.ok(contents.includes(words), `the backup card does not name ${words}`);
+  const [file, undo, copy] = asked.map(({ body }) => body);
+  assert.ok(file.includes(`This replaces all ${contents}.`), file);
+  assert.ok(undo.includes(`This replaces all current ${contents}.`), undo);
+  assert.ok(copy.includes(`This replaces all current ${contents}.`), copy);
+});
+
 // -- service replacement ownership in main --
 
 test('main retains API replacement and service rebinding in the onApiBaseSubmit callback', () => {
@@ -300,6 +374,7 @@ function stubElements() {
     optDescriptionHiding: stubNode(),
     btnCheckLocalConnection: stubNode(),
     btnExportJson: stubNode(),
+    backupContents: stubNode(),
     btnExportMd: stubNode(),
     btnExportOrder: stubNode(),
     restoreFile: stubNode(),

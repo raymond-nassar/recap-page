@@ -8467,6 +8467,16 @@ const SCENARIOS = [
       await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), five);
       await page.reload({ waitUntil: 'load' });
       await page.waitForSelector('#view-data:not([hidden])');
+      // Read from the card beside the backup button, so each question below is held to what that
+      // card tells a reader a backup holds, not to a second copy of the words kept here.
+      const backupContents = await page.$eval('#btn-export-json', (button) => {
+        const lead = 'Reading-data backups contain ';
+        const hint = [...button.closest('.card').querySelectorAll('.rail-hint')]
+          .map((node) => node.textContent.trim()).find((text) => text.startsWith(lead));
+        return hint?.endsWith('.') ? hint.slice(lead.length, -1) : '';
+      });
+      t.check('the backup card names issue ratings and deferrals among what a backup holds',
+        backupContents.includes('issue ratings') && backupContents.includes('deferrals'), backupContents);
       const restored = createList(createEmptyState(), { id: 'one', name: 'One restored list' });
       const pick = async () => {
         await page.evaluate((state) => {
@@ -8482,6 +8492,8 @@ const SCENARIOS = [
       t.check('file selection confirms replacement before changing five saved lists',
         (await readState(page)).listOrder.length === 5
           && await page.$eval('#ask-body', (node) => node.textContent.includes('Completion history and settings stay unchanged')));
+      t.check('the file restore question names everything the backup card says a backup holds',
+        await page.$eval('#ask-body', (node, words) => node.textContent.includes(`This replaces all ${words}.`), backupContents));
       await click(page, '#ask-cancel');
       await page.waitForFunction(() => !document.querySelector('#restore-file').disabled);
       t.check('cancel preserves reading data and returns focus after input reenables',
@@ -8504,6 +8516,8 @@ const SCENARIOS = [
       await page.waitForSelector('#ask[open]');
       t.check('Undo confirmation explicitly warns that intervening edits will be replaced',
         await page.$eval('#ask-body', (node) => node.textContent.includes('intervening edits')));
+      t.check('the Undo question names the same contents as the backup card',
+        await page.$eval('#ask-body', (node, words) => node.textContent.includes(`This replaces all current ${words}.`), backupContents));
       await click(page, '#ask-ok');
       await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restore undone'));
       t.check('Undo recovers five lists and never offers the reverse swap under the Undo label',
@@ -8523,6 +8537,9 @@ const SCENARIOS = [
           && await page.evaluate((raw) => localStorage.getItem('mrt.state.prerestore') === raw, retained));
       await click(page, '#btn-undo-restore');
       await page.waitForSelector('#ask[open]');
+      t.check('the saved-copy question names the same contents as the backup card',
+        await page.$eval('#ask-title', (node) => node.textContent === 'Replace reading data with the saved copy?')
+          && await page.$eval('#ask-body', (node, words) => node.textContent.includes(`This replaces all current ${words}.`), backupContents));
       const peer = await page.browserContext().newPage();
       try {
         peer.__denyExternal = true;

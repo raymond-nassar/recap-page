@@ -7,6 +7,19 @@
 
 import { wireFieldValidation } from './shared/field-validation.js';
 
+// ------------------------------------------------------------------ reading-data contents
+//
+// What a reading-data backup holds, and so what every restore of one replaces. A restore swaps the
+// whole saved value for the backup's, and exportBackup() in the model names each map it carries:
+// lists with their order, notes and deferrals, issue notes, ratings, read marks, availability
+// overrides, and the issue records, of which only those added by hand were written by the reader.
+//
+// One phrase, because two copies drifted. The backup card named ratings and deferrals while the
+// restore, Undo and saved-copy questions said only "lists, notes and reading progress", so a reader
+// restoring an older backup could lose ratings the question never mentioned. The card and all three
+// questions read this string now, and the data view tests hold it to the keys a backup carries.
+const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, deferrals, availability overrides and issues added by hand';
+
 // ------------------------------------------------------------------ erase policy
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
@@ -221,6 +234,7 @@ export function createDataView({
     });
 
     nodes.btnExportJson.addEventListener('click', onExportJson);
+    if (nodes.backupContents) nodes.backupContents.textContent = `Reading-data backups contain ${READING_DATA_CONTENTS}.`;
     nodes.btnExportRestoreCopy?.addEventListener('click', onExportRestoreCopy);
     const restoreValidation = wireFieldValidation({
       field: nodes.restoreFile, reportId: 'restore-report',
@@ -296,7 +310,7 @@ export function createDataView({
         }
         const yes = await askConfirm({
           title: 'Replace reading data with this backup?',
-          body: 'This replaces all lists, notes and reading progress. Your current reading data will be kept as a saved copy. Completion history and settings stay unchanged. Import draft source stays saved but needs Resume review before more comics can be applied.',
+          body: `This replaces all ${READING_DATA_CONTENTS}. Your current reading data will be kept as a saved copy. Completion history and settings stay unchanged. Import draft source stays saved but needs Resume review before more comics can be applied.`,
           confirmLabel: 'Restore reading data',
         });
         if (!yes) { cancelled = true; return; }
@@ -331,7 +345,7 @@ export function createDataView({
       try {
         const yes = await askConfirm({
           title: offer?.kind === 'undo' ? 'Undo the last reading-data restore?' : 'Replace reading data with the saved copy?',
-          body: `${offer?.summary || ''} This replaces all current lists, notes and reading progress.${offer?.edited ? ' Reading data has changed since the restore; these intervening edits will be replaced.' : ''} The data you replace stays as the next saved copy, not another Undo. Completion history and settings stay unchanged. Import draft source is retained and needs Resume review.`,
+          body: `${offer?.summary || ''} This replaces all current ${READING_DATA_CONTENTS}.${offer?.edited ? ' Reading data has changed since the restore; these intervening edits will be replaced.' : ''} The data you replace stays as the next saved copy, not another Undo. Completion history and settings stay unchanged. Import draft source is retained and needs Resume review.`,
           confirmLabel: offer?.kind === 'undo' ? 'Undo restore' : 'Restore saved copy',
         });
         if (!yes) { cancelled = true; return; }

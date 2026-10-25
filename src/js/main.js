@@ -2022,6 +2022,7 @@ const dataView = createDataView({
     optDescriptionHiding: $('#opt-description-hiding'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
+    backupContents: $('#backup-contents'),
     btnExportMd: $('#btn-export-md-2'),
     btnExportOrder: $('#btn-export-order-2'),
     restoreFile: $('#restore-file'),
