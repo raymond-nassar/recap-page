@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1388`, the reader launch tab at `src/open.html:21`, and the development-only fault
+`src/index.html:1387`, the reader launch tab at `src/open.html:21`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -92,7 +92,7 @@ its queue and two rolling windows at `src/js/lib/limiter.js:11-20`, so separate 
 independent budgets. Save education and session synopsis state are instance-owned too.
 
 **Changing the API base replaces the client and cache.** The replacement goes to the Hydrator and
-SynopsisRunner at `src/js/main.js:2079-2094`. In-flight synopsis work is cancelled and its memory
+SynopsisRunner at `src/js/main.js:2105-2120`. In-flight synopsis work is cancelled and its memory
 cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
 connection, not the configured service.
 
@@ -192,7 +192,7 @@ flowchart TD
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
 at `scripts/vendor-orders.mjs:614-668`. Runtime loads and parses that same-origin catalog once at
-`src/js/main.js:1771-1782`, independently of the metadata service.
+`src/js/main.js:1797-1808`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
 from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
@@ -263,7 +263,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1061-1074` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1063-1076` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:704-706`. The write, result, and notification are handled together at
 `src/js/storage.js:673-700`.
@@ -276,13 +276,13 @@ Announcements at `src/js/main.js:318-320` depend on save success, so a screen re
 The UI restores the row and shows a notice rather than making an unsaved change look saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2612-2638`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2638-2664`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:744`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:746`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:36-44`.
 
@@ -527,7 +527,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3356-3409`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3383-3436`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:177-262`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -554,7 +554,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection, source disclosure and path links.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3218-3354`.
+`src/js/main.js:3245-3381`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -581,8 +581,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:243-293`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3259-3292`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2612-2638`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3286-3319`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2638-2664`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration

@@ -132,6 +132,7 @@ export function createReadingView({
   recordDirectProgressSave,
   readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
+  retireReaderHelp,
   saveSettings,
   seriesOnly,
   shortTitle,
@@ -144,7 +145,7 @@ export function createReadingView({
   withSaveEducation,
   ymd,
 }) {
-  const launch = (issue, event) => launchSaved(issue, event, 'saved');
+  const launch = (issue, event, control) => launchSaved(issue, event, 'saved', control);
   // The hero is hidden when there is no next issue, but its heading stays non-empty so the
   // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
@@ -523,6 +524,7 @@ export function createReadingView({
   }
 
   function markCurrentRead() {
+    retireReaderHelp();
     if (isCompleted(getState(), activeListId())) return;
     const issue = upNext(getState(), activeListId());
     if (!issue) return;
@@ -1107,7 +1109,7 @@ export function createReadingView({
         const issue = upNext(getState(), activeListId());
         if (!issue) return;
         e.preventDefault();
-        launch(issue, e);
+        launch(issue, e, $('#btn-hero-read'));
       } else if (e.key === 'd' || e.key === 'D') {
         if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();

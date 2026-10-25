@@ -233,6 +233,7 @@ function harness(overrides = {}) {
     paintBackground: 0,
     paintCover: 0,
     renderSaveEducation: 0,
+    retireReaderHelp: 0,
     saveSettings: 0,
     showView: [],
     synopsis: [],
@@ -437,6 +438,7 @@ function harness(overrides = {}) {
     recordDirectProgressSave: overrides.recordDirectProgressSave ?? (() => ({ kind: 'saved' })),
     readerPresentation: overrides.readerPresentation,
     renderSaveEducation: () => { calls.renderSaveEducation += 1; },
+    retireReaderHelp: () => { calls.retireReaderHelp += 1; },
     saveSettings: () => { calls.saveSettings += 1; },
     seriesOnly: (name) => name?.replace(/\s+\(.*/, '') ?? '',
     shortTitle: (title) => title,
@@ -1032,6 +1034,30 @@ test('wireShortcuts keeps Reading-local launch and done actions inside the view'
     globalThis.document.listeners.keydown(done);
     assert.equal(done.prevented, true);
     assert.match(h.calls.announce[0], /Issue Two marked read/);
+  } finally {
+    h.restore();
+  }
+});
+
+test('Done and D retire the reader hint, and Enter places it beside the hero Read', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.wireShortcuts();
+    h.view.render();
+    globalThis.document.listeners.keydown({ key: 'Enter', preventDefault() {}, altKey: false, ctrlKey: false, metaKey: false });
+    assert.equal(h.calls.launch.length, 1);
+    assert.equal(h.calls.launch[0][3], h.nodes.btnHeroRead, 'Enter launches what the hero offers, so its hint goes there');
+    h.nodes.btnHeroRead.fire('click', { preventDefault() {} });
+    assert.equal(h.calls.launch.length, 2);
+    assert.equal(h.calls.launch[1][3], undefined, 'a click names its own control through the event');
+    assert.equal(h.calls.retireReaderHelp, 0, 'reading and rendering leave the hint in place');
+    h.nodes.btnHeroDone.fire('click');
+    assert.equal(h.calls.retireReaderHelp, 1, 'Done retires the hint');
+    assert.ok(h.state().read['2'], 'and still marks the comic it was pressed for');
+    globalThis.document.listeners.keydown({ key: 'd', preventDefault() {}, altKey: false, ctrlKey: false, metaKey: false });
+    assert.equal(h.calls.retireReaderHelp, 2, 'D retires the hint');
+    assert.ok(h.state().read['3']);
   } finally {
     h.restore();
   }

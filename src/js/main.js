@@ -1382,6 +1382,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
+  retireReaderHelp();
   previewView.invalidate();
   tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the
@@ -1652,12 +1653,37 @@ function readerPresentation(issue, source) {
   return { launchable: resolved.ok && isLaunchable(resolved.issue), temporary: resolved.ok && resolved.temporary };
 }
 
-function openInReader(issue, event, source) {
+// The hint was one paragraph above every view that the first Read revealed and nothing hid again, so
+// it followed the reader to every screen until reload. Appearing, it pushed the page down 34px at
+// 1280px wide and 79px at 390, measured in Edge. It now lives beside the control that was used and
+// only as long as that attempt: navigating, Done and the next Read each end it. Removed, not hidden,
+// because a row or tile can be rebuilt with it inside and a held node would outlive its control.
+function retireReaderHelp() {
+  document.getElementById('reader-handoff-help')?.remove();
+}
+
+// After the control's own button group, so nothing above the control moves. A row's Read sits in a
+// panel of other commands, so the hint follows Read itself and any temporary-link note it carries.
+// A Coming up tile is too narrow to hold a sentence, so its hint goes under the shelf.
+function readerHelpAnchor(control) {
+  if (typeof control?.closest !== 'function') return null;
+  const shelf = control.closest('.shelf');
+  if (shelf) return shelf;
+  if (control.closest('.ract')) {
+    const note = control.nextElementSibling;
+    return note?.dataset?.readerTemporary ? note : control;
+  }
+  return control.closest('.cta') ?? control;
+}
+
+function openInReader(issue, event, source, control = event?.currentTarget) {
   event?.preventDefault();
-  const help = $('#reader-handoff-help');
   function showHelp(message) {
-    help.textContent = message;
-    help.hidden = false;
+    retireReaderHelp();
+    const help = el('p', { id: 'reader-handoff-help', class: 'rail-hint', text: message });
+    const anchor = readerHelpAnchor(control);
+    if (anchor) anchor.after(help);
+    else $('#app-report').after(help);
   }
   function refuse(message) { showHelp(message); announce(message); }
   if (!source) { refuse('The comic source is missing. Open its current details and try again.'); return; }
@@ -2895,6 +2921,7 @@ const readingView = createReadingView({
   recordDirectProgressSave,
   readerPresentation,
   renderSaveEducation,
+  retireReaderHelp,
   saveSettings,
   seriesOnly,
   shortTitle,

@@ -9151,7 +9151,7 @@ const SCENARIOS = [
   },
   {
     id: 'handoff',
-    title: 'the reader tab opens synchronously, inside the gesture',
+    title: 'the reader tab opens synchronously, inside the gesture, with its hint beside the Read used',
     async run(page, t) {
       await importOrder(page);
       page.__ux11Step = 'before-first-dispatch';
@@ -9227,6 +9227,101 @@ const SCENARIOS = [
       const asks = second.length === 1
         && !new URL(second[0].url, page.__origin).searchParams.has('d');
       t.check('and asks the launcher to resolve it', asks, JSON.stringify(second.map((o) => o.url)));
+
+      // #825: the hint used to be one paragraph above every view, so after one Read it stayed on
+      // every screen until reload and pushed the page down as it appeared. It now goes after the
+      // group of the Read that was pressed and retires on the next Read, on Done and on navigation.
+      // Focus moves first and positions are read after it, so a scroll caused by focusing is not
+      // counted against the hint.
+      const hintCount = () => page.evaluate(() => document.querySelectorAll('#reader-handoff-help').length);
+      const relocated = await page.evaluate(() => {
+        const hints = [...document.querySelectorAll('#reader-handoff-help')];
+        const read = (key) => document.querySelector(`button.mini[data-act="open"][data-key="${key}"]`);
+        return {
+          count: hints.length,
+          beside: !!hints[0] && hints[0].previousElementSibling === read('900002'),
+          leftEarlier: !read('900001').closest('.ract').contains(hints[0] ?? null),
+        };
+      });
+      t.check('the next Read retires the earlier hint and places its own beside it',
+        relocated.count === 1 && relocated.beside && relocated.leftEarlier, JSON.stringify(relocated));
+      const press = (control, anchor) => page.evaluate((controlSelector, anchorSelector) => {
+        const node = document.querySelector(controlSelector);
+        const heading = document.querySelector('.view:not([hidden]) h1');
+        const top = (element) => element.getBoundingClientRect().top;
+        node.focus();
+        const before = [top(node), top(heading), scrollY];
+        node.click();
+        const hints = [...document.querySelectorAll('#reader-handoff-help')];
+        const hint = hints[0] ?? null;
+        return {
+          count: hints.length,
+          copy: hint?.textContent ?? null,
+          visible: hint?.checkVisibility() ?? false,
+          beside: !!hint && hint.previousElementSibling === document.querySelector(anchorSelector),
+          below: !!hint && top(hint) >= node.getBoundingClientRect().bottom,
+          moved: [top(node), top(heading), scrollY].map((value, index) => Math.round(value - before[index])),
+          focused: document.activeElement === node,
+        };
+      }, control, anchor);
+      const placed = (name, result) => t.check(`${name}: the hint sits beside the Read used and nothing above it moves`,
+        result.count === 1 && result.copy === helpCopy && result.visible && result.beside && result.below
+          && result.moved.every((delta) => delta === 0) && result.focused,
+        JSON.stringify(result));
+
+      // Announcements raised within one 30ms tick are joined, and the two row Reads above are, so
+      // theirs has to land before the hero's can be compared on its own.
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
+        .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
+      placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
+        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab.', { timeout: 5000 });
+      t.check('the spoken announcement is unchanged', true);
+      await page.evaluate(() => document.querySelector('#btn-hero-done').click());
+      await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
+      t.check('Done retires the hint', await hintCount() === 0);
+      placed('Coming up tile, under the shelf', await press('.tile-read[data-key="900003"]', '#shelf'));
+
+      // Placement only from here: retiring the tile's hint below and adding one in the hero above is
+      // the ordinary next-Read transition, and the strict checks each start from a page with none.
+      await page.evaluate(() => { window.__opened = []; document.activeElement?.blur(); });
+      await page.keyboard.press('Enter');
+      const shortcut = await page.evaluate(() => ({
+        opened: window.__opened.length,
+        count: document.querySelectorAll('#reader-handoff-help').length,
+        beside: document.querySelector('#reader-handoff-help')?.previousElementSibling?.id ?? null,
+      }));
+      t.check('Enter puts the hint beside the hero Read it stands for',
+        shortcut.opened === 1 && shortcut.count === 1 && shortcut.beside === 'hero-primary-actions',
+        JSON.stringify(shortcut));
+
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForSelector('#view-library:not([hidden])');
+      t.check('navigating away retires the hint', await hintCount() === 0);
+      await page.evaluate(() => history.back());
+      await page.waitForSelector('#view-read:not([hidden])');
+      t.check('and returning does not bring it back', await hintCount() === 0);
+
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#btn-chero-read:not([hidden])');
+      placed('Continue reading', await press('#btn-chero-read', '#home-continue .cta'));
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      t.check('leaving Home retires the Continue reading hint', await hintCount() === 0);
+
+      await page.evaluate((hash) => { location.hash = hash; }, formatRoute({ view: 'issue', issueId: 900002 }));
+      await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'Browser Check (2026) #2'
+        && document.querySelector('#btn-issue-read')?.checkVisibility());
+      placed('issue details Read', await press('#btn-issue-read', '#view-issue .issue-reading-controls > .cta'));
+      await page.evaluate((hash) => { location.hash = hash; }, formatRoute({ view: 'issue', issueId: 900003 }));
+      await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'Browser Check (2026) #3');
+      t.check('moving to another comic\'s details retires the hint', await hintCount() === 0);
+
+      await page.setViewport({ width: 390, height: 844 });
+      await click(page, '#list-nav a[data-act="open"]');
+      await page.waitForSelector('#view-read:not([hidden]) #btn-hero-read');
+      placed('hero Read at 390 pixels', await press('#btn-hero-read', '#hero-primary-actions'));
+      await page.setViewport({ width: 1280, height: 900 });
     },
   },
   {
