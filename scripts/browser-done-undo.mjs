@@ -2,7 +2,8 @@
 // progress path, so this presses it in the states that make recovery dangerous: twice, after the
 // list or the comic changed, when the save fails, at the end of the queue and after navigating.
 // UX-05 (#829): what Done tells assistive technology it does, with D on and off.
-// Both run on the ephemeral port like every scenario not listed for the app origin.
+// UX-41 (#829): Done on Home's Continue reading, sharing that result and Undo.
+// All run on the ephemeral port like every scenario not listed for the app origin.
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { DONE_RESULT_MS } from '../src/js/views/reading.js';
 
@@ -24,7 +25,7 @@ function fixture() {
   }))).state;
 }
 
-async function setup(page, width) {
+async function setup(page, width, route = '#/read/undo') {
   await page.setViewport({ width, height: 900 });
   await page.evaluateOnNewDocument((initial, key) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initial));
@@ -49,8 +50,8 @@ async function setup(page, width) {
         : Promise.reject(new TypeError('Undo fixture blocks external requests'));
     };
   }, exportBackup(fixture()), KEY);
-  await page.goto(`${page.__origin}/#/read/undo`, { waitUntil: 'load' });
-  await page.waitForSelector('#view-read:not([hidden])');
+  await page.goto(`${page.__origin}/${route}`, { waitUntil: 'load' });
+  await page.waitForSelector(route.startsWith('#/home') ? '#view-home:not([hidden])' : '#view-read:not([hidden])');
 }
 
 function observe(page) {
@@ -344,6 +345,164 @@ export const doneDescriptionMutations = [
     rewriteMain: (source) => source.replace(
       "    done.removeAttribute('aria-keyshortcuts');",
       "    done.removeAttribute('aria-keyshortcuts');\n    done.removeAttribute('aria-describedby');",
+    ),
+  },
+];
+
+// UX-41 (#829): Home's Continue reading has a Done of its own for the comic its card names, sharing
+// the result and Undo above with their withdrawal and focus rules. Its offer stands only while Home
+// shows, so leaving Home ends it, and another tab's save withdraws it as it does in the reading view.
+function observeHome(page) {
+  return page.evaluate(() => {
+    const box = (element) => {
+      const rect = element.getBoundingClientRect();
+      return { top: Math.round(rect.top), bottom: Math.round(rect.bottom), left: Math.round(rect.left),
+        right: Math.round(rect.right), height: Math.round(rect.height) };
+    };
+    const shown = (selector) => {
+      const element = document.querySelector(selector);
+      return element?.getClientRects().length ? box(element) : null;
+    };
+    const node = document.querySelector('#done-result');
+    const button = node?.querySelector('button') ?? null;
+    return {
+      next: document.querySelector('#chero-next').textContent,
+      count: document.querySelector('#chero-count').textContent,
+      read: shown('#btn-chero-read'),
+      done: shown('#btn-chero-done'),
+      actions: shown('#chero-actions'),
+      focus: document.activeElement === button ? 'result button' : document.activeElement?.id || null,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      result: node ? {
+        text: node.querySelector('.grow')?.textContent ?? null,
+        previous: node.previousElementSibling?.id ?? null,
+        inCard: !!node.closest('#home-continue'),
+        visible: node.checkVisibility(),
+        box: box(node),
+        button: button ? { text: button.textContent, name: button.getAttribute('aria-label'), box: box(button) } : null,
+      } : null,
+    };
+  });
+}
+
+const nextIs = (page, text, timeout = 30000) => page.waitForFunction(
+  (expected) => document.querySelector('#chero-next').textContent === expected, { timeout }, text);
+
+export const doneHome = {
+  id: 'done-home',
+  title: 'Done on Home\'s Continue reading marks the comic its card names and shares the result, Undo and their rules',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    // The other tab starts first, so anything it writes while starting lands before the offer exists.
+    const other = await page.browserContext().newPage();
+    other.__origin = page.__origin;
+    await setup(other, 1280);
+    await setup(page, 1280, '#/home');
+    const ready = await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done', { timeout: 5000 })
+      .then(() => true, () => false);
+    await wait(500);
+    const start = await observeHome(page);
+    const ax = ready ? await page.accessibility.snapshot({ root: await page.$('#btn-chero-done'), interestingOnly: false }) : null;
+    const commands = await page.$$eval('#chero-actions > .btn', (nodes) => nodes
+      .filter((node) => node.getClientRects().length).map((node) => [node.id, node.className]));
+    t.check('Done sits beside Read as a secondary command, named and described as on the hero',
+      ready && commands[0]?.[0] === 'btn-chero-read' && commands[1]?.join() === 'btn-chero-done,btn btn-g'
+      && commands.filter(([, name]) => name === 'btn').length === 1
+      && ax?.name === 'Done' && ax.description === DESCRIPTION && !ax.keyshortcuts
+      && start.done?.height === start.read?.height, JSON.stringify({ commands, ax, start }));
+    if (!ready) {
+      await other.close();
+      return;
+    }
+
+    await press(page, '#btn-chero-done');
+    await nextIs(page, `Next: ${title(2)}`);
+    await wait(100);
+    const offered = await observeHome(page);
+    const doneSaid = await said(page, 1);
+    t.check('Done on Home marks the comic the card named, updates Next and the count, and keeps focus on Done',
+      Object.keys((await saved(page)).read).join() === String(ids[0]) && offered.count === '1 of 4 issues read'
+      && offered.focus === 'btn-chero-done' && offered.done?.top === start.done.top,
+      JSON.stringify({ start: start.done, offered }));
+    t.check('the same result sits in the card under its commands, and one announcement says Undo is available',
+      offered.result?.text === `Marked ${title(1)} read.` && offered.result.previous === 'chero-actions'
+      && offered.result.inCard && offered.result.visible && offered.result.button?.name === `Undo: mark ${title(1)} unread`
+      && doneSaid.length === 1 && doneSaid[0].startsWith(`${title(1)} marked read. Next up: ${title(2)}. Undo is available.`),
+      JSON.stringify({ result: offered.result, doneSaid }));
+
+    let tabs = 0;
+    while ((await observeHome(page)).focus !== 'result button' && tabs < 6) {
+      await page.keyboard.press('Tab');
+      tabs += 1;
+    }
+    await page.keyboard.press('Enter');
+    // A refused Undo leaves Next where it was, so the check below says so instead of a timeout.
+    await nextIs(page, `Next: ${title(1)}`, 5000).catch(() => {});
+    await wait(100);
+    const undone = await observeHome(page);
+    t.check('Undo by keyboard on Home puts the comic back as next and returns focus to Home\'s Done',
+      tabs < 6 && JSON.stringify((await saved(page)).read) === '{}' && undone.focus === 'btn-chero-done'
+      && undone.result?.text === `Marked ${title(1)} unread. It is up next again.` && undone.result.button === null
+      && undone.result.previous === 'chero-actions', JSON.stringify({ tabs, undone }));
+
+    await press(page, '#btn-chero-done');
+    await page.waitForSelector('#done-result button');
+    await wait(300);
+    const standing = !!await page.$('#done-result button');
+    await other.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, title(2));
+    await press(other, '#btn-hero-done');
+    await page.waitForFunction(() => !document.querySelector('#done-result'), { timeout: 5000 }).catch(() => {});
+    const foreign = await saved(page);
+    t.check('another tab\'s save withdraws the Home offer on the repaint it causes',
+      standing && !await page.$('#done-result') && Object.hasOwn(foreign.read, ids[0]) && Object.hasOwn(foreign.read, ids[1]),
+      JSON.stringify({ standing, read: Object.keys(foreign.read) }));
+    await other.close();
+
+    await nextIs(page, `Next: ${title(3)}`);
+    await press(page, '#btn-chero-done');
+    await page.waitForSelector('#done-result button');
+    await click(page, '.ri[data-view="library"]');
+    await page.waitForSelector('#view-library:not([hidden])');
+    await page.goBack();
+    await page.waitForSelector('#view-home:not([hidden])');
+    t.check('leaving Home retires the offer: back on Home there is no result and the mark stays',
+      !await page.$('#done-result') && Object.hasOwn((await saved(page)).read, ids[2]));
+
+    await nextIs(page, `Next: ${title(4)}`);
+    await press(page, '#btn-chero-done');
+    await nextIs(page, 'You have read every issue in this order.');
+    await wait(100);
+    const end = await observeHome(page);
+    t.check('Done on the last comic keeps the result under the card\'s commands, hides Done with Read and focuses the card heading',
+      end.done === null && end.read === null && end.focus === 'chero-h' && end.result?.previous === 'chero-actions'
+      && end.result.text === `Marked ${title(4)} read.` && end.result.visible, JSON.stringify(end));
+    await press(page, '#done-result button');
+    await nextIs(page, `Next: ${title(4)}`);
+    const back = await observeHome(page);
+    t.check('Undo from there brings Done back with focus on it',
+      back.focus === 'btn-chero-done' && !!back.done && !Object.hasOwn((await saved(page)).read, ids[3]), JSON.stringify(back));
+
+    await page.setViewport({ width: 390, height: 844 });
+    const narrowStart = await observeHome(page);
+    await press(page, '#btn-chero-done');
+    await nextIs(page, 'You have read every issue in this order.');
+    const narrow = await observeHome(page);
+    t.check('at 390px the result sits in the card under its commands, within the screen, without page overflow',
+      narrow.result?.visible && narrow.result.box.left >= 0 && narrow.result.box.right <= 390
+      && narrow.result.button?.box.height >= 44 && narrow.overflow <= 0
+      && narrow.actions?.top === narrowStart.actions?.top, JSON.stringify({ narrowStart: narrowStart.actions, narrow }));
+    t.check('the journey raises no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const doneHomeMutations = [
+  {
+    id: 'done-home-held-to-reading-view', breaks: 'done-home',
+    why: 'the Home offer is held to the reading view\'s check, so on Home its own Undo can only refuse',
+    rewriteReading: (source) => source.replace(
+      "current: () => !$('#view-home').hidden,",
+      'current: () => isCurrent(),',
     ),
   },
 ];

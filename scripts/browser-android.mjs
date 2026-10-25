@@ -2422,6 +2422,73 @@ async function mobileLayout(page, label, narrow) {
       && undone.text === `Marked ${beforeDone.title} unread. It is up next again.`,
     `${label}: a tap on Undo puts the comic back as next with focus on Done ${JSON.stringify(undone)}`);
   }
+  // #829 item 3: Home's Continue reading has its own Done, sharing that result and Undo. On a phone
+  // the card's commands stack, so the result goes under the whole stack and Undo keeps a 48px target.
+  await route(page, 'home');
+  const homeReady = await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done', { timeout: 5000 })
+    .then(() => true, () => false);
+  let homeBefore = null;
+  let homeShown = false;
+  let homeOffered = { homeReady };
+  if (homeReady) {
+    // At 800x360 Home opens with the card's commands under the fixed bottom bar, as any content can be
+    // until the reader scrolls: a tap there landed on the bar's Browse link. Done is brought to the
+    // middle first, as a reader would scroll to it, and the tap must then reach Done itself.
+    await page.$eval('#btn-chero-done', (node) => node.scrollIntoView({ block: 'center' }));
+    homeBefore = await page.evaluate(() => {
+      const done = document.querySelector('#btn-chero-done');
+      const rect = done.getBoundingClientRect();
+      const [x, y] = [rect.left + rect.width / 2, rect.top + rect.height / 2];
+      const describe = (node) => (node ? `${node.tagName}#${node.id}.${String(node.className).slice(0, 40)}` : null);
+      return {
+        next: document.querySelector('#chero-next').textContent,
+        read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+        rect: [rect.left, rect.top, rect.width, rect.height].map(Math.round), scrollY: Math.round(scrollY),
+        hit: describe(document.elementFromPoint(x, y)),
+        covers: [...document.querySelectorAll('body *')].filter((node) => {
+          if (!['fixed', 'sticky'].includes(getComputedStyle(node).position) || !node.getClientRects().length) return false;
+          const box = node.getBoundingClientRect();
+          return box.left <= x && box.right >= x && box.top <= y && box.bottom >= y;
+        }).map(describe),
+      };
+    });
+    await page.tap('#btn-chero-done');
+    homeShown = await page.waitForSelector('#done-result button', { timeout: 5000 }).then(() => true, () => false);
+    homeOffered = homeShown ? await page.evaluate(() => {
+      const result = document.querySelector('#done-result');
+      const box = result.getBoundingClientRect();
+      const size = (node) => [Math.round(node.getBoundingClientRect().width), Math.round(node.getBoundingClientRect().height)];
+      return {
+        beside: result.previousElementSibling?.id === 'chero-actions',
+        fits: box.left >= 0 && box.right <= document.documentElement.clientWidth,
+        undo: size(result.querySelector('button')),
+        done: size(document.querySelector('#btn-chero-done')),
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      };
+    }) : await page.evaluate(() => {
+      const done = document.querySelector('#btn-chero-done');
+      const rect = done.getBoundingClientRect();
+      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      return {
+        shown: false, hidden: done.hidden, rect: [rect.left, rect.top, rect.width, rect.height].map(Math.round),
+        hit: hit ? `${hit.tagName}#${hit.id}.${String(hit.className).slice(0, 40)}` : null,
+        viewport: [innerWidth, innerHeight], scrollY: Math.round(scrollY), hash: location.hash,
+        next: document.querySelector('#chero-next')?.textContent, focus: document.activeElement?.id ?? null,
+      };
+    });
+  }
+  check(homeShown && homeBefore?.hit?.startsWith('BUTTON#btn-chero-done') && homeOffered.beside && homeOffered.fits
+    && homeOffered.undo.every((side) => side >= 48) && homeOffered.done[1] >= 48 && !homeOffered.overflow,
+  `${label}: a tap on Home's Done puts the result under the card's commands with a 48px Undo ${JSON.stringify({ homeBefore, homeOffered })}`);
+  if (homeShown) {
+    await page.tap('#done-result button');
+    await page.waitForFunction((next) => document.querySelector('#chero-next')?.textContent === next, {}, homeBefore.next);
+    const homeUndone = { read: await readCount(), focus: await page.evaluate(() => document.activeElement?.id ?? null) };
+    check(homeUndone.read === homeBefore.read && homeUndone.focus === 'btn-chero-done',
+      `${label}: a tap on Undo on Home puts the comic back with focus on Home's Done ${JSON.stringify(homeUndone)}`);
+  }
+  await route(page, 'read');
+  await page.waitForSelector('#reading-body:not([hidden])');
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;

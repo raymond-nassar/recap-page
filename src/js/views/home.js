@@ -26,6 +26,7 @@ export function createHomeView({
   loadCatalog,
   onCatalogDropped,
   onCatalogLoadFailure,
+  onDone,
   onNavigateCategory,
   onNavigateHub,
   onOpen,
@@ -48,6 +49,13 @@ export function createHomeView({
     nodes.continueRead.addEventListener('click', (event) => {
       const issue = upNext(getState(), getActiveListId());
       if (issue) onRead(issue, event, 'saved');
+    });
+    // Done here marks the comic this card names, through the same result and Undo as the reading
+    // view's Done. A held Enter is ignored as it is there: each repeat would otherwise mark the comic
+    // that had just moved up.
+    nodes.continueDone.addEventListener('click', () => onDone());
+    nodes.continueDone.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && event.repeat) event.preventDefault();
     });
     nodes.continueOpen.addEventListener('click', (event) => {
       if (!isPlainNavigation(event)) return;
@@ -139,12 +147,15 @@ export function createHomeView({
         'aria-label',
         labelledName('Read', `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
       );
+      // Marking a comic read needs no reader link, so Done stays usable when Read cannot launch.
+      nodes.continueDone.hidden = false;
     } else {
       nodes.continueNext.textContent = total === 0
         ? 'No issues in this Reading List yet. Open it to add comics.'
         : deferred ? `Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
           : 'You have read every issue in this order.';
       nodes.continueRead.hidden = true;
+      nodes.continueDone.hidden = true;
       paintCoverUrl(
         nodes.continueImage,
         nodes.continueFallback,

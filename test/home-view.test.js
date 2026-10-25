@@ -105,6 +105,7 @@ function harness({
     continueSeries: node(),
     continueNumber: node(),
     continueRead: node({ text: 'Read' }),
+    continueDone: node({ text: 'Done' }),
     continueOpen: node({ text: 'Open Reading List' }),
     continueReview: node(),
     continueDeferred: node(),
@@ -122,6 +123,7 @@ function harness({
   const calls = {
     covers: [],
     coverFallbacks: [],
+    done: 0,
     failures: [],
     navigate: [],
     open: 0,
@@ -175,6 +177,7 @@ function harness({
     loadCatalog: catalogLoader ?? (async () => catalog),
     onCatalogDropped: (count) => calls.warnings.push(count),
     onCatalogLoadFailure: (options) => calls.failures.push(options),
+    onDone: () => { calls.done += 1; },
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onNavigateHub: (viewName) => calls.navigate.push(viewName),
     onOpen: () => { calls.open += 1; },
@@ -480,4 +483,69 @@ test('main constructs Home once while the view has no controller or concrete-vie
   assert.match(main, /homeView\.categoryTile\(/);
   assert.doesNotMatch(main, /homeView\?\.(?:render|renderGateways|categoryTile|wire)|if \(homeView\)/);
   assert.doesNotMatch(source, /(?:main|storage)\.js|views\/(?:issue|library|progress)\.js/);
+});
+
+// UX-41 (#829). Continue reading offered Read but not Done, so finishing the loop from Home meant
+// opening the list. Done now sits beside Read for the comic the card names, sharing the reading
+// view's result and Undo; Home only shows it and hands the press on.
+test('UX-41 Continue reading offers Done beside Read whenever a comic is next, even when Read cannot launch', () => {
+  let launchable = false;
+  const h = harness({ populated: true, readerPresentation: () => ({ launchable, temporary: false }) });
+  h.view.wire();
+  h.view.render();
+  assert.equal(h.nodes.continueRead.disabled, true, 'Read waits for a reader link');
+  assert.equal(h.nodes.continueDone.hidden, false, 'Done shows with Read');
+  assert.notEqual(h.nodes.continueDone.disabled, true, 'marking a comic read needs no reader link');
+  launchable = true;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueDone.hidden, false);
+  for (const [name, options, setup] of [
+    ['finished', { nextIssue: null, progress: { read: 2, total: 2 } }],
+    ['only deferred left', { nextIssue: null, progress: { read: 1, total: 2 } }, (state) => { state.lists.a.deferredIssueIds = [8]; }],
+    ['empty', { nextIssue: null, progress: { read: 0, total: 0 } }, (state) => { state.lists.a.itemIds = []; }],
+  ]) {
+    const quiet = harness({ populated: true, ...options });
+    setup?.(quiet.state);
+    quiet.view.render();
+    assert.equal(quiet.nodes.continueRead.hidden, true, `${name}: no Read`);
+    assert.equal(quiet.nodes.continueDone.hidden, true, `${name}: no Done either`);
+  }
+});
+
+test('UX-41 Done on Continue reading hands on one press and ignores a held Enter', () => {
+  const h = harness({ populated: true });
+  h.view.wire();
+  h.view.render();
+  h.nodes.continueDone.listeners.click({});
+  assert.equal(h.calls.done, 1, 'one press, one Done');
+  assert.deepEqual(h.calls.read, [], 'Done does not launch the reader');
+  const press = (key, repeat) => ({ key, repeat, preventDefault() { this.prevented = true; } });
+  const held = press('Enter', true);
+  h.nodes.continueDone.listeners.keydown(held);
+  assert.equal(held.prevented, true, 'an auto-repeated Enter does not activate Done again');
+  for (const fresh of [press('Enter', false), press(' ', true)]) {
+    h.nodes.continueDone.listeners.keydown(fresh);
+    assert.equal(fresh.prevented, undefined, `${JSON.stringify(fresh.key)} keeps its native activation`);
+  }
+});
+
+test('UX-41 Home\'s Done follows Read as a secondary command, named and described as the hero\'s is', () => {
+  const html = readFileSync(join(ROOT, 'src/index.html'), 'utf8');
+  const card = html.match(/<section id="home-continue"[\s\S]*?\n {12}<\/section>/)?.[0] ?? '';
+  assert.match(card, /<h2 id="chero-h" tabindex="-1">/, 'the card heading can take focus when Done goes');
+  const row = card.match(/<div class="cta" id="chero-actions">([\s\S]*?)<\/div>/)?.[1] ?? '';
+  const buttons = [...row.matchAll(/<button([^>]*)>([^<]*)<\/button>/g)]
+    .map(([, attributes, label]) => ({ attributes, label: label.trim() }));
+  assert.deepEqual(buttons.slice(0, 2).map(({ label }) => label), ['Read', 'Done'], 'Done sits directly after Read');
+  const [read, done] = buttons;
+  assert.match(read.attributes, /class="btn"/, 'Read stays the primary command');
+  assert.equal(buttons.filter(({ attributes }) => /class="btn"/.test(attributes)).length, 1, 'and the only one');
+  assert.match(done.attributes, /id="btn-chero-done"/);
+  assert.match(done.attributes, /class="btn btn-g"/, 'Done is secondary');
+  assert.match(done.attributes, /aria-describedby="chero-done-help"/);
+  // The hero's hint names the D shortcut and goes when D is off; D never acts on Home.
+  assert.doesNotMatch(done.attributes, /has-tooltip|data-tooltip|aria-keyshortcuts/);
+  const help = (id) => html.match(new RegExp(`<span id="${id}" hidden>([^<]*)</span>`))?.[1];
+  assert.ok(help('chero-done-help'), 'the description is present and hidden');
+  assert.equal(help('chero-done-help'), help('hero-done-help'), 'the same description as the hero\'s Done');
 });
