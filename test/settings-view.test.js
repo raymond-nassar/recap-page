@@ -30,6 +30,7 @@ const HEADING_LEVELS = [1, 2, 3, 4, 4, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'btn-export-json',
+  'backup-contents',
   'btn-export-md-2',
   'restore-file',
   'btn-undo-restore',
