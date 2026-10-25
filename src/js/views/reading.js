@@ -554,7 +554,11 @@ export function createReadingView({
     if (!list) {
       $('#order-name').textContent = 'Recap Page';
       $('#order-sub').textContent = 'Curated Reading Lists, tracked locally, linked into the Unlimited reader.';
-      if (isCurrent()) showView('home');
+      // Boot passes through here before it has shown any view whenever there is no list to resume,
+      // and isCurrent() already answers yes because the reading view is where the app starts out.
+      // The default focus move then put a ring around the Home logotype on every first launch.
+      // Only a reader who was looking at the reading view has a place to lose.
+      if (isCurrent()) showView('home', { focus: !$('#view-read').hidden });
       return;
     }
 

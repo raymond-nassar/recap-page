@@ -286,6 +286,7 @@ function harness(overrides = {}) {
     btnSynopsis: node({ id: 'btn-synopsis', tag: 'button' }),
     btnCancelSynopsis: node({ id: 'btn-cancel-synopsis', tag: 'button' }),
     readingBody: node({ id: 'reading-body' }),
+    viewRead: node({ id: 'view-read' }),
     ringWrap: node({ id: 'ring-wrap' }),
     shelf: node({ id: 'shelf', tag: 'ul' }),
     rows: node({ id: 'rows', tag: 'ul' }),
@@ -333,6 +334,7 @@ function harness(overrides = {}) {
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
     ['#reading-body', nodes.readingBody],
+    ['#view-read', nodes.viewRead],
     ['#ring-wrap', nodes.ringWrap],
     ['#order-name', nodes.orderName],
     ['#order-sub', nodes.orderSub],
@@ -1279,6 +1281,32 @@ test('undo delete stays inside the view through retry, dismiss, and controller i
 
     h.view.forgetDeleted();
     assert.equal(h.calls.clearNotice.at(-1), 'undo-delete');
+  } finally {
+    h.restore();
+  }
+});
+
+test('arriving with no list leaves focus alone, while removing the active list still focuses Home', async () => {
+  const arrival = harness({ state: createEmptyState() });
+  try {
+    arrival.nodes.viewRead.hidden = true;
+    arrival.view.render();
+    assert.deepEqual(arrival.calls.showView.filter((call) => call.name), [{ name: 'home', opts: { focus: false } }],
+      'boot renders before any view is shown, so there is no reading view to leave');
+  } finally {
+    arrival.restore();
+  }
+
+  let solo = createList(createEmptyState(), { id: 'solo', name: 'Solo' });
+  solo = setActive(addIssuesToList(solo, 'solo', [issue(1, 'Issue One')], {}).state, 'solo');
+  const h = removalHarness({ state: solo });
+  try {
+    h.calls.showView.length = 0;
+    h.nodes.btnDeleteList.focus();
+    await h.nodes.btnDeleteList.fire('click');
+    assert.equal(Boolean(h.state().lists.solo), false);
+    assert.deepEqual(h.calls.showView.filter((call) => call.name), [{ name: 'home', opts: { focus: true } }],
+      'the reader was on the reading view, so the Home heading takes focus');
   } finally {
     h.restore();
   }

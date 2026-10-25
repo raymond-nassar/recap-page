@@ -5167,6 +5167,14 @@ const SCENARIOS = [
     async run(page, t) {
       await open(page, '/');
       await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse', { timeout: 15000 });
+      // #825: boot renders the reading view's empty state before it has shown any view, and that
+      // used to move focus to the Home heading and ring the logotype on every first launch.
+      const arrival = await page.evaluate(() => ({
+        focused: document.activeElement === document.body ? 'body' : document.activeElement?.id ?? null,
+        ring: document.querySelector('#home-h')?.matches(':focus-visible') ?? null,
+      }));
+      t.check('a fresh first run leaves focus on the document with no ring on the Home heading',
+        arrival.focused === 'body' && arrival.ring === false, JSON.stringify(arrival));
       const initial = await page.evaluate(() => ({
         question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
         distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
@@ -5367,6 +5375,23 @@ const SCENARIOS = [
         populated.firstRunHidden && !populated.continueHidden && !populated.yoursHidden
         && populated.order[0] < populated.order[1] && populated.order[1] < populated.order[2],
         JSON.stringify(populated));
+
+      // The other side of the arrival check above: a reader who removes the list they are reading
+      // has just lost the screen under them, so Home must still take focus.
+      await click(page, '#btn-chero-open');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await revealReadingControl(page, '#btn-delete-list');
+      await page.focus('#btn-delete-list');
+      await click(page, '#btn-delete-list');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => location.hash === '#/home', { timeout: 15000 });
+      const removal = await page.evaluate(() => ({
+        focused: document.activeElement?.id ?? null,
+        lists: JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length,
+      }));
+      t.check('removing the active list from the reading view still focuses the Home heading',
+        removal.focused === 'home-h' && removal.lists === 0, JSON.stringify(removal));
     },
   },
   {
