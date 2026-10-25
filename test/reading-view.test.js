@@ -13,7 +13,7 @@ import {
   setIssueNote,
   setListNote,
   renameList, moveItem, removeFromList, setOverride, upsertIssue, exportBackup,
-  setDeferred, isDeferred, listReadingProgress, deleteList,
+  setDeferred, isDeferred, listReadingProgress, deleteList, upNext,
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
@@ -318,6 +318,11 @@ function harness(overrides = {}) {
     hydrationStatus: node({ id: 'hydration-status' }),
     synopsisStatus: node({ id: 'synopsis-status' }),
     allReadHeading: node({ id: 'all-read-h', tag: 'h2' }),
+    viewHome: node({ id: 'view-home', hidden: true }),
+    homeContinue: node({ id: 'home-continue' }),
+    cheroHeading: node({ id: 'chero-h', tag: 'h2' }),
+    btnCheroRead: node({ id: 'btn-chero-read', tag: 'button' }),
+    btnCheroDone: node({ id: 'btn-chero-done', tag: 'button' }),
   };
   nodes.full = node({ id: 'full', tag: 'details', open: overrides.fullOpen ?? true }, [nodes.fullSummary, nodes.fullAction, nodes.fullCount, nodes.readingFilters]);
   nodes.listActionsSummary = node({ tag: 'summary', text: 'List actions' });
@@ -406,6 +411,14 @@ function harness(overrides = {}) {
   nodes.allRead.append(nodes.allReadHeading);
   nodes['all-deferred'].append(nodes['all-deferred-h']);
   selectorMap.set('#hero-primary-actions', nodes.heroPrimaryActions);
+  // Home's Continue reading card has a Done for the same list. Its result goes after the card's
+  // command row, and the card's heading takes focus when nothing is next.
+  nodes.cheroActions = node({ id: 'chero-actions' }, [nodes.btnCheroRead, nodes.btnCheroDone]);
+  nodes.homeContinue.append(node({ class: 'chero-body' }, [nodes.cheroHeading, nodes.cheroActions]));
+  nodes.viewHome.append(nodes.homeContinue);
+  for (const [selector, entry] of [['#view-home', nodes.viewHome], ['#home-continue', nodes.homeContinue],
+    ['#chero-h', nodes.cheroHeading], ['#chero-actions', nodes.cheroActions],
+    ['#btn-chero-read', nodes.btnCheroRead], ['#btn-chero-done', nodes.btnCheroDone]]) selectorMap.set(selector, entry);
 
   const documentStub = {
     activeElement: null,
@@ -1823,7 +1836,7 @@ test('renderRows separates individual issues after an edition without changing s
 
 function doneResultNode(h) {
   const found = [];
-  for (const root of [h.nodes.hero, h.nodes.allRead, h.nodes['all-deferred']]) {
+  for (const root of [h.nodes.hero, h.nodes.allRead, h.nodes['all-deferred'], h.nodes.homeContinue]) {
     walk(root, (entry) => { if (entry.id === 'done-result') found.push(entry); });
   }
   assert.ok(found.length <= 1, `at most one result is on the page, found ${found.length}`);
@@ -2140,4 +2153,156 @@ test('UX-02 a refused Done offers nothing, and Undo lands on Done wherever D was
     assert.equal(longer.nodes.heroTitle.textContent, 'Issue Six');
     assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroDone, 'after Undo focus is on Done, wherever D was pressed');
   } finally { longer.restore(); }
+});
+
+// UX-41 (#829): Home's Continue reading has a Done for the list its card shows, sharing the result
+// and Undo above. Home paints its own card, so this mirrors only the part that matters here: Done
+// hides with Read when nothing is next, as Home's render does after every save.
+function homeHarness(overrides = {}) {
+  let reading = false;
+  const h = removalHarness({ ...overrides, isCurrent: () => reading });
+  const sync = () => { h.nodes.btnCheroDone.hidden = !upNext(h.state(), h.state().active); };
+  const repaint = h.store.onChange;
+  h.store.onChange = (next, error) => { repaint(next, error); sync(); };
+  h.nodes.viewHome.hidden = false;
+  sync();
+  // A change of view as showView makes it, minus the retirement it also performs.
+  return { ...h, showReading() { reading = true; h.nodes.viewHome.hidden = true; } };
+}
+
+function pressHomeDone(h) {
+  h.nodes.btnCheroDone.focus();
+  h.view.markReadFromHome();
+  return doneParts(h);
+}
+
+test('UX-41 Done on Home marks the card\'s comic with the same result under its commands, and says Undo once', () => {
+  const h = homeHarness();
+  try {
+    const done = pressHomeDone(h);
+    assert.ok(done, 'Done on Home leaves a visible result');
+    assert.equal(nextAfter(h.nodes.cheroActions), done.result, 'directly under the card\'s commands, so Done does not move');
+    assert.equal(done.message, 'Marked Issue Two read.');
+    assert.equal(done.name, 'Undo: mark Issue Two unread');
+    assert.equal(done.kind, 'notice notice-ok notice-act');
+    assert.ok(h.state().read[2], 'the comic the card named is saved as read');
+    assert.deepEqual(h.calls.announce, ['Issue Two marked read. Next up: Issue Three. Undo is available.']);
+    assert.equal(globalThis.document.activeElement, h.nodes.btnCheroDone, 'focus stays on the Done that was pressed');
+    assert.equal(h.nodes.btnCheroDone.hidden, false, 'a next comic keeps Done on the card');
+
+    const last = pressHomeDone(h);
+    assert.equal(done.result.isConnected, false, 'the next Done retires the earlier result');
+    assert.equal(last.message, 'Marked Issue Three read.');
+    assert.equal(nextAfter(h.nodes.cheroActions), last.result, 'the card keeps its commands, so the result stays under them');
+    assert.equal(h.nodes.btnCheroDone.hidden, true, 'Done hides with Read when nothing is next');
+    assert.equal(globalThis.document.activeElement, h.nodes.cheroHeading, 'focus goes to the card\'s heading');
+    assert.equal(h.calls.announce.at(-1), 'Issue Three marked read. That is the whole order finished. Undo is available.');
+  } finally { h.restore(); }
+});
+
+test('UX-41 Undo from Home puts back every saved byte and lands on Home\'s Done, from the end of the list too', () => {
+  for (const [name, state] of [
+    ['next comic', seededState()],
+    ['nothing left queued', setDeferred(seededState(), 'list-a', 3)],
+  ]) {
+    const h = homeHarness({ state });
+    try {
+      const before = savedContent(h);
+      const done = pressHomeDone(h);
+      if (name === 'nothing left queued') {
+        assert.equal(h.nodes.btnCheroDone.hidden, true, `${name}: Done hides`);
+        assert.equal(globalThis.document.activeElement, h.nodes.cheroHeading, `${name}: the card's heading has focus`);
+      }
+      done.button.focus();
+      done.button.fire('click');
+      assert.equal(savedContent(h), before, `${name}: Undo restores exactly what Done replaced`);
+      assert.equal(h.nodes.btnCheroDone.hidden, false, `${name}: the comic is next again`);
+      assert.equal(globalThis.document.activeElement, h.nodes.btnCheroDone, `${name}: focus returns to Home's Done`);
+      const confirmed = doneParts(h);
+      assert.equal(confirmed.message, 'Marked Issue Two unread. It is up next again.', name);
+      assert.equal(confirmed.button, null, `${name}: the confirmation offers nothing to press twice`);
+      assert.equal(nextAfter(h.nodes.cheroActions), confirmed.result, `${name}: in place under the card's commands`);
+      assert.equal(h.calls.announce.length, 2, `${name}: one announcement for Done and one for Undo`);
+    } finally { h.restore(); }
+  }
+});
+
+test('UX-41 a Home offer stands only while Home shows, and Done in either place ends the other\'s offer', () => {
+  const h = homeHarness();
+  try {
+    h.useFakeTimers();
+    const done = pressHomeDone(h);
+    h.view.retireDoneResult();
+    assert.equal(done.result.isConnected, false, 'leaving Home retires it, as any change of view does');
+    assert.equal(h.pendingTimers(), 0, 'and its timer');
+    const raw = h.storage.getItem(KEY);
+    done.button.fire('click');
+    assert.equal(h.storage.getItem(KEY), raw, 'its button cannot write afterwards');
+    assert.equal(h.calls.announce.at(-1), 'Undo is no longer available for Issue Two.');
+  } finally { h.restore(); }
+
+  const missed = homeHarness();
+  try {
+    const done = pressHomeDone(missed);
+    missed.showReading();
+    missed.store.update((state) => setIssueNote(state, 2, 'A note, which would keep the offer on Home'));
+    assert.equal(doneParts(missed), null, 'a repaint once Home has gone withdraws an offer the navigation missed');
+    assert.equal(done.result.isConnected, false);
+  } finally { missed.restore(); }
+
+  const both = homeHarness({ state: addIssuesToList(seededState(), 'list-a', [issue(6, 'Issue Six')]).state });
+  try {
+    const home = pressHomeDone(both);
+    both.nodes.btnHeroDone.focus();
+    both.nodes.btnHeroDone.fire('click');
+    assert.equal(home.result.isConnected, false, 'the reading view\'s Done ends the Home offer');
+    const hero = doneParts(both);
+    assert.equal(nextAfter(both.nodes.heroPrimaryActions), hero.result, 'and its own result is the only one');
+    pressHomeDone(both);
+    assert.equal(hero.result.isConnected, false, 'and Home\'s Done ends the reading view\'s');
+    assert.equal(nextAfter(both.nodes.cheroActions), doneParts(both).result);
+  } finally { both.restore(); }
+});
+
+test('UX-41 a change Undo could not reverse withdraws the Home offer, and a refused save offers Try again on the card', () => {
+  for (const [name, edit] of [
+    ['reorder', (state) => moveItem(state, 'list-a', 3, -1)],
+    ['another list opened', (state) => setActive(state, 'list-b')],
+    ['another tab saved', null],
+  ]) {
+    const h = homeHarness();
+    try {
+      const done = pressHomeDone(h);
+      done.button.focus();
+      if (edit) {
+        h.store.update(edit);
+      } else {
+        const foreign = JSON.stringify({ writeToken: 'foreign-829', ...exportBackup(h.state()) });
+        h.storage.map.set(KEY, foreign);
+        h.store.adoptForeignWrite(foreign);
+      }
+      assert.equal(doneParts(h), null, `${name}: withdrawn`);
+      assert.equal(globalThis.document.activeElement, h.nodes.btnCheroDone, `${name}: focus leaves the removed Undo for Home's Done`);
+      const raw = h.storage.getItem(KEY);
+      done.button.fire('click');
+      assert.equal(h.storage.getItem(KEY), raw, `${name}: the withdrawn button cannot write`);
+    } finally { h.restore(); }
+  }
+
+  const h = homeHarness();
+  try {
+    const done = pressHomeDone(h);
+    done.button.focus();
+    h.storage.failWrites = 1;
+    done.button.fire('click');
+    assert.ok(h.state().read[2], 'the comic is still marked read');
+    const retry = doneParts(h);
+    assert.equal(retry.message, 'Issue Two is still marked read: that change could not be saved.');
+    assert.equal(retry.label, 'Try again');
+    assert.equal(nextAfter(h.nodes.cheroActions), retry.result, 'in place under the card\'s commands');
+    assert.equal(globalThis.document.activeElement, retry.button, 'focus moves to the retry it replaced');
+    retry.button.fire('click');
+    assert.equal(h.state().read[2], undefined);
+    assert.equal(globalThis.document.activeElement, h.nodes.btnCheroDone, 'the retry that succeeds lands on Home\'s Done');
+  } finally { h.restore(); }
 });

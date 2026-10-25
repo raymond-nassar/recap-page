@@ -278,12 +278,14 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 **Done's Undo reverses one saved mark, and only while nothing it depends on has changed.** It is
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
-offer records the list's membership and deferral arrays by reference, the comic's read timestamp
-and the list's queue, at `src/js/views/reading.js:1369-1383`. The first repaint that changes any of
-them withdraws it, as does a switch of list, completion, blocked storage or another tab's save,
-while a rename or a note keeps it. Undo checks the same record inside its own transaction, so a
-change that arrives without a repaint is refused rather than written over. Nothing about the offer
-is saved.
+offer records the view it was made in, the list's membership and deferral arrays by reference, the
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1369-1383`. The first
+repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
+or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
+transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
+about the offer is saved. Home's Continue reading has a Done of its own for the list its card shows,
+and it shares the same single offer: the result goes under the card's commands, and that offer
+stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
 refresh fan-out at `src/js/main.js:2639-2665`, including the rail, reading view, Home, Library hub

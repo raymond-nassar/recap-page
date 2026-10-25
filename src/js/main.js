@@ -3098,7 +3098,7 @@ const homeView = createHomeView({
     continueFallback: $('#chero-fb'),
     continueSeries: $('#chero-fs'),
     continueNumber: $('#chero-fn'),
-    continueRead: $('#btn-chero-read'),
+    continueRead: $('#btn-chero-read'), continueDone: $('#btn-chero-done'),
     continueOpen: $('#btn-chero-open'),
     continueReview: $('#btn-chero-review'),
     continueDeferred: $('#btn-chero-deferred'),
@@ -3133,7 +3133,7 @@ const homeView = createHomeView({
     if (category.route === 'reading-paths') void readingPathsView.render();
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
-  onOpen: () => openSavedList(continuingListId()),
+  onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
   onRead: (issue, event, source) => {
     if (selectSavedList(continuingListId())) openInReader(issue, event, source);
   },

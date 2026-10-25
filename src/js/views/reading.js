@@ -523,12 +523,12 @@ export function createReadingView({
     announce(`${list.name} is back in your library, in the position it had.`);
   }
 
-  function markCurrentRead() {
+  function markCurrentRead(surface = 'hero') {
     retireReaderHelp();
     if (isCompleted(getState(), activeListId())) return;
     const issue = upNext(getState(), activeListId());
     if (!issue) return;
-    beginDone();
+    beginDone(surface);
     const wasRead = isRead(getState(), issue.issueId);
     const { state } = updateState((current) => markRead(current, issue.issueId, true));
     const transition = recordDirectProgressSave({ wasRead, state, issueId: issue.issueId });
@@ -538,8 +538,8 @@ export function createReadingView({
     const said = next ? `${issue.title} marked read. Next up: ${next.title}.`
       : deferred ? `${issue.title} marked read. Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
         : `${issue.title} marked read. That is the whole order finished.`;
-    announce(withSaveEducation([said, offerDoneUndo(issue)].filter(Boolean).join(' '), transition));
-    if (!next) $(deferred ? '#all-deferred-h' : '#all-read-h').focus({ preventScroll: true });
+    announce(withSaveEducation([said, offerDoneUndo(issue, surface)].filter(Boolean).join(' '), transition));
+    if (!next) focusDoneLanding(surface);
   }
 
   function render() {
@@ -1366,17 +1366,17 @@ export function createReadingView({
   // a note keeps a list's arrays, while a reorder, an addition, a removal, a deferral and another
   // tab's save each replace them. The queue catches any other read change in the list, which would
   // leave a different comic up next after Undo.
-  function doneContext(listId, issueId, state = getState()) {
+  function doneContext(listId, issueId, state = getState(), surface = 'hero') {
     const list = state.lists[listId];
     return {
-      listId, issueId, itemIds: list?.itemIds, deferred: list?.deferredIssueIds,
+      surface, listId, issueId, itemIds: list?.itemIds, deferred: list?.deferredIssueIds,
       readAt: state.read[issueId], queued: queuedIssueIds(state, listId).join(),
     };
   }
 
   function doneContextHolds(context, state = getState()) {
     const now = doneContext(context.listId, context.issueId, state);
-    return !isStateBlocked() && isCurrent() && state.active === context.listId
+    return !isStateBlocked() && DONE_SURFACES[context.surface].current() && state.active === context.listId
       && !!now.itemIds && !isCompleted(state, context.listId)
       && now.itemIds === context.itemIds && now.deferred === context.deferred
       && now.readAt === context.readAt && now.queued === context.queued;
@@ -1384,30 +1384,50 @@ export function createReadingView({
 
   const doneResultHolds = (result) => !result.context || doneContextHolds(result.context);
 
-  // After the hero's command group, so nothing above the pressed control moves, as with the reader
-  // hint. When Done finished the queue the hero is gone, and the heading that replaced it, which
-  // already takes focus, is where the reader is looking.
-  function doneResultAnchor() {
-    if (!$('#hero').hidden) return $('#hero-primary-actions');
-    if (!$('#all-deferred').hidden) return $('#all-deferred-h');
-    if (!$('#all-read').hidden) return $('#all-read-h');
-    return null;
+  // Each Done says where its result goes, where focus lands and when its offer stands. The hero's
+  // result goes after its command group, so nothing above the pressed control moves, as with the
+  // reader hint; when Done finished the queue the hero is gone, and the heading that replaced it,
+  // which already takes focus, is where the reader is looking. Home's Continue reading has a Done of
+  // its own for the same list. Its card keeps the command row when nothing is next, so the result
+  // stays under the row while Done hides with Read and the card's heading takes focus. Each offer
+  // stands only while the view it was made in is showing.
+  const DONE_SURFACES = {
+    hero: {
+      button: '#btn-hero-done',
+      current: () => isCurrent(),
+      anchor: () => [['#hero', '#hero-primary-actions'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
+        .find(([section]) => !$(section).hidden)?.[1],
+      landing: () => [['#hero', '#btn-hero-done'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
+        .find(([section]) => !$(section).hidden)?.[1],
+    },
+    home: {
+      button: '#btn-chero-done',
+      current: () => !$('#view-home').hidden,
+      anchor: () => ($('#home-continue').hidden ? null : '#chero-actions'),
+      landing: () => ($('#home-continue').hidden ? null : $('#btn-chero-done').hidden ? '#chero-h' : '#btn-chero-done'),
+    },
+  };
+
+  function doneResultAnchor(surface) {
+    const selector = DONE_SURFACES[surface].anchor();
+    return selector ? $(selector) : null;
   }
 
   // The next Done ends the earlier result before it saves, so the repaint never withdraws a result
-  // from under focus. Focus inside it goes to Done, the control the new press belongs to.
-  function beginDone() {
-    if (doneResult?.node?.contains(document.activeElement)) $('#btn-hero-done').focus({ preventScroll: true });
+  // from under focus. Focus inside it goes to the Done that was pressed, the control the new press
+  // belongs to. One result exists at a time, so Done in either place ends the other's offer.
+  function beginDone(surface) {
+    if (doneResult?.node?.contains(document.activeElement)) $(DONE_SURFACES[surface].button).focus({ preventScroll: true });
     retireDoneResult();
   }
 
   // Only a saved mark is offered back: a refused write has been reported already, and its rollback
   // left nothing for Undo to reverse. What this returns joins Done's own announcement, because the
   // result is deliberately not a live region and that announcement is the one thing said.
-  function offerDoneUndo(issue) {
+  function offerDoneUndo(issue, surface) {
     if (!isRead(getState(), issue.issueId)) return '';
-    const result = { issueId: issue.issueId, title: issue.title, offered: true };
-    result.context = doneContext(activeListId(), issue.issueId);
+    const result = { issueId: issue.issueId, title: issue.title, offered: true, surface };
+    result.context = doneContext(activeListId(), issue.issueId, getState(), surface);
     return paintDoneResult(result, `Marked ${issue.title} read.`, 'ok', 'Undo') ? 'Undo is available.' : '';
   }
 
@@ -1416,7 +1436,7 @@ export function createReadingView({
   // place, unless the hero or end state it stood in has since been hidden.
   function paintDoneResult(result, msg, kind, label = null) {
     const inPlace = result.node?.isConnected && result.node.getClientRects().length > 0;
-    const anchor = inPlace ? null : doneResultAnchor();
+    const anchor = inPlace ? null : doneResultAnchor(result.surface);
     if (!inPlace && !anchor) {
       if (doneResult === result) retireDoneResult();
       return false;
@@ -1479,14 +1499,14 @@ export function createReadingView({
   function withdrawDoneResult(result) {
     const focused = result.node?.contains(document.activeElement);
     retireDoneResult();
-    if (focused) focusDoneLanding();
+    if (focused) focusDoneLanding(result.surface);
   }
 
-  // Done when the hero shows a comic, which it always does after a successful Undo, and otherwise the
-  // end-state heading that replaced it, which is where Done itself sends focus.
-  function focusDoneLanding() {
-    const target = [['#hero', '#btn-hero-done'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
-      .find(([section]) => !$(section).hidden)?.[1];
+  // The Done that was pressed, which always shows a comic again after a successful Undo, and
+  // otherwise the heading Done itself sends focus to: the end state's in the reading view, the
+  // card's on Home.
+  function focusDoneLanding(surface) {
+    const target = DONE_SURFACES[surface].landing();
     if (target) $(target).focus({ preventScroll: true });
     else focusCurrentView();
   }
@@ -1516,16 +1536,16 @@ export function createReadingView({
     const { ok, state } = outcome;
     if (ok && undone && state === getState() && !isRead(state, result.issueId)) {
       const message = `Marked ${result.title} unread. It is up next again.`;
-      Object.assign(result, { offered: false, context: doneContext(result.context.listId, result.issueId) });
+      Object.assign(result, { offered: false, context: doneContext(result.context.listId, result.issueId, getState(), result.surface) });
       paintDoneResult(result, message, 'ok');
-      focusDoneLanding();
+      focusDoneLanding(result.surface);
       announce(message);
     } else if (!ok && doneContextHolds(result.context)) {
       // The Store's alert has already said why the write failed, so this adds the retry beside the
       // comic rather than a second announcement.
       const shown = paintDoneResult(result, `${result.title} is still marked read: that change could not be saved.`, 'error', 'Try again');
       if (focused && shown) result.button.focus();
-      else if (focused) focusDoneLanding();
+      else if (focused) focusDoneLanding(result.surface);
     } else {
       refuseDoneUndo(result, ok);
     }
@@ -1538,12 +1558,13 @@ export function createReadingView({
     const message = `Undo is no longer available because the Reading List changed. You can still mark ${result.title} unread in the full Reading List.`;
     Object.assign(result, { offered: false, context: null });
     paintDoneResult(result, message, 'warn');
-    if (focused) focusDoneLanding();
+    if (focused) focusDoneLanding(result.surface);
     if (speak) announce(message);
   }
 
   return {
     retireDoneResult,
+    markReadFromHome: () => markCurrentRead('home'),
     toggleSavedRead,
     editIssueNote,
     openDeferred,

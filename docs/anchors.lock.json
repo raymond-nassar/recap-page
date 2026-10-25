@@ -1631,8 +1631,8 @@
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:1369-1383|0": {
     "anchor": "src/js/views/reading.js:1369-1383",
-    "fp": "e13652d93c5a7f0d",
-    "head": "function doneContext(listId, issueId, state = getState()) {"
+    "fp": "c25557f274159486",
+    "head": "function doneContext(listId, issueId, state = getState(), surface = 'hero') {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:36-44|0": {
     "anchor": "src/js/views/reading.js:36-44",

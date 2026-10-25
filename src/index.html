@@ -197,15 +197,15 @@
                        the section unnamed as well as failing on its own. renderContinue
                        replaces it with the list name and puts it back when the section
                        goes away. -->
-                  <h2 id="chero-h">Continue reading</h2>
+                  <h2 id="chero-h" tabindex="-1">Continue reading</h2>
                   <div class="pbar" id="chero-bar" role="progressbar"
                        aria-label="Reading progress" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
                     <i id="chero-fill"></i>
                   </div>
                   <p class="chero-count" id="chero-count"></p>
                   <p class="chero-next" id="chero-next"></p>
-                  <div class="cta">
-                    <button type="button" class="btn" id="btn-chero-read">Read</button>
+                  <div class="cta" id="chero-actions">
+                    <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Marks this comic read and shows the next one.</span>
                     <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
