@@ -177,7 +177,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
 
 test('every navigation retires the reader hint and no page-top slot remains for it', () => {
   const source = read('../src/js/main.js');
-  assert.match(source, /function showView\(next, \{ focus = true, push = false \} = \{\}\) \{\n {2}retireReaderHelp\(\);\n/);
+  assert.match(source, /function showView\(next, \{ focus = true, push = false \} = \{\}\) \{\n {2}retireReaderHelp\(\);[^\n]*\n/);
   assert.doesNotMatch(html, /id="reader-handoff-help"/);
 });
 

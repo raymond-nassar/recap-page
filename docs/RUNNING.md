@@ -302,10 +302,11 @@ reader when a direct link is available; otherwise it opens the issue's official 
 
 ### Comic details and reading actions
 
-Reading keeps **Read** and **Done, next** together. **About this comic** opens its details without
-marking it read. **More comic actions** contains **Defer for later** and the external issue-page
-link. A completed list offers **Browse Reading Lists**; deferred comics retain their separate
-review and resume actions.
+Reading keeps **Read** and **Done** together. After **Done**, a message beneath it names the comic it
+marked read and offers **Undo** for ten seconds, or for as long as you point at it or keep keyboard
+focus in it. **About this comic** opens its details without marking it read. **More comic actions**
+contains **Defer for later** and the external issue-page link. A completed list offers **Browse
+Reading Lists**; deferred comics retain their separate review and resume actions.
 
 Comic details put **Read** near the title. Creator information, dates and any saved note remain
 in the main view. **Trouble opening this comic?** contains the full Unlimited availability status,

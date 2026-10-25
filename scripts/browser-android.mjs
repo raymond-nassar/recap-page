@@ -2389,6 +2389,39 @@ async function mobileLayout(page, label, narrow) {
   });
   check(hint.beside && hint.moved.every((delta) => delta === 0),
     `${label}: the reader hint sits beside Read without scrolling the page under it ${JSON.stringify(hint)}`);
+  // #829: a tap on Done names the comic under the stacked Read and Done, and a tap on Undo puts it
+  // back. This first Done also retires the one-time save note above the hero, which moves the hero
+  // (UX-10, #836), so placement and restoration are checked here rather than stillness.
+  const readCount = () => page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+  const beforeDone = { title: await page.$eval('#hero-title', (node) => node.textContent), read: await readCount() };
+  await page.tap('#btn-hero-done');
+  const shown = await page.waitForSelector('#done-result button', { timeout: 5000 }).then(() => true, () => false);
+  const offered = shown ? await page.evaluate((title) => {
+    const result = document.querySelector('#done-result');
+    const box = result.getBoundingClientRect();
+    const undo = result.querySelector('button').getBoundingClientRect();
+    return {
+      beside: result.previousElementSibling?.id === 'hero-primary-actions',
+      named: result.querySelector('.grow')?.textContent === `Marked ${title} read.`,
+      fits: box.left >= 0 && box.right <= document.documentElement.clientWidth,
+      target: [Math.round(undo.width), Math.round(undo.height)],
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    };
+  }, beforeDone.title) : { shown };
+  check(shown && offered.beside && offered.named && offered.fits && offered.target.every((side) => side >= 48) && !offered.overflow,
+    `${label}: a tap on Done names the comic under the stacked commands with a 48px Undo ${JSON.stringify(offered)}`);
+  if (shown) {
+    await page.tap('#done-result button');
+    await page.waitForFunction((title) => document.querySelector('#hero-title')?.textContent === title, {}, beforeDone.title);
+    const undone = {
+      read: await readCount(),
+      focus: await page.evaluate(() => document.activeElement?.id ?? null),
+      text: await page.$eval('#done-result .grow', (node) => node.textContent),
+    };
+    check(undone.read === beforeDone.read && undone.focus === 'btn-hero-done'
+      && undone.text === `Marked ${beforeDone.title} unread. It is up next again.`,
+    `${label}: a tap on Undo puts the comic back as next with focus on Done ${JSON.stringify(undone)}`);
+  }
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;

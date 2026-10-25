@@ -2339,6 +2339,16 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .review-earlier { border-color: CanvasText; background: Canvas; }
   .review-earlier [aria-disabled="true"] { color: GrayText; }
 }
+/* Done's result follows the hero's command group, so it keeps the group's own gap above it and
+   pushes down only what is below the pressed control. Under an end-state heading it keeps that
+   column's measure but reads from the start, like every other notice with an action. It flows as
+   one run of text with Undo after the sentence, not as the notices' flex row: in the Android build
+   at 320px with 200 per cent text that row squeezed the message beside Undo into a column of one
+   syllable a line, because the Android overlay lets a notice break anywhere. */
+#done-result { display: block; margin: var(--space-5) 0 0; }
+#done-result .grow { margin-inline-end: var(--space-5); }
+#done-result button { vertical-align: middle; }
+.empty-state #done-result { margin: 0 auto var(--space-5); text-align: start; }
 
 .completion-wrapup { margin-block: var(--space-6); overflow-wrap: anywhere; }
 .completion-mark { min-height: 44px; color: var(--accent-text); font-weight: 600; }
