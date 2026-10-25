@@ -19382,6 +19382,9 @@ SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersis
 const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
+const doneUndo = await import('./browser-done-undo.mjs');
+SCENARIOS.push(doneUndo.doneUndo);
+MUTATIONS.push(...doneUndo.doneUndoMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

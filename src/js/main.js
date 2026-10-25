@@ -1382,7 +1382,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
-  retireReaderHelp();
+  retireReaderHelp(); readingView.retireDoneResult();
   previewView.invalidate();
   tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the

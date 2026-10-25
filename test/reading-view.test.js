@@ -13,7 +13,7 @@ import {
   setIssueNote,
   setListNote,
   renameList, moveItem, removeFromList, setOverride, upsertIssue, exportBackup,
-  setDeferred, isDeferred, listReadingProgress,
+  setDeferred, isDeferred, listReadingProgress, deleteList,
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
@@ -24,6 +24,7 @@ import {
   rowCacheKey,
   detailsState,
   DETAILS_BADGE,
+  DONE_RESULT_MS,
   synopsisFallback,
 } from '../src/js/views/reading.js';
 
@@ -98,6 +99,25 @@ function node(props = {}, children = []) {
     append(...next) {
       for (const child of next.flat()) this.childNodes.push(attach(this, child));
     },
+    // Done's result is placed beside a static anchor and replaced where it stands, so the stub
+    // needs both sibling operations, and connection follows the node in and out of a parent.
+    after(...next) {
+      const parent = this.parentNode;
+      if (!parent) return;
+      for (const [offset, child] of next.entries()) {
+        child.parentNode?.childNodes.splice(child.parentNode.childNodes.indexOf(child), 1);
+        parent.childNodes.splice(parent.childNodes.indexOf(this) + 1 + offset, 0, attach(parent, child));
+        child.isConnected = true;
+      }
+    },
+    replaceWith(next) {
+      const parent = this.parentNode;
+      if (!parent) return;
+      parent.childNodes.splice(parent.childNodes.indexOf(this), 1, attach(parent, next));
+      next.isConnected = true;
+      this.parentNode = null;
+      this.isConnected = false;
+    },
     contains(target) {
       if (target === this) return true;
       return this.childNodes.some((child) => child?.contains?.(target));
@@ -112,7 +132,12 @@ function node(props = {}, children = []) {
       this.focused = options ?? true;
     },
     getAttribute(name) { return this.attributes[name]; },
-    getClientRects() { return this.hidden ? [] : [{}]; },
+    // A hidden ancestor hides its descendants, which is what lets the result tell an end state
+    // that has been replaced by the hero from one still on screen.
+    getClientRects() {
+      for (let at = this; at; at = at.parentNode) if (at.hidden) return [];
+      return [{}];
+    },
     scrollIntoView(options) { this.scrolled = options; },
     insertBefore(next, ref) {
       const child = attach(this, next);
@@ -374,6 +399,13 @@ function harness(overrides = {}) {
     nodes[id] = node({ id, hidden: id === 'review-earlier' });
     selectorMap.set(`#${id}`, nodes[id]);
   }
+  // The document nests each end-state heading in its section and the hero's two commands in one
+  // group, which is what Done's result is placed against and what hiding a section hides.
+  nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
+  nodes.hero.append(node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.heroReaderTemporary]));
+  nodes.allRead.append(nodes.allReadHeading);
+  nodes['all-deferred'].append(nodes['all-deferred-h']);
+  selectorMap.set('#hero-primary-actions', nodes.heroPrimaryActions);
 
   const documentStub = {
     activeElement: null,
@@ -492,6 +524,13 @@ function harness(overrides = {}) {
       calls.storeChanges.push({ error, offered: notices.has('undo-remove'), blocked: readerStore.blocked });
     };
   }
+  // Done's result retires on a ten-second timer. A test that wants to move time installs these
+  // before pressing Done; every other test has its timer cleared on restore, so no pending timer
+  // keeps the test process alive.
+  const realTimers = { set: globalThis.setTimeout, clear: globalThis.clearTimeout };
+  const timers = new Map();
+  let clock = 0;
+  let timerIds = 0;
   return {
     calls,
     nodes,
@@ -503,7 +542,27 @@ function harness(overrides = {}) {
     setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
     view,
+    useFakeTimers() {
+      globalThis.setTimeout = (fn, ms = 0) => {
+        timerIds += 1;
+        timers.set(timerIds, { fn, at: clock + ms });
+        return timerIds;
+      };
+      globalThis.clearTimeout = (id) => { timers.delete(id); };
+    },
+    advance(ms) {
+      clock += ms;
+      for (const [id, timer] of [...timers].sort((a, b) => a[1].at - b[1].at)) {
+        if (timer.at > clock || !timers.has(id)) continue;
+        timers.delete(id);
+        timer.fn();
+      }
+    },
+    pendingTimers: () => timers.size,
     restore() {
+      view.retireDoneResult?.();
+      globalThis.setTimeout = realTimers.set;
+      globalThis.clearTimeout = realTimers.clear;
       if (previousDocument === undefined) delete globalThis.document;
       else globalThis.document = previousDocument;
       if (previousMatchMedia === undefined) delete globalThis.matchMedia;
@@ -1329,6 +1388,7 @@ test('main constructs Reading once and delegates reading-owned work through the 
     /readingView\.renderSynopsis\(status\)/,
     /readingView\.forgetDeleted\(\)/,
     /readingView\.forgetDeletedFor\(catalogId, order\.name\)/,
+    /function showView\([^)]*\) \{\s*retireReaderHelp\(\); readingView\.retireDoneResult\(\);/,
   ]) {
     assert.match(main, pattern);
   }
@@ -1756,4 +1816,328 @@ test('renderRows separates individual issues after an edition without changing s
       uniform.restore();
     }
   }
+});
+
+// UX-02 (#829): Done's visible result and Undo. Undo is recovery code in the progress path, so most
+// of these press it in the states that make recovery dangerous rather than in the easy one.
+
+function doneResultNode(h) {
+  const found = [];
+  for (const root of [h.nodes.hero, h.nodes.allRead, h.nodes['all-deferred']]) {
+    walk(root, (entry) => { if (entry.id === 'done-result') found.push(entry); });
+  }
+  assert.ok(found.length <= 1, `at most one result is on the page, found ${found.length}`);
+  return found[0] ?? null;
+}
+
+function doneParts(h) {
+  const result = doneResultNode(h);
+  if (!result) return null;
+  const [message, button = null] = result.childNodes;
+  return {
+    result, button, kind: result.className, message: message.textContent,
+    label: button?.childNodes.filter((child) => typeof child === 'string').join('') ?? null,
+    name: button?.attributes['aria-label'] ?? null,
+  };
+}
+
+const nextAfter = (anchor) => anchor.parentNode.childNodes[anchor.parentNode.childNodes.indexOf(anchor) + 1];
+const keyPress = (key, extra = {}) => ({
+  key, altKey: false, ctrlKey: false, metaKey: false, ...extra, preventDefault() { this.prevented = true; },
+});
+
+// The saved reading data minus the two stamps every write renews, so equal means nothing a reader
+// owns differs.
+const withoutStamps = ({ writeToken: _token, exportedAt: _stamp, ...content }) => content;
+const savedContent = (h) => JSON.stringify(withoutStamps(JSON.parse(h.storage.getItem(KEY))));
+
+function pressDone(h) {
+  h.nodes.btnHeroDone.focus();
+  h.nodes.btnHeroDone.fire('click');
+  return doneParts(h);
+}
+
+// The production save path answers null when the mark was not saved, which is what stops a refused
+// Done from being announced. The ordinary stub always answers yes.
+const savedOnly = ({ wasRead, state, issueId }) => (Object.hasOwn(state.read, issueId) === wasRead ? null : {});
+
+test('UX-02 Done and D show one result naming the comic under the commands, and say Undo once', () => {
+  const h = removalHarness();
+  try {
+    h.view.wireShortcuts();
+    const done = pressDone(h);
+    assert.ok(done, 'Done leaves a visible result');
+    assert.equal(nextAfter(h.nodes.heroPrimaryActions), done.result, 'directly under Read and Done, so neither moves');
+    assert.equal(done.message, 'Marked Issue Two read.');
+    assert.equal(done.label, 'Undo');
+    assert.equal(done.name, 'Undo: mark Issue Two unread', 'the name keeps the visible label and adds the comic');
+    assert.equal(done.kind, 'notice notice-ok notice-act', 'the shared notice pattern');
+    assert.equal(done.result.attributes['aria-live'] ?? done.result.role ?? null, null, 'not a second live region');
+    assert.deepEqual(h.calls.announce, ['Issue Two marked read. Next up: Issue Three. Undo is available.']);
+    assert.equal(h.calls.notify.length, 0, 'no notice pane says it a second time');
+    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroDone, 'focus stays on Done');
+
+    globalThis.document.listeners.keydown(keyPress('d'));
+    const last = doneParts(h);
+    assert.equal(done.result.isConnected, false, 'the next Done retires the earlier result');
+    assert.equal(last.message, 'Marked Issue Three read.');
+    assert.equal(nextAfter(h.nodes.allReadHeading), last.result, 'with the hero gone it goes under the heading that replaced it');
+    assert.equal(globalThis.document.activeElement, h.nodes.allReadHeading, 'the end state keeps its heading focus');
+    assert.deepEqual(h.calls.announce.slice(1), ['Issue Three marked read. That is the whole order finished. Undo is available.']);
+  } finally { h.restore(); }
+});
+
+test('UX-02 Undo puts back every saved byte, deferral, hero and focus, then confirms in place', () => {
+  for (const [name, state] of [
+    ['next comic', seededState()],
+    ['nothing left queued', setDeferred(seededState(), 'list-a', 3)],
+  ]) {
+    const h = removalHarness({ state });
+    try {
+      const before = savedContent(h);
+      const done = pressDone(h);
+      assert.notEqual(savedContent(h), before, `${name}: Done saved`);
+      done.button.focus();
+      done.button.fire('click');
+      assert.equal(savedContent(h), before, `${name}: Undo restores exactly what Done replaced`);
+      assert.equal(h.nodes.hero.hidden, false, name);
+      assert.equal(h.nodes.heroTitle.textContent, 'Issue Two', `${name}: the previous hero is back`);
+      assert.equal(globalThis.document.activeElement, h.nodes.btnHeroDone, `${name}: focus returns to Done`);
+      const confirmed = doneParts(h);
+      assert.equal(confirmed.message, 'Marked Issue Two unread. It is up next again.', name);
+      assert.equal(confirmed.button, null, `${name}: the confirmation offers nothing to press twice`);
+      assert.equal(nextAfter(h.nodes.heroPrimaryActions), confirmed.result, `${name}: under the commands again`);
+      assert.equal(h.calls.announce.length, 2, `${name}: one announcement for Done and one for Undo`);
+      assert.equal(h.calls.announce[1], 'Marked Issue Two unread. It is up next again.', name);
+    } finally { h.restore(); }
+  }
+});
+
+test('UX-02 a second Undo press changes nothing and says so', () => {
+  const h = removalHarness();
+  try {
+    const done = pressDone(h);
+    done.button.fire('click');
+    const undone = savedContent(h);
+    const confirmation = doneResultNode(h);
+    done.button.fire('click');
+    assert.equal(savedContent(h), undone, 'the stale button cannot write');
+    assert.equal(doneResultNode(h), confirmation, 'the confirmation stays as it was');
+    assert.equal(h.calls.announce.at(-1), 'Undo is no longer available for Issue Two.');
+  } finally { h.restore(); }
+});
+
+test('UX-02 any change Undo could not reverse exactly withdraws the offer on the repaint that makes it', () => {
+  const edits = [
+    ['reorder', (state) => moveItem(state, 'list-a', 3, -1)],
+    ['add an issue', (state) => addIssuesToList(state, 'list-a', [issue(6, 'Six')]).state],
+    ['remove another issue', (state) => removeFromList(state, 'list-a', 3)],
+    ['defer another issue', (state) => setDeferred(state, 'list-a', 3)],
+    ['marked unread another way', (state) => markRead(state, 2, false)],
+    ['marked read again another way', (state) => markRead(markRead(state, 2, false), 2, true, 829)],
+    ['an earlier comic marked unread', (state) => markRead(state, 1, false)],
+    ['list removed', (state) => deleteList(state, 'list-a')],
+    ['another list opened', (state) => setActive(state, 'list-b')],
+    ['another tab saved', null],
+  ];
+  for (const [name, edit] of edits) {
+    const h = removalHarness();
+    try {
+      const done = pressDone(h);
+      if (edit) {
+        h.store.update(edit);
+      } else {
+        const foreign = JSON.stringify({ writeToken: 'foreign-829', ...exportBackup(h.state()) });
+        h.storage.map.set(KEY, foreign);
+        h.store.adoptForeignWrite(foreign);
+      }
+      assert.equal(doneParts(h), null, `${name}: withdrawn`);
+      assert.equal(done.result.isConnected, false, name);
+      const raw = h.storage.getItem(KEY);
+      done.button.fire('click');
+      assert.equal(h.storage.getItem(KEY), raw, `${name}: the withdrawn button cannot write`);
+      assert.equal(h.calls.announce.at(-1), 'Undo is no longer available for Issue Two.', name);
+    } finally { h.restore(); }
+  }
+});
+
+test('UX-02 a rename, notes and changes outside the list keep the offer, and Undo still restores exactly', () => {
+  const h = removalHarness();
+  try {
+    const done = pressDone(h);
+    h.store.update((state) => {
+      let next = renameList(state, 'list-a', 'Renamed list');
+      next = setListNote(next, 'list-a', 'Later list note');
+      next = setIssueNote(next, 2, 'Later issue note');
+      next = setOverride(next, 2, 'available');
+      next = upsertIssue(next, { issueId: 3, title: 'Issue Three', hydrated: true });
+      return markRead(next, 4, true, 829);
+    });
+    assert.equal(doneResultNode(h), done.result, 'the same offer stays');
+    const edited = h.state();
+    done.button.fire('click');
+    const restored = h.state();
+    assert.equal(restored.read[2], undefined);
+    for (const key of ['issues', 'notes', 'overrides', 'lists', 'listOrder', 'active']) {
+      assert.equal(restored[key], edited[key], `${key} is untouched by Undo`);
+    }
+    assert.equal(restored.read[4], 829, 'a read change in another list survives');
+    assert.equal(h.nodes.heroTitle.textContent, 'Issue Two');
+  } finally { h.restore(); }
+});
+
+test('UX-02 a refused Undo save keeps the comic read and offers Try again beside it until one succeeds', () => {
+  const h = removalHarness();
+  try {
+    const done = pressDone(h);
+    const marked = savedContent(h);
+    done.button.focus();
+    h.storage.failWrites = 1;
+    done.button.fire('click');
+    assert.equal(savedContent(h), marked, 'nothing was written');
+    assert.ok(h.state().read[2], 'the comic is still marked read');
+    assert.match(h.calls.storeChanges.at(-1).error, /not saved/, 'the Store reported why');
+    const retry = doneParts(h);
+    assert.equal(retry.message, 'Issue Two is still marked read: that change could not be saved.');
+    assert.equal(retry.label, 'Try again');
+    assert.equal(retry.name, 'Try again: mark Issue Two unread');
+    assert.equal(retry.kind, 'notice notice-error notice-act');
+    assert.equal(globalThis.document.activeElement, retry.button, 'focus moves to the retry it replaced');
+    assert.equal(h.calls.announce.length, 1, 'the Store alert explains the failure, so the view adds no second announcement');
+    retry.button.fire('click');
+    assert.equal(h.state().read[2], undefined);
+    assert.equal(doneParts(h).message, 'Marked Issue Two unread. It is up next again.');
+  } finally { h.restore(); }
+});
+
+test('UX-02 another tab saving under the press refuses Undo without writing over its data', () => {
+  const h = removalHarness();
+  try {
+    const done = pressDone(h);
+    done.button.focus();
+    // Written but not yet adopted: the storage event reaches this tab 50 ms later.
+    const foreign = JSON.stringify({ writeToken: 'foreign-829', ...exportBackup(markRead(h.state(), 3, true, 829)) });
+    h.storage.map.set(KEY, foreign);
+    done.button.fire('click');
+    assert.equal(h.storage.getItem(KEY), foreign, 'the other tab keeps its save');
+    assert.match(h.calls.storeChanges.at(-1).error, /Another tab saved newer data/);
+    const refused = doneParts(h);
+    assert.equal(refused.message, 'Undo is no longer available because the Reading List changed. You can still mark Issue Two unread in the full Reading List.');
+    assert.equal(refused.button, null);
+    assert.equal(nextAfter(h.nodes.allReadHeading), refused.result, 'the refusal moves to where the reader now is');
+    assert.equal(globalThis.document.activeElement, h.nodes.allReadHeading, 'focus leaves the removed Undo');
+    assert.equal(h.calls.announce.length, 1, 'the Store alert has already spoken');
+  } finally { h.restore(); }
+});
+
+test('UX-02 Undo refuses and says so when the context changed without a repaint', () => {
+  let completed = false;
+  const h = removalHarness({ isCompleted: () => completed });
+  try {
+    const done = pressDone(h);
+    done.button.focus();
+    completed = true;
+    const before = savedContent(h);
+    done.button.fire('click');
+    assert.equal(savedContent(h), before);
+    const refused = doneParts(h);
+    assert.match(refused.message, /^Undo is no longer available because the Reading List changed\./);
+    assert.equal(h.calls.announce.at(-1), refused.message, 'nothing else has explained it, so it is announced');
+    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroDone);
+  } finally { h.restore(); }
+});
+
+test('UX-02 navigation and the set time retire the result; pointing at or focusing it holds the time', () => {
+  const linger = DONE_RESULT_MS * 6;
+  for (const hold of ['none', 'pointer', 'focus', 'both']) {
+    const h = removalHarness();
+    try {
+      h.useFakeTimers();
+      const { result } = pressDone(h);
+      if (hold === 'pointer' || hold === 'both') result.fire('pointerenter');
+      if (hold === 'focus' || hold === 'both') result.fire('focusin');
+      h.advance(DONE_RESULT_MS - 1);
+      assert.equal(result.isConnected, true, `${hold}: still there just before the set time`);
+      h.advance(1);
+      assert.equal(result.isConnected, hold !== 'none', `${hold}: retired at the set time unless held`);
+      if (hold === 'none') continue;
+      h.advance(linger);
+      assert.equal(result.isConnected, true, `${hold}: held as long as the reader is there`);
+      if (hold === 'both') {
+        result.fire('pointerleave');
+        h.advance(linger);
+        assert.equal(result.isConnected, true, 'focus still holds it after the pointer leaves');
+      }
+      result.fire('focusout', { relatedTarget: doneParts(h).button });
+      if (hold !== 'pointer') {
+        h.advance(linger);
+        assert.equal(result.isConnected, true, `${hold}: focus moving within it still holds it`);
+      }
+      result.fire(hold === 'pointer' ? 'pointerleave' : 'focusout', { relatedTarget: null });
+      h.advance(DONE_RESULT_MS - 1);
+      assert.equal(result.isConnected, true, `${hold}: the time restarts in full when the reader leaves`);
+      h.advance(1);
+      assert.equal(result.isConnected, false, hold);
+    } finally { h.restore(); }
+  }
+
+  const h = removalHarness();
+  try {
+    h.useFakeTimers();
+    const done = pressDone(h);
+    h.view.retireDoneResult();
+    assert.equal(done.result.isConnected, false, 'navigation retires it');
+    assert.equal(h.pendingTimers(), 0, 'and its timer');
+    h.view.render();
+    assert.equal(doneParts(h), null, 'returning to the list does not bring it back');
+    const raw = h.storage.getItem(KEY);
+    done.button.fire('click');
+    assert.equal(h.storage.getItem(KEY), raw, 'nor can its button write');
+    assert.ok(h.state().read[2], 'and the mark stays saved');
+  } finally { h.restore(); }
+});
+
+test('UX-02 a held Enter on Done acts once, as a held D does', () => {
+  const h = removalHarness();
+  try {
+    const held = keyPress('Enter', { repeat: true });
+    h.nodes.btnHeroDone.fire('keydown', held);
+    assert.equal(held.prevented, true, 'an auto-repeated Enter does not activate Done again');
+    for (const press of [keyPress('Enter', { repeat: false }), keyPress(' ', { repeat: true })]) {
+      h.nodes.btnHeroDone.fire('keydown', press);
+      assert.equal(press.prevented, undefined, `${JSON.stringify(press.key)} keeps its native activation`);
+    }
+  } finally { h.restore(); }
+});
+
+test('UX-02 a refused Done offers nothing, and Undo lands on Done wherever D was pressed', () => {
+  const h = removalHarness({ recordDirectProgressSave: savedOnly });
+  try {
+    const first = pressDone(h);
+    h.storage.failWrites = 1;
+    pressDone(h);
+    assert.equal(h.state().read[3], undefined);
+    assert.equal(doneParts(h), null, 'no result claims a mark that was not saved');
+    assert.equal(first.result.isConnected, false, 'the next Done retired the earlier offer');
+    assert.equal(h.calls.announce.length, 1, 'and nothing was announced for it');
+  } finally { h.restore(); }
+
+  const longer = removalHarness({
+    state: addIssuesToList(seededState(), 'list-a', [issue(6, 'Issue Six'), issue(7, 'Issue Seven')]).state,
+  });
+  try {
+    longer.view.wireShortcuts();
+    const done = pressDone(longer);
+    done.button.focus();
+    globalThis.document.listeners.keydown(keyPress('d'));
+    assert.equal(done.result.isConnected, false);
+    assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroDone, 'focus lands on the control the press belongs to');
+    assert.equal(doneParts(longer).message, 'Marked Issue Three read.');
+    longer.nodes.btnHeroRead.focus();
+    globalThis.document.listeners.keydown(keyPress('d'));
+    assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroRead, 'D leaves focus where it was');
+    doneParts(longer).button.fire('click');
+    assert.equal(longer.nodes.heroTitle.textContent, 'Issue Six');
+    assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroDone, 'after Undo focus is on Done, wherever D was pressed');
+  } finally { longer.restore(); }
 });

@@ -464,7 +464,7 @@ export function createReadingView({
         });
       }
     });
-    $('#btn-hero-done').addEventListener('click', () => markCurrentRead());
+    wireDone();
     $('#btn-hero-defer').addEventListener('click', () => {
       const id = activeListId();
       if (isCompleted(getState(), id)) return;
@@ -528,22 +528,24 @@ export function createReadingView({
     if (isCompleted(getState(), activeListId())) return;
     const issue = upNext(getState(), activeListId());
     if (!issue) return;
+    beginDone();
     const wasRead = isRead(getState(), issue.issueId);
     const { state } = updateState((current) => markRead(current, issue.issueId, true));
     const transition = recordDirectProgressSave({ wasRead, state, issueId: issue.issueId });
     if (!transition) return;
     const next = upNext(getState(), activeListId());
     const { deferred } = listReadingProgress(getState(), activeListId());
-    announce(withSaveEducation(next
-      ? `${issue.title} marked read. Next up: ${next.title}.`
+    const said = next ? `${issue.title} marked read. Next up: ${next.title}.`
       : deferred ? `${issue.title} marked read. Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
-        : `${issue.title} marked read. That is the whole order finished.`, transition));
+        : `${issue.title} marked read. That is the whole order finished.`;
+    announce(withSaveEducation([said, offerDoneUndo(issue)].filter(Boolean).join(' '), transition));
     if (!next) $(deferred ? '#all-deferred-h' : '#all-read-h').focus({ preventScroll: true });
   }
 
   function render() {
     renderReview();
     if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
+    if (doneResult && !doneResult.settling && !doneResultHolds(doneResult)) withdrawDoneResult(doneResult);
     const id = activeListId();
     const list = getState().lists[id];
 
@@ -1339,7 +1341,209 @@ export function createReadingView({
     }
   }
 
+  // ---------------------------------------------------------------- Done's result and Undo
+
+  // Done and D changed saved progress with nothing on screen but the next title, and the way back
+  // from a mis-tap, a stray D or a held key was the full Reading List. The result names the comic
+  // under the control that was used, and Undo puts back exactly what Done replaced. It retires after
+  // DONE_RESULT_MS, defined at the end of this module, unless the reader is pointing at it or has
+  // focus inside it.
+  let doneResult = null;
+
+  function wireDone() {
+    const done = $('#btn-hero-done');
+    done.addEventListener('click', () => markCurrentRead());
+    // A focused button acts on every Enter keydown, auto-repeats included. Measured in Edge on
+    // 2026-10-25: one press and three repeats of Enter on Done marked all four comics of a
+    // four-issue list. D already ignores a held key, and Undo hands focus back to Done, so a held
+    // Enter on Undo would otherwise run Done again on the comic it had just put back.
+    done.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && event.repeat) event.preventDefault();
+    });
+  }
+
+  // What Undo needs unchanged to put back exactly what Done replaced. Held by reference: a rename or
+  // a note keeps a list's arrays, while a reorder, an addition, a removal, a deferral and another
+  // tab's save each replace them. The queue catches any other read change in the list, which would
+  // leave a different comic up next after Undo.
+  function doneContext(listId, issueId, state = getState()) {
+    const list = state.lists[listId];
+    return {
+      listId, issueId, itemIds: list?.itemIds, deferred: list?.deferredIssueIds,
+      readAt: state.read[issueId], queued: queuedIssueIds(state, listId).join(),
+    };
+  }
+
+  function doneContextHolds(context, state = getState()) {
+    const now = doneContext(context.listId, context.issueId, state);
+    return !isStateBlocked() && isCurrent() && state.active === context.listId
+      && !!now.itemIds && !isCompleted(state, context.listId)
+      && now.itemIds === context.itemIds && now.deferred === context.deferred
+      && now.readAt === context.readAt && now.queued === context.queued;
+  }
+
+  const doneResultHolds = (result) => !result.context || doneContextHolds(result.context);
+
+  // After the hero's command group, so nothing above the pressed control moves, as with the reader
+  // hint. When Done finished the queue the hero is gone, and the heading that replaced it, which
+  // already takes focus, is where the reader is looking.
+  function doneResultAnchor() {
+    if (!$('#hero').hidden) return $('#hero-primary-actions');
+    if (!$('#all-deferred').hidden) return $('#all-deferred-h');
+    if (!$('#all-read').hidden) return $('#all-read-h');
+    return null;
+  }
+
+  // The next Done ends the earlier result before it saves, so the repaint never withdraws a result
+  // from under focus. Focus inside it goes to Done, the control the new press belongs to.
+  function beginDone() {
+    if (doneResult?.node?.contains(document.activeElement)) $('#btn-hero-done').focus({ preventScroll: true });
+    retireDoneResult();
+  }
+
+  // Only a saved mark is offered back: a refused write has been reported already, and its rollback
+  // left nothing for Undo to reverse. What this returns joins Done's own announcement, because the
+  // result is deliberately not a live region and that announcement is the one thing said.
+  function offerDoneUndo(issue) {
+    if (!isRead(getState(), issue.issueId)) return '';
+    const result = { issueId: issue.issueId, title: issue.title, offered: true };
+    result.context = doneContext(activeListId(), issue.issueId);
+    return paintDoneResult(result, `Marked ${issue.title} read.`, 'ok', 'Undo') ? 'Undo is available.' : '';
+  }
+
+  // One paragraph in the shared notice pattern. A later phase replaces it where it stands, so a
+  // second click of Undo lands on the confirmation rather than on whatever would move up into its
+  // place, unless the hero or end state it stood in has since been hidden.
+  function paintDoneResult(result, msg, kind, label = null) {
+    const inPlace = result.node?.isConnected && result.node.getClientRects().length > 0;
+    const anchor = inPlace ? null : doneResultAnchor();
+    if (!inPlace && !anchor) {
+      if (doneResult === result) retireDoneResult();
+      return false;
+    }
+    const button = label ? el('button', {
+      type: 'button', class: 'quiet', 'aria-label': labelledName(label, `mark ${result.title} unread`),
+      onclick: () => undoDone(result),
+    }, label) : null;
+    const node = el('p', { id: 'done-result', class: `notice notice-${kind}${button ? ' notice-act' : ''}` }, [
+      el('span', { class: 'grow', text: msg }), ...(button ? [button] : []),
+    ]);
+    node.addEventListener('pointerenter', () => holdDoneResult(result, 'pointer', true));
+    node.addEventListener('pointerleave', () => holdDoneResult(result, 'pointer', false));
+    node.addEventListener('focusin', () => holdDoneResult(result, 'focus', true));
+    node.addEventListener('focusout', (event) => {
+      if (!node.contains(event.relatedTarget)) holdDoneResult(result, 'focus', false);
+    });
+    if (doneResult && doneResult !== result) retireDoneResult();
+    if (inPlace) {
+      result.node.replaceWith(node);
+    } else {
+      result.node?.remove();
+      anchor.after(node);
+    }
+    Object.assign(result, { node, button, holds: new Set() });
+    doneResult = result;
+    scheduleDoneRetire(result);
+    return true;
+  }
+
+  function scheduleDoneRetire(result) {
+    clearTimeout(result.timer);
+    result.timer = setTimeout(() => { if (doneResult === result) retireDoneResult(); }, DONE_RESULT_MS);
+  }
+
+  function holdDoneResult(result, reason, held) {
+    if (doneResult !== result) return;
+    if (held) result.holds.add(reason);
+    else result.holds.delete(reason);
+    if (result.holds.size) {
+      clearTimeout(result.timer);
+      result.timer = null;
+    } else {
+      scheduleDoneRetire(result);
+    }
+  }
+
+  // Navigation, the next Done and the timeout end the result and any offer it carries. Removed
+  // rather than hidden, for the reason the reader hint is.
+  function retireDoneResult() {
+    const result = doneResult;
+    doneResult = null;
+    if (!result) return;
+    clearTimeout(result.timer);
+    result.node?.remove();
+  }
+
+  // A repaint that leaves Undo unable to put back exactly what Done replaced withdraws the offer
+  // there and then, rather than leaving a button that could only refuse when pressed.
+  function withdrawDoneResult(result) {
+    const focused = result.node?.contains(document.activeElement);
+    retireDoneResult();
+    if (focused) focusDoneLanding();
+  }
+
+  // Done when the hero shows a comic, which it always does after a successful Undo, and otherwise the
+  // end-state heading that replaced it, which is where Done itself sends focus.
+  function focusDoneLanding() {
+    const target = [['#hero', '#btn-hero-done'], ['#all-deferred', '#all-deferred-h'], ['#all-read', '#all-read-h']]
+      .find(([section]) => !$(section).hidden)?.[1];
+    if (target) $(target).focus({ preventScroll: true });
+    else focusCurrentView();
+  }
+
+  // Store repaints synchronously, and the repaint would see Undo's own write as a change of context
+  // and withdraw the result mid-transaction, so the result is marked as settling until the outcome
+  // is known. The context is checked inside the transaction, against the state the write replaces,
+  // and only the saved state proves success, as with removal Undo.
+  function undoDone(result) {
+    if (doneResult !== result || !result.offered) {
+      announce(`Undo is no longer available for ${result.title}.`);
+      return;
+    }
+    const focused = result.node?.contains(document.activeElement);
+    let undone = false;
+    let outcome;
+    result.settling = true;
+    try {
+      outcome = updateState((current) => {
+        if (!doneContextHolds(result.context, current)) return current;
+        undone = true;
+        return markRead(current, result.issueId, false);
+      });
+    } finally {
+      result.settling = false;
+    }
+    const { ok, state } = outcome;
+    if (ok && undone && state === getState() && !isRead(state, result.issueId)) {
+      const message = `Marked ${result.title} unread. It is up next again.`;
+      Object.assign(result, { offered: false, context: doneContext(result.context.listId, result.issueId) });
+      paintDoneResult(result, message, 'ok');
+      focusDoneLanding();
+      announce(message);
+    } else if (!ok && doneContextHolds(result.context)) {
+      // The Store's alert has already said why the write failed, so this adds the retry beside the
+      // comic rather than a second announcement.
+      const shown = paintDoneResult(result, `${result.title} is still marked read: that change could not be saved.`, 'error', 'Try again');
+      if (focused && shown) result.button.focus();
+      else if (focused) focusDoneLanding();
+    } else {
+      refuseDoneUndo(result, ok);
+    }
+  }
+
+  // The backstop. A change of context withdraws the offer on the repaint that makes it, so this is
+  // reached by another tab's save landing under the press or by a press the withdrawal missed.
+  function refuseDoneUndo(result, speak) {
+    const focused = result.node?.contains(document.activeElement);
+    const message = `Undo is no longer available because the Reading List changed. You can still mark ${result.title} unread in the full Reading List.`;
+    Object.assign(result, { offered: false, context: null });
+    paintDoneResult(result, message, 'warn');
+    if (focused) focusDoneLanding();
+    if (speak) announce(message);
+  }
+
   return {
+    retireDoneResult,
     toggleSavedRead,
     editIssueNote,
     openDeferred,
@@ -1367,3 +1571,8 @@ export function createReadingView({
     wireShortcuts,
   };
 }
+
+// How long Done's result stays once nothing holds it. The coordinator set it on 2026-10-25 under the
+// owner's delegation, on #829: the row toggle stays the untimed way to mark a comic unread, so the
+// timeout retires a shortcut rather than a capability. Exported so the checks follow a new length.
+export const DONE_RESULT_MS = 10000;
