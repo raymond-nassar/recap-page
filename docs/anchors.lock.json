@@ -2196,12 +2196,12 @@
   },
   "docs/UX_STUDY.md|job-stories|src/index.html:312-358|0": {
     "anchor": "src/index.html:312-358",
-    "fp": "1967534dbfc308b5",
+    "fp": "08f2bf9ab411a348",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|job-stories|src/index.html:336-337|0": {
     "anchor": "src/index.html:336-337",
-    "fp": "e7e623017953e08f",
+    "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
   "docs/UX_STUDY.md|job-stories|src/index.html:571-574|0": {
@@ -2251,7 +2251,7 @@
   },
   "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:312-358|0": {
     "anchor": "src/index.html:312-358",
-    "fp": "1967534dbfc308b5",
+    "fp": "08f2bf9ab411a348",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|proto-persona#relationship-to-marvel-unlimited|src/js/reader.js:12|0": {
@@ -2361,7 +2361,7 @@
   },
   "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:312-358|0": {
     "anchor": "src/index.html:312-358",
-    "fp": "1967534dbfc308b5",
+    "fp": "08f2bf9ab411a348",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:795-802|0": {
@@ -2421,7 +2421,7 @@
   },
   "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:312-358|0": {
     "anchor": "src/index.html:312-358",
-    "fp": "1967534dbfc308b5",
+    "fp": "08f2bf9ab411a348",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
   "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/index.html:10|0": {
@@ -2461,7 +2461,7 @@
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:336-337|0": {
     "anchor": "src/index.html:336-337",
-    "fp": "e7e623017953e08f",
+    "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/lib/shortcuts.js:26-60|0": {
@@ -2526,7 +2526,7 @@
   },
   "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:336-337|0": {
     "anchor": "src/index.html:336-337",
-    "fp": "e7e623017953e08f",
+    "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
   "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1105-1125|0": {

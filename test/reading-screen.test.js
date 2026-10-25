@@ -137,6 +137,26 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
   assert.equal((settings.match(/<tr>/g) ?? []).length, 3, 'the Settings shortcut reference changed');
 });
 
+// UX-05 (#829). Done's purpose lived only in a hover tooltip, which tooltips.js keeps visual on
+// purpose, so a screen reader heard "Done, button" and nothing more. The owner kept the short label
+// on 2026-10-24 and approved an accessible description instead. The element is hidden rather than
+// visually hidden: a description element directly referenced by aria-describedby still describes
+// when hidden, and hidden keeps it out of the reading order, so browse mode does not read it twice.
+test('UX-05 Done keeps its short label and is described for assistive technology only', () => {
+  const cta = html.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
+  const done = cta.match(/(<button[^>]*id="btn-hero-done"[^>]*>)([\s\S]*?)<\/button>/);
+  assert.ok(done, 'Done is gone from the hero command group');
+  assert.equal(done[2].trim(), 'Done', 'the visible label changed');
+  assert.match(done[1], /\baria-describedby="hero-done-help"/, 'Done is not connected to its description');
+  const help = [...html.matchAll(/<(\w+)([^>]*)\bid="hero-done-help"([^>]*)>([^<]*)<\/\1>/g)];
+  assert.equal(help.length, 1, 'the description must exist exactly once');
+  const [, , before, after, text] = help[0];
+  assert.equal(text, 'Marks this comic read and shows the next one.');
+  assert.match(`${before} ${after}`, /\shidden(?:\s|$)/, 'a visible or visually hidden description is read again in browse mode');
+  assert.doesNotMatch(`${before} ${after}`, /aria-hidden|visually-hidden/);
+  assert.ok(done[1].includes('data-tooltip="Mark read and continue. Keyboard shortcut: D"'), 'the visual tooltip changed');
+});
+
 test('icon-only controls expose their meaning on hover and keyboard focus', () => {
   const toggle = html.match(/<button[^>]*id="btn-rail-toggle"[^>]*>/)?.[0] ?? '';
   assert.match(toggle, /data-tip="Collapse sidebar · Ctrl\+\\"/);
