@@ -441,8 +441,9 @@ to an output directory for fixture-only screenshots.
 `npm run android:browser -- --only=series-readability` checks series results at 320x740,
 360x800, 412x915 and 360x800 with 150% text tokens, plus the shared desktop entry at 1280x900.
 It measures word line rectangles, unclipped titles, action hit areas and emergency wrapping on
-an unrelated user-content control. Synthetic fixtures check result order, counts and Add behavior
-without live API or cover requests. Use `--viewport=320x740` or `--viewport=360x800@1.5` for a
+an unrelated user-content control. Synthetic fixtures check result order, counts, and that
+browsing a series saves nothing until its selected comics are saved, without live API or cover
+requests. Use `--viewport=320x740` or `--viewport=360x800@1.5` for a
 focused pre-fix check. This is desktop Edge CSS text stress, not native fontScale, physical-phone,
 TalkBack, keyboard or safe-area certification.
 
