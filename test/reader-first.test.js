@@ -181,6 +181,12 @@ test('every navigation retires the reader hint and no page-top slot remains for 
   assert.doesNotMatch(html, /id="reader-handoff-help"/);
 });
 
+test('the hero background is never a scroll anchor, so the hint cannot scroll the page under the reader', () => {
+  // The Android mobile-ui owner measures the scroll at 800x360. Browser owners do not run in CI, so the
+  // rule is held here too: without it the scaled layer's top moves with every growth of the hero.
+  assert.match(read('../src/styles.css'), /\.hero-bg \{[^}]*transform: scale\(1\.3\);[^}]*overflow-anchor: none;/);
+});
+
 function view(name) {
   const start = html.indexOf(`<section id="view-${name}"`);
   assert.ok(start >= 0, `Missing ${name} view`);

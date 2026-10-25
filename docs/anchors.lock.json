@@ -2234,8 +2234,8 @@
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:953|0": {
-    "anchor": "src/styles.css:953",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:956|0": {
+    "anchor": "src/styles.css:956",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2294,8 +2294,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1944-1946|0": {
-    "anchor": "src/styles.css:1944-1946",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1947-1949|0": {
+    "anchor": "src/styles.css:1947-1949",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2314,8 +2314,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1944-1946|0": {
-    "anchor": "src/styles.css:1944-1946",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1947-1949|0": {
+    "anchor": "src/styles.css:1947-1949",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2339,18 +2339,18 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:881|0": {
-    "anchor": "src/styles.css:881",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:884|0": {
+    "anchor": "src/styles.css:884",
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1025-1026|0": {
-    "anchor": "src/styles.css:1025-1026",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1028-1029|0": {
+    "anchor": "src/styles.css:1028-1029",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1028|0": {
-    "anchor": "src/styles.css:1028",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1031|0": {
+    "anchor": "src/styles.css:1031",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2359,18 +2359,18 @@
     "fp": "1967534dbfc308b5",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:792-799|0": {
-    "anchor": "src/styles.css:792-799",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:795-802|0": {
+    "anchor": "src/styles.css:795-802",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1042-1045|0": {
-    "anchor": "src/styles.css:1042-1045",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1045-1048|0": {
+    "anchor": "src/styles.css:1045-1048",
     "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2309-2310|0": {
-    "anchor": "src/styles.css:2309-2310",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2312-2313|0": {
+    "anchor": "src/styles.css:2312-2313",
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
@@ -2379,8 +2379,8 @@
     "fp": "91f84b1d128c3126",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1099-1126|0": {
-    "anchor": "src/styles.css:1099-1126",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1102-1129|0": {
+    "anchor": "src/styles.css:1102-1129",
     "fp": "444ef76011523544",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
@@ -2434,8 +2434,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1944-1946|0": {
-    "anchor": "src/styles.css:1944-1946",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1947-1949|0": {
+    "anchor": "src/styles.css:1947-1949",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6124,13 +6124,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1979|0": {
-    "anchor": "src/styles.css:1979",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1982|0": {
+    "anchor": "src/styles.css:1982",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2003|0": {
-    "anchor": "src/styles.css:2003",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2006|0": {
+    "anchor": "src/styles.css:2006",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6149,8 +6149,8 @@
     "fp": "1a189415f7ffa207",
     "head": "width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:872|0": {
-    "anchor": "src/styles.css:872",
+  "scripts/check-palette.mjs|preamble|src/styles.css:875|0": {
+    "anchor": "src/styles.css:875",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },

@@ -2372,6 +2372,23 @@ async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#reading-body:not([hidden])');
   await measure(page, `${label} Hickman Reading`);
   await screenshot(page, label, 'reading');
+  // #825: the reader hint goes beside the Read that was pressed. Chromium anchored this shell's
+  // scrolling to the hero's scaled background, so the hint growing the hero scrolled the page up under
+  // the reader, 13px at 800x360. Focus first, as a reader arriving at Read would, then press. The
+  // stand-in for window.open keeps the press from opening a launcher page outside this harness.
+  const hint = await page.evaluate(() => {
+    window.open = () => null;
+    const read = document.querySelector('#btn-hero-read');
+    read.focus();
+    const before = [scrollY, read.getBoundingClientRect().top];
+    read.click();
+    return {
+      beside: document.querySelector('#reader-handoff-help')?.previousElementSibling?.id === 'hero-primary-actions',
+      moved: [scrollY - before[0], read.getBoundingClientRect().top - before[1]].map(Math.round),
+    };
+  });
+  check(hint.beside && hint.moved.every((delta) => delta === 0),
+    `${label}: the reader hint sits beside Read without scrolling the page under it ${JSON.stringify(hint)}`);
   const trigger = await page.$('#android-list-options');
   check(!!trigger, `${label}: list management has a compact entry point`);
   if (!trigger) return;

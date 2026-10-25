@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:752`,
-  `src/styles.css:1944-1946`.
+  `src/styles.css:1947-1949`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -277,7 +277,7 @@ fix
 Backlog item: BL-029
 Resolved: the single accent was split into `--red` for surfaces behind white text and
 `--red-text` for red used as text, at `src/styles.css:127-133`, and the `kbd` tint was removed at
-`src/styles.css:881`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
+`src/styles.css:884`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
 them purple, so the split survives under different names. The figures in the Evidence artifacts are
 the pre-fix measurements and are kept as the record of why the item was raised.
 
@@ -303,8 +303,8 @@ mark rather than through container opacity, so the state reads without dragging 
 the contrast floor
 Backlog item: BL-030
 Resolved: the container `opacity` was replaced with a dedicated `--read-fg` foreground plus a
-strikethrough, at `src/styles.css:1025-1026`. The only opacity left on a read row is on the cover
-image at `src/styles.css:1028`, which carries no text. Re-measured with six rows actually in the
+strikethrough, at `src/styles.css:1028-1029`. The only opacity left on a read row is on the cover
+image at `src/styles.css:1031`, which carries no text. Re-measured with six rows actually in the
 read state, axe 4.13.0 reported no contrast violations on the surface.
 
 #### UX-A-003: Hero text contrast is undeterminable because it sits on a blurred cover
@@ -328,7 +328,7 @@ Recommendation: place a solid or sufficiently opaque scrim between the cover and
 computed background is fixed regardless of cover, which also makes the surface checkable
 Backlog item: BL-031
 Resolved as a side effect of BL-029: the hero scrim's top stop was raised from 60 to 88 percent
-alpha at `src/styles.css:792-799`. Sampling the rendered background across all eight catalog
+alpha at `src/styles.css:795-802`. Sampling the rendered background across all eight catalog
 series narrowed the spread from `#222325`-`#2e2d30` to `#1b1d22`-`#1e2126`, and the computed
 bound for a pure white cover is `#1f2228`, so the background is now fixed enough to check
 against whatever the reader imports rather than varying comic to comic.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1042-1045` and `src/styles.css:2309-2310`.
+`src/styles.css:1045-1048` and `src/styles.css:2312-2313`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -379,7 +379,7 @@ breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
 Resolved: all screen sizes now show a visible More actions control, and opening it reveals full text
 labels for every row action. Closed actions take no layout space; hover alone does not reveal them.
-The responsive presentation is defined at `src/styles.css:1099-1126`, and the disclosure preserves
+The responsive presentation is defined at `src/styles.css:1102-1129`, and the disclosure preserves
 keyboard focus and Escape handling at `src/js/views/reading.js:952-1064`.
 
 #### UX-A-006: Status messages are announced twice
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:1944-1946`.
+`src/styles.css:1947-1949`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -634,7 +634,7 @@ Shift and Tab. Focus order matched reading order. Every stop carried a visible f
 3 pixel solid outline. No trap was found, and the reverse walk escaped cleanly to the document
 body. Exactly one stop was not visible, a 1 by 1 pixel input at zero opacity, and that is the
 standard visually-hidden filter radio paired with a visible label, not a stray control. Evidence:
-`src/styles.css:953`, `src/js/views/reading.js:306-309`.
+`src/styles.css:956`, `src/js/views/reading.js:306-309`.
 
 Dialog focus return was not testable, because the application contains no dialogs at all. The
 measured DOM has zero elements with `role="dialog"`, zero `dialog` elements and zero `aria-modal`
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:752`, `src/styles.css:1944-1946`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:752`, `src/styles.css:1947-1949`.
 
 ## Step 5: Information architecture and generative artifacts
 
