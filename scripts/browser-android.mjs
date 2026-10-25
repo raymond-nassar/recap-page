@@ -1073,6 +1073,7 @@ const SERIES_ISSUES = [1, 2].map((number) => ({
   issueNumber: String(number),
   digitalId: 900020 + number,
 }));
+const seriesComics = (issues) => (issues === 1 ? '1 comic' : `${issues} comics`);
 
 async function seriesFixtures(page) {
   await page.evaluateOnNewDocument((series, issues) => {
@@ -1113,7 +1114,8 @@ async function seriesResultReadability(page, label, desktop) {
     const rows = [...document.querySelectorAll('#series-results .result')];
     return {
       query: document.querySelector('#series-q').value,
-      summary: document.querySelector('#series-results > .rail-hint').textContent,
+      // Since 9416c7de the match count shares a row with its About these results tooltip.
+      summary: document.querySelector('#series-results > .field-row > .rail-hint').textContent,
       body: parseFloat(getComputedStyle(document.body).fontSize),
       androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
       rows: rows.map((row) => ({
@@ -1135,9 +1137,10 @@ async function seriesResultReadability(page, label, desktop) {
   check(rendered.body === (desktop ? 14 : label.includes('150%') ? 24 : 16),
     `${label}: existing body scale retained (${rendered.body}px)`);
   for (const [index, row] of rendered.rows.entries()) {
-    check(row.count === `${SERIES[index][2]} issues` && row.label === 'Add all issues'
-      && row.name === `Add all issues of ${row.title}`,
-    `${label}: ${row.title}: issue count and action names retained`);
+    // Counts read in comics since 71a4f445, and since c117cb9e a series is browsed, not added whole.
+    check(row.count === seriesComics(SERIES[index][2]) && row.label === 'Browse comics'
+      && row.name === `Browse comics in ${row.title}`,
+    `${label}: ${row.title}: comic count and action names retained`);
     check(row.button.width >= (desktop ? 44 : 48) && row.button.height >= (desktop ? 44 : 48),
       `${label}: ${row.title}: action hit rectangle ${row.button.width}x${row.button.height}`);
     check(desktop
@@ -1170,7 +1173,12 @@ async function seriesResultReadability(page, label, desktop) {
     }
     return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
   });
-  check(words.measured > 30, `${label}: measured ordinary words in every result (${words.measured})`);
+  // Every word of every row, counted from the fixtures; "Browse comics" is a word shorter than the
+  // retired "Add all issues", which is why a floor of 30 stopped fitting the current copy.
+  const expectedWords = SERIES.reduce((total, [, title, issues]) => (
+    total + `${title} ${seriesComics(issues)} Browse comics`.split(/\s+/).length), 0);
+  check(words.measured === expectedWords,
+    `${label}: measured ordinary words in every result (${words.measured} of ${expectedWords})`);
   check(words.broken.length === 0, `${label}: whole rendered words ${JSON.stringify(words.broken)}`);
   check(words.clipped.length === 0 && !words.overflow, `${label}: no hidden or overflowing result text ${JSON.stringify(words.clipped)}`);
   await page.$eval('#series-results', (node) => node.scrollIntoView());
@@ -1196,18 +1204,31 @@ async function seriesResultReadability(page, label, desktop) {
   });
   check(emergency, `${label}: unrelated unbroken user content still wraps inside its control`);
 
-  await click(page, `#series-results button[aria-label="Add all issues of ${SERIES[1][1]}"]`);
-  await page.waitForFunction(() => document.querySelector('#series-results .notice-ok')?.textContent.includes('2 issues added.'));
+  // Selection-first saving: browsing the series writes nothing until the selected comics are saved.
+  const unsaved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+  await click(page, `#series-results button[aria-label="Browse comics in ${SERIES[1][1]}"]`);
+  await page.waitForFunction((count) => document.querySelectorAll('#series-results input[data-comic-id]').length === count,
+    {}, SERIES_ISSUES.length);
+  check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === unsaved,
+    `${label}: browsing a series saves nothing before a selection is saved`);
+  await click(page, '#series-results [data-act="select-all"]');
+  await click(page, '#series-selection-form details > summary');
+  await click(page, '#series-selection-form button[type="submit"]');
+  await page.waitForSelector('#series-selection-report .notice');
   const saved = await page.evaluate(() => {
-    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2') || '{}');
     return {
+      notice: document.querySelector('#series-selection-report .notice').className
+        + ` ${document.querySelector('#series-selection-report .notice').textContent}`,
       requests: window.__seriesRequests,
-      lists: state.listOrder.length,
-      ids: state.lists[state.active].itemIds,
-      read: Object.keys(state.read),
+      lists: state.listOrder?.length ?? 0,
+      ids: state.lists?.[state.active]?.itemIds ?? null,
+      read: Object.keys(state.read ?? {}),
     };
   });
-  check(JSON.stringify(saved.requests) === JSON.stringify(['/v1/health', '/v1/series/900002/issues'])
+  check(saved.notice.startsWith('notice notice-ok ')
+    && saved.notice.includes(`Created “${SERIES[1][1]}” with ${seriesComics(SERIES_ISSUES.length)}.`)
+    && JSON.stringify(saved.requests) === JSON.stringify(['/v1/health', '/v1/series/900002/issues'])
     && saved.lists === 1 && JSON.stringify(saved.ids) === JSON.stringify(SERIES_ISSUES.map((issue) => issue.id))
     && saved.read.length === 0, `${label}: Add imports exactly the selected fixture series without marking it read ${JSON.stringify(saved)}`);
   console.log(`CHECKED ${label}: ${rendered.rows.length} series results, ${words.measured} rendered words, Add behavior; hit rectangles ${JSON.stringify(rendered.rows.map((row) => row.button))}`);
@@ -1398,6 +1419,24 @@ async function categoryLabelReadability(page, label, viewport) {
           && Math.abs(card.parts[0].tracking - caption * 0.16) < 0.01,
         `${label} ${view}: ${category.key}: desktop grid and eyebrow treatment retained`);
       }
+    }
+    if (view === 'browse') {
+      // The credit names its metadata source as one unbroken domain, which at 200% text on a 320px
+      // phone ran past its paragraph and widened Browse (#841).
+      const credit = await page.$eval('#view-browse .attribution', (node) => {
+        const box = node.getBoundingClientRect();
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+        return {
+          exact: node.textContent === `Marvel metadata via marvel.emreparker.com. © ${new Date().getFullYear()} MARVEL`,
+          width: box.width, lines: rects.length, widest: Math.max(...rects.map((rect) => rect.right)) - box.left,
+          inside: rects.every((rect) => rect.left >= box.left - 1 && rect.right <= box.right + 1),
+          onScreen: box.left >= 0 && box.right <= document.documentElement.clientWidth,
+        };
+      });
+      check(credit.exact && credit.lines > 0 && credit.inside && credit.onScreen,
+        `${label} browse: metadata credit wraps inside its paragraph ${JSON.stringify(credit)}`);
     }
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
@@ -1608,12 +1647,14 @@ async function readingGeometry(page) {
     };
     const hero = document.querySelector('#hero');
     const art = hero.querySelector('.art');
-    const visible = (node) => !!node.getClientRects().length && !node.closest('[hidden]');
+    // Chromium still lays out the content of a closed disclosure, so its rectangles alone would
+    // count Defer and Issue page as shown while More comic actions (9bb3a427) keeps them closed.
+    const visible = (node) => node.checkVisibility() && !node.closest('[hidden]');
     const inside = (rect, bounds) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
       && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
     const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
       && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero .eyebrow, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero .btn')];
+    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero .eyebrow, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero :is(.btn, summary)')];
     const clipped = [], overlaps = [];
     let ranges = 0;
     for (const node of parts.filter(visible)) {
@@ -1639,12 +1680,13 @@ async function readingGeometry(page) {
       }
     }
     const read = document.querySelector('#btn-hero-read');
-    const controls = [...hero.querySelectorAll('.btn')].filter(visible).map((node) => ({
-      id: node.id, text: node.textContent.trim(), box: box(node),
+    const controls = [...hero.querySelectorAll('.btn, summary')].filter(visible).map((node) => ({
+      id: node.id, selector: node.id ? `#${node.id}` : `#${node.parentElement.id} > summary`,
+      primary: !!node.closest('#hero-primary-actions'), text: node.textContent.trim(), box: box(node),
       font: parseFloat(getComputedStyle(node).fontSize),
     }));
     for (const [index, control] of controls.entries()) {
-      if (controls.slice(index + 1).some((other) => intersects(control.box, other.box))) overlaps.push(control.id);
+      if (controls.slice(index + 1).some((other) => intersects(control.box, other.box))) overlaps.push(control.selector);
     }
     return {
       title: document.querySelector('#order-name').textContent,
@@ -1669,6 +1711,10 @@ async function readingGeometry(page) {
 }
 
 async function readingEvidence(page, profile, id = profile.id) {
+  // Every existing action is measured. Defer and Issue page have been behind More comic actions
+  // since 9bb3a427, so it is opened for the measurement and left as it was found.
+  const disclosed = await page.$eval('#hero-more-actions', (node) => node.open);
+  if (!disclosed) await click(page, '#hero-more-actions > summary');
   await page.evaluate(() => {
     window.scrollTo(0, 0);
     return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
@@ -1701,7 +1747,8 @@ async function readingEvidence(page, profile, id = profile.id) {
   `${id}: actual platform and unchanged text scale`);
   check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
-  check(result.controls.length === 5 + (id.startsWith('M05') ? 1 : 0)
+  // Read, Done, About this comic, the More comic actions summary and the two actions it discloses.
+  check(result.controls.length === 6 + (id.startsWith('M05') ? 1 : 0)
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
   `${id}: all existing action hit rectangles`);
   if (['M01', 'M02'].includes(id)) {
@@ -1718,10 +1765,14 @@ async function readingEvidence(page, profile, id = profile.id) {
     );
     check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)), 'D01: unchanged shared desktop geometry');
   }
+  if (!disclosed) await click(page, '#hero-more-actions > summary');
   return result;
 }
 
 async function readingAccessibility(page, result, id) {
+  // The order is read with More comic actions open so that it covers the two actions it discloses.
+  const disclose = !readingFactsAx && !await page.$eval('#hero-more-actions', (node) => node.open);
+  if (disclose) await click(page, '#hero-more-actions > summary');
   const client = await page.createCDPSession();
   try {
     const { nodes } = await client.send('Accessibility.getFullAXTree');
@@ -1756,6 +1807,12 @@ async function readingAccessibility(page, result, id) {
     assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
     previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
     assert.ok(previous >= 0, `${id}: exact byline precedes facts`);
+    // Read and Done have come before the facts since 9bb3a427 put reading actions first.
+    for (const control of readingFactsAx ? [] : result.controls.filter((entry) => entry.primary)) {
+      const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(control.text));
+      check(index > previous, `${id}: meaningful accessibility sequence includes ${control.text}`);
+      previous = index;
+    }
     for (const [index, fact] of result.facts.entries()) {
       const dom = domFacts[index];
       assert.ok(dom.termTag === 'DT' && dom.definitionTag === 'DD'
@@ -1772,8 +1829,7 @@ async function readingAccessibility(page, result, id) {
       previous = definition;
     }
     if (readingFactsAx) return;
-    const names = result.controls.filter((control) => control.id !== 'btn-hero-description').map((control) => control.text);
-    for (const name of names) {
+    for (const { text: name } of result.controls.filter((control) => !control.primary)) {
       const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(name));
       check(index > previous, `${id}: meaningful accessibility sequence includes ${name}`);
       previous = index;
@@ -1781,9 +1837,10 @@ async function readingAccessibility(page, result, id) {
   } finally {
     await client.detach();
   }
+  if (disclose) await click(page, '#hero-more-actions > summary');
   await page.focus('#order-name');
   const expected = ['#order-desc > summary', '#android-list-options',
-    ...result.controls.map((control) => `#${control.id}`)];
+    ...result.controls.map((control) => control.selector)];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
@@ -1793,7 +1850,14 @@ async function readingAccessibility(page, result, id) {
       return rect.top >= 0 && rect.bottom <= innerHeight && (node === hit || node.contains(hit))
         && node.matches(':focus-visible') && style.outlineStyle !== 'none';
     }), `${id}: focused control visible and unobscured`);
+    // A keyboard reader reaches Defer and Issue page by opening More comic actions from its summary.
+    if (selector === '#hero-more-actions > summary'
+      && await page.$eval(selector, (node) => document.activeElement === node && !node.parentElement.open)) {
+      await page.keyboard.press('Enter');
+      check(await page.$eval('#hero-more-actions', (node) => node.open), `${id}: Enter opens More comic actions`);
+    }
   }
+  if (await page.$eval('#hero-more-actions', (node) => node.open)) await click(page, '#hero-more-actions > summary');
 }
 
 async function readingReplaceState(page, state) {
@@ -1858,24 +1922,27 @@ async function readingSemantics(page) {
     check(await page.$eval('#hero', (node, expected) => node.hidden === expected, kind !== 'manual'),
       `M01 ${kind}: intended hero visibility`);
     if (kind === 'manual') {
+      // Defer is reached through More comic actions, so it is opened before reachability is measured.
+      await click(page, '#hero-more-actions > summary');
       for (const control of ['inspect', 'done', 'defer']) check(await page.$eval(`#btn-hero-${control}`,
-        (node) => node.getClientRects().length > 0), `M01 manual: ${control} remains reachable`);
+        (node) => node.checkVisibility()), `M01 manual: ${control} remains reachable`);
     }
     const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
     await route(page, 'read');
     check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before, `M01 ${kind}: render preserves saved state`);
   }
+  // Since fbb55575 the fact is named Unlimited availability and its five values carry no short badge.
   for (const [mu, override, label] of [
-    [null, null, '? Availability unknown'], ['2999-01-01', null, 'soon Scheduled 2999-01-01'],
-    ['2014-02-27', null, 'MU Expected in Unlimited'], [null, 'available', 'MU\u2713 You marked available'],
-    [null, 'unavailable', 'no You marked unavailable'],
+    [null, null, 'Availability unknown'], ['2999-01-01', null, 'Scheduled 2999-01-01'],
+    ['2014-02-27', null, 'Expected in Unlimited'], [null, 'available', 'You marked available'],
+    [null, 'unavailable', 'You marked unavailable'],
   ]) {
     let state = readingState();
     state.issues[readingIssue.issueId].mu = mu;
     if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
     await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
-    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'In Unlimited'),
+    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'Unlimited availability'),
       `M01 ${label}: factual label retained`);
     const geometry = await readingGeometry(page);
     check(!geometry.clipped.length && !geometry.overlaps.length && !geometry.overflow, `M01 ${label}: readable status, not a boolean`);
@@ -2775,8 +2842,13 @@ try {
         check(await page.$eval('#fallback', (node) => node.href === 'https://read.marvel.com/#/book/38811'
           && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48),
         `${label} ${mode}: readable browser escape preserves digital identity`);
-        check(await page.$$eval('a:not(#fallback)', (links) => links.every((node) => !node.getClientRects().length)),
-          `${label} ${mode}: no app action without a validated identifier`);
+        // The shared launch page has offered "Back to Recap Page" since d6a995d1. It is a same-origin
+        // route to Home, not a Marvel Unlimited action, so it is allowed only in exactly that form.
+        const links = await page.$$eval('a', (nodes) => nodes.filter((node) => node.getClientRects().length)
+          .map((node) => ({ id: node.id, href: node.href, target: node.target })));
+        check(links.every((link) => link.id === 'fallback'
+          || (link.id === 'return' && link.href === `${origin}/#/home` && !link.target)),
+        `${label} ${mode}: no app action without a validated identifier ${JSON.stringify(links)}`);
         check(await page.$eval('#h', (node) => node.textContent.includes('<img>') && !node.querySelector('img')),
           `${label} ${mode}: title remains text, not markup`);
         check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),

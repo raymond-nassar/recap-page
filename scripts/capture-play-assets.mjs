@@ -86,7 +86,10 @@ async function captureScreen(page, screen, output) {
       view: visible?.id === view,
       heading: Boolean(heading && heading.getBoundingClientRect().top >= 0 && heading.getBoundingClientRect().bottom <= innerHeight),
       text: requiredText.every((part) => text.includes(part)),
-      noOverflow: document.documentElement.scrollWidth <= innerWidth,
+      // The capture emulates a phone, and there Edge widens innerWidth to fit an overflowing page:
+      // at the capture viewport a 1,360px page reported an innerWidth of 1,360, so comparing with it
+      // passed. The root's client width stays the 360px screen width.
+      noOverflow: document.documentElement.scrollWidth <= document.documentElement.clientWidth,
       android: Boolean(document.querySelector('script[src="./android/app.js"]')
         && document.querySelector('link[href="./android/mobile.css"]')),
       coversOff: settings.covers === false,
