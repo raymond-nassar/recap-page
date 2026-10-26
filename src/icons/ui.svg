@@ -48,6 +48,9 @@
   <symbol id="screen" viewBox="0 0 24 24">
     <path d="M3 4h18v13H3zM8 21h8M12 17v4M10 7l5 3-5 3z"/>
   </symbol>
+  <symbol id="ages" viewBox="0 0 24 24">
+    <path d="M5 3h14M5 21h14M7 3c0 4.4 4 5.6 4 9s-4 4.6-4 9M17 3c0 4.4-4 5.6-4 9s4 4.6 4 9M9.5 18.5c1-1.2 4-1.2 5 0"/>
+  </symbol>
   <symbol id="arrow-right" viewBox="0 0 24 24">
     <path d="M4 12h16m-7-7 7 7-7 7"/>
   </symbol>

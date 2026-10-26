@@ -5,12 +5,12 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme } from '../src/js/lib/theme.js';
-import { HOME_CATEGORIES } from '../src/js/lib/catalog.js';
+import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme, themeColorScheme, themeColors, applyThemeMeta } from '../src/js/lib/theme.js';
+import { HOME_CATEGORIES, PUBLISHING_CATEGORIES, isPublishingCategoryLeaf } from '../src/js/lib/catalog.js';
 import {
   PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
   tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
-  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS,
+  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS, ERA_TILES,
 } from '../scripts/check-palette.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -142,6 +142,95 @@ test('the settings control offers exactly the themes the code accepts', () => {
   assert.ok(select, 'the theme control is no longer a select this test can read');
   const values = [...select[1].matchAll(/value="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(values, THEMES);
+});
+
+// #834 (UX-28). An installed browser app paints its title bar in the page's theme colour rather than the
+// manifest's, taken from the first `theme-color` tag whose media query matches. The tags are read from
+// the markup here the way the browser reads them: every meta element, by its own attributes.
+function themeColorTags(html) {
+  const tags = (text) => [...text.matchAll(/<meta\b[^>]*>/g)]
+    .map(([tag]) => Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, key, value]) => [key, value])))
+    .filter((attributes) => attributes.name === 'theme-color');
+  const head = tags(html.slice(0, html.indexOf('</head>')));
+  assert.equal(tags(html).length, head.length, 'a theme-color tag sits outside the head');
+  return head.map(({ content, media }) => ({ color: content, media }));
+}
+
+test('the app and its launch page carry a theme-color tag per scheme, in that scheme\'s page background', () => {
+  // Dark first: a browser that ignores `media` takes the first tag, and dark is what the page and the
+  // manifest wear when nothing says otherwise. Each colour is the page background of its own scheme in
+  // every block that declares it, the launch page's own stylesheet included.
+  for (const [path, sheet] of [['src/index.html', css], ['src/open.html', read('src/open.css')]]) {
+    const tags = themeColorTags(read(path));
+    assert.deepEqual(tags.map(({ media }) => themeColorScheme(media)), ['dark', 'light'], `${path} tag schemes`);
+    for (const { color, media } of tags) {
+      const selectors = themeColorScheme(media) === 'dark' ? [DARK] : [LIGHT_ATTR, LIGHT_MEDIA];
+      for (const selector of selectors) {
+        assert.equal(color, tokensIn(css, selector).get('--bg'), `${path} ${media} is not --bg in ${selector}`);
+        assert.equal(color, tokensIn(sheet, selector).get('--bg'), `${path} ${media} is not its own sheet's --bg in ${selector}`);
+      }
+    }
+  }
+});
+
+test('each theme-color tag keeps its own colour on system, and every tag takes an explicit theme\'s', () => {
+  const tags = themeColorTags(read('src/index.html'));
+  const own = tags.map(({ color }) => color);
+  const dark = tokensIn(css, DARK).get('--bg');
+  const light = tokensIn(css, LIGHT_ATTR).get('--bg');
+  assert.deepEqual(themeColors('system', tags), own);
+  assert.deepEqual(themeColors('dark', tags), [dark, dark]);
+  assert.deepEqual(themeColors('light', tags), [light, light]);
+  // Anything unrecognised follows the system, as the attribute does, and so does a theme the head has
+  // no tag for: the tags keep the colours somebody wrote rather than taking none.
+  for (const theme of ['midnight', '', undefined, null]) assert.deepEqual(themeColors(theme, tags), own);
+  assert.deepEqual(themeColors('light', tags.slice(0, 1)), own.slice(0, 1));
+  assert.equal(themeColorScheme('(prefers-color-scheme: light)'), 'light');
+  assert.equal(themeColorScheme(' ( prefers-color-scheme : dark ) '), 'dark');
+  for (const media of ['screen', '(prefers-color-scheme: light) and (min-width: 1px)', '', null, undefined]) {
+    assert.equal(themeColorScheme(media), null, `${media} names a scheme`);
+  }
+});
+
+test('applying a theme rewrites the head\'s tags and puts each tag\'s own colour back on system', () => {
+  // A stand-in head built from the real markup. The first write is an explicit theme, so the original
+  // colour of the tag it overwrites can only come back from what was kept before that write.
+  const node = (attributes) => ({
+    attributes: { ...attributes },
+    getAttribute(key) { return this.attributes[key] ?? null; },
+    setAttribute(key, value) { this.attributes[key] = String(value); },
+  });
+  const scheme = node({ name: 'color-scheme', content: 'dark light' });
+  const colors = themeColorTags(read('src/index.html')).map(({ color, media }) => node({ name: 'theme-color', content: color, media }));
+  const doc = {
+    querySelector: (selector) => (selector === 'meta[name="color-scheme"]' ? scheme : null),
+    querySelectorAll: (selector) => (selector === 'meta[name="theme-color"]' ? colors : []),
+  };
+  const contents = () => [scheme.getAttribute('content'), ...colors.map((tag) => tag.getAttribute('content'))];
+  const [dark, light] = [DARK, LIGHT_ATTR].map((selector) => tokensIn(css, selector).get('--bg'));
+  applyThemeMeta('light', doc);
+  assert.deepEqual(contents(), ['light', light, light]);
+  applyThemeMeta('dark', doc);
+  assert.deepEqual(contents(), ['dark', dark, dark]);
+  applyThemeMeta('system', doc);
+  assert.deepEqual(contents(), ['dark light', dark, light]);
+  applyThemeMeta('light', doc);
+  applyThemeMeta('midnight', doc);
+  assert.deepEqual(contents(), ['dark light', dark, light]);
+  assert.deepEqual(colors.map((tag) => tag.getAttribute('media')), ['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)']);
+  // A page without the tags is left alone rather than failing.
+  assert.doesNotThrow(() => applyThemeMeta('light', { querySelector: () => null, querySelectorAll: () => [] }));
+});
+
+test('the app and its launch page write their theme tags through the one shared writer', () => {
+  // main.js cannot be imported here (see above), so its wiring is read from the source. The launch
+  // page's is exercised for real in new-ultimate-launch.test.js.
+  const main = read('src/js/main.js');
+  assert.match(main, /function applyThemeSetting\(\) \{[^}]*applyThemeMeta\(settings\.theme\);/, 'applyThemeSetting no longer writes the head');
+  assert.doesNotMatch(main, /meta\[name="(?:color-scheme|theme-color)"\]/, 'main.js writes a theme tag of its own again');
+  const open = read('src/open.js');
+  assert.match(open, /applyThemeMeta\(settings\.theme\);/, 'the launch page no longer writes its head');
+  assert.doesNotMatch(open, /meta\[name="(?:color-scheme|theme-color)"\]/, 'open.js writes a theme tag of its own again');
 });
 
 test('the two light token blocks declare exactly the same tokens', () => {
@@ -343,8 +432,9 @@ test('the six category cards on Home take six different hues in every theme', ()
   // #872: MCU Prep, Marvel Ages and Reading paths all wore the brand purple of Modern Timeline. Hues
   // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Six
   // hues spread round the wheel would sit 60 degrees apart, and 30 is half of that.
-  const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{ --home-path-line: var\((--[\w-]+)\); \}/g)]
-    .map(([, key, token]) => [key, token]));
+  const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{([^}]*)\}/g)]
+    .map(([, key, body]) => [key, body.match(/--home-path-line: var\((--[\w-]+)\)/)?.[1]])
+    .filter(([, token]) => token));
   const fallback = css.match(/\.home-path \{\s*--home-path-line: var\((--[\w-]+)\);/)[1];
   const hue = ([r, g, b]) => {
     const [lr, lg, lb] = [r, g, b].map((v) => {
@@ -377,17 +467,139 @@ test('the six category cards on Home take six different hues in every theme', ()
   }
 });
 
-test('each Discover More card is measured on its own tint, so its channel cannot dim unnoticed', () => {
-  for (const [card, channel] of CATEGORY_CARDS) {
-    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === card && floor === 3), `${card} at rest`);
-    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === `${card} on hover` && floor === 3), `${card} on hover`);
+test('the palette gate measures the tint and icon ink each category card actually paints', () => {
+  // A pair measured on a colour the card no longer paints is a number that can drift unnoticed, so
+  // the gate's list is read against the stylesheet card by card, in Home's own order.
+  const declared = (key) => css.match(new RegExp(`\\.home-path\\[data-category="${key}"\\] \\{([^}]*)\\}`))?.[1] ?? '';
+  const fallback = css.match(/\.home-path \{\s*--home-path-line: var\((--[\w-]+)\);/)[1];
+  HOME_CATEGORIES.forEach(({ key }, index) => {
+    const [, channel, ink] = CATEGORY_CARDS[index];
+    const line = declared(key).match(/--home-path-line: var\((--[\w-]+)\)/)?.[1] ?? fallback;
+    assert.equal(line, channel, `${key} is tinted from ${line}, but the gate measures ${channel}`);
+    assert.equal(declared(key).match(/--home-path-ink: var\((--[\w-]+)\)/)?.[1] ?? line, ink,
+      `${key} draws its icon in another colour than the gate measures`);
+  });
+  assert.match(css, /\.home-path-icon \{[^}]*color: var\(--home-path-ink, rgb\(var\(--home-path-line\)\)\);/);
+});
+
+test('every category card icon is measured on its own tint, so its colour cannot dim unnoticed', () => {
+  assert.equal(CATEGORY_CARDS.length, HOME_CATEGORIES.length);
+  for (const [card, , ink] of CATEGORY_CARDS) {
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === ink && bg === card && floor === 3), `${card} at rest`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === ink && bg === `${card} on hover` && floor === 3), `${card} on hover`);
   }
   // A channel triple is read as a colour rather than skipped: dimming one toward its card is a finding.
   const declaration = '--azure-line: 115 183 247;';
   assert.ok(css.includes(declaration), 'the dark azure channel moved; this fixture needs its new value');
   const dimmed = unresolved(css.replace(declaration, '--azure-line: 52 64 92;')).fresh;
   assert.deepEqual(dimmed.map(({ themeName, fgName, bgName }) => `${themeName}:${fgName}:${bgName}`),
-    ['dark:--azure-line:the MCU Prep card', 'dark:--azure-line:the MCU Prep card on hover']);
+    ['dark:--azure-line:the MCU Prep card', 'dark:--azure-line:the MCU Prep card on hover',
+      'dark:--azure-line:the Marvel NOW! tile', 'dark:--azure-line:the Marvel NOW! tile on hover']);
+});
+
+// OKLab is the perceptual space the era accents were chosen in (#875). Distances and hue angles there
+// follow what the eye sees closely enough for a test to say whether two accents look alike.
+function oklab([r, g, b]) {
+  const [lr, lg, lb] = [r, g, b].map((v) => {
+    const c = v / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+  const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+  const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+  return [
+    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s,
+  ];
+}
+function oklch(colour) {
+  const [L, a, b] = oklab(colour);
+  return { L, C: Math.hypot(a, b), h: (Math.atan2(b, a) * 180 / Math.PI + 360) % 360 };
+}
+const hueApart = (p, q) => Math.min(Math.abs(p - q), 360 - Math.abs(p - q));
+const eraColour = (tokens, channel) => {
+  const colour = parseColour(tokens.get(channel) ?? '');
+  assert.ok(colour, `${channel} is not a colour`);
+  return colour;
+};
+
+test('each Marvel era tile is tinted from the channel the palette gate measures for it', () => {
+  // #875. The stylesheet decides what an era tile paints and the gate decides what it measures, so the
+  // two are read against each other era by era, and every period that can be a tile is listed.
+  const leaves = PUBLISHING_CATEGORIES.filter(isPublishingCategoryLeaf).map(({ key }) => key);
+  assert.deepEqual(ERA_TILES.map(([key]) => key), leaves);
+  for (const [key, tile, channel] of ERA_TILES) {
+    const painted = css.match(new RegExp(`\\.home-path\\[data-category="${key}"\\] \\{ --home-path-line: var\\((--[\\w-]+)\\); \\}`))?.[1];
+    assert.equal(painted, channel, `${key} is tinted from ${painted}, but the gate measures ${channel}`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === tile && floor === 3), `${tile} at rest`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === `${tile} on hover` && floor === 3), `${tile} on hover`);
+  }
+  // Dimming an era's channel toward its tile is a finding, in the theme it was dimmed in and no other.
+  const declaration = '  --gold-line: 141 109 5;';
+  assert.ok(css.includes(declaration), 'the light gold channel moved; this fixture needs its new value');
+  const dimmed = unresolved(css.replace(declaration, '  --gold-line: 214 196 140;')).fresh;
+  assert.deepEqual(dimmed.map(({ themeName, fgName, bgName }) => `${themeName}:${fgName}:${bgName}`),
+    ['light:--gold-line:the Golden Age tile', 'light:--gold-line:the Golden Age tile on hover']);
+});
+
+test('each Marvel era tile wears an accent apart from every other era in its list, in every theme', () => {
+  // #875. A period with no Reading List is left out of its list, so any two eras in a list can end up
+  // side by side, and every pair is compared rather than only today's neighbours. Distance is taken in
+  // OKLab rather than as a hue angle, because bronze differs from gold mostly in lightness and silver
+  // has next to no hue. 0.06 is the 30 degrees #872 set between Home's hues, at the palette's usual
+  // chroma of about 0.12.
+  const channel = new Map(ERA_TILES.map(([key, , token]) => [key, token]));
+  const lists = [null, 'modern'].map((parent) => PUBLISHING_CATEGORIES
+    .filter((category) => category.parent === parent && isPublishingCategoryLeaf(category))
+    .map(({ key }) => key));
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    for (const list of lists) {
+      for (const [index, first] of list.entries()) {
+        for (const second of list.slice(index + 1)) {
+          const [p, q] = [first, second].map((key) => oklab(eraColour(tokens, channel.get(key))));
+          const apart = Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
+          assert.ok(apart >= 0.06, `${first} and ${second} are ${apart.toFixed(3)} apart in ${selector}`);
+        }
+      }
+    }
+  }
+});
+
+test('the four ages named for metals read as gold, silver, bronze and copper in every theme', () => {
+  // #875. Silver is the one era with next to no hue. The other three are warm, between red and yellow,
+  // and keep the order the metals have: gold the yellowest and copper the reddest, with bronze a
+  // darker, duller relative of gold.
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    const [gold, silver, bronze, copper] = ['--gold-line', '--silver-line', '--bronze-line', '--copper-line']
+      .map((token) => oklch(eraColour(tokens, token)));
+    assert.ok(silver.C <= 0.03, `silver carries a hue in ${selector}: ${JSON.stringify(silver)}`);
+    for (const [name, metal] of Object.entries({ gold, bronze, copper })) {
+      assert.ok(metal.C >= 0.07 && metal.h >= 30 && metal.h <= 100,
+        `${name} is not a warm metal in ${selector}: ${JSON.stringify(metal)}`);
+    }
+    assert.ok(gold.h > bronze.h && bronze.h > copper.h, `the metals' hues are out of order in ${selector}`);
+    assert.ok(bronze.L < gold.L && bronze.C < gold.C, `bronze is not darker and duller than gold in ${selector}`);
+  }
+});
+
+test('no Marvel era wears the red kept for errors and danger', () => {
+  // #875. Every era with a hue keeps at least 20 degrees of it from each danger token's. Copper is the
+  // nearest, on the orange side.
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    const danger = ['--red-line', '--red-fg', '--red-fg-2'].map((token) => oklch(eraColour(tokens, token)).h);
+    for (const [key, , channel] of ERA_TILES) {
+      const accent = oklch(eraColour(tokens, channel));
+      if (accent.C < 0.03) continue;
+      for (const hue of danger) {
+        assert.ok(hueApart(accent.h, hue) >= 20,
+          `${key} is ${hueApart(accent.h, hue).toFixed(1)} degrees from a danger red in ${selector}`);
+      }
+    }
+  }
 });
 
 test('the recovery banner gives its two actions different weights, and gates the one it quietened', () => {
@@ -590,6 +802,8 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // had been gated through the brand token that used to share the hue, and once the two separated
   // that pair covered nothing danger was actually drawn on. The salvage row's Remove button, which
   // is danger on a raised card, had never been measured at all.
+  // `--teal` gained the Character spotlights card's tint at rest and on hover in #873, when it became
+  // that card's icon in both themes; the card's own shared channel measured 1.60:1 on the light hover.
   // `--logo-fill` gained `--card` when the wrap-up card began opening with a line in the masthead's
   // treatment once every comic in a list is read (#874): the same colour, drawn on a card rather than
   // on the page.
@@ -597,7 +811,7 @@ test('a control boundary is measured against every surface it is drawn on, not j
   assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--cb-line'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
-  assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2']);
+  assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--logo-fill'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);

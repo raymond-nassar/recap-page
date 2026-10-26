@@ -905,24 +905,15 @@ const MUTATIONS = [
     id: 'home-path-explanation',
     breaks: 'home-category-gateway',
     why: 'standing explanatory copy returns inside a category tile',
-    script: () => {
-      addEventListener('load', () => {
-        const insert = () => {
-          const copy = document.querySelector('.home-path-copy');
-          if (!copy || copy.querySelector('.home-path-explanation')) return false;
-          const note = document.createElement('p');
-          note.className = 'home-path-explanation';
-          note.textContent = 'Use this route when you want the stories arranged around publication milestones.';
-          copy.append(note);
-          return true;
-        };
-        if (insert()) return;
-        const observer = new MutationObserver(() => {
-          if (insert()) observer.disconnect();
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-      });
-    },
+    // Written by the tile renderer itself, as the regression would be, so every render of either
+    // gateway carries it. It used to be added from the page once, at load, and Home renders both
+    // gateways six times as it starts. Measured in Edge 155 on 2026-10-26, the sixth pass came 7 to
+    // 23ms after load in seven of eight runs and replaced every tile, so the scenario caught the
+    // paragraph only in the run where load came last (#888).
+    rewriteHome: (source) => source.replace(
+      "el('span', { class: 'home-path-count', text: count }),",
+      "$&\n        el('p', { class: 'home-path-explanation', text: 'Use this route when you want the stories arranged around publication milestones.' }),",
+    ),
   },
   {
     id: 'timeline-sticky-off',
@@ -3693,7 +3684,10 @@ const SCENARIOS = [
           tops: boxes.map((box) => Math.round(box.top)),
           heights: boxes.map((box) => Math.round(box.height)),
           secondaryHeights: secondary.map((path) => Math.round(path.getBoundingClientRect().height)),
-          paragraphs: document.querySelectorAll('.home-path p').length,
+          // Counted per gateway, so a paragraph in Browse's tiles is caught as surely as one in Home's.
+          // Both are rendered together, Browse's while it is hidden (#888).
+          paragraphs: Object.fromEntries([...document.querySelectorAll('[data-category-gateway]')]
+            .map((gateway) => [gateway.closest('.view')?.id, gateway.querySelectorAll('.home-path p').length])),
           retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
           moreHidden: document.querySelector('#home-more-paths')?.hidden,
           statuses: [...document.querySelectorAll('[data-paths-status]')].map((status) => ({
@@ -3743,7 +3737,8 @@ const SCENARIOS = [
         && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
         JSON.stringify(context.secondaryHeights));
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
-        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
+        JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0, 'view-browse': 0 })
+        && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
       t.check('dynamic Home and Browse categories publish one concise polite completion status each',
         context.statuses.length === 2
@@ -3754,13 +3749,29 @@ const SCENARIOS = [
 
       // #872: MCU Prep, Marvel Ages and Reading paths each draw their edge, tint and icon from a hue of
       // their own, so Home shows six hues and Browse the same six, in both themes. Forced colors keep
-      // one system color for every edge, as before.
+      // one system color for every edge, as before. Since #873 the top row's icons take a darker or
+      // lighter ink of their card's hue to clear 3:1 on its tint, so the icon is matched to its edge by
+      // OKLCH hue: the widest gap between an ink and its edge measured 4.7 degrees, and the six edges
+      // sit at least 30 degrees apart.
       const accents = () => page.evaluate(() => {
-        const cards = (selector) => [...document.querySelectorAll(selector)].map((card) => ({
-          key: card.dataset.category,
-          edge: getComputedStyle(card, '::before').backgroundColor,
-          icon: getComputedStyle(card.querySelector('.home-path-icon')).color,
-        }));
+        const hue = (color) => {
+          const [r, g, b] = color.match(/[\d.]+/g).slice(0, 3).map((channel) => {
+            const value = Number(channel) / 255;
+            return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+          });
+          const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+          const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+          const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+          const a = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s;
+          const bOkLab = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
+          return ((Math.atan2(bOkLab, a) * 180) / Math.PI + 360) % 360;
+        };
+        const cards = (selector) => [...document.querySelectorAll(selector)].map((card) => {
+          const edge = getComputedStyle(card, '::before').backgroundColor;
+          const icon = getComputedStyle(card.querySelector('.home-path-icon')).color;
+          const gap = Math.abs(hue(edge) - hue(icon));
+          return { key: card.dataset.category, edge, icon, gap: Math.round(Math.min(gap, 360 - gap) * 10) / 10 };
+        });
         return { home: cards('#view-home .home-path'), browse: cards('#view-browse .home-path') };
       });
       const chosenTheme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
@@ -3770,7 +3781,7 @@ const SCENARIOS = [
         const purple = home.find(({ key }) => key === 'timeline')?.edge;
         t.check(`${theme}: the six Home cards show six different hues, each icon in its own card's hue`,
           home.length === 6 && new Set(home.map(({ edge }) => edge)).size === 6
-          && home.every(({ edge, icon }) => edge === icon),
+          && home.every(({ gap }) => gap <= 10),
           JSON.stringify(home));
         t.check(`${theme}: MCU Prep, Marvel Ages and Reading paths leave the brand purple to Modern Timeline`,
           ['marvel-on-screen', 'marvel-ages', 'reading-paths'].every((key) => {
@@ -3796,6 +3807,99 @@ const SCENARIOS = [
         if (value === null) document.documentElement.removeAttribute('data-theme');
         else document.documentElement.setAttribute('data-theme', value);
       }, chosenTheme);
+
+      // #873: each category's icon is its card's emblem, clearly larger than the 1.45rem glyph it
+      // replaces and at the card's top right, with the eyebrow, title, count and arrow beneath it.
+      // Held at every width and text size the Issue names, on Home and Browse, in both themes and
+      // forced colors: nothing overlaps, no line leaves the card's content box, and the page never
+      // scrolls sideways.
+      const emblems = (view) => page.evaluate((id) => {
+        const box = (node) => {
+          const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+          return { left, right, top, bottom, width, height };
+        };
+        const meets = (a, b) => a.left < b.right - 0.5 && b.left < a.right - 0.5
+          && a.top < b.bottom - 0.5 && b.top < a.bottom - 0.5;
+        return {
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+          root: parseFloat(getComputedStyle(document.documentElement).fontSize),
+          cards: [...document.querySelectorAll(`#view-${id} [data-category-gateway] .home-path`)].map((card) => {
+            const style = getComputedStyle(card);
+            const outer = box(card);
+            const content = {
+              left: outer.left + parseFloat(style.borderLeftWidth) + parseFloat(style.paddingLeft),
+              right: outer.right - parseFloat(style.borderRightWidth) - parseFloat(style.paddingRight),
+              top: outer.top + parseFloat(style.borderTopWidth) + parseFloat(style.paddingTop),
+              bottom: outer.bottom - parseFloat(style.borderBottomWidth) - parseFloat(style.paddingBottom),
+            };
+            const marks = Object.fromEntries(['icon', 'label', 'title', 'count', 'arrow']
+              .map((role) => [role, box(card.querySelector(`.home-path-${role}`))]));
+            const overlaps = [];
+            const roles = Object.keys(marks);
+            roles.forEach((one, index) => roles.slice(index + 1).forEach((other) => {
+              if (meets(marks[one], marks[other])) overlaps.push(`${one}/${other}`);
+            }));
+            const clipped = [];
+            for (const role of ['label', 'title', 'count']) {
+              const range = document.createRange();
+              range.selectNodeContents(card.querySelector(`.home-path-${role}`));
+              for (const line of range.getClientRects()) {
+                if (line.width && (line.left < content.left - 1 || line.right > content.right + 1
+                  || line.top < content.top - 2 || line.bottom > content.bottom + 2)) clipped.push(role);
+              }
+            }
+            return {
+              key: card.dataset.category,
+              symbol: card.querySelector('.home-path-icon use')?.getAttribute('href'),
+              icon: marks.icon, arrow: marks.arrow, content,
+              topRight: Math.abs(marks.icon.right - content.right) <= 1 && marks.icon.top <= content.top + 1
+                && marks.icon.left >= (outer.left + outer.right) / 2,
+              above: ['label', 'title', 'count'].every((role) => marks.icon.bottom <= marks[role].top + 0.5),
+              arrowRight: Math.abs(marks.arrow.right - content.right) <= 1 && marks.arrow.bottom <= content.bottom + 1,
+              overlaps, clipped,
+            };
+          }),
+        };
+      }, view);
+      const emblemClient = await page.createCDPSession();
+      for (const width of [1280, 640, 390]) {
+        await page.setViewport({ width, height: 900 });
+        for (const text of ['100%', '200%']) {
+          await page.evaluate((size) => { document.documentElement.style.fontSize = size === '100%' ? '' : size; }, text);
+          const failures = [];
+          for (const view of ['home', 'browse']) {
+            await page.evaluate((id) => { location.hash = `#/${id}`; }, view);
+            await page.waitForSelector(`#view-${view}:not([hidden]) [data-category-gateway] .home-path`);
+            for (const theme of ['dark', 'light', 'forced']) {
+              await page.evaluate((name) => { document.documentElement.dataset.theme = name; },
+                theme === 'forced' ? 'light' : theme);
+              await emblemClient.send('Emulation.setEmulatedMedia', {
+                features: theme === 'forced' ? [{ name: 'forced-colors', value: 'active' }] : [],
+              });
+              await settleLayout();
+              const { overflow, root, cards } = await emblems(view);
+              const scale = root / 16;
+              const wrong = cards.filter((card) => !card.topRight || !card.above || !card.arrowRight
+                || card.icon.width < 40 * scale || card.icon.height < 40 * scale
+                || card.overlaps.length || card.clipped.length);
+              if (overflow || cards.length !== 6 || new Set(cards.map(({ symbol }) => symbol)).size !== 6
+                || wrong.length) failures.push({ view, theme, overflow, root, cards: wrong.length ? wrong : cards.length });
+            }
+          }
+          t.check(`${width}px at ${text} text: every Home and Browse category shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
+            failures.length === 0, JSON.stringify(failures));
+        }
+      }
+      await emblemClient.send('Emulation.setEmulatedMedia', { features: [] });
+      await emblemClient.detach();
+      await page.evaluate((value) => {
+        document.documentElement.style.fontSize = '';
+        if (value === null) document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.setAttribute('data-theme', value);
+        location.hash = '#/home';
+      }, chosenTheme);
+      await page.setViewport({ width: 1280, height: 900 });
+      await settleLayout();
 
       for (const [category, view] of [
         ['timeline', 'catalog'],
@@ -15644,7 +15748,7 @@ SCENARIOS.push({
         geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
         JSON.stringify(geometry));
     }
-    t.check('all 18 navigation and search symbol shapes were rendered', seen.size === 18, [...seen].join(', '));
+    t.check('all 19 navigation and search symbol shapes were rendered', seen.size === 19, [...seen].join(', '));
 
     await page.evaluate(() => { location.hash = '#/add-search'; });
     await page.waitForSelector('#view-add-search:not([hidden])');
@@ -16169,6 +16273,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/open.js', mutation?.rewriteOpen],
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/views/home.js', mutation?.rewriteHome],
     ['/js/views/add.js', mutation?.rewriteAdd],
     ['/js/views/data.js', mutation?.rewriteData],
     ['/js/views/completion.js', mutation?.rewriteCompletion],
@@ -16183,6 +16288,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
     ['/js/lib/milestones.js', mutation?.rewriteMilestones],
+    ['/js/lib/theme.js', mutation?.rewriteTheme],
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
@@ -19566,9 +19672,21 @@ MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutatio
 const milestones = await import('./browser-milestones.mjs');
 SCENARIOS.push(milestones.milestones, milestones.milestonePreferences);
 MUTATIONS.push(...milestones.milestoneMutations);
+const saveNotice = await import('./browser-save-notice.mjs');
+SCENARIOS.push(saveNotice.saveNoticePlacement);
+MUTATIONS.push(...saveNotice.saveNoticeMutations);
+const readingCard = await import('./browser-reading-card.mjs');
+SCENARIOS.push(readingCard.readingCardFocus);
+MUTATIONS.push(...readingCard.readingCardMutations);
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
+const categoryAccents = await import('./browser-category-accents.mjs');
+SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast);
+MUTATIONS.push(...categoryAccents.categoryAccentMutations);
+const themeColor = await import('./browser-theme-color.mjs');
+SCENARIOS.push(themeColor.themeColor);
+MUTATIONS.push(...themeColor.themeColorMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

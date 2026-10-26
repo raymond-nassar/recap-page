@@ -422,6 +422,11 @@ npm run anchors
 persistence, export completion/cancellation, themes and dialog Back behavior. Its native-message
 transport is a test double, not an Android runtime.
 
+At each of its sizes, every mode first checks the navigation control and the brand mark, and Home's
+masthead where the mode starts on Home. A mode whose fixture saves an active Reading List starts on
+that list, because the app resumes one at launch, so it checks instead that resuming the list is the
+only reason Home is hidden.
+
 `npm run android:browser -- --only=launcher --viewport=412x915` checks the generated launcher's
 empty-result, invalid-identifier and offline explanations, browser escape, safe title rendering
 and unchanged reading state. After a failed lookup, the only other visible link must be the
@@ -528,6 +533,29 @@ list name field. The keyboard is modeled by shortening the viewport while the fi
 because the app's activity resizes for it. With the keyboard open, the field must stay in view
 inside the bar and the bar within its height cap. These are Edge web checks, not a real keyboard,
 native fontScale or TalkBack acceptance.
+
+`npm run android:browser -- --only=save-notice` opens a Reading List on a first visit, while the
+one-time note that saving is automatic still shows, at 360x800 in light, 412x915 in dark with cover
+art on, 800x360, 360x800 with 200% text tokens, and the shared desktop entry at 1280x900. The note
+must follow the reading card, so Read is fully above the bottom bar in the two portrait sizes, where
+the note used to put it under the bar. Tab must reach the note's Backup & settings link clear of the
+bar, and the first Done must retire the note without moving the card. These are Edge web checks, not
+a real keyboard, native fontScale or TalkBack acceptance.
+
+`npm run android:browser -- --only=home-continue` opens Home from the bottom bar with a Reading List
+under way, as a reader leaving it does, at 360x800, 412x915 in dark with cover art on, 320x740,
+800x600, 800x360, 732x412 in dark with cover art on, 640x360, 800x360 with a list name on two lines,
+800x360 and 360x800 with 200% text tokens, and the shared desktop entry at 1280x900. Wherever the
+card fits, Continue reading's Read must be fully above the bottom bar and Done must start above it,
+each taking a tap there. Done's result must then show in full just above the bottom bar, clear of
+Read and Done, moving nothing except at 320x740, where the page scrolls just enough to keep Done 8px
+clear of it. Tab on from Done must land clear of the result, which gives way while More is open, and
+a tap on Undo where it shows must put the comic back. The desktop entry keeps the result inline. On a
+short landscape screen What's new must share the centered wordmark's row and open in place, its
+panel inside the screen and above the bar, with Close and Android Back returning focus to it; a
+taller screen keeps it on its own row. Tab must bring Read and Done into view clear of the bar in
+every case. The two-line name, 640px and 200% text cases report where Read ends as measured limits.
+These are Edge web checks, not a real keyboard, native fontScale or TalkBack acceptance.
 
 ## Native emulator checks without a local emulator
 

@@ -19,6 +19,8 @@ import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
+import { ERA_TILES } from './check-palette.mjs';
+import { TILE_PARTS, tileContrast } from './lib/painted-contrast.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
   parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
@@ -29,7 +31,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones',
+  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -56,6 +58,8 @@ const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
 const milestoneMode = process.argv.includes('--only=milestones');
+const saveNotice = process.argv.includes('--only=save-notice');
+const homeContinue = process.argv.includes('--only=home-continue');
 const longListName = process.argv.includes('--only=long-list-name');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
@@ -1363,6 +1367,46 @@ async function marvelAgesTouchTarget(page, label, viewport) {
   console.log(`CHECKED ${label}: Marvel Ages browse-all ${JSON.stringify(result)}`);
 }
 
+// #875: every era tile the bundled catalog shows wears its own era's accent, and its eyebrow, count and
+// icon keep their floors on the wash painted behind them, at rest and pointed at, in both themes.
+async function eraTileAccents(page, label) {
+  await route(page, 'marvel-ages');
+  const selector = '.marvel-ages-group .home-path';
+  await page.waitForSelector(selector, { visible: true });
+  const { earlier, modernChildren } = publishingAgeGroups(catalogEntries(catalog.lists));
+  const expected = [...earlier, ...modernChildren].map(({ key }) => key);
+  const chosen = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
+    const tiles = await page.$$eval(selector, (nodes, eras) => nodes.map((tile) => {
+      const token = eras.find(([key]) => key === tile.dataset.category)?.[2];
+      const channel = token ? getComputedStyle(document.documentElement).getPropertyValue(token).trim() : '';
+      return {
+        key: tile.dataset.category, accent: channel ? `rgb(${channel.split(/\s+/).join(', ')})` : null,
+        edge: getComputedStyle(tile, '::before').backgroundColor,
+        icon: getComputedStyle(tile.querySelector('.home-path-icon')).color,
+      };
+    }), ERA_TILES);
+    check(JSON.stringify(tiles.map(({ key }) => key)) === JSON.stringify(expected)
+      && tiles.every(({ accent, edge, icon }) => accent && edge === accent && icon === accent)
+      && new Set(tiles.map(({ edge }) => edge)).size === tiles.length,
+    `${label} ${theme}: each era tile wears its own era's accent as edge and icon ${JSON.stringify(tiles)}`);
+    for (const hover of [false, true]) {
+      const rows = await tileContrast(page, selector, { hover });
+      const low = rows.filter((row) => row.ratio < row.floor || row.pointed !== hover);
+      check(rows.length === expected.length * TILE_PARTS.length && low.length === 0,
+        `${label} ${theme}${hover ? ' pointed at' : ''}: era eyebrows and counts clear 4.5:1 and icons 3:1 on the painted wash ${JSON.stringify(low)}`);
+    }
+    await page.$eval('#marvel-ages-earlier', (node) => node.scrollIntoView({ block: 'start' }));
+    await screenshot(page, `${label} ${theme}`, 'era-tiles');
+  }
+  await page.evaluate((value) => {
+    if (value === null) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', value);
+  }, chosen);
+  console.log(`CHECKED ${label}: ${expected.length} era tiles, accents and painted contrast in dark and light`);
+}
+
 async function categoryLabelReadability(page, label, viewport) {
   // Home counts each reading since 2026-10-03, as the app's own categoriesForCatalog does.
   const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES,
@@ -1388,6 +1432,17 @@ async function categoryLabelReadability(page, label, viewport) {
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         cards: [...document.querySelectorAll(`#view-${id} .home-path`)].map((card) => {
           const copy = card.querySelector('.home-path-copy');
+          const outer = bounds(card);
+          const cardStyle = getComputedStyle(card);
+          const content = {
+            left: outer.left + parseFloat(cardStyle.borderLeftWidth) + parseFloat(cardStyle.paddingLeft),
+            right: outer.right - parseFloat(cardStyle.borderRightWidth) - parseFloat(cardStyle.paddingRight),
+            top: outer.top + parseFloat(cardStyle.borderTopWidth) + parseFloat(cardStyle.paddingTop),
+            bottom: outer.bottom - parseFloat(cardStyle.borderBottomWidth) - parseFloat(cardStyle.paddingBottom),
+          };
+          // Since #873 the gateway's copy lends its eyebrow, title and count to the card's own grid and
+          // has no box of its own, so their words are held to the card's content box instead.
+          const frame = getComputedStyle(copy).display === 'contents' ? content : bounds(copy);
           const words = [], broken = [], clipped = [];
           const parts = ['label', 'title', 'count'].map((role) => {
             const node = card.querySelector(`.home-path-${role}`);
@@ -1402,18 +1457,28 @@ async function categoryLabelReadability(page, label, viewport) {
                 const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
                 words.push(match[0]);
                 if (rects.length !== 1) broken.push({ word: match[0], lines: rects.length });
-                if (rects.some((rect) => !fitsWidth(rect, bounds(node)) || !fitsWidth(rect, bounds(copy))
+                if (rects.some((rect) => !fitsWidth(rect, bounds(node)) || !fitsWidth(rect, frame)
                   || !inside(rect, bounds(card)))) clipped.push(match[0]);
               }
             }
             return {
-              text: node.textContent, font: parseFloat(style.fontSize),
+              text: node.textContent, font: parseFloat(style.fontSize), box: bounds(node),
               family: style.fontFamily, transform: style.textTransform, tracking: parseFloat(style.letterSpacing),
             };
           });
+          const icon = bounds(card.querySelector('.home-path-icon'));
+          const arrow = bounds(card.querySelector('.home-path-arrow'));
+          const meets = (a, b) => a.left < b.right - 0.5 && b.left < a.right - 0.5
+            && a.top < b.bottom - 0.5 && b.top < a.bottom - 0.5;
+          const marks = [['icon', icon], ['arrow', arrow], ...parts.map((part, index) => [['label', 'title', 'count'][index], part.box])];
+          const overlaps = [];
+          marks.forEach(([one, a], index) => marks.slice(index + 1).forEach(([other, b]) => {
+            if (meets(a, b)) overlaps.push(`${one}/${other}`);
+          }));
           return {
             key: card.dataset.category, name: card.getAttribute('aria-label'), parts,
-            box: bounds(card), copy: bounds(copy), icon: bounds(card.querySelector('.home-path-icon')),
+            box: outer, content, icon, arrow, overlaps,
+            symbol: card.querySelector('.home-path-icon use')?.getAttribute('href'),
             words, broken, clipped,
           };
         }),
@@ -1441,11 +1506,28 @@ async function categoryLabelReadability(page, label, viewport) {
         `${label} ${view}: ${category.key}: whole rendered words ${JSON.stringify(card.broken)}`);
       check(card.clipped.length === 0,
         `${label} ${view}: ${category.key}: text stays inside copy and clipping card ${JSON.stringify(card.clipped)}`);
+      // #873: the icon is the card's emblem, larger than the 1.45rem glyph it replaces and at the
+      // card's top right above the text, with the arrow at the bottom right beside the count.
+      check(card.icon.width >= 40 && card.icon.height >= 40
+        && Math.abs(card.icon.right - card.content.right) <= 1 && card.icon.top <= card.content.top + 1
+        && card.icon.left >= card.box.left + card.box.width / 2
+        && card.parts.every((part) => card.icon.bottom <= part.box.top + 0.5)
+        && Math.abs(card.arrow.right - card.content.right) <= 1,
+      `${label} ${view}: ${category.key}: large icon at the card's top right above its text ${JSON.stringify({ icon: card.icon, arrow: card.arrow, content: card.content })}`);
+      check(card.overlaps.length === 0,
+        `${label} ${view}: ${category.key}: icon, arrow and text do not overlap ${JSON.stringify(card.overlaps)}`);
       if (viewport.desktop) {
-        check(card.copy.left > card.icon.right && card.parts[0].transform === 'uppercase'
+        check(card.parts[0].transform === 'uppercase'
           && Math.abs(card.parts[0].tracking - caption * 0.16) < 0.01,
-        `${label} ${view}: ${category.key}: desktop grid and eyebrow treatment retained`);
+        `${label} ${view}: ${category.key}: desktop eyebrow treatment retained`);
       }
+    }
+    check(new Set(result.cards.map((card) => card.symbol)).size === result.cards.length,
+      `${label} ${view}: the ${result.cards.length} categories draw ${result.cards.length} different glyphs ${JSON.stringify(result.cards.map((card) => card.symbol))}`);
+    if (viewport.width === 800) {
+      // Discover More keeps its row of three at normal text and widens to two columns at 200% (#873).
+      const rows = new Set(result.cards.slice(3).map((card) => Math.round(card.box.top))).size;
+      check(rows === (scale === 1 ? 1 : 2), `${label} ${view}: Discover More takes ${rows} rows`);
     }
     if (view === 'browse') {
       // The credit names its metadata source as one unbroken domain, which at 200% text on a 320px
@@ -1468,6 +1550,21 @@ async function categoryLabelReadability(page, label, viewport) {
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
     console.log(`CHECKED ${label} ${view}: ${result.cards.length} categories, ${result.cards.reduce((n, card) => n + card.words.length, 0)} words; Publication ${JSON.stringify(result.cards.find((card) => card.key === 'marvel-ages'))}`);
+    // #875: each card's eyebrow and count against the wash painted behind them, at rest and pointed at.
+    const chosen = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
+      for (const hover of [false, true]) {
+        const rows = await tileContrast(page, `#view-${view} .home-path`, { hover, parts: TILE_PARTS.filter(([part]) => part !== 'icon') });
+        const low = rows.filter((row) => row.ratio < row.floor || row.pointed !== hover);
+        check(rows.length === categories.length * 2 && low.length === 0,
+          `${label} ${view} ${theme}${hover ? ' pointed at' : ''}: every eyebrow and count clears 4.5:1 on the painted wash ${JSON.stringify(low)}`);
+      }
+    }
+    await page.evaluate((value) => {
+      if (value === null) document.documentElement.removeAttribute('data-theme');
+      else document.documentElement.setAttribute('data-theme', value);
+    }, chosen);
   }
   if (viewport.width === 360 && scale === 2) {
     for (const category of categories) {
@@ -1615,7 +1712,7 @@ const readingProfiles = [
 ];
 let readingOrder;
 let readingIssue;
-if (readingComposition || alignment) {
+if (readingComposition || alignment || saveNotice || homeContinue) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
@@ -2583,9 +2680,10 @@ async function mobileLayout(page, label, narrow) {
   let homeShown = false;
   let homeOffered = { homeReady };
   if (homeReady) {
-    // At 800x360 Home opens with the card's commands under the fixed bottom bar, as any content can be
-    // until the reader scrolls: a tap there landed on the bar's Browse link. Done is brought to the
-    // middle first, as a reader would scroll to it, and the tap must then reach Done itself.
+    // Done is brought to the middle first, as a reader would scroll to it, so the result and Undo are
+    // checked wherever the card starts. Before #857 it started under the fixed bottom bar at 800x360,
+    // where a tap landed on the bar's Browse link; home-continue now checks where Home opens with it.
+    // The tap must then reach Done itself.
     await page.$eval('#btn-chero-done', (node) => node.scrollIntoView({ block: 'center' }));
     homeBefore = await page.evaluate(() => {
       const done = document.querySelector('#btn-chero-done');
@@ -3082,6 +3180,384 @@ async function completionFocusJourney(page, label) {
   }
 }
 
+// #836 item 1 (UX-10): a first visit to a Reading List, with the one-time note that saving is automatic
+// still showing. The note used to lead the reading card, and on a phone it was 238px tall at 360 by 800
+// and put Read under the bottom bar. It now follows the card, so Read is where it would be without the
+// note. Tab keeps the note's link clear of the bar, and the first Done retires the note without moving
+// anything above the card.
+async function saveNoticeFixtures(page, viewport) {
+  await page.evaluateOnNewDocument((saved, key, educationKey, education, settings) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    if (!localStorage.getItem(educationKey)) localStorage.setItem(educationKey, education);
+    localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.origin === location.origin) return original(input, options);
+      if (url.pathname === '/v1/health') {
+        return Promise.resolve(new Response('{"status":"ok"}', { headers: { 'content-type': 'application/json' } }));
+      }
+      return Promise.reject(new TypeError('Save notice fixture blocks outside requests'));
+    };
+  }, readingState(), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.EXPLAINING,
+  { covers: viewport.covers === true, theme: viewport.theme || 'light' });
+}
+
+async function saveNoticeCheck(page, label, viewport) {
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  await page.waitForFunction(() => !document.querySelector('#view-read').hidden
+    && document.querySelector('#hero-title').textContent !== 'Nothing up next');
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await settle();
+  const measure = () => page.evaluate((educationKey) => {
+    const hero = document.querySelector('#hero');
+    const notice = document.querySelector('#save-education');
+    const box = (node) => {
+      const { top, bottom } = node.getBoundingClientRect();
+      return { top: Math.round(top), bottom: Math.round(bottom), page: Math.round(top + scrollY) };
+    };
+    // The bar slides while focus moves, so content is measured against where it rests when shown.
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    return {
+      shown: !notice.hidden && notice.getClientRects().length > 0,
+      follows: Boolean(hero.compareDocumentPosition(notice) & Node.DOCUMENT_POSITION_FOLLOWING),
+      hero: box(hero), notice: notice.hidden ? null : box(notice), read: box(document.querySelector('#btn-hero-read')),
+      fold: barred ? Math.round(innerHeight - bar.height) : innerHeight, scrollY: Math.round(scrollY),
+      education: localStorage.getItem(educationKey),
+      cover: document.querySelector('#hero-img').checkVisibility(),
+    };
+  }, SAVE_EDUCATION_KEY);
+  const first = await measure();
+  check(first.shown && first.follows && first.notice.top >= first.hero.bottom && first.cover === (viewport.covers === true),
+    `${label}: a first visit shows the save note after the reading card ${JSON.stringify(first)}`);
+  if (viewport.readAbove) {
+    check(first.scrollY === 0 && first.read.top >= 0 && first.read.bottom <= first.fold,
+      `${label}: Read is fully visible above the bottom bar on a first visit ${JSON.stringify({ read: first.read, fold: first.fold })}`);
+  }
+  // Tab from the card's last control onto the note's link, parked first inside the band the bottom bar
+  // covers. Focus scrolls a control that is off screen to the middle anyway, so that band is the one
+  // place focus could leave the link hidden (WCAG 2.4.11, focus not obscured).
+  await page.evaluate(() => {
+    const link = document.querySelector('#save-education-settings');
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    const { top, height } = link.getBoundingClientRect();
+    window.scrollBy(0, top - (barred ? innerHeight - bar.height / 2 - height / 2 : innerHeight - height - 8));
+  });
+  await settle();
+  await page.$eval('#hero-more-actions > summary', (node) => node.focus({ preventScroll: true }));
+  const path = [];
+  for (let step = 0; step < 8 && await page.evaluate(() => document.activeElement?.id) !== 'save-education-settings'; step += 1) {
+    await page.keyboard.press('Tab');
+    path.push(await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+  }
+  await settle();
+  const link = await page.evaluate(() => {
+    const node = document.querySelector('#save-education-settings');
+    const { top, bottom } = node.getBoundingClientRect();
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const fold = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2 ? innerHeight - bar.height : innerHeight;
+    return { focused: document.activeElement === node, top: Math.round(top), bottom: Math.round(bottom), fold: Math.round(fold) };
+  });
+  check(link.focused && link.top >= 0 && link.bottom <= link.fold,
+    `${label}: Tab reaches the note's Backup & settings link in view, clear of the bottom bar ${JSON.stringify({ link, path })}`);
+  // Done is brought to the middle first, as a reader would scroll to it, so the bar cannot take the tap.
+  await page.$eval('#btn-hero-done', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  const point = await page.$eval('#btn-hero-done', (node) => {
+    const { left, top, width, height } = node.getBoundingClientRect();
+    const [x, y] = [left + width / 2, top + height / 2];
+    const hit = document.elementFromPoint(x, y);
+    return { x, y, reached: hit === node || node.contains(hit) };
+  });
+  check(point.reached, `${label}: Done can be reached where it is ${JSON.stringify(point)}`);
+  if (viewport.desktop) await page.mouse.click(point.x, point.y);
+  else await page.touchscreen.tap(point.x, point.y);
+  await page.waitForFunction(() => document.querySelector('#save-education').hidden, { timeout: 5000 });
+  await settle();
+  const after = await measure();
+  check(after.education === SAVE_EDUCATION_STATE.COMPLETE && !after.shown && Math.abs(after.hero.page - first.hero.page) <= 1,
+    `${label}: the first Done retires the note without moving the reading card ${JSON.stringify({ before: first.hero, after: after.hero, education: after.education })}`);
+  console.log(`CHECKED ${label}: first-visit save note ${JSON.stringify({ notice: first.notice, read: first.read, fold: first.fold, link })}`);
+}
+
+// #857: Home's Continue reading on a phone, opened from the bar as a reader leaving a list does. The
+// Issue's Read at y 843 in a 360 by 800 portrait came from a probe server that did not answer the
+// app's health path, so the notice that the local connection is missing stood 354px tall above Home.
+// The native shell answers that path, as this harness's server does, and in portrait Read already
+// cleared the bar. Landscape did not: at 800 by 360 the two-row head left the last 36px of Read and Done
+// under it.
+async function homeContinueFixtures(page, viewport) {
+  const base = readingState();
+  const state = viewport.listName ? {
+    ...base, lists: { ...base.lists, [READING_LIST]: { ...base.lists[READING_LIST], name: viewport.listName } },
+  } : base;
+  await page.evaluateOnNewDocument((saved, key, educationKey, education, settings) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    localStorage.setItem(educationKey, education);
+    localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.origin === location.origin) return original(input, options);
+      if (url.pathname === '/v1/health') {
+        return Promise.resolve(new Response('{"status":"ok"}', { headers: { 'content-type': 'application/json' } }));
+      }
+      return Promise.reject(new TypeError('Home continue fixture blocks outside requests'));
+    };
+  }, state, KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE,
+  { covers: viewport.covers === true, theme: viewport.theme || 'light' });
+}
+
+async function homeContinueCheck(page, label, viewport) {
+  const name = `${label} ${viewport.theme}${viewport.listName ? ' two-line name' : ''}`;
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  const tap = async (point) => {
+    if (viewport.desktop) await page.mouse.click(point.x, point.y);
+    else await page.touchscreen.tap(point.x, point.y);
+  };
+  // Where a finger would land on a control, and whether the control is what is there.
+  const target = (selector) => page.$eval(selector, (node) => {
+    const { left, top, width, height } = node.getBoundingClientRect();
+    const [x, y] = [left + width / 2, top + height / 2];
+    const hit = document.elementFromPoint(x, y);
+    return { x, y, reached: hit === node || node.contains(hit) };
+  });
+  const readCount = () => page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+  await page.waitForSelector('#view-read:not([hidden])');
+  // WebView multiplies every font size by the system font scale, viewport units included, and the
+  // token stress reaches only token sizes, so large text scales the wordmark here as phone-header does.
+  if (viewport.textScale) {
+    await page.$eval('#home-h', (node, factor) => {
+      node.style.fontSize = `${parseFloat(getComputedStyle(node).fontSize) * factor}px`;
+    }, viewport.textScale);
+  }
+  await click(page, '.brand[data-view="home"]');
+  await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done');
+  await page.evaluate(() => document.fonts.ready);
+  await settle();
+  const measure = () => page.evaluate(() => {
+    const box = (node) => {
+      if (!node || !node.getClientRects().length) return null;
+      const { left, top, right, bottom } = node.getBoundingClientRect();
+      return { left: Math.round(left), top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom) };
+    };
+    const reaches = (node) => {
+      const { left, top, width, height } = node.getBoundingClientRect();
+      const hit = document.elementFromPoint(left + width / 2, top + height / 2);
+      return hit === node || node.contains(hit);
+    };
+    // The bar slides while the page moves, so content is measured against where it rests when shown.
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    const head = document.querySelector('#view-home > .head');
+    const headBox = head.getBoundingClientRect();
+    const headStyle = getComputedStyle(head);
+    const heading = document.querySelector('#home-h').getBoundingClientRect();
+    const center = (headBox.left + parseFloat(headStyle.paddingLeft) + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
+    const read = document.querySelector('#btn-chero-read');
+    const done = document.querySelector('#btn-chero-done');
+    return {
+      scrollY: Math.round(scrollY), fold: barred ? Math.round(innerHeight - bar.height) : innerHeight,
+      read: box(read), done: box(done), reachRead: reaches(read), reachDone: reaches(done),
+      heading: box(document.querySelector('#home-h')), toggle: box(document.querySelector('#home-updates-toggle')),
+      panel: document.querySelector('#home-updates').open ? box(document.querySelector('#home-updates-panel')) : null,
+      offCenter: Math.round(Math.abs((heading.left + heading.right) / 2 - center) * 10) / 10,
+      width: document.documentElement.clientWidth,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      focus: document.activeElement?.id || null,
+    };
+  });
+  const opened = await measure();
+  await screenshot(page, name, 'home-continue');
+  if (viewport.readAbove) {
+    // The Issue requires Read fully visible above the bar. Done, stacked under Read on a portrait phone,
+    // must start above it and take a tap there; its last 5px stay under the bar at 320 by 740.
+    check(opened.scrollY === 0 && opened.read.top >= 0 && opened.read.bottom <= opened.fold && opened.reachRead
+      && opened.done.top < opened.fold && opened.reachDone,
+    `${name}: Home opens with Continue reading's Read fully above the bottom bar and Done starting above it, each reached by a tap ${JSON.stringify(opened)}`);
+  } else {
+    console.log(`LIMIT ${name}: Read ends at ${opened.read.bottom} against the bar at ${opened.fold}`);
+  }
+  if (!viewport.desktop) {
+    const sameRow = opened.toggle.top < opened.heading.bottom && opened.toggle.bottom > opened.heading.top;
+    if (viewport.oneRow) {
+      check(sameRow && opened.offCenter <= 1 && opened.toggle.left >= opened.heading.right
+        && opened.toggle.right <= opened.width && !opened.overflow,
+      `${name}: on a short screen What's new shares the centered wordmark's row ${JSON.stringify(opened)}`);
+    } else {
+      check(!sameRow && opened.toggle.top >= opened.heading.bottom && opened.offCenter <= 1,
+        `${name}: a taller screen keeps What's new on its own row under the centered wordmark ${JSON.stringify(opened)}`);
+    }
+  }
+  if (viewport.oneRow) {
+    // What's new opens where it is, as the Windows panel below it, instead of jumping to a row of its
+    // own; with large text the taller row puts the panel's end under the bar, and the page scrolls.
+    // Opening clears New, which can shorten the summary and, with large text, unwrap it, so the corner
+    // it is anchored by is compared, and it may narrow but not spread along its row as it used to.
+    const anchored = (a, b) => !!a && !!b && a.top === b.top && a.right === b.right && a.left >= b.left - 1;
+    const settled = (open) => page.waitForFunction((expected) => document.querySelector('#home-updates').open === expected,
+      { timeout: 5000 }, open).then(() => true, () => false);
+    const toggle = await target('#home-updates-toggle');
+    await tap(toggle);
+    const opening = await settled(true);
+    await settle();
+    const shown = await measure();
+    await screenshot(page, name, 'home-updates-open');
+    check(opening && toggle.reached && anchored(shown.toggle, opened.toggle) && shown.panel
+      && shown.panel.top >= shown.toggle.bottom - 1 && shown.panel.left >= 0 && shown.panel.right <= shown.width
+      && (viewport.textScale || shown.panel.bottom <= shown.fold) && !shown.overflow,
+    `${name}: What's new opens in place, its panel inside the screen and above the bottom bar ${JSON.stringify({ opening, toggle: shown.toggle, before: opened.toggle, panel: shown.panel, fold: shown.fold })}`);
+    if (opening) await tap(await target('#home-updates-close'));
+    const closing = opening && await settled(false);
+    const closed = await measure();
+    check(closing && closed.focus === 'home-updates-toggle' && anchored(closed.toggle, opened.toggle),
+      `${name}: Close restores focus to What's new where it was ${JSON.stringify({ closing, focus: closed.focus, toggle: closed.toggle })}`);
+    await tap(await target('#home-updates-toggle'));
+    const reopened = await settled(true);
+    const replies = await page.evaluate(() => window.__androidTest.replies.length);
+    await page.evaluate(() => window.__androidTest.back());
+    const replied = await page.waitForFunction((count) => window.__androidTest.replies.length > count, { timeout: 5000 }, replies)
+      .then(() => true, () => false);
+    const backed = await page.evaluate(() => ({
+      handled: window.__androidTest.replies.at(-1)?.handled,
+      open: document.querySelector('#home-updates').open, focus: document.activeElement?.id || null,
+    }));
+    check(reopened && replied && backed.handled && !backed.open && backed.focus === 'home-updates-toggle',
+      `${name}: Android Back closes What's new and restores its focus ${JSON.stringify({ reopened, replied, ...backed })}`);
+  }
+  // From the heading Home focuses on arrival, Tab passes What's new and reaches Read, then Done. Focus
+  // keeps each clear of the bar, including where the card does not fit (WCAG 2.4.11).
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    if (document.activeElement?.id !== 'home-updates-toggle') document.querySelector('#home-h').focus({ preventScroll: true });
+  });
+  await settle();
+  const path = [];
+  for (const id of ['btn-chero-read', 'btn-chero-done']) {
+    for (let step = 0; step < 4 && await page.evaluate(() => document.activeElement?.id) !== id; step += 1) {
+      await page.keyboard.press('Tab');
+      path.push(await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+    }
+    await settle();
+    const focused = await measure();
+    const control = id === 'btn-chero-read' ? focused.read : focused.done;
+    check(focused.focus === id && control.top >= 0 && control.bottom <= focused.fold,
+      `${name}: Tab brings ${id === 'btn-chero-read' ? 'Read' : 'Done'} into view clear of the bottom bar ${JSON.stringify({ control, fold: focused.fold, path })}`);
+  }
+  if (!viewport.readAbove) {
+    console.log(`CHECKED ${name}: Continue reading reached by focus ${JSON.stringify({ read: opened.read, fold: opened.fold })}`);
+    return;
+  }
+  // Done is tapped where Home opens with it, which at 800 by 360 used to be the bar's Browse link. On a
+  // phone its result is a bar above the bottom navigation (#892): it shows in full there and moves
+  // nothing, except at 320 by 740, where the owner chose to scroll just enough to keep Done in view.
+  // Windows keeps it inline after the card's commands, as #856 placed it. Either way Undo is tapped
+  // where it shows.
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    document.activeElement?.blur();
+  });
+  // The Tab checks scrolled the page, which slides the bar away, and it slides back as the page
+  // returns to the top. A finger meets the bar where it rests, so the tap waits for it to settle there.
+  await page.waitForFunction(() => {
+    const rail = document.querySelector('.rail-header');
+    if (getComputedStyle(rail).position !== 'fixed') return true;
+    return !rail.classList.contains('mobile-nav-hidden') && Math.abs(rail.getBoundingClientRect().bottom - innerHeight) < 1
+      && !rail.getAnimations().some((animation) => animation.playState === 'running');
+  }, { timeout: 5000 }).catch(() => {});
+  await settle();
+  const before = {
+    read: await readCount(), next: await page.$eval('#chero-next', (node) => node.textContent),
+    done: (await measure()).done,
+  };
+  const done = await target('#btn-chero-done');
+  check(done.reached, `${name}: Done is reached by a tap where Home opens with it ${JSON.stringify(done)}`);
+  await tap(done);
+  const shown = await page.waitForSelector('#done-result button', { timeout: 5000 }).then(() => true, () => false);
+  await settle();
+  const placed = shown ? await page.evaluate(() => {
+    const box = (node) => {
+      const { left, top, right, bottom } = node.getBoundingClientRect();
+      return { left: Math.round(left), top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom) };
+    };
+    const result = document.querySelector('#done-result');
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    return {
+      follows: result.previousElementSibling?.id === 'chero-actions', position: getComputedStyle(result).position,
+      read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+      result: box(result), readBox: box(document.querySelector('#btn-chero-read')), doneBox: box(document.querySelector('#btn-chero-done')),
+      fold: barred ? Math.round(innerHeight - bar.height) : innerHeight, width: document.documentElement.clientWidth,
+      scrollY: Math.round(scrollY), focus: document.activeElement?.id || null,
+    };
+  }) : { shown };
+  check(shown && placed.follows && placed.read === before.read + 1,
+    `${name}: a tap on Done marks the comic and offers Undo, the result following the card's commands in the page ${JSON.stringify(placed)}`);
+  await screenshot(page, name, 'home-done');
+  if (!shown) return;
+  if (viewport.desktop) {
+    check(placed.position !== 'fixed' && placed.result.top >= placed.doneBox.bottom && placed.scrollY === 0,
+      `${name}: Windows keeps the result inline under the card's commands ${JSON.stringify(placed)}`);
+  } else {
+    const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    const gap = placed.fold - placed.result.bottom;
+    const same = (a, b) => ['left', 'top', 'right', 'bottom'].every((side) => Math.abs(a[side] - b[side]) <= 1);
+    // At 320 by 740 the page moves by the overlap and the bar's own gap, so Done ends that gap above it.
+    const moved = viewport.scrollToClear
+      ? placed.scrollY > 0 && Math.abs(placed.result.top - placed.doneBox.bottom - gap) <= 1
+      : placed.scrollY === 0 && same(placed.doneBox, before.done);
+    check(placed.position === 'fixed' && placed.result.left >= 0 && placed.result.right <= placed.width
+      && placed.result.top >= 0 && placed.result.bottom <= placed.fold && gap > 0
+      && !overlaps(placed.result, placed.readBox) && !overlaps(placed.result, placed.doneBox) && moved,
+    `${name}: Done's result shows in full in a bar above the bottom navigation, clear of Read and Done, ${viewport.scrollToClear ? 'the page scrolled just enough to keep Done in view' : 'with nothing moved'} ${JSON.stringify({ ...placed, before: before.done, gap })}`);
+    if (viewport.scrollToClear) console.log(`SCROLL ${name}: ${placed.scrollY}px keeps Done ${gap}px clear of the result bar`);
+    // Focus clears the bar by its height while it shows, so Tab on from Done never lands under it: the
+    // focused control's scroll margin must cover the navigation and the bar, which the overlay measures.
+    await page.$eval('#btn-chero-done', (node) => node.focus({ preventScroll: true }));
+    await page.keyboard.press('Tab');
+    await settle();
+    const onward = await page.evaluate(() => {
+      const focused = document.activeElement;
+      const { left, top, right, bottom } = focused.getBoundingClientRect();
+      const bar = document.querySelector('#done-result').getBoundingClientRect();
+      return { focus: focused.id, top: Math.round(top), bottom: Math.round(bottom), barTop: Math.round(bar.top),
+        beside: left >= bar.right || right <= bar.left, margin: parseFloat(getComputedStyle(focused).scrollMarginBottom),
+        clearance: Math.round(document.querySelector('.rail-header').offsetHeight + bar.height) };
+    });
+    check(onward.focus === 'btn-chero-open' && onward.top >= 0 && (onward.beside || onward.bottom <= onward.barTop)
+      && onward.margin >= onward.clearance,
+    `${name}: Tab on from Done brings Open the list into view clear of the result bar ${JSON.stringify(onward)}`);
+    // The bar gives way to the More panel while it is open.
+    await click(page, '#btn-rail-toggle');
+    const covered = await page.$eval('#done-result', (node) => getComputedStyle(node).visibility);
+    await click(page, '#btn-rail-toggle');
+    const restored = await page.$eval('#done-result', (node) => getComputedStyle(node).visibility);
+    check(covered === 'hidden' && restored === 'visible',
+      `${name}: the result bar gives way while More is open ${JSON.stringify({ covered, restored })}`);
+  }
+  const undo = await target('#done-result button');
+  await tap(undo);
+  await page.waitForFunction((next) => document.querySelector('#chero-next')?.textContent === next, { timeout: 5000 }, before.next)
+    .catch(() => {});
+  const undone = { reached: undo.reached, read: await readCount(), focus: await page.evaluate(() => document.activeElement?.id ?? null) };
+  check(undone.reached && undone.read === before.read && undone.focus === 'btn-chero-done',
+    `${name}: a tap on Undo where it shows puts the comic back with focus on Done ${JSON.stringify(undone)}`);
+  console.log(`CHECKED ${name}: Continue reading on Home ${JSON.stringify({ read: opened.read, done: opened.done, fold: opened.fold })}`);
+}
+
 // #874: the Reading Journey milestones in the Android build, at the phone sizes and text scales the
 // Issue names. A finished section's Complete badge and Done's longer result stay inside the screen, and
 // the line the wrap-up opens with stays inside its card with each word whole, its display size scaled
@@ -3453,7 +3929,11 @@ try {
     { width: 320, height: 740, textScale: 1.5 },
     { width: 320, height: 740, textScale: 2 },
     { width: 360, height: 800, textScale: 2 },
+    { width: 412, height: 915 },
     { width: 412, height: 915, textScale: 1.5 },
+    { width: 412, height: 915, textScale: 2 },
+    { width: 800, height: 360 },
+    { width: 800, height: 360, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
   ];
   if (marvelAgesTarget) viewports = [
@@ -3461,6 +3941,7 @@ try {
     { width: 320, height: 740, textScale: 1.5 },
     { width: 360, height: 800, textScale: 1.5 },
     { width: 412, height: 915, textScale: 1.5 },
+    { width: 360, height: 800, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
   ];
   if (catalogReadability) viewports = placeholderAx
@@ -3490,6 +3971,33 @@ try {
     { width: 360, height: 800, textScale: 2, theme: 'light' },
     { width: 320, height: 740, textScale: 2, theme: 'dark' },
     { width: 800, height: 360, theme: 'light' },
+  ];
+  // Read is required above the bottom bar where it fits without the note: the portrait phones at
+  // normal text. In landscape and with 200% text the card alone is taller than the screen.
+  if (saveNotice) viewports = [
+    { width: 360, height: 800, theme: 'light', readAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, readAbove: true },
+    { width: 800, height: 360, theme: 'light' },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
+  ];
+  // Read is required fully above the bar, and Done to start above it, where the card fits: the portrait
+  // phones, a taller landscape screen, and the short landscape screens #857 is about, with a list name
+  // on one line, as 302 of the 316 curated names are at 800 by 360. A name on two lines, 640px of width
+  // and 200% text are measured limits, where Tab must still bring each command clear of the bar. Only
+  // at 320 by 740 may Done's result bar scroll the page, to keep Done in view (#892).
+  if (homeContinue) viewports = [
+    { width: 360, height: 800, theme: 'light', readAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, readAbove: true },
+    { width: 320, height: 740, theme: 'light', readAbove: true, scrollToClear: true },
+    { width: 800, height: 600, theme: 'dark', readAbove: true },
+    { width: 800, height: 360, theme: 'light', readAbove: true, oneRow: true },
+    { width: 732, height: 412, theme: 'dark', covers: true, readAbove: true, oneRow: true },
+    { width: 640, height: 360, theme: 'light', oneRow: true },
+    { width: 800, height: 360, theme: 'dark', oneRow: true, listName: 'New Ultimate Universe: Single-Issue Reading Order' },
+    { width: 800, height: 360, textScale: 2, theme: 'light', oneRow: true },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
   ];
   if (longListName) viewports = [
     { width: 360, height: 800 },
@@ -3542,6 +4050,8 @@ try {
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
+    if (saveNotice) await saveNoticeFixtures(page, viewport);
+    if (homeContinue) await homeContinueFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
@@ -3552,13 +4062,13 @@ try {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
-      if ((readingComposition || placeholderAx) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if ((readingComposition || placeholderAx || saveNotice || homeContinue) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -3612,7 +4122,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -3653,13 +4163,20 @@ try {
     check(!navigationMisses.length,
       `${label}: navigation retains its icon, accessible name, controlled panel and touch target (${navigationMisses.join('; ')})`);
     const compactHome = !viewport.desktop && viewport.width <= 880;
-    const homeBranding = await page.evaluate(() => {
+    const homeBranding = await page.evaluate((key) => {
       const heading = document.querySelector('#home-h');
       const tagline = document.querySelector('.home-action');
       const brand = document.querySelector('.brand[data-view="home"]');
       const mark = brand.querySelector('.mark');
       const bounds = mark.getBoundingClientRect();
+      const saved = JSON.parse(localStorage.getItem(key) ?? 'null');
       return {
+        homeShown: !document.querySelector('#view-home').hidden,
+        resumed: {
+          hash: location.hash, active: saved?.active ?? null,
+          saved: Object.hasOwn(saved?.lists ?? {}, saved?.active ?? ''),
+          readShown: !document.querySelector('#view-read').hidden,
+        },
         heading: heading.textContent, transform: getComputedStyle(heading).transform,
         taglineDisplay: getComputedStyle(tagline).display,
         marker: getComputedStyle(brand, '::before').content,
@@ -3671,10 +4188,23 @@ try {
             && bounds.top >= box.top && bounds.bottom <= box.bottom;
         })(),
       };
-    });
-    check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
-      && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
-    `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
+    }, KEY);
+    // The app resumes an active Reading List at launch instead of showing Home, so a mode whose
+    // fixture saves one starts on that list's reading view, where Home has no box. Edge then reports
+    // the masthead's transform as none whatever its rule says, which failed every such profile in
+    // seven modes (#882). The masthead is checked wherever a mode starts on Home. Elsewhere the check
+    // is that resuming the fixture's list is the only reason Home is hidden, so a mode that lands
+    // anywhere else still fails here.
+    if (homeBranding.homeShown) {
+      check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
+        && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
+      `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
+    } else {
+      const route = parseRoute(homeBranding.resumed.hash);
+      check(homeBranding.resumed.saved && homeBranding.resumed.readShown
+        && route?.view === 'read' && route.listId === homeBranding.resumed.active,
+      `${label}: Home is hidden only because the app resumed the fixture's active Reading List (${JSON.stringify(homeBranding.resumed)})`);
+    }
     // At 880px and below the brand is a bottom-bar destination, and styles.css sizes its mark
     // with the other bar icons at 20px; wider windows keep the 28px rail mark.
     const markSize = viewport.width <= 880 ? 20 : 28;
@@ -3787,6 +4317,7 @@ try {
     }
     if (marvelAgesTarget) {
       await marvelAgesTouchTarget(page, label, viewport);
+      await eraTileAccents(page, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
@@ -3799,6 +4330,18 @@ try {
     }
     if (completionFocus) {
       await completionFocusJourney(page, label);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (saveNotice) {
+      await saveNoticeCheck(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (homeContinue) {
+      await homeContinueCheck(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

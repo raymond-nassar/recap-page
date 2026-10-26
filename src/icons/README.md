@@ -27,12 +27,18 @@ button supplies the name and action.
 | guide | Reading guides |
 | storylines | Storylines category |
 | screen | MCU Prep category |
+| ages | Marvel Ages category |
 | arrow-right | Category destination arrows |
+| thumb-up | Enjoyed, when rating a completed Reading List |
+| thumb-down | Did not enjoy, when rating a completed Reading List |
+| star | Your ratings, Rate this issue, and the rating dialog's five stars |
 
-This is 17 symbols used by 23 static navigation/search controls plus the generated Home/Browse
-category controls. Each of the six categories has a leading icon and destination arrow in both
-gateways, adding 24 SVG instances (47 before opening publishing-category screens). Modern Timeline and Marvel Ages reuse `guide`,
-Character spotlights reuses `person`, and Reading paths reuses `books`.
+This is 21 symbols. Static markup draws them 27 times in navigation, Library, Add comics and search
+controls, and draws the star six more times: beside Rate this issue and on the rating dialog's five
+buttons. The completed-list rating adds the two thumbs. Each of the six categories has an icon and a
+destination arrow in both the Home and Browse gateways, adding 24 SVG instances. The six category
+icons all differ: Modern Timeline reuses `guide`, Character spotlights reuses `person`, Reading paths
+reuses `books`, and Marvel Ages has its own `ages`, an hourglass drawn for it.
 The same category renderer supplies publishing-age and period tiles when those screens open;
 each adds a `guide` and `arrow-right` pair. These are not a fixed runtime node count.
 
