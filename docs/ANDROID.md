@@ -152,7 +152,7 @@ From the repository root on Windows:
 ```
 
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
-It downloads build tooling, not app data. On other hosts, use installed Gradle 9.8.1 or restore the
+It downloads build tooling, not app data. On other hosts, use installed Gradle 9.8.2 or restore the
 official wrapper JAR with the checksum recorded in `bootstrap-wrapper.ps1` before using `gradlew`.
 Builds prepare assets automatically. To prepare them without an Android SDK:
 
@@ -556,6 +556,16 @@ panel inside the screen and above the bar, with Close and Android Back returning
 taller screen keeps it on its own row. Tab must bring Read and Done into view clear of the bar in
 every case. The two-line name, 640px and 200% text cases report where Read ends as measured limits.
 These are Edge web checks, not a real keyboard, native fontScale or TalkBack acceptance.
+
+`npm run android:browser -- --only=progress-glance` opens a Reading List with 3 of its 69 comics read
+at 360x800, 412x915 in dark with cover art on, 800x360 in dark, and 360x800 and 412x915 with 200%
+text tokens, then goes Home. On the reading card and on Continue reading, the read figure must be set
+larger than its words, the slim bar under it filled to exactly 3 of 69, and both inside their card.
+The figure must clear 4.5:1 and the bar's fill and outline 3:1 against the pixels painted behind
+them. Each screen must read its progress out once, from the header on the reading screen and from the
+count on Home, with no progress bar of its own. Read must stay fully above the bottom bar on the
+reading screen in the two portrait sizes and on Home there and at 800x360. These are Edge web checks,
+not native fontScale or TalkBack acceptance.
 
 ## Native emulator checks without a local emulator
 

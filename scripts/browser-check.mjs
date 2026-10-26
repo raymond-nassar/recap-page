@@ -16288,6 +16288,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
     ['/js/lib/milestones.js', mutation?.rewriteMilestones],
+    ['/js/lib/progressGlance.js', mutation?.rewriteGlance],
     ['/js/lib/theme.js', mutation?.rewriteTheme],
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
@@ -16341,11 +16342,13 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       return;
     }
     if (new URL(request.url()).hostname === 'i.annihil.us') {
+      // A scenario can stand a cover of its own in, such as the brightest backdrop a hero can carry.
       await request.respond({
         status: 200,
         contentType: 'image/png',
         headers: { 'cache-control': 'no-store' },
         body: COVER_PIXEL,
+        ...page.__cover,
       });
       return;
     }
@@ -19687,6 +19690,9 @@ MUTATIONS.push(...categoryAccents.categoryAccentMutations);
 const themeColor = await import('./browser-theme-color.mjs');
 SCENARIOS.push(themeColor.themeColor);
 MUTATIONS.push(...themeColor.themeColorMutations);
+const progressGlance = await import('./browser-progress-glance.mjs');
+SCENARIOS.push(progressGlance.progressGlance);
+MUTATIONS.push(...progressGlance.progressGlanceMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

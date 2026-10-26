@@ -1,6 +1,7 @@
 import { uiIcon } from '../lib/uiIcon.js';
 import { isLaunchable } from '../reader.js';
 import { deferredCount } from '../lib/model.js';
+import { paintGlance } from '../lib/progressGlance.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
@@ -127,11 +128,12 @@ export function createHomeView({
     const deferred = deferredCount(getState(), id);
     const issue = upNext(getState(), id);
     nodes.continueHeading.textContent = list.name;
-    nodes.continueBar.setAttribute('aria-valuemax', String(total));
-    nodes.continueBar.setAttribute('aria-valuenow', String(read));
-    nodes.continueBar.setAttribute('aria-valuetext', `${read} of ${total} issues read${deferred ? `. ${deferred} deferred` : ''}`);
-    nodes.continueFill.style.setProperty('width', `${total ? ((read / total) * 100).toFixed(1) : 0}%`);
-    nodes.continueCount.textContent = `${read} of ${total} issue${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`;
+    // The count is the card's one reading of its progress (#876). The bar under it repeats the same
+    // numbers for the eye and is hidden from assistive technology in the markup, where it used to be a
+    // named progress bar that a screen reader read straight before the identical count.
+    paintGlance(el, { count: nodes.continueCount, fill: nodes.continueFill }, { read, total },
+      ` of ${total} issue${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`);
+    nodes.continueBar.hidden = total === 0;
     nodes.continueDeferred.hidden = deferred === 0;
     nodes.continueReview.hidden = total === 0;
 
