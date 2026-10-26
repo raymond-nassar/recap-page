@@ -97,9 +97,6 @@ if exist "%JAVA_EXE%" goto execute
 goto exitWithErrorLevel
 
 :execute
-@rem Restore or verify the Gradle wrapper before invoking it.
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%APP_HOME%\bootstrap-wrapper.ps1"
-if errorlevel 1 goto exitWithErrorLevel
 @rem Setup the command line
 
 
