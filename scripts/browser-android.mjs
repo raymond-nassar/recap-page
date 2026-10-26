@@ -1387,6 +1387,17 @@ async function categoryLabelReadability(page, label, viewport) {
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         cards: [...document.querySelectorAll(`#view-${id} .home-path`)].map((card) => {
           const copy = card.querySelector('.home-path-copy');
+          const outer = bounds(card);
+          const cardStyle = getComputedStyle(card);
+          const content = {
+            left: outer.left + parseFloat(cardStyle.borderLeftWidth) + parseFloat(cardStyle.paddingLeft),
+            right: outer.right - parseFloat(cardStyle.borderRightWidth) - parseFloat(cardStyle.paddingRight),
+            top: outer.top + parseFloat(cardStyle.borderTopWidth) + parseFloat(cardStyle.paddingTop),
+            bottom: outer.bottom - parseFloat(cardStyle.borderBottomWidth) - parseFloat(cardStyle.paddingBottom),
+          };
+          // Since #873 the gateway's copy lends its eyebrow, title and count to the card's own grid and
+          // has no box of its own, so their words are held to the card's content box instead.
+          const frame = getComputedStyle(copy).display === 'contents' ? content : bounds(copy);
           const words = [], broken = [], clipped = [];
           const parts = ['label', 'title', 'count'].map((role) => {
             const node = card.querySelector(`.home-path-${role}`);
@@ -1401,18 +1412,28 @@ async function categoryLabelReadability(page, label, viewport) {
                 const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
                 words.push(match[0]);
                 if (rects.length !== 1) broken.push({ word: match[0], lines: rects.length });
-                if (rects.some((rect) => !fitsWidth(rect, bounds(node)) || !fitsWidth(rect, bounds(copy))
+                if (rects.some((rect) => !fitsWidth(rect, bounds(node)) || !fitsWidth(rect, frame)
                   || !inside(rect, bounds(card)))) clipped.push(match[0]);
               }
             }
             return {
-              text: node.textContent, font: parseFloat(style.fontSize),
+              text: node.textContent, font: parseFloat(style.fontSize), box: bounds(node),
               family: style.fontFamily, transform: style.textTransform, tracking: parseFloat(style.letterSpacing),
             };
           });
+          const icon = bounds(card.querySelector('.home-path-icon'));
+          const arrow = bounds(card.querySelector('.home-path-arrow'));
+          const meets = (a, b) => a.left < b.right - 0.5 && b.left < a.right - 0.5
+            && a.top < b.bottom - 0.5 && b.top < a.bottom - 0.5;
+          const marks = [['icon', icon], ['arrow', arrow], ...parts.map((part, index) => [['label', 'title', 'count'][index], part.box])];
+          const overlaps = [];
+          marks.forEach(([one, a], index) => marks.slice(index + 1).forEach(([other, b]) => {
+            if (meets(a, b)) overlaps.push(`${one}/${other}`);
+          }));
           return {
             key: card.dataset.category, name: card.getAttribute('aria-label'), parts,
-            box: bounds(card), copy: bounds(copy), icon: bounds(card.querySelector('.home-path-icon')),
+            box: outer, content, icon, arrow, overlaps,
+            symbol: card.querySelector('.home-path-icon use')?.getAttribute('href'),
             words, broken, clipped,
           };
         }),
@@ -1440,11 +1461,28 @@ async function categoryLabelReadability(page, label, viewport) {
         `${label} ${view}: ${category.key}: whole rendered words ${JSON.stringify(card.broken)}`);
       check(card.clipped.length === 0,
         `${label} ${view}: ${category.key}: text stays inside copy and clipping card ${JSON.stringify(card.clipped)}`);
+      // #873: the icon is the card's emblem, larger than the 1.45rem glyph it replaces and at the
+      // card's top right above the text, with the arrow at the bottom right beside the count.
+      check(card.icon.width >= 40 && card.icon.height >= 40
+        && Math.abs(card.icon.right - card.content.right) <= 1 && card.icon.top <= card.content.top + 1
+        && card.icon.left >= card.box.left + card.box.width / 2
+        && card.parts.every((part) => card.icon.bottom <= part.box.top + 0.5)
+        && Math.abs(card.arrow.right - card.content.right) <= 1,
+      `${label} ${view}: ${category.key}: large icon at the card's top right above its text ${JSON.stringify({ icon: card.icon, arrow: card.arrow, content: card.content })}`);
+      check(card.overlaps.length === 0,
+        `${label} ${view}: ${category.key}: icon, arrow and text do not overlap ${JSON.stringify(card.overlaps)}`);
       if (viewport.desktop) {
-        check(card.copy.left > card.icon.right && card.parts[0].transform === 'uppercase'
+        check(card.parts[0].transform === 'uppercase'
           && Math.abs(card.parts[0].tracking - caption * 0.16) < 0.01,
-        `${label} ${view}: ${category.key}: desktop grid and eyebrow treatment retained`);
+        `${label} ${view}: ${category.key}: desktop eyebrow treatment retained`);
       }
+    }
+    check(new Set(result.cards.map((card) => card.symbol)).size === result.cards.length,
+      `${label} ${view}: the ${result.cards.length} categories draw ${result.cards.length} different glyphs ${JSON.stringify(result.cards.map((card) => card.symbol))}`);
+    if (viewport.width === 800) {
+      // Discover More keeps its row of three at normal text and widens to two columns at 200% (#873).
+      const rows = new Set(result.cards.slice(3).map((card) => Math.round(card.box.top))).size;
+      check(rows === (scale === 1 ? 1 : 2), `${label} ${view}: Discover More takes ${rows} rows`);
     }
     if (view === 'browse') {
       // The credit names its metadata source as one unbroken domain, which at 200% text on a 320px
@@ -3352,7 +3390,11 @@ try {
     { width: 320, height: 740, textScale: 1.5 },
     { width: 320, height: 740, textScale: 2 },
     { width: 360, height: 800, textScale: 2 },
+    { width: 412, height: 915 },
     { width: 412, height: 915, textScale: 1.5 },
+    { width: 412, height: 915, textScale: 2 },
+    { width: 800, height: 360 },
+    { width: 800, height: 360, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
   ];
   if (marvelAgesTarget) viewports = [

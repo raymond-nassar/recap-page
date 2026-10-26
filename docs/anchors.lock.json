@@ -2299,8 +2299,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2022-2024|0": {
-    "anchor": "src/styles.css:2022-2024",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2038-2040|0": {
+    "anchor": "src/styles.css:2038-2040",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2319,8 +2319,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2022-2024|0": {
-    "anchor": "src/styles.css:2022-2024",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2038-2040|0": {
+    "anchor": "src/styles.css:2038-2040",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2374,8 +2374,8 @@
     "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2387-2388|0": {
-    "anchor": "src/styles.css:2387-2388",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2403-2404|0": {
+    "anchor": "src/styles.css:2403-2404",
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
@@ -2439,8 +2439,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2022-2024|0": {
-    "anchor": "src/styles.css:2022-2024",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2038-2040|0": {
+    "anchor": "src/styles.css:2038-2040",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6134,18 +6134,18 @@
     "fp": "8e2c9539f0cef430",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1824-1826|0": {
-    "anchor": "src/styles.css:1824-1826",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1825-1827|0": {
+    "anchor": "src/styles.css:1825-1827",
     "fp": "7e803f26bdd5dd83",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2057|0": {
-    "anchor": "src/styles.css:2057",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2073|0": {
+    "anchor": "src/styles.css:2073",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2081|0": {
-    "anchor": "src/styles.css:2081",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2097|0": {
+    "anchor": "src/styles.css:2097",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

@@ -23,12 +23,18 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const BODY = 4.5;
 export const LARGE = 3;
 
-// The three Discover More cards that #872 gave a channel of their own, by the name of the surface
-// each is measured on, which is that channel's tint over the card.
+// The six category cards on Home and Browse, by the name of the surface each icon is measured on,
+// then the channel its tint is made of and the ink its icon is drawn in. The Discover More cards'
+// channels are set per theme (#872), so their icons are drawn straight from them. The top row's are
+// one value for both themes and cannot clear 3:1 in both, so its icons take the hue's own per-theme
+// text color (#873).
 export const CATEGORY_CARDS = [
-  ['the MCU Prep card', '--azure-line'],
-  ['the Marvel Ages card', '--magenta-line'],
-  ['the Reading paths card', '--green-line'],
+  ['the Modern Timeline card', '--accent-line', '--accent-text'],
+  ['the Storylines card', '--amber-line', '--amber'],
+  ['the Character spotlights card', '--teal-line', '--teal'],
+  ['the MCU Prep card', '--azure-line', '--azure-line'],
+  ['the Marvel Ages card', '--magenta-line', '--magenta-line'],
+  ['the Reading paths card', '--green-line', '--green-line'],
 ];
 
 // Foreground, background, floor, and where it is rendered. The last field is the reason the pair
@@ -135,15 +141,15 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2081`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2097`'],
 
-  // #872. Each Discover More card draws its icon from the channel its own tint is made of, so the icon
-  // is measured on that tint at rest and on hover, the two surfaces it is ever drawn on. Its 3:1 is a
-  // request rather than a WCAG duty, since the icon is hidden from assistive technology and the card
-  // names itself, but it is the floor the icons were chosen against and nothing else would hold it.
-  ...CATEGORY_CARDS.flatMap(([card, channel]) => [
-    [channel, card, LARGE, `the icon on ${card}`],
-    [channel, `${card} on hover`, LARGE, `the icon on ${card} while it is pointed at`],
+  // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
+  // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
+  // hidden from assistive technology and the card names itself, but #873 made the icon the card's
+  // most prominent mark, and nothing else would hold the floor it was chosen against.
+  ...CATEGORY_CARDS.flatMap(([card, , ink]) => [
+    [ink, card, LARGE, `the icon on ${card}`],
+    [ink, `${card} on hover`, LARGE, `the icon on ${card} while it is pointed at`],
   ]),
 ];
 
@@ -191,7 +197,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2057`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2073`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -206,7 +212,7 @@ export const SURFACES = {
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
   // card at rest (`src/styles.css:1807-1809`) and 19% over the raised card on hover
-  // (`src/styles.css:1824-1826`).
+  // (`src/styles.css:1825-1827`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -774,7 +780,7 @@ function main() {
       const tokens = tokensIn(css, selector);
       console.log(`\n${themeName}`);
       for (const [fgName, bgName, floor] of PAIRS) {
-        const fg = parseHex(tokens.get(fgName) || '');
+        const fg = parseColour(tokens.get(fgName) || '');
         const bg = background(bgName, tokens).colour ?? null;
         const r = fg && bg ? ratio(fg, bg) : null;
         const mark = r === null ? '  ?' : r < floor ? 'FAIL' : '  ok';

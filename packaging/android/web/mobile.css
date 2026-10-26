@@ -34,6 +34,18 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .setting-ctl.checkbox { max-width: 100%; white-space: normal; }
 .notice { overflow-wrap: anywhere; }
 .issue-focus-note { overflow-wrap: anywhere; }
+/* WebView scales every font by the system font scale but no rem length, so at 200% text on an 800
+   by 360 phone Discover More's three 14rem columns left each card 203px for words up to 243px, the
+   eyebrow's uppercase "Publication" the widest, and cut them (#873). A ch is measured from the
+   scaled font, so this minimum grows with the text: 20ch is 173px at normal size, where 14rem still
+   decides and the row of three is unchanged, and 345px at 200%, where the cards take two columns of
+   376px. Measured in Edge with Segoe UI standing in for Roboto. At 620px and below the shared
+   stylesheet stacks them in one column. */
+@media (min-width: 621px) {
+  [data-category-gateway] .home-paths-secondary {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, max(14rem, 20ch)), 1fr));
+  }
+}
 #android-report[hidden] { display: none; }
 dialog.ask, dialog.preview {
   max-width: calc(100vw - 24px);

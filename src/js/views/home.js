@@ -10,6 +10,7 @@ const CATEGORY_ICONS = {
   E77B: 'person',
   E714: 'screen',
   E8F1: 'books',
+  E81C: 'ages',
 };
 
 export function createHomeView({
