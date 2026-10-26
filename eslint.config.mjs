@@ -163,6 +163,7 @@ export default [
       'scripts/browser-owner-guide.mjs',
       'scripts/browser-selection-bar.mjs',
       'scripts/browser-category-accents.mjs',
+      'scripts/browser-theme-color.mjs',
       'scripts/lib/painted-contrast.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',

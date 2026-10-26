@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme } from '../src/js/lib/theme.js';
+import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme, themeColorScheme, themeColors, applyThemeMeta } from '../src/js/lib/theme.js';
 import { HOME_CATEGORIES, PUBLISHING_CATEGORIES, isPublishingCategoryLeaf } from '../src/js/lib/catalog.js';
 import {
   PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
@@ -142,6 +142,95 @@ test('the settings control offers exactly the themes the code accepts', () => {
   assert.ok(select, 'the theme control is no longer a select this test can read');
   const values = [...select[1].matchAll(/value="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(values, THEMES);
+});
+
+// #834 (UX-28). An installed browser app paints its title bar in the page's theme colour rather than the
+// manifest's, taken from the first `theme-color` tag whose media query matches. The tags are read from
+// the markup here the way the browser reads them: every meta element, by its own attributes.
+function themeColorTags(html) {
+  const tags = (text) => [...text.matchAll(/<meta\b[^>]*>/g)]
+    .map(([tag]) => Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, key, value]) => [key, value])))
+    .filter((attributes) => attributes.name === 'theme-color');
+  const head = tags(html.slice(0, html.indexOf('</head>')));
+  assert.equal(tags(html).length, head.length, 'a theme-color tag sits outside the head');
+  return head.map(({ content, media }) => ({ color: content, media }));
+}
+
+test('the app and its launch page carry a theme-color tag per scheme, in that scheme\'s page background', () => {
+  // Dark first: a browser that ignores `media` takes the first tag, and dark is what the page and the
+  // manifest wear when nothing says otherwise. Each colour is the page background of its own scheme in
+  // every block that declares it, the launch page's own stylesheet included.
+  for (const [path, sheet] of [['src/index.html', css], ['src/open.html', read('src/open.css')]]) {
+    const tags = themeColorTags(read(path));
+    assert.deepEqual(tags.map(({ media }) => themeColorScheme(media)), ['dark', 'light'], `${path} tag schemes`);
+    for (const { color, media } of tags) {
+      const selectors = themeColorScheme(media) === 'dark' ? [DARK] : [LIGHT_ATTR, LIGHT_MEDIA];
+      for (const selector of selectors) {
+        assert.equal(color, tokensIn(css, selector).get('--bg'), `${path} ${media} is not --bg in ${selector}`);
+        assert.equal(color, tokensIn(sheet, selector).get('--bg'), `${path} ${media} is not its own sheet's --bg in ${selector}`);
+      }
+    }
+  }
+});
+
+test('each theme-color tag keeps its own colour on system, and every tag takes an explicit theme\'s', () => {
+  const tags = themeColorTags(read('src/index.html'));
+  const own = tags.map(({ color }) => color);
+  const dark = tokensIn(css, DARK).get('--bg');
+  const light = tokensIn(css, LIGHT_ATTR).get('--bg');
+  assert.deepEqual(themeColors('system', tags), own);
+  assert.deepEqual(themeColors('dark', tags), [dark, dark]);
+  assert.deepEqual(themeColors('light', tags), [light, light]);
+  // Anything unrecognised follows the system, as the attribute does, and so does a theme the head has
+  // no tag for: the tags keep the colours somebody wrote rather than taking none.
+  for (const theme of ['midnight', '', undefined, null]) assert.deepEqual(themeColors(theme, tags), own);
+  assert.deepEqual(themeColors('light', tags.slice(0, 1)), own.slice(0, 1));
+  assert.equal(themeColorScheme('(prefers-color-scheme: light)'), 'light');
+  assert.equal(themeColorScheme(' ( prefers-color-scheme : dark ) '), 'dark');
+  for (const media of ['screen', '(prefers-color-scheme: light) and (min-width: 1px)', '', null, undefined]) {
+    assert.equal(themeColorScheme(media), null, `${media} names a scheme`);
+  }
+});
+
+test('applying a theme rewrites the head\'s tags and puts each tag\'s own colour back on system', () => {
+  // A stand-in head built from the real markup. The first write is an explicit theme, so the original
+  // colour of the tag it overwrites can only come back from what was kept before that write.
+  const node = (attributes) => ({
+    attributes: { ...attributes },
+    getAttribute(key) { return this.attributes[key] ?? null; },
+    setAttribute(key, value) { this.attributes[key] = String(value); },
+  });
+  const scheme = node({ name: 'color-scheme', content: 'dark light' });
+  const colors = themeColorTags(read('src/index.html')).map(({ color, media }) => node({ name: 'theme-color', content: color, media }));
+  const doc = {
+    querySelector: (selector) => (selector === 'meta[name="color-scheme"]' ? scheme : null),
+    querySelectorAll: (selector) => (selector === 'meta[name="theme-color"]' ? colors : []),
+  };
+  const contents = () => [scheme.getAttribute('content'), ...colors.map((tag) => tag.getAttribute('content'))];
+  const [dark, light] = [DARK, LIGHT_ATTR].map((selector) => tokensIn(css, selector).get('--bg'));
+  applyThemeMeta('light', doc);
+  assert.deepEqual(contents(), ['light', light, light]);
+  applyThemeMeta('dark', doc);
+  assert.deepEqual(contents(), ['dark', dark, dark]);
+  applyThemeMeta('system', doc);
+  assert.deepEqual(contents(), ['dark light', dark, light]);
+  applyThemeMeta('light', doc);
+  applyThemeMeta('midnight', doc);
+  assert.deepEqual(contents(), ['dark light', dark, light]);
+  assert.deepEqual(colors.map((tag) => tag.getAttribute('media')), ['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)']);
+  // A page without the tags is left alone rather than failing.
+  assert.doesNotThrow(() => applyThemeMeta('light', { querySelector: () => null, querySelectorAll: () => [] }));
+});
+
+test('the app and its launch page write their theme tags through the one shared writer', () => {
+  // main.js cannot be imported here (see above), so its wiring is read from the source. The launch
+  // page's is exercised for real in new-ultimate-launch.test.js.
+  const main = read('src/js/main.js');
+  assert.match(main, /function applyThemeSetting\(\) \{[^}]*applyThemeMeta\(settings\.theme\);/, 'applyThemeSetting no longer writes the head');
+  assert.doesNotMatch(main, /meta\[name="(?:color-scheme|theme-color)"\]/, 'main.js writes a theme tag of its own again');
+  const open = read('src/open.js');
+  assert.match(open, /applyThemeMeta\(settings\.theme\);/, 'the launch page no longer writes its head');
+  assert.doesNotMatch(open, /meta\[name="(?:color-scheme|theme-color)"\]/, 'open.js writes a theme tag of its own again');
 });
 
 test('the two light token blocks declare exactly the same tokens', () => {

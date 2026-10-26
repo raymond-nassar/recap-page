@@ -8,6 +8,12 @@
          explicit override is deferred, so a value of "dark" here would give a reader who prefers
          light a dark scrollbar against a light page until it ran. -->
     <meta name="color-scheme" content="dark light" />
+    <!-- One per scheme, each with that scheme's page background. An installed browser app paints
+         its title bar in the first of these whose media query matches, in place of the manifest's
+         colour, so it follows the system setting with no script, as the stylesheet does. For a
+         theme the reader picks, the theme code gives both tags that theme's colour. -->
+    <meta name="theme-color" content="#111117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafaff" media="(prefers-color-scheme: light)" />
     <title>Recap Page</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
