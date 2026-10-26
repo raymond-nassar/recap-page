@@ -34,7 +34,10 @@ download comics or provide offline comic reading.
 ### Phone navigation and controls
 
 On narrow Android screens, the menu button shows only its icon and keeps its **More**
-screen-reader name and 48px minimum touch target. The navigation bar shows the full app icon at
+screen-reader name and 48px minimum touch target. **More** opens a sheet just above the navigation
+bar with Continue reading, **Backup & settings**, **About this app** and the connection status, and
+nothing the bar already shows. **Close**, Android Back, Escape or a tap outside it closes it, and
+focus returns to **More**. The navigation bar shows the full app icon at
 the size of its other icons, with no selected-page stripe. Home's visible, focusable heading is the
 Windows **RECAP PAGE!** masthead scaled down to a centered wordmark, at 6.5% of the screen's shorter
 side and without the tagline. Android has none of the masthead's display fonts, so the wordmark is
@@ -452,7 +455,9 @@ side, inside the screen and clear of What's new and the content below. WebView m
 size by the system font scale, so the 200% cases double the wordmark as well. The 360x800 case also
 checks forced colors, and wider windows must keep the full masthead and its tagline. Edge draws the
 masthead's Impact, which is narrower than Android's fallback and has no overlapping letter outlines
-for the stroke to trace, so these are not proof of how a phone draws it.
+for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More must
+open a modal sheet standing on the bar over More that lists only what the bar does not, and Escape
+and Android Back must close it with focus back on More and the address unchanged.
 
 Install `puppeteer-core` **outside** the repository, as for the existing browser suite.
 If it or Edge is outside the usual development locations, set `MRT_PUPPETEER` to its absolute
@@ -519,10 +524,10 @@ a refusal. When it succeeds the reading view's heading takes focus, because Comp
 closed sheet. No rendered frame may find focus on the page. These are Edge web checks, not native
 TalkBack acceptance.
 
-`npm run android:browser -- --only=long-list-name` opens the More menu on a Reading List whose
+`npm run android:browser -- --only=long-list-name` opens the More sheet on a Reading List whose
 name is 79 characters long, at 360x800, 412x915, 320x740 and 800x360, and at 360x800 and 412x915
 with 200% text tokens. It applies the usual text size, page overflow and touch target checks with
-the menu open, then checks that the menu and every link and button in it fit the screen. The name
+the sheet open, then checks that the sheet and every link and button in it fit the screen. The name
 must stay inside its row with its full text kept: cut short with an ellipsis at every phone width,
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.

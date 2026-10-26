@@ -53,25 +53,31 @@ returns through the actual pages visited.
 - `sidebar.collapsed` stores desktop intent only. It changes only on deliberate desktop toggle.
 - Crossing below 1000px auto-compacts desktop presentation; crossing back restores the saved choice.
 - At or below 880px, Home, Library, Browse and Add comics are stable icon/text bottom links.
-  More opens the existing utility panel, including Continue reading, settings, About and status.
+  More opens a modal sheet standing on the bar, over More, holding the rail's panel: Continue
+  reading, settings, About and status. Destinations the bar already shows are hidden there rather
+  than listed twice.
 - Narrow mode starts closed regardless of saved desktop choice.
 - Narrow open and closed state is ephemeral and is never written to storage.
 - Returning to desktop transfers focus from a disappearing Library, Browse or Add comics bottom
   link to the rendered desktop link with the same destination. CSS may blur the old link before
   resize handling, so only that pending focus is retained; moving focus elsewhere cancels it.
   This changes neither the current page nor saved data, history or desktop preference.
-- In narrow mode, the controlled panel holds nav plus API and queue status explanations.
-- `Ctrl+\` toggles desktop expand and compact or narrow More with the same exact shortcut.
-- Escape closes only from inside the narrow sidebar when open; it is not a global escape rule.
-- Routed view changes close narrow navigation before layout work; passive rerenders do not.
+- In narrow mode, the sheet holds the panel's nav plus API and queue status explanations.
+- `Ctrl+\` toggles desktop expand and compact or narrow More with the same exact shortcut. On a
+  narrow screen it waits while another dialog is open, so modal dialogs never stack.
+- The sheet is modal and keeps focus inside it. Escape, its Close button, a tap outside it, More
+  and the rest of the bar included, and Android Back close it, and focus returns to More, or to
+  the field the shortcut was pressed in.
+- Routed view changes close the sheet before layout work; passive rerenders do not.
 - Downward scrolling hides the bottom bar after 16 accumulated pixels; upward scrolling reveals
   it after 16 pixels. The top 32 pixels, route changes and viewport changes reset visibility.
 - Keyboard focus entering the bar reveals it and pins it while focus remains there. Navigation
   can always be reached without scrolling. Editing a field or a reduced visual viewport
   withdraws the bar until navigation itself receives focus, so it does not sit over the keyboard.
-- The utility panel stays in document flow and scrolls internally. Content and focus clearance
-  use the measured bar height plus safe-area padding, including enlarged text. Dialogs hide
-  background mobile chrome. Mobile visibility is ephemeral and changes no saved reading data.
+- The sheet stands on the bar and scrolls internally. Content and focus clearance use the
+  measured bar height plus safe-area padding, including enlarged text. Other dialogs hide
+  background mobile chrome; the More sheet leaves the bar in view under it, undimmed, so More's
+  open state stays visible. Mobile visibility is ephemeral and changes no saved reading data.
   The spacing checker classifies only the authored bottom safe-area padding on `.rail-header`
   and the measured `main` bottom clearance with its 80px initial fallback. CSS owns the inset;
   the mobile navigation controller owns the measured height. Other consumers remain unclassified.
@@ -88,7 +94,9 @@ does not invent a destination or provider metadata.
 
 ## Accessibility Requirements
 
-- The toggle carries `aria-expanded`, `aria-controls="sidebar-panel"` and an accessible name.
+- The toggle carries `aria-expanded`, `aria-controls="sidebar-panel"`, on a narrow screen
+  `aria-haspopup="dialog"`, and an accessible name. More open is filled where the current page
+  is outlined, so the two states are not confused.
 - The active rail item carries `aria-current="page"`.
 - Every icon-only target keeps a text accessible name and a 44 by 44 pixel minimum target.
 - Collapse announcements use the polite live region.

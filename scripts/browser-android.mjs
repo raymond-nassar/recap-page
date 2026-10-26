@@ -2498,10 +2498,48 @@ async function phoneHeaderCheck(page, label, viewport) {
     await page.waitForFunction(() => !document.querySelector('#sidebar-panel').hidden);
     check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'true'),
       `${label}: icon-only navigation opens its panel`);
+    // UX-09 (#836): More used to open its panel at the top of the page. It is a modal sheet standing on
+    // the bar, over More, holding only what the bar does not show.
+    const sheet = await page.evaluate(() => {
+      const box = (node) => node.getBoundingClientRect();
+      const node = document.querySelector('#more-sheet');
+      const bar = document.querySelector('.rail-header');
+      const more = document.querySelector('#btn-rail-toggle');
+      const links = [...node.querySelectorAll('a[href]')].filter((link) => link.getClientRects().length);
+      const paint = (target) => getComputedStyle(target).backgroundColor;
+      return {
+        modal: node.matches(':modal'), focus: document.activeElement?.id,
+        onBar: Math.abs(box(node).bottom - box(bar).top) <= 1,
+        overMore: box(node).left <= box(more).left && box(node).right >= box(more).right,
+        inside: box(node).top >= 0 && box(node).right <= document.documentElement.clientWidth + 1,
+        listed: links.map((link) => link.dataset.view ?? 'read'),
+        barViews: [...bar.querySelectorAll('a[data-view]')].map((link) => link.dataset.view),
+        distinct: paint(more) !== paint(bar.querySelector('[aria-current="page"]') ?? bar),
+      };
+    });
+    check(sheet.modal && sheet.focus === 'more-sheet-close' && sheet.onBar && sheet.overMore && sheet.inside
+      && sheet.listed.includes('data') && sheet.listed.includes('about')
+      && sheet.listed.every((view) => ['read', 'data', 'about'].includes(view) && !sheet.barViews.includes(view))
+      && sheet.distinct,
+    `${label}: More opens a modal sheet on the bar over More, listing only what the bar does not ${JSON.stringify(sheet)}`);
+    await screenshot(page, label, 'more-sheet');
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden);
     check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'false'
       && document.activeElement === node), `${label}: Escape closes navigation and retains focus`);
+    if (!viewport.desktop) {
+      const hash = await page.evaluate(() => location.hash);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#more-sheet').open);
+      const replies = await page.evaluate(() => window.__androidTest.replies.length);
+      await page.evaluate(() => window.__androidTest.back());
+      await page.waitForFunction((count) => window.__androidTest.replies.length > count, {}, replies);
+      check(await page.evaluate((before) => window.__androidTest.replies.at(-1).handled === true
+        && !document.querySelector('#more-sheet').open && location.hash === before
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'false'
+        && document.activeElement?.id === 'btn-rail-toggle', hash),
+      `${label}: Android Back closes the sheet without navigating and returns focus to More`);
+    }
   }
   await page.focus('.app-footer [data-view="about"]');
   await page.keyboard.press('Enter');
@@ -2555,8 +2593,8 @@ async function mobileLayout(page, label, narrow) {
     `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
-  if (narrow) await click(page, '#btn-rail-toggle');
-  await page.tap('#sidebar-panel [data-view="browse"]');
+  // UX-09 (#836): Browse is on the bar, so the More sheet no longer lists it.
+  await page.tap(narrow ? '.mobile-link[data-view="browse"]' : '#sidebar-panel [data-view="browse"]');
   await page.waitForSelector('#view-browse:not([hidden])');
   const focus = await page.$eval('#browse-h', (heading) => ({
     focused: document.activeElement === heading,

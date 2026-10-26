@@ -13703,16 +13703,38 @@ const SCENARIOS = [
         await page.evaluate(() => scrollY === 0
           && document.querySelector('.mobile-link[data-view="library"]').getAttribute('aria-current') === 'page'
           && !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
-      await page.evaluate(() => document.querySelector('#navigation-scroll-fixture').remove());
+      // UX-09 (#836): More is a modal sheet on the bar, so it opens where it was pressed. It used to open the
+      // rail's panel at the top of the page and scroll there, which is why the scroll fixture stays until the
+      // sheet has been measured well down the page.
+      const sheetState = () => page.evaluate(() => ({
+        open: document.querySelector('#more-sheet').open,
+        expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+        panelHidden: document.querySelector('#sidebar-panel').hidden,
+        panelHome: document.querySelector('#sidebar').contains(document.querySelector('#sidebar-panel')),
+        focus: document.activeElement?.id || document.activeElement?.dataset?.view || document.activeElement?.tagName,
+        focusInside: Boolean(document.activeElement?.closest('#more-sheet')),
+        hash: location.hash,
+      }));
+      const closedOnMore = (state) => !state.open && state.expanded === 'false' && state.panelHidden
+        && state.panelHome && state.focus === 'btn-rail-toggle';
       const openNavigation = async () => {
+        if (await page.$eval('#more-sheet', (sheet) => sheet.open)) return;
         await page.$eval('#btn-rail-toggle', (button) => button.focus());
-        const expanded = await page.$eval('#btn-rail-toggle', (button) => button.getAttribute('aria-expanded'));
-        if (expanded !== 'true') await page.keyboard.press('Space');
+        await page.keyboard.press('Space');
         await page.waitForFunction(
           () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-expanded') === 'true'
+            && document.querySelector('#more-sheet')?.open === true
             && document.querySelector('#sidebar-panel')?.hidden === false,
           { timeout: 15000 },
         );
+      };
+      const pressShortcut = async () => {
+        await page.keyboard.down('Control');
+        try {
+          await page.keyboard.press('\\');
+        } finally {
+          await page.keyboard.up('Control');
+        }
       };
       const tabToSelector = async (selector, maxTabs = 16) => {
         for (let index = 0; index < maxTabs; index += 1) {
@@ -13725,158 +13747,243 @@ const SCENARIOS = [
         }
         return false;
       };
+      // The bar's own destinations are reached on the bar, and the sheet lists only the others.
       const activateByKeyboard = async (selector, viewId) => {
-        await openNavigation();
-        const reached = await tabToSelector(selector);
-        if (!reached) return { reached: false };
+        if (await page.$eval(selector, (node) => Boolean(node.closest('.rail-header')))) {
+          await page.$eval(selector, (node) => node.focus());
+        } else {
+          await openNavigation();
+          if (!await tabToSelector(selector)) return { reached: false };
+        }
         await page.keyboard.press('Enter');
         await page.waitForSelector(`#${viewId}:not([hidden])`, { timeout: 15000 });
         return page.evaluate(() => ({
+          reached: true,
           hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
+          open: document.querySelector('#more-sheet')?.open ?? null,
           focusVisible: document.activeElement?.getClientRects().length > 0,
           openedCount: (window.__opened ?? []).length,
         }));
       };
 
+      await page.evaluate(() => window.scrollTo(0, 400));
+      await page.waitForFunction(() => scrollY === 400);
       await openNavigation();
+      // Focusing More brings the withdrawn bar back with a transition, so it is measured once it has landed.
+      await page.waitForFunction(() => document.querySelector('.rail-header').getAnimations().length === 0);
       const opened = await page.evaluate(() => {
         const button = document.querySelector('#btn-rail-toggle');
+        const sheet = document.querySelector('#more-sheet');
         const panel = document.querySelector('#sidebar-panel');
-        const viewport = {
-          left: visualViewport?.offsetLeft ?? 0,
-          right: (visualViewport?.offsetLeft ?? 0) + (visualViewport?.width ?? innerWidth),
-          top: visualViewport?.offsetTop ?? 0,
-          bottom: (visualViewport?.offsetTop ?? 0) + (visualViewport?.height ?? innerHeight),
+        const bar = document.querySelector('.rail-header');
+        const box = (node) => {
+          const rect = node.getBoundingClientRect();
+          return { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left };
         };
-        const required = ['Continue reading', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app'];
-        const controls = ['.brand[data-view="home"]', '#sidebar-panel #list-nav .ri', '#sidebar-panel .ri[data-view="library"]', '#sidebar-panel .ri[data-view="browse"]', '#sidebar-panel .ri[data-view="add"]', '#sidebar-panel .ri[data-view="data"]', '#sidebar-panel .ri[data-view="about"]']
-          .map((selector) => panel.querySelector(selector))
-          .filter(Boolean)
-          .map((node) => {
-            const rect = node.getBoundingClientRect();
-            const style = getComputedStyle(node);
-            return {
-              text: node.textContent.replace(/\s+/g, ' ').trim(),
-              rendered: rect.width > 0 && rect.height > 0,
-              painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
-              clipped: rect.left < viewport.left || rect.right > viewport.right + 1 || rect.top < viewport.top || rect.bottom > viewport.bottom + 1,
-            };
-          });
+        const shown = (node) => node.getClientRects().length > 0 && getComputedStyle(node).visibility === 'visible';
+        const links = [...sheet.querySelectorAll('a[href]')].filter(shown);
         return {
           ariaLabel: button.getAttribute('aria-label'),
           controlsId: button.getAttribute('aria-controls'),
+          popup: button.getAttribute('aria-haspopup'),
           expanded: button.getAttribute('aria-expanded'),
+          modal: sheet.matches(':modal'),
+          name: document.getElementById(sheet.getAttribute('aria-labelledby'))?.textContent.trim(),
           focused: document.activeElement?.id,
-          panelHidden: panel.hidden,
-          labelsPresent: required.every((label) => controls.some((control) => control.text.includes(label))),
-          labelsReady: controls.every((control) => control.rendered && control.painted && !control.clipped),
-          controls,
+          panelInSheet: sheet.contains(panel) && !panel.hidden,
+          scrollY,
+          width: innerWidth,
+          sheet: box(sheet),
+          bar: box(bar),
+          more: box(button),
+          barVisible: getComputedStyle(bar).visibility === 'visible',
+          listed: links.map((node) => node.dataset.view ?? (node.closest('#list-nav') ? 'read' : node.getAttribute('href'))),
+          barViews: [...bar.querySelectorAll('a[data-view]')].map((node) => node.dataset.view),
+          labels: links.map((node) => {
+            const rect = node.getBoundingClientRect();
+            return {
+              text: node.textContent.replace(/\s+/g, ' ').trim(),
+              ready: rect.width > 0 && rect.height >= 44 && rect.top >= box(sheet).top - 1
+                && rect.bottom <= box(sheet).bottom + 1 && rect.left >= 0 && rect.right <= innerWidth + 1,
+            };
+          }),
+          status: [...sheet.querySelectorAll('.pill')].filter(shown).map((node) => node.id),
         };
       });
-      t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
-        opened.ariaLabel === 'More'
-        && opened.controlsId === 'sidebar-panel'
-        && opened.expanded === 'true'
-        && opened.focused === 'btn-rail-toggle'
-        && opened.panelHidden === false
-        && opened.labelsPresent
-        && opened.labelsReady,
+      t.check('Space opens More as a modal sheet named More, with focus on its Close and the panel inside',
+        opened.ariaLabel === 'More' && opened.controlsId === 'sidebar-panel' && opened.popup === 'dialog'
+        && opened.expanded === 'true' && opened.modal && opened.name === 'More'
+        && opened.focused === 'more-sheet-close' && opened.panelInSheet,
         JSON.stringify(opened));
+      t.check('More opens on the bar beside its trigger, without scrolling the page',
+        opened.scrollY === 400 && opened.barVisible
+        && Math.abs(opened.sheet.bottom - opened.bar.top) <= 1
+        && Math.abs(opened.sheet.right - opened.width) <= 1
+        && opened.sheet.left <= opened.more.left && opened.sheet.right >= opened.more.right,
+        JSON.stringify(opened));
+      t.check('the sheet lists only what the bar does not show: Continue reading, settings, About and status',
+        JSON.stringify(opened.listed) === JSON.stringify(['read', 'data', 'about'])
+        && !opened.listed.some((view) => opened.barViews.includes(view))
+        && opened.labels.every((label) => label.ready) && opened.status.includes('api-status'),
+        JSON.stringify(opened));
+      const states = await page.evaluate(() => {
+        const paint = (node) => {
+          const style = getComputedStyle(node);
+          return { background: style.backgroundColor, border: style.borderTopColor, color: style.color };
+        };
+        return {
+          open: paint(document.querySelector('#btn-rail-toggle')),
+          current: paint(document.querySelector('.rail-header [aria-current="page"]')),
+        };
+      });
+      t.check('More open is drawn unlike the current page',
+        states.open.background !== states.current.background && states.open.color !== states.current.color,
+        JSON.stringify(states));
 
-      await page.$eval('#btn-rail-toggle', (button) => button.focus());
-      const brandReached = await tabToSelector('.brand[data-view="home"]');
+      const ring = await page.evaluate(() => [...document.querySelectorAll('#more-sheet a[href], #more-sheet button')]
+        .filter((node) => node.getClientRects().length).length);
+      const visits = [];
+      for (let index = 0; index <= ring; index += 1) {
+        await page.keyboard.press('Tab');
+        visits.push(await page.evaluate(() => Boolean(document.activeElement?.closest('#more-sheet'))));
+      }
+      await page.keyboard.down('Shift');
+      try {
+        await page.keyboard.press('Tab');
+      } finally {
+        await page.keyboard.up('Shift');
+      }
+      visits.push(await page.evaluate(() => Boolean(document.activeElement?.closest('#more-sheet'))));
+      await page.$eval('#main', (main) => {
+        main.tabIndex = -1;
+        main.focus();
+      });
+      const contained = await sheetState();
+      t.check('Tab, Shift+Tab and an attempt to focus the page all keep focus inside the open sheet',
+        ring === 4 && visits.every(Boolean) && contained.open && contained.focusInside,
+        JSON.stringify({ ring, visits, contained }));
+      await page.evaluate(() => document.querySelector('#navigation-scroll-fixture').remove());
+
+      await page.$eval('#more-sheet-close', (button) => button.focus());
       await page.keyboard.press('Escape');
-      const escapedFromHeader = await page.evaluate(() => ({
-        hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
-        focus: document.activeElement?.id ?? null,
-      }));
-      t.check('Escape from a focused header brand closes Navigation and rescues focus to the toggle',
-        brandReached && escapedFromHeader.hidden && escapedFromHeader.focus === 'btn-rail-toggle',
-        JSON.stringify({ brandReached, escapedFromHeader }));
+      const escapedFromClose = await sheetState();
+      t.check('Escape closes the sheet, puts the panel back and returns focus to More',
+        closedOnMore(escapedFromClose), JSON.stringify(escapedFromClose));
 
       await openNavigation();
-      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      await page.$eval('#sidebar-panel .ri[data-view="data"]', (link) => link.focus());
       await page.keyboard.press('Escape');
-      const escaped = await page.evaluate(() => ({
-        hidden: document.querySelector('#sidebar-panel').hidden,
-        focus: document.activeElement?.id,
-      }));
-      t.check('Escape from a focused panel button closes Navigation and rescues focus to the toggle',
-        escaped.hidden && escaped.focus === 'btn-rail-toggle',
-        JSON.stringify(escaped));
+      const escaped = await sheetState();
+      t.check('Escape from a link in the sheet closes it and returns focus to More',
+        closedOnMore(escaped), JSON.stringify(escaped));
 
       await openNavigation();
-      await page.$eval('#sidebar-panel .ri[data-view="browse"]', (button) => button.focus());
-      await page.keyboard.down('Control');
-      await page.keyboard.press('\\');
-      await page.keyboard.up('Control');
-      const ctrlClose = await page.evaluate(() => ({
-        hidden: document.querySelector('#sidebar-panel').hidden,
-        focus: document.activeElement?.id,
-      }));
-      t.check('Ctrl+\\ from a panel descendant closes Navigation and rescues focus', ctrlClose.hidden && ctrlClose.focus === 'btn-rail-toggle', JSON.stringify(ctrlClose));
+      await page.keyboard.press('Enter');
+      const closedByButton = await sheetState();
+      t.check('the sheet\'s Close button closes it and returns focus to More',
+        closedOnMore(closedByButton), JSON.stringify(closedByButton));
 
-      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      // Outside the sheet is inert, the bar included, so a tap there closes the sheet as a modal sheet's
+      // scrim does, and routes nowhere.
+      const centre = (selector) => page.$eval(selector, (node) => {
+        const rect = node.getBoundingClientRect();
+        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      });
+      const outside = [];
+      for (const target of ['above', '#btn-rail-toggle', '.mobile-link[data-view="browse"]']) {
+        await openNavigation();
+        const point = target === 'above'
+          ? { x: 8, y: await page.$eval('#more-sheet', (sheet) => Math.max(1, sheet.getBoundingClientRect().top / 2)) }
+          : await centre(target);
+        const before = await page.evaluate(() => location.hash);
+        await page.mouse.click(point.x, point.y);
+        await page.waitForFunction(() => !document.querySelector('#more-sheet').open, { timeout: 15000 });
+        outside.push({ target, before, ...await sheetState() });
+      }
+      t.check('a click outside the sheet, on More or a bar destination included, closes it in place with focus on More',
+        outside.every((state) => closedOnMore(state) && state.hash === state.before), JSON.stringify(outside));
+
+      await openNavigation();
+      await page.$eval('#sidebar-panel .ri[data-view="about"]', (link) => link.focus());
+      await pressShortcut();
+      const ctrlClose = await sheetState();
+      t.check('Ctrl+\\ from inside the sheet closes it and returns focus to More',
+        closedOnMore(ctrlClose), JSON.stringify(ctrlClose));
+
+      // A tap need not focus More, so with nothing focused the sheet still hands focus to More.
+      await page.evaluate(() => document.activeElement?.blur());
+      await click(page, '#btn-rail-toggle');
+      await page.waitForFunction(() => document.querySelector('#more-sheet').open, { timeout: 15000 });
+      await click(page, '#more-sheet-close');
+      const pointerClosed = await sheetState();
+      t.check('a sheet opened with nothing focused still returns focus to More',
+        closedOnMore(pointerClosed), JSON.stringify(pointerClosed));
+
+      // The close event arrives a task after the sheet closes, so the one left by a sheet closed and
+      // reopened in a single task must not close the new one.
+      await openNavigation();
+      const reopened = await page.evaluate(async () => {
+        document.querySelector('#more-sheet-close').click();
+        document.querySelector('#btn-rail-toggle').click();
+        await new Promise((resolve) => setTimeout(resolve, 50));
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          open: document.querySelector('#more-sheet').open,
+          expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+          panelInSheet: document.querySelector('#more-sheet').contains(document.querySelector('#sidebar-panel')),
+        };
+      });
+      t.check('a sheet closed and reopened in one task stays open when the first close is reported',
+        reopened.open && reopened.expanded === 'true' && reopened.panelInSheet, JSON.stringify(reopened));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('#more-sheet').open, { timeout: 15000 });
+
+      await activateByKeyboard('.mobile-link[data-view="add"]', 'view-add');
       await page.focus('#add-other-methods > summary');
       await page.keyboard.press('Enter');
       await page.$eval('#view-add [data-view="add-manual"]', (button) => button.focus());
       await page.keyboard.press('Enter');
       await page.waitForSelector('#manual-title', { timeout: 15000 });
       await page.$eval('#manual-title', (input) => input.focus());
-      await page.keyboard.down('Control');
-      await page.keyboard.press('\\');
-      await page.keyboard.up('Control');
-      const textFieldShortcut = await page.evaluate(() => ({
-        hidden: document.querySelector('#sidebar-panel').hidden,
-        active: document.activeElement?.id ?? null,
-      }));
-      t.check('Ctrl+\\ from a text field toggles Navigation without stealing text-field focus',
-        textFieldShortcut.hidden === false && textFieldShortcut.active === 'manual-title',
-        JSON.stringify(textFieldShortcut));
+      await pressShortcut();
+      const fromField = await sheetState();
+      await pressShortcut();
+      const backToField = await sheetState();
+      t.check('Ctrl+\\ from a text field opens the sheet, and closing it puts focus back in the field',
+        fromField.open && fromField.focus === 'more-sheet-close'
+        && !backToField.open && backToField.focus === 'manual-title',
+        JSON.stringify({ fromField, backToField }));
+
       await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
-      await page.$eval('#btn-rail-toggle', (button) => button.focus());
-      await page.keyboard.press('Space');
-      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      const readBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await openNavigation();
+      await page.$eval('#sidebar-panel #list-nav .ri', (link) => link.focus());
       await page.keyboard.press('d');
-      const passive = await page.evaluate(() => ({
-        hidden: document.querySelector('#sidebar-panel').hidden,
-        focusInside: document.querySelector('#sidebar-panel').contains(document.activeElement),
-      }));
-      t.check('a passive reading repaint keeps narrow Navigation open and focus available',
-        passive.hidden === false && passive.focusInside,
+      const passive = await sheetState();
+      t.check('the reading shortcut does nothing behind the open sheet, which keeps focus',
+        passive.open && passive.focusInside
+        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === readBefore,
         JSON.stringify(passive));
+      await page.keyboard.press('Escape');
       const journeyOpenedBaseline = await page.evaluate(() => (window.__opened ?? []).length);
 
       for (const [selector, viewId] of [
         ['.brand[data-view="home"]', 'view-home'],
         ['#sidebar-panel #list-nav .ri', 'view-read'],
-        ['#sidebar-panel .ri[data-view="library"]', 'view-library'],
-        ['#sidebar-panel .ri[data-view="browse"]', 'view-browse'],
-        ['#sidebar-panel .ri[data-view="add"]', 'view-add'],
+        ['.mobile-link[data-view="library"]', 'view-library'],
+        ['.mobile-link[data-view="browse"]', 'view-browse'],
+        ['.mobile-link[data-view="add"]', 'view-add'],
         ['#sidebar-panel .ri[data-view="data"]', 'view-data'],
         ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
       ]) {
         const routed = await activateByKeyboard(selector, viewId);
-        t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`,
-          routed.hidden && routed.focusVisible && routed.openedCount === journeyOpenedBaseline,
+        t.check(`routing to ${viewId} leaves the sheet closed and focus visible`,
+          routed.reached && routed.hidden && routed.open === false && routed.focusVisible
+          && routed.openedCount === journeyOpenedBaseline,
           JSON.stringify({ routed, journeyOpenedBaseline }));
       }
-      await openNavigation();
-      const reachedFinalControl = await tabToSelector('#sidebar-panel .ri[data-view="about"]');
-      await page.keyboard.press('Tab');
-      const tabExitAfter = await page.evaluate(() => ({
-        afterOpened: (window.__opened ?? []).length,
-        onMain: document.querySelector('#main')?.contains(document.activeElement) ?? false,
-        active: document.activeElement?.id ?? document.activeElement?.className ?? document.activeElement?.tagName ?? null,
-      }));
-      t.check('navigation tab sequence exits into main content without opening the reader',
-        reachedFinalControl
-        && tabExitAfter.onMain
-        && tabExitAfter.afterOpened === journeyOpenedBaseline
-        && typeof tabExitAfter.active === 'string',
-        JSON.stringify({ reachedFinalControl, journeyOpenedBaseline, tabExitAfter }));
 
-      await activateByKeyboard('#sidebar-panel .ri[data-view="browse"]', 'view-browse');
+      await activateByKeyboard('.mobile-link[data-view="browse"]', 'view-browse');
       await click(page, '#view-browse [data-category="timeline"]');
       const timelineChild = await page.evaluate(() => ({
         view: document.querySelector('.view:not([hidden])')?.id ?? null,
@@ -13888,7 +13995,7 @@ const SCENARIOS = [
         timelineChild.parentCurrent && timelineChild.trail.includes('Browse'),
         JSON.stringify(timelineChild));
 
-      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      await activateByKeyboard('.mobile-link[data-view="add"]', 'view-add');
       await click(page, '#view-add [data-view="add-series"]');
       const addChild = await page.evaluate(() => ({
         view: document.querySelector('.view:not([hidden])')?.id ?? null,
@@ -13900,7 +14007,7 @@ const SCENARIOS = [
         addChild.parentCurrent && addChild.trail.includes('Add comics'),
         JSON.stringify(addChild));
 
-      await activateByKeyboard('#sidebar-panel .ri[data-view="library"]', 'view-library');
+      await activateByKeyboard('.mobile-link[data-view="library"]', 'view-library');
       await click(page, '#view-library [data-view="progress"]');
       const hierarchy = await page.evaluate(() => ({
         view: document.querySelector('.view:not([hidden])')?.id ?? null,
@@ -13928,18 +14035,6 @@ const SCENARIOS = [
       t.check('saved-list issue route survives Back and Forward with breadcrumb context',
         issueHash === afterHistory.hash && afterHistory.breadcrumb.length >= 2,
         JSON.stringify(afterHistory));
-
-      await openNavigation();
-      const beforeEscapeOutside = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
-      await page.$eval('#main', (main) => {
-        main.tabIndex = -1;
-        main.focus();
-      });
-      await page.keyboard.press('Escape');
-      const noGlobalEscape = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
-      t.check('Escape outside the sidebar does not become a global close command',
-        beforeEscapeOutside && noGlobalEscape,
-        JSON.stringify({ beforeEscapeOutside, noGlobalEscape }));
 
       const toggleBefore = await page.evaluate(() => ({
         hash: location.hash,
@@ -13979,28 +14074,20 @@ const SCENARIOS = [
         appliedTheme: document.documentElement.getAttribute('data-theme') ?? null,
         colorScheme: getComputedStyle(document.documentElement).colorScheme,
         reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
-        selectedCount: document.querySelectorAll('.ri[aria-current="page"]').length,
-        selectedBoundary: [...document.querySelectorAll('.ri[aria-current="page"]')].every((node) => {
+        selectedCount: [...document.querySelectorAll('#more-sheet .ri[aria-current="page"]')]
+          .filter((node) => node.getClientRects().length).length,
+        selectedBoundary: [...document.querySelectorAll('#more-sheet .ri[aria-current="page"]')].every((node) => {
           const style = getComputedStyle(node);
           return Number.parseFloat(style.borderTopWidth) > 0 || Number.parseFloat(style.outlineWidth) > 0;
         }),
-        labelsVisible: [...document.querySelectorAll('#sidebar-panel .ri .lbl')].every((node) => {
-          const rect = node.getBoundingClientRect();
-          return rect.width > 0 && rect.height > 0;
-        }),
-        action: (() => {
-          const button = document.querySelector('#btn-hero-read');
-          if (!button) return null;
-          button.scrollIntoView({ block: 'center' });
-          const rect = button.getBoundingClientRect();
-          const sidebarBottom = document.querySelector('#sidebar')?.getBoundingClientRect().bottom ?? 0;
-          return {
-            top: rect.top,
-            bottom: rect.bottom,
-            visible: rect.bottom > 0 && rect.top < innerHeight,
-            unobscured: rect.top >= sidebarBottom
-              && rect.bottom <= document.querySelector('.rail-header').getBoundingClientRect().top,
-          };
+        labelsVisible: (() => {
+          const labels = [...document.querySelectorAll('#more-sheet .ri')]
+            .filter((node) => node.getClientRects().length)
+            .map((node) => node.querySelector('.lbl'));
+          return labels.length === 3 && labels.every((node) => {
+            const rect = node?.getBoundingClientRect();
+            return Boolean(rect) && rect.width > 0 && rect.height > 0;
+          });
         })(),
         animations: document.getAnimations().length,
         durations: [...document.querySelectorAll('a, .card, .route')]
@@ -14065,6 +14152,21 @@ const SCENARIOS = [
           };
         })(),
       }));
+      // The reading action is measured against the bar with the sheet closed, which is how it is used.
+      await page.keyboard.press('Escape');
+      darkReduced.action = await page.evaluate(() => {
+        const button = document.querySelector('#btn-hero-read');
+        if (!button) return null;
+        button.scrollIntoView({ block: 'center' });
+        const rect = button.getBoundingClientRect();
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          sheetClosed: !document.querySelector('#more-sheet').open,
+          visible: rect.bottom > 0 && rect.top < innerHeight,
+          unobscured: rect.top >= 0 && rect.bottom <= document.querySelector('.rail-header').getBoundingClientRect().top,
+        };
+      });
       t.check('620 dark cover-off reduced-motion keeps labels readable and reading action reachable',
         darkReduced.storedTheme === 'dark'
         && darkReduced.appliedTheme === 'dark'
@@ -14073,6 +14175,7 @@ const SCENARIOS = [
         && darkReduced.selectedCount > 0
         && darkReduced.selectedBoundary
         && darkReduced.labelsVisible
+        && darkReduced.action?.sheetClosed
         && darkReduced.action?.visible
         && darkReduced.action?.unobscured
         && darkReduced.animations === 0
@@ -14097,25 +14200,46 @@ const SCENARIOS = [
         const focused = document.querySelector('#btn-rail-toggle');
         focused.focus();
         const style = getComputedStyle(focused);
-        const selected = document.querySelector('.ri[aria-current="page"]');
-        const selectedStyle = selected ? getComputedStyle(selected) : null;
         return {
           active: matchMedia('(forced-colors: active)').matches,
           outlineWidth: Number.parseFloat(style.outlineWidth),
           outlineColor: style.outlineColor,
-          selectedExists: Boolean(selected),
-          selectedBorderWidth: selectedStyle ? Number.parseFloat(selectedStyle.borderTopWidth) : 0,
-          selectedBorderColor: selectedStyle?.borderTopColor ?? null,
         };
       });
-      t.check('320 forced colors keeps focus and selection boundaries visible',
+      await openNavigation();
+      // More open is filled with Highlight where the current destination is only outlined with it.
+      forced.open = await page.evaluate(() => {
+        const probe = document.createElement('span');
+        probe.style.color = 'Highlight';
+        document.body.append(probe);
+        const highlight = getComputedStyle(probe).color;
+        probe.remove();
+        const more = getComputedStyle(document.querySelector('#btn-rail-toggle'));
+        const selected = document.querySelector('#more-sheet .ri[aria-current="page"]');
+        const selectedStyle = selected ? getComputedStyle(selected) : null;
+        return {
+          highlight,
+          moreBackground: more.backgroundColor,
+          moreColor: more.color,
+          selectedExists: Boolean(selected?.getClientRects().length),
+          selectedBorderWidth: selectedStyle ? Number.parseFloat(selectedStyle.borderTopWidth) : 0,
+          selectedBorderColor: selectedStyle?.borderTopColor ?? null,
+          selectedBackground: selectedStyle?.backgroundColor ?? null,
+        };
+      });
+      t.check('320 forced colors keeps focus and selection boundaries visible, and fills More while it is open',
         forced.active
         && forced.outlineWidth > 0
         && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
-        && forced.selectedExists
-        && forced.selectedBorderWidth > 0
-        && forced.selectedBorderColor !== 'rgba(0, 0, 0, 0)',
+        && forced.open.selectedExists
+        && forced.open.selectedBorderWidth > 0
+        && forced.open.selectedBorderColor === forced.open.highlight
+        && forced.open.moreBackground === forced.open.highlight
+        && forced.open.moreColor !== forced.open.highlight
+        && forced.open.selectedBackground !== forced.open.highlight,
         JSON.stringify(forced));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('#more-sheet').open, { timeout: 15000 });
 
       await page.setViewport({ width: 430, height: 900 });
       const iconAlignment = await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
@@ -14145,18 +14269,32 @@ const SCENARIOS = [
           root.style.setProperty(name, `${value * 2}px`);
         }
       });
+      await openNavigation();
+      // The bar's height is measured by an observer, and the sheet stands on it, so both settle first.
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const doubled = await page.evaluate(() => {
-        const clipped = [...document.querySelectorAll('#sidebar *')]
-          .filter((node) => node.scrollWidth - node.clientWidth > 1)
+        const clipped = [...document.querySelectorAll('#more-sheet *, .rail-header *')]
+          .filter((node) => node.getClientRects().length && node.scrollWidth - node.clientWidth > 1)
           .map((node) => node.className || node.id || node.tagName);
-        const header = document.querySelector('#sidebar').getBoundingClientRect().height;
-        const controls = [...document.querySelectorAll('#sidebar-panel .ri')]
-          .every((node) => node.getBoundingClientRect().height >= 44);
-        return { clipped, header, controls };
+        const bar = document.querySelector('.rail-header').getBoundingClientRect();
+        const sheet = document.querySelector('#more-sheet').getBoundingClientRect();
+        const links = [...document.querySelectorAll('#more-sheet .ri')].filter((node) => node.getClientRects().length);
+        return {
+          clipped,
+          bar: bar.height,
+          links: links.length,
+          controls: links.every((node) => node.getBoundingClientRect().height >= 44),
+          close: document.querySelector('#more-sheet-close').getBoundingClientRect().height,
+          sheetTop: sheet.top,
+          sheetBottom: sheet.bottom,
+          barTop: bar.top,
+        };
       });
-      t.check('320 doubled UI text keeps narrow labels reachable without clipping',
-        doubled.clipped.length === 0 && doubled.controls && doubled.header >= 44,
+      t.check('320 doubled UI text keeps the bar and the sheet readable without clipping',
+        doubled.clipped.length === 0 && doubled.controls && doubled.links === 3 && doubled.bar >= 44
+        && doubled.close >= 44 && doubled.sheetTop >= 0 && Math.abs(doubled.sheetBottom - doubled.barTop) <= 1,
         JSON.stringify(doubled));
+      await page.keyboard.press('Escape');
       await page.evaluate(() => {
         document.documentElement.removeAttribute('style');
       });
@@ -14170,7 +14308,8 @@ const SCENARIOS = [
       // #866: the list's link keeps its name on one line, and below 880px the shell's single column
       // grew to fit it, so opening the menu widened the whole page. Measured on main in Edge 155 on
       // 2026-10-26 with this 79-character name, the page reached 148, 108, 78 and 56px past the
-      // screen at 320, 360, 390 and 412px.
+      // screen at 320, 360, 390 and 412px. Since UX-09 (#836) the open menu is the More sheet, which
+      // must not grow to fit the name either.
       const name = 'My long-running reread of every Avengers crossover from 1963 to the present day';
       const saved = fixtureReadingState();
       saved.lists.fixture.name = name;
@@ -15431,20 +15570,20 @@ MUTATIONS.push(
   {
     id: 'narrow-navigation-focus-rescue-off',
     breaks: 'narrow-navigation',
-    why: 'closing narrow navigation skips the descendant-focus rescue before hiding the panel',
+    why: 'closing the narrow More sheet skips returning focus from inside it to More or its opener',
     rewriteMain: (source) => source.replace(
-      'if (!next && rescueFocus && activeInsidePanel) toggle.focus();',
-      'if (false && !next && rescueFocus && activeInsidePanel) toggle.focus();',
+      'if (!next && rescueFocus && activeInsideSheet) returnMoreFocus();',
+      'if (false && !next && rescueFocus && activeInsideSheet) returnMoreFocus();',
     ),
   },
   {
-    id: 'narrow-navigation-column-grows',
+    id: 'narrow-navigation-sheet-grows',
     breaks: 'narrow-navigation-long-name',
-    why: 'the narrow shell column grows to fit the unwrapped list name again, so the open menu widens the page',
+    why: 'the narrow More sheet grows to fit the unwrapped list name, so it runs off the screen and the name is never cut short',
     script: () => {
       addEventListener('load', () => {
         const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('@media (max-width: 880px) { .shell, .shell.railed { grid-template-columns: 1fr; } }', sheet.cssRules.length);
+        sheet.insertRule('@media (max-width: 880px) { .more-sheet { width: max-content; } }', sheet.cssRules.length);
       });
     },
   },

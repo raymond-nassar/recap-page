@@ -67,12 +67,35 @@ test('mobile navigation reserves measured content space and cannot cover active 
   assert.match(css, /main \{ padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
   assert.match(css, /scroll-padding-bottom: calc\(var\(--mobile-nav-height, 80px\)/);
   assert.match(css, /env\(safe-area-inset-bottom\)/);
-  assert.match(css, /body:has\(dialog\[open\]\) \.rail-header \{ visibility: hidden; \}/);
+  assert.match(css, /body:has\(dialog\[open\]:not\(#more-sheet\)\) \.rail-header \{ visibility: hidden; \}/);
   assert.match(main, /new ResizeObserver/);
   assert.match(main, /visualViewport\.height < window\.innerHeight \* 0\.75/);
   assert.match(main, /hide \|\| editable\(\) \|\| obscuredViewport\(\)/);
   assert.doesNotMatch(main.slice(main.indexOf('function wireMobileNavigation'), main.indexOf('let tooltips;')),
     /localStorage|store\.update|history\./);
+});
+
+// UX-09 (#836). More at the bottom right of a phone used to open the rail's panel at the top of the
+// page and scroll there. It is now a modal sheet on the bar, and the panel moves into it, so the
+// links keep one source; what the bar already shows is hidden there rather than listed twice.
+test('narrow More is a modal sheet holding the rail panel, without what the bar shows', () => {
+  const sheet = html.match(/<dialog id="more-sheet"[^>]*>[\s\S]*?<\/dialog>/)?.[0] ?? '';
+  assert.match(sheet, /aria-labelledby="more-sheet-h"/);
+  assert.match(sheet, /<h2 id="more-sheet-h">More<\/h2>/);
+  assert.match(sheet, /<button type="button" class="btn btn-g" id="more-sheet-close">Close<\/button>/);
+  // Android Back closes the first open dialog, so every question that can open over the sheet comes first.
+  const lastOther = Math.max(...[...html.matchAll(/<dialog id="(?!more-sheet")/g)].map((match) => match.index));
+  assert.ok(html.indexOf('<dialog id="more-sheet"') > lastOther, 'the More sheet must be the last dialog');
+  const bar = [...html.matchAll(/class="mobile-link" data-view="([\w-]+)"/g)].map(([, view]) => view).sort();
+  const marked = [...html.matchAll(/<li data-bottom-bar><a href="#\/[\w-]+" class="ri" data-view="([\w-]+)"/g)]
+    .map(([, view]) => view).sort();
+  assert.ok(bar.length > 0);
+  assert.deepEqual(marked, bar, 'every bar destination, and only those, is marked for the sheet to hide');
+  assert.match(css, /\.more-sheet \[data-bottom-bar\],\s*\.more-sheet \.nav-group:not\(:has\(li:not\(\[data-bottom-bar\]\)\)\) \{ display: none; \}/);
+  assert.match(main, /sheet\.append\(\$\('#sidebar-panel'\)\)/);
+  assert.match(main, /sheet\.showModal\(\);/);
+  assert.match(main, /toggle\.setAttribute\('aria-haspopup', 'dialog'\)/);
+  assert.doesNotMatch(main, /panel\.scrollIntoView/);
 });
 
 test('the one-time save note follows the reading card, so it never pushes Read down', () => {

@@ -61,7 +61,7 @@ dialog.ask, dialog.preview {
 .android-spotlight-compact #android-spotlight-options { display: flex; }
 .android-spotlight-compact #view-spotlights .spotlight-controls,
 .android-spotlight-compact #view-spotlights > #spotlights-filters { display: none; }
-body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: hidden; }
+body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[open]) { overflow: hidden; }
 #android-list-sheet, #android-spotlight-sheet {
   inset: auto 0 0;
   box-sizing: border-box;

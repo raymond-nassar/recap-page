@@ -807,8 +807,11 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // `--logo-fill` gained `--card` when the wrap-up card began opening with a line in the masthead's
   // treatment once every comic in a list is read (#874): the same colour, drawn on a card rather than
   // on the page.
+  // `--line-2` gained `--rail` when the narrow More sheet (#836) was drawn on the rail's own surface:
+  // its Close button is a bordered ghost button there, and no pair had measured that boundary on the
+  // rail before.
   const surfaces = (fg) => PAIRS.filter((p) => p[0] === fg).map((p) => p[1]).sort();
-  assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2']);
+  assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2', '--rail']);
   assert.deepEqual(surfaces('--cb-line'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
   assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
