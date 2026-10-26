@@ -277,6 +277,11 @@ export function createAddView({
     }
   }
 
+  function setSaveOpen(builder, open) {
+    builder.toggle.setAttribute('aria-expanded', String(open));
+    builder.panel.hidden = !open;
+  }
+
   function refreshBuilders() {
     const state = getState();
     const destinations = state.listOrder
@@ -294,12 +299,12 @@ export function createAddView({
           if (focused) builder.report.focus({ preventScroll: true });
         }
       }
-      builder.host.hidden = !config.hasResults && selected.size === 0 && builder.report.childElementCount === 0;
+      builder.host.hidden = selected.size === 0 && builder.report.childElementCount === 0;
       builder.count.textContent = `${comics(selected.size)} selected`;
       builder.clear.disabled = selected.size === 0 || saving;
       builder.clear.hidden = selected.size === 0;
-      builder.disclosure.hidden = selected.size === 0;
-      if (!selected.size) builder.disclosure.open = false;
+      builder.toggle.hidden = selected.size === 0;
+      if (!selected.size) setSaveOpen(builder, false);
       builder.save.disabled = selected.size === 0 || saving || missing;
       builder.save.textContent = destinationId ? 'Add to Reading List' : 'Create Reading List';
       builder.nameRow.hidden = Boolean(destinationId);
@@ -332,6 +337,7 @@ export function createAddView({
       return;
     }
     if (!destinationId && (!draftName.trim() || draftName.trim().length > MAX_NAME)) {
+      setSaveOpen(builder, true);
       builder.validation.fail(`Name the new Reading List using 1 to ${MAX_NAME} characters.`);
       return;
     }
@@ -382,9 +388,13 @@ export function createAddView({
     const save = el('button', { type: 'submit', class: 'btn', disabled: true }, 'Create Reading List');
     const clearHelp = 'Clear this draft without changing saved Reading Lists.';
     const clear = el('button', {
-      type: 'button', class: 'btn btn-g has-tooltip', disabled: true,
+      type: 'button', class: 'btn comic-clear has-tooltip', disabled: true,
       'data-tooltip': clearHelp, 'aria-describedby': `${prefix}-clear-help`,
     }, 'Clear selection');
+    const toggle = el('button', {
+      type: 'button', class: 'btn comic-save-toggle', hidden: true,
+      'aria-expanded': 'false', 'aria-controls': `${prefix}-save-panel`,
+    }, 'Save selected comics');
     const missing = el('p', {
       class: 'notice notice-warn', hidden: true,
       text: 'That Reading List no longer exists. Choose another list.',
@@ -396,19 +406,16 @@ export function createAddView({
       reportError: (message) => notify(`#${prefix}-selection-report`, message, 'warn'),
       invalidMessage: `Name the new Reading List using 1 to ${MAX_NAME} characters.`,
     });
-    const disclosure = el('details', { class: 'comic-save', hidden: true }, [
-      el('summary', { text: 'Save selected comics' }),
-      el('div', { class: 'stack' }, [
-        el('label', { for: `${prefix}-destination`, text: 'Save to' }),
-        destination,
-        missing,
-        nameRow,
-        el('div', { class: 'field-row' }, [save]),
-      ]),
+    const panel = el('div', { id: `${prefix}-save-panel`, class: 'stack comic-save', hidden: true }, [
+      el('label', { for: `${prefix}-destination`, text: 'Save to' }),
+      destination,
+      missing,
+      nameRow,
+      el('div', { class: 'field-row' }, [save]),
     ]);
     const form = el('form', { class: 'stack', id: `${prefix}-selection-form` }, [
-      el('div', { class: 'field-row comic-selection-tools' }, [selectionCount, clear]),
-      disclosure,
+      el('div', { class: 'field-row comic-selection-tools' }, [selectionCount, clear, toggle]),
+      panel,
       el('span', { class: 'visually-hidden', id: `${prefix}-clear-help`, text: clearHelp }),
     ]);
     const host = el('section', {
@@ -420,6 +427,9 @@ export function createAddView({
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       saveSelected(config);
+    });
+    toggle.addEventListener('click', () => {
+      setSaveOpen(config.builder, toggle.getAttribute('aria-expanded') !== 'true');
     });
     destination.addEventListener('change', () => {
       destinationId = destination.value;
@@ -436,19 +446,22 @@ export function createAddView({
       selected.clear();
       clearSelectionReports();
       refreshBuilders();
-      $(config.input).focus({ preventScroll: true });
+      // Clear sits in the bar, which can be far down a long result list from the field it hands
+      // focus to, so the field is scrolled into view instead of being focused off screen.
+      $(config.input).focus();
       announce('Selection cleared. Saved Reading Lists are unchanged.');
     });
-    $(config.results).before(host);
+    // After the results it acts on, so the keyboard reaches the bar after the comics it saves, in
+    // the order they are seen: it is drawn at the bottom of the window.
+    $(config.results).after(host);
     config.builder = {
-      host, destination, name, nameRow, count: selectionCount, save, clear, disclosure, missing, report, validation,
+      host, destination, name, nameRow, count: selectionCount, save, clear, toggle, panel, missing, report, validation,
     };
   }
 
   function renderResults(config, status) {
     const box = $(config.results);
     const items = status.items;
-    config.hasResults = items.length > 0;
     if (!selected.size && !nameEdited && !destinationId) draftName = status.item.name.slice(0, MAX_NAME);
     box.replaceChildren();
     const heading = config.kind === 'creator'
@@ -623,7 +636,6 @@ export function createAddView({
     config.focusResults = false;
     config.epoch += 1;
     config.runner.cancel();
-    config.hasResults = false;
     refreshBuilders();
     return config.epoch;
   }
@@ -1083,6 +1095,30 @@ export function createAddView({
       }
     }
     refreshBuilders();
+    // Published for the bar, which is fixed to the window and so cannot take the width of the card
+    // it sits in, and for the page's scroll padding, which is what keeps a control that takes
+    // keyboard focus from scrolling in under the bar. Both are kept when the bar hides, and the
+    // styles that use them apply only while one shows. Back from an issue's details shows the page
+    // with its bar and focuses a title in the same frame, before this hears of it, and with the
+    // height dropped on the way out that title came back to rest under the bar. The width follows
+    // the card alone, so this never resizes the box that reported.
+    const bar = new ResizeObserver(() => {
+      const root = document.documentElement;
+      const shown = (node) => node.getClientRects().length > 0;
+      const current = searches.find((config) => shown(config.builder.host.parentElement));
+      if (!current) return;
+      const card = current.builder.host.parentElement;
+      const style = getComputedStyle(card);
+      const width = card.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      root.style.setProperty('--comic-selection-width', `${width}px`);
+      if (shown(current.builder.host)) {
+        root.style.setProperty('--comic-selection-height', `${current.builder.host.getBoundingClientRect().height}px`);
+      }
+    });
+    for (const config of searches) {
+      bar.observe(config.builder.host);
+      bar.observe(config.builder.host.parentElement);
+    }
     globalThis.addEventListener('beforeunload', (event) => {
       if (!selected.size && $('#import-text').value === displayedSource && !importDraft?.recovery.length) return;
       event.preventDefault();

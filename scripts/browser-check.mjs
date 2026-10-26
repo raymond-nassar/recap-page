@@ -1679,10 +1679,10 @@ const MUTATIONS = [
   {
     id: 'comic-search-zero-form-expanded',
     breaks: 'comic-search-selection-flow',
-    why: 'zero selections expose the full destination and naming form above comic results',
+    why: 'zero selections expose the bar with the full destination and naming form open over comic results',
     rewriteAdd: (source) => source.replace(
-      / {6}builder\.disclosure\.hidden = selected\.size === 0;\r?\n {6}if \(!selected\.size\) builder\.disclosure\.open = false;/,
-      '      builder.disclosure.hidden = false;\n      builder.disclosure.open = true;',
+      / {6}builder\.host\.hidden = selected\.size === 0 && builder\.report\.childElementCount === 0;([\s\S]*?) {6}if \(!selected\.size\) setSaveOpen\(builder, false\);/,
+      '      builder.host.hidden = false;$1      setSaveOpen(builder, true);',
     ),
   },
   {
@@ -10008,8 +10008,8 @@ const SCENARIOS = [
         `#${prefix}-selection-form .comic-selection-count`, (node) => node.textContent,
       );
       const openSave = async (prefix) => {
-        const summary = `#${prefix}-selection-form details > summary`;
-        if (await page.$(summary)) await click(page, summary);
+        const toggle = `#${prefix}-selection-form .comic-save-toggle`;
+        if (await page.$eval(toggle, (node) => node.getAttribute('aria-expanded') !== 'true')) await click(page, toggle);
       };
       for (const width of [1280, 320, 390]) {
         await page.setViewport({ width, height: 900 });
@@ -10052,10 +10052,10 @@ const SCENARIOS = [
       await query('search', 'Fixture');
       await page.focus('#search-results input[data-comic-id="97601"]');
       await page.keyboard.press('Space');
-      t.check('one selection exposes a closed reachable native save step without stealing checkbox focus',
+      t.check('one selection opens the selection bar with a closed reachable save step without stealing checkbox focus',
         await count('search') === '1 comic selected' && await page.evaluate(() => {
-          const disclosure = document.querySelector('#search-selection-form details');
-          return disclosure?.checkVisibility() && !disclosure.open
+          const toggle = document.querySelector('#search-selection-form .comic-save-toggle');
+          return toggle?.checkVisibility() && toggle.getAttribute('aria-expanded') === 'false'
             && document.activeElement?.dataset.comicId === '97601'
             && !document.querySelector('#search-destination').checkVisibility();
         }));
@@ -10077,12 +10077,11 @@ const SCENARIOS = [
         for (const [prefix, value] of [['series', 'House of M (2015)'], ['creator', 'Brubaker'], ['search', 'Fixture']]) {
           await click(page, `[data-view="add-${prefix}"]`);
           await query(prefix, value);
-          const current = await page.$eval(`#${prefix}-selection-form`, (form) => form.querySelector('details')?.open ?? true);
-          if (!current) await openSave(prefix);
+          await openSave(prefix);
           const controls = await page.evaluate((mode) => ({
             destination: document.querySelector(`#${mode}-destination`).value,
             visible: document.querySelector(`#${mode}-destination`).checkVisibility(),
-            disclosure: document.querySelector(`#${mode}-selection-form summary`)?.getBoundingClientRect().height ?? 0,
+            disclosure: document.querySelector(`#${mode}-selection-form .comic-save-toggle`).getBoundingClientRect().height,
             overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
           }), prefix);
           t.check(`${prefix} at ${width}px: two comics and exact destination retain a reachable save flow`,
@@ -10101,8 +10100,7 @@ const SCENARIOS = [
           node.textContent.endsWith(`${start} this filter.`)
         ), expected));
       }
-      const disclosure = await page.$eval('#search-selection-form', (form) => form.querySelector('details')?.open ?? true);
-      if (!disclosure) await openSave('search');
+      await openSave('search');
       await click(page, '#search-selection-form button[type="submit"]');
       await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Added'));
       const saved = await readState(page);
@@ -10139,7 +10137,8 @@ const SCENARIOS = [
           const form = document.querySelector('#search-selection-form');
           return !event.defaultPrevented && document.activeElement?.id === 'search-q'
             && !document.querySelector('#search-destination').checkVisibility()
-            && (!form.querySelector('details') || !form.querySelector('details').open);
+            && !form.checkVisibility()
+            && form.querySelector('.comic-save-toggle').getAttribute('aria-expanded') === 'false';
         }));
     },
   },
@@ -10262,7 +10261,7 @@ const SCENARIOS = [
         await selectedCount('search') === '4 comics selected'
           && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
 
-      await click(page, '#search-selection-form details > summary');
+      await click(page, '#search-selection-form .comic-save-toggle');
       for (const [width, zoom] of [[320, 1], [640, 2]]) {
         await page.setViewport({ width, height: 900 });
         await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
@@ -10336,7 +10335,7 @@ const SCENARIOS = [
           && JSON.stringify(reloaded.lists[newId].itemIds) === JSON.stringify([978001, 978002, 97601, 97201]));
       await query('search', 'Fixture');
       await click(page, '#search-results [data-act="select-all"]');
-      await click(page, '#search-selection-form details > summary');
+      await click(page, '#search-selection-form .comic-save-toggle');
       await setField('#search-destination', 'existing', 'change');
       await click(page, '#search-selection-form button[type="submit"]');
       const appended = await readState(page);
@@ -10429,7 +10428,7 @@ const SCENARIOS = [
       t.check('an unsearched route can save the shared draft',
         await page.$$eval('#series-results input[data-comic-id]', (nodes) => nodes.length === 0)
           && await page.$eval('#series-selection-form button[type="submit"]', (button) => !button.disabled));
-      await click(page, '#series-selection-form details > summary');
+      await click(page, '#series-selection-form .comic-save-toggle');
       await setField('#series-list-name', 'Overlapping picks');
       await click(page, '#series-selection-form button[type="submit"]');
       await page.waitForFunction(() => document.querySelector('#series-selection-report')?.textContent.includes('Created'));
@@ -10486,7 +10485,7 @@ const SCENARIOS = [
 
       await click(page, '[data-view="add-search"]');
       await click(page, '#search-results input[data-comic-id="97601"]');
-      await click(page, '#search-selection-form details > summary');
+      await click(page, '#search-selection-form .comic-save-toggle');
       await setField('#search-destination', 'existing', 'change');
       const nameVisibility = await page.$eval('#search-list-name', (input) => ({
         hidden: input.parentElement.hidden,
@@ -10614,7 +10613,7 @@ const SCENARIOS = [
         JSON.stringify({ ids: afterStale, status: afterStaleStatus }));
 
       await click(page, '#series-results input[data-comic-id="97201"]');
-      await click(page, '#series-selection-form details > summary');
+      await click(page, '#series-selection-form .comic-save-toggle');
       await page.$eval('#series-list-name', (input) => {
         input.value = 'Mixed search picks';
         input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -10683,7 +10682,7 @@ const SCENARIOS = [
           && JSON.stringify(finalIds) === '[97101,97201]',
         JSON.stringify({ failedCreator, finalIds }));
       await click(page, '#creator-results input[data-comic-id="97401"]');
-      await click(page, '#creator-selection-form details > summary');
+      await click(page, '#creator-selection-form .comic-save-toggle');
       await click(page, '#creator-selection-form button[type="submit"]');
       const savedPartial = await storedIds();
       t.check('a deliberately saved failed-search selection appends only its chosen comic',
@@ -14864,7 +14863,7 @@ SCENARIOS.push({
     await click(page, '#form-search button[type="submit"]');
     await page.waitForSelector('#search-results input[data-comic-id]');
     await click(page, '#search-results [data-act="select-all"]');
-    await click(page, '#search-selection-form details > summary');
+    await click(page, '#search-selection-form .comic-save-toggle');
     await page.$eval('#search-list-name', (input) => {
       input.value = '   ';
       input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -19518,6 +19517,9 @@ SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');
 SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
 MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);
+const selectionBar = await import('./browser-selection-bar.mjs');
+SCENARIOS.push(selectionBar.selectionBar);
+MUTATIONS.push(...selectionBar.selectionBarMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

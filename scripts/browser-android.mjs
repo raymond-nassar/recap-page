@@ -29,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus', 'long-list-name',
+  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -56,6 +56,7 @@ const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
 const longListName = process.argv.includes('--only=long-list-name');
+const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
 const alignmentBaseline = process.argv.includes('--alignment-baseline');
@@ -1217,7 +1218,7 @@ async function seriesResultReadability(page, label, desktop) {
   check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === unsaved,
     `${label}: browsing a series saves nothing before a selection is saved`);
   await click(page, '#series-results [data-act="select-all"]');
-  await click(page, '#series-selection-form details > summary');
+  await click(page, '#series-selection-form .comic-save-toggle');
   await click(page, '#series-selection-form button[type="submit"]');
   await page.waitForSelector('#series-selection-report .notice');
   const saved = await page.evaluate(() => {
@@ -3006,6 +3007,173 @@ async function longListNameMenu(page, label, viewport) {
   console.log(`CHECKED ${label}: menu open with a 79-character list name ${JSON.stringify({ page: opened.page, screen: opened.screen, name: [opened.name.client, opened.name.scroll] })}`);
 }
 
+// #833: an issue search long enough that its 50 rendered comics run well past a phone screen. The
+// issue search rather than the series one, because at 200 per cent text tokens the Find a series
+// and Browse a creator fields do not shrink on a 360px phone and widen that page to 422px, which
+// is its own defect (#871) and not this bar's; the issue search field already shrinks.
+const BAR_ISSUES = Array.from({ length: 50 }, (_, index) => ({
+  id: 900400 + index + 1,
+  title: `Selection bar fixture (2026) #${index + 1}`,
+  seriesId: 900300,
+  seriesName: 'Selection bar fixture (2026)',
+  issueNumber: String(index + 1),
+  digitalId: 900500 + index + 1,
+}));
+async function selectionBarFixtures(page, theme) {
+  await page.evaluateOnNewDocument((issues, value) => {
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: value }));
+    const original = window.fetch.bind(window);
+    window.fetch = async (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      const json = (body) => new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } });
+      if (url.pathname === '/data/catalog.json') return json({ lists: [] });
+      if (url.origin !== location.origin) {
+        if (url.pathname === '/v1/health') return json({ status: 'ok' });
+        if (url.pathname === '/v1/search/issues') return json({ items: issues });
+        throw new Error(`Unexpected fixture request: ${url.href}`);
+      }
+      return original(input, options);
+    };
+  }, BAR_ISSUES, theme);
+}
+
+// #833: Save selected comics stays in view above the bottom bar at every scroll position, keeps its
+// 48px target, and the list name field stays in view with the on-screen keyboard open. The shell
+// resizes the WebView for the keyboard (adjustResize, with the keyboard inset applied as padding in
+// MainActivity), so the keyboard is modeled here by shortening the viewport while the field has
+// focus, then scrolling it into view as the platform does. That is a model, not the keyboard.
+async function selectionBarCheck(page, label, viewport) {
+  const BAR = '#view-add-search .comic-builder';
+  const frames = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  // A tap where the control actually is, checked first, because the bottom bar or the selection
+  // bar can lie over a point that scrolling has not cleared.
+  const tap = async (selector, scroll = true) => {
+    if (scroll) await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+    await frames();
+    const point = await page.$eval(selector, (node) => {
+      const r = node.getBoundingClientRect();
+      const x = r.left + r.width / 2;
+      const y = r.top + r.height / 2;
+      const hit = document.elementFromPoint(x, y);
+      return { x, y, reached: hit === node || node.contains(hit) || hit === node.closest('label') };
+    });
+    check(point.reached, `${label}: ${selector} can be tapped where it is drawn`);
+    await page.touchscreen.tap(point.x, point.y);
+    await frames();
+  };
+  const geometry = () => page.evaluate((selector) => {
+    const box = (node) => {
+      const { top, bottom, left, right, width, height } = node.getBoundingClientRect();
+      return { top, bottom, left, right, width, height };
+    };
+    const reached = (node) => {
+      const r = node.getBoundingClientRect();
+      const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      return hit === node || node.contains(hit);
+    };
+    const bar = document.querySelector(selector);
+    const nav = document.querySelector('.rail-header').getBoundingClientRect();
+    const toggle = bar.querySelector('.comic-save-toggle');
+    const clear = bar.querySelector('.comic-clear');
+    // Each word of the two commands on one line and inside its button: the shared narrow rule
+    // lets button labels break anywhere, which is what to rule out here.
+    const words = [toggle, clear].flatMap((node) => {
+      const bounds = node.getBoundingClientRect();
+      const text = node.firstChild;
+      return [...text.textContent.matchAll(/\S+/g)].map((match) => {
+        const range = document.createRange();
+        range.setStart(text, match.index);
+        range.setEnd(text, match.index + match[0].length);
+        const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+        return {
+          word: match[0],
+          whole: rects.length === 1 && rects[0].left >= bounds.left - 1 && rects[0].right <= bounds.right + 1,
+        };
+      });
+    });
+    return {
+      bar: box(bar), toggle: { ...box(toggle), reached: reached(toggle) }, clear: { ...box(clear), reached: reached(clear) },
+      nav: { top: nav.top, onScreen: nav.top < innerHeight - 1 },
+      words, height: innerHeight, max: document.documentElement.scrollHeight - innerHeight,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    };
+  }, BAR);
+
+  await route(page, 'add-search');
+  await page.type('#search-q', 'Selection');
+  await page.$eval('#form-search', (form) => form.requestSubmit());
+  await page.waitForFunction(() => document.querySelectorAll('#search-results input[data-comic-id]').length === 50);
+  check(await page.$eval(BAR, (bar) => bar.hidden), `${label}: no bar before anything is selected`);
+  await tap('#search-results input[data-comic-id="900445"]');
+  check(await page.evaluate((selector) => !document.querySelector(selector).hidden
+    && document.querySelector(`${selector} .comic-selection-count`).textContent === '1 comic selected', BAR),
+  `${label}: tapping a comic far down the list opens the bar with its count`);
+
+  // Long enough for the bottom bar's slide and the selection bar's move with it, both 150ms.
+  const settle = () => new Promise((resolve) => { setTimeout(resolve, 250); });
+  // Off the checkbox, because the bottom bar steps aside while any input has focus.
+  await page.evaluate(() => document.activeElement.blur());
+  const { max } = await geometry();
+  const positions = [];
+  for (const fraction of [0, 0.5, 1, 0.5, 0]) {
+    await page.evaluate((y) => window.scrollTo(0, y), Math.round(max * fraction));
+    await frames();
+    await settle();
+    positions.push({ fraction, ...await geometry() });
+  }
+  const inView = (rect, height) => rect.top >= -0.5 && rect.bottom <= height + 0.5;
+  check(positions.every((at) => inView(at.toggle, at.height) && at.toggle.reached && inView(at.clear, at.height) && at.clear.reached),
+    `${label}: Save selected comics and Clear selection stay in view and tappable at every scroll position ${JSON.stringify(positions.map(({ fraction, toggle, clear }) => ({ fraction, toggle, clear })))}`);
+  check(positions.some((at) => at.nav.onScreen) && positions.every((at) => !at.nav.onScreen || at.bar.bottom <= at.nav.top + 0.5),
+    `${label}: whenever the bottom bar shows, the selection bar sits above it ${JSON.stringify(positions.map(({ fraction, bar, nav }) => ({ fraction, bar: bar.bottom, nav })))}`);
+  const at = positions[0];
+  check(at.toggle.width >= 47.5 && at.toggle.height >= 47.5 && at.clear.width >= 47.5 && at.clear.height >= 47.5,
+    `${label}: both commands keep 48px targets ${JSON.stringify({ toggle: at.toggle, clear: at.clear })}`);
+  check(at.words.every((word) => word.whole) && !at.overflow,
+    `${label}: every word of both commands stays whole inside its button, with no page overflow ${JSON.stringify(at.words.filter((word) => !word.whole))}`);
+  await screenshot(page, label, 'selection-bar');
+
+  await tap(`${BAR} .comic-save-toggle`, false);
+  check(await page.evaluate((selector) => document.querySelector(`${selector} .comic-save-toggle`).getAttribute('aria-expanded') === 'true'
+    && document.querySelector('#search-save-panel').checkVisibility()
+    && document.querySelector(selector).getBoundingClientRect().height <= innerHeight * 0.6 + 1, BAR),
+  `${label}: tapping Save selected comics opens the destination form inside the bar, within its height cap`);
+  await screenshot(page, label, 'selection-bar-form');
+  await page.$eval('#search-list-name', (input) => input.scrollIntoView({ block: 'nearest' }));
+  await tap('#search-list-name', false);
+  check(await page.evaluate(() => document.activeElement?.id === 'search-list-name'),
+    `${label}: tapping the list name gives it focus`);
+  const keyboard = Math.round(viewport.height * (viewport.width > viewport.height ? 0.55 : 0.42));
+  await page.setViewport({ width: viewport.width, height: viewport.height - keyboard, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
+  await page.evaluate(() => document.activeElement.scrollIntoView({ block: 'nearest' }));
+  await frames();
+  await settle();
+  const typing = await page.evaluate((selector) => {
+    const field = document.activeElement;
+    const bar = document.querySelector(selector);
+    const r = field.getBoundingClientRect();
+    const b = bar.getBoundingClientRect();
+    const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    const nav = document.querySelector('.rail-header').getBoundingClientRect();
+    return {
+      field: field.id, height: innerHeight, top: r.top, bottom: r.bottom, barTop: b.top, barBottom: b.bottom,
+      reached: hit === field,
+      navAway: nav.top >= innerHeight - 1,
+      capped: b.height <= innerHeight * 0.6 + 1,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    };
+  }, BAR);
+  check(typing.field === 'search-list-name' && typing.top >= Math.max(0, typing.barTop) - 0.5
+    && typing.bottom <= Math.min(typing.height, typing.barBottom) + 0.5 && typing.reached
+    && typing.navAway && typing.capped && !typing.overflow,
+  `${label}: with the keyboard open (${keyboard}px) the list name field stays in view inside the bar ${JSON.stringify(typing)}`);
+  await screenshot(page, label, 'selection-bar-keyboard');
+  await page.setViewport({ ...viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
+  console.log(`CHECKED ${label}: selection bar at ${positions.length} scroll positions, form open and keyboard ${keyboard}px`);
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
@@ -3080,6 +3248,14 @@ try {
     { width: 360, height: 800, textScale: 2 },
     { width: 412, height: 915, textScale: 2 },
   ];
+  if (selectionBar) viewports = [
+    { width: 360, height: 800, theme: 'light' },
+    { width: 412, height: 915, theme: 'dark' },
+    { width: 800, height: 360, theme: 'light' },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 412, height: 915, textScale: 2, theme: 'light' },
+    { width: 800, height: 360, textScale: 2, theme: 'dark' },
+  ];
   const newsProfiles = [
     { width: 390, height: 844, theme: 'light', homeUpdates: true },
     { width: 390, height: 844, theme: 'dark', homeUpdates: true },
@@ -3115,6 +3291,7 @@ try {
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
     if (longListName) await longListNameFixtures(page);
+    if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
@@ -3129,7 +3306,7 @@ try {
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -3183,7 +3360,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -3376,6 +3553,12 @@ try {
     }
     if (longListName) {
       await longListNameMenu(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (selectionBar) {
+      await selectionBarCheck(page, `${label} ${viewport.theme}`, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

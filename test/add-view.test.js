@@ -21,6 +21,7 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
 const add = read('src/js/views/add.js');
+const css = read('src/styles.css');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 
 test('pasted import publishes new destination, activation, members and checked markers in one reader write', async () => {
@@ -459,13 +460,40 @@ test('all search surfaces share selection controls rather than immediate Add act
   assert.doesNotMatch(add, /savePage|onAdd|addToActive|LongAddRunner|Add all issues/);
 });
 
-test('search saving stays in a native selected-only disclosure without moving checkbox focus', () => {
-  assert.match(add, /const disclosure = el\('details', \{ class: 'comic-save', hidden: true \}/);
-  assert.match(add, /builder\.disclosure\.hidden = selected\.size === 0/);
-  assert.match(add, /if \(!selected\.size\) builder\.disclosure\.open = false/);
-  assert.match(add, /el\('summary', \{ text: 'Save selected comics' \}\)/);
+test('search saving opens from the selection bar without moving checkbox focus', () => {
+  assert.match(add, /const toggle = el\('button', \{\s*type: 'button', class: 'btn comic-save-toggle', hidden: true,\s*'aria-expanded': 'false', 'aria-controls': `\$\{prefix\}-save-panel`,\s*\}, 'Save selected comics'\)/);
+  assert.match(add, /const panel = el\('div', \{ id: `\$\{prefix\}-save-panel`, class: 'stack comic-save', hidden: true \}/);
+  assert.match(add, /builder\.toggle\.hidden = selected\.size === 0/);
+  assert.match(add, /if \(!selected\.size\) setSaveOpen\(builder, false\)/);
+  assert.match(add, /builder\.host\.hidden = selected\.size === 0 && builder\.report\.childElementCount === 0/);
   const checkbox = add.slice(add.indexOf("checkbox.addEventListener('change'"), add.indexOf('const metadata ='));
-  assert.doesNotMatch(checkbox, /\.focus\(|\.open = true/);
+  assert.doesNotMatch(checkbox, /\.focus\(|setSaveOpen/);
+});
+
+test('the selection bar keeps the page order: results, then count, Clear, Save and the form', () => {
+  assert.match(add, /el\('div', \{ class: 'field-row comic-selection-tools' \}, \[selectionCount, clear, toggle\]\),\s*panel,/);
+  assert.match(add, /class: 'btn comic-clear has-tooltip'/);
+  assert.match(add, /\$\(config\.results\)\.after\(host\)/);
+  assert.doesNotMatch(add, /\$\(config\.results\)\.before\(host\)/);
+  // A failed name reveals the form before focusing its field, as the Add view's other fields do.
+  const save = add.slice(add.indexOf('  function saveSelected'), add.indexOf('  function createBuilder'));
+  assert.match(save, /setSaveOpen\(builder, true\);\s*builder\.validation\.fail/);
+});
+
+test('the selection bar keeps its measurements while hidden, and only a shown bar uses them', () => {
+  assert.match(add, /root\.style\.setProperty\('--comic-selection-height'/);
+  assert.match(add, /root\.style\.setProperty\('--comic-selection-width', `\$\{width\}px`\)/);
+  // Back from an issue's details focuses a title in the frame the bar returns, before any
+  // measurement, so a value dropped on the way out left that title under the bar.
+  assert.doesNotMatch(add, /removeProperty\('--comic-selection-(?:width|height)'\)/);
+  const shown = ':root:has(.view:not([hidden]) .comic-builder:not([hidden]))';
+  const uses = css.split(/\r?\n/).filter((line) => /var\(--comic-selection-height/.test(line));
+  assert.ok(uses.length >= 3, 'the bar height has lost a consumer');
+  for (const selector of [`${shown} {`, `${shown} main::after {`]) {
+    assert.ok(css.includes(selector), `${selector} is no longer gated on a shown bar`);
+  }
+  assert.match(css, /:root:has\(\.view:not\(\[hidden\]\) \.comic-builder:not\(\[hidden\]\) :focus\) \{ scroll-padding-bottom: 0; \}/);
+  assert.doesNotMatch(css, /^\s*html \{[^}]*--comic-selection-height/m, 'the page padding uses the bar height without a shown bar');
 });
 
 test('a current search retires shared save feedback without discarding the draft', () => {
