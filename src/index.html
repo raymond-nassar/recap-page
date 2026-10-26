@@ -204,11 +204,11 @@
                        replaces it with the list name and puts it back when the section
                        goes away. -->
                   <h2 id="chero-h" tabindex="-1">Continue reading</h2>
-                  <div class="pbar" id="chero-bar" role="progressbar"
-                       aria-label="Reading progress" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+                  <p class="glance-count" id="chero-count"></p>
+                  <!-- For the eye only: the count above is this card's one reading of its progress (#876). -->
+                  <div class="glance-bar" id="chero-bar" aria-hidden="true">
                     <i id="chero-fill"></i>
                   </div>
-                  <p class="chero-count" id="chero-count"></p>
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta" id="chero-actions">
                     <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Marks this comic read and shows the next one.</span>
@@ -334,6 +334,13 @@
                       </button><span id="hero-done-help" hidden>Marks this comic read and shows the next one.</span>
                     </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
+                    <!-- Progress at a glance (#876). The header's ring already reads out how far through the
+                         list the reader is, and stays on screen when this card does not, so this row is
+                         for the eye and is not read a second time. -->
+                    <div class="glance" id="hero-progress" aria-hidden="true">
+                      <p class="glance-count" id="hero-progress-count"></p>
+                      <div class="glance-bar"><i id="hero-progress-fill"></i></div>
+                    </div>
                     <dl class="facts" id="hero-facts"></dl>
                     <div class="reading-comic-actions">
                       <button type="button" class="btn btn-link" id="btn-hero-inspect">About this comic</button>

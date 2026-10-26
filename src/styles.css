@@ -1780,7 +1780,7 @@ progress { accent-color: var(--accent); height: 6px; }
 .chero-in { display: grid; grid-template-columns: 132px 1fr; gap: var(--space-8); align-items: start; }
 .chero.continue-empty { padding: var(--space-5); }
 .continue-empty .chero-in { grid-template-columns: 1fr; }
-.continue-empty .art, .continue-empty .pbar { display: none; }
+.continue-empty .art { display: none; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
 .chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; }
 .chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); display: block; }
@@ -1790,7 +1790,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .chero .art .fallback { padding: var(--space-4); border-radius: 12px; }
 .chero .art .fallback .fs { font-size: var(--art-label-sm); letter-spacing: .06em; }
 .chero .art .fallback .fn { font-size: var(--art-n-md); }
-.chero-count { color: var(--dim); font-size: var(--t-body); margin: var(--space-3) 0 0; font-variant-numeric: tabular-nums; }
+#chero-bar { margin-bottom: var(--space-2); }
 .chero-next { color: var(--muted); font-size: var(--t-body); margin: var(--space-1) 0 var(--space-6); }
 .chero-next b { color: var(--text); font-weight: 600; }
 
@@ -2536,4 +2536,39 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 @media (forced-colors: active) {
   .wrapup-cheer { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
+}
+
+/* Progress at a glance (#876): the read count set larger than its words, over a slim bar in the brand
+   accent, on Home's Continue reading card and the reading screen's hero. Each surface keeps one text
+   reading of its progress, so the bar, and on the hero the whole row, is hidden from assistive
+   technology rather than read twice. The bar is outlined rather than drawn on a trough: `--track` is
+   recorded below 3:1 against a card (UX-27), while the boundary token draws the bar's extent at 3.29:1
+   dark and 3.49:1 light, so an empty bar still shows, and the fill only has to clear the card. */
+.glance-count { margin: 0; color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
+/* The figure is one line of its own size tall, which keeps Home's count line inside the height of the
+   bar it replaced. */
+.glance-n { color: var(--accent-text); font-size: var(--t-subtitle); font-weight: 700; line-height: 1; }
+/* The words after the figure move along when it gains a digit, as text does, but the line keeps its
+   width: the room the figure will need is held at the line's end, in the figure's own size, so a count
+   reaching 10 or 100 never rewraps the line and moves what follows it. */
+.glance-count::after {
+  content: ""; display: inline-block; inline-size: calc(var(--glance-spare, 0) * 1ch);
+  font-size: var(--t-subtitle); font-weight: 700;
+}
+/* The outline is an inset shadow, so the fill paints over it: read is solid accent end to end, and
+   only what is left shows the outline. The fill is the bar's full width and slides in from the left
+   rather than growing, so a change of progress moves it on the compositor instead of laying the card
+   out again on every frame, and the bar's own rounded clip shapes the end it slides from. */
+.glance-bar {
+  height: 6px; max-width: 32rem; margin-top: var(--space-2); border-radius: 999px; overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--line-2);
+}
+.glance-bar > i {
+  display: block; height: 100%; border-radius: inherit; background: var(--accent);
+  transform: translateX(calc(var(--glance-share, 0%) - 100%)); transition: transform .35s ease;
+}
+.hero .glance { margin: var(--space-6) 0; }
+@media (forced-colors: active) {
+  .glance-bar { border: 1px solid CanvasText; }
+  .glance-bar > i { background: Highlight; }
 }

@@ -29,6 +29,7 @@ import { shortcutAllowed } from '../lib/shortcuts.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
+import { paintGlance } from '../lib/progressGlance.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -654,6 +655,8 @@ export function createReadingView({
     $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className)
     )));
+    // The same numbers the header's ring reads out, set large for the eye (#876).
+    paintGlance(el, { count: $('#hero-progress-count'), fill: $('#hero-progress-fill') }, { read, total }, ` of ${total} read`);
 
     const info = $('#btn-hero-info');
     const infoHref = presentation.detailUrl;

@@ -34,7 +34,11 @@ function node(props = {}, children = []) {
     textContent: props.text ?? '',
     addEventListener(name, listener) { this.listeners[name] = listener; },
     prepend(child) { this.children.unshift(child); },
-    replaceChildren(...next) { this.children = next; },
+    // As the DOM does, the text is what the node now holds, so a count built from parts reads whole.
+    replaceChildren(...next) {
+      this.children = next;
+      this.textContent = next.map((child) => (typeof child === 'string' ? child : child.textContent)).join('');
+    },
     setAttribute(name, value) { this.attributes[name] = value; },
     ...props,
   };
@@ -205,7 +209,7 @@ test('510 Home distinguishes deferred work from completion and exposes a separat
   assert.equal(h.nodes.continueNext.textContent, 'Nothing queued. 1 unread issue is deferred.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueDeferred.hidden, false);
-  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '1');
+  assert.equal(h.nodes.continueCount.children[0].textContent, '1');
   h.nodes.continueDeferred.listeners.click();
   assert.deepEqual(h.calls.navigate, ['deferred']);
   assert.deepEqual(h.calls.read, []);
@@ -326,10 +330,14 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(findById(h.nodes.categoriesRoot, 'home-first-run').hidden, true);
   assert.equal(h.nodes.continueSection.hidden, false);
   assert.equal(h.nodes.continueHeading.textContent, 'Alpha order');
-  assert.equal(h.nodes.continueBar.attributes['aria-valuemax'], '2');
-  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '1');
-  assert.equal(h.nodes.continueBar.attributes['aria-valuetext'], '1 of 2 issues read');
-  assert.equal(h.nodes.continueFill.style.width, '50.0%');
+  // The count is the card's one reading of its progress (#876): the read figure leads it, and the bar
+  // repeats it for the eye with no progress semantics of its own, which the markup hides.
+  assert.equal(h.nodes.continueCount.textContent, '1 of 2 issues read');
+  assert.equal(h.nodes.continueCount.children[0].textContent, '1');
+  assert.equal(h.nodes.continueCount.children[0].classList.contains('glance-n'), true);
+  assert.deepEqual(Object.keys(h.nodes.continueBar.attributes), []);
+  assert.equal(h.nodes.continueBar.hidden, false);
+  assert.equal(h.nodes.continueFill.style['--glance-share'], '50.0%');
   assert.equal(h.nodes.continueNext.textContent, 'Next: Next issue');
   assert.equal(h.nodes.continueSeries.textContent, 'Series');
   assert.equal(h.nodes.continueNumber.textContent, '#3');
@@ -397,7 +405,7 @@ test('Home view completion state removes the read action without inventing a nex
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');
   assert.equal(h.nodes.continueCount.textContent, '2 of 2 issues read');
-  assert.equal(h.nodes.continueFill.style.width, '100.0%');
+  assert.equal(h.nodes.continueFill.style['--glance-share'], '100.0%');
   assert.equal(h.calls.coverFallbacks.length, 1);
 });
 
@@ -430,8 +438,9 @@ test('441 Home describes an empty saved list without claiming completion or chan
   assert.equal(h.nodes.continueSection.classList.contains('continue-empty'), true);
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
-  assert.equal(h.nodes.continueFill.style.width, '0%');
-  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '0');
+  // An empty list has no progress to draw, so its bar goes, as it always has.
+  assert.equal(h.nodes.continueFill.style['--glance-share'], '0%');
+  assert.equal(h.nodes.continueBar.hidden, true);
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.nodes.continueReview.hidden, true);
   h.nodes.continueRead.listeners.click({});
