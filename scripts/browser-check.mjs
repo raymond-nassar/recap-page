@@ -8722,19 +8722,83 @@ const SCENARIOS = [
   },
   {
     id: 'backup-transfer-guidance',
-    title: 'independent normal backups are adjacent and malformed input leads with useful recovery',
+    title: 'each backup keeps its download and labelled restore together, and malformed input leads with useful recovery',
     async run(page, t) {
       await importOrder(page);
       await click(page, '.ri[data-view="data"]');
-      t.check('reading and history normal backups are together above exceptional salvage tools', await page.evaluate(() => {
-        const history = document.querySelector('#completion-history-controls');
-        const card = document.querySelector('#btn-export-json').closest('.card');
-        return card.contains(history) && !!(history.compareDocumentPosition(document.querySelector('#salvage-list')) & Node.DOCUMENT_POSITION_FOLLOWING);
+      // UX-07 (#835): three parallel groups in Data safety, completion history mounted between the
+      // other two at startup, each holding its own download, labelled restore and report.
+      const groups = await page.evaluate(() => {
+        const group = document.querySelector('#btn-export-json').closest('.setgroup');
+        const card = (id) => document.getElementById(id).closest('.card');
+        const parts = {
+          reading: ['btn-export-json', 'restore-file', 'btn-undo-restore', 'restore-copy-summary', 'restore-report'],
+          history: ['btn-export-history', 'restore-history-file', 'history-report'],
+          draft: ['btn-export-draft', 'restore-draft', 'draft-transfer-report'],
+        };
+        const cards = Object.fromEntries(Object.entries(parts).map(([name, ids]) => [name, card(ids[0])]));
+        return {
+          together: Object.entries(parts).every(([name, ids]) => ids.every((id) => card(id) === cards[name])),
+          distinct: new Set(Object.values(cards)).size === 3,
+          inGroup: Object.values(cards).every((node) => group.contains(node)),
+          order: [...group.querySelectorAll('.card h3')].map((node) => node.textContent.trim()),
+          aboveSalvage: Object.values(cards).every((node) => !!(node.compareDocumentPosition(document.querySelector('#salvage-list'))
+            & Node.DOCUMENT_POSITION_FOLLOWING)),
+        };
+      });
+      t.check('reading data, completion history and the import draft each keep their download, restore and report together',
+        groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
+          && JSON.stringify(groups.order) === JSON.stringify(['Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+        JSON.stringify(groups));
+      const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
+        const input = document.getElementById(id);
+        const label = input.labels?.[0];
+        const box = label?.getBoundingClientRect();
+        return { id, count: input.labels?.length ?? 0, text: label?.textContent.trim() ?? null,
+          visible: !!box && box.width > 1 && box.height > 1 && getComputedStyle(label).clip === 'auto',
+          ariaLabel: input.getAttribute('aria-label') };
       }));
-      t.check('complete transfer explicitly names retained draft source and excludes settings', await page.evaluate(() => {
-        const copy = document.querySelector('#btn-export-json').closest('.card').textContent;
-        return copy.includes('completion-history') && copy.includes('retained draft source') && copy.includes('Settings are not included');
-      }));
+      const names = [];
+      for (const { id } of labels) {
+        const node = await page.$(`#${id}`);
+        names.push((await page.accessibility.snapshot({ root: node, interestingOnly: false }))?.name ?? '');
+      }
+      t.check('every file input has one visible label, which is its accessible name',
+        labels.every((entry, i) => entry.count === 1 && entry.visible && entry.ariaLabel === null && entry.text
+          && /^Restore an? [a-z-]+ backup$/.test(entry.text) && names[i].includes(entry.text)),
+        JSON.stringify({ labels, names }));
+      const guidance = await page.evaluate(() => {
+        const group = document.querySelector('#btn-export-json').closest('.setgroup');
+        // Edge 155 hides a closed disclosure's content with content-visibility, which still reports
+        // client rects for every paragraph inside, so a rect test counts text nobody can see.
+        const shown = (node) => !!node && node.checkVisibility({ visibilityProperty: true }) && node.getClientRects().length > 0;
+        const words = [...group.querySelectorAll('.rail-hint')]
+          .filter((node) => shown(node) && !['history-status', 'restore-copy-summary'].includes(node.id) && !node.closest('#salvage-list'))
+          .map((node) => node.textContent.trim().split(/\s+/).filter(Boolean).length).reduce((sum, n) => sum + n, 0);
+        return {
+          words,
+          summary: shown(document.querySelector('#transfer-summary')) ? document.querySelector('#transfer-summary').textContent.trim() : null,
+          warnings: ['restore-file-hint', 'restore-history-hint'].map((id) => shown(document.getElementById(id))
+            && document.getElementById(id).textContent.includes('after confirmation')),
+          described: [['restore-file', 'restore-file-hint'], ['restore-history-file', 'restore-history-hint']]
+            .map(([field, hint]) => document.getElementById(field).getAttribute('aria-describedby').split(/\s+/).includes(hint)),
+          closed: ['#backup-contents', '#draft-transfer-report ~ details'].map((selector) => {
+            const node = document.querySelector(selector);
+            const details = node?.closest('details') ?? node;
+            return !!details && details.tagName === 'DETAILS' && !details.open && !shown(details.querySelector('p'));
+          }),
+        };
+      });
+      t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
+        guidance.summary?.startsWith('Moving to another device:') && guidance.summary.includes('Settings are not included')
+          && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
+          && guidance.words <= 80,
+        JSON.stringify(guidance));
+      t.check('the import draft group still names retained draft source and the backups that leave it out',
+        await page.evaluate(() => {
+          const draft = document.querySelector('#btn-export-draft').closest('.card').textContent;
+          return draft.includes('retained draft source') && draft.includes('Reading-data and completion-history backups do not include it');
+        }));
       t.check('healthy history keeps troubleshooting behind a closed native disclosure',
         await page.$eval('#history-troubleshooting', (node) => !node.open && node.contains(document.querySelector('#btn-copy-history'))
           && node.contains(document.querySelector('#btn-retry-history'))));

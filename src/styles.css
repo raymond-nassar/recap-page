@@ -1194,11 +1194,15 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .card-static h2 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 .card-static h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
 #view-data .card-static h3 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
-#view-data .card-static h4 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
+/* Each backup group names its file field with a visible label, set where the group's restore
+   sub-heading used to be, and the restore warning beneath it lines up with the label it qualifies. */
+#view-data .backup-restore-label { display: block; font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
+#view-data .backup-restore-label + .rail-hint { margin: 0 0 var(--space-4); max-width: 62ch; }
 .setgroup { margin-bottom: var(--space-8); }
 #view-data .setgroup > h2 {
   font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3);
 }
+#view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
 
 /* A settings row. The header and its one line description sit in the text column, and the control

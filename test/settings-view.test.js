@@ -25,15 +25,29 @@ const VIEW = sliceElement(
   'section',
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'view-data')?.start,
 );
+// Moved into the Data safety group at startup, so it is read from where it is written.
+const HISTORY = sliceElement(
+  HTML,
+  'section',
+  openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'completion-history-controls')?.start,
+);
 
-const HEADING_LEVELS = [1, 2, 3, 4, 4, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
+  'transfer-summary',
   'btn-export-json',
   'backup-contents',
   'btn-export-md-2',
   'restore-file',
+  'restore-file-hint',
   'btn-undo-restore',
+  'btn-export-restore-copy',
+  'restore-copy-summary',
+  'normal-backup-history',
+  'btn-export-draft',
+  'restore-draft',
+  'draft-transfer-report',
   'opt-covers',
   'opt-theme',
   'opt-reading-shortcut',
@@ -50,6 +64,7 @@ const REQUIRED_IDS = [
   'local-connection-report',
   'btn-clear-cache',
   'btn-wipe',
+  'erase-contents',
   'form-settings',
   'salvage-list',
   'salvage-report',
@@ -233,16 +248,99 @@ test('each report pane hears only about the control it sits with', () => {
 });
 
 test('normal reading, history and draft transfers precede exceptional recovery with independent formats', () => {
-  assert.ok(idPosition(VIEW, 'btn-export-json') < idPosition(VIEW, 'normal-backup-history'));
-  assert.ok(idPosition(VIEW, 'normal-backup-history') < idPosition(VIEW, 'salvage-list'));
-  assert.ok(idPosition(VIEW, 'btn-export-draft') < idPosition(VIEW, 'salvage-list'));
-  assert.match(VIEW, /complete reading and history transfer/);
-  assert.match(VIEW, /Settings are not included/);
+  const order = ['transfer-summary', 'btn-export-json', 'restore-file', 'normal-backup-history', 'btn-export-draft', 'restore-draft', 'salvage-list'];
+  for (let i = 1; i < order.length; i += 1) {
+    assert.ok(idPosition(VIEW, order[i - 1]) < idPosition(VIEW, order[i]), `${order[i - 1]} precedes ${order[i]}`);
+  }
+  const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
+  assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
+  assert.ok(summary.includes('the import draft only if you have one'), summary);
+  assert.ok(summary.includes('Settings are not included.'), summary);
   assert.match(VIEW, /draft or retained draft source/);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
   assert.ok(details.includes('btn-copy-history') && details.includes('btn-retry-history'));
   assert.match(HTML, /saved-value copy preserves unreadable data exactly; it is not a normal backup/);
+});
+
+// UX-07 (#835). Completion history used to sit between the reading-data download and its restore,
+// so each kind of data now keeps its download, its labelled restore and its report in one group.
+// The completion-history group is mounted at startup, into the placeholder between the other two.
+test('each backup group keeps its download, labelled restore and report together', () => {
+  const cards = elementsWithClass(VIEW, 'div', 'card');
+  const cardOf = (id) => {
+    const at = idPosition(VIEW, id);
+    return cards.find((card) => card.start < at && at < card.end) ?? null;
+  };
+  const reading = cardOf('btn-export-json');
+  const draft = cardOf('btn-export-draft');
+  assert.ok(reading && draft && reading !== draft, 'reading data and the import draft are separate groups');
+  assert.equal(headingText(reading.html, 3), 'Reading data');
+  assert.equal(headingText(draft.html, 3), 'Import draft');
+  assert.equal(headingText(HISTORY, 3), 'Completion history');
+  for (const id of ['restore-file', 'restore-file-hint', 'btn-undo-restore', 'btn-export-restore-copy', 'restore-copy-summary', 'restore-report', 'backup-contents']) {
+    assert.equal(cardOf(id), reading, `${id} belongs with the reading-data download`);
+  }
+  for (const id of ['restore-draft', 'draft-transfer-report']) assert.equal(cardOf(id), draft, `${id} belongs with the import-draft download`);
+  for (const id of ['btn-export-history', 'restore-history-file', 'restore-history-hint', 'history-report']) {
+    assert.ok(HISTORY.includes(`id="${id}"`), `${id} belongs with the completion-history download`);
+  }
+  for (const [fragment, download, field] of [[reading.html, 'btn-export-json', 'restore-file'], [draft.html, 'btn-export-draft', 'restore-draft'],
+    [HISTORY, 'btn-export-history', 'restore-history-file']]) {
+    assert.ok(idPosition(fragment, download) < fragment.indexOf(`for="${field}"`), `${download} comes before the restore it pairs with`);
+    assert.ok(fragment.indexOf(`for="${field}"`) < idPosition(fragment, field), `${field}'s label comes before it`);
+  }
+  const mount = idPosition(VIEW, 'normal-backup-history');
+  assert.ok(reading.end < mount && mount < draft.start, 'completion history mounts between the other two groups');
+  assert.ok(!cards.some((card) => card.start < mount && mount < card.end), 'and inside no other group');
+});
+
+// The two fields that had only an aria-label now carry the visible label the completion-history
+// field always had, and that text is each field's accessible name.
+test('every file input on Backup & settings has a visible associated label', () => {
+  const both = VIEW + HISTORY;
+  const inputs = openingTags(both, 'input').filter((entry) => getAttribute(entry.open, 'type') === 'file');
+  assert.deepEqual(inputs.map((entry) => getAttribute(entry.open, 'id')).sort(), ['restore-draft', 'restore-file', 'restore-history-file']);
+  for (const { open } of inputs) {
+    const id = getAttribute(open, 'id');
+    const labels = [...both.matchAll(new RegExp(`<label\\b[^>]*\\bfor="${escapeRegExp(id)}"[^>]*>([^<]+)</label>`, 'g'))];
+    assert.equal(labels.length, 1, `${id} has one label`);
+    assert.ok(hasClass(labels[0][0], 'backup-restore-label') && !hasClass(labels[0][0], 'visually-hidden'), `${id}'s label is visible`);
+    assert.match(labels[0][1], /^Restore an? [a-z-]+ backup$/, `${id}'s label names what it restores`);
+    assert.equal(getAttribute(open, 'aria-label'), null, `${id} takes its name from the visible label`);
+  }
+});
+
+function disclosureHolding(fragment, marker) {
+  return openingTags(fragment, 'details')
+    .map((entry) => sliceElement(fragment, 'details', entry.start))
+    .find((html) => html.includes(marker)) ?? null;
+}
+
+// #835 roughly halves the visible hint text without losing a safety warning: each restore warning
+// stays on screen and is read with the field it qualifies, and the longer explanations move into
+// disclosures that start closed.
+test('restore warnings stay visible with their fields while explanations start closed', () => {
+  for (const [fragment, field, hint, warning] of [
+    [VIEW, 'restore-file', 'restore-file-hint', 'Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces.'],
+    [HISTORY, 'restore-history-file', 'restore-history-hint', 'Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.'],
+  ]) {
+    const input = openingTags(fragment, 'input').find((entry) => getAttribute(entry.open, 'id') === field);
+    assert.ok(getAttribute(input.open, 'aria-describedby').split(/\s+/).includes(hint), `${field} is described by ${hint}`);
+    assert.ok(fragment.includes(`id="${hint}">${warning}</p>`), `${hint} says: ${warning}`);
+    assert.equal(disclosureHolding(fragment, `id="${hint}"`), null, `${hint} stays on screen`);
+  }
+  assert.equal(disclosureHolding(VIEW, 'id="transfer-summary"'), null, 'the transfer summary stays on screen');
+  for (const [fragment, marker] of [
+    [VIEW, 'id="backup-contents"'],
+    [VIEW, 'Undo is offered once in this tab.'],
+    [VIEW, 'Reading-data and completion-history backups do not include it.'],
+    [HISTORY, 'Completion dates and enjoyment are saved separately'],
+  ]) {
+    const holder = disclosureHolding(fragment, marker);
+    assert.ok(holder, `${marker} sits in a disclosure`);
+    assert.ok(!/\sopen[\s>=]/.test(holder.slice(0, holder.indexOf('>') + 1)), `${marker}'s disclosure starts closed`);
+  }
 });
 
 test('the local connection control names its status and recovery guidance', () => {

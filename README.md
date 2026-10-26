@@ -112,7 +112,7 @@ The existing **Undo removal** offer can put that copy back.
 Completion dates and enjoyment choices have their own export and restore controls in
 **Backup & settings**. Export both backups to carry both kinds of data to another device.
 If a pasted import draft is present, also download its separately labeled import-draft backup.
-These independent files do not include settings. Normal backup controls are grouped together.
+These independent files do not include settings. Each backup keeps its download beside its restore.
 Reading-data replacement asks for confirmation and keeps the prior data as a downloadable saved
 copy. Undo is offered once in the restoring tab; after Undo or reload, the retained copy uses an
 explicit saved-copy action rather than a misleading Undo label.

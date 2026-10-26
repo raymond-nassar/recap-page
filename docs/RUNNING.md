@@ -320,10 +320,13 @@ Add starts with **Search issues** and **Find a series**. **More ways to add** co
 paste and manual-entry choices. Search keeps its alternatives in **Other ways to find comics**,
 and an empty result offers **Add an issue by hand** directly.
 
-Under **Backup & settings**, reading-data and completion-history backup controls are grouped
-together above exceptional recovery tools. For a complete reading and history transfer, download
-both files and the separate import-draft file when a draft or retained draft source is present.
-Settings are not included; these formats cannot be substituted for each other.
+Under **Backup & settings**, **Data safety** opens with a short **Moving to another device**
+summary, then gives reading data, completion history and the import draft one group each, with
+its download beside its labelled restore, above exceptional recovery tools. For a complete reading
+and history transfer, download both files and the separate import-draft file when a draft or
+retained draft source is present. Settings are not included; these formats cannot be substituted
+for each other. Each group's longer explanation is in its closed **About** disclosure, and each
+restore warning stays on screen beside its field.
 
 Reading-data restore and saved-copy replacement ask for confirmation. The previous exact reading
 data is retained and downloadable. **Undo last restore** is a one-shot offer in the restoring tab.
