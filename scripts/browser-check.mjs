@@ -905,24 +905,15 @@ const MUTATIONS = [
     id: 'home-path-explanation',
     breaks: 'home-category-gateway',
     why: 'standing explanatory copy returns inside a category tile',
-    script: () => {
-      addEventListener('load', () => {
-        const insert = () => {
-          const copy = document.querySelector('.home-path-copy');
-          if (!copy || copy.querySelector('.home-path-explanation')) return false;
-          const note = document.createElement('p');
-          note.className = 'home-path-explanation';
-          note.textContent = 'Use this route when you want the stories arranged around publication milestones.';
-          copy.append(note);
-          return true;
-        };
-        if (insert()) return;
-        const observer = new MutationObserver(() => {
-          if (insert()) observer.disconnect();
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-      });
-    },
+    // Written by the tile renderer itself, as the regression would be, so every render of either
+    // gateway carries it. It used to be added from the page once, at load, and Home renders both
+    // gateways six times as it starts. Measured in Edge 155 on 2026-10-26, the sixth pass came 7 to
+    // 23ms after load in seven of eight runs and replaced every tile, so the scenario caught the
+    // paragraph only in the run where load came last (#888).
+    rewriteHome: (source) => source.replace(
+      "el('span', { class: 'home-path-count', text: count }),",
+      "$&\n        el('p', { class: 'home-path-explanation', text: 'Use this route when you want the stories arranged around publication milestones.' }),",
+    ),
   },
   {
     id: 'timeline-sticky-off',
@@ -3693,7 +3684,10 @@ const SCENARIOS = [
           tops: boxes.map((box) => Math.round(box.top)),
           heights: boxes.map((box) => Math.round(box.height)),
           secondaryHeights: secondary.map((path) => Math.round(path.getBoundingClientRect().height)),
-          paragraphs: document.querySelectorAll('.home-path p').length,
+          // Counted per gateway, so a paragraph in Browse's tiles is caught as surely as one in Home's.
+          // Both are rendered together, Browse's while it is hidden (#888).
+          paragraphs: Object.fromEntries([...document.querySelectorAll('[data-category-gateway]')]
+            .map((gateway) => [gateway.closest('.view')?.id, gateway.querySelectorAll('.home-path p').length])),
           retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
           moreHidden: document.querySelector('#home-more-paths')?.hidden,
           statuses: [...document.querySelectorAll('[data-paths-status]')].map((status) => ({
@@ -3743,7 +3737,8 @@ const SCENARIOS = [
         && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
         JSON.stringify(context.secondaryHeights));
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
-        context.paragraphs === 0 && context.retired === 0 && context.moreHidden === false,
+        JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0, 'view-browse': 0 })
+        && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
       t.check('dynamic Home and Browse categories publish one concise polite completion status each',
         context.statuses.length === 2
@@ -16278,6 +16273,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/open.js', mutation?.rewriteOpen],
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/views/home.js', mutation?.rewriteHome],
     ['/js/views/add.js', mutation?.rewriteAdd],
     ['/js/views/data.js', mutation?.rewriteData],
     ['/js/views/completion.js', mutation?.rewriteCompletion],
