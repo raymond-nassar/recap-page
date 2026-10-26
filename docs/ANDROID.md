@@ -496,6 +496,14 @@ a refusal. When it succeeds the reading view's heading takes focus, because Comp
 closed sheet. No rendered frame may find focus on the page. These are Edge web checks, not native
 TalkBack acceptance.
 
+`npm run android:browser -- --only=long-list-name` opens the More menu on a Reading List whose
+name is 79 characters long, at 360x800, 412x915, 320x740 and 800x360, and at 360x800 and 412x915
+with 200% text tokens. It applies the usual text size, page overflow and touch target checks with
+the menu open, then checks that the menu and every link and button in it fit the screen. The name
+must stay inside its row with its full text kept: cut short with an ellipsis at every phone width,
+and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
+acceptance.
+
 ## Native emulator checks without a local emulator
 
 The optional **native_mode=debug** selection in **CI** runs the APK in a full

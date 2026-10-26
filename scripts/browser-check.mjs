@@ -14016,6 +14016,104 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'narrow-navigation-long-name',
+    title: 'narrow navigation fits the screen with a long Reading List name, which ends in an ellipsis',
+    async run(page, t) {
+      // #866: the list's link keeps its name on one line, and below 880px the shell's single column
+      // grew to fit it, so opening the menu widened the whole page. Measured on main in Edge 155 on
+      // 2026-10-26 with this 79-character name, the page reached 148, 108, 78 and 56px past the
+      // screen at 320, 360, 390 and 412px.
+      const name = 'My long-running reread of every Avengers crossover from 1963 to the present day';
+      const saved = fixtureReadingState();
+      saved.lists.fixture.name = name;
+      await open(page, '/?catalog=browser-check');
+      await page.evaluate((state) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', JSON.stringify({ filter: 'all', covers: true, theme: 'system', apiBase: '' }));
+        localStorage.removeItem('sidebar.collapsed');
+      }, saved);
+      await page.reload({ waitUntil: 'load' });
+      await click(page, '#list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      const settle = () => page.evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      const tokens = ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg'];
+      for (const { width, scale } of [{ width: 320 }, { width: 360 }, { width: 390 }, { width: 412 }, { width: 320, scale: 2 }]) {
+        const label = `${width}px${scale ? ' with doubled text' : ''}`;
+        await page.setViewport({ width, height: 900 });
+        await page.waitForFunction((want) => innerWidth === want
+          && document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'More'
+          && document.querySelector('#sidebar-panel')?.hidden === true, { timeout: 15000 }, width);
+        if (scale) {
+          await page.evaluate((names, factor) => {
+            const root = document.documentElement;
+            for (const token of names) {
+              root.style.setProperty(token, `${Number.parseFloat(getComputedStyle(root).getPropertyValue(token)) * factor}px`);
+            }
+          }, tokens, scale);
+        }
+        await settle();
+        await page.$eval('#btn-rail-toggle', (button) => button.click());
+        await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === false, { timeout: 15000 });
+        await settle();
+        const opened = await page.evaluate((full) => {
+          const root = document.documentElement;
+          const panel = document.querySelector('#sidebar-panel');
+          const link = document.querySelector('#list-nav .ri');
+          const text = link.querySelector('.rail-list-name');
+          const style = getComputedStyle(text);
+          const edges = (node) => {
+            const rect = node.getBoundingClientRect();
+            return { left: Math.round(rect.left * 10) / 10, right: Math.round(rect.right * 10) / 10 };
+          };
+          return {
+            screen: root.clientWidth,
+            page: root.scrollWidth,
+            menu: { client: panel.clientWidth, scroll: panel.scrollWidth },
+            offscreen: [...panel.querySelectorAll('a[href], button')]
+              .filter((node) => node.getClientRects().length)
+              .filter((node) => {
+                const rect = node.getBoundingClientRect();
+                return rect.left < -1 || rect.right > root.clientWidth + 1;
+              })
+              .map((node) => node.textContent.replace(/\s+/g, ' ').trim().slice(0, 40)),
+            row: edges(link),
+            name: {
+              ...edges(text), client: text.clientWidth, scroll: text.scrollWidth,
+              textOverflow: style.textOverflow, whiteSpace: style.whiteSpace, overflowX: style.overflowX,
+              full: text.textContent === full,
+            },
+            linkKeepsName: link.textContent.includes(full) && !link.hasAttribute('aria-label'),
+          };
+        }, name);
+        t.check(`the open narrow menu fits the screen at ${label} with a 79-character list name`,
+          opened.page <= opened.screen + 1
+          && opened.menu.scroll <= opened.menu.client + 1
+          && opened.offscreen.length === 0,
+          JSON.stringify(opened));
+        t.check(`the long list name ends in an ellipsis inside its row at ${label} and keeps its full text`,
+          opened.name.scroll > opened.name.client
+          && opened.name.textOverflow === 'ellipsis'
+          && opened.name.whiteSpace === 'nowrap'
+          && opened.name.overflowX === 'hidden'
+          && opened.name.left >= opened.row.left - 1
+          && opened.name.right <= opened.row.right + 1
+          && opened.name.right <= opened.screen + 1
+          && opened.name.full
+          && opened.linkKeepsName,
+          JSON.stringify(opened));
+        await page.$eval('#btn-rail-toggle', (button) => button.click());
+        await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === true, { timeout: 15000 });
+        if (scale) {
+          await page.evaluate((names) => {
+            for (const token of names) document.documentElement.style.removeProperty(token);
+          }, tokens);
+        }
+      }
+    },
+  },
+  {
     id: 'sidebar-transitions',
     title: 'sidebar transitions keep desktop preference persistence and narrow state separate',
     async run(page, t) {
@@ -15190,6 +15288,17 @@ MUTATIONS.push(
       'if (!next && rescueFocus && activeInsidePanel) toggle.focus();',
       'if (false && !next && rescueFocus && activeInsidePanel) toggle.focus();',
     ),
+  },
+  {
+    id: 'narrow-navigation-column-grows',
+    breaks: 'narrow-navigation-long-name',
+    why: 'the narrow shell column grows to fit the unwrapped list name again, so the open menu widens the page',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
+        sheet.insertRule('@media (max-width: 880px) { .shell, .shell.railed { grid-template-columns: 1fr; } }', sheet.cssRules.length);
+      });
+    },
   },
   {
     id: 'sidebar-transitions-narrow-write',
