@@ -86,7 +86,7 @@ export const PAIRS = [
   ['--logo-fill', '--bg', LARGE, 'the large Home masthead against the page'],
   ['--logo-fill', '--card', LARGE, 'the All read line that opens the wrap-up card, in the masthead treatment (#874)'],
   ['--accent-text', '--bg', BODY, 'the brand as text on the page: an eyebrow, the progress ring'],
-  ['--accent-text', '--card', BODY, 'the brand as text on a card, and the selected filter pill'],
+  ['--accent-text', '--card', BODY, 'the brand as text on a card, the selected filter pill, and the read figure of progress at a glance (#876)'],
   ['--red-fg', '--bg', BODY, 'the Delete list hover, which is danger text on the page'],
   ['--red-fg', '--card', BODY, 'a danger hover and the unavailable badge'],
   ['--red-fg', '--card-2', BODY, 'the Remove button on a salvage row, which is on a raised card'],
@@ -98,7 +98,7 @@ export const PAIRS = [
   ['--amber', '--card', BODY, 'the scheduled badge on a card'],
   ['--on-accent', '--accent', BODY, 'the label of a primary button, and the knob of the cover-art switch in its on state'],
   ['--line-2', '--bg', LARGE, 'the boundary of a bordered control'],
-  ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero'],
+  ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero, and the outline of the progress-at-a-glance bar (#876)'],
   ['--line-2', '--card-2', LARGE, 'the boundary of a text input against its own fill'],
   ['--cb-line', '--card', LARGE, 'the boundary of an unchecked checkbox'],
   ['--cb-line', '--bg', LARGE, 'the boundary of an unchecked checkbox in a row on the page'],
@@ -130,7 +130,7 @@ export const PAIRS = [
   ['--track-2', '--bg', LARGE, 'the cover-art switch in its off state, which sits on the page'],
   ['--on-accent', '--track-2', LARGE, 'the knob of the cover-art switch on its off-state track'],
   ['--accent', '--bg', LARGE, 'the cover-art switch in its on state, and the catalog Clear button, both on the page'],
-  ['--accent', '--card', LARGE, 'the fill of a primary button on a card'],
+  ['--accent', '--card', LARGE, 'the fill of a primary button on a card, and of the progress-at-a-glance bar (#876)'],
   ['--accent', '--card-2', LARGE, 'the fill of a primary button on a raised card'],
   // A read-specific foreground preserves the shared teal badge contrast while clearing the
   // tick's 3:1 floor: existing --bg on --teal is 9.72:1 dark and 6.28:1 light.

@@ -306,6 +306,10 @@ function harness(overrides = {}) {
     btnHeroInfo: node({ id: 'btn-hero-info', text: 'Info', tag: 'a' }),
     btnHeroRead: node({ id: 'btn-hero-read', tag: 'button' }),
     heroReaderTemporary: node({ id: 'hero-reader-temporary', hidden: true }),
+    // #876: the hero's progress row, kept from assistive technology because the ring reads it out.
+    heroProgress: node({ id: 'hero-progress', 'aria-hidden': 'true' }),
+    heroProgressCount: node({ id: 'hero-progress-count', tag: 'p' }),
+    heroProgressFill: node({ id: 'hero-progress-fill', tag: 'i' }),
     btnHeroInspect: node({ id: 'btn-hero-inspect', tag: 'button' }),
     btnHeroDone: node({ id: 'btn-hero-done', tag: 'button' }),
     btnRenameList: node({ id: 'btn-rename-list', tag: 'button' }),
@@ -418,10 +422,13 @@ function harness(overrides = {}) {
   // The document nests each end-state heading in its section and the hero's two commands in one
   // group, which is what Done's result is placed against and what hiding a section hides.
   nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
-  nodes.hero.append(node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.heroReaderTemporary]));
+  nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
+  nodes.hero.append(node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.heroReaderTemporary, nodes.heroProgress]));
   nodes.allRead.append(nodes.allReadHeading);
   nodes['all-deferred'].append(nodes['all-deferred-h']);
   selectorMap.set('#hero-primary-actions', nodes.heroPrimaryActions);
+  for (const [selector, entry] of [['#hero-progress', nodes.heroProgress], ['#hero-progress-count', nodes.heroProgressCount],
+    ['#hero-progress-fill', nodes.heroProgressFill]]) selectorMap.set(selector, entry);
   // Home's Continue reading card has a Done for the same list. Its result goes after the card's
   // command row, and the card's heading takes focus when nothing is next.
   nodes.cheroActions = node({ id: 'chero-actions' }, [nodes.btnCheroRead, nodes.btnCheroDone]);
@@ -1068,6 +1075,17 @@ test('441 Reading distinguishes empty, partial and completed lists without chang
       assert.equal(h.nodes.ringSub.textContent, {
         empty: 'Nothing in this list', partial: '1 of 2 read', completed: 'All read',
       }[phase]);
+      if (phase === 'partial') {
+        // The hero's row repeats the ring's numbers with the figure set apart, and its bar to match (#876).
+        const [figure, lead, end] = h.nodes.heroProgressCount.childNodes;
+        assert.equal(figure.tag, 'b');
+        assert.equal(figure.className, 'glance-n');
+        assert.equal(figure.textContent, '1');
+        assert.equal(lead, ' of 2 ');
+        assert.deepEqual([end.tag, end.className, end.textContent], ['span', 'glance-end', 'read']);
+        assert.equal(h.nodes.heroProgressFill.style['--glance-share'], '50.0%');
+        assert.equal(h.nodes.heroProgress.attributes['aria-hidden'], 'true');
+      }
       assert.equal(h.nodes.fullCount.textContent, {
         empty: 'No issues yet', partial: '1 unread', completed: 'All read',
       }[phase]);

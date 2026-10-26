@@ -19,8 +19,8 @@ import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
-import { ERA_TILES } from './check-palette.mjs';
-import { TILE_PARTS, tileContrast } from './lib/painted-contrast.mjs';
+import { ERA_TILES, ratio } from './check-palette.mjs';
+import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
   parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
@@ -32,6 +32,7 @@ const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
+  'progress-glance',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -60,6 +61,7 @@ const completionFocus = process.argv.includes('--only=completion-focus');
 const milestoneMode = process.argv.includes('--only=milestones');
 const saveNotice = process.argv.includes('--only=save-notice');
 const homeContinue = process.argv.includes('--only=home-continue');
+const progressGlance = process.argv.includes('--only=progress-glance');
 const longListName = process.argv.includes('--only=long-list-name');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
@@ -1712,7 +1714,7 @@ const readingProfiles = [
 ];
 let readingOrder;
 let readingIssue;
-if (readingComposition || alignment || saveNotice || homeContinue) {
+if (readingComposition || alignment || saveNotice || homeContinue || progressGlance) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
@@ -3658,6 +3660,152 @@ async function milestoneJourney(page, label) {
   console.log(`CHECKED ${label}: milestones ${JSON.stringify({ badge: section.right, cheer: list && [list.left, list.right, list.font] })}`);
 }
 
+// #876: progress at a glance in the Android build, at the phone sizes and text scales the Issue names.
+// On the reading screen's hero and on Home's Continue reading card the read figure is set larger than
+// its words over the outlined bar, inside its card at every text size; the figure clears 4.5:1 and the
+// bar's fill and outline 3:1 against what is painted behind them; each screen reads its progress out
+// once; and Read stays fully above the bottom bar wherever #836 and #857 hold it there.
+const GLANCE = {
+  hero: { count: '#hero-progress-count', bar: '#hero-progress .glance-bar', fill: '#hero-progress-fill', card: '#hero', read: '#btn-hero-read', root: '#view-read' },
+  home: { count: '#chero-count', bar: '#chero-bar', fill: '#chero-fill', card: '#home-continue', read: '#btn-chero-read', root: '#home-continue' },
+};
+async function progressGlanceCheck(page, label, viewport) {
+  const name = `${label} ${viewport.theme}${viewport.covers ? ' covers' : ''}`;
+  const total = readingOrder.items.length;
+  const still = () => page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished.catch(() => {}))));
+  const look = (scope) => page.evaluate((selectors) => {
+    const count = document.querySelector(selectors.count);
+    const figure = count.querySelector('.glance-n');
+    const card = document.querySelector(selectors.card).getBoundingClientRect();
+    const bar = document.querySelector(selectors.bar).getBoundingClientRect();
+    const fill = document.querySelector(selectors.fill).getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(count);
+    // Where the words end, from the text alone: a line holding nothing but the room kept for the
+    // figure's next digit has no text, so the bar sitting a whole line below the last words shows it.
+    const walker = document.createTreeWalker(count, NodeFilter.SHOW_TEXT);
+    let wordsEnd = -Infinity;
+    while (walker.nextNode()) {
+      const piece = document.createRange();
+      piece.selectNodeContents(walker.currentNode);
+      for (const rect of piece.getClientRects()) wordsEnd = Math.max(wordsEnd, rect.bottom);
+    }
+    const rail = document.querySelector('.rail-header');
+    const railBox = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && railBox.top > innerHeight / 2;
+    const read = document.querySelector(selectors.read).getBoundingClientRect();
+    return {
+      text: count.textContent, figure: figure?.textContent ?? null,
+      sizes: [parseFloat(getComputedStyle(figure ?? count).fontSize), parseFloat(getComputedStyle(count).fontSize)],
+      share: Math.max(0, Math.min(fill.right, bar.right) - bar.left) / bar.width, barWidth: bar.width,
+      inside: [...range.getClientRects(), bar].every((rect) => rect.left >= card.left - 1 && rect.right <= card.right + 1),
+      blank: Math.round(bar.top - wordsEnd), line: parseFloat(getComputedStyle(count).lineHeight),
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      read: { top: Math.round(read.top), bottom: Math.round(read.bottom) },
+      fold: barred ? Math.round(innerHeight - railBox.height) : innerHeight, scrollY: Math.round(scrollY),
+    };
+  }, GLANCE[scope]);
+  // The figure against the painted surface just left of it, and the fill and outline against the
+  // surface painted in the gap above the bar, from a capture that stays on screen.
+  const painted = async (scope) => {
+    const spots = await page.evaluate((selectors) => {
+      const count = document.querySelector(selectors.count);
+      count.scrollIntoView({ block: 'center' });
+      const figure = count.querySelector('.glance-n');
+      const glyph = figure.getBoundingClientRect();
+      const bar = document.querySelector(selectors.bar);
+      const box = bar.getBoundingClientRect();
+      return {
+        figure: { x: Math.round(glyph.left) - 3, y: Math.round(glyph.top + glyph.height / 2) },
+        gap: { x: Math.round(box.left) + 24, y: Math.round(box.top) - 2 },
+        colours: [getComputedStyle(figure).color, getComputedStyle(document.querySelector(selectors.fill)).backgroundColor, getComputedStyle(bar).boxShadow],
+        scrollX, scrollY,
+      };
+    }, GLANCE[scope]);
+    await still();
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const left = Math.min(spots.figure.x, spots.gap.x);
+    const top = Math.min(spots.figure.y, spots.gap.y);
+    const shot = decodePng(await page.screenshot({
+      clip: { x: left + spots.scrollX, y: top + spots.scrollY, width: Math.max(spots.figure.x, spots.gap.x) - left + 1, height: Math.max(spots.figure.y, spots.gap.y) - top + 1 },
+      captureBeyondViewport: false,
+    }));
+    const rgb = (value) => (value.match(/rgba?\((\d+), (\d+), (\d+)/) ?? []).slice(1, 4).map(Number);
+    const [figure, fill, outline] = spots.colours.map(rgb);
+    const behindFigure = shot.pixel(spots.figure.x - left, spots.figure.y - top);
+    const behindBar = shot.pixel(spots.gap.x - left, spots.gap.y - top);
+    return {
+      figure: ratio(figure, behindFigure), fill: ratio(fill, behindBar), outline: outline.length ? ratio(outline, behindBar) : 0,
+      behindFigure, behindBar,
+    };
+  };
+  // The tree's text in document order, joined as a screen reader reads a line made of inline pieces.
+  const readings = async (scope, phrase) => {
+    const snapshot = await page.accessibility.snapshot({ root: await page.$(GLANCE[scope].root), interestingOnly: false });
+    const text = [];
+    let bars = 0;
+    const visit = (node) => {
+      if (!node) return;
+      if (node.role === 'StaticText') text.push(node.name);
+      if (node.role === 'progressbar') bars += 1;
+      for (const child of node.children ?? []) visit(child);
+    };
+    visit(snapshot);
+    const said = text.join(' ').replace(/\s+/g, ' ');
+    return { times: said.split(phrase).length - 1, bars, said };
+  };
+
+  await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
+  await page.evaluate(() => document.fonts.ready);
+  await still();
+  const hero = await look('hero');
+  if (viewport.heroAbove) {
+    check(hero.scrollY === 0 && hero.read.top >= 0 && hero.read.bottom <= hero.fold,
+      `${name}: the reading screen opens with Read fully above the bottom bar, as #836 placed it ${JSON.stringify(hero)}`);
+  }
+  const heroOrder = await page.evaluate(() => {
+    const at = (selector) => document.querySelector(selector).getBoundingClientRect();
+    return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
+  });
+  check(hero.text === `3 of ${total} read` && hero.figure === '3' && hero.sizes[0] >= hero.sizes[1] * 1.25
+    && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
+    && heroOrder.row >= heroOrder.done && heroOrder.facts >= heroOrder.row,
+  `${name}: the hero's row reads 3 of ${total} read under Read and Done, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify({ hero, heroOrder })}`);
+  check(hero.blank < hero.line, `${name}: the hero's bar follows the last line of words, with no blank line between ${JSON.stringify(hero)}`);
+  const heroTree = await readings('hero', `3 of ${total} read`);
+  check(heroTree.times === 1 && heroTree.bars === 0,
+    `${name}: the reading screen reads its progress once, from the header ${JSON.stringify(heroTree)}`);
+  const heroPaint = await painted('hero');
+  check(heroPaint.figure >= 4.5 && heroPaint.fill >= 3 && heroPaint.outline >= 3,
+    `${name}: on the hero the figure clears 4.5:1 and the bar's fill and outline 3:1 ${JSON.stringify(heroPaint)}`);
+  // Captured where the contrast was read, with the row in the middle of the screen.
+  await screenshot(page, name, 'progress-glance-hero');
+  await page.evaluate(() => window.scrollTo(0, 0));
+
+  await click(page, '.brand[data-view="home"]');
+  await page.waitForSelector('#home-continue:not([hidden]) #chero-count .glance-n');
+  await page.evaluate(() => document.fonts.ready);
+  await still();
+  const home = await look('home');
+  if (viewport.homeAbove) {
+    check(home.scrollY === 0 && home.read.top >= 0 && home.read.bottom <= home.fold,
+      `${name}: Home opens with Continue reading's Read fully above the bottom bar, as #857 placed it ${JSON.stringify(home)}`);
+  }
+  check(home.text === `3 of ${total} issues read` && home.figure === '3' && home.sizes[0] >= home.sizes[1] * 1.25
+    && Math.abs(home.share - 3 / total) * home.barWidth <= 0.5 && home.inside && !home.overflow,
+  `${name}: Home's count reads 3 of ${total} issues read, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify(home)}`);
+  check(home.blank < home.line, `${name}: Home's bar follows the last line of words, with no blank line between ${JSON.stringify(home)}`);
+  const homeTree = await readings('home', `3 of ${total} issues read`);
+  check(homeTree.times === 1 && homeTree.bars === 0,
+    `${name}: Home reads its count once, and its bar is no progress bar of its own ${JSON.stringify(homeTree)}`);
+  const homePaint = await painted('home');
+  check(homePaint.figure >= 4.5 && homePaint.fill >= 3 && homePaint.outline >= 3,
+    `${name}: on Home the figure clears 4.5:1 and the bar's fill and outline 3:1 ${JSON.stringify(homePaint)}`);
+  await screenshot(page, name, 'progress-glance-home');
+  await page.evaluate(() => window.scrollTo(0, 0));
+  console.log(`CHECKED ${name}: progress at a glance ${JSON.stringify({ heroRead: hero.read, homeRead: home.read, fold: home.fold, hero: heroPaint, home: homePaint })}`);
+}
+
 // #866: the More menu's link to the Reading List keeps the list's name on one line, and below 880px
 // the shell's single column grew to fit it, so opening the menu widened the whole page. Measured on
 // main in Edge phone emulation on 2026-10-26 with this 79-character name, the page reached 181px past
@@ -3999,6 +4147,15 @@ try {
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
   ];
+  // #876: the phone sizes the Issue names, with and without 200% text, and the short landscape screen
+  // #857 is about. Read is held above the bar where #836 and #857 hold it at normal text.
+  if (progressGlance) viewports = [
+    { width: 360, height: 800, theme: 'light', heroAbove: true, homeAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, heroAbove: true, homeAbove: true },
+    { width: 800, height: 360, theme: 'dark', homeAbove: true },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 412, height: 915, textScale: 2, theme: 'light', covers: true },
+  ];
   if (longListName) viewports = [
     { width: 360, height: 800 },
     { width: 412, height: 915 },
@@ -4051,7 +4208,7 @@ try {
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
     if (saveNotice) await saveNoticeFixtures(page, viewport);
-    if (homeContinue) await homeContinueFixtures(page, viewport);
+    if (homeContinue || progressGlance) await homeContinueFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
@@ -4062,13 +4219,13 @@ try {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
-      if ((readingComposition || placeholderAx || saveNotice || homeContinue) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if ((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -4122,7 +4279,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue || progressGlance);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -4342,6 +4499,12 @@ try {
     }
     if (homeContinue) {
       await homeContinueCheck(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (progressGlance) {
+      await progressGlanceCheck(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
