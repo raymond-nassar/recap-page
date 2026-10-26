@@ -156,6 +156,8 @@ From the repository root on Windows:
 ```
 
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
+After a Gradle update it replaces the previous version's launcher the same way, keeping only a
+download whose checksum matches; a download that does not match is deleted and nothing is run.
 It downloads build tooling, not app data. On other hosts, use installed Gradle 9.8.2 or restore the
 official wrapper JAR with the checksum recorded in `bootstrap-wrapper.ps1` before using `gradlew`.
 Builds prepare assets automatically. To prepare them without an Android SDK:
@@ -505,6 +507,17 @@ uses an original local test image, never publisher artwork. Use `--case=M02` for
 ([#638](https://github.com/raymond-nassar/recap-page/issues/638)) is retained rather than
 presented as a clean accessibility result. These are Edge web checks,
 not physical Android, native fontScale or TalkBack acceptance.
+
+`npm run android:browser -- --only=alignment` checks where watched elements sit in eight profiles:
+320x740, 360x800, 412x915 and 800x360, 360x800 with 150% and 320x740 with 200% text tokens, and the
+1280x900 Android and desktop entries. It covers Home's heading and category cards, navigation, the
+reading hero, the list and spotlight sheets, the manual-entry form, settings and About, and requires
+whole unclipped words. Each run writes evidence to the new directory named by
+`MRT_ALIGNMENT_OUTPUT`. With `--alignment-baseline` it records only; without it, it also compares
+with the evidence in `MRT_ALIGNMENT_BASELINE`, requiring unchanged text, fonts and page bounds,
+every watched box within 1px (exactly, on About) and Home's group centered. CI's UI owners job takes
+that baseline from the same tree, so its gate checks fit rather than movement; on pull requests, a
+record that never fails lists each element that moved against the base.
 
 `npm run android:browser -- --only=done-hint` checks that no visual hint covers Done's result
 in the reading view at 412x915 and 360x800 with 200% text tokens, and at 360x800, 412x915 and
