@@ -270,3 +270,46 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
 @media (max-height: 500px) {
   #reading-filters { position: static; }
 }
+
+/* At 800 by 360 the bottom bar leaves 302px, and Home's two-row head took the top 105px, so Continue
+   reading's Read and Done ended at least 36px under the bar for every curated list (#857). A short
+   screen has the width for the Windows app's one-row head instead: the wordmark centered at its #870
+   size, What's new beside it and opening as the Windows panel below it, capped to end a gap above the
+   bar under the page's top padding and the 48px row. Read then ends 5px above the bar. A list name on
+   two lines, 14 of the 316 curated ones, still leaves it 37px under: the measured limit here. */
+@media (max-width: 880px) and (max-height: 500px) {
+  #view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .home-lockup { grid-column: 2; width: auto; }
+  body #view-home #home-updates { grid-column: 3; }
+  body #view-home #home-updates[open] { width: auto; }
+  body #view-home #home-updates-panel {
+    position: absolute; width: min(34rem, calc(100vw - 3rem));
+    max-height: calc(100dvh - var(--mobile-nav-height, 80px) - var(--space-6) - 48px - var(--space-4));
+  }
+}
+
+/* On a phone, Home's Done result is a bar just above the bottom navigation, the owner's choice on
+   2026-10-26 (#892). Inline it followed the card's commands, which at 360 by 800 put it at 758 to 848
+   under a bar starting at 725. Fixed, it moves nothing as it appears and keeps its element, its place
+   in the reading order and every rule #856 gave it. Its 8px margins and a single gap before Undo hold
+   the message to two lines at 360px, so for every one of the 69 comics in the order the reading owner
+   measures the bar stays clear of Done there. Focus clears the bar by its height while it shows, which
+   the overlay measures, and it gives way to the More panel. The page's scroll padding and a focused
+   control's scroll margin both apply as focus scrolls, so the height is added once, to the margin. A
+   short landscape screen has Read and Done in the band above the navigation, so there the bar starts
+   right of them. */
+@media (max-width: 880px) {
+  #home-continue #done-result {
+    position: fixed; z-index: 19; left: var(--space-4); right: var(--space-4);
+    bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); margin: 0;
+    display: flex; flex-wrap: nowrap; align-items: center;
+    background: linear-gradient(rgb(var(--teal-line) / 5.882%), rgb(var(--teal-line) / 5.882%)), var(--card);
+    box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 24%);
+  }
+  #home-continue #done-result .grow { margin-inline-end: 0; }
+  main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--done-bar-height, 0px) + var(--space-6)); }
+  body:has(#btn-rail-toggle[aria-expanded="true"]) #home-continue #done-result { visibility: hidden; }
+}
+@media (max-width: 880px) and (max-height: 500px) {
+  #home-continue #done-result { left: max(24rem, calc(100vw - var(--space-4) - 26rem)); }
+}

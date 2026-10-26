@@ -131,6 +131,7 @@ export default [
       'scripts/browser-done-undo.mjs',
       'scripts/browser-milestones.mjs',
       'scripts/browser-save-notice.mjs',
+      'scripts/browser-reading-card.mjs',
       'scripts/browser-ordered-import.mjs',
       'scripts/browser-completion.mjs',
       'scripts/browser-issue-ratings.mjs',
