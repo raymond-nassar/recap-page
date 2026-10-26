@@ -19262,10 +19262,14 @@ SCENARIOS.push({
     for (const { name, selector, tipId } of families) {
       await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
       await reset();
+      // Done goes near the top of the window rather than to the middle (#860). At 320px Read is
+      // stacked above Done, and at 200 per cent zoom the middle left the long hint room only above
+      // Done, over Read, where a hint in Read and Done's group may not go.
       await page.$eval(selector, (node) => {
         node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
           'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
-        node.scrollIntoView({ block: 'center' });
+        if (node.closest('#sidebar')) node.scrollIntoView({ block: 'center' });
+        else scrollBy(0, node.getBoundingClientRect().top - 12);
       });
       await page.focus(selector);
       await settle();
@@ -19403,8 +19407,8 @@ SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, co
 MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');
-SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint);
-MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations);
+SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
+MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

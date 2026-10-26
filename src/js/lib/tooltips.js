@@ -22,13 +22,21 @@ export function tooltipRegions(box, viewport, preferRight = false) {
 // scrolling, as it always has. If that spot would cover content marked data-keep-uncovered, such as
 // Done's result, which confirms the change just made or says it failed (#855), the hint gives way and
 // is not shown. Measured on 2026-10-25, with Done near the top of the window the spot was below Done,
-// over the result, for Done's hint and for Read's. The hint does not move to another side instead: on
-// a phone the only other room is a 25px sliver beside a full-width button, and at 1280px Read's hint,
-// moved to its right, sat on Done. A hint is a supplement, and Fluent's tooltip guidance asks that a
-// tooltip not obscure important information.
-export function tooltipPlacement(regions, measure, keep = []) {
-  const covers = (spot) => keep.some((other) => spot.left < other.right && other.left < spot.right
+// over the result, for Done's hint and for Read's. A hint is a supplement, and Fluent's tooltip
+// guidance asks that a tooltip not obscure important information.
+//
+// A spot over another command in the trigger's data-tooltip-group is treated differently (#860).
+// Stacked on a narrow screen, Done's hint covered a third of Read and took the clicks meant for it,
+// and at 200 per cent text nearly all of Read. Giving way there would hide the only visible mention
+// of the D shortcut wherever the two are stacked, so the hint tries the other sides in order and
+// takes the first where it fits, at least as wide as at its usual spot, over neither a command in its
+// group nor kept content. Otherwise it gives way. The width keeps it out of the sliver beside a
+// full-width button, where at 640px Read's hint became a column 33px wide and 182px tall, and the
+// group keeps a moved hint off its neighbour, as when Read's hint moved right onto Done at 1280px.
+export function tooltipPlacement(regions, measure, keep = [], neighbours = []) {
+  const overlaps = (spot, rects) => rects.some((other) => spot.left < other.right && other.left < spot.right
     && spot.top < other.bottom && other.top < spot.bottom);
+  const width = (spot) => spot.right - spot.left;
   const spots = new Map();
   let chosen = null;
   for (const region of regions) {
@@ -40,7 +48,16 @@ export function tooltipPlacement(regions, measure, keep = []) {
     }
   }
   chosen ??= regions.reduce((best, region) => (!best || region.width * region.height > best.width * best.height ? region : best), null);
-  return chosen && !covers(spots.get(chosen)) ? chosen : null;
+  if (!chosen || overlaps(spots.get(chosen), keep)) return null;
+  if (!overlaps(spots.get(chosen), neighbours)) return chosen;
+  const usual = width(spots.get(chosen));
+  for (const region of regions) {
+    if (region === chosen) continue;
+    const { fits, spot } = measure(region);
+    // Half a pixel absorbs the rounding in a width recomputed from a different left edge.
+    if (fits && width(spot) >= usual - 0.5 && !overlaps(spot, keep) && !overlaps(spot, neighbours)) return region;
+  }
+  return null;
 }
 
 // Both families are visual supplements. Names and shortcut metadata stay on the controls;
@@ -88,6 +105,9 @@ export function wireTooltips({ resolve, document: doc = document, window: win = 
     const regions = tooltipRegions(box, visible, preferRight);
     const keep = [...doc.querySelectorAll('[data-keep-uncovered]')]
       .filter((node) => node.getClientRects().length).map((node) => node.getBoundingClientRect());
+    const group = trigger.closest('[data-tooltip-group]');
+    const neighbours = group ? [...group.querySelectorAll('button, a[href]')]
+      .filter((node) => node !== trigger && node.getClientRects().length).map((node) => node.getBoundingClientRect()) : [];
     const size = (region) => {
       tip.style.maxWidth = `${Math.min(320, region.width)}px`;
       content.style.maxHeight = `${Math.max(0, region.height - 2)}px`;
@@ -111,7 +131,7 @@ export function wireTooltips({ resolve, document: doc = document, window: win = 
         fits: content.scrollWidth <= content.clientWidth && content.scrollHeight <= content.clientHeight,
         spot: spot(region),
       };
-    }, keep);
+    }, keep, neighbours);
     if (!chosen) return dismiss();
     size(chosen);
     const { left, top } = spot(chosen);

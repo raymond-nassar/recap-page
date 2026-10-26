@@ -4,6 +4,7 @@
 // UX-05 (#829): what Done tells assistive technology it does, with D on and off.
 // UX-41 (#829): Done on Home's Continue reading, sharing that result and Undo.
 // #855: no visual hint covers that result, in either place.
+// #860: neither Read's hint nor Done's covers the other button or takes a click meant for it.
 // All run on the ephemeral port like every scenario not listed for the app origin.
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { DONE_RESULT_MS } from '../src/js/views/reading.js';
@@ -625,9 +626,17 @@ async function heroHints(page, t, width) {
   await page.evaluate(() => scrollTo(0, 0));
   await raise(page, '#btn-hero-done', 'focus');
   const natural = await hints(page);
-  t.check(`${width}px: where Done's hint fits clear of the result it still shows, above Done`,
-    !!natural.result && !natural.covered && natural.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'top'),
-    JSON.stringify(natural));
+  const stacked = await page.evaluate(() => document.querySelector('#btn-hero-read').getBoundingClientRect().bottom
+    <= document.querySelector('#btn-hero-done').getBoundingClientRect().top);
+  if (stacked) {
+    // #860: Read sits above Done and the result below it, and a hint may cover neither, so it gives way.
+    t.check(`${width}px stacked: with Read above Done and the result below it, Done's hint gives way, no side being clear of both`,
+      !!natural.result && !natural.covered && !natural.tips.some((tip) => tip.id === 'action-tip'), JSON.stringify(natural));
+  } else {
+    t.check(`${width}px: where Done's hint fits clear of the result it still shows, above Done`,
+      !!natural.result && !natural.covered && natural.tips.some((tip) => tip.id === 'action-tip' && tip.side === 'top'),
+      JSON.stringify(natural));
+  }
 }
 
 export const doneHint = {
@@ -679,5 +688,178 @@ export const doneHintMutations = [
     id: 'done-hint-unmarked', breaks: 'done-hint',
     why: 'without the marker the result is not kept clear, so hints take their usual spot over it',
     rewriteReading: (source) => source.replace("dataset: { keepUncovered: '' },", ''),
+  },
+];
+
+// #860: stacked on a narrow screen, Read's hint and Done's each landed over the other button. A hint
+// takes pointer events so that it stays hoverable, so the covered strip answered clicks with the hint.
+// Measured on main on 2026-10-25: at its natural place Done's hint covered a third of Read at 390 and
+// 640px, and with Read near the top of the window Read's hint covered the top of Done. The pair is one
+// hint group now, so a hint moves to a side clear of the other button or gives way.
+const READ = '#btn-hero-read';
+const DONE = '#btn-hero-done';
+
+// A fresh copy of the fixture with the full list open, so the page is tall enough to bring either
+// button near the top of the window. A reload restores the scroll position, so it starts at the top.
+async function fresh(page) {
+  await page.evaluate((key) => localStorage.removeItem(key), KEY);
+  await page.reload({ waitUntil: 'load' });
+  await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
+  await full(page);
+  await page.evaluate(() => scrollTo(0, 0));
+  await settle(page);
+}
+
+// Where the hints are, and every point of the other button a pointer could reach, 3px apart. A point
+// answered by a hint is a click the hint would take.
+function pairHints(page, trigger, other) {
+  return page.evaluate((triggerSelector, otherSelector) => {
+    const box = (element) => {
+      const rect = element.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right };
+    };
+    const tips = [...document.querySelectorAll('.visual-tooltip')]
+      .filter((tip) => !tip.hidden && tip.getClientRects().length)
+      .map((tip) => ({ id: tip.id, side: tip.dataset.side, ariaHidden: tip.getAttribute('aria-hidden'), box: box(tip) }));
+    const near = box(document.querySelector(otherSelector));
+    let points = 0;
+    let taken = 0;
+    for (let y = Math.ceil(near.top) + 1; y < near.bottom - 1; y += 3) {
+      for (let x = Math.ceil(near.left) + 1; x < near.right - 1; x += 3) {
+        if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
+        points += 1;
+        if (document.elementFromPoint(x, y)?.closest('.visual-tooltip')) taken += 1;
+      }
+    }
+    return {
+      box: box(document.querySelector(triggerSelector)), other: near, tips, points, taken,
+      covers: tips.some(({ box: tip }) => tip.left < near.right && near.left < tip.right
+        && tip.top < near.bottom && near.top < tip.bottom),
+    };
+  }, trigger, other);
+}
+
+// A real click on the edge of one button nearest the other, where the other's hint used to sit.
+async function clickBeside(page, target, from) {
+  const point = await page.evaluate((targetSelector, fromSelector) => {
+    const near = document.querySelector(targetSelector).getBoundingClientRect();
+    const far = document.querySelector(fromSelector).getBoundingClientRect();
+    const middle = { x: (near.left + near.right) / 2, y: (near.top + near.bottom) / 2 };
+    if (near.bottom <= far.top) return { x: middle.x, y: near.bottom - 3 };
+    if (near.top >= far.bottom) return { x: middle.x, y: near.top + 3 };
+    return near.right <= far.left ? { x: near.right - 3, y: middle.y } : { x: near.left + 3, y: middle.y };
+  }, target, from);
+  const under = await page.evaluate(({ x, y }) => {
+    const hit = document.elementFromPoint(x, y);
+    return hit?.closest('.visual-tooltip')?.id ?? hit?.closest('button')?.id ?? hit?.tagName ?? null;
+  }, point);
+  await page.mouse.click(point.x, point.y);
+  await settle(page);
+  return { point, under };
+}
+
+export const readDoneHints = {
+  id: 'read-done-hints',
+  title: 'Neither Read\'s hint nor Done\'s covers the other button or takes a click meant for it',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const name = (selector) => (selector === READ ? 'Read' : 'Done');
+    await setup(page, 390);
+    for (const width of [390, 640, 1280]) {
+      await page.setViewport({ width, height: 900 });
+      await fresh(page);
+      const rows = [];
+      for (const [trigger, other] of [[READ, DONE], [DONE, READ]]) {
+        for (const position of ['natural', 'top']) {
+          for (const how of ['focus', 'pointer']) {
+            await page.evaluate(() => scrollTo(0, 0));
+            await settle(page);
+            if (position === 'top') await toTop(page, trigger);
+            await raise(page, trigger, how);
+            rows.push({ step: `${name(trigger)} ${position} ${how}`, ...(await pairHints(page, trigger, other)) });
+          }
+        }
+      }
+      const wrong = rows.filter((row) => row.covers || row.taken > 0
+        || (row.step.includes(' top ') && !(row.box.top <= 20)) || (row.step.includes(' natural ') && row.points === 0));
+      t.check(`${width}px: no hint raised by focus or pointer on Read or Done, at its natural place or near the top, covers the other button or answers a point of it`,
+        rows.length === 8 && wrong.length === 0, JSON.stringify(wrong.length ? wrong : rows));
+
+      const stacked = rows[0].box.bottom <= rows[0].other.top;
+      const expected = stacked
+        ? { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'bottom', 'Done top': 'bottom' }
+        : { 'Read natural': 'top', 'Read top': 'bottom', 'Done natural': 'top', 'Done top': 'bottom' };
+      const sides = rows.map((row) => [row.step, row.tips.find((tip) => tip.id === 'action-tip')?.side ?? 'none']);
+      t.check(stacked
+        ? `${width}px stacked: Done's hint shows below Done and Read's above Read, and near the top Read's gives way, its only room being over Done`
+        : `${width}px side by side: each hint keeps the place it had`,
+      sides.every(([step, side]) => expected[step.replace(/ (focus|pointer)$/, '')] === side), JSON.stringify(sides));
+
+      if (width === 390) {
+        await fresh(page);
+        await page.mouse.move(1, 1);
+        await page.hover(DONE);
+        await settle(page);
+        const moved = await pairHints(page, DONE, READ);
+        const tip = moved.tips.find((item) => item.id === 'action-tip');
+        const visible = () => page.$eval('#action-tip', (node) => !node.hidden);
+        let gap = false;
+        let over = false;
+        if (tip) {
+          await page.mouse.move((moved.box.left + moved.box.right) / 2, (moved.box.bottom + tip.box.top) / 2, { steps: 12 });
+          await settle(page);
+          gap = await visible();
+          await page.mouse.move((tip.box.left + tip.box.right) / 2, (tip.box.top + tip.box.bottom) / 2, { steps: 12 });
+          await settle(page);
+          over = await visible();
+        }
+        await raise(page, DONE, 'focus');
+        await page.keyboard.press('Escape');
+        await settle(page);
+        const after = await page.evaluate(() => ({
+          hidden: document.querySelector('#action-tip').hidden, focus: document.activeElement?.id,
+          described: document.querySelector('#btn-hero-done').getAttribute('aria-describedby'),
+        }));
+        t.check('390px: the hint moved below Done stays visual only, holds through the gap and onto itself, and Escape dismisses it with focus kept on Done',
+          tip?.side === 'bottom' && tip.ariaHidden === 'true' && gap && over
+          && after.hidden && after.focus === 'btn-hero-done' && after.described === 'hero-done-help',
+          JSON.stringify({ tip, gap, over, after }));
+      }
+
+      const clicks = [];
+      for (const how of ['focus', 'pointer']) {
+        await fresh(page);
+        await raise(page, DONE, how);
+        const shown = (await pairHints(page, DONE, READ)).tips.map((item) => item.side);
+        const opened = await page.evaluate(() => window.__undoOpened?.length ?? 0);
+        const onRead = await clickBeside(page, READ, DONE);
+        clicks.push({ step: `Read, with Done's hint raised by ${how}`, shown, ...onRead,
+          landed: await page.evaluate(() => window.__undoOpened?.length ?? 0) === opened + 1 });
+        await fresh(page);
+        await toTop(page, READ);
+        await raise(page, READ, how);
+        const before = await page.$eval('#hero-title', (node) => node.textContent);
+        const onDone = await clickBeside(page, DONE, READ);
+        clicks.push({ step: `Done, with Read near the top and its hint raised by ${how}`, ...onDone,
+          landed: await page.$eval('#hero-title', (node) => node.textContent) !== before });
+      }
+      t.check(`${width}px: a click on the edge of either button nearest the other lands on it once the other has raised its hint, by focus or pointer`,
+        clicks.every((row) => row.landed && row.under !== 'action-tip')
+        && clicks.filter((row) => row.step.startsWith('Read')).every((row) => row.shown.length === 1),
+        JSON.stringify(clicks));
+    }
+    t.check('the checks raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+export const readDoneHintsMutations = [
+  {
+    id: 'read-done-hints-ungrouped', breaks: 'read-done-hints',
+    why: 'without the group each hint takes its usual spot, over the other button where they are stacked',
+    rewriteReading: (source) => source.replace(
+      "    $('#btn-hero-read').addEventListener('click', (e) => {",
+      "    $('#hero-primary-actions').removeAttribute('data-tooltip-group');\n    $('#btn-hero-read').addEventListener('click', (e) => {",
+    ),
   },
 ];

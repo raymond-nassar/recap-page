@@ -2609,6 +2609,8 @@ async function doneHintFixtures(page) {
   }))).state;
   await page.evaluateOnNewDocument((saved, key) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    // Read's launch is counted rather than opened (#860).
+    window.open = (...args) => { (window.__hintOpened ??= []).push(args); return null; };
     // The fallback below answers any outside request with another order's comic, which could
     // retitle a fixture comic mid-check, so outside requests fail here as they do offline.
     const original = window.fetch.bind(window);
@@ -2702,6 +2704,98 @@ async function doneHintGeometry(page, label) {
   check(rows.length === 5 && !wrong.length,
     `${label}: no hint covers Done's result after a tap on Done or Undo, or after a refused save ${JSON.stringify(wrong)}`);
   console.log(`CHECKED ${label}: Done's hint and result ${JSON.stringify(rows.map((row) => [row.step, row.tips.map((tip) => tip.side).join() || 'none']))}`);
+
+  // #860: on a phone Read is stacked above Done, and each one's hint covered part of the other button
+  // and took taps meant for it: about half of Read at its natural place, and with 200 per cent text
+  // nearly all of it. Leaving the reading view retires the refused save's result, so the pair is
+  // checked with nothing to keep clear. In landscape the two sit side by side.
+  if (page.viewport().width > page.viewport().height) return;
+  await page.evaluate(() => { location.hash = '#/home'; });
+  await page.waitForSelector('#view-home:not([hidden])');
+  await page.evaluate(() => { location.hash = '#/read/hint'; });
+  await page.waitForSelector('#view-read:not([hidden]) #btn-hero-done');
+  await settle();
+  const retired = await page.$('#done-result') === null;
+  // Where the hints are, and every point of the other button a finger could reach, 3px apart.
+  const pair = (trigger, other) => page.evaluate((triggerSelector, otherSelector) => {
+    const box = (node) => {
+      const rect = node.getBoundingClientRect();
+      return { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+    };
+    const tips = [...document.querySelectorAll('.visual-tooltip')]
+      .filter((tip) => !tip.hidden && tip.getClientRects().length)
+      .map((tip) => ({ id: tip.id, side: tip.dataset.side ?? null, box: box(tip) }));
+    const near = box(document.querySelector(otherSelector));
+    let points = 0;
+    let taken = 0;
+    for (let y = Math.ceil(near.top) + 1; y < near.bottom - 1; y += 3) {
+      for (let x = Math.ceil(near.left) + 1; x < near.right - 1; x += 3) {
+        if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
+        points += 1;
+        if (document.elementFromPoint(x, y)?.closest('.visual-tooltip')) taken += 1;
+      }
+    }
+    return {
+      box: box(document.querySelector(triggerSelector)), points, taken,
+      side: tips.find((tip) => tip.id === 'action-tip')?.side ?? 'none',
+      covers: tips.some(({ box: tip }) => tip.left < near.right && near.left < tip.right
+        && tip.top < near.bottom && near.top < tip.bottom),
+    };
+  }, trigger, other);
+  const place = async (selector, position) => {
+    await page.evaluate(() => { document.activeElement?.blur(); scrollTo(0, 0); });
+    await settle();
+    if (position === 'top') {
+      await page.$eval(selector, (node) => scrollBy(0, node.getBoundingClientRect().top - 12));
+      await settle();
+    }
+    await page.focus(selector);
+    await settle();
+  };
+  const pairRows = [];
+  for (const [trigger, other] of [['#btn-hero-read', '#btn-hero-done'], ['#btn-hero-done', '#btn-hero-read']]) {
+    for (const position of ['natural', 'top']) {
+      await place(trigger, position);
+      pairRows.push({ step: `${trigger === '#btn-hero-read' ? 'Read' : 'Done'} ${position}`, ...(await pair(trigger, other)) });
+    }
+  }
+  const expected = { 'Read natural': 'top', 'Read top': 'none', 'Done natural': 'bottom', 'Done top': 'bottom' };
+  const misplaced = pairRows.filter((row) => row.covers || row.taken > 0 || row.side !== expected[row.step]
+    || (row.step.endsWith('top') && !(row.box.top <= 20)) || (row.step.endsWith('natural') && row.points === 0));
+  check(retired && pairRows.length === 4 && !misplaced.length,
+    `${label}: neither Read's hint nor Done's covers the other button or answers a point of it, raised by keyboard focus at the natural place or near the top ${JSON.stringify(misplaced.length ? misplaced : pairRows)}`);
+
+  // A finger on the edge of one button nearest the other, where the other's hint used to sit.
+  const tapBeside = async (target, from) => {
+    const point = await page.evaluate((targetSelector, fromSelector) => {
+      const near = document.querySelector(targetSelector).getBoundingClientRect();
+      const far = document.querySelector(fromSelector).getBoundingClientRect();
+      const x = (near.left + near.right) / 2;
+      return near.bottom <= far.top ? { x, y: near.bottom - 3 } : { x, y: near.top + 3 };
+    }, target, from);
+    const under = await page.evaluate(({ x, y }) => {
+      const hit = document.elementFromPoint(x, y);
+      return hit?.closest('.visual-tooltip')?.id ?? hit?.closest('button')?.id ?? hit?.tagName ?? null;
+    }, point);
+    await page.touchscreen.tap(point.x, point.y);
+    await settle();
+    return { point, under };
+  };
+  await place('#btn-hero-done', 'natural');
+  const shown = (await pair('#btn-hero-done', '#btn-hero-read')).side;
+  const opened = await page.evaluate(() => window.__hintOpened?.length ?? 0);
+  const onRead = await tapBeside('#btn-hero-read', '#btn-hero-done');
+  const launched = await page.evaluate(() => window.__hintOpened?.length ?? 0) === opened + 1;
+  const afterRead = await pair('#btn-hero-read', '#btn-hero-done');
+  await place('#btn-hero-read', 'top');
+  const before = await page.$eval('#hero-title', (node) => node.textContent);
+  const onDone = await tapBeside('#btn-hero-done', '#btn-hero-read');
+  const marked = await page.$eval('#hero-title', (node) => node.textContent) !== before;
+  const afterDone = await pair('#btn-hero-done', '#btn-hero-read');
+  check(shown === 'bottom' && launched && onRead.under !== 'action-tip' && !afterRead.covers
+    && marked && onDone.under !== 'action-tip' && !afterDone.covers,
+  `${label}: a tap on Read's edge beside Done's hint opens the reader, a tap on Done's edge beside Read marks the comic, and neither tap leaves a hint over the other button ${JSON.stringify({ shown, onRead, launched, afterRead, onDone, marked, afterDone })}`);
+  console.log(`CHECKED ${label}: Read and Done hints ${JSON.stringify(pairRows.map((row) => [row.step, row.side]))}`);
 }
 
 try {

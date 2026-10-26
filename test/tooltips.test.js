@@ -61,3 +61,61 @@ test('855 a hint whose spot is over the Done result gives way rather than moving
   assert.equal(tooltipPlacement(phone, cramped, [result]), null,
     'nor squeezed into a sliver when its roomiest side is over the result');
 });
+
+// #860. Read above Done at 390px, as measured on 2026-10-25: Done's hint fitted above Done, over the
+// lower part of Read, and below Done the page was clear. Beside a full-width button the only other
+// room is a 17px sliver, where a hint that may wrap anywhere fits only as a column.
+const read = { left: 33, right: 357, top: 506, bottom: 561 };
+const doneStacked = { left: 33, right: 357, top: 573, bottom: 621 };
+const stacked = tooltipRegions(doneStacked, { width: 390, height: 844 });
+// A 300 by 26 hint, wrapped onto as many lines as a narrower side forces, placed against its control
+// as tooltips.js places it.
+function hint(box, width = 300, height = 26) {
+  return (region) => {
+    const w = Math.min(width, region.width);
+    const h = Math.ceil(width / w) * height;
+    const clamp = (value, low, high) => Math.max(low, Math.min(value, high));
+    let left = clamp(box.left + (box.right - box.left - w) / 2, region.left, region.left + region.width - w);
+    let top = clamp(box.top + (box.bottom - box.top - h) / 2, region.top, region.top + region.height - h);
+    if (region.side === 'top') top = box.top - 8 - h;
+    if (region.side === 'bottom') top = box.bottom + 8;
+    if (region.side === 'left') left = box.left - 8 - w;
+    if (region.side === 'right') left = box.right + 8;
+    return { fits: h <= region.height, spot: { left, top, right: left + w, bottom: top + h } };
+  };
+}
+const doneHint = hint(doneStacked);
+
+test('860 a hint over another command in its group moves to the next side where it fits as wide', () => {
+  assert.deepEqual(stacked.map((region) => region.side), ['top', 'bottom', 'right', 'left']);
+  assert.equal(tooltipPlacement(stacked, doneHint).side, 'top', 'outside a group, over Read as before');
+  assert.equal(tooltipPlacement(stacked, doneHint, [], [read]).side, 'bottom', 'in the group, below Done instead');
+});
+
+test('860 a moved hint takes no narrower side, and none over kept content or another command in its group', () => {
+  const sliver = doneHint(stacked[2]);
+  assert.ok(sliver.fits && sliver.spot.right - sliver.spot.left === 17, 'the sliver beside Done holds the hint only as a column');
+  const result = { left: 33, right: 357, top: 633, bottom: 740 };
+  assert.equal(tooltipPlacement(stacked, doneHint, [result], [read]), null,
+    'with the result below Done, no side is clear of both, so the hint gives way');
+  const below = { left: 33, right: 357, top: 633, bottom: 681 };
+  assert.equal(tooltipPlacement(stacked, doneHint, [], [read, below]), null, 'nor onto another command of its group');
+});
+
+test('860 kept content under the usual spot still wins: the hint gives way rather than moving', () => {
+  const strip = { left: 33, right: 357, top: 562, bottom: 572 };
+  assert.equal(tooltipPlacement(stacked, doneHint, [strip], [read]), null);
+});
+
+test('860 a hint that fits nowhere moves only to a side where it fits', () => {
+  const cramped = (region) => ({ fits: false, spot: doneHint(region).spot });
+  assert.equal(tooltipPlacement(stacked, cramped).side, 'top', 'outside a group, the roomiest side as before');
+  assert.equal(tooltipPlacement(stacked, cramped, [], [read]), null, 'in the group, with no side clear of Read');
+});
+
+test('860 side by side at 1280px, the group changes nothing', () => {
+  const readWide = { left: 465, right: 539, top: 332, bottom: 380 };
+  const doneWide = { left: 547, right: 623, top: 332, bottom: 380 };
+  const regions = tooltipRegions(readWide, { width: 1280, height: 900 });
+  assert.equal(tooltipPlacement(regions, hint(readWide, 153), [], [doneWide]).side, 'top');
+});

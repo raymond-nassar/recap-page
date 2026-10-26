@@ -203,7 +203,7 @@ function disclosure(markup, id) {
 
 test('reading groups Read and Done together, with comic details and infrequent actions secondary', () => {
   const reading = view('read');
-  const primary = reading.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)?.[0];
+  const primary = reading.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)?.[0];
   assert.ok(primary, 'The primary reading group is missing');
   for (const id of ['btn-chero-read', 'btn-hero-read', 'btn-issue-read']) {
     assert.match(html, new RegExp(`<button\\b[^>]*id="${id}"[^>]*>\\s*Read\\s*<\\/button>`), id);
