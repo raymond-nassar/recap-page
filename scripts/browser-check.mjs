@@ -4140,8 +4140,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 71 && desktop.all.stories === 70
-        && desktop.all.cards === 71 && desktop.all.adamCards === 1
+        desktop.all.readings === 86 && desktop.all.stories === 85
+        && desktop.all.cards === 86 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 8 && desktop.bestOf.stories === 8
@@ -4156,8 +4156,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 71 && narrow.all.stories === 70
-        && narrow.all.cards === 71 && narrow.all.adamCards === 1
+        narrow.all.readings === 86 && narrow.all.stories === 85
+        && narrow.all.cards === 86 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 8 && narrow.bestOf.stories === 8
@@ -19876,6 +19876,7 @@ SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDesc
 const { mcuPrepOrganization, mcuPrepOrganizationMutation } = await import('./browser-mcu-prep-organization.mjs');
 SCENARIOS.push(mcuPrepOrganization);
 MUTATIONS.push(mcuPrepOrganizationMutation);
+SCENARIOS.push((await import('./browser-young-readers.mjs')).youngReadersActualData);
 const { hasDedicatedCbhOwnerScenario, ownerGuideScenario } = await import('./browser-owner-guide.mjs');
 const { readOwnerGuideRegistry } = await import('./lib/owner-guide-registry.mjs');
 for (const guide of readOwnerGuideRegistry().guides) {
