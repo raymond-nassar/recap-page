@@ -279,19 +279,30 @@ test('standing explanations move behind disclosures or become compact labels', (
   assert.match(reading, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });
 
-test('completion enjoyment controls are icon-only named actions with existing tooltips', () => {
+// UX-42 (#836): the names were only ever a hover tooltip, which a touch screen cannot show, so the
+// words are drawn beside the icons on narrow and touch screens. The accessible names and the
+// tooltip are unchanged, and a pointer at desktop width still sees the icons alone.
+test('completion enjoyment controls keep their names and tooltips, and show their words where hover is unsure', () => {
   const wrapup = between(html, 'id="list-wrap-up"', 'id="completion-history-controls"');
   assert.doesNotMatch(wrapup, /id="list-completion-progress"|Your choice stays private/);
   assert.match(wrapup, /<legend class="visually-hidden">Enjoyment<\/legend>/);
-  for (const [id, label] of [['btn-enjoyed-list', 'Enjoyed'], ['btn-disliked-list', 'Did not enjoy']]) {
+  for (const [id, label, icon] of [
+    ['btn-enjoyed-list', 'Enjoyed', 'enjoyed-list-content'],
+    ['btn-disliked-list', 'Did not enjoy', 'disliked-list-content'],
+  ]) {
     const button = wrapup.match(new RegExp(`<button[^>]*id="${id}"[^>]*>[\\s\\S]*?<\\/button>`))?.[0];
     assert.ok(button);
     assert.match(button, /class="[^"]*btn-icon[^"]*has-tooltip/);
     assert.ok(button.includes(`aria-label="${label}"`));
     assert.ok(button.includes(`data-tooltip="${label}"`));
     assert.match(button, /aria-pressed="false"/);
-    assert.doesNotMatch(button.replace(/<button[^>]*>/, ''), /Enjoyed|Did not enjoy/);
+    // The whole inside of the button: the span the view fills with the icon, then the words.
+    assert.equal(button.slice(button.indexOf('>') + 1, button.lastIndexOf('</button>')),
+      `<span id="${icon}"></span><span class="enjoyment-label">${label}</span>`,
+      `${id} holds its icon and exactly its own name`);
   }
+  assert.match(styles, /\.completion-enjoyment \.enjoyment-label \{ display: none; \}/);
+  assert.match(styles, /@media \(max-width: 880px\), \(hover: none\) \{\s*\.completion-enjoyment \.btn-icon \{ padding: var\(--space-5\) var\(--space-7\); \}\s*\.completion-enjoyment \.enjoyment-label \{ display: inline; \}\s*\}/);
 });
 
 test('list reporting is an opt-in account-free Microsoft form with no saved-data prefill', () => {

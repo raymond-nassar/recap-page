@@ -100,6 +100,7 @@ export const PAIRS = [
   ['--line-2', '--bg', LARGE, 'the boundary of a bordered control'],
   ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero, and the outline of the progress-at-a-glance bar (#876)'],
   ['--line-2', '--card-2', LARGE, 'the boundary of a text input against its own fill'],
+  ['--line-2', '--rail', LARGE, 'the boundary of the Close button in the narrow More sheet (#836)'],
   ['--cb-line', '--card', LARGE, 'the boundary of an unchecked checkbox'],
   ['--cb-line', '--bg', LARGE, 'the boundary of an unchecked checkbox in a row on the page'],
   ['--track', '--card', LARGE, 'the unfilled part of a progress bar'],
@@ -158,7 +159,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2144`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2160`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -221,7 +222,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2120`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2136`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -766,7 +767,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1612` in the rail and `src/js/views/shared/saved-lists.js:32` in the
+// stated as text beside it, at `src/js/main.js:1671` in the rail and `src/js/views/shared/saved-lists.js:32` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when

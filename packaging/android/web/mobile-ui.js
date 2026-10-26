@@ -12,6 +12,9 @@ export function wireMobileUi() {
   });
 
   const tools = document.querySelector('.list-tools');
+  const actions = tools.querySelector('#list-actions');
+  const exportChoices = tools.querySelector('#list-export');
+  let actionsWereOpen = false;
   const trigger = document.createElement('button');
   trigger.type = 'button';
   trigger.id = 'android-list-options';
@@ -41,7 +44,10 @@ export function wireMobileUi() {
   function restore() {
     if (tools.parentElement !== sheet) return;
     trigger.after(tools);
-    tools.querySelector('#list-export').open = false;
+    // The sheet stood both groups open to list every command. The reader's own choice for List actions
+    // comes back with them, and Export closes as it always has.
+    actions.open = actionsWereOpen;
+    exportChoices.open = false;
     trigger.setAttribute('aria-expanded', 'false');
     const target = narrow.matches ? trigger : tools.querySelector('button:not([hidden]):not(:disabled)');
     if (target?.getClientRects().length) target.focus({ preventScroll: true });
@@ -54,6 +60,12 @@ export function wireMobileUi() {
   }
 
   trigger.addEventListener('click', () => {
+    // UX-08 (#836): the sheet is already the disclosure, so it lists every command at once. Behind List
+    // actions, with Export a second disclosure inside it, Rename, Note, Duplicate, Export and Remove each
+    // took three taps.
+    actionsWereOpen = actions.open;
+    actions.open = true;
+    exportChoices.open = true;
     sheet.append(tools);
     sheet.showModal();
     sheet.scrollTop = 0;
@@ -68,6 +80,14 @@ export function wireMobileUi() {
   sheet.addEventListener('close', () => {
     if (!sheet.open) restore();
   });
+  // List actions closes itself on Escape and sends focus to its summary, which the sheet hides, and that
+  // would also keep the sheet open. Escape anywhere in the sheet closes the sheet, as Back does.
+  sheet.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    event.preventDefault();
+    event.stopPropagation();
+    dismiss();
+  }, true);
   sheet.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
     const controls = [...sheet.querySelectorAll('button:not(:disabled), summary')]

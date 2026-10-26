@@ -90,7 +90,8 @@ but remains available under **Library > Completed lists**. **Reopen list** bring
 Older saved lists receive the same completion confirmation and keyboard focus after their
 existing saved identity has been made stable.
 
-Thumb icons are optional and stay on your device. Hover over or focus one for its name.
+Thumb icons are optional and stay on your device. On a touch screen or a narrow window each shows
+its name beside it; otherwise hover over or focus one for its name.
 **Enjoyed** filters your completed collection;
 clicking a selected thumb clears that choice. **Did not enjoy** saves only that preference.
 **Report a list problem** separately opens instructions for missing comics or a wrong order

@@ -181,6 +181,57 @@ test('Cancel returns focus to the opener', async () => {
   }
 });
 
+// #849: Cancel takes focus, as a destructive question needs, and in Edge that scrolled a long
+// confirmation past its own title at 200% text on a phone. This double's showModal does the same:
+// it focuses Cancel and scrolls the dialog down to it.
+test('a confirmation opens at its title with Cancel focused, and a text question keeps its own scroll', async () => {
+  try {
+    const { askConfirm, askText, dlg, parts, input } = await wired();
+    dlg.showModal = function showModal() {
+      this.showModalCalls += 1;
+      if (this.isOpen) throw new Error('dialog is already open');
+      this.isOpen = true;
+      globalThis.document.activeElement = parts['ask-cancel'];
+      this.scrollTop = 454;
+    };
+    const confirm = askConfirm({
+      title: 'Replace reading data with this backup?', body: 'This replaces all reading data.',
+      confirmLabel: 'Restore reading data',
+    });
+    assert.equal(dlg.attributes['data-question'], 'confirm');
+    assert.equal(dlg.scrollTop, 0, 'the question starts at its title');
+    assert.equal(globalThis.document.activeElement, parts['ask-cancel'], 'Cancel keeps focus');
+    dlg.close('');
+    assert.equal(await within(confirm, 'the confirmation to settle'), false);
+
+    const name = askText({ title: 'Rename list', label: 'List name', value: 'Fixture' });
+    assert.equal(dlg.attributes['data-question'], 'text');
+    assert.equal(dlg.scrollTop, 454, 'a text question keeps the scroll its field asked for');
+    assert.equal(input.selected, 1);
+    dlg.close('');
+    assert.equal(await within(name, 'the text question to settle'), null);
+  } finally {
+    clearDom();
+  }
+});
+
+// #849: what keeps Cancel in view once a confirmation opens at its title is the held footer, which is
+// stylesheet work the doubles above cannot see. Its offsets are the dialog's padding and the question's
+// own spacing, so the three are pinned together: moving one without the others shows a strip of the
+// scrolling question below the footer or shifts the answers in a question that fits.
+test('a confirmation holds its answers in view while the question scrolls under them', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const css = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const rule = css.match(/#ask\[data-question="confirm"\] \.ask-foot \{([^}]*)\}/)?.[1] ?? '';
+  assert.match(rule, /position: sticky; bottom: calc\(-1 \* var\(--space-7\)\); background: var\(--card\);/);
+  assert.match(rule, /margin: calc\(-1 \* var\(--space-6\)\) calc\(-1 \* var\(--space-8\)\) calc\(-1 \* var\(--space-7\)\);/);
+  assert.match(rule, /padding: var\(--space-6\) var\(--space-8\) var\(--space-7\);/);
+  assert.match(css, /\.ask \{[^}]*border-radius: 16px; padding: var\(--space-7\) var\(--space-8\);/);
+  assert.match(css, /\.ask p \{ margin: 0 0 var\(--space-6\);/);
+  // At 800x360 with doubled text the answers took two rows of a 480px dialog and hid the first line.
+  assert.match(css, /@media \(max-height: 480px\) and \(min-width: 560px\) \{\s*#ask\[data-question="confirm"\] \{ width: min\(40rem, calc\(100vw - 2rem\)\); \}\s*\}/);
+});
+
 test('an opener removed before close leaves focus untouched by this code', async () => {
   try {
     const { askConfirm, dlg } = await wired();

@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:95-102`, `src/js/main.js:2639-2665`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:95-102`, `src/js/main.js:2698-2724`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1853`, `src/js/views/reading.js:379-387`, `src/js/views/reading.js:404-418`, against
+Evidence: `src/js/main.js:1912`, `src/js/views/reading.js:379-387`, `src/js/views/reading.js:404-418`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -97,7 +97,7 @@ in which case a rename silently does nothing.
 Recommendation: move naming and confirmation into the page using the existing notice and dialog
 patterns, and route import failures through `notify()` like every other path
 Backlog item: BL-034
-Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-117`, and the
+Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-122`, and the
 three `alert()` calls in `importCurated` now write to a pane the caller names. The Evidence
 anchors name the code as it now stands; the Impact above describes the native dialogs it
 replaced. The suppression case in particular is closed: a browser that blocks dialogs can no
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:795`,
-  `src/styles.css:2085-2087`.
+  `src/styles.css:2101-2103`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1088-1091` and `src/styles.css:2450-2451`.
+`src/styles.css:1088-1091` and `src/styles.css:2466-2467`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2085-2087`.
+`src/styles.css:2101-2103`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1417-1419`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1476-1478`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:795`, `src/styles.css:2085-2087`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:795`, `src/styles.css:2101-2103`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -746,7 +746,7 @@ Evidence: `src/index.html:66-111`, `src/js/lib/route.js:22-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:77-154`,
-`src/js/main.js:1456-1499`, `test/ux-completion.test.js:83-94`.
+`src/js/main.js:1515-1558`, `test/ux-completion.test.js:83-94`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1384-1453`,
+src/ returning no matches`, `src/js/main.js:1443-1512`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No

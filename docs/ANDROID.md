@@ -34,7 +34,10 @@ download comics or provide offline comic reading.
 ### Phone navigation and controls
 
 On narrow Android screens, the menu button shows only its icon and keeps its **More**
-screen-reader name and 48px minimum touch target. The navigation bar shows the full app icon at
+screen-reader name and 48px minimum touch target. **More** opens a sheet just above the navigation
+bar with Continue reading, **Backup & settings**, **About this app** and the connection status, and
+nothing the bar already shows. **Close**, Android Back, Escape or a tap outside it closes it, and
+focus returns to **More**. The navigation bar shows the full app icon at
 the size of its other icons, with no selected-page stripe. Home's visible, focusable heading is the
 Windows **RECAP PAGE!** masthead scaled down to a centered wordmark, at 6.5% of the screen's shorter
 side and without the tagline. Android has none of the masthead's display fonts, so the wordmark is
@@ -50,7 +53,8 @@ It replaces the full breadcrumb trail and current title. Android Back follows yo
 the parent link goes to its named destination.
 
 On a Reading List, open **List options** to rename, edit notes, duplicate, export, manage metadata
-or delete. Export choices expand inside the bottom sheet. Choosing an action closes the sheet
+or delete. Every command shows at once in the bottom sheet, grouped, with **Remove from library**
+apart and last, so each is one tap. Choosing an action closes the sheet
 before opening its editor or confirmation. **Close**, Android Back, Escape or a tap outside
 dismisses the sheet without taking action.
 
@@ -437,7 +441,11 @@ real Marvel app.
 bundled recommendation, full catalog and Hickman minimal guide. Alongside the three viewport
 sizes above, it adds a 1280x900 window and a 360x800 case with 130% text tokens.
 It checks recommendation geometry, touch and keyboard focus, parent links, filter scrolling,
-list-sheet dismissal and editor handoff. Text-token stress tests browser layout, not Android's
+list-sheet dismissal and editor handoff, and that the list sheet shows every command at once, one
+tap each, with Remove from library apart and last, and closes on Escape from any of them. Once a
+list is marked as completed, Enjoyed and Did not enjoy must draw their names beside their icons at
+every size it checks, the wide one included, because each is a touch screen.
+Text-token stress tests browser layout, not Android's
 native font scaling. Use `--viewport=360x800` to isolate the normal-text case while iterating.
 
 `npm run android:browser -- --only=phone-header` checks the narrow header, footer and Home heading
@@ -449,7 +457,9 @@ side, inside the screen and clear of What's new and the content below. WebView m
 size by the system font scale, so the 200% cases double the wordmark as well. The 360x800 case also
 checks forced colors, and wider windows must keep the full masthead and its tagline. Edge draws the
 masthead's Impact, which is narrower than Android's fallback and has no overlapping letter outlines
-for the stroke to trace, so these are not proof of how a phone draws it.
+for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More must
+open a modal sheet standing on the bar over More that lists only what the bar does not, and Escape
+and Android Back must close it with focus back on More and the address unchanged.
 
 Install `puppeteer-core` **outside** the repository, as for the existing browser suite.
 If it or Edge is outside the usual development locations, set `MRT_PUPPETEER` to its absolute
@@ -516,13 +526,23 @@ a refusal. When it succeeds the reading view's heading takes focus, because Comp
 closed sheet. No rendered frame may find focus on the page. These are Edge web checks, not native
 TalkBack acceptance.
 
-`npm run android:browser -- --only=long-list-name` opens the More menu on a Reading List whose
+`npm run android:browser -- --only=long-list-name` opens the More sheet on a Reading List whose
 name is 79 characters long, at 360x800, 412x915, 320x740 and 800x360, and at 360x800 and 412x915
 with 200% text tokens. It applies the usual text size, page overflow and touch target checks with
-the menu open, then checks that the menu and every link and button in it fit the screen. The name
+the sheet open, then checks that the sheet and every link and button in it fit the screen. The name
 must stay inside its row with its full text kept: cut short with an ellipsis at every phone width,
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.
+
+`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo and saved-copy
+questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360, and at the
+shared desktop entry at 1280x900. Each must open at its title and the start of what it says, with
+Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of the
+question readable above them once scrolled to (#849). With doubled text the restore question must
+actually overflow its dialog, so the case is exercised rather than passed by a question that fits.
+On short landscape screens a confirmation widens so its answers share one row. The walk restores,
+undoes and declines the saved copy, and must leave the reading data as it found it. These are Edge
+web checks, not native fontScale or TalkBack acceptance.
 
 `npm run android:browser -- --only=selection-bar` checks the Add comics selection bar on a 50-comic
 issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both

@@ -37,6 +37,22 @@ test('Android More retains its 48px target over shared bottom-navigation styles'
   assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: 48px/);
 });
 
+// UX-08 (#836): behind List actions, with Export a second disclosure inside it, most list commands took
+// three taps. The sheet opens both groups and hides their summaries, so every command is one tap, and
+// puts the reader's own List actions choice back on the way out. Escape closes the sheet itself, because
+// List actions would otherwise close with focus inside it and keep the sheet open.
+test('Android List options lists every command at once, with both groups open and their summaries hidden', async () => {
+  const [css, overlay] = await Promise.all([
+    readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/web/mobile-ui.js', import.meta.url), 'utf8'),
+  ]);
+  assert.match(css, /#android-list-sheet :is\(#list-actions, #list-export\) > summary \{ display: none; \}/);
+  assert.match(css, /#android-list-sheet \.list-actions-body \{[^}]*flex-direction: column;/);
+  assert.match(overlay, /actionsWereOpen = actions\.open;\s*actions\.open = true;\s*exportChoices\.open = true;\s*sheet\.append\(tools\);/);
+  assert.match(overlay, /actions\.open = actionsWereOpen;\s*exportChoices\.open = false;/);
+  assert.match(overlay, /if \(event\.key !== 'Escape'\) return;\s*event\.preventDefault\(\);\s*event\.stopPropagation\(\);\s*dismiss\(\);\s*\}, true\);/);
+});
+
 test('Android phone catalog cards and timelines keep their composition over shared narrow rules', async () => {
   const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
   const start = css.indexOf('@media (max-width: 700px) {');

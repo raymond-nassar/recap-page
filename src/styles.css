@@ -719,25 +719,25 @@ a { color: var(--blue); }
   .mobile-home-label { display: inline; }
   .rail-header .brand .mark, .rail-header .gi { width: 20px; height: 20px; }
   .rail-toggle-label { font-size: var(--t-caption); }
-  .rail-header [aria-current="page"], .rail-header [aria-expanded="true"] {
-    background: var(--card-2); border-color: var(--blue); font-weight: 700;
-  }
+  .rail-header [aria-current="page"] { background: var(--card-2); border-color: var(--blue); font-weight: 700; }
+  /* Open is not where the reader is, so More open is filled where the current page is outlined. */
+  .rail-header [aria-expanded="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
   #sidebar-panel {
-    max-height: calc(100dvh - var(--mobile-nav-height, 80px));
-    overflow-y: auto; padding: var(--space-3) var(--space-4);
+    max-height: none;
+    overflow-y: visible; padding: 0;
   }
   #sidebar-panel .rail-foot { margin-top: var(--space-3); padding-top: 0; }
   main { padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
   html { scroll-padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
   main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
-  body:has(dialog[open]) .rail-header { visibility: hidden; }
+  body:has(dialog[open]:not(#more-sheet)) .rail-header { visibility: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rail-header { transition: none; }
 }
 @media (forced-colors: active) {
   .rail-header { border-color: CanvasText; }
-  .rail-header [aria-current="page"], .rail-header [aria-expanded="true"] { border-color: Highlight; }
+  .rail-header [aria-current="page"] { border-color: Highlight; }
 }
 
 /* ============================================================ main */
@@ -2036,6 +2036,22 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: 44px; }
+/* #849: a long confirmation scrolls under its answers instead of the answers scrolling it away from its
+   title. The negative margins reach the dialog's edges and collapse with the question's own, so a
+   question that fits is laid out exactly as before. The bottom offset matches the dialog's padding,
+   which scrolling insets a sticky edge by, so the footer covers that strip too. A text or note question
+   focuses its field, which a held footer could cover, so it keeps the plain one. */
+#ask[data-question="confirm"] .ask-foot {
+  position: sticky; bottom: calc(-1 * var(--space-7)); background: var(--card);
+  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-8)) calc(-1 * var(--space-7));
+  padding: var(--space-6) var(--space-8) var(--space-7);
+}
+/* At 800x360 with text tokens doubled, the 480px dialog put Cancel and a long action on two rows, which
+   left no room for the question's first line. On short landscape screens a confirmation widens so its
+   answers share one row. #830's shared dialog shell supersedes this. */
+@media (max-height: 480px) and (min-width: 560px) {
+  #ask[data-question="confirm"] { width: min(40rem, calc(100vw - 2rem)); }
+}
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
 .markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: 44px; }
 .markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
@@ -2499,6 +2515,13 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .completion-enjoyment legend { color: var(--dim); margin-bottom: var(--space-4); }
 .completion-enjoyment button[aria-pressed="true"] { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
 .completion-enjoyment button span { display: inline-flex; align-items: center; gap: var(--space-4); }
+/* UX-42 (#836): a tooltip needs hover or focus, so on a narrow or touch screen each icon shows its
+   words. The names were always those words; only what is drawn changes. */
+.completion-enjoyment .enjoyment-label { display: none; }
+@media (max-width: 880px), (hover: none) {
+  .completion-enjoyment .btn-icon { padding: var(--space-5) var(--space-7); }
+  .completion-enjoyment .enjoyment-label { display: inline; }
+}
 .completion-recommendations { margin-top: var(--space-7); }
 .recommendation-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-6); }
 .recommendation-card { min-width: 0; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
@@ -2574,4 +2597,36 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @media (forced-colors: active) {
   .glance-bar { border: 1px solid CanvasText; }
   .glance-bar > i { background: Highlight; }
+}
+
+/* ============================================================ narrow More sheet
+
+   UX-09 (#836). More opens the rail's panel as a modal sheet on the bottom bar, flush right so it sits
+   over More, and no wider than Material's 640dp bottom sheet. It is drawn on the rail's own surface, so
+   every paint in the panel is the one the rail has always been measured on. */
+@media (max-width: 880px) {
+  .more-sheet {
+    inset: auto 0 var(--mobile-nav-height, 80px) auto;
+    width: min(100%, 40rem); max-width: none;
+    max-height: calc(100% - var(--mobile-nav-height, 80px) - var(--space-6));
+    margin: 0; padding: var(--space-6); overflow-y: auto; overscroll-behavior: contain;
+    border: 1px solid var(--line-2); border-bottom: 0; border-radius: var(--r) var(--r) 0 0;
+    background: var(--rail); color: var(--text);
+  }
+  /* The scrim stops at the bar, so the sheet reads as More's and More's open state stays in view. */
+  .more-sheet::backdrop {
+    background: linear-gradient(to top, transparent var(--mobile-nav-height, 80px),
+      rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))) var(--mobile-nav-height, 80px));
+  }
+  .more-sheet-head {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .more-sheet-head h2 { margin: 0; font-size: var(--t-subtitle); }
+  /* The bar already offers these, so the sheet lists only what it does not. */
+  .more-sheet [data-bottom-bar],
+  .more-sheet .nav-group:not(:has(li:not([data-bottom-bar]))) { display: none; }
+}
+@media (forced-colors: active) {
+  .rail-header [aria-expanded="true"] { background: Highlight; color: HighlightText; border-color: Highlight; }
 }

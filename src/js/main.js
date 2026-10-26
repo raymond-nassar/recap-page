@@ -911,6 +911,8 @@ function setReadingShortcut(on) {
 let railed = false;
 let isNarrow = false;
 let narrowOpen = false;
+// Where focus goes back to when the narrow More sheet closes: More, or the field Ctrl+\ was pressed in.
+let moreOpener = null;
 // Tracked so the 1000px responsive default fires only on crossings.
 let wasCompact = null;
 
@@ -933,11 +935,13 @@ function renderSidebar() {
 
   if (isNarrow) {
     toggle.setAttribute('aria-expanded', String(narrowOpen));
+    toggle.setAttribute('aria-haspopup', 'dialog');
     toggle.setAttribute('aria-label', 'More');
     toggle.dataset.tip = 'More · Ctrl+\\';
   } else {
     const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
     toggle.setAttribute('aria-expanded', String(!railed));
+    toggle.removeAttribute('aria-haspopup');
     toggle.setAttribute('aria-label', label);
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
@@ -945,18 +949,78 @@ function renderSidebar() {
   revealMobileNavigation();
 }
 
+// UX-09 (#836): on a narrow screen More opens the rail's panel as a modal bottom sheet on the bar,
+// beside the control that opened it. It used to show the panel at the top of the page and scroll there,
+// so More at the bottom right of a phone took the reader to the top. The panel moves into the sheet, as
+// List options moves its commands, so its links and status keep one source.
 function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
   if (!isNarrow) return;
-  const panel = $('#sidebar-panel');
-  const toggle = $('#btn-rail-toggle');
-  const activeInsidePanel = panel?.contains(document.activeElement);
-  if (!next && rescueFocus && activeInsidePanel) toggle.focus();
+  const sheet = $('#more-sheet');
+  // Modal questions never stack, so More waits until an open one is answered.
+  if (next && !narrowOpen && document.querySelector('dialog[open]')) return;
+  const activeInsideSheet = sheet.contains(document.activeElement);
+  if (next && !narrowOpen) moreOpener = document.activeElement;
   narrowOpen = Boolean(next);
+  if (narrowOpen) sheet.append($('#sidebar-panel'));
+  else settleMoreSheet();
   renderSidebar();
-  if (next && !document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) {
-    panel.scrollIntoView({ block: 'start' });
+  if (narrowOpen && !sheet.open) {
+    sheet.showModal();
+    sheet.scrollTop = 0;
+    $('#more-sheet-close').focus();
   }
+  if (!next && rescueFocus && activeInsideSheet) returnMoreFocus();
   if (announceIt) announce(narrowOpen ? 'Navigation shown.' : 'Navigation hidden.');
+}
+
+// The rail's panel goes back where the rail shows it. Closing the sheet hands focus back to whatever
+// held it when the sheet opened; each caller decides whether it stays there.
+function settleMoreSheet() {
+  const sheet = $('#more-sheet');
+  if (sheet.open) sheet.close();
+  const panel = $('#sidebar-panel');
+  if (sheet.contains(panel)) $('.rail-header').after(panel);
+}
+
+// A tap need not focus More, and the control Ctrl+\ was pressed on may have gone, so focus lands on
+// More when there is nothing better to return to.
+function returnMoreFocus() {
+  const opener = moreOpener;
+  moreOpener = null;
+  const usable = opener?.isConnected && opener !== document.body && !opener.closest('[hidden], [inert]')
+    && opener.getClientRects().length > 0;
+  (usable ? opener : $('#btn-rail-toggle')).focus();
+}
+
+function wireMoreSheet() {
+  const sheet = $('#more-sheet');
+  $('#more-sheet-close').addEventListener('click', () => setNarrowOpen(false));
+  sheet.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    setNarrowOpen(false);
+  });
+  // Chrome closes a dialog itself once a page has refused Escape too often, and the panel and More follow.
+  // The event arrives a task later, so one left from a sheet since reopened must not close the new one.
+  sheet.addEventListener('close', () => { if (narrowOpen && !sheet.open) setNarrowOpen(false); });
+  sheet.addEventListener('click', (event) => {
+    if (event.target !== sheet) return;
+    const box = sheet.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right
+      || event.clientY < box.top || event.clientY > box.bottom) setNarrowOpen(false);
+  });
+  // A WebView has no browser frame for Tab to pass through, so focus wraps inside the sheet.
+  sheet.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const controls = [...sheet.querySelectorAll('a[href], button:not(:disabled)')]
+      .filter((node) => node.getClientRects().length);
+    if (event.shiftKey && document.activeElement === controls[0]) {
+      event.preventDefault();
+      controls.at(-1).focus();
+    } else if (!event.shiftKey && document.activeElement === controls.at(-1)) {
+      event.preventDefault();
+      controls[0].focus();
+    }
+  });
 }
 
 function toggleSidebar() {
@@ -1012,17 +1076,7 @@ function wireSidebar() {
     toggleSidebar();
   });
 
-  $('#sidebar').addEventListener('keydown', (e) => {
-    if (e.defaultPrevented || e.key !== 'Escape' || !isNarrow || !narrowOpen) return;
-    if (document.querySelector('dialog[open]')) return;
-    const header = document.querySelector('.rail-header');
-    const panel = document.querySelector('#sidebar-panel');
-    const target = e.target instanceof Node ? e.target : null;
-    const fromHeaderOrPanel = Boolean(target && (header?.contains(target) || panel?.contains(target)));
-    e.preventDefault();
-    setNarrowOpen(false, { rescueFocus: !fromHeaderOrPanel });
-    if (fromHeaderOrPanel) $('#btn-rail-toggle').focus();
-  });
+  wireMoreSheet();
 
   window.addEventListener('resize', () => {
     const compact = window.innerWidth < RAIL_BREAKPOINT;
@@ -1032,9 +1086,12 @@ function wireSidebar() {
     }
     const nextNarrow = narrowMedia.matches;
     let returningFocus = null;
+    let sheetFocus = null;
     if (nextNarrow !== isNarrow) {
       const panel = $('#sidebar-panel');
       const activeInside = panel?.contains(document.activeElement);
+      // Widening puts the sheet's panel back in the rail, where the control the reader was on stays.
+      sheetFocus = !nextNarrow && $('#more-sheet').contains(document.activeElement) ? document.activeElement : null;
       if (!nextNarrow && mobileFocus && !mobileFocus.getClientRects().length
         && (document.activeElement === mobileFocus || document.activeElement === document.body)) {
         returningFocus = mobileFocus;
@@ -1045,10 +1102,12 @@ function wireSidebar() {
         if (activeInside) $('#btn-rail-toggle').focus();
       } else {
         narrowOpen = false;
+        settleMoreSheet();
       }
       tooltips?.refresh();
     }
     renderSidebar();
+    if (sheetFocus?.isConnected && sheetFocus.getClientRects().length) sheetFocus.focus();
     if (returningFocus && (document.activeElement === returningFocus || document.activeElement === document.body)) {
       const destination = [...$('#sidebar-panel').querySelectorAll('.ri[data-view]')].find((link) => (
         link.dataset.view === returningFocus.dataset.view

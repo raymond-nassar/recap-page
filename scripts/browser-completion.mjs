@@ -162,14 +162,17 @@ export const completionLifecycle = {
     for (const width of [1280, 390]) {
       await page.setViewport({ width, height: 900 });
       const controls = await page.$$eval('#list-enjoyment button', (buttons) => buttons.map((button) => ({
-        text: button.textContent.trim(), name: button.getAttribute('aria-label'),
-        tooltip: button.dataset.tooltip, icon: Boolean(button.querySelector('svg')),
+        text: button.innerText.trim(), name: button.getAttribute('aria-label'),
+        tooltip: button.dataset.tooltip, icon: Boolean(button.querySelector('svg')?.checkVisibility()),
         width: button.getBoundingClientRect().width, height: button.getBoundingClientRect().height,
       })));
-      t.check(`${width}px enjoyment actions are named icons with at least 44px targets`,
-        controls.length === 2 && controls.every((button) => !button.text && button.icon
+      // UX-42 (#836): with a pointer at desktop width the icons stand alone, and on a narrow screen each
+      // also draws its name, which is all its tooltip ever said.
+      const words = width <= 880;
+      t.check(`${width}px enjoyment actions are named icons${words ? ' that draw their names' : ''} with at least 44px targets`,
+        controls.length === 2 && controls.every((button) => button.text === (words ? button.name : '') && button.icon
           && button.name === button.tooltip && button.width >= 44 && button.height >= 44)
-        && controls[0].name === 'Enjoyed' && controls[1].name === 'Did not enjoy');
+        && controls[0].name === 'Enjoyed' && controls[1].name === 'Did not enjoy', JSON.stringify(controls));
       t.check(`${width}px compact wrap-up keeps healthy status hidden and stays inside the viewport`,
         await page.evaluate(() => document.querySelector('#list-recommendation-status').hidden
           && document.querySelector('#list-enjoyment legend').classList.contains('visually-hidden')

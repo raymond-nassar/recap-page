@@ -1534,8 +1534,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1797-1808|0": {
-    "anchor": "src/js/main.js:1797-1808",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1856-1867|0": {
+    "anchor": "src/js/main.js:1856-1867",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
@@ -1564,8 +1564,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2639-2665|0": {
-    "anchor": "src/js/main.js:2639-2665",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2698-2724|0": {
+    "anchor": "src/js/main.js:2698-2724",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1644,13 +1644,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2639-2665|0": {
-    "anchor": "src/js/main.js:2639-2665",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2698-2724|0": {
+    "anchor": "src/js/main.js:2698-2724",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3287-3320|0": {
-    "anchor": "src/js/main.js:3287-3320",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3346-3379|0": {
+    "anchor": "src/js/main.js:3346-3379",
     "fp": "755e088f3b509ba2",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1704,13 +1704,13 @@
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3246-3382|0": {
-    "anchor": "src/js/main.js:3246-3382",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3305-3441|0": {
+    "anchor": "src/js/main.js:3305-3441",
     "fp": "475af8c02d6b3e5d",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3384-3437|0": {
-    "anchor": "src/js/main.js:3384-3437",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3443-3496|0": {
+    "anchor": "src/js/main.js:3443-3496",
     "fp": "5a2ca19771f5fc8b",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1764,8 +1764,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2106-2121|0": {
-    "anchor": "src/js/main.js:2106-2121",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2165-2180|0": {
+    "anchor": "src/js/main.js:2165-2180",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1784,8 +1784,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1405|0": {
-    "anchor": "src/index.html:1405",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1417|0": {
+    "anchor": "src/index.html:1417",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1844,8 +1844,8 @@
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:973-980|0": {
-    "anchor": "src/js/main.js:973-980",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1037-1044|0": {
+    "anchor": "src/js/main.js:1037-1044",
     "fp": "ac2e0db17077fe22",
     "head": "function setRailed(next, { announceIt = false, persist = false } = {}) {"
   },
@@ -2166,12 +2166,12 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:66-111|0": {
     "anchor": "src/index.html:66-111",
-    "fp": "89df9badf1d976de",
+    "fp": "e0fccb1b85c85194",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:66-111|1": {
     "anchor": "src/index.html:66-111",
-    "fp": "89df9badf1d976de",
+    "fp": "e0fccb1b85c85194",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:22-33|0": {
@@ -2184,8 +2184,8 @@
     "fp": "fbd397269ecaeb7d",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1456-1499|0": {
-    "anchor": "src/js/main.js:1456-1499",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1515-1558|0": {
+    "anchor": "src/js/main.js:1515-1558",
     "fp": "f344ddda7790e906",
     "head": "function renderBreadcrumbs() {"
   },
@@ -2266,7 +2266,7 @@
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#10|src/index.html:66-111|0": {
     "anchor": "src/index.html:66-111",
-    "fp": "89df9badf1d976de",
+    "fp": "e0fccb1b85c85194",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:896-898|0": {
@@ -2299,8 +2299,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2085-2087|0": {
-    "anchor": "src/styles.css:2085-2087",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2101-2103|0": {
+    "anchor": "src/styles.css:2101-2103",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2319,8 +2319,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2085-2087|0": {
-    "anchor": "src/styles.css:2085-2087",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2101-2103|0": {
+    "anchor": "src/styles.css:2101-2103",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2374,8 +2374,8 @@
     "fp": "5a7d51a72fea5c0a",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2450-2451|0": {
-    "anchor": "src/styles.css:2450-2451",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2466-2467|0": {
+    "anchor": "src/styles.css:2466-2467",
     "fp": "216c8709fab455f9",
     "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
   },
@@ -2429,8 +2429,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1417-1419|0": {
-    "anchor": "src/js/main.js:1417-1419",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1476-1478|0": {
+    "anchor": "src/js/main.js:1476-1478",
     "fp": "68f0263068782dee",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {"
   },
@@ -2439,8 +2439,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2085-2087|0": {
-    "anchor": "src/styles.css:2085-2087",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2101-2103|0": {
+    "anchor": "src/styles.css:2101-2103",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2474,8 +2474,8 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2639-2665|0": {
-    "anchor": "src/js/main.js:2639-2665",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2698-2724|0": {
+    "anchor": "src/js/main.js:2698-2724",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -2484,13 +2484,13 @@
     "fp": "40aa5dfbe1353aab",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-117|0": {
-    "anchor": "src/js/ask.js:70-117",
-    "fp": "82cad93ac99c5b16",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-122|0": {
+    "anchor": "src/js/ask.js:70-122",
+    "fp": "7ed878e6e36ea978",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1853|0": {
-    "anchor": "src/js/main.js:1853",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1912|0": {
+    "anchor": "src/js/main.js:1912",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2534,8 +2534,8 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1384-1453|0": {
-    "anchor": "src/js/main.js:1384-1453",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1443-1512|0": {
+    "anchor": "src/js/main.js:1443-1512",
     "fp": "bac08460e6793562",
     "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
@@ -6119,8 +6119,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1612|0": {
-    "anchor": "src/js/main.js:1612",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1671|0": {
+    "anchor": "src/js/main.js:1671",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
@@ -6139,13 +6139,13 @@
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2120|0": {
-    "anchor": "src/styles.css:2120",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2136|0": {
+    "anchor": "src/styles.css:2136",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2144|0": {
-    "anchor": "src/styles.css:2144",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2160|0": {
+    "anchor": "src/styles.css:2160",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

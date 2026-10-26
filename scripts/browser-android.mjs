@@ -33,6 +33,7 @@ const allowedModes = new Set([
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
+  'confirmations',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -63,6 +64,7 @@ const saveNotice = process.argv.includes('--only=save-notice');
 const homeContinue = process.argv.includes('--only=home-continue');
 const progressGlance = process.argv.includes('--only=progress-glance');
 const longListName = process.argv.includes('--only=long-list-name');
+const confirmations = process.argv.includes('--only=confirmations');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
@@ -2498,10 +2500,48 @@ async function phoneHeaderCheck(page, label, viewport) {
     await page.waitForFunction(() => !document.querySelector('#sidebar-panel').hidden);
     check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'true'),
       `${label}: icon-only navigation opens its panel`);
+    // UX-09 (#836): More used to open its panel at the top of the page. It is a modal sheet standing on
+    // the bar, over More, holding only what the bar does not show.
+    const sheet = await page.evaluate(() => {
+      const box = (node) => node.getBoundingClientRect();
+      const node = document.querySelector('#more-sheet');
+      const bar = document.querySelector('.rail-header');
+      const more = document.querySelector('#btn-rail-toggle');
+      const links = [...node.querySelectorAll('a[href]')].filter((link) => link.getClientRects().length);
+      const paint = (target) => getComputedStyle(target).backgroundColor;
+      return {
+        modal: node.matches(':modal'), focus: document.activeElement?.id,
+        onBar: Math.abs(box(node).bottom - box(bar).top) <= 1,
+        overMore: box(node).left <= box(more).left && box(node).right >= box(more).right,
+        inside: box(node).top >= 0 && box(node).right <= document.documentElement.clientWidth + 1,
+        listed: links.map((link) => link.dataset.view ?? 'read'),
+        barViews: [...bar.querySelectorAll('a[data-view]')].map((link) => link.dataset.view),
+        distinct: paint(more) !== paint(bar.querySelector('[aria-current="page"]') ?? bar),
+      };
+    });
+    check(sheet.modal && sheet.focus === 'more-sheet-close' && sheet.onBar && sheet.overMore && sheet.inside
+      && sheet.listed.includes('data') && sheet.listed.includes('about')
+      && sheet.listed.every((view) => ['read', 'data', 'about'].includes(view) && !sheet.barViews.includes(view))
+      && sheet.distinct,
+    `${label}: More opens a modal sheet on the bar over More, listing only what the bar does not ${JSON.stringify(sheet)}`);
+    await screenshot(page, label, 'more-sheet');
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden);
     check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'false'
       && document.activeElement === node), `${label}: Escape closes navigation and retains focus`);
+    if (!viewport.desktop) {
+      const hash = await page.evaluate(() => location.hash);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#more-sheet').open);
+      const replies = await page.evaluate(() => window.__androidTest.replies.length);
+      await page.evaluate(() => window.__androidTest.back());
+      await page.waitForFunction((count) => window.__androidTest.replies.length > count, {}, replies);
+      check(await page.evaluate((before) => window.__androidTest.replies.at(-1).handled === true
+        && !document.querySelector('#more-sheet').open && location.hash === before
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'false'
+        && document.activeElement?.id === 'btn-rail-toggle', hash),
+      `${label}: Android Back closes the sheet without navigating and returns focus to More`);
+    }
   }
   await page.focus('.app-footer [data-view="about"]');
   await page.keyboard.press('Enter');
@@ -2543,6 +2583,37 @@ async function phoneHeaderCheck(page, label, viewport) {
   }
 }
 
+// UX-42 (#836): Enjoyed and Did not enjoy were icons named only by a tooltip, which a touch screen
+// cannot show. Every profile here is a touch screen, so each must draw its name beside its icon, the
+// wide one included. The list is completed to offer the choice and reopened once the save settles.
+async function enjoymentLabels(page, label, narrow) {
+  if (narrow) await click(page, '#android-list-options');
+  await click(page, '#btn-complete-list');
+  await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden
+    && !document.querySelector('#btn-reopen-list').hasAttribute('aria-disabled')
+    && document.querySelector('#list-enjoyment')?.checkVisibility());
+  const buttons = await page.$$eval('#list-enjoyment button', (nodes) => nodes.map((button) => {
+    const rect = button.getBoundingClientRect();
+    return {
+      name: button.getAttribute('aria-label'), text: button.innerText.trim(),
+      icon: !!button.querySelector('svg')?.checkVisibility(),
+      label: !!button.querySelector('.enjoyment-label')?.checkVisibility(),
+      inside: rect.left >= 0 && rect.right <= document.documentElement.clientWidth + 1,
+      w: Math.round(rect.width), h: Math.round(rect.height),
+    };
+  }));
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+  check(buttons.length === 2 && buttons[0].name === 'Enjoyed' && buttons[1].name === 'Did not enjoy' && !overflow
+    && buttons.every((button) => button.icon && button.label && button.text === button.name && button.inside
+      && button.w >= 47.5 && button.h >= 47.5),
+  `${label}: Enjoyed and Did not enjoy draw their names beside their icons, names unchanged ${JSON.stringify({ buttons, overflow })}`);
+  await screenshot(page, label, 'enjoyment');
+  await click(page, '#btn-reopen-list');
+  await page.waitForFunction(() => document.querySelector('#btn-reopen-list').hidden
+    && !document.querySelector('#btn-complete-list').hasAttribute('aria-disabled')
+    && document.querySelector('#list-enjoyment').hidden);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
   // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
@@ -2555,8 +2626,8 @@ async function mobileLayout(page, label, narrow) {
     `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
-  if (narrow) await click(page, '#btn-rail-toggle');
-  await page.tap('#sidebar-panel [data-view="browse"]');
+  // UX-09 (#836): Browse is on the bar, so the More sheet no longer lists it.
+  await page.tap(narrow ? '.mobile-link[data-view="browse"]' : '#sidebar-panel [data-view="browse"]');
   await page.waitForSelector('#view-browse:not([hidden])');
   const focus = await page.$eval('#browse-h', (heading) => ({
     focused: document.activeElement === heading,
@@ -2747,6 +2818,7 @@ async function mobileLayout(page, label, narrow) {
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
+    await enjoymentLabels(page, label, false);
     return;
   }
   check(!await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
@@ -2765,6 +2837,34 @@ async function mobileLayout(page, label, narrow) {
     };
   });
   check(sheet.bottom && sheet.fits && sheet.labelled && sheet.vertical, `${label}: named bottom sheet fits viewport and stacks actions`);
+  // UX-08 (#836): the sheet is the disclosure, so every list command shows at once, one tap each, in
+  // groups, with Remove from library apart and last. Behind List actions, with Export a second
+  // disclosure inside it, Rename, Note, Duplicate, Export and Remove each took three taps.
+  const commands = await page.$eval('#android-list-sheet', (node) => {
+    // Content inside a closed details still reports client rects in Edge 155, so rendering is asked of
+    // checkVisibility, which sees the closed group's hidden content.
+    const shown = (target) => !!target?.checkVisibility?.() && !!target.getClientRects().length;
+    const buttons = [...node.querySelectorAll('.list-tools button')].filter(shown);
+    const remove = node.querySelector('#btn-delete-list');
+    const rule = node.querySelector('.tool-sep');
+    return {
+      names: buttons.map((button) => button.textContent.trim()),
+      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-export-md',
+        '#btn-export-order', '#btn-hydrate', '#btn-synopsis', '#btn-delete-list']
+        .map((selector) => node.querySelector(selector)).filter((button) => button && !button.hidden)
+        .map((button) => button.textContent.trim()),
+      summaries: [...node.querySelectorAll('summary')].filter(shown).map((summary) => summary.textContent.trim()),
+      closed: [...node.querySelectorAll('details')].filter((details) => !details.open).map((details) => details.id),
+      small: buttons.filter((button) => button.getBoundingClientRect().height < 47.5).map((button) => button.id),
+      last: buttons.at(-1)?.id,
+      apart: shown(rule) && rule.getBoundingClientRect().height >= 1
+        && rule.getBoundingClientRect().bottom <= remove.getBoundingClientRect().top,
+    };
+  });
+  check(commands.names.length >= 8 && JSON.stringify(commands.names) === JSON.stringify(commands.expected)
+    && !commands.summaries.length && !commands.closed.length && !commands.small.length
+    && commands.last === 'btn-delete-list' && commands.apart,
+  `${label}: List options shows every command at once, one tap each, Remove from library apart and last ${JSON.stringify(commands)}`);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Tab');
   await page.keyboard.up('Shift');
@@ -2774,6 +2874,19 @@ async function mobileLayout(page, label, narrow) {
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
   check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
     `${label}: Android Back closes sheet and restores trigger focus`);
+  // List actions closes itself on Escape, which inside the sheet would hide every command and keep the
+  // sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
+  await click(page, '#android-list-options');
+  await page.focus('#btn-list-note');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open, { timeout: 5000 }).catch(() => {});
+  const escaped = await page.evaluate(() => ({
+    open: document.querySelector('#android-list-sheet').open, focus: document.activeElement?.id,
+    actions: document.querySelector('#list-actions').open, exports: document.querySelector('#list-export').open,
+    home: document.querySelector('#android-list-options').nextElementSibling?.matches('.list-tools') ?? false,
+  }));
+  check(!escaped.open && escaped.focus === 'android-list-options' && !escaped.actions && !escaped.exports && escaped.home,
+    `${label}: Escape from a command closes the sheet, returns to List options and restores both groups ${JSON.stringify(escaped)}`);
   for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-delete-list']) {
     await click(page, '#android-list-options');
     await click(page, action);
@@ -2801,15 +2914,13 @@ async function mobileLayout(page, label, narrow) {
     return state.listOrder.length === 1 && state.lists[state.listOrder[0]].name === name;
   }, minimalName), `${label}: cancelling management leaves the list intact`);
   await click(page, '#android-list-options');
-  await click(page, '#list-export > summary');
   await click(page, '#btn-export-order');
   await page.waitForSelector('#ask[open]');
   check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
-    `${label}: nested export opens only the existing confirmation`);
+    `${label}: Export order only opens only its existing confirmation, in one tap`);
   await backDialog(page);
   await page.waitForFunction(() => !document.querySelector('#ask').open);
   await click(page, '#android-list-options');
-  await click(page, '#list-export > summary');
   await click(page, '#btn-export-md');
   await page.waitForSelector('#markdown-export[open]');
   check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
@@ -2833,6 +2944,7 @@ async function mobileLayout(page, label, narrow) {
   await page.goBack();
   await page.waitForFunction(() => document.querySelector('#reading-filters input[value="all"]').checked);
   check(await page.$$eval('#rows .row', (rows) => rows.length > 1), `${label}: Back restores the reading filter and rows`);
+  await enjoymentLabels(page, label, true);
   await click(page, '#android-list-options');
   await route(page, 'browse');
   check(await page.$eval('#android-list-sheet', (node) => !node.open),
@@ -3877,6 +3989,106 @@ async function longListNameMenu(page, label, viewport) {
   console.log(`CHECKED ${label}: menu open with a 79-character list name ${JSON.stringify({ page: opened.page, screen: opened.screen, name: [opened.name.client, opened.name.scroll] })}`);
 }
 
+// #849: the shared question dialog caps its height and scrolls inside, and initial focus goes to Cancel,
+// the safe answer a destructive question needs. At 200% text on phone sizes, focusing Cancel scrolled the
+// question past its own title, 454 to 802px down on main at 29349834, in the reading-data restore, its
+// Undo and the saved copy, the three asked here. Each must open at its title and the start of what it
+// says, with Cancel focused and both answers in view and reachable by a tap, and read to its end.
+async function confirmationFixtures(page) {
+  let state = createList(createEmptyState(), { id: 'questions', name: 'Question fixture' });
+  state = addIssuesToList(state, 'questions', [1, 2].map((n) => ({
+    issueId: 849100 + n, title: `Question fixture (2026) #${n}`, number: String(n), seriesName: 'Question fixture (2026)', seriesId: 849,
+    digitalId: 849200 + n, url: `https://www.marvel.com/comics/issue/${849100 + n}/fixture`, source: 'manual',
+  }))).state;
+  await page.evaluateOnNewDocument((saved, key) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Question fixture blocks outside requests'));
+    };
+  }, state, KEY);
+}
+
+async function confirmationQuestions(page, label, viewport) {
+  await route(page, 'data');
+  const names = () => page.evaluate((key) => Object.values(JSON.parse(localStorage.getItem(key)).lists).map((list) => list.name), KEY);
+  const before = await names();
+  // A backup that differs from what is saved, so the restore changes something and leaves an Undo.
+  const backup = await page.evaluate((key) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    for (const list of Object.values(state.lists)) list.name = `${list.name} (restored copy)`;
+    return JSON.stringify(state);
+  }, KEY);
+  const question = async (name) => {
+    await page.waitForSelector('#ask[open]');
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const shown = await page.$eval('#ask', (dialog) => {
+      const view = dialog.getBoundingClientRect();
+      const top = Math.max(0, view.top);
+      const bottom = Math.min(innerHeight, view.bottom);
+      const within = (rect) => rect.height > 0 && rect.top >= top - 0.5 && rect.bottom <= bottom + 0.5;
+      const reachable = (node) => {
+        const rect = node.getBoundingClientRect();
+        return within(rect) && node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+      };
+      const text = document.createRange();
+      text.selectNodeContents(dialog.querySelector('#ask-body'));
+      const footTop = dialog.querySelector('.ask-foot').getBoundingClientRect().top;
+      const clear = (rect) => within(rect) && rect.bottom <= footTop + 0.5;
+      const opened = {
+        scrollTop: dialog.scrollTop, overflows: dialog.scrollHeight > dialog.clientHeight + 1,
+        title: clear(dialog.querySelector('#ask-title').getBoundingClientRect()),
+        start: clear(text.getClientRects()[0] ?? { height: 0 }),
+        focus: document.activeElement?.id,
+        cancel: reachable(dialog.querySelector('#ask-cancel')), confirm: reachable(dialog.querySelector('#ask-ok')),
+        order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+      };
+      // Held in view, the answers must not hide the end of the question once it is scrolled to.
+      dialog.scrollTop = dialog.scrollHeight;
+      const last = [...text.getClientRects()].at(-1);
+      opened.end = !!last && within(last) && last.bottom <= dialog.querySelector('.ask-foot').getBoundingClientRect().top + 0.5;
+      dialog.scrollTop = 0;
+      return opened;
+    });
+    check(shown.scrollTop === 0 && shown.title && shown.start && shown.end && shown.focus === 'ask-cancel'
+      && shown.cancel && shown.confirm && JSON.stringify(shown.order) === JSON.stringify(['ask-cancel', 'ask-ok']),
+    `${label}: the ${name} question opens at its title, Cancel focused, both answers in view, and reads to its end ${JSON.stringify(shown)}`);
+    await screenshot(page, label, `question-${name}`);
+    return shown;
+  };
+  await page.evaluate((raw) => {
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([raw], 'question-fixture-backup.json', { type: 'application/json' }));
+    const input = document.querySelector('#restore-file');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, backup);
+  const restore = await question('restore');
+  // Doubled text is the case #849 was found in, so there the question must actually overflow, or the
+  // checks above would pass without the dialog ever having had to scroll.
+  if (viewport.textScale) check(restore.overflows, `${label}: at 200% text the restore question overflows its dialog`);
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => !document.querySelector('#ask').open
+    && !document.querySelector('#btn-undo-restore').hidden && !document.querySelector('#btn-undo-restore').disabled);
+  await click(page, '#btn-undo-restore');
+  const undo = await question('undo');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => !document.querySelector('#ask').open
+    && !document.querySelector('#btn-undo-restore').hidden && !document.querySelector('#btn-undo-restore').disabled
+    && !/Undo/.test(document.querySelector('#btn-undo-restore').textContent));
+  await click(page, '#btn-undo-restore');
+  const saved = await question('saved-copy');
+  await click(page, '#ask-cancel');
+  await page.waitForFunction(() => !document.querySelector('#ask').open);
+  const after = await names();
+  check(JSON.stringify(after) === JSON.stringify(before),
+    `${label}: restoring, undoing and declining the saved copy leaves the reading data as it was ${JSON.stringify({ before, after })}`);
+  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved })}`);
+}
+
 // #833: an issue search long enough that its 50 rendered comics run well past a phone screen.
 const BAR_ISSUES = Array.from({ length: 50 }, (_, index) => ({
   id: 900400 + index + 1,
@@ -4164,6 +4376,16 @@ try {
     { width: 360, height: 800, textScale: 2 },
     { width: 412, height: 915, textScale: 2 },
   ];
+  // The three sizes #849 measured at 200% text, then normal text, where a question that fits must look as
+  // it always has, the short landscape one widened, and the shared desktop entry.
+  if (confirmations) viewports = [
+    { width: 360, height: 800, textScale: 2 },
+    { width: 800, height: 360, textScale: 2 },
+    { width: 320, height: 740, textScale: 2 },
+    { width: 360, height: 800 },
+    { width: 800, height: 360 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   if (selectionBar) viewports = [
     { width: 360, height: 800, theme: 'light' },
     { width: 412, height: 915, theme: 'dark' },
@@ -4210,6 +4432,7 @@ try {
     if (saveNotice) await saveNoticeFixtures(page, viewport);
     if (homeContinue || progressGlance) await homeContinueFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
+    if (confirmations) await confirmationFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
@@ -4517,6 +4740,12 @@ try {
     }
     if (longListName) {
       await longListNameMenu(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (confirmations) {
+      await confirmationQuestions(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

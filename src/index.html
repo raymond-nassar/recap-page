@@ -69,7 +69,7 @@
                 <h2 id="rail-reading" class="rail-h">Reading</h2>
                 <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
                 <ul class="rail-list" aria-labelledby="rail-reading">
-                  <li><a href="#/library" class="ri" data-view="library">
+                  <li data-bottom-bar><a href="#/library" class="ri" data-view="library">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span class="lbl">Library</span>
                   </a></li>
@@ -79,11 +79,11 @@
               <div class="nav-group">
                 <h2 class="rail-h">Discover</h2>
                 <ul class="rail-list">
-                  <li><a href="#/browse" class="ri" data-view="browse">
+                  <li data-bottom-bar><a href="#/browse" class="ri" data-view="browse">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
                     <span class="lbl">Browse</span>
                   </a></li>
-                  <li><a href="#/add" class="ri" data-view="add">
+                  <li data-bottom-bar><a href="#/add" class="ri" data-view="add">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
                     <span class="lbl">Add comics</span>
                   </a></li>
@@ -1257,8 +1257,8 @@
             </div>
             <fieldset id="list-enjoyment" class="completion-enjoyment" hidden>
               <legend class="visually-hidden">Enjoyment</legend>
-              <button type="button" id="btn-enjoyed-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Enjoyed" aria-label="Enjoyed" aria-pressed="false"><span id="enjoyed-list-content"></span></button>
-              <button type="button" id="btn-disliked-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Did not enjoy" aria-label="Did not enjoy" aria-pressed="false"><span id="disliked-list-content"></span></button>
+              <button type="button" id="btn-enjoyed-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Enjoyed" aria-label="Enjoyed" aria-pressed="false"><span id="enjoyed-list-content"></span><span class="enjoyment-label">Enjoyed</span></button>
+              <button type="button" id="btn-disliked-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Did not enjoy" aria-label="Did not enjoy" aria-pressed="false"><span id="disliked-list-content"></span><span class="enjoyment-label">Did not enjoy</span></button>
             </fieldset>
             <section id="list-recommendations" class="completion-recommendations" hidden aria-labelledby="list-recommendations-h">
               <h3 id="list-recommendations-h">What to read next</h3>
@@ -1401,6 +1401,18 @@
       <p><a id="list-feedback-link" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open feedback form</a></p>
       <p>Do not include notes, backups, reading progress or personal details. For a security or private data-loss concern, follow the <a id="list-private-feedback-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">private reporting policy</a> instead.</p>
       <button type="button" id="list-feedback-close" class="btn btn-g">Close</button>
+    </dialog>
+    <!--
+      More on a narrow screen. The rail's panel moves in while the sheet is open, so its links and
+      status keep one source, and the destinations the bottom bar already shows are hidden here
+      rather than listed twice. After the shared dialogs: Android Back closes the first open dialog,
+      so a question opened over this sheet closes before it does.
+    -->
+    <dialog id="more-sheet" class="more-sheet" aria-labelledby="more-sheet-h">
+      <div class="more-sheet-head">
+        <h2 id="more-sheet-h">More</h2>
+        <button type="button" class="btn btn-g" id="more-sheet-close">Close</button>
+      </div>
     </dialog>
     <script type="module" src="./js/app.js"></script>
   </body>
