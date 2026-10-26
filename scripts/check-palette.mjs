@@ -23,6 +23,14 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const BODY = 4.5;
 export const LARGE = 3;
 
+// The three Discover More cards that #872 gave a channel of their own, by the name of the surface
+// each is measured on, which is that channel's tint over the card.
+export const CATEGORY_CARDS = [
+  ['the MCU Prep card', '--azure-line'],
+  ['the Marvel Ages card', '--magenta-line'],
+  ['the Reading paths card', '--green-line'],
+];
+
 // Foreground, background, floor, and where it is rendered. The last field is the reason the pair
 // is here at all, so a reviewer can check the claim rather than trust the list.
 //
@@ -113,8 +121,8 @@ export const PAIRS = [
   // own fixed palette, leaving this pair to describe the skip link alone.
   //
   // The accent bar is deliberately not on that entry. `.ri[aria-current]`
-  // sets its own background at `src/styles.css:473`, a tint over the rail, and the bar at
-  // `src/styles.css:477` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
+  // sets its own background at `src/styles.css:487`, a tint over the rail, and the bar at
+  // `src/styles.css:491` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
   // 5.35. Putting it on `--rail` with the other two would have read 4.09 and 6.37, overstating it
   // by 0.65 in the dark theme and 1.02 in the light one, which is the mistake hit testing was for.
   ['--accent', '--rail', LARGE, 'the skip link when focused on the rail'],
@@ -127,7 +135,16 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2064`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2081`'],
+
+  // #872. Each Discover More card draws its icon from the channel its own tint is made of, so the icon
+  // is measured on that tint at rest and on hover, the two surfaces it is ever drawn on. Its 3:1 is a
+  // request rather than a WCAG duty, since the icon is hidden from assistive technology and the card
+  // names itself, but it is the floor the icons were chosen against and nothing else would hold it.
+  ...CATEGORY_CARDS.flatMap(([card, channel]) => [
+    [channel, card, LARGE, `the icon on ${card}`],
+    [channel, `${card} on hover`, LARGE, `the icon on ${card} while it is pointed at`],
+  ]),
 ];
 
 export const STANDALONE_PAIRS = [
@@ -168,13 +185,13 @@ export const SURFACES = {
     // 228 in blue. The ghost button below already carries the same correction.
     fraction: 20 / 255,
     on: '--rail',
-    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:473`',
+    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:487`',
   },
   'the unreadable-data banner': {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2040`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2057`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -184,8 +201,16 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:875`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:889`',
   },
+  // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
+  // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
+  // card at rest (`src/styles.css:1807-1809`) and 19% over the raised card on hover
+  // (`src/styles.css:1824-1826`).
+  ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
+    [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
+    [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
+  ])),
 };
 
 export function parseHex(hex) {
@@ -648,9 +673,10 @@ export function check(css, selector, themeName) {
       findings.push({ themeName, fgName, bgName, message: `${fgName} is not defined for the ${themeName} theme` });
       continue;
     }
-    const fg = parseHex(fgRaw);
+    // A channel triple is a colour as well, and the category cards paint their icons straight from one.
+    const fg = parseColour(fgRaw);
     if (!fg) {
-      findings.push({ themeName, fgName, bgName, message: `${fgName} is not a plain hex colour, so it cannot be measured` });
+      findings.push({ themeName, fgName, bgName, message: `${fgName} is neither a hex colour nor an r g b triple, so it cannot be measured` });
       continue;
     }
     const bgResult = background(bgName, tokens);

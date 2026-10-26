@@ -147,6 +147,14 @@
   --amber: #eab654;
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
+  /* Channels for the Discover More cards (#872), one hue each beside the top row's purple, amber and
+     teal: MCU Prep azure, Marvel Ages magenta and Reading paths green. Unlike those three they are set
+     per theme, because one value has to be a dim mid-tone to clear 3:1 on both themes' cards, and the
+     brand purple's shared channel measures 2.79:1 on this card's hover tint. Here they sit at teal's
+     and amber's lightness in OKLCH; the light theme's are dark enough for 3.77:1 on its hover tint. */
+  --azure-line: 115 183 247;
+  --magenta-line: 249 131 195;
+  --green-line: 132 215 101;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
      `src/js/main.js:758-765`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
@@ -190,6 +198,9 @@
   --amber: #6d4e08;
   --blue: #17509c;
   --logo-fill: #0878e8;
+  --azure-line: 31 108 176;
+  --magenta-line: 189 36 123;
+  --green-line: 59 123 31;
   --fallback-a: 34% 82%;
   --fallback-b: 30% 72%;
   --fallback-fg: 55% 22%;
@@ -224,6 +235,9 @@
     --amber: #6d4e08;
     --blue: #17509c;
     --logo-fill: #0878e8;
+    --azure-line: 31 108 176;
+    --magenta-line: 189 36 123;
+    --green-line: 59 123 31;
     --fallback-a: 34% 82%;
     --fallback-b: 30% 72%;
     --fallback-fg: 55% 22%;
@@ -1802,6 +1816,9 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .home-path[data-category="storylines"] { --home-path-line: var(--amber-line); }
 .home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); }
+.home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
+.home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
+.home-path[data-category="reading-paths"] { --home-path-line: var(--green-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:

@@ -6,10 +6,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme } from '../src/js/lib/theme.js';
+import { HOME_CATEGORIES } from '../src/js/lib/catalog.js';
 import {
   PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
   tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
-  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences,
+  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS,
 } from '../scripts/check-palette.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -336,6 +337,57 @@ test('every declared surface is one a pair actually renders on', () => {
   for (const name of Object.keys(SURFACES)) {
     assert.ok(PAIRS.some(([, bg]) => bg === name), `${name} is declared but no pair is rendered on it`);
   }
+});
+
+test('the six category cards on Home take six different hues in every theme', () => {
+  // #872: MCU Prep, Marvel Ages and Reading paths all wore the brand purple of Modern Timeline. Hues
+  // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Six
+  // hues spread round the wheel would sit 60 degrees apart, and 30 is half of that.
+  const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{ --home-path-line: var\((--[\w-]+)\); \}/g)]
+    .map(([, key, token]) => [key, token]));
+  const fallback = css.match(/\.home-path \{\s*--home-path-line: var\((--[\w-]+)\);/)[1];
+  const hue = ([r, g, b]) => {
+    const [lr, lg, lb] = [r, g, b].map((v) => {
+      const c = v / 255;
+      return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+    });
+    const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+    const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+    const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+    const a = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s;
+    const bAxis = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
+    return (Math.atan2(bAxis, a) * 180 / Math.PI + 360) % 360;
+  };
+  assert.equal(HOME_CATEGORIES.length, 6);
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    const cards = HOME_CATEGORIES.map(({ key }) => {
+      const token = channel.get(key) ?? fallback;
+      const colour = parseColour(tokens.get(token) ?? '');
+      assert.ok(colour, `${key} takes ${token}, which is not a colour in ${selector}`);
+      return { key, token, hue: hue(colour) };
+    });
+    for (const [index, first] of cards.entries()) {
+      for (const second of cards.slice(index + 1)) {
+        const apart = Math.abs(first.hue - second.hue);
+        assert.ok(Math.min(apart, 360 - apart) >= 30,
+          `${first.key} and ${second.key} are ${Math.min(apart, 360 - apart).toFixed(0)} degrees apart in ${selector}`);
+      }
+    }
+  }
+});
+
+test('each Discover More card is measured on its own tint, so its channel cannot dim unnoticed', () => {
+  for (const [card, channel] of CATEGORY_CARDS) {
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === card && floor === 3), `${card} at rest`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === `${card} on hover` && floor === 3), `${card} on hover`);
+  }
+  // A channel triple is read as a colour rather than skipped: dimming one toward its card is a finding.
+  const declaration = '--azure-line: 115 183 247;';
+  assert.ok(css.includes(declaration), 'the dark azure channel moved; this fixture needs its new value');
+  const dimmed = unresolved(css.replace(declaration, '--azure-line: 52 64 92;')).fresh;
+  assert.deepEqual(dimmed.map(({ themeName, fgName, bgName }) => `${themeName}:${fgName}:${bgName}`),
+    ['dark:--azure-line:the MCU Prep card', 'dark:--azure-line:the MCU Prep card on hover']);
 });
 
 test('the recovery banner gives its two actions different weights, and gates the one it quietened', () => {

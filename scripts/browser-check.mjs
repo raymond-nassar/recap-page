@@ -3752,6 +3752,51 @@ const SCENARIOS = [
           && text === '6 ways to read available.'),
         JSON.stringify(context.statuses));
 
+      // #872: MCU Prep, Marvel Ages and Reading paths each draw their edge, tint and icon from a hue of
+      // their own, so Home shows six hues and Browse the same six, in both themes. Forced colors keep
+      // one system color for every edge, as before.
+      const accents = () => page.evaluate(() => {
+        const cards = (selector) => [...document.querySelectorAll(selector)].map((card) => ({
+          key: card.dataset.category,
+          edge: getComputedStyle(card, '::before').backgroundColor,
+          icon: getComputedStyle(card.querySelector('.home-path-icon')).color,
+        }));
+        return { home: cards('#view-home .home-path'), browse: cards('#view-browse .home-path') };
+      });
+      const chosenTheme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+      for (const theme of ['dark', 'light']) {
+        await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
+        const { home, browse } = await accents();
+        const purple = home.find(({ key }) => key === 'timeline')?.edge;
+        t.check(`${theme}: the six Home cards show six different hues, each icon in its own card's hue`,
+          home.length === 6 && new Set(home.map(({ edge }) => edge)).size === 6
+          && home.every(({ edge, icon }) => edge === icon),
+          JSON.stringify(home));
+        t.check(`${theme}: MCU Prep, Marvel Ages and Reading paths leave the brand purple to Modern Timeline`,
+          ['marvel-on-screen', 'marvel-ages', 'reading-paths'].every((key) => {
+            const card = home.find((entry) => entry.key === key);
+            return card && card.edge !== purple;
+          }),
+          JSON.stringify({ purple, home }));
+        t.check(`${theme}: Browse shows every category in the same hue as Home`,
+          browse.length === 6
+          && browse.every(({ key, edge }) => home.find((entry) => entry.key === key)?.edge === edge),
+          JSON.stringify(browse));
+      }
+      const forcedClient = await page.createCDPSession();
+      await forcedClient.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+      const forced = await accents();
+      await forcedClient.send('Emulation.setEmulatedMedia', { features: [] });
+      await forcedClient.detach();
+      t.check('forced colors keep one system color for every card edge and every card icon',
+        forced.home.length === 6 && new Set(forced.home.map(({ edge }) => edge)).size === 1
+        && new Set(forced.home.map(({ icon }) => icon)).size === 1,
+        JSON.stringify(forced.home));
+      await page.evaluate((value) => {
+        if (value === null) document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.setAttribute('data-theme', value);
+      }, chosenTheme);
+
       for (const [category, view] of [
         ['timeline', 'catalog'],
         ['storylines', 'lines'],
