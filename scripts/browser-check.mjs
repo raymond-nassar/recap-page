@@ -16288,6 +16288,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
     ['/js/lib/milestones.js', mutation?.rewriteMilestones],
+    ['/js/lib/theme.js', mutation?.rewriteTheme],
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
@@ -19683,6 +19684,9 @@ MUTATIONS.push(...selectionBar.selectionBarMutations);
 const categoryAccents = await import('./browser-category-accents.mjs');
 SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast);
 MUTATIONS.push(...categoryAccents.categoryAccentMutations);
+const themeColor = await import('./browser-theme-color.mjs');
+SCENARIOS.push(themeColor.themeColor);
+MUTATIONS.push(...themeColor.themeColorMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

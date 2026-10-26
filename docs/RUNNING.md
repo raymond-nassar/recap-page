@@ -145,6 +145,7 @@ Browse. Each stop shows matching-list progress, another imported version when ne
 
 Use the install icon in Edge or Chrome's address bar, or **Add to Dock** in Safari.
 Recap Page gets its own window and app icon without changing its storage.
+In Edge and Chrome its title bar follows the **Theme** chosen in Backup & settings.
 
 After a successful first visit, the installed window can open its cached app shell with the server
 stopped. Saved lists and progress remain on this browser. In a curated Reading List preview,
