@@ -18691,7 +18691,52 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   return nativeFailed ? 1 : code;
 }
 
+// #832 item 2 (UX-34). The rules pass runs alone: it is evidence about the shipped screens, not a
+// scenario, so it neither joins the ordinary suite nor takes its arguments.
+async function runAxeMode() {
+  const args = process.argv.slice(2);
+  const option = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) || null;
+  const extra = args.filter((arg) => arg !== '--axe' && !/^--axe-(out|core)=./.test(arg));
+  if (extra.length) {
+    prerequisiteFailure('the rules pass runs on its own.', [`Remove ${extra.join(' ')} and run it again.`]);
+  }
+  const axe = await import('./browser-axe.mjs');
+  const loaded = axe.loadAxe(axe.axeCandidates({ explicit: option('axe-core'), driver: resolveDriver() }));
+  if (loaded.problem === 'missing') {
+    prerequisiteFailure(`axe-core ${axe.AXE_VERSION} was not found.`, [
+      'It is deliberately not a dependency of this repository. Install it beside puppeteer-core:',
+      '',
+      `  npm install --prefix ~/.mrt-scratch --ignore-scripts --save-exact axe-core@${axe.AXE_VERSION}`,
+      '',
+      'or name its axe.min.js, or the directory holding it, with --axe-core=<path>.',
+      ...loaded.tried.map((path) => `  looked for ${path}`),
+    ]);
+  }
+  if (loaded.problem === 'mismatch') {
+    prerequisiteFailure(`${loaded.path} is not the pinned axe-core ${axe.AXE_VERSION}, so it was not run.`, [
+      `Its SHA-256 is ${loaded.sha256}; the pin is ${axe.AXE_SHA256}.`,
+      `Install exactly axe-core@${axe.AXE_VERSION} outside the repository, or update the pin on purpose.`,
+    ]);
+  }
+  const out = axe.axeOutput(option('axe-out'));
+  if (out.problem === 'inside') {
+    prerequisiteFailure(`${out.path} is inside the repository.`, ['Choose an evidence directory outside the tree.']);
+  }
+  if (out.problem === 'exists') {
+    prerequisiteFailure(`${out.path} already holds a rules-pass report.`, ['Choose a fresh directory; evidence is never overwritten.']);
+  }
+  return withStack(({ browser, origin }) => {
+    console.log(`origin  ${origin}  (an ephemeral port, so the reading progress saved at :8787 is untouched)`);
+    console.log(`axe-core ${axe.AXE_VERSION} from ${loaded.path}`);
+    return axe.axePass({ browser, origin, axe: loaded, out: out.path, coverPixel: COVER_PIXEL });
+  });
+}
+
 async function main() {
+  if (process.argv.includes('--axe')) {
+    process.exitCode = await runAxeMode();
+    return;
+  }
   if (process.argv.some((arg) => arg.startsWith('--diagnostic'))) {
     const mode = process.argv[2]?.slice('--diagnostic='.length);
     if (process.argv.slice(2).length !== 1

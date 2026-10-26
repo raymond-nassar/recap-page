@@ -243,6 +243,36 @@ fixed feedback, saved-rating and navigation operations without snapshots or priv
 The completion check waits for the final enjoyment save to settle before changing its hash.
 This route uploads no artifacts and cannot replace full-suite or release qualification.
 
+### Record the accessibility rules pass
+
+The rules pass injects axe-core into the app's own screens and records what it reports. Install
+axe-core beside `puppeteer-core`, outside this repository, at the exact version the harness pins:
+
+```text
+npm install --prefix C:\path\to\scratch-directory --ignore-scripts --save-exact axe-core@4.14.0
+```
+
+It looks in the `node_modules` directory that holds the driver it found, so the same
+`MRT_PUPPETEER` setting finds both. Run it on its own:
+
+```text
+npm run browser -- --axe
+```
+
+It opens 11 screens: first-run Home, and ten more with a House of M Reading List saved and three
+of its comics read. Each opens in light, dark and forced colors at 1280x900, with reduced motion,
+cover art on and every cover answered by a local stand-in image, on an ephemeral port. It runs
+axe's rules for WCAG 2.0, 2.1 and 2.2 levels A and AA, then writes `axe-report.json` and
+`axe-summary.md`, which reports by route and theme. Add `--axe-out=<directory>` to choose a new
+directory outside the repository, or `--axe-core=<path>` to use an axe-core installed elsewhere.
+
+The pass records findings and never fails on them. The pull request that records it maps each
+violation to the Issue that tracks it. It exits nonzero only when it cannot produce the record, and
+before opening Edge it refuses an `axe.min.js` whose SHA-256 differs from the pin. To adopt a newer
+axe-core, check its registry tarball against the published integrity, then change the version and
+SHA-256 in `scripts/browser-axe.mjs`. The one-off axe results in `docs/ux-artifacts/` remain
+historical evidence.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
