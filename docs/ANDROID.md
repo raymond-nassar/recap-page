@@ -422,6 +422,11 @@ npm run anchors
 persistence, export completion/cancellation, themes and dialog Back behavior. Its native-message
 transport is a test double, not an Android runtime.
 
+At each of its sizes, every mode first checks the navigation control and the brand mark, and Home's
+masthead where the mode starts on Home. A mode whose fixture saves an active Reading List starts on
+that list, because the app resumes one at launch, so it checks instead that resuming the list is the
+only reason Home is hidden.
+
 `npm run android:browser -- --only=launcher --viewport=412x915` checks the generated launcher's
 empty-result, invalid-identifier and offline explanations, browser escape, safe title rendering
 and unchanged reading state. After a failed lookup, the only other visible link must be the
