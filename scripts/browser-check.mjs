@@ -19677,6 +19677,9 @@ MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
+const categoryAccents = await import('./browser-category-accents.mjs');
+SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast);
+MUTATIONS.push(...categoryAccents.categoryAccentMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

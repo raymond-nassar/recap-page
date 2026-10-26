@@ -19,6 +19,8 @@ import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
+import { ERA_TILES } from './check-palette.mjs';
+import { TILE_PARTS, tileContrast } from './lib/painted-contrast.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
   parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
@@ -1364,6 +1366,46 @@ async function marvelAgesTouchTarget(page, label, viewport) {
   console.log(`CHECKED ${label}: Marvel Ages browse-all ${JSON.stringify(result)}`);
 }
 
+// #875: every era tile the bundled catalog shows wears its own era's accent, and its eyebrow, count and
+// icon keep their floors on the wash painted behind them, at rest and pointed at, in both themes.
+async function eraTileAccents(page, label) {
+  await route(page, 'marvel-ages');
+  const selector = '.marvel-ages-group .home-path';
+  await page.waitForSelector(selector, { visible: true });
+  const { earlier, modernChildren } = publishingAgeGroups(catalogEntries(catalog.lists));
+  const expected = [...earlier, ...modernChildren].map(({ key }) => key);
+  const chosen = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+  for (const theme of ['dark', 'light']) {
+    await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
+    const tiles = await page.$$eval(selector, (nodes, eras) => nodes.map((tile) => {
+      const token = eras.find(([key]) => key === tile.dataset.category)?.[2];
+      const channel = token ? getComputedStyle(document.documentElement).getPropertyValue(token).trim() : '';
+      return {
+        key: tile.dataset.category, accent: channel ? `rgb(${channel.split(/\s+/).join(', ')})` : null,
+        edge: getComputedStyle(tile, '::before').backgroundColor,
+        icon: getComputedStyle(tile.querySelector('.home-path-icon')).color,
+      };
+    }), ERA_TILES);
+    check(JSON.stringify(tiles.map(({ key }) => key)) === JSON.stringify(expected)
+      && tiles.every(({ accent, edge, icon }) => accent && edge === accent && icon === accent)
+      && new Set(tiles.map(({ edge }) => edge)).size === tiles.length,
+    `${label} ${theme}: each era tile wears its own era's accent as edge and icon ${JSON.stringify(tiles)}`);
+    for (const hover of [false, true]) {
+      const rows = await tileContrast(page, selector, { hover });
+      const low = rows.filter((row) => row.ratio < row.floor || row.pointed !== hover);
+      check(rows.length === expected.length * TILE_PARTS.length && low.length === 0,
+        `${label} ${theme}${hover ? ' pointed at' : ''}: era eyebrows and counts clear 4.5:1 and icons 3:1 on the painted wash ${JSON.stringify(low)}`);
+    }
+    await page.$eval('#marvel-ages-earlier', (node) => node.scrollIntoView({ block: 'start' }));
+    await screenshot(page, `${label} ${theme}`, 'era-tiles');
+  }
+  await page.evaluate((value) => {
+    if (value === null) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', value);
+  }, chosen);
+  console.log(`CHECKED ${label}: ${expected.length} era tiles, accents and painted contrast in dark and light`);
+}
+
 async function categoryLabelReadability(page, label, viewport) {
   // Home counts each reading since 2026-10-03, as the app's own categoriesForCatalog does.
   const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES,
@@ -1507,6 +1549,21 @@ async function categoryLabelReadability(page, label, viewport) {
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
     console.log(`CHECKED ${label} ${view}: ${result.cards.length} categories, ${result.cards.reduce((n, card) => n + card.words.length, 0)} words; Publication ${JSON.stringify(result.cards.find((card) => card.key === 'marvel-ages'))}`);
+    // #875: each card's eyebrow and count against the wash painted behind them, at rest and pointed at.
+    const chosen = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
+      for (const hover of [false, true]) {
+        const rows = await tileContrast(page, `#view-${view} .home-path`, { hover, parts: TILE_PARTS.filter(([part]) => part !== 'icon') });
+        const low = rows.filter((row) => row.ratio < row.floor || row.pointed !== hover);
+        check(rows.length === categories.length * 2 && low.length === 0,
+          `${label} ${view} ${theme}${hover ? ' pointed at' : ''}: every eyebrow and count clears 4.5:1 on the painted wash ${JSON.stringify(low)}`);
+      }
+    }
+    await page.evaluate((value) => {
+      if (value === null) document.documentElement.removeAttribute('data-theme');
+      else document.documentElement.setAttribute('data-theme', value);
+    }, chosen);
   }
   if (viewport.width === 360 && scale === 2) {
     for (const category of categories) {
@@ -3612,6 +3669,7 @@ try {
     { width: 320, height: 740, textScale: 1.5 },
     { width: 360, height: 800, textScale: 1.5 },
     { width: 412, height: 915, textScale: 1.5 },
+    { width: 360, height: 800, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
   ];
   if (catalogReadability) viewports = placeholderAx
@@ -3968,6 +4026,7 @@ try {
     }
     if (marvelAgesTarget) {
       await marvelAgesTouchTarget(page, label, viewport);
+      await eraTileAccents(page, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
