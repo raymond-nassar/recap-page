@@ -261,8 +261,8 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         await findOnShelf();
         await page.waitForSelector(selector);
         t.check(`Home exposes the accepted card once at ${width}px`, await page.$$eval(selector, (nodes) => nodes.length) === 1);
-        await click(page, '.ri[data-view="browse"]');
-        await click(page, `#view-browse [data-category="${category}"]`);
+        await click(page, '.brand[data-view="home"]');
+        await click(page, `#view-home [data-category="${category}"]`);
         await findOnShelf();
         await page.waitForSelector(selector);
         const cardFacts = await page.$eval(selector, (node, url) => ({

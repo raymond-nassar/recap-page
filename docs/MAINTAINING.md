@@ -260,7 +260,7 @@ It looks in the `node_modules` directory that holds the driver it found, so the 
 npm run browser -- --axe
 ```
 
-It opens 11 screens: first-run Home, and ten more with a House of M Reading List saved and three
+It opens 10 screens: first-run Home, and nine more with a House of M Reading List saved and three
 of its comics read. Each opens in light, dark and forced colors at 1280x900, with reduced motion,
 cover art on and every cover answered by a local stand-in image, on an ephemeral port. It runs
 axe's rules for WCAG 2.0, 2.1 and 2.2 levels A and AA, then writes `axe-report.json` and
@@ -732,7 +732,7 @@ the reading and story counts under All, Best of, and Complete guides, and confir
 only in the subsets named by its authored `spotlightKind`.
 
 For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selected`,
-`timeline` as `null`, and `beginner` as `false`. Confirm the shared Home and Browse gateways expose
+`timeline` as `null`, and `beginner` as `false`. Confirm Home's category gateway exposes
 MCU Prep only when populated, and that its generated child page contains every selected card
 once at desktop and narrow widths. The page groups guides by screen-release phase and defaults
 to oldest release first; newest first reverses that order, with unassigned guides always last.

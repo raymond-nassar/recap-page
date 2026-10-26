@@ -93,8 +93,8 @@ export const mcuPrepShangChiActualData = {
       await page.reload({ waitUntil: 'load' });
       await page.waitForSelector('#btn-home-browse');
       await page.$eval('#btn-home-browse', (node) => node.click());
-      await page.waitForSelector('#view-browse [data-category="marvel-on-screen"]');
-      await page.$eval('#view-browse [data-category="marvel-on-screen"]', (node) => node.click());
+      await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
+      await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
       const selector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       await page.waitForSelector(selector);
       const discovery = await page.$eval(selector, (node) => ({
@@ -164,10 +164,10 @@ export const mcuPrepShangChiActualData = {
       await page.$eval('.brand[data-view="home"]', (node) => node.click());
       await page.waitForSelector('#btn-home-browse');
       await page.$eval('#btn-home-browse', (node) => node.click());
-      await page.waitForSelector('#view-browse [data-category="marvel-on-screen"]');
-      await page.$eval('#view-browse [data-category="marvel-on-screen"]', (node) => node.click());
+      await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
+      await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
       await page.waitForSelector(`${selector} [data-act="open"]`);
-      t.check(`${width}px Browse returns to the saved companion without duplicate import`,
+      t.check(`${width}px the MCU Prep card returns to the saved companion without duplicate import`,
         await page.$$eval(selector, (nodes) => nodes.length) === 1);
     }
     t.check('the isolated desktop and narrow journey makes no external request or browser error',

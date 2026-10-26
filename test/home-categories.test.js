@@ -181,7 +181,7 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
   assert.doesNotMatch(source, /How do you want to read\?/);
 });
 
-test('empty Home creates one labelled first-run region without changing Browse', () => {
+test('empty Home creates one labelled first-run region', () => {
   const start = homeSource.indexOf('function ensureFirstRun');
   const body = homeSource.slice(start, homeSource.indexOf('function renderContinue', start));
   assert.notEqual(start, -1, 'the first-run region builder is missing');
@@ -190,7 +190,6 @@ test('empty Home creates one labelled first-run region without changing Browse',
   assert.match(body, /Browse curated Reading Lists\. Add individual issues or your own list\./);
   assert.doesNotMatch(body, /home-recommended|Preview this Reading List|Setup to Modern Timeline/);
   assert.match(body, /current\.categoriesRoot\.prepend\(section\)/);
-  assert.doesNotMatch(markup.slice(markup.indexOf('id="view-browse"')), /home-first-run/);
 });
 
 test('first-run guidance follows the same local populated state as Home', () => {
@@ -209,25 +208,24 @@ test('Home leaves Setup recommendations and Preview actions to the browse pages'
   assert.doesNotMatch(body, /recommendationButton|recommendedList:|openPreview:/);
 });
 
-test('Home and Browse use concise action headings for both discovery tiers', () => {
+test('Home uses concise action headings for both discovery tiers', () => {
   assert.match(markup, /id="home-cat-h"[^>]*>Explore<\/h2>/);
   assert.match(markup, /id="home-more-h">Discover More<\/h3>/);
-  assert.match(markup, /id="browse-cat-h"[^>]*>Explore<\/h2>/);
-  assert.match(markup, /id="browse-more-h">Discover More<\/h3>/);
+  assert.doesNotMatch(markup, /id="browse-(?:cat|more)-h"/, 'Browse returned with a second copy of the headings');
   assert.doesNotMatch(markup, />Ways to read<|>More ways to read</);
 });
 
-test('Home and Browse use the same category renderer', () => {
+test('Home holds the one category gateway, painted by the shared renderer', () => {
   assert.equal(
     [...markup.matchAll(/data-category-gateway/g)].length,
-    2,
-    'Home and Browse must each expose one category gateway',
+    1,
+    'Home must expose the one category gateway, which Browse used to repeat',
   );
-  assert.match(markup, /id="view-browse"[\s\S]*?data-category-gateway/);
+  assert.match(markup, /id="view-home"[\s\S]*?data-category-gateway/);
   assert.match(
     homeSource,
     /async function renderGateways\(\)[\s\S]*for \(const gateway of nodes\.gateways\)/,
-    'the renderer no longer paints both injected category gateways',
+    'the renderer no longer paints the injected category gateway',
   );
   assert.match(mainSource, /gateways: \[\.\.\.document\.querySelectorAll\('\[data-category-gateway\]'\)\]/);
   assert.doesNotMatch(source, /function renderBrowseCategories/);
@@ -254,15 +252,15 @@ test('the shared path entry uses resolved path availability and an explicit path
   );
   assert.match(mainSource, /availableHomeCategories\([\s\S]*catalogEntries\(catalog\.lists\)[\s\S]*resolveReadingPaths\(catalog\.paths, catalog\.lists\)/);
   assert.match(homeSource, /category\.singular \?\? 'Reading List'/);
-  assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 2);
+  assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 1);
 });
 
 test('asynchronous category results expose concise polite status updates', () => {
   const gatewayStatuses = [...markup.matchAll(/<p[^>]*data-paths-status[^>]*>/g)];
-  assert.equal(gatewayStatuses.length, 2, 'Home and Browse must each expose a loading status');
+  assert.equal(gatewayStatuses.length, 1, 'Home must expose one loading status for its one gateway');
   assert.ok(
     gatewayStatuses.every(([status]) => /role="status"/.test(status)),
-    'Home and Browse loading results are not polite live statuses',
+    'Home loading results are not polite live statuses',
   );
   assert.match(
     homeSource,

@@ -1,4 +1,4 @@
-export function wireMobileUi() {
+export function wireMobileUi({ arrivalHeading }) {
   const root = document.documentElement;
   const narrow = window.matchMedia('(max-width: 880px)');
   document.addEventListener('pointerdown', () => root.classList.remove('android-keyboard'), true);
@@ -122,7 +122,7 @@ export function wireMobileUi() {
     if (view.hidden || body.hidden) dismiss();
   });
   for (const node of [view, body]) observer.observe(node, { attributes: true, attributeFilter: ['hidden'] });
-  wireSpotlightUi(narrow);
+  wireSpotlightUi(narrow, arrivalHeading);
   wireDoneBar();
   root.classList.add('android-mobile-ui');
 }
@@ -169,7 +169,7 @@ function wireDoneBar() {
   watch();
 }
 
-function wireSpotlightUi(narrow) {
+function wireSpotlightUi(narrow, arrivalHeading) {
   const root = document.documentElement;
   const view = document.querySelector('#view-spotlights');
   const controls = view.querySelector('.spotlight-controls');
@@ -277,9 +277,10 @@ function wireSpotlightUi(narrow) {
     if (!view.hidden || !sheet.open) return;
     dismiss({ returnFocus: false });
     const destination = document.querySelector('.view:not([hidden])');
-    // showView may have tried to focus the destination while the modal made it inert.
+    // showView may have tried to focus the destination while the modal made it inert. It chose the
+    // page's title, or for Home at its category cards their heading, so this takes the same (#831).
     if (destination && !destination.contains(document.activeElement)) {
-      const heading = destination.querySelector('h1');
+      const heading = arrivalHeading();
       if (heading) {
         heading.tabIndex = -1;
         heading.focus({ preventScroll: true });

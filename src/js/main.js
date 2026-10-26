@@ -39,7 +39,7 @@ import { lookupIssue } from './lib/wiki.js';
 import { DEFAULT_FILTER } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme, applyThemeMeta } from './lib/theme.js';
 import {
-  ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
+  ADD_VIEWS, VIEWS, HOME_CARDS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
@@ -196,6 +196,8 @@ globalThis.addEventListener?.('storage', dispatchStorageEvent);
 let view = 'read';
 let issueRoute = null;
 let issueSynopsisId = null;
+// Set while Home is open at its category cards, the place Browse's old address names (#831).
+let homeAt = null;
 
 // ------------------------------------------------------------------ unreadable-data recovery
 
@@ -1144,6 +1146,27 @@ function wireMobileNavigation() {
     distance = 0;
     paint();
   };
+  // #831: two rows of two when one row cannot hold every label whole, as at 200% text on a 320 or
+  // 360px phone. Labels are measured in bold and against the one-row cell, so neither the current page
+  // nor the choice itself changes the answer, and the bar cannot flip back and forth.
+  const fitLabels = () => {
+    const items = [...header.children].filter((item) => item.getClientRects().length);
+    header.classList.add('bar-measuring');
+    const widest = Math.max(0, ...items.map((item) => {
+      const label = item.querySelector(':scope > span');
+      if (!label?.getClientRects().length) return 0;
+      const style = getComputedStyle(item);
+      return label.getBoundingClientRect().width + parseFloat(style.paddingLeft) + parseFloat(style.paddingRight)
+        + parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+    }));
+    header.classList.remove('bar-measuring');
+    const style = getComputedStyle(header);
+    const gap = parseFloat(style.columnGap) || 0;
+    const cell = (header.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
+      - gap * (items.length - 1)) / items.length;
+    header.classList.toggle('bar-two-rows', isNarrow && widest > cell + 0.5);
+  };
+  let fitFrame = null;
   const onScroll = () => {
     frame = null;
     const y = Math.max(0, window.scrollY);
@@ -1165,7 +1188,12 @@ function wireMobileNavigation() {
   )));
   window.visualViewport?.addEventListener('resize', revealMobileNavigation);
   window.visualViewport?.addEventListener('scroll', revealMobileNavigation);
-  new ResizeObserver(() => paint(header.classList.contains('mobile-nav-hidden'))).observe(header);
+  // The fit waits a frame, as changing the bar inside its own observer is a loop. Labels are watched too: in two rows they can shrink while the bar keeps its size.
+  const observer = new ResizeObserver(() => {
+    if (fitFrame === null) fitFrame = requestAnimationFrame(() => { fitFrame = null; fitLabels(); });
+    paint(header.classList.contains('mobile-nav-hidden'));
+  }); [header, ...header.querySelectorAll(':scope > * > span')].forEach((node) => observer.observe(node));
+  fitLabels();
   revealMobileNavigation();
 }
 
@@ -1188,10 +1216,10 @@ function wireAppTooltips() {
 // Extracted so a control created after boot can navigate the same way a rail button does.
 // wireNav only ever runs once, over the markup present at load, so an empty-state button built
 // during a render would carry data-view and do nothing at all.
-function navigateTo(view) {
+function navigateTo(view, at = null) {
   // A click on the rail is the archetypal navigation, so this is the one that has to leave a
   // history entry for Back to come back to.
-  showView(view, { push: true });
+  showView(view, { push: true, at });
 }
 
 function issueFocusHref(issueId, context = null) {
@@ -1259,7 +1287,7 @@ function wireNav() {
       // Every link to the ratings browser is labelled and addressed as the unfiltered list, so it
       // must not reopen whatever filters the reader last committed there.
       if (btn.dataset.view === 'library-rated') ratedView.setCommitted({});
-      navigateTo(btn.dataset.view);
+      navigateTo(btn.dataset.view, btn.dataset.at ?? null);
     });
   }
 
@@ -1329,7 +1357,7 @@ function syncHash({ push = false } = {}) {
         listId: activeListId(),
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null,
+        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null, at: homeAt,
       });
   if (!next || next === location.hash) return;
 
@@ -1424,7 +1452,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       readingView.setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
-    showView(route.view, { focus });
+    showView(route.view, { focus, at: route.at ?? null });
     if (route.view === 'reading-paths') {
       void readingPathsView.render({ opener: focus ? history.state?.readingPathOpener : null })
         .then((pathId) => {
@@ -1440,7 +1468,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
-function showView(next, { focus = true, push = false } = {}) {
+function showView(next, { focus = true, push = false, at = null } = {}) {
   retireReaderHelp(); readingView.retireDoneResult();
   previewView.invalidate();
   tooltips?.dismiss();
@@ -1466,6 +1494,7 @@ function showView(next, { focus = true, push = false } = {}) {
   setNarrowOpen(false, { rescueFocus: !focus });
 
   if (next !== 'home') homeUpdatesView.close({ restoreFocus: false });
+  homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
   addView.enter(next);
   for (const name of VIEWS) {
@@ -1478,7 +1507,7 @@ function showView(next, { focus = true, push = false } = {}) {
     else btn.removeAttribute('aria-current');
   }
   const brand = $('.brand[data-view="home"]');
-  if (next === 'home') brand.setAttribute('aria-current', 'page');
+  if (parent === 'home') brand.setAttribute('aria-current', 'page');
   else brand.removeAttribute('aria-current');
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
@@ -1487,7 +1516,6 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
   if (next === 'library-rated') ratedView.renderBrowser();
-  if (next === 'browse') void homeView.renderGateways();
   if (next === 'read') readingView.renderHero();
   completionView.render();
   readingView.renderReview();
@@ -1499,7 +1527,8 @@ function showView(next, { focus = true, push = false } = {}) {
   // Erasing everything is a fourth, and the one arrival cannot cover, because it happens on this
   // screen rather than before reaching it, so that route repaints at its own call site.
   if (next === 'data') recoveryView.renderSalvage();
-  window.scrollTo({ top: 0 });
+  if (homeAt) $('#home-categories').scrollIntoView({ block: 'start' });
+  else window.scrollTo({ top: 0 });
   revealMobileNavigation();
   // After the scroll to the top, so that bringing a message into view is not undone. Which pane
   // each outstanding notice belongs in has just changed, because a different view is showing.
@@ -1509,7 +1538,7 @@ function showView(next, { focus = true, push = false } = {}) {
   syncHash({ push });
 
   if (!focus) return;
-  focusViewHeading(next);
+  focusViewHeading(next, arrivalHeading()?.id);
 }
 
 function renderBreadcrumbs() {
@@ -1559,8 +1588,8 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)
-    || generatedCategoryByRoute.has(next)) return 'browse';
+  if (next === 'home' || HOME_CATEGORIES.some(({ route }) => route === next)
+    || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
   return next;
@@ -1569,9 +1598,9 @@ function railParentView(next) {
 // Where a view puts the reader when it arrives. Separate because dismissing a notice destroys the
 // button that had focus without navigating anywhere, and the honest landing for that is the same
 // heading: it names the screen the reader is on and sits above everything they can do next.
-function focusViewHeading(name) {
+function focusViewHeading(name, headingId = null) {
   const section = $(`#view-${name}`);
-  const heading = section && document.getElementById(section.getAttribute('aria-labelledby'));
+  const heading = section && document.getElementById(headingId ?? section.getAttribute('aria-labelledby'));
   if (!heading) return;
   heading.setAttribute('tabindex', '-1');
   heading.focus({ preventScroll: true });
@@ -3176,11 +3205,11 @@ const homeView = createHomeView({
   listProgress,
   loadCatalog,
   onCatalogDropped: (count) => {
-    const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
+    const report = '#home-cat-report';
     notify(report, `${count} catalog ${count === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
   },
   onCatalogLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
-    report: view === 'browse' ? '#browse-cat-report' : '#home-cat-report',
+    report: '#home-cat-report',
     failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
     key: CATALOG_LOAD,
     subject: 'the catalog',
@@ -3603,4 +3632,12 @@ async function exportReadingOrder() {
   } catch (err) {
     notify('#app-report', `Could not export the reading order: ${err.message}. Your saved reading data is unchanged.`, 'error', 'order-export');
   }
+}
+
+// The heading an arrival at the showing view focuses: the page's own title, except for Home at its
+// category cards, the one arrival that lands part way down a page (#831). The Android sheets take it
+// too, because their modal leaves this focus undone when the address changes beneath them.
+export function arrivalHeading() {
+  const section = $(`#view-${view}`);
+  return section && document.getElementById(homeAt ? 'home-cat-h' : section.getAttribute('aria-labelledby'));
 }

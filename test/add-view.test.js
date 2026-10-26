@@ -513,8 +513,9 @@ test('the Add hub groups five routes with five dedicated pages', () => {
     assert.match(hub, new RegExp(`data-view="${view}"`), `${view} has no Add hub choice`);
   }
   assert.match(html, /class="ri" data-view="add"/, 'the rail has no Add hub entry');
-  assert.match(html, /class="ri" data-view="add"[\s\S]*?<span class="lbl">Add comics<\/span>/);
-  assert.match(hub, /<h1 id="add-h">Add comics<\/h1>/);
+  assert.match(html, /class="ri" data-view="add"[\s\S]*?<span class="lbl">Search<\/span>/);
+  assert.match(html, /class="mobile-link" data-view="add"[\s\S]*?<span>Search<\/span>/, 'the phone bar names Search');
+  assert.match(hub, /<h1 id="add-h">Search<\/h1>/);
 });
 
 test('search uses selection while manual and curated Add labels stay intact', () => {

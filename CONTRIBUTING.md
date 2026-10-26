@@ -104,7 +104,7 @@ not shown.
 
 Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
 and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),
-checked on 2026-10-03. This is an app-wide standard, not a convention limited to Add comics.
+checked on 2026-10-03. This is an app-wide standard, not a convention limited to Search.
 
 ### Controls and transitions
 

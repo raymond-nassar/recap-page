@@ -3,7 +3,7 @@ import { listHistoryIdentity, parseListHistory } from '../lib/listHistory.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
 import { wireFieldValidation } from './shared/field-validation.js';
-import { formatRoute, isPlainNavigation } from '../lib/route.js';
+import { HOME_CARDS, formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -429,7 +429,7 @@ export function createCompletionView({
       radio.addEventListener('change', () => { enjoyed = radio.value === 'enjoyed'; renderCollection(); });
     }
     nodes.recommendationRetry.addEventListener('click', () => { void refreshRecommendations({ force: true }); });
-    nodes.recommendationBrowse.addEventListener('click', () => showView('browse', { push: true }));
+    nodes.recommendationBrowse.addEventListener('click', () => showView('home', { push: true, at: HOME_CARDS }));
     nodes.historyExport.addEventListener('click', () => { void exportHistory(); });
     nodes.historyCopy.addEventListener('click', () => { void exportHistory(true); });
     nodes.historyRetry.addEventListener('click', () => history.load());

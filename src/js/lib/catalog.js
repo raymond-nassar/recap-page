@@ -939,7 +939,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1939 to 1955',
     from: 1939,
     to: 1955,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Timely Comics', 'Human Torch', 'Namor', 'Captain America'],
   },
   {
@@ -950,7 +950,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1956 to 1969',
     from: 1956,
     to: 1969,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Superhero revival', 'Fantastic Four from 1961'],
   },
   {
@@ -961,7 +961,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1970 to 1983',
     from: 1970,
     to: 1983,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Socially conscious stories', 'X-Men expansion', 'Cosmic Marvel', 'Horror', 'Street-level heroes'],
   },
   {
@@ -972,7 +972,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1984 to 1990',
     from: 1984,
     to: 1990,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Darker storytelling', '1980s X-Men boom', 'Venom', 'Early modern Avengers', 'Creator-driven books', 'Road to 1991'],
   },
   {
@@ -983,7 +983,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1991 to present',
     from: 1991,
     to: null,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Early Modern to current'],
   },
   {
@@ -994,7 +994,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1991 to 1997',
     from: 1991,
     to: 1997,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['1990s line expansion'],
   },
   {
@@ -1005,7 +1005,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '1998 to 2003',
     from: 1998,
     to: 2003,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Marvel Knights', 'Heroes Return'],
   },
   {
@@ -1016,7 +1016,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '2004 to 2011',
     from: 2004,
     to: 2011,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Line-wide events'],
   },
   {
@@ -1027,7 +1027,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '2012 to 2014',
     from: 2012,
     to: 2014,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Marvel NOW!'],
   },
   {
@@ -1038,7 +1038,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '2015 to 2017',
     from: 2015,
     to: 2017,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['2015 relaunch'],
   },
   {
@@ -1049,7 +1049,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '2018 to 2020',
     from: 2018,
     to: 2020,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Fresh Start'],
   },
   {
@@ -1060,7 +1060,7 @@ export const PUBLISHING_CATEGORIES = [
     label: '2021 to present',
     from: 2021,
     to: null,
-    icon: 'E736',
+    icon: 'E81C',
     highlights: ['Current publishing era'],
   },
 ];

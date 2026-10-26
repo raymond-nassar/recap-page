@@ -155,10 +155,10 @@ export const ownerNoWayHomeActualData = {
       t.check(`${width}px the original companion wraps without page or card overflow`,
         !discovered.overflow && discovered.cardsFit, JSON.stringify(discovered));
       await goto('browse');
-      const browse = '#view-browse [data-category="marvel-on-screen"]';
+      const browse = '#view-home:not([hidden]) [data-category="marvel-on-screen"]';
       await page.waitForSelector(browse, { visible: true });
       const browseCount = await page.$eval(`${browse} .home-path-count`, (node) => node.textContent.trim());
-      t.check(`${width}px Browse exposes the same MCU Prep count`, browseCount === homeCount, browseCount);
+      t.check(`${width}px the Browse address opens Home's MCU Prep card with the same count`, browseCount === homeCount, browseCount);
       await click(page, browse);
       await page.waitForSelector(card(legacyId));
       await preview(legacyId, legacyExpected, width);

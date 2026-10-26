@@ -118,10 +118,10 @@ export const deadpoolWolverineActualData = {
       t.check(`${label} Home reaches every MCU card once`,
         JSON.stringify([...homeTitles].sort()) === JSON.stringify([...expectedTitles].sort()), JSON.stringify(homeTitles));
 
-      await click(page, '.ri[data-view="browse"]');
-      const browseGateway = '#view-browse [data-category="marvel-on-screen"]';
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      const browseGateway = '#view-home:not([hidden]) [data-category="marvel-on-screen"]';
       await page.waitForSelector(browseGateway, { visible: true });
-      t.check(`${label} Browse exposes the same current-companion gateway`,
+      t.check(`${label} the Browse address opens Home's same current-companion gateway`,
         await page.$eval(browseGateway, (node, count) => node.textContent.includes(`${count} Reading Lists`),
           expectedTitles.length));
       await click(page, browseGateway);

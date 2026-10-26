@@ -9,11 +9,10 @@ names stable destinations. Each hub owns the choices within it.
 
 | Group | Rail item | Behavior |
 |---|---|---|
-| Brand | Home | Opens the category gateway and returning-reader surfaces |
+| Brand | Home | Opens the category gateway and returning-reader surfaces; `#/browse` opens it at the categories |
 | Reading | Continue reading | Appears only when an active Reading List exists |
 | Reading | Library | Opens saved lists and library-wide views |
-| Discover | Browse | Opens every available reading category |
-| Discover | Add comics | Opens the five ways to add comics |
+| Reading | Search | Opens the five ways to find and add comics |
 | App | Backup & settings | Stays pinned at the bottom |
 | App | About this app | Stays pinned at the bottom |
 
@@ -25,9 +24,9 @@ in the rail.
 
 - Home selects the brand with `aria-current="page"` and the same visible selected treatment
   as other destination links. Other routes clear it.
-- Timeline, Storylines, Character spotlights and future category pages select Browse.
-- Search issues, Find a series, Browse a creator, Paste a Reading List and Add by hand select Add
-  comics.
+- Timeline, Storylines, Character spotlights and future category pages select Home, whose cards
+  open them.
+- Search issues, Find a series, Browse a creator, Paste a Reading List and Add by hand select Search.
 - Everything read, Progress by series and Added by hand select Library.
 - The active reading page selects Continue reading.
 
@@ -38,10 +37,10 @@ returns through the actual pages visited.
 
 - Every routed page except Home has one breadcrumb trail above its heading. Home has none.
 - Ancestors are real hash links. The current page is plain text and is never linked to itself.
-- Library children stay under Library, browse categories stay under Browse, publishing periods stay
-  under Marvel Ages, and the five ways to add stay under Add comics.
+- Library children stay under Library, categories stay under Home, whose crumb returns to the
+  category cards, publishing periods stay under Marvel Ages, and the five ways to add stay under Search.
 - A saved Reading List uses its validated name. An issue in a saved list stays under that list. An
-  issue from a bundled Reading List stays under its canonical Browse shelf.
+  issue from a bundled Reading List stays under its canonical category shelf.
 - Stale or unscoped issue context falls back to Home and the resolved issue title rather than
   inventing an origin.
 - Preview and Ask are dialogs rather than routed pages, so neither has breadcrumbs.
@@ -52,13 +51,14 @@ returns through the actual pages visited.
 - The compact desktop rail keeps labels in the accessibility tree and uses tooltips for visible names.
 - `sidebar.collapsed` stores desktop intent only. It changes only on deliberate desktop toggle.
 - Crossing below 1000px auto-compacts desktop presentation; crossing back restores the saved choice.
-- At or below 880px, Home, Library, Browse and Add comics are stable icon/text bottom links.
+- At or below 880px, Home, Library and Search are stable icon/text bottom links beside More, each
+  label one whole line; when one row would cut a label, as at 200% text, the bar takes two rows of two.
   More opens a modal sheet standing on the bar, over More, holding the rail's panel: Continue
   reading, settings, About and status. Destinations the bar already shows are hidden there rather
   than listed twice.
 - Narrow mode starts closed regardless of saved desktop choice.
 - Narrow open and closed state is ephemeral and is never written to storage.
-- Returning to desktop transfers focus from a disappearing Library, Browse or Add comics bottom
+- Returning to desktop transfers focus from a disappearing Library or Search bottom
   link to the rendered desktop link with the same destination. CSS may blur the old link before
   resize handling, so only that pending focus is retained; moving focus elsewhere cancels it.
   This changes neither the current page nor saved data, history or desktop preference.

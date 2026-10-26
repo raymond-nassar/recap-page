@@ -143,8 +143,8 @@ export const braveNewWorldActualData = {
       await page.waitForSelector(card);
       t.check(`Home finds Brave New World exactly once at ${width}px`,
         await page.$$eval(card, (nodes) => nodes.length) === 1);
-      await click(page, '.ri[data-view="browse"]');
-      await click(page, '#view-browse [data-category="marvel-on-screen"]');
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '#view-home [data-category="marvel-on-screen"]');
       await page.waitForSelector(card);
       const facts = await page.$eval(card, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(), text: node.textContent,

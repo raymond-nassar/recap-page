@@ -64,11 +64,15 @@ function between(source, startText, endText) {
   return source.slice(start, end);
 }
 
-test('the rail stays fixed while Library, Browse, and Add own their child pages', () => {
+test('the rail groups Reading and App while Library and Search own their child pages', () => {
   const rail = between(html, '<nav id="sidebar-nav"', '</nav>');
   assert.match(rail, /<h2 id="rail-reading" class="rail-h">Reading<\/h2>/);
   assert.match(rail, /id="list-nav"/, 'the conditional Continue reading slot left the rail');
-  for (const view of ['library', 'browse', 'add', 'data', 'about']) {
+  assert.deepEqual([...rail.matchAll(/class="rail-h">([^<]+)<\/h2>/g)].map(([, name]) => name), ['Reading', 'App']);
+  assert.match(between(rail, 'id="rail-reading"', 'class="nav-group nav-foot"'), /data-view="library"[\s\S]*data-view="add"/,
+    'Search no longer sits in Reading beside Library');
+  assert.doesNotMatch(rail, /data-view="browse"/, 'Browse returned to the rail');
+  for (const view of ['library', 'add', 'data', 'about']) {
     assert.match(rail, new RegExp(`data-view="${view}"`), `${view} is missing from the fixed rail`);
   }
   for (const child of ['library-read', 'progress', 'library-manual', 'catalog', 'lines', 'spotlights', ...['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']]) {

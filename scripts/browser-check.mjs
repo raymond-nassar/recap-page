@@ -643,7 +643,7 @@ const MUTATIONS = [
   {
     id: 'first-run-add-missing',
     breaks: 'home-first-run-wayfinding',
-    why: 'the first-run action no longer reaches the Add comics hub',
+    why: 'the first-run Add comics action no longer reaches Search',
     script: () => {
       addEventListener('load', () => {
         document.querySelector('#btn-home-add')?.remove();
@@ -1120,30 +1120,24 @@ const MUTATIONS = [
   {
     id: 'breadcrumb-wrong-parent',
     breaks: 'breadcrumb-navigation',
-    why: 'an Add comics child is placed under Browse, so the trail no longer states the route hierarchy',
+    why: 'a Search child is placed under Library, so the trail no longer states the route hierarchy',
     rewriteRoute: (source) => source.replace(
-      "return [home, linked('add', 'Add comics'), current(addLabel)];",
-      "return [home, linked('browse', 'Browse'), current(addLabel)];",
+      "return [home, linked('add', 'Search'), current(addLabel)];",
+      "return [home, linked('library', 'Library'), current(addLabel)];",
     ),
   },
   {
     id: 'breadcrumb-on-home',
     breaks: 'breadcrumb-navigation',
     why: 'Home receives a redundant trail even though it has no route ancestors',
-    script: () => {
-      const inject = () => {
-        if (!['', '#', '#/', '#/home'].includes(location.hash)) return;
-        const head = document.querySelector('#view-home > .head');
-        if (!head || document.querySelector('#view-home > .breadcrumb')) return;
-        const nav = document.createElement('nav');
-        nav.className = 'breadcrumb';
-        nav.setAttribute('aria-label', 'Breadcrumb');
-        nav.innerHTML = '<ol><li><span aria-current="page">Home</span></li></ol>';
-        head.before(nav);
-      };
-      addEventListener('load', inject);
-      addEventListener('hashchange', () => queueMicrotask(inject));
-    },
+    // Written into the hierarchy, as the regression would be, so every render of Home draws it. It was
+    // injected at load, which raced the first check: in Edge 155 on 2026-10-26 it was caught at 5be0157f
+    // and missed at 74b5e6dc. Home's own render removes a trail it does not draw, so an injection on
+    // reaching the Browse address was erased before the check could read it (#831).
+    rewriteRoute: (source) => source.replace(
+      "if (!VIEWS.includes(view) || view === 'home') return [];",
+      "if (!VIEWS.includes(view)) return [];\n  if (view === 'home') return [current('Home')];",
+    ),
   },
   {
     id: 'breadcrumb-in-preview',
@@ -1181,7 +1175,7 @@ const MUTATIONS = [
   {
     id: 'add-comics-drift',
     breaks: 'breadcrumb-navigation',
-    why: 'the destination and its hub regress to the ambiguous Add name',
+    why: 'the Search destination and its page regress to the ambiguous Add name',
     script: () => {
       addEventListener('DOMContentLoaded', () => {
         const rail = document.querySelector('.ri[data-view="add"]');
@@ -2168,8 +2162,8 @@ const SCENARIOS = [
       t.check('an outside pointer closes without stealing target focus',
         await page.evaluate(() => !document.querySelector('#home-updates').open && document.activeElement.id === 'btn-chero-open'));
       await click(page, '#home-updates-toggle');
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForSelector('#view-library:not([hidden])');
       t.check('leaving Home closes without pulling focus back into hidden Home',
         await page.evaluate(() => !document.querySelector('#home-updates').open
           && !document.querySelector('#view-home').contains(document.activeElement)));
@@ -3418,11 +3412,11 @@ const SCENARIOS = [
         tip: document.querySelector('#rail-tip')?.textContent.trim(),
         heading: document.querySelector('#add-h')?.textContent.trim(),
       }));
-      t.check('the collapsed destination, tooltip, accessible name and hub all say Add comics',
-        addNaming.label === 'Add comics'
-        && addNaming.tip === 'Add comics'
-        && addNaming.heading === 'Add comics'
-        && addAccessible?.name === 'Add comics',
+      t.check('the collapsed destination, tooltip, accessible name and page all say Search',
+        addNaming.label === 'Search'
+        && addNaming.tip === 'Search'
+        && addNaming.heading === 'Search'
+        && addAccessible?.name === 'Search',
         JSON.stringify({ ...addNaming, accessible: addAccessible?.name }));
       await addButton.dispose();
 
@@ -3431,32 +3425,31 @@ const SCENARIOS = [
         ['progress', ['Home', 'Library', 'Progress by series']],
         ['library-read', ['Home', 'Library', 'Everything read']],
         ['library-manual', ['Home', 'Library', 'Added by hand']],
-        ['browse', ['Home', 'Browse']],
-        ['catalog', ['Home', 'Browse', 'Modern Timeline']],
-        ['lines', ['Home', 'Browse', 'Storylines']],
-        ['spotlights', ['Home', 'Browse', 'Character spotlights']],
-        ['marvel-on-screen', ['Home', 'Browse', 'MCU Prep']],
-        ['marvel-ages', ['Home', 'Browse', 'Marvel Ages']],
-        ['age-golden', ['Home', 'Browse', 'Marvel Ages', 'Golden Age']],
-        ['age-silver', ['Home', 'Browse', 'Marvel Ages', 'Silver Age']],
-        ['age-bronze', ['Home', 'Browse', 'Marvel Ages', 'Bronze Age']],
-        ['age-copper', ['Home', 'Browse', 'Marvel Ages', 'Copper Age']],
-        ['age-modern', ['Home', 'Browse', 'Marvel Ages', 'Modern Age']],
-        ['age-early-modern', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Early Modern']],
-        ['age-marvel-knights-heroes-return', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Marvel Knights / Heroes Return']],
-        ['age-event-era', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Event Era']],
-        ['age-marvel-now', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Marvel NOW!']],
-        ['age-all-new-all-different', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'All-New All-Different']],
-        ['age-fresh-start', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Fresh Start']],
-        ['age-current', ['Home', 'Browse', 'Marvel Ages', 'Modern Age', 'Current era']],
-        ['add', ['Home', 'Add comics']],
-        ['add-series', ['Home', 'Add comics', 'Find a series']],
-        ['add-creator', ['Home', 'Add comics', 'Browse a creator']],
-        ['add-import', ['Home', 'Add comics', 'Paste a Reading List']],
-        ['add-manual', ['Home', 'Add comics', 'Add an issue by hand']],
+        ['catalog', ['Home', 'Modern Timeline']],
+        ['lines', ['Home', 'Storylines']],
+        ['spotlights', ['Home', 'Character spotlights']],
+        ['marvel-on-screen', ['Home', 'MCU Prep']],
+        ['marvel-ages', ['Home', 'Marvel Ages']],
+        ['age-golden', ['Home', 'Marvel Ages', 'Golden Age']],
+        ['age-silver', ['Home', 'Marvel Ages', 'Silver Age']],
+        ['age-bronze', ['Home', 'Marvel Ages', 'Bronze Age']],
+        ['age-copper', ['Home', 'Marvel Ages', 'Copper Age']],
+        ['age-modern', ['Home', 'Marvel Ages', 'Modern Age']],
+        ['age-early-modern', ['Home', 'Marvel Ages', 'Modern Age', 'Early Modern']],
+        ['age-marvel-knights-heroes-return', ['Home', 'Marvel Ages', 'Modern Age', 'Marvel Knights / Heroes Return']],
+        ['age-event-era', ['Home', 'Marvel Ages', 'Modern Age', 'Event Era']],
+        ['age-marvel-now', ['Home', 'Marvel Ages', 'Modern Age', 'Marvel NOW!']],
+        ['age-all-new-all-different', ['Home', 'Marvel Ages', 'Modern Age', 'All-New All-Different']],
+        ['age-fresh-start', ['Home', 'Marvel Ages', 'Modern Age', 'Fresh Start']],
+        ['age-current', ['Home', 'Marvel Ages', 'Modern Age', 'Current era']],
+        ['add', ['Home', 'Search']],
+        ['add-series', ['Home', 'Search', 'Find a series']],
+        ['add-creator', ['Home', 'Search', 'Browse a creator']],
+        ['add-import', ['Home', 'Search', 'Paste a Reading List']],
+        ['add-manual', ['Home', 'Search', 'Add an issue by hand']],
         ['data', ['Home', 'Backup & settings']],
         ['about', ['Home', 'About this app']],
-        ['add-search', ['Home', 'Add comics', 'Search issues']],
+        ['add-search', ['Home', 'Search', 'Search issues']],
       ];
       for (const [route, labels] of routes) await visit(route, labels);
 
@@ -3474,6 +3467,27 @@ const SCENARIOS = [
       t.check('a focused ancestor has a visible ring and keyboard activation focuses the destination heading',
         focusedLink.active && focusedLink.outline !== 'none' && focusedLink.outlineWidth >= 3,
         JSON.stringify(focusedLink));
+
+      // #831: Browse is no page of its own. Its address opens Home at the category cards, so it has
+      // no trail, and a category's Home crumb returns to those cards rather than the top of Home.
+      // Each wait asks only that some other page has settled, so a tree that still routes to a
+      // Browse page fails the checks below instead of timing out.
+      const settled = (from) => page.waitForFunction((id) => !document.querySelector(`#view-${id}`)?.checkVisibility()
+        && document.activeElement?.matches('.view:not([hidden]) [id$="-h"]'), {}, from);
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      await settled('add');
+      const cards = { ...await trail(), focused: await page.evaluate(() => document.activeElement.id) };
+      await visit('catalog', ['Home', 'Modern Timeline']);
+      const crumb = await page.$eval('#view-catalog > .breadcrumb li:first-child > a', (link) => link.getAttribute('href'));
+      await click(page, '#view-catalog > .breadcrumb li:first-child > a');
+      await settled('catalog');
+      const returned = await page.evaluate(() => ({ hash: location.hash, focused: document.activeElement.id,
+        visible: [...document.querySelectorAll('.view')].filter((node) => !node.hidden).map((node) => node.id) }));
+      t.check('the Browse address opens Home at its cards with no trail, and a category trail returns there',
+        cards.count === 0 && cards.visible.join() === 'view-home' && cards.focused === 'home-cat-h'
+        && crumb === '#/browse'
+        && returned.hash === '#/browse' && returned.visible.join() === 'view-home' && returned.focused === 'home-cat-h',
+        JSON.stringify({ cards, crumb, returned }));
 
       await visit('data', ['Home', 'Backup & settings']);
       await visit('about', ['Home', 'About this app']);
@@ -3498,7 +3512,7 @@ const SCENARIOS = [
       const directAge = await trail();
       t.check('direct loads derive the same route hierarchy',
         directAbout.labels.join('/') === 'Home/About this app'
-        && directAge.labels.join('/') === 'Home/Browse/Marvel Ages/Modern Age/Current era',
+        && directAge.labels.join('/') === 'Home/Marvel Ages/Modern Age/Current era',
         JSON.stringify({ about: directAbout.labels, age: directAge.labels }));
 
       await importOrder(page);
@@ -3543,8 +3557,8 @@ const SCENARIOS = [
         document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
           === 'Browser Check (2026) #1');
       const orderIssue = await trail();
-      t.check('a bundled issue uses the canonical Browse shelf rather than Preview',
-        orderIssue.labels.join('/') === 'Home/Browse/Modern Timeline/Browser Check (2026) #1',
+      t.check('a bundled issue uses its canonical shelf rather than Preview',
+        orderIssue.labels.join('/') === 'Home/Modern Timeline/Browser Check (2026) #1',
         JSON.stringify(orderIssue));
 
       await open(page, '/#/issue/900001?list=missing');
@@ -3685,8 +3699,8 @@ const SCENARIOS = [
           tops: boxes.map((box) => Math.round(box.top)),
           heights: boxes.map((box) => Math.round(box.height)),
           secondaryHeights: secondary.map((path) => Math.round(path.getBoundingClientRect().height)),
-          // Counted per gateway, so a paragraph in Browse's tiles is caught as surely as one in Home's.
-          // Both are rendered together, Browse's while it is hidden (#888).
+          // Counted per gateway, so a paragraph in any gateway's tiles is caught. Home's is the one gateway
+          // since #831 removed Browse's copy, which used to render while hidden (#888).
           paragraphs: Object.fromEntries([...document.querySelectorAll('[data-category-gateway]')]
             .map((gateway) => [gateway.closest('.view')?.id, gateway.querySelectorAll('.home-path p').length])),
           retired: document.querySelectorAll('#home-featured, #home-grid, #home-chips, #form-home-q').length,
@@ -3738,11 +3752,11 @@ const SCENARIOS = [
         && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
         JSON.stringify(context.secondaryHeights));
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
-        JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0, 'view-browse': 0 })
+        JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0 })
         && context.retired === 0 && context.moreHidden === false,
         JSON.stringify(context));
-      t.check('dynamic Home and Browse categories publish one concise polite completion status each',
-        context.statuses.length === 2
+      t.check('dynamic Home categories publish one concise polite completion status',
+        context.statuses.length === 1
         && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
           role === 'status' && !hidden && visuallyHidden
           && text === '6 ways to read available.'),
@@ -3773,12 +3787,12 @@ const SCENARIOS = [
           const gap = Math.abs(hue(edge) - hue(icon));
           return { key: card.dataset.category, edge, icon, gap: Math.round(Math.min(gap, 360 - gap) * 10) / 10 };
         });
-        return { home: cards('#view-home .home-path'), browse: cards('#view-browse .home-path') };
+        return { home: cards('#view-home .home-path'), elsewhere: document.querySelectorAll('[data-category-gateway] .home-path').length - document.querySelectorAll('#view-home [data-category-gateway] .home-path').length };
       });
       const chosenTheme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
       for (const theme of ['dark', 'light']) {
         await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
-        const { home, browse } = await accents();
+        const { home, elsewhere } = await accents();
         const purple = home.find(({ key }) => key === 'timeline')?.edge;
         t.check(`${theme}: the six Home cards show six different hues, each icon in its own card's hue`,
           home.length === 6 && new Set(home.map(({ edge }) => edge)).size === 6
@@ -3790,10 +3804,8 @@ const SCENARIOS = [
             return card && card.edge !== purple;
           }),
           JSON.stringify({ purple, home }));
-        t.check(`${theme}: Browse shows every category in the same hue as Home`,
-          browse.length === 6
-          && browse.every(({ key, edge }) => home.find((entry) => entry.key === key)?.edge === edge),
-          JSON.stringify(browse));
+        t.check(`${theme}: Home's six cards are the only category cards, so no second copy can drift from their hues`,
+          elsewhere === 0, String(elsewhere));
       }
       const forcedClient = await page.createCDPSession();
       await forcedClient.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
@@ -3811,7 +3823,7 @@ const SCENARIOS = [
 
       // #873: each category's icon is its card's emblem, clearly larger than the 1.45rem glyph it
       // replaces and at the card's top right, with the eyebrow, title, count and arrow beneath it.
-      // Held at every width and text size the Issue names, on Home and Browse, in both themes and
+      // Held at every width and text size the Issue names, on Home's one gateway, in both themes and
       // forced colors: nothing overlaps, no line leaves the card's content box, and the page never
       // scrolls sideways.
       const emblems = (view) => page.evaluate((id) => {
@@ -3868,7 +3880,7 @@ const SCENARIOS = [
         for (const text of ['100%', '200%']) {
           await page.evaluate((size) => { document.documentElement.style.fontSize = size === '100%' ? '' : size; }, text);
           const failures = [];
-          for (const view of ['home', 'browse']) {
+          for (const view of ['home']) {
             await page.evaluate((id) => { location.hash = `#/${id}`; }, view);
             await page.waitForSelector(`#view-${view}:not([hidden]) [data-category-gateway] .home-path`);
             for (const theme of ['dark', 'light', 'forced']) {
@@ -3887,7 +3899,7 @@ const SCENARIOS = [
                 || wrong.length) failures.push({ view, theme, overflow, root, cards: wrong.length ? wrong : cards.length });
             }
           }
-          t.check(`${width}px at ${text} text: every Home and Browse category shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
+          t.check(`${width}px at ${text} text: every Home category shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
             failures.length === 0, JSON.stringify(failures));
         }
       }
@@ -3921,15 +3933,16 @@ const SCENARIOS = [
         hash: location.hash,
         focus: document.activeElement?.id ?? null,
         rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
         count: document.querySelector('#marvel-on-screen-count')?.textContent.trim() ?? null,
         timeline: Boolean(document.querySelector('#marvel-on-screen-results .timeline-flow')),
         titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
           .map((title) => title.textContent.trim()),
       }));
-      t.check('MCU Prep opens its own browse page with five companions in source order',
+      t.check('MCU Prep opens its own page under Home with five companions in source order',
         screen.hash === '#/marvel-on-screen'
         && screen.focus === 'marvel-on-screen-h'
-        && screen.rail === 'browse'
+        && screen.rail === null && screen.home === 'page'
         && screen.count === '5 Reading Lists'
         && screen.titles.join('/') === [
           'Doctor Strange: Multiverse of Madness',
@@ -5476,10 +5489,12 @@ const SCENARIOS = [
               return rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
             });
         }));
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      t.check('first-run guidance exists only on Home',
-        await page.$eval('#view-browse', (browse) => !browse.querySelector('#home-first-run')));
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false);
+      t.check('first-run guidance exists only on Home, which the Browse address opens',
+        await page.evaluate(() => location.hash.startsWith('#/browse')
+          && document.querySelectorAll('#home-first-run').length === 1
+          && document.querySelector('#view-home').contains(document.querySelector('#home-first-run'))));
 
       await open(page, '/');
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
@@ -5576,13 +5591,13 @@ const SCENARIOS = [
           '#home-primary-paths [data-category="timeline"] .home-path-count',
         )?.textContent.trim() ?? '',
       }));
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false);
       const browseCount = await page.$eval(
-        '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
+        '#view-home [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check(`Home omits Setup guidance and both gateways count ${timelineCount} Reading Lists`,
+      t.check(`Home omits Setup guidance and counts ${timelineCount} Reading Lists, also through the Browse address`,
         !home.recommendation
         && home.homeCount === `${timelineCount} Reading Lists`
         && browseCount === `${timelineCount} Reading Lists`,
@@ -7059,6 +7074,7 @@ const SCENARIOS = [
         hash: location.hash,
         focus: document.activeElement?.id ?? null,
         rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
         count: document.querySelector('#marvel-ages-count')?.textContent.trim() ?? '',
         earlier: [...document.querySelectorAll('#marvel-ages-earlier-list .home-path')]
           .map((path) => path.dataset.category),
@@ -7071,7 +7087,7 @@ const SCENARIOS = [
       t.check('Home opens one chronological Marvel Ages gateway',
         ages.hash === '#/marvel-ages'
         && ages.focus === 'marvel-ages-h'
-        && ages.rail === 'browse'
+        && ages.rail === null && ages.home === 'page'
         && ages.count === `${FIXTURE_PUBLISHING_GROUPS.count} Reading Lists`
         && ages.earlier.join('/') === 'silver/bronze/copper'
         && ages.modern.join('/') === FIXTURE_MODERN_PERIODS.map(({ key }) => key).join('/')
@@ -7097,10 +7113,10 @@ const SCENARIOS = [
           && document.activeElement?.id === 'age-silver-h'));
 
       await open(page, '/#/browse');
-      await page.waitForSelector('#view-browse [data-secondary-paths] [data-category="marvel-ages"]', {
+      await page.waitForSelector('#view-home:not([hidden]) [data-secondary-paths] [data-category="marvel-ages"]', {
         timeout: 15000,
       });
-      await click(page, '#view-browse [data-secondary-paths] [data-category="marvel-ages"]');
+      await click(page, '#view-home [data-secondary-paths] [data-category="marvel-ages"]');
       await page.waitForSelector('#marvel-ages-earlier-list [data-category="silver"]');
       await click(page, '#marvel-ages-earlier-list [data-category="silver"]');
       await page.waitForFunction(() => location.hash === '#/age-silver');
@@ -7108,9 +7124,9 @@ const SCENARIOS = [
       await page.waitForFunction(() => location.hash === '#/marvel-ages');
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/browse');
-      t.check('Browse history returns through the same gateway',
-        await page.evaluate(() => document.querySelector('.view:not([hidden])')?.id === 'view-browse'
-          && document.activeElement?.id === 'browse-h'));
+      t.check('history through the Browse address returns to Home at its cards',
+        await page.evaluate(() => document.querySelector('.view:not([hidden])')?.id === 'view-home'
+          && document.activeElement?.id === 'home-cat-h'));
 
       await open(page, '/');
       await click(page, '#home-secondary-paths [data-category="marvel-ages"]');
@@ -7129,6 +7145,7 @@ const SCENARIOS = [
         hash: location.hash,
         focus: document.activeElement?.id ?? null,
         rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
         periods: [...document.querySelectorAll('#age-modern-category-list .home-path')].map((path) => ({
           key: path.dataset.category,
           count: path.querySelector('.home-path-count')?.textContent.trim() ?? '',
@@ -7137,7 +7154,7 @@ const SCENARIOS = [
       }));
       t.check('Modern Age has its own route and receives navigation focus',
         modernGateway.hash === '#/age-modern' && modernGateway.focus === 'age-modern-h'
-        && modernGateway.rail === 'browse', JSON.stringify(modernGateway));
+        && modernGateway.rail === null && modernGateway.home === 'page', JSON.stringify(modernGateway));
       const modernCountStatus = await page.$eval('#age-modern-count', (count) => ({
         role: count.getAttribute('role'),
         text: count.textContent.trim(),
@@ -7188,6 +7205,7 @@ const SCENARIOS = [
           hash: location.hash,
           focus: document.activeElement?.id ?? null,
           rail: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+          home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
           count: document.querySelector('#age-event-era-count')?.textContent.trim() ?? null,
           timeline: Boolean(document.querySelector('#age-event-era-results .timeline-flow')),
           years: cards.map((card) => Number(card.dataset.year)),
@@ -7213,7 +7231,7 @@ const SCENARIOS = [
       t.check('a leaf route draws only stories inside its effective years',
         leaf.hash === '#/age-event-era'
         && leaf.focus === 'age-event-era-h'
-        && leaf.rail === 'browse'
+        && leaf.rail === null && leaf.home === 'page'
         && leaf.years.length > 0
         && leaf.years.every((year) => year >= 2004 && year <= 2011),
         JSON.stringify(leaf));
@@ -7815,54 +7833,42 @@ const SCENARIOS = [
   },
   {
     id: 'hub-navigation',
-    title: 'fixed rail delegates growing choices to Library, Browse, and Add',
+    title: 'fixed rail delegates growing choices to Library, Search and Home',
     async run(page, t) {
       await open(page, '/');
       await page.waitForSelector('#home-primary-paths .home-path', { timeout: 15000 });
       await page.setViewport({ width: 1280, height: 900 });
 
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse [data-primary-paths] .home-path', { timeout: 15000 });
-      const gateway = await page.evaluate(() => {
-        const read = (root) => [...document.querySelectorAll(`${root} [data-primary-paths] .home-path`)]
-          .map((path) => ({
-            category: path.dataset.category,
-            title: path.querySelector('.home-path-title')?.textContent.trim(),
-            count: path.querySelector('.home-path-count')?.textContent.trim(),
-          }));
-        return {
-          home: read('#view-home'),
-          browse: read('#view-browse'),
-          hash: location.hash,
-          current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
-        };
-      });
+      // #831: Browse left the navigation. Its cards were Home's, and its address now opens them there.
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false
+        && document.activeElement?.id === 'home-cat-h');
+      const gateway = await page.evaluate(() => ({
+        destinations: [...document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')].map((link) => link.dataset.view),
+        gateways: document.querySelectorAll('[data-category-gateway]').length,
+        hash: location.hash,
+        home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
+        current: document.querySelectorAll('.ri[aria-current="page"], .mobile-link[aria-current="page"]').length,
+      }));
       await click(page, '.brand[data-view="home"]');
       t.check('Home is the only current navigation destination on the expanded rail',
         await page.evaluate(() => document.querySelector('.brand')?.getAttribute('aria-current') === 'page'
           && document.querySelectorAll('.ri[aria-current="page"]').length === 0
           && getComputedStyle(document.querySelector('.brand'), '::before').width === '3px'));
-      await click(page, '.ri[data-view="browse"]');
-      t.check('Browse clears Home current while selecting only its own rail entry',
-        await page.evaluate(() => !document.querySelector('.brand').hasAttribute('aria-current')
-          && document.querySelectorAll('.ri[aria-current="page"]').length === 1
-          && document.querySelector('.ri[aria-current="page"]')?.dataset.view === 'browse'));
-      t.check('Browse renders the same available categories and counts as Home',
-        JSON.stringify(gateway.home) === JSON.stringify(gateway.browse),
-        JSON.stringify(gateway));
-      t.check('the Browse hub owns its address and selected rail state',
-        gateway.hash === '#/browse' && gateway.current === 'browse',
+      t.check('Browse is in no navigation, and its address opens Home at its one set of category cards',
+        !gateway.destinations.includes('browse') && gateway.gateways === 1
+        && gateway.hash === '#/browse' && gateway.home === 'page' && gateway.current === 0,
         JSON.stringify(gateway));
 
-      await click(page, '#view-browse [data-category="storylines"]');
+      await click(page, '#view-home [data-category="storylines"]');
       await page.waitForFunction(() => document.querySelector('#view-lines')?.hidden === false);
       const browseChild = await page.evaluate(() => ({
         hash: location.hash,
-        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view ?? null,
+        home: document.querySelector('.brand')?.getAttribute('aria-current') ?? null,
       }));
-      t.check('a category child keeps Browse selected',
-        browseChild.hash === '#/lines' && browseChild.current === 'browse'
-        && await page.$eval('.brand', (brand) => !brand.hasAttribute('aria-current')),
+      t.check('a category page shows Home as its current section',
+        browseChild.hash === '#/lines' && browseChild.current === null && browseChild.home === 'page',
         JSON.stringify(browseChild));
 
       await click(page, '.ri[data-view="add"]');
@@ -7881,7 +7887,7 @@ const SCENARIOS = [
         hash: location.hash,
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
       }));
-      t.check('an Add child keeps Add selected',
+      t.check('a Search child keeps Search selected',
         addChild.hash === '#/add-manual' && addChild.current === 'add'
         && await page.$eval('.brand', (brand) => !brand.hasAttribute('aria-current')),
         JSON.stringify(addChild));
@@ -8242,8 +8248,8 @@ const SCENARIOS = [
           nav: (() => {
             const rail = document.querySelector('#sidebar').getBoundingClientRect();
             const scroll = document.querySelector('.nav-scroll');
-            const icon = document.querySelector('.ri[data-view="browse"] .gi').getBoundingClientRect();
-            const button = document.querySelector('.ri[data-view="browse"]').getBoundingClientRect();
+            const icon = document.querySelector('.ri[data-view="add"] .gi').getBoundingClientRect();
+            const button = document.querySelector('.ri[data-view="add"]').getBoundingClientRect();
             const style = getComputedStyle(scroll);
             return {
               railLeft: Math.round(rail.left),
@@ -8408,8 +8414,8 @@ const SCENARIOS = [
       await open(race, '/?local-health=pending&local-catalog=down');
       await race.waitForFunction(() => window.__mrtLocalPending.health.length === 1);
       await setMode(race, 'catalog', 'ready');
-      await click(race, '.ri[data-view="browse"]');
-      await race.waitForSelector('#view-browse [data-category="timeline"]');
+      await click(race, '.brand[data-view="home"]');
+      await race.waitForSelector('#view-home [data-category="timeline"]');
       await settle(race, 'health', 'down');
       await new Promise((resolve) => setTimeout(resolve, 50));
       const staleCatalog = await race.evaluate(() => ({
@@ -9561,8 +9567,8 @@ const SCENARIOS = [
       await click(page, '.brand[data-view="home"]');
       await page.waitForSelector('#btn-chero-read:not([hidden])');
       placed('Continue reading', await press('#btn-chero-read', '#home-continue .cta'));
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForSelector('#view-library:not([hidden])');
       t.check('leaving Home retires the Continue reading hint', await hintCount() === 0);
 
       await page.evaluate((hash) => { location.hash = hash; }, formatRoute({ view: 'issue', issueId: 900002 }));
@@ -12086,8 +12092,8 @@ const SCENARIOS = [
       await page.focus('#btn-empty-add');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#view-add:not([hidden])');
-      t.check('the empty-state action opens the existing Add comics hub with heading focus',
-        await page.$eval('#add-h', (heading) => heading === document.activeElement)
+      t.check('the empty-state Add comics action opens Search with heading focus',
+        await page.$eval('#add-h', (heading) => heading === document.activeElement && heading.textContent.trim() === 'Search')
         && (await readState(page)).active === listId);
       await click(page, '#add-other-methods > summary');
       await click(page, '#view-add [data-view="add-manual"]');
@@ -12135,7 +12141,7 @@ const SCENARIOS = [
         && completed.ring === 'All read' && completed.count === 'All read'
         && completed.focused === 'all-read-h'
         && await page.$eval('#all-read-h', (node) => node.textContent === 'Every issue marked read')
-        && await page.$eval('#all-read [data-view="browse"]', (node) => node.checkVisibility()),
+        && await page.$eval('#all-read a[href="#/browse"]', (node) => node.checkVisibility()),
         JSON.stringify(completed));
       const completedState = await readState(page);
       await click(page, '.brand[data-view="home"]');
@@ -12905,21 +12911,23 @@ const SCENARIOS = [
         count: node.querySelector('.home-path-count')?.textContent.trim(),
         label: node.getAttribute('aria-label'),
       }));
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse [data-category="reading-paths"]');
-      const browseEntry = await page.$eval('#view-browse [data-category="reading-paths"]', (node) => ({
+      // #831: Browse repeated this entry, and Home now holds the one copy of it. The Browse address is
+      // checked by navigation's own owners; going there by address here would reset the stored filter
+      // that Back and Forward are checked against below, as any address naming no filter does.
+      const browseEntry = await page.$eval('#view-home [data-category="reading-paths"]', (node) => ({
         title: node.querySelector('.home-path-title')?.textContent.trim(),
         count: node.querySelector('.home-path-count')?.textContent.trim(),
         label: node.getAttribute('aria-label'),
+        copies: document.querySelectorAll('[data-category="reading-paths"]').length,
       }));
-      t.check('Home and Browse share one secondary entry with the path count and noun',
-        JSON.stringify(homeEntry) === JSON.stringify(browseEntry)
+      t.check('Home holds the one secondary entry, with the path count and noun',
+        JSON.stringify(homeEntry) === JSON.stringify({ ...browseEntry, copies: undefined }) && browseEntry.copies === 1
         && browseEntry.title === 'Reading paths'
         && browseEntry.count === '3 Reading paths'
         && browseEntry.label.includes('3 Reading paths'),
         JSON.stringify({ homeEntry, browseEntry }));
 
-      await page.focus('#view-browse [data-category="reading-paths"]');
+      await page.focus('#view-home [data-category="reading-paths"]');
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-path');
       const gatewayArrival = await page.evaluate(() => ({
@@ -13751,7 +13759,7 @@ const SCENARIOS = [
         await page.evaluate(() => document.querySelector('.rail-header').classList.contains('mobile-nav-hidden')));
       await page.evaluate(() => window.scrollTo(0, 175));
       await page.waitForFunction(() => !document.querySelector('.rail-header').classList.contains('mobile-nav-hidden'));
-      t.check('upward scroll reveals all four labelled destinations and More',
+      t.check('upward scroll reveals Home, Library, Search and More',
         await page.evaluate(() => [...document.querySelectorAll('.rail-header a, .rail-header button')]
           .every((node) => node.getBoundingClientRect().height >= 44)));
       await page.evaluate(() => window.scrollTo(0, 250));
@@ -13955,7 +13963,7 @@ const SCENARIOS = [
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
       });
       const outside = [];
-      for (const target of ['above', '#btn-rail-toggle', '.mobile-link[data-view="browse"]']) {
+      for (const target of ['above', '#btn-rail-toggle', '.mobile-link[data-view="add"]']) {
         await openNavigation();
         const point = target === 'above'
           ? { x: 8, y: await page.$eval('#more-sheet', (sheet) => Math.max(1, sheet.getBoundingClientRect().top / 2)) }
@@ -14036,7 +14044,6 @@ const SCENARIOS = [
         ['.brand[data-view="home"]', 'view-home'],
         ['#sidebar-panel #list-nav .ri', 'view-read'],
         ['.mobile-link[data-view="library"]', 'view-library'],
-        ['.mobile-link[data-view="browse"]', 'view-browse'],
         ['.mobile-link[data-view="add"]', 'view-add'],
         ['#sidebar-panel .ri[data-view="data"]', 'view-data'],
         ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
@@ -14048,16 +14055,54 @@ const SCENARIOS = [
           JSON.stringify({ routed, journeyOpenedBaseline }));
       }
 
-      await activateByKeyboard('.mobile-link[data-view="browse"]', 'view-browse');
-      await click(page, '#view-browse [data-category="timeline"]');
+      // #831: Browse left the bar and the sheet, and its address opens Home at the category cards. The
+      // bar reads Home, Library, Search and More, and draws the glyph the side menu draws for each.
+      const bar = await page.evaluate(() => {
+        const items = [...document.querySelectorAll('.rail-header > :is(.brand, .mobile-link, .rail-toggle)')]
+          .filter((node) => node.getClientRects().length)
+          .sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        const glyph = (node) => node.querySelector('use')?.getAttribute('href')?.split('#')[1]
+          ?? (node.querySelector('img.mark') ? 'mark' : null);
+        return {
+          names: items.map((node) => node.getAttribute('aria-label') || node.innerText.replace(/\s+/g, ' ').trim()),
+          glyphs: items.map(glyph),
+          railGlyphs: items.filter((node) => node.matches('.mobile-link'))
+            .map((node) => glyph(document.querySelector(`#sidebar-panel .ri[data-view="${node.dataset.view}"]`))),
+          browse: document.querySelectorAll('[data-view="browse"], a[href="#/browse"].ri, a[href="#/browse"].mobile-link').length,
+        };
+      });
+      t.check('the bar reads Home, Library, Search and More with the side menu\'s glyphs, and Browse is in neither',
+        JSON.stringify(bar.names) === JSON.stringify(['Home', 'Library', 'Search', 'More'])
+        && JSON.stringify(bar.glyphs) === JSON.stringify(['mark', 'books', 'search', 'menu'])
+        && JSON.stringify(bar.railGlyphs) === JSON.stringify(['books', 'search']) && bar.browse === 0,
+        JSON.stringify(bar));
+      await page.evaluate(() => { location.hash = '#/browse'; });
+      await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false
+        && document.activeElement?.id === 'home-cat-h', { timeout: 15000 });
+      const cards = await page.evaluate(() => {
+        const top = document.querySelector('#home-categories').getBoundingClientRect().top;
+        const end = document.documentElement.scrollHeight - innerHeight;
+        return {
+          current: [...document.querySelectorAll('.rail-header [aria-current="page"]')].map((node) => node.dataset.view),
+          top: Math.round(top),
+          arrived: top >= -1 && top < innerHeight / 2 && (top <= 1 || Math.abs(scrollY - end) <= 1),
+        };
+      });
+      t.check('the Browse address opens Home at its category cards with Home current on the bar',
+        JSON.stringify(cards.current) === JSON.stringify(['home']) && cards.arrived,
+        JSON.stringify(cards));
+
+      await click(page, '#view-home [data-category="timeline"]');
+      await page.waitForSelector('#view-catalog:not([hidden])');
       const timelineChild = await page.evaluate(() => ({
         view: document.querySelector('.view:not([hidden])')?.id ?? null,
-        parentCurrent: Boolean(document.querySelector('.ri[data-view="browse"][aria-current="page"]')),
+        parentCurrent: document.querySelector('.brand[data-view="home"]')?.getAttribute('aria-current') === 'page'
+          && !document.querySelector('.rail-header .mobile-link[aria-current="page"]'),
         trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
           .map((node) => node.textContent.trim()),
       }));
-      t.check('Browse child keeps its parent selection and breadcrumb context',
-        timelineChild.parentCurrent && timelineChild.trail.includes('Browse'),
+      t.check('a category page shows Home as its parent on the bar and in its breadcrumb',
+        timelineChild.parentCurrent && JSON.stringify(timelineChild.trail) === JSON.stringify(['Home', 'Modern Timeline']),
         JSON.stringify(timelineChild));
 
       await activateByKeyboard('.mobile-link[data-view="add"]', 'view-add');
@@ -14068,8 +14113,8 @@ const SCENARIOS = [
         trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
           .map((node) => node.textContent.trim()),
       }));
-      t.check('Add child keeps its parent selection and breadcrumb context',
-        addChild.parentCurrent && addChild.trail.includes('Add comics'),
+      t.check('a Search child keeps its parent selection and breadcrumb context',
+        addChild.parentCurrent && addChild.trail.includes('Search'),
         JSON.stringify(addChild));
 
       await activateByKeyboard('.mobile-link[data-view="library"]', 'view-library');
@@ -14320,8 +14365,78 @@ const SCENARIOS = [
           };
         }));
       t.check('bottom navigation icons are centred in each destination',
-        iconAlignment.length === 5 && iconAlignment.every((item) => item.offset !== null && item.offset <= 1),
+        iconAlignment.length === 4 && iconAlignment.every((item) => item.offset !== null && item.offset <= 1),
         JSON.stringify(iconAlignment));
+
+      // #831: at 200% text the five-item bar cut its labels to "Ho", "Libr" and "Bro", and the doubled-text
+      // check below passed anyway, because a label broken across lines overflows nothing. Each label must
+      // be one whole line inside its destination, in one row of four or, when that cannot hold them, two
+      // rows of two.
+      const tokens = ['--t-caption', '--t-body', '--t-subtitle', '--t-title', '--t-display', '--t-overline'];
+      const labelFit = [];
+      for (const width of [320, 360]) {
+        for (const scale of [1, 2]) {
+          await page.setViewport({ width, height: 900 });
+          await page.evaluate((names, factor) => {
+            const root = document.documentElement;
+            for (const name of names) root.style.removeProperty(name);
+            if (factor === 1) return;
+            for (const name of names) {
+              const value = Number.parseFloat(getComputedStyle(root).getPropertyValue(name));
+              if (Number.isFinite(value)) root.style.setProperty(name, `${value * factor}px`);
+            }
+          }, tokens, scale);
+          // The bar is measured by an observer and fitted on the frame after.
+          await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+          labelFit.push(await page.evaluate((w, s) => {
+            const header = document.querySelector('.rail-header');
+            const bar = header.getBoundingClientRect();
+            const labels = [...header.querySelectorAll(':scope > :is(.brand, .mobile-link, .rail-toggle)')]
+              .filter((node) => node.getClientRects().length)
+              .map((item) => {
+                const span = item.querySelector(':scope > span');
+                const box = item.getBoundingClientRect();
+                const text = span.getBoundingClientRect();
+                const range = document.createRange();
+                range.selectNodeContents(span);
+                return {
+                  text: span.textContent.trim(),
+                  name: item.getAttribute('aria-label') || item.innerText.trim(),
+                  lines: [...range.getClientRects()].filter((rect) => rect.width && rect.height).length,
+                  inside: text.left >= box.left - 0.5 && text.right <= box.right + 0.5
+                    && text.top >= box.top - 0.5 && text.bottom <= box.bottom + 0.5,
+                  onBar: box.left >= bar.left - 0.5 && box.right <= bar.right + 0.5,
+                  top: Math.round(box.top),
+                  left: Math.round(box.left),
+                };
+              });
+            // A row is the items whose tops lie within 20px, whatever each one's own height.
+            const rows = [];
+            for (const label of [...labels].sort((a, b) => a.top - b.top)) {
+              const row = rows.find((entry) => Math.abs(entry.top - label.top) < 20);
+              if (row) row.labels.push(label);
+              else rows.push({ top: label.top, labels: [label] });
+            }
+            return {
+              width: w, scale: s, height: Math.round(bar.height),
+              rows: rows.length,
+              twoRows: header.classList.contains('bar-two-rows'),
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+              labels: rows.flatMap((row) => row.labels.sort((a, b) => a.left - b.left)),
+            };
+          }, width, scale));
+        }
+      }
+      await page.evaluate((names) => {
+        for (const name of names) document.documentElement.style.removeProperty(name);
+      }, tokens);
+      t.check('every bar label is one whole line at 320 and 360px, at normal and doubled text, in one row or two',
+        labelFit.every((fit) => !fit.overflow
+          && JSON.stringify(fit.labels.map(({ text }) => text)) === JSON.stringify(['Home', 'Library', 'Search', 'More'])
+          && fit.labels.every((label) => label.lines === 1 && label.inside && label.onBar && label.name === label.text)
+          && fit.rows === (fit.twoRows ? 2 : 1) && (fit.scale === 2 || !fit.twoRows)),
+        JSON.stringify(labelFit));
       await page.setViewport({ width: 320, height: 900 });
 
       await page.evaluate(() => {
@@ -14625,7 +14740,17 @@ const SCENARIOS = [
           storage: Object.fromEntries(Object.keys(localStorage).sort().map((key) => [key, localStorage.getItem(key)])),
         };
       }, view);
-      for (const view of ['library', 'browse', 'add']) {
+      // #831: Browse left both the bar and the side menu, so every bar destination still has its identical
+      // side-menu destination to hand focus to when the window widens.
+      const pairs = await page.evaluate(() => [...document.querySelectorAll('.rail-header .mobile-link[data-view]')]
+        .map((link) => ({
+          view: link.dataset.view, href: link.getAttribute('href'),
+          rail: document.querySelector(`#sidebar-panel .ri[data-view="${link.dataset.view}"]`)?.getAttribute('href') ?? null,
+        })));
+      t.check('every bar destination, Library and Search, has its identical side-menu destination',
+        JSON.stringify(pairs.map(({ view }) => view)) === JSON.stringify(['library', 'add'])
+        && pairs.every(({ href, rail }) => href === rail), JSON.stringify(pairs));
+      for (const view of ['library', 'add']) {
         await resizeTo(880, { narrow: true, panelHidden: true });
         await page.$eval(`.mobile-link[data-view="${view}"]`, (link) => link.focus());
         const before = await crossingState(view);
@@ -15735,7 +15860,7 @@ SCENARIOS.push({
     await page.waitForSelector('#home-primary-paths .home-path');
     const links = await page.evaluate(() => {
       const selectors = ['.brand[data-view="home"]', '.ri[data-view="library"]',
-        '.ri[data-view="browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
+        '#all-read a[href="#/browse"]', '.ri[data-view="add"]', '.ri[data-view="data"]',
         '.ri[data-view="about"]', '#home-primary-paths .home-path', '#home-yours-list li > *',
         '#btn-chero-open', '#view-add [data-view="add-search"]', 'footer [data-view="about"]'];
       return selectors.map((selector) => {
@@ -15783,8 +15908,8 @@ SCENARIOS.push({
       await page.waitForFunction(() => document.activeElement?.dataset.focusSource === 'added-by-hand');
       t.check('Back restores the manual row opener', true);
     }
-    await click(page, '.ri[data-view="browse"]');
-    await click(page, '#view-browse [data-category="timeline"]');
+    await click(page, '.brand[data-view="home"]');
+    await click(page, '#view-home [data-category="timeline"]');
     await page.waitForSelector('#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
     await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
     await page.waitForSelector('#preview[open]');
@@ -15888,7 +16013,7 @@ SCENARIOS.push({
     });
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await open(page, '/');
-    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 12);
+    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 6);
     const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) => !icon.closest('.mobile-link')).map((icon) => {
       const button = icon.closest('button, a[href]');
       return {
@@ -15900,32 +16025,32 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 26 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 25 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
-        'Collapse sidebar', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app',
+        'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
         'Enjoyed', 'Did not enjoy',
         'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Search issues', 'Find a series',
         'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
         'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
         'Add an issue by hand', 'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 50 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 50 && inventory.every((i) => i.tag === 'svg' && i.decorative));
-    t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
+    t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('the one gateway preserves six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
         .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
           || button.getAttribute('aria-label')?.includes('Follow connected stories'))
-        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 12));
+        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 6));
     t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
 
     const seen = new Set();
     const routes = ['home', 'browse', 'marvel-ages', 'age-modern', 'library', 'add', 'add-search', 'add-series', 'add-creator'];
     for (const route of routes) {
       await page.evaluate((view) => { location.hash = `#/${view}`; }, route);
-      await page.waitForSelector(`#view-${route}:not([hidden])`);
+      await page.waitForSelector(`#view-${route === 'browse' ? 'home' : route}:not([hidden])`);
       await page.evaluate(() => document.querySelectorAll('.gi').forEach((icon) => {
         icon.style.fontFamily = 'monospace';
       }));
@@ -16321,9 +16446,10 @@ async function click(page, selector) {
   await page.evaluate((s) => document.querySelector(s).click(), selector);
 }
 
+// Browse's cards were Home's, and #831 removed the copy, so a category is reached through Home.
 async function openBrowseCategory(page, category) {
-  await click(page, '.ri[data-view="browse"]');
-  const selector = `#view-browse [data-category="${category}"]`;
+  await click(page, '.brand[data-view="home"]');
+  const selector = `#view-home [data-category="${category}"]`;
   await page.waitForSelector(selector, { timeout: 15000 });
   await click(page, selector);
 }
@@ -17161,9 +17287,9 @@ SCENARIOS.push(
           return { itemIds: state.lists[id].itemIds, read: state.read,
             listOrder: state.listOrder, catalogId: state.lists[id].catalogId };
         }, savedId);
-        await click(page, '.ri[data-view="browse"]');
-        await page.waitForSelector('#view-browse:not([hidden])');
-        await click(page, '#view-browse [data-category="timeline"]');
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        await click(page, '#view-home [data-category="timeline"]');
         await page.waitForSelector('#catalog-results .catalog-card');
         const reused = await page.evaluate((id) => {
           const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
@@ -18375,7 +18501,8 @@ SCENARIOS.push(responsiveOwner({
     const clearance = (target) => target.top >= 0 && target.bottom <= target.viewport
       && (target.barHidden || target.bottom <= target.barTop - 8);
     const barPredicates = {
-      targets: bar.targets.length === 5 && bar.targets.every((target) => target.width >= 44 && target.height >= 44 && target.label),
+      targets: bar.targets.length === 4 && bar.targets.every((target) => target.width >= 44 && target.height >= 44 && target.label)
+        && ['Library', 'Search', 'More'].every((label) => bar.targets.some((target) => target.label === label)),
       safeArea: bar.paddingBottom === bar.base + 20 && bar.reportedHeight >= bar.bottom - bar.top,
       editable: editable.hidden && editable.focused && editable.top >= 0 && editable.bottom <= editable.viewport,
       lastField: clearance(lastField),
@@ -18384,7 +18511,7 @@ SCENARIOS.push(responsiveOwner({
     };
     await responsiveReceipt(page, t, 'RC07', 'full-label bar targets and editable guard preserve clearance',
       { bar, editable, lastField, undo, feedbackNotice,
-        expected: { safeAreaProbe: 20, targets: 44, clearance: 8, labels: 'five full destinations',
+        expected: { safeAreaProbe: 20, targets: 44, clearance: 8, labels: 'four full destinations: Home, Library, Search and More',
           proxy: 'CSS arithmetic, not a physical notch' }, subpredicates: barPredicates },
       Object.values(barPredicates).every(Boolean));
     const crossingSnapshot = await page.evaluate(() => ({

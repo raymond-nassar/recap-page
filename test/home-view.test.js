@@ -487,7 +487,7 @@ test('main constructs Home once while the view has no controller or concrete-vie
 
   assert.match(main, /const homeView = createHomeView\(\{/);
   assert.match(main, /if \(next === 'home'\) homeView\.render\(\);/);
-  assert.match(main, /if \(next === 'browse'\) void homeView\.renderGateways\(\);/);
+  assert.doesNotMatch(main, /next === 'browse'/, 'Browse returned as a view with a gateway of its own');
   assert.match(main, /homeView\.wire\(\);/);
   assert.match(main, /homeView\.categoryTile\(/);
   assert.doesNotMatch(main, /homeView\?\.(?:render|renderGateways|categoryTile|wire)|if \(homeView\)/);

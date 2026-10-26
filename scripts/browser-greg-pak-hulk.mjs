@@ -106,9 +106,9 @@ export const gregPakHulkActualData = {
       window.__mrtBlockExternal = true;
     });
     await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
-    await page.$eval('.ri[data-view="browse"]', (node) => node.click());
-    await page.waitForSelector('#view-browse [data-category="storylines"]');
-    await page.$eval('#view-browse [data-category="storylines"]', (node) => node.click());
+    await page.$eval('.brand[data-view="home"]', (node) => node.click());
+    await page.waitForSelector('#view-home [data-category="storylines"]');
+    await page.$eval('#view-home [data-category="storylines"]', (node) => node.click());
     await page.waitForSelector('#lines-q');
     await page.$eval('#lines-q', (input) => {
       input.value = 'Greg Pak';

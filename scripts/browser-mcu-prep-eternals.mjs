@@ -140,12 +140,12 @@ export const eternalsActualData = {
         JSON.stringify({ ...layout, cards: names.length }));
     }
     await resize(page, 1280);
-    await page.$eval('.ri[data-view="browse"]', (node) => node.click());
-    await page.waitForSelector('#view-browse [data-category="marvel-on-screen"]');
-    const browse = await page.$$eval('#view-browse [data-category="marvel-on-screen"]',
+    await page.evaluate(() => { location.hash = '#/browse'; });
+    await page.waitForSelector('#view-home:not([hidden]) [data-category="marvel-on-screen"]');
+    const browse = await page.$$eval('#view-home [data-category="marvel-on-screen"]',
       (nodes) => nodes.length);
-    t.check('Browse exposes the same single MCU Prep gateway', browse === 1, String(browse));
-    await page.$eval('#view-browse [data-category="marvel-on-screen"]', (node) => node.click());
+    t.check('the Browse address opens Home with its single MCU Prep gateway', browse === 1, String(browse));
+    await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
     await page.waitForSelector(cardSelector);
     const card = await page.$eval(cardSelector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -153,7 +153,7 @@ export const eternalsActualData = {
       source: node.querySelector('a[href*="/issues/684"]')?.href,
       path: Boolean(node.querySelector('.result-path')),
     }));
-    t.check('Browse discovers the owner-attributed 24-issue Eternals card without a reading path',
+    t.check('the MCU Prep gateway discovers the owner-attributed 24-issue Eternals card without a reading path',
       card.name === 'Eternals' && card.text.includes('24 issues')
       && card.source === sourceUrl && !card.path, JSON.stringify(card));
     await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());

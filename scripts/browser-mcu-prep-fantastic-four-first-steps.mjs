@@ -175,9 +175,9 @@ export const firstStepsActualData = {
     await page.waitForSelector(storylineCard);
     t.check('Storylines has exactly one independent First Steps card',
       await page.$$eval(storylineCard, (nodes) => nodes.length) === 1);
-    await page.$eval('.ri[data-view="browse"]', (node) => node.click());
-    await page.waitForSelector('#view-browse [data-category="marvel-on-screen"]');
-    await page.$eval('#view-browse [data-category="marvel-on-screen"]', (node) => node.click());
+    await page.$eval('.brand[data-view="home"]', (node) => node.click());
+    await page.waitForSelector('#view-home [data-category="marvel-on-screen"]');
+    await page.$eval('#view-home [data-category="marvel-on-screen"]', (node) => node.click());
     await page.waitForSelector(cardSelector);
     const card = await page.$eval(cardSelector, (node) => ({
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),

@@ -133,9 +133,9 @@ export const ultimateSpiderManActualData = {
     });
 
     await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
-    await page.$eval('.ri[data-view="browse"]', (node) => node.click());
-    await page.waitForSelector('#view-browse [data-category="character-spotlights"]');
-    await page.$eval('#view-browse [data-category="character-spotlights"]', (node) => node.click());
+    await page.$eval('.brand[data-view="home"]', (node) => node.click());
+    await page.waitForSelector('#view-home [data-category="character-spotlights"]');
+    await page.$eval('#view-home [data-category="character-spotlights"]', (node) => node.click());
     await page.waitForSelector('#spotlights-q');
     await page.$eval('#spotlights-q', (input) => {
       input.value = 'Ultimate Spider-Man';

@@ -177,7 +177,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
 
 test('every navigation retires the reader hint and no page-top slot remains for it', () => {
   const source = read('../src/js/main.js');
-  assert.match(source, /function showView\(next, \{ focus = true, push = false \} = \{\}\) \{\n {2}retireReaderHelp\(\);[^\n]*\n/);
+  assert.match(source, /function showView\(next, \{ focus = true, push = false, at = null \} = \{\}\) \{\n {2}retireReaderHelp\(\);[^\n]*\n/);
   assert.doesNotMatch(html, /id="reader-handoff-help"/);
 });
 
@@ -246,7 +246,7 @@ test('comic details put Read before artwork and technical help, with a separate 
 test('a completed list has a Browse action without replacing deferred continuation', () => {
   const reading = view('read');
   const completed = reading.slice(reading.indexOf('<div id="all-read"'), reading.indexOf('<section id="all-deferred"'));
-  assert.match(completed, /<a href="#\/browse" class="btn" data-view="browse">Browse Reading Lists<\/a>/);
+  assert.match(completed, /<a href="#\/browse" class="btn" data-view="home" data-at="categories">Browse Reading Lists<\/a>/);
   assert.doesNotMatch(completed, /id="btn-review-deferred"/);
   assert.match(reading, /id="all-deferred"[\s\S]*?id="btn-review-deferred">Review deferred/);
 });

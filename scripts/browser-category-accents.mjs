@@ -22,7 +22,7 @@ const ERAS = PUBLISHING_CATEGORIES.filter(isPublishingCategoryLeaf);
 const ERA_SELECTOR = '.marvel-ages-group .home-path';
 const VIEWS = [
   ['home', '#view-home .home-path'],
-  ['browse', '#view-browse .home-path'],
+  ['browse', '#view-home .home-path'],
   ['marvel-ages', ERA_SELECTOR],
   ['age-modern', '#age-modern-category-list .home-path'],
 ];
