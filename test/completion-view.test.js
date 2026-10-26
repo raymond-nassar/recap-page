@@ -338,7 +338,8 @@ test('pending completion cannot steal focus or show stale suggestions after navi
   let release;
   h.next = new Promise((resolve) => { release = resolve; });
   h.nodes.complete.listeners.click();
-  assert.equal(h.nodes.complete.disabled, true);
+  assert.equal(h.nodes.complete.disabled, false, 'pending, not natively disabled, so it keeps focus (#864)');
+  assert.equal(h.nodes.complete.getAttribute('aria-disabled'), 'true');
   h.current = 'home';
   release();
   await h.flush();
@@ -486,7 +487,8 @@ test('858 a rating save in flight keeps both rating buttons focusable but unavai
     assert.equal(button.disabled, false, 'not natively disabled, so a focused button keeps focus');
     assert.equal(button.getAttribute('aria-disabled'), 'true', 'exposed as unavailable while the save is in flight');
   }
-  assert.equal(h.nodes.reopen.disabled, true, 'Reopen keeps its native disable while a rating saves');
+  assert.equal(h.nodes.reopen.disabled, false, 'Reopen is pending the same way while a rating saves (#864)');
+  assert.equal(h.nodes.reopen.getAttribute('aria-disabled'), 'true');
   h.nodes.down.listeners.click();
   h.nodes.up.listeners.click();
   assert.equal(saves.length, 1, 'a press during the save starts nothing');
@@ -521,4 +523,94 @@ test('858 a busy history holds the rating buttons the same way, and one that can
   await h.view.render();
   assert.equal(h.nodes.down.disabled, true, 'a history that cannot save at all still disables the button');
   assert.equal(h.nodes.down.getAttribute('aria-disabled'), null);
+});
+
+// #864: Complete and Reopen lost focus to the page the same way, and nothing brought it back after a
+// refused save. They are pending like the rating buttons now, and their success still hands focus to
+// the command that replaces them.
+test('864 a Complete save in flight keeps all four commands focusable but unavailable, ignores a second press, then focuses Reopen', async () => {
+  const h = fixture();
+  await h.view.render();
+  let saves = 0;
+  const complete = h.history.complete.bind(h.history);
+  h.history.complete = (id) => { saves += 1; return complete(id); };
+  let release;
+  h.next = new Promise((resolve) => { release = resolve; });
+  h.nodes.complete.listeners.click();
+  for (const button of [h.nodes.complete, h.nodes.reopen, h.nodes.up, h.nodes.down]) {
+    assert.equal(button.disabled, false, 'not natively disabled, so a focused command keeps focus');
+    assert.equal(button.getAttribute('aria-disabled'), 'true', 'exposed as unavailable while the save is in flight');
+  }
+  h.nodes.complete.listeners.click();
+  assert.equal(saves, 1, 'a press during the save starts nothing');
+  release();
+  await h.flush();
+  assert.equal(h.nodes.complete.hidden, true);
+  assert.equal(h.nodes.reopen.hidden, false);
+  for (const button of [h.nodes.complete, h.nodes.reopen]) {
+    assert.equal(button.disabled, false);
+    assert.equal(button.getAttribute('aria-disabled'), null, 'available again once the save settles');
+  }
+  assert.equal(h.nodes.reopen.focused, true, 'focus moves to Reopen, as before');
+  assert.deepEqual(h.calls.announce, ['Reading List marked as completed. Comic progress and notes are unchanged.']);
+});
+
+test('864 a Reopen save in flight holds the commands the same way, then focuses Complete', async () => {
+  const h = fixture();
+  await h.history.complete('a');
+  await h.view.render();
+  const saves = [];
+  const reopen = h.history.reopen.bind(h.history);
+  h.history.reopen = (id) => new Promise((resolve) => { saves.push(() => resolve(reopen(id))); });
+  h.nodes.reopen.listeners.click();
+  assert.equal(h.nodes.reopen.disabled, false);
+  assert.equal(h.nodes.reopen.getAttribute('aria-disabled'), 'true');
+  h.nodes.reopen.listeners.click();
+  assert.equal(saves.length, 1, 'a press during the save starts nothing');
+  saves[0]();
+  await h.flush();
+  assert.equal(h.nodes.reopen.hidden, true);
+  assert.equal(h.nodes.complete.hidden, false);
+  assert.equal(h.nodes.complete.getAttribute('aria-disabled'), null);
+  assert.equal(h.nodes.complete.focused, true, 'focus moves to Complete, as before');
+  assert.deepEqual(h.calls.announce, ['Reading List reopened. Comic progress and your enjoyment choice are unchanged.']);
+});
+
+test('864 when Complete cannot be seen, as in the closed Android List options sheet, a successful Reopen focuses the view heading', async () => {
+  const h = fixture();
+  await h.history.complete('a');
+  await h.view.render();
+  h.nodes.complete.checkVisibility = () => false;
+  h.nodes.reopen.listeners.click();
+  await h.flush();
+  assert.equal(h.nodes.complete.hidden, false);
+  assert.equal(h.nodes.complete.focused, undefined, 'not focused where it cannot be seen');
+  assert.equal(h.calls.focus, 1, 'the view heading takes focus instead of the page');
+  assert.deepEqual(h.calls.announce, ['Reading List reopened. Comic progress and your enjoyment choice are unchanged.']);
+});
+
+test('864 a refused Complete stays shown, available and focused, unless the refusal hid it', async () => {
+  const h = fixture();
+  await h.view.render();
+  h.fail = true;
+  h.nodes.complete.listeners.click();
+  assert.equal(h.nodes.complete.getAttribute('aria-disabled'), 'true');
+  await h.flush();
+  assert.equal(h.nodes.complete.hidden, false);
+  assert.equal(h.nodes.complete.disabled, false);
+  assert.equal(h.nodes.complete.getAttribute('aria-disabled'), null);
+  assert.equal(h.calls.focus, 0, 'focus is left on the command rather than moved to the heading');
+  assert.equal(h.nodes.reopen.focused, undefined);
+  assert.deepEqual(h.calls.announce, []);
+  // Another tab completed the list while this save waited, so the refusal shows Reopen instead.
+  h.history.complete = async (id) => {
+    h.records.set(id, { completedAt: 2000, rating: null });
+    return { ok: false, error: 'Another tab changed completion history.' };
+  };
+  h.nodes.complete.listeners.click();
+  await h.flush();
+  assert.equal(h.nodes.complete.hidden, true);
+  assert.equal(h.calls.focus, 1, 'with the pressed command gone, focus goes to the view heading, as before');
+  assert.equal(h.nodes.reopen.focused, undefined);
+  assert.deepEqual(h.calls.announce, []);
 });
