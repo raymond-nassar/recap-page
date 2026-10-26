@@ -50,6 +50,22 @@ test('Android phone catalog cards and timelines keep their composition over shar
   assert.match(block, /\.timeline-era \.timeline-year-row \{ padding-left: 0; \}/);
 });
 
+// #857: at 800 by 360 the two-row head put Continue reading's Read under the bottom bar. Four of the
+// rules below override the 880px block's at the same specificity, so the order is the contract too.
+test('A short landscape phone gives Home the one-row head, with What\'s new opening in place', async () => {
+  const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+  const start = css.indexOf('@media (max-width: 880px) and (max-height: 500px) {');
+  assert.notEqual(start, -1, 'the short landscape block exists');
+  assert.ok(start > css.indexOf('@media (max-width: 880px) {'), 'it follows the narrow rules it overrides');
+  const next = css.indexOf('@media', start + 1);
+  const block = css.slice(start, next === -1 ? undefined : next);
+  assert.match(block, /#view-home > \.head \{[^}]*display: grid;[^}]*grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/);
+  assert.match(block, /\.home-lockup \{[^}]*grid-column: 2;/);
+  assert.match(block, /body #view-home #home-updates \{[^}]*grid-column: 3;/);
+  assert.match(block, /body #view-home #home-updates\[open\] \{[^}]*width: auto;/);
+  assert.match(block, /body #view-home #home-updates-panel \{[^}]*position: absolute;[^}]*max-height: calc\(100dvh - var\(--mobile-nav-height, 80px\)/);
+});
+
 test('Android package identity comes from the shared reserved-build contract', async () => {
   const [build, rootBuild, properties] = await Promise.all([
     readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),

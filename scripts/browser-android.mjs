@@ -29,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice',
+  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -57,6 +57,7 @@ const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
 const milestoneMode = process.argv.includes('--only=milestones');
 const saveNotice = process.argv.includes('--only=save-notice');
+const homeContinue = process.argv.includes('--only=home-continue');
 const longListName = process.argv.includes('--only=long-list-name');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
@@ -1654,7 +1655,7 @@ const readingProfiles = [
 ];
 let readingOrder;
 let readingIssue;
-if (readingComposition || alignment || saveNotice) {
+if (readingComposition || alignment || saveNotice || homeContinue) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
@@ -2622,9 +2623,10 @@ async function mobileLayout(page, label, narrow) {
   let homeShown = false;
   let homeOffered = { homeReady };
   if (homeReady) {
-    // At 800x360 Home opens with the card's commands under the fixed bottom bar, as any content can be
-    // until the reader scrolls: a tap there landed on the bar's Browse link. Done is brought to the
-    // middle first, as a reader would scroll to it, and the tap must then reach Done itself.
+    // Done is brought to the middle first, as a reader would scroll to it, so the result and Undo are
+    // checked wherever the card starts. Before #857 it started under the fixed bottom bar at 800x360,
+    // where a tap landed on the bar's Browse link; home-continue now checks where Home opens with it.
+    // The tap must then reach Done itself.
     await page.$eval('#btn-chero-done', (node) => node.scrollIntoView({ block: 'center' }));
     homeBefore = await page.evaluate(() => {
       const done = document.querySelector('#btn-chero-done');
@@ -3229,6 +3231,219 @@ async function saveNoticeCheck(page, label, viewport) {
   console.log(`CHECKED ${label}: first-visit save note ${JSON.stringify({ notice: first.notice, read: first.read, fold: first.fold, link })}`);
 }
 
+// #857: Home's Continue reading on a phone, opened from the bar as a reader leaving a list does. The
+// Issue's Read at y 843 in a 360 by 800 portrait came from a probe server that did not answer the
+// app's health path, so the notice that the local connection is missing stood 354px tall above Home.
+// The native shell answers that path, as this harness's server does, and in portrait Read already
+// cleared the bar. Landscape did not: at 800 by 360 the two-row head left the last 36px of Read and Done
+// under it.
+async function homeContinueFixtures(page, viewport) {
+  const base = readingState();
+  const state = viewport.listName ? {
+    ...base, lists: { ...base.lists, [READING_LIST]: { ...base.lists[READING_LIST], name: viewport.listName } },
+  } : base;
+  await page.evaluateOnNewDocument((saved, key, educationKey, education, settings) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    localStorage.setItem(educationKey, education);
+    localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.origin === location.origin) return original(input, options);
+      if (url.pathname === '/v1/health') {
+        return Promise.resolve(new Response('{"status":"ok"}', { headers: { 'content-type': 'application/json' } }));
+      }
+      return Promise.reject(new TypeError('Home continue fixture blocks outside requests'));
+    };
+  }, state, KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE,
+  { covers: viewport.covers === true, theme: viewport.theme || 'light' });
+}
+
+async function homeContinueCheck(page, label, viewport) {
+  const name = `${label} ${viewport.theme}${viewport.listName ? ' two-line name' : ''}`;
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  const tap = async (point) => {
+    if (viewport.desktop) await page.mouse.click(point.x, point.y);
+    else await page.touchscreen.tap(point.x, point.y);
+  };
+  // Where a finger would land on a control, and whether the control is what is there.
+  const target = (selector) => page.$eval(selector, (node) => {
+    const { left, top, width, height } = node.getBoundingClientRect();
+    const [x, y] = [left + width / 2, top + height / 2];
+    const hit = document.elementFromPoint(x, y);
+    return { x, y, reached: hit === node || node.contains(hit) };
+  });
+  const readCount = () => page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length);
+  await page.waitForSelector('#view-read:not([hidden])');
+  // WebView multiplies every font size by the system font scale, viewport units included, and the
+  // token stress reaches only token sizes, so large text scales the wordmark here as phone-header does.
+  if (viewport.textScale) {
+    await page.$eval('#home-h', (node, factor) => {
+      node.style.fontSize = `${parseFloat(getComputedStyle(node).fontSize) * factor}px`;
+    }, viewport.textScale);
+  }
+  await click(page, '.brand[data-view="home"]');
+  await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done');
+  await page.evaluate(() => document.fonts.ready);
+  await settle();
+  const measure = () => page.evaluate(() => {
+    const box = (node) => {
+      if (!node || !node.getClientRects().length) return null;
+      const { left, top, right, bottom } = node.getBoundingClientRect();
+      return { left: Math.round(left), top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom) };
+    };
+    const reaches = (node) => {
+      const { left, top, width, height } = node.getBoundingClientRect();
+      const hit = document.elementFromPoint(left + width / 2, top + height / 2);
+      return hit === node || node.contains(hit);
+    };
+    // The bar slides while the page moves, so content is measured against where it rests when shown.
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    const head = document.querySelector('#view-home > .head');
+    const headBox = head.getBoundingClientRect();
+    const headStyle = getComputedStyle(head);
+    const heading = document.querySelector('#home-h').getBoundingClientRect();
+    const center = (headBox.left + parseFloat(headStyle.paddingLeft) + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
+    const read = document.querySelector('#btn-chero-read');
+    const done = document.querySelector('#btn-chero-done');
+    return {
+      scrollY: Math.round(scrollY), fold: barred ? Math.round(innerHeight - bar.height) : innerHeight,
+      read: box(read), done: box(done), reachRead: reaches(read), reachDone: reaches(done),
+      heading: box(document.querySelector('#home-h')), toggle: box(document.querySelector('#home-updates-toggle')),
+      panel: document.querySelector('#home-updates').open ? box(document.querySelector('#home-updates-panel')) : null,
+      offCenter: Math.round(Math.abs((heading.left + heading.right) / 2 - center) * 10) / 10,
+      width: document.documentElement.clientWidth,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      focus: document.activeElement?.id || null,
+    };
+  });
+  const opened = await measure();
+  await screenshot(page, name, 'home-continue');
+  if (viewport.readAbove) {
+    // The Issue requires Read fully visible above the bar. Done, stacked under Read on a portrait phone,
+    // must start above it and take a tap there; its last 5px stay under the bar at 320 by 740.
+    check(opened.scrollY === 0 && opened.read.top >= 0 && opened.read.bottom <= opened.fold && opened.reachRead
+      && opened.done.top < opened.fold && opened.reachDone,
+    `${name}: Home opens with Continue reading's Read fully above the bottom bar and Done starting above it, each reached by a tap ${JSON.stringify(opened)}`);
+  } else {
+    console.log(`LIMIT ${name}: Read ends at ${opened.read.bottom} against the bar at ${opened.fold}`);
+  }
+  if (!viewport.desktop) {
+    const sameRow = opened.toggle.top < opened.heading.bottom && opened.toggle.bottom > opened.heading.top;
+    if (viewport.oneRow) {
+      check(sameRow && opened.offCenter <= 1 && opened.toggle.left >= opened.heading.right
+        && opened.toggle.right <= opened.width && !opened.overflow,
+      `${name}: on a short screen What's new shares the centered wordmark's row ${JSON.stringify(opened)}`);
+    } else {
+      check(!sameRow && opened.toggle.top >= opened.heading.bottom && opened.offCenter <= 1,
+        `${name}: a taller screen keeps What's new on its own row under the centered wordmark ${JSON.stringify(opened)}`);
+    }
+  }
+  if (viewport.oneRow) {
+    // What's new opens where it is, as the Windows panel below it, instead of jumping to a row of its
+    // own; with large text the taller row puts the panel's end under the bar, and the page scrolls.
+    // Opening clears New, which can shorten the summary and, with large text, unwrap it, so the corner
+    // it is anchored by is compared, and it may narrow but not spread along its row as it used to.
+    const anchored = (a, b) => !!a && !!b && a.top === b.top && a.right === b.right && a.left >= b.left - 1;
+    const settled = (open) => page.waitForFunction((expected) => document.querySelector('#home-updates').open === expected,
+      { timeout: 5000 }, open).then(() => true, () => false);
+    const toggle = await target('#home-updates-toggle');
+    await tap(toggle);
+    const opening = await settled(true);
+    await settle();
+    const shown = await measure();
+    await screenshot(page, name, 'home-updates-open');
+    check(opening && toggle.reached && anchored(shown.toggle, opened.toggle) && shown.panel
+      && shown.panel.top >= shown.toggle.bottom - 1 && shown.panel.left >= 0 && shown.panel.right <= shown.width
+      && (viewport.textScale || shown.panel.bottom <= shown.fold) && !shown.overflow,
+    `${name}: What's new opens in place, its panel inside the screen and above the bottom bar ${JSON.stringify({ opening, toggle: shown.toggle, before: opened.toggle, panel: shown.panel, fold: shown.fold })}`);
+    if (opening) await tap(await target('#home-updates-close'));
+    const closing = opening && await settled(false);
+    const closed = await measure();
+    check(closing && closed.focus === 'home-updates-toggle' && anchored(closed.toggle, opened.toggle),
+      `${name}: Close restores focus to What's new where it was ${JSON.stringify({ closing, focus: closed.focus, toggle: closed.toggle })}`);
+    await tap(await target('#home-updates-toggle'));
+    const reopened = await settled(true);
+    const replies = await page.evaluate(() => window.__androidTest.replies.length);
+    await page.evaluate(() => window.__androidTest.back());
+    const replied = await page.waitForFunction((count) => window.__androidTest.replies.length > count, { timeout: 5000 }, replies)
+      .then(() => true, () => false);
+    const backed = await page.evaluate(() => ({
+      handled: window.__androidTest.replies.at(-1)?.handled,
+      open: document.querySelector('#home-updates').open, focus: document.activeElement?.id || null,
+    }));
+    check(reopened && replied && backed.handled && !backed.open && backed.focus === 'home-updates-toggle',
+      `${name}: Android Back closes What's new and restores its focus ${JSON.stringify({ reopened, replied, ...backed })}`);
+  }
+  // From the heading Home focuses on arrival, Tab passes What's new and reaches Read, then Done. Focus
+  // keeps each clear of the bar, including where the card does not fit (WCAG 2.4.11).
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    if (document.activeElement?.id !== 'home-updates-toggle') document.querySelector('#home-h').focus({ preventScroll: true });
+  });
+  await settle();
+  const path = [];
+  for (const id of ['btn-chero-read', 'btn-chero-done']) {
+    for (let step = 0; step < 4 && await page.evaluate(() => document.activeElement?.id) !== id; step += 1) {
+      await page.keyboard.press('Tab');
+      path.push(await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+    }
+    await settle();
+    const focused = await measure();
+    const control = id === 'btn-chero-read' ? focused.read : focused.done;
+    check(focused.focus === id && control.top >= 0 && control.bottom <= focused.fold,
+      `${name}: Tab brings ${id === 'btn-chero-read' ? 'Read' : 'Done'} into view clear of the bottom bar ${JSON.stringify({ control, fold: focused.fold, path })}`);
+  }
+  if (!viewport.readAbove) {
+    console.log(`CHECKED ${name}: Continue reading reached by focus ${JSON.stringify({ read: opened.read, fold: opened.fold })}`);
+    return;
+  }
+  // Done is tapped where Home opens with it, which at 800 by 360 used to be the bar's Browse link.
+  // The result and Undo it offers follow the card's commands, as #856 placed them, and Undo is tapped
+  // once it is scrolled into view.
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    document.activeElement?.blur();
+  });
+  // The Tab checks scrolled the page, which slides the bar away, and it slides back as the page
+  // returns to the top. A finger meets the bar where it rests, so the tap waits for it to settle there.
+  await page.waitForFunction(() => {
+    const rail = document.querySelector('.rail-header');
+    if (getComputedStyle(rail).position !== 'fixed') return true;
+    return !rail.classList.contains('mobile-nav-hidden') && Math.abs(rail.getBoundingClientRect().bottom - innerHeight) < 1
+      && !rail.getAnimations().some((animation) => animation.playState === 'running');
+  }, { timeout: 5000 }).catch(() => {});
+  await settle();
+  const before = { read: await readCount(), next: await page.$eval('#chero-next', (node) => node.textContent) };
+  const done = await target('#btn-chero-done');
+  check(done.reached, `${name}: Done is reached by a tap where Home opens with it ${JSON.stringify(done)}`);
+  await tap(done);
+  const shown = await page.waitForSelector('#done-result button', { timeout: 5000 }).then(() => true, () => false);
+  const result = shown ? await page.evaluate(() => ({
+    follows: document.querySelector('#done-result').previousElementSibling?.id === 'chero-actions',
+    read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+  })) : { shown };
+  check(shown && result.follows && result.read === before.read + 1,
+    `${name}: a tap on Done marks the comic and offers Undo after the card's commands ${JSON.stringify(result)}`);
+  await screenshot(page, name, 'home-done');
+  if (!shown) return;
+  await page.$eval('#done-result button', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  const undo = await target('#done-result button');
+  await tap(undo);
+  await page.waitForFunction((next) => document.querySelector('#chero-next')?.textContent === next, { timeout: 5000 }, before.next)
+    .catch(() => {});
+  const undone = { reached: undo.reached, read: await readCount(), focus: await page.evaluate(() => document.activeElement?.id ?? null) };
+  check(undone.reached && undone.read === before.read && undone.focus === 'btn-chero-done',
+    `${name}: a tap on Undo puts the comic back with focus on Done ${JSON.stringify(undone)}`);
+  console.log(`CHECKED ${name}: Continue reading on Home ${JSON.stringify({ read: opened.read, done: opened.done, fold: opened.fold })}`);
+}
+
 // #874: the Reading Journey milestones in the Android build, at the phone sizes and text scales the
 // Issue names. A finished section's Complete badge and Done's longer result stay inside the screen, and
 // the line the wrap-up opens with stays inside its card with each word whole, its display size scaled
@@ -3651,6 +3866,23 @@ try {
     { width: 360, height: 800, textScale: 2, theme: 'dark' },
     { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
   ];
+  // Read is required fully above the bar, and Done to start above it, where the card fits: the portrait
+  // phones, a taller landscape screen, and the short landscape screens #857 is about, with a list name
+  // on one line, as 302 of the 316 curated names are at 800 by 360. A name on two lines, 640px of width
+  // and 200% text are measured limits, where Tab must still bring each command clear of the bar.
+  if (homeContinue) viewports = [
+    { width: 360, height: 800, theme: 'light', readAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, readAbove: true },
+    { width: 320, height: 740, theme: 'light', readAbove: true },
+    { width: 800, height: 600, theme: 'dark', readAbove: true },
+    { width: 800, height: 360, theme: 'light', readAbove: true, oneRow: true },
+    { width: 732, height: 412, theme: 'dark', covers: true, readAbove: true, oneRow: true },
+    { width: 640, height: 360, theme: 'light', oneRow: true },
+    { width: 800, height: 360, theme: 'dark', oneRow: true, listName: 'New Ultimate Universe: Single-Issue Reading Order' },
+    { width: 800, height: 360, textScale: 2, theme: 'light', oneRow: true },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
+  ];
   if (longListName) viewports = [
     { width: 360, height: 800 },
     { width: 412, height: 915 },
@@ -3703,6 +3935,7 @@ try {
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
     if (saveNotice) await saveNoticeFixtures(page, viewport);
+    if (homeContinue) await homeContinueFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
@@ -3713,13 +3946,13 @@ try {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
-      if ((readingComposition || placeholderAx || saveNotice) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if ((readingComposition || placeholderAx || saveNotice || homeContinue) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -3773,7 +4006,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice || homeContinue);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -3986,6 +4219,12 @@ try {
     }
     if (saveNotice) {
       await saveNoticeCheck(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (homeContinue) {
+      await homeContinueCheck(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
