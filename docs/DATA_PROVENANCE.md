@@ -1091,10 +1091,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:7895-7934`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:8401-8440`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:12154-12279`.
+`src/data/catalog.json:12765-12890`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2921,9 +2921,9 @@ its original source position and provider 404 rather than turning owner evidence
 response.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:797-819`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:834-856`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:419-423`, `scripts/vendor-orders.mjs:486-487`, `scripts/vendor-orders.mjs:530-531`).
+(`scripts/vendor-orders.mjs:422-426`, `scripts/vendor-orders.mjs:489-490`, `scripts/vendor-orders.mjs:533-534`).
 The published rows carry only their confirmed identity, issue ID, URL and refusal state; optional
 provider details and covers remain empty. No comic image bytes are stored and no Unlimited
 availability is inferred.
