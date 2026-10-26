@@ -547,12 +547,15 @@ under way, as a reader leaving it does, at 360x800, 412x915 in dark with cover a
 800x600, 800x360, 732x412 in dark with cover art on, 640x360, 800x360 with a list name on two lines,
 800x360 and 360x800 with 200% text tokens, and the shared desktop entry at 1280x900. Wherever the
 card fits, Continue reading's Read must be fully above the bottom bar and Done must start above it,
-each taking a tap there, and Done and Undo must work by tap. On a short landscape screen What's new
-must share the centered wordmark's row and open in place, its panel inside the screen and above the
-bar, with Close and Android Back returning focus to it; a taller screen keeps it on its own row. Tab
-must bring Read and Done into view clear of the bar in every case. The two-line name, 640px and 200%
-text cases report where Read ends as measured limits. These are Edge web checks, not a real keyboard,
-native fontScale or TalkBack acceptance.
+each taking a tap there. Done's result must then show in full just above the bottom bar, clear of
+Read and Done, moving nothing except at 320x740, where the page scrolls just enough to keep Done 8px
+clear of it. Tab on from Done must land clear of the result, which gives way while More is open, and
+a tap on Undo where it shows must put the comic back. The desktop entry keeps the result inline. On a
+short landscape screen What's new must share the centered wordmark's row and open in place, its
+panel inside the screen and above the bar, with Close and Android Back returning focus to it; a
+taller screen keeps it on its own row. Tab must bring Read and Done into view clear of the bar in
+every case. The two-line name, 640px and 200% text cases report where Read ends as measured limits.
+These are Edge web checks, not a real keyboard, native fontScale or TalkBack acceptance.
 
 ## Native emulator checks without a local emulator
 

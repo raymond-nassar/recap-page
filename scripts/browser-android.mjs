@@ -3403,9 +3403,11 @@ async function homeContinueCheck(page, label, viewport) {
     console.log(`CHECKED ${name}: Continue reading reached by focus ${JSON.stringify({ read: opened.read, fold: opened.fold })}`);
     return;
   }
-  // Done is tapped where Home opens with it, which at 800 by 360 used to be the bar's Browse link.
-  // The result and Undo it offers follow the card's commands, as #856 placed them, and Undo is tapped
-  // once it is scrolled into view.
+  // Done is tapped where Home opens with it, which at 800 by 360 used to be the bar's Browse link. On a
+  // phone its result is a bar above the bottom navigation (#892): it shows in full there and moves
+  // nothing, except at 320 by 740, where the owner chose to scroll just enough to keep Done in view.
+  // Windows keeps it inline after the card's commands, as #856 placed it. Either way Undo is tapped
+  // where it shows.
   await page.evaluate(() => {
     window.scrollTo(0, 0);
     document.activeElement?.blur();
@@ -3419,28 +3421,83 @@ async function homeContinueCheck(page, label, viewport) {
       && !rail.getAnimations().some((animation) => animation.playState === 'running');
   }, { timeout: 5000 }).catch(() => {});
   await settle();
-  const before = { read: await readCount(), next: await page.$eval('#chero-next', (node) => node.textContent) };
+  const before = {
+    read: await readCount(), next: await page.$eval('#chero-next', (node) => node.textContent),
+    done: (await measure()).done,
+  };
   const done = await target('#btn-chero-done');
   check(done.reached, `${name}: Done is reached by a tap where Home opens with it ${JSON.stringify(done)}`);
   await tap(done);
   const shown = await page.waitForSelector('#done-result button', { timeout: 5000 }).then(() => true, () => false);
-  const result = shown ? await page.evaluate(() => ({
-    follows: document.querySelector('#done-result').previousElementSibling?.id === 'chero-actions',
-    read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
-  })) : { shown };
-  check(shown && result.follows && result.read === before.read + 1,
-    `${name}: a tap on Done marks the comic and offers Undo after the card's commands ${JSON.stringify(result)}`);
+  await settle();
+  const placed = shown ? await page.evaluate(() => {
+    const box = (node) => {
+      const { left, top, right, bottom } = node.getBoundingClientRect();
+      return { left: Math.round(left), top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom) };
+    };
+    const result = document.querySelector('#done-result');
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    return {
+      follows: result.previousElementSibling?.id === 'chero-actions', position: getComputedStyle(result).position,
+      read: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length,
+      result: box(result), readBox: box(document.querySelector('#btn-chero-read')), doneBox: box(document.querySelector('#btn-chero-done')),
+      fold: barred ? Math.round(innerHeight - bar.height) : innerHeight, width: document.documentElement.clientWidth,
+      scrollY: Math.round(scrollY), focus: document.activeElement?.id || null,
+    };
+  }) : { shown };
+  check(shown && placed.follows && placed.read === before.read + 1,
+    `${name}: a tap on Done marks the comic and offers Undo, the result following the card's commands in the page ${JSON.stringify(placed)}`);
   await screenshot(page, name, 'home-done');
   if (!shown) return;
-  await page.$eval('#done-result button', (node) => node.scrollIntoView({ block: 'center' }));
-  await settle();
+  if (viewport.desktop) {
+    check(placed.position !== 'fixed' && placed.result.top >= placed.doneBox.bottom && placed.scrollY === 0,
+      `${name}: Windows keeps the result inline under the card's commands ${JSON.stringify(placed)}`);
+  } else {
+    const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    const gap = placed.fold - placed.result.bottom;
+    const same = (a, b) => ['left', 'top', 'right', 'bottom'].every((side) => Math.abs(a[side] - b[side]) <= 1);
+    // At 320 by 740 the page moves by the overlap and the bar's own gap, so Done ends that gap above it.
+    const moved = viewport.scrollToClear
+      ? placed.scrollY > 0 && Math.abs(placed.result.top - placed.doneBox.bottom - gap) <= 1
+      : placed.scrollY === 0 && same(placed.doneBox, before.done);
+    check(placed.position === 'fixed' && placed.result.left >= 0 && placed.result.right <= placed.width
+      && placed.result.top >= 0 && placed.result.bottom <= placed.fold && gap > 0
+      && !overlaps(placed.result, placed.readBox) && !overlaps(placed.result, placed.doneBox) && moved,
+    `${name}: Done's result shows in full in a bar above the bottom navigation, clear of Read and Done, ${viewport.scrollToClear ? 'the page scrolled just enough to keep Done in view' : 'with nothing moved'} ${JSON.stringify({ ...placed, before: before.done, gap })}`);
+    if (viewport.scrollToClear) console.log(`SCROLL ${name}: ${placed.scrollY}px keeps Done ${gap}px clear of the result bar`);
+    // Focus clears the bar by its height while it shows, so Tab on from Done never lands under it: the
+    // focused control's scroll margin must cover the navigation and the bar, which the overlay measures.
+    await page.$eval('#btn-chero-done', (node) => node.focus({ preventScroll: true }));
+    await page.keyboard.press('Tab');
+    await settle();
+    const onward = await page.evaluate(() => {
+      const focused = document.activeElement;
+      const { left, top, right, bottom } = focused.getBoundingClientRect();
+      const bar = document.querySelector('#done-result').getBoundingClientRect();
+      return { focus: focused.id, top: Math.round(top), bottom: Math.round(bottom), barTop: Math.round(bar.top),
+        beside: left >= bar.right || right <= bar.left, margin: parseFloat(getComputedStyle(focused).scrollMarginBottom),
+        clearance: Math.round(document.querySelector('.rail-header').offsetHeight + bar.height) };
+    });
+    check(onward.focus === 'btn-chero-open' && onward.top >= 0 && (onward.beside || onward.bottom <= onward.barTop)
+      && onward.margin >= onward.clearance,
+    `${name}: Tab on from Done brings Open the list into view clear of the result bar ${JSON.stringify(onward)}`);
+    // The bar gives way to the More panel while it is open.
+    await click(page, '#btn-rail-toggle');
+    const covered = await page.$eval('#done-result', (node) => getComputedStyle(node).visibility);
+    await click(page, '#btn-rail-toggle');
+    const restored = await page.$eval('#done-result', (node) => getComputedStyle(node).visibility);
+    check(covered === 'hidden' && restored === 'visible',
+      `${name}: the result bar gives way while More is open ${JSON.stringify({ covered, restored })}`);
+  }
   const undo = await target('#done-result button');
   await tap(undo);
   await page.waitForFunction((next) => document.querySelector('#chero-next')?.textContent === next, { timeout: 5000 }, before.next)
     .catch(() => {});
   const undone = { reached: undo.reached, read: await readCount(), focus: await page.evaluate(() => document.activeElement?.id ?? null) };
   check(undone.reached && undone.read === before.read && undone.focus === 'btn-chero-done',
-    `${name}: a tap on Undo puts the comic back with focus on Done ${JSON.stringify(undone)}`);
+    `${name}: a tap on Undo where it shows puts the comic back with focus on Done ${JSON.stringify(undone)}`);
   console.log(`CHECKED ${name}: Continue reading on Home ${JSON.stringify({ read: opened.read, done: opened.done, fold: opened.fold })}`);
 }
 
@@ -3869,11 +3926,12 @@ try {
   // Read is required fully above the bar, and Done to start above it, where the card fits: the portrait
   // phones, a taller landscape screen, and the short landscape screens #857 is about, with a list name
   // on one line, as 302 of the 316 curated names are at 800 by 360. A name on two lines, 640px of width
-  // and 200% text are measured limits, where Tab must still bring each command clear of the bar.
+  // and 200% text are measured limits, where Tab must still bring each command clear of the bar. Only
+  // at 320 by 740 may Done's result bar scroll the page, to keep Done in view (#892).
   if (homeContinue) viewports = [
     { width: 360, height: 800, theme: 'light', readAbove: true },
     { width: 412, height: 915, theme: 'dark', covers: true, readAbove: true },
-    { width: 320, height: 740, theme: 'light', readAbove: true },
+    { width: 320, height: 740, theme: 'light', readAbove: true, scrollToClear: true },
     { width: 800, height: 600, theme: 'dark', readAbove: true },
     { width: 800, height: 360, theme: 'light', readAbove: true, oneRow: true },
     { width: 732, height: 412, theme: 'dark', covers: true, readAbove: true, oneRow: true },

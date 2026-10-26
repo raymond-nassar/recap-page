@@ -66,6 +66,22 @@ test('A short landscape phone gives Home the one-row head, with What\'s new open
   assert.match(block, /body #view-home #home-updates-panel \{[^}]*position: absolute;[^}]*max-height: calc\(100dvh - var\(--mobile-nav-height, 80px\)/);
 });
 
+// #892: on a phone Home's Done result is a bar fixed above the bottom navigation. Its height reaches the
+// stylesheet from the overlay, which focus clearance needs, so the overlay's wiring is pinned with it.
+test('A phone shows Home\'s Done result in a bar above the navigation that focus keeps clear of', async () => {
+  const [css, overlay] = await Promise.all([
+    readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/web/mobile-ui.js', import.meta.url), 'utf8'),
+  ]);
+  assert.match(css, /#home-continue #done-result \{[^}]*position: fixed;[^}]*bottom: calc\(var\(--mobile-nav-height, 80px\) \+ var\(--space-4\)\);/);
+  assert.match(css, /main :focus \{ scroll-margin-bottom: calc\(var\(--mobile-nav-height, 80px\) \+ var\(--done-bar-height, 0px\) \+ var\(--space-6\)\); \}/);
+  assert.match(css, /body:has\(#btn-rail-toggle\[aria-expanded="true"\]\) #home-continue #done-result \{ visibility: hidden; \}/);
+  const short = css.lastIndexOf('@media (max-width: 880px) and (max-height: 500px) {');
+  assert.match(css.slice(short), /#home-continue #done-result \{ left: max\(24rem, /);
+  assert.match(overlay.slice(0, overlay.indexOf('\nfunction ')), /\n {2}wireDoneBar\(\);/);
+  assert.match(overlay, /root\.style\.setProperty\('--done-bar-height', /);
+});
+
 test('Android package identity comes from the shared reserved-build contract', async () => {
   const [build, rootBuild, properties] = await Promise.all([
     readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
