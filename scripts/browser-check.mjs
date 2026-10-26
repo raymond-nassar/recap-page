@@ -15828,6 +15828,32 @@ MUTATIONS.push(
   },
 );
 
+// UX-29 (#831): each Coming up Read button repeated its accessible name as a title, which a screen reader
+// read again as its description. The name is the button's alone now.
+SCENARIOS.push({
+  id: 'coming-up-read-names',
+  title: 'Coming up Read buttons carry their name once, with no title repeating it',
+  async run(page, t) {
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page, { openRead: true });
+    await page.waitForSelector('#shelf .tile-read:not([hidden])', { timeout: 15000 });
+    const buttons = [];
+    for (const node of await page.$$('#shelf .tile-read:not([hidden])')) {
+      const snapshot = await page.accessibility.snapshot({ root: node, interestingOnly: false });
+      buttons.push({
+        name: snapshot?.name ?? null,
+        description: snapshot?.description ?? '',
+        ...await node.evaluate((button) => ({ label: button.getAttribute('aria-label'), title: button.getAttribute('title') })),
+      });
+      await node.dispose();
+    }
+    t.check('every visible Coming up Read is named once, with no title or description repeating the name',
+      buttons.length > 0 && buttons.every((button) => button.title === null && button.name === button.label
+        && button.name.startsWith('Read') && !(button.description && button.name.includes(button.description))),
+      JSON.stringify(buttons));
+  },
+});
+
 // UX-17 (#831): generated content joins a summary's accessible name, so a screen reader announced each
 // disclosure with its decorative chevron, as "List actions ›". The chevron rules carry empty alternative
 // text, so the arrow still shows and the name is the summary's words alone.

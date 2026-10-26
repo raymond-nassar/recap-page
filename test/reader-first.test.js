@@ -375,3 +375,13 @@ test('story-summary terminology preserves default hiding, explicit reveal and ac
   render();
   assert.equal(description.hidden, true);
 });
+
+test('Coming up Read buttons carry their name once, with no title repeating it', () => {
+  // UX-29: the title repeated the accessible name as a description, so it was announced twice.
+  const source = read('../src/js/views/reading.js');
+  const start = source.indexOf("class: 'tile-read',");
+  const button = source.slice(start, source.indexOf("}, 'Read'),", start));
+  assert.notEqual(start, -1, 'the Coming up Read button moved');
+  assert.match(button, /'aria-label': readName/);
+  assert.doesNotMatch(button, /\btitle:/);
+});

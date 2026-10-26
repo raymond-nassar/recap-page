@@ -740,7 +740,6 @@ export function createReadingView({
           el('button', {
             type: 'button',
             class: 'tile-read',
-            title: `${label}: ${readContext}`,
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
             hidden: !reader.launchable,
