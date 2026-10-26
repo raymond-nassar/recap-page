@@ -156,6 +156,8 @@ From the repository root on Windows:
 ```
 
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
+After a Gradle update it replaces the previous version's launcher the same way, keeping only a
+download whose checksum matches; a download that does not match is deleted and nothing is run.
 It downloads build tooling, not app data. On other hosts, use installed Gradle 9.8.2 or restore the
 official wrapper JAR with the checksum recorded in `bootstrap-wrapper.ps1` before using `gradlew`.
 Builds prepare assets automatically. To prepare them without an Android SDK:
