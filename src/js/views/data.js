@@ -17,7 +17,8 @@ import { wireFieldValidation } from './shared/field-validation.js';
 // One phrase, because two copies drifted. The backup card named ratings and deferrals while the
 // restore, Undo and saved-copy questions said only "lists, notes and reading progress", so a reader
 // restoring an older backup could lose ratings the question never mentioned. The card and all three
-// questions read this string now, and the data view tests hold it to the keys a backup carries.
+// questions read this string now, as do the erase question and the line beside its button, and the
+// data view tests hold it to the keys a backup carries.
 const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, deferrals, availability overrides and issues added by hand';
 
 // ------------------------------------------------------------------ erase policy
@@ -52,10 +53,23 @@ const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, de
 // changed the theme. docs/ARCHITECTURE.md holds the whole list and calls those two preferences
 // rather than data, which is why the message said afterwards still reports all local data erased
 // and only the promise made beforehand had to be narrowed.
-export function eraseDialogBody(copies, { completionHistory = false } = {}) {
+//
+// #851 widened the other half, what the erase does reach. It writes an empty value over the whole
+// of the saved reading data, so the lead names everything a backup holds, from the phrase the
+// restore questions use, rather than the lists and progress alone: availability overrides and
+// issues added by hand went unnamed. It also removes the saved reading-data copy behind Undo,
+// and naming the copies it leaves while leaving out the one it destroys read as if that one
+// survived. The copy gets the same three answers as the kept-aside ones, with storage that will
+// not say treated as not knowing, and it is named before the settings sentence so that what is
+// erased and what is kept never share a sentence.
+export function eraseDialogBody(copies, { completionHistory = false, savedCopy = false } = {}) {
   const tail = ' Export a backup first if you are not sure. It cannot be undone.';
-  const lead = 'This clears every list and all reading progress. Notes and issue ratings are also erased. Your settings are kept.';
-  const scope = completionHistory ? `${lead} Completion and enjoyment history will also be erased.` : lead;
+  const lead = `This clears all ${READING_DATA_CONTENTS}.`;
+  const history = completionHistory ? ' Completion and enjoyment history will also be erased.' : '';
+  const saved = savedCopy === null
+    ? ' The app could not check for a saved reading-data copy. If there is one, it will be erased too.'
+    : savedCopy ? ' The saved reading-data copy will be erased too.' : '';
+  const scope = `${lead}${history}${saved} Your settings are kept.`;
   if (copies === null) {
     return `${scope} This browser will not let the app list what else it has stored, so anything `
       + `kept aside after a failed read is not reached and stays where it is.${tail}`;
@@ -176,6 +190,18 @@ export function createDataView({
     }
   }
 
+  // Whether the erase question should name the saved reading-data copy: true when one exists,
+  // false when none does, and null when storage would not say, which the question reports as not
+  // knowing rather than as nothing to lose.
+  function savedCopyState() {
+    try {
+      const offer = getRestoreOffer ? getRestoreOffer() : { ok: true, available: hasPreRestoreSnapshot?.() ?? false };
+      return offer.ok ? Boolean(offer.available) : null;
+    } catch {
+      return null;
+    }
+  }
+
   function reportRestore(res, success) {
     if (res.ok) notify('#restore-report', success, 'ok');
     else {
@@ -235,6 +261,9 @@ export function createDataView({
 
     nodes.btnExportJson.addEventListener('click', onExportJson);
     if (nodes.backupContents) nodes.backupContents.textContent = `Reading-data backups contain ${READING_DATA_CONTENTS}.`;
+    if (nodes.eraseContents) {
+      nodes.eraseContents.textContent = `Erasing removes all ${READING_DATA_CONTENTS}, plus ${eraseHistory ? 'completion and enjoyment history, ' : ''}the import draft and any saved reading-data copy.`;
+    }
     nodes.btnExportRestoreCopy?.addEventListener('click', onExportRestoreCopy);
     const restoreValidation = wireFieldValidation({
       field: nodes.restoreFile, reportId: 'restore-report',
@@ -391,7 +420,7 @@ export function createDataView({
       try {
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
           confirmLabel: 'Erase everything',
         });
         if (!yes) {

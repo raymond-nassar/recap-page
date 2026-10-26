@@ -3992,8 +3992,9 @@ async function longListNameMenu(page, label, viewport) {
 // #849: the shared question dialog caps its height and scrolls inside, and initial focus goes to Cancel,
 // the safe answer a destructive question needs. At 200% text on phone sizes, focusing Cancel scrolled the
 // question past its own title, 454 to 802px down on main at 29349834, in the reading-data restore, its
-// Undo and the saved copy, the three asked here. Each must open at its title and the start of what it
-// says, with Cancel focused and both answers in view and reachable by a tap, and read to its end.
+// Undo and the saved copy, the three asked here, with the erase question #851 lengthened as a fourth.
+// Each must open at its title and the start of what it says, with Cancel focused and both answers in
+// view and reachable by a tap, and read to its end.
 async function confirmationFixtures(page) {
   let state = createList(createEmptyState(), { id: 'questions', name: 'Question fixture' });
   state = addIssuesToList(state, 'questions', [1, 2].map((n) => ({
@@ -4082,11 +4083,23 @@ async function confirmationQuestions(page, label, viewport) {
   await click(page, '#btn-undo-restore');
   const saved = await question('saved-copy');
   await click(page, '#ask-cancel');
-  await page.waitForFunction(() => !document.querySelector('#ask').open);
+  // The dialog drops its open attribute before its close event settles the question, and a question
+  // asked in between is declined, so wait for the canceled handler to hand focus back to its button.
+  await page.waitForFunction(() => !document.querySelector('#ask').open && document.activeElement?.id === 'btn-undo-restore');
+  // #851 lengthened the erase question, and with the saved copy above still present it names that
+  // copy too, which is the longest form the question takes when nothing is kept aside.
+  await click(page, '#btn-wipe');
+  const erase = await question('erase');
+  const said = await page.$eval('#ask-body', (node) => node.textContent);
+  check(said.includes('The saved reading-data copy will be erased too.'),
+    `${label}: the erase question names the saved reading-data copy it would remove ${JSON.stringify(said)}`);
+  if (viewport.textScale) check(erase.overflows, `${label}: at 200% text the erase question overflows its dialog`);
+  await click(page, '#ask-cancel');
+  await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#btn-wipe').disabled);
   const after = await names();
   check(JSON.stringify(after) === JSON.stringify(before),
-    `${label}: restoring, undoing and declining the saved copy leaves the reading data as it was ${JSON.stringify({ before, after })}`);
-  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved })}`);
+    `${label}: restoring, undoing, and declining the saved copy and the erase leaves the reading data as it was ${JSON.stringify({ before, after })}`);
+  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase })}`);
 }
 
 // #833: an issue search long enough that its 50 rendered comics run well past a phone screen.
