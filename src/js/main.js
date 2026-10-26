@@ -37,7 +37,7 @@ import { APP_VERSION } from './lib/version.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
 import { lookupIssue } from './lib/wiki.js';
 import { DEFAULT_FILTER } from './lib/readingFilters.js';
-import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
+import { DEFAULT_THEME, themeAttribute, normaliseTheme, applyThemeMeta } from './lib/theme.js';
 import {
   ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute, routeTitle, isPlainNavigation,
 } from './lib/route.js';
@@ -827,10 +827,10 @@ function applyThemeSetting() {
   const attr = themeAttribute(settings.theme);
   if (attr) document.documentElement.setAttribute('data-theme', attr);
   else document.documentElement.removeAttribute('data-theme');
-  // The meta tag tells the browser what to paint the scrollbars and form controls before any CSS
-  // applies. Left saying "dark" it contradicts a light page for the first frame.
-  const meta = document.querySelector('meta[name="color-scheme"]');
-  if (meta) meta.setAttribute('content', attr ?? 'dark light');
+  // The head's meta tags tell the browser what to paint outside the stylesheet's reach: the colour
+  // scheme of scrollbars and form controls before any CSS applies, which left saying "dark" would
+  // contradict a light page's first frame, and the theme colour of an installed app's title bar.
+  applyThemeMeta(settings.theme);
   const opt = $('#opt-theme');
   if (opt) opt.value = settings.theme;
 }
@@ -849,10 +849,10 @@ function setTheme(next) {
 // No matchMedia listener. One was written here, and deleting it changed nothing a browser could
 // show: with the stylesheet carrying its own `prefers-color-scheme` block, a reader on 'system'
 // already sees the page follow a live preference change with no JavaScript involved. The listener
-// only ever called applyThemeSetting(), and for 'system' every one of that function's effects is a
-// no-op: the attribute is already absent, the meta tag already says "dark light", and the control
-// already reads 'system'. It was found by mutation, not by review: removing it left a browser
-// check that was written to catch exactly that still reporting a pass.
+// only ever called applyThemeSetting(), and for 'system' each of its effects is a no-op: the
+// attribute is already absent, the meta tags already carry "dark light" and their own schemes'
+// colours, and the control already reads 'system'. It was found by mutation, not by review:
+// removing it left a browser check that was written to catch exactly that still reporting a pass.
 
 function setDescriptionHiding(on) {
   const next = on !== false;

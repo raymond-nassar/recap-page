@@ -132,9 +132,17 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
     }));
   const root = node();
   const meta = node();
+  // The launch page's theme-color tags as written in its markup (#834), so the real module rewrites
+  // the same tags a browser would read.
+  const themeColorTags = [...markup.matchAll(/<meta\b[^>]*\bname="theme-color"[^>]*>/g)].map(([tag]) => {
+    const element = node();
+    for (const [, key, value] of tag.matchAll(/([\w-]+)="([^"]*)"/g)) element.setAttribute(key, value);
+    return element;
+  });
   const doc = { title: 'Opening a comic', documentElement: root, body: node(),
     getElementById: (key) => nodes[key] ?? null,
-    querySelector: (selector) => selector === 'meta[name="color-scheme"]' ? meta : null };
+    querySelector: (selector) => selector === 'meta[name="color-scheme"]' ? meta : null,
+    querySelectorAll: (selector) => (selector === 'meta[name="theme-color"]' ? themeColorTags : []) };
   const host = { opener: { private: true } };
   const mockLocation = { search, replace(url) {
     assert.equal(host.opener, null, 'sever the opener before navigation');
@@ -154,7 +162,7 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
   try {
     await import(`../src/open.js?fixture=${++desktopCase}`);
     await new Promise(setImmediate);
-    if (exercise) await exercise({ nodes, root, meta, doc, navigations, requests, timers, host, settingsReads, writes });
+    if (exercise) await exercise({ nodes, root, meta, themeColorTags, doc, navigations, requests, timers, host, settingsReads, writes });
     return { nodes, navigations, requests, timers, fireFallback() {
       const saved = Object.getOwnPropertyDescriptor(globalThis, 'location');
       globalThis.location = mockLocation;
@@ -328,6 +336,31 @@ test('launcher missing references and display settings surface limitations witho
         launcherMeasure(rows, 'native return', './#/home', nodes.return?.href ?? null);
         launcherMeasure(rows, 'settings limitation', limitation,
           Boolean(nodes['settings-status'] && !nodes['settings-status'].hidden && nodes['settings-status'].textContent));
+      } });
+  }
+  launcherResult(rows);
+});
+
+test('the launch page gives an installed window\'s title bar the chosen theme, and the system its own (#834)', async () => {
+  // Each tag carries its own scheme's colour on system, and both carry an explicit theme's, so whichever
+  // tag the browser picks matches the page this module paints. Unreadable settings follow the system.
+  const rows = [];
+  const own = ['#111117', '#fafaff'];
+  for (const [settings, readError, colors] of [
+    ['{"theme":"light"}', false, ['#fafaff', '#fafaff']],
+    ['{"theme":"dark"}', false, ['#111117', '#111117']],
+    ['{"theme":"system"}', false, own],
+    ['{"theme":"unexpected"}', false, own],
+    [null, true, own],
+    ['null', false, own],
+  ]) {
+    await desktopLauncher('', () => assert.fail('Missing reference cannot fetch'), { settings, readError,
+      exercise: async ({ themeColorTags, meta, root }) => {
+        const kind = readError ? 'unreadable' : settings;
+        launcherMeasure(rows, `${kind} tag media`, ['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)'],
+          themeColorTags.map((tag) => tag.getAttribute('media')));
+        launcherMeasure(rows, `${kind} tag colours`, colors, themeColorTags.map((tag) => tag.getAttribute('content')));
+        launcherMeasure(rows, `${kind} colour scheme`, root.attrs['data-theme'] ?? 'dark light', meta.attrs.content);
       } });
   }
   launcherResult(rows);
