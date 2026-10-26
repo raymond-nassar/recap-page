@@ -103,7 +103,50 @@ export function wireMobileUi() {
   });
   for (const node of [view, body]) observer.observe(node, { attributes: true, attributeFilter: ['hidden'] });
   wireSpotlightUi(narrow);
+  wireDoneBar();
   root.classList.add('android-mobile-ui');
+}
+
+// #892: on a phone, mobile.css draws Home's Done result as a bar fixed above the bottom navigation.
+// Focus keeps clear of the bar by its height while it shows, and only the page knows that height, which
+// grows with the comic's title and the text size, so it is measured here. On the smallest phones Done
+// sits where the bar goes: at 320 by 740 it ends at 670, under the navigation's top at 665. There the
+// owner chose, on 2026-10-26, to scroll just enough to keep Done in view, so the page moves only when
+// the bar would cover the control the reader is on, the focused one in the card or else Done, and only
+// by the overlap and the bar's own gap above the navigation.
+function wireDoneBar() {
+  const root = document.documentElement;
+  const card = document.querySelector('#home-continue');
+  const rail = document.querySelector('.rail-header');
+  if (!card || !rail) return;
+  let watched = null;
+  const clearFocus = () => {
+    if (!watched || getComputedStyle(watched).position !== 'fixed') return;
+    const focused = document.activeElement;
+    const control = focused && card.contains(focused) && !watched.contains(focused)
+      ? focused : card.querySelector('#btn-chero-done');
+    if (!control?.getClientRects().length) return;
+    const bar = watched.getBoundingClientRect();
+    const box = control.getBoundingClientRect();
+    const covered = box.left < bar.right && bar.left < box.right && box.top < bar.bottom && bar.top < box.bottom;
+    const gap = innerHeight - rail.offsetHeight - bar.bottom;
+    if (covered) window.scrollBy(0, Math.ceil(box.bottom + gap - bar.top));
+  };
+  const sizes = new ResizeObserver(() => {
+    if (!watched) return;
+    root.style.setProperty('--done-bar-height', `${Math.ceil(watched.getBoundingClientRect().height)}px`);
+    clearFocus();
+  });
+  const watch = () => {
+    const result = card.querySelector('#done-result');
+    if (result === watched) return;
+    if (watched) sizes.unobserve(watched);
+    watched = result;
+    if (result) sizes.observe(result);
+    else root.style.removeProperty('--done-bar-height');
+  };
+  new MutationObserver(watch).observe(card, { childList: true, subtree: true });
+  watch();
 }
 
 function wireSpotlightUi(narrow) {
