@@ -247,6 +247,160 @@ jobs:
         timeout-minutes: 3
         run: npm run publication
 
+  # #832 item 1 (UX-33). The browser owners ran only by hand, and `catalog-cards` failed on main
+  # for over two weeks before anyone ran it (#828). These are the four the UI and UX audit named:
+  # two desktop owners and two Android owners, each driving the Edge installed on the runner, so a
+  # shared CSS change that breaks one of them fails here, before merge. The full suites still run by
+  # hand, and the contributing guide says which owners a UI pull request must record.
+  #
+  # Windows because Edge is installed there, at the path the Android owners default to. The driver
+  # is the one the Windows App Certification Kit workflow already pins, from its committed lock, and
+  # it is installed outside the checkout, so package.json gains nothing.
+  ui-owners:
+    name: UI owners in Edge on Windows
+    runs-on: windows-2022
+    # The steps below declare 57 minutes between them, so this is the backstop for time outside any
+    # step, in the same order the other jobs keep. Measured locally, no owner took over 35 seconds;
+    # each step allows several times its owner, until this job has runs of its own to measure.
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          # Nothing in this job pushes.
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      # puppeteer-core from the lock that workflow uses, and axe-core at the exact version whose
+      # file hash the harness pins. Both go outside the checkout with lifecycle scripts off, and the
+      # harness refuses an axe file that does not match its pin rather than recording with it.
+      - name: Install the browser driver and axe-core outside the checkout
+        id: install
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          $driver = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-driver'
+          Copy-Item -LiteralPath ./.github/browser-proof -Destination $driver -Recurse -ErrorAction Stop
+          npm ci --prefix $driver --ignore-scripts --no-audit --no-fund
+          if ($LASTEXITCODE -ne 0) { throw 'The browser driver could not be installed.' }
+          $entry = Join-Path $driver 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
+          if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The browser driver entry file is missing.' }
+          "MRT_PUPPETEER=$entry" >> $env:GITHUB_ENV
+          $axe = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-axe'
+          New-Item -ItemType Directory -Force -Path $axe | Out-Null
+          npm install --prefix $axe --ignore-scripts --no-audit --no-fund --save-exact axe-core@4.14.0
+          if ($LASTEXITCODE -ne 0) { throw 'axe-core could not be installed.' }
+
+      # One step per owner, so a failure names its owner, and each runs whether or not the one before
+      # it passed, so one run reports every owner a change breaks.
+      - name: Desktop owner responsive-reflow
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 4
+        run: node scripts/browser-check.mjs --only=responsive-reflow
+
+      - name: Desktop owner narrow-navigation
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 4
+        run: node scripts/browser-check.mjs --only=narrow-navigation
+
+      - name: Android owner catalog-cards
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 6
+        run: node scripts/browser-android.mjs --only=catalog-cards
+
+      # Against a baseline recorded from this same tree, so the owner's absolute checks of fit,
+      # clipping, centering and focus decide the result and an intended move stays green. A baseline
+      # from the base would fail every deliberate layout change by design and teach everyone to read
+      # red as noise. The record further down compares with the base and lists every move instead.
+      - name: Android owner alignment
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 6
+        shell: pwsh
+        run: |
+          $evidence = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-alignment'
+          $env:MRT_ALIGNMENT_OUTPUT = Join-Path $evidence 'head-baseline'
+          node scripts/browser-android.mjs --only=alignment --alignment-baseline
+          if ($LASTEXITCODE -ne 0) { throw "The alignment baseline pass exited $LASTEXITCODE." }
+          $env:MRT_ALIGNMENT_BASELINE = $env:MRT_ALIGNMENT_OUTPUT
+          $env:MRT_ALIGNMENT_OUTPUT = Join-Path $evidence 'head-comparison'
+          node scripts/browser-android.mjs --only=alignment
+          if ($LASTEXITCODE -ne 0) { throw "The alignment comparison exited $LASTEXITCODE." }
+
+      # #832 item 2 (UX-34). Records what axe finds, by route and theme, in this job's summary and its
+      # evidence artifact. It never fails on a finding, only when it cannot produce the record.
+      - name: Record the accessibility rules pass
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        timeout-minutes: 6
+        shell: pwsh
+        run: |
+          $out = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-axe-evidence'
+          $axe = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-axe'
+          node scripts/browser-check.mjs --axe "--axe-core=$axe" "--axe-out=$out"
+          $code = $LASTEXITCODE
+          $summary = Join-Path $out 'axe-summary.md'
+          if (Test-Path -LiteralPath $summary) { Get-Content -LiteralPath $summary | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY }
+          if ($code -ne 0) { throw "The rules pass could not record its evidence, exit code $code." }
+
+      # Pull requests only, and never fatal. The base's own alignment pass records its baseline, the
+      # head runs the owner against it, and every watched element that moved more than 1px is listed
+      # with its delta in the summary and the artifact, for the author to explain. A failure here,
+      # including a base whose harness no longer matches the head's, is reported rather than failed.
+      - name: Check out the pull request's base for the alignment record
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && github.event_name == 'pull_request' }}
+        continue-on-error: true
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Record which watched elements moved against the base
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && github.event_name == 'pull_request' }}
+        continue-on-error: true
+        timeout-minutes: 8
+        shell: pwsh
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          $evidence = Join-Path $env:RUNNER_TEMP 'recap-ui-owners-alignment'
+          $record = Join-Path $evidence 'against-base'
+          $baseline = Join-Path $evidence 'base-baseline'
+          $baseLog = Join-Path $record 'base-baseline.log'
+          $headLog = Join-Path $record 'head-against-base.log'
+          New-Item -ItemType Directory -Force -Path $record | Out-Null
+          $baseExit = 'skipped'
+          if (Test-Path -LiteralPath 'base/scripts/browser-android.mjs') {
+            Push-Location base
+            $env:MRT_ALIGNMENT_OUTPUT = $baseline
+            node scripts/browser-android.mjs --only=alignment --alignment-baseline *> $baseLog
+            $baseExit = $LASTEXITCODE
+            Pop-Location
+          }
+          $env:MRT_ALIGNMENT_BASELINE = $baseline
+          $env:MRT_ALIGNMENT_OUTPUT = Join-Path $evidence 'head-against-base'
+          node scripts/browser-android.mjs --only=alignment *> $headLog
+          $headExit = $LASTEXITCODE
+          $head = Join-Path $evidence 'head-baseline'
+          node scripts/alignment-moves.mjs "--base=$baseline" "--head=$head" "--out=$record" "--base-sha=$env:BASE_SHA" "--base-exit=$baseExit" "--head-exit=$headExit" | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
+          exit 0
+
+      - name: Keep the evidence
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 3
+        with:
+          name: ui-owners-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            ${{ runner.temp }}/recap-ui-owners-alignment/
+            ${{ runner.temp }}/recap-ui-owners-axe-evidence/
+
   android-emulator:
     name: Android emulator integration
     if: >-

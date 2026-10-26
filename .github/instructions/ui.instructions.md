@@ -29,7 +29,8 @@ Follow [the checks](../../CONTRIBUTING.md#the-checks) and
 ## Report evidence honestly
 
 Complete the UI entries in the [PR template](../PULL_REQUEST_TEMPLATE.md) with exercised
-states, exact commands and results, and browser/manual observations. If a required check cannot
+states, each affected desktop and Android owner's result, exact commands and results, and
+browser/manual observations. If a required check cannot
 run, record what is missing, why, and the exact rerun condition; leave that claim unverified.
 Record proposed exceptions, their reasons and evidence for maintainer disposition instead of
 silently weakening a rule or gate. Separate automated, browser, simulated and human evidence.

@@ -57,12 +57,15 @@ Record numbers, not adjectives. Fill in what you ran and what it said.
 | `npm run publication` |  |
 | `npm run contract` |  |
 | UI states exercised | Surface/journey, states and transitions, with expected and observed outcomes. |
+| UI owner results | Each affected desktop and Android browser owner: exact command, assertions passed and failed, checked revision. |
 | UI evidence | Exact commands/results, browser observations, checked revision and evidence location. |
 | UI limitations/manual evidence | Human/native environment and observations; missing evidence, reason and rerun condition. |
 
 <!--
-Fill all three UI rows; use "Not applicable: <reason>" for non-UI changes.
+Fill all four UI rows; use "Not applicable: <reason>" for non-UI changes.
 Name unavailable evidence instead of claiming UX compliance from automated checks alone.
+List every owner the change can affect, not only the four the UI owners job runs, and explain
+each move that job's alignment record lists against the base.
 -->
 
 <!--

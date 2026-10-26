@@ -29,7 +29,8 @@ npm run publication
 
 All eight run in CI. They check lint and tests, documentation counts, stated file sizes,
 evidence anchors, spacing, contrast and publication content. The browser journeys below are
-manual release checks: they need installed Edge and a driver outside the repository.
+manual release checks: they need installed Edge and a driver outside the repository. CI runs four
+of their owners and the accessibility rules pass as well, in [the UI owners job](#the-ui-owners-job).
 
 Historical-anchor candidate paths use native Windows resolution before containment checks.
 Different spellings of the same directory cannot bypass the worktree boundary. Resolution on
@@ -270,8 +271,29 @@ The pass records findings and never fails on them. The pull request that records
 violation to the Issue that tracks it. It exits nonzero only when it cannot produce the record, and
 before opening Edge it refuses an `axe.min.js` whose SHA-256 differs from the pin. To adopt a newer
 axe-core, check its registry tarball against the published integrity, then change the version and
-SHA-256 in `scripts/browser-axe.mjs`. The one-off axe results in `docs/ux-artifacts/` remain
-historical evidence.
+SHA-256 in `scripts/browser-axe.mjs` and the version CI installs together. The one-off axe results
+in `docs/ux-artifacts/` remain historical evidence.
+
+### The UI owners job
+
+CI runs four owners on a Windows runner with installed Edge, for every pull request and every push
+to main: `responsive-reflow` and `narrow-navigation` from this suite, and the Android
+`catalog-cards` and `alignment` owners. Each has its own step, and each runs even when an earlier
+one fails, so one run names every owner a change breaks. The driver comes from
+`.github/browser-proof/package-lock.json`, and axe-core from the pinned version; neither enters the
+root package.
+
+The alignment owner is gated against a baseline recorded from the same tree, so its checks of fit,
+clipping, centering and focus decide the result and an intended move stays green. On pull requests a
+later step records the base's baseline, runs the owner on the head against it, and lists every
+watched element that moved more than 1px, with its delta, in the job summary and the
+`ui-owners-<run>-<attempt>` artifact. Explain each listed move in the pull request. That step never
+fails the job: a failure inside it, including a base whose harness differs from the head's, is
+reported in the summary instead.
+
+The job records the accessibility rules pass in the same summary and artifact. Whether it is a
+required check is a branch protection setting the maintainer owns. It does not replace the full
+suites: a UI pull request still records every owner the change can affect.
 
 ### Prove the browser check detects failures
 
@@ -324,8 +346,9 @@ to pass. The upgrade proof has no single-scenario selector.
 
 ## Review pinned GitHub Actions
 
-Workflows pin third-party actions to full commit SHAs. Ordinary CI runs only deterministic
-repository checks. An explicitly requested manual Windows preparation run can retain the portable
+Workflows pin third-party actions to full commit SHAs. Ordinary CI runs deterministic repository
+checks, and the UI owners job's browser owners and rules pass in installed Edge on Windows. An
+explicitly requested manual Windows preparation run can retain the portable
 ZIP and its provenance for review. Ordinary CI and Windows proof runs do not upload that archive.
 
 The separate Windows package workflow runs for pull requests that change package behavior or the
@@ -340,10 +363,12 @@ One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools.
 and source/output hash records pass to other jobs, which verify the producer digest against the
 same commit and source bytes. Native console/UI observation is CI-only.
 
-The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`.
-The workflow copies the manifest and lock to its temporary directory and runs `npm ci` there.
+The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`,
+and the UI owners job installs the same graph. Each workflow copies the manifest and lock to its
+temporary directory and runs `npm ci` there.
 This uses the locked dependencies, not newly resolved versions. The driver never enters the root
-package; browser runtime dependencies stay at zero.
+package; browser runtime dependencies stay at zero. The UI owners job installs axe-core by exact
+version, and the harness checks the injected file's SHA-256 before using it.
 
 ### Check the Microsoft Store submission packet
 

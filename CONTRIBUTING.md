@@ -185,8 +185,10 @@ is covered. Preserve the distinction between these evidence types:
   check their declared behavior and source contracts. They do not prove rendered interactions.
 - **Real-browser evidence:** exercise applicable owners with installed Edge as described in
   [the checks](#the-checks). Record the surface, state/transition, expected and observed
-  result, exact command, checked revision and evidence location. A screenshot alone does not
-  prove keyboard operation, dialog focus, cancellation, zoom or a saved-state result.
+  result, exact command, checked revision and evidence location. A UI pull request records the
+  result of every desktop and Android owner the change can affect, including the ones CI runs.
+  A screenshot alone does not prove keyboard operation, dialog focus, cancellation, zoom or a
+  saved-state result.
 - **Manual, native and subjective evidence:** for each affected task, check label clarity
   and action hierarchy; for changed semantics or focus, record the relevant native assistive-
   technology observation; for changed handoff, record the external reader/subscription
@@ -272,6 +274,12 @@ npm run browser
 This also runs outside CI, using installed Edge. Require zero failed assertions for changes to
 routes, rendering, or interaction. Install its driver in a scratch directory outside the repository,
 never as a project dependency.
+
+CI's UI owners job runs four owners on a Windows runner with installed Edge for every pull request:
+`responsive-reflow` and `narrow-navigation` from this suite, and the Android `catalog-cards` and
+`alignment` owners. It also records the accessibility rules pass, `npm run browser -- --axe`, and
+lists each watched Android element that moved against the pull request's base. Explain each move it
+lists. The [maintainer guide](docs/MAINTAINING.md#the-ui-owners-job) describes both records.
 
 ## Tests
 

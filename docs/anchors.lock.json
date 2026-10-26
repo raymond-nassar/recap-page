@@ -6174,14 +6174,14 @@
     "fp": "8d565e435f89864e",
     "head": "\"devDependencies\": {"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:260-262|0": {
-    "anchor": ".github/workflows/ci.yml:260-262",
-    "fp": "d7904643223f00ed",
-    "head": "permissions:"
-  },
   "SECURITY.md|in-scope|.github/workflows/ci.yml:38-39|0": {
     "anchor": ".github/workflows/ci.yml:38-39",
     "fp": "95da3e6147977222",
+    "head": "permissions:"
+  },
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:414-416|0": {
+    "anchor": ".github/workflows/ci.yml:414-416",
+    "fp": "d7904643223f00ed",
     "head": "permissions:"
   },
   "SECURITY.md|in-scope|src/js/lib/apiBase.js:26-38|0": {

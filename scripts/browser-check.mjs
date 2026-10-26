@@ -8,9 +8,10 @@
 //
 // **puppeteer-core is not a dependency of this repository and must not become one.** It is
 // resolved at run time from outside the tree, and its absence is a prerequisite failure with
-// instructions attached, not a test failure. Nothing here is installed by `npm ci`, nothing here
-// runs in CI, and `package.json` gains no entry for it. If your first instinct on reading the
-// import below is to add it to devDependencies, that is the instinct this paragraph exists to
+// instructions attached, not a test failure. Nothing here is installed by `npm ci`, and
+// `package.json` gains no entry for it. The CI job that runs a few owners installs the driver
+// outside its checkout, from the lock in `.github/browser-proof`. If your first instinct on reading
+// the import below is to add it to devDependencies, that is the instinct this paragraph exists to
 // stop.
 //
 // **The server normally binds an ephemeral port, and that is a guarantee rather than a convenience.**
