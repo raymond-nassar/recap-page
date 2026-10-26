@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import {
   createEmptyState, createList, addIssuesToList, markRead, setDeferred, exportBackup,
 } from '../src/js/lib/model.js';
-import { LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
+import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 
 const KEY = 'mrt.state.v2';
 const SOURCE = 'completion-source-list';
@@ -651,4 +651,162 @@ export const completionMutations = [
       'button.disabled = saving || !history.canSave;',
     ),
   },
+  {
+    id: 'completion-commands-disabled-while-saving', breaks: 'completion-command-focus',
+    why: 'Complete and Reopen are natively disabled while their save is in flight, so the pressed one loses focus',
+    rewriteCompletion: (source) => source.replace(
+      'for (const button of [nodes.complete, nodes.reopen, nodes.up, nodes.down]) {',
+      'nodes.complete.disabled = nodes.reopen.disabled = pendingAction || !history.canSave;\n    for (const button of [nodes.up, nodes.down]) {',
+    ),
+  },
 ];
+
+// #864: Complete and Reopen keep focus the same way while their save is held, and after another tab's
+// write refuses it. Measured on main d7682dd0: focus fell to the page during the hold and stayed there
+// after the refusal, and a second Enter during Complete's save reached the reading view's Read
+// shortcut and opened the comic. Every rendered frame from the first press on records where focus is,
+// so a frame with focus on the page shows up even between the checks below.
+const commandState = (page, id) => page.evaluate((selector) => {
+  const button = document.querySelector(selector);
+  return {
+    focus: document.activeElement?.id || document.activeElement?.tagName || null,
+    shown: button.checkVisibility(), disabled: button.disabled, unavailable: button.getAttribute('aria-disabled'),
+    report: document.querySelector('#save-report').textContent, saves: window.__ratingSaves,
+    said: [...window.__commandSaid], opened: window.__commandOpened,
+  };
+}, `#${id}`);
+
+const completedNow = async (page) => (await raw(page, LIST_HISTORY_KEY)) !== null
+  && (await history(page)).records.some((record) => record.listId === SOURCE && record.completedAt);
+
+// Another tab's save while this one waits: the same records under a new write token.
+const foreignHistoryWrite = (page, token) => page.evaluate((key, format, writeToken) => {
+  const value = JSON.parse(localStorage.getItem(key) ?? 'null') ?? { format, version: 1, records: [] };
+  localStorage.setItem(key, JSON.stringify({ ...value, writeToken }));
+}, LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, token);
+
+// A real pointer press, measured where the command is now: the refusal notice can move it.
+const pointerPress = async (page, selector) => {
+  const point = await page.$eval(selector, (button) => {
+    button.scrollIntoView({ block: 'center' });
+    const rect = button.getBoundingClientRect();
+    return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+  });
+  await page.mouse.click(point.x, point.y);
+};
+
+export const completionCommandFocus = {
+  id: 'completion-command-focus',
+  title: 'Completing and reopening a list keep focus on the pressed command while its save is held',
+  async run(page, t) {
+    await setup(page);
+    await page.evaluate((key) => {
+      const request = navigator.locks.request.bind(navigator.locks);
+      window.__ratingLocks = request;
+      window.__ratingSaves = 0;
+      navigator.locks.request = (name, ...rest) => {
+        if (name === key) window.__ratingSaves += 1;
+        return request(name, ...rest);
+      };
+      window.__commandOpened = 0;
+      window.open = () => { window.__commandOpened += 1; return null; };
+      window.__commandSaid = [];
+      const announcer = document.querySelector('#announcer');
+      new MutationObserver(() => {
+        if (announcer.textContent) window.__commandSaid.push(announcer.textContent);
+      }).observe(announcer, { childList: true, characterData: true, subtree: true });
+      window.__commandFrames = null;
+      const sample = () => {
+        window.__commandFrames?.push(document.activeElement?.id || document.activeElement?.tagName);
+        requestAnimationFrame(sample);
+      };
+      requestAnimationFrame(sample);
+    }, LIST_HISTORY_KEY);
+
+    await holdHistory(page);
+    await page.focus('#btn-complete-list');
+    await page.evaluate(() => { window.__commandFrames = []; });
+    await page.keyboard.press('Enter');
+    await renderedFrames(page);
+    const held = await commandState(page, 'btn-complete-list');
+    const ax = await page.accessibility.snapshot({ root: await page.$('#btn-complete-list'), interestingOnly: false });
+    t.check('with its save held open across rendered frames, Complete keeps keyboard focus, unavailable to assistive technology without being disabled',
+      held.focus === 'btn-complete-list' && held.unavailable === 'true' && held.disabled === false && ax?.disabled === true,
+      JSON.stringify({ held, ax }));
+    await page.keyboard.press('Enter');
+    await click(page, '#btn-complete-list');
+    await renderedFrames(page);
+    const again = await commandState(page, 'btn-complete-list');
+    t.check('an Enter and a pointer press during the save start nothing and open nothing',
+      again.focus === 'btn-complete-list' && again.saves === 1 && again.opened === 0 && again.said.length === 0,
+      JSON.stringify(again));
+    await foreignHistoryWrite(page, 'foreign-864-complete');
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Another tab changed')
+      && !document.querySelector('#btn-complete-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const refused = await commandState(page, 'btn-complete-list');
+    const stillOpen = !await completedNow(page);
+    t.check('a save refused because another tab changed the history keeps focus on Complete, shown and available, and completes nothing',
+      refused.focus === 'btn-complete-list' && refused.shown && refused.disabled === false && refused.unavailable === null
+      && stillOpen && refused.said.length === again.said.length && refused.opened === again.opened,
+      JSON.stringify({ refused, stillOpen }));
+
+    // Each check below counts only what its own step said and saved, so a step fails for its own defect.
+    const beforeSuccess = refused.said.length;
+    await holdHistory(page);
+    // Focused again, so this step does not depend on the ones above, which check focus for themselves.
+    await page.focus('#btn-complete-list');
+    await page.keyboard.press('Enter');
+    await renderedFrames(page);
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden
+      && !document.querySelector('#btn-reopen-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const completed = await commandState(page, 'btn-reopen-list');
+    t.check('once the save succeeds, focus moves to Reopen with the one completion message, as before',
+      completed.focus === 'btn-reopen-list' && await completedNow(page)
+      && completed.said.slice(beforeSuccess).join(' | ') === 'Reading List marked as completed. Comic progress and notes are unchanged.',
+      JSON.stringify(completed));
+
+    await holdHistory(page);
+    await pointerPress(page, '#btn-reopen-list');
+    await renderedFrames(page);
+    const pointed = await commandState(page, 'btn-reopen-list');
+    await page.keyboard.press('Enter');
+    await pointerPress(page, '#btn-reopen-list');
+    await renderedFrames(page);
+    const pressedAgain = await commandState(page, 'btn-reopen-list');
+    await foreignHistoryWrite(page, 'foreign-864-reopen');
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Another tab changed')
+      && !document.querySelector('#btn-reopen-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const reopenRefused = await commandState(page, 'btn-reopen-list');
+    t.check('a pointer press on Reopen holds focus the same way, a second press starts nothing, and a refused save keeps it shown, available and focused',
+      pointed.focus === 'btn-reopen-list' && pointed.unavailable === 'true' && pointed.disabled === false
+      && pressedAgain.focus === 'btn-reopen-list' && pressedAgain.saves === pointed.saves
+      && reopenRefused.focus === 'btn-reopen-list' && reopenRefused.shown && reopenRefused.disabled === false
+      && reopenRefused.unavailable === null && await completedNow(page) && reopenRefused.said.length === completed.said.length,
+      JSON.stringify({ pointed, pressedAgain, reopenRefused }));
+
+    const beforeReopened = reopenRefused.said.length;
+    await holdHistory(page);
+    await pointerPress(page, '#btn-reopen-list');
+    await renderedFrames(page);
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => !document.querySelector('#btn-complete-list').hidden
+      && !document.querySelector('#btn-complete-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const reopened = await commandState(page, 'btn-complete-list');
+    const frames = await page.evaluate(() => window.__commandFrames);
+    t.check('once Reopen succeeds, focus moves to Complete with the one reopening message, as before',
+      reopened.focus === 'btn-complete-list' && !await completedNow(page)
+      && reopened.said.slice(beforeReopened).join(' | ') === 'Reading List reopened. Comic progress and your enjoyment choice are unchanged.',
+      JSON.stringify(reopened));
+    t.check('no rendered frame from the first press to the last had focus on the page',
+      frames.length > 0 && !frames.includes('BODY'),
+      JSON.stringify({ frames: frames.length, onPage: frames.filter((entry) => entry === 'BODY').length }));
+    t.check('the held saves raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
+  },
+};

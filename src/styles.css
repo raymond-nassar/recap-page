@@ -871,7 +871,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
 .btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
-.btn:disabled, .completion-enjoyment .btn[aria-disabled="true"] { opacity: .5; cursor: default; filter: none; }
+.btn:disabled, .completion-wrapup .btn[aria-disabled="true"] { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
 .btn-danger {
   background: rgb(var(--red-line) / 7.059%); color: var(--red-fg);
@@ -2375,5 +2375,6 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @media (forced-colors: active) {
   .completion-wrapup.is-completed, .recommendation-card { border-color: CanvasText; }
   .completion-enjoyment button[aria-pressed="true"] { border-color: Highlight; outline: 2px solid Highlight; }
-  .completion-enjoyment .btn[aria-disabled="true"] { color: GrayText; }
+  .completion-wrapup .btn[aria-disabled="true"] { color: GrayText; }
+  .quiet.completion-mark[aria-disabled="true"] { color: GrayText; border-color: GrayText; }
 }

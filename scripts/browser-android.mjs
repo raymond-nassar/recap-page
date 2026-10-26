@@ -11,6 +11,7 @@ import { prepareAndroid, ANDROID_ASSET_DIR } from './prepare-android.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
 import { createEmptyState, createList, addIssuesToList, setIssueNote, markRead, setDeferred, setOverride } from '../src/js/lib/model.js';
 import { KEY } from '../src/js/storage.js';
+import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
@@ -28,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint',
+  'done-hint', 'completion-focus',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -53,6 +54,7 @@ const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
+const completionFocus = process.argv.includes('--only=completion-focus');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
 const alignmentBaseline = process.argv.includes('--alignment-baseline');
@@ -2798,6 +2800,140 @@ async function doneHintGeometry(page, label) {
   console.log(`CHECKED ${label}: Read and Done hints ${JSON.stringify(pairRows.map((row) => [row.step, row.side]))}`);
 }
 
+// #864: Complete and Reopen keep keyboard focus while their completion-history save is held, and after
+// another tab's write refuses it. On a narrow Android screen Complete lives in the List options sheet,
+// which closes as Complete is pressed and gives focus to its own trigger, so Complete is pressed
+// through the sheet and List options is where focus belongs while it saves. Reopen stays on the page,
+// and when it succeeds the view heading takes focus, Complete being in the closed sheet. Measured on
+// main in Edge phone emulation on 2026-10-26: Reopen's held and refused saves left focus on the page,
+// and so did its success.
+const focusTitle = (n) => `Focus fixture (2026) #${n}`;
+async function completionFocusFixtures(page) {
+  let state = createList(createEmptyState(), { id: 'focus', name: 'Focus fixture' });
+  state = addIssuesToList(state, 'focus', [1, 2, 3, 4].map((n) => ({
+    issueId: 864100 + n, title: focusTitle(n), number: String(n), seriesName: 'Focus fixture (2026)', seriesId: 864,
+    digitalId: 864200 + n, url: `https://www.marvel.com/comics/issue/${864100 + n}/fixture`, source: 'manual',
+  }))).state;
+  await page.evaluateOnNewDocument((saved, key) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Focus fixture blocks outside requests'));
+    };
+  }, state, KEY);
+}
+
+async function completionFocusJourney(page, label) {
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  await page.evaluate(() => { location.hash = '#/read/focus'; });
+  await page.waitForFunction(() => !document.querySelector('#view-read').hidden
+    && !document.querySelector('#btn-complete-list').disabled
+    && document.querySelector('#android-list-options')?.checkVisibility());
+  // Every rendered frame records where focus is, so a frame with focus on the page shows up.
+  await page.evaluate((key) => {
+    const request = navigator.locks.request.bind(navigator.locks);
+    window.__focusHold = () => new Promise((held) => {
+      request(key, () => new Promise((release) => { window.__focusRelease = release; held(); }));
+    });
+    window.__focusFrames = null;
+    const sample = () => {
+      window.__focusFrames?.push(document.activeElement?.id || document.activeElement?.tagName);
+      requestAnimationFrame(sample);
+    };
+    requestAnimationFrame(sample);
+  }, LIST_HISTORY_KEY);
+  const focusNow = () => page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName);
+  // The fixed bottom bar can sit over a control, so a target is brought to the middle only when a
+  // finger could not reach it where the app left it, and the tap must then reach it.
+  const reachable = (selector) => page.$eval(selector, (node) => {
+    const rect = node.getBoundingClientRect();
+    return node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+  });
+  const press = async (selector, how) => {
+    if (how === 'keyboard') {
+      await page.focus(selector);
+      await page.keyboard.press('Enter');
+      return;
+    }
+    if (!await reachable(selector)) {
+      await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+      await settle();
+    }
+    check(await reachable(selector), `${label}: a tap on ${selector} reaches it`);
+    await page.tap(selector);
+  };
+  const pressComplete = async (how) => {
+    await press('#android-list-options', how);
+    await page.waitForFunction(() => document.querySelector('#android-list-sheet')?.open
+      && document.querySelector('#btn-complete-list').checkVisibility());
+    await press('#btn-complete-list', how);
+  };
+  // Another tab's save while this one waits: the same records under a new write token.
+  const refuse = async (selector, token) => {
+    await page.evaluate((key, format, writeToken) => {
+      const value = JSON.parse(localStorage.getItem(key) ?? 'null') ?? { format, version: 1, records: [] };
+      localStorage.setItem(key, JSON.stringify({ ...value, writeToken }));
+    }, LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, token);
+    await page.evaluate(() => window.__focusRelease());
+    await page.waitForFunction((target) => document.querySelector('#save-report').textContent.includes('Another tab changed')
+      && !document.querySelector(target).hasAttribute('aria-disabled'), {}, selector);
+    await settle();
+  };
+  const expected = {
+    'Complete held': 'android-list-options', 'Complete refused': 'android-list-options',
+    'Complete succeeded': 'btn-reopen-list', 'Reopen held': 'btn-reopen-list',
+    'Reopen refused': 'btn-reopen-list', 'Reopen succeeded': 'order-name',
+  };
+  for (const how of ['keyboard', 'tap']) {
+    const rows = [];
+    await page.evaluate(() => window.__focusHold());
+    await pressComplete(how);
+    await page.evaluate(() => { window.__focusFrames = []; });
+    await settle();
+    rows.push({ step: 'Complete held', focus: await focusNow() });
+    await refuse('#btn-complete-list', `foreign-864-${how}-complete`);
+    rows.push({ step: 'Complete refused', focus: await focusNow() });
+    await page.evaluate(() => window.__focusHold());
+    await pressComplete(how);
+    await settle();
+    await page.evaluate(() => window.__focusRelease());
+    await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden
+      && !document.querySelector('#btn-reopen-list').hasAttribute('aria-disabled'));
+    await settle();
+    rows.push({ step: 'Complete succeeded', focus: await focusNow() });
+    await page.evaluate(() => window.__focusHold());
+    await press('#btn-reopen-list', how);
+    await settle();
+    rows.push({ step: 'Reopen held', focus: await focusNow() });
+    await refuse('#btn-reopen-list', `foreign-864-${how}-reopen`);
+    rows.push({ step: 'Reopen refused', focus: await focusNow() });
+    await page.evaluate(() => window.__focusHold());
+    await press('#btn-reopen-list', how);
+    await settle();
+    await page.evaluate(() => window.__focusRelease());
+    await page.waitForFunction(() => document.querySelector('#btn-reopen-list').hidden
+      && !document.querySelector('#btn-complete-list').hasAttribute('aria-disabled'));
+    await settle();
+    rows.push({ step: 'Reopen succeeded', focus: await focusNow() });
+    const frames = await page.evaluate(() => {
+      const sampled = window.__focusFrames;
+      window.__focusFrames = null;
+      return sampled;
+    });
+    const wrong = rows.filter((row) => row.focus !== expected[row.step]);
+    check(rows.length === 6 && !wrong.length,
+      `${label} ${how}: focus stays on the command or List options through a held and a refused save, and a success hands it to Reopen or the heading ${JSON.stringify(wrong.length ? wrong : rows)}`);
+    check(frames.length > 0 && !frames.includes('BODY'),
+      `${label} ${how}: no rendered frame from the first press to the last had focus on the page ${JSON.stringify({ frames: frames.length, onPage: frames.filter((entry) => entry === 'BODY').length })}`);
+    console.log(`CHECKED ${label} ${how}: completion focus ${JSON.stringify(rows.map((row) => [row.step, row.focus]))}`);
+  }
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
@@ -2863,6 +2999,7 @@ try {
     { width: 360, height: 800 },
     { width: 800, height: 360 },
   ];
+  if (completionFocus) viewports = [{ width: 412, height: 915 }, { width: 800, height: 360 }];
   const newsProfiles = [
     { width: 390, height: 844, theme: 'light', homeUpdates: true },
     { width: 390, height: 844, theme: 'dark', homeUpdates: true },
@@ -2896,6 +3033,7 @@ try {
     if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
+    if (completionFocus) await completionFocusFixtures(page);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
@@ -3145,6 +3283,12 @@ try {
     }
     if (doneHint) {
       await doneHintGeometry(page, label);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (completionFocus) {
+      await completionFocusJourney(page, label);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

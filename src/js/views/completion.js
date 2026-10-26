@@ -77,6 +77,15 @@ export function createCompletionView({
     if (!dialog.open) dialog.showModal();
   }
 
+  // The command that replaces the pressed one takes focus where it can be seen. On a narrow Android
+  // screen Complete lives in the closed List options sheet, and measured in the Android build in Edge
+  // 155 on 2026-10-26 (#864), focusing it there left focus on the page after a successful Reopen. The
+  // view heading takes focus instead, as it does when a refused save hides the pressed command.
+  function focusReplacement(command) {
+    if (command.checkVisibility?.() === false) focusCurrentView();
+    else command.focus();
+  }
+
   async function change(kind, rating = null, opener = null) {
     if (pendingAction || history.busy || getView() !== 'read' || !currentList()) return;
     const frame = capture();
@@ -98,10 +107,10 @@ export function createCompletionView({
       if (!result.ok && currentAction(frame) && opener?.hidden) focusCurrentView();
     } else if (kind === 'complete') {
       announce('Reading List marked as completed. Comic progress and notes are unchanged.');
-      elements().reopen.focus();
+      focusReplacement(elements().reopen);
     } else if (kind === 'reopen') {
       announce('Reading List reopened. Comic progress and your enjoyment choice are unchanged.');
-      elements().complete.focus();
+      focusReplacement(elements().complete);
     } else {
       announce(rating === 'up' ? 'Enjoyment saved: enjoyed.'
         : rating === 'down' ? 'Enjoyment saved: did not enjoy.' : 'Enjoyment choice cleared.');
@@ -209,20 +218,24 @@ export function createCompletionView({
     nodes.complete.hidden = completed;
     nodes.reopen.hidden = !completed;
     nodes.ratings.hidden = !completed;
-    nodes.complete.disabled = nodes.reopen.disabled = pendingAction || !history.canSave;
     nodes.feedbackGuide.hidden = !completed;
-    // #858: the pressed rating keeps keyboard focus while its save is in flight. Disabling it did
-    // not: measured in Edge 155, a focused button disabled across a rendered frame sends focus to
+    // #858, #864: the pressed command keeps keyboard focus while its save is in flight. Disabling it
+    // did not: measured in Edge 155, a focused button disabled across a rendered frame sends focus to
     // the page for good, and the save spans frames whenever the history lock is not granted at once.
-    // aria-disabled still tells assistive technology the button is unavailable, and change() ignores
-    // a press until the save settles. The history store is busy for the whole save, so that counts
-    // as saving too. A history that cannot save at all keeps the native disable.
+    // Nothing brought focus back after a refused save, and a second Enter on Complete then reached the
+    // reading view's Read shortcut and opened the comic. aria-disabled still tells assistive
+    // technology the command is unavailable, and change() ignores a press until the save settles. The
+    // history store is busy for the whole save, so that counts as saving too. A history that cannot
+    // save at all keeps the native disable. Complete hides itself when its save succeeds, and change()
+    // focuses Reopen in that same task, so the hidden command never holds focus when the page paints.
     const saving = pendingAction || history.busy;
-    for (const [button, rating] of [[nodes.up, 'up'], [nodes.down, 'down']]) {
-      button.setAttribute('aria-pressed', String(record?.rating === rating));
+    for (const button of [nodes.complete, nodes.reopen, nodes.up, nodes.down]) {
       button.disabled = !saving && !history.canSave;
       if (saving) button.setAttribute('aria-disabled', 'true');
       else button.removeAttribute('aria-disabled');
+    }
+    for (const [button, rating] of [[nodes.up, 'up'], [nodes.down, 'down']]) {
+      button.setAttribute('aria-pressed', String(record?.rating === rating));
     }
     if (nodes.feedbackDialog.open && (!completed || feedbackIdentity !== listHistoryIdentity(list))) {
       closeFeedback();

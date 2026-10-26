@@ -487,6 +487,15 @@ button, and that a tap on the edge of either button nearest the other lands on t
 Home is not visited because no hint shows there on a phone. Use `--viewport=412x915@2` for the
 reported case. These are Edge web checks, not native fontScale or TalkBack acceptance.
 
+`npm run android:browser -- --only=completion-focus` holds a completion-history save open from the
+page at 412x915 and 800x360, by keyboard and by tap, and checks where focus is. On a narrow screen
+Complete lives in the List options sheet, which closes as Complete is pressed and gives focus to
+List options. So focus stays on List options while Complete saves and after another tab's write
+refuses it, and moves to Reopen when the save succeeds. Reopen keeps focus while it saves and after
+a refusal. When it succeeds the reading view's heading takes focus, because Complete is in the
+closed sheet. No rendered frame may find focus on the page. These are Edge web checks, not native
+TalkBack acceptance.
+
 ## Native emulator checks without a local emulator
 
 The optional **native_mode=debug** selection in **CI** runs the APK in a full
