@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Use this path for a new owner-selected MCU Prep guide. It replaces per-guide author scripts,
+Use this path for a new owner-selected MCU Prep guide, or for an owner's young readers' pick with
+the `young-readers` surface. It replaces per-guide author scripts,
 test implementations, browser implementations and current-roster edits with explicit input data
 and shared checks. It does not research an ambiguous trade for you, approve a source, or merge
 a pull request.
@@ -73,6 +74,7 @@ Fill the private request with:
 | `insertionAnchor.beforeId` | Proposed current source-manifest insertion point, requiring actual review |
 | `characters`, `keywords`, `coverIssueId` | Factual discovery terms and an optional exact representative original |
 | `sourceFacts` | Optional self-contained factual qualifications, not copied provider prose or executable private paths |
+| `surface` | Optional. `young-readers` files the guide as a whole character run credited `Selected by the project owner` and marked with the young readers' audience; absent keeps MCU Prep |
 
 Each explicit expansion names its `inputPosition` and the exact `inputSha256` from `intake.json`,
 its reader-facing `group` (or explicit null for individual originals), an `interpretation` such as an owner compilation, dated

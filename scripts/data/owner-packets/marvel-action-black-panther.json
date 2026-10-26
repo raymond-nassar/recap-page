@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-black-panther",
+  "inventoryId": "marvel-action-black-panther",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "3280312d72927bb47ae4c3f535a36b92413b0e6db82e89e19e8dccb0e36ddf7a",
+  "sourceIssueBearingBlocksSha256": "c746d0824ea9373ce04b778590273b74a983adbfc337b8fa8a3b1efb9c645594",
+  "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
+  "excludedSourceReferences": [],
+  "expectedCount": 6,
+  "proposedManifest": {
+    "id": "marvel-action-black-panther",
+    "name": "Marvel Action Black Panther",
+    "description": "T'Challa protects Wakanda in a six-issue all-ages series from 2019.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "timeline": null,
+    "sourceFile": "marvel-action-black-panther.md",
+    "out": "marvel_action_black_panther.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+    "sourceOrigin": "Selected by the project owner",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Black Panther",
+      "T'Challa"
+    ],
+    "keywords": [
+      "young readers",
+      "all ages",
+      "Marvel Action",
+      "IDW"
+    ],
+    "coverIssueId": 83431,
+    "expect": 6
+  },
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #1",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 29504,
+      "candidateIssueId": 83431,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #2",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 29504,
+      "candidateIssueId": 83432,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #3",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 29504,
+      "candidateIssueId": 89927,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #4",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 29504,
+      "candidateIssueId": 89928,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #5",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 29504,
+      "candidateIssueId": 89929,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #6",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 29504,
+      "candidateIssueId": 89930,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "packetDigest": "ba1f959a991a380c40235338fb85772d6e94d8083587755864dd7274bd624622",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:17:18.689Z",
+    "rationale": "The owner's young readers' pick recorded on issue 898 names this series by its Marvel series identifier and starting issue; every resolved original comes from the metadata service's listing of that series, in issue order. The coordinating session's decisions on issue 898 settle the grouping and list boundaries.",
+    "proposalDigest": "7298d01874b3d1f6baeadbf0d38d4a6a1eee781de167a0cf4a4375a48bf2961f"
+  }
+}

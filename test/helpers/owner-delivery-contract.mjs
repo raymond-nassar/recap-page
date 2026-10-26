@@ -35,7 +35,7 @@ export async function assertOwnerDeliveryContract(contract, {
   const text = readText ?? ((name) => readFile(path.join(root, name), 'utf8'));
   const json = readJson ?? (async (name) => JSON.parse(await text(name)));
   if (contract.sourceProvider === CBH_SOURCE_PROVIDER.id) {
-    return assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount });
+    return assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount, contracts });
   }
   const { id } = contract;
   const event = contract.surface === 'modern-timeline';
@@ -160,10 +160,16 @@ export async function assertOwnerDeliveryContract(contract, {
   const recordedCurrentDigest = libraryDigestFor({
     ...recordedManifest, lists: recordedManifest.lists.map((entry) => beforeIdentityEntry(entry, cutoff)),
   }, beforeIdentityOrders(recordedVectors, cutoff));
+  // A guide reviewed after every recorded identity and editorial revision saw today's library as it
+  // stood, so its recorded subset needs no historical reconstruction. Only its own stated digest can
+  // select this, and the digest must still match.
+  const plainRecordedDigest = libraryDigestFor(recordedManifest, recordedVectors);
   const currentLibraryDigest = registeredOwnerBaselineRows.has(id)
     ? report.libraryDigest
     : (contract.libraryDigest === recordedCurrentDigest
-      ? recordedCurrentDigest : digestLibrary(recordedManifest, recordedVectors));
+      ? recordedCurrentDigest
+      : (contract.libraryDigest != null && contract.libraryDigest === plainRecordedDigest
+        ? plainRecordedDigest : digestLibrary(recordedManifest, recordedVectors)));
   if (contract.libraryDigest != null) assert.equal(currentLibraryDigest, contract.libraryDigest);
   assert.deepEqual(withRetiredComparisons(current.comparisons.filter((row) =>
     recordedIds.has(row.orderId)), expectedIds, report), report.comparisons);
@@ -175,36 +181,43 @@ export async function assertOwnerDeliveryContract(contract, {
   });
   for (const later of (registeredOwnerBaselineRows.has(id)
     ? [] : current.comparisons.filter((row) => !recordedIds.has(row.orderId)))) {
-    if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
-    const laterContract = contracts.find((entry) => entry.id === later.orderId);
-    assert.ok(laterContract, `${later.orderId}: unregistered later peers require a new bounded relationship review.`);
-    const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
-    const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
-    validateMappingDigest(laterMapping);
-    validateReportDigest(laterReport);
-    validateApprovalDigest(laterMapping.relationshipReview, later.orderId);
-    assert.equal(laterMapping.reviewStatus, 'approved');
-    assert.equal(laterMapping.relationshipReview.approvalDigest, laterContract.approvalDigest);
-    assert.equal(laterMapping.relationshipReview.reportDigest, laterReport.reportDigest);
-    const reciprocal = laterReport.comparisons.find((row) => row.orderId === id);
-    const authority = laterMapping.relationshipReview.dispositions.find((row) => row.orderId === id);
-    assert.ok(reciprocal, 'New owner authority must include the complete earlier library.');
-    assert.ok(authority, 'New owner authority needs an explicit reciprocal disposition.');
-    assert.equal(authority.decision, 'approved');
-    assert.equal(authority.relationship, reciprocal.relationship);
-    assert.equal(authority.sharedCount, reciprocal.sharedCount);
-    assert.deepEqual(authority.sharedIds, reciprocal.sharedIds);
-    if (later.relationship !== 'none') {
-      assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
-    }
-    const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
-    assert.equal(later.relationship, inverse[reciprocal.relationship]);
-    assert.equal(later.sharedCount, reciprocal.sharedCount);
-    assert.deepEqual([...later.sharedIds].sort(), [...reciprocal.sharedIds].sort());
+    await assertRegisteredLaterPeer(id, later, { contracts, json });
   }
 }
 
-async function assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount }) {
+// A list published after a guide was reviewed is not in that guide's recorded comparisons. It is
+// accepted only as a registered curated addition, or as a registered owner guide whose own authority
+// records the reciprocal relationship with this one.
+async function assertRegisteredLaterPeer(id, later, { contracts, json }) {
+  if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) return;
+  const laterContract = contracts.find((entry) => entry.id === later.orderId);
+  assert.ok(laterContract, `${later.orderId}: unregistered later peers require a new bounded relationship review.`);
+  const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
+  const laterMapping = await json(`scripts/data/owner-mappings/${later.orderId}.json`);
+  validateMappingDigest(laterMapping);
+  validateReportDigest(laterReport);
+  validateApprovalDigest(laterMapping.relationshipReview, later.orderId);
+  assert.equal(laterMapping.reviewStatus, 'approved');
+  assert.equal(laterMapping.relationshipReview.approvalDigest, laterContract.approvalDigest);
+  assert.equal(laterMapping.relationshipReview.reportDigest, laterReport.reportDigest);
+  const reciprocal = laterReport.comparisons.find((row) => row.orderId === id);
+  const authority = laterMapping.relationshipReview.dispositions.find((row) => row.orderId === id);
+  assert.ok(reciprocal, 'New owner authority must include the complete earlier library.');
+  assert.ok(authority, 'New owner authority needs an explicit reciprocal disposition.');
+  assert.equal(authority.decision, 'approved');
+  assert.equal(authority.relationship, reciprocal.relationship);
+  assert.equal(authority.sharedCount, reciprocal.sharedCount);
+  assert.deepEqual(authority.sharedIds, reciprocal.sharedIds);
+  if (later.relationship !== 'none') {
+    assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
+  }
+  const inverse = { none: 'none', partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset' };
+  assert.equal(later.relationship, inverse[reciprocal.relationship]);
+  assert.equal(later.sharedCount, reciprocal.sharedCount);
+  assert.deepEqual([...later.sharedIds].sort(), [...reciprocal.sharedIds].sort());
+}
+
+async function assertCbhOwnerBaselineContract(contract, { root, text, json, peerCount, contracts }) {
   const { id } = contract;
   const [sourceText, packet, mapping, report, markdown, manifest, catalog] = await Promise.all([
     text(`scripts/data/owner-selections/${id}.json`),
@@ -244,19 +257,30 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   const publication = identityRevisions.guides.filter((revision) =>
     revision.id === id && revision.placeholderReplacement).at(-1);
   if (publication) assert.equal(mapping.relationshipReview.reviewedAt, publication.generatedAt);
-  const orders = beforeIdentityOrders(library.orders, '',
+  const allOrders = beforeIdentityOrders(library.orders, '',
     identityRevisions.guides.filter((revision) => revision.placeholderReplacement
       && revision.publicationOrder > (publication?.publicationOrder ?? 0)));
+  // The recorded report covers the library this guide was reviewed against. Anything published
+  // since is held to the same registered-later-peer rule as an ordinary owner guide.
+  const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
+  const orders = allOrders.filter((entry) => recordedIds.has(entry.orderId));
+  const recordedManifest = {
+    ...library.manifest, lists: library.manifest.lists.filter((entry) => recordedIds.has(entry.id)),
+  };
   const current = {
     candidateId: id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest,
-    libraryDigest: libraryDigestFor(library.manifest,
+    libraryDigest: libraryDigestFor(recordedManifest,
       orders.map((entry) => ({ id: entry.orderId, issueIds: entry.issueIds.map(String) }))),
     peerDigests: {}, sourceCounts: sourceCountsForPacket(mapping),
     ...buildComparisonReport({ candidateIds: mapping.rows.map((row) => row.selectedIssueId), orders }),
   };
   current.reportDigest = reportDigestFor(current);
   assert.deepEqual(current, report);
-  assert.equal(report.comparisonCount, peerCount);
+  const full = buildComparisonReport({ candidateIds: mapping.rows.map((row) => row.selectedIssueId), orders: allOrders });
+  assert.equal(full.comparisonCount, peerCount);
+  for (const later of full.comparisons.filter((entry) => !recordedIds.has(entry.orderId))) {
+    await assertRegisteredLaterPeer(id, later, { contracts, json });
+  }
   assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
   assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);
   assertApprovedRelationshipReview({

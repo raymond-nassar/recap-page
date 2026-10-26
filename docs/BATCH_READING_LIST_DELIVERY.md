@@ -111,7 +111,8 @@ publish it elsewhere, relabel it or change the page code.
 | Owner selection or another factual compilation | Use the [local curated-checklist route](MAINTAINING.md#add-a-curated-reading-order) with manually prepared, reviewed source facts and exact rows | Missing identity, credit, license decision, review representation or compatibility path |
 | Unclear provider, mixed source or unreadable selection | Retain original and ask for the smallest missing source decision | Do not attribute it to a provider merely to use that provider's tool |
 
-The [owner Markdown commands](READING_LIST_DELIVERY.md#purpose) are MCU Prep-specific. They are
+The [owner Markdown commands](READING_LIST_DELIVERY.md#purpose) serve MCU Prep and, with the
+`young-readers` surface, the owner's young readers' picks. They are
 not the authoring route for these non-MCU events. The local-checklist route uses existing schemas
 and vendoring, not a hidden generic owner importer. Preserve factual upstream credit, exact input
 or decision links, selected source boundaries and omissions. A missing license grant stays

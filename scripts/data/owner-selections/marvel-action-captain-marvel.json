@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-captain-marvel",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "Carol Danvers stars in a six-issue all-ages series from 2019 and 2020.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Action Captain Marvel (2019 to 2020), starting issue #1; Marvel series 29505",
+      "inputSha256": "5deec77f4dad8d813455f5c5f1f9291e1a12a5083595d5d98655476e5aefb2f5",
+      "group": null,
+      "interpretation": "Row 6: the whole series from its first issue, as the metadata service lists series 29505",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/29505/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 6
+    }
+  ],
+  "sourceIssueCount": 6,
+  "publishedIssueCount": 6,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #1",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 29505,
+      "candidateIssueId": 83433,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #2",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 29505,
+      "candidateIssueId": 83434,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #3",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 29505,
+      "candidateIssueId": 83435,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #4",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 29505,
+      "candidateIssueId": 91270,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #5",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 29505,
+      "candidateIssueId": 91305,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Captain Marvel (2019) #6",
+      "normalizedSeriesTitle": "Marvel Action Captain Marvel",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 29505,
+      "candidateIssueId": 91900,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-action-captain-marvel.md",
+        "sha256": "63203fa1f2793d6fa805980dd910809074e4517af4f0e57662b08302d07668d7",
+        "bytes": 180
+      }
+    ]
+  },
+  "publicDependencies": []
+}

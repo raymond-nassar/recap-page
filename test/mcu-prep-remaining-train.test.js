@@ -84,8 +84,12 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
   ]);
   const fixtures = [brand, sheHulk, msMarvel, brave, guardians, agatha];
   assert.deepEqual(fixtures.map((fixture) => fixture.id), cohort);
-  assertCurrentReadingRoster(manifest, catalog);
-  const union = [...new Set([...manifest.lists, ...catalog.lists].map((row) => row.id))].sort();
+  // The historical manifest and catalog above stand in for this train's reviewed copy; the roster
+  // and union are claims about today's library, so they read today's files, which later lists join.
+  const [currentManifest, currentCatalog] = await Promise.all(['curated-lists.json', 'catalog.json']
+    .map(async (file) => JSON.parse(await readFile(new URL(`../src/data/${file}`, import.meta.url), 'utf8'))));
+  assertCurrentReadingRoster(currentManifest, currentCatalog);
+  const union = [...new Set([...currentManifest.lists, ...currentCatalog.lists].map((row) => row.id))].sort();
   assert.deepEqual(library.orders.map((row) => row.orderId).sort(), union);
   assert.equal(union.length, currentReadingCensus.allOrders);
   assert.equal(library.descriptors.filter((row) => /^marvel-knights-to-planet-x-\d{2}$/.test(row.id)).length, 78);

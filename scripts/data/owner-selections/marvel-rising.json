@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-rising",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "Ms. Marvel, Squirrel Girl and a crew of other young heroes team up in a five-issue 2019 series.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Rising (2019), starting issue #1; Marvel series 27131",
+      "inputSha256": "5e2632ab94f7ca5d6025964de3374bfd0ded6964779739c54f104b11707cedde",
+      "group": null,
+      "interpretation": "Row 2: the whole series from its first issue, as the metadata service lists series 27131",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/27131/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 5
+    }
+  ],
+  "sourceIssueCount": 5,
+  "publishedIssueCount": 5,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #1",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27131,
+      "candidateIssueId": 75461,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #2",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27131,
+      "candidateIssueId": 75466,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #3",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27131,
+      "candidateIssueId": 75467,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #4",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27131,
+      "candidateIssueId": 75468,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #5",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27131,
+      "candidateIssueId": 75469,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-rising.md",
+        "sha256": "d6683606b4b94b3ebf5266a6db98ed7fa720ed6148b731a248411088a56b130f",
+        "bytes": 157
+      }
+    ]
+  },
+  "publicDependencies": []
+}

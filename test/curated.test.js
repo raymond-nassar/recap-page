@@ -66,6 +66,24 @@ test('a source section is preserved for distinct guides on one page', () => {
   assert.equal(entries[0].sourceSection, 'X-Men: Divided We Stand');
 });
 
+// #898. A Home category selects young readers' lists by this value, so a misspelling has to fail
+// the manifest rather than leave a list silently outside the category.
+test('audience is a closed vocabulary, carried only when a list states one', () => {
+  const stated = parseManifest({ lists: [{ ...valid, audience: 'young-readers' }] });
+  assert.deepEqual(stated.errors, []);
+  assert.equal(stated.entries[0].audience, 'young-readers');
+
+  const unstated = parseManifest({ lists: [valid] });
+  assert.deepEqual(unstated.errors, []);
+  assert.equal(Object.hasOwn(unstated.entries[0], 'audience'), false);
+
+  for (const audience of ['kids', 'Young Readers', '', null, ['young-readers'], true]) {
+    const { entries, errors } = parseManifest({ lists: [{ ...valid, audience }] });
+    assert.equal(entries.length, 0, `accepted audience ${JSON.stringify(audience)}`);
+    assert.match(errors.join('\n'), /audience must be one of young-readers/);
+  }
+});
+
 test('expect is optional', () => {
   const { entries, errors } = parseManifest({ lists: [{ ...valid, expect: undefined }] });
   assert.deepEqual(errors, []);
@@ -297,6 +315,8 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
     assert.equal(list.group, entry.group, `${entry.id} group drifted from the manifest`);
     assert.equal(list.groupName, entry.groupName);
     assert.equal(list.variant, entry.variant);
+    assert.equal(list.audience, entry.audience ?? null, `${entry.id} audience drifted from the manifest`);
+    assert.equal(rawList.audience ?? null, entry.audience ?? null, `${entry.id} generated a different audience`);
     if (entry.expect != null) assert.equal(list.count, entry.expect, `${entry.id} count drifted`);
   }
 });

@@ -23,6 +23,7 @@ const INVENTORY_PATHS = Object.freeze([
   path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-character-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-ultimate-inventory.json'),
+  path.join(ROOT, 'scripts', 'data', 'cbh-young-readers-inventory.json'),
 ]);
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
 const RETRIEVED_AT = '2026-08-21';

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+  "name": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+  "description": "Star-Lord, Gamora, Rocket, Groot and Drax in a seven-chapter digital comic from 2015 and 2016.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      57935,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #1",
+      null
+    ],
+    [
+      2,
+      57936,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #2",
+      null
+    ],
+    [
+      3,
+      57937,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #3",
+      null
+    ],
+    [
+      4,
+      57938,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #4",
+      null
+    ],
+    [
+      5,
+      57939,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #5",
+      null
+    ],
+    [
+      6,
+      57940,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015)",
+      null
+    ],
+    [
+      7,
+      57942,
+      "Marvel Universe Guardians of the Galaxy Infinite Comic (2015)",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 7,
+    "sourceIdentityCount": 7,
+    "includedIssueCount": 7,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "bcdca9c031a212ea14906da8be29e4b2119b25016dc1dbac5512e6becf9ea9fa",
+  "proposalDigest": "25b8ca785555e49d1abed062bdfd3d8bbc64be2f52c64f2ba2bdaedb93f716be",
+  "libraryDigest": "d0a023477f2128c30f54ceed875127fd991195fb1bdd5c771306b34cd003085e",
+  "approvalDigest": "0e3dc5f4e16eec1785d98c308f792a305af46ea6b17329943e52d6af3fbbfd0a",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-universe-guardians-of-the-galaxy-infinite-comic.json",
+    "scripts/data/owner-packets/marvel-universe-guardians-of-the-galaxy-infinite-comic.json",
+    "scripts/data/owner-mappings/marvel-universe-guardians-of-the-galaxy-infinite-comic.json",
+    "scripts/data/owner-overlaps/marvel-universe-guardians-of-the-galaxy-infinite-comic.json"
+  ],
+  "vectorSha256": "3dae23caf248d0663751be146cd72091d893c6f403782a77cefc1aa66ded5722"
+}

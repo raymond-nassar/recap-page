@@ -11,6 +11,11 @@ import { normalizeCover } from './model.js';
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
 export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
+// Who a list is suited to, as its sources state it. A closed vocabulary rather than a keyword,
+// because keywords are free search text any list can carry, and a Home category selecting on one
+// would gain members nobody chose for it. It crosses shelves the way MCU Prep does: a young
+// readers' list keeps its own shelf by type.
+export const LIST_AUDIENCES = ['young-readers'];
 
 const SPOTLIGHT_KIND_LABELS = {
   all: 'All',
@@ -173,6 +178,7 @@ function normalizeEntry(raw) {
     depth: READING_DEPTHS.includes(raw.depth) ? raw.depth : null,
     storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
+    audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
     source: str(raw.source),

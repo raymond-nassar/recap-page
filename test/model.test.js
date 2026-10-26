@@ -1190,8 +1190,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Namor adds eight distinct unresolved originals and three known-ID optional-detail refusals.
   // Iron Fist adds 38 original-identity gaps and one positive-ID optional-detail refusal.
   // Twenty-five owner-confirmed older-guide identities replace only their original placeholders.
-  assert.equal(claimed, 1124, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1124, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Spidey keeps the six Spidey: School's Out positions as distinct source-position placeholders.
+  assert.equal(claimed, 1130, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1130, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 229);
   assert.equal(affected, 23);
 });
@@ -1440,7 +1441,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // The owner-confirmed publication adds twelve exact identities without provider details.
   // Issue 62446 was already counted, so the distinct refused total rises by eleven.
   // Hulk: Season One and five House of Harkness chapters add six distinct identity-only refusals.
-  assert.equal(refused.length, 1396);
+  // Spidey adds six distinct source-position placeholders for the School's Out chapters.
+  assert.equal(refused.length, 1402);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

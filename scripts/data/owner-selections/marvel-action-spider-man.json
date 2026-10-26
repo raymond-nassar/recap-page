@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-spider-man",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "All-ages Spider-Man adventures from 2018 and 2019, written for newer readers.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Action Spider-Man (2018 to 2019), starting issue #1; Marvel series 29509",
+      "inputSha256": "9aba1eca1d5d6c16f8779a713b63f3163b19e8f56c72ba0bf17bb074e2a27a98",
+      "group": null,
+      "interpretation": "Row 4: the whole series from its first issue, as the metadata service lists series 29509",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/29509/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 12
+    }
+  ],
+  "sourceIssueCount": 12,
+  "publishedIssueCount": 12,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #1",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 29509,
+      "candidateIssueId": 83439,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #2",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 29509,
+      "candidateIssueId": 83440,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #3",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 29509,
+      "candidateIssueId": 83441,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #4",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 29509,
+      "candidateIssueId": 83442,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #5",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 29509,
+      "candidateIssueId": 83443,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #6",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 29509,
+      "candidateIssueId": 83444,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #7",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 29509,
+      "candidateIssueId": 83445,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 7,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #8",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 29509,
+      "candidateIssueId": 83446,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 8,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #9",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 29509,
+      "candidateIssueId": 83447,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 9,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #10",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 29509,
+      "candidateIssueId": 83448,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 10,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #11",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "11",
+      "seriesId": 29509,
+      "candidateIssueId": 83449,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 11,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Spider-Man (2018) #12",
+      "normalizedSeriesTitle": "Marvel Action Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 29509,
+      "candidateIssueId": 89932,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 12,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-action-spider-man.md",
+        "sha256": "61d5ea32d69705d7596ae788d69b78362941fd3820f42d5386480d6a2e5e254b",
+        "bytes": 176
+      }
+    ]
+  },
+  "publicDependencies": []
+}

@@ -1,0 +1,320 @@
+{
+  "id": "marvel-action-avengers",
+  "name": "Marvel Action Avengers",
+  "description": "All-ages Avengers adventures from 2018 to 2020, written for newer readers.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:17:10.692Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 11,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 83419,
+      "title": "Marvel Action Avengers (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83419/marvel_action_avengers_2018_1",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2018-12-26T00:00:00-0500",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53152,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5dee7f7e6fa1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 83420,
+      "title": "Marvel Action Avengers (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83420/marvel_action_avengers_2018_2",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-02-06T00:00:00-0500",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5dee7f8752db3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83421,
+      "title": "Marvel Action Avengers (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/83421/marvel_action_avengers_2018_3",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-03-20T00:00:00-0400",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5dee7fb45cb2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83422,
+      "title": "Marvel Action Avengers (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/83422/marvel_action_avengers_2018_4",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-05-01T00:00:00-0400",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5dee7f90cc807",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83424,
+      "title": "Marvel Action Avengers (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83424/marvel_action_avengers_2018_6",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-07-24T00:00:00-0400",
+      "mu": "2020-01-20T00:00:00-0500",
+      "digitalId": 53157,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5dee7fa234605",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83425,
+      "title": "Marvel Action Avengers (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83425/marvel_action_avengers_2018_7",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-08-21T00:00:00-0400",
+      "mu": "2020-02-17T00:00:00-0500",
+      "digitalId": 53158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/5dee7faaa2dda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Fiorito",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83426,
+      "title": "Marvel Action Avengers (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/83426/marvel_action_avengers_2018_8",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 53159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5dee805280d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Fiorito",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83427,
+      "title": "Marvel Action Avengers (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/83427/marvel_action_avengers_2018_9",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 53160,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5e7bb0376b78f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83428,
+      "title": "Marvel Action Avengers (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/83428/marvel_action_avengers_2018_10",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2019-10-30T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 53161,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/5ea9ce2b7fa8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Jon Sommariva",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Fiorito",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91899,
+      "title": "Marvel Action Avengers (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/91899/marvel_action_avengers_2018_11",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2020-08-05T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 55660,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/60368c203c4a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Marcio Fiorito",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93745,
+      "title": "Marvel Action Avengers (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/93745/marvel_action_avengers_2018_12",
+      "seriesId": 29501,
+      "seriesName": "Marvel Action Avengers (2018 - 2019)",
+      "onSale": "2020-12-09T00:00:00-0500",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 56250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/5fcab0042bc91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Marcio Fiorito",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Manning",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

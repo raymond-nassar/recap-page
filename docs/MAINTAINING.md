@@ -379,6 +379,10 @@ Every `character-run` requires `spotlightKind`. Use `best-of` only for selected 
 title, description or source address. Every reading in a story group must use the same value.
 `other` keeps the card under All without adding a visible fourth filter.
 
+`audience` is optional and closed. Its one value, `young-readers`, marks a list its source
+recommends for younger readers, so a Home category can gather those lists without moving them off
+their shelf. Omit it everywhere else; the manifest refuses any other value.
+
 Rebuild only the order being added:
 
 ```text
@@ -502,7 +506,9 @@ The maintained source records are split by program. Modern event and crossover c
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
 team guide identities live in `scripts/data/cbh-character-inventory.json`. Original Ultimate Marvel
 Universe intake identities live in `scripts/data/cbh-ultimate-inventory.json`; that inventory keeps
-the Earth-1610 boundary separate from the post-Secret-Wars and 2023 continuity guides. Named
+the Earth-1610 boundary separate from the post-Secret-Wars and 2023 continuity guides. The sections
+of the kids' guide live in `scripts/data/cbh-young-readers-inventory.json`, one `sub-guide` record
+per recommended section. Named
 preparation locates the packet's stable id in exactly one maintained inventory, then applies the
 same packet, mapping, relationship, approval, authoring, and freshness checks. Do not merge their
 queue counts or treat a character disposition as a modern continuity result.

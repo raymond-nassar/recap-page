@@ -10,6 +10,15 @@ export const OWNER_EVENT_PROVIDER = Object.freeze({
   requireSourceContentSha256: true, requireSourceProvider: true, allowMissingCover: true,
 });
 
+// #898. The owner's picks from Marvel's young readers guide are character and team runs rather
+// than MCU companions, and they are credited the way the earlier owner best-of list is.
+export const OWNER_YOUNG_READERS_PROVIDER = Object.freeze({
+  id: 'owner-authored', hosts: ['github.com'], sourceOrigin: 'Selected by the project owner',
+  requireSourceContentSha256: true, requireSourceProvider: true, allowMissingCover: true,
+});
+
+export const OWNER_SURFACES = Object.freeze(['modern-timeline', 'young-readers']);
+
 export function readOwnerGuideRegistry(root = ROOT) {
   const unreadable = new Error('Owner delivery registry is unreadable or malformed; private input details are omitted.');
   let registry;
@@ -26,7 +35,7 @@ export function readOwnerGuideRegistry(root = ROOT) {
   for (const guide of registry.guides) {
     if (!guide || Object.keys(guide).some((key) => !['id', 'contract', 'surface', 'baselineRowCount', 'sourceProvider'].includes(key))
       || typeof guide.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guide.id)
-      || (Object.hasOwn(guide, 'surface') && guide.surface !== 'modern-timeline')
+      || (Object.hasOwn(guide, 'surface') && !OWNER_SURFACES.includes(guide.surface))
       || (Object.hasOwn(guide, 'baselineRowCount')
         && (!Number.isSafeInteger(guide.baselineRowCount) || guide.baselineRowCount < 1))
       || (Object.hasOwn(guide, 'sourceProvider')
@@ -43,6 +52,7 @@ export function readOwnerGuideRegistry(root = ROOT) {
 export function ownerGuideProvider(registration, ownerProvider) {
   if (registration.sourceProvider === CBH_SOURCE_PROVIDER.id) return CBH_SOURCE_PROVIDER;
   if (registration.surface === 'modern-timeline') return OWNER_EVENT_PROVIDER;
+  if (registration.surface === 'young-readers') return OWNER_YOUNG_READERS_PROVIDER;
   return registration.id === 'mcu-prep-thunderbolts'
     ? { ...ownerProvider, sourceOrigin: 'Compiled by hand for this project from the owner-authored outline in GitHub issue #682' }
     : ownerProvider;

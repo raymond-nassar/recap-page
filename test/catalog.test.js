@@ -253,10 +253,10 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     },
     {
       complete: currentReadingCensus.complete,
-      placeholders: 1124,
+      placeholders: 1130,
       emptyRecords: 229,
       total: currentReadingCensus.totalItems,
-      placeholderEntries: 28,
+      placeholderEntries: 29,
       emptyEntries: 23,
       bothEntries: 8,
     },
@@ -535,6 +535,24 @@ test('characters and keywords are normalised, and rubbish entries are dropped', 
   });
   assert.deepEqual(lists[0].characters, ['Namor']);
   assert.deepEqual(lists[0].keywords, []);
+});
+
+// #898 supplies the lists and #897 selects on this one field, so the runtime list keeps exactly the
+// closed value and nothing else: an unknown audience reads as none rather than as a new category.
+test('a list keeps its audience only when the catalog states a known one', () => {
+  const entry = { id: 'x', file: 'x.json', name: 'X', count: 1, type: 'character-run' };
+  const [young, unstated, unknown, wrongShape] = parseCatalog({
+    lists: [
+      { ...entry, audience: 'young-readers' },
+      { ...entry, id: 'y', file: 'y.json' },
+      { ...entry, id: 'z', file: 'z.json', audience: 'kids' },
+      { ...entry, id: 'w', file: 'w.json', audience: ['young-readers'] },
+    ],
+  }).lists;
+  assert.equal(young.audience, 'young-readers');
+  assert.equal(unstated.audience, null);
+  assert.equal(unknown.audience, null);
+  assert.equal(wrongShape.audience, null);
 });
 
 test('every reading depth has a label and a plain-English explanation', () => {

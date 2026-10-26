@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-avengers",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "All-ages Avengers adventures from 2018 to 2020, written for newer readers.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Action Avengers (2018 to 2020), starting issue #1; Marvel series 29501",
+      "inputSha256": "32edc6936edd1ac35f564637adb71565eb9d87443338b4a50b04e4e0fca3536a",
+      "group": null,
+      "interpretation": "Row 3: the whole series from its first issue, as the metadata service lists series 29501",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/29501/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 12
+    }
+  ],
+  "sourceIssueCount": 12,
+  "publishedIssueCount": 11,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #1",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 29501,
+      "candidateIssueId": 83419,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #2",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 29501,
+      "candidateIssueId": 83420,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #3",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 29501,
+      "candidateIssueId": 83421,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #4",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 29501,
+      "candidateIssueId": 83422,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #5",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 29501,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #6",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 29501,
+      "candidateIssueId": 83424,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #7",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 29501,
+      "candidateIssueId": 83425,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 7,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #8",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 29501,
+      "candidateIssueId": 83426,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 8,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #9",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 29501,
+      "candidateIssueId": 83427,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 9,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #10",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 29501,
+      "candidateIssueId": 83428,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 10,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #11",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "11",
+      "seriesId": 29501,
+      "candidateIssueId": 91899,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 11,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Avengers (2018) #12",
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 29501,
+      "candidateIssueId": 93745,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 12,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The owner selected the whole series from its first issue. The metadata service lists Marvel Action Avengers (2018) #1-4 and #6-12 in series 29501, two narrow searches return no #5, and the one unlisted id between #4 (83422) and #6 (83424) answers 404, which is not evidence that it is #5. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/83423",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Action%20Avengers%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Action%20Avengers%205&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/29501/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "owner-selection",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/901",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "sourcePosition": 5,
+      "sourceIssueReference": "Marvel Action Avengers (2018) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Marvel Action Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "evidenceDigest": "517a44e78e25d22ffa4ddb44b3e4719974b51d534ae623024a4c3d6b27fc1906"
+    }
+  ],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-action-avengers.md",
+        "sha256": "922f65ceb122358e9f81953781d01ce7f1155995f6ed5764c744d35670f233a6",
+        "bytes": 174
+      }
+    ]
+  },
+  "publicDependencies": []
+}

@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "id": "spidey",
+  "inventoryId": "spidey",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Spidey",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Spidey: Spidey (2015) #1-12, then the six-issue follow-up Spidey: School's Out (2018) #1-6. The metadata service holds School's Out only as a trade paperback, so its six positions are recorded as open metadata gaps tracked by issue 900 and kept in place as placeholders.",
+  "excludedSourceReferences": [
+    "Miles Morales, named as an example of the same idea"
+  ],
+  "sourceOccurrenceCount": 18,
+  "sourceGaps": [
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Spidey: School's Out (2018) #1",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "06597ff99d97d2dd02db85fee365aa686ac30464ae69de0bb93ebd5bd61b2878"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Spidey: School's Out (2018) #2",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "7d0c284ee6836e6e929302b3bff31ad6a012afa165c30f880ab82cf8f12d425c"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Spidey: School's Out (2018) #3",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "53b74377c7f9c14c2cb00d88c861a7d900a2df0da1c8b3f1c26fca7754546535"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Spidey: School's Out (2018) #4",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "40526dce601f1f645e24565a37a7f96f1e7e0b35f48ec50a3ef100c3aacc9d12"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Spidey: School's Out (2018) #5",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "50c768265d6ddf2206e97e607a6cf13a2df807a857aee5000b2464f6759114f3"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spidey: School's Out (2018) #6",
+      "sourceRangeReference": "Spidey: School's Out (2018)",
+      "normalizedSeriesTitle": "Spidey: School's Out",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-26",
+      "auditBasis": "The section recommends a six-issue follow-up, Spidey: School's Out (2018). The metadata service's series 25438 lists only issue 69512, a trade paperback whose record says it collects Spidey - School's Out #1-6; a trade paperback is a collection page and cannot stand in for its issues. Narrow searches found no issue-level record. Preserve this position and do not infer nonpublication or reading availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/69512",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20School&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spidey%20Schools%20Out%202018&limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/25438/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/900",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "evidenceDigest": "5010edb1c0e85c8978f9bc49e29ec4f9322132936831f6a5cf9fae785c5a45b4"
+    }
+  ],
+  "expectedCount": 12,
+  "proposedManifest": {
+    "id": "spidey",
+    "name": "Spidey",
+    "description": "Peter Parker's first year as Spider-Man, retold for new readers in a 2015 series with guest appearances from Iron Man and Black Panther, followed by its six-issue sequel, Spidey: School's Out.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "partial",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spidey.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Spidey",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spidey.json",
+    "characters": [
+      "Spider-Man",
+      "Peter Parker",
+      "Iron Man",
+      "Black Panther"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Robbie Thompson"
+    ],
+    "expect": 18,
+    "timeline": null,
+    "coverIssueId": 57137
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "One list for the section, as the delivery Issue frames it: Spidey (2015) then School's Out. The twelve 2015 issues resolve exactly; the six School's Out positions are open metadata gaps under the gap-tolerant publication policy, tracked by issue 900."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Spidey (2015) #1",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20861,
+      "candidateIssueId": 57137,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #2",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20861,
+      "candidateIssueId": 57139,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #3",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20861,
+      "candidateIssueId": 57141,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #4",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20861,
+      "candidateIssueId": 57143,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #5",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20861,
+      "candidateIssueId": 57145,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #6",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20861,
+      "candidateIssueId": 57146,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #7",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20861,
+      "candidateIssueId": 57147,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #8",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20861,
+      "candidateIssueId": 57148,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #9",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20861,
+      "candidateIssueId": 57149,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #10",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20861,
+      "candidateIssueId": 57150,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #11",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20861,
+      "candidateIssueId": 57151,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spidey (2015) #12",
+      "sourceRangeReference": "Spidey (2015)",
+      "normalizedSeriesTitle": "Spidey",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20861,
+      "candidateIssueId": 57152,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "e5a1b3f1c428887c0a2753d3b2e7d1240dc81223fd117dd887ed2b7bb58350e2"
+}

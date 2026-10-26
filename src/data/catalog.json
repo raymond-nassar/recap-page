@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T12:00:00.000Z",
+  "generatedAt": "2026-10-26T18:18:08.617Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2706,6 +2706,7 @@
       "count": 13,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 1,
       "collections": 3,
       "characters": [
         "Hulk",
@@ -2727,8 +2728,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T08:26:00.000Z",
-      "ownerConfirmedIdentityCount": 1
+      "updatedAt": "2026-10-22T08:26:00.000Z"
     },
     {
       "id": "mcu-prep-iron-man-2-2010",
@@ -3483,6 +3483,7 @@
       "count": 35,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 1,
       "collections": 4,
       "characters": [
         "Thunderbolts",
@@ -3514,8 +3515,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/682",
       "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T17:54:21.821Z",
-      "ownerConfirmedIdentityCount": 1
+      "updatedAt": "2026-10-22T17:54:21.821Z"
     },
     {
       "id": "mcu-prep-moon-knight",
@@ -3654,6 +3654,7 @@
       "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 1,
       "collections": 3,
       "characters": [
         "Spider-Man"
@@ -3682,8 +3683,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/705",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T17:46:42.630Z",
-      "ownerConfirmedIdentityCount": 1
+      "updatedAt": "2026-10-22T17:46:42.630Z"
     },
     {
       "id": "mcu-prep-she-hulk",
@@ -3863,6 +3863,7 @@
       "count": 12,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 5,
       "collections": 3,
       "characters": [
         "Agatha Harkness",
@@ -3888,8 +3889,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/703",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T08:31:00.000Z",
-      "ownerConfirmedIdentityCount": 5
+      "updatedAt": "2026-10-22T08:31:00.000Z"
     },
     {
       "id": "agents-of-atlas-reading-order",
@@ -5216,6 +5216,7 @@
       "count": 414,
       "placeholderCount": 18,
       "emptyRecordCount": 1,
+      "ownerConfirmedIdentityCount": 20,
       "collections": 48,
       "characters": [
         "Iron Fist",
@@ -5246,8 +5247,7 @@
       "source": "https://www.comicbookherald.com/iron-fist-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T22:59:02.316Z",
-      "ownerConfirmedIdentityCount": 20
+      "updatedAt": "2026-10-22T22:59:02.316Z"
     },
     {
       "id": "ultimate-spider-man-reading-order",
@@ -5621,6 +5621,7 @@
       "count": 262,
       "placeholderCount": 12,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 4,
       "collections": 12,
       "characters": [
         "Apocalypse",
@@ -5654,8 +5655,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T22:50:39.538Z",
-      "ownerConfirmedIdentityCount": 4
+      "updatedAt": "2026-10-22T22:50:39.538Z"
     },
     {
       "id": "xmen-claremont",
@@ -7694,6 +7694,7 @@
       "count": 74,
       "placeholderCount": 1,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 1,
       "collections": 7,
       "characters": [
         "X-Men",
@@ -7723,8 +7724,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T22:48:20.824Z",
-      "ownerConfirmedIdentityCount": 1
+      "updatedAt": "2026-10-22T22:48:20.824Z"
     },
     {
       "id": "operation-zero-tolerance",
@@ -10805,6 +10805,7 @@
       "count": 44,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 5,
       "collections": 5,
       "characters": [
         "Vision",
@@ -10836,8 +10837,7 @@
       "source": "https://github.com/raymond-nassar/recap-page/issues/812",
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
-      "updatedAt": "2026-10-22T08:00:00.000Z",
-      "ownerConfirmedIdentityCount": 5
+      "updatedAt": "2026-10-22T08:00:00.000Z"
     },
     {
       "id": "avengers-doomsday-secret-wars",
@@ -12070,6 +12070,300 @@
       "updatedAt": "2026-08-21T09:58:39.876Z"
     },
     {
+      "id": "franklin-richards-one-shots",
+      "file": "franklin_richards_one_shots.json",
+      "name": "Franklin Richards One-Shots",
+      "description": "Fifteen short, gag-filled one-shots about Reed and Sue Richards' young son Franklin and his robot babysitter H.E.R.B.I.E., published from 2005 to 2009. Each stands alone, so any of them makes an easy first comic.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 15,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Franklin Richards",
+        "H.E.R.B.I.E.",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "one-shots",
+        "Chris Eliopoulos",
+        "Marc Sumerak"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 3636,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bc335a0d069b",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Franklin Richards",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "marvel-adventures-the-avengers",
+      "file": "marvel_adventures_the_avengers.json",
+      "name": "Marvel Adventures: The Avengers",
+      "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 39,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Captain America",
+        "Iron Man",
+        "Spider-Man",
+        "Wolverine",
+        "Storm",
+        "Hulk"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Marvel Adventures",
+        "Jeff Parker"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4236,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4f62512656cdb",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Marvel Adventures: Avengers",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "spidey",
+      "file": "spidey.json",
+      "name": "Spidey",
+      "description": "Peter Parker's first year as Spider-Man, retold for new readers in a 2015 series with guest appearances from Iron Man and Black Panther, followed by its six-issue sequel, Spidey: School's Out.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 18,
+      "placeholderCount": 6,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Iron Man",
+        "Black Panther"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Robbie Thompson"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 57137,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5655d3a0e63d5",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Spidey",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "moon-girl-and-devil-dinosaur",
+      "file": "moon_girl_and_devil_dinosaur.json",
+      "name": "Moon Girl and Devil Dinosaur",
+      "description": "Lunella Lafayette, a nine-year-old genius, and the giant red dinosaur who becomes her partner, across the whole 47-issue series from 2015 to 2019.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 47,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Moon Girl",
+        "Lunella Lafayette",
+        "Devil Dinosaur"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Amy Reeder",
+        "Brandon Montclare"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 57014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/564b95175b385",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Moon Girl and Devil Dinosaur",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "thor-the-mighty-avenger",
+      "file": "thor_the_mighty_avenger.json",
+      "name": "Thor: The Mighty Avenger",
+      "description": "An eight-issue 2010 series about Thor's time on Earth and his romance with Jane Foster, written to be read on its own.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Thor",
+        "Jane Foster"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Roger Langridge",
+        "Chris Samnee"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 30580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/5835bb4357978",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Thor: The Mighty Avenger",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "the-unbeatable-squirrel-girl",
+      "file": "the_unbeatable_squirrel_girl.json",
+      "name": "The Unbeatable Squirrel Girl",
+      "description": "Doreen Green balances computer science classes with super heroics across both 2015 volumes: an eight-issue first run, then the fifty issues that followed through 2019.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 58,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 2,
+      "characters": [
+        "Squirrel Girl",
+        "Doreen Green",
+        "Tippy-Toe"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Ryan North",
+        "Erica Henderson"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 52780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5a8db0b877cb6",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Unbeatable Squirrel Girl",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
+      "id": "power-pack-pack-attack-and-team-ups",
+      "file": "power_pack_pack_attack_and_team_ups.json",
+      "name": "Power Pack: Pack Attack! and Team-Ups",
+      "description": "Four young siblings with alien-given powers in their all-ages line from 2005 to 2010: the Pack Attack! reboot, a Day One origin, a Skrull invasion, and team-ups with the X-Men, Avengers, Spider-Man, Hulk, Fantastic Four, Iron Man, Wolverine and Thor.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 44,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Power Pack",
+        "Alex Power",
+        "Julie Power",
+        "Jack Power",
+        "Katie Power"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "young readers",
+        "all ages",
+        "Gurihiru",
+        "Marc Sumerak",
+        "Fred Van Lente"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 1889,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5c6c745e5c59c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+      "sourceSection": "Power Pack",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:14:47.820Z"
+    },
+    {
       "id": "mcu-prep-daredevil-born-again",
       "file": "mcu_prep_daredevil_born_again.json",
       "name": "MCU Prep: Daredevil: Born Again",
@@ -12112,6 +12406,323 @@
       "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
       "sourceLicense": null,
       "updatedAt": "2026-10-03T17:48:05.373Z"
+    },
+    {
+      "id": "marvel-rising",
+      "file": "marvel_rising.json",
+      "name": "Marvel Rising",
+      "description": "Ms. Marvel, Squirrel Girl and a crew of other young heroes team up in a five-issue 2019 series.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Squirrel Girl",
+        "Doreen Green",
+        "America Chavez"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Rising"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5c93f4209ad6e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:16:46.290Z"
+    },
+    {
+      "id": "marvel-action-avengers",
+      "file": "marvel_action_avengers.json",
+      "name": "Marvel Action Avengers",
+      "description": "All-ages Avengers adventures from 2018 to 2020, written for newer readers.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 11,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Iron Man",
+        "Captain America",
+        "Black Widow",
+        "Thor",
+        "Hulk"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Action",
+        "IDW"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 83419,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5dee7f7e6fa1b",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:17:10.692Z"
+    },
+    {
+      "id": "marvel-action-spider-man",
+      "file": "marvel_action_spider_man.json",
+      "name": "Marvel Action Spider-Man",
+      "description": "All-ages Spider-Man adventures from 2018 and 2019, written for newer readers.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Action",
+        "IDW"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 83439,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5dee7ff2179b2",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:17:16.563Z"
+    },
+    {
+      "id": "marvel-action-black-panther",
+      "file": "marvel_action_black_panther.json",
+      "name": "Marvel Action Black Panther",
+      "description": "T'Challa protects Wakanda in a six-issue all-ages series from 2019.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Action",
+        "IDW"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 83431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/5dee7fcd6d593",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:17:22.223Z"
+    },
+    {
+      "id": "marvel-action-captain-marvel",
+      "file": "marvel_action_captain_marvel.json",
+      "name": "Marvel Action Captain Marvel",
+      "description": "Carol Danvers stars in a six-issue all-ages series from 2019 and 2020.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Captain Marvel",
+        "Carol Danvers"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Action",
+        "IDW"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 83433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5dee7fbdb27fe",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:17:27.390Z"
+    },
+    {
+      "id": "marvel-super-hero-adventures",
+      "file": "marvel_super_hero_adventures.json",
+      "name": "Marvel Super Hero Adventures",
+      "description": "Five standalone all-ages specials from 2018 and 2019, starring Captain Marvel twice, then Spider-Man, Ms. Marvel, and a shared team-up.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Captain Marvel",
+        "Spider-Man",
+        "Ms. Marvel",
+        "Hawkeye",
+        "Ant-Man"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Marvel Super Hero Adventures",
+        "one-shots"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 71954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5b999889c25b0",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:17:32.342Z"
+    },
+    {
+      "id": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+      "file": "marvel_universe_guardians_of_the_galaxy_infinite_comic.json",
+      "name": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "description": "Star-Lord, Gamora, Rocket, Groot and Drax in a seven-chapter digital comic from 2015 and 2016.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Guardians of the Galaxy",
+        "Star-Lord",
+        "Gamora",
+        "Rocket Raccoon",
+        "Groot",
+        "Drax"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Infinite Comic",
+        "digital comic"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 57935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5750646381faf",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:18:04.275Z"
+    },
+    {
+      "id": "fantastic-four-and-power-pack",
+      "file": "fantastic_four_and_power_pack.json",
+      "name": "Fantastic Four and Power Pack",
+      "description": "The Power Pack siblings meet the Fantastic Four in a four-issue all-ages team-up from 2007.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "other",
+      "audience": "young-readers",
+      "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four",
+        "Power Pack",
+        "Franklin Richards"
+      ],
+      "keywords": [
+        "young readers",
+        "all ages",
+        "Power Pack"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 15974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ade429ecf356",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+      "sourceOrigin": "Selected by the project owner",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-26T18:18:08.617Z"
     },
     {
       "id": "inhumans-vs-x-men",

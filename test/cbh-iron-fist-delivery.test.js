@@ -199,9 +199,9 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     ['character-run', 'partial', 'other', null]);
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
-  assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 71);
+  assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 86);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
-    && entry.id !== id).length, 70);
+    && entry.id !== id).length, 85);
   assert.equal(catalog.lists.filter((entry) => entry.sourceLicense != null).length, 0);
   assert.equal(manifest.lists.find((entry) => entry.id === id).sourceLicense, null);
   const inventoryEntry = inventory.find((entry) => entry.id === id);

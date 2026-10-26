@@ -623,15 +623,16 @@ above is listed separately because it is third-party material outside the usual 
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
+| `audience` | Optional and closed. `young-readers` marks a list its sources recommend for younger readers, so a Home category can gather those lists across shelves. Authored here, never inferred, and absent on every other list |
 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
-The current Character Spotlight shelf has 70 readings across 69 stories. Seven readings are
-explicit Best of selections, 38 are complete guides, and twenty-five are `other`. The two X-Men
-readings share one story and one classification, so the `other` group has twenty-four stories. The
+The current Character Spotlight shelf has 86 readings across 85 stories. Eight readings are
+explicit Best of selections, 38 are complete guides, and forty are `other`. The two X-Men
+readings share one story and one classification, so the `other` group has thirty-nine stories. The
 Doom primer and Essential Avengers remain under All rather than acquiring a claim their source
-boundaries do not support.
+boundaries do not support, as do the fifteen [young readers' lists](#young-readers-reading-lists).
 
 The Kamala Khan guide preserves 196 source occurrences as 192 original identities, with four
 later references attached to their earlier comics. Its 187 exact issue lookups and five
@@ -3132,3 +3133,86 @@ identities and checklist lines instead of rewriting snapshots. Publishing the ne
 catalog leaves saved copies untouched, including their original placeholders,
 membership, custom order, notes, progress, deferral and availability overrides.
 A fresh import uses the updated guide. No saved-data schema or migration changes.
+
+## Young readers' Reading Lists
+
+[Issue 898](https://github.com/raymond-nassar/recap-page/issues/898) adds fifteen Reading Lists
+for younger readers from two sources. Each carries the closed `audience` value `young-readers`, so a
+Home category can gather them. Every one is a `character-run` with `spotlightKind: other`,
+`beginner: true` and a null timeline, so each also sits on Character spotlights beside comparable
+runs. Depth is `complete`, or `partial` where a gap is recorded.
+
+Seven lists follow the sections of Comic Book Herald's
+[The Best Marvel Comics For Kids (Of All Ages)](https://www.comicbookherald.com/best-marvel-comics-for-kids/),
+retrieved 2026-10-26, through the frozen-packet pipeline. Their inventory is
+[`scripts/data/cbh-young-readers-inventory.json`](../scripts/data/cbh-young-readers-inventory.json),
+one record per section. Each is credited `Compiled for this project from Comic Book Herald's guide`
+with its section heading as `sourceSection`. The guide names series rather than issues, so each
+packet records how its section was expanded:
+
+| List | Section | Published | Gaps | Expansion |
+|---|---|---:|---:|---|
+| Franklin Richards One-Shots | Franklin Richards | 15 | 0 | The 2005 to 2009 one-shots the metadata service lists, in on-sale order |
+| Marvel Adventures: The Avengers | Marvel Adventures: Avengers | 39 | 0 | Marvel Adventures the Avengers (2006) #1-39 |
+| Spidey | Spidey | 12 | 6 | Spidey (2015) #1-12, then Spidey: School's Out (2018) #1-6 |
+| Moon Girl and Devil Dinosaur | Moon Girl and Devil Dinosaur | 47 | 0 | The whole 2015 series |
+| Thor: The Mighty Avenger | Thor: The Mighty Avenger | 8 | 0 | Thor the Mighty Avenger (2010) #1-8 |
+| The Unbeatable Squirrel Girl | Unbeatable Squirrel Girl | 58 | 0 | Both 2015 volumes, #1-8 then #1-50 |
+| Power Pack: Pack Attack! and Team-Ups | Power Pack | 44 | 0 | Eleven 2005 to 2010 all-ages miniseries, in publication order |
+
+The coordinating session's
+[decisions](https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6423074598) set
+three boundaries. Power Pack takes the full run of all-ages miniseries, because the section
+describes five years of team-ups and names three as examples. Franklin Richards: A Fantastic Year
+(2018), which the section calls a greatest hits compilation, is a recorded exclusion as a collected
+edition. The owner's five Marvel Super Hero Adventures specials form one list. The service files a
+Franklin Richards: Lab Brat record as a trade paperback that reprints four of the one-shots, so it
+is not a separate one-shot. Titles named only for comparison, such as Ultimates and Planet Hulk, are
+recorded exclusions rather than rows.
+
+The metadata service holds Spidey: School's Out only as trade paperback 69512, which collects
+#1-6. A trade cannot stand in for its issues, because checklists accept only issue addresses. The
+six positions are open `published-metadata-gap` rows, kept in place as placeholders and tracked by
+[Issue 900](https://github.com/raymond-nassar/recap-page/issues/900).
+
+Eight lists are the owner's picks from Marvel's "Start Here: Young Readers" guide, which this
+project did not fetch. The owner
+[supplied its titles](https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109),
+and that comment is each list's source. They went through the owner-guide workflow with the
+`young-readers` surface and are credited `Selected by the project owner`. Each row was expanded from
+the metadata service's listing of the Marvel series identifier the owner supplied:
+
+| Row | List | Published | Gaps |
+|---|---|---:|---:|
+| 1 | Shares Moon Girl and Devil Dinosaur above | 0 | 0 |
+| 2 | Marvel Rising | 5 | 0 |
+| 3 | Marvel Action Avengers | 11 | 1 |
+| 4 | Marvel Action Spider-Man | 12 | 0 |
+| 5 | Marvel Action Black Panther | 6 | 0 |
+| 6 | Marvel Action Captain Marvel | 6 | 0 |
+| 7 to 11 | Marvel Super Hero Adventures, five specials in row order | 5 | 0 |
+| 12 | Shares Spidey's School's Out gaps; the owner's series 25439 answers 404 | 0 | 0 |
+| 13 | Marvel Universe Guardians of the Galaxy Infinite Comic | 7 | 0 |
+| 14 | Fantastic Four and Power Pack | 4 | 0 |
+
+Marvel Action Avengers (2018) #5 is absent from the service's listing of series 29501. Its position
+is an open gap tracked by [Issue 901](https://github.com/raymond-nassar/recap-page/issues/901) and
+kept in the owner source ledger, since owner checklists list only exact originals. The Guardians
+series ends in two chapters the service titles without a number. Each is selected by its own issue
+ID in on-sale order: owner preparation narrows an otherwise ambiguous match only by such a pinned
+identity, and never selects outside the exact matches.
+
+Relationship review covered every current list. Central model review, not human review, approved
+fifteen meaningful relationships. Thirteen are partial overlaps in which a broader guide selects a
+crossover from a series these lists keep whole: Franklin Richards shares two one-shots with the
+Fantastic Four guide; Moon Girl shares arcs and tie-ins with the Doctor Strange, Fantastic Four,
+Inhumans, Hulk, Silver Surfer and War of the Realms lists; Squirrel Girl shares issues with the
+Loki, Silver Surfer, War of the Realms and White Tiger lists; and Power Pack shares its Fantastic
+Four and Hulk team-ups with those guides. The other two make Fantastic Four and Power Pack a
+four-issue subset of both the Power Pack list and the Fantastic Four guide. No list duplicates
+another, and every shared issue stays in both lists.
+
+Request-bound responses from the configured metadata provider supply issue identities, dates and
+cover addresses. No comic image, provider description or source prose is stored, and no marvel.com
+or read.marvel.com page was requested. `sourceLicense` stays null. No name or description says a
+comic is on Marvel Unlimited. Saved reading data, backups and existing lists are unchanged.

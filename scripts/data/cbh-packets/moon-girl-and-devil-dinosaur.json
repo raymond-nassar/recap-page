@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "id": "moon-girl-and-devil-dinosaur",
+  "inventoryId": "moon-girl-and-devil-dinosaur",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Moon Girl and Devil Dinosaur",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Moon Girl and Devil Dinosaur, which recommends the series as a whole: Moon Girl and Devil Dinosaur (2015) #1-47 in issue order. The project owner also selected this series from Marvel's young readers guide, so the two sources share this list.",
+  "excludedSourceReferences": [
+    "Fantastic Four (2018), named for its team-up nod"
+  ],
+  "expectedCount": 47,
+  "proposedManifest": {
+    "id": "moon-girl-and-devil-dinosaur",
+    "name": "Moon Girl and Devil Dinosaur",
+    "description": "Lunella Lafayette, a nine-year-old genius, and the giant red dinosaur who becomes her partner, across the whole 47-issue series from 2015 to 2019.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "moon-girl-and-devil-dinosaur.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Moon Girl and Devil Dinosaur",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "moon_girl_and_devil_dinosaur.json",
+    "characters": [
+      "Moon Girl",
+      "Lunella Lafayette",
+      "Devil Dinosaur"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Amy Reeder",
+      "Brandon Montclare"
+    ],
+    "expect": 47,
+    "timeline": null,
+    "coverIssueId": 57014
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "The section recommends the whole series, which the metadata series 20839 holds completely. The owner pick in row 1 of the selection recorded on issue 898 names the same series and shares this list."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #1",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20839,
+      "candidateIssueId": 57014,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #2",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20839,
+      "candidateIssueId": 57018,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #3",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20839,
+      "candidateIssueId": 57019,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #4",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20839,
+      "candidateIssueId": 57020,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #5",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20839,
+      "candidateIssueId": 57021,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #6",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20839,
+      "candidateIssueId": 57022,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #7",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20839,
+      "candidateIssueId": 59350,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #8",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20839,
+      "candidateIssueId": 59351,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #9",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20839,
+      "candidateIssueId": 59352,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #10",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20839,
+      "candidateIssueId": 59353,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #11",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20839,
+      "candidateIssueId": 59354,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #12",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20839,
+      "candidateIssueId": 59355,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #13",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20839,
+      "candidateIssueId": 60711,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #14",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20839,
+      "candidateIssueId": 60712,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #15",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20839,
+      "candidateIssueId": 60713,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #16",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20839,
+      "candidateIssueId": 60714,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #17",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20839,
+      "candidateIssueId": 60715,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #18",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20839,
+      "candidateIssueId": 60716,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #19",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "seriesId": 20839,
+      "candidateIssueId": 60717,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #20",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "20",
+      "seriesId": 20839,
+      "candidateIssueId": 60718,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #21",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "21",
+      "seriesId": 20839,
+      "candidateIssueId": 60719,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #22",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "22",
+      "seriesId": 20839,
+      "candidateIssueId": 60720,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #23",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "23",
+      "seriesId": 20839,
+      "candidateIssueId": 60721,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #24",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "24",
+      "seriesId": 20839,
+      "candidateIssueId": 60722,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #25",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "seriesId": 20839,
+      "candidateIssueId": 60723,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #26",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "26",
+      "seriesId": 20839,
+      "candidateIssueId": 60724,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #27",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "27",
+      "seriesId": 20839,
+      "candidateIssueId": 65918,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #28",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "28",
+      "seriesId": 20839,
+      "candidateIssueId": 66289,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #29",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "29",
+      "seriesId": 20839,
+      "candidateIssueId": 66547,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #30",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "30",
+      "seriesId": 20839,
+      "candidateIssueId": 66917,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #31",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "31",
+      "seriesId": 20839,
+      "candidateIssueId": 67529,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #32",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "32",
+      "seriesId": 20839,
+      "candidateIssueId": 69078,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #33",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "33",
+      "seriesId": 20839,
+      "candidateIssueId": 69079,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #34",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "34",
+      "seriesId": 20839,
+      "candidateIssueId": 69080,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #35",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "35",
+      "seriesId": 20839,
+      "candidateIssueId": 69081,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #36",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "36",
+      "seriesId": 20839,
+      "candidateIssueId": 69082,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #37",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "37",
+      "seriesId": 20839,
+      "candidateIssueId": 69083,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #38",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "38",
+      "seriesId": 20839,
+      "candidateIssueId": 69084,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #39",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "39",
+      "seriesId": 20839,
+      "candidateIssueId": 70765,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #40",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "40",
+      "seriesId": 20839,
+      "candidateIssueId": 70766,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #41",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "41",
+      "seriesId": 20839,
+      "candidateIssueId": 70767,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #42",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "42",
+      "seriesId": 20839,
+      "candidateIssueId": 70768,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #43",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "43",
+      "seriesId": 20839,
+      "candidateIssueId": 70769,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #44",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "44",
+      "seriesId": 20839,
+      "candidateIssueId": 70770,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #45",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "45",
+      "seriesId": 20839,
+      "candidateIssueId": 70771,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #46",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "46",
+      "seriesId": 20839,
+      "candidateIssueId": 70772,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur (2015) #47",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "47",
+      "seriesId": 20839,
+      "candidateIssueId": 70773,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "7e6a3a237912c9121508eab252cbf942754fef45881a6fc35927c184b5cf9a19"
+}

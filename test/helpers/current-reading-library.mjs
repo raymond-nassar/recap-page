@@ -28,9 +28,15 @@ const curatedGuideRegistry = JSON.parse(readFileSync(
 assert.equal(curatedGuideRegistry.schemaVersion, 1);
 assert.ok(Array.isArray(curatedGuideRegistry.guides));
 export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) => {
-  assert.deepEqual(Object.keys(entry).sort(), ['id', 'insertionAnchor', 'rowCount']);
+  // A gap-tolerant guide keeps its open gaps in place as placeholders, which count toward the
+  // payload's items but not toward its complete ones, so it states how many of its rows they are.
+  const keys = Object.keys(entry).sort();
+  assert.ok(['id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount'].includes(keys.join(',')));
   assert.ok(typeof entry.id === 'string' && entry.id);
   assert.ok(Number.isInteger(entry.rowCount) && entry.rowCount > 0);
+  assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
+    || (Number.isInteger(entry.placeholderRowCount) && entry.placeholderRowCount > 0
+      && entry.placeholderRowCount < entry.rowCount));
   return entry;
 });
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
@@ -60,9 +66,13 @@ const addedRows = registeredOwnerContracts.reduce((total, contract) => {
   return total + contract.rows.length - (registration.baselineRowCount ?? 0);
 }, 0)
   + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
-const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface !== 'modern-timeline');
+const addedPlaceholderRows = registeredCuratedGuides
+  .reduce((total, guide) => total + (guide.placeholderRowCount ?? 0), 0);
+const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface === undefined);
 export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
+export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
+  .filter((contract) => contract.surface === 'young-readers');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
   sources: baseline.sourceIds.length + rosterAdditionCount - 1,
@@ -74,7 +84,7 @@ export const currentReadingCensus = Object.freeze({
   storylines: 46 + baseline.mcuEntries.length + mcuContracts.length - 1,
   modernTimeline: 148 + registeredEventContracts.length,
   modernTimelineStories: 144 + registeredEventContracts.length,
-  complete: baseline.payloadCounts.complete + addedRows + spiderManSelectionItemDelta - 2
+  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta - 2
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta - 2,
