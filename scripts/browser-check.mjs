@@ -18129,6 +18129,47 @@ SCENARIOS.push(responsiveOwner({
       subpredicates: Object.fromEntries(fields.flatMap((entry) => Object.entries(entry.subpredicates)
         .map(([key, value]) => [`${entry.theme}:${key}`, value]))) },
       fields.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RC10-settings-switches');
+    // UX-23 (#835): each settings switch is set out as a Fluent switch is, the track and then its label
+    // beside it, with no outline around the pair, both where the control is pinned to the card's right
+    // edge and below 720px, where it stacks under its heading.
+    const switchViewport = page.viewport();
+    const switches = [];
+    for (const width of [1280, 360]) {
+      await page.setViewport({ width, height: 900 });
+      await open(page, '/#/data');
+      await responsiveFrames(page);
+      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.map((label) => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        const words = range.getBoundingClientRect();
+        const track = input.getBoundingClientRect();
+        const box = label.getBoundingClientRect();
+        const card = label.closest('.card').getBoundingClientRect();
+        const style = getComputedStyle(label);
+        return {
+          id: input.id, text: text.textContent.trim(), height: box.height,
+          border: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth],
+          beside: track.right <= words.left + 0.5 && track.bottom > words.top && track.top < words.bottom,
+          inside: words.right <= box.right + 0.5 && box.left >= card.left - 0.5 && box.right <= card.right + 0.5,
+        };
+      }));
+      switches.push({ width, measured });
+    }
+    await page.setViewport(switchViewport);
+    await responsiveFrames(page);
+    const switchPredicates = Object.fromEntries(switches.flatMap(({ width, measured }) => measured.flatMap((entry) => [
+      [`${width}:${entry.id}:unboxed`, entry.border.every((value) => value === '0px')],
+      [`${width}:${entry.id}:beside`, entry.beside],
+      [`${width}:${entry.id}:inside`, entry.inside],
+      [`${width}:${entry.id}:target`, entry.height >= 24],
+    ])));
+    await responsiveReceipt(page, t, 'RC10', 'settings switches set the track beside an unboxed label at wide and narrow widths',
+      { switches, expected: { switches: 3, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
+        subpredicates: switchPredicates },
+      switches.every(({ measured }) => measured.length === 3) && Object.values(switchPredicates).every(Boolean));
     responsiveStep(page, 'RC03-markdown');
     await open(page, '/#/add-import');
     const preSelector = '.import-guide pre';
