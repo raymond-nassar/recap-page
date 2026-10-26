@@ -15828,6 +15828,53 @@ MUTATIONS.push(
   },
 );
 
+// UX-17 (#831): generated content joins a summary's accessible name, so a screen reader announced each
+// disclosure with its decorative chevron, as "List actions ›". The chevron rules carry empty alternative
+// text, so the arrow still shows and the name is the summary's words alone.
+SCENARIOS.push({
+  id: 'disclosure-names',
+  title: 'disclosure summaries are named by their words alone, while their chevrons still show',
+  async run(page, t) {
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page, { openRead: true });
+    const seen = [];
+    const read = async (selectors) => {
+      for (const selector of selectors) {
+        const node = await page.$(selector);
+        if (!node) {
+          seen.push({ selector, missing: true });
+          continue;
+        }
+        const snapshot = await page.accessibility.snapshot({ root: node, interestingOnly: false });
+        seen.push({
+          selector,
+          name: snapshot?.name ?? null,
+          ...await node.evaluate((summary) => ({
+            text: summary.textContent.replace(/\s+/g, ' ').trim(),
+            chevron: ['::before', '::after'].map((pseudo) => getComputedStyle(summary, pseudo).content)
+              .find((value) => value.includes('›')) ?? null,
+          })),
+        });
+        await node.dispose();
+      }
+    };
+    await read(['#list-actions > summary', '#hero-more-actions > summary']);
+    for (const [view, selectors] of [
+      ['add', ['#add-other-methods > summary']],
+      ['add-search', ['#search-alternatives > summary']],
+      ['data', ['#view-data .setting-more > summary', '#backup-export-options > summary']],
+    ]) {
+      await page.evaluate((hash) => { location.hash = hash; }, `#/${view}`);
+      await page.waitForSelector(`#view-${view}:not([hidden])`);
+      await read(selectors);
+    }
+    t.check('six disclosures are named by their words alone, without the chevron they still show',
+      seen.length === 6 && seen.every((entry) => !entry.missing && entry.chevron
+        && entry.name === entry.text && !entry.name.includes('›')),
+      JSON.stringify(seen));
+  },
+});
+
 SCENARIOS.push({
   id: 'semantic-destinations',
   title: 'destinations expose native links, resolved titles and actual manual membership',

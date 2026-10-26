@@ -341,3 +341,11 @@ test('every search field may shrink to a narrow screen', () => {
   assert.match(html, /<form id="form-lines-search" class="stack" role="search"/);
   assert.match(read('src/js/views/mcu-prep.js'), /el\('form', \{ class: 'stack mcu-prep-search'/);
 });
+
+test('disclosure chevrons stay out of the names screen readers announce', () => {
+  // UX-17: generated content joins an accessible name, so "List actions" was announced with its arrow.
+  const chevrons = [...styles.matchAll(/content: "›";( content: "›" \/ "";)?/g)];
+  assert.ok(chevrons.length >= 3, 'the disclosure chevrons moved out of the stylesheet');
+  assert.deepEqual(chevrons.filter(([, alternative]) => !alternative).map(([match]) => match), [],
+    'a chevron joins the name of its summary');
+});

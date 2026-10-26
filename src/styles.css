@@ -1180,8 +1180,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   align-items: start;
 }
 .card > summary::-webkit-details-marker { display: none; }
+/* The chevron is decoration, and generated content joins an accessible name, so each of these
+   carries empty alternative text (UX-17). The plain value first is what an engine without it keeps. */
 .card > summary::before {
-  content: "›"; color: var(--muted); transition: transform .15s; display: inline-block;
+  content: "›"; content: "›" / ""; color: var(--muted); transition: transform .15s; display: inline-block;
   grid-column: 1; grid-row: 1; align-self: center;
 }
 .card[open] > summary::before { transform: rotate(90deg); }
@@ -1234,7 +1236,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .setting-more > summary::-webkit-details-marker { display: none; }
 .setting-more > summary::before {
-  content: "›"; display: inline-block; transition: transform .15s; font-size: var(--t-body);
+  content: "›"; content: "›" / ""; display: inline-block; transition: transform .15s; font-size: var(--t-body);
 }
 .setting-more[open] > summary::before { transform: rotate(90deg); }
 .setting-more > summary:hover { color: var(--text); }
@@ -1378,7 +1380,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .field-disclosure > .rail-hint { margin: 0; padding: 0 0 var(--space-5); max-width: 62ch; }
 .action-disclosure > summary { min-height: 48px; gap: var(--space-4); }
 #view-data .action-disclosure > summary > h3 { margin: 0; font: inherit; }
-.action-disclosure > summary::after { content: "›"; margin-left: auto; font-size: var(--t-body-lg); }
+.action-disclosure > summary::after { content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
 .action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }
