@@ -43,15 +43,19 @@ test('the read figure leads the count, and the words after it keep the count\'s 
   assert.equal(figure.tag, 'b');
   assert.equal(figure.props.class, 'glance-n');
   assert.equal(figure.textContent, '3');
-  assert.equal(count.children[1], ' of 69 issues read. 2 deferred');
+  // The last word is its own span only so that the room held after it cannot wrap away from it.
+  const [, lead, end] = count.children;
+  assert.equal(lead, ' of 69 issues read. 2 ');
+  assert.deepEqual([end.tag, end.props.class, end.textContent], ['span', 'glance-end', 'deferred']);
   assert.equal(count.textContent, '3 of 69 issues read. 2 deferred');
   assert.equal(paint(0, 0).count.textContent, '0 of 0 issues read');
+  assert.equal(paint(5, 12, ' of 12 read').count.children.at(-1).textContent, 'read');
 });
 
 test('the line holds the room its figure will need, so it keeps one width from none read to all', () => {
-  // The stylesheet reserves this many of the figure's digits at the line's end. The digits the figure
-  // shows and the digits held back always add up to the total's, so a count reaching 10 or 100 takes
-  // room the line already had instead of rewrapping it.
+  // The stylesheet reserves this many of the figure's digits after the line's last word. The digits the
+  // figure shows and the digits held back always add up to the total's, so a count reaching 10 or 100
+  // takes room the line already had instead of rewrapping it.
   for (const [readCount, total, spare] of [[0, 69, 1], [9, 69, 1], [10, 69, 0], [69, 69, 0], [5, 120, 2], [99, 120, 1], [100, 120, 0], [0, 0, 0]]) {
     assert.equal(paint(readCount, total).count.style.values['--glance-spare'], String(spare), `${readCount} of ${total}`);
   }

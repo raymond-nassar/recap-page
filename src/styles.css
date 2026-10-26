@@ -2549,9 +2549,12 @@ select, input[type="search"], input[type="text"], input[type="url"] {
    bar it replaced. */
 .glance-n { color: var(--accent-text); font-size: var(--t-subtitle); font-weight: 700; line-height: 1; }
 /* The words after the figure move along when it gains a digit, as text does, but the line keeps its
-   width: the room the figure will need is held at the line's end, in the figure's own size, so a count
-   reaching 10 or 100 never rewraps the line and moves what follows it. */
-.glance-count::after {
+   width: the room the figure will need is held after the last word, in the figure's own size, so a
+   count reaching 10 or 100 never rewraps the line and moves what follows it. The last word keeps the
+   room on its own line: held at the paragraph's end, the room wrapped alone at 200% text on a phone
+   and left a blank line above the bar. */
+.glance-end { white-space: nowrap; }
+.glance-end::after {
   content: ""; display: inline-block; inline-size: calc(var(--glance-spare, 0) * 1ch);
   font-size: var(--t-subtitle); font-weight: 700;
 }

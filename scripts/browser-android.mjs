@@ -3681,6 +3681,15 @@ async function progressGlanceCheck(page, label, viewport) {
     const fill = document.querySelector(selectors.fill).getBoundingClientRect();
     const range = document.createRange();
     range.selectNodeContents(count);
+    // Where the words end, from the text alone: a line holding nothing but the room kept for the
+    // figure's next digit has no text, so the bar sitting a whole line below the last words shows it.
+    const walker = document.createTreeWalker(count, NodeFilter.SHOW_TEXT);
+    let wordsEnd = -Infinity;
+    while (walker.nextNode()) {
+      const piece = document.createRange();
+      piece.selectNodeContents(walker.currentNode);
+      for (const rect of piece.getClientRects()) wordsEnd = Math.max(wordsEnd, rect.bottom);
+    }
     const rail = document.querySelector('.rail-header');
     const railBox = rail.getBoundingClientRect();
     const barred = getComputedStyle(rail).position === 'fixed' && railBox.top > innerHeight / 2;
@@ -3690,6 +3699,7 @@ async function progressGlanceCheck(page, label, viewport) {
       sizes: [parseFloat(getComputedStyle(figure ?? count).fontSize), parseFloat(getComputedStyle(count).fontSize)],
       share: Math.max(0, Math.min(fill.right, bar.right) - bar.left) / bar.width, barWidth: bar.width,
       inside: [...range.getClientRects(), bar].every((rect) => rect.left >= card.left - 1 && rect.right <= card.right + 1),
+      blank: Math.round(bar.top - wordsEnd), line: parseFloat(getComputedStyle(count).lineHeight),
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       read: { top: Math.round(read.top), bottom: Math.round(read.bottom) },
       fold: barred ? Math.round(innerHeight - railBox.height) : innerHeight, scrollY: Math.round(scrollY),
@@ -3729,14 +3739,20 @@ async function progressGlanceCheck(page, label, viewport) {
       behindFigure, behindBar,
     };
   };
-  const readings = async (scope, needle) => {
+  // The tree's text in document order, joined as a screen reader reads a line made of inline pieces.
+  const readings = async (scope, phrase) => {
     const snapshot = await page.accessibility.snapshot({ root: await page.$(GLANCE[scope].root), interestingOnly: false });
-    const nodes = snapshot ? [snapshot] : [];
-    for (const node of nodes) nodes.push(...(node.children ?? []));
-    return {
-      said: nodes.filter((node) => node.role === 'StaticText' && node.name.includes(needle)).map((node) => node.name),
-      bars: nodes.filter((node) => node.role === 'progressbar').length,
+    const text = [];
+    let bars = 0;
+    const visit = (node) => {
+      if (!node) return;
+      if (node.role === 'StaticText') text.push(node.name);
+      if (node.role === 'progressbar') bars += 1;
+      for (const child of node.children ?? []) visit(child);
     };
+    visit(snapshot);
+    const said = text.join(' ').replace(/\s+/g, ' ');
+    return { times: said.split(phrase).length - 1, bars, said };
   };
 
   await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
@@ -3755,14 +3771,16 @@ async function progressGlanceCheck(page, label, viewport) {
     && Math.abs(hero.share - 3 / total) * hero.barWidth <= 0.5 && hero.inside && !hero.overflow
     && heroOrder.row >= heroOrder.done && heroOrder.facts >= heroOrder.row,
   `${name}: the hero's row reads 3 of ${total} read under Read and Done, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify({ hero, heroOrder })}`);
-  const heroTree = await readings('hero', `of ${total} read`);
-  check(heroTree.said.length === 1 && heroTree.said[0] === `3 of ${total} read` && heroTree.bars === 0,
+  check(hero.blank < hero.line, `${name}: the hero's bar follows the last line of words, with no blank line between ${JSON.stringify(hero)}`);
+  const heroTree = await readings('hero', `3 of ${total} read`);
+  check(heroTree.times === 1 && heroTree.bars === 0,
     `${name}: the reading screen reads its progress once, from the header ${JSON.stringify(heroTree)}`);
   const heroPaint = await painted('hero');
   check(heroPaint.figure >= 4.5 && heroPaint.fill >= 3 && heroPaint.outline >= 3,
     `${name}: on the hero the figure clears 4.5:1 and the bar's fill and outline 3:1 ${JSON.stringify(heroPaint)}`);
-  await page.evaluate(() => window.scrollTo(0, 0));
+  // Captured where the contrast was read, with the row in the middle of the screen.
   await screenshot(page, name, 'progress-glance-hero');
+  await page.evaluate(() => window.scrollTo(0, 0));
 
   await click(page, '.brand[data-view="home"]');
   await page.waitForSelector('#home-continue:not([hidden]) #chero-count .glance-n');
@@ -3776,14 +3794,15 @@ async function progressGlanceCheck(page, label, viewport) {
   check(home.text === `3 of ${total} issues read` && home.figure === '3' && home.sizes[0] >= home.sizes[1] * 1.25
     && Math.abs(home.share - 3 / total) * home.barWidth <= 0.5 && home.inside && !home.overflow,
   `${name}: Home's count reads 3 of ${total} issues read, its figure larger than its words and its bar filled to match, inside the card ${JSON.stringify(home)}`);
-  const homeTree = await readings('home', `of ${total} issues read`);
-  check(homeTree.said.length === 1 && homeTree.bars === 0,
+  check(home.blank < home.line, `${name}: Home's bar follows the last line of words, with no blank line between ${JSON.stringify(home)}`);
+  const homeTree = await readings('home', `3 of ${total} issues read`);
+  check(homeTree.times === 1 && homeTree.bars === 0,
     `${name}: Home reads its count once, and its bar is no progress bar of its own ${JSON.stringify(homeTree)}`);
   const homePaint = await painted('home');
   check(homePaint.figure >= 4.5 && homePaint.fill >= 3 && homePaint.outline >= 3,
     `${name}: on Home the figure clears 4.5:1 and the bar's fill and outline 3:1 ${JSON.stringify(homePaint)}`);
-  await page.evaluate(() => window.scrollTo(0, 0));
   await screenshot(page, name, 'progress-glance-home');
+  await page.evaluate(() => window.scrollTo(0, 0));
   console.log(`CHECKED ${name}: progress at a glance ${JSON.stringify({ heroRead: hero.read, homeRead: home.read, fold: home.fold, hero: heroPaint, home: homePaint })}`);
 }
 

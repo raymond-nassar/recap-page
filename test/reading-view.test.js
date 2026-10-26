@@ -1077,11 +1077,12 @@ test('441 Reading distinguishes empty, partial and completed lists without chang
       }[phase]);
       if (phase === 'partial') {
         // The hero's row repeats the ring's numbers with the figure set apart, and its bar to match (#876).
-        const [figure, words] = h.nodes.heroProgressCount.childNodes;
+        const [figure, lead, end] = h.nodes.heroProgressCount.childNodes;
         assert.equal(figure.tag, 'b');
         assert.equal(figure.className, 'glance-n');
         assert.equal(figure.textContent, '1');
-        assert.equal(words, ' of 2 read');
+        assert.equal(lead, ' of 2 ');
+        assert.deepEqual([end.tag, end.className, end.textContent], ['span', 'glance-end', 'read']);
         assert.equal(h.nodes.heroProgressFill.style['--glance-share'], '50.0%');
         assert.equal(h.nodes.heroProgress.attributes['aria-hidden'], 'true');
       }

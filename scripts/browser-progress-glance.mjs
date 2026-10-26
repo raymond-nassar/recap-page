@@ -95,18 +95,20 @@ function glance(page, scope) {
     };
     const range = document.createRange();
     range.selectNodeContents(count);
-    // The words after the figure are the count's last text, and a text node has one rectangle a line.
+    // Everything after the figure is set in one size, so its rectangles on a line share one bottom.
     const wordsRange = document.createRange();
-    wordsRange.selectNodeContents(count.lastChild ?? count);
+    if (figure) wordsRange.setStartAfter(figure);
+    else wordsRange.setStart(count, 0);
+    wordsRange.setEnd(count, count.childNodes.length);
     const style = (node, pseudo) => getComputedStyle(node, pseudo);
     const barBox = box(bar);
     return {
       shown: true, text: count.textContent, figure: figure?.textContent ?? null,
       sizes: [parseFloat(style(figure ?? count).fontSize), parseFloat(style(count).fontSize)],
       share: Math.max(0, Math.min(box(fill).right, barBox.right) - barBox.left) / barBox.width,
-      count: box(count), bar: barBox, lines: wordsRange.getClientRects().length,
-      // The text and the room held at its end, which together are the width the line takes.
-      line: range.getBoundingClientRect().width + parseFloat(style(count, '::after').width || '0'),
+      count: box(count), bar: barBox, lines: new Set([...wordsRange.getClientRects()].map((rect) => Math.round(rect.bottom))).size,
+      // The text and the room held after its last word, which the last word's own box takes in.
+      line: range.getBoundingClientRect().width,
       figureColour: style(figure ?? count).color, fillColour: style(fill).backgroundColor,
       outline: style(bar).boxShadow, border: [style(bar).borderTopWidth, style(bar).borderTopColor],
       transition: [style(fill).transitionProperty, style(fill).transitionDuration],
@@ -148,13 +150,24 @@ async function contrast(page, scope) {
   };
 }
 
-// The accessibility tree under `root`: its text, and the roles of every node in it.
+// The accessibility tree under `root`: its text in document order, joined as a screen reader reads a
+// line made of several inline pieces, and the roles and names of every node in it.
 async function tree(page, root) {
   const snapshot = await page.accessibility.snapshot({ root: await page.$(root), interestingOnly: false });
-  const nodes = snapshot ? [snapshot] : [];
-  for (const node of nodes) nodes.push(...(node.children ?? []));
-  return { text: nodes.filter((node) => node.role === 'StaticText').map((node) => node.name), roles: nodes.map((node) => node.role), names: nodes.map((node) => node.name) };
+  const text = [];
+  const roles = [];
+  const names = [];
+  const visit = (node) => {
+    if (!node) return;
+    roles.push(node.role);
+    names.push(node.name);
+    if (node.role === 'StaticText') text.push(node.name);
+    for (const child of node.children ?? []) visit(child);
+  };
+  visit(snapshot);
+  return { said: text.join(' ').replace(/\s+/g, ' '), roles, names };
 }
+const times = (text, phrase) => text.split(phrase).length - 1;
 
 function checkValues(t, label, scope, state, read) {
   t.check(`${label} ${scope}: the count reads ${words(scope, read)}, its figure set larger than its words`,
@@ -182,7 +195,7 @@ export const progressGlance = {
             homeContrast.figure >= 4.5 && homeContrast.fill >= 3 && homeContrast.outline >= 3, JSON.stringify(homeContrast));
           const homeTree = await tree(page, '#home-continue');
           t.check(`${label} home: the count is read once, and the bar is no progress bar of its own`,
-            !home.hidden && home.barHidden && homeTree.text.filter((text) => text.includes(`of ${TOTAL} issues read`)).length === 1
+            !home.hidden && home.barHidden && times(homeTree.said, words('home', 3)) === 1
             && !homeTree.roles.includes('progressbar') && !homeTree.names.includes('Reading progress'), JSON.stringify({ home, homeTree }));
           await page.evaluate(() => { location.hash = '#/read/glance'; });
           await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
@@ -193,10 +206,9 @@ export const progressGlance = {
           t.check(`${label} hero: the figure clears 4.5:1, and the fill and outline 3:1, against the painted hero`,
             heroContrast.figure >= 4.5 && heroContrast.fill >= 3 && heroContrast.outline >= 3, JSON.stringify(heroContrast));
           const readTree = await tree(page, '#view-read');
-          const said = readTree.text.filter((text) => text.includes(`of ${TOTAL} read`));
           t.check(`${label} reading screen: progress is read once, from the header, and the hero's row is kept from assistive technology`,
-            hero.hidden && said.length === 1 && said[0] === `3 of ${TOTAL} read` && !readTree.roles.includes('progressbar'),
-            JSON.stringify({ said, roles: [...new Set(readTree.roles)] }));
+            hero.hidden && times(readTree.said, words('hero', 3)) === 1 && !readTree.roles.includes('progressbar'),
+            JSON.stringify({ said: readTree.said, roles: [...new Set(readTree.roles)] }));
           const order = await page.evaluate(() => {
             const at = (selector) => document.querySelector(selector).getBoundingClientRect();
             return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
