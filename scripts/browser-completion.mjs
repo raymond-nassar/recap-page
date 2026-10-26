@@ -661,6 +661,66 @@ export const completionMutations = [
   },
 ];
 
+// #881: Enjoyed and Did not enjoy are offered once a list is marked as completed, because before that
+// the completion history refuses an enjoyment choice ("Complete this reading list before recording
+// enjoyment."). The view hid the group until then, but the group's own rule set display: flex, which
+// outranks the hidden attribute, so an all-read list not yet completed drew two buttons that could only
+// be refused, and exposed them to assistive technology. Measured on main at ed4699f7 in Edge at 1280px:
+// the hidden group drew 930 by 44px with both buttons in it, and both names reached the accessibility tree.
+const enjoymentOffer = async (page) => page.evaluate(() => {
+  const group = document.querySelector('#list-enjoyment');
+  const box = group.getBoundingClientRect();
+  return {
+    wrapup: document.querySelector('#list-wrap-up').checkVisibility(), hidden: group.hidden, drawn: group.checkVisibility(),
+    size: `${Math.round(box.width)}x${Math.round(box.height)}`,
+    buttons: [...group.querySelectorAll('button')].filter((button) => button.checkVisibility())
+      .map((button) => button.getAttribute('aria-label')),
+  };
+});
+
+const exposedNames = async (page) => {
+  const names = [];
+  const visit = (node) => {
+    if (node?.name) names.push(node.name);
+    for (const child of node?.children ?? []) visit(child);
+  };
+  visit(await page.accessibility.snapshot({ root: await page.$('#list-wrap-up'), interestingOnly: false }));
+  return names;
+};
+
+export const completionEnjoymentOffer = {
+  id: 'completion-enjoyment-offer',
+  title: 'Enjoyed and Did not enjoy show only while the list is marked as completed',
+  async run(page, t) {
+    await setup(page);
+    await full(page);
+    for (const id of [610002, 610003]) await click(page, row(id, 'read'));
+    await page.waitForSelector('#list-wrap-up:not([hidden])');
+    const before = await enjoymentOffer(page);
+    const beforeNames = await exposedNames(page);
+    t.check('an all-read list not yet completed offers no enjoyment choice: the group is hidden and draws nothing',
+      before.wrapup && before.hidden && !before.drawn && before.buttons.length === 0, JSON.stringify(before));
+    t.check('and assistive technology is offered neither choice',
+      !beforeNames.includes('Enjoyed') && !beforeNames.includes('Did not enjoy'), JSON.stringify(beforeNames));
+
+    await complete(page);
+    const completed = await enjoymentOffer(page);
+    const completedNames = await exposedNames(page);
+    t.check('marking the list completed offers both choices',
+      completed.wrapup && !completed.hidden && completed.drawn && completed.buttons.join() === 'Enjoyed,Did not enjoy',
+      JSON.stringify(completed));
+    t.check('and exposes both to assistive technology',
+      completedNames.includes('Enjoyed') && completedNames.includes('Did not enjoy'), JSON.stringify(completedNames));
+
+    await click(page, '#btn-reopen-list');
+    await page.waitForSelector('#btn-complete-list:not([hidden])');
+    const reopened = await enjoymentOffer(page);
+    t.check('reopening withdraws the choice again, while the wrap-up stays for the all-read list',
+      reopened.wrapup && reopened.hidden && !reopened.drawn && reopened.buttons.length === 0, JSON.stringify(reopened));
+    t.check('the offer raises no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
+  },
+};
+
 // #864: Complete and Reopen keep focus the same way while their save is held, and after another tab's
 // write refuses it. Measured on main d7682dd0: focus fell to the page during the hold and stayed there
 // after the refusal, and a second Enter during Complete's save reached the reading view's Read
