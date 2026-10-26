@@ -6,11 +6,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme } from '../src/js/lib/theme.js';
-import { HOME_CATEGORIES } from '../src/js/lib/catalog.js';
+import { HOME_CATEGORIES, PUBLISHING_CATEGORIES, isPublishingCategoryLeaf } from '../src/js/lib/catalog.js';
 import {
   PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
   tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
-  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS,
+  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS, ERA_TILES,
 } from '../scripts/check-palette.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -404,7 +404,113 @@ test('every category card icon is measured on its own tint, so its colour cannot
   assert.ok(css.includes(declaration), 'the dark azure channel moved; this fixture needs its new value');
   const dimmed = unresolved(css.replace(declaration, '--azure-line: 52 64 92;')).fresh;
   assert.deepEqual(dimmed.map(({ themeName, fgName, bgName }) => `${themeName}:${fgName}:${bgName}`),
-    ['dark:--azure-line:the MCU Prep card', 'dark:--azure-line:the MCU Prep card on hover']);
+    ['dark:--azure-line:the MCU Prep card', 'dark:--azure-line:the MCU Prep card on hover',
+      'dark:--azure-line:the Marvel NOW! tile', 'dark:--azure-line:the Marvel NOW! tile on hover']);
+});
+
+// OKLab is the perceptual space the era accents were chosen in (#875). Distances and hue angles there
+// follow what the eye sees closely enough for a test to say whether two accents look alike.
+function oklab([r, g, b]) {
+  const [lr, lg, lb] = [r, g, b].map((v) => {
+    const c = v / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+  const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+  const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+  return [
+    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s,
+  ];
+}
+function oklch(colour) {
+  const [L, a, b] = oklab(colour);
+  return { L, C: Math.hypot(a, b), h: (Math.atan2(b, a) * 180 / Math.PI + 360) % 360 };
+}
+const hueApart = (p, q) => Math.min(Math.abs(p - q), 360 - Math.abs(p - q));
+const eraColour = (tokens, channel) => {
+  const colour = parseColour(tokens.get(channel) ?? '');
+  assert.ok(colour, `${channel} is not a colour`);
+  return colour;
+};
+
+test('each Marvel era tile is tinted from the channel the palette gate measures for it', () => {
+  // #875. The stylesheet decides what an era tile paints and the gate decides what it measures, so the
+  // two are read against each other era by era, and every period that can be a tile is listed.
+  const leaves = PUBLISHING_CATEGORIES.filter(isPublishingCategoryLeaf).map(({ key }) => key);
+  assert.deepEqual(ERA_TILES.map(([key]) => key), leaves);
+  for (const [key, tile, channel] of ERA_TILES) {
+    const painted = css.match(new RegExp(`\\.home-path\\[data-category="${key}"\\] \\{ --home-path-line: var\\((--[\\w-]+)\\); \\}`))?.[1];
+    assert.equal(painted, channel, `${key} is tinted from ${painted}, but the gate measures ${channel}`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === tile && floor === 3), `${tile} at rest`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === `${tile} on hover` && floor === 3), `${tile} on hover`);
+  }
+  // Dimming an era's channel toward its tile is a finding, in the theme it was dimmed in and no other.
+  const declaration = '  --gold-line: 141 109 5;';
+  assert.ok(css.includes(declaration), 'the light gold channel moved; this fixture needs its new value');
+  const dimmed = unresolved(css.replace(declaration, '  --gold-line: 214 196 140;')).fresh;
+  assert.deepEqual(dimmed.map(({ themeName, fgName, bgName }) => `${themeName}:${fgName}:${bgName}`),
+    ['light:--gold-line:the Golden Age tile', 'light:--gold-line:the Golden Age tile on hover']);
+});
+
+test('each Marvel era tile wears an accent apart from every other era in its list, in every theme', () => {
+  // #875. A period with no Reading List is left out of its list, so any two eras in a list can end up
+  // side by side, and every pair is compared rather than only today's neighbours. Distance is taken in
+  // OKLab rather than as a hue angle, because bronze differs from gold mostly in lightness and silver
+  // has next to no hue. 0.06 is the 30 degrees #872 set between Home's hues, at the palette's usual
+  // chroma of about 0.12.
+  const channel = new Map(ERA_TILES.map(([key, , token]) => [key, token]));
+  const lists = [null, 'modern'].map((parent) => PUBLISHING_CATEGORIES
+    .filter((category) => category.parent === parent && isPublishingCategoryLeaf(category))
+    .map(({ key }) => key));
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    for (const list of lists) {
+      for (const [index, first] of list.entries()) {
+        for (const second of list.slice(index + 1)) {
+          const [p, q] = [first, second].map((key) => oklab(eraColour(tokens, channel.get(key))));
+          const apart = Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
+          assert.ok(apart >= 0.06, `${first} and ${second} are ${apart.toFixed(3)} apart in ${selector}`);
+        }
+      }
+    }
+  }
+});
+
+test('the four ages named for metals read as gold, silver, bronze and copper in every theme', () => {
+  // #875. Silver is the one era with next to no hue. The other three are warm, between red and yellow,
+  // and keep the order the metals have: gold the yellowest and copper the reddest, with bronze a
+  // darker, duller relative of gold.
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    const [gold, silver, bronze, copper] = ['--gold-line', '--silver-line', '--bronze-line', '--copper-line']
+      .map((token) => oklch(eraColour(tokens, token)));
+    assert.ok(silver.C <= 0.03, `silver carries a hue in ${selector}: ${JSON.stringify(silver)}`);
+    for (const [name, metal] of Object.entries({ gold, bronze, copper })) {
+      assert.ok(metal.C >= 0.07 && metal.h >= 30 && metal.h <= 100,
+        `${name} is not a warm metal in ${selector}: ${JSON.stringify(metal)}`);
+    }
+    assert.ok(gold.h > bronze.h && bronze.h > copper.h, `the metals' hues are out of order in ${selector}`);
+    assert.ok(bronze.L < gold.L && bronze.C < gold.C, `bronze is not darker and duller than gold in ${selector}`);
+  }
+});
+
+test('no Marvel era wears the red kept for errors and danger', () => {
+  // #875. Every era with a hue keeps at least 20 degrees of it from each danger token's. Copper is the
+  // nearest, on the orange side.
+  for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
+    const tokens = tokensIn(css, selector);
+    const danger = ['--red-line', '--red-fg', '--red-fg-2'].map((token) => oklch(eraColour(tokens, token)).h);
+    for (const [key, , channel] of ERA_TILES) {
+      const accent = oklch(eraColour(tokens, channel));
+      if (accent.C < 0.03) continue;
+      for (const hue of danger) {
+        assert.ok(hueApart(accent.h, hue) >= 20,
+          `${key} is ${hueApart(accent.h, hue).toFixed(1)} degrees from a danger red in ${selector}`);
+      }
+    }
+  }
 });
 
 test('the recovery banner gives its two actions different weights, and gates the one it quietened', () => {
