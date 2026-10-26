@@ -471,3 +471,54 @@ test('history controls separate backups, bound file reads and confirm only valid
   assert.equal(h.nodes.historyRestore.disabled, true);
   assert.equal(h.nodes.historyCopy.disabled, false);
 });
+
+// #858: a disabled button cannot keep focus, so a rating save in flight marks both rating buttons
+// unavailable with aria-disabled instead, and change() refuses a second press until it settles.
+test('858 a rating save in flight keeps both rating buttons focusable but unavailable, and ignores a second press', async () => {
+  const h = fixture();
+  await h.history.complete('a');
+  await h.view.render();
+  const saves = [];
+  const rate = h.history.rate.bind(h.history);
+  h.history.rate = (id, rating) => new Promise((resolve) => { saves.push(() => resolve(rate(id, rating))); });
+  h.nodes.down.listeners.click();
+  for (const button of [h.nodes.up, h.nodes.down]) {
+    assert.equal(button.disabled, false, 'not natively disabled, so a focused button keeps focus');
+    assert.equal(button.getAttribute('aria-disabled'), 'true', 'exposed as unavailable while the save is in flight');
+  }
+  assert.equal(h.nodes.reopen.disabled, true, 'Reopen keeps its native disable while a rating saves');
+  h.nodes.down.listeners.click();
+  h.nodes.up.listeners.click();
+  assert.equal(saves.length, 1, 'a press during the save starts nothing');
+  saves[0]();
+  await h.flush();
+  for (const button of [h.nodes.up, h.nodes.down]) {
+    assert.equal(button.disabled, false);
+    assert.equal(button.getAttribute('aria-disabled'), null, 'available again once the save settles');
+  }
+  assert.equal(h.nodes.down.attributes['aria-pressed'], 'true');
+  assert.equal(h.records.get('a').rating, 'down');
+  assert.deepEqual(h.calls.announce, ['Enjoyment saved: did not enjoy.'], 'one save, said once');
+});
+
+test('858 a busy history holds the rating buttons the same way, and one that cannot save keeps the native disable', async () => {
+  const h = fixture();
+  await h.history.complete('a');
+  let saves = 0;
+  h.history.rate = async () => { saves += 1; return { ok: true }; };
+  Object.assign(h.history, { busy: true, canSave: false });
+  await h.view.render();
+  assert.equal(h.nodes.down.disabled, false);
+  assert.equal(h.nodes.down.getAttribute('aria-disabled'), 'true');
+  h.nodes.down.listeners.click();
+  await h.flush();
+  assert.equal(saves, 0, 'nothing starts a second save while another holds the history');
+  Object.assign(h.history, { busy: false, canSave: true });
+  await h.view.render();
+  assert.equal(h.nodes.down.disabled, false);
+  assert.equal(h.nodes.down.getAttribute('aria-disabled'), null);
+  Object.assign(h.history, { canSave: false });
+  await h.view.render();
+  assert.equal(h.nodes.down.disabled, true, 'a history that cannot save at all still disables the button');
+  assert.equal(h.nodes.down.getAttribute('aria-disabled'), null);
+});

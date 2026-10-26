@@ -537,3 +537,118 @@ export const completionPersistence = {
     t.check('persistence has no uncaught browser errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
   },
 };
+
+// #858: rating a completed list keeps keyboard focus on the pressed button while its save is in
+// flight. The save waits for the completion-history Web Lock, so holding that lock from the page
+// holds the save open across as many rendered frames as the check needs. An ordinary save spans a
+// frame only by chance, which is why the full-run failure that found this came and went.
+const renderedFrames = (page, count = 3) => page.evaluate((left) => new Promise((resolve) => {
+  const step = () => { if (--left > 0) requestAnimationFrame(step); else resolve(); };
+  requestAnimationFrame(step);
+}), count);
+
+const holdHistory = (page) => page.evaluate((key) => new Promise((held) => {
+  window.__ratingLocks(key, () => new Promise((release) => {
+    window.__ratingRelease = release;
+    held();
+  }));
+}), LIST_HISTORY_KEY);
+
+const ratingState = (page, id) => page.evaluate((selector) => {
+  const button = document.querySelector(selector);
+  return {
+    focus: document.activeElement?.id || document.activeElement?.tagName || null,
+    disabled: button.disabled, unavailable: button.getAttribute('aria-disabled'),
+    pressed: button.getAttribute('aria-pressed'), report: document.querySelector('#save-report').textContent,
+    saves: window.__ratingSaves, said: window.__ratingSaid.filter((text) => text.startsWith('Enjoyment')),
+  };
+}, `#${id}`);
+
+export const completionRatingFocus = {
+  id: 'completion-rating-focus',
+  title: 'Rating a completed list keeps focus on the pressed button while its save is held open',
+  async run(page, t) {
+    await setup(page);
+    await complete(page);
+    // Counted from here, so completing the list is neither a rating save nor an enjoyment message.
+    await page.evaluate((key) => {
+      const request = navigator.locks.request.bind(navigator.locks);
+      window.__ratingLocks = request;
+      window.__ratingSaves = 0;
+      navigator.locks.request = (name, ...rest) => {
+        if (name === key) window.__ratingSaves += 1;
+        return request(name, ...rest);
+      };
+      window.__ratingSaid = [];
+      const announcer = document.querySelector('#announcer');
+      new MutationObserver(() => {
+        if (announcer.textContent) window.__ratingSaid.push(announcer.textContent);
+      }).observe(announcer, { childList: true, characterData: true, subtree: true });
+    }, LIST_HISTORY_KEY);
+
+    await holdHistory(page);
+    await page.focus('#btn-disliked-list');
+    await page.keyboard.press('Enter');
+    await renderedFrames(page);
+    const held = await ratingState(page, 'btn-disliked-list');
+    const ax = await page.accessibility.snapshot({ root: await page.$('#btn-disliked-list'), interestingOnly: false });
+    t.check('with its save held open across rendered frames, Did not enjoy keeps keyboard focus',
+      held.focus === 'btn-disliked-list', JSON.stringify(held));
+    t.check('the held button is unavailable to assistive technology without being disabled, and its choice is unchanged',
+      held.unavailable === 'true' && held.disabled === false && held.pressed === 'false'
+      && ax?.disabled === true && ax?.pressed === false, JSON.stringify({ held, ax }));
+    await page.keyboard.press('Enter');
+    await click(page, '#btn-disliked-list');
+    await click(page, '#btn-enjoyed-list');
+    await renderedFrames(page);
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => document.querySelector('#btn-disliked-list').getAttribute('aria-pressed') === 'true'
+      && !document.querySelector('#btn-disliked-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const settled = await ratingState(page, 'btn-disliked-list');
+    const rated = (await history(page)).records.find((record) => record.listId === SOURCE)?.rating;
+    t.check('presses during the save start nothing: one save, recorded once and said once',
+      settled.saves === 1 && rated === 'down' && settled.said.join() === 'Enjoyment saved: did not enjoy.'
+      && settled.report === '', JSON.stringify({ settled, rated }));
+    t.check('once the save settles, focus is still on the button, now pressed and available',
+      settled.focus === 'btn-disliked-list' && settled.pressed === 'true' && settled.unavailable === null
+      && settled.disabled === false, JSON.stringify(settled));
+
+    await holdHistory(page);
+    const box = await page.$eval('#btn-enjoyed-list', (button) => {
+      const rect = button.getBoundingClientRect();
+      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    });
+    await page.mouse.click(box.x, box.y);
+    await renderedFrames(page);
+    const pointed = await ratingState(page, 'btn-enjoyed-list');
+    // Another tab's save while this one waits: the same records under a new write token.
+    await page.evaluate((key) => {
+      const value = JSON.parse(localStorage.getItem(key));
+      localStorage.setItem(key, JSON.stringify({ ...value, writeToken: 'foreign-858' }));
+    }, LIST_HISTORY_KEY);
+    await page.evaluate(() => window.__ratingRelease());
+    await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Another tab changed')
+      && !document.querySelector('#btn-enjoyed-list').hasAttribute('aria-disabled'));
+    await renderedFrames(page);
+    const refused = await ratingState(page, 'btn-enjoyed-list');
+    const kept = (await history(page)).records.find((record) => record.listId === SOURCE)?.rating;
+    t.check('a pointer press holds focus too, and a save refused because another tab changed the history keeps it, says nothing and saves nothing',
+      pointed.focus === 'btn-enjoyed-list' && pointed.unavailable === 'true'
+      && refused.focus === 'btn-enjoyed-list' && refused.pressed === 'false' && refused.unavailable === null
+      && refused.disabled === false && refused.saves === 2 && refused.said.length === 1 && kept === 'down',
+      JSON.stringify({ pointed, refused, kept }));
+    t.check('the held saves raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
+  },
+};
+
+export const completionMutations = [
+  {
+    id: 'completion-rating-disabled-while-saving', breaks: 'completion-rating-focus',
+    why: 'the rating buttons are natively disabled while their save is in flight, so the focused one loses focus',
+    rewriteCompletion: (source) => source.replace(
+      'button.disabled = !saving && !history.canSave;',
+      'button.disabled = saving || !history.canSave;',
+    ),
+  },
+];
