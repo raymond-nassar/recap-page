@@ -62,6 +62,7 @@ export const PAIRS = [
   ['--blue', '--bg', BODY, 'a link, and the focus ring against the page'],
   ['--blue', '--card', BODY, 'a link inside a card'],
   ['--logo-fill', '--bg', LARGE, 'the large Home masthead against the page'],
+  ['--logo-fill', '--card', LARGE, 'the All read line that opens the wrap-up card, in the masthead treatment (#874)'],
   ['--accent-text', '--bg', BODY, 'the brand as text on the page: an eyebrow, the progress ring'],
   ['--accent-text', '--card', BODY, 'the brand as text on a card, and the selected filter pill'],
   ['--red-fg', '--bg', BODY, 'the Delete list hover, which is danger text on the page'],

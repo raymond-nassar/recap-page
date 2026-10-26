@@ -964,9 +964,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:624` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:631` and the issue-details view at
 `src/js/views/issue.js:103`. The function behind both already answers for the absence at
-`src/js/views/reading.js:80-92`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:81-93`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -2930,7 +2930,7 @@ availability is inferred.
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:223-225`,
-`src/js/views/reading.js:52`, `src/js/views/reading.js:59-61`). The actor, date, URL and confirmation
+`src/js/views/reading.js:53`, `src/js/views/reading.js:60-62`). The actor, date, URL and confirmation
 comment stay in the repository evidence. This additive marker does not change saved-data version 4;
 existing saves need no migration, and older builds may discard the marker without changing reading
 progress or issue identity.
