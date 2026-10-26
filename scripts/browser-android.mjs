@@ -3695,13 +3695,20 @@ try {
     check(!navigationMisses.length,
       `${label}: navigation retains its icon, accessible name, controlled panel and touch target (${navigationMisses.join('; ')})`);
     const compactHome = !viewport.desktop && viewport.width <= 880;
-    const homeBranding = await page.evaluate(() => {
+    const homeBranding = await page.evaluate((key) => {
       const heading = document.querySelector('#home-h');
       const tagline = document.querySelector('.home-action');
       const brand = document.querySelector('.brand[data-view="home"]');
       const mark = brand.querySelector('.mark');
       const bounds = mark.getBoundingClientRect();
+      const saved = JSON.parse(localStorage.getItem(key) ?? 'null');
       return {
+        homeShown: !document.querySelector('#view-home').hidden,
+        resumed: {
+          hash: location.hash, active: saved?.active ?? null,
+          saved: Object.hasOwn(saved?.lists ?? {}, saved?.active ?? ''),
+          readShown: !document.querySelector('#view-read').hidden,
+        },
         heading: heading.textContent, transform: getComputedStyle(heading).transform,
         taglineDisplay: getComputedStyle(tagline).display,
         marker: getComputedStyle(brand, '::before').content,
@@ -3713,10 +3720,23 @@ try {
             && bounds.top >= box.top && bounds.bottom <= box.bottom;
         })(),
       };
-    });
-    check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
-      && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
-    `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
+    }, KEY);
+    // The app resumes an active Reading List at launch instead of showing Home, so a mode whose
+    // fixture saves one starts on that list's reading view, where Home has no box. Edge then reports
+    // the masthead's transform as none whatever its rule says, which failed every such profile in
+    // seven modes (#882). The masthead is checked wherever a mode starts on Home. Elsewhere the check
+    // is that resuming the fixture's list is the only reason Home is hidden, so a mode that lands
+    // anywhere else still fails here.
+    if (homeBranding.homeShown) {
+      check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
+        && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
+      `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
+    } else {
+      const route = parseRoute(homeBranding.resumed.hash);
+      check(homeBranding.resumed.saved && homeBranding.resumed.readShown
+        && route?.view === 'read' && route.listId === homeBranding.resumed.active,
+      `${label}: Home is hidden only because the app resumed the fixture's active Reading List (${JSON.stringify(homeBranding.resumed)})`);
+    }
     // At 880px and below the brand is a bottom-bar destination, and styles.css sizes its mark
     // with the other bar icons at 20px; wider windows keep the 28px rail mark.
     const markSize = viewport.width <= 880 ? 20 : 28;
