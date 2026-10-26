@@ -1,0 +1,138 @@
+[
+  {
+    "position": 1,
+    "id": "franklin-richards-one-shots",
+    "title": "Franklin Richards",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Franklin Richards",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 15 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [
+      "fantastic-four-reading-order"
+    ],
+    "catalogIds": [
+      "franklin-richards-one-shots"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 2,
+    "id": "marvel-adventures-the-avengers",
+    "title": "Marvel Adventures: Avengers",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Marvel Adventures: Avengers",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 39 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [],
+    "catalogIds": [
+      "marvel-adventures-the-avengers"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 3,
+    "id": "spidey",
+    "title": "Spidey",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Spidey",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 12 exact issues and 6 open metadata gaps tracked by issue 900.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [],
+    "catalogIds": [
+      "spidey"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 4,
+    "id": "moon-girl-and-devil-dinosaur",
+    "title": "Moon Girl and Devil Dinosaur",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Moon Girl and Devil Dinosaur",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 47 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [
+      "doctor-strange-reading-order",
+      "fantastic-four-reading-order",
+      "inhumans-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "silver-surfer-reading-order",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "moon-girl-and-devil-dinosaur"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 5,
+    "id": "thor-the-mighty-avenger",
+    "title": "Thor: The Mighty Avenger",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Thor: The Mighty Avenger",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 8 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [],
+    "catalogIds": [
+      "thor-the-mighty-avenger"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 6,
+    "id": "the-unbeatable-squirrel-girl",
+    "title": "Unbeatable Squirrel Girl",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Unbeatable Squirrel Girl",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 58 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [
+      "loki-reading-order",
+      "silver-surfer-reading-order",
+      "war-of-the-realms",
+      "white-tiger-ava-ayala"
+    ],
+    "catalogIds": [
+      "the-unbeatable-squirrel-girl"
+    ],
+    "deliveryStatus": "shipped"
+  },
+  {
+    "position": 7,
+    "id": "power-pack-pack-attack-and-team-ups",
+    "title": "Power Pack",
+    "url": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Power Pack",
+    "guideType": "sub-guide",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Recommended section of Comic Book Herald's kids guide, delivered for issue 898: 44 exact issues.",
+    "sourceRetrievedAt": "2026-10-26",
+    "overlapIds": [
+      "fantastic-four-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order"
+    ],
+    "catalogIds": [
+      "power-pack-pack-attack-and-team-ups"
+    ],
+    "deliveryStatus": "shipped"
+  }
+]

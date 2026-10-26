@@ -11,7 +11,8 @@ import {
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { beforeIdentityJson, beforeIdentityText } from './helpers/owner-identity-history.mjs';
 import {
-  currentReadingCensus, registeredEventContracts, registeredOwnerAdditionContracts, registeredOwnerContracts,
+  currentReadingCensus, registeredCuratedGuides, registeredEventContracts, registeredOwnerAdditionContracts,
+  registeredOwnerContracts, registeredYoungReaderContracts,
 } from './helpers/current-reading-library.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
@@ -20,9 +21,12 @@ const eventIds = [...legacyEventIds, 'one-world-under-doom'];
 
 test('four independently registered events extend the library without becoming MCU or Storylines selections', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
-  const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface !== 'modern-timeline').length - 2;
+  const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
+  // Young readers' owner picks and local curated guides join the rosters but are neither MCU Prep
+  // nor Storylines selections.
+  const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [220 + laterMcu + 1, 297 + laterMcu + 1, 298 + laterMcu + 1]);
+    [220 + laterMcu + otherAdditions, 297 + laterMcu + otherAdditions, 298 + laterMcu + otherAdditions]);
   assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 65 + laterMcu]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);

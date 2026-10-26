@@ -158,7 +158,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.emptyRecordCount, 0);
   assert.deepEqual(legacyOwnerPeers(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
     .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id)), expectedScreenIds);
-  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 71);
+  assert.equal(shelfLists(catalog.lists, 'spotlights').length, 86);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${id}`), false);

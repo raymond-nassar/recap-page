@@ -1,0 +1,171 @@
+{
+  "id": "marvel-super-hero-adventures",
+  "name": "Marvel Super Hero Adventures",
+  "description": "Five standalone all-ages specials from 2018 and 2019, starring Captain Marvel twice, then Spider-Man, Ms. Marvel, and a shared team-up.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:17:32.342Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 71954,
+      "title": "Marvel Super Hero Adventures: Captain Marvel - First Day of School (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71954/marvel_super_hero_adventures_captain_marvel_-_first_day_of_school_2018_1",
+      "seriesId": 26232,
+      "seriesName": "Marvel Super Hero Adventures: Captain Marvel - First Day of School (2018)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5b999889c25b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mario Del Pennino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Agnes Garbowska",
+          "role": "penciler"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "penciler"
+        },
+        {
+          "name": "Sholly Fisch",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71955,
+      "title": "Marvel Super Hero Adventures: Captain Marvel - Halloween Spooktacular (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71955/marvel_super_hero_adventures_captain_marvel_-_halloween_spooktacular_2018_1",
+      "seriesId": 26233,
+      "seriesName": "Marvel Super Hero Adventures: Captain Marvel - Halloween Spooktacular (2018)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5bc9000c508ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacob Chabot",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Loveness",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 74792,
+      "title": "Marvel Super Hero Adventures: Spider-Man - Across the Spider-Verse (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/74792/marvel_super_hero_adventures_spider-man_-_across_the_spider-verse_2019_1",
+      "seriesId": 26904,
+      "seriesName": "Marvel Super Hero Adventures: Spider-Man - Across the Spider-Verse (2019)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50341,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5c23ecedce7c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacob Chabot",
+          "role": "penciler"
+        },
+        {
+          "name": "Various",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Kibblesmith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69036,
+      "title": "Marvel Super Hero Adventures: Ms. Marvel and the Teleporting Dog (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69036/marvel_super_hero_adventures_ms_marvel_and_the_teleporting_dog_2018_1",
+      "seriesId": 25749,
+      "seriesName": "Marvel Super Hero Adventures: Ms. Marvel and the Teleporting Dog (2018)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5b46738ba434b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dario Brizuela",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jacob Chabot",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mccann",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69035,
+      "title": "Marvel Super Hero Adventures: Webs and Arrows and Ants, Oh My! (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69035/marvel_super_hero_adventures_webs_and_arrows_and_ants_oh_my_2018_1",
+      "seriesId": 25752,
+      "seriesName": "Marvel Super Hero Adventures: Webs and Arrows and Ants, Oh My! (2018)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5b2c12680a12a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dario Brizuela",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jacob Chabot",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Mccann",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

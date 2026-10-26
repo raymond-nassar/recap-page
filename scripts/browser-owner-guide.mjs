@@ -94,8 +94,11 @@ export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
-  const category = event ? 'timeline' : 'marvel-on-screen';
-  const results = event ? '#catalog-results' : '#marvel-on-screen-results';
+  // Young readers' lists are character runs, so until their own category exists they are found on
+  // Character spotlights, by name, among that shelf's other runs.
+  const youngReaders = contract.surface === 'young-readers';
+  const category = event ? 'timeline' : youngReaders ? 'character-spotlights' : 'marvel-on-screen';
+  const results = event ? '#catalog-results' : youngReaders ? '#spotlights-results' : '#marvel-on-screen-results';
   const catalog = json('../src/data/catalog.json');
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
@@ -241,16 +244,26 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         window.__mrtBlockExternal = true;
       }, KEY, seed, LIST_HISTORY_KEY, history);
       const selector = `${results} [data-story="list:${contract.id}"]`;
+      const findOnShelf = async () => {
+        if (!youngReaders) return;
+        await page.waitForSelector('#spotlights-q');
+        await page.$eval('#spotlights-q', (input, name) => {
+          input.value = name;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }, contract.name);
+      };
       for (const width of [1280, 360]) {
         await page.setViewport({ width, height: 900 });
         await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
         await page.waitForSelector('#home-primary-paths .home-path');
-        if (!event) await page.$eval('#home-more-paths', (node) => { node.open = true; });
+        if (!event && !youngReaders) await page.$eval('#home-more-paths', (node) => { node.open = true; });
         await click(page, `#view-home [data-category="${category}"]`);
+        await findOnShelf();
         await page.waitForSelector(selector);
         t.check(`Home exposes the accepted card once at ${width}px`, await page.$$eval(selector, (nodes) => nodes.length) === 1);
         await click(page, '.ri[data-view="browse"]');
         await click(page, `#view-browse [data-category="${category}"]`);
+        await findOnShelf();
         await page.waitForSelector(selector);
         const cardFacts = await page.$eval(selector, (node, url) => ({
           name: node.querySelector('.catalog-card-title')?.textContent.trim(),

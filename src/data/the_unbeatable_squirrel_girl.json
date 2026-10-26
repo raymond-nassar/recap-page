@@ -1,0 +1,1741 @@
+{
+  "id": "the-unbeatable-squirrel-girl",
+  "name": "The Unbeatable Squirrel Girl",
+  "description": "Doreen Green balances computer science classes with super heroics across both 2015 volumes: an eight-issue first run, then the fifty issues that followed through 2019.",
+  "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Unbeatable Squirrel Girl",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:14:47.820Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 58,
+  "collections": 2,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 52780,
+      "title": "The Unbeatable Squirrel Girl (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52780/the_unbeatable_squirrel_girl_2015_1",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5a8db0b877cb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52785,
+      "title": "The Unbeatable Squirrel Girl (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52785/the_unbeatable_squirrel_girl_2015_2",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5a8db3663769b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52788,
+      "title": "The Unbeatable Squirrel Girl (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52788/the_unbeatable_squirrel_girl_2015_3",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-03-18T00:00:00+0000",
+      "mu": "2015-09-21T00:00:00+0000",
+      "digitalId": 36964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5501c398916a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52789,
+      "title": "The Unbeatable Squirrel Girl (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52789/the_unbeatable_squirrel_girl_2015_4",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-04-22T00:00:00+0000",
+      "mu": "2015-10-19T00:00:00+0000",
+      "digitalId": 37709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/56cb2dea12672",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52790,
+      "title": "The Unbeatable Squirrel Girl (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/52790/the_unbeatable_squirrel_girl_2015_5",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-05-06T00:00:00+0000",
+      "mu": "2015-11-09T00:00:00+0000",
+      "digitalId": 38168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5548caf515935",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52791,
+      "title": "The Unbeatable Squirrel Girl (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/52791/the_unbeatable_squirrel_girl_2015_6",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-06-03T00:00:00+0000",
+      "mu": "2015-12-07T00:00:00+0000",
+      "digitalId": 38824,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5524009d135aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52792,
+      "title": "The Unbeatable Squirrel Girl (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/52792/the_unbeatable_squirrel_girl_2015_7",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-07-01T00:00:00+0000",
+      "mu": "2015-12-28T00:00:00+0000",
+      "digitalId": 39136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5592ba6bd0552",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 52793,
+      "title": "The Unbeatable Squirrel Girl (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/52793/the_unbeatable_squirrel_girl_2015_8",
+      "seriesId": 19750,
+      "seriesName": "The Unbeatable Squirrel Girl (2015)",
+      "onSale": "2015-08-12T00:00:00+0000",
+      "mu": "2016-02-15T00:00:00+0000",
+      "digitalId": 39692,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/55c51df08c55c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 1 (2015)"
+    },
+    {
+      "issueId": 56196,
+      "title": "The Unbeatable Squirrel Girl (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/56196/the_unbeatable_squirrel_girl_2015_1",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2015-10-28T00:00:00+0000",
+      "mu": "2016-04-25T00:00:00+0000",
+      "digitalId": 40348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/562692572d9d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56197,
+      "title": "The Unbeatable Squirrel Girl (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/56197/the_unbeatable_squirrel_girl_2015_2",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2015-11-25T00:00:00+0000",
+      "mu": "2016-05-30T00:00:00+0000",
+      "digitalId": 40543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/564e21cd2c2b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56198,
+      "title": "The Unbeatable Squirrel Girl (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/56198/the_unbeatable_squirrel_girl_2015_3",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2015-12-16T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 40691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/566f6dcfb0aa1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56199,
+      "title": "The Unbeatable Squirrel Girl (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/56199/the_unbeatable_squirrel_girl_2015_4",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-01-27T00:00:00+0000",
+      "mu": "2016-01-27T00:00:00+0000",
+      "digitalId": 41007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/569998d93d336",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56200,
+      "title": "The Unbeatable Squirrel Girl (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/56200/the_unbeatable_squirrel_girl_2015_5",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-02-24T00:00:00+0000",
+      "digitalId": 41230,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56c74ae7c6608",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56201,
+      "title": "The Unbeatable Squirrel Girl (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56201/the_unbeatable_squirrel_girl_2015_6",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-03-30T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5aa93d7995123",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56202,
+      "title": "The Unbeatable Squirrel Girl (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56202/the_unbeatable_squirrel_girl_2015_7",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/571a8de052651",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56203,
+      "title": "The Unbeatable Squirrel Girl (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56203/the_unbeatable_squirrel_girl_2015_8",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-05-25T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 41620,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/573a0a97aea01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56204,
+      "title": "The Unbeatable Squirrel Girl (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56204/the_unbeatable_squirrel_girl_2015_9",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/576d3f97b8ac7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56205,
+      "title": "The Unbeatable Squirrel Girl (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56205/the_unbeatable_squirrel_girl_2015_10",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42128,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/57926c431d814",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56206,
+      "title": "The Unbeatable Squirrel Girl (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56206/the_unbeatable_squirrel_girl_2015_11",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42329,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/57b374ed7ddc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56207,
+      "title": "The Unbeatable Squirrel Girl (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/56207/the_unbeatable_squirrel_girl_2015_12",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/57dc3788636da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56208,
+      "title": "The Unbeatable Squirrel Girl (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56208/the_unbeatable_squirrel_girl_2015_13",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57fe56f16082c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56209,
+      "title": "The Unbeatable Squirrel Girl (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56209/the_unbeatable_squirrel_girl_2015_14",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-11-16T00:00:00+0000",
+      "mu": "2017-05-22T00:00:00+0000",
+      "digitalId": 43203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/40/5823855167d76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56210,
+      "title": "The Unbeatable Squirrel Girl (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56210/the_unbeatable_squirrel_girl_2015_15",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43456,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/583def5e47017",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 56211,
+      "title": "The Unbeatable Squirrel Girl (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56211/the_unbeatable_squirrel_girl_2015_16",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/586ebf14707be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61083,
+      "title": "The Unbeatable Squirrel Girl (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61083/the_unbeatable_squirrel_girl_2015_17",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-02-08T00:00:00+0000",
+      "mu": "2017-08-14T00:00:00+0000",
+      "digitalId": 44069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5894a069bf115",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61084,
+      "title": "The Unbeatable Squirrel Girl (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61084/the_unbeatable_squirrel_girl_2015_18",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-03-08T00:00:00+0000",
+      "mu": "2017-03-08T00:00:00+0000",
+      "digitalId": 44325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/58b87a3cbfe70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61085,
+      "title": "The Unbeatable Squirrel Girl (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/61085/the_unbeatable_squirrel_girl_2015_19",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-04-12T00:00:00+0000",
+      "mu": "2017-10-16T00:00:00+0000",
+      "digitalId": 44509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/58e7ef230fa23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61086,
+      "title": "The Unbeatable Squirrel Girl (2015) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/61086/the_unbeatable_squirrel_girl_2015_20",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-05-17T00:00:00+0000",
+      "mu": "2017-11-20T00:00:00+0000",
+      "digitalId": 44781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5912200d34753",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61087,
+      "title": "The Unbeatable Squirrel Girl (2015) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/61087/the_unbeatable_squirrel_girl_2015_21",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 45007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/59399339094a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61088,
+      "title": "The Unbeatable Squirrel Girl (2015) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/61088/the_unbeatable_squirrel_girl_2015_22",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-07-12T00:00:00+0000",
+      "mu": "2018-01-15T00:00:00+0000",
+      "digitalId": 45264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/595eaa4850933",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61089,
+      "title": "The Unbeatable Squirrel Girl (2015) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/61089/the_unbeatable_squirrel_girl_2015_23",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/597796c8576b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61090,
+      "title": "The Unbeatable Squirrel Girl (2015) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/61090/the_unbeatable_squirrel_girl_2015_24",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2018-03-19T00:00:00+0000",
+      "digitalId": 45715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/59b04eb83034c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61091,
+      "title": "The Unbeatable Squirrel Girl (2015) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/61091/the_unbeatable_squirrel_girl_2015_25",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-10-11T00:00:00+0000",
+      "mu": "2017-10-11T00:00:00+0000",
+      "digitalId": 45969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/59d53fc412f0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61092,
+      "title": "The Unbeatable Squirrel Girl (2015) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/61092/the_unbeatable_squirrel_girl_2015_26",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-11-08T00:00:00+0000",
+      "mu": "2017-11-08T00:00:00+0000",
+      "digitalId": 46316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/59fa139c11ed1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carla Speed Mcneil",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Davis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Fowler",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 61093,
+      "title": "The Unbeatable Squirrel Girl (2015) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/61093/the_unbeatable_squirrel_girl_2015_27",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2017-12-13T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 46663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5a28446b15a1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Veronica Fish",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 65805,
+      "title": "The Unbeatable Squirrel Girl (2015) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/65805/the_unbeatable_squirrel_girl_2015_28",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-01-10T00:00:00+0000",
+      "mu": "2018-01-10T00:00:00+0000",
+      "digitalId": 47054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5a4fbdff780f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 66219,
+      "title": "The Unbeatable Squirrel Girl (2015) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/66219/the_unbeatable_squirrel_girl_2015_29",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-02-14T00:00:00+0000",
+      "mu": "2018-08-20T00:00:00+0000",
+      "digitalId": 47250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5a7b4d035a8ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 66513,
+      "title": "The Unbeatable Squirrel Girl (2015) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/66513/the_unbeatable_squirrel_girl_2015_30",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-03-14T00:00:00+0000",
+      "mu": "2018-09-17T00:00:00+0000",
+      "digitalId": 47569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5aa0653eb6f50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 66799,
+      "title": "The Unbeatable Squirrel Girl (2015) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/66799/the_unbeatable_squirrel_girl_2015_31",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-04-11T00:00:00+0000",
+      "digitalId": 47735,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5ac5256e12eaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 67566,
+      "title": "The Unbeatable Squirrel Girl (2015) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/67566/the_unbeatable_squirrel_girl_2015_32",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5aea30776558e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69901,
+      "title": "The Unbeatable Squirrel Girl (2015) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/69901/the_unbeatable_squirrel_girl_2015_33",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-06-13T00:00:00+0000",
+      "digitalId": 48287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5b1705c7b94bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69902,
+      "title": "The Unbeatable Squirrel Girl (2015) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/69902/the_unbeatable_squirrel_girl_2015_34",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5b3fea6d8f54b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69903,
+      "title": "The Unbeatable Squirrel Girl (2015) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/69903/the_unbeatable_squirrel_girl_2015_35",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2018-08-08T00:00:00+0000",
+      "digitalId": 48854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5b620eb03df94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69904,
+      "title": "The Unbeatable Squirrel Girl (2015) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/69904/the_unbeatable_squirrel_girl_2015_36",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2018-09-12T00:00:00+0000",
+      "digitalId": 49158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5b9013c5bedd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69905,
+      "title": "The Unbeatable Squirrel Girl (2015) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/69905/the_unbeatable_squirrel_girl_2015_37",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2018-10-10T00:00:00+0000",
+      "digitalId": 49504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5bb52f72967ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69906,
+      "title": "The Unbeatable Squirrel Girl (2015) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/69906/the_unbeatable_squirrel_girl_2015_38",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5be370464fa88",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69907,
+      "title": "The Unbeatable Squirrel Girl (2015) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/69907/the_unbeatable_squirrel_girl_2015_39",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2018-12-12T00:00:00+0000",
+      "mu": "2019-06-17T00:00:00+0000",
+      "digitalId": 50058,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5c083b48b9771",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 69908,
+      "title": "The Unbeatable Squirrel Girl (2015) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/69908/the_unbeatable_squirrel_girl_2015_40",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-01-09T00:00:00+0000",
+      "mu": "2019-01-09T00:00:00+0000",
+      "digitalId": 50386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5c2f691809d15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71215,
+      "title": "The Unbeatable Squirrel Girl (2015) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/71215/the_unbeatable_squirrel_girl_2015_41",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-08-19T00:00:00+0000",
+      "digitalId": 50622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5c5c547512cfa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Naomi Franquiz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71216,
+      "title": "The Unbeatable Squirrel Girl (2015) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/71216/the_unbeatable_squirrel_girl_2015_42",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5c802b03e3b49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Naomi Franquiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71217,
+      "title": "The Unbeatable Squirrel Girl (2015) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/71217/the_unbeatable_squirrel_girl_2015_43",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-04-10T00:00:00+0000",
+      "digitalId": 51135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5ca3be5632d7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71218,
+      "title": "The Unbeatable Squirrel Girl (2015) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/71218/the_unbeatable_squirrel_girl_2015_44",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5ccb3b6b3a479",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71219,
+      "title": "The Unbeatable Squirrel Girl (2015) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/71219/the_unbeatable_squirrel_girl_2015_45",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5cf7db7f52d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71220,
+      "title": "The Unbeatable Squirrel Girl (2015) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/71220/the_unbeatable_squirrel_girl_2015_46",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5d126dc7b5ce4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71221,
+      "title": "The Unbeatable Squirrel Girl (2015) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/71221/the_unbeatable_squirrel_girl_2015_47",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5d4c2c217e555",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 71222,
+      "title": "The Unbeatable Squirrel Girl (2015) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/71222/the_unbeatable_squirrel_girl_2015_48",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5d700eb50c935",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 77612,
+      "title": "The Unbeatable Squirrel Girl (2015) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/77612/the_unbeatable_squirrel_girl_2015_49",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-13T00:00:00+0000",
+      "digitalId": 52813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5d924ce5067d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    },
+    {
+      "issueId": 77613,
+      "title": "The Unbeatable Squirrel Girl (2015) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/77613/the_unbeatable_squirrel_girl_2015_50",
+      "seriesId": 20620,
+      "seriesName": "The Unbeatable Squirrel Girl (2015 - 2019)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2019-11-13T00:00:00+0000",
+      "digitalId": 53030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5dc0927f16d45",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "penciler"
+        },
+        {
+          "name": "Erica Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Volume 2 (2015 to 2019)"
+    }
+  ]
+}

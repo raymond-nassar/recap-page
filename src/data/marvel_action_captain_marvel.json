@@ -1,0 +1,160 @@
+{
+  "id": "marvel-action-captain-marvel",
+  "name": "Marvel Action Captain Marvel",
+  "description": "Carol Danvers stars in a six-issue all-ages series from 2019 and 2020.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:17:27.390Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 83433,
+      "title": "Marvel Action Captain Marvel (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83433/marvel_action_captain_marvel_2019_1",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2019-08-21T00:00:00-0400",
+      "mu": "2020-02-17T00:00:00-0500",
+      "digitalId": 53166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5dee7fbdb27fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Sweeney Boo",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Maggs",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83434,
+      "title": "Marvel Action Captain Marvel (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83434/marvel_action_captain_marvel_2019_2",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 53167,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5dee80036b059",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 83435,
+      "title": "Marvel Action Captain Marvel (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/83435/marvel_action_captain_marvel_2019_3",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 53168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5dee805c28500",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": []
+    },
+    {
+      "issueId": 91270,
+      "title": "Marvel Action Captain Marvel (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/91270/marvel_action_captain_marvel_2019_4",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2020-03-11T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 55385,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/60368e364bda0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Sweeney Boo",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Maggs",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91305,
+      "title": "Marvel Action Captain Marvel (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/91305/marvel_action_captain_marvel_2019_5",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2020-05-27T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 55397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/60368e364bd8f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Sweeney Boo",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Maggs",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 91900,
+      "title": "Marvel Action Captain Marvel (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/91900/marvel_action_captain_marvel_2019_6",
+      "seriesId": 29505,
+      "seriesName": "Marvel Action Captain Marvel (2019)",
+      "onSale": "2020-08-05T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 55661,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/60368e37ebe98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Sweeney Boo",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Maggs",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

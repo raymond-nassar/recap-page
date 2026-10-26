@@ -298,6 +298,83 @@ test('emission requires exact source, insertion and non-none authority and prese
   await assert.rejects(() => emitOwnerGuide(proposal, approval, { root }), /Only new owner guides/);
 });
 
+// #898. The owner's young readers' picks are whole runs filed beside other character runs, and one
+// of them ends in two chapters the metadata titles without a number. Each position names its exact
+// original, so the two are told apart by their pinned identities and never by a guessed number.
+test('young readers\' picks file as owner-credited character runs and keep pinned unnumbered originals apart', async (t) => {
+  const { root, request, cache } = await setup(t, '# Young readers\n\n- Sample Comic (2020), starting issue #1\n');
+  for (const id of [103, 104]) {
+    const url = `https://marvel.emreparker.com/v1/issues/${id}`;
+    const body = {
+      id, title: 'Sample Comic (2020)', issueNumber: '0', seriesId: 900, seriesName: 'Sample Comic (2020)',
+      detailUrl: `https://www.marvel.com/comics/issue/${id}/`, digitalId: id + 1000, cover: null,
+    };
+    await writeFile(path.join(request.metadataCache, `${hash(url)}.json`), json({
+      url, urlSha256: hash(url), fetchedAt: '2026-10-07T01:00:00Z', status: 200,
+      body, bodySha256: hash(JSON.stringify(body)),
+    }));
+  }
+  await cache(105, 3, 404);
+  const input = parseOwnerMarkdown(await readFile(request.markdownFile, 'utf8'))[0];
+  const row = (number, candidateIssueId) => ({
+    sourceIssueReference: `Sample Comic (2020) #${number}`, normalizedSeriesTitle: 'Sample Comic',
+    seriesYear: 2020, issueNumber: String(number), seriesId: 900, manualSeriesSelectionApproved: false,
+    ...(candidateIssueId ? { candidateIssueId } : {}),
+  });
+  Object.assign(request, {
+    surface: 'young-readers', metadataIssueIds: [101, 102, 103, 104, 105],
+    selections: [{
+      inputPosition: 1, inputSha256: input.inputSha256, group: null,
+      interpretation: 'The whole series, from its first issue',
+      evidenceSources: [{ url: 'https://example.org/series-listing', retrievedAt: '2026-10-07' }],
+      rows: [row(1, 101), row(2, 102), {
+        ...row(3), gap: {
+          kind: 'published-metadata-gap', status: 'open', checkedAt: '2026-10-07',
+          auditBasis: 'Synthetic exact metadata request returned 404; the original remains selected.',
+          evidenceSources: [
+            { kind: 'metadata', url: 'https://marvel.emreparker.com/v1/issues/105', retrievedAt: '2026-10-07' },
+            { kind: 'tracking', url: 'https://github.com/raymond-nassar/recap-page/issues/1001', retrievedAt: '2026-10-07' },
+          ],
+        },
+      }, row(0), row(0)],
+    }],
+  });
+  const unpinned = await prepareOwnerGuide(request, { root });
+  assert.equal(unpinned.status, 'needs-resolution');
+  assert.deepEqual(unpinned.unresolved.map((entry) => [entry.sourcePosition, entry.resolutionStatus]),
+    [[4, 'ambiguous'], [5, 'ambiguous']]);
+
+  request.selections[0].rows.splice(3, 2, row(0, 104), row(0, 103));
+  const proposal = await prepareOwnerGuide(request, { root });
+  assert.equal(proposal.status, 'awaiting-review');
+  assert.equal(proposal.surface, 'young-readers');
+  assert.deepEqual(proposal.artifacts.mapping.rows.map((entry) => [entry.sourcePosition, entry.selectedIssueId]),
+    [[1, 101], [2, 102], [4, 104], [5, 103]]);
+  const manifest = proposal.artifacts.packet.proposedManifest;
+  assert.deepEqual([manifest.type, manifest.spotlightKind, manifest.audience, manifest.depth,
+    manifest.beginner, manifest.timeline, manifest.sourceOrigin, manifest.expect], [
+    'character-run', 'other', 'young-readers', 'partial', true, null, 'Selected by the project owner', 4,
+  ]);
+  assert.equal(proposal.artifacts.source.surface, 'young-readers');
+  assert.equal(proposal.artifacts.source.sourceCredit, 'Selected by the project owner');
+
+  const emitted = await emitOwnerGuide(proposal, actualReview(proposal), { root });
+  assert.equal(emitted.rows, 4);
+  const registry = await readJson(path.join(root, 'scripts', 'data', 'owner-deliveries.json'));
+  assert.deepEqual(registry.guides, [{ id: request.id, contract: proposal.paths.contract, surface: 'young-readers' }]);
+  const contract = await readJson(path.join(root, proposal.paths.contract));
+  assert.deepEqual([contract.surface, contract.sourceOrigin], ['young-readers', 'Selected by the project owner']);
+  assert.deepEqual(contract.rows.map((entry) => entry.slice(0, 3)), [
+    [1, 101, 'Sample Comic (2020) #1'], [2, 102, 'Sample Comic (2020) #2'],
+    [4, 104, 'Sample Comic (2020)'], [5, 103, 'Sample Comic (2020)'],
+  ]);
+  const markdown = await readFile(path.join(root, proposal.paths.markdown), 'utf8');
+  assert.match(markdown, /^Selected by the project owner\. /m);
+  assert.deepEqual(parseChecklist(markdown).entries.map((entry) => entry.issueId), [101, 102, 104, 103]);
+
+  await assert.rejects(() => prepareOwnerGuide({ ...request, surface: 'kids' }, { root }), /young-readers, or absent/);
+});
+
 test('ambiguous identities and explicit metadata gaps never become silently omitted successful rows', async (t) => {
   const { root, request, cache } = await setup(t);
   await cache(103, 1);

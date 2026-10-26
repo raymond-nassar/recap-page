@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "id": "power-pack-pack-attack-and-team-ups",
+  "inventoryId": "power-pack-pack-attack-and-team-ups",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Power Pack",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Power Pack: the 2005 Pack Attack! miniseries, Power Pack (2005) #1-4, and the series of all-ages team-up releases that followed over the next five years, taken as every 2005 to 2010 all-ages Power Pack miniseries the metadata service holds, in publication order, as decided on the delivery Issue. The 1980s series is background and the 2019 one-shot is only announced.",
+  "excludedSourceReferences": [
+    "Power Pack (1984), the original series named as background",
+    "The 80th anniversary Power Pack one-shot, which the section mentions as announced"
+  ],
+  "expectedCount": 44,
+  "proposedManifest": {
+    "id": "power-pack-pack-attack-and-team-ups",
+    "name": "Power Pack: Pack Attack! and Team-Ups",
+    "description": "Four young siblings with alien-given powers in their all-ages line from 2005 to 2010: the Pack Attack! reboot, a Day One origin, a Skrull invasion, and team-ups with the X-Men, Avengers, Spider-Man, Hulk, Fantastic Four, Iron Man, Wolverine and Thor.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "power-pack-pack-attack-and-team-ups.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Power Pack",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "power_pack_pack_attack_and_team_ups.json",
+    "characters": [
+      "Power Pack",
+      "Alex Power",
+      "Julie Power",
+      "Jack Power",
+      "Katie Power"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Gurihiru",
+      "Marc Sumerak",
+      "Fred Van Lente"
+    ],
+    "expect": 44,
+    "timeline": null,
+    "coverIssueId": 1889
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "The coordinating session decision recorded on issue 898 takes the full run of 2005 to 2010 all-ages minis, since the section describes a five-year series of team-ups and names three as examples. All eleven minis resolve exactly."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Power Pack (2005) #1",
+      "normalizedSeriesTitle": "Power Pack",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 864,
+      "candidateIssueId": 1889,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack (2005) #2",
+      "normalizedSeriesTitle": "Power Pack",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 864,
+      "candidateIssueId": 1890,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack (2005) #3",
+      "normalizedSeriesTitle": "Power Pack",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 864,
+      "candidateIssueId": 1989,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack (2005) #4",
+      "normalizedSeriesTitle": "Power Pack",
+      "seriesYear": 2005,
+      "issueNumber": "4",
+      "seriesId": 864,
+      "candidateIssueId": 15243,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men and Power Pack (2006) #2",
+      "normalizedSeriesTitle": "X-Men and Power Pack",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 970,
+      "candidateIssueId": 3093,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men and Power Pack (2006) #1",
+      "normalizedSeriesTitle": "X-Men and Power Pack",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 970,
+      "candidateIssueId": 2565,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men and Power Pack (2006) #3",
+      "normalizedSeriesTitle": "X-Men and Power Pack",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 970,
+      "candidateIssueId": 3207,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X-Men and Power Pack (2006) #4",
+      "normalizedSeriesTitle": "X-Men and Power Pack",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 970,
+      "candidateIssueId": 3416,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers and Power Pack Assemble! (2006) #1",
+      "normalizedSeriesTitle": "Avengers and Power Pack Assemble!",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1046,
+      "candidateIssueId": 4106,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers and Power Pack Assemble! (2006) #2",
+      "normalizedSeriesTitle": "Avengers and Power Pack Assemble!",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1046,
+      "candidateIssueId": 4214,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers and Power Pack Assemble! (2006) #3",
+      "normalizedSeriesTitle": "Avengers and Power Pack Assemble!",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1046,
+      "candidateIssueId": 4308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Avengers and Power Pack Assemble! (2006) #4",
+      "normalizedSeriesTitle": "Avengers and Power Pack Assemble!",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1046,
+      "candidateIssueId": 4464,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Spider-Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 1127,
+      "candidateIssueId": 5592,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Spider-Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 1127,
+      "candidateIssueId": 5707,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Spider-Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 1127,
+      "candidateIssueId": 5845,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Spider-Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 1127,
+      "candidateIssueId": 5999,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hulk and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Hulk and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 1869,
+      "candidateIssueId": 6087,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hulk and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Hulk and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 1869,
+      "candidateIssueId": 6220,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hulk and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Hulk and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 1869,
+      "candidateIssueId": 13488,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Hulk and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Hulk and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 1869,
+      "candidateIssueId": 15865,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2506,
+      "candidateIssueId": 15974,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2506,
+      "candidateIssueId": 16159,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2506,
+      "candidateIssueId": 16535,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2506,
+      "candidateIssueId": 16536,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Iron Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3077,
+      "candidateIssueId": 17285,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Iron Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 3077,
+      "candidateIssueId": 17417,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Iron Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 3077,
+      "candidateIssueId": 17652,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Iron Man and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Iron Man and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 3077,
+      "candidateIssueId": 20697,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack: Day One (2008) #1",
+      "normalizedSeriesTitle": "Power Pack: Day One",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4010,
+      "candidateIssueId": 20904,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack: Day One (2008) #2",
+      "normalizedSeriesTitle": "Power Pack: Day One",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 4010,
+      "candidateIssueId": 21039,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack: Day One (2008) #3",
+      "normalizedSeriesTitle": "Power Pack: Day One",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 4010,
+      "candidateIssueId": 21257,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Power Pack: Day One (2008) #4",
+      "normalizedSeriesTitle": "Power Pack: Day One",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 4010,
+      "candidateIssueId": 21402,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Skrulls Vs. Power Pack (2008) #1",
+      "normalizedSeriesTitle": "Skrulls Vs. Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5209,
+      "candidateIssueId": 21592,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Skrulls Vs. Power Pack (2008) #2",
+      "normalizedSeriesTitle": "Skrulls Vs. Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5209,
+      "candidateIssueId": 21791,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Skrulls Vs. Power Pack (2008) #3",
+      "normalizedSeriesTitle": "Skrulls Vs. Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5209,
+      "candidateIssueId": 22033,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Skrulls Vs. Power Pack (2008) #4",
+      "normalizedSeriesTitle": "Skrulls Vs. Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 5209,
+      "candidateIssueId": 22358,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine and Power Pack (2008) #1",
+      "normalizedSeriesTitle": "Wolverine and Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 6135,
+      "candidateIssueId": 22515,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine and Power Pack (2008) #2",
+      "normalizedSeriesTitle": "Wolverine and Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 6135,
+      "candidateIssueId": 22921,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine and Power Pack (2008) #3",
+      "normalizedSeriesTitle": "Wolverine and Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 6135,
+      "candidateIssueId": 23119,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine and Power Pack (2008) #4",
+      "normalizedSeriesTitle": "Wolverine and Power Pack",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 6135,
+      "candidateIssueId": 23613,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor and the Warriors Four (2010) #1",
+      "normalizedSeriesTitle": "Thor and the Warriors Four",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9731,
+      "candidateIssueId": 31366,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor and the Warriors Four (2010) #2",
+      "normalizedSeriesTitle": "Thor and the Warriors Four",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9731,
+      "candidateIssueId": 31368,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor and the Warriors Four (2010) #3",
+      "normalizedSeriesTitle": "Thor and the Warriors Four",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9731,
+      "candidateIssueId": 31370,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor and the Warriors Four (2010) #4",
+      "normalizedSeriesTitle": "Thor and the Warriors Four",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9731,
+      "candidateIssueId": 31372,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "7009ca5bdbec09b14168bbad1fc819a1417396ebbb99f3c3015a7e71dfc05bfa"
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-captain-marvel",
+  "name": "Marvel Action Captain Marvel",
+  "description": "Carol Danvers stars in a six-issue all-ages series from 2019 and 2020.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      83433,
+      "Marvel Action Captain Marvel (2019) #1",
+      null
+    ],
+    [
+      2,
+      83434,
+      "Marvel Action Captain Marvel (2019) #2",
+      null
+    ],
+    [
+      3,
+      83435,
+      "Marvel Action Captain Marvel (2019) #3",
+      null
+    ],
+    [
+      4,
+      91270,
+      "Marvel Action Captain Marvel (2019) #4",
+      null
+    ],
+    [
+      5,
+      91305,
+      "Marvel Action Captain Marvel (2019) #5",
+      null
+    ],
+    [
+      6,
+      91900,
+      "Marvel Action Captain Marvel (2019) #6",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 6,
+    "sourceIdentityCount": 6,
+    "includedIssueCount": 6,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "ca308f4d3b2306e66e79f13be4698b721460464a966160ae73239447f683830d",
+  "proposalDigest": "6f16ef8287992d1746c4d0afffadeccce58c427bec82e1c9716bb003364879eb",
+  "libraryDigest": "d9081aa79f710402a810262eb465a0f1afce67249aba0faa719cc4bacaf00e5b",
+  "approvalDigest": "a9af1aa7cb825a25623cae10789ecd328fd1165f720cc5b9d26fb0a171403461",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-action-captain-marvel.json",
+    "scripts/data/owner-packets/marvel-action-captain-marvel.json",
+    "scripts/data/owner-mappings/marvel-action-captain-marvel.json",
+    "scripts/data/owner-overlaps/marvel-action-captain-marvel.json"
+  ],
+  "vectorSha256": "be5414d5c15863cbe764626a5fbe439d8eef71dfba319dab489c895b891ba25f"
+}

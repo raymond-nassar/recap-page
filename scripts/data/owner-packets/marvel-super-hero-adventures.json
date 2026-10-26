@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-super-hero-adventures",
+  "inventoryId": "marvel-super-hero-adventures",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "df046bec98529d5e75651939b7becf384c8237c9934646b1b5e22710d93c4cb7",
+  "sourceIssueBearingBlocksSha256": "c80c19b2534ef5fdd0bcfdced4a05dc2e74989df10f426272bdb0150d3cde9dc",
+  "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
+  "excludedSourceReferences": [],
+  "expectedCount": 5,
+  "proposedManifest": {
+    "id": "marvel-super-hero-adventures",
+    "name": "Marvel Super Hero Adventures",
+    "description": "Five standalone all-ages specials from 2018 and 2019, starring Captain Marvel twice, then Spider-Man, Ms. Marvel, and a shared team-up.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "timeline": null,
+    "sourceFile": "marvel-super-hero-adventures.md",
+    "out": "marvel_super_hero_adventures.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+    "sourceOrigin": "Selected by the project owner",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Captain Marvel",
+      "Spider-Man",
+      "Ms. Marvel",
+      "Hawkeye",
+      "Ant-Man"
+    ],
+    "keywords": [
+      "young readers",
+      "all ages",
+      "Marvel Super Hero Adventures",
+      "one-shots"
+    ],
+    "coverIssueId": 71954,
+    "expect": 5
+  },
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Super Hero Adventures: Captain Marvel - First Day of School (2018) #1",
+      "normalizedSeriesTitle": "Marvel Super Hero Adventures: Captain Marvel - First Day of School",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26232,
+      "candidateIssueId": 71954,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Super Hero Adventures: Captain Marvel - Halloween Spooktacular (2018) #1",
+      "normalizedSeriesTitle": "Marvel Super Hero Adventures: Captain Marvel - Halloween Spooktacular",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26233,
+      "candidateIssueId": 71955,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 2,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Super Hero Adventures: Spider-Man - Across the Spider-Verse (2019) #1",
+      "normalizedSeriesTitle": "Marvel Super Hero Adventures: Spider-Man - Across the Spider-Verse",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26904,
+      "candidateIssueId": 74792,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 3,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Super Hero Adventures: Ms. Marvel and the Teleporting Dog (2018) #1",
+      "normalizedSeriesTitle": "Marvel Super Hero Adventures: Ms. Marvel and the Teleporting Dog",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25749,
+      "candidateIssueId": 69036,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 4,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Super Hero Adventures: Webs and Arrows and Ants, Oh My! (2018) #1",
+      "normalizedSeriesTitle": "Marvel Super Hero Adventures: Webs and Arrows and Ants, Oh My!",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25752,
+      "candidateIssueId": 69035,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 5,
+      "sourceRangeReference": null
+    }
+  ],
+  "packetDigest": "a4d9e93db5492c97e274c796d0ebde57a58010ee85f19d96e457e9292633d69d",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:17:29.258Z",
+    "rationale": "The owner's young readers' pick recorded on issue 898 names this series by its Marvel series identifier and starting issue; every resolved original comes from the metadata service's listing of that series, in issue order. The coordinating session's decisions on issue 898 settle the grouping and list boundaries.",
+    "proposalDigest": "8c7fcd473218a848cb57c1f968ea276a83578cb84a5f8d8e15bd49e04ddc11c5"
+  }
+}

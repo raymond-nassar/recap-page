@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-spider-man",
+  "name": "Marvel Action Spider-Man",
+  "description": "All-ages Spider-Man adventures from 2018 and 2019, written for newer readers.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      83439,
+      "Marvel Action Spider-Man (2018) #1",
+      null
+    ],
+    [
+      2,
+      83440,
+      "Marvel Action Spider-Man (2018) #2",
+      null
+    ],
+    [
+      3,
+      83441,
+      "Marvel Action Spider-Man (2018) #3",
+      null
+    ],
+    [
+      4,
+      83442,
+      "Marvel Action Spider-Man (2018) #4",
+      null
+    ],
+    [
+      5,
+      83443,
+      "Marvel Action Spider-Man (2018) #5",
+      null
+    ],
+    [
+      6,
+      83444,
+      "Marvel Action Spider-Man (2018) #6",
+      null
+    ],
+    [
+      7,
+      83445,
+      "Marvel Action Spider-Man (2018) #7",
+      null
+    ],
+    [
+      8,
+      83446,
+      "Marvel Action Spider-Man (2018) #8",
+      null
+    ],
+    [
+      9,
+      83447,
+      "Marvel Action Spider-Man (2018) #9",
+      null
+    ],
+    [
+      10,
+      83448,
+      "Marvel Action Spider-Man (2018) #10",
+      null
+    ],
+    [
+      11,
+      83449,
+      "Marvel Action Spider-Man (2018) #11",
+      null
+    ],
+    [
+      12,
+      89932,
+      "Marvel Action Spider-Man (2018) #12",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 12,
+    "sourceIdentityCount": 12,
+    "includedIssueCount": 12,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "fdcaaefedf20b2a882fc4148b71d8693199763095443bc8f3bee14dfdec0bf7c",
+  "proposalDigest": "1d885c5bd5a582582b83086dc5ed68546edb84068e5bfa2824e99d471804d3e3",
+  "libraryDigest": "c0b8dff10173a4f0c8c5e4709a657a683bbb2d98a7dc6a19859ffde1b0f256c6",
+  "approvalDigest": "bdc531ca9d1ff8ec788e13e8c1d544fcc4e5d01b56710be7e3c6d3433c61bf0e",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-action-spider-man.json",
+    "scripts/data/owner-packets/marvel-action-spider-man.json",
+    "scripts/data/owner-mappings/marvel-action-spider-man.json",
+    "scripts/data/owner-overlaps/marvel-action-spider-man.json"
+  ],
+  "vectorSha256": "88ba44712264a54829a7878f3cbc23f1f8490a646bb0103b4db81ab0d179fa87"
+}

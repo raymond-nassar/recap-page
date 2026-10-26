@@ -1,0 +1,178 @@
+{
+  "id": "marvel-action-black-panther",
+  "name": "Marvel Action Black Panther",
+  "description": "T'Challa protects Wakanda in a six-issue all-ages series from 2019.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:17:22.223Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 83431,
+      "title": "Marvel Action Black Panther (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83431/marvel_action_black_panther_2019_1",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-04-03T00:00:00-0400",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/5dee7fcd6d593",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Juan Samu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83432,
+      "title": "Marvel Action Black Panther (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83432/marvel_action_black_panther_2019_2",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-07-10T00:00:00-0400",
+      "mu": "2020-01-06T00:00:00-0500",
+      "digitalId": 53165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5dee7fc53325e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Juan Samu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89927,
+      "title": "Marvel Action Black Panther (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/89927/marvel_action_black_panther_2019_3",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-10-02T00:00:00-0400",
+      "mu": "2020-03-23T00:00:00-0400",
+      "digitalId": 54739,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/6036a3b3a6592",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Juan Samu",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89928,
+      "title": "Marvel Action Black Panther (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/89928/marvel_action_black_panther_2019_4",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-10-16T00:00:00-0400",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 54740,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/6036a3b3d5ede",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Arianna Florean",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89929,
+      "title": "Marvel Action Black Panther (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/89929/marvel_action_black_panther_2019_5",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-11-06T00:00:00-0500",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 54741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/6036a3b31c043",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Arianna Florean",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89930,
+      "title": "Marvel Action Black Panther (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/89930/marvel_action_black_panther_2019_6",
+      "seriesId": 29504,
+      "seriesName": "Marvel Action Black Panther (2019 - 2020)",
+      "onSale": "2019-11-20T00:00:00-0500",
+      "mu": "2021-10-11T00:00:00-0400",
+      "digitalId": 54742,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/6036a3b31c047",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Arianna Florean",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

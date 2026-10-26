@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-rising",
+  "name": "Marvel Rising",
+  "description": "Ms. Marvel, Squirrel Girl and a crew of other young heroes team up in a five-issue 2019 series.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      75461,
+      "Marvel Rising (2019) #1",
+      null
+    ],
+    [
+      2,
+      75466,
+      "Marvel Rising (2019) #2",
+      null
+    ],
+    [
+      3,
+      75467,
+      "Marvel Rising (2019) #3",
+      null
+    ],
+    [
+      4,
+      75468,
+      "Marvel Rising (2019) #4",
+      null
+    ],
+    [
+      5,
+      75469,
+      "Marvel Rising (2019) #5",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 5,
+    "sourceIdentityCount": 5,
+    "includedIssueCount": 5,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "21bde0227de025f44f6a20c78a310a6f776d84e684e8010df1a1826510f9d055",
+  "proposalDigest": "d0b2ea09ee2095810617cd2316104aa9767e94d25505607abc69f817d11e5858",
+  "libraryDigest": "e9be2d325e7807379ef8e405c0c8c892f8fa7c280f9c4f2d17d340822aa8405c",
+  "approvalDigest": "25dc3ba49bdb75d8cc1f7d48dc01132d5e2681340f147f7da49615e0e73f6046",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-rising.json",
+    "scripts/data/owner-packets/marvel-rising.json",
+    "scripts/data/owner-mappings/marvel-rising.json",
+    "scripts/data/owner-overlaps/marvel-rising.json"
+  ],
+  "vectorSha256": "e43bb815fdf7b4a27ef6c186c1f0a788a2244c1e9180dadf8eb3c3aad496deb5"
+}

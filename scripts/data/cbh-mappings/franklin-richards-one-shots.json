@@ -1,0 +1,2861 @@
+{
+  "id": "franklin-richards-one-shots",
+  "inventoryId": "franklin-richards-one-shots",
+  "packetDigest": "459fb32a632fed590fbb6b9dcf9cc86130b1d58851b4c8b1e5c779dd66b2bb99",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Franklin Richards",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 15,
+  "excludedSourceReferences": [
+    "Franklin Richards: A Fantastic Year (2018), which the section calls a greatest hits compilation of the one-shots"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "franklin-richards-one-shots",
+    "name": "Franklin Richards One-Shots",
+    "description": "Fifteen short, gag-filled one-shots about Reed and Sue Richards' young son Franklin and his robot babysitter H.E.R.B.I.E., published from 2005 to 2009. Each stands alone, so any of them makes an easy first comic.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "franklin-richards-one-shots.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Franklin Richards",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "franklin_richards_one_shots.json",
+    "characters": [
+      "Franklin Richards",
+      "H.E.R.B.I.E.",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "one-shots",
+      "Chris Eliopoulos",
+      "Marc Sumerak"
+    ],
+    "expect": 15,
+    "timeline": null,
+    "coverIssueId": 3636
+  },
+  "candidateMetadata": [
+    {
+      "id": 3636,
+      "title": "Franklin Richards: Son of a Genius",
+      "issueTitle": "Franklin Richards: Son of a Genius (2005) #1",
+      "seriesTitle": "Franklin Richards: Son of a Genius",
+      "apiSeriesName": "Franklin Richards: Son of a Genius (2005)",
+      "seriesId": 361,
+      "issueNumber": "1",
+      "seriesYear": 2005,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3636/franklin_richards_son_of_a_genius_2005_1",
+      "onSaleDate": "2005-09-14T00:00:00+0000"
+    },
+    {
+      "id": 3577,
+      "title": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1",
+      "issueTitle": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006)",
+      "seriesId": 1041,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/3577/franklin_richards_everybody_loves_franklin_1_2006_1",
+      "onSaleDate": "2006-02-08T00:00:00+0000"
+    },
+    {
+      "id": 4505,
+      "title": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1",
+      "issueTitle": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006)",
+      "seriesId": 1117,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4505/franklin_richards_super_summer_spectacular_1_2006_1",
+      "onSaleDate": "2006-07-05T00:00:00+0000"
+    },
+    {
+      "id": 5585,
+      "title": "Franklin Richards: Happy Franksgiving",
+      "issueTitle": "Franklin Richards: Happy Franksgiving (2006) #1",
+      "seriesTitle": "Franklin Richards: Happy Franksgiving",
+      "apiSeriesName": "Franklin Richards: Happy Franksgiving (2006)",
+      "seriesId": 1118,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5585/franklin_richards_happy_franksgiving_2006_1",
+      "onSaleDate": "2006-11-08T00:00:00+0000"
+    },
+    {
+      "id": 6105,
+      "title": "FRANKLIN RICHARDS: MARCH MADNESS 1",
+      "issueTitle": "FRANKLIN RICHARDS: MARCH MADNESS 1 (2007) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: MARCH MADNESS 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: MARCH MADNESS 1 (2007)",
+      "seriesId": 1880,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6105/franklin_richards_march_madness_1_2007_1",
+      "onSaleDate": "2007-03-14T00:00:00+0000"
+    },
+    {
+      "id": 15890,
+      "title": "FRANKLIN RICHARDS: WORLD BE WARNED 1",
+      "issueTitle": "FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: WORLD BE WARNED 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007)",
+      "seriesId": 2419,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15890/franklin_richards_world_be_warned_1_2007_1",
+      "onSaleDate": "2007-06-13T00:00:00+0000"
+    },
+    {
+      "id": 16587,
+      "title": "FRANKLIN RICHARDS: MONSTER MASH 1",
+      "issueTitle": "FRANKLIN RICHARDS: MONSTER MASH 1 (2007) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: MONSTER MASH 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: MONSTER MASH 1 (2007)",
+      "seriesId": 2887,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/16587/franklin_richards_monster_mash_1_2007_1",
+      "onSaleDate": "2007-09-26T00:00:00+0000"
+    },
+    {
+      "id": 17281,
+      "title": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1",
+      "issueTitle": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007)",
+      "seriesId": 3072,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17281/franklin_richards_fall_football_fiasco_1_2007_1",
+      "onSaleDate": "2007-11-21T00:00:00+0000"
+    },
+    {
+      "id": 20909,
+      "title": "FRANKLIN RICHARDS: SPRING BREAK 1",
+      "issueTitle": "FRANKLIN RICHARDS: SPRING BREAK 1 (2008) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: SPRING BREAK 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: SPRING BREAK 1 (2008)",
+      "seriesId": 4015,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20909/franklin_richards_spring_break_1_2008_1",
+      "onSaleDate": "2008-03-19T00:00:00+0000"
+    },
+    {
+      "id": 21262,
+      "title": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1",
+      "issueTitle": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008)",
+      "seriesId": 4879,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21262/franklin_richards_not-so-secret_invasion_1_2008_1",
+      "onSaleDate": "2008-05-07T00:00:00+0000"
+    },
+    {
+      "id": 21775,
+      "title": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1",
+      "issueTitle": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008)",
+      "seriesId": 5353,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21775/franklin_richards_summer_smackdown_1_2008_1",
+      "onSaleDate": "2008-08-06T00:00:00+0000"
+    },
+    {
+      "id": 22535,
+      "title": "FRANKLIN RICHARDS: SONS OF GENIUSES 1",
+      "issueTitle": "FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008) #1",
+      "seriesTitle": "FRANKLIN RICHARDS: SONS OF GENIUSES 1",
+      "apiSeriesName": "FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008)",
+      "seriesId": 6159,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22535/franklin_richards_sons_of_geniuses_1_2008_1",
+      "onSaleDate": "2008-11-05T00:00:00+0000"
+    },
+    {
+      "id": 23666,
+      "title": "Franklin Richards: It's Dark Reigning Cats & Dogs",
+      "issueTitle": "Franklin Richards: It's Dark Reigning Cats & Dogs (2009) #1",
+      "seriesTitle": "Franklin Richards: It's Dark Reigning Cats & Dogs",
+      "apiSeriesName": "Franklin Richards: It's Dark Reigning Cats & Dogs (2009)",
+      "seriesId": 6814,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23666/franklin_richards_its_dark_reigning_cats_dogs_2009_1",
+      "onSaleDate": "2009-02-04T00:00:00+0000"
+    },
+    {
+      "id": 24050,
+      "title": "Franklin Richards: April Fools",
+      "issueTitle": "Franklin Richards: April Fools (2009) #1",
+      "seriesTitle": "Franklin Richards: April Fools",
+      "apiSeriesName": "Franklin Richards: April Fools (2009)",
+      "seriesId": 7228,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24050/franklin_richards_april_fools_2009_1",
+      "onSaleDate": "2009-04-01T00:00:00+0000"
+    },
+    {
+      "id": 25267,
+      "title": "Franklin Richards: Schools Out",
+      "issueTitle": "Franklin Richards: Schools Out (2009) #1",
+      "seriesTitle": "Franklin Richards: Schools Out",
+      "apiSeriesName": "Franklin Richards: Schools Out (2009)",
+      "seriesId": 7809,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25267/franklin_richards_schools_out_2009_1",
+      "onSaleDate": "2009-07-15T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Franklin Richards: Son of a Genius (2005) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Son of a Genius",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 361,
+      "candidateIssueId": 3636,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3636"
+      ],
+      "selectedIssueId": 3636,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3636/franklin_richards_son_of_a_genius_2005_1",
+      "resolvedIssueTitle": "Franklin Richards: Son of a Genius (2005) #1",
+      "note": "Marvel series 361 (Franklin Richards: Son of a Genius (2005)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3636
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1041,
+      "candidateIssueId": 3577,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "3577"
+      ],
+      "selectedIssueId": 3577,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3577/franklin_richards_everybody_loves_franklin_1_2006_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006) #1",
+      "note": "Marvel series 1041 (FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        3577
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1117,
+      "candidateIssueId": 4505,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4505"
+      ],
+      "selectedIssueId": 4505,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4505/franklin_richards_super_summer_spectacular_1_2006_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006) #1",
+      "note": "Marvel series 1117 (FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        4505
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Franklin Richards: Happy Franksgiving (2006) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Happy Franksgiving",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1118,
+      "candidateIssueId": 5585,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5585"
+      ],
+      "selectedIssueId": 5585,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5585/franklin_richards_happy_franksgiving_2006_1",
+      "resolvedIssueTitle": "Franklin Richards: Happy Franksgiving (2006) #1",
+      "note": "Marvel series 1118 (Franklin Richards: Happy Franksgiving (2006)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5585
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "FRANKLIN RICHARDS: MARCH MADNESS 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: MARCH MADNESS 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 1880,
+      "candidateIssueId": 6105,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6105"
+      ],
+      "selectedIssueId": 6105,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6105/franklin_richards_march_madness_1_2007_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: MARCH MADNESS 1 (2007) #1",
+      "note": "Marvel series 1880 (FRANKLIN RICHARDS: MARCH MADNESS 1 (2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6105
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: WORLD BE WARNED 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2419,
+      "candidateIssueId": 15890,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15890"
+      ],
+      "selectedIssueId": 15890,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15890/franklin_richards_world_be_warned_1_2007_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007) #1",
+      "note": "Marvel series 2419 (FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15890
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "FRANKLIN RICHARDS: MONSTER MASH 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: MONSTER MASH 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2887,
+      "candidateIssueId": 16587,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "16587"
+      ],
+      "selectedIssueId": 16587,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16587/franklin_richards_monster_mash_1_2007_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: MONSTER MASH 1 (2007) #1",
+      "note": "Marvel series 2887 (FRANKLIN RICHARDS: MONSTER MASH 1 (2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        16587
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3072,
+      "candidateIssueId": 17281,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17281"
+      ],
+      "selectedIssueId": 17281,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17281/franklin_richards_fall_football_fiasco_1_2007_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007) #1",
+      "note": "Marvel series 3072 (FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17281
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "FRANKLIN RICHARDS: SPRING BREAK 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SPRING BREAK 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4015,
+      "candidateIssueId": 20909,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20909"
+      ],
+      "selectedIssueId": 20909,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20909/franklin_richards_spring_break_1_2008_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: SPRING BREAK 1 (2008) #1",
+      "note": "Marvel series 4015 (FRANKLIN RICHARDS: SPRING BREAK 1 (2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20909
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4879,
+      "candidateIssueId": 21262,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21262"
+      ],
+      "selectedIssueId": 21262,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21262/franklin_richards_not-so-secret_invasion_1_2008_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008) #1",
+      "note": "Marvel series 4879 (FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21262
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5353,
+      "candidateIssueId": 21775,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21775"
+      ],
+      "selectedIssueId": 21775,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21775/franklin_richards_summer_smackdown_1_2008_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008) #1",
+      "note": "Marvel series 5353 (FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21775
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SONS OF GENIUSES 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 6159,
+      "candidateIssueId": 22535,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22535"
+      ],
+      "selectedIssueId": 22535,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22535/franklin_richards_sons_of_geniuses_1_2008_1",
+      "resolvedIssueTitle": "FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008) #1",
+      "note": "Marvel series 6159 (FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22535
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Franklin Richards: It's Dark Reigning Cats & Dogs (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: It's Dark Reigning Cats & Dogs",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 6814,
+      "candidateIssueId": 23666,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23666"
+      ],
+      "selectedIssueId": 23666,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23666/franklin_richards_its_dark_reigning_cats_dogs_2009_1",
+      "resolvedIssueTitle": "Franklin Richards: It's Dark Reigning Cats & Dogs (2009) #1",
+      "note": "Marvel series 6814 (Franklin Richards: It's Dark Reigning Cats & Dogs (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23666
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Franklin Richards: April Fools (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: April Fools",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7228,
+      "candidateIssueId": 24050,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24050"
+      ],
+      "selectedIssueId": 24050,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24050/franklin_richards_april_fools_2009_1",
+      "resolvedIssueTitle": "Franklin Richards: April Fools (2009) #1",
+      "note": "Marvel series 7228 (Franklin Richards: April Fools (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24050
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Franklin Richards: Schools Out (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Schools Out",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7809,
+      "candidateIssueId": 25267,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25267"
+      ],
+      "selectedIssueId": 25267,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25267/franklin_richards_schools_out_2009_1",
+      "resolvedIssueTitle": "Franklin Richards: Schools Out (2009) #1",
+      "note": "Marvel series 7809 (Franklin Richards: Schools Out (2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25267
+      ]
+    }
+  ],
+  "mappingDigest": "e51add9c44b904ec11556a4237cb71a5baaea3672574644146aad8bd2fdc0489",
+  "packetReview": "Copilot central review (Claude Opus 5.5) approves the frozen franklin-richards-one-shots packet for issue 898: 15 exact issues, in the source boundary set by the coordinating session's decisions (https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6423074598). Classification: character-run, spotlight other, complete depth, beginner, null timeline, audience young-readers, inserted before mcu-prep-daredevil-born-again. Nothing here concludes Marvel Unlimited availability.",
+  "approvedManifest": {
+    "id": "franklin-richards-one-shots",
+    "name": "Franklin Richards One-Shots",
+    "description": "Fifteen short, gag-filled one-shots about Reed and Sue Richards' young son Franklin and his robot babysitter H.E.R.B.I.E., published from 2005 to 2009. Each stands alone, so any of them makes an easy first comic.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "franklin-richards-one-shots.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Franklin Richards",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "franklin_richards_one_shots.json",
+    "characters": [
+      "Franklin Richards",
+      "H.E.R.B.I.E.",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "one-shots",
+      "Chris Eliopoulos",
+      "Marc Sumerak"
+    ],
+    "expect": 15,
+    "timeline": null,
+    "coverIssueId": 3636
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "rationale": "Reviewed the exact 15-issue vector against all 245 comparisons: every current source order, including the hidden Marvel Knights to Planet X parent, plus the other six young-readers candidates. 1 partial overlap is approved because each broader guide selects a crossover arc from a series this list keeps whole. No subset or exact duplicate exists.",
+    "reviewedAt": "2026-10-26T17:52:28.383Z",
+    "reportDigest": "e0863c33e118c4c698e4158257cf9892222e3ce532d44a5b59f7e91a3cbd6c84",
+    "packetDigest": "459fb32a632fed590fbb6b9dcf9cc86130b1d58851b4c8b1e5c779dd66b2bb99",
+    "mappingDigest": "e51add9c44b904ec11556a4237cb71a5baaea3672574644146aad8bd2fdc0489",
+    "libraryDigest": "ab6f59b0369ddef35c761c6e038b1e8ca0d1fe917c36d474c4ce6db12647f004",
+    "peerDigests": {
+      "marvel-adventures-the-avengers": "e169ce1a575bbf4eaac5c728f5737b4c6adb100d78c92c8635a0ee78503326da",
+      "moon-girl-and-devil-dinosaur": "83b28089e7d3d45adb572f2cae7876b924721e4b5338a4919a33f9d73689e23d",
+      "power-pack-pack-attack-and-team-ups": "1d0a5399e856cfa318d6b15135bd0c89ff83e0c06103ebb95fb76aa43cd8da64",
+      "spidey": "0be3f42edc3c60365e6b3b3752e459664f7e214c663a7644a5006dbf8df4f65d",
+      "the-unbeatable-squirrel-girl": "d249f81f92ba36f47400c68aa2ee04c375085b72a0f7cff236cd8ae8ccac7b72",
+      "thor-the-mighty-avenger": "d671cf105b2dbbfaaf1ca323189414bb5fe6d7b65e0cd1af4476c8a6d698b2d2"
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with abomination-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with absolute-carnage; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with adam-warlock-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with agatha-harkness-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with age-of-x-man; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with agents-of-atlas-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with all-new-all-different-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with amazing-spider-man-reading-order-modern-marvel-era; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with annihilation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with annihilation-conquest; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ant-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with apocalypse-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with atlantis-attacks; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-defenders-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-disassembled; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-doomsday-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-doomsday-secret-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-enemy-within; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with axis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with best-ultron-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with black-panther-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with black-widow-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with bloodties; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-america-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-america-reading-order-modern-marvel-era; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-marvel-ms-marvel-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with chaos-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with childs-play; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with clone-conspiracy; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with contest-of-champions; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "contest-of-chaos",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with contest-of-chaos; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with damnation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with daredevil-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-phoenix-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-reign-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-web; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with days-of-future-past; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with days-of-future-present; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dead-mans-hand; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with deadpool-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with death-of-doctor-strange; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with devils-reign; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-doom-primer; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-octopus-otto-octavius-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-strange-multiverse-of-madness; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-strange-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with donny-cates-marvel-universe-reading-order-2017; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doomwar; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with eighth-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with emma-frost-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with essential-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with evolutionary-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with falcon-sam-wilson-captain-america-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fall-house-x-rise-powers-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fall-of-the-mutants; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "sharedCount": 2,
+        "sharedIds": [
+          "3636",
+          "5585"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+        "rationale": "The Fantastic Four guide places two of these one-shots, Son of a Genius and Happy Franksgiving, in its family chronology, while this list keeps all fifteen as one young-readers sequence. Both lists keep every shared issue; neither is a subset of the other and nothing is an exact duplicate.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fatal-attractions; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "gang-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with gang-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with generations; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with groot-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with guardians-of-the-galaxy-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hawkeye-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with heroes-reborn-2021; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with heroic-age-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-full; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-minimal; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-x-men; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hope-summers-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with house-of-m; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with house-of-m-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hunt-for-wolverine; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hunt-for-xavier; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inferno; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with infinite-destinies; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with infinity-countdown-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inhumans-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inhumans-vs-x-men; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-fist-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-fist-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-man-2020; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with judgment-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with king-in-black; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with kravens-last-hunt; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with kree-skrull-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with last-annihilation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with loki-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with magneto-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with magneto-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-2099; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-adventures-the-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-adventures-the-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-fresh-start-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-knights-to-planet-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-super-heroes-secret-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-what-if; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-zombies-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvels-best-phoenix-comics; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvels-infinity-saga-gauntlet-wars-crusade-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with maximum-security; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-agatha-all-along",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-agatha-all-along; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-ant-man-2015",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-ant-man-2015; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-avengers-age-of-ultron-2015; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-infinity-war-endgame",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-avengers-infinity-war-endgame; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-black-panther-2018",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-black-panther-2018; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-brave-new-world",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-brave-new-world; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-civil-war-2016",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-civil-war-2016; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-the-first-avenger-2011; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-the-winter-soldier-2014; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-marvel-2019",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-marvel-2019; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-daredevil-born-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-daredevil-born-again; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-deadpool-and-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-deadpool-and-wolverine; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-doctor-strange-2016",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-doctor-strange-2016; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-eternals",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-eternals; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-fantastic-four-first-steps",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-fantastic-four-first-steps; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-guardians-of-the-galaxy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-guardians-of-the-galaxy; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2-2010",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-2-2010; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2008",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-2008; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-3-2013",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-3-2013; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-moon-knight",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-moon-knight; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-ms-marvel",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-ms-marvel; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-shang-chi-and-the-legend-of-the-ten-rings; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-she-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-she-hulk; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-spider-man-brand-new-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-spider-man-brand-new-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-the-avengers-2012",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-the-avengers-2012; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-the-incredible-hulk-2008",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-the-incredible-hulk-2008; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-2011",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-2011; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-ragnarok-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-ragnarok-2017; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-the-dark-world-2013",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-the-dark-world-2013; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thunderbolts",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thunderbolts; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-visionquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-visionquest; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mephisto-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with messiah-complex; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with messiah-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with midnight-massacre; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "miles-morales-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with miles-morales-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with miles-morales-spider-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with minimum-carnage; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with modern-x-men-fast-track; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with monsters-unleashed; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "moon-girl-and-devil-dinosaur",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with moon-girl-and-devil-dinosaur; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with moon-knight-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ms-marvel-kamala-khan-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with muir-island-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mutant-massacre; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mys-tech-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "namor-sub-mariner-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with namor-sub-mariner-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nebula-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with necrosha; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with new-ultimate-universe; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with new-ultimate-universe-trades; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nick-fury-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nova-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nova-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "one-world-under-doom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with one-world-under-doom; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with operation-galactic-storm; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with operation-zero-tolerance; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with original-clone-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phalanx-covenant; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phalanx-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phoenix-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with planet-hulk; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with planet-hulk-reading-order-and-greg-pak-hulk-comics-guide; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "power-pack-pack-attack-and-team-ups",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with power-pack-pack-attack-and-team-ups; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with punisher-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with question-of-the-week-do-you-have-a-hulk-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with reckoning-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with reed-richards-and-sue-storms-wedding; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with revolutionary-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with rise-of-the-midnight-sons; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with rocket-raccoon-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with runaways-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with scarlet-witch-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with second-coming; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-invasion; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-invasion-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-wars-ii; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with setup-to-modern-timeline; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shadow-king-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shadowland; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shang-chi-master-of-kung-fu-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silent-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silk-cindy-moon-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silver-surfer-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with sins-of-sinister; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-geddon; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-gwen-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-island; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-2099-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-far-from-home; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-identity-crisis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-no-way-home; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-the-other; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-verse; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spidey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spidey; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with star-lord-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-imperative; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-death-of-ms-marvel",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-death-of-ms-marvel; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-defenders-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-night-gwen-stacy-died; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-unbeatable-squirrel-girl",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-unbeatable-squirrel-girl; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-vision-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thor-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thor-the-mighty-avenger",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thor-the-mighty-avenger; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thunderbolts-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with time-and-time-again; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ultimate-marvel-intro; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ultimate-spider-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with venom-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with venomverse; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wandavision; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with war-of-kings; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with war-of-the-realms; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with white-tiger-ava-ayala; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with winter-soldier-bucky-barnes-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wolverine-goes-to-hell; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wolverine-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with world-war-hulk-aftersmash; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wraith-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-23-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-cutioners-song; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-force-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-age-of-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-battle-of-the-atom; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-curse-of-the-mutants; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-divided-we-stand; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-extermination; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-inferno; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-manifest-destiny; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-nation-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-regenesis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-schism; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-trial-of-jean-grey; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-utopia; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-of-swords; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-termination; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-tinction-agenda; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with xmen-claremont; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with xmen-claremont-complete; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with young-avengers-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      }
+    ],
+    "approvalDigest": "81dc9fbe820779217acc5b280293fa4443dd7e0e657d13f0e9fd8c072a3ddefc"
+  }
+}

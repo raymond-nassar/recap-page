@@ -1,0 +1,3727 @@
+{
+  "id": "marvel-adventures-the-avengers",
+  "inventoryId": "marvel-adventures-the-avengers",
+  "packetDigest": "32b08f6967fdb66b436852f6b8bc7bf0bf71bee58225c25d7a438845d5a23731",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Marvel Adventures: Avengers",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 39,
+  "excludedSourceReferences": [
+    "Ultimates, named for comparison",
+    "Planet Hulk, named for comparison"
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "marvel-adventures-the-avengers",
+    "name": "Marvel Adventures: The Avengers",
+    "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvel-adventures-the-avengers.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Marvel Adventures: Avengers",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvel_adventures_the_avengers.json",
+    "characters": [
+      "Avengers",
+      "Captain America",
+      "Iron Man",
+      "Spider-Man",
+      "Wolverine",
+      "Storm",
+      "Hulk"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Marvel Adventures",
+      "Jeff Parker"
+    ],
+    "expect": 39,
+    "timeline": null,
+    "coverIssueId": 4236
+  },
+  "candidateMetadata": [
+    {
+      "id": 4236,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #1",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4236/marvel_adventures_the_avengers_2006_1",
+      "onSaleDate": "2006-05-17T00:00:00+0000"
+    },
+    {
+      "id": 4337,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #2",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "2",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4337/marvel_adventures_the_avengers_2006_2",
+      "onSaleDate": "2006-06-21T00:00:00+0000"
+    },
+    {
+      "id": 4494,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #3",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "3",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4494/marvel_adventures_the_avengers_2006_3",
+      "onSaleDate": "2006-07-19T00:00:00+0000"
+    },
+    {
+      "id": 4817,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #4",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "4",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/4817/marvel_adventures_the_avengers_2006_4",
+      "onSaleDate": "2006-08-16T00:00:00+0000"
+    },
+    {
+      "id": 5110,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #5",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "5",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5110/marvel_adventures_the_avengers_2006_5",
+      "onSaleDate": "2006-09-20T00:00:00+0000"
+    },
+    {
+      "id": 5262,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #6",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "6",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5262/marvel_adventures_the_avengers_2006_6",
+      "onSaleDate": "2006-10-18T00:00:00+0000"
+    },
+    {
+      "id": 5435,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #7",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "7",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5435/marvel_adventures_the_avengers_2006_7",
+      "onSaleDate": "2006-11-15T00:00:00+0000"
+    },
+    {
+      "id": 5691,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #8",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "8",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5691/marvel_adventures_the_avengers_2006_8",
+      "onSaleDate": "2006-12-20T00:00:00+0000"
+    },
+    {
+      "id": 5828,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #9",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "9",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5828/marvel_adventures_the_avengers_2006_9",
+      "onSaleDate": "2007-01-17T00:00:00+0000"
+    },
+    {
+      "id": 5982,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #10",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "10",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/5982/marvel_adventures_the_avengers_2006_10",
+      "onSaleDate": "2007-02-21T00:00:00+0000"
+    },
+    {
+      "id": 6160,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #11",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "11",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6160/marvel_adventures_the_avengers_2006_11",
+      "onSaleDate": "2007-03-21T00:00:00+0000"
+    },
+    {
+      "id": 6305,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #12",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "12",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/6305/marvel_adventures_the_avengers_2006_12",
+      "onSaleDate": "2007-04-18T00:00:00+0000"
+    },
+    {
+      "id": 13471,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #13",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "13",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/13471/marvel_adventures_the_avengers_2006_13",
+      "onSaleDate": "2007-05-16T00:00:00+0000"
+    },
+    {
+      "id": 15851,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #14",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "14",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/15851/marvel_adventures_the_avengers_2006_14",
+      "onSaleDate": "2007-06-27T00:00:00+0000"
+    },
+    {
+      "id": 20801,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #15",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "15",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20801/marvel_adventures_the_avengers_2006_15",
+      "onSaleDate": "2007-08-22T00:00:00+0000"
+    },
+    {
+      "id": 16511,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #16",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "16",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/16511/marvel_adventures_the_avengers_2006_16",
+      "onSaleDate": "2007-09-19T00:00:00+0000"
+    },
+    {
+      "id": 16512,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #17",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "17",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/16512/marvel_adventures_the_avengers_2006_17",
+      "onSaleDate": "2007-10-17T00:00:00+0000"
+    },
+    {
+      "id": 17245,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #18",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "18",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17245/marvel_adventures_the_avengers_2006_18",
+      "onSaleDate": "2007-11-21T00:00:00+0000"
+    },
+    {
+      "id": 17381,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #19",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "19",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17381/marvel_adventures_the_avengers_2006_19",
+      "onSaleDate": "2007-12-19T00:00:00+0000"
+    },
+    {
+      "id": 17621,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #20",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "20",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/17621/marvel_adventures_the_avengers_2006_20",
+      "onSaleDate": "2008-01-16T00:00:00+0000"
+    },
+    {
+      "id": 20666,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #21",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "21",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20666/marvel_adventures_the_avengers_2006_21",
+      "onSaleDate": "2008-02-20T00:00:00+0000"
+    },
+    {
+      "id": 20861,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #22",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "22",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20861/marvel_adventures_the_avengers_2006_22",
+      "onSaleDate": "2008-03-19T00:00:00+0000"
+    },
+    {
+      "id": 20996,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #23",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "23",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/20996/marvel_adventures_the_avengers_2006_23",
+      "onSaleDate": "2008-04-16T00:00:00+0000"
+    },
+    {
+      "id": 21208,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #24",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "24",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21208/marvel_adventures_the_avengers_2006_24",
+      "onSaleDate": "2008-05-21T00:00:00+0000"
+    },
+    {
+      "id": 21352,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #25",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "25",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21352/marvel_adventures_the_avengers_2006_25",
+      "onSaleDate": "2008-06-18T00:00:00+0000"
+    },
+    {
+      "id": 21533,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #26",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "26",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21533/marvel_adventures_the_avengers_2006_26",
+      "onSaleDate": "2008-07-16T00:00:00+0000"
+    },
+    {
+      "id": 21732,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #27",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "27",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21732/marvel_adventures_the_avengers_2006_27",
+      "onSaleDate": "2008-08-27T00:00:00+0000"
+    },
+    {
+      "id": 21964,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #28",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "28",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/21964/marvel_adventures_the_avengers_2006_28",
+      "onSaleDate": "2008-09-17T00:00:00+0000"
+    },
+    {
+      "id": 22287,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #29",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "29",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22287/marvel_adventures_the_avengers_2006_29",
+      "onSaleDate": "2008-10-15T00:00:00+0000"
+    },
+    {
+      "id": 22494,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #30",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "30",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22494/marvel_adventures_the_avengers_2006_30",
+      "onSaleDate": "2008-11-19T00:00:00+0000"
+    },
+    {
+      "id": 22899,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #31",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "31",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22899/marvel_adventures_the_avengers_2006_31",
+      "onSaleDate": "2008-12-17T00:00:00+0000"
+    },
+    {
+      "id": 23105,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #32",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "32",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23105/marvel_adventures_the_avengers_2006_32",
+      "onSaleDate": "2009-01-21T00:00:00+0000"
+    },
+    {
+      "id": 23600,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #33",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "33",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23600/marvel_adventures_the_avengers_2006_33",
+      "onSaleDate": "2009-02-18T00:00:00+0000"
+    },
+    {
+      "id": 23761,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #34",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "34",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23761/marvel_adventures_the_avengers_2006_34",
+      "onSaleDate": "2009-03-18T00:00:00+0000"
+    },
+    {
+      "id": 23960,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #35",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "35",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/23960/marvel_adventures_the_avengers_2006_35",
+      "onSaleDate": "2009-04-29T00:00:00+0000"
+    },
+    {
+      "id": 24159,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #36",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "36",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/24159/marvel_adventures_the_avengers_2006_36",
+      "onSaleDate": "2009-05-20T00:00:00+0000"
+    },
+    {
+      "id": 25714,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #37",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "37",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25714/marvel_adventures_the_avengers_2006_37",
+      "onSaleDate": "2009-06-17T00:00:00+0000"
+    },
+    {
+      "id": 25715,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #38",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "38",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25715/marvel_adventures_the_avengers_2006_38",
+      "onSaleDate": "2009-07-15T00:00:00+0000"
+    },
+    {
+      "id": 25716,
+      "title": "Marvel Adventures the Avengers",
+      "issueTitle": "Marvel Adventures the Avengers (2006) #39",
+      "seriesTitle": "Marvel Adventures the Avengers",
+      "apiSeriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "seriesId": 1107,
+      "issueNumber": "39",
+      "seriesYear": 2006,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/25716/marvel_adventures_the_avengers_2006_39",
+      "onSaleDate": "2009-08-19T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #1",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1107,
+      "candidateIssueId": 4236,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4236"
+      ],
+      "selectedIssueId": 4236,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4236/marvel_adventures_the_avengers_2006_1",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #1",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        4236
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #2",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1107,
+      "candidateIssueId": 4337,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4337"
+      ],
+      "selectedIssueId": 4337,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4337/marvel_adventures_the_avengers_2006_2",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #2",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        4337
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #3",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1107,
+      "candidateIssueId": 4494,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4494"
+      ],
+      "selectedIssueId": 4494,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4494/marvel_adventures_the_avengers_2006_3",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #3",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        4494
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #4",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1107,
+      "candidateIssueId": 4817,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "4817"
+      ],
+      "selectedIssueId": 4817,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4817/marvel_adventures_the_avengers_2006_4",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #4",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        4817
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #5",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 1107,
+      "candidateIssueId": 5110,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5110"
+      ],
+      "selectedIssueId": 5110,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5110/marvel_adventures_the_avengers_2006_5",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #5",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5110
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #6",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "seriesId": 1107,
+      "candidateIssueId": 5262,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5262"
+      ],
+      "selectedIssueId": 5262,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5262/marvel_adventures_the_avengers_2006_6",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #6",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5262
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #7",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "7",
+      "seriesId": 1107,
+      "candidateIssueId": 5435,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5435"
+      ],
+      "selectedIssueId": 5435,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5435/marvel_adventures_the_avengers_2006_7",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #7",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5435
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #8",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "8",
+      "seriesId": 1107,
+      "candidateIssueId": 5691,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5691"
+      ],
+      "selectedIssueId": 5691,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5691/marvel_adventures_the_avengers_2006_8",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #8",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5691
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #9",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "9",
+      "seriesId": 1107,
+      "candidateIssueId": 5828,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5828"
+      ],
+      "selectedIssueId": 5828,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5828/marvel_adventures_the_avengers_2006_9",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #9",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5828
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #10",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "10",
+      "seriesId": 1107,
+      "candidateIssueId": 5982,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "5982"
+      ],
+      "selectedIssueId": 5982,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/5982/marvel_adventures_the_avengers_2006_10",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #10",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        5982
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #11",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "11",
+      "seriesId": 1107,
+      "candidateIssueId": 6160,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6160"
+      ],
+      "selectedIssueId": 6160,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6160/marvel_adventures_the_avengers_2006_11",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #11",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6160
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #12",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1107,
+      "candidateIssueId": 6305,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6305"
+      ],
+      "selectedIssueId": 6305,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6305/marvel_adventures_the_avengers_2006_12",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #12",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        6305
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #13",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "13",
+      "seriesId": 1107,
+      "candidateIssueId": 13471,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "13471"
+      ],
+      "selectedIssueId": 13471,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13471/marvel_adventures_the_avengers_2006_13",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #13",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        13471
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #14",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "14",
+      "seriesId": 1107,
+      "candidateIssueId": 15851,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "15851"
+      ],
+      "selectedIssueId": 15851,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15851/marvel_adventures_the_avengers_2006_14",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #14",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        15851
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #15",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "15",
+      "seriesId": 1107,
+      "candidateIssueId": 20801,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20801"
+      ],
+      "selectedIssueId": 20801,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20801/marvel_adventures_the_avengers_2006_15",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #15",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20801
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #16",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "16",
+      "seriesId": 1107,
+      "candidateIssueId": 16511,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "16511"
+      ],
+      "selectedIssueId": 16511,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16511/marvel_adventures_the_avengers_2006_16",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #16",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        16511
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #17",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "17",
+      "seriesId": 1107,
+      "candidateIssueId": 16512,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "16512"
+      ],
+      "selectedIssueId": 16512,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16512/marvel_adventures_the_avengers_2006_17",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #17",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        16512
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #18",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "18",
+      "seriesId": 1107,
+      "candidateIssueId": 17245,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17245"
+      ],
+      "selectedIssueId": 17245,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17245/marvel_adventures_the_avengers_2006_18",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #18",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17245
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #19",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "19",
+      "seriesId": 1107,
+      "candidateIssueId": 17381,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17381"
+      ],
+      "selectedIssueId": 17381,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17381/marvel_adventures_the_avengers_2006_19",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #19",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17381
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #20",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "20",
+      "seriesId": 1107,
+      "candidateIssueId": 17621,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "17621"
+      ],
+      "selectedIssueId": 17621,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17621/marvel_adventures_the_avengers_2006_20",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #20",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        17621
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #21",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "21",
+      "seriesId": 1107,
+      "candidateIssueId": 20666,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20666"
+      ],
+      "selectedIssueId": 20666,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20666/marvel_adventures_the_avengers_2006_21",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #21",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20666
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #22",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "22",
+      "seriesId": 1107,
+      "candidateIssueId": 20861,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20861"
+      ],
+      "selectedIssueId": 20861,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20861/marvel_adventures_the_avengers_2006_22",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #22",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20861
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #23",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "23",
+      "seriesId": 1107,
+      "candidateIssueId": 20996,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20996"
+      ],
+      "selectedIssueId": 20996,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20996/marvel_adventures_the_avengers_2006_23",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #23",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        20996
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #24",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "24",
+      "seriesId": 1107,
+      "candidateIssueId": 21208,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21208"
+      ],
+      "selectedIssueId": 21208,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21208/marvel_adventures_the_avengers_2006_24",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #24",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21208
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #25",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "25",
+      "seriesId": 1107,
+      "candidateIssueId": 21352,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21352"
+      ],
+      "selectedIssueId": 21352,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21352/marvel_adventures_the_avengers_2006_25",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #25",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21352
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #26",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "26",
+      "seriesId": 1107,
+      "candidateIssueId": 21533,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21533"
+      ],
+      "selectedIssueId": 21533,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21533/marvel_adventures_the_avengers_2006_26",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #26",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21533
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #27",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "27",
+      "seriesId": 1107,
+      "candidateIssueId": 21732,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21732"
+      ],
+      "selectedIssueId": 21732,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21732/marvel_adventures_the_avengers_2006_27",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #27",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21732
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #28",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "28",
+      "seriesId": 1107,
+      "candidateIssueId": 21964,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "21964"
+      ],
+      "selectedIssueId": 21964,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21964/marvel_adventures_the_avengers_2006_28",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #28",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        21964
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #29",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "29",
+      "seriesId": 1107,
+      "candidateIssueId": 22287,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22287"
+      ],
+      "selectedIssueId": 22287,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22287/marvel_adventures_the_avengers_2006_29",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #29",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22287
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #30",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "30",
+      "seriesId": 1107,
+      "candidateIssueId": 22494,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22494"
+      ],
+      "selectedIssueId": 22494,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22494/marvel_adventures_the_avengers_2006_30",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #30",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22494
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #31",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "31",
+      "seriesId": 1107,
+      "candidateIssueId": 22899,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22899"
+      ],
+      "selectedIssueId": 22899,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22899/marvel_adventures_the_avengers_2006_31",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #31",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22899
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #32",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "32",
+      "seriesId": 1107,
+      "candidateIssueId": 23105,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23105"
+      ],
+      "selectedIssueId": 23105,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23105/marvel_adventures_the_avengers_2006_32",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #32",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23105
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #33",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "33",
+      "seriesId": 1107,
+      "candidateIssueId": 23600,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23600"
+      ],
+      "selectedIssueId": 23600,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23600/marvel_adventures_the_avengers_2006_33",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #33",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23600
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #34",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "34",
+      "seriesId": 1107,
+      "candidateIssueId": 23761,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23761"
+      ],
+      "selectedIssueId": 23761,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23761/marvel_adventures_the_avengers_2006_34",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #34",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23761
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #35",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "35",
+      "seriesId": 1107,
+      "candidateIssueId": 23960,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "23960"
+      ],
+      "selectedIssueId": 23960,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23960/marvel_adventures_the_avengers_2006_35",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #35",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        23960
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #36",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "36",
+      "seriesId": 1107,
+      "candidateIssueId": 24159,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "24159"
+      ],
+      "selectedIssueId": 24159,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/24159/marvel_adventures_the_avengers_2006_36",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #36",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        24159
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #37",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "37",
+      "seriesId": 1107,
+      "candidateIssueId": 25714,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25714"
+      ],
+      "selectedIssueId": 25714,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25714/marvel_adventures_the_avengers_2006_37",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #37",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25714
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #38",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "38",
+      "seriesId": 1107,
+      "candidateIssueId": 25715,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25715"
+      ],
+      "selectedIssueId": 25715,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25715/marvel_adventures_the_avengers_2006_38",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #38",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25715
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #39",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "39",
+      "seriesId": 1107,
+      "candidateIssueId": 25716,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "25716"
+      ],
+      "selectedIssueId": 25716,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/25716/marvel_adventures_the_avengers_2006_39",
+      "resolvedIssueTitle": "Marvel Adventures the Avengers (2006) #39",
+      "note": "Marvel series 1107 (Marvel Adventures the Avengers (2006 - 2009)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        25716
+      ]
+    }
+  ],
+  "mappingDigest": "e169ce1a575bbf4eaac5c728f5737b4c6adb100d78c92c8635a0ee78503326da",
+  "packetReview": "Copilot central review (Claude Opus 5.5) approves the frozen marvel-adventures-the-avengers packet for issue 898: 39 exact issues, in the source boundary set by the coordinating session's decisions (https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6423074598). Classification: character-run, spotlight other, complete depth, beginner, null timeline, audience young-readers, inserted before mcu-prep-daredevil-born-again. Nothing here concludes Marvel Unlimited availability.",
+  "approvedManifest": {
+    "id": "marvel-adventures-the-avengers",
+    "name": "Marvel Adventures: The Avengers",
+    "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvel-adventures-the-avengers.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Marvel Adventures: Avengers",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvel_adventures_the_avengers.json",
+    "characters": [
+      "Avengers",
+      "Captain America",
+      "Iron Man",
+      "Spider-Man",
+      "Wolverine",
+      "Storm",
+      "Hulk"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Marvel Adventures",
+      "Jeff Parker"
+    ],
+    "expect": 39,
+    "timeline": null,
+    "coverIssueId": 4236
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "rationale": "Reviewed the exact 39-issue vector against all 245 comparisons: every current source order, including the hidden Marvel Knights to Planet X parent, plus the other six young-readers candidates. No issue is shared with any of them. No subset or exact duplicate exists.",
+    "reviewedAt": "2026-10-26T17:52:28.383Z",
+    "reportDigest": "1cce36a9a2442562f9d5d500926d970df9634c00c3e46f5bb86d09ae4eafc0b1",
+    "packetDigest": "32b08f6967fdb66b436852f6b8bc7bf0bf71bee58225c25d7a438845d5a23731",
+    "mappingDigest": "e169ce1a575bbf4eaac5c728f5737b4c6adb100d78c92c8635a0ee78503326da",
+    "libraryDigest": "ab6f59b0369ddef35c761c6e038b1e8ca0d1fe917c36d474c4ce6db12647f004",
+    "peerDigests": {
+      "franklin-richards-one-shots": "e51add9c44b904ec11556a4237cb71a5baaea3672574644146aad8bd2fdc0489",
+      "moon-girl-and-devil-dinosaur": "83b28089e7d3d45adb572f2cae7876b924721e4b5338a4919a33f9d73689e23d",
+      "power-pack-pack-attack-and-team-ups": "1d0a5399e856cfa318d6b15135bd0c89ff83e0c06103ebb95fb76aa43cd8da64",
+      "spidey": "0be3f42edc3c60365e6b3b3752e459664f7e214c663a7644a5006dbf8df4f65d",
+      "the-unbeatable-squirrel-girl": "d249f81f92ba36f47400c68aa2ee04c375085b72a0f7cff236cd8ae8ccac7b72",
+      "thor-the-mighty-avenger": "d671cf105b2dbbfaaf1ca323189414bb5fe6d7b65e0cd1af4476c8a6d698b2d2"
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with abomination-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with absolute-carnage; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with adam-warlock-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with agatha-harkness-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with age-of-x-man; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with agents-of-atlas-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with all-new-all-different-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with amazing-spider-man-reading-order-modern-marvel-era; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with annihilation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with annihilation-conquest; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ant-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with apocalypse-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with atlantis-attacks; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-defenders-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-disassembled; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-doomsday-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-doomsday-secret-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with avengers-enemy-within; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with axis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with best-ultron-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with black-panther-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with black-widow-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with bloodties; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-america-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-america-reading-order-modern-marvel-era; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with captain-marvel-ms-marvel-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with chaos-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with childs-play; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with civil-war-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with clone-conspiracy; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with contest-of-champions; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "contest-of-chaos",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with contest-of-chaos; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with damnation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with daredevil-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-phoenix-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-reign-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dark-web; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with days-of-future-past; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with days-of-future-present; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with dead-mans-hand; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with deadpool-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with death-of-doctor-strange; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with devils-reign; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-doom-primer; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-octopus-otto-octavius-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-strange-multiverse-of-madness; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doctor-strange-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with donny-cates-marvel-universe-reading-order-2017; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with doomwar; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with eighth-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with emma-frost-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with essential-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with evolutionary-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with falcon-sam-wilson-captain-america-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fall-house-x-rise-powers-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fall-of-the-mutants; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fantastic-four-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with fatal-attractions; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "franklin-richards-one-shots",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with franklin-richards-one-shots; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "gang-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with gang-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with generations; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with groot-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with guardians-of-the-galaxy-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hawkeye-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with heroes-reborn-2021; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with heroic-age-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-full; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-minimal; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hickman-x-men; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hope-summers-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with house-of-m; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with house-of-m-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hunt-for-wolverine; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with hunt-for-xavier; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inferno; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with infinite-destinies; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with infinity-countdown-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inhumans-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with inhumans-vs-x-men; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-fist-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-fist-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-man-2020; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with iron-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with judgment-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with king-in-black; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with kravens-last-hunt; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with kree-skrull-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with last-annihilation; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with loki-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with magneto-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with magneto-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-2099; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-fresh-start-avengers; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-knights-to-planet-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-super-heroes-secret-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-what-if; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvel-zombies-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvels-best-phoenix-comics; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with marvels-infinity-saga-gauntlet-wars-crusade-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with maximum-security; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-agatha-all-along",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-agatha-all-along; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-ant-man-2015",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-ant-man-2015; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-avengers-age-of-ultron-2015; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-avengers-infinity-war-endgame",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-avengers-infinity-war-endgame; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-black-panther-2018",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-black-panther-2018; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-brave-new-world",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-brave-new-world; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-civil-war-2016",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-civil-war-2016; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-the-first-avenger-2011; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-america-the-winter-soldier-2014; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-captain-marvel-2019",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-captain-marvel-2019; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-daredevil-born-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-daredevil-born-again; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-deadpool-and-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-deadpool-and-wolverine; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-doctor-strange-2016",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-doctor-strange-2016; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-eternals",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-eternals; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-fantastic-four-first-steps",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-fantastic-four-first-steps; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-guardians-of-the-galaxy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-guardians-of-the-galaxy; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2-2010",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-2-2010; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2008",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-2008; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-iron-man-3-2013",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-iron-man-3-2013; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-moon-knight",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-moon-knight; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-ms-marvel",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-ms-marvel; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-shang-chi-and-the-legend-of-the-ten-rings; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-she-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-she-hulk; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-spider-man-brand-new-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-spider-man-brand-new-day; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-the-avengers-2012",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-the-avengers-2012; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-the-incredible-hulk-2008",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-the-incredible-hulk-2008; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-2011",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-2011; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-ragnarok-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-ragnarok-2017; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thor-the-dark-world-2013",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thor-the-dark-world-2013; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-thunderbolts",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-thunderbolts; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mcu-prep-visionquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mcu-prep-visionquest; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mephisto-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with messiah-complex; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with messiah-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with midnight-massacre; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "miles-morales-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with miles-morales-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with miles-morales-spider-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with minimum-carnage; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with modern-x-men-fast-track; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with monsters-unleashed; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "moon-girl-and-devil-dinosaur",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with moon-girl-and-devil-dinosaur; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with moon-knight-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ms-marvel-kamala-khan-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with muir-island-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mutant-massacre; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with mys-tech-wars; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "namor-sub-mariner-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with namor-sub-mariner-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nebula-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with necrosha; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with new-ultimate-universe; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with new-ultimate-universe-trades; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nick-fury-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "nova-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with nova-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "one-world-under-doom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with one-world-under-doom; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with operation-galactic-storm; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with operation-zero-tolerance; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with original-clone-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phalanx-covenant; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phalanx-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with phoenix-saga; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with planet-hulk; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with planet-hulk-reading-order-and-greg-pak-hulk-comics-guide; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "power-pack-pack-attack-and-team-ups",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with power-pack-pack-attack-and-team-ups; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with punisher-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with question-of-the-week-do-you-have-a-hulk-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with reckoning-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with reed-richards-and-sue-storms-wedding; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with revolutionary-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with rise-of-the-midnight-sons; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with rocket-raccoon-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with runaways-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with scarlet-witch-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with second-coming; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-invasion; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-invasion-essential; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with secret-wars-ii; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with setup-to-modern-timeline; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shadow-king-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shadowland; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with shang-chi-master-of-kung-fu-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silent-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silk-cindy-moon-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with silver-surfer-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with sins-of-sinister; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-geddon; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-gwen-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-island; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-2099-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-far-from-home; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-identity-crisis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-no-way-home; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-man-the-other; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spider-verse; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "spidey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with spidey; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with star-lord-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-imperative; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thanos-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-death-of-ms-marvel",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-death-of-ms-marvel; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-defenders-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-night-gwen-stacy-died; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-unbeatable-squirrel-girl",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-unbeatable-squirrel-girl; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with the-vision-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thor-best-of; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thor-the-mighty-avenger",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thor-the-mighty-avenger; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with thunderbolts-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with time-and-time-again; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ultimate-marvel-intro; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with ultimate-spider-man-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with venom-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with venomverse; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wandavision; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with war-of-kings; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with war-of-the-realms; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with white-tiger-ava-ayala; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with winter-soldier-bucky-barnes-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wolverine-goes-to-hell; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wolverine-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with world-war-hulk-aftersmash; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with wraith-war; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-23-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-cutioners-song; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-force-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-age-of-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-battle-of-the-atom; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-curse-of-the-mutants; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-divided-we-stand; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-extermination; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-inferno; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-manifest-destiny; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-nation-x; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-regenesis; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-schism; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-trial-of-jean-grey; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-men-utopia; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-of-swords; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-termination; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with x-tinction-agenda; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with xmen-claremont; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with xmen-claremont-complete; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT-004 no-overlap policy",
+        "rationale": "No exact issue in this list is shared with young-avengers-reading-order; no duplicate or subset exists.",
+        "reviewedAt": "2026-10-26T17:52:28.383Z"
+      }
+    ],
+    "approvalDigest": "95abb34384d8b7b7163406e1e32a5df255d24adbee4e77760e0ad8c9a1523f25"
+  }
+}

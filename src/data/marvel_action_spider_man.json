@@ -1,0 +1,344 @@
+{
+  "id": "marvel-action-spider-man",
+  "name": "Marvel Action Spider-Man",
+  "description": "All-ages Spider-Man adventures from 2018 and 2019, written for newer readers.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:17:16.563Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 12,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 83439,
+      "title": "Marvel Action Spider-Man (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83439/marvel_action_spider-man_2018_1",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2018-11-28T00:00:00-0500",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5dee7ff2179b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83440,
+      "title": "Marvel Action Spider-Man (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83440/marvel_action_spider-man_2018_2",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-03-13T00:00:00-0400",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5dee7ffb77a50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83441,
+      "title": "Marvel Action Spider-Man (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/83441/marvel_action_spider-man_2018_3",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-05-01T00:00:00-0400",
+      "mu": "2019-11-04T00:00:00-0500",
+      "digitalId": 53174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5dee800c41180",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83442,
+      "title": "Marvel Action Spider-Man (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/83442/marvel_action_spider-man_2018_4",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-05-15T00:00:00-0400",
+      "mu": "2019-11-11T00:00:00-0500",
+      "digitalId": 53175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/5dee80398c98b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Christopher a. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Erik Burnham",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83443,
+      "title": "Marvel Action Spider-Man (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/83443/marvel_action_spider-man_2018_5",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-06-12T00:00:00-0400",
+      "mu": "2019-12-09T00:00:00-0500",
+      "digitalId": 53176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5dee80149e6d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Christopher a. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Erik Burnham",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83444,
+      "title": "Marvel Action Spider-Man (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83444/marvel_action_spider-man_2018_6",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-07-31T00:00:00-0400",
+      "mu": "2020-01-27T00:00:00-0500",
+      "digitalId": 53177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5dee801d8461d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Christopher a. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Erik Burnham",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83445,
+      "title": "Marvel Action Spider-Man (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83445/marvel_action_spider-man_2018_7",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-08-21T00:00:00-0400",
+      "mu": "2020-02-17T00:07:00-0500",
+      "digitalId": 53178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5dee80272b59e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83446,
+      "title": "Marvel Action Spider-Man (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/83446/marvel_action_spider-man_2018_8",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-09-02T00:00:00-0400",
+      "mu": "2020-03-02T00:00:00-0500",
+      "digitalId": 53179,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5dee803007009",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83447,
+      "title": "Marvel Action Spider-Man (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/83447/marvel_action_spider-man_2018_9",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-09-25T00:00:00-0400",
+      "mu": "2020-03-23T00:00:00-0400",
+      "digitalId": 53180,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5dee804a10161",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Fico Ossio",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83448,
+      "title": "Marvel Action Spider-Man (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/83448/marvel_action_spider-man_2018_10",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-10-02T00:00:00-0400",
+      "mu": "2020-03-23T00:00:00-0400",
+      "digitalId": 53181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5dee8065b1788",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83449,
+      "title": "Marvel Action Spider-Man (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/83449/marvel_action_spider-man_2018_11",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 53182,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5dee80415e9cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonboy Meyers",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89932,
+      "title": "Marvel Action Spider-Man (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/89932/marvel_action_spider-man_2018_12",
+      "seriesId": 29509,
+      "seriesName": "Marvel Action Spider-Man (2018 - 2020)",
+      "onSale": "2019-12-18T00:00:00-0500",
+      "mu": "2020-04-14T14:52:00-0400",
+      "digitalId": 54743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/6000a0e396ca5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 1,
+      "creators": [
+        {
+          "name": "Davide Tinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Delilah S. Dawson",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

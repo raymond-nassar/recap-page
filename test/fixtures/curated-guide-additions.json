@@ -7,6 +7,56 @@
         "beforeId": "miles-morales-spider-man-reading-order"
       },
       "rowCount": 84
+    },
+    {
+      "id": "franklin-richards-one-shots",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 15
+    },
+    {
+      "id": "marvel-adventures-the-avengers",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 39
+    },
+    {
+      "id": "spidey",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 18,
+      "placeholderRowCount": 6
+    },
+    {
+      "id": "moon-girl-and-devil-dinosaur",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 47
+    },
+    {
+      "id": "thor-the-mighty-avenger",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 8
+    },
+    {
+      "id": "the-unbeatable-squirrel-girl",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 58
+    },
+    {
+      "id": "power-pack-pack-attack-and-team-ups",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 44
     }
   ]
 }

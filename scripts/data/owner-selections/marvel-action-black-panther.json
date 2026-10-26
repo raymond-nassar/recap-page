@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-black-panther",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "T'Challa protects Wakanda in a six-issue all-ages series from 2019.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Action Black Panther (2019), starting issue #1; Marvel series 29504",
+      "inputSha256": "9b3d2e73788aa929ececb75521b095e927ef2d286df4e06f0b6d5b06d477b51b",
+      "group": null,
+      "interpretation": "Row 5: the whole series from its first issue, as the metadata service lists series 29504",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/29504/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 6
+    }
+  ],
+  "sourceIssueCount": 6,
+  "publishedIssueCount": 6,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #1",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 29504,
+      "candidateIssueId": 83431,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #2",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 29504,
+      "candidateIssueId": 83432,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #3",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 29504,
+      "candidateIssueId": 89927,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #4",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 29504,
+      "candidateIssueId": 89928,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #5",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 29504,
+      "candidateIssueId": 89929,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Action Black Panther (2019) #6",
+      "normalizedSeriesTitle": "Marvel Action Black Panther",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 29504,
+      "candidateIssueId": 89930,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-action-black-panther.md",
+        "sha256": "d29aa0b24e6f7fa667da25aa6c8056230be969db14ca9271b1ccfaf78b078e26",
+        "bytes": 171
+      }
+    ]
+  },
+  "publicDependencies": []
+}

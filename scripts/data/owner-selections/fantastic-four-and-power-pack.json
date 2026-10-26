@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "fantastic-four-and-power-pack",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "The Power Pack siblings meet the Fantastic Four in a four-issue all-ages team-up from 2007.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Fantastic Four and Power Pack (2007), starting issue #1; Marvel series 2506",
+      "inputSha256": "b57d2ca20008fbd01c0f2c7ad8d95a87d5a841b13b295592def8319dab574a8b",
+      "group": null,
+      "interpretation": "Row 14: the whole series from its first issue, as the metadata service lists series 2506",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2506/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 4
+    }
+  ],
+  "sourceIssueCount": 4,
+  "publishedIssueCount": 4,
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2506,
+      "candidateIssueId": 15974,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2506,
+      "candidateIssueId": 16159,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2506,
+      "candidateIssueId": 16535,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2506,
+      "candidateIssueId": 16536,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-fantastic-four-and-power-pack.md",
+        "sha256": "045fb5fd1f6d063183e43678992a3f5677c51df8460659a1f644d93bd48f257f",
+        "bytes": 173
+      }
+    ]
+  },
+  "publicDependencies": []
+}

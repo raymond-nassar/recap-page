@@ -1,0 +1,1426 @@
+{
+  "id": "moon-girl-and-devil-dinosaur",
+  "name": "Moon Girl and Devil Dinosaur",
+  "description": "Lunella Lafayette, a nine-year-old genius, and the giant red dinosaur who becomes her partner, across the whole 47-issue series from 2015 to 2019.",
+  "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Moon Girl and Devil Dinosaur",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:14:47.820Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 47,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 57014,
+      "title": "Moon Girl and Devil Dinosaur (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57014/moon_girl_and_devil_dinosaur_2015_1",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2015-11-25T00:00:00+0000",
+      "mu": "2016-05-30T00:00:00+0000",
+      "digitalId": 40540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/564b95175b385",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57018,
+      "title": "Moon Girl and Devil Dinosaur (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57018/moon_girl_and_devil_dinosaur_2015_2",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2015-12-23T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 40725,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/56780836561b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57019,
+      "title": "Moon Girl and Devil Dinosaur (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57019/moon_girl_and_devil_dinosaur_2015_3",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-01-27T00:00:00+0000",
+      "mu": "2016-07-25T00:00:00+0000",
+      "digitalId": 41004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/56999c0c36f9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57020,
+      "title": "Moon Girl and Devil Dinosaur (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57020/moon_girl_and_devil_dinosaur_2015_4",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-29T00:00:00+0000",
+      "digitalId": 41225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56c748c42f6e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57021,
+      "title": "Moon Girl and Devil Dinosaur (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57021/moon_girl_and_devil_dinosaur_2015_5",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-03-30T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/56f18823a52ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57022,
+      "title": "Moon Girl and Devil Dinosaur (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57022/moon_girl_and_devil_dinosaur_2015_6",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/5711528458f4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59350,
+      "title": "Moon Girl and Devil Dinosaur (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/59350/moon_girl_and_devil_dinosaur_2015_7",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-05-25T00:00:00+0000",
+      "mu": "2016-11-28T12:00:00+0000",
+      "digitalId": 41608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5736314f8b8bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Failla",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59351,
+      "title": "Moon Girl and Devil Dinosaur (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/59351/moon_girl_and_devil_dinosaur_2015_8",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/57599bab22bd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59352,
+      "title": "Moon Girl and Devil Dinosaur (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/59352/moon_girl_and_devil_dinosaur_2015_9",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42123,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/579250ff096ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59353,
+      "title": "Moon Girl and Devil Dinosaur (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/59353/moon_girl_and_devil_dinosaur_2015_10",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/57b36c233bcfa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59354,
+      "title": "Moon Girl and Devil Dinosaur (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/59354/moon_girl_and_devil_dinosaur_2015_11",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42698,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/57ed5a431c197",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59355,
+      "title": "Moon Girl and Devil Dinosaur (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/59355/moon_girl_and_devil_dinosaur_2015_12",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/580142cbbde1b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60711,
+      "title": "Moon Girl and Devil Dinosaur (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60711/moon_girl_and_devil_dinosaur_2015_13",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-11-23T00:00:00+0000",
+      "mu": "2017-05-29T00:00:00+0000",
+      "digitalId": 43246,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/582a3092b0bd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60712,
+      "title": "Moon Girl and Devil Dinosaur (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60712/moon_girl_and_devil_dinosaur_2015_14",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2016-12-28T00:00:00+0000",
+      "mu": "2017-07-03T00:00:00+0000",
+      "digitalId": 43434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/585aa8c239e57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60713,
+      "title": "Moon Girl and Devil Dinosaur (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60713/moon_girl_and_devil_dinosaur_2015_15",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/587902e66cc51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60714,
+      "title": "Moon Girl and Devil Dinosaur (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/60714/moon_girl_and_devil_dinosaur_2015_16",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44119,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/58a22dc9df06c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 60715,
+      "title": "Moon Girl and Devil Dinosaur (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60715/moon_girl_and_devil_dinosaur_2015_17",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-03-22T00:00:00+0000",
+      "mu": "2017-09-25T00:00:00+0000",
+      "digitalId": 44298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/58cb052d73413",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60716,
+      "title": "Moon Girl and Devil Dinosaur (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60716/moon_girl_and_devil_dinosaur_2015_18",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-04-26T00:00:00+0000",
+      "mu": "2017-04-26T00:00:00+0000",
+      "digitalId": 44559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/58f79b2f89054",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60717,
+      "title": "Moon Girl and Devil Dinosaur (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/60717/moon_girl_and_devil_dinosaur_2015_19",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-05-24T00:00:00+0000",
+      "mu": "2017-11-27T00:00:00+0000",
+      "digitalId": 44762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/591c9cef1c0b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60718,
+      "title": "Moon Girl and Devil Dinosaur (2015) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/60718/moon_girl_and_devil_dinosaur_2015_20",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-06-28T00:00:00+0000",
+      "mu": "2018-01-01T00:00:00+0000",
+      "digitalId": 44984,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/594c298c53071",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60719,
+      "title": "Moon Girl and Devil Dinosaur (2015) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/60719/moon_girl_and_devil_dinosaur_2015_21",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-07-26T00:00:00+0000",
+      "mu": "2018-01-29T00:00:00+0000",
+      "digitalId": 45285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/596d16ba5b6ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60720,
+      "title": "Moon Girl and Devil Dinosaur (2015) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/60720/moon_girl_and_devil_dinosaur_2015_22",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/59934fee081cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60721,
+      "title": "Moon Girl and Devil Dinosaur (2015) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/60721/moon_girl_and_devil_dinosaur_2015_23",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2017-09-27T00:00:00+0000",
+      "digitalId": 45760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/59c2888aa0554",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60722,
+      "title": "Moon Girl and Devil Dinosaur (2015) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/60722/moon_girl_and_devil_dinosaur_2015_24",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-10-25T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 46008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/59e7b03ae95cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dominike “Domo\" Stanton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Felipe Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Shelfer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60723,
+      "title": "Moon Girl and Devil Dinosaur (2015) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/60723/moon_girl_and_devil_dinosaur_2015_25",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-11-22T00:00:00+0000",
+      "mu": "2018-05-28T00:00:00+0000",
+      "digitalId": 46324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5a0c6b46a2e58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60724,
+      "title": "Moon Girl and Devil Dinosaur (2015) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/60724/moon_girl_and_devil_dinosaur_2015_26",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2017-12-27T00:00:00+0000",
+      "mu": "2018-07-02T00:00:00+0000",
+      "digitalId": 46670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5a6b442ae6380",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65918,
+      "title": "Moon Girl and Devil Dinosaur (2015) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/65918/moon_girl_and_devil_dinosaur_2015_27",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-01-31T00:00:00+0000",
+      "mu": "2018-08-06T00:00:00+0000",
+      "digitalId": 47143,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/5a68ee3179548",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66289,
+      "title": "Moon Girl and Devil Dinosaur (2015) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/66289/moon_girl_and_devil_dinosaur_2015_28",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47341,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5a8de8ed825c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66547,
+      "title": "Moon Girl and Devil Dinosaur (2015) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/66547/moon_girl_and_devil_dinosaur_2015_29",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-03-28T00:00:00+0000",
+      "mu": "2018-10-01T00:00:00+0000",
+      "digitalId": 47587,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/70/5ab2accd316a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 66917,
+      "title": "Moon Girl and Devil Dinosaur (2015) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/66917/moon_girl_and_devil_dinosaur_2015_30",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ad7afd92692b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67529,
+      "title": "Moon Girl and Devil Dinosaur (2015) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/67529/moon_girl_and_devil_dinosaur_2015_31",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-06-06T00:00:00+0000",
+      "mu": "2018-12-10T00:00:00+0000",
+      "digitalId": 48007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5b0f17b21ab57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ray-Anthony Height",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Amy Reeder",
+          "role": "writer"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69078,
+      "title": "Moon Girl and Devil Dinosaur (2015) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/69078/moon_girl_and_devil_dinosaur_2015_32",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/5b2c12d4caf9a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69079,
+      "title": "Moon Girl and Devil Dinosaur (2015) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/69079/moon_girl_and_devil_dinosaur_2015_33",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2018-07-25T00:00:00+0000",
+      "digitalId": 48617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5b50baec4818c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69080,
+      "title": "Moon Girl and Devil Dinosaur (2015) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/69080/moon_girl_and_devil_dinosaur_2015_34",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2018-08-22T00:00:00+0000",
+      "digitalId": 48894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b748e9f126a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69081,
+      "title": "Moon Girl and Devil Dinosaur (2015) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/69081/moon_girl_and_devil_dinosaur_2015_35",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-09-26T00:00:00+0000",
+      "mu": "2018-09-26T00:00:00+0000",
+      "digitalId": 49206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5b9ff8211899b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69082,
+      "title": "Moon Girl and Devil Dinosaur (2015) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/69082/moon_girl_and_devil_dinosaur_2015_36",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5bc900428feba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69083,
+      "title": "Moon Girl and Devil Dinosaur (2015) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/69083/moon_girl_and_devil_dinosaur_2015_37",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2019-05-27T00:00:00+0000",
+      "digitalId": 49777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/5becad0d14125",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 69084,
+      "title": "Moon Girl and Devil Dinosaur (2015) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/69084/moon_girl_and_devil_dinosaur_2015_38",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2018-12-05T00:00:00+0000",
+      "digitalId": 50044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5bff0b7f33ba2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70765,
+      "title": "Moon Girl and Devil Dinosaur (2015) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/70765/moon_girl_and_devil_dinosaur_2015_39",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-01-23T00:00:00+0000",
+      "mu": "2019-01-23T00:00:00+0000",
+      "digitalId": 50421,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c3f9428a80d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70766,
+      "title": "Moon Girl and Devil Dinosaur (2015) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/70766/moon_girl_and_devil_dinosaur_2015_40",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-02-27T00:00:00+0000",
+      "mu": "2019-09-02T00:00:00+0000",
+      "digitalId": 50665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5c6dd96454a85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70767,
+      "title": "Moon Girl and Devil Dinosaur (2015) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/70767/moon_girl_and_devil_dinosaur_2015_41",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-03-27T00:00:00+0000",
+      "mu": "2019-03-27T00:00:00+0000",
+      "digitalId": 50977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5c93f3d77cb60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70768,
+      "title": "Moon Girl and Devil Dinosaur (2015) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/70768/moon_girl_and_devil_dinosaur_2015_42",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/b0/5cb897fc7e829",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lebeau Underwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70769,
+      "title": "Moon Girl and Devil Dinosaur (2015) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/70769/moon_girl_and_devil_dinosaur_2015_43",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cd9c9755b372",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70770,
+      "title": "Moon Girl and Devil Dinosaur (2015) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/70770/moon_girl_and_devil_dinosaur_2015_44",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5d08f35475e6c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70771,
+      "title": "Moon Girl and Devil Dinosaur (2015) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/70771/moon_girl_and_devil_dinosaur_2015_45",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5d2c92122d81e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70772,
+      "title": "Moon Girl and Devil Dinosaur (2015) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/70772/moon_girl_and_devil_dinosaur_2015_46",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52406,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5d5d4d1d5d315",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70773,
+      "title": "Moon Girl and Devil Dinosaur (2015) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/70773/moon_girl_and_devil_dinosaur_2015_47",
+      "seriesId": 20839,
+      "seriesName": "Moon Girl and Devil Dinosaur (2015 - 2019)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/5d7f936916852",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alitha E. Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Montclare",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

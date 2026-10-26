@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "fantastic-four-and-power-pack",
+  "inventoryId": "fantastic-four-and-power-pack",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "96a35d95a8e6e814ea8ca7163e46b5df9adfe4b18f5eb22b83a0b18b778d2138",
+  "sourceIssueBearingBlocksSha256": "db711c91a19f74f9bc6ab50229ef60cf757eb8888ace3f6892770edf37796dc3",
+  "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
+  "excludedSourceReferences": [],
+  "expectedCount": 4,
+  "proposedManifest": {
+    "id": "fantastic-four-and-power-pack",
+    "name": "Fantastic Four and Power Pack",
+    "description": "The Power Pack siblings meet the Fantastic Four in a four-issue all-ages team-up from 2007.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "timeline": null,
+    "sourceFile": "fantastic-four-and-power-pack.md",
+    "out": "fantastic_four_and_power_pack.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+    "sourceOrigin": "Selected by the project owner",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Fantastic Four",
+      "Power Pack",
+      "Franklin Richards"
+    ],
+    "keywords": [
+      "young readers",
+      "all ages",
+      "Power Pack"
+    ],
+    "coverIssueId": 15974,
+    "expect": 4
+  },
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #1",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2506,
+      "candidateIssueId": 15974,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #2",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2506,
+      "candidateIssueId": 16159,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #3",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2506,
+      "candidateIssueId": 16535,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four and Power Pack (2007) #4",
+      "normalizedSeriesTitle": "Fantastic Four and Power Pack",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2506,
+      "candidateIssueId": 16536,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "packetDigest": "9cf67c880c2344e9faa5947a8df1db1898c2f3c45b373747c70d42f805268ade",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:18:05.702Z",
+    "rationale": "The owner's young readers' pick recorded on issue 898 names this series by its Marvel series identifier and starting issue; every resolved original comes from the metadata service's listing of that series, in issue order. The coordinating session's decisions on issue 898 settle the grouping and list boundaries.",
+    "proposalDigest": "8398a3d482f26c604a8905d9d5ac22fdcfde4309be4e604efda202b27aee9755"
+  }
+}

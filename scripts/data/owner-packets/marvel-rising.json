@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-rising",
+  "inventoryId": "marvel-rising",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "21bde0227de025f44f6a20c78a310a6f776d84e684e8010df1a1826510f9d055",
+  "sourceIssueBearingBlocksSha256": "06c157a768261ed7e6a5230165cec92b1defc2adc0d8476a72493293e29c6fc9",
+  "sourceBoundary": "Every explicitly selected original, in supplied selection and expansion order; unresolved positions remain provenance.",
+  "excludedSourceReferences": [],
+  "expectedCount": 5,
+  "proposedManifest": {
+    "id": "marvel-rising",
+    "name": "Marvel Rising",
+    "description": "Ms. Marvel, Squirrel Girl and a crew of other young heroes team up in a five-issue 2019 series.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "timeline": null,
+    "sourceFile": "marvel-rising.md",
+    "out": "marvel_rising.json",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+    "sourceOrigin": "Selected by the project owner",
+    "sourceLicense": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "characters": [
+      "Ms. Marvel",
+      "Kamala Khan",
+      "Squirrel Girl",
+      "Doreen Green",
+      "America Chavez"
+    ],
+    "keywords": [
+      "young readers",
+      "all ages",
+      "Marvel Rising"
+    ],
+    "coverIssueId": 75461,
+    "expect": 5
+  },
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #1",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27131,
+      "candidateIssueId": 75461,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #2",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27131,
+      "candidateIssueId": 75466,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #3",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27131,
+      "candidateIssueId": 75467,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #4",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27131,
+      "candidateIssueId": 75468,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Rising (2019) #5",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27131,
+      "candidateIssueId": 75469,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "packetDigest": "aaab74c1bd750a336dbe08cb8f86df7dddabf7a82d041e1a81ac685236174045",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:16:43.275Z",
+    "rationale": "The owner's young readers' pick recorded on issue 898 names this series by its Marvel series identifier and starting issue; every resolved original comes from the metadata service's listing of that series, in issue order. The coordinating session's decisions on issue 898 settle the grouping and list boundaries.",
+    "proposalDigest": "d0b2ea09ee2095810617cd2316104aa9767e94d25505607abc69f817d11e5858"
+  }
+}

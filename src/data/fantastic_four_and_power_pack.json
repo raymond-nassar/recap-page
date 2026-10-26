@@ -1,0 +1,140 @@
+{
+  "id": "fantastic-four-and-power-pack",
+  "name": "Fantastic Four and Power Pack",
+  "description": "The Power Pack siblings meet the Fantastic Four in a four-issue all-ages team-up from 2007.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:18:08.617Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 15974,
+      "title": "Fantastic Four and Power Pack (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15974/fantastic_four_and_power_pack_2007_1",
+      "seriesId": 2506,
+      "seriesName": "Fantastic Four and Power Pack (2007)",
+      "onSale": "2007-07-04T00:00:00+0000",
+      "mu": "2007-07-04T00:00:00+0000",
+      "digitalId": 8189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ade429ecf356",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcelo Dichiara",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Giarrusso",
+          "role": "writer"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16159,
+      "title": "Fantastic Four and Power Pack (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16159/fantastic_four_and_power_pack_2007_2",
+      "seriesId": 2506,
+      "seriesName": "Fantastic Four and Power Pack (2007)",
+      "onSale": "2007-08-01T00:00:00+0000",
+      "mu": "2007-08-01T00:00:00+0000",
+      "digitalId": 8190,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5ade439656872",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Dichiara",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16535,
+      "title": "Fantastic Four and Power Pack (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16535/fantastic_four_and_power_pack_2007_3",
+      "seriesId": 2506,
+      "seriesName": "Fantastic Four and Power Pack (2007)",
+      "onSale": "2007-09-05T00:00:00+0000",
+      "mu": "2007-09-05T00:00:00+0000",
+      "digitalId": 8191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5ade442c08a95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcelo Dichiara",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16536,
+      "title": "Fantastic Four and Power Pack (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16536/fantastic_four_and_power_pack_2007_4",
+      "seriesId": 2506,
+      "seriesName": "Fantastic Four and Power Pack (2007)",
+      "onSale": "2007-10-03T00:00:00+0000",
+      "mu": "2007-10-03T00:00:00+0000",
+      "digitalId": 8192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5ade447d916b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Giarrusso",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

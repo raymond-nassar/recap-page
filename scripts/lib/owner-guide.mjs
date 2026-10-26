@@ -18,7 +18,7 @@ import {
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
-import { ownerGuideProvider, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
+import { OWNER_YOUNG_READERS_PROVIDER, ownerGuideProvider, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
 import {
   assertCbhBaselinePayload, cbhBaselineContractRows, preserveCbhBaselinePlaceholders, updatedCbhBaselineChecklist,
 } from './owner-cbh-baseline.mjs';
@@ -42,6 +42,10 @@ const hash = (value) => createHash('sha256').update(value).digest('hex');
 const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const same = (left, right, reason) => assert.equal(canonicalJson(left), canonicalJson(right), reason);
 const positiveId = (id) => Number.isSafeInteger(id) && id > 0;
+// The surface decides how a guide is filed and credited. Absent keeps the MCU Prep default every
+// earlier guide was prepared under, so their proposals and digests are unchanged.
+const OWNER_REQUEST_SURFACES = new Set(['young-readers']);
+const providerForSurface = (surface) => (surface === 'young-readers' ? OWNER_YOUNG_READERS_PROVIDER : OWNER_PROVIDER);
 
 export function parseOwnerMarkdown(text) {
   assert.equal(typeof text, 'string', 'Owner Markdown must be text.');
@@ -101,7 +105,10 @@ function directIssues(selection) {
 
 function candidateFromRecord(record) {
   const body = record.body;
-  const identity = /^(.*?)\s+\((\d{4})\)\s+#/.exec(body.title);
+  // Some originals carry no number in their metadata title, as the later chapters of a digital
+  // Infinite Comic series do; the series title and year are still required, and the record's own
+  // issue number stays the one compared.
+  const identity = /^(.*?)\s+\((\d{4})\)(?:\s+#|$)/.exec(body.title);
   assert.ok(identity, 'Exact cached issue metadata must identify its series title and year.');
   assert.ok(Number.isFinite(Date.parse(record.fetchedAt)), 'Cached metadata needs its actual retrieval timestamp.');
   assert.equal(issueIdFromUrl(body.detailUrl), body.id, 'Cached metadata link changed its original identity.');
@@ -127,9 +134,11 @@ function validateRequest(request) {
   const fields = new Set([
     'schemaVersion', 'id', 'name', 'description', 'sourceUrl', 'sourceRetrievedAt',
     'markdownFile', 'metadataCache', 'metadataIssueIds', 'selections', 'publicFiles',
-    'insertionAnchor', 'characters', 'keywords', 'coverIssueId', 'sourceFacts',
+    'insertionAnchor', 'characters', 'keywords', 'coverIssueId', 'sourceFacts', 'surface',
   ]);
   assert.ok(Object.keys(request).every((key) => fields.has(key)), 'Owner request contains unsupported fields.');
+  assert.ok(!Object.hasOwn(request, 'surface') || OWNER_REQUEST_SURFACES.has(request.surface),
+    'An owner request surface must be young-readers, or absent for MCU Prep.');
   assert.match(request.id ?? '', /^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Owner id must be lower-kebab-case.');
   assert.match(request.sourceUrl ?? '', /^https:\/\/github\.com\/raymond-nassar\/recap-page\/issues\/[1-9]\d*(?:#issuecomment-\d+)?$/,
     'Owner source must be the exact repository intake Issue or decision comment.');
@@ -156,7 +165,7 @@ function validateRequest(request) {
   }
 }
 
-function manifestFor(request, rows, candidates) {
+function manifestFor(request, rows, candidates, { gapCount = 0 } = {}) {
   const withCover = rows.filter((row) => {
     const cover = candidates.find((candidate) => candidate.id === row.selectedIssueId)?.providerProjection.cover;
     return typeof cover?.path === 'string' && cover.path && typeof cover.extension === 'string' && cover.extension;
@@ -164,11 +173,19 @@ function manifestFor(request, rows, candidates) {
   const coverIssueId = request.coverIssueId ?? withCover[0]?.selectedIssueId ?? null;
   assert.ok(request.coverIssueId == null || withCover.some((row) => row.selectedIssueId === request.coverIssueId),
     'The explicit representative original needs recorded cover metadata before source review.');
+  // A young readers' pick is a whole run of one character or team, filed on Character spotlights
+  // beside comparable runs; it opens at a #1 or a standalone special, so nothing earlier is assumed.
+  const classification = request.surface === 'young-readers'
+    ? {
+      type: 'character-run', spotlightKind: 'other', audience: 'young-readers',
+      depth: gapCount ? 'partial' : 'complete', beginner: true, timeline: null,
+    }
+    : { type: 'screen-companion', depth: 'selected', beginner: false, timeline: null };
   const manifest = {
     id: request.id, name: request.name, description: request.description,
-    type: 'screen-companion', depth: 'selected', beginner: false, timeline: null,
+    ...classification,
     sourceFile: `${request.id}.md`, out: `${request.id.replaceAll('-', '_')}.json`,
-    sourcePage: request.sourceUrl, sourceOrigin: OWNER_PROVIDER.sourceOrigin, sourceLicense: null,
+    sourcePage: request.sourceUrl, sourceOrigin: providerForSurface(request.surface).sourceOrigin, sourceLicense: null,
     group: null, groupName: null, variant: null,
     characters: request.characters ?? [], keywords: request.keywords ?? [],
     coverIssueId, expect: rows.length,
@@ -280,7 +297,15 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
   const seen = new Map();
   const seenGaps = new Map();
   for (const row of expanded) {
-    const identity = resolveRow(row, candidates);
+    let identity = resolveRow(row, candidates);
+    // Two originals can share a title and number in the metadata, as the two unnumbered later
+    // chapters of an Infinite Comic series do. An explicit candidate identity among those exact
+    // matches settles which one this position names; it never selects outside them, so a pinned
+    // identity that matches nothing still stays unresolved.
+    if (identity.resolutionStatus === 'ambiguous' && row.candidateIssueId != null
+      && identity.candidateIssueIds.includes(String(row.candidateIssueId))) {
+      identity = resolveRow(row, candidates.filter((entry) => entry.id === row.candidateIssueId));
+    }
     if (row.gap) {
       assert.notEqual(identity.resolutionStatus, 'exact', 'An exactly resolved original cannot be silently filed as a gap.');
       const gap = {
@@ -346,8 +371,10 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     return { schemaVersion: 1, status: 'needs-resolution', intakeReceipt, intake, selections,
       rows: exact, gaps, gapOccurrences, repeats, unresolved };
   }
+  const provider = providerForSurface(request.surface);
   const source = {
     schemaVersion: 1, id: request.id, sourceProvider: OWNER_PROVIDER.id,
+    ...(request.surface ? { surface: request.surface, sourceCredit: provider.sourceOrigin } : {}),
     sourceUrl: request.sourceUrl, sourceRetrievedAt: request.sourceRetrievedAt,
     readerDescription: request.description, selections,
     sourceIssueCount: expanded.length, publishedIssueCount: exact.length,
@@ -360,7 +387,7 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     ...(request.sourceFacts ? { facts: request.sourceFacts } : {}),
     publicDependencies: request.publicFiles.map((entry) => entry.path),
   };
-  const manifest = manifestFor(request, exact, candidates);
+  const manifest = manifestFor(request, exact, candidates, { gapCount: gaps.length });
   const packet = {
     schemaVersion: 1, id: request.id, inventoryId: request.id,
     sourceUrl: request.sourceUrl, sourceRetrievedAt: request.sourceRetrievedAt,
@@ -378,7 +405,7 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
       ...(repeats.length ? { repeatedSourceReferences: repeats } : {}),
     } : {}),
   };
-  validatePacketProposal(packet, { provider: OWNER_PROVIDER });
+  validatePacketProposal(packet, { provider });
   packet.packetDigest = packetDigestFor(packet);
   const mapping = {
     id: request.id, inventoryId: request.id, packetDigest: packet.packetDigest,
@@ -409,7 +436,8 @@ export async function prepareOwnerGuide(request, { root = ROOT, markdown, onPhas
     root, ...preparedFiles(artifacts, paths, request.publicFiles, libraryFiles),
   }));
   const proposal = {
-    schemaVersion: 1, status: 'awaiting-review', id: request.id, paths, artifacts, publication,
+    schemaVersion: 1, status: 'awaiting-review', id: request.id, ...(request.surface ? { surface: request.surface } : {}),
+    paths, artifacts, publication,
     libraryDigest: library.libraryDigest, sourceCounts: sourceCountsForPacket(packet),
     publicFiles: request.publicFiles, libraryFiles,
   };
@@ -699,18 +727,24 @@ export async function authorizeOwnerGuide(proposal, approval, { root = ROOT } = 
   mapping.relationshipReview = relationshipReview;
   assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: library.libraryDigest,
-    expectedOrderIds: library.orders.map((entry) => entry.orderId), packetValidation: { provider: OWNER_PROVIDER },
+    expectedOrderIds: library.orders.map((entry) => entry.orderId),
+    packetValidation: { provider: providerForSurface(proposal.surface) },
   });
   const groups = [...new Set(mapping.rows.map((row) => row.sourceRangeReference).filter(Boolean))];
   const contract = {
     schemaVersion: 1, id: packet.id, name: packet.proposedManifest.name,
-    description: packet.proposedManifest.description, sourceUrl: source.sourceUrl, groups,
+    description: packet.proposedManifest.description, sourceUrl: source.sourceUrl,
+    ...(proposal.surface ? {
+      surface: proposal.surface, sourceOrigin: providerForSurface(proposal.surface).sourceOrigin,
+    } : {}),
+    groups,
     rows: mapping.rows.map((row) => [
       row.sourcePosition, row.selectedIssueId, row.resolvedIssueTitle,
       row.sourceRangeReference ? groups.indexOf(row.sourceRangeReference) : null,
     ]),
     sourceCounts: sourceCountsForPacket(packet), sourceSha256: packet.sourceContentSha256,
-    proposalDigest, approvalDigest: relationshipReview.approvalDigest, insertionAnchor: packet.insertionAnchor,
+    proposalDigest, libraryDigest: library.libraryDigest, approvalDigest: relationshipReview.approvalDigest,
+    insertionAnchor: packet.insertionAnchor,
     publicDependencies: Object.values(proposal.paths).filter((file) => file !== proposal.paths.contract
       && file !== proposal.paths.markdown),
   };
@@ -778,7 +812,10 @@ export async function emitOwnerGuide(proposal, approval, { root = ROOT } = {}) {
   outputs.push({ file: manifestFile, content: jsonText(nextManifest) });
   outputs.push({
     file: registryFile,
-    content: jsonText({ ...registry, guides: [...registry.guides, { id: proposal.id, contract: proposal.paths.contract }] }),
+    content: jsonText({ ...registry, guides: [...registry.guides, {
+      id: proposal.id, contract: proposal.paths.contract,
+      ...(proposal.surface ? { surface: proposal.surface } : {}),
+    }] }),
   });
   await preflightPublicationWrites({ root, inputs, outputs });
   await Promise.all([...new Set(outputs.map((entry) => path.dirname(entry.file)))]

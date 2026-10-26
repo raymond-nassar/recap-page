@@ -1,0 +1,183 @@
+{
+  "id": "marvel-rising",
+  "name": "Marvel Rising",
+  "description": "Ms. Marvel, Squirrel Girl and a crew of other young heroes team up in a five-issue 2019 series.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceOrigin": "Selected by the project owner",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:16:46.290Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 75461,
+      "title": "Marvel Rising (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75461/marvel_rising_2019_1",
+      "seriesId": 27131,
+      "seriesName": "Marvel Rising (2019)",
+      "onSale": "2019-03-27T00:00:00+0000",
+      "mu": "2019-09-30T00:00:00+0000",
+      "digitalId": 50880,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5c93f4209ad6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Audrey Mok",
+          "role": "penciler"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75466,
+      "title": "Marvel Rising (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/75466/marvel_rising_2019_2",
+      "seriesId": 27131,
+      "seriesName": "Marvel Rising (2019)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5cb89d58d1943",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Audrey Mok",
+          "role": "penciler"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75467,
+      "title": "Marvel Rising (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/75467/marvel_rising_2019_3",
+      "seriesId": 27131,
+      "seriesName": "Marvel Rising (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51466,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5ce3fffc14bae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Georges Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Audrey Mok",
+          "role": "penciler"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75468,
+      "title": "Marvel Rising (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/75468/marvel_rising_2019_4",
+      "seriesId": 27131,
+      "seriesName": "Marvel Rising (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5d08f2aa41c93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Georges Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Audrey Mok",
+          "role": "penciler"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75469,
+      "title": "Marvel Rising (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/75469/marvel_rising_2019_5",
+      "seriesId": 27131,
+      "seriesName": "Marvel Rising (2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/5d2c920948f57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Georges Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Audrey Mok",
+          "role": "penciler"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

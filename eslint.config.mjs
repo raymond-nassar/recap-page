@@ -161,6 +161,7 @@ export default [
       'scripts/browser-mcu-prep-organization.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/browser-owner-guide.mjs',
+      'scripts/browser-young-readers.mjs',
       'scripts/browser-selection-bar.mjs',
       'scripts/browser-category-accents.mjs',
       'scripts/browser-theme-color.mjs',

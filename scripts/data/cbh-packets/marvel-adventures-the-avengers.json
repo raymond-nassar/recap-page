@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-adventures-the-avengers",
+  "inventoryId": "marvel-adventures-the-avengers",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Marvel Adventures: Avengers",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Marvel Adventures: Avengers, which recommends the series running for thirty-nine issues between 2006 and 2009: Marvel Adventures the Avengers (2006) #1-39 in issue order. Ultimates and Planet Hulk are named only for comparison, and the separate Giant-Size Marvel Adventures The Avengers one-shot is not part of the thirty-nine.",
+  "excludedSourceReferences": [
+    "Ultimates, named for comparison",
+    "Planet Hulk, named for comparison"
+  ],
+  "expectedCount": 39,
+  "proposedManifest": {
+    "id": "marvel-adventures-the-avengers",
+    "name": "Marvel Adventures: The Avengers",
+    "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "marvel-adventures-the-avengers.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Marvel Adventures: Avengers",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "marvel_adventures_the_avengers.json",
+    "characters": [
+      "Avengers",
+      "Captain America",
+      "Iron Man",
+      "Spider-Man",
+      "Wolverine",
+      "Storm",
+      "Hulk"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Marvel Adventures",
+      "Jeff Parker"
+    ],
+    "expect": 39,
+    "timeline": null,
+    "coverIssueId": 4236
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "The section names a thirty-nine-issue run from 2006 to 2009, which matches the complete metadata series 1107 exactly."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #1",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1107,
+      "candidateIssueId": 4236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #2",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1107,
+      "candidateIssueId": 4337,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #3",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1107,
+      "candidateIssueId": 4494,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #4",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1107,
+      "candidateIssueId": 4817,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #5",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 1107,
+      "candidateIssueId": 5110,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #6",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "6",
+      "seriesId": 1107,
+      "candidateIssueId": 5262,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #7",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "7",
+      "seriesId": 1107,
+      "candidateIssueId": 5435,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #8",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "8",
+      "seriesId": 1107,
+      "candidateIssueId": 5691,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #9",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "9",
+      "seriesId": 1107,
+      "candidateIssueId": 5828,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #10",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "10",
+      "seriesId": 1107,
+      "candidateIssueId": 5982,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #11",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "11",
+      "seriesId": 1107,
+      "candidateIssueId": 6160,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #12",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1107,
+      "candidateIssueId": 6305,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #13",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "13",
+      "seriesId": 1107,
+      "candidateIssueId": 13471,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #14",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "14",
+      "seriesId": 1107,
+      "candidateIssueId": 15851,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #15",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "15",
+      "seriesId": 1107,
+      "candidateIssueId": 20801,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #16",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "16",
+      "seriesId": 1107,
+      "candidateIssueId": 16511,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #17",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "17",
+      "seriesId": 1107,
+      "candidateIssueId": 16512,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #18",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "18",
+      "seriesId": 1107,
+      "candidateIssueId": 17245,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #19",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "19",
+      "seriesId": 1107,
+      "candidateIssueId": 17381,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #20",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "20",
+      "seriesId": 1107,
+      "candidateIssueId": 17621,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #21",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "21",
+      "seriesId": 1107,
+      "candidateIssueId": 20666,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #22",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "22",
+      "seriesId": 1107,
+      "candidateIssueId": 20861,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #23",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "23",
+      "seriesId": 1107,
+      "candidateIssueId": 20996,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #24",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "24",
+      "seriesId": 1107,
+      "candidateIssueId": 21208,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #25",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "25",
+      "seriesId": 1107,
+      "candidateIssueId": 21352,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #26",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "26",
+      "seriesId": 1107,
+      "candidateIssueId": 21533,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #27",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "27",
+      "seriesId": 1107,
+      "candidateIssueId": 21732,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #28",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "28",
+      "seriesId": 1107,
+      "candidateIssueId": 21964,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #29",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "29",
+      "seriesId": 1107,
+      "candidateIssueId": 22287,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #30",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "30",
+      "seriesId": 1107,
+      "candidateIssueId": 22494,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #31",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "31",
+      "seriesId": 1107,
+      "candidateIssueId": 22899,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #32",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "32",
+      "seriesId": 1107,
+      "candidateIssueId": 23105,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #33",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "33",
+      "seriesId": 1107,
+      "candidateIssueId": 23600,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #34",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "34",
+      "seriesId": 1107,
+      "candidateIssueId": 23761,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #35",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "35",
+      "seriesId": 1107,
+      "candidateIssueId": 23960,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #36",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "36",
+      "seriesId": 1107,
+      "candidateIssueId": 24159,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #37",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "37",
+      "seriesId": 1107,
+      "candidateIssueId": 25714,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #38",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "38",
+      "seriesId": 1107,
+      "candidateIssueId": 25715,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Marvel Adventures the Avengers (2006) #39",
+      "normalizedSeriesTitle": "Marvel Adventures the Avengers",
+      "seriesYear": 2006,
+      "issueNumber": "39",
+      "seriesId": 1107,
+      "candidateIssueId": 25716,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "32b08f6967fdb66b436852f6b8bc7bf0bf71bee58225c25d7a438845d5a23731"
+}

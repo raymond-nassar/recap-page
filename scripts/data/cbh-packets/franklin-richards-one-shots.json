@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "id": "franklin-richards-one-shots",
+  "inventoryId": "franklin-richards-one-shots",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Franklin Richards",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Franklin Richards. It recommends the series of one-shot specials by Chris Eliopoulos and Marc Sumerak running from 2005 to 2009; the list is the fifteen one-shots the metadata service lists for those years, in on-sale order. Franklin Richards: A Fantastic Year (2018), which the section calls a greatest hits compilation of that material, is excluded as a collected edition, as decided on the delivery Issue. The service files a Franklin Richards: Lab Brat record as a trade paperback that reprints four of the one-shots, so it is not a separate one-shot.",
+  "excludedSourceReferences": [
+    "Franklin Richards: A Fantastic Year (2018), which the section calls a greatest hits compilation of the one-shots"
+  ],
+  "expectedCount": 15,
+  "proposedManifest": {
+    "id": "franklin-richards-one-shots",
+    "name": "Franklin Richards One-Shots",
+    "description": "Fifteen short, gag-filled one-shots about Reed and Sue Richards' young son Franklin and his robot babysitter H.E.R.B.I.E., published from 2005 to 2009. Each stands alone, so any of them makes an easy first comic.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "franklin-richards-one-shots.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Franklin Richards",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "franklin_richards_one_shots.json",
+    "characters": [
+      "Franklin Richards",
+      "H.E.R.B.I.E.",
+      "Fantastic Four"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "one-shots",
+      "Chris Eliopoulos",
+      "Marc Sumerak"
+    ],
+    "expect": 15,
+    "timeline": null,
+    "coverIssueId": 3636
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "One list for the section, holding every one-shot the section recommends that the metadata service records, in on-sale order. A Fantastic Year is excluded as a collected edition by the coordinating session decision recorded on issue 898; the Lab Brat trade paperback is a reprint, not a source position."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Franklin Richards: Son of a Genius (2005) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Son of a Genius",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 361,
+      "candidateIssueId": 3636,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1 (2006) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: EVERYBODY LOVES FRANKLIN 1",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1041,
+      "candidateIssueId": 3577,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1 (2006) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SUPER SUMMER SPECTACULAR 1",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1117,
+      "candidateIssueId": 4505,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Franklin Richards: Happy Franksgiving (2006) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Happy Franksgiving",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1118,
+      "candidateIssueId": 5585,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: MARCH MADNESS 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: MARCH MADNESS 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 1880,
+      "candidateIssueId": 6105,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: WORLD BE WARNED 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: WORLD BE WARNED 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2419,
+      "candidateIssueId": 15890,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: MONSTER MASH 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: MONSTER MASH 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2887,
+      "candidateIssueId": 16587,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1 (2007) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: FALL FOOTBALL FIASCO! 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3072,
+      "candidateIssueId": 17281,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: SPRING BREAK 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SPRING BREAK 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4015,
+      "candidateIssueId": 20909,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: NOT-SO-SECRET INVASION 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4879,
+      "candidateIssueId": 21262,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SUMMER SMACKDOWN! 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5353,
+      "candidateIssueId": 21775,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "FRANKLIN RICHARDS: SONS OF GENIUSES 1 (2008) #1",
+      "normalizedSeriesTitle": "FRANKLIN RICHARDS: SONS OF GENIUSES 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 6159,
+      "candidateIssueId": 22535,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Franklin Richards: It's Dark Reigning Cats & Dogs (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: It's Dark Reigning Cats & Dogs",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 6814,
+      "candidateIssueId": 23666,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Franklin Richards: April Fools (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: April Fools",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7228,
+      "candidateIssueId": 24050,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Franklin Richards: Schools Out (2009) #1",
+      "normalizedSeriesTitle": "Franklin Richards: Schools Out",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7809,
+      "candidateIssueId": 25267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "459fb32a632fed590fbb6b9dcf9cc86130b1d58851b4c8b1e5c779dd66b2bb99"
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-super-hero-adventures",
+  "name": "Marvel Super Hero Adventures",
+  "description": "Five standalone all-ages specials from 2018 and 2019, starring Captain Marvel twice, then Spider-Man, Ms. Marvel, and a shared team-up.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      71954,
+      "Marvel Super Hero Adventures: Captain Marvel - First Day of School (2018) #1",
+      null
+    ],
+    [
+      2,
+      71955,
+      "Marvel Super Hero Adventures: Captain Marvel - Halloween Spooktacular (2018) #1",
+      null
+    ],
+    [
+      3,
+      74792,
+      "Marvel Super Hero Adventures: Spider-Man - Across the Spider-Verse (2019) #1",
+      null
+    ],
+    [
+      4,
+      69036,
+      "Marvel Super Hero Adventures: Ms. Marvel and the Teleporting Dog (2018) #1",
+      null
+    ],
+    [
+      5,
+      69035,
+      "Marvel Super Hero Adventures: Webs and Arrows and Ants, Oh My! (2018) #1",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 5,
+    "sourceIdentityCount": 5,
+    "includedIssueCount": 5,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "df046bec98529d5e75651939b7becf384c8237c9934646b1b5e22710d93c4cb7",
+  "proposalDigest": "8c7fcd473218a848cb57c1f968ea276a83578cb84a5f8d8e15bd49e04ddc11c5",
+  "libraryDigest": "f871b705978abc94691ab4e4f19c4d0f244ccb60b89c64f415fa8f55c853bd60",
+  "approvalDigest": "170f6de3f6044c7e3bcd5a6327d543f5dd862481400e51b2ada53c00bf766406",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-super-hero-adventures.json",
+    "scripts/data/owner-packets/marvel-super-hero-adventures.json",
+    "scripts/data/owner-mappings/marvel-super-hero-adventures.json",
+    "scripts/data/owner-overlaps/marvel-super-hero-adventures.json"
+  ],
+  "vectorSha256": "a6f3b79fcc3efd6c345968d721d3e7d87909078165c3409b0f8f49320d0787d4"
+}

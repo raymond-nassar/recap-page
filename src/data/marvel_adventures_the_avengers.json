@@ -1,0 +1,1183 @@
+{
+  "id": "marvel-adventures-the-avengers",
+  "name": "Marvel Adventures: The Avengers",
+  "description": "A self-contained Avengers series from 2006 to 2009 whose lineup includes Spider-Man, Wolverine, Storm and the Hulk, in mostly single-issue adventures that assume no knowledge of the wider Marvel line.",
+  "source": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Marvel Adventures: Avengers",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-26T18:14:47.820Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 39,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 4236,
+      "title": "Marvel Adventures the Avengers (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4236/marvel_adventures_the_avengers_2006_1",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-05-17T00:00:00+0000",
+      "mu": "2006-05-17T00:00:00+0000",
+      "digitalId": 2070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4f62512656cdb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 4337,
+      "title": "Marvel Adventures the Avengers (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4337/marvel_adventures_the_avengers_2006_2",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-06-21T00:00:00+0000",
+      "mu": "2006-06-21T00:00:00+0000",
+      "digitalId": 3844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/4f625174aba59",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 4494,
+      "title": "Marvel Adventures the Avengers (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/4494/marvel_adventures_the_avengers_2006_3",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-07-19T00:00:00+0000",
+      "mu": "2006-07-19T00:00:00+0000",
+      "digitalId": 3845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/4f6251b5346a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 4817,
+      "title": "Marvel Adventures the Avengers (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/4817/marvel_adventures_the_avengers_2006_4",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-08-16T00:00:00+0000",
+      "mu": "2006-08-16T00:00:00+0000",
+      "digitalId": 3846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4f6251f698eea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5110,
+      "title": "Marvel Adventures the Avengers (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5110/marvel_adventures_the_avengers_2006_5",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2006-09-20T00:00:00+0000",
+      "digitalId": 1519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4f625249bab25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5262,
+      "title": "Marvel Adventures the Avengers (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/5262/marvel_adventures_the_avengers_2006_6",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-10-18T00:00:00+0000",
+      "mu": "2006-10-18T00:00:00+0000",
+      "digitalId": 3848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4f638b904cb00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5435,
+      "title": "Marvel Adventures the Avengers (2006) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/5435/marvel_adventures_the_avengers_2006_7",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-11-15T00:00:00+0000",
+      "mu": "2006-11-15T00:00:00+0000",
+      "digitalId": 3849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4f638d38c3ce0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5691,
+      "title": "Marvel Adventures the Avengers (2006) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/5691/marvel_adventures_the_avengers_2006_8",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2006-12-20T00:00:00+0000",
+      "mu": "2006-12-20T00:00:00+0000",
+      "digitalId": 2071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/4f638ec9cd457",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5828,
+      "title": "Marvel Adventures the Avengers (2006) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/5828/marvel_adventures_the_avengers_2006_9",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-01-17T00:00:00+0000",
+      "mu": "2007-01-17T00:00:00+0000",
+      "digitalId": 4049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4f638f4857e0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 5982,
+      "title": "Marvel Adventures the Avengers (2006) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/5982/marvel_adventures_the_avengers_2006_10",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-02-21T00:00:00+0000",
+      "mu": "2007-02-21T00:00:00+0000",
+      "digitalId": 8320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/4f638fc554898",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 6160,
+      "title": "Marvel Adventures the Avengers (2006) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/6160/marvel_adventures_the_avengers_2006_11",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2007-03-21T00:00:00+0000",
+      "digitalId": 8321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4f6390a405d3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 6305,
+      "title": "Marvel Adventures the Avengers (2006) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/6305/marvel_adventures_the_avengers_2006_12",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-04-18T00:00:00+0000",
+      "mu": "2007-04-18T00:00:00+0000",
+      "digitalId": 8322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4f6391540be4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 13471,
+      "title": "Marvel Adventures the Avengers (2006) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/13471/marvel_adventures_the_avengers_2006_13",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-05-16T00:00:00+0000",
+      "mu": "2007-05-16T00:00:00+0000",
+      "digitalId": 8323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/4f6391de61647",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 15851,
+      "title": "Marvel Adventures the Avengers (2006) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/15851/marvel_adventures_the_avengers_2006_14",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-06-27T00:00:00+0000",
+      "mu": "2007-06-27T00:00:00+0000",
+      "digitalId": 8324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/4f6392619f43a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 20801,
+      "title": "Marvel Adventures the Avengers (2006) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/20801/marvel_adventures_the_avengers_2006_15",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 8325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/4bb86d3dd6a89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 16511,
+      "title": "Marvel Adventures the Avengers (2006) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/16511/marvel_adventures_the_avengers_2006_16",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-09-19T00:00:00+0000",
+      "mu": "2007-09-19T00:00:00+0000",
+      "digitalId": 8326,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4f6392c7eba2a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amilton Santos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nathan Massengill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ronan Cliquet",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Scott",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16512,
+      "title": "Marvel Adventures the Avengers (2006) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/16512/marvel_adventures_the_avengers_2006_17",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-10-17T00:00:00+0000",
+      "mu": "2007-10-17T00:00:00+0000",
+      "digitalId": 8327,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/4f63934c46d3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17245,
+      "title": "Marvel Adventures the Avengers (2006) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/17245/marvel_adventures_the_avengers_2006_18",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-11-21T00:00:00+0000",
+      "mu": "2007-11-21T00:00:00+0000",
+      "digitalId": 8328,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/4f63977783862",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17381,
+      "title": "Marvel Adventures the Avengers (2006) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/17381/marvel_adventures_the_avengers_2006_19",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2007-12-19T00:00:00+0000",
+      "digitalId": 8329,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4f6399c2b07bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Molnar",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17621,
+      "title": "Marvel Adventures the Avengers (2006) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/17621/marvel_adventures_the_avengers_2006_20",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-01-16T00:00:00+0000",
+      "mu": "2008-01-16T00:00:00+0000",
+      "digitalId": 10561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/4f639cb66e407",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Sumerak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20666,
+      "title": "Marvel Adventures the Avengers (2006) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/20666/marvel_adventures_the_avengers_2006_21",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-02-20T00:00:00+0000",
+      "mu": "2008-02-20T00:00:00+0000",
+      "digitalId": 11184,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/587e9c4fb6326",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Sumerak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20861,
+      "title": "Marvel Adventures the Avengers (2006) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/20861/marvel_adventures_the_avengers_2006_22",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-03-19T00:00:00+0000",
+      "mu": "2008-03-19T00:00:00+0000",
+      "digitalId": 11185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/4f639e5d94745",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Sumerak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 20996,
+      "title": "Marvel Adventures the Avengers (2006) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/20996/marvel_adventures_the_avengers_2006_23",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-04-16T00:00:00+0000",
+      "mu": "2008-04-16T00:00:00+0000",
+      "digitalId": 11186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/587e9c231bc67",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Sharpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Sumerak",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21208,
+      "title": "Marvel Adventures the Avengers (2006) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/21208/marvel_adventures_the_avengers_2006_24",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-05-21T00:00:00+0000",
+      "mu": "2008-05-21T00:00:00+0000",
+      "digitalId": 10307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/587e9c3d7335c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21352,
+      "title": "Marvel Adventures the Avengers (2006) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/21352/marvel_adventures_the_avengers_2006_25",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 11187,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/587e9c182004d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21533,
+      "title": "Marvel Adventures the Avengers (2006) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/21533/marvel_adventures_the_avengers_2006_26",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-07-16T00:00:00+0000",
+      "mu": "2008-07-16T00:00:00+0000",
+      "digitalId": 11188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/587e9bffc263e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21732,
+      "title": "Marvel Adventures the Avengers (2006) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/21732/marvel_adventures_the_avengers_2006_27",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/587e9bcf10366",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Troy Hubbs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Jacopo Camagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 21964,
+      "title": "Marvel Adventures the Avengers (2006) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/21964/marvel_adventures_the_avengers_2006_28",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-09-17T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 11190,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/587e9c7bce844",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Buchemi",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Murphy",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22287,
+      "title": "Marvel Adventures the Avengers (2006) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/22287/marvel_adventures_the_avengers_2006_29",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-10-15T00:00:00+0000",
+      "mu": "2008-10-15T00:00:00+0000",
+      "digitalId": 11191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/587e9c6706467",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Graham Nolan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22494,
+      "title": "Marvel Adventures the Avengers (2006) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/22494/marvel_adventures_the_avengers_2006_30",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-11-19T00:00:00+0000",
+      "mu": "2008-11-19T00:00:00+0000",
+      "digitalId": 11192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/587e9beab22d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Dalla Vecchia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Murphy",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 22899,
+      "title": "Marvel Adventures the Avengers (2006) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/22899/marvel_adventures_the_avengers_2006_31",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2008-12-17T00:00:00+0000",
+      "mu": "2008-12-17T00:00:00+0000",
+      "digitalId": 11193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/587e9d6d1a30f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Salva Espin",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23105,
+      "title": "Marvel Adventures the Avengers (2006) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/23105/marvel_adventures_the_avengers_2006_32",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 13026,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/57116975302dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Dalla Vecchia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "penciler"
+        },
+        {
+          "name": "Salva Espin",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23600,
+      "title": "Marvel Adventures the Avengers (2006) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/23600/marvel_adventures_the_avengers_2006_33",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-02-18T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 21186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/587e9d51b5c9c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandro Ribeiro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23761,
+      "title": "Marvel Adventures the Avengers (2006) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/23761/marvel_adventures_the_avengers_2006_34",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 13027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/4f625442cf3b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Dalla Vecchia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 23960,
+      "title": "Marvel Adventures the Avengers (2006) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/23960/marvel_adventures_the_avengers_2006_35",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 17375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/587e9d36903bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David a. Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Casey Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 24159,
+      "title": "Marvel Adventures the Avengers (2006) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/24159/marvel_adventures_the_avengers_2006_36",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 13520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/587e9d2e2e9af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Jacopo Camagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25714,
+      "title": "Marvel Adventures the Avengers (2006) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/25714/marvel_adventures_the_avengers_2006_37",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-06-17T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 15770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/587e9cd61b910",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dario Brizuela",
+          "role": "cover artist"
+        },
+        {
+          "name": "David a. Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25715,
+      "title": "Marvel Adventures the Avengers (2006) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/25715/marvel_adventures_the_avengers_2006_38",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 15835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/587e9c93c80da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Casey Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 25716,
+      "title": "Marvel Adventures the Avengers (2006) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/25716/marvel_adventures_the_avengers_2006_39",
+      "seriesId": 1107,
+      "seriesName": "Marvel Adventures the Avengers (2006 - 2009)",
+      "onSale": "2009-08-19T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 17006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/587e9cea06591",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Casey Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Horacio Domingues",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

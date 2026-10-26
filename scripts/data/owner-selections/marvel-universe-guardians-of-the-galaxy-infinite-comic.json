@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+  "sourceProvider": "owner-authored",
+  "surface": "young-readers",
+  "sourceCredit": "Selected by the project owner",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "sourceRetrievedAt": "2026-10-26",
+  "readerDescription": "Star-Lord, Gamora, Rocket, Groot and Drax in a seven-chapter digital comic from 2015 and 2016.",
+  "selections": [
+    {
+      "inputPosition": 1,
+      "suppliedTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015 to 2016), starting issue #1; Marvel series 21119",
+      "inputSha256": "1546b3f744f4aba22cd378b33f2173887796415b306e19c3fffa1868271ec3de",
+      "group": null,
+      "interpretation": "Row 13: the whole series from its first issue, as the metadata service lists series 21119",
+      "evidenceSources": [
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+          "retrievedAt": "2026-10-26"
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/21119/issues?limit=100",
+          "retrievedAt": "2026-10-26"
+        }
+      ],
+      "originalCount": 7
+    }
+  ],
+  "sourceIssueCount": 7,
+  "publishedIssueCount": 7,
+  "rows": [
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #1",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 21119,
+      "candidateIssueId": 57935,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 1,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #2",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 21119,
+      "candidateIssueId": 57936,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 2,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #3",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 21119,
+      "candidateIssueId": 57937,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 3,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #4",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 21119,
+      "candidateIssueId": 57938,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 4,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015) #5",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 21119,
+      "candidateIssueId": 57939,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 5,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015)",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "0",
+      "seriesId": 21119,
+      "candidateIssueId": 57940,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 6,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    },
+    {
+      "sourceIssueReference": "Marvel Universe Guardians of the Galaxy Infinite Comic (2015)",
+      "normalizedSeriesTitle": "Marvel Universe Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2015,
+      "issueNumber": "0",
+      "seriesId": 21119,
+      "candidateIssueId": 57942,
+      "manualSeriesSelectionApproved": false,
+      "sourcePosition": 7,
+      "inputPosition": 1,
+      "sourceRangeReference": null
+    }
+  ],
+  "sourceGaps": [],
+  "preservedResearch": {
+    "publicSourceSelfContained": true,
+    "publicArtifactReadRequired": false,
+    "originalBytesChanged": false,
+    "artifacts": [
+      {
+        "name": "898-owner-picks-marvel-universe-guardians-of-the-galaxy-infinite-comic.md",
+        "sha256": "63c566c8bbf7f8931dbbfe9e604a576a73babdb7c06fb0af5abd23ddd4e69cd9",
+        "bytes": 207
+      }
+    ]
+  },
+  "publicDependencies": []
+}

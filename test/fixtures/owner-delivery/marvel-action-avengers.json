@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "marvel-action-avengers",
+  "name": "Marvel Action Avengers",
+  "description": "All-ages Avengers adventures from 2018 to 2020, written for newer readers.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      83419,
+      "Marvel Action Avengers (2018) #1",
+      null
+    ],
+    [
+      2,
+      83420,
+      "Marvel Action Avengers (2018) #2",
+      null
+    ],
+    [
+      3,
+      83421,
+      "Marvel Action Avengers (2018) #3",
+      null
+    ],
+    [
+      4,
+      83422,
+      "Marvel Action Avengers (2018) #4",
+      null
+    ],
+    [
+      6,
+      83424,
+      "Marvel Action Avengers (2018) #6",
+      null
+    ],
+    [
+      7,
+      83425,
+      "Marvel Action Avengers (2018) #7",
+      null
+    ],
+    [
+      8,
+      83426,
+      "Marvel Action Avengers (2018) #8",
+      null
+    ],
+    [
+      9,
+      83427,
+      "Marvel Action Avengers (2018) #9",
+      null
+    ],
+    [
+      10,
+      83428,
+      "Marvel Action Avengers (2018) #10",
+      null
+    ],
+    [
+      11,
+      91899,
+      "Marvel Action Avengers (2018) #11",
+      null
+    ],
+    [
+      12,
+      93745,
+      "Marvel Action Avengers (2018) #12",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 12,
+    "sourceIdentityCount": 12,
+    "includedIssueCount": 11,
+    "sourceGapCount": 1,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "47849711e7064b78dc3c5243253401ade9ea4d493e619fab5e760fe343cf783c",
+  "proposalDigest": "f3cc4426bd6375dcfcf87441f8f5cb79bc97af4c533e4a469b0414a56548b945",
+  "libraryDigest": "e1f2e2502cdc2679557f9c5f64ef3f9c4851fed22d89859071d885cf17047395",
+  "approvalDigest": "12e48fed061cb7717bb40dda5cebcbdb30ad063b32694cd38d281280e71014da",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/marvel-action-avengers.json",
+    "scripts/data/owner-packets/marvel-action-avengers.json",
+    "scripts/data/owner-mappings/marvel-action-avengers.json",
+    "scripts/data/owner-overlaps/marvel-action-avengers.json"
+  ],
+  "vectorSha256": "e4b7941e6e0996a90aba11be0a4db293a0aedb71969973f33d56e89f9bda896a"
+}

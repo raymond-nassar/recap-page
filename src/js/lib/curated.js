@@ -15,6 +15,7 @@
 // without anyone noticing.
 
 import {
+  LIST_AUDIENCES,
   LIST_TYPES,
   READING_DEPTHS,
   SPOTLIGHT_KINDS,
@@ -121,6 +122,11 @@ function checkEntry(raw, index, seen) {
   } else if (raw.type !== 'character-run' && Object.hasOwn(raw, 'spotlightKind')) {
     at('spotlightKind is only valid on a character-run');
   }
+  // Checked against the closed list rather than stored as given, so a typo cannot quietly leave a
+  // list out of the category that selects on it.
+  if (Object.hasOwn(raw, 'audience') && !LIST_AUDIENCES.includes(raw.audience)) {
+    at(`audience must be one of ${LIST_AUDIENCES.join(', ')} when present`);
+  }
   if (raw.expect != null && !(Number.isInteger(raw.expect) && raw.expect > 0)) {
     at('expect must be a positive whole number of issues when present');
   }
@@ -170,6 +176,7 @@ function checkEntry(raw, index, seen) {
       type: raw.type,
       depth: raw.depth,
       ...(raw.type === 'character-run' ? { spotlightKind: raw.spotlightKind } : {}),
+      ...(Object.hasOwn(raw, 'audience') ? { audience: raw.audience } : {}),
       characters: strings(raw.characters),
       keywords: strings(raw.keywords),
       // Optional: ties this order to a story that has more than one reading path.

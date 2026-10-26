@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "thor-the-mighty-avenger",
+  "inventoryId": "thor-the-mighty-avenger",
+  "sourceUrl": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+  "sourceSection": "Thor: The Mighty Avenger",
+  "sourceRetrievedAt": "2026-10-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceBoundary": "The complete visible section titled Thor: The Mighty Avenger, which recommends the 2010 series \"In eight issues\": Thor the Mighty Avenger (2010) #1-8. The later Free Comic Book Day issue and the Double Rainbow item are not among the eight.",
+  "excludedSourceReferences": [],
+  "expectedCount": 8,
+  "proposedManifest": {
+    "id": "thor-the-mighty-avenger",
+    "name": "Thor: The Mighty Avenger",
+    "description": "An eight-issue 2010 series about Thor's time on Earth and his romance with Jane Foster, written to be read on its own.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "audience": "young-readers",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "thor-the-mighty-avenger.md",
+    "sourcePage": "https://www.comicbookherald.com/best-marvel-comics-for-kids/",
+    "sourceSection": "Thor: The Mighty Avenger",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "thor_the_mighty_avenger.json",
+    "characters": [
+      "Thor",
+      "Jane Foster"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "young readers",
+      "all ages",
+      "Roger Langridge",
+      "Chris Samnee"
+    ],
+    "expect": 8,
+    "timeline": null,
+    "coverIssueId": 30580
+  },
+  "insertionAnchor": {
+    "beforeId": "mcu-prep-daredevil-born-again"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot central review (Claude Opus 5.5)",
+    "reviewedAt": "2026-10-26T18:00:00.000Z",
+    "rationale": "The section names an eight-issue 2010 series, which matches the complete metadata series 9953."
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #1",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9953,
+      "candidateIssueId": 30580,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #2",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9953,
+      "candidateIssueId": 30581,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #3",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9953,
+      "candidateIssueId": 30582,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #4",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9953,
+      "candidateIssueId": 30583,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #5",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "seriesId": 9953,
+      "candidateIssueId": 30584,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #6",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "6",
+      "seriesId": 9953,
+      "candidateIssueId": 30585,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #7",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "7",
+      "seriesId": 9953,
+      "candidateIssueId": 30586,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Thor the Mighty Avenger (2010) #8",
+      "normalizedSeriesTitle": "Thor the Mighty Avenger",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9953,
+      "candidateIssueId": 33028,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "3177da7f8ba5a29c27a2049a7bf22f6a3c9034ba4ccc273ed9b8f1094d6e3c43"
+}

@@ -335,6 +335,9 @@ function catalogEntry(order, payload) {
     depth: order.depth,
     ...(order.storylines === true ? { storylines: true } : {}),
     ...(order.type === 'character-run' ? { spotlightKind: order.spotlightKind } : {}),
+    // Written only when a list has one, so every catalog entry that predates the field keeps
+    // its exact bytes.
+    ...(order.audience ? { audience: order.audience } : {}),
     count: payload.count,
     placeholderCount: placeholders,
     emptyRecordCount: empty,

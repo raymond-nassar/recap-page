@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "fantastic-four-and-power-pack",
+  "name": "Fantastic Four and Power Pack",
+  "description": "The Power Pack siblings meet the Fantastic Four in a four-issue all-ages team-up from 2007.",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/898#issuecomment-6422672109",
+  "surface": "young-readers",
+  "sourceOrigin": "Selected by the project owner",
+  "groups": [],
+  "rows": [
+    [
+      1,
+      15974,
+      "Fantastic Four and Power Pack (2007) #1",
+      null
+    ],
+    [
+      2,
+      16159,
+      "Fantastic Four and Power Pack (2007) #2",
+      null
+    ],
+    [
+      3,
+      16535,
+      "Fantastic Four and Power Pack (2007) #3",
+      null
+    ],
+    [
+      4,
+      16536,
+      "Fantastic Four and Power Pack (2007) #4",
+      null
+    ]
+  ],
+  "sourceCounts": {
+    "sourceOccurrenceCount": 4,
+    "sourceIdentityCount": 4,
+    "includedIssueCount": 4,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
+  "sourceSha256": "96a35d95a8e6e814ea8ca7163e46b5df9adfe4b18f5eb22b83a0b18b778d2138",
+  "proposalDigest": "8398a3d482f26c604a8905d9d5ac22fdcfde4309be4e604efda202b27aee9755",
+  "libraryDigest": "4c97e0a66d00801b156e6bf35020d8302977a93825b33a7e61de1ad9d5686022",
+  "approvalDigest": "34a92cad9450ec3a02e2715225ec1f5b9c66eae73c6063fcc0159c3c0ab0cf9e",
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "publicDependencies": [
+    "scripts/data/owner-selections/fantastic-four-and-power-pack.json",
+    "scripts/data/owner-packets/fantastic-four-and-power-pack.json",
+    "scripts/data/owner-mappings/fantastic-four-and-power-pack.json",
+    "scripts/data/owner-overlaps/fantastic-four-and-power-pack.json"
+  ],
+  "vectorSha256": "04fad0d33c72073e6b5ffd95003cc91c9ad24bbd7d181422e4dc41abbf74ab9a"
+}

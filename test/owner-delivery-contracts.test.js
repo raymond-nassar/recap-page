@@ -54,6 +54,17 @@ test('Brand New Day registration preserves its baseline rows, display groups and
     payload.items.filter((item) => item.identityEvidenceKind === 'owner-confirmed-identity').length);
 });
 
+test('a Comic Book Herald baseline contract still refuses a later list nobody registered', async () => {
+  // These contracts once compared the whole current library, so every list published after them
+  // failed all five. They now compare the library they were reviewed against, which stays safe only
+  // while each later list must be registered with its own reciprocal authority.
+  const contract = registeredOwnerContracts.find(({ id }) => id === 'shang-chi-master-of-kung-fu-reading-order');
+  await assertOwnerDeliveryContract(contract);
+  await assert.rejects(assertOwnerDeliveryContract(contract, {
+    contracts: registeredOwnerContracts.filter(({ id }) => id !== 'marvel-rising'),
+  }), /marvel-rising: unregistered later peers require a new bounded relationship review/);
+});
+
 for (const contract of registeredOwnerContracts) {
   test(`${contract.id}: accepted input, public source, authority and generated surfaces agree`,
     () => assertOwnerDeliveryContract(contract));

@@ -140,6 +140,46 @@
       "contract": "test/fixtures/owner-delivery/namor-sub-mariner-reading-order.json",
       "baselineRowCount": 700,
       "sourceProvider": "comic-book-herald"
+    },
+    {
+      "id": "marvel-rising",
+      "contract": "test/fixtures/owner-delivery/marvel-rising.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-action-avengers",
+      "contract": "test/fixtures/owner-delivery/marvel-action-avengers.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-action-spider-man",
+      "contract": "test/fixtures/owner-delivery/marvel-action-spider-man.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-action-black-panther",
+      "contract": "test/fixtures/owner-delivery/marvel-action-black-panther.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-action-captain-marvel",
+      "contract": "test/fixtures/owner-delivery/marvel-action-captain-marvel.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-super-hero-adventures",
+      "contract": "test/fixtures/owner-delivery/marvel-super-hero-adventures.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+      "contract": "test/fixtures/owner-delivery/marvel-universe-guardians-of-the-galaxy-infinite-comic.json",
+      "surface": "young-readers"
+    },
+    {
+      "id": "fantastic-four-and-power-pack",
+      "contract": "test/fixtures/owner-delivery/fantastic-four-and-power-pack.json",
+      "surface": "young-readers"
     }
   ]
 }
