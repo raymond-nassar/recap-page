@@ -373,6 +373,7 @@ function observeHome(page) {
       read: shown('#btn-chero-read'),
       done: shown('#btn-chero-done'),
       actions: shown('#chero-actions'),
+      scrollY: Math.round(scrollY),
       focus: document.activeElement === button ? 'result button' : document.activeElement?.id || null,
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       result: node ? {
@@ -400,7 +401,17 @@ export const doneHome = {
     const other = await page.browserContext().newPage();
     other.__origin = page.__origin;
     await setup(other, 1280);
+    // Opening that tab put this one behind it, where Edge runs no animation frame. Puppeteer polls on
+    // frames for a selector with a pseudo-class, as setup's wait has, so such a wait sees only a
+    // condition that already holds. Measured on 2026-10-26 for #862: this page reported visibilityState
+    // hidden after loading in 3 of 3 runs, and on a page behind another tab a wait for an element shown
+    // 300ms after it started sat out its whole 4s timeout. It comes to the front, and the other tab
+    // waits behind it as another tab would.
+    await page.bringToFront();
     await setup(page, 1280, '#/home');
+    const visibility = await page.evaluate(() => document.visibilityState);
+    t.check('the Home page under test is the visible tab, so its frames run while the other tab waits behind it',
+      visibility === 'visible', visibility);
     const ready = await page.waitForSelector('#home-continue:not([hidden]) #btn-chero-done', { timeout: 5000 })
       .then(() => true, () => false);
     await wait(500);
@@ -452,7 +463,9 @@ export const doneHome = {
     await page.waitForSelector('#done-result button');
     await wait(300);
     const standing = !!await page.$('#done-result button');
-    await other.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, title(2));
+    // The other tab is behind this one, with no frames to poll on, so its wait watches the page instead.
+    await other.waitForFunction((name) => document.querySelector('#hero-title').textContent === name,
+      { polling: 'mutation' }, title(2));
     await press(other, '#btn-hero-done');
     await page.waitForFunction(() => !document.querySelector('#done-result'), { timeout: 5000 }).catch(() => {});
     const foreign = await saved(page);
@@ -485,15 +498,24 @@ export const doneHome = {
     t.check('Undo from there brings Done back with focus on it',
       back.focus === 'btn-chero-done' && !!back.done && !Object.hasOwn((await saved(page)).read, ids[3]), JSON.stringify(back));
 
+    // The app takes in a new width in its resize handler, at the next rendering update. Measured on
+    // 2026-10-26 for #862: straight after the switch to 390px, before that handler hid the sidebar's
+    // link panel, the commands measured y 1057, and 586 once it had, with nothing scrolled. The check
+    // passed when both readings fell on one side of the handler and failed when they straddled it. So
+    // the narrow layout settles first, and the commands are compared where they sit in the page, which
+    // no scroll moves.
     await page.setViewport({ width: 390, height: 844 });
+    await settle(page);
     const narrowStart = await observeHome(page);
     await press(page, '#btn-chero-done');
     await nextIs(page, 'You have read every issue in this order.');
     const narrow = await observeHome(page);
+    const inPage = (observed) => (observed.actions ? observed.actions.top + observed.scrollY : null);
     t.check('at 390px the result sits in the card under its commands, within the screen, without page overflow',
       narrow.result?.visible && narrow.result.box.left >= 0 && narrow.result.box.right <= 390
       && narrow.result.button?.box.height >= 44 && narrow.overflow <= 0
-      && narrow.actions?.top === narrowStart.actions?.top, JSON.stringify({ narrowStart: narrowStart.actions, narrow }));
+      && inPage(narrow) !== null && inPage(narrow) === inPage(narrowStart),
+      JSON.stringify({ narrowStart: { actions: narrowStart.actions, scrollY: narrowStart.scrollY }, narrow }));
     t.check('the journey raises no page errors', errors.length === 0, errors.join(' / '));
   },
 };
