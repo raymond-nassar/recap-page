@@ -17,7 +17,8 @@ const title = (n) => `Glance fixture (2026) #${n}`;
 const click = (page, selector) => page.$eval(selector, (element) => element.click());
 const still = (page) => page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished.catch(() => {}))));
 const near = (a, b, tolerance = 0.5) => Math.abs(a - b) <= tolerance;
-const sameBox = (a, b) => ['left', 'top', 'width', 'height'].every((side) => near(a[side], b[side]));
+const sameBox = (a, b) => !!a && !!b && ['left', 'top', 'width', 'height'].every((side) => near(a[side], b[side]));
+const sameSize = (a, b) => !!a && !!b && near(a.width, b.width) && near(a.height, b.height);
 const SCOPES = {
   home: { count: '#chero-count', bar: '#chero-bar', fill: '#chero-fill' },
   hero: { count: '#hero-progress-count', bar: '#hero-progress .glance-bar', fill: '#hero-progress-fill' },
@@ -63,7 +64,7 @@ async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 're
     };
   }, exportBackup(fixture(read)), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, { covers, filter: 'all', theme });
   await page.goto(`${page.__origin}/#/${route === 'home' ? 'home' : 'read/glance'}`, { waitUntil: 'load' });
-  await page.waitForSelector(route === 'home' ? '#home-continue:not([hidden]) #chero-count .glance-n' : '#view-read:not([hidden]) #ring-sub');
+  await (route === 'home' ? homeShown(page) : page.waitForSelector('#view-read:not([hidden]) #ring-sub'));
   await page.evaluate(() => document.fonts.ready);
   await still(page);
   return async () => {
@@ -73,11 +74,27 @@ async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 're
   };
 }
 
+// Each surface is waited for by its card and its count's text rather than by the figure, so a tree
+// without the figure reports which checks fail instead of timing out before any of them.
+const homeShown = (page) => page.waitForFunction(() => !document.querySelector('#home-continue')?.hidden
+  && !!document.querySelector('#chero-count')?.textContent);
+
 async function showHome(page) {
   await click(page, '.brand[data-view="home"]');
-  await page.waitForSelector('#home-continue:not([hidden]) #chero-count .glance-n');
+  await homeShown(page);
   await still(page);
 }
+
+async function showRead(page) {
+  await page.evaluate(() => { location.hash = '#/read/glance'; });
+  await page.waitForFunction(() => !document.querySelector('#view-read').hidden && !document.querySelector('#hero').hidden
+    && !!document.querySelector('#ring-sub').textContent);
+  await still(page);
+}
+
+// A count reaching what it should, or the check after it saying where it stopped.
+const reaches = (page, selector, text) => page.waitForFunction((at, wanted) => document.querySelector(at)?.textContent === wanted,
+  { timeout: 5000 }, selector, text).catch(() => {});
 
 // What one surface shows: its count, its figure against its words, what share of the bar the fill
 // covers, the paints, and whether the row is kept from assistive technology. The fill slides in from
@@ -88,6 +105,7 @@ function glance(page, scope) {
     if (!count?.checkVisibility()) return { shown: false };
     const bar = document.querySelector(selectors.bar);
     const fill = document.querySelector(selectors.fill);
+    if (!bar || !fill) return { shown: true, text: count.textContent, figure: null, bar: null };
     const figure = count.querySelector('.glance-n');
     const box = (node) => {
       const { left, top, width, height, right, bottom } = node.getBoundingClientRect();
@@ -124,15 +142,19 @@ const rgb = (value) => (value?.match(/rgba?\((\d+), (\d+), (\d+)/) ?? []).slice(
 async function contrast(page, scope) {
   const spots = await page.evaluate((selectors) => {
     const count = document.querySelector(selectors.count);
+    const figure = count?.querySelector('.glance-n');
+    const bar = document.querySelector(selectors.bar);
+    if (!figure || !bar) return null;
     count.scrollIntoView({ block: 'center' });
-    const figure = count.querySelector('.glance-n').getBoundingClientRect();
-    const bar = document.querySelector(selectors.bar).getBoundingClientRect();
+    const glyph = figure.getBoundingClientRect();
+    const box = bar.getBoundingClientRect();
     return {
-      figure: { x: Math.round(figure.left) - 3, y: Math.round(figure.top + figure.height / 2) },
-      gap: { x: Math.round(bar.left) + 24, y: Math.round(bar.top) - 2 },
+      figure: { x: Math.round(glyph.left) - 3, y: Math.round(glyph.top + glyph.height / 2) },
+      gap: { x: Math.round(box.left) + 24, y: Math.round(box.top) - 2 },
       scrollX, scrollY,
     };
   }, SCOPES[scope]);
+  if (!spots) return { figure: 0, fill: 0, outline: 0, behindFigure: [], behindBar: [] };
   const left = Math.min(spots.figure.x, spots.gap.x);
   const top = Math.min(spots.figure.y, spots.gap.y);
   const shot = decodePng(await page.screenshot({
@@ -174,7 +196,7 @@ function checkValues(t, label, scope, state, read) {
     state.shown && state.text === words(scope, read) && state.figure === String(read) && state.sizes[0] >= state.sizes[1] * 1.25,
     JSON.stringify(state));
   t.check(`${label} ${scope}: the bar is filled to exactly ${read} of ${TOTAL}`,
-    state.shown && near(state.share * state.bar.width, (read / TOTAL) * state.bar.width), JSON.stringify(state));
+    state.shown && !!state.bar && near(state.share * state.bar.width, (read / TOTAL) * state.bar.width), JSON.stringify(state));
 }
 
 export const progressGlance = {
@@ -197,9 +219,7 @@ export const progressGlance = {
           t.check(`${label} home: the count is read once, and the bar is no progress bar of its own`,
             !home.hidden && home.barHidden && times(homeTree.said, words('home', 3)) === 1
             && !homeTree.roles.includes('progressbar') && !homeTree.names.includes('Reading progress'), JSON.stringify({ home, homeTree }));
-          await page.evaluate(() => { location.hash = '#/read/glance'; });
-          await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
-          await still(page);
+          await showRead(page);
           const hero = await glance(page, 'hero');
           checkValues(t, label, 'hero', hero, 3);
           const heroContrast = await contrast(page, 'hero');
@@ -210,7 +230,7 @@ export const progressGlance = {
             hero.hidden && times(readTree.said, words('hero', 3)) === 1 && !readTree.roles.includes('progressbar'),
             JSON.stringify({ said: readTree.said, roles: [...new Set(readTree.roles)] }));
           const order = await page.evaluate(() => {
-            const at = (selector) => document.querySelector(selector).getBoundingClientRect();
+            const at = (selector) => document.querySelector(selector)?.getBoundingClientRect() ?? { top: NaN, bottom: NaN };
             return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, facts: at('#hero-facts').top };
           });
           t.check(`${label} hero: the row sits under Read and Done and over the comic's facts`,
@@ -226,9 +246,7 @@ export const progressGlance = {
         checkValues(t, `${theme} none read`, 'home', await glance(page, 'home'), 0);
         const empty = await contrast(page, 'home');
         t.check(`${theme} none read: the empty bar's outline still clears 3:1 against the card`, empty.outline >= 3, JSON.stringify(empty));
-        await page.evaluate(() => { location.hash = '#/read/glance'; });
-        await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
-        await still(page);
+        await showRead(page);
         checkValues(t, `${theme} none read`, 'hero', await glance(page, 'hero'), 0);
         await done();
         done = await setup(page, { read: TOTAL, theme, route: 'home' });
@@ -238,7 +256,7 @@ export const progressGlance = {
           read: document.querySelector('#btn-chero-read').hidden, next: document.querySelector('#chero-next').textContent,
         }));
         t.check(`${theme} all read: Home's bar is full beside the finished list's own words`,
-          near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every issue in this order.',
+          !!all.bar && near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every issue in this order.',
           JSON.stringify({ all, finished }));
         await page.evaluate(() => { location.hash = '#/read/glance'; });
         await page.waitForFunction(() => document.querySelector('#ring-sub').textContent === 'All read');
@@ -260,7 +278,7 @@ export const progressGlance = {
         }));
         const homeCommands = await commands();
         await click(page, '#btn-chero-done');
-        await page.waitForFunction((text) => document.querySelector('#chero-count').textContent === text, {}, words('home', 4));
+        await reaches(page, '#chero-count', words('home', 4));
         await still(page);
         const marked = await glance(page, 'home');
         checkValues(t, `${label} after Done`, 'home', marked, 4);
@@ -269,7 +287,7 @@ export const progressGlance = {
           sameBox(marked.count, before.count) && sameBox(marked.bar, before.bar) && sameBox(moved[0], homeCommands[0]) && sameBox(moved[1], homeCommands[1]),
           JSON.stringify({ before: [before.count, before.bar, homeCommands], after: [marked.count, marked.bar, moved] }));
         await click(page, '#done-result button');
-        await page.waitForFunction((text) => document.querySelector('#chero-count').textContent === text, {}, words('home', 3));
+        await reaches(page, '#chero-count', words('home', 3));
         await still(page);
         checkValues(t, `${label} after Undo`, 'home', await glance(page, 'home'), 3);
         await done();
@@ -277,23 +295,22 @@ export const progressGlance = {
         done = await setup(page, { read: 3, width });
         const heroBefore = await glance(page, 'hero');
         await click(page, '#btn-hero-done');
-        await page.waitForFunction((text) => document.querySelector('#hero-progress-count').textContent === text, {}, words('hero', 4));
+        await reaches(page, '#hero-progress-count', words('hero', 4));
         await still(page);
         const heroMarked = await glance(page, 'hero');
         checkValues(t, `${label} after Done`, 'hero', heroMarked, 4);
         t.check(`${label} hero: after Done the header and the row agree, and the row keeps its size`,
           await page.$eval('#ring-sub', (node) => node.textContent) === `4 of ${TOTAL} read`
-          && near(heroMarked.count.width, heroBefore.count.width) && near(heroMarked.count.height, heroBefore.count.height)
-          && near(heroMarked.bar.width, heroBefore.bar.width) && near(heroMarked.bar.height, heroBefore.bar.height),
+          && sameSize(heroMarked.count, heroBefore.count) && sameSize(heroMarked.bar, heroBefore.bar),
           JSON.stringify({ before: heroBefore, after: heroMarked }));
         await click(page, '#done-result button');
-        await page.waitForFunction((text) => document.querySelector('#hero-progress-count').textContent === text, {}, words('hero', 3));
+        await reaches(page, '#hero-progress-count', words('hero', 3));
         await still(page);
         checkValues(t, `${label} after Undo`, 'hero', await glance(page, 'hero'), 3);
         if (!await page.$eval('#full', (element) => element.open)) await click(page, '#full > summary');
         await page.waitForSelector('#rows .row');
         await click(page, `#rows [data-key="${ids[1]}"][data-act="read"]`);
-        await page.waitForFunction((text) => document.querySelector('#hero-progress-count').textContent === text, {}, words('hero', 2));
+        await reaches(page, '#hero-progress-count', words('hero', 2));
         await still(page);
         checkValues(t, `${label} after an unmark`, 'hero', await glance(page, 'hero'), 2);
         await showHome(page);
@@ -345,7 +362,7 @@ export const progressGlance = {
       });
       const calm = await glance(page, 'hero');
       t.check('reduced motion: a change of progress starts no motion, and the bar lands on its value at once',
-        reduced === 0 && calm.transition[1] === '0s', JSON.stringify({ reduced, transition: calm.transition }));
+        reduced === 0 && calm.transition?.[1] === '0s', JSON.stringify({ reduced, transition: calm.transition }));
       checkValues(t, 'reduced motion', 'hero', calm, 10);
       await done();
 
@@ -364,13 +381,11 @@ export const progressGlance = {
       });
       for (const scope of ['home', 'hero']) {
         if (scope === 'hero') {
-          await page.evaluate(() => { location.hash = '#/read/glance'; });
-          await page.waitForSelector('#hero:not([hidden]) #hero-progress-count .glance-n');
-          await still(page);
+          await showRead(page);
         }
         const forced = await glance(page, scope);
         t.check(`forced colors ${scope}: the fill is Highlight, the bar is bordered in CanvasText, and the figure is CanvasText`,
-          forced.fillColour === system.Highlight && forced.border[0] === '1px' && forced.border[1] === system.CanvasText
+          forced.fillColour === system.Highlight && forced.border?.[0] === '1px' && forced.border?.[1] === system.CanvasText
           && forced.figureColour === system.CanvasText, JSON.stringify({ forced, system }));
       }
       await done();
