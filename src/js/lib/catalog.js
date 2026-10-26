@@ -1126,7 +1126,7 @@ export const MARVEL_AGES_CATEGORY = {
   route: 'marvel-ages',
   heading: 'Marvel Ages',
   label: 'Publication history',
-  icon: 'E736',
+  icon: 'E81C',
   tier: 'secondary',
   kind: 'publishing-index',
   highlights: ['Publishing periods', 'Chronological browsing'],

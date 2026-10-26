@@ -343,8 +343,9 @@ test('the six category cards on Home take six different hues in every theme', ()
   // #872: MCU Prep, Marvel Ages and Reading paths all wore the brand purple of Modern Timeline. Hues
   // are compared as OKLCH angles, so two purples a few units apart cannot pass as two colours. Six
   // hues spread round the wheel would sit 60 degrees apart, and 30 is half of that.
-  const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{ --home-path-line: var\((--[\w-]+)\); \}/g)]
-    .map(([, key, token]) => [key, token]));
+  const channel = new Map([...css.matchAll(/\.home-path\[data-category="([\w-]+)"\] \{([^}]*)\}/g)]
+    .map(([, key, body]) => [key, body.match(/--home-path-line: var\((--[\w-]+)\)/)?.[1]])
+    .filter(([, token]) => token));
   const fallback = css.match(/\.home-path \{\s*--home-path-line: var\((--[\w-]+)\);/)[1];
   const hue = ([r, g, b]) => {
     const [lr, lg, lb] = [r, g, b].map((v) => {
@@ -377,10 +378,26 @@ test('the six category cards on Home take six different hues in every theme', ()
   }
 });
 
-test('each Discover More card is measured on its own tint, so its channel cannot dim unnoticed', () => {
-  for (const [card, channel] of CATEGORY_CARDS) {
-    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === card && floor === 3), `${card} at rest`);
-    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === channel && bg === `${card} on hover` && floor === 3), `${card} on hover`);
+test('the palette gate measures the tint and icon ink each category card actually paints', () => {
+  // A pair measured on a colour the card no longer paints is a number that can drift unnoticed, so
+  // the gate's list is read against the stylesheet card by card, in Home's own order.
+  const declared = (key) => css.match(new RegExp(`\\.home-path\\[data-category="${key}"\\] \\{([^}]*)\\}`))?.[1] ?? '';
+  const fallback = css.match(/\.home-path \{\s*--home-path-line: var\((--[\w-]+)\);/)[1];
+  HOME_CATEGORIES.forEach(({ key }, index) => {
+    const [, channel, ink] = CATEGORY_CARDS[index];
+    const line = declared(key).match(/--home-path-line: var\((--[\w-]+)\)/)?.[1] ?? fallback;
+    assert.equal(line, channel, `${key} is tinted from ${line}, but the gate measures ${channel}`);
+    assert.equal(declared(key).match(/--home-path-ink: var\((--[\w-]+)\)/)?.[1] ?? line, ink,
+      `${key} draws its icon in another colour than the gate measures`);
+  });
+  assert.match(css, /\.home-path-icon \{[^}]*color: var\(--home-path-ink, rgb\(var\(--home-path-line\)\)\);/);
+});
+
+test('every category card icon is measured on its own tint, so its colour cannot dim unnoticed', () => {
+  assert.equal(CATEGORY_CARDS.length, HOME_CATEGORIES.length);
+  for (const [card, , ink] of CATEGORY_CARDS) {
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === ink && bg === card && floor === 3), `${card} at rest`);
+    assert.ok(PAIRS.some(([fg, bg, floor]) => fg === ink && bg === `${card} on hover` && floor === 3), `${card} on hover`);
   }
   // A channel triple is read as a colour rather than skipped: dimming one toward its card is a finding.
   const declaration = '--azure-line: 115 183 247;';
@@ -590,6 +607,8 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // had been gated through the brand token that used to share the hue, and once the two separated
   // that pair covered nothing danger was actually drawn on. The salvage row's Remove button, which
   // is danger on a raised card, had never been measured at all.
+  // `--teal` gained the Character spotlights card's tint at rest and on hover in #873, when it became
+  // that card's icon in both themes; the card's own shared channel measured 1.60:1 on the light hover.
   // `--logo-fill` gained `--card` when the wrap-up card began opening with a line in the masthead's
   // treatment once every comic in a list is read (#874): the same colour, drawn on a card rather than
   // on the page.
@@ -597,7 +616,7 @@ test('a control boundary is measured against every surface it is drawn on, not j
   assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--cb-line'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
-  assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2']);
+  assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--logo-fill'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);
