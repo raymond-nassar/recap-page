@@ -50,7 +50,8 @@ It replaces the full breadcrumb trail and current title. Android Back follows yo
 the parent link goes to its named destination.
 
 On a Reading List, open **List options** to rename, edit notes, duplicate, export, manage metadata
-or delete. Export choices expand inside the bottom sheet. Choosing an action closes the sheet
+or delete. Every command shows at once in the bottom sheet, grouped, with **Remove from library**
+apart and last, so each is one tap. Choosing an action closes the sheet
 before opening its editor or confirmation. **Close**, Android Back, Escape or a tap outside
 dismisses the sheet without taking action.
 
@@ -437,7 +438,9 @@ real Marvel app.
 bundled recommendation, full catalog and Hickman minimal guide. Alongside the three viewport
 sizes above, it adds a 1280x900 window and a 360x800 case with 130% text tokens.
 It checks recommendation geometry, touch and keyboard focus, parent links, filter scrolling,
-list-sheet dismissal and editor handoff. Text-token stress tests browser layout, not Android's
+list-sheet dismissal and editor handoff, and that the list sheet shows every command at once, one
+tap each, with Remove from library apart and last, and closes on Escape from any of them.
+Text-token stress tests browser layout, not Android's
 native font scaling. Use `--viewport=360x800` to isolate the normal-text case while iterating.
 
 `npm run android:browser -- --only=phone-header` checks the narrow header, footer and Home heading

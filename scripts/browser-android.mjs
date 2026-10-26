@@ -2765,6 +2765,34 @@ async function mobileLayout(page, label, narrow) {
     };
   });
   check(sheet.bottom && sheet.fits && sheet.labelled && sheet.vertical, `${label}: named bottom sheet fits viewport and stacks actions`);
+  // UX-08 (#836): the sheet is the disclosure, so every list command shows at once, one tap each, in
+  // groups, with Remove from library apart and last. Behind List actions, with Export a second
+  // disclosure inside it, Rename, Note, Duplicate, Export and Remove each took three taps.
+  const commands = await page.$eval('#android-list-sheet', (node) => {
+    // Content inside a closed details still reports client rects in Edge 155, so rendering is asked of
+    // checkVisibility, which sees the closed group's hidden content.
+    const shown = (target) => !!target?.checkVisibility?.() && !!target.getClientRects().length;
+    const buttons = [...node.querySelectorAll('.list-tools button')].filter(shown);
+    const remove = node.querySelector('#btn-delete-list');
+    const rule = node.querySelector('.tool-sep');
+    return {
+      names: buttons.map((button) => button.textContent.trim()),
+      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-export-md',
+        '#btn-export-order', '#btn-hydrate', '#btn-synopsis', '#btn-delete-list']
+        .map((selector) => node.querySelector(selector)).filter((button) => button && !button.hidden)
+        .map((button) => button.textContent.trim()),
+      summaries: [...node.querySelectorAll('summary')].filter(shown).map((summary) => summary.textContent.trim()),
+      closed: [...node.querySelectorAll('details')].filter((details) => !details.open).map((details) => details.id),
+      small: buttons.filter((button) => button.getBoundingClientRect().height < 47.5).map((button) => button.id),
+      last: buttons.at(-1)?.id,
+      apart: shown(rule) && rule.getBoundingClientRect().height >= 1
+        && rule.getBoundingClientRect().bottom <= remove.getBoundingClientRect().top,
+    };
+  });
+  check(commands.names.length >= 8 && JSON.stringify(commands.names) === JSON.stringify(commands.expected)
+    && !commands.summaries.length && !commands.closed.length && !commands.small.length
+    && commands.last === 'btn-delete-list' && commands.apart,
+  `${label}: List options shows every command at once, one tap each, Remove from library apart and last ${JSON.stringify(commands)}`);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Tab');
   await page.keyboard.up('Shift');
@@ -2774,6 +2802,19 @@ async function mobileLayout(page, label, narrow) {
   await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
   check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
     `${label}: Android Back closes sheet and restores trigger focus`);
+  // List actions closes itself on Escape, which inside the sheet would hide every command and keep the
+  // sheet open. Escape from a command closes the sheet and leaves both groups as the reader had them.
+  await click(page, '#android-list-options');
+  await page.focus('#btn-list-note');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open, { timeout: 5000 }).catch(() => {});
+  const escaped = await page.evaluate(() => ({
+    open: document.querySelector('#android-list-sheet').open, focus: document.activeElement?.id,
+    actions: document.querySelector('#list-actions').open, exports: document.querySelector('#list-export').open,
+    home: document.querySelector('#android-list-options').nextElementSibling?.matches('.list-tools') ?? false,
+  }));
+  check(!escaped.open && escaped.focus === 'android-list-options' && !escaped.actions && !escaped.exports && escaped.home,
+    `${label}: Escape from a command closes the sheet, returns to List options and restores both groups ${JSON.stringify(escaped)}`);
   for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-delete-list']) {
     await click(page, '#android-list-options');
     await click(page, action);
@@ -2801,15 +2842,13 @@ async function mobileLayout(page, label, narrow) {
     return state.listOrder.length === 1 && state.lists[state.listOrder[0]].name === name;
   }, minimalName), `${label}: cancelling management leaves the list intact`);
   await click(page, '#android-list-options');
-  await click(page, '#list-export > summary');
   await click(page, '#btn-export-order');
   await page.waitForSelector('#ask[open]');
   check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
-    `${label}: nested export opens only the existing confirmation`);
+    `${label}: Export order only opens only its existing confirmation, in one tap`);
   await backDialog(page);
   await page.waitForFunction(() => !document.querySelector('#ask').open);
   await click(page, '#android-list-options');
-  await click(page, '#list-export > summary');
   await click(page, '#btn-export-md');
   await page.waitForSelector('#markdown-export[open]');
   check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
