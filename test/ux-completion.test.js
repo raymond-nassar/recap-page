@@ -315,11 +315,14 @@ test('list reporting is an opt-in account-free Microsoft form with no saved-data
   assert.doesNotMatch(html, /<(?:script|iframe|link)\b[^>]*(?:forms\.cloud\.microsoft|forms\.office\.com)/);
 });
 
-test('Storylines and MCU Prep search fields may shrink to a narrow screen', () => {
-  // The Android catalog-cards owner measures these at 200 per cent text, where they once made a
-  // 320px page 409px wide. Browser owners do not run in CI, so the rule and its targets are held here.
-  assert.match(styles, /#form-search, #form-catalog-search, #form-lines-search, \.mcu-prep-search \{ grid-template-columns: minmax\(0, 1fr\); \}/);
-  assert.match(styles, /#form-search \.field-row, #form-catalog-search \.field-row, #form-lines-search \.field-row, \.mcu-prep-search \.field-row \{ min-width: 0; \}/);
+test('every search field may shrink to a narrow screen', () => {
+  // The Android catalog-cards owner measures Storylines and MCU Prep at 200 per cent text, where they
+  // once made a 320px page 409px wide, and series-readability measures Find a series and Browse a
+  // creator there, where they made a 360px page 422px wide (#871). Browser owners do not run in CI,
+  // so the rule and its targets are held here.
+  assert.match(styles, /#form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, \.mcu-prep-search \{ grid-template-columns: minmax\(0, 1fr\); \}/);
+  assert.match(styles, /#form-search \.field-row, #form-series \.field-row, #form-creator \.field-row, #form-catalog-search \.field-row, #form-lines-search \.field-row, \.mcu-prep-search \.field-row \{ min-width: 0; \}/);
+  for (const id of ['form-search', 'form-series', 'form-creator']) assert.match(html, new RegExp(`<form id="${id}" class="stack">`));
   assert.match(html, /<form id="form-lines-search" class="stack" role="search"/);
   assert.match(read('src/js/views/mcu-prep.js'), /el\('form', \{ class: 'stack mcu-prep-search'/);
 });
