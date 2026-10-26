@@ -155,6 +155,19 @@
   --azure-line: 115 183 247;
   --magenta-line: 249 131 195;
   --green-line: 132 215 101;
+  /* Channels for the Marvel era tiles (#875). The four ages named for metals take their namesakes,
+     and silver is the one era with next to no hue. The Modern Age periods sweep from the Discover More
+     magenta through azure to green in publication order, reusing those three and filling the steps
+     between. Set per theme for the reason the three above are: jade sits on the shared teal's hue,
+     and the shared teal channel measures 1.60:1 on a light tile that is pointed at. */
+  --gold-line: 236 198 99;
+  --silver-line: 196 203 212;
+  --bronze-line: 185 135 79;
+  --copper-line: 233 136 77;
+  --orchid-line: 210 148 238;
+  --indigo-line: 161 163 254;
+  --cyan-line: 91 208 233;
+  --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
      `src/js/main.js:758-765`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
@@ -201,6 +214,14 @@
   --azure-line: 31 108 176;
   --magenta-line: 189 36 123;
   --green-line: 59 123 31;
+  --gold-line: 141 109 5;
+  --silver-line: 97 106 117;
+  --bronze-line: 120 82 36;
+  --copper-line: 169 78 0;
+  --orchid-line: 132 63 160;
+  --indigo-line: 83 77 174;
+  --cyan-line: 5 124 144;
+  --jade-line: 8 113 95;
   --fallback-a: 34% 82%;
   --fallback-b: 30% 72%;
   --fallback-fg: 55% 22%;
@@ -238,6 +259,14 @@
     --azure-line: 31 108 176;
     --magenta-line: 189 36 123;
     --green-line: 59 123 31;
+    --gold-line: 141 109 5;
+    --silver-line: 97 106 117;
+    --bronze-line: 120 82 36;
+    --copper-line: 169 78 0;
+    --orchid-line: 132 63 160;
+    --indigo-line: 83 77 174;
+    --cyan-line: 5 124 144;
+    --jade-line: 8 113 95;
     --fallback-a: 34% 82%;
     --fallback-b: 30% 72%;
     --fallback-fg: 55% 22%;
@@ -777,7 +806,7 @@ main { min-width: 0; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
    inset a settings card gives it. */
 .order-desc { margin-top: var(--space-4); }
-.save-education { max-width: 72ch; }
+.save-education { max-width: 72ch; margin-top: var(--space-6); }
 .save-education .rail-hint { margin: 0 0 var(--space-5); }
 
 .quiet {
@@ -796,8 +825,8 @@ main { min-width: 0; }
 .empty-state .btn { margin-top: var(--space-5); }
 
 /* ============================================================ hero */
-
-.hero { position: relative; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--card); }
+/* Clip, not hidden: as a scroll container, the card let focus near its foot scroll its top away (#846). */
+.hero { position: relative; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; overflow: clip; background: var(--card); }
 /* Decoration must never be the scroll anchor. In the Android shell Chromium chose this layer, and its
    1.3 scale moves its top up by 15 per cent of any growth of the hero, so the reader hint growing it
    by 84px scrolled the page up 13px under the reader. Measured in Edge with phone emulation at 800x360. */
@@ -1798,6 +1827,11 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
 }
 .home-paths li { min-width: 0; display: flex; }
+/* The wash fades out a fixed distance from the corner it starts in rather than at a share of the
+   tile's diagonal (#875). A share reached further across a wider tile, and on the widest tiles in the
+   single column the hover wash brought the count line under it to 4.06:1 in the dark theme. Measured
+   from painted pixels at 8rem and 8.5rem, the lowest count is 4.75:1 and the lowest eyebrow 7.46:1, at
+   rest and on hover in both themes, from 320 to 1280px wide, at 200% text and in the Android build. */
 .home-path {
   --home-path-line: var(--accent-line);
   position: relative; overflow: hidden; width: 100%; height: 100%; min-height: 12rem;
@@ -1805,7 +1839,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   align-items: end; gap: var(--space-6); padding: var(--space-7);
   border: 1px solid var(--line-2); border-radius: 20px;
   background:
-    linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 62%),
+    linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 8rem),
     var(--card);
   color: var(--text); text-align: left; font: inherit; cursor: pointer;
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
@@ -1814,19 +1848,20 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   content: ''; position: absolute; inset: 0 0 auto; height: 4px;
   background: rgb(var(--home-path-line));
 }
-.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); }
-.home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); }
+.home-path[data-category="timeline"] { --home-path-ink: var(--accent-text); }
+.home-path[data-category="storylines"] { --home-path-line: var(--amber-line); --home-path-ink: var(--amber); }
+.home-path[data-category="character-spotlights"] { --home-path-line: var(--teal-line); --home-path-ink: var(--teal); }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="reading-paths"] { --home-path-line: var(--green-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:
-    linear-gradient(145deg, rgb(var(--home-path-line) / 19%), transparent 68%),
+    linear-gradient(145deg, rgb(var(--home-path-line) / 19%), transparent 8.5rem),
     var(--card-2);
 }
 .home-path-icon {
-  align-self: start; color: rgb(var(--home-path-line)); font-size: 1.45rem;
+  align-self: start; color: var(--home-path-ink, rgb(var(--home-path-line))); font-size: 1.45rem;
   line-height: 1;
 }
 .home-path-copy { min-width: 0; display: grid; gap: var(--space-2); align-self: end; }
@@ -1845,6 +1880,21 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .home-path-secondary { min-height: 8rem; border-radius: 14px; }
 .home-path-secondary .home-path-title { font-size: var(--t-title); }
+/* In the Home and Browse gateways the icon is the card's emblem, large and at the top right (#873).
+   The card's text joins the card's own grid so the eyebrow and title run the full width beneath the
+   icon's row, which is what keeps their words whole at 200% text on a 320px phone; the count sits
+   beside the arrow. The age and period tiles share the component and keep their layout. */
+[data-category-gateway] .home-path {
+  grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 1fr auto auto auto;
+  grid-template-areas: ". icon" "label label" "title title" "count arrow"; row-gap: var(--space-2);
+}
+[data-category-gateway] .home-path-copy { display: contents; }
+[data-category-gateway] :is(.home-path-label, .home-path-title, .home-path-count) { min-width: 0; }
+[data-category-gateway] .home-path-label { grid-area: label; }
+[data-category-gateway] .home-path-title { grid-area: title; }
+[data-category-gateway] .home-path-count { grid-area: count; }
+[data-category-gateway] .home-path-icon { grid-area: icon; justify-self: end; width: 2.75rem; height: 2.75rem; }
+[data-category-gateway] .home-path-arrow { grid-area: arrow; justify-self: end; align-self: center; }
 
 .publishing-meta {
   display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4);
@@ -1865,6 +1915,19 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 #marvel-ages-modern-all { min-height: 44px; }
 .publishing-grid { margin-top: 0; }
 .publishing-empty { margin-top: var(--space-6); }
+/* Each Marvel era wears its own accent on its tile (#875): edge, tint and icon, through the channel the
+   category cards use. Unscoped, so an era's tile matches on Marvel Ages and on Modern Age alike. */
+.home-path[data-category="golden"] { --home-path-line: var(--gold-line); }
+.home-path[data-category="silver"] { --home-path-line: var(--silver-line); }
+.home-path[data-category="bronze"] { --home-path-line: var(--bronze-line); }
+.home-path[data-category="copper"] { --home-path-line: var(--copper-line); }
+.home-path[data-category="early-modern"] { --home-path-line: var(--magenta-line); }
+.home-path[data-category="marvel-knights-heroes-return"] { --home-path-line: var(--orchid-line); }
+.home-path[data-category="event-era"] { --home-path-line: var(--indigo-line); }
+.home-path[data-category="marvel-now"] { --home-path-line: var(--azure-line); }
+.home-path[data-category="all-new-all-different"] { --home-path-line: var(--cyan-line); }
+.home-path[data-category="fresh-start"] { --home-path-line: var(--jade-line); }
+.home-path[data-category="current"] { --home-path-line: var(--green-line); }
 
 .mcu-prep-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-5); }
 .mcu-prep-search { flex: 1 1 22rem; min-width: 0; }

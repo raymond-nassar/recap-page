@@ -38,8 +38,8 @@ test('all navigation/search glyphs use the selected local symbols, not font char
 test('the authored symbol set has exactly the used names and no remote or active content', () => {
   const ids = [...sprite.matchAll(/<symbol id="([\w-]+)" viewBox="0 0 24 24">/g)]
     .map(([, id]) => id);
-  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'arrow-right', 'thumb-up', 'thumb-down', 'star'])].sort());
-  assert.equal(ids.length, 20);
+  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'ages', 'arrow-right', 'thumb-up', 'thumb-down', 'star'])].sort());
+  assert.equal(ids.length, 21);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);
@@ -91,4 +91,25 @@ test('sprite provenance and source distribution preserve zero runtime dependenci
   assert.deepEqual(JSON.parse(read('../package.json')).dependencies ?? {}, {});
   assert.match(read('../server.mjs'), /'\.svg': 'image\/svg\+xml'/);
   assert.match(read('../scripts/pack-windows.mjs'), /path\.startsWith\('src\/'\)/);
+});
+
+test('the six Home category cards draw six different symbols', () => {
+  // #873: Modern Timeline and Marvel Ages both drew the open book, so two of the six looked alike.
+  const names = [];
+  const view = createHomeView({
+    el: (tag, props, children) => ({ tag, props, children }),
+    createIcon: (name, className) => {
+      if (className.includes('home-path-icon')) names.push(name);
+      return { name };
+    },
+  });
+  for (const category of HOME_CATEGORIES) view.categoryTile({ ...category, count: 1 });
+  assert.equal(names.length, 6);
+  assert.equal(new Set(names).size, 6, JSON.stringify(names));
+});
+
+test('the provenance table lists exactly the symbols the sprite draws', () => {
+  const rows = [...read('../src/icons/README.md').matchAll(/^\| ([a-z][\w-]*) \| [^|\n]+\|$/gm)].map(([, name]) => name);
+  const ids = [...sprite.matchAll(/<symbol id="([\w-]+)"/g)].map(([, id]) => id);
+  assert.deepEqual(rows.sort(), ids.sort());
 });

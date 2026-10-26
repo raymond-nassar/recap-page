@@ -22,7 +22,7 @@
 
 import { isAllowedApiBase } from './js/lib/apiBase.js';
 import { issuePageUrl } from './js/lib/issuePageUrl.js';
-import { themeAttribute, normaliseTheme } from './js/lib/theme.js';
+import { themeAttribute, normaliseTheme, applyThemeMeta } from './js/lib/theme.js';
 
 // Disown the opener before anything else, and in particular before any navigation.
 // The opener belongs to the tab rather than to the document, so severing it here also
@@ -84,7 +84,7 @@ if (!readFailed) {
 const chosenTheme = themeAttribute(settings.theme);
 if (chosenTheme) document.documentElement.setAttribute('data-theme', chosenTheme);
 else document.documentElement.removeAttribute('data-theme');
-document.querySelector('meta[name="color-scheme"]').setAttribute('content', chosenTheme || 'dark light');
+applyThemeMeta(settings.theme);
 settingsStatus.textContent = settingsMessage;
 settingsStatus.hidden = !settingsMessage;
 

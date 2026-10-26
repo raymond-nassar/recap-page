@@ -74,6 +74,27 @@ test('mobile navigation reserves measured content space and cannot cover active 
   assert.doesNotMatch(main.slice(main.indexOf('function wireMobileNavigation'), main.indexOf('let tooltips;')),
     /localStorage|store\.update|history\./);
 });
+
+test('the one-time save note follows the reading card, so it never pushes Read down', () => {
+  // UX-10 (#836): leading the card, the note was 238px tall on a phone's first visit and put Read
+  // under the bottom bar, and retiring it on the first Done moved the card up under the pointer.
+  const body = html.indexOf('<div id="reading-body"');
+  const hero = html.indexOf('<section class="hero" id="hero"');
+  const heroEnd = html.indexOf('</section>', hero);
+  const note = html.indexOf('<aside id="save-education"');
+  const next = html.indexOf('<section id="reading-empty"');
+  assert.ok(body >= 0 && hero > body && heroEnd > hero, 'the reading body and its card are missing');
+  assert.ok(note > heroEnd && note < next, 'the save note must sit right after the reading card, inside the reading body');
+  assert.doesNotMatch(html.slice(heroEnd, note), /<(?:section|div|button|details|aside)\b/);
+});
+test('the reading card clips its decorative layer without becoming a scroll container', () => {
+  // #846: hidden made the card a scroll container, and its decorative layer, scaled 1.3, reached
+  // past its foot, so focus near the foot scrolled the card's own content and cut off its first line.
+  // Hidden stays first only as the fallback for an engine that does not know clip.
+  const rule = css.match(/^\.hero \{[^}]*\}/m)?.[0] ?? '';
+  const overflow = [...rule.matchAll(/overflow:\s*([a-z]+)/g)].map((match) => match[1]);
+  assert.deepEqual(overflow, ['hidden', 'clip'], rule);
+});
 test('the reading view opts out of the prose measure, so a desktop is used rather than margined', () => {
   // BL-165 capped every view at the reading measure and gave home an opt-out because a catalog is a
   // grid. The reading view is the same kind of surface and was measured at 876px on a 2560 display

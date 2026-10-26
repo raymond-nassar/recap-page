@@ -8,6 +8,12 @@
          explicit override is deferred, so a value of "dark" here would give a reader who prefers
          light a dark scrollbar against a light page until it ran. -->
     <meta name="color-scheme" content="dark light" />
+    <!-- One per scheme, each with that scheme's page background. An installed browser app paints
+         its title bar in the first of these whose media query matches, in place of the manifest's
+         colour, so it follows the system setting with no script, as the stylesheet does. For a
+         theme the reader picks, the theme code gives both tags that theme's colour. -->
+    <meta name="theme-color" content="#111117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafaff" media="(prefers-color-scheme: light)" />
     <title>Recap Page</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
@@ -260,16 +266,6 @@
               </div>
             </div>
 
-            <aside id="save-education" class="card card-static save-education" hidden>
-              <p class="rail-hint">
-                Your lists and progress save automatically in this browser. This is browser storage,
-                not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
-                in Backup &amp; settings to protect your progress or move it to another browser profile
-                or computer.
-              </p>
-              <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
-            </aside>
-
             <div id="reading-body" hidden>
               <div class="list-tools">
                 <details id="list-actions" class="list-actions action-disclosure">
@@ -356,6 +352,21 @@
                   </div>
                 </div>
               </section>
+
+              <!-- The one-time note that saving is automatic follows the hero rather than leading it.
+                   Above the hero it was 238px tall on a phone's first visit and put Read under the
+                   bottom bar, and when the first Done retired it the hero moved up 174px under the
+                   pointer on a desktop (UX-10, #836). It still shows from the first saved list until
+                   the first saved progress. -->
+              <aside id="save-education" class="card card-static save-education" hidden>
+                <p class="rail-hint">
+                  Your lists and progress save automatically in this browser. This is browser storage,
+                  not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
+                  in Backup &amp; settings to protect your progress or move it to another browser profile
+                  or computer.
+                </p>
+                <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
+              </aside>
 
               <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
                 <h2 id="reading-empty-h">No issues yet</h2>
