@@ -158,6 +158,7 @@ export default [
       'scripts/browser-mcu-prep-organization.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/browser-owner-guide.mjs',
+      'scripts/browser-selection-bar.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

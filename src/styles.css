@@ -1361,11 +1361,69 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   border-bottom: 1px solid var(--line);
 }
 .comic-builder .comic-list-name[hidden] { display: none; }
-.comic-builder { margin: var(--space-5) 0; border-block: 1px solid var(--line); }
-.comic-builder > form { padding: var(--space-4) 0; }
-.comic-selection-tools { justify-content: space-between; }
-.comic-save > summary { min-height: 44px; padding: var(--space-4) 0; cursor: pointer; color: var(--dim); }
-.comic-save > .stack { padding: var(--space-4) 0; }
+/* The selection bar. While comics are selected it holds to the bottom of the window, so saving is
+   one visible step from wherever they were ticked. It replaced a plain-text Save disclosure above
+   the first result, which after ticking comics further down a 50-result list was back off screen.
+   Fixed rather than sticky: a sticky bar comes back to its own place at the end of the page, and
+   on an 800x360 phone with 200 per cent text the footer and padding below that place left its
+   Clear selection above the top of the window. With no horizontal offset it keeps the left edge it
+   would have in the card, its width is the card's as measured, and `main::after` below gives the
+   page its height so nothing at the end has to stay under it. Its height is capped so it can never
+   cover the window, and past the cap it scrolls itself: with the keyboard open on a phone in
+   landscape, that is how the list name field stays reachable. */
+.comic-builder {
+  position: fixed; bottom: var(--space-4); z-index: 2;
+  width: var(--comic-selection-width); max-width: 48rem; max-height: 60dvh; overflow-y: auto;
+  border: 1px solid var(--line-2); border-radius: 12px; background: var(--card);
+  box-shadow: 0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)));
+}
+:root:has(.view:not([hidden]) .comic-builder:not([hidden])) main::after {
+  content: ""; display: block; height: calc(var(--comic-selection-height) + var(--space-4));
+}
+.comic-builder > form { padding: var(--space-4) var(--space-5); }
+/* A margin rather than padding, so the save result's focus ring is drawn inside the bar's edge
+   instead of being cut off by it. */
+.comic-builder > .results { margin: 0 var(--space-5) var(--space-5); }
+.comic-builder > .results:empty { display: none; }
+.comic-selection-tools { justify-content: flex-end; }
+/* One prominent action in the bar: Clear keeps its 44px target but has no fill or edge at rest. */
+.comic-clear { background: none; border-color: transparent; color: var(--dim); }
+.comic-clear:hover { filter: none; color: var(--text); border-color: var(--line-2); background: rgb(var(--tint-base) / 5.098%); }
+/* Drawn with borders rather than a character, so it adds nothing to the button's accessible name. */
+.comic-save-toggle::after {
+  content: ""; flex: none; width: 7px; height: 7px;
+  border-right: 2px solid currentcolor; border-bottom: 2px solid currentcolor; transform: rotate(-45deg);
+}
+/* Open, the form's own Create or Add button is the primary action, so the opener steps back. */
+.comic-save-toggle[aria-expanded="true"] { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); }
+.comic-save-toggle[aria-expanded="true"]::after { transform: rotate(45deg); }
+.comic-save { margin-top: var(--space-2); padding-top: var(--space-5); border-top: 1px solid var(--line); }
+/* `.stack` sets a display, which would otherwise keep the closed form showing. */
+.comic-save[hidden] { display: none; }
+@media (max-width: 880px) {
+  .comic-builder { bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); transition: bottom .15s ease; }
+  body:has(.rail-header.mobile-nav-hidden:not(:focus-within)) .comic-builder { bottom: var(--space-4); }
+}
+@media (max-width: 560px) {
+  .comic-save-toggle { flex: 1 1 100%; justify-content: center; }
+}
+/* While a bar shows, the page's scroll padding clears it, so a control that takes keyboard focus
+   comes to rest above the bar rather than under it. */
+:root:has(.view:not([hidden]) .comic-builder:not([hidden])) {
+  scroll-padding-bottom: calc(var(--comic-selection-height, 0px) + var(--space-6));
+}
+/* Here the bottom bar's clearance is carried too, so the focused control's own margin would count
+   that bar twice. With the form open on a 640x450 window that left too little room above the bar,
+   and Shift+Tab out of it came to rest 6px off the top of the window. */
+@media (max-width: 880px) {
+  :root:has(.view:not([hidden]) .comic-builder:not([hidden])) {
+    scroll-padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6) + var(--comic-selection-height, 0px));
+  }
+  :root:has(.view:not([hidden]) .comic-builder:not([hidden])) main :focus { scroll-margin-bottom: 0; }
+}
+/* A control inside the bar is in view wherever the page is scrolled, so it needs no clearance. Left
+   in, the padding sent the page to its very end looking for room the bar can never leave. */
+:root:has(.view:not([hidden]) .comic-builder:not([hidden]) :focus) { scroll-padding-bottom: 0; }
 .comic-builder select {
   width: 100%; min-width: 0; min-height: 44px; padding: var(--space-4) var(--space-5);
   border: 1px solid var(--line-2); border-radius: 8px;
@@ -1373,7 +1431,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 }
 .comic-builder select:hover { border-color: var(--accent-text); }
 .comic-builder input[type="text"] { width: 100%; min-height: 44px; }
-.comic-selection-count { margin: 0; color: var(--dim); font-variant-numeric: tabular-nums; }
+.comic-selection-count { flex: 1 1 auto; margin: 0; color: var(--dim); font-variant-numeric: tabular-nums; }
 .comic-results-heading { overflow-wrap: anywhere; }
 .comic-result-tools { justify-content: space-between; }
 .comic-results { display: grid; gap: var(--space-3); }
@@ -1965,7 +2023,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .rail-tip { border: 1px solid CanvasText; background: Canvas; }
   /* The path badge and selected filters carry state in colour plus a tinted border. */
   .pill-start { border: 1px solid CanvasText; }
-  .addpri, .pill-held, .res-head { border-color: CanvasText; }
+  .addpri, .pill-held, .res-head, .comic-builder { border-color: CanvasText; }
   #view-data .setgroup > h2 { border-bottom: 1px solid CanvasText; }
   .notice { border: 1px solid CanvasText; }
   .timeline-era-head { border-color: CanvasText; border-left-color: Highlight; }

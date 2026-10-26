@@ -504,6 +504,17 @@ must stay inside its row with its full text kept: cut short with an ellipsis at 
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.
 
+`npm run android:browser -- --only=selection-bar` checks the Add comics selection bar on a 50-comic
+issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both
+themes. It taps a comic far down the list, then checks at five scroll positions that Save selected
+comics and Clear selection stay in view, tappable and above the bottom navigation bar whenever that
+bar shows. Both keep 48px targets with every word whole. It then taps Save selected comics and the
+list name field. The keyboard is modeled by shortening the viewport while the field has focus,
+because the app's activity resizes for it. With the keyboard open, the field must stay in view
+inside the bar and the bar within its height cap. The issue search is used because at 200% text the
+Find a series and Browse a creator fields widen a 360px phone page (#871). These are Edge web
+checks, not a real keyboard, native fontScale or TalkBack acceptance.
+
 ## Native emulator checks without a local emulator
 
 The optional **native_mode=debug** selection in **CI** runs the APK in a full
