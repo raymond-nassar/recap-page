@@ -20130,7 +20130,7 @@ SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
 MUTATIONS.push(...orderedImport.importMutations);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
-SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionEnjoymentOffer);
+SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
 MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');

@@ -298,7 +298,16 @@ export function createCompletionView({
           el('div', { class: 'sec-h' }, el('h2', { id: `${name}-completed-h`, text: 'Completed lists' })),
           copy,
           browse,
-          el('button', { type: 'button', class: 'btn btn-g', text: 'View completed lists', onclick: () => showView('completed', { push: true }) }),
+          el('a', {
+            class: 'btn btn-g',
+            href: formatRoute({ view: 'completed' }),
+            text: 'View completed lists',
+            onclick: (event) => {
+              if (!isPlainNavigation(event)) return;
+              event?.preventDefault();
+              showView('completed', { push: true });
+            },
+          }),
         ]);
         parent.insertBefore(section, name === 'library' ? before.nextSibling : before);
         gateway = { section, copy, browse };
@@ -411,7 +420,11 @@ export function createCompletionView({
         void change('rate', record?.rating === rating ? null : rating, button);
       });
     }
-    nodes.collectionOpen.addEventListener('click', () => showView('completed', { push: true }));
+    nodes.collectionOpen.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      showView('completed', { push: true });
+    });
     nodes.feedbackGuide.addEventListener('click', () => showFeedback(nodes.feedbackGuide));
     nodes.feedbackClose.addEventListener('click', () => closeFeedback());
     nodes.feedbackDialog.addEventListener('cancel', (event) => {
@@ -429,7 +442,11 @@ export function createCompletionView({
       radio.addEventListener('change', () => { enjoyed = radio.value === 'enjoyed'; renderCollection(); });
     }
     nodes.recommendationRetry.addEventListener('click', () => { void refreshRecommendations({ force: true }); });
-    nodes.recommendationBrowse.addEventListener('click', () => showView('home', { push: true, at: HOME_CARDS }));
+    nodes.recommendationBrowse.addEventListener('click', (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      showView('home', { push: true, at: HOME_CARDS });
+    });
     nodes.historyExport.addEventListener('click', () => { void exportHistory(); });
     nodes.historyCopy.addEventListener('click', () => { void exportHistory(true); });
     nodes.historyRetry.addEventListener('click', () => history.load());

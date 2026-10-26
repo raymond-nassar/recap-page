@@ -349,3 +349,16 @@ test('disclosure chevrons stay out of the names screen readers announce', () => 
   assert.deepEqual(chevrons.filter(([, alternative]) => !alternative).map(([match]) => match), [],
     'a chevron joins the name of its summary');
 });
+
+test('completion destinations are links that leave modifier clicks to the browser', () => {
+  // UX-18: they were buttons, so a middle click or Open in new tab did nothing.
+  const markup = html;
+  assert.match(markup, /<a href="#\/completed" id="btn-completed-lists" class="btn btn-g">Completed lists<\/a>/);
+  assert.match(markup, /<a href="#\/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists<\/a>/);
+  const source = read('src/js/views/completion.js');
+  for (const owner of ['collectionOpen', 'recommendationBrowse']) {
+    assert.match(source, new RegExp(`nodes\\.${owner}\\.addEventListener\\('click', \\(event\\) => \\{\\s*if \\(!isPlainNavigation\\(event\\)\\) return;`),
+      `${owner} intercepts modifier clicks`);
+  }
+  assert.match(source, /el\('a', \{\s*class: 'btn btn-g',\s*href: formatRoute\(\{ view: 'completed' \}\),\s*text: 'View completed lists',/);
+});

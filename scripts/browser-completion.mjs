@@ -873,3 +873,69 @@ export const completionCommandFocus = {
     t.check('the held saves raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
   },
 };
+
+// UX-18 (#831): Completed lists, View completed lists and the wrap-up's Browse Reading Lists were buttons,
+// so a middle click or Open in new tab did nothing. Each is a link to its address, a plain click still
+// navigates in place, and a modified click is left to the browser.
+export const completionDestinationLinks = {
+  id: 'completion-destination-links',
+  title: 'Completion destinations are links that navigate in place and leave modified clicks to the browser',
+  async run(page, t) {
+    await setup(page);
+    await complete(page);
+    await page.waitForSelector('#btn-recommendation-browse');
+    const read = (selector) => page.$eval(selector, (node) => ({
+      tag: node.tagName, href: node.getAttribute('href'), text: node.textContent.trim(),
+    }));
+    const role = async (selector) => {
+      const node = await page.$(selector);
+      const snapshot = await page.accessibility.snapshot({ root: node, interestingOnly: false });
+      await node.dispose();
+      return snapshot?.role ?? null;
+    };
+    // The app's listener runs first, so a default it prevented is seen here before this one stops the
+    // navigation the browser would otherwise begin.
+    const modified = (selector) => page.$eval(selector, (node) => ['ctrlKey', 'metaKey', 'shiftKey', 'altKey', 'middle']
+      .map((key) => {
+        const type = key === 'middle' ? 'auxclick' : 'click';
+        let kept = null;
+        node.addEventListener(type, (event) => { kept = !event.defaultPrevented; event.preventDefault(); }, { once: true });
+        node.dispatchEvent(new MouseEvent(type, {
+          bubbles: true, cancelable: true, button: key === 'middle' ? 1 : 0, ...(key === 'middle' ? {} : { [key]: true }),
+        }));
+        return kept;
+      }));
+    const wrap = {
+      completed: { ...await read('#btn-completed-lists'), role: await role('#btn-completed-lists') },
+      browse: { ...await read('#btn-recommendation-browse'), role: await role('#btn-recommendation-browse') },
+    };
+    const kept = [...await modified('#btn-completed-lists'), ...await modified('#btn-recommendation-browse')];
+    const stayed = await page.evaluate(() => location.hash);
+    t.check('the wrap-up Completed lists and Browse Reading Lists are links to their addresses',
+      wrap.completed.tag === 'A' && wrap.completed.href === '#/completed' && wrap.completed.text === 'Completed lists'
+      && wrap.browse.tag === 'A' && wrap.browse.href === '#/browse' && wrap.browse.text === 'Browse Reading Lists'
+      && wrap.completed.role === 'link' && wrap.browse.role === 'link', JSON.stringify(wrap));
+    t.check('a modified or middle click on either is left to the browser and changes nothing in place',
+      kept.length === 10 && kept.every(Boolean) && stayed === `#/read/${SOURCE}`, JSON.stringify({ kept, stayed }));
+
+    await click(page, '#btn-recommendation-browse');
+    await page.waitForFunction(() => document.querySelector('#view-home')?.hidden === false
+      && document.activeElement?.id === 'home-cat-h');
+    const cards = await page.evaluate(() => location.hash);
+    await page.waitForSelector('#home-completed:not([hidden])');
+    const view = '#home-completed a.btn-g[href="#/completed"]';
+    const gateway = { ...await read(view), role: await role(view) };
+    const gatewayKept = await modified(view);
+    await click(page, view);
+    await page.waitForFunction(() => document.querySelector('#view-completed')?.hidden === false);
+    await go(page, 'read');
+    await click(page, '#btn-completed-lists');
+    await page.waitForFunction(() => document.querySelector('#view-completed')?.hidden === false);
+    t.check('View completed lists is a link too, and plain clicks still navigate in place',
+      cards.startsWith('#/browse') && gateway.tag === 'A' && gateway.text === 'View completed lists'
+      && gateway.role === 'link' && gatewayKept.every(Boolean)
+      && await page.evaluate(() => location.hash.startsWith('#/completed')),
+      JSON.stringify({ cards, gateway, gatewayKept }));
+    t.check('completion links raise no browser errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
+  },
+};
