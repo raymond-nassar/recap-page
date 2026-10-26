@@ -97,7 +97,10 @@ Connect nonredundant descriptions to their controls for screen readers. Keep req
 meaningful status, errors, save confirmation and safety warnings visible; tooltips do not replace
 essential information or system feedback. Nor do they cover it: mark such feedback that appears
 near a control with a tooltip `data-keep-uncovered`, and a tooltip whose place would overlap it
-is not shown.
+is not shown. Commands whose tooltips could land on each other, such as Read and Done stacked on a
+narrow screen, share a `data-tooltip-group`: a tooltip whose place would cover another command in
+its group moves to the first other side where it fits as wide and covers neither, and otherwise is
+not shown.
 
 Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
 and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),

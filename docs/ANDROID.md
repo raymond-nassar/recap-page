@@ -481,6 +481,9 @@ in the reading view at 412x915 and 360x800 with 200% text tokens, and at 360x800
 800x360. It taps Done and Undo as a finger would, refuses one save to reach Try again, and raises
 Done's hint by keyboard focus with Done near the top of the screen, where the only room left for
 it is over the result. A first case without a result requires the hint to still show below Done.
+In the four portrait profiles, where Read is stacked above Done, it then raises each one's hint by
+keyboard focus at its natural place and near the top. It checks that neither hint covers the other
+button, and that a tap on the edge of either button nearest the other lands on that button.
 Home is not visited because no hint shows there on a phone. Use `--viewport=412x915@2` for the
 reported case. These are Edge web checks, not native fontScale or TalkBack acceptance.
 

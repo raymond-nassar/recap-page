@@ -107,7 +107,7 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   // Three controls of near-equal weight is the same as none, and the issue page is not an action
   // the app performs. Its element is still an anchor either way; this is about what it looks like.
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
-  const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
+  const cta = hero.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)[0];
   assert.match(cta, /class="btn btn-lg[^"]*" id="btn-hero-read"/);
   assert.match(cta, /class="btn btn-g[^"]*" id="btn-hero-done"/);
   assert.doesNotMatch(cta, /id="btn-hero-(inspect|defer|info)"/);
@@ -120,7 +120,7 @@ test('the hero offers one dominant action, and the way out of the app is a link'
 
 test('reading shortcuts stay discoverable without permanent keycap clutter', () => {
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
-  const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
+  const cta = hero.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)[0];
   assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
   for (const [id, tooltip, ariaKey] of [
     ['btn-hero-read', 'Keyboard shortcut: Enter', 'Enter'],
@@ -143,7 +143,7 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
 // visually hidden: a description element directly referenced by aria-describedby still describes
 // when hidden, and hidden keeps it out of the reading order, so browse mode does not read it twice.
 test('UX-05 Done keeps its short label and is described for assistive technology only', () => {
-  const cta = html.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
+  const cta = html.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)[0];
   const done = cta.match(/(<button[^>]*id="btn-hero-done"[^>]*>)([\s\S]*?)<\/button>/);
   assert.ok(done, 'Done is gone from the hero command group');
   assert.equal(done[2].trim(), 'Done', 'the visible label changed');
@@ -155,6 +155,17 @@ test('UX-05 Done keeps its short label and is described for assistive technology
   assert.match(`${before} ${after}`, /\shidden(?:\s|$)/, 'a visible or visually hidden description is read again in browse mode');
   assert.doesNotMatch(`${before} ${after}`, /aria-hidden|visually-hidden/);
   assert.ok(done[1].includes('data-tooltip="Mark read and continue. Keyboard shortcut: D"'), 'the visual tooltip changed');
+});
+
+// #860. Stacked on a narrow screen, Read's hint and Done's each sat over the other button and took
+// the clicks meant for it. The pair is a hint group, so tooltips.js moves a hint off the other
+// button or withdraws it. The decision on #860 limits grouping to this pair.
+test('#860 Read and Done form the one hint group', () => {
+  const groups = [...html.matchAll(/<[a-z]+\b[^>]*\bdata-tooltip-group\b[^>]*>/g)].map(([tag]) => tag);
+  assert.equal(groups.length, 1, `only the hero's pair is a hint group: ${groups.join(' ')}`);
+  assert.match(groups[0], /\bid="hero-primary-actions"/);
+  const cta = html.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)[0];
+  assert.deepEqual([...cta.matchAll(/<button[^>]*\bid="([^"]+)"/g)].map(([, id]) => id), ['btn-hero-read', 'btn-hero-done']);
 });
 
 test('icon-only controls expose their meaning on hover and keyboard focus', () => {
