@@ -291,7 +291,7 @@ a { color: var(--blue); }
 }
 
 @media (max-width: 880px) {
-  .shell, .shell.railed { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .shell, .shell.railed { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
   .rail {
     position: static;
     height: auto;

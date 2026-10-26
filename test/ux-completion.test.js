@@ -96,13 +96,19 @@ test('one shared breadcrumb renderer covers routed views but never Home or dialo
 
 test('the narrow rail override follows the base rule it must replace', () => {
   const baseRail = styles.match(/\.rail\s*\{[^}]*position:\s*sticky;[^}]*height:\s*100vh;[^}]*\}/s);
-  const narrowRail = styles.match(/@media \(max-width:\s*880px\)\s*\{[\s\S]*?\.shell, \.shell\.railed\s*\{[^}]*grid-template-columns:\s*1fr;[\s\S]*?\.rail\s*\{[^}]*position:\s*static;[^}]*height:\s*auto;[^}]*\}/s);
+  const narrowRail = styles.match(/@media \(max-width:\s*880px\)\s*\{[\s\S]*?\.shell, \.shell\.railed\s*\{[^}]*grid-template-columns:[^;]+;[\s\S]*?\.rail\s*\{[^}]*position:\s*static;[^}]*height:\s*auto;[^}]*\}/s);
   assert.ok(baseRail, 'the base rail no longer owns the wide sticky viewport');
   assert.ok(narrowRail, 'the 880px layout no longer restores document flow');
   assert.ok(
     narrowRail.index > baseRail.index,
     'the base rail overrides the earlier narrow rule at equal specificity',
   );
+});
+
+// #866: a plain `1fr` column has an automatic minimum, so the open menu's one-line list name grew
+// it past the screen and the whole page scrolled sideways.
+test('the narrow single column stays the width of the screen whatever the menu holds', () => {
+  assert.match(styles, /@media \(max-width:\s*880px\)\s*\{\s*\.shell, \.shell\.railed\s*\{\s*grid-template-columns:\s*minmax\(0,\s*1fr\);/);
 });
 
 test('product labels use Reading List while authored guide titles retain their own wording', () => {

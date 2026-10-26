@@ -29,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus',
+  'done-hint', 'completion-focus', 'long-list-name',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -55,6 +55,7 @@ const categoryReadability = process.argv.includes('--only=category-readability')
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
+const longListName = process.argv.includes('--only=long-list-name');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
 const alignmentBaseline = process.argv.includes('--alignment-baseline');
@@ -2934,6 +2935,77 @@ async function completionFocusJourney(page, label) {
   }
 }
 
+// #866: the More menu's link to the Reading List keeps the list's name on one line, and below 880px
+// the shell's single column grew to fit it, so opening the menu widened the whole page. Measured on
+// main in Edge phone emulation on 2026-10-26 with this 79-character name, the page reached 181px past
+// the screen at 360x800, 129px at 412x915 and 690px at 360x800 with 200 per cent text tokens.
+const longListTitle = 'My long-running reread of every Avengers crossover from 1963 to the present day';
+async function longListNameFixtures(page) {
+  let state = createList(createEmptyState(), { id: 'long', name: longListTitle });
+  state = addIssuesToList(state, 'long', [1, 2].map((n) => ({
+    issueId: 866100 + n, title: `Name fixture (2026) #${n}`, number: String(n), seriesName: 'Name fixture (2026)', seriesId: 866,
+    digitalId: 866200 + n, url: `https://www.marvel.com/comics/issue/${866100 + n}/fixture`, source: 'manual',
+  }))).state;
+  await page.evaluateOnNewDocument((saved, key) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Name fixture blocks outside requests'));
+    };
+  }, state, KEY);
+}
+
+async function longListNameMenu(page, label, viewport) {
+  await page.evaluate(() => { location.hash = '#/read/long'; });
+  await page.waitForFunction(() => !document.querySelector('#view-read').hidden
+    && document.querySelector('#list-nav .rail-list-name'));
+  await click(page, '#btn-rail-toggle');
+  await page.waitForFunction(() => !document.querySelector('#sidebar-panel').hidden);
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  await measure(page, `${label} navigation with a 79-character list name`);
+  const opened = await page.evaluate((full) => {
+    const root = document.documentElement;
+    const panel = document.querySelector('#sidebar-panel');
+    const link = document.querySelector('#list-nav .ri');
+    const text = link.querySelector('.rail-list-name');
+    const style = getComputedStyle(text);
+    const edges = (node) => {
+      const rect = node.getBoundingClientRect();
+      return { left: Math.round(rect.left * 10) / 10, right: Math.round(rect.right * 10) / 10 };
+    };
+    return {
+      screen: root.clientWidth,
+      page: root.scrollWidth,
+      menu: { client: panel.clientWidth, scroll: panel.scrollWidth },
+      offscreen: [...panel.querySelectorAll('a[href], button')]
+        .filter((node) => node.getClientRects().length)
+        .filter((node) => {
+          const rect = node.getBoundingClientRect();
+          return rect.left < -1 || rect.right > root.clientWidth + 1;
+        })
+        .map((node) => node.textContent.replace(/\s+/g, ' ').trim().slice(0, 40)),
+      row: edges(link),
+      name: {
+        ...edges(text), client: text.clientWidth, scroll: text.scrollWidth,
+        cut: text.scrollWidth > text.clientWidth, textOverflow: style.textOverflow,
+        full: text.textContent === full && link.textContent.includes(full),
+      },
+    };
+  }, longListTitle);
+  check(opened.menu.scroll <= opened.menu.client + 1 && !opened.offscreen.length,
+    `${label}: the open menu and every link and button in it fit the screen with a 79-character list name ${JSON.stringify(opened)}`);
+  // Every phone width here is too narrow for the whole name, and landscape is wide enough for it.
+  const cut = viewport.width <= 412;
+  check(opened.name.cut === cut && (!cut || opened.name.textOverflow === 'ellipsis')
+    && opened.name.left >= opened.row.left - 1 && opened.name.right <= opened.row.right + 1
+    && opened.name.right <= opened.screen + 1 && opened.name.full,
+  `${label}: the list name ${cut ? 'ends in an ellipsis' : 'shows whole'} inside its row and keeps its full text ${JSON.stringify(opened.name)}`);
+  console.log(`CHECKED ${label}: menu open with a 79-character list name ${JSON.stringify({ page: opened.page, screen: opened.screen, name: [opened.name.client, opened.name.scroll] })}`);
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
@@ -3000,6 +3072,14 @@ try {
     { width: 800, height: 360 },
   ];
   if (completionFocus) viewports = [{ width: 412, height: 915 }, { width: 800, height: 360 }];
+  if (longListName) viewports = [
+    { width: 360, height: 800 },
+    { width: 412, height: 915 },
+    { width: 320, height: 740 },
+    { width: 800, height: 360 },
+    { width: 360, height: 800, textScale: 2 },
+    { width: 412, height: 915, textScale: 2 },
+  ];
   const newsProfiles = [
     { width: 390, height: 844, theme: 'light', homeUpdates: true },
     { width: 390, height: 844, theme: 'dark', homeUpdates: true },
@@ -3034,6 +3114,7 @@ try {
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
+    if (longListName) await longListNameFixtures(page);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
@@ -3289,6 +3370,12 @@ try {
     }
     if (completionFocus) {
       await completionFocusJourney(page, label);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (longListName) {
+      await longListNameMenu(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;
