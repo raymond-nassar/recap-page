@@ -97,7 +97,7 @@ in which case a rename silently does nothing.
 Recommendation: move naming and confirmation into the page using the existing notice and dialog
 patterns, and route import failures through `notify()` like every other path
 Backlog item: BL-034
-Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-117`, and the
+Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-122`, and the
 three `alert()` calls in `importCurated` now write to a pane the caller names. The Evidence
 anchors name the code as it now stands; the Impact above describes the native dialogs it
 replaced. The suppression case in particular is closed: a browser that blocks dialogs can no
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:795`,
-  `src/styles.css:2085-2087`.
+  `src/styles.css:2101-2103`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1088-1091` and `src/styles.css:2450-2451`.
+`src/styles.css:1088-1091` and `src/styles.css:2466-2467`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2085-2087`.
+`src/styles.css:2101-2103`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:795`, `src/styles.css:2085-2087`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:795`, `src/styles.css:2101-2103`.
 
 ## Step 5: Information architecture and generative artifacts
 

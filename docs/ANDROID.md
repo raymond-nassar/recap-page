@@ -534,6 +534,16 @@ must stay inside its row with its full text kept: cut short with an ellipsis at 
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.
 
+`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo and saved-copy
+questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360, and at the
+shared desktop entry at 1280x900. Each must open at its title and the start of what it says, with
+Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of the
+question readable above them once scrolled to (#849). With doubled text the restore question must
+actually overflow its dialog, so the case is exercised rather than passed by a question that fits.
+On short landscape screens a confirmation widens so its answers share one row. The walk restores,
+undoes and declines the saved copy, and must leave the reading data as it found it. These are Edge
+web checks, not native fontScale or TalkBack acceptance.
+
 `npm run android:browser -- --only=selection-bar` checks the Add comics selection bar on a 50-comic
 issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both
 themes. It taps a comic far down the list, then checks at five scroll positions that Save selected

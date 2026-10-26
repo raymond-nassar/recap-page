@@ -33,6 +33,7 @@ const allowedModes = new Set([
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
+  'confirmations',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -63,6 +64,7 @@ const saveNotice = process.argv.includes('--only=save-notice');
 const homeContinue = process.argv.includes('--only=home-continue');
 const progressGlance = process.argv.includes('--only=progress-glance');
 const longListName = process.argv.includes('--only=long-list-name');
+const confirmations = process.argv.includes('--only=confirmations');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const alignment = process.argv.includes('--only=alignment');
@@ -3987,6 +3989,106 @@ async function longListNameMenu(page, label, viewport) {
   console.log(`CHECKED ${label}: menu open with a 79-character list name ${JSON.stringify({ page: opened.page, screen: opened.screen, name: [opened.name.client, opened.name.scroll] })}`);
 }
 
+// #849: the shared question dialog caps its height and scrolls inside, and initial focus goes to Cancel,
+// the safe answer a destructive question needs. At 200% text on phone sizes, focusing Cancel scrolled the
+// question past its own title, 454 to 802px down on main at 29349834, in the reading-data restore, its
+// Undo and the saved copy, the three asked here. Each must open at its title and the start of what it
+// says, with Cancel focused and both answers in view and reachable by a tap, and read to its end.
+async function confirmationFixtures(page) {
+  let state = createList(createEmptyState(), { id: 'questions', name: 'Question fixture' });
+  state = addIssuesToList(state, 'questions', [1, 2].map((n) => ({
+    issueId: 849100 + n, title: `Question fixture (2026) #${n}`, number: String(n), seriesName: 'Question fixture (2026)', seriesId: 849,
+    digitalId: 849200 + n, url: `https://www.marvel.com/comics/issue/${849100 + n}/fixture`, source: 'manual',
+  }))).state;
+  await page.evaluateOnNewDocument((saved, key) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Question fixture blocks outside requests'));
+    };
+  }, state, KEY);
+}
+
+async function confirmationQuestions(page, label, viewport) {
+  await route(page, 'data');
+  const names = () => page.evaluate((key) => Object.values(JSON.parse(localStorage.getItem(key)).lists).map((list) => list.name), KEY);
+  const before = await names();
+  // A backup that differs from what is saved, so the restore changes something and leaves an Undo.
+  const backup = await page.evaluate((key) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    for (const list of Object.values(state.lists)) list.name = `${list.name} (restored copy)`;
+    return JSON.stringify(state);
+  }, KEY);
+  const question = async (name) => {
+    await page.waitForSelector('#ask[open]');
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const shown = await page.$eval('#ask', (dialog) => {
+      const view = dialog.getBoundingClientRect();
+      const top = Math.max(0, view.top);
+      const bottom = Math.min(innerHeight, view.bottom);
+      const within = (rect) => rect.height > 0 && rect.top >= top - 0.5 && rect.bottom <= bottom + 0.5;
+      const reachable = (node) => {
+        const rect = node.getBoundingClientRect();
+        return within(rect) && node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+      };
+      const text = document.createRange();
+      text.selectNodeContents(dialog.querySelector('#ask-body'));
+      const footTop = dialog.querySelector('.ask-foot').getBoundingClientRect().top;
+      const clear = (rect) => within(rect) && rect.bottom <= footTop + 0.5;
+      const opened = {
+        scrollTop: dialog.scrollTop, overflows: dialog.scrollHeight > dialog.clientHeight + 1,
+        title: clear(dialog.querySelector('#ask-title').getBoundingClientRect()),
+        start: clear(text.getClientRects()[0] ?? { height: 0 }),
+        focus: document.activeElement?.id,
+        cancel: reachable(dialog.querySelector('#ask-cancel')), confirm: reachable(dialog.querySelector('#ask-ok')),
+        order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+      };
+      // Held in view, the answers must not hide the end of the question once it is scrolled to.
+      dialog.scrollTop = dialog.scrollHeight;
+      const last = [...text.getClientRects()].at(-1);
+      opened.end = !!last && within(last) && last.bottom <= dialog.querySelector('.ask-foot').getBoundingClientRect().top + 0.5;
+      dialog.scrollTop = 0;
+      return opened;
+    });
+    check(shown.scrollTop === 0 && shown.title && shown.start && shown.end && shown.focus === 'ask-cancel'
+      && shown.cancel && shown.confirm && JSON.stringify(shown.order) === JSON.stringify(['ask-cancel', 'ask-ok']),
+    `${label}: the ${name} question opens at its title, Cancel focused, both answers in view, and reads to its end ${JSON.stringify(shown)}`);
+    await screenshot(page, label, `question-${name}`);
+    return shown;
+  };
+  await page.evaluate((raw) => {
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([raw], 'question-fixture-backup.json', { type: 'application/json' }));
+    const input = document.querySelector('#restore-file');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, backup);
+  const restore = await question('restore');
+  // Doubled text is the case #849 was found in, so there the question must actually overflow, or the
+  // checks above would pass without the dialog ever having had to scroll.
+  if (viewport.textScale) check(restore.overflows, `${label}: at 200% text the restore question overflows its dialog`);
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => !document.querySelector('#ask').open
+    && !document.querySelector('#btn-undo-restore').hidden && !document.querySelector('#btn-undo-restore').disabled);
+  await click(page, '#btn-undo-restore');
+  const undo = await question('undo');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => !document.querySelector('#ask').open
+    && !document.querySelector('#btn-undo-restore').hidden && !document.querySelector('#btn-undo-restore').disabled
+    && !/Undo/.test(document.querySelector('#btn-undo-restore').textContent));
+  await click(page, '#btn-undo-restore');
+  const saved = await question('saved-copy');
+  await click(page, '#ask-cancel');
+  await page.waitForFunction(() => !document.querySelector('#ask').open);
+  const after = await names();
+  check(JSON.stringify(after) === JSON.stringify(before),
+    `${label}: restoring, undoing and declining the saved copy leaves the reading data as it was ${JSON.stringify({ before, after })}`);
+  console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved })}`);
+}
+
 // #833: an issue search long enough that its 50 rendered comics run well past a phone screen.
 const BAR_ISSUES = Array.from({ length: 50 }, (_, index) => ({
   id: 900400 + index + 1,
@@ -4274,6 +4376,16 @@ try {
     { width: 360, height: 800, textScale: 2 },
     { width: 412, height: 915, textScale: 2 },
   ];
+  // The three sizes #849 measured at 200% text, then normal text, where a question that fits must look as
+  // it always has, the short landscape one widened, and the shared desktop entry.
+  if (confirmations) viewports = [
+    { width: 360, height: 800, textScale: 2 },
+    { width: 800, height: 360, textScale: 2 },
+    { width: 320, height: 740, textScale: 2 },
+    { width: 360, height: 800 },
+    { width: 800, height: 360 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   if (selectionBar) viewports = [
     { width: 360, height: 800, theme: 'light' },
     { width: 412, height: 915, theme: 'dark' },
@@ -4320,6 +4432,7 @@ try {
     if (saveNotice) await saveNoticeFixtures(page, viewport);
     if (homeContinue || progressGlance) await homeContinueFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
+    if (confirmations) await confirmationFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
@@ -4627,6 +4740,12 @@ try {
     }
     if (longListName) {
       await longListNameMenu(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (confirmations) {
+      await confirmationQuestions(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

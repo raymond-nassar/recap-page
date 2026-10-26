@@ -78,6 +78,8 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
 
   const asksForText = prefill !== null && !multiline;
   const asksForNote = prefill !== null && multiline;
+  // #849: a confirmation keeps its answers in view, so it can open at its start (see styles.css).
+  dlg.setAttribute('data-question', asksForText ? 'text' : asksForNote ? 'note' : 'confirm');
   naming = asksForText;
   input.removeAttribute('aria-invalid');
   error.textContent = '';
@@ -113,6 +115,9 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
   opener = nextOpener;
   if (asksForText) input.select();
   if (asksForNote) area.select();
+  // #849: Cancel takes focus, as a destructive question needs, and focusing it scrolled a long question
+  // past its own title: 454 to 802px down at 200% text on Android sizes.
+  if (!asksForText && !asksForNote) dlg.scrollTop = 0;
   return answered;
 }
 

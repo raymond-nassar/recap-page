@@ -2036,6 +2036,22 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: 44px; }
+/* #849: a long confirmation scrolls under its answers instead of the answers scrolling it away from its
+   title. The negative margins reach the dialog's edges and collapse with the question's own, so a
+   question that fits is laid out exactly as before. The bottom offset matches the dialog's padding,
+   which scrolling insets a sticky edge by, so the footer covers that strip too. A text or note question
+   focuses its field, which a held footer could cover, so it keeps the plain one. */
+#ask[data-question="confirm"] .ask-foot {
+  position: sticky; bottom: calc(-1 * var(--space-7)); background: var(--card);
+  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-8)) calc(-1 * var(--space-7));
+  padding: var(--space-6) var(--space-8) var(--space-7);
+}
+/* At 800x360 with text tokens doubled, the 480px dialog put Cancel and a long action on two rows, which
+   left no room for the question's first line. On short landscape screens a confirmation widens so its
+   answers share one row. #830's shared dialog shell supersedes this. */
+@media (max-height: 480px) and (min-width: 560px) {
+  #ask[data-question="confirm"] { width: min(40rem, calc(100vw - 2rem)); }
+}
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
 .markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: 44px; }
 .markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
