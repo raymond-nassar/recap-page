@@ -777,7 +777,7 @@ main { min-width: 0; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
    inset a settings card gives it. */
 .order-desc { margin-top: var(--space-4); }
-.save-education { max-width: 72ch; }
+.save-education { max-width: 72ch; margin-top: var(--space-6); }
 .save-education .rail-hint { margin: 0 0 var(--space-5); }
 
 .quiet {

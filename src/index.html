@@ -260,16 +260,6 @@
               </div>
             </div>
 
-            <aside id="save-education" class="card card-static save-education" hidden>
-              <p class="rail-hint">
-                Your lists and progress save automatically in this browser. This is browser storage,
-                not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
-                in Backup &amp; settings to protect your progress or move it to another browser profile
-                or computer.
-              </p>
-              <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
-            </aside>
-
             <div id="reading-body" hidden>
               <div class="list-tools">
                 <details id="list-actions" class="list-actions action-disclosure">
@@ -356,6 +346,21 @@
                   </div>
                 </div>
               </section>
+
+              <!-- The one-time note that saving is automatic follows the hero rather than leading it.
+                   Above the hero it was 238px tall on a phone's first visit and put Read under the
+                   bottom bar, and when the first Done retired it the hero moved up 174px under the
+                   pointer on a desktop (UX-10, #836). It still shows from the first saved list until
+                   the first saved progress. -->
+              <aside id="save-education" class="card card-static save-education" hidden>
+                <p class="rail-hint">
+                  Your lists and progress save automatically in this browser. This is browser storage,
+                  not cookies, an account, or a cloud copy, and nothing is uploaded. Use the JSON backup
+                  in Backup &amp; settings to protect your progress or move it to another browser profile
+                  or computer.
+                </p>
+                <a href="#/data" class="quiet" id="save-education-settings">Backup &amp; settings</a>
+              </aside>
 
               <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
                 <h2 id="reading-empty-h">No issues yet</h2>

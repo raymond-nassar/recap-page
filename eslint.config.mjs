@@ -130,6 +130,7 @@ export default [
       'scripts/browser-defer.mjs',
       'scripts/browser-done-undo.mjs',
       'scripts/browser-milestones.mjs',
+      'scripts/browser-save-notice.mjs',
       'scripts/browser-ordered-import.mjs',
       'scripts/browser-completion.mjs',
       'scripts/browser-issue-ratings.mjs',

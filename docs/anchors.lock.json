@@ -1784,8 +1784,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1387|0": {
-    "anchor": "src/index.html:1387",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1392|0": {
+    "anchor": "src/index.html:1392",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2024,8 +2024,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1140-1144|0": {
-    "anchor": "src/index.html:1140-1144",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1145-1149|0": {
+    "anchor": "src/index.html:1145-1149",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2154,13 +2154,13 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:571-574|0": {
-    "anchor": "src/index.html:571-574",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:576-579|0": {
+    "anchor": "src/index.html:576-579",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:522-567|0": {
-    "anchor": "src/index.html:522-567",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:527-572|0": {
+    "anchor": "src/index.html:527-572",
     "fp": "ada84f9d8fc68202",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2194,23 +2194,23 @@
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:312-358|0": {
-    "anchor": "src/index.html:312-358",
+  "docs/UX_STUDY.md|job-stories|src/index.html:302-348|0": {
+    "anchor": "src/index.html:302-348",
     "fp": "b35aac220b574d97",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:336-337|0": {
-    "anchor": "src/index.html:336-337",
+  "docs/UX_STUDY.md|job-stories|src/index.html:326-327|0": {
+    "anchor": "src/index.html:326-327",
     "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:571-574|0": {
-    "anchor": "src/index.html:571-574",
+  "docs/UX_STUDY.md|job-stories|src/index.html:576-579|0": {
+    "anchor": "src/index.html:576-579",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:573-577|0": {
-    "anchor": "src/index.html:573-577",
+  "docs/UX_STUDY.md|job-stories|src/index.html:578-582|0": {
+    "anchor": "src/index.html:578-582",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -2249,8 +2249,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:312-358|0": {
-    "anchor": "src/index.html:312-358",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:302-348|0": {
+    "anchor": "src/index.html:302-348",
     "fp": "b35aac220b574d97",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2289,8 +2289,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:647-652|0": {
-    "anchor": "src/index.html:647-652",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:652-657|0": {
+    "anchor": "src/index.html:652-657",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
@@ -2329,8 +2329,8 @@
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:333-335|0": {
-    "anchor": "src/index.html:333-335",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:323-325|0": {
+    "anchor": "src/index.html:323-325",
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
@@ -2359,8 +2359,8 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:312-358|0": {
-    "anchor": "src/index.html:312-358",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:302-348|0": {
+    "anchor": "src/index.html:302-348",
     "fp": "b35aac220b574d97",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2399,8 +2399,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:795|0": {
-    "anchor": "src/index.html:795",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:800|0": {
+    "anchor": "src/index.html:800",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2419,8 +2419,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:312-358|0": {
-    "anchor": "src/index.html:312-358",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:302-348|0": {
+    "anchor": "src/index.html:302-348",
     "fp": "b35aac220b574d97",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2459,8 +2459,8 @@
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:336-337|0": {
-    "anchor": "src/index.html:336-337",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:326-327|0": {
+    "anchor": "src/index.html:326-327",
     "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
@@ -2519,13 +2519,13 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1157-1168|0": {
-    "anchor": "src/index.html:1157-1168",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1162-1173|0": {
+    "anchor": "src/index.html:1162-1173",
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:336-337|0": {
-    "anchor": "src/index.html:336-337",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:326-327|0": {
+    "anchor": "src/index.html:326-327",
     "fp": "654e035047b90a73",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark read and c"
   },
@@ -2554,8 +2554,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:522-567|0": {
-    "anchor": "src/index.html:522-567",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:527-572|0": {
+    "anchor": "src/index.html:527-572",
     "fp": "ada84f9d8fc68202",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
