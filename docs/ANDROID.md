@@ -534,6 +534,14 @@ because the app's activity resizes for it. With the keyboard open, the field mus
 inside the bar and the bar within its height cap. These are Edge web checks, not a real keyboard,
 native fontScale or TalkBack acceptance.
 
+`npm run android:browser -- --only=save-notice` opens a Reading List on a first visit, while the
+one-time note that saving is automatic still shows, at 360x800 in light, 412x915 in dark with cover
+art on, 800x360, 360x800 with 200% text tokens, and the shared desktop entry at 1280x900. The note
+must follow the reading card, so Read is fully above the bottom bar in the two portrait sizes, where
+the note used to put it under the bar. Tab must reach the note's Backup & settings link clear of the
+bar, and the first Done must retire the note without moving the card. These are Edge web checks, not
+a real keyboard, native fontScale or TalkBack acceptance.
+
 ## Native emulator checks without a local emulator
 
 The optional **native_mode=debug** selection in **CI** runs the APK in a full

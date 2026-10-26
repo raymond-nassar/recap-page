@@ -29,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones',
+  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -56,6 +56,7 @@ const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
 const milestoneMode = process.argv.includes('--only=milestones');
+const saveNotice = process.argv.includes('--only=save-notice');
 const longListName = process.argv.includes('--only=long-list-name');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
@@ -1653,7 +1654,7 @@ const readingProfiles = [
 ];
 let readingOrder;
 let readingIssue;
-if (readingComposition || alignment) {
+if (readingComposition || alignment || saveNotice) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
@@ -3120,6 +3121,114 @@ async function completionFocusJourney(page, label) {
   }
 }
 
+// #836 item 1 (UX-10): a first visit to a Reading List, with the one-time note that saving is automatic
+// still showing. The note used to lead the reading card, and on a phone it was 238px tall at 360 by 800
+// and put Read under the bottom bar. It now follows the card, so Read is where it would be without the
+// note. Tab keeps the note's link clear of the bar, and the first Done retires the note without moving
+// anything above the card.
+async function saveNoticeFixtures(page, viewport) {
+  await page.evaluateOnNewDocument((saved, key, educationKey, education, settings) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    if (!localStorage.getItem(educationKey)) localStorage.setItem(educationKey, education);
+    localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.origin === location.origin) return original(input, options);
+      if (url.pathname === '/v1/health') {
+        return Promise.resolve(new Response('{"status":"ok"}', { headers: { 'content-type': 'application/json' } }));
+      }
+      return Promise.reject(new TypeError('Save notice fixture blocks outside requests'));
+    };
+  }, readingState(), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.EXPLAINING,
+  { covers: viewport.covers === true, theme: viewport.theme || 'light' });
+}
+
+async function saveNoticeCheck(page, label, viewport) {
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  await page.waitForFunction(() => !document.querySelector('#view-read').hidden
+    && document.querySelector('#hero-title').textContent !== 'Nothing up next');
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await settle();
+  const measure = () => page.evaluate((educationKey) => {
+    const hero = document.querySelector('#hero');
+    const notice = document.querySelector('#save-education');
+    const box = (node) => {
+      const { top, bottom } = node.getBoundingClientRect();
+      return { top: Math.round(top), bottom: Math.round(bottom), page: Math.round(top + scrollY) };
+    };
+    // The bar slides while focus moves, so content is measured against where it rests when shown.
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    return {
+      shown: !notice.hidden && notice.getClientRects().length > 0,
+      follows: Boolean(hero.compareDocumentPosition(notice) & Node.DOCUMENT_POSITION_FOLLOWING),
+      hero: box(hero), notice: notice.hidden ? null : box(notice), read: box(document.querySelector('#btn-hero-read')),
+      fold: barred ? Math.round(innerHeight - bar.height) : innerHeight, scrollY: Math.round(scrollY),
+      education: localStorage.getItem(educationKey),
+      cover: document.querySelector('#hero-img').checkVisibility(),
+    };
+  }, SAVE_EDUCATION_KEY);
+  const first = await measure();
+  check(first.shown && first.follows && first.notice.top >= first.hero.bottom && first.cover === (viewport.covers === true),
+    `${label}: a first visit shows the save note after the reading card ${JSON.stringify(first)}`);
+  if (viewport.readAbove) {
+    check(first.scrollY === 0 && first.read.top >= 0 && first.read.bottom <= first.fold,
+      `${label}: Read is fully visible above the bottom bar on a first visit ${JSON.stringify({ read: first.read, fold: first.fold })}`);
+  }
+  // Tab from the card's last control onto the note's link, parked first inside the band the bottom bar
+  // covers. Focus scrolls a control that is off screen to the middle anyway, so that band is the one
+  // place focus could leave the link hidden (WCAG 2.4.11, focus not obscured).
+  await page.evaluate(() => {
+    const link = document.querySelector('#save-education-settings');
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const barred = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2;
+    const { top, height } = link.getBoundingClientRect();
+    window.scrollBy(0, top - (barred ? innerHeight - bar.height / 2 - height / 2 : innerHeight - height - 8));
+  });
+  await settle();
+  await page.$eval('#hero-more-actions > summary', (node) => node.focus({ preventScroll: true }));
+  const path = [];
+  for (let step = 0; step < 8 && await page.evaluate(() => document.activeElement?.id) !== 'save-education-settings'; step += 1) {
+    await page.keyboard.press('Tab');
+    path.push(await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
+  }
+  await settle();
+  const link = await page.evaluate(() => {
+    const node = document.querySelector('#save-education-settings');
+    const { top, bottom } = node.getBoundingClientRect();
+    const rail = document.querySelector('.rail-header');
+    const bar = rail.getBoundingClientRect();
+    const fold = getComputedStyle(rail).position === 'fixed' && bar.top > innerHeight / 2 ? innerHeight - bar.height : innerHeight;
+    return { focused: document.activeElement === node, top: Math.round(top), bottom: Math.round(bottom), fold: Math.round(fold) };
+  });
+  check(link.focused && link.top >= 0 && link.bottom <= link.fold,
+    `${label}: Tab reaches the note's Backup & settings link in view, clear of the bottom bar ${JSON.stringify({ link, path })}`);
+  // Done is brought to the middle first, as a reader would scroll to it, so the bar cannot take the tap.
+  await page.$eval('#btn-hero-done', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  const point = await page.$eval('#btn-hero-done', (node) => {
+    const { left, top, width, height } = node.getBoundingClientRect();
+    const [x, y] = [left + width / 2, top + height / 2];
+    const hit = document.elementFromPoint(x, y);
+    return { x, y, reached: hit === node || node.contains(hit) };
+  });
+  check(point.reached, `${label}: Done can be reached where it is ${JSON.stringify(point)}`);
+  if (viewport.desktop) await page.mouse.click(point.x, point.y);
+  else await page.touchscreen.tap(point.x, point.y);
+  await page.waitForFunction(() => document.querySelector('#save-education').hidden, { timeout: 5000 });
+  await settle();
+  const after = await measure();
+  check(after.education === SAVE_EDUCATION_STATE.COMPLETE && !after.shown && Math.abs(after.hero.page - first.hero.page) <= 1,
+    `${label}: the first Done retires the note without moving the reading card ${JSON.stringify({ before: first.hero, after: after.hero, education: after.education })}`);
+  console.log(`CHECKED ${label}: first-visit save note ${JSON.stringify({ notice: first.notice, read: first.read, fold: first.fold, link })}`);
+}
+
 // #874: the Reading Journey milestones in the Android build, at the phone sizes and text scales the
 // Issue names. A finished section's Complete badge and Done's longer result stay inside the screen, and
 // the line the wrap-up opens with stays inside its card with each word whole, its display size scaled
@@ -3533,6 +3642,15 @@ try {
     { width: 320, height: 740, textScale: 2, theme: 'dark' },
     { width: 800, height: 360, theme: 'light' },
   ];
+  // Read is required above the bottom bar where it fits without the note: the portrait phones at
+  // normal text. In landscape and with 200% text the card alone is taller than the screen.
+  if (saveNotice) viewports = [
+    { width: 360, height: 800, theme: 'light', readAbove: true },
+    { width: 412, height: 915, theme: 'dark', covers: true, readAbove: true },
+    { width: 800, height: 360, theme: 'light' },
+    { width: 360, height: 800, textScale: 2, theme: 'dark' },
+    { width: 1280, height: 900, desktop: true, theme: 'light', readAbove: true },
+  ];
   if (longListName) viewports = [
     { width: 360, height: 800 },
     { width: 412, height: 915 },
@@ -3584,6 +3702,7 @@ try {
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
     if (milestoneMode) await milestoneFixtures(page, viewport.theme);
+    if (saveNotice) await saveNoticeFixtures(page, viewport);
     if (longListName) await longListNameFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
@@ -3594,13 +3713,13 @@ try {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
-      if ((readingComposition || placeholderAx) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if ((readingComposition || placeholderAx || saveNotice) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -3654,7 +3773,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode || saveNotice);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -3861,6 +3980,12 @@ try {
     }
     if (completionFocus) {
       await completionFocusJourney(page, label);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (saveNotice) {
+      await saveNoticeCheck(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

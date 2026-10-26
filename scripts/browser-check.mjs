@@ -19671,6 +19671,9 @@ MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutatio
 const milestones = await import('./browser-milestones.mjs');
 SCENARIOS.push(milestones.milestones, milestones.milestonePreferences);
 MUTATIONS.push(...milestones.milestoneMutations);
+const saveNotice = await import('./browser-save-notice.mjs');
+SCENARIOS.push(saveNotice.saveNoticePlacement);
+MUTATIONS.push(...saveNotice.saveNoticeMutations);
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
