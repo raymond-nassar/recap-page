@@ -29,7 +29,7 @@ const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith
 const allowedModes = new Set([
   'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
   'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
-  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar',
+  'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -55,6 +55,7 @@ const categoryReadability = process.argv.includes('--only=category-readability')
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
 const completionFocus = process.argv.includes('--only=completion-focus');
+const milestoneMode = process.argv.includes('--only=milestones');
 const longListName = process.argv.includes('--only=long-list-name');
 const selectionBar = process.argv.includes('--only=selection-bar');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
@@ -3119,6 +3120,106 @@ async function completionFocusJourney(page, label) {
   }
 }
 
+// #874: the Reading Journey milestones in the Android build, at the phone sizes and text scales the
+// Issue names. A finished section's Complete badge and Done's longer result stay inside the screen, and
+// the line the wrap-up opens with stays inside its card with each word whole, its display size scaled
+// with the text like every other step of the ramp.
+const milestoneTitle = (n) => `Milestone fixture (2026) #${n}`;
+async function milestoneFixtures(page, theme) {
+  let state = createList(createEmptyState(), { id: 'journey', name: 'Milestone fixture' });
+  state = addIssuesToList(state, 'journey', [1, 2, 3].map((n) => ({
+    issueId: 874100 + n, title: milestoneTitle(n), number: String(n), seriesName: 'Milestone fixture (2026)', seriesId: 874,
+    digitalId: 874200 + n, url: `https://www.marvel.com/comics/issue/${874100 + n}/fixture`, source: 'manual',
+    collectedIn: n < 3 ? 'Book One' : 'Book Two',
+  }))).state;
+  state = markRead(state, 874101, true, 1000);
+  await page.evaluateOnNewDocument((saved, key, chosen) => {
+    // Home first, so the harness's own Home checks run on Home before the journey opens the list.
+    if (!location.hash) history.replaceState(null, '', '#/home');
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved));
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all', theme: chosen }));
+    window.open = () => null;
+    const original = window.fetch.bind(window);
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      return url.origin === location.origin ? original(input, options)
+        : Promise.reject(new TypeError('Milestone fixture blocks outside requests'));
+    };
+  }, state, KEY, theme || 'light');
+}
+
+async function milestoneJourney(page, label) {
+  const settle = () => page.evaluate(() => new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+  await page.evaluate(() => { location.hash = '#/read/journey'; });
+  await page.waitForFunction((name) => !document.querySelector('#view-read').hidden
+    && document.querySelector('#hero-title').textContent === name, {}, milestoneTitle(2));
+  if (!await page.$eval('#full', (node) => node.open)) await click(page, '#full > summary');
+  await page.waitForSelector('#rows .row');
+  await click(page, '#btn-hero-done');
+  await page.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, milestoneTitle(3));
+  // Measured and captured once the moment has settled, so the scale it starts from is not taken for the
+  // layout. A transition replaced before it ends rejects its promise, and has settled all the same.
+  const still = () => page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished.catch(() => {}))));
+  await still();
+  await page.$eval('#done-result', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  await screenshot(page, label, 'milestone-result');
+  await page.$eval('#rows .row-group.is-done', (node) => node.scrollIntoView({ block: 'center' }));
+  await settle();
+  const section = await page.evaluate(() => {
+    const badge = document.querySelector('#rows .row-group.is-done .rg-done');
+    const result = document.querySelector('#done-result');
+    return {
+      badge: badge?.textContent ?? null, right: badge?.getBoundingClientRect().right ?? null,
+      result: result?.querySelector('.grow')?.textContent ?? null, resultRight: result?.getBoundingClientRect().right ?? null,
+      width: document.documentElement.clientWidth,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    };
+  });
+  check(section.badge === '✓Complete' && section.right <= section.width && section.resultRight <= section.width
+    && section.result === `Marked ${milestoneTitle(2)} read. Section complete: Book One.` && section.overflow <= 0,
+  `${label}: a finished section's badge and Done's result stay inside the screen ${JSON.stringify(section)}`);
+  await screenshot(page, label, 'milestone-section');
+  await page.$eval('#rows [data-key="874103"][data-act="read"]', (node) => node.click());
+  // The line is what is under test, so a missing one is reported by the check below, not a timeout.
+  await page.waitForSelector('#list-wrap-up-cheer:not([hidden])', { timeout: 5000 }).catch(() => {});
+  await still();
+  await page.$eval('#list-wrap-up', (node) => node.scrollIntoView({ block: 'start' }));
+  await settle();
+  const list = await page.evaluate(() => {
+    const cheer = document.querySelector('#list-wrap-up-cheer');
+    if (!cheer?.checkVisibility()) return null;
+    const card = cheer.closest('#list-wrap-up').getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(cheer);
+    // The text's own extent, skew and shadow included, rather than the block it sits in, which is as
+    // wide as the card whatever the words do.
+    const box = range.getBoundingClientRect();
+    let at = 0;
+    const words = cheer.textContent.split(' ').map((word) => {
+      range.setStart(cheer.firstChild, at);
+      range.setEnd(cheer.firstChild, at + word.length);
+      at += word.length + 1;
+      return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
+    });
+    return {
+      text: cheer.textContent, left: box.left, right: box.right, cardLeft: card.left, cardRight: card.right, words,
+      font: parseFloat(getComputedStyle(cheer).fontSize),
+      token: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--t-title-lg')),
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    };
+  });
+  // The display size is the ramp's largest step, which the Android overlay sets and the text scale above
+  // multiplies, so following the token is what proves the line grows with the reader's text.
+  check(list?.text === 'All read!' && list.left >= list.cardLeft && list.right <= list.cardRight
+    && list.words.every((lines) => lines === 1) && list.font === list.token && list.overflow <= 0,
+  `${label}: the wrap-up opens with All read! inside its card, each word whole, at the scaled display size ${JSON.stringify(list)}`);
+  await screenshot(page, label, 'milestone-list');
+  console.log(`CHECKED ${label}: milestones ${JSON.stringify({ badge: section.right, cheer: list && [list.left, list.right, list.font] })}`);
+}
+
 // #866: the More menu's link to the Reading List keeps the list's name on one line, and below 880px
 // the shell's single column grew to fit it, so opening the menu widened the whole page. Measured on
 // main in Edge phone emulation on 2026-10-26 with this 79-character name, the page reached 181px past
@@ -3426,6 +3527,12 @@ try {
     { width: 800, height: 360 },
   ];
   if (completionFocus) viewports = [{ width: 412, height: 915 }, { width: 800, height: 360 }];
+  if (milestoneMode) viewports = [
+    { width: 360, height: 800, theme: 'dark' },
+    { width: 360, height: 800, textScale: 2, theme: 'light' },
+    { width: 320, height: 740, textScale: 2, theme: 'dark' },
+    { width: 800, height: 360, theme: 'light' },
+  ];
   if (longListName) viewports = [
     { width: 360, height: 800 },
     { width: 412, height: 915 },
@@ -3476,6 +3583,7 @@ try {
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
     if (doneHint) await doneHintFixtures(page);
     if (completionFocus) await completionFocusFixtures(page);
+    if (milestoneMode) await milestoneFixtures(page, viewport.theme);
     if (longListName) await longListNameFixtures(page);
     if (selectionBar) await selectionBarFixtures(page, viewport.theme);
     if (spotlightControls || phoneHeader || homeUpdates) {
@@ -3546,7 +3654,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates || selectionBar || milestoneMode);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -3733,6 +3841,12 @@ try {
     }
     if (completionFocus) {
       await completionFocusJourney(page, label);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
+    if (milestoneMode) {
+      await milestoneJourney(page, `${label} ${viewport.theme}`);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

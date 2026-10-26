@@ -614,3 +614,30 @@ test('864 a refused Complete stays shown, available and focused, unless the refu
   assert.equal(h.nodes.reopen.focused, undefined);
   assert.deepEqual(h.calls.announce, []);
 });
+
+// #874 (UX-37): the wrap-up opens with one display line while every comic in the list is read, and
+// loses it the moment one is not, whether or not the list has been marked as completed.
+test('874 the wrap-up opens with the All read line exactly while every comic in the list is read', async () => {
+  const h = fixture();
+  const [cheer] = h.nodes.wrapup.children;
+  assert.deepEqual([cheer.id, cheer.class, cheer.text], ['list-wrap-up-cheer', 'wrapup-cheer', 'All read!'],
+    'the line comes first in the card, before its heading');
+  await h.view.render();
+  assert.equal(cheer.hidden, true, 'one comic unread and one deferred');
+  h.state = markRead(markRead(h.state, 2, true, 2000), 3, true, 3000);
+  await h.view.render();
+  assert.deepEqual([h.nodes.wrapup.hidden, cheer.hidden], [false, false]);
+  await h.view.render();
+  assert.equal(cheer.hidden, false, 'a repaint keeps it');
+  h.nodes.complete.listeners.click();
+  await h.flush();
+  assert.deepEqual([h.nodes.wrapupHeading.textContent, cheer.hidden], ['Reading List completed', false],
+    'marking the list completed keeps the line while every comic is read');
+  h.state = markRead(h.state, 3, false);
+  await h.view.render();
+  assert.deepEqual([h.nodes.wrapup.hidden, cheer.hidden], [false, true],
+    'an unmark takes the line back, though the completed card stays');
+  const before = JSON.stringify(h.state);
+  await h.view.render();
+  assert.equal(JSON.stringify(h.state), before, 'drawing it writes nothing');
+});

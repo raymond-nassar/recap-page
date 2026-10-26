@@ -2469,3 +2469,23 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .completion-wrapup .btn[aria-disabled="true"] { color: GrayText; }
   .quiet.completion-mark[aria-disabled="true"] { color: GrayText; border-color: GrayText; }
 }
+
+/* Reading Journey milestones (#874). A finished section of the full Reading List carries the badge a
+   completed list carries in the collection, in the place its full bar held, so the state is a word and
+   a tick rather than only the teal its count already took. A flex item, so the moment's scale reaches
+   it. The wrap-up opens with one line in the Home masthead's display treatment, smaller: the audit keeps
+   that treatment as the app's one display moment, and finishing a whole list is the other moment that
+   earns it. The stroke is painted under the fill, which keeps Android's fallback font free of the white
+   seams the masthead met there (#870), so it is twice the masthead's width to show as much outside. */
+.rg-done { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; }
+.wrapup-cheer {
+  margin: 0 0 var(--space-5); color: var(--logo-fill);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: var(--t-title-lg); font-weight: 900; letter-spacing: .035em; line-height: 1;
+  text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: left center;
+  -webkit-text-stroke: 2px var(--on-accent); paint-order: stroke fill;
+  text-shadow: .0625em .0625em 0 var(--accent); overflow-wrap: normal;
+}
+@media (forced-colors: active) {
+  .wrapup-cheer { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
+}

@@ -609,13 +609,16 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // is danger on a raised card, had never been measured at all.
   // `--teal` gained the Character spotlights card's tint at rest and on hover in #873, when it became
   // that card's icon in both themes; the card's own shared channel measured 1.60:1 on the light hover.
+  // `--logo-fill` gained `--card` when the wrap-up card began opening with a line in the masthead's
+  // treatment once every comic in a list is read (#874): the same colour, drawn on a card rather than
+  // on the page.
   const surfaces = (fg) => PAIRS.filter((p) => p[0] === fg).map((p) => p[1]).sort();
   assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--cb-line'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
   assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
-  assert.deepEqual(surfaces('--logo-fill'), ['--bg']);
+  assert.deepEqual(surfaces('--logo-fill'), ['--bg', '--card']);
   assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);
   assert.deepEqual(surfaces('--track-2'), ['--bg']);
   assert.deepEqual(surfaces('--on-accent'), ['--accent', '--track-2']);

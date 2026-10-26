@@ -28,6 +28,7 @@ import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/re
 import { shortcutAllowed } from '../lib/shortcuts.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { earlierIssueIds } from '../lib/reorientation.js';
+import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -530,15 +531,21 @@ export function createReadingView({
     if (!issue) return;
     beginDone(surface);
     const wasRead = isRead(getState(), issue.issueId);
-    const { state } = updateState((current) => markRead(current, issue.issueId, true));
+    let before = null;
+    const { state } = updateState((current) => { before = current; return markRead(current, issue.issueId, true); });
     const transition = recordDirectProgressSave({ wasRead, state, issueId: issue.issueId });
     if (!transition) return;
     const next = upNext(getState(), activeListId());
     const { deferred } = listReadingProgress(getState(), activeListId());
-    const said = next ? `${issue.title} marked read. Next up: ${next.title}.`
-      : deferred ? `${issue.title} marked read. Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
+    // #874: a section finished by this mark joins the one announcement and Done's result. Finishing
+    // the whole list says that instead, which already covers every section in it.
+    const milestone = readMilestones(before, getState(), activeListId(), issue.issueId);
+    const section = milestone.section && !milestone.list ? ` ${sectionSentence(milestone.section.name)}` : '';
+    const said = next ? `${issue.title} marked read.${section} Next up: ${next.title}.`
+      : deferred ? `${issue.title} marked read.${section} Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
         : `${issue.title} marked read. That is the whole order finished.`;
-    announce(withSaveEducation([said, offerDoneUndo(issue, surface)].filter(Boolean).join(' '), transition));
+    announce(withSaveEducation([said, offerDoneUndo(issue, surface, section)].filter(Boolean).join(' '), transition));
+    celebrate(milestone);
     if (!next) focusDoneLanding(surface);
   }
 
@@ -806,15 +813,18 @@ export function createReadingView({
         if (hasEditions && runIndex !== shownRun) {
           shownRun = runIndex;
           const run = runs[runIndex];
-          if (run.name || runIndex > 0) {
-            const headKey = `${run.name || 'Individual issues'}|${run.read}|${run.total}`;
+          const heading = sectionHeading(run, runIndex);
+          if (heading) {
+            const headKey = `${heading}|${run.read}|${run.total}`;
             const cachedHead = rowCache.get(`heading:${runIndex}`);
             if (cachedHead && cachedHead.key === headKey) desired.push(cachedHead.node);
             else {
               const head = el('li', { class: `row-group${run.read === run.total ? ' is-done' : ''}` }, [
-                el('h3', { class: 'rg-name', text: run.name || 'Individual issues' }),
+                el('h3', { class: 'rg-name', text: heading }),
                 el('span', { class: 'rg-count', text: `${run.read} of ${run.total} read` }),
-                el('progress', { value: String(run.read), max: String(run.total), 'aria-hidden': 'true' }),
+                // #874: a finished section says so in words where its full bar was, not only in colour.
+                run.read === run.total ? el('span', { class: 'badge badge-done rg-done' }, [el('span', { 'aria-hidden': 'true', text: '✓' }), 'Complete'])
+                  : el('progress', { value: String(run.read), max: String(run.total), 'aria-hidden': 'true' }),
               ]);
               rowCache.set(`heading:${runIndex}`, { key: headKey, node: head });
               desired.push(head);
@@ -1072,13 +1082,27 @@ export function createReadingView({
       return;
     }
     const wasRead = isRead(getState(), item.issueId);
-    const { ok, state } = updateState((current) => toggleRead(current, item.issueId));
+    let before = null;
+    const { ok, state } = updateState((current) => { before = current; return toggleRead(current, item.issueId); });
     if (!ok) return;
     const transition = recordDirectProgressSave({ wasRead, state, issueId: item.issueId });
+    const milestone = readMilestones(before, state, activeListId(), item.issueId);
+    const reached = milestone.list ? ' That is the whole order finished.'
+      : milestone.section ? ` ${sectionSentence(milestone.section.name)}` : '';
     announce(withSaveEducation(
-      `${item.title} ${isRead(state, item.issueId) ? 'marked read' : 'marked unread'}.`,
+      `${item.title} ${isRead(state, item.issueId) ? 'marked read' : 'marked unread'}.${reached}`,
       transition,
     ));
+    celebrate(milestone);
+  }
+
+  // #874: the moment plays on what shows each milestone, a finished section's badge in the full list
+  // and the wrap-up's cheer, once the repaint the mark caused has drawn them. A full list that is
+  // closed, or filtered past the section, has no badge on screen to play it on.
+  function celebrate({ section, list }) {
+    const head = section ? rowCache.get(`heading:${section.index}`)?.node : null;
+    if (head?.classList.contains('is-done')) playMilestone(head.querySelector('.rg-done'));
+    if (list) playMilestone($('#list-wrap-up-cheer'));
   }
 
   async function editIssueNote(item, isCurrent = () => true) {
@@ -1424,11 +1448,11 @@ export function createReadingView({
   // Only a saved mark is offered back: a refused write has been reported already, and its rollback
   // left nothing for Undo to reverse. What this returns joins Done's own announcement, because the
   // result is deliberately not a live region and that announcement is the one thing said.
-  function offerDoneUndo(issue, surface) {
+  function offerDoneUndo(issue, surface, reached = '') {
     if (!isRead(getState(), issue.issueId)) return '';
     const result = { issueId: issue.issueId, title: issue.title, offered: true, surface };
     result.context = doneContext(activeListId(), issue.issueId, getState(), surface);
-    return paintDoneResult(result, `Marked ${issue.title} read.`, 'ok', 'Undo') ? 'Undo is available.' : '';
+    return paintDoneResult(result, `Marked ${issue.title} read.${reached}`, 'ok', 'Undo') ? 'Undo is available.' : '';
   }
 
   // One paragraph in the shared notice pattern. A later phase replaces it where it stands, so a
