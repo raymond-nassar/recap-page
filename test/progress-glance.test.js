@@ -80,7 +80,8 @@ test('the palette gate measures each paint progress at a glance puts on a card, 
   // The bar's outline and fill, and the read figure, are read from the rules that paint them, so a
   // token swapped in either place has to be one the gate already holds to the right floor.
   const css = read('src/styles.css');
-  const rule = (selector) => css.match(new RegExp(`(?:^|\\n)${selector.replace(/[.>]/g, '\\$&')} \\{([^}]*)\\}`))?.[1] ?? '';
+  const escape = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const rule = (selector) => css.match(new RegExp(`(?:^|\\n)${escape(selector)} \\{([^}]*)\\}`))?.[1] ?? '';
   const token = (declarations, property) => declarations.match(new RegExp(`${property}:[^;]*var\\((--[a-z0-9-]+)\\)`))?.[1];
   const paints = [
     [token(rule('.glance-bar'), 'box-shadow'), LARGE, 'the outline that shows the bar\'s extent'],
