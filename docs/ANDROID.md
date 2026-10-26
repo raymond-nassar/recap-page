@@ -34,9 +34,11 @@ download comics or provide offline comic reading.
 ### Phone navigation and controls
 
 On narrow Android screens, the menu button shows only its icon and keeps its **More**
-screen-reader name and 48px minimum touch target. The navigation bar is the only app branding,
-with the full app icon at the size of its other icons and no selected-page stripe. Home keeps
-**Browse. Choose. Read.** as its visible, focusable heading instead of repeating the large logo.
+screen-reader name and 48px minimum touch target. The navigation bar shows the full app icon at
+the size of its other icons, with no selected-page stripe. Home's visible, focusable heading is the
+Windows **RECAP PAGE!** masthead scaled down to a centered wordmark, at 6.5% of the screen's shorter
+side and without the tagline. Android has none of the masthead's display fonts, so the wordmark is
+drawn in Android's own sans-serif, which is Roboto on stock Android.
 
 Home offers **Browse Reading Lists** and **Add comics**, without a Setup recommendation.
 The existing Setup guide remains on Modern Timeline and the other browse pages.
@@ -432,6 +434,17 @@ sizes above, it adds a 1280x900 window and a 360x800 case with 130% text tokens.
 It checks recommendation geometry, touch and keyboard focus, parent links, filter scrolling,
 list-sheet dismissal and editor handoff. Text-token stress tests browser layout, not Android's
 native font scaling. Use `--viewport=360x800` to isolate the normal-text case while iterating.
+
+`npm run android:browser -- --only=phone-header` checks the narrow header, footer and Home heading
+at 320x740 with 200% text tokens, 360x800, 390x844, 412x915, 800x360 with and without 200% text
+tokens, 880x900 and 881x900, plus the shared desktop entry at 1280x900 and 390x844. On a narrow
+screen, Home's one heading must be the masthead's text with its skew, its stroke painted under the
+fill and its offset shadow, as one centered line at the top of Home at 6.5% of the screen's shorter
+side, inside the screen and clear of What's new and the content below. WebView multiplies every font
+size by the system font scale, so the 200% cases double the wordmark as well. The 360x800 case also
+checks forced colors, and wider windows must keep the full masthead and its tagline. Edge draws the
+masthead's Impact, which is narrower than Android's fallback and has no overlapping letter outlines
+for the stroke to trace, so these are not proof of how a phone draws it.
 
 Install `puppeteer-core` **outside** the repository, as for the existing browser suite.
 If it or Edge is outside the usual development locations, set `MRT_PUPPETEER` to its absolute

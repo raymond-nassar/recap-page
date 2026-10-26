@@ -134,10 +134,19 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
   body #view-home #home-updates { margin-left: auto; }
   body #view-home #home-updates[open] { width: 100%; }
   body #view-home #home-updates-panel { position: static; width: 100%; }
+  /* The Windows masthead, scaled to a phone wordmark (#870). 6.5% of the shorter side matches the
+     footprint, width times capital height, of the Instagram wordmark the owner pointed to, 118 by
+     28px at 412px: measured at 412 by 915, Roboto Black, Android's fallback for this font stack,
+     is 176 by 19px and Impact 142 by 23px. The shorter side keeps a landscape phone the size of a
+     portrait one. WebView multiplies every font size by the system font scale, and at 200% the
+     fallback still fits a 320px phone on one line, 274 of its 288px. The offset keeps the
+     masthead's proportion, 5px at its widest 80px. Roboto is a variable font built from
+     overlapping outlines, and the stroke traced each overlap as a white line through the letter,
+     seen in Edge with Roboto standing in for the masthead's fonts; painted under the fill, only
+     its outer edge shows. */
   #view-home .home-brand {
-    margin: 0; color: var(--text); font-family: inherit; font-size: var(--t-subtitle);
-    font-weight: 800; letter-spacing: .08em; line-height: 1.5; overflow-wrap: normal;
-    text-transform: none; transform: none; -webkit-text-stroke: 0; text-shadow: none;
+    font-size: 6.5vmin; overflow-wrap: normal; paint-order: stroke fill;
+    text-shadow: .0625em .0625em 0 var(--accent);
   }
   #view-home .home-action { display: none; }
   .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }

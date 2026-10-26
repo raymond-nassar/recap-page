@@ -2162,8 +2162,8 @@ async function alignmentCheck(page, profile) {
   const [head, lockup, logo] = home.nodes;
   const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
   const centerError = Math.abs((lockup.box.left + lockup.box.right - head.content.left - head.content.right) / 2);
-  check(compactHome ? logo.text === 'Browse. Choose. Read.'
-    : logo.text === 'RECAP PAGE!' && home.nodes.find((node) => node.selector === '.home-action').text === 'Browse. Choose. Read.',
+  check(logo.text === 'RECAP PAGE!'
+    && (compactHome || home.nodes.find((node) => node.selector === '.home-action').text === 'Browse. Choose. Read.'),
   `${id}: exact Home heading copy for the platform`);
   check(home.body === `${(profile.desktop ? 14 : 16) * (profile.textScale || 1)}px`, `${id}: retained body scale`);
   check(Math.abs(parseFloat(logo.font) - profile.logoBase * (profile.textScale || 1)) < 0.1,
@@ -2252,6 +2252,123 @@ async function alignmentCheck(page, profile) {
   console.log(`ALIGNMENT ${id}: center error ${centerError}; gutters ${JSON.stringify(gutters)}; ${Object.keys(snapshots).length} states`);
 }
 
+// #870 replaced the compact tagline heading with the Windows masthead at 6.5% of the screen's
+// shorter side. That is the size decision recorded on the Issue: it gives the wordmark the footprint,
+// width times capital height, of the reference the owner chose, 118 by 28px on a 412px phone.
+const WORDMARK_SHARE = 0.065;
+const WORDMARK_FOOTPRINT = 118 * 28 / 412 ** 2;
+
+async function homeWordmark(page) {
+  return page.evaluate(() => {
+    const view = document.querySelector('#view-home');
+    const heading = document.querySelector('#home-h');
+    const head = view.querySelector(':scope > .head');
+    const style = getComputedStyle(heading);
+    const rect = (node) => {
+      const { left, right, top, bottom } = node.getBoundingClientRect();
+      return { left, right, top, bottom };
+    };
+    const box = rect(heading);
+    const headBox = head.getBoundingClientRect();
+    const headStyle = getComputedStyle(head);
+    const center = (headBox.left + parseFloat(headStyle.paddingLeft)
+      + headBox.right - parseFloat(headStyle.paddingRight)) / 2;
+    const text = document.createRange();
+    text.selectNodeContents(heading);
+    // The canvas reports the glyphs' own height, which the line box does not.
+    const context = document.createElement('canvas').getContext('2d');
+    context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const nearby = [...view.querySelectorAll('#home-updates-toggle, :scope > :not(.head)')]
+      .filter((node) => node.checkVisibility());
+    return {
+      headings: [...view.querySelectorAll('h1')].filter((node) => node.checkVisibility()).map((node) => node.id),
+      labelledBy: view.getAttribute('aria-labelledby'),
+      text: heading.textContent,
+      tagline: !!document.querySelector('.home-action').getClientRects().length,
+      family: style.fontFamily, upper: style.textTransform, transform: style.transform,
+      stroke: style.webkitTextStrokeWidth, paint: style.paintOrder, shadow: style.textShadow,
+      font: parseFloat(style.fontSize), width: heading.offsetWidth,
+      cap: context.measureText(heading.textContent).actualBoundingBoxAscent,
+      lines: [...text.getClientRects()].filter((line) => line.width && line.height).length,
+      box, top: box.top - view.getBoundingClientRect().top, offCenter: Math.abs((box.left + box.right) / 2 - center),
+      screen: document.documentElement.clientWidth,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      overlapping: nearby.filter((node) => {
+        const other = rect(node);
+        return box.left < other.right && other.left < box.right && box.top < other.bottom && other.top < box.bottom;
+      }).map((node) => node.id || node.className),
+    };
+  });
+}
+
+async function homeWordmarkCheck(page, label, viewport) {
+  await page.waitForSelector('#view-home:not([hidden])');
+  if (viewport.desktop || viewport.width > 880) {
+    const masthead = await homeWordmark(page);
+    check(masthead.text === 'RECAP PAGE!' && masthead.tagline && masthead.font >= 48,
+      `${label}: wider Home keeps the full masthead and its tagline ${JSON.stringify(masthead)}`);
+    return;
+  }
+  // WebView multiplies every font size by the system font scale, viewport units included, and the
+  // token stress reaches only token sizes, so large text scales the wordmark here the same way.
+  const scale = viewport.textScale || 1;
+  if (scale !== 1) {
+    await page.$eval('#home-h', (node, factor) => {
+      node.style.fontSize = `${parseFloat(getComputedStyle(node).fontSize) * factor}px`;
+    }, scale);
+    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+  }
+  const shorter = Math.min(viewport.width, viewport.height);
+  const shown = await homeWordmark(page);
+  const shadow = shown.shadow.match(/\) (-?[\d.]+)px (-?[\d.]+)px/);
+  const footprint = shown.width * shown.cap / (shorter * scale) ** 2 / WORDMARK_FOOTPRINT;
+  const misses = [
+    JSON.stringify(shown.headings) !== '["home-h"]' && `page headings ${JSON.stringify(shown.headings)}`,
+    shown.labelledBy !== 'home-h' && `Home named by ${shown.labelledBy}`,
+    shown.text !== 'RECAP PAGE!' && `text ${JSON.stringify(shown.text)}`,
+    shown.tagline && 'tagline shown',
+    !/^Impact,/.test(shown.family) && `family ${shown.family}`,
+    shown.upper !== 'uppercase' && `case ${shown.upper}`,
+    shown.transform === 'none' && 'no skew',
+    shown.stroke !== '1px' && `stroke ${shown.stroke}`,
+    // Edge draws Impact, whose letters have no overlapping outlines for the stroke to trace, so the
+    // white lines this order keeps out of Android's fallback can only be guarded by the order itself.
+    !/^stroke/.test(shown.paint) && `paint order ${shown.paint}`,
+    !(shadow && [1, 2].every((index) => Math.abs(Number(shadow[index]) - shown.font * 0.0625) < 0.01))
+      && `shadow ${shown.shadow}`,
+    Math.abs(shown.font - WORDMARK_SHARE * shorter * scale) > 0.05 && `font ${shown.font}px`,
+    Math.abs(footprint - 1) > 0.15 && `footprint ${footprint.toFixed(2)} of the reference`,
+    shown.lines !== 1 && `${shown.lines} lines`,
+    (shown.box.left < 0 || shown.box.right > shown.screen || shown.overflow) && 'outside the screen',
+    shown.offCenter > 1 && `${shown.offCenter.toFixed(1)}px off center`,
+    (shown.top < -1 || shown.top > 16) && `${shown.top.toFixed(1)}px below the top of Home`,
+    shown.overlapping.length && `overlaps ${shown.overlapping.join(', ')}`,
+  ].filter(Boolean);
+  check(!misses.length, `${label}: Home opens with the masthead as one centered wordmark line of the decided size (${misses.join('; ')})`);
+  await screenshot(page, label, 'home-wordmark');
+  if (scale !== 1) await page.$eval('#home-h', (node) => node.style.removeProperty('font-size'));
+  if (viewport.forced) {
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    const forced = await page.$eval('#home-h', (node) => {
+      const probe = document.createElement('span');
+      probe.style.color = 'CanvasText';
+      document.body.append(probe);
+      const system = getComputedStyle(probe).color;
+      probe.remove();
+      const style = getComputedStyle(node);
+      return { active: matchMedia('(forced-colors: active)').matches, color: style.color, system,
+        stroke: style.webkitTextStrokeWidth, shadow: style.textShadow };
+    });
+    await screenshot(page, label, 'home-wordmark-forced');
+    await cdp.send('Emulation.setEmulatedMedia', { features: [] });
+    await cdp.detach();
+    check(forced.active && forced.color === forced.system && forced.stroke === '0px' && forced.shadow === 'none',
+      `${label}: forced colors draw the wordmark in CanvasText without its stroke or shadow ${JSON.stringify(forced)}`);
+  }
+  console.log(`WORDMARK ${label}: ${shown.width}x${shown.cap.toFixed(1)}px at ${shown.font}px, footprint ${footprint.toFixed(2)} of the reference`);
+}
+
 async function phoneHeaderCheck(page, label, viewport) {
   const narrow = viewport.width <= 880;
   const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
@@ -2287,14 +2404,22 @@ async function phoneHeaderCheck(page, label, viewport) {
   check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
     `${label}: header navigation leaves saved reading data unchanged`);
   if (!viewport.desktop && narrow) {
+    const masthead = () => page.evaluate(() => {
+      const heading = document.querySelector('#home-h');
+      return { text: heading.textContent, font: parseFloat(getComputedStyle(heading).fontSize),
+        tagline: !!document.querySelector('.home-action').getClientRects().length };
+    });
     await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
-    await page.waitForFunction(() => document.querySelector('#home-h').textContent === 'RECAP PAGE!');
-    check(await page.$eval('.home-action', (node) => !!node.getClientRects().length),
-      `${label}: widening restores the original Home masthead and tagline`);
+    await page.waitForFunction(() => !!document.querySelector('.home-action').getClientRects().length);
+    const wide = await masthead();
+    check(wide.text === 'RECAP PAGE!' && wide.tagline && wide.font >= 48,
+      `${label}: widening restores the full Home masthead and tagline ${JSON.stringify(wide)}`);
     await page.setViewport({ width: viewport.width, height: viewport.height, isMobile: true, hasTouch: true });
-    await page.waitForFunction(() => document.querySelector('#home-h').textContent === 'Browse. Choose. Read.');
-    check(await page.$eval('.home-action', (node) => !node.getClientRects().length),
-      `${label}: narrowing restores one visible tagline heading`);
+    await page.waitForFunction(() => !document.querySelector('.home-action').getClientRects().length);
+    const narrowed = await masthead();
+    check(narrowed.text === 'RECAP PAGE!' && !narrowed.tagline
+      && Math.abs(narrowed.font - WORDMARK_SHARE * Math.min(viewport.width, viewport.height)) <= 0.05,
+    `${label}: narrowing returns to the wordmark without the tagline ${JSON.stringify(narrowed)}`);
   }
 }
 
@@ -3180,10 +3305,11 @@ try {
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
   if (phoneHeader) viewports = [
     { width: 320, height: 740, textScale: 2, theme: 'light' },
-    { width: 360, height: 800, theme: 'light' },
+    { width: 360, height: 800, theme: 'light', forced: true },
     { width: 390, height: 844, theme: 'light' },
     { width: 412, height: 915, theme: 'dark' },
     { width: 800, height: 360, theme: 'light' },
+    { width: 800, height: 360, textScale: 2, theme: 'dark' },
     { width: 880, height: 900, theme: 'light' },
     { width: 881, height: 900, theme: 'light' },
     { width: 1280, height: 900, desktop: true, theme: 'light' },
@@ -3420,10 +3546,9 @@ try {
         })(),
       };
     });
-    check(homeBranding.heading === (compactHome ? 'Browse. Choose. Read.' : 'RECAP PAGE!')
-      && (compactHome ? homeBranding.taglineDisplay === 'none' && homeBranding.transform === 'none'
-        : homeBranding.taglineDisplay !== 'none'),
-    `${label}: compact Android keeps top-only branding and one tagline; other mastheads are unchanged`);
+    check(homeBranding.heading === 'RECAP PAGE!' && homeBranding.transform !== 'none'
+      && (compactHome ? homeBranding.taglineDisplay === 'none' : homeBranding.taglineDisplay !== 'none'),
+    `${label}: Home keeps the skewed masthead text at every width, without the tagline on compact Android (${JSON.stringify(homeBranding)})`);
     // At 880px and below the brand is a bottom-bar destination, and styles.css sizes its mark
     // with the other bar icons at 20px; wider windows keep the 28px rail mark.
     const markSize = viewport.width <= 880 ? 20 : 28;
@@ -3484,6 +3609,7 @@ try {
         break;
       }
       if (!viewport.desktop) await measure(page, `${label} phone header`);
+      await homeWordmarkCheck(page, label, viewport);
       await phoneHeaderCheck(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       console.log(`CHECKED ${label}${viewport.desktop ? ' desktop' : ''}: phone header and Home branding`);
