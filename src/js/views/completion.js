@@ -42,6 +42,9 @@ export function createCompletionView({
   let feedbackIdentity = null;
   let restoreFeedbackFocus = true;
   let historyValidation;
+  // #874: the line the wrap-up opens with once every comic in the list is read. Made here, beside the
+  // other nodes this view moves into place, so the reading view can play its moment by id.
+  let cheer = null;
   const gateways = new Map();
 
   function currentList() {
@@ -208,6 +211,7 @@ export function createCompletionView({
     const record = history.getRecord(getState(), list.id);
     const completed = record?.completedAt != null;
     const { read, total } = listReadingProgress(getState(), list.id);
+    if (cheer) cheer.hidden = !(total > 0 && read === total);
     nodes.wrapup.hidden = !completed && !(total > 0 && read === total)
       && history.known && !history.writeUnavailable && !history.lastError;
     nodes.wrapup.classList.toggle('is-completed', completed);
@@ -395,6 +399,8 @@ export function createCompletionView({
     nodes.icons.replaceChildren(createIcon('thumb-up', 'gi'));
     nodes.downIcons.replaceChildren(createIcon('thumb-down', 'gi'));
     nodes.listTools.prepend(nodes.complete);
+    cheer = el('p', { id: 'list-wrap-up-cheer', class: 'wrapup-cheer', hidden: true, text: 'All read!' });
+    nodes.wrapup.prepend(cheer);
     nodes.readBody.prepend(nodes.wrapup);
     (nodes.backupHistory || nodes.dataSafety).append(nodes.historyControls);
     nodes.complete.addEventListener('click', () => { void change('complete', null, nodes.complete); });

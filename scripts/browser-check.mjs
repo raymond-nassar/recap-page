@@ -16182,6 +16182,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/model.js', mutation?.rewriteModel],
+    ['/js/lib/milestones.js', mutation?.rewriteMilestones],
     ['/js/storage.js', mutation?.rewriteStorage],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
@@ -19562,6 +19563,9 @@ SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');
 SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
 MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);
+const milestones = await import('./browser-milestones.mjs');
+SCENARIOS.push(milestones.milestones, milestones.milestonePreferences);
+MUTATIONS.push(...milestones.milestoneMutations);
 const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);

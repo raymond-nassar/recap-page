@@ -62,6 +62,7 @@ function queryAll(root, selector) {
     if (selector === '.row-actions' && node.classList.contains('row-actions')) found.push(node);
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
+    if (selector === '.rg-done' && node.classList?.contains('rg-done')) found.push(node);
   });
   return found;
 }
@@ -126,6 +127,13 @@ function node(props = {}, children = []) {
       const [listener] = this.listeners[name] ?? [];
       if (!listener) return undefined;
       return listener(event);
+    },
+    // #874: the Web Animations call a milestone's moment makes, recorded rather than played.
+    animations: [],
+    animate(keyframes, options) {
+      const animation = { keyframes, options };
+      this.animations.push(animation);
+      return animation;
     },
     focus(options) {
       if (globalThis.document) globalThis.document.activeElement = this;
@@ -323,6 +331,8 @@ function harness(overrides = {}) {
     cheroHeading: node({ id: 'chero-h', tag: 'h2' }),
     btnCheroRead: node({ id: 'btn-chero-read', tag: 'button' }),
     btnCheroDone: node({ id: 'btn-chero-done', tag: 'button' }),
+    // The wrap-up's opening line, which the completion view makes and the reading view plays.
+    cheer: node({ id: 'list-wrap-up-cheer', tag: 'p' }),
   };
   nodes.full = node({ id: 'full', tag: 'details', open: overrides.fullOpen ?? true }, [nodes.fullSummary, nodes.fullAction, nodes.fullCount, nodes.readingFilters]);
   nodes.listActionsSummary = node({ tag: 'summary', text: 'List actions' });
@@ -395,6 +405,7 @@ function harness(overrides = {}) {
     ['#hydration-status', nodes.hydrationStatus],
     ['#synopsis-status', nodes.synopsisStatus],
     ['#all-read-h', nodes.allReadHeading],
+    ['#list-wrap-up-cheer', nodes.cheer],
     ['dialog[open]', null],
   ]);
   for (const id of ['review-earlier', 'btn-review-earlier', 'review-h', 'review-context',
@@ -520,6 +531,8 @@ function harness(overrides = {}) {
     observe(target) { this.target = target; }
   };
   globalThis.matchMedia = (media) => {
+    // #874: a milestone asks once whether to play its moment.
+    if (media === '(prefers-reduced-motion: reduce)') return { media, matches: overrides.reducedMotion === true };
     assert.equal(media, '(max-width: 700px)');
     return {
       media, matches: false,
@@ -2145,7 +2158,8 @@ test('UX-02 a refused Done offers nothing, and Undo lands on Done wherever D was
     globalThis.document.listeners.keydown(keyPress('d'));
     assert.equal(done.result.isConnected, false);
     assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroDone, 'focus lands on the control the press belongs to');
-    assert.equal(doneParts(longer).message, 'Marked Issue Three read.');
+    assert.equal(doneParts(longer).message, 'Marked Issue Three read. Section complete: Trade One.',
+      'D on the last unread comic of a section says so in the result, #874');
     longer.nodes.btnHeroRead.focus();
     globalThis.document.listeners.keydown(keyPress('d'));
     assert.equal(globalThis.document.activeElement, longer.nodes.btnHeroRead, 'D leaves focus where it was');
@@ -2337,4 +2351,113 @@ test('855 every phase of Done\'s result, in the reading view and on Home, is kep
       assert.equal(parts.result.dataset.keepUncovered, '', `${place}: refusal`);
     } finally { refused.restore(); }
   }
+});
+
+// #874 (UX-37): Reading Journey milestones. A section of the full list, or the whole list, left with
+// nothing unread by a mark is said once in that mark's own announcement, and Done's result, and drawn
+// on the section heading; Undo and an unmark take it back by restoring the progress it is read from.
+function journeyState() {
+  let state = createList(createEmptyState(), { id: 'journey', name: 'Journey' });
+  state = addIssuesToList(state, 'journey', [
+    issue(11, 'Issue Eleven', { collectedIn: 'Book One' }),
+    issue(12, 'Issue Twelve', { collectedIn: 'Book One' }),
+    issue(13, 'Issue Thirteen', { collectedIn: 'Book Two' }),
+  ]).state;
+  return setActive(markRead(state, 11, true), 'journey');
+}
+
+function sectionHeads(h) {
+  return h.nodes.rows.childNodes.filter((entry) => entry.classList?.contains('row-group')).map((head) => {
+    const [name, count, last] = head.childNodes;
+    const badge = last?.classList?.contains('rg-done') ? last : null;
+    return {
+      name: name.textContent, count: count.textContent, done: head.classList.contains('is-done'), badge,
+      words: badge?.childNodes.filter((child) => typeof child === 'string').join('') ?? null,
+      glyphHidden: badge?.childNodes[0]?.attributes['aria-hidden'] === 'true',
+      bar: last?.tag === 'progress',
+    };
+  });
+}
+
+function rowToggle(h, issueId) {
+  const found = queryAll(h.nodes.rows, '[data-act="read"]').find((entry) => Number(entry.dataset.key) === issueId);
+  assert.ok(found, `the row toggle for ${issueId} exists`);
+  found.fire('click');
+}
+
+test('874 Done that finishes a section says so once, draws it on the heading, and Undo takes both back', () => {
+  const h = removalHarness({ state: journeyState() });
+  try {
+    const before = savedContent(h);
+    const [start] = sectionHeads(h);
+    assert.deepEqual([start.name, start.done, start.bar, start.badge], ['Book One', false, true, null]);
+
+    const done = pressDone(h);
+    assert.equal(done.message, 'Marked Issue Twelve read. Section complete: Book One.');
+    assert.deepEqual(h.calls.announce,
+      ['Issue Twelve marked read. Section complete: Book One. Next up: Issue Thirteen. Undo is available.'],
+      'one announcement carries the milestone between the mark and what is next');
+    const [finished, open] = sectionHeads(h);
+    assert.deepEqual([finished.name, finished.count, finished.done, finished.bar, finished.words, finished.glyphHidden],
+      ['Book One', '2 of 2 read', true, false, 'Complete', true], 'the heading says Complete in words, the tick hidden');
+    assert.deepEqual([open.name, open.done, open.bar, open.badge], ['Book Two', false, true, null]);
+    assert.equal(finished.badge.animations.length, 1, 'the moment plays once on the badge');
+    assert.ok(finished.badge.animations[0].options.duration <= 500, 'and lasts under half a second');
+    assert.equal(h.nodes.cheer.animations.length, 0, 'a section is not the whole list');
+
+    done.button.fire('click');
+    assert.equal(doneParts(h).message, 'Marked Issue Twelve unread. It is up next again.');
+    const [undone] = sectionHeads(h);
+    assert.deepEqual([undone.done, undone.bar, undone.badge], [false, true, null], 'Undo takes the milestone back');
+    assert.equal(savedContent(h), before, 'and every saved byte with it');
+    assert.equal(h.calls.announce.length, 2);
+    assert.equal(h.calls.announce[1], 'Marked Issue Twelve unread. It is up next again.');
+  } finally { h.restore(); }
+});
+
+test('874 D and the row toggle carry a finished section or list into their one announcement; an unmark carries none', () => {
+  const h = removalHarness({ state: journeyState() });
+  try {
+    h.view.wireShortcuts();
+    rowToggle(h, 12);
+    assert.deepEqual(h.calls.announce, ['Issue Twelve marked read. Section complete: Book One.']);
+    assert.equal(sectionHeads(h)[0].done, true);
+    assert.equal(sectionHeads(h)[0].badge.animations.length, 1);
+
+    rowToggle(h, 12);
+    assert.equal(h.calls.announce[1], 'Issue Twelve marked unread.', 'an unmark reaches no milestone');
+    assert.deepEqual([sectionHeads(h)[0].done, sectionHeads(h)[0].badge], [false, null], 'and takes the heading back');
+
+    globalThis.document.listeners.keydown(keyPress('d'));
+    assert.equal(h.calls.announce[2], 'Issue Twelve marked read. Section complete: Book One. Next up: Issue Thirteen. Undo is available.');
+    assert.equal(doneParts(h).message, 'Marked Issue Twelve read. Section complete: Book One.');
+
+    rowToggle(h, 13);
+    assert.equal(h.calls.announce[3], 'Issue Thirteen marked read. That is the whole order finished.',
+      'the whole list says so, which covers the section it also finished');
+    assert.deepEqual(sectionHeads(h).map((head) => head.done), [true, true]);
+    assert.equal(h.nodes.cheer.animations.length, 1, 'the wrap-up line has its moment');
+    assert.equal(h.calls.announce.length, 4, 'one announcement for each action');
+  } finally { h.restore(); }
+});
+
+test('874 with reduced motion, or the full list closed, the milestone states are drawn and nothing plays', () => {
+  const reduced = removalHarness({ state: journeyState(), reducedMotion: true });
+  try {
+    pressDone(reduced);
+    const [finished] = sectionHeads(reduced);
+    assert.deepEqual([finished.done, finished.words], [true, 'Complete']);
+    assert.equal(finished.badge.animations.length, 0);
+  } finally { reduced.restore(); }
+
+  const closed = removalHarness({ state: journeyState(), fullOpen: false });
+  try {
+    pressDone(closed);
+    assert.equal(doneParts(closed).message, 'Marked Issue Twelve read. Section complete: Book One.');
+    closed.nodes.full.open = true;
+    closed.view.renderRows();
+    const [finished] = sectionHeads(closed);
+    assert.deepEqual([finished.done, finished.words], [true, 'Complete'], 'opening the list shows the finished section');
+    assert.equal(finished.badge.animations.length, 0, 'without replaying a moment the reader was not looking at');
+  } finally { closed.restore(); }
 });
