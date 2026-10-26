@@ -14,6 +14,44 @@ const click = async (page, selector) => {
   await page.$eval(selector, (element) => element.click());
 };
 
+// The app adapts to a new width in its resize handler, which runs at the next rendering update, so a
+// layout is measured two frames after the viewport changes. Measured on 2026-10-26 for #862: straight
+// after the switch from 1280 to 360px, before that handler ran, the sidebar's link panel was still
+// shown and the Infinity War and Endgame guide's long name made the page 364px wide, a state the
+// screen never shows. A page with no frames to wait for says so rather than hanging.
+const settled = (page) => page.evaluate(() => new Promise((resolve) => {
+  const fallback = setTimeout(() => resolve(false), 2000);
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    clearTimeout(fallback);
+    resolve(true);
+  }));
+}));
+
+// How wide the page is against its window, and what makes it wider: the outermost elements reaching
+// past the window's right edge, leaving out fixed ones, which do not scroll, and any inside a box that
+// clips or scrolls them, which cannot widen the page.
+const widthReport = (page) => page.evaluate(() => {
+  const edge = document.documentElement.clientWidth;
+  const contained = (node) => {
+    for (let parent = node.parentElement; parent && parent !== document.body; parent = parent.parentElement) {
+      if (getComputedStyle(parent).overflowX !== 'visible') return true;
+    }
+    return false;
+  };
+  const past = [...document.body.querySelectorAll('*')].filter((node) => node.getClientRects().length
+    && node.getBoundingClientRect().right > edge + 0.5 && getComputedStyle(node).position !== 'fixed'
+    && !contained(node));
+  const wide = past.filter((node) => !past.some((other) => other !== node && other.contains(node)))
+    .slice(0, 5).map((node) => {
+      const box = node.getBoundingClientRect();
+      return {
+        element: `${node.tagName.toLowerCase()}${node.id ? `#${node.id}` : ''}${[...node.classList].map((name) => `.${name}`).join('')}`,
+        left: Math.round(box.left), right: Math.round(box.right), width: Math.round(box.width),
+      };
+    });
+  return { scrollWidth: document.documentElement.scrollWidth, innerWidth, clientWidth: edge, wide };
+});
+
 export async function waitForSavedPreviewLink(page, catalogId) {
   await page.waitForFunction((key, id) => {
     const raw = localStorage.getItem(key);
@@ -279,12 +317,14 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         && document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
       for (const width of [1280, 360]) {
         await page.setViewport({ width, height: 900 });
+        const frames = await settled(page);
         await page.$eval('#full', (node) => { node.open = true; });
         await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count, {}, expected.length);
         t.check(`Reading List retains all originals and groups at ${width}px`,
           isDeepStrictEqual(await rendered(page, false), presentation));
-        t.check(`Reading List fits at ${width}px`,
-          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+        const fit = await widthReport(page);
+        t.check(`Reading List fits at ${width}px`, frames && fit.scrollWidth <= fit.innerWidth,
+          JSON.stringify({ frames, ...fit }));
       }
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
