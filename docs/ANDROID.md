@@ -442,7 +442,9 @@ bundled recommendation, full catalog and Hickman minimal guide. Alongside the th
 sizes above, it adds a 1280x900 window and a 360x800 case with 130% text tokens.
 It checks recommendation geometry, touch and keyboard focus, parent links, filter scrolling,
 list-sheet dismissal and editor handoff, and that the list sheet shows every command at once, one
-tap each, with Remove from library apart and last, and closes on Escape from any of them.
+tap each, with Remove from library apart and last, and closes on Escape from any of them. Once a
+list is marked as completed, Enjoyed and Did not enjoy must draw their names beside their icons at
+every size it checks, the wide one included, because each is a touch screen.
 Text-token stress tests browser layout, not Android's
 native font scaling. Use `--viewport=360x800` to isolate the normal-text case while iterating.
 

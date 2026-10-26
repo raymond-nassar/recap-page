@@ -2581,6 +2581,37 @@ async function phoneHeaderCheck(page, label, viewport) {
   }
 }
 
+// UX-42 (#836): Enjoyed and Did not enjoy were icons named only by a tooltip, which a touch screen
+// cannot show. Every profile here is a touch screen, so each must draw its name beside its icon, the
+// wide one included. The list is completed to offer the choice and reopened once the save settles.
+async function enjoymentLabels(page, label, narrow) {
+  if (narrow) await click(page, '#android-list-options');
+  await click(page, '#btn-complete-list');
+  await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden
+    && !document.querySelector('#btn-reopen-list').hasAttribute('aria-disabled')
+    && document.querySelector('#list-enjoyment')?.checkVisibility());
+  const buttons = await page.$$eval('#list-enjoyment button', (nodes) => nodes.map((button) => {
+    const rect = button.getBoundingClientRect();
+    return {
+      name: button.getAttribute('aria-label'), text: button.innerText.trim(),
+      icon: !!button.querySelector('svg')?.checkVisibility(),
+      label: !!button.querySelector('.enjoyment-label')?.checkVisibility(),
+      inside: rect.left >= 0 && rect.right <= document.documentElement.clientWidth + 1,
+      w: Math.round(rect.width), h: Math.round(rect.height),
+    };
+  }));
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+  check(buttons.length === 2 && buttons[0].name === 'Enjoyed' && buttons[1].name === 'Did not enjoy' && !overflow
+    && buttons.every((button) => button.icon && button.label && button.text === button.name && button.inside
+      && button.w >= 47.5 && button.h >= 47.5),
+  `${label}: Enjoyed and Did not enjoy draw their names beside their icons, names unchanged ${JSON.stringify({ buttons, overflow })}`);
+  await screenshot(page, label, 'enjoyment');
+  await click(page, '#btn-reopen-list');
+  await page.waitForFunction(() => document.querySelector('#btn-reopen-list').hidden
+    && !document.querySelector('#btn-complete-list').hasAttribute('aria-disabled')
+    && document.querySelector('#list-enjoyment').hidden);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
   // Home's start actions became native hash links on 2026-10-06, so links are collected; buttons still
@@ -2785,6 +2816,7 @@ async function mobileLayout(page, label, narrow) {
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
+    await enjoymentLabels(page, label, false);
     return;
   }
   check(!await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
@@ -2910,6 +2942,7 @@ async function mobileLayout(page, label, narrow) {
   await page.goBack();
   await page.waitForFunction(() => document.querySelector('#reading-filters input[value="all"]').checked);
   check(await page.$$eval('#rows .row', (rows) => rows.length > 1), `${label}: Back restores the reading filter and rows`);
+  await enjoymentLabels(page, label, true);
   await click(page, '#android-list-options');
   await route(page, 'browse');
   check(await page.$eval('#android-list-sheet', (node) => !node.open),
