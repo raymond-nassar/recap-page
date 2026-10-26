@@ -1107,7 +1107,27 @@ async function seriesFixtures(page) {
   }, SERIES, SERIES_ISSUES);
 }
 
-async function seriesResultReadability(page, label, desktop) {
+async function seriesResultReadability(page, label, desktop, scale) {
+  // #871: both name searches kept their field's own width, so with 200 per cent text tokens a 360px
+  // phone page measured 422px across before anything was searched, and 378px in the shared styles.
+  for (const [view, form, name] of [['add-creator', '#form-creator', 'Browse a creator'], ['add-series', '#form-series', 'Find a series']]) {
+    await route(page, view);
+    const fit = await page.evaluate((selector) => {
+      const box = (node) => {
+        const { left, right } = node.getBoundingClientRect();
+        return { left: Math.round(left * 10) / 10, right: Math.round(right * 10) / 10 };
+      };
+      const owner = document.querySelector(selector);
+      return {
+        screen: document.documentElement.clientWidth,
+        page: document.documentElement.scrollWidth,
+        field: box(owner.querySelector('input[type="search"]')),
+        button: box(owner.querySelector('button[type="submit"]')),
+      };
+    }, form);
+    check(fit.page <= fit.screen + 1 && [fit.field, fit.button].every((edge) => edge.left >= -1 && edge.right <= fit.screen + 1),
+      `${label}: the ${name} field and its button stay inside the screen ${JSON.stringify(fit)}`);
+  }
   await route(page, 'add-series');
   await page.type('#series-q', 'Avengers');
   await page.$eval('#form-series', (form) => form.requestSubmit());
@@ -1140,7 +1160,7 @@ async function seriesResultReadability(page, label, desktop) {
   check(JSON.stringify(rendered.rows.map((row) => row.title)) === JSON.stringify(SERIES.map((row) => row[1])),
     `${label}: normal and long series titles retain their result order`);
   check(rendered.androidStyle === !desktop, `${label}: correct Android or shared desktop stylesheet`);
-  check(rendered.body === (desktop ? 14 : label.includes('150%') ? 24 : 16),
+  check(rendered.body === (desktop ? 14 : 16 * scale),
     `${label}: existing body scale retained (${rendered.body}px)`);
   for (const [index, row] of rendered.rows.entries()) {
     // Counts read in comics since 71a4f445, and since c117cb9e a series is browsed, not added whole.
@@ -3132,10 +3152,7 @@ async function longListNameMenu(page, label, viewport) {
   console.log(`CHECKED ${label}: menu open with a 79-character list name ${JSON.stringify({ page: opened.page, screen: opened.screen, name: [opened.name.client, opened.name.scroll] })}`);
 }
 
-// #833: an issue search long enough that its 50 rendered comics run well past a phone screen. The
-// issue search rather than the series one, because at 200 per cent text tokens the Find a series
-// and Browse a creator fields do not shrink on a 360px phone and widen that page to 422px, which
-// is its own defect (#871) and not this bar's; the issue search field already shrinks.
+// #833: an issue search long enough that its 50 rendered comics run well past a phone screen.
 const BAR_ISSUES = Array.from({ length: 50 }, (_, index) => ({
   id: 900400 + index + 1,
   title: `Selection bar fixture (2026) #${index + 1}`,
@@ -3320,6 +3337,7 @@ try {
     { width: 360, height: 800 },
     { width: 412, height: 915 },
     { width: 360, height: 800, textScale: 1.5 },
+    { width: 360, height: 800, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
   ];
   if (noteReadability) viewports = [
@@ -3702,7 +3720,7 @@ try {
       continue;
     }
     if (seriesReadability) {
-      await seriesResultReadability(page, label, !!viewport.desktop);
+      await seriesResultReadability(page, label, !!viewport.desktop, viewport.textScale || 1);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

@@ -452,11 +452,13 @@ entry file and `MRT_EDGE` to the browser executable. Optionally set `MRT_ANDROID
 to an output directory for fixture-only screenshots.
 
 `npm run android:browser -- --only=series-readability` checks series results at 320x740,
-360x800, 412x915 and 360x800 with 150% text tokens, plus the shared desktop entry at 1280x900.
+360x800, 412x915 and 360x800 with 150% and 200% text tokens, plus the shared desktop entry at
+1280x900. Before searching, it checks that the Find a series and Browse a creator fields and their
+buttons stay inside the screen, which with 200% text they did not until #871.
 It measures word line rectangles, unclipped titles, action hit areas and emergency wrapping on
 an unrelated user-content control. Synthetic fixtures check result order, counts, and that
 browsing a series saves nothing until its selected comics are saved, without live API or cover
-requests. Use `--viewport=320x740` or `--viewport=360x800@1.5` for a
+requests. Use `--viewport=320x740`, `--viewport=360x800@1.5` or `--viewport=360x800@2` for a
 focused pre-fix check. This is desktop Edge CSS text stress, not native fontScale, physical-phone,
 TalkBack, keyboard or safe-area certification.
 
@@ -524,9 +526,8 @@ comics and Clear selection stay in view, tappable and above the bottom navigatio
 bar shows. Both keep 48px targets with every word whole. It then taps Save selected comics and the
 list name field. The keyboard is modeled by shortening the viewport while the field has focus,
 because the app's activity resizes for it. With the keyboard open, the field must stay in view
-inside the bar and the bar within its height cap. The issue search is used because at 200% text the
-Find a series and Browse a creator fields widen a 360px phone page (#871). These are Edge web
-checks, not a real keyboard, native fontScale or TalkBack acceptance.
+inside the bar and the bar within its height cap. These are Edge web checks, not a real keyboard,
+native fontScale or TalkBack acceptance.
 
 ## Native emulator checks without a local emulator
 

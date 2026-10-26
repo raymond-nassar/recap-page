@@ -2105,8 +2105,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: 48px; min-height: 48px; }
   /* Without a shrinkable column a search form grows to its field's intrinsic width: at 200 per cent
      text the Storylines and MCU Prep fields stayed 393px wide on 320 and 360px phones. */
-  #form-search, #form-catalog-search, #form-lines-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
-  #form-search .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
+  #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
+  #form-search .field-row, #form-series .field-row, #form-creator .field-row, #form-catalog-search .field-row, #form-lines-search .field-row, .mcu-prep-search .field-row { min-width: 0; }
   #catalog-filters { min-width: 0; max-width: 100%; }
 }
 .btn-lg { padding: var(--space-5) var(--space-8); font-size: var(--t-body-lg); font-weight: 700; border-radius: 12px; }
