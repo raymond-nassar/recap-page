@@ -14,7 +14,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 test('eraseDialogBody and eraseOutcome are importable from the data view module', () => {
   assert.equal(typeof eraseDialogBody, 'function');
   assert.equal(typeof eraseOutcome, 'function');
-  assert.match(eraseDialogBody([]), /clears every list/);
+  assert.match(eraseDialogBody([]), /^This clears all lists, notes, issue ratings, reading progress/);
   assert.equal(eraseOutcome(false, []), 'All local data erased.');
 });
 
@@ -115,7 +115,7 @@ test('wire delegates erase confirmation to onErase via askConfirm', async () => 
   const nodes = stubElements();
   const view = createDataView(stubDeps({
     elements: () => nodes,
-    askConfirm: async (opts) => { confirmCalled = true; assert.match(opts.body, /clears every list/); return true; },
+    askConfirm: async (opts) => { confirmCalled = true; assert.match(opts.body, /^This clears all lists, notes/); return true; },
     getSalvageCopies: () => [],
     onErase: () => calls.push('erase'),
   }));
@@ -327,6 +327,69 @@ test('one phrase feeds the backup card and all three restore confirmations', asy
   assert.ok(copy.includes(`This replaces all current ${contents}.`), copy);
 });
 
+// -- what erasing clears --
+
+// Erasing writes an empty saved value over the whole of the reading data, so every map a backup
+// carries is cleared, and the question names each with the words a restore uses. The rest of the
+// map is what the route removes beside it: completion history, the import draft once the erase is
+// verified, and the saved reading-data copy behind Undo. #851: the question named lists, progress,
+// notes and ratings, and none of the rest, while it already named the copies an erase leaves.
+const ERASED_WORDS = [...REPLACED_WORDS, 'Completion and enjoyment history', 'import draft'];
+const SAVED_COPY = {
+  present: {
+    offer: { ok: true, available: true, kind: 'copy', main: 'current', snapshot: 'copy', summary: '5 lists.' },
+    said: 'The saved reading-data copy will be erased too.',
+  },
+  unknown: {
+    offer: { ok: false, available: false, errors: ['Could not check saved reading data and its recovery copy (read refused). Reload and try again.'] },
+    said: 'The app could not check for a saved reading-data copy. If there is one, it will be erased too.',
+  },
+  absent: { offer: { ok: true, available: false, main: 'current', snapshot: null }, said: null },
+};
+
+async function eraseQuestion(offer) {
+  const nodes = stubElements();
+  const asked = [];
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    eraseHistory: true,
+    getRestoreOffer: () => offer,
+    askConfirm: async (options) => { asked.push(options); return false; },
+  }));
+  view.wire();
+  await nodes.btnWipe._fire();
+  assert.equal(asked.length, 1, 'one question, cancelled, so nothing is erased');
+  return { nodes, body: asked[0].body };
+}
+
+test('erasing empties every map a reading-data backup carries', () => {
+  const erased = exportBackup(createEmptyState());
+  for (const key of Object.keys(REPLACED)) {
+    const value = erased[key];
+    assert.ok(value === null || Object.keys(value).length === 0, `${key} survives an erase: ${JSON.stringify(value)}`);
+  }
+});
+
+test('the erase question names everything erasing clears, and the saved copy whenever one may exist', async () => {
+  for (const [state, { offer, said }] of Object.entries(SAVED_COPY)) {
+    const { body } = await eraseQuestion(offer);
+    for (const words of ERASED_WORDS) assert.ok(body.includes(words), `with the saved copy ${state}, the question does not name ${words}: ${body}`);
+    if (said) assert.ok(body.includes(said), `with the saved copy ${state}, the question does not say: ${said}\n${body}`);
+    else assert.ok(!body.includes('saved reading-data copy'), `with no saved copy, the question names one: ${body}`);
+  }
+});
+
+test('the line beside Erase all local data names what the question names, from the same phrase', async () => {
+  const { nodes, body } = await eraseQuestion(SAVED_COPY.present.offer);
+  const line = nodes.eraseContents.textContent;
+  for (const words of [...ERASED_WORDS, 'saved reading-data copy']) {
+    assert.ok(line.toLowerCase().includes(words.toLowerCase()), `the Danger zone line does not name ${words}: ${line}`);
+  }
+  const contents = /^Reading-data backups contain (.+)\.$/.exec(nodes.backupContents.textContent)?.[1];
+  assert.ok(line.startsWith(`Erasing removes all ${contents}, `), line);
+  assert.ok(body.startsWith(`This clears all ${contents}.`), body);
+});
+
 // -- service replacement ownership in main --
 
 test('main retains API replacement and service rebinding in the onApiBaseSubmit callback', () => {
@@ -375,6 +438,7 @@ function stubElements() {
     btnCheckLocalConnection: stubNode(),
     btnExportJson: stubNode(),
     backupContents: stubNode(),
+    eraseContents: stubNode(),
     btnExportMd: stubNode(),
     btnExportOrder: stubNode(),
     restoreFile: stubNode(),

@@ -1194,11 +1194,15 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .card-static h2 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
 .card-static h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
 #view-data .card-static h3 { font-size: var(--t-subtitle); margin: 0 0 var(--space-4); font-weight: 600; }
-#view-data .card-static h4 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
+/* Each backup group names its file field with a visible label, set where the group's restore
+   sub-heading used to be, and the restore warning beneath it lines up with the label it qualifies. */
+#view-data .backup-restore-label { display: block; font-size: var(--t-body); margin: var(--space-7) 0 var(--space-3); font-weight: 600; }
+#view-data .backup-restore-label + .rail-hint { margin: 0 0 var(--space-4); max-width: 62ch; }
 .setgroup { margin-bottom: var(--space-8); }
 #view-data .setgroup > h2 {
   font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3);
 }
+#view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
 
 /* A settings row. The header and its one line description sit in the text column, and the control
@@ -1241,8 +1245,11 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   .setting > .setting-ctl { position: static; transform: none; margin-top: var(--space-5); max-width: none; }
 }
 
-/* Settings checkboxes keep native semantics while using a compact switch appearance. */
-.setting-ctl.checkbox { border: 1px solid var(--line-2); border-radius: 999px; padding: var(--space-2) var(--space-5); gap: var(--space-4); min-height: 24px; }
+/* Settings checkboxes keep native semantics while using a compact switch appearance, set out as a
+   Fluent switch is: the track, then its label beside it, with no outline around the pair. The pill
+   outline this replaced left "Show cover art" touching its border and wrapped longer labels inside
+   it (UX-23). The label still wraps the input, so the whole line remains the target. */
+.setting-ctl.checkbox { padding: var(--space-2) 0; gap: var(--space-4); min-height: 24px; }
 .setting-ctl.checkbox:hover { color: var(--text); }
 .setting-ctl.checkbox > input[type="checkbox"] {
   appearance: none; margin: 0; flex: none; cursor: pointer;

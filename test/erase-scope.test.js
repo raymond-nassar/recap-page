@@ -231,7 +231,7 @@ test('post-erase newer reader data and unconfirmed history or cache cleanup neve
 test('with nothing kept aside the dialog claims the lists and the progress, and not the settings', () => {
   const body = eraseDialogBody([]);
   assert.doesNotMatch(body, /everything this browser has stored/);
-  assert.match(body, /clears every list and all reading progress/);
+  assert.match(body, /^This clears all lists, notes, issue ratings, reading progress/);
   assert.match(body, /settings are kept/);
   assert.match(body, /It cannot be undone\.$/);
   assert.doesNotMatch(body, /kept aside/, 'and it does not raise a subject the reader has no copies in');
@@ -242,9 +242,31 @@ test('with nothing kept aside the dialog claims the lists and the progress, and 
 test('the dialog stops claiming everything once a copy is being kept aside', () => {
   const body = eraseDialogBody(one);
   assert.doesNotMatch(body, /everything this browser has stored/);
-  assert.match(body, /clears every list and all reading progress/);
+  assert.match(body, /^This clears all lists, notes, issue ratings, reading progress/);
   assert.match(body, /does not reach it/);
   assert.match(body, /It cannot be undone\.$/, 'the warning is narrowed, not dropped');
+});
+
+// #851. The saved reading-data copy is the one copy an erase does remove, so it is named among what
+// is erased and kept out of the sentences about the copies it leaves: the settings sentence stands
+// between them, and neither sentence speaks for the other. Its unknown answer follows the kept-aside
+// one, so storage that will not say is reported as not knowing rather than as nothing there.
+test('the saved reading-data copy an erase removes is named apart from the copies it leaves', () => {
+  for (const [savedCopy, said] of [
+    [true, 'The saved reading-data copy will be erased too.'],
+    [null, 'The app could not check for a saved reading-data copy. If there is one, it will be erased too.'],
+  ]) {
+    for (const copies of [[], one, oneLive, null]) {
+      const body = eraseDialogBody(copies, { completionHistory: true, savedCopy });
+      const at = body.indexOf(said);
+      const settings = body.indexOf(' Your settings are kept.');
+      assert.ok(at > body.indexOf('Completion and enjoyment history will also be erased.'), body);
+      assert.ok(at !== -1 && at + said.length === settings, `the saved copy is named last among what is erased: ${body}`);
+      const after = body.slice(settings);
+      assert.doesNotMatch(after, /saved reading-data copy/, 'and the sentences about what is kept do not name it');
+    }
+  }
+  assert.doesNotMatch(eraseDialogBody(one, { completionHistory: true }), /saved reading-data copy/);
 });
 
 // Where, not merely whether. A reader told something survived and not told where it is has been
@@ -363,7 +385,7 @@ test('the heading the wording names is the heading the page has, and it is above
 test('the erase dialog is built by the policy, not by a literal at the button', () => {
   const dataSrc = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
   const mainSrc = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
-  const lead = 'This clears every list and all reading progress. Notes and issue ratings are also erased. Your settings are kept.';
+  const lead = 'This clears all ${READING_DATA_CONTENTS}.';
   const gone = 'clears everything this browser has stored for the tracker';
 
   assert.equal(dataSrc.split(lead).length - 1, 1, 'a second copy means a call site is building the body inline again');
@@ -377,7 +399,7 @@ test('the erase dialog is built by the policy, not by a literal at the button', 
   const at = dataSrc.indexOf(lead);
   assert.ok(policy !== -1 && next > policy, 'the two policies must both still be there, in order');
   assert.ok(at > policy && at < next, 'and the lead has to sit inside the policy that composes it');
-  assert.match(dataSrc, /body: `\$\{eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)\}/);
+  assert.match(dataSrc, /body: `\$\{eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory, savedCopy: savedCopyState\(\) \}\)\}/);
   assert.match(dataSrc, /export function eraseDialogBody/);
   assert.match(mainSrc, /import.*eraseOutcome.*from.*views\/data\.js/);
 });

@@ -948,31 +948,26 @@
 
             <section class="setgroup">
               <h2>Data safety</h2>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download each backup below, the import draft only if you have one, and restore each on the new device. Settings are not included.</p>
               <div class="card card-static addpri">
-                <h3>Back up reading data</h3>
-                <p class="rail-hint" id="backup-contents"></p>
-                <p class="rail-hint">For a complete reading and history transfer, download the reading-data and completion-history backups together, plus the separate import-draft file when a draft or retained draft source is present. Settings are not included. These are separate files, not interchangeable formats.</p>
+                <h3>Reading data</h3>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
                 </div>
-                <div id="normal-backup-history"></div>
-
-                <h4>Restore from a backup</h4>
-                <p class="rail-hint">Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces. Undo is offered once in this tab. After Undo or reload, use the clearly named saved-copy action instead. Completion and enjoyment history are unchanged.</p>
+                <label class="backup-restore-label" for="restore-file">Restore a reading-data backup</label>
+                <p class="rail-hint" id="restore-file-hint">Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces.</p>
                 <div class="field-row">
-                  <input type="file" id="restore-file" accept="application/json,.json" aria-label="Reading-data backup file to restore" aria-describedby="restore-report" />
+                  <input type="file" id="restore-file" accept="application/json,.json" aria-describedby="restore-file-hint restore-report" />
                   <button type="button" id="btn-undo-restore" class="btn btn-g" aria-describedby="restore-copy-summary" hidden>Undo last restore</button>
                   <button type="button" id="btn-export-restore-copy" class="btn btn-g" hidden>Download saved reading-data copy</button>
                 </div>
                 <p id="restore-copy-summary" class="rail-hint"></p>
                 <div id="restore-report" class="results" tabindex="-1"></div>
-                <h4>Separate import draft</h4>
-                <p class="rail-hint">Includes exact pasted source, source positions, selected matches and retained previous sources. No automatic expiry. Reading-data and completion-history backups do not include it. Restoring reading data keeps the draft but requires review before applying more comics.</p>
-                <div class="field-row">
-                  <button type="button" id="btn-export-draft" class="btn btn-g">Download import-draft backup</button>
-                  <input type="file" id="restore-draft" accept="application/json,.json" aria-label="Separate import draft file to restore" aria-describedby="draft-transfer-report" />
-                </div>
-                <div id="draft-transfer-report" class="results" tabindex="-1"></div>
+                <details class="setting-more">
+                  <summary>About reading-data backups</summary>
+                  <p class="rail-hint" id="backup-contents"></p>
+                  <p class="rail-hint">Undo is offered once in this tab. After Undo or reload, use the clearly named saved-copy action instead. Restoring leaves completion and enjoyment history unchanged.</p>
+                </details>
                 <details class="field-disclosure action-disclosure" id="backup-export-options">
                   <summary>Checklist and sharing options</summary>
                   <div class="stack">
@@ -982,6 +977,24 @@
                     </div>
                     <p class="rail-hint" id="export-order-hint">Order-only Markdown excludes notes, descriptions, reading progress and availability overrides. Personal Markdown includes notes and read checkboxes, but notes do not re-import. JSON is the lossless reader-data backup.</p>
                   </div>
+                </details>
+              </div>
+
+              <div id="normal-backup-history"></div>
+
+              <div class="card card-static">
+                <h3>Import draft</h3>
+                <div class="field-row">
+                  <button type="button" id="btn-export-draft" class="btn btn-g">Download import-draft backup</button>
+                </div>
+                <label class="backup-restore-label" for="restore-draft">Restore an import-draft backup</label>
+                <div class="field-row">
+                  <input type="file" id="restore-draft" accept="application/json,.json" aria-describedby="draft-transfer-report" />
+                </div>
+                <div id="draft-transfer-report" class="results" tabindex="-1"></div>
+                <details class="setting-more">
+                  <summary>About import-draft backups</summary>
+                  <p class="rail-hint">The separate import-draft file includes exact pasted source, source positions, selected matches and retained previous sources, with no automatic expiry. Reading-data and completion-history backups do not include it. Download it whenever a draft or retained draft source is present. Restoring reading data keeps the draft but requires review before applying more comics.</p>
                 </details>
               </div>
 
@@ -1127,7 +1140,7 @@
 
             <div class="card card-static card-danger setting">
               <h2>Danger zone</h2>
-              <p class="rail-hint setting-desc">Erasing removes every list, all progress, every note, every issue rating, and completion and enjoyment history from this browser.</p>
+              <p class="rail-hint setting-desc" id="erase-contents"></p>
               <button type="button" id="btn-wipe" class="btn btn-danger setting-ctl setting-action">Erase all local data</button>
             </div>
           </section>
@@ -1267,15 +1280,18 @@
               <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><button type="button" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</button></div>
             </section>
           </section>
-          <section id="completion-history-controls" aria-labelledby="completion-history-h">
-            <h4 id="completion-history-h">Completion history</h4>
-            <p class="rail-hint">Completion dates and enjoyment are saved separately. Include this backup with reading data for a complete reading and history transfer, and include the separate import-draft file when draft source is retained. Settings are not included. Reading-data restore and Undo leave history alone; only matching saved lists display it.</p>
+          <section id="completion-history-controls" class="card card-static" aria-labelledby="completion-history-h">
+            <h3 id="completion-history-h">Completion history</h3>
             <p id="history-status" class="rail-hint"></p>
             <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button></div>
-            <label for="restore-history-file">Restore a completion-history backup</label>
-            <input type="file" id="restore-history-file" accept="application/json,.json" />
-            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.</p>
+            <label class="backup-restore-label" for="restore-history-file">Restore a completion-history backup</label>
+            <p class="rail-hint" id="restore-history-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.</p>
+            <input type="file" id="restore-history-file" accept="application/json,.json" aria-describedby="restore-history-hint" />
             <div id="history-report" class="report" tabindex="-1"></div>
+            <details class="setting-more">
+              <summary>About completion-history backups</summary>
+              <p class="rail-hint">Completion dates and enjoyment are saved separately from reading data. Reading-data restore and Undo leave history alone; only matching saved lists display it.</p>
+            </details>
             <details id="history-troubleshooting" class="field-disclosure action-disclosure">
               <summary>Completion-history troubleshooting</summary>
               <p class="rail-hint">The saved-value copy preserves unreadable data exactly; it is not a normal backup. Retry reading history after resolving a storage problem.</p>

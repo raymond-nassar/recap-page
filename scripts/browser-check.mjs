@@ -8722,19 +8722,83 @@ const SCENARIOS = [
   },
   {
     id: 'backup-transfer-guidance',
-    title: 'independent normal backups are adjacent and malformed input leads with useful recovery',
+    title: 'each backup keeps its download and labelled restore together, and malformed input leads with useful recovery',
     async run(page, t) {
       await importOrder(page);
       await click(page, '.ri[data-view="data"]');
-      t.check('reading and history normal backups are together above exceptional salvage tools', await page.evaluate(() => {
-        const history = document.querySelector('#completion-history-controls');
-        const card = document.querySelector('#btn-export-json').closest('.card');
-        return card.contains(history) && !!(history.compareDocumentPosition(document.querySelector('#salvage-list')) & Node.DOCUMENT_POSITION_FOLLOWING);
+      // UX-07 (#835): three parallel groups in Data safety, completion history mounted between the
+      // other two at startup, each holding its own download, labelled restore and report.
+      const groups = await page.evaluate(() => {
+        const group = document.querySelector('#btn-export-json').closest('.setgroup');
+        const card = (id) => document.getElementById(id).closest('.card');
+        const parts = {
+          reading: ['btn-export-json', 'restore-file', 'btn-undo-restore', 'restore-copy-summary', 'restore-report'],
+          history: ['btn-export-history', 'restore-history-file', 'history-report'],
+          draft: ['btn-export-draft', 'restore-draft', 'draft-transfer-report'],
+        };
+        const cards = Object.fromEntries(Object.entries(parts).map(([name, ids]) => [name, card(ids[0])]));
+        return {
+          together: Object.entries(parts).every(([name, ids]) => ids.every((id) => card(id) === cards[name])),
+          distinct: new Set(Object.values(cards)).size === 3,
+          inGroup: Object.values(cards).every((node) => group.contains(node)),
+          order: [...group.querySelectorAll('.card h3')].map((node) => node.textContent.trim()),
+          aboveSalvage: Object.values(cards).every((node) => !!(node.compareDocumentPosition(document.querySelector('#salvage-list'))
+            & Node.DOCUMENT_POSITION_FOLLOWING)),
+        };
+      });
+      t.check('reading data, completion history and the import draft each keep their download, restore and report together',
+        groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
+          && JSON.stringify(groups.order) === JSON.stringify(['Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+        JSON.stringify(groups));
+      const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
+        const input = document.getElementById(id);
+        const label = input.labels?.[0];
+        const box = label?.getBoundingClientRect();
+        return { id, count: input.labels?.length ?? 0, text: label?.textContent.trim() ?? null,
+          visible: !!box && box.width > 1 && box.height > 1 && getComputedStyle(label).clip === 'auto',
+          ariaLabel: input.getAttribute('aria-label') };
       }));
-      t.check('complete transfer explicitly names retained draft source and excludes settings', await page.evaluate(() => {
-        const copy = document.querySelector('#btn-export-json').closest('.card').textContent;
-        return copy.includes('completion-history') && copy.includes('retained draft source') && copy.includes('Settings are not included');
-      }));
+      const names = [];
+      for (const { id } of labels) {
+        const node = await page.$(`#${id}`);
+        names.push((await page.accessibility.snapshot({ root: node, interestingOnly: false }))?.name ?? '');
+      }
+      t.check('every file input has one visible label, which is its accessible name',
+        labels.every((entry, i) => entry.count === 1 && entry.visible && entry.ariaLabel === null && entry.text
+          && /^Restore an? [a-z-]+ backup$/.test(entry.text) && names[i].includes(entry.text)),
+        JSON.stringify({ labels, names }));
+      const guidance = await page.evaluate(() => {
+        const group = document.querySelector('#btn-export-json').closest('.setgroup');
+        // Edge 155 hides a closed disclosure's content with content-visibility, which still reports
+        // client rects for every paragraph inside, so a rect test counts text nobody can see.
+        const shown = (node) => !!node && node.checkVisibility({ visibilityProperty: true }) && node.getClientRects().length > 0;
+        const words = [...group.querySelectorAll('.rail-hint')]
+          .filter((node) => shown(node) && !['history-status', 'restore-copy-summary'].includes(node.id) && !node.closest('#salvage-list'))
+          .map((node) => node.textContent.trim().split(/\s+/).filter(Boolean).length).reduce((sum, n) => sum + n, 0);
+        return {
+          words,
+          summary: shown(document.querySelector('#transfer-summary')) ? document.querySelector('#transfer-summary').textContent.trim() : null,
+          warnings: ['restore-file-hint', 'restore-history-hint'].map((id) => shown(document.getElementById(id))
+            && document.getElementById(id).textContent.includes('after confirmation')),
+          described: [['restore-file', 'restore-file-hint'], ['restore-history-file', 'restore-history-hint']]
+            .map(([field, hint]) => document.getElementById(field).getAttribute('aria-describedby').split(/\s+/).includes(hint)),
+          closed: ['#backup-contents', '#draft-transfer-report ~ details'].map((selector) => {
+            const node = document.querySelector(selector);
+            const details = node?.closest('details') ?? node;
+            return !!details && details.tagName === 'DETAILS' && !details.open && !shown(details.querySelector('p'));
+          }),
+        };
+      });
+      t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
+        guidance.summary?.startsWith('Moving to another device:') && guidance.summary.includes('Settings are not included')
+          && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
+          && guidance.words <= 80,
+        JSON.stringify(guidance));
+      t.check('the import draft group still names retained draft source and the backups that leave it out',
+        await page.evaluate(() => {
+          const draft = document.querySelector('#btn-export-draft').closest('.card').textContent;
+          return draft.includes('retained draft source') && draft.includes('Reading-data and completion-history backups do not include it');
+        }));
       t.check('healthy history keeps troubleshooting behind a closed native disclosure',
         await page.$eval('#history-troubleshooting', (node) => !node.open && node.contains(document.querySelector('#btn-copy-history'))
           && node.contains(document.querySelector('#btn-retry-history'))));
@@ -18065,6 +18129,47 @@ SCENARIOS.push(responsiveOwner({
       subpredicates: Object.fromEntries(fields.flatMap((entry) => Object.entries(entry.subpredicates)
         .map(([key, value]) => [`${entry.theme}:${key}`, value]))) },
       fields.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
+    responsiveStep(page, 'RC10-settings-switches');
+    // UX-23 (#835): each settings switch is set out as a Fluent switch is, the track and then its label
+    // beside it, with no outline around the pair, both where the control is pinned to the card's right
+    // edge and below 720px, where it stacks under its heading.
+    const switchViewport = page.viewport();
+    const switches = [];
+    for (const width of [1280, 360]) {
+      await page.setViewport({ width, height: 900 });
+      await open(page, '/#/data');
+      await responsiveFrames(page);
+      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.map((label) => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        const words = range.getBoundingClientRect();
+        const track = input.getBoundingClientRect();
+        const box = label.getBoundingClientRect();
+        const card = label.closest('.card').getBoundingClientRect();
+        const style = getComputedStyle(label);
+        return {
+          id: input.id, text: text.textContent.trim(), height: box.height,
+          border: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth],
+          beside: track.right <= words.left + 0.5 && track.bottom > words.top && track.top < words.bottom,
+          inside: words.right <= box.right + 0.5 && box.left >= card.left - 0.5 && box.right <= card.right + 0.5,
+        };
+      }));
+      switches.push({ width, measured });
+    }
+    await page.setViewport(switchViewport);
+    await responsiveFrames(page);
+    const switchPredicates = Object.fromEntries(switches.flatMap(({ width, measured }) => measured.flatMap((entry) => [
+      [`${width}:${entry.id}:unboxed`, entry.border.every((value) => value === '0px')],
+      [`${width}:${entry.id}:beside`, entry.beside],
+      [`${width}:${entry.id}:inside`, entry.inside],
+      [`${width}:${entry.id}:target`, entry.height >= 24],
+    ])));
+    await responsiveReceipt(page, t, 'RC10', 'settings switches set the track beside an unboxed label at wide and narrow widths',
+      { switches, expected: { switches: 3, border: '0px', trackBeforeLabel: true, minimumHeight: 24 },
+        subpredicates: switchPredicates },
+      switches.every(({ measured }) => measured.length === 3) && Object.values(switchPredicates).every(Boolean));
     responsiveStep(page, 'RC03-markdown');
     await open(page, '/#/add-import');
     const preSelector = '.import-guide pre';
