@@ -347,8 +347,9 @@ Field corrections identify the invalid field, associate its inline report and fo
 optional reader address opens its disclosure before focus moves. Whitespace-only names stay in the
 naming dialog for correction. Explicit series and creator browsing focuses the resulting heading;
 the next Tab reaches the result filter. Selecting wiki details fills the title, focuses it and
-states that the entry is still unsaved. Preview keeps Open as the saved-guide action and reports
-library membership separately; interior dialog padding is not a backdrop dismissal.
+states that the entry is still unsaved. Once a guide is saved, Preview makes Open list its one
+primary action and reports library membership separately, in a status inside the dialog, because
+the page's announcer sits behind the modal; interior dialog padding is not a backdrop dismissal.
 
 ## Where a reader's data lives
 

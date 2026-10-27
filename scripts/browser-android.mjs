@@ -4228,7 +4228,7 @@ async function shellDialogs(page, label, viewport) {
     },
     {
       // This mode's catalog holds the 20 issues of House of M, whose Preview runs past a phone's screen.
-      name: 'Preview', selector: '#preview', innerScroll: true, head: true,
+      name: 'Preview', selector: '#preview', head: true,
       async open() {
         await route(page, 'catalog');
         const opener = `#catalog-results [data-story="list:${orderEntry.id}"] [data-act="preview"]`;

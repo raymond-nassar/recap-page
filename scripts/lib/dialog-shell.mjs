@@ -229,10 +229,9 @@ export async function escapeShellDialog(page, selector) {
 }
 
 // What a measured dialog owes its reader, as [claim, holds, detail] for either harness to record. A
-// text or note question keeps its answers plain after its field. A dialog whose list still scrolls
-// inside it is not yet held to being the one scroller or to reading to its end. Preview, whose only
-// Close is in its head, holds that head as well.
-export function shellVerdicts({ state, end, walk, tail }, { plain = false, innerScroll = false, head = false } = {}) {
+// text or note question keeps its answers plain after its field. Preview, whose only Close is in its
+// head, holds that head as well.
+export function shellVerdicts({ state, end, walk, tail }, { plain = false, head = false } = {}) {
   const stops = [...walk, ...tail];
   return [
     ['opens at its start, its title clear of what it holds and its focus inside',
@@ -249,10 +248,8 @@ export function shellVerdicts({ state, end, walk, tail }, { plain = false, inner
       { headHeld: state.headHeld, padsHead: state.padsHead, headHeight: state.headHeight, atEnd: end.head,
         scrolled: end.scrolled, controls: state.headControls },
     ]] : []),
-    ...(innerScroll ? [] : [
-      ['is the one thing in it that scrolls', state.scrollers.length === 0, state.scrollers],
-      ['reads to its end above its answers', end.readable, end],
-    ]),
+    ['is the one thing in it that scrolls', state.scrollers.length === 0, state.scrollers],
+    ['reads to its end above its answers', end.readable, end],
     ['keeps every control it focuses clear of what it holds',
       walk.length > 1 && stops.every((stop) => stop.inDialog && stop.clear),
       { stops: stops.length, failing: stops.filter((stop) => !stop.inDialog || !stop.clear).slice(0, 3) }],

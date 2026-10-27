@@ -2105,7 +2105,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); }
 .preview-head h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .preview-desc { max-width: 62ch; }
-#preview-body { max-height: 22rem; overflow-y: auto; margin: var(--space-5) 0; }
+/* UX-12 (#830): the list reads in the dialog's own scroll, the one scroller, rather than in a box of its
+   own inside a dialog that also scrolled, which put two scrollbars side by side. */
+#preview-body { margin: var(--space-5) 0; }
 .preview-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); counter-reset: pv; }
 .preview-list li {
   display: flex; gap: var(--space-4); align-items: baseline; padding: var(--space-2) var(--space-1);
@@ -2119,6 +2121,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+/* Success just after an add keeps a hint's spacing, in the text colour so it is not missed. */
+.preview-added { color: var(--text); font-weight: 600; }
 .preview-notes { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-5); }
 
 /* ============================================================ ask dialog */

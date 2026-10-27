@@ -8,6 +8,7 @@ import { labelledName } from '../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const ADD_TEXT = '+ Add to library';
+const OPEN_TEXT = 'Open list';
 
 export function createPreviewView({
   captureFocus,
@@ -71,18 +72,19 @@ export function createPreviewView({
   function addButton(list) {
     const inLibrary = isInLibrary(list.id);
     if (inLibrary) {
-      const text = 'Open →';
+      // UX-12 (#830): once the list is saved, opening it is the next step, so it is the one primary
+      // action and names where it goes, rather than a secondary "Open" beside the offline action.
       return el('a', {
         href: formatRoute({ view: 'read', listId: inLibrary.id }),
-        class: 'btn btn-g',
-        'aria-label': labelledName(text, list.name),
+        class: 'btn',
+        'aria-label': labelledName(OPEN_TEXT, list.name),
         dataset: { key: list.id, act: 'main' },
         onclick: (event) => {
           if (!isPlainNavigation(event)) return;
           event?.preventDefault();
           if (isCurrent(previewSession)) return onOpen(list, inLibrary);
         },
-      }, text);
+      }, OPEN_TEXT);
     }
     return el('button', {
       type: 'button',
@@ -94,13 +96,16 @@ export function createPreviewView({
   }
 
   function addControls(list) {
-    return [
-      addButton(list),
-      ...(isInLibrary(list.id) ? [el('span', {
-        class: 'rail-hint', role: 'status',
-        text: justAdded.has(list.id) ? 'Added to library' : 'In library',
-      })] : []),
-    ];
+    const saved = isInLibrary(list.id);
+    if (!saved) return [addButton(list)];
+    // UX-12 (#830): a reader who has just added the list sees that it was added, and how many comics it
+    // holds, until Preview closes rather than for a second and a half. It is a status inside the dialog
+    // because the page's announcer is behind the modal: measured in Edge 156, the announcer is absent
+    // from the accessibility tree while Preview is open, so the import's own announcement is not heard.
+    const count = saved.itemIds?.length ?? 0;
+    return [addButton(list), justAdded.has(list.id)
+      ? el('span', { class: 'rail-hint preview-added', role: 'status', text: `Added to your Library: ${count} issue${count === 1 ? '' : 's'}.` })
+      : el('span', { class: 'rail-hint', role: 'status', text: 'In library' })];
   }
 
   function offlineActionLabel(state) {
@@ -271,13 +276,6 @@ export function createPreviewView({
     }
     syncAdd();
     returnFocus(held);
-    setTimeout(() => {
-      if (!isCurrent(session) || session.closed) return;
-      const settleFocus = captureFocus(elements().add);
-      justAdded.delete(list.id);
-      syncAdd();
-      returnFocus(settleFocus);
-    }, 1500);
   }
 
   function paint(list) {

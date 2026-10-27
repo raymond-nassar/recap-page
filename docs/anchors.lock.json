@@ -2254,8 +2254,8 @@
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:283-304|0": {
-    "anchor": "src/js/views/preview.js:283-304",
+  "docs/UX_STUDY.md|job-stories|src/js/views/preview.js:281-302|0": {
+    "anchor": "src/js/views/preview.js:281-302",
     "fp": "44d857d58fee459f",
     "head": "function paint(list) {"
   },
@@ -2334,8 +2334,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2183-2185|0": {
-    "anchor": "src/styles.css:2183-2185",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2187-2189|0": {
+    "anchor": "src/styles.css:2187-2189",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2359,8 +2359,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2183-2185|0": {
-    "anchor": "src/styles.css:2183-2185",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2187-2189|0": {
+    "anchor": "src/styles.css:2187-2189",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2414,8 +2414,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2539-2540|0": {
-    "anchor": "src/styles.css:2539-2540",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2543-2544|0": {
+    "anchor": "src/styles.css:2543-2544",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2484,8 +2484,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2183-2185|0": {
-    "anchor": "src/styles.css:2183-2185",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2187-2189|0": {
+    "anchor": "src/styles.css:2187-2189",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6184,13 +6184,13 @@
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2218|0": {
-    "anchor": "src/styles.css:2218",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2222|0": {
+    "anchor": "src/styles.css:2222",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2242|0": {
-    "anchor": "src/styles.css:2242",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2246|0": {
+    "anchor": "src/styles.css:2246",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

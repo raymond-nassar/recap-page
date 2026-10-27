@@ -15574,11 +15574,35 @@ SCENARIOS.push({
     });
     const savedButton = await page.$('#preview-add a[data-act="main"]');
     const accessible = await page.accessibility.snapshot({ root: savedButton, interestingOnly: false });
-    t.check('a newly saved guide keeps Open visible and named, with separate Added feedback',
-      accessible?.name.startsWith('Open')
-        && await page.$eval('#preview-add', (host) => host.querySelector('a[data-act="main"]').textContent.includes('Open')
-          && [...host.children].some((node) => node.getAttribute('role') === 'status' && /Added|In library/.test(node.textContent))),
-      JSON.stringify(accessible));
+    // UX-12 (#830): after an add, Open list is the dialog's one primary action and names its list, and the
+    // line beside it says how many comics were saved and stays, rather than giving way after 1.5s. It is
+    // a status in the dialog because the page's announcer is behind the modal: measured in Edge 156, the
+    // announcer is absent from the accessibility tree while Preview is open.
+    const afterAdd = () => page.evaluate(() => {
+      const host = document.querySelector('#preview-add');
+      const saved = Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .find((entry) => entry.catalogId === 'browser-check');
+      return {
+        text: host.querySelector('a[data-act="main"]').textContent.trim(),
+        primary: [...document.querySelectorAll('#preview .preview-foot .btn')]
+          .filter((button) => !button.classList.contains('btn-g') && button.checkVisibility())
+          .map((button) => button.textContent.trim()),
+        success: host.querySelector('.preview-added')?.textContent ?? null,
+        role: host.querySelector('.preview-added')?.getAttribute('role') ?? null,
+        count: saved?.itemIds.length ?? null,
+      };
+    });
+    const added = await afterAdd();
+    await new Promise((resolve) => setTimeout(resolve, 1800));
+    const later = await afterAdd();
+    const status = await page.$('#preview-add .preview-added');
+    const spoken = status ? await page.accessibility.snapshot({ root: status, interestingOnly: false }) : null;
+    t.check('after an add, Open list is the one primary action and names its list, beside a success line that stays',
+      accessible?.name === 'Open list: Browser Check Order' && added.text === 'Open list'
+        && JSON.stringify(added.primary) === JSON.stringify(['Open list'])
+        && added.count > 0 && added.success === `Added to your Library: ${added.count} issues.`
+        && added.role === 'status' && spoken?.role === 'status' && JSON.stringify(later) === JSON.stringify(added),
+      JSON.stringify({ name: accessible?.name, added, later, spoken: spoken?.role ?? null }));
     await click(page, '#preview-add a[data-act="main"]');
     await page.waitForSelector('#view-read:not([hidden])');
     t.check('saved Preview Open remains actionable and enters its Reading List',
@@ -15599,7 +15623,7 @@ const SHELL_DIALOGS = [
   { name: 'list feedback', selector: '#list-feedback', from: '/#/read/fixture', opener: '#btn-list-feedback-guide' },
   { name: 'Markdown export', selector: '#markdown-export', from: '/#/read/fixture', opener: '#btn-export-md' },
   {
-    name: 'Preview', selector: '#preview', from: '/?long=1#/catalog', innerScroll: true, head: true,
+    name: 'Preview', selector: '#preview', from: '/?long=1#/catalog', head: true,
     opener: '#catalog-results [data-story="list:browser-check"] [data-act="preview"]',
   },
 ];

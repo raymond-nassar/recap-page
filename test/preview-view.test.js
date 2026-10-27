@@ -143,8 +143,9 @@ test('Preview separates individual issues after an edition without changing orig
     .map((entry) => entry.children[0].text), ['Edition One']);
 });
 
-test('Preview keeps interior padding open and separates saved Open from added status', async () => {
+test('Preview keeps interior padding open, and after an add makes Open list the next step and keeps its success', async () => {
   globalThis.document = { activeElement: null, body: {} };
+  const realSetTimeout = globalThis.setTimeout;
   try {
     const nodes = Object.fromEntries([
       'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
@@ -155,7 +156,7 @@ test('Preview keeps interior padding open and separates saved Open from added st
     const state = { lists: {}, listOrder: [] };
     const view = createPreviewView({
       captureFocus: () => null, el: element, elements: () => nodes, getState: () => state,
-      isInLibrary: () => saved ? { id: 'saved' } : null,
+      isInLibrary: () => saved ? { id: 'saved', itemIds: [1, 2, 3] } : null,
       issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onAdd: async () => { saved = true; return 'saved'; },
       onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },
@@ -166,20 +167,30 @@ test('Preview keeps interior padding open and separates saved Open from added st
     await view.open(list('one'));
     nodes.dialog.listeners.click({ target: nodes.dialog, clientX: 11, clientY: 21 });
     assert.equal(nodes.dialog.open, true);
+    // UX-12 (#830): the success line used to give way to "In library" after 1.5s, while it was read.
+    const timers = [];
+    globalThis.setTimeout = (...args) => { timers.push(args); return 0; };
     await nodes.add.children[0].onclick({ currentTarget: nodes.add.children[0] });
-    assert.equal(nodes.add.children[0].children[0], 'Open →');
+    globalThis.setTimeout = realSetTimeout;
+    assert.equal(timers.length, 0, 'nothing is scheduled to replace the success line');
+    assert.equal(nodes.add.children[0].children[0], 'Open list');
     assert.equal(nodes.add.children[0].tag, 'a');
+    assert.equal(nodes.add.children[0].class, 'btn', 'Open list is the primary action');
     assert.equal(nodes.add.children[0].href, '#/read/saved');
     nodes.add.children[0].onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
     assert.equal(opened, 0);
-    assert.match(nodes.add.children[0]['aria-label'], /^Open: List one$/);
-    assert.equal(nodes.add.children[1].text, 'Added to library');
+    assert.match(nodes.add.children[0]['aria-label'], /^Open list: List one$/);
+    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 issues.');
+    assert.equal(nodes.add.children[1].role, 'status', 'the page announcer is behind the modal, so the dialog says it');
+    view.syncAdd();
+    assert.equal(nodes.add.children[1].text, 'Added to your Library: 3 issues.', 'a repaint keeps the success line');
     nodes.add.children[0].onclick();
     assert.equal(opened, 1);
     nodes.dialog.listeners.click({ target: nodes.dialog, clientX: 9, clientY: 21 });
     assert.equal(nodes.dialog.open, false);
     view.invalidate();
   } finally {
+    globalThis.setTimeout = realSetTimeout;
     delete globalThis.document;
   }
 });

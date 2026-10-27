@@ -51,7 +51,7 @@ function harness(t, { loadOrder = async () => order, onAdd, onClose } = {}) {
     onAdd: async (...args) => {
       calls.added += 1;
       if (onAdd) return onAdd(...args);
-      state = { lists: { saved: { id: 'saved', catalogId: list.id } }, listOrder: ['saved'] };
+      state = { lists: { saved: { id: 'saved', catalogId: list.id, itemIds: [1] } }, listOrder: ['saved'] };
       return 'saved';
     },
     onClose: async (closedList, options) => {
@@ -101,9 +101,11 @@ test('Preview refreshes a real Add and preserves its Open and focus behavior', a
   await h.pressAdd();
   assert.equal(h.calls.added, 1);
   assert.equal(h.calls.restored.length, 1);
-  h.timers[0]();
+  // UX-12 (#830): the Add used to schedule a repaint 1.5s later that swapped its success line away.
+  assert.equal(h.timers.length, 0);
+  assert.equal(h.nodes.add.children[1].text, 'Added to your Library: 1 issue.');
   const open = h.nodes.add.children[0];
-  assert.equal(open.children[0], 'Open \u2192');
+  assert.equal(open.children[0], 'Open list');
   open.onclick();
   assert.deepEqual(h.calls.opened.map(([entry, saved]) => [entry.id, saved.id]), [['guide', 'saved']]);
   await h.close();
@@ -273,19 +275,17 @@ test('navigation invalidates Preview load failure and delayed Add focus work', a
   assert.equal(h.timers.length, 0);
 });
 
-test('a newer Preview invalidates an older close completion and Add timer', async (t) => {
+test('a newer Preview invalidates an older close completion, and an Add leaves nothing scheduled to outlive it', async (t) => {
   const h = harness(t);
   await h.view.open(list);
   await h.pressAdd();
+  // UX-12 (#830): the Add's success now stays until close, so nothing is left to fire into a newer Preview.
+  assert.equal(h.timers.length, 0);
   await h.close();
   const oldCurrent = h.calls.closed[0].options.isCurrent;
   await h.view.open({ ...list, id: 'other', file: 'other.json' });
-  const add = h.nodes.add.children[0];
-  const restored = h.calls.restored.length;
-  h.timers[0]();
   assert.equal(oldCurrent(), false);
-  assert.equal(h.nodes.add.children[0], add);
-  assert.equal(h.calls.restored.length, restored);
+  assert.equal(h.nodes.add.children[0].children[0], '+ Add to library');
 });
 
 function mainClose(context) {
