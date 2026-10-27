@@ -3,6 +3,15 @@ $wrapper = Join-Path (Join-Path (Join-Path $PSScriptRoot 'gradle') 'wrapper') 'g
 $source = 'https://raw.githubusercontent.com/gradle/gradle/v9.8.2/gradle/wrapper/gradle-wrapper.jar'
 $expected = '3b8a25775a69158b5ad2b1d17a80a88dc7b40a352a73eb27d06c612a7ce68e98'
 
+# PowerShell 7 removes its own module path entries only from a Windows PowerShell it starts
+# directly, so one started through cmd.exe, as gradlew.bat is from a PowerShell 7 prompt, loads
+# PowerShell 7's Utility manifest in place of its own. That manifest lists Get-FileHash as a
+# compiled cmdlet that Windows PowerShell's assembly lacks, and never loads the script defining
+# Windows PowerShell's own, so the first hash below was refused as an unrecognized command (#929).
+# Importing the copy under the running PowerShell's own $PSHOME first hashes the same way however
+# this one was started.
+Import-Module (Join-Path (Join-Path $PSHOME 'Modules') 'Microsoft.PowerShell.Utility')
+
 function Get-Sha256([string] $path) {
     (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
