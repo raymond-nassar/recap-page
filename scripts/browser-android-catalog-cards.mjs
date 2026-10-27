@@ -4,11 +4,11 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
-import { labelledName, labelWords } from '../src/js/lib/accname.js';
+import { labelledName, labelWords, shownName } from '../src/js/lib/accname.js';
 import {
   catalogCoverUrl, catalogEntryKey, catalogGapLabels, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
-  modernTimelineFeaturedCard, modernTimelineLists, parseCatalog, pathPlacements, searchCatalog,
-  shelfLists, sortSpotlightStories, sourceLabel, sourceLink, updatedLabel,
+  modernTimelineFeaturedCard, modernTimelineLists, parseCatalog, searchCatalog,
+  shelfLists, sortSpotlightStories, sourceLabel, sourceLink,
 } from '../src/js/lib/catalog.js';
 import { createEmptyState } from '../src/js/lib/model.js';
 import { KEY } from '../src/js/storage.js';
@@ -124,8 +124,11 @@ async function geometry(page, selector) {
       actions: [...card.querySelectorAll('.catalog-card-actions button')].map((node) => ({
         ...box(node), text: node.textContent, key: node.dataset.key, act: node.dataset.act,
       })),
+      preview: (() => {
+        const node = card.querySelector('.catalog-card-title [data-act="preview"]');
+        return node ? { ...box(node), key: node.dataset.key, name: node.getAttribute('aria-label') } : null;
+      })(),
       source: card.querySelector('.result-source a')?.getAttribute('href') ?? null,
-      pathSummary: card.querySelector('.result-path > summary')?.getAttribute('aria-label') ?? null,
       body: parseFloat(getComputedStyle(document.body).fontSize),
       theme: document.documentElement.dataset.theme,
       android: !!document.querySelector('link[href="./android/mobile.css"]'),
@@ -182,7 +185,6 @@ function placeholderCases(catalog) {
   assert.ok(featured, 'Placeholder fixture requires the existing setup guide');
   const current = stories.find((story) => story.key === position.storyKey);
   assert.ok(current, 'Placeholder fixture requires the helper-selected current story');
-  const placements = pathPlacements(catalog.paths, catalog.lists);
   const cases = [
     { story: current, compactSource: 'Recap Page', position },
     { story: groupCatalog([featured])[0], compactSource: null, featured: true },
@@ -197,10 +199,8 @@ function placeholderCases(catalog) {
   ].map((entry) => ({
     ...entry,
     list: defaultPath(entry.story),
-    placement: entry.featured ? null : placements.get(entry.story.key),
     selector: `${entry.featured ? '#modern-timeline-feature' : '#catalog-results'} .catalog-card[data-story="${entry.story.key}"]`,
   }));
-  assert.ok(cases.some((entry) => entry.placement), 'Placeholder fixture requires a real path disclosure');
   for (const entry of cases) {
     assert.equal(Boolean(sourceLink(entry.list)), Boolean(entry.compactSource),
       `${entry.list.id}: linked versus plain-text fixture provenance must remain intentional`);
@@ -450,8 +450,7 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
       const title = entry.story.name ?? entry.list.name;
       const description = firstSentence(entry.list.description);
       const metadata = [`${entry.list.count} issue${entry.list.count === 1 ? '' : 's'}`, ...catalogGapLabels(entry.list)].join(' \u00b7 ');
-      const summary = entry.placement ? `${entry.placement.previous === null
-        ? `Start \u00b7 1/${entry.placement.total}` : `Step ${entry.placement.position}/${entry.placement.total}`}. Show path details for ${entry.placement.pathName}` : null;
+      const preview = shownName([title], 'Preview');
       const sourceName = entry.compactSource
         ? `Source of ${entry.list.name}: ${entry.compactSource}` : sourceLabel(entry.list);
       const expected = [
@@ -459,11 +458,9 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
           ['StaticText', 'YOU ARE HERE'],
           ['StaticText', `${entry.position.completed} of ${entry.position.total} ${entry.position.total === 1 ? 'timeline stop' : 'timeline stops'} complete`],
         ] : []),
-        ['heading', title], ['StaticText', description], ['StaticText', metadata],
-        ...(summary ? [['DisclosureTriangle', summary]] : []),
+        ['heading', preview], ['button', preview], ['StaticText', description], ['StaticText', metadata],
         [entry.compactSource ? 'link' : 'StaticText', sourceName],
         ['button', labelledName('+ Add to library', entry.list.name)],
-        ['button', labelledName(entry.story.lists.length > 1 ? `${entry.story.lists.length} reading options` : 'Preview', title)],
       ];
       const positions = expected.map(([role, text]) => meaningful.findIndex((node) => node.role === role
         && (text === 'YOU ARE HERE' ? node.name.toUpperCase() === text : node.name === text)));
@@ -472,12 +469,12 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
       check(item.appearance.ariaHidden === 'true', `${label}: fallback has explicit aria-hidden=true`);
       check(positions.every((at, i) => at >= 0 && (!i || at > positions[i - 1])),
         `${label}: exact meaningful names, provenance roles and reading order are retained`);
-      check(meaningful.filter((node) => node.role === 'heading' && node.name === title).length === 1
+      check(meaningful.filter((node) => node.role === 'heading' && node.name === preview).length === 1
         && !meaningful.some((node) => node.role === 'image'),
       `${label}: one real heading and decorative image semantics`);
-      check(item.source === sourceLink(entry.list) && item.pathSummary === summary
-        && item.parts.find((part) => part.className === 'result-source').text.includes(updatedLabel(entry.list)),
-      `${label}: exact source destination, snapshot and disclosure retained`);
+      check(item.source === sourceLink(entry.list)
+        && !item.parts.find((part) => part.className === 'result-source').text.includes('Snapshot taken'),
+      `${label}: exact source destination retained, with the snapshot left to Preview`);
       check(item.appearance.current === (entry.position ? 'step' : null),
         `${label}: current-position semantics retained`);
       const loadedCover = covers && Boolean(catalogCoverUrl(entry.list));
@@ -502,14 +499,6 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
   }
   check(evidence.states[1].cards[0].appearance.imageDecoded
     && evidence.states[1].cards[0].appearance.imageVisible, `${profile.id}: cover-on actually decodes the primary original-SVG fixture`);
-  const disclosure = cases.find((entry) => entry.placement);
-  await click(page, `${disclosure.selector} .result-path > summary`);
-  check(await page.$eval(`${disclosure.selector} .result-path`, (node, next) => node.open
-    && node.textContent.includes(next ? 'Next:' : 'Last stop'), !!disclosure.placement.next),
-  `${profile.id}: path disclosure opens meaningful path content`);
-  await click(page, `${disclosure.selector} .result-path > summary`);
-  check(await page.$eval(`${disclosure.selector} .result-path`, (node) => !node.open),
-    `${profile.id}: path disclosure closes again`);
   const preview = `${primary} [data-act="preview"]`;
   await page.focus(preview);
   await click(page, preview);
@@ -521,7 +510,7 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
   check(await page.$eval(preview, (node) => document.activeElement === node),
     `${profile.id}: Preview close restores the exact card action`);
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === progress,
-    `${profile.id}: disclosure and Preview do not mark progress`);
+    `${profile.id}: Preview does not mark progress`);
   console.log(`CATALOG PLACEHOLDER ${profile.id}: ${evidence.states.length} raw AX captures, 2 saved images; evidence ${output}`);
 }
 
@@ -744,7 +733,6 @@ export async function catalogCardReadability({
         && card.querySelector('.cover-fallback').getClientRects().length === 0;
     }), `${prefix}: decoded original test image geometry, fallback hidden`);
   }
-  if (profile.id === 'M13') await click(page, `${primary} .result-path > summary`);
 
   const selectors = [primary];
   if (profile.route === 'age-silver' && compact && await page.$(selectorFor('xmen-claremont'))) {
@@ -768,14 +756,18 @@ export async function catalogCardReadability({
     const meta = item.parts.find((part) => part.className === 'catalog-card-meta');
     const source = item.parts.find((part) => part.className === 'result-source');
     const name = `${prefix} ${list.id}`;
-    check(item.card.width > 0 && item.art.width > 0 && item.actions.length === 2, `${name}: real complete card exists`);
+    // The title is the card's Preview (UX-11, #830), named by the title it shows and then by what it
+    // does, and Add is its one other action.
+    const previewName = shownName([title], 'Preview');
+    check(item.card.width > 0 && item.art.width > 0 && item.actions.length === 1
+      && item.preview?.key === item.story && item.preview.name === previewName, `${name}: real complete card exists`);
     check(item.android === !profile.desktop && item.body === (profile.desktop ? 14 : 16 * scale)
       && item.theme === profile.theme, `${name}: actual entry, theme and text-token scale`);
     check(item.title === title && desc.text === firstSentence(list.description)
       && meta.text === [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' \u00b7 '),
     `${name}: exact title, description, count and gap text retained`);
-    check(item.source === sourceLink(list) && source.text.includes(updatedLabel(list)),
-      `${name}: source destination and snapshot retained`);
+    check(item.source === sourceLink(list) && !source.text.includes('Snapshot taken'),
+      `${name}: source destination retained, with the snapshot date left to Preview`);
     check(!item.overflow, `${name}: no document overflow`);
     for (const part of item.parts.filter((entry) => !entry.hidden && entry.bounds.width)) {
       check(part.words > 0 && part.clipped.length === 0, `${name}: ${part.className} text remains inside its own box ${JSON.stringify(part.clipped)}`);
@@ -787,8 +779,9 @@ export async function catalogCardReadability({
         `${name}: AC01 ${part.className} spans usable inner width (${part.bounds.width}/${item.content.width})`);
       }
     }
-    check(item.actions.every((button) => button.width >= 48 && button.height >= (profile.desktop ? 44 : 48)),
-      `${name}: action hit areas retained`);
+    check(item.actions.every((button) => button.width >= 48 && button.height >= (profile.desktop ? 44 : 48))
+      && item.preview.width >= (profile.desktop ? 24 : 48) && item.preview.height >= (profile.desktop ? 24 : 48),
+    `${name}: action hit areas retained`);
     if (compact) {
       const timeline = item.nodes.length > 0;
       check(item.card.width >= profile.width - 32 - (timeline ? 32 : 0) - 1,
@@ -812,13 +805,13 @@ export async function catalogCardReadability({
       }
     }
     const ax = await accessibleCard(page, selector);
+    // The heading takes its name from the Preview button it holds.
     const ordered = [
       ...(item.marker ? [ax.findIndex((node) => node.name.toLowerCase() === 'you are here')] : []),
-      ax.findIndex((node) => node.role === 'heading' && node.name === title),
+      ax.findIndex((node) => node.role === 'heading' && node.name === previewName),
+      ax.findIndex((node) => node.role === 'button' && node.name === previewName),
       ax.findIndex((node) => node.role === 'StaticText' && node.name === desc.text),
       ax.findIndex((node) => node.role === 'StaticText' && node.name === meta.text),
-      ...(item.pathSummary ? [ax.findIndex((node) => node.role === 'DisclosureTriangle'
-        && node.name === item.pathSummary)] : []),
       ax.findIndex((node) => item.source
         ? node.role === 'link' && node.name.startsWith(`Source of ${list.name}:`)
         : node.role === 'StaticText' && node.name === sourceLabel(list)),

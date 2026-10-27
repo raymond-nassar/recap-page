@@ -71,8 +71,8 @@ function viewFixture(lists, { state = createEmptyState(), paths = [] } = {}) {
   };
   const cards = [];
   const positions = [];
-  const paintCard = (story, placement) => {
-    cards.push({ story, placement });
+  const paintCard = (story, options) => {
+    cards.push({ story, options });
     return node();
   };
   const view = createCatalogView({
@@ -94,9 +94,9 @@ function viewFixture(lists, { state = createEmptyState(), paths = [] } = {}) {
       chosenPath: (story) => story.lists[0],
       ensureSetupGuideFeature: () => {},
       paintTimelinePosition: (_root, position, options) => positions.push({ position, options }),
-      renderTimelineSections: (_root, groups, placements) => {
+      renderTimelineSections: (_root, groups) => {
         for (const section of groups) {
-          for (const story of section.stories) paintCard(story, placements.get(story.groupKey ?? story.key));
+          for (const story of section.stories) paintCard(story);
         }
       },
       shelfSectionHead: () => node(),
@@ -132,7 +132,9 @@ test('independent spotlight choices retain their shared subject rank and stable 
   );
 });
 
-test('Storylines renders both choices independently with the same logical path placement', async () => {
+// A card no longer shows its path step (UX-11, #830): paths are followed on Modern Timeline. Both
+// sibling choices still render as cards of their own, and both still start the path they share.
+test('Storylines renders both choices independently, and both start the path they share', async () => {
   const after = entry('after', { timeline: 2015 });
   const fixture = viewFixture([fast, full, after], {
     paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
@@ -141,7 +143,6 @@ test('Storylines renders both choices independently with the same logical path p
   assert.equal(fixture.cards.length, 3);
   assert.deepEqual(fixture.cards.map(({ story }) => story.key), ['list:fast', 'list:full', 'list:after']);
   assert.ok(fixture.cards.every(({ story }) => story.lists.length === 1));
-  assert.deepEqual(fixture.cards.slice(0, 2).map(({ placement }) => [placement.position, placement.total]), [[1, 2], [1, 2]]);
   const orientation = fixture.nodes.results.children.find(({ class: name }) => name === 'rail-hint shelf-orientation');
   assert.equal(orientation.text, `Start Route with ${fast.name} or ${full.name}.`);
 });
@@ -209,14 +210,14 @@ test('each card binds Add or Open and Preview to its own exact list', () => {
   const descendants = (root) => typeof root === 'object' && root !== null
     ? [root, ...root.children.flatMap(descendants)] : [];
   for (const list of [fast, full]) {
-    const card = presentation.catalogCard({ key: `list:${list.id}`, groupKey: 'shared', lists: [list] }, null);
+    const card = presentation.catalogCard({ key: `list:${list.id}`, groupKey: 'shared', lists: [list] });
     const controls = descendants(card);
     const main = controls.find((control) => ['import', 'open'].includes(control.dataset?.act));
     const preview = controls.find((control) => control.dataset?.act === 'preview');
     assert.equal(main.dataset.key, list.id);
     assert.equal(preview.tag, 'button');
-    assert.equal(preview.children[0], 'Preview');
-    assert.equal(preview['aria-label'], `Preview: ${list.name}`);
+    assert.equal(preview.children[0].text, list.name, 'the title is the Preview button');
+    assert.equal(preview['aria-label'], `${list.name}. Preview.`);
     assert.equal(main.tag, list.id === 'full' ? 'a' : 'button');
     if (list.id === 'full') assert.equal(main.href, '#/read/saved-full');
     let prevented = false;

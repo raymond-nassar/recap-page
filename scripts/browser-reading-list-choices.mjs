@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { shownName } from '../src/js/lib/accname.js';
 import { createEmptyState, createList } from '../src/js/lib/model.js';
 
 const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
@@ -84,13 +85,15 @@ export const readingListChoices = {
       const cards = await page.$$eval(`#${surface}-results .catalog-card`, (nodes) => nodes.map((card) => ({
         key: card.dataset.story,
         title: card.querySelector('.catalog-card-title').textContent.trim(),
-        preview: card.querySelector('[data-act="preview"]').textContent.trim(),
+        preview: card.querySelector('.catalog-card-title [data-act="preview"]')?.textContent.trim() ?? null,
+        previewName: card.querySelector('.catalog-card-title [data-act="preview"]')?.getAttribute('aria-label') ?? null,
         previewTag: card.querySelector('[data-act="preview"]').tagName,
       })));
-      t.check(`${surface}: every choice has its own title and ordinary Preview button`,
+      t.check(`${surface}: every choice has its own title, and the title is its Preview button`,
         cards.length === expected && new Set(cards.map(({ key }) => key)).size === expected
         && (surface !== 'lines' || cards.every(({ key }) => expectedLines.has(key)))
-        && cards.every(({ key, title, preview, previewTag }) => preview === 'Preview' && previewTag === 'BUTTON'
+        && cards.every(({ key, title, preview, previewName, previewTag }) => preview === title
+          && previewName === shownName([title], 'Preview') && previewTag === 'BUTTON'
           && lists.some((list) => `list:${list.id}` === key && list.name === title)),
         JSON.stringify(cards));
       for (const width of [1280, 640, 360]) {

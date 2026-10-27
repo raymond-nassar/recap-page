@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { updatedLabel } from '../src/js/lib/catalog.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const cases = [
@@ -47,10 +48,9 @@ export const sourceCredits = {
         disclosed: Boolean(node.querySelector('details')),
       }));
       const list = lists.find((entry) => entry.id === id);
-      t.check(`${surface}: concise source and snapshot are visible without expanding`,
+      t.check(`${surface}: concise source is visible without expanding, with the snapshot left to Preview`,
         source.visible && !source.disclosed && source.href === list.source
-        && source.text.startsWith(`Source: ${site} · Snapshot taken `)
-        && !source.text.includes('Section:'), JSON.stringify(source));
+        && source.text === `Source: ${site}`, JSON.stringify(source));
       await page.focus(`${card} .result-source a`);
       t.check(`${surface}: source is keyboard reachable`,
         await page.evaluate(() => document.activeElement.matches('.result-source a')));
@@ -61,9 +61,10 @@ export const sourceCredits = {
         href: node.querySelector('a')?.href,
         visible: node.querySelector('a')?.checkVisibility(),
       }));
-      t.check(`${surface}: Preview keeps full attribution and section visible`,
+      t.check(`${surface}: Preview keeps full attribution, section and snapshot visible`,
         preview.visible && preview.href === list.source && preview.text.includes(list.sourceOrigin)
-        && (!list.sourceSection || preview.text.includes(`Section: ${list.sourceSection}`)), JSON.stringify(preview));
+        && (!list.sourceSection || preview.text.includes(`Section: ${list.sourceSection}`))
+        && preview.text.includes(`Snapshot taken ${updatedLabel(list)}`), JSON.stringify(preview));
       await page.keyboard.press('Escape');
     }
 

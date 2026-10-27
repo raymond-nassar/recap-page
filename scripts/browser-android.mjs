@@ -23,8 +23,8 @@ import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import {
-  catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
-  parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
+  catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
+  parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
   sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
 } from '../src/js/lib/catalog.js';
 
@@ -904,20 +904,13 @@ async function spotlightControlCheck(page, profile) {
       input.value = value; input.dispatchEvent(new Event('input', { bubbles: true }));
     }, state.query);
     await settled();
-    assert.ok(stories().length, 'The compound query must render at least one guide before reset');
-    const placements = pathPlacements(parsed.paths, parsed.lists);
-    const originStory = groupCatalog(modernTimelineLists(parsed.lists))
-      .find((story) => placements.get(story.key)?.first.shelf === 'spotlights');
-    assert.ok(originStory, 'A real timeline path link back to a spotlight stop is required');
-    await route(page, 'catalog');
-    const pathRoot = `#catalog-results [data-story=${JSON.stringify(originStory.key)}] .result-path`;
-    await click(page, `${pathRoot} > summary`);
-    await click(page, `${pathRoot} a[href^="#/spotlights"]`);
-    state.kind = 'all'; state.facet = 'all'; state.query = '';
-    await settled({ summary: false });
-    const reset = await spotlightSnapshot(page);
-    check(reset.summary === summaryText(), `${label}: event-free reset refreshes summary while retaining popularity`);
-    raw.eventFreeReset = reset;
+    assert.ok(stories().length, 'The compound query must render at least one guide');
+    raw.compound = await spotlightSnapshot(page);
+    // A stop's path link once reset these as it arrived. It left the cards (UX-11, #830), so the
+    // search is cleared here instead, and the choices below reset kind and category themselves.
+    state.query = '';
+    await click(page, '#spotlights-clear');
+    await settled();
     if (spotlightCase === 'summary') return;
   }
   if (!spotlightCase) {

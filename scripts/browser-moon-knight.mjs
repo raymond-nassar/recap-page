@@ -151,7 +151,7 @@ export const moonKnightActualData = {
           title: node.querySelector('.catalog-card-title')?.textContent.trim(),
           text: node.textContent,
           credit: node.querySelector('a[href="https://github.com/raymond-nassar/recap-page/issues/685"]')?.href,
-          path: Boolean(node.querySelector('.result-path')),
+          path: Boolean(node.querySelector('details')),
           action: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
           count: document.querySelectorAll('[data-story="list:mcu-prep-moon-knight"]').length,
           titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]

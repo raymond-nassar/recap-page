@@ -968,7 +968,7 @@ const MUTATIONS = [
   {
     id: 'rail-bleed',
     breaks: 'rail-collapse',
-    why: 'the collapsed-sidebar rule is unscoped again, exactly as it shipped, so it reaches every pill in the shelf',
+    why: 'a collapsed-sidebar rule reaches past the rail again, as the unscoped pill rule once did, and shrinks a card action in the shelf to a dot',
     script: () => {
       addEventListener('load', () => {
         // Through the CSSOM, not as an injected <style>. The app sends `style-src 'self'`, which
@@ -976,7 +976,7 @@ const MUTATIONS = [
         // dropped that way: --prove reported it breaking nothing, which reads as a scenario that
         // cannot fail rather than as a mutation that never ran.
         const sheet = [...document.styleSheets].find((s) => s.href?.endsWith('styles.css'));
-        sheet.insertRule('.railed .result-path > summary { width: 10px; height: 10px; padding: 0; color: transparent; overflow: hidden; }', sheet.cssRules.length);
+        sheet.insertRule('.railed .catalog-card-actions .btn { width: 10px; height: 10px; padding: 0; color: transparent; overflow: hidden; }', sheet.cssRules.length);
       });
     },
   },
@@ -1012,26 +1012,18 @@ const MUTATIONS = [
   {
     id: 'first-stop-hidden-marker-copy',
     breaks: 'first-stop-orientation',
-    why: 'the sentence points to Start here wording that the compact card hides inside its disclosure',
-    rewriteMain: (source) => source.replace(
-      "      text: `${directions.join('; ')}.`,",
-      '      text: `Start with ${firstStops[0].guide.name}, marked Start here below.`,',
+    why: 'the sentence points to a Start here marker that no card shows',
+    rewriteCatalogView: (source) => source.replace(
+      "        text: `${directions.join('; ')}.`,",
+      '        text: `Start with ${firstStops[0].guide.name}, marked Start here below.`,',
     ),
   },
   {
     id: 'path-strip',
     breaks: 'reading-path',
-    why: 'the catalog arrives with no paths, so a shelf that still shows a reading order is showing one it was not given',
+    why: 'the catalog arrives with no paths, so a Timeline that still offers a reading order is offering one it was not given',
     script: () => {
       window.__mrtMutation = 'path-strip';
-    },
-  },
-  {
-    id: 'group-strip',
-    breaks: 'reading-path',
-    why: 'a story read two ways loses its shared name, so a stop naming the story rather than one reading of it cannot be resolving anything',
-    script: () => {
-      window.__mrtMutation = 'group-strip';
     },
   },
   {
@@ -2938,7 +2930,6 @@ const SCENARIOS = [
             kind: 'row',
             level: e.querySelector('.catalog-card-title')?.tagName ?? null,
             title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
-            step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
           }
       )));
 
@@ -2966,7 +2957,7 @@ const SCENARIOS = [
       const under = new Map();
       for (const x of shelf) {
         if (x.kind === 'head') head = x.heading;
-        else if (x.step && mainPathTitles.has(x.title)) under.set(x.title, head);
+        else if (mainPathTitles.has(x.title)) under.set(x.title, head);
       }
       t.check('all four guides for the three path stops are on the shelf', under.size === 4, JSON.stringify([...under]));
       t.check('and every one of them sits under the same era',
@@ -3305,25 +3296,6 @@ const SCENARIOS = [
         await page.$eval('input[name="spotlights-kind"]:checked', (input) => input.value) === 'complete-guide'
         && await page.$eval('input[name="spotlights-sort"]:checked', (input) => input.value) === 'popularity'
         && (await page.evaluate(() => location.hash)).includes('sort=popularity'));
-
-      await openBrowseCategory(page, 'storylines');
-      await page.waitForSelector('#lines-results .catalog-card', { timeout: 15000 });
-      await page.evaluate(() => {
-        const card = [...document.querySelectorAll('#lines-results .catalog-card')]
-          .find((node) => node.querySelector('.catalog-card-title')?.textContent.trim() === 'Across the Line');
-        const link = [...card.querySelectorAll('.path-step a')]
-          .find((node) => node.textContent.trim() === 'Essential Avengers');
-        link.click();
-      });
-      await page.waitForFunction(() => (
-        !document.querySelector('#view-spotlights').hidden
-        && document.querySelector('input[name="spotlights-kind"]:checked')?.value === 'all'
-        && document.querySelector('input[name="spotlights-sort"]:checked')?.value === 'popularity'
-        && [...document.querySelectorAll('#spotlights-results .catalog-card-title')]
-          .some((node) => node.textContent.trim() === 'Essential Avengers')
-        && location.hash.includes('sort=popularity')
-      ));
-      t.check('path arrival resets All but keeps the popularity sort', true);
 
       await page.setViewport({ width: 360, height: 800 });
       await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
@@ -4031,7 +4003,7 @@ const SCENARIOS = [
         titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
           .map((node) => node.textContent.trim()),
         cards: document.querySelectorAll(selector).length,
-        path: Boolean(document.querySelector(`${selector} .result-path`)),
+        path: Boolean(document.querySelector(`${selector} details`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
       t.check('actual MCU Prep discovers Far From Home once alongside every companion',
@@ -4199,7 +4171,7 @@ const SCENARIOS = [
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
-        path: Boolean(node.querySelector('.result-path')),
+        path: Boolean(node.querySelector('details')),
         orientation: document.querySelector('#spotlights-results .shelf-orientation')?.textContent ?? '',
       }));
       t.check('All search exposes the exact Adam card, source, controls, and no false first stop',
@@ -5698,14 +5670,14 @@ const SCENARIOS = [
         && timeline.featureMeta === '21 issues'
         && JSON.stringify(timeline.featureActions) === JSON.stringify([
           {
+            text: 'Setup to Modern Timeline',
+            name: 'Setup to Modern Timeline. Preview.',
+            act: 'preview',
+          },
+          {
             text: '+ Add to library',
             name: 'Add to library: Setup to Modern Timeline',
             act: 'import',
-          },
-          {
-            text: 'Preview',
-            name: 'Preview: Setup to Modern Timeline',
-            act: 'preview',
           },
         ])
         && timeline.featureImageSrc === null
@@ -6085,12 +6057,13 @@ const SCENARIOS = [
         const image = card?.querySelector('.ocard-art img');
         const fallback = card?.querySelector('.ocard-art .of');
         const title = card?.querySelector('.catalog-card-title');
+        const label = document.getElementById(feature?.getAttribute('aria-labelledby') ?? '');
         return {
           identity: feature?.dataset.featuredList ?? '',
           story: card?.dataset.story ?? '',
           heading: title?.textContent.trim() ?? '',
-          headingId: title?.id ?? '',
-          labelledBy: feature?.getAttribute('aria-labelledby') ?? '',
+          label: label?.textContent.trim() ?? '',
+          labelInHeading: Boolean(label && title?.contains(label)),
           context: feature?.querySelector('.setup-guide-context p:last-child')?.textContent.trim() ?? '',
           meta: card?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
           actions: [...(card?.querySelectorAll('a[data-act="open"], button[data-act="preview"]') ?? [])].map((button) => ({
@@ -6110,21 +6083,22 @@ const SCENARIOS = [
         ageFeature.identity === 'setup-to-modern-timeline'
         && ageFeature.story === 'list:setup-to-modern-timeline'
         && ageFeature.heading === 'Setup to Modern Timeline'
-        && ageFeature.headingId === ageFeature.labelledBy
+        && ageFeature.label === 'Setup to Modern Timeline'
+        && ageFeature.labelInHeading
         && ageFeature.context.startsWith('New to Marvel?')
         && ageFeature.context.includes('historical context on the characters and events ahead')
         && ageFeature.context.includes('Setup is optional; you can enter this age directly.')
         && ageFeature.meta === '21 issues'
         && JSON.stringify(ageFeature.actions) === JSON.stringify([
           {
+            text: 'Setup to Modern Timeline',
+            name: 'Setup to Modern Timeline. Preview.',
+            act: 'preview',
+          },
+          {
             text: 'Open →',
             name: 'Open: Setup to Modern Timeline',
             act: 'open',
-          },
-          {
-            text: 'Preview',
-            name: 'Preview: Setup to Modern Timeline',
-            act: 'preview',
           },
         ])
         && ageFeature.imageSrc === null
@@ -6151,7 +6125,8 @@ const SCENARIOS = [
         (feature) => {
           const card = feature.querySelector('.catalog-card');
           const grid = feature.querySelector('.setup-guide-grid');
-          const actions = card.querySelector('.catalog-card-actions');
+          const actions = [...card.querySelectorAll('.catalog-card-actions a, .catalog-card-actions button')];
+          const preview = card.querySelector('.catalog-card-title [data-act="preview"]');
           const rect = card.getBoundingClientRect();
           return {
             viewport: innerWidth,
@@ -6159,21 +6134,22 @@ const SCENARIOS = [
             left: rect.left,
             right: rect.right,
             cardColumns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
-            actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
-            controls: actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]').length === 2
-              && [...actions.querySelectorAll('a[data-act="open"], button[data-act="preview"]')].every((button) => (
-                button.getBoundingClientRect().height >= 44
-              )),
+            actions: actions.map((node) => node.dataset.act),
+            actionHeight: Math.round(actions[0]?.getBoundingClientRect().height ?? 0),
+            previewHeight: Math.round(preview?.getBoundingClientRect().height ?? 0),
           };
         },
       );
+      // The title is the Preview control now (UX-11, #830), so the actions row holds the one Open,
+      // at the full target, and the title keeps at least the 24px minimum on a desktop window.
       t.check('the age-page setup card stays one column, unclipped, and operable at 320 pixels',
         ageNarrow.documentWidth <= ageNarrow.viewport
         && ageNarrow.left >= 0
         && ageNarrow.right <= ageNarrow.viewport
         && ageNarrow.cardColumns === 1
-        && ageNarrow.actionColumns === 2
-        && ageNarrow.controls,
+        && JSON.stringify(ageNarrow.actions) === '["open"]'
+        && ageNarrow.actionHeight >= 44
+        && ageNarrow.previewHeight >= 24,
         JSON.stringify(ageNarrow));
       await page.setViewport({ width: 1280, height: 900 });
 
@@ -6952,10 +6928,13 @@ const SCENARIOS = [
           blurbClient: blurb.clientWidth,
           cardLeft: Math.round(cardRect.left),
           cardRight: Math.round(cardRect.right),
-          actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
-          actionTargets: [...actions.querySelectorAll('button')].every((button) => (
+          actionCount: actions.querySelectorAll('a, button').length,
+          actionTargets: [...actions.querySelectorAll('a, button')].every((button) => (
             button.getBoundingClientRect().height >= 44
           )),
+          previewHeight: Math.round(
+            card.querySelector('.catalog-card-title [data-act="preview"]')?.getBoundingClientRect().height ?? 0,
+          ),
         };
       });
       t.check('the era copy and setup card reflow without horizontal clipping at 320 pixels',
@@ -6964,7 +6943,7 @@ const SCENARIOS = [
         && narrow.blurbLeft >= narrow.headLeft && narrow.blurbRight <= narrow.headRight
         && narrow.blurbScroll <= narrow.blurbClient
         && narrow.cardLeft >= 0 && narrow.cardRight <= narrow.viewport
-        && narrow.actionColumns === 2 && narrow.actionTargets,
+        && narrow.actionCount === 1 && narrow.actionTargets && narrow.previewHeight >= 24,
         JSON.stringify(narrow));
 
       await page.setViewport({ width: 1280, height: 900 });
@@ -7215,8 +7194,10 @@ const SCENARIOS = [
           timeline: Boolean(document.querySelector('#age-event-era-results .timeline-flow')),
           years: cards.map((card) => Number(card.dataset.year)),
           titles: cards.map((card) => card.querySelector('.catalog-card-title')?.textContent.trim()),
-          localLinks: local?.querySelectorAll('.path-step a').length ?? -1,
-          crossingHref: crossing?.querySelector('.path-step a')?.getAttribute('href') ?? null,
+          pathLinks: [local, crossing].map((card) => (card
+            ? [...card.querySelectorAll('a')]
+              .filter((link) => !link.closest('.result-source, .catalog-card-actions')).length
+            : -1)),
           groups: [...document.querySelectorAll('#age-event-era-results .timeline-year-row')].map((row) => ({
             year: Number(
               row.querySelector('.timeline-year-label')?.textContent
@@ -7257,9 +7238,10 @@ const SCENARIOS = [
       t.check('one age leaf can cross canonical shelves',
         leaf.titles.includes('Browser Check Order') && leaf.titles.includes('Across Two Periods'),
         JSON.stringify(leaf.titles));
-      t.check('path stops already on the age leaf stay local while an outside stop links canonically',
-        leaf.localLinks === 0 && leaf.crossingHref === '#/catalog',
-        JSON.stringify({ localLinks: leaf.localLinks, crossingHref: leaf.crossingHref }));
+      // The path disclosure left the cards (UX-11, #830), so a stop on the leaf, whether its path
+      // stays on the page or crosses to another, links nowhere but its credit and its action.
+      t.check('path stops on the age leaf carry no path links',
+        JSON.stringify(leaf.pathLinks) === '[0,0]', JSON.stringify(leaf.pathLinks));
 
       const timelineIdentity = await page.evaluate(() => {
         const ids = [...document.querySelectorAll('.timeline-flow [id]')].map(({ id }) => id);
@@ -8075,7 +8057,7 @@ const SCENARIOS = [
       t.check('one sentence names the selected first-stop guide before the shelf',
         light?.count === 1 && light.text === multiple && light.beforeShelf && !light.inCard,
         JSON.stringify(light));
-      t.check('the sentence points to the visible Start summaries rather than hidden detail wording',
+      t.check('the sentence names the first stop by its card rather than by a marker no card shows',
         light?.text.startsWith('Start The Fixture Path with ') && !light.text.includes('Start here'),
         light?.text);
       t.check('the sentence stays visible in light and dark themes without entering keyboard order',
@@ -8158,79 +8140,66 @@ const SCENARIOS = [
   },
   {
     id: 'reading-path',
-    title: 'the shelf says where a story sits in a reading order',
+    title: 'the Timeline offers its reading order outside the cards it orders',
     async run(page, t) {
       await open(page, '/');
       await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
 
-      const rows = await page.$$eval('#catalog-results .catalog-card', (els) => els.map((e) => ({
+      // The path disclosure left the cards (UX-11, #830). Each card keeps its story, its credit and
+      // one action, and the path is offered once, by the sentence above the shelf and Follow a path.
+      const readCards = (selector) => page.$$eval(selector, (els) => els.map((e) => ({
         title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
         meta: e.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
         source: e.querySelector('.result-source')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
-        step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
-        pathSummary: e.querySelector('.result-path summary')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
+        disclosures: e.querySelectorAll('details').length,
+        otherLinks: [...e.querySelectorAll('a')]
+          .filter((link) => !link.closest('.result-source, .catalog-card-actions')).length,
         year: e.dataset.year ?? '',
       })));
+      const rows = await readCards('#catalog-results .catalog-card');
 
-      const row = (name) => rows.find((r) => r.title === name);
-      const first = row('Browser Check Order');
-      const middle = row('Second Stop');
-      const long = row('Third Stop: The Long Way');
-      const last = row('Third Stop: The Short Way');
-
+      const first = rows.find((r) => r.title === 'Browser Check Order');
       t.check('the shelf draws one independently named card per event guide',
         rows.length === FIXTURE_SHELVES.get('catalog').length,
         `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
-      t.check('both alternatives share the same third-stop placement',
-        long?.pathSummary === 'Step 3/3' && last?.pathSummary === 'Step 3/3',
-        JSON.stringify({ long, last }));
-
-      t.check('the first stop is badged so a reader can find it at a glance', first?.pathSummary === 'Start · 1/3', JSON.stringify(first));
-      t.check('and still says how long the path is', first?.step?.includes('Step 1 of 3') === true, JSON.stringify(first));
-      t.check('and names the path it belongs to', first?.step?.includes('The Fixture Path') === true, JSON.stringify(first?.step));
-      t.check('and credits the source website without the section prose', first?.source?.startsWith('Source: example.com · Snapshot taken ') === true && !first.source.includes('Section:'), JSON.stringify(first?.source));
-
-      t.check('a middle stop is numbered', middle?.pathSummary === 'Step 2/3', JSON.stringify(middle));
-      // Deliberately absent. The shelf is sorted by year, so the previous stop is the row above,
-      // and printing it made the longest thing on the line a copy of the line before it.
-      t.check('and does not restate the stop above it', middle?.step?.includes('Browser Check Order') === false, JSON.stringify(middle?.step));
-      t.check('and keeps the logical next-stop name shared by both alternatives', middle?.step?.includes('Next: Third Stop') === true && !middle.step.includes('Short Way'), JSON.stringify(middle?.step));
-
-      t.check('the last stop says the path ends there', last?.step?.includes('Last stop') === true, JSON.stringify(last?.step));
-      t.check('and is numbered last', last?.pathSummary === 'Step 3/3', JSON.stringify(last));
-      t.check('and offers no next stop to go to', last?.step?.includes('Next:') === false, JSON.stringify(last?.step));
-
-      await page.$$eval('#catalog-results .catalog-card', (cards) => {
-        const card = cards.find((row) => row.querySelector('.catalog-card-title')?.textContent.trim() === 'Second Stop');
-        card?.querySelector('.result-path summary')?.click();
-      });
-      const expandedPath = await page.$$eval('#catalog-results .catalog-card', (cards) => {
-        const card = cards.find((row) => row.querySelector('.catalog-card-title')?.textContent.trim() === 'Second Stop');
-        const details = card?.querySelector('.result-path');
-        return {
-          open: details?.open ?? false,
-          text: details?.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-        };
-      });
-      t.check('opening the compact marker reveals the full path and next-stop wording',
-        expandedPath.open
-        && expandedPath.text.includes('The Fixture Path')
-        && expandedPath.text.includes('Next: Third Stop'),
-        JSON.stringify(expandedPath));
-
+      t.check('no card carries a path disclosure or a link besides its credit and its action',
+        rows.every((r) => r.disclosures === 0 && r.otherLinks === 0),
+        JSON.stringify(rows.filter((r) => r.disclosures || r.otherLinks)));
+      t.check('the first stop credits its source website by name alone',
+        first?.source === 'Source: example.com', JSON.stringify(first?.source));
       t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
+      const offer = await page.evaluate(() => ({
+        sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim() ?? null,
+        follow: document.querySelector('#catalog-follow')?.hidden === false,
+        options: [...document.querySelectorAll('#catalog-path option')].map((option) => option.textContent.trim()),
+      }));
+      t.check('the Timeline still says where the path starts',
+        offer.sentence === 'Start The Fixture Path with Browser Check Order.', JSON.stringify(offer));
+      t.check('and offers to follow it',
+        offer.follow && offer.options.includes('The Fixture Path (3 stops)'), JSON.stringify(offer));
+
+      await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open]', { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#preview-source')?.textContent.includes('Snapshot taken'),
+        { timeout: 5000 },
+      ).catch(() => {});
+      const attribution = await page.$eval('#preview-source', (node) => node.textContent.replace(/\s+/g, ' ').trim());
+      t.check('Preview keeps the snapshot date and section the card leaves out',
+        attribution.startsWith('Source: ') && attribution.includes('Section: Fixture section')
+        && attribution.includes(`Snapshot taken ${updatedLabel(CATALOG.lists[0])}`), JSON.stringify(attribution));
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+
       await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
-      const off = await page.$eval('#spotlights-results .catalog-card', (e) => ({
-        title: e.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
-        step: e.querySelector('.path-step')?.textContent.replace(/\s+/g, ' ').trim() ?? null,
-        year: e.dataset.year ?? '',
-      }));
-      t.check('a story on no path says nothing about one', off.title === 'Off The Path' && off.step === null, JSON.stringify(off));
-      t.check('and an undated spotlight claims no Timeline destination', off.year === '', JSON.stringify(off.year));
+      const [off] = await readCards('#spotlights-results .catalog-card');
+      t.check('a story on no path says nothing about one',
+        off?.title === 'Off The Path' && off.disclosures === 0 && off.otherLinks === 0, JSON.stringify(off));
+      t.check('and an undated spotlight claims no Timeline destination', off?.year === '', JSON.stringify(off?.year));
     },
   },
   {
@@ -8239,16 +8208,19 @@ const SCENARIOS = [
     async run(page, t) {
       await open(page, '/');
       await openBrowseCategory(page, 'timeline');
-      await page.waitForSelector('#catalog-results .result-path > summary', { timeout: 15000 });
+      // A card's one action stands in for the shelf. The pills this once measured, the depth label
+      // and the path's Start badge, have both left the cards.
+      const action = '#catalog-results .catalog-card-actions .btn';
+      await page.waitForSelector(action, { timeout: 15000 });
 
-      const read = () => page.evaluate(() => {
+      const read = () => page.evaluate((selector) => {
         const box = (e) => {
           if (!e) return null;
           const r = e.getBoundingClientRect();
           return { w: Math.round(r.width), h: Math.round(r.height), colour: getComputedStyle(e).color };
         };
         return {
-          badge: box(document.querySelector('#catalog-results .result-path > summary')),
+          badge: box(document.querySelector(selector)),
           status: box(document.querySelector('#api-status')),
           nav: (() => {
             const rail = document.querySelector('#sidebar').getBoundingClientRect();
@@ -8267,7 +8239,7 @@ const SCENARIOS = [
             };
           })(),
         };
-      });
+      }, action);
 
       const before = await read();
       // Set directly rather than through the toggle: what is under test is the stylesheet, and
@@ -8277,7 +8249,7 @@ const SCENARIOS = [
       const after = await read();
 
       const invisible = (c) => /rgba\(\d+, \d+, \d+, 0\)/.test(c ?? '');
-      t.check('the path marker has a usable target to begin with',
+      t.check('a card action has a usable target to begin with',
         (before.badge?.w ?? 0) > 50 && (before.badge?.h ?? 0) >= 24,
         JSON.stringify(before.badge));
       t.check('and is still that size once the sidebar is collapsed', after.badge?.w === before.badge?.w, `${before.badge?.w} then ${after.badge?.w}`);
@@ -12873,9 +12845,9 @@ const SCENARIOS = [
         await page.setViewport({ width: 320, height: 900 });
         await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
         await page.focus(lastOpen);
-        const layout = await page.$$eval('#catalog-results .path-stop .catalog-card-actions > *', (controls) => ({
+        const layout = await page.evaluate(() => ({
           viewport: innerWidth, width: document.documentElement.scrollWidth,
-          controls: controls.map((control) => {
+          controls: [...document.querySelectorAll('#catalog-results .path-stop .catalog-card-actions > *')].map((control) => {
             const rect = control.getBoundingClientRect();
             const style = getComputedStyle(control);
             return {
@@ -12885,12 +12857,25 @@ const SCENARIOS = [
               color: style.color, background: style.backgroundColor,
             };
           }),
+          // Each stop's title is its Preview (UX-11, #830), named by the title it shows.
+          titles: [...document.querySelectorAll('#catalog-results .path-stop .catalog-card-title [data-act="preview"]')].map((control) => {
+            const rect = control.getBoundingClientRect();
+            return {
+              left: rect.left, right: rect.right, height: rect.height,
+              text: control.textContent.trim(), name: control.getAttribute('aria-label'),
+            };
+          }),
         }));
         t.check(`${theme} narrow stop actions wrap without overflow and retain labelled 44px targets`,
-          layout.width === layout.viewport && layout.controls.length === 24
+          layout.width === layout.viewport && layout.controls.length === 12
           && layout.controls.every((control) => control.left >= 0 && control.right <= layout.viewport
             && control.height >= 44 && control.fits && control.name.startsWith(control.text)
-            && control.color !== control.background), JSON.stringify(layout));
+            && control.color !== control.background), JSON.stringify(layout.controls));
+        t.check(`${theme} narrow stop titles preview their stop inside the page with labelled 24px targets`,
+          layout.titles.length === 12
+          && layout.titles.every((control) => control.left >= 0 && control.right <= layout.viewport
+            && control.height >= 24 && control.name === `${control.text}. Preview.`),
+          JSON.stringify(layout.titles));
       }
       t.check('stop journeys produce no page errors or reader-tab launches',
         errors.length === 0 && await page.evaluate(() => window.__opened.length === 0), errors.join(' / '));
@@ -13190,14 +13175,15 @@ const SCENARIOS = [
       await page.setViewport({ width: 1280, height: 900 });
       await page.select('#catalog-path', '');
       await page.waitForFunction(() => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === null
-        && document.querySelector('#catalog-results [data-story="list:browser-check"] .result-path summary'));
+        && document.querySelector('#catalog-results [data-story="list:browser-check"]')
+        && document.querySelector('#catalog-results .shelf-orientation'));
       const shelf = await page.$eval('#catalog-results [data-story="list:browser-check"]', (card) => ({
-        badge: card.querySelector('.result-path summary')?.textContent.replace(/\s+/g, ' ').trim(),
+        sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim(),
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
       }));
-      t.check('choosing the whole timeline restores it, with its path badge, issue count and gap disclosure',
-        shelf.badge === 'Start · 1/3' && shelf.stops === 0
+      t.check('choosing the whole timeline restores it, with its start sentence, issue count and gap disclosure',
+        shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
         && shelf.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
         JSON.stringify(shelf));
     },
@@ -17083,7 +17069,7 @@ SCENARIOS.push({
           viewport: innerWidth,
           scrollWidth: document.documentElement.scrollWidth,
           orientation: Boolean(results.querySelector('.timeline-flow, .shelf-orientation')),
-          path: Boolean(selected?.querySelector('.result-path')),
+          path: Boolean(selected?.querySelector('details')),
         };
       }, `[data-story="list:${id}"]`);
       t.check(`${width}px: Browse keeps every companion exactly once`,
@@ -17531,16 +17517,10 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
           const fixture = new URL(location.href).searchParams.get('catalog')
             ?? localStorage.getItem('mrt.catalog.fixture');
           const selectedCatalog = catalogFixtures[fixture] ?? catalog;
-          // Two mutations aimed at the reading path, both applied to the catalog rather than to
-          // the app, because the app resolves the path from this payload and nothing else.
+          // A mutation aimed at the reading path, applied to the catalog rather than to the app,
+          // because the app resolves the path from this payload and nothing else.
           if (window.__mrtMutation === 'path-strip') {
             return Promise.resolve(json({ ...selectedCatalog, paths: [] }));
-          }
-          if (window.__mrtMutation === 'group-strip') {
-            return Promise.resolve(json({
-              ...selectedCatalog,
-              lists: selectedCatalog.lists.map((l) => ({ ...l, groupName: null })),
-            }));
           }
           if (window.__mrtMutation === 'adam-warlock-hidden') {
             return Promise.resolve(json({
@@ -18398,8 +18378,8 @@ async function responsiveCard(page) {
   const expected = {
     title: 'Avengers/Defenders War',
     description: firstSentence(RESPONSIVE_TITLE.description),
-    credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
-    options: ['+ Add to library', 'Preview'],
+    credit: 'Source: Comic Book Reading Orders',
+    options: ['+ Add to library'],
   };
   const qualified = title.text === expected.title
     && anatomy.display.description === expected.description
@@ -18528,8 +18508,8 @@ SCENARIOS.push(responsiveOwner({
     }));
     const expected = {
       description: firstSentence(RESPONSIVE_TITLE.description),
-      credit: `Source: Comic Book Reading Orders · Snapshot taken ${updatedLabel(RESPONSIVE_TITLE)}`,
-      options: ['+ Add to library', 'Preview'],
+      credit: 'Source: Comic Book Reading Orders',
+      options: ['+ Add to library'],
     };
     const qualified = title.text === 'Avengers/Defenders War'
       && JSON.stringify(display) === JSON.stringify(expected);

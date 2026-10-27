@@ -64,8 +64,8 @@ function harness(loadMetadata = async () => metadata) {
     clearLoadNotice: () => { clears += 1; },
     onLoadFailure: async (failure) => { if (failure.isCurrent()) failures.push(failure.error.message); },
     presentation: {
-      catalogCard: (story, placement, options) => {
-        cards.push({ story, placement, options });
+      catalogCard: (story, options) => {
+        cards.push({ story, options });
         return el('article', { dataset: { story: story.key } }, [
           el('h3', { class: 'catalog-card-title', text: story.lists[0].name }),
         ]);

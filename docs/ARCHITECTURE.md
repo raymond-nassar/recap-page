@@ -571,7 +571,7 @@ focus returns to the control and brings it into view at `src/js/views/catalog.js
 no persisted scroll position.
 
 Catalog shelves, Preview and generated publishing pages share one constructed presentation
-contract for individually titled cards, exact-list inspection, source disclosure and path links.
+contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
 `src/js/main.js:3338-3489`.

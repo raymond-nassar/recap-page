@@ -95,7 +95,7 @@ export const PAIRS = [
   ['--red-fg-2', '--card-2', BODY, 'Remove from list at rest in a row\'s open actions, which sit on a raised panel (UX-13)'],
   ['--teal', '--bg', BODY, 'the available badge on the page'],
   ['--teal', '--card', BODY, 'the available badge on a card'],
-  ['--teal', '--card-2', BODY, 'the Start here badge on a catalog row'],
+  ['--teal', '--card-2', BODY, 'the Already in your library badge on a search result row'],
   ['--amber', '--bg', BODY, 'the scheduled badge on the page'],
   ['--amber', '--card', BODY, 'the scheduled badge on a card'],
   ['--on-accent', '--accent', BODY, 'the label of a primary button, and the knob of the cover-art switch in its on state'],

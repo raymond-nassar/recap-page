@@ -14,7 +14,7 @@ import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, catalogEntries,
-  pathPlacements, availableHomeCategories, HOME_CATEGORIES,
+  availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
@@ -1895,11 +1895,6 @@ function loadCatalog() {
   return catalogLoad;
 }
 
-function goToStop(stop) {
-  catalogView.clearNarrowing(stop.shelf);
-  showView(stop.shelf, { focus: true, push: true });
-}
-
 // A second click while the first import is still fetching runs the whole import again and mints a
 // second list with the same name and the same issues, because createList() always allocates a new
 // id. Nothing is lost, but the reader is left to notice and delete the duplicate. Latching the
@@ -2680,18 +2675,15 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     return;
   }
 
-  const placements = pathPlacements(catalog.paths, catalog.lists);
-  const localStoryKeys = new Set(stories.map((story) => story.groupKey));
   if (isPublishingCategoryLeaf(category)) {
     const years = timelineYears(stories);
     catalogPresentation.renderTimelineSections(box, [{
       ...category, stories, from: years[0].year, to: years[years.length - 1].year,
-    }], placements, {
+    }], {
       idPrefix: route, showEmptyYears: true, sectionBlurb: false,
       cardOptions: {
         surface: route,
         report: `#${route}-report`,
-        localStoryKeys,
       },
     });
     const cards = [...box.querySelectorAll('.catalog-card')];
@@ -2715,8 +2707,8 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
-    grid.append(catalogPresentation.catalogCard(story, placements.get(story.groupKey), {
-      surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
+    grid.append(catalogPresentation.catalogCard(story, {
+      surface: route, report: `#${route}-report`, level: 'h2',
     }));
   }
   box.append(grid);
@@ -3341,7 +3333,6 @@ const catalogPresentation = createCatalogPresentation({
   hueOf,
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   onAdd: (list, button, report) => importCurated(list, button, { report }),
-  onGoToStop: goToStop,
   // A stop opened or previewed on a followed path is returned to on Back, as the path's own page did
   // (#897).
   onOpen: (list, saved, report) => openSavedCatalogList(list, saved, report, { fromCard: true }),
@@ -3349,10 +3340,6 @@ const catalogPresentation = createCatalogPresentation({
     rememberPathStop(list, 'preview');
     return previewView.open(list);
   },
-  pathHref: (stop) => formatRoute({
-    view: stop.shelf,
-    sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
-  }),
   paintCoverUrl,
   shortTitle,
 });
