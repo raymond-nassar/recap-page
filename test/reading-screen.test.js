@@ -173,7 +173,7 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
   assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
   for (const [id, tooltip, ariaKey] of [
     ['btn-hero-read', 'Keyboard shortcut: Enter', 'Enter'],
-    ['btn-hero-done', 'Mark read and continue. Keyboard shortcut: D', 'd'],
+    ['btn-hero-done', 'Mark as read and continue. Keyboard shortcut: D', 'd'],
   ]) {
     const button = cta.match(new RegExp(`<button[^>]*id="${id}"[^>]*>`))?.[0] ?? '';
     assert.match(button, /class="[^"]*\bhas-tooltip\b/, `${id} has no tooltip hook`);
@@ -200,10 +200,10 @@ test('UX-05 Done keeps its short label and is described for assistive technology
   const help = [...html.matchAll(/<(\w+)([^>]*)\bid="hero-done-help"([^>]*)>([^<]*)<\/\1>/g)];
   assert.equal(help.length, 1, 'the description must exist exactly once');
   const [, , before, after, text] = help[0];
-  assert.equal(text, 'Marks this comic read and shows the next one.');
+  assert.equal(text, 'Mark as read and continue.');
   assert.match(`${before} ${after}`, /\shidden(?:\s|$)/, 'a visible or visually hidden description is read again in browse mode');
   assert.doesNotMatch(`${before} ${after}`, /aria-hidden|visually-hidden/);
-  assert.ok(done[1].includes('data-tooltip="Mark read and continue. Keyboard shortcut: D"'), 'the visual tooltip changed');
+  assert.ok(done[1].includes('data-tooltip="Mark as read and continue. Keyboard shortcut: D"'), 'the visual tooltip changed');
 });
 
 // #860. Stacked on a narrow screen, Read's hint and Done's each sat over the other button and took

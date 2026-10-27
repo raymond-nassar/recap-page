@@ -157,7 +157,7 @@ export function createHomeView({
       nodes.continueNext.textContent = total === 0
         ? 'No issues in this Reading List yet. Open it to add comics.'
         : deferred ? `Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
-          : 'You have read every issue in this order.';
+          : 'You have read every issue in this Reading List.';
       nodes.continueRead.hidden = true;
       nodes.continueDone.hidden = true;
       paintCoverUrl(

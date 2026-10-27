@@ -58,7 +58,7 @@ apart and first while comics are queued and **Remove from library** apart and la
 tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
 Android Back, Escape or a tap outside dismisses the sheet without taking action.
 
-Read and **Done, next** stay together. **About this comic** opens reader-focused details with Read
+Read and **Done** stay together. **About this comic** opens reader-focused details with Read
 near the title, useful comic information and optional, spoiler-protected story summaries.
 **More comic actions** contains deferral and the external comic page.
 **Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
@@ -105,7 +105,7 @@ URL is attached only when launching the selected browser.
 
 Recap Page does not sign in to Marvel, embed comic pages or verify what Marvel's app displays.
 Opening the app or issue page does not prove the comic loaded. Record progress manually with
-**Done, next**. Desktop uses the same validated issue-page fallback without a redundant metadata
+**Done**. Desktop uses the same validated issue-page fallback without a redundant metadata
 lookup.
 
 The extra request sends the digital ID and exposes your network address to `bifrost.marvel.com`.

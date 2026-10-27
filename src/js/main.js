@@ -881,15 +881,15 @@ function applyReadingShortcutSetting() {
   const done = $('#btn-hero-done');
   done.classList.toggle('has-tooltip', enabled);
   if (enabled) {
-    done.setAttribute('data-tooltip', 'Mark read and continue. Keyboard shortcut: D');
+    done.setAttribute('data-tooltip', 'Mark as read and continue. Keyboard shortcut: D');
     done.setAttribute('aria-keyshortcuts', 'd');
   } else {
     done.removeAttribute('data-tooltip');
     done.removeAttribute('aria-keyshortcuts');
   }
   $('#reading-shortcut-description').textContent = enabled
-    ? 'Mark it read and move to the next one. Turn off in Backup & settings.'
-    : 'Disabled. Turn on in Backup & settings to mark the current issue read and move to the next one.';
+    ? 'Mark as read and continue. Turn off in Backup & settings.'
+    : 'Disabled. Turn on in Backup & settings to mark the current issue as read and continue.';
 }
 
 function setReadingShortcut(on) {

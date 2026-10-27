@@ -2457,7 +2457,7 @@ const SCENARIOS = [
       console.log(`READER-DONE ${JSON.stringify(done)}`);
       t.check('Done remains the distinct mark-read-and-continue control',
         done.text === 'Done' && done.shortcut === 'd'
-          && done.help === 'Mark read and continue. Keyboard shortcut: D', JSON.stringify(done));
+          && done.help === 'Mark as read and continue. Keyboard shortcut: D', JSON.stringify(done));
       await focusIssue(ORDER.items[0].issueId);
       await readLabel('#btn-issue-read', ORDER.items[0].title);
       const seed = fixtureReadingState();
@@ -7808,6 +7808,8 @@ const SCENARIOS = [
           && JSON.stringify(home.tiles) === JSON.stringify(library.tiles)
           && home.tiles.length === 2,
         JSON.stringify({ home, library }));
+      t.check('and count them as Reading Lists, the word the rest of the app uses (UX-25)',
+        /^2 Reading Lists(?: · |$)/.test(home.summary ?? ''), JSON.stringify(home.summary));
 
       await click(page, '#library-yours-list li:nth-child(2) a');
       const libraryOpen = await page.evaluate(() => ({
@@ -11998,10 +12000,11 @@ const SCENARIOS = [
         };
       });
       const enabled = (value) => value.checked && value.aria === 'd'
-        && value.tooltip === 'Mark read and continue. Keyboard shortcut: D' && value.hook
-        && value.description.includes('Turn off in Backup & settings');
+        && value.tooltip === 'Mark as read and continue. Keyboard shortcut: D' && value.hook
+        && value.description === 'Mark as read and continue. Turn off in Backup & settings.';
       const disabled = (value) => !value.checked && value.aria === null
-        && value.tooltip === null && !value.hook && value.description.startsWith('Disabled.');
+        && value.tooltip === null && !value.hook
+        && value.description === 'Disabled. Turn on in Backup & settings to mark the current issue as read and continue.';
       t.check('older preferences keep D enabled with accurate hints', enabled(await presentation()));
       await page.$eval('#btn-hero-done', (button) => { button.focus(); button.click(); });
       t.check('Done next keeps focus after the click',
@@ -12020,7 +12023,7 @@ const SCENARIOS = [
       await click(page, '.ri[data-view="data"]');
       const beforePreference = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check('the switch is labelled and describes its local-only boundary',
-        await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.includes('Enable D')
+        await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.trim() === 'Enable D to mark as read and continue'
           && input.getAttribute('aria-describedby') === 'reading-shortcut-help reading-shortcut-storage-help')
         && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress and backups')));
       await click(page, '#opt-reading-shortcut');
@@ -12236,7 +12239,7 @@ const SCENARIOS = [
       await click(page, '.brand[data-view="home"]');
       t.check('Home completion remains accurate for a nonempty list',
         await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
-        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this order.')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this Reading List.')
         && await page.$eval('#btn-chero-read', (node) => node.hidden)
         && await page.$eval('#btn-chero-review', (node) => !node.hidden));
       await click(page, '#btn-chero-open');
@@ -20788,7 +20791,7 @@ SCENARIOS.push({
     t.check('withdrawing a shortcut withdraws its visible hint and shortcut metadata',
       !(await tooltipVisual449(page, action.selector, action.tipId)).visible
       && await page.$eval(action.selector, (node) => !node.hasAttribute('aria-keyshortcuts')));
-    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Mark read and continue. Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Mark as read and continue. Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
     await reset();
 
     // The first Escape must not invoke the row menu's focus rescue; the second still must.

@@ -25,7 +25,7 @@ An example with made-up progress:
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
 2. With the first six comics marked read, **Civil War (2006) #7** is next.
 3. Choose **Read** to open the official reader where a link is available.
-4. Return and choose **Done, next**. **New Avengers (2004) #21** is next.
+4. Return and choose **Done**. **New Avengers (2004) #21** is next.
    Reading isn't detected automatically.
 5. Reopen the list in the same browser profile to resume.
 

@@ -62,7 +62,7 @@ test('saved-list selection scopes active cards and its progress summary without 
   const target = sectionFixture();
   presenter.render(target.section, target.results, { ids: ['second'] });
   assert.equal(target.results.children.length, 1);
-  assert.equal(target.head.note.textContent, '1 order · 1 not started');
+  assert.equal(target.head.note.textContent, '1 Reading List · 1 not started');
   assert.equal(target.results.children[0].children[0].children[1].props.text, 'Second list');
   presenter.render(target.section, target.results, { ids: [] });
   assert.equal(target.section.hidden, true);
@@ -110,7 +110,7 @@ test('one saved-list presenter paints Home and Library and delegates opening', (
 
   assert.equal(home.section.hidden, false);
   assert.equal(home.head.note.props.text, undefined);
-  assert.equal(home.head.note.textContent, '2 orders · 1 in progress · 1 not started');
+  assert.equal(home.head.note.textContent, '2 Reading Lists · 1 in progress · 1 not started');
   assert.equal(library.head.note.textContent, home.head.note.textContent);
   assert.deepEqual(
     library.results.children.map((item) => item.children[0].children[1].props.text),

@@ -404,7 +404,7 @@ test('Home view completion state removes the read action without inventing a nex
   const h = harness({ populated: true, nextIssue: null, progress: { read: 2, total: 2 } });
   h.view.render();
 
-  assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this order.');
+  assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this Reading List.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');
