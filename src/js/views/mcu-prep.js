@@ -32,7 +32,7 @@ export function createMcuPrepView({
       },
     });
     clear = el('button', {
-      id: `${ROUTE}-clear`, type: 'button', class: 'btn btn-g', hidden: true, text: 'Clear',
+      id: `${ROUTE}-clear`, type: 'button', class: 'btn search-clear', hidden: true, text: 'Clear',
       onclick: () => {
         query = '';
         input.value = '';

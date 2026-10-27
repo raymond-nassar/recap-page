@@ -8237,6 +8237,58 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'search-clear',
+    title: 'each search keeps its Clear quiet beside the field (UX-24)',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/?catalog=actual#/home');
+      const seen = [];
+      for (const [route, form, query] of [
+        ['catalog', '#form-catalog-search', 'Avengers'],
+        ['lines', '#form-lines-search', 'X-Men'],
+        ['spotlights', '#form-spotlights-search', 'Spider'],
+        ['young-readers', '#form-young-readers-search', 'Spidey'],
+        ['marvel-on-screen', '.mcu-prep-search', 'Thor'],
+      ]) {
+        await page.evaluate((hash) => { location.hash = hash; }, `#/${route}`);
+        const field = `${form} input[type="search"]`;
+        await page.waitForSelector(field, { visible: true, timeout: 15000 });
+        await page.$eval(field, (input, value) => {
+          input.value = value;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }, query);
+        const clear = `#${route}-clear`;
+        await page.waitForSelector(`${clear}:not([hidden])`, { visible: true, timeout: 15000 });
+        await page.mouse.move(0, 0);
+        seen.push(await page.$eval(clear, (button) => {
+          // A primary button drawn here for comparison, so the check needs no copy of the palette.
+          const primary = Object.assign(document.createElement('button'), { className: 'btn' });
+          document.body.append(primary);
+          const fill = getComputedStyle(primary).backgroundColor;
+          primary.remove();
+          const style = getComputedStyle(button);
+          return {
+            id: button.id,
+            text: button.textContent.trim(),
+            background: style.backgroundColor,
+            border: style.borderTopColor,
+            primaryFill: fill,
+            height: Math.round(button.getBoundingClientRect().height),
+          };
+        }));
+        await click(page, clear);
+        await page.waitForFunction((selector) => document.querySelector(selector)?.value === ''
+          && document.activeElement === document.querySelector(selector), {}, field);
+      }
+      t.check('every search Clear is unfilled and borderless at rest, never the primary fill',
+        seen.length === 5 && seen.every((entry) => entry.text === 'Clear'
+          && entry.background === 'rgba(0, 0, 0, 0)' && entry.border === 'rgba(0, 0, 0, 0)'
+          && entry.primaryFill !== entry.background && entry.height >= 24),
+        JSON.stringify(seen));
+      t.check('and each still empties its field and returns focus there', true);
+    },
+  },
+  {
     id: 'rail-collapse',
     title: 'collapsing the sidebar does not reach into the shelf',
     async run(page, t) {
