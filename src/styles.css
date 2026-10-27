@@ -1068,6 +1068,13 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .spotlight-controls .filters { margin: 0; min-width: 0; }
 .spotlight-filters { justify-content: flex-end; }
 .spotlight-sort { justify-content: flex-end; }
+/* Character spotlights names each of its three pill groups where a reader can see it, so sorting
+   reads apart from filtering and neither "All" stands unlabelled (UX-14, #830). A floated legend
+   is not the fieldset's caption, so it joins the row of pills as its first item. */
+.filter-legend {
+  float: left; align-self: center; margin: 0; padding: 0;
+  color: var(--muted); font-size: var(--t-caption); font-weight: 600;
+}
 
 @media (max-width: 620px) {
   .spotlight-controls { width: 100%; justify-content: flex-start; }

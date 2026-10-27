@@ -795,6 +795,24 @@ async function spotlightControlCheck(page, profile) {
     && Math.abs(panel.sheet.bottom - profile.height) <= 1 && panel.sheet.y >= 0
     && Math.abs(panel.sheet.x - (profile.width - panel.sheet.width) / 2) <= 1,
   `${label}: centered bottom sheet fits viewport`);
+  // UX-14 floats each group's legend into its row of pills as a muted caption. The sheet keeps the
+  // captions it always drew, so that float, size and colour must stop at the sheet.
+  const captions = await page.evaluate(() => [...document.querySelectorAll('#android-spotlight-sheet fieldset')]
+    .filter((set) => set.getClientRects().length)
+    .map((set) => {
+      const legend = set.querySelector(':scope > legend');
+      const style = getComputedStyle(legend);
+      const group = getComputedStyle(set);
+      const option = set.querySelector('.fp');
+      return {
+        text: legend.textContent.trim(), float: style.float,
+        size: style.fontSize === group.fontSize, color: style.color === group.color,
+        above: Boolean(option) && legend.getBoundingClientRect().bottom <= option.getBoundingClientRect().top + 1,
+      };
+    }));
+  check(JSON.stringify(captions.map((entry) => entry.text)) === JSON.stringify(['Sort', 'Show', 'Category'])
+    && captions.every((entry) => entry.float === 'none' && entry.size && entry.color && entry.above),
+  `${label}: the sheet captions Sort, Show and Category above their options in its own type ${JSON.stringify(captions)}`);
   if (spotlightCase === 'geometry') {
     if (failures.length) return;
     const closed = spotlightGeometry.find((point) => point.checkpoint === 'spotlights settled closed');

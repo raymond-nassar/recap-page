@@ -132,9 +132,9 @@ test('independent spotlight choices retain their shared subject rank and stable 
   );
 });
 
-// A card no longer shows its path step (UX-11, #830): paths are followed on Modern Timeline. Both
-// sibling choices still render as cards of their own, and both still start the path they share.
-test('Storylines renders both choices independently, and both start the path they share', async () => {
+// A card no longer shows its path step (UX-11, #830), and only Modern Timeline, where paths are
+// followed, says where one starts (UX-14). Sibling choices still render as cards of their own.
+test('Storylines renders both choices independently and names no path start', async () => {
   const after = entry('after', { timeline: 2015 });
   const fixture = viewFixture([fast, full, after], {
     paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
@@ -143,8 +143,40 @@ test('Storylines renders both choices independently, and both start the path the
   assert.equal(fixture.cards.length, 3);
   assert.deepEqual(fixture.cards.map(({ story }) => story.key), ['list:fast', 'list:full', 'list:after']);
   assert.ok(fixture.cards.every(({ story }) => story.lists.length === 1));
+  assert.equal(fixture.nodes.results.children
+    .some(({ class: name }) => name === 'rail-hint shelf-orientation'), false);
+});
+
+test('Modern Timeline names both choices that start the path they share', async () => {
+  const event = (list) => ({ ...list, type: 'event' });
+  const after = entry('after', { type: 'event', timeline: 2015 });
+  const fixture = viewFixture([event(fast), event(full), after], {
+    paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
+  });
+  await fixture.view.render('catalog');
   const orientation = fixture.nodes.results.children.find(({ class: name }) => name === 'rail-hint shelf-orientation');
-  assert.equal(orientation.text, `Start Route with ${fast.name} or ${full.name}.`);
+  assert.equal(orientation?.text, `Start Route with ${fast.name} or ${full.name}.`);
+});
+
+// Character spotlights shows three groups of pills, so its category group names itself on the page
+// as Sort and Show do (UX-14, #830). A shelf whose categories are its only group keeps the hidden
+// legend it had.
+test('Character spotlights labels its category group visibly, and other shelves keep the hidden legend', async () => {
+  const lists = (type, extra) => Array.from({ length: 14 }, (_, index) => entry(`${type}-${index}`, {
+    type, beginner: index < 3, ...extra,
+  }));
+  for (const [key, shelf, legend] of [
+    ['spotlights', lists('character-run', { timeline: null, spotlightKind: 'other' }), {
+      class: 'filter-legend', text: 'Category',
+    }],
+    ['lines', lists('creator-run'), { class: 'visually-hidden', text: 'Filter the catalog by category' }],
+  ]) {
+    const fixture = viewFixture(shelf);
+    await fixture.view.render(key);
+    assert.equal(fixture.nodes.filters.hidden, false, key);
+    const [first] = fixture.nodes.filters.children;
+    assert.deepEqual({ tag: first?.tag, class: first?.class, text: first?.text }, { tag: 'legend', ...legend }, key);
+  }
 });
 
 test('search threshold counts individually visible cards rather than collapsed groups', async () => {

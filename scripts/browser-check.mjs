@@ -3169,10 +3169,10 @@ const SCENARIOS = [
       t.check('the header exposes the popularity sort and the three requested choices with Current order selected',
         initial.kindLabels.join('/') === 'All/Best of/Complete guides'
        && initial.kindChecked === 'all'
-       && initial.kindLegend === 'Filter Character Spotlight guides'
+       && initial.kindLegend === 'Show'
        && initial.sortLabels.join('/') === 'Current order/Popularity'
        && initial.sortChecked === 'current-order'
-       && initial.sortLegend === 'Sort Character Spotlight guides',
+       && initial.sortLegend === 'Sort',
         JSON.stringify(initial));
       t.check('Current order keeps the fixture stories in their shipped order',
         JSON.stringify(await cardTitles()) === JSON.stringify(currentTitles),
@@ -3302,21 +3302,48 @@ const SCENARIOS = [
       const narrow = await page.evaluate(() => {
         const heading = document.querySelector('#spotlights-h').getBoundingClientRect();
         const controls = document.querySelector('.spotlight-controls').getBoundingClientRect();
-        const labels = [...document.querySelectorAll('.spotlight-controls label')]
+        const labels = [...document.querySelectorAll('.spotlight-controls label, .spotlight-controls legend')]
           .map((label) => label.getBoundingClientRect());
         return {
           viewport: innerWidth,
           scrollWidth: document.documentElement.scrollWidth,
           controlsTop: Math.round(controls.top),
           headingBottom: Math.round(heading.bottom),
-          labelsVisible: labels.every((rect) => rect.left >= 0 && rect.right <= innerWidth),
+          labels: labels.length,
+          labelsVisible: labels.every((rect) => rect.width > 1 && rect.left >= 0 && rect.right <= innerWidth),
         };
       });
-      t.check('the spotlight controls wrap below the heading at 360 by 800 without horizontal overflow',
+      t.check('the spotlight controls and their group labels wrap below the heading at 360 by 800 without horizontal overflow',
         narrow.scrollWidth <= narrow.viewport
         && narrow.controlsTop >= narrow.headingBottom
-        && narrow.labelsVisible,
+        && narrow.labels === 7 && narrow.labelsVisible,
         JSON.stringify(narrow));
+
+      // Each group names itself beside its own pills, so sorting reads apart from filtering and
+      // neither All stands unlabelled (UX-14, #830). The fixture shelf has one category, which hides
+      // that group, so the bundled catalog shows all three.
+      await page.setViewport({ width: 1280, height: 900 });
+      await open(page, '/?catalog=actual#/spotlights');
+      await page.waitForSelector('#spotlights-filters:not([hidden]) .fp > span', { timeout: 15000 });
+      const groups = await page.evaluate(() => [
+        ['sort', '.spotlight-sort'], ['kind', '.spotlight-filters'], ['category', '#spotlights-filters'],
+      ].map(([name, selector]) => {
+        const legend = document.querySelector(`${selector} > legend`);
+        const box = legend?.getBoundingClientRect();
+        const first = document.querySelector(`${selector} .fp > span`)?.getBoundingClientRect();
+        return {
+          name,
+          text: legend?.textContent.trim() ?? null,
+          visible: Boolean(legend?.checkVisibility() && box.width > 1 && box.height > 1),
+          // Beside its first pill on the same row, rather than a caption above the row.
+          inline: Boolean(box && first) && box.right <= first.left + 1
+            && box.bottom > first.top && box.top < first.bottom,
+        };
+      }));
+      t.check('each Character spotlights group shows its own label beside its pills',
+        JSON.stringify(groups.map(({ name, text }) => [name, text]))
+          === JSON.stringify([['sort', 'Sort'], ['kind', 'Show'], ['category', 'Category']])
+        && groups.every((group) => group.visible && group.inline), JSON.stringify(groups));
     },
   },
   {
@@ -8114,15 +8141,22 @@ const SCENARIOS = [
       t.check('the former shelf loses the sentence when catalog data moves the first stop',
         await page.$('#catalog-results .shelf-orientation') === null);
 
+      // Only Modern Timeline, where paths are followed, says where one starts (UX-14, #830).
       await openBrowseCategory(page, 'character-spotlights');
-      await page.waitForSelector('#spotlights-results .shelf-orientation', { timeout: 15000 });
-      const moved = await page.$eval(
-        '#spotlights-results .shelf-orientation',
+      await page.waitForSelector('#spotlights-results [data-story="list:browser-check-complete"]', { timeout: 15000 });
+      t.check('Character spotlights names no path start, even for a first stop it shows',
+        await page.$('#spotlights-results .shelf-orientation') === null);
+
+      await open(page, '/?catalog=selectable-first-stop');
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .shelf-orientation', { timeout: 15000 });
+      const both = await page.$eval(
+        '#catalog-results .shelf-orientation',
         (orientation) => orientation.textContent.trim(),
       );
-      t.check('the sentence follows both moved alternatives to their visible shelf', moved === alternatives, moved);
+      t.check('the Timeline sentence names both alternatives for its first stop', both === alternatives, both);
 
-      await click(page, '#spotlights-results [data-story="list:browser-check-complete"] [data-act="preview"]');
+      await click(page, '#catalog-results [data-story="list:browser-check-complete"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
       t.check('the Complete card directly previews its own guide without switching alternatives',
         await page.$eval('#preview-h', (heading) => heading.textContent) === 'Browser Check Order: Complete'
@@ -8130,7 +8164,7 @@ const SCENARIOS = [
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
       const selected = await page.$eval(
-        '#spotlights-results .shelf-orientation',
+        '#catalog-results .shelf-orientation',
         (orientation) => orientation.textContent.trim(),
       );
       t.check('closing a guide Preview retains both first-stop alternatives in the sentence',
@@ -17910,6 +17944,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       empty: EMPTY_CATALOG,
       'position-incomplete': INCOMPLETE_POSITION_CATALOG,
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
+      'selectable-first-stop': SELECTABLE_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG, 'path-follow': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
       'path-follow-stop-actions': {

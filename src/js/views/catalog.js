@@ -293,7 +293,11 @@ export function createCatalogView({
       return;
     }
     nodes.filters.replaceChildren(
-      el('legend', { class: 'visually-hidden', text: 'Filter the catalog by category' }),
+      // Character spotlights shows three groups of pills, so each names itself where a reader can
+      // see it (UX-14, #830). Elsewhere the categories are the only group and keep a hidden legend.
+      key === 'spotlights'
+        ? el('legend', { class: 'filter-legend', text: 'Category' })
+        : el('legend', { class: 'visually-hidden', text: 'Filter the catalog by category' }),
       ...options.map(({ key: facet, label, count }) => el('label', { class: 'fp' }, [
         el('input', {
           type: 'radio',
@@ -548,8 +552,11 @@ export function createCatalogView({
     const stories = key === 'spotlights'
       ? sortSpotlightStories(catalogEntries(shown), state.sort)
       : catalogEntries(shown);
-    const placements = pathPlacements(catalog.paths, catalog.lists);
-    const firstStops = followed ? [] : visibleFirstStopGuides(stories, placements, presentation.chosenPath);
+    // Paths live on Modern Timeline since #897, so only it says where one starts. Elsewhere the
+    // sentence named a path the page offers no way to follow (UX-14, #830).
+    const firstStops = followed || key !== 'catalog'
+      ? []
+      : visibleFirstStopGuides(stories, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
     if (firstStops.length) {
       const startsByPath = new Map();
       for (const { guide, placement } of firstStops) {
