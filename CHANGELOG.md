@@ -238,7 +238,9 @@ cross-library overlap reports still refresh when the updated guide genuinely sha
 issues. Windows release verification's ratings error-handling check uses the Library navigation
 link reliably. Browser qualification reports native exit ordering and stops failed cleanup within
 fixed deadlines without retrying scenarios. Browser regression checks identify the pending
-cross-tab Home updates operation when an instrumented operation fails.
+cross-tab Home updates operation when an instrumented operation fails. The Android build's Gradle
+wrapper bootstrap verifies the same way when Windows PowerShell is started from PowerShell 7, and
+its test no longer depends on how the runner's temporary folder is spelled.
 
 The Microsoft Store submission packet's listing copy, screenshots and certification notes match
 the app, and the packet says which of its parts are kept current for each submission. The Google
