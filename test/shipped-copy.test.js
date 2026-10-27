@@ -83,6 +83,21 @@ test('the compact footer opens About with every external source credit retained'
   }
 });
 
+// #831 named the page Search, and #924 renamed the last links to it that still said Add comics. A
+// link that opens the page says so, and its accessible name begins with what it shows.
+test('every link in the markup that opens Search is named Search', () => {
+  const html = stripComments(readFileSync(join(SHIPPED, 'index.html'), 'utf8'), 'index.html');
+  const links = [...html.matchAll(/<a\b([^>]*\bdata-view="add"[^>]*)>([\s\S]*?)<\/a>/g)];
+  // The narrow Navigation menu, the side menu, an empty Reading List and an empty Library.
+  assert.ok(links.length >= 4, `expected the links that open Search, found ${links.length}`);
+  for (const [, attributes, inner] of links) {
+    const text = inner.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    assert.equal(text, 'Search', `a link to Search shows ${JSON.stringify(text)}`);
+    const name = /\baria-label="([^"]*)"/.exec(attributes)?.[1];
+    assert.ok(name === undefined || name.startsWith(text), `its name ${JSON.stringify(name)} must begin with Search`);
+  }
+});
+
 test('no en or em dash reaches the screen through markup or styling', () => {
   const files = walk(SHIPPED);
   // A walk that finds nothing would pass this test while checking nothing at all.

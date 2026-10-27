@@ -106,7 +106,7 @@ export class ImportDraftStore {
     try {
       return await this.locks.request(IMPORT_DRAFT_KEY, () => {
         if (this.uncertain) throw new Error('Draft storage outcome is unknown. Export the retained source before reloading; further changes are paused.');
-        if (!this.isCurrent(expected)) throw new Error('The import draft changed in another tab. Reopen Add comics to review the current draft.');
+        if (!this.isCurrent(expected)) throw new Error('The import draft changed in another tab. Reopen Search to review the current draft.');
         if (this.blocked) throw new Error(this.error);
         const result = operation();
         this.error = result.ok ? null : result.error;

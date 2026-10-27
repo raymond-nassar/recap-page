@@ -285,7 +285,9 @@ test('first-run Home offers Modern Timeline and Add without waiting for catalog 
   assert.equal(browse.children[0], 'Start with Modern Timeline');
   assert.equal(browse.href, '#/catalog');
   assert.equal(browse.class, 'btn');
-  assert.equal(add.children[0], 'Add comics');
+  assert.equal(add.children[0], 'Search');
+  // Named Search like the page it opens (#831, #924), so its name is its visible text.
+  assert.equal(add['aria-label'], undefined);
   assert.equal(add.class, 'btn btn-g');
   browse.onclick();
   add.onclick();

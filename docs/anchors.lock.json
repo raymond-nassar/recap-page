@@ -1674,8 +1674,8 @@
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:394-420|0": {
-    "anchor": "test/storage.test.js:394-420",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|test/storage.test.js:397-423|0": {
+    "anchor": "test/storage.test.js:397-423",
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
@@ -2196,7 +2196,7 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:529-574|0": {
     "anchor": "src/index.html:529-574",
-    "fp": "ee74421d31943f3a",
+    "fp": "52e2355cee9f16b3",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:62-97|0": {
@@ -2601,7 +2601,7 @@
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:529-574|0": {
     "anchor": "src/index.html:529-574",
-    "fp": "ee74421d31943f3a",
+    "fp": "52e2355cee9f16b3",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:899|0": {

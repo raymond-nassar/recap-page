@@ -794,7 +794,7 @@ test('UX05 synopsis copy distinguishes not loaded from a completed empty result 
   assert.equal(synopsisFallback({ hydrated: true }, 'Held plot', empty), 'Held plot');
 });
 
-test('UX05 empty lists retain Add comics without review filters or no-match results', () => {
+test('UX05 empty lists retain Search without review filters or no-match results', () => {
   const state = createList(createEmptyState(), { id: 'empty', name: 'Empty' });
   const h = harness({ state });
   try {

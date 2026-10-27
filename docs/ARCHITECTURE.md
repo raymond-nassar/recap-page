@@ -481,7 +481,7 @@ only two keys survive, since all three land in one millisecond and collide on th
 three distinct copies is what the browser leaves, where the boots are milliseconds apart.
 
 It cost nothing on a first incident. There is a test for a second, unrelated incident, at
-`test/storage.test.js:394-420`, so the dated key itself was covered; what no test did was load twice
+`test/storage.test.js:397-423`, so the dated key itself was covered; what no test did was load twice
 inside one incident, which is why the repeat was untested rather than tolerated. It cost a copy of
 the reader's whole state per reload on a second one, in exactly the near-quota situation the
 salvage code was written to survive.
