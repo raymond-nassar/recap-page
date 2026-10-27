@@ -100,14 +100,13 @@ export const PAIRS = [
   ['--amber', '--card', BODY, 'the scheduled badge on a card'],
   ['--on-accent', '--accent', BODY, 'the label of a primary button, and the knob of the cover-art switch in its on state'],
   ['--line-2', '--bg', LARGE, 'the boundary of a bordered control'],
-  ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero, and the outline of the progress-at-a-glance bar (#876)'],
-  ['--line-2', '--card-2', LARGE, 'the boundary of a text input against its own fill'],
+  ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero, and the outline of a progress bar on a card (#876, UX-27)'],
+  ['--line-2', '--card-2', LARGE, 'the boundary of a text input against its own fill, and the outline of a saved list\'s progress bar on its hover (UX-27)'],
   ['--line-2', '--rail', LARGE, 'the boundary of the Close button in the narrow More sheet (#836)'],
   ['--cb-line', '--card', LARGE, 'the boundary of an unchecked checkbox'],
   ['--cb-line', '--bg', LARGE, 'the boundary of an unchecked checkbox in a row on the page'],
-  ['--track', '--card', LARGE, 'the unfilled part of a progress bar'],
-  ['--track', '--rail', LARGE, 'the unfilled part of the per-list progress bar in the rail'],
-  ['--accent', '--track', LARGE, 'the filled part of a progress bar against the unfilled part'],
+  ['--rail-bar-line', '--rail', LARGE, 'the outline of the per-list progress bar in the rail (UX-27)'],
+  ['--rail-bar-line', 'the selected rail item', LARGE, 'the outline of the per-list progress bar on the selected rail item (UX-27)'],
   ['--warn', '--panel', LARGE, 'the border of the unreadable-data notice'],
   // BL-067. The cover-art switch and the primary button were the two controls no pair reached, so
   // nothing here would have moved if either had gone invisible. Measured by walking each control's
@@ -744,51 +743,26 @@ export function checkAll(css) {
   ];
 }
 
-// Four non-text pairs sit below 3:1 and are recorded rather than fixed. BL-065 raised the other four.
+// No pair is recorded below the floor. The last four were the trough of a progress bar against the
+// card and the rail behind it, and UX-27 (#830) retired them with the trough's token.
 //
-// All four are `--track` against something behind it, and the reason they stay is arithmetic rather
-// than reluctance. `--track` is the trough of a progress bar and the `--accent` fill sits directly on
-// it, so the token has to answer to two floors at once. Colours clearing 3:1 against both surfaces
-// behind the bar AND carrying the fill at 3:1 exist in the dark theme, but every one of them inverts
-// it: each has a relative luminance of at least 0.611, which is 3.6 times the fill's 0.170, so the
-// empty part of the bar would be brighter than the filled part. In the light theme no such colour
-// exists at all, because the light fill is dark enough that nothing above black clears 3:1 beneath
-// it. Either way the bar cannot report progress the right way round, which is a worse outcome for
-// the reader than the recorded ratio. BL-166 re-derived both halves after it repainted the fill
-// purple and rotated the neutrals, rather than carrying the old figures across a change that moved
-// every term in them.
+// They had stayed for arithmetic rather than reluctance. A trough answers to two floors at once: 3:1
+// against the surface behind the bar, and the `--accent` fill at 3:1 against the trough. Every dark
+// colour clearing both had a relative luminance of at least 0.611, 3.6 times the fill's 0.170, so the
+// empty part of the bar would have been brighter than the filled part, and in the light theme no
+// colour cleared both. So every bar is outlined instead, as #902 drew the glance bar: the outline
+// carries the bar's extent at 3:1 against what is behind it, measured above on the card, the raised
+// card, the rail and the selected rail item, and the fill only has to clear those same surfaces,
+// which `--accent` does. The bar is also never the only way to read progress, because the same
+// numbers are stated as text beside it, at `src/js/main.js:1699` in the rail and
+// `src/js/views/shared/saved-lists.js:35` in the saved lists.
 //
-// The bar renders on two surfaces, not one, and review found the second: `.pbar` sits on a card and
-// `.ri .bar` sits on the rail. Listing only the card is the same defect BL-065 fixed for `--line-2`
-// and `--cb-line`, and it hid a real degradation, because darkening the dark trough took it from
-// 1.47:1 to 1.30:1 against the rail with nothing recording the move. Both surfaces are listed now,
-// so the trade is on the record in both places rather than only where it was convenient.
-//
-// So the pair that actually carries the value is measured instead: `--accent` on `--track` is in the
-// list above at the 3:1 floor and passes in both themes, which is the same pair the rail bar uses,
-// so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
-// #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
-// measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1699` in the rail and `src/js/views/shared/saved-lists.js:35` in the
-// saved lists.
-//
-// Those two citations, and the two in the fifth entry below, were all four lines out of date when
-// BL-069 checked them, because nothing then gated a `path:line` written in a code comment: the
-// anchors gate read tracked Markdown only, so a citation here drifted silently every time the file
-// it named changed. BL-071 has since widened it to every tracked file, and the twelve citations in
-// this one are now fingerprinted like any other. One of them was still wrong when they enrolled.
-//
-// They are recorded rather than waived because a gate that quietly tolerates its own findings is not
-// a gate. The baseline is exact in both directions. A new pair below the floor fails, which is the
-// obvious half. A listed pair that now passes ALSO fails, which is the half that matters: it is what
-// stops this list outliving the debt it describes, and an accepted-failures list nobody prunes is
-// how a gate turns into a rubber stamp.
-export const KNOWN = [
-  'dark:--track:--card',
-  'light:--track:--card',
-  'dark:--track:--rail',
-  'light:--track:--rail',
-];
+// The list stays, empty, because a gate that quietly tolerates its own findings is not a gate. The
+// baseline is exact in both directions. A new pair below the floor fails, which is the obvious half.
+// A listed pair that now passes ALSO fails, which is the half that matters: it is what stops this
+// list outliving the debt it describes, and an accepted-failures list nobody prunes is how a gate
+// turns into a rubber stamp.
+export const KNOWN = [];
 
 export function unresolved(css) {
   const found = checkAll(css).map((f) => ({ ...f, key: `${f.themeName}:${f.fgName}:${f.bgName}` }));

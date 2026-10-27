@@ -172,7 +172,7 @@
   --text: #f2f2f8;
   --dim: #c7c7d8;
   --muted: #9191a4;
-  --track: #242434;
+  --rail-bar-line: #6a6a7e; /* equals --line-2 */
   --track-2: #696985;
   --cb-line: #67677e;
   --panel: #15151e;
@@ -188,9 +188,9 @@
      has not changed: the single #e23636 the app shipped with measured 4.36:1 and 4.33:1
      against those two jobs and failed both.
      `--accent` is the brand mixed 20% toward white, and that ratio was searched rather
-     than picked: the brand itself measures 2.14:1 against `--track`, so a purple dark
-     enough to be recognisably the icon fails five of its eight pairs on a dark page.
-     20% is the least white that clears all eight, at 4.77:1 for white on it.
+     than picked: the brand measured 2.14:1 against the progress bars' old trough, so a
+     purple dark enough to be recognisably the icon failed five of its eight pairs on a
+     dark page. 20% is the least white that cleared all eight, at 4.77:1 for white on it.
      `--accent-text` is set for the lightest background it ever lands on, which is the
      hero panel, not `--bg`. */
   --accent: #8a53e1;
@@ -253,7 +253,7 @@
   --text: #13131b;
   --dim: #3d3d4d;
   --muted: #5c5c6e;
-  --track: #d9d9eb;
+  --rail-bar-line: #5c5c6e; /* equals --muted */
   --track-2: #7b7b93;
   --cb-line: #8a8a9e;
   --panel: #ffffff;
@@ -298,7 +298,7 @@
     --text: #13131b;
     --dim: #3d3d4d;
     --muted: #5c5c6e;
-    --track: #d9d9eb;
+    --rail-bar-line: #5c5c6e; /* equals --muted */
     --track-2: #7b7b93;
     --cb-line: #8a8a9e;
     --panel: #ffffff;
@@ -584,7 +584,7 @@ a { color: var(--blue); }
   display: block; margin-top: var(--space-1); overflow: hidden; color: var(--muted);
   font-size: var(--t-caption); font-weight: 400; text-overflow: ellipsis; white-space: nowrap;
 }
-.ri .bar { display: block; height: 3px; background: var(--track); border-radius: var(--radius-bar); margin-top: var(--space-4); overflow: hidden; }
+.ri .bar { display: block; height: 3px; box-shadow: inset 0 0 0 var(--stroke-1) var(--rail-bar-line); border-radius: var(--radius-bar); margin-top: var(--space-4); overflow: hidden; }
 .ri .bar i { display: block; height: 100%; background: var(--accent); border-radius: var(--radius-bar); }
 
 /* A Reading Order has no glyph of its own, so its initial stands in for one in rail mode. */
@@ -1892,7 +1892,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 
 /* The fill is a width, and the count beneath it repeats the same numbers as text, so the
    bar is never the only way to read the progress. */
-.pbar { height: 8px; border-radius: var(--radius-pill); background: var(--track); overflow: hidden; max-width: 32rem; }
+.pbar { height: 8px; border-radius: var(--radius-pill); box-shadow: inset 0 0 0 var(--stroke-1) var(--line-2); overflow: hidden; max-width: 32rem; }
 .pbar i { display: block; height: 100%; background: var(--accent); border-radius: var(--radius-pill); }
 
 .yours {
@@ -2235,8 +2235,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
   .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }
-  .pbar { border: var(--stroke-1) solid CanvasText; }
-  .pbar i { background: Highlight; }
+  .pbar, .ri .bar { border: var(--stroke-1) solid CanvasText; }
+  .pbar i, .ri .bar i { background: Highlight; }
   .rail-tip { border: var(--stroke-1) solid CanvasText; background: Canvas; }
   /* The path badge and selected filters carry state in colour plus a tinted border. */
   .pill-start { border: var(--stroke-1) solid CanvasText; }
@@ -2677,9 +2677,9 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 /* Progress at a glance (#876): the read count set larger than its words, over a slim bar in the brand
    accent, on Home's Continue reading card and the reading screen's hero. Each surface keeps one text
    reading of its progress, so the bar, and on the hero the whole row, is hidden from assistive
-   technology rather than read twice. The bar is outlined rather than drawn on a trough: `--track` is
-   recorded below 3:1 against a card (UX-27), while the boundary token draws the bar's extent at 3.29:1
-   dark and 3.49:1 light, so an empty bar still shows, and the fill only has to clear the card. */
+   technology rather than read twice. The bar is outlined rather than drawn on a trough, as every bar
+   is since UX-27: a trough measured below 3:1 against a card, while the boundary token draws the bar's
+   extent at 3.29:1 dark and 3.49:1 light, so an empty bar shows, and the fill need only clear the card. */
 .glance-count { margin: 0; color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
 /* The figure is one line of its own size tall, which keeps Home's count line inside the height of the
    bar it replaced. */

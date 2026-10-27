@@ -16305,6 +16305,100 @@ SCENARIOS.push({
   },
 });
 
+// UX-27 (#830): every progress bar is outlined, as #902 drew the glance bar, rather than drawn on a
+// trough that could not clear 3:1. Measured as #902 measured: the outline and fill colours against the
+// surface painted just above each bar, on every surface a bar is drawn on, in both themes, and the
+// outline's own painted pixels against the same surface.
+SCENARIOS.push({
+  id: 'outlined-bars',
+  title: 'every progress bar is outlined, and its outline and fill clear 3:1 against what is painted behind them',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const { decodePng } = await import('./lib/painted-contrast.mjs');
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    // A read comic gives every bar a filled and an unfilled part. The rail's one list bar sits on the
+    // selected rail item while its list is open, and on the rail itself from anywhere else.
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.read = { [id]: 1000 };
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, ORDER.items[0].issueId);
+    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#full[open] .order-strip .pbar', { timeout: 15000 });
+    const rgb = (value) => parseColour((value?.match(/rgba?\((\d+), (\d+), (\d+)/) ?? []).slice(1, 4).join(' ')) ?? null;
+    const measure = async (selector, hover = null) => {
+      if (hover) await page.hover(hover);
+      const spot = await page.$eval(selector, (bar) => {
+        bar.scrollIntoView({ block: 'center' });
+        const box = bar.getBoundingClientRect();
+        const fill = bar.querySelector('i')?.getBoundingClientRect();
+        return {
+          left: Math.round(box.left), top: Math.round(box.top), width: Math.round(box.width), height: Math.round(box.height),
+          unfilled: Math.ceil(fill ? fill.right : box.left) + 2, shown: bar.checkVisibility(),
+          outline: getComputedStyle(bar).boxShadow, fill: getComputedStyle(bar.querySelector('i')).backgroundColor,
+          scrollX, scrollY,
+        };
+      });
+      if (hover) await page.hover(hover);
+      // The surface two pixels above the bar, then the bar's own rows in its unfilled part.
+      const shot = decodePng(await page.screenshot({
+        clip: { x: spot.unfilled + spot.scrollX, y: spot.top - 2 + spot.scrollY, width: 1, height: spot.height + 2 },
+        captureBeyondViewport: false,
+      }));
+      const surface = shot.pixel(0, 0);
+      const rows = Array.from({ length: spot.height }, (_, row) => shot.pixel(0, row + 2));
+      const outline = rgb(spot.outline);
+      const fill = rgb(spot.fill);
+      return {
+        shown: spot.shown, surface, outline: outline ? ratio(outline, surface) : 0, fill: fill ? ratio(fill, surface) : 0,
+        painted: Math.max(...rows.map((pixel) => ratio(pixel, surface))),
+      };
+    };
+    const results = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      await page.mouse.move(0, 0);
+      results.push({ theme, where: 'the order strip, on a card', ...await measure('#full .order-strip .pbar') });
+      results.push({ theme, where: 'the selected rail item', ...await measure('#list-nav .ri[aria-current] .bar') });
+    }
+    await click(page, '.ri[data-view="library"]');
+    await page.waitForSelector('#view-library:not([hidden]) .yours a .pbar', { timeout: 15000 });
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      await page.mouse.move(0, 0);
+      results.push({ theme, where: 'the rail', ...await measure('#list-nav .ri:not([aria-current]) .bar') });
+      results.push({ theme, where: 'a saved list card', ...await measure('#view-library .yours a .pbar') });
+      results.push({ theme, where: 'a saved list card, pointed at', ...await measure('#view-library .yours a .pbar', '#view-library .yours a') });
+    }
+    const low = results.filter((entry) => !entry.shown || entry.outline < 3 || entry.fill < 3 || entry.painted < 3);
+    console.log(`UX27-BARS ${JSON.stringify(results.map(({ theme, where, outline, fill, painted }) => [theme, where,
+      Number(outline.toFixed(2)), Number(fill.toFixed(2)), Number(painted.toFixed(2))]))}`);
+    t.check('every bar\'s outline and fill clear 3:1 against the surface painted behind it, on the card, the rail and the selected rail item, in both themes',
+      results.length === 10 && low.length === 0, JSON.stringify(low.length ? low : results));
+
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    const forced = await page.$$eval('#list-nav .ri .bar', (bars) => {
+      const probe = document.body.appendChild(document.createElement('span'));
+      probe.style.backgroundColor = 'Highlight';
+      const highlight = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return bars.map((bar) => ({
+        border: getComputedStyle(bar).borderTopStyle, fill: getComputedStyle(bar.querySelector('i')).backgroundColor, highlight,
+      }));
+    });
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+    await cdp.detach();
+    await page.evaluate(() => { delete document.documentElement.dataset.theme; });
+    t.check('in forced colours the rail bar keeps a border and a Highlight fill, as the other bars do',
+      forced.length === 1 && forced.every((bar) => bar.border === 'solid' && bar.fill === bar.highlight), JSON.stringify(forced));
+    t.check('the outlined bars raise no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
 MUTATIONS.push(
   {
     id: 'narrow-content-panel-open',
