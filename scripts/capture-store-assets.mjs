@@ -21,25 +21,27 @@ const SCREENSHOTS = [
     route: '#/home',
     view: 'view-home',
     wait: '#home-primary-paths .home-path',
-    text: ['RECAP PAGE!', 'Browse. Choose. Read.', 'Recommended start'],
+    text: ['RECAP PAGE!', 'Browse. Choose. Read.', 'Start with Modern Timeline', 'Young readers'],
     state: 'empty',
   },
   {
+    // Browse left with #907 (#831), and its address now opens Home, which 01 already shows: the two
+    // captures came out byte for byte the same. So 02 shows Storylines, one of Home's category cards
+    // (#911). The file keeps its name, so the packet's asset inventory and its check stand.
     file: '02-browse-reading-lists.png',
-    route: '#/browse',
-    view: 'view-home',
-    wait: '#view-home [data-primary-paths] .home-path',
-    text: ['Reading Lists', 'Discover More'],
+    route: '#/lines',
+    view: 'view-lines',
+    wait: '#lines-results .catalog-card',
+    text: ['Storylines', 'Beginner-friendly', '1980s', 'Comic Book Reading Orders'],
     state: 'empty',
   },
   {
-    // #897 moved following a path onto Modern Timeline, so the path is shown there. The image and
-    // the packet's copy are refreshed at the next release.
+    // #897 moved following a path onto Modern Timeline, so the path is shown there.
     file: '03-reading-paths.png',
     route: '#/catalog?path=modern-avengers',
     view: 'view-catalog',
     wait: '#catalog-results .path-stops .catalog-card',
-    text: ['Modern Timeline', 'Stop 1 of 10', 'House of M'],
+    text: ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'House of M'],
     state: 'demo',
   },
   {

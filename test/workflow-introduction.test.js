@@ -24,13 +24,8 @@ test('the introduction walks through a real cross-series transition with synthet
     assert.match(copy, /first six comics/);
     assert.ok(copy.includes(guide.items[6].title), `${name} must identify the next unread issue`);
     assert.ok(copy.includes(guide.items[7].title), `${name} must show the cross-series next issue`);
-    // Done is the reading screen's own label (UX-25, #830). The Store listing changes only with a
-    // Store submission, so #911 brings it from "Done, next" to "Done" and makes this one check again.
-    if (name === 'Store listing') assert.match(copy, /Done, next/);
-    else {
-      assert.match(copy, /choose \**Done\**\s*\./, `${name} must name the Done button`);
-      assert.doesNotMatch(copy, /Done, next/, `${name} must use Done's own label`);
-    }
+    assert.match(copy, /choose \**Done\**\s*\./, `${name} must name the Done button`);
+    assert.doesNotMatch(copy, /Done, next/, `${name} must use Done's own label`);
     assert.match(copy, /resume/i);
   }
 });

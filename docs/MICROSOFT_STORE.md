@@ -327,10 +327,10 @@ $env:MRT_PUPPETEER='C:\path\to\scratch\node_modules\puppeteer-core\lib\puppeteer
 The functionality scenario starts the package twice across the pre-ready window, requires one
 settled server, proves a later warm activation reuses it, and observes the native GUI, coordinator,
 verifier, server and browser-command lifecycle. It fetches and parses the creator index, series index, catalog, and House
-of M payload, exercises Browse and both name searches in Edge, distinguishes an external metadata
-failure, removes uncached local payloads, stops the server, verifies direct recovery guidance, and
-relaunches it. It then removes the package while the server is live and requires Windows to end the
-exact process and release port 8787 before fallback cleanup.
+of M payload, previews and adds House of M from Modern Timeline, exercises both name searches in
+Edge, distinguishes an external metadata failure, removes uncached local payloads, stops the server,
+verifies direct recovery guidance, and relaunches it. It then removes the package while the server
+is live and requires Windows to end the exact process and release port 8787 before fallback cleanup.
 
 Each scenario owns its package installation and refuses to run when that package identity is already
 registered. The functionality scenario first asks Windows to remove the package while its background
