@@ -13,6 +13,236 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.2.0
+
+### A clearer design, offline Reading Lists and Undo for Done
+
+- Find your way with a clearer menu: Add comics is now Search, Home's category cards replace the
+  separate Browse page, and the phone bar reads Home, Library, Search and More.
+- Make any curated Reading List available offline from its preview.
+- See what Done marked, with an exact Undo, on the reading screen and in Home's Continue reading,
+  and celebrate finishing a section or a whole Reading List.
+- Follow a reading path stop by stop on Modern Timeline, which replaces the separate Reading
+  paths page.
+- Explore the VisionQuest MCU Prep guide, fifteen Reading Lists for younger readers on Home's new
+  Young readers card, rewritten MCU Prep descriptions and newly confirmed comics in existing guides.
+- Use simpler Reading List cards, dialogs that keep their buttons in view, grouped comic and backup
+  actions, and progress shown at a glance.
+
+### Saved data and upgrading
+
+Reading-data schema 4 and every storage key are unchanged. Existing lists, shared reading progress,
+notes, private ratings, availability overrides, deferrals and completion history remain compatible
+with 4.0.0, 4.0.1 and 4.1.0, and no migration is required. Reading-data, completion-history and
+unfinished-import backups keep their formats: a backup made by 4.1.0 restores in 4.2.0, and one
+made by 4.2.0 restores in 4.1.0.
+
+Comics with an owner-confirmed identity are saved with an optional marker that explains how the
+identity was confirmed. 4.1.0 and older builds may discard that marker when they normalize saved
+comics, so a copy opened there can lose the explanation until the guide is imported again. Issue
+IDs and reading progress stay intact.
+
+An offline copy of a Reading List is stored apart from reading data and is not part of any backup,
+so refreshing or losing it never changes progress. A followed reading path lives only in the page
+address; an older build given that address shows the whole Modern Timeline. Links and bookmarks
+to the retired Browse and Reading paths pages still open: Browse opens Home at its category cards,
+and a reading path opens Modern Timeline following it. Saved copies of revised guides keep their
+comics, order, notes and progress; fresh imports use the revised guides.
+
+**Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups.** Before
+upgrading from one of them, keep an independent reading-data backup and follow the
+[4.0.0 compatibility guidance](#400). Keep the same installation or profile and the fixed local
+address. Windows browser profiles and Android app storage stay separate, and nothing transfers or
+synchronizes between them automatically.
+
+This record prepares Android and Windows release source, including derived Windows Store version
+4.2.0.0. It does not announce availability or approve either Store publication. Android code
+reservation, exact-artifact qualification, physical-device acceptance and platform approvals
+remain separate.
+
+### Find your way
+
+Add comics is now Search, with the magnifying glass, in the side menu, on the phone's bottom bar
+and as its page title. Every button that opens Search is now named Search, including the second
+choice on a new reader's Home and the buttons on an empty Reading List and an empty Library, and
+messages about saved import drafts name Search too. Browse has left the menu: it showed the same
+category cards as Home, so its old links and bookmarks now open Home at those cards. The side menu
+groups Reading (your current list, Library and Search) and App, and the phone bar reads Home,
+Library, Search and More, with every label whole even at the largest text size. Each icon now
+stands for one thing. Screen readers no longer hear an arrow after a menu's name or each Coming up
+Read twice, and Completed lists can be opened in a new tab.
+
+On phones, More opens a panel just above the bottom bar with Continue reading, Backup & settings,
+About this app and the connection status; Close, Escape, Android Back or a tap outside closes it.
+On Android, the More button shows its label. List options shows every list command at once,
+grouped, with Remove from library last. A long Reading List name no longer makes the page wider
+than a narrow screen when More is open; it ends in an ellipsis there, as it does in the wide
+sidebar.
+
+A new reader's first button is "Start with Modern Timeline". Browse Reading Lists on empty pages
+and in the Completed lists panel opens Home's reading-list categories. Home's category cards,
+saved Reading List tiles and the comic rating button now say their visible words first and in
+order, for screen readers and speech input.
+
+### Done, Undo and finishing a Reading List
+
+After you choose Done, or press D, a message under Done names the comic you marked read and offers
+Undo. Undo marks it unread again and brings it back as the next comic. The message stays for ten
+seconds, or for as long as you point at it or keep keyboard focus in it, and goes when you choose
+Done again or change screens. If the Reading List changes in the meantime, Undo is withdrawn
+rather than guessing, and you can still mark the comic unread in the full Reading List. Holding
+Enter on Done marks one comic, as holding D already did. Screen readers describe Done as "Marks
+this comic read and shows the next one."
+
+Continue reading on Home has Done beside Read, with the same message and Undo, and Read stays the
+main button. On a phone, that message and its Undo show in a bar just above the navigation, and on
+the smallest phones the page moves up just enough to keep Done in view. On a phone turned
+sideways, Continue reading's Read and Done are fully on screen because the app's name and What's
+new share one row there; What's new opens as a panel below its button.
+
+Finishing a section says so: Done's confirmation names the section, and its heading in the full
+list shows Complete. Finishing the whole list opens its wrap-up with an "All read!" moment. Undo
+or marking the comic unread takes either back, and with reduced motion they appear without
+movement. Mark as Completed waits in List actions (List options on Android) while comics remain to
+read, and appears on the page once nothing is queued. Enjoyed and Did not enjoy appear only once a
+list is marked as completed, and on phones and other touch or narrow screens they show their
+words beside the thumbs. Choosing one keeps your keyboard place on the button you pressed while
+it saves. Marking a list completed or reopening it does the same, and pressing Enter again in the
+meantime no longer opens the next comic. On a phone, reopening a list puts your place on the
+list's heading.
+
+The reading card and Home's Continue reading card show how many comics you have read in large
+numerals, over a slim purple bar that fills as you read; a screen reader hears the count once on
+each screen. After you choose Read, the help about pop-up blockers appears under the Read button
+you used and goes away when you change screens, choose Done or choose Read again. A first launch
+no longer draws a focus box around the Recap Page logo. Hints no longer cover Done's message, and
+on a narrow window or a phone the hints for Read and Done no longer cover each other's button.
+
+### Offline Reading Lists
+
+A curated Reading List's preview has Make available offline. It saves that list, the catalog and
+the app itself to this browser, then reads every piece back and checks the whole set before saying
+it is ready. Refresh offline copy keeps the old copy until the new one is confirmed, so a failed or
+interrupted refresh never leaves you with less than you had.
+
+### Follow a reading path on Modern Timeline
+
+Choose a path above the Timeline's search to see only its stops, in the path's own order, with
+"You are here", "Stop N of M" and how many stops are complete. "Jump to stop" goes to any stop by
+name or to the next unfinished one. The separate Reading paths page is retired, and its links and
+bookmarks open the Timeline following the same path.
+
+### New and completed reading guides
+
+- **VisionQuest MCU Prep:** Vision's reconstruction, Billy and Tommy's return and Vision's new
+  family, with all 44 selected comics in the owner's order.
+- **Owner-confirmed comics:** Reading orders can include comics whose identities the owner has
+  confirmed even when the metadata provider has no record. They say the identity is confirmed and
+  open their confirmed issue pages, without claiming provider details, covers or Marvel Unlimited
+  availability. They fill five West Coast Avengers comics in VisionQuest, the ten missing One World
+  Under Doom comics, the two standalone Doctor Strange works, Hulk: Season One in The Incredible
+  Hulk, all five House of Harkness chapters in Agatha All Along, Venom Super Special (1995) #1 in
+  Brand New Day, Thunderbolts (1997) #-1 in MCU Prep: Thunderbolts*, and twenty-five placeholders
+  in the Iron Fist, Onslaught and Age of Apocalypse guides.
+- **MCU Prep descriptions:** All thirty original MCU Prep recommendations explain which characters
+  or stories the reading introduces and how it adds context to the related film or series. Preview
+  adds issue-grounded detail and clarifies differences from screen adaptations.
+- **Marvel Multiverse:** no longer appears among available reading recommendations. Saved copies
+  remain readable and editable in Library, with their two comics, notes and progress.
+- **Young readers:** fifteen Reading Lists for younger readers, on Home's new Young readers card
+  and in search. Seven follow Comic Book Herald's guide to the best Marvel comics for kids,
+  including Moon Girl and Devil Dinosaur, The Unbeatable Squirrel Girl and Power Pack. Eight are
+  series the owner picked from Marvel's starting guide for young readers, including Marvel Rising
+  and the Marvel Action titles.
+
+Six chapters of Spidey: School's Out show as gaps, and one issue of Marvel Action Avengers is left
+out, because the comic database has no record of them yet; they are tracked in
+[#900](https://github.com/raymond-nassar/recap-page/issues/900) and
+[#901](https://github.com/raymond-nassar/recap-page/issues/901). Captain America Spotlight remains
+a documented gap in [#762](https://github.com/raymond-nassar/recap-page/issues/762), and the older
+guides' other unresolved positions stay open in their own Issues. Missing works are not invented,
+substituted or silently removed from the source record.
+
+### A clearer look
+
+Reading-list cards are simpler: select a card's title to preview the list, and use its one button
+to add it or, once saved, open it. Each card still credits and links the website the list came
+from; the snapshot date and section are in the preview. Character spotlights labels its Sort, Show
+and Category choices, a search's Clear button is quieter, and in wide windows narrow and wide pages
+share one left edge. Saved lists are counted as Reading Lists, and Done is described as "mark as
+read and continue".
+
+Every dialog that asks a question or shows a list scrolls as one, with its buttons always in view
+at the bottom, and Preview keeps its title and Close at the top. After you add a Reading List from
+Preview, a prominent Open list button and a lasting "Added to your Library" line show the next
+step. Answers that cannot be undone, such as erasing everything, are shown in red after Cancel.
+With large text on a phone, a confirmation opens at its title, with Cancel selected and both
+answers in view.
+
+A comic's More actions are grouped, with Remove from list apart and last in a danger color. The
+availability mark you set shows a check mark and is announced as pressed; pressing it again clears
+it. Comic details put Read, Mark as read, Add note and your rating in one row beside the cover.
+Mark as read and Add note keep working after you reload a comic's details or open a link to them,
+and no longer appear for comics you have not saved. The rating stars are one control: arrow keys
+move by half a star, and screen readers announce the chosen score. Every progress bar is outlined
+so its full length shows against any background, in high contrast mode too, and Coming up's
+covers are all one width.
+
+Home's six category cards each have their own color, with a larger emblem at the top right and an
+hourglass for Marvel Ages. Each era on the Marvel Ages page has a color of its own: gold, silver,
+bronze and copper for the four ages named after metals, and a run from pink to green for the
+Modern Age periods. The soft glow on category cards is a little shorter, which keeps each card's
+Reading List count easy to read when you point at it in the dark theme. On an Android phone, Home
+opens with a small "RECAP PAGE!" wordmark in place of the "Browse. Choose. Read." tagline. When
+Recap Page is installed as an app from Edge or Chrome, its title bar matches the theme you choose
+in Backup & settings, or your system's own setting.
+
+### Backups and confirmations
+
+Backup & settings gives reading data, completion history and the import draft one group each, with
+the download beside its restore and a visible label on every file picker. A short "Moving to
+another device" summary comes first, each restore warning stays beside its picker, and the longer
+explanations open on request. The settings switches no longer sit inside outlines.
+
+Before restoring a reading-data backup, undoing a restore or restoring the saved copy, the
+confirmation lists everything that will be replaced: lists, notes, issue ratings, reading
+progress, deferrals, availability overrides and issues added by hand. The backup card names the
+same list. Before erasing, the question and the line beside **Erase all local data** name
+everything erasing clears, including availability overrides, comics added by hand, deferrals, and
+the saved reading-data copy kept from a restore when one exists.
+
+### Layout and keyboard fixes
+
+- On Android, guide cards on Modern Timeline, Storylines, Character spotlights, MCU Prep and the
+  Marvel Ages pages fit the phone screen again, with the cover and title side by side and the
+  description, issue count and source below them. Timeline year markers sit on the timeline again.
+- With large text on a narrow phone, the Storylines, MCU Prep, Find a series and Browse a creator
+  search fields fit the screen instead of making the page scroll sideways.
+- On Search, once you select a comic, a bar at the bottom of the window keeps Save selected comics
+  and Clear selection in view however far you scroll, above the navigation bar on phones. Save
+  selected comics opens the same destination and naming choices inside the bar, and Clear
+  selection takes you back to the search box.
+- The first time you open a Reading List, the note that your lists and progress save automatically
+  appears below the "Read this next" card, so on a phone Read is on the first screen and the card
+  no longer jumps when the note goes away after your first Done.
+- Moving through the "Read this next" card's buttons with a keyboard no longer slides the card's
+  contents up and cuts off its top line.
+
+### Release and maintenance
+
+Updating a named reading guide no longer rewrites unrelated partitioned guide payloads, and
+cross-library overlap reports still refresh when the updated guide genuinely shares original
+issues. Windows release verification's ratings error-handling check uses the Library navigation
+link reliably. Browser qualification reports native exit ordering and stops failed cleanup within
+fixed deadlines without retrying scenarios. Browser regression checks identify the pending
+cross-tab Home updates operation when an instrumented operation fails.
+
+The Microsoft Store submission packet's listing copy, screenshots and certification notes match
+the app, and the packet says which of its parts are kept current for each submission. The Google
+Play preview capture brings the phone's bottom navigation back after scrolling to the reading card
+and waits for it to settle, failing when the bar is hidden or still moving. No browser runtime
+dependency is added.
+
 ## 4.1.0
 
 ### Find your rated comics and more reading guides
