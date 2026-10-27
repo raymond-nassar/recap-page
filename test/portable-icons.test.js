@@ -38,8 +38,8 @@ test('all navigation/search glyphs use the selected local symbols, not font char
 test('the authored symbol set has exactly the used names and no remote or active content', () => {
   const ids = [...sprite.matchAll(/<symbol id="([\w-]+)" viewBox="0 0 24 24">/g)]
     .map(([, id]) => id);
-  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'ages', 'arrow-right', 'thumb-up', 'thumb-down', 'star'])].sort());
-  assert.equal(ids.length, 21);
+  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-right', 'thumb-up', 'thumb-down', 'star'])].sort());
+  assert.equal(ids.length, 22);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);
@@ -153,13 +153,12 @@ test('each glyph names one meaning wherever it is drawn, as the icons README rec
     assert.equal(symbols.size, 1, `${destination} is drawn with ${[...symbols].join(' and ')}`);
   }
   // One meaning can reach more than one address: searching is Search and the page where an issue
-  // title is typed, and Marvel Ages is its card and the ages inside it. Reading paths borrows the
-  // Library's glyph until #897 retires the page.
+  // title is typed, and Marvel Ages is its card and the ages inside it. The Library's glyph is the
+  // Library's alone since #897 gave Young readers a glyph of its own.
   const ages = PUBLISHING_CATEGORIES.map((category) => `#/${category.route}`);
   const shared = {
     search: ['#/add', '#/add-search'],
     ages: ['#/marvel-ages', ...ages],
-    books: ['#/library', '#/reading-paths'],
   };
   for (const [symbol, destinations] of bySymbol) {
     if (shared[symbol]) {

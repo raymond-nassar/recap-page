@@ -513,10 +513,25 @@ function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1
     description: keptNode('p'),
     source: keptNode('p'),
   };
-  const calls = { changes: 0, canonical: 0, timelines: 0, setupHidden: null };
+  const calls = { changes: 0, canonical: 0, timelines: 0, setupHidden: null, focused: [] };
   const paints = [];
   const announcements = [];
   let state = savedState();
+  const focusable = (node, name) => Object.assign(node, {
+    isConnected: true,
+    focus() { calls.focused.push(name); },
+    scrollIntoView() {},
+    setAttribute(attribute, value) { this[attribute] = value; },
+  });
+  const card = (entry, placement, options) => {
+    const title = focusable(keptNode('h2', { text: entry.lists[0].name }), `title:${entry.lists[0].id}`);
+    const open = focusable(keptNode('a', { dataset: { key: entry.lists[0].id, act: 'open' } }), `open:${entry.lists[0].id}`);
+    const preview = focusable(keptNode('button', { dataset: { key: entry.key, act: 'preview' } }), `preview:${entry.lists[0].id}`);
+    const controls = { '.catalog-card-title': title, '[data-act="open"]': open, '[data-act="preview"]': preview };
+    return Object.assign(keptNode('article', { dataset: { story: entry.key }, placement, options }, [title, open, preview]), {
+      querySelector: (selector) => controls[selector] ?? null,
+    });
+  };
   const view = createCatalogView({
     announce: (message) => announcements.push(message),
     clearLoadNotice: () => {},
@@ -536,7 +551,7 @@ function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1
     onLoadFailure: () => {},
     onSortChange: () => {},
     presentation: {
-      catalogCard: (entry, placement, options) => keptNode('article', { dataset: { story: entry.key }, placement, options }),
+      catalogCard: card,
       chosenPath: () => null,
       ensureSetupGuideFeature: (_lists, _key, _featured, options = {}) => { calls.setupHidden = Boolean(options.hidden); },
       paintTimelinePosition: (...args) => paints.push(args),
@@ -669,6 +684,127 @@ test('a path that no longer resolves is let go and the address corrected, rather
   assert.equal(h.view.followedPath(), null, 'going to a stop from a card shows its whole screen');
 });
 
+// #897. The Reading paths page showed its first path for an address naming none it held, so an
+// address from that page follows the first path here, and the address is corrected to name it. The
+// fallback belongs to that one arrival: it is spent once settled, and a card's reset withdraws it.
+test('an address from the retired Reading paths page follows the first path when it names none', async () => {
+  for (const requested of [null, 'retired-path']) {
+    const h = followHarness();
+    h.view.setFollowedPath(requested, { orFirst: true });
+    await h.view.render('catalog');
+    assert.equal(h.view.followedPath(), 'avengers', `${requested} follows the first path`);
+    assert.equal(h.calls.canonical, 1, `${requested} corrects the address once`);
+    assert.equal(h.stops().length, 3);
+    await h.view.render('catalog');
+    assert.equal(h.calls.canonical, 1, 'the settled address is not corrected again');
+  }
+
+  const named = followHarness();
+  named.view.setFollowedPath('long', { orFirst: true });
+  await named.view.render('catalog');
+  assert.equal(named.view.followedPath(), 'long', 'a path the catalog holds is followed as named');
+  assert.equal(named.calls.canonical, 1, 'and the retired address is rewritten as the Timeline\'s own');
+
+  const spent = followHarness();
+  spent.view.setFollowedPath(null, { orFirst: true });
+  spent.view.clearNarrowing('catalog');
+  await spent.view.render('catalog');
+  assert.equal(spent.view.followedPath(), null, 'a card reset withdraws the fallback');
+  assert.equal(spent.stops().length, 0);
+
+  const plain = followHarness();
+  plain.view.setFollowedPath(null, { orFirst: true });
+  plain.view.setFollowedPath(null);
+  await plain.view.render('catalog');
+  assert.equal(plain.view.followedPath(), null, 'a later ordinary Timeline address carries no fallback');
+});
+
+const settle = () => new Promise((resolve) => setImmediate(resolve));
+const jumpOf = (h) => {
+  const wrap = h.nodes.results.children.find((child) => child.class === 'path-jump');
+  if (!wrap) return null;
+  const [form] = wrap.children;
+  const [, select, , status] = form.children;
+  return {
+    options: select.children.map((option) => [option.value, option.textContent]),
+    go: (value) => {
+      select.value = value;
+      form.onsubmit({ preventDefault() {} });
+      return status.textContent;
+    },
+  };
+};
+
+// #897. The path's own page had a jump to any stop and to the next unfinished one, which matters on
+// a path 78 stops long, so it moved with the path. Its next unfinished stop is the one the path's
+// progress marks You are here, so the screen gives one answer to where the reader is.
+test('a followed path keeps its page\'s jump, to any stop or to the stop marked You are here', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('avengers');
+  h.setState(savedState([{ id: 'saved-essential', catalogId: 'essential', itemIds: [1] }], [1]));
+  await h.view.render('catalog');
+  const jump = jumpOf(h);
+  assert.deepEqual(jump.options, [
+    ['', 'Choose a destination'], ['next-unfinished', 'Next unfinished stop'],
+    ['entry:essential', 'Essential (1 of 3)'], ['entry:event-6', 'Event 6 (2 of 3)'], ['entry:event-1', 'Event 1 (3 of 3)'],
+  ]);
+  assert.equal(jump.go('next-unfinished'), 'Jumped to Event 6 (2 of 3).');
+  assert.deepEqual(h.calls.focused, ['title:event-6']);
+  assert.equal(h.paints.at(-1)[1].storyKey, 'list:event-6', 'the same stop is marked You are here');
+  assert.equal(jump.go('entry:event-1'), 'Jumped to Event 1 (3 of 3).');
+  assert.equal(h.calls.focused.at(-1), 'title:event-1');
+
+  h.setState(savedState([
+    { id: 'saved-essential', catalogId: 'essential', itemIds: [1] },
+    { id: 'saved-event-6', catalogId: 'event-6', itemIds: [2] },
+    { id: 'saved-event-1', catalogId: 'event-1', itemIds: [3] },
+  ], [1, 2, 3]));
+  assert.equal(jump.go('next-unfinished'), 'All displayed stops are complete.');
+
+  const focused = h.calls.focused.length;
+  h.follow.select.value = 'long';
+  h.follow.select.listeners.change();
+  await settle();
+  jump.go('entry:event-6');
+  assert.equal(h.calls.focused.length, focused, 'a jump left behind by another path moves nothing');
+  assert.equal(jumpOf(h).options.length, 16, 'the new path has its own jump');
+
+  h.nodes.query.value = 'Event 1';
+  h.nodes.query.listeners.input();
+  await settle();
+  assert.equal(jumpOf(h), null, 'a narrowed path offers no jump whose numbering the list would contradict');
+});
+
+test('Back to a followed path returns focus to the stop opened or previewed from it, once', async () => {
+  const h = followHarness();
+  h.setState(savedState([{ id: 'saved-event-1', catalogId: 'event-1', itemIds: [2] }]));
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'avengers', catalogId: 'event-1', act: 'open' } });
+  await h.view.render('catalog');
+  assert.deepEqual(h.calls.focused, ['open:event-1']);
+  await h.view.render('catalog');
+  assert.deepEqual(h.calls.focused, ['open:event-1'], 'the return is spent by the render it was asked of');
+
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'avengers', catalogId: 'event-6', act: 'preview' } });
+  await h.view.render('catalog');
+  assert.deepEqual(h.calls.focused, ['open:event-1', 'preview:event-6'], 'a previewed stop returns to its Preview');
+
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'long', catalogId: 'event-1', act: 'open' } });
+  await h.view.render('catalog');
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'avengers', catalogId: 'not-a-stop', act: 'open' } });
+  await h.view.render('catalog');
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'avengers', catalogId: 'event-1', act: 'remove' } });
+  await h.view.render('catalog');
+  assert.deepEqual(h.calls.focused, ['open:event-1', 'preview:event-6'], 'nothing else is focused in its place');
+
+  h.view.setFollowedPath('avengers', { opener: { pathId: 'avengers', catalogId: 'event-1', act: 'open' } });
+  const first = h.view.render('catalog');
+  h.nodes.query.value = 'Event';
+  h.nodes.query.listeners.input();
+  await first;
+  await settle();
+  assert.deepEqual(h.calls.focused, ['open:event-1', 'preview:event-6'], 'a search typed meanwhile keeps its focus');
+});
+
 test('a followed path\'s stops lead with the reading the path names', () => {
   const stops = followedPathStories({
     stops: [{ key: 'group', name: 'Group', stepId: 'complete', lists: [path('essential', 'essential'), path('complete')] }],
@@ -683,16 +819,17 @@ test('a followed path\'s stops lead with the reading the path names', () => {
 
 test('Catalog-family modules have constructed boundaries without concrete controller imports', () => {
   const main = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
-  for (const name of ['CatalogView', 'PreviewView', 'ReadingPathsView', 'CatalogPresentation']) {
+  for (const name of ['CatalogView', 'PreviewView', 'CatalogPresentation']) {
     assert.equal((main.match(new RegExp(`create${name}\\(\\{`, 'g')) ?? []).length, 1);
   }
+  // #897 retired the Reading paths page, and Modern Timeline follows a path in its place.
+  assert.doesNotMatch(main, /createReadingPathsView|views\/reading-paths\.js/);
   for (const path of [
     '../src/js/views/catalog.js',
     '../src/js/views/preview.js',
-    '../src/js/views/reading-paths.js',
     '../src/js/views/shared/catalog-presentation.js',
   ]) {
     const source = readFileSync(new URL(path, import.meta.url), 'utf8');
-    assert.doesNotMatch(source, /from ['"].*(?:main|storage|views\/(?:catalog|preview|reading-paths))\.js['"]/);
+    assert.doesNotMatch(source, /from ['"].*(?:main|storage|views\/(?:catalog|preview))\.js['"]/);
   }
 });

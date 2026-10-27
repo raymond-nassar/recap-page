@@ -9,7 +9,7 @@ import {
 import { availability } from '../src/js/lib/availability.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { matchesReadingFilter } from '../src/js/lib/readingFilters.js';
-import { readingPathProgress } from '../src/js/views/reading-paths.js';
+import { followedPathPosition } from '../src/js/views/catalog.js';
 
 function fixture() {
   let state = createList(createEmptyState(), { id: '__proto__', name: 'First', catalogId: 'first' });
@@ -248,15 +248,18 @@ test('510 filters and exact or sibling Reading Paths distinguish deferred unread
   assert.equal(items.filter((item) => matchesReadingFilter('unread', item)).length, 2);
   assert.equal(items.filter((item) => matchesReadingFilter('deferred', item)).length, 2);
   assert.equal(items.filter((item) => matchesReadingFilter('read', item)).length, 1);
-  for (const stop of [
-    { stepId: 'first', lists: [] },
-    { stepId: 'not-imported', lists: [{ id: 'first' }] },
-  ]) {
-    const progress = readingPathProgress(state, stop);
-    assert.equal(progress.listId, '__proto__');
-    assert.equal(progress.state, 'active');
-    assert.equal(progress.read, 1);
-    assert.equal(progress.total, 3);
-    assert.equal(progress.deferred, 2);
+  // #897 moved following a path onto Modern Timeline. A stop counted by its exact saved copy or by a
+  // saved sibling stays unfinished while deferred issues are unread, and only an explicit completion
+  // finishes it early.
+  const before = JSON.stringify(state);
+  for (const lists of [[{ id: 'first' }], [{ id: 'not-imported' }, { id: 'first' }]]) {
+    const stops = [{ key: 'stop', name: 'Stop', lists }];
+    assert.deepEqual(followedPathPosition(state, stops), {
+      kind: 'current', storyKey: 'list:first', storyName: 'Stop', stop: 1, completed: 0, total: 1,
+    });
+    assert.deepEqual(followedPathPosition(state, stops, { isCompleted: (_state, id) => id === '__proto__' }), {
+      kind: 'complete', completed: 1, total: 1,
+    });
   }
+  assert.equal(JSON.stringify(state), before);
 });

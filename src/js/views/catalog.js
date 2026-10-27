@@ -23,6 +23,7 @@ import {
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
 import { completionState, listForCatalogId, listProgress } from '../lib/model.js';
+import { createCollectionNavigation } from './shared/collection-navigation.js';
 
 const FILTER_THRESHOLD = 12;
 
@@ -37,8 +38,8 @@ function savedByCatalog(state) {
   return saved;
 }
 
-// The reading a stop is shown and counted by, and whether it is finished: the shallowest saved
-// reading, or the shallowest reading when none is saved.
+// The reading a stop is shown and counted by, and whether it is finished: its first saved reading,
+// else its first. Timeline stories list the shallowest first, a followed stop the one its path names.
 function storyStep(state, story, saved, isCompleted) {
   const list = defaultPath(story, (candidate) => saved.has(candidate.id));
   const own = list ? saved.get(list.id) : null;
@@ -131,6 +132,8 @@ export function createCatalogView({
   ]));
   const generationByShelf = new Map();
   let announceTimer = null;
+  let followFirst = false;
+  let stopOpener = null;
   let timelineContext = null;
   let timelinePendingGeneration = null;
   let timelinePositionSignature = null;
@@ -206,10 +209,15 @@ export function createCatalogView({
 
   function paintTimelineContext(context, { announceChange = false } = {}) {
     const locate = context.follow ? followedPathPosition : modernTimelinePosition;
-    const position = locate(getState(), context.stories, {
+    let position = locate(getState(), context.stories, {
       dropped: context.dropped,
       isCompleted,
     });
+    // A followed path draws one card for each stop, as the reading it was counted by when drawn. A
+    // save in another tab can count the stop by another of its readings without redrawing it, so the
+    // place stays on the card the stop has rather than reading as hidden by a search (#897).
+    const drawn = position.kind === 'current' ? context.drawn?.get(position.stop) : null;
+    if (drawn) position = { ...position, storyKey: drawn.key, storyName: drawn.title };
     const signature = timelineSignature(position, context);
     const message = timelinePositionMessage(position, context);
     if (announceChange && signature === timelinePositionSignature) {
@@ -230,6 +238,7 @@ export function createCatalogView({
   }
 
   function commitTimelineContext({
+    drawn = null,
     dropped,
     follow = null,
     generation,
@@ -241,6 +250,7 @@ export function createCatalogView({
     if (generation !== generationByShelf.get('catalog')) return null;
     timelinePendingGeneration = null;
     timelineContext = {
+      drawn,
       dropped,
       follow,
       narrowed,
@@ -331,13 +341,19 @@ export function createCatalogView({
 
   // One numbered list in the path's order rather than era and year rows: a path is read in its own
   // order, and Marvel Knights to Planet X's chapters are not in year order. Each stop keeps the
-  // path's numbering however far a search narrows the list, and says the year it starts.
-  function renderFollowedPath(root, path, entries) {
+  // path's numbering however far a search narrows the list, and says the year it starts. Returns
+  // each drawn stop's card by its step, for the jump and for a return from a stop.
+  function renderFollowedPath(root, path, entries, jump = null) {
     const stopOf = new Map(path.stops.map((stop) => [stop.key, stop]));
+    const cards = new Map();
     const list = el('ol', { class: 'path-stops', 'aria-label': `${path.name} stops` });
     for (const entry of entries) {
       const stop = stopOf.get(entry.groupKey);
       if (!stop) continue;
+      const card = presentation.catalogCard(entry, null, { surface: 'catalog', level: 'h2' });
+      cards.set(stop.stepId, {
+        card, key: entry.key, position: stop.position, title: entry.lists[0]?.name ?? stop.name,
+      });
       list.append(el('li', {
         class: 'path-stop',
         value: String(stop.position),
@@ -348,10 +364,51 @@ export function createCatalogView({
           class: 'path-stop-meta',
           text: `Stop ${stop.position} of ${stop.total}${stop.year == null ? '' : ` · Starts ${stop.year}`}`,
         }),
-        presentation.catalogCard(entry, null, { surface: 'catalog', level: 'h2' }),
+        card,
       ]));
     }
+    if (jump) root.append(jump(cards));
     root.append(list);
+    return cards;
+  }
+
+  // The jump the path's own page had, moved with it (#897): to any stop by name, or to the next
+  // unfinished one, which is the stop marked You are here. Drawn only while the whole path is shown,
+  // because a search or filter would leave its numbering contradicting the list beneath it.
+  function pathJump(path, stories, isLive) {
+    return (cards) => el('div', { class: 'path-jump', id: 'catalog-path-navigation' }, [
+      createCollectionNavigation({
+        el,
+        id: 'catalog-path-jump',
+        label: 'Jump to stop',
+        entries: path.stops.map((stop) => ({ id: stop.stepId, name: cards.get(stop.stepId)?.title ?? stop.name })),
+        isCurrent: isLive,
+        getTarget: (id) => {
+          const title = cards.get(id)?.card.querySelector?.('.catalog-card-title') ?? null;
+          title?.setAttribute('tabindex', '-1');
+          return title;
+        },
+        getNext: () => {
+          const state = getState();
+          const saved = savedByCatalog(state);
+          const index = stories.findIndex((story) => !storyStep(state, story, saved, isCompleted).done);
+          return index < 0 ? { kind: 'complete' } : { kind: 'target', id: path.stops[index].stepId };
+        },
+      }),
+    ]);
+  }
+
+  // Back to a path from a stop opened or previewed on it returns focus to that stop's Open or Preview,
+  // as the path's own page did, and brings it into view, because arriving scrolls to the top of a list
+  // that can run to 78. A Preview reopened by Back then returns focus there when it closes.
+  function restoreStopOpener(opener, path, cards) {
+    if (opener?.pathId !== path.id) return;
+    const card = [...cards.values()].map((entry) => entry.card)
+      .find((candidate) => candidate.dataset?.story === `list:${opener.catalogId}`);
+    const control = card?.querySelector?.(`[data-act="${opener.act}"]`);
+    if (!control?.isConnected) return;
+    control.focus({ preventScroll: true });
+    control.scrollIntoView?.({ block: 'center' });
   }
 
   async function render(key, { isCurrent: isRequestCurrent = () => true } = {}) {
@@ -366,6 +423,9 @@ export function createCatalogView({
     const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === key);
     const state = stateByShelf.get(key);
     const nodes = elements.shelf(key);
+    // Taken by this render alone, so a later one, for a search typed meanwhile, cannot move focus.
+    const opener = key === 'catalog' ? stopOpener : null;
+    if (key === 'catalog') stopOpener = null;
     nodes.results.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the catalog…' }));
     presentation.setSetupGuideVisibility?.(key, false);
     clearLoadNotice();
@@ -398,11 +458,16 @@ export function createCatalogView({
     // Following a bundled path narrows the Modern Timeline to that path's stops, every one of them
     // and in the path's own order, including a stop no other screen places on the Timeline (#897).
     // A path that no longer resolves, because the catalog dropped it, is let go rather than shown as
-    // an empty timeline, and the address is corrected to say so.
+    // an empty timeline, and the address is corrected to say so. An address from the retired Reading
+    // paths page follows the path it names, or the first path when it names none, as that page did,
+    // and is rewritten as the Timeline's own.
     const paths = key === 'catalog' ? resolveReadingPaths(catalog.paths, catalog.lists) : [];
-    const followed = paths.find((candidate) => candidate.id === state.path) ?? null;
-    if (key === 'catalog' && state.path !== null && !followed) {
-      state.path = null;
+    const named = paths.find((candidate) => candidate.id === state.path) ?? null;
+    const retired = key === 'catalog' && followFirst;
+    const followed = named ?? (retired ? paths[0] ?? null : null);
+    if (key === 'catalog') followFirst = false;
+    if (key === 'catalog' && (retired || state.path !== (followed?.id ?? null))) {
+      state.path = followed?.id ?? null;
       onFollowCanonical();
     }
     if (key === 'catalog') paintFollowControl(paths, followed);
@@ -506,8 +571,12 @@ export function createCatalogView({
         ? decadeSections(stories)
         : [{ ...shelf, stories }];
     const grouped = Boolean(shelf.sections);
+    let cards = null;
     if (followed) {
-      renderFollowedPath(nodes.results, followed, stories);
+      const whole = state.facet === 'all' && !state.query;
+      cards = renderFollowedPath(nodes.results, followed, stories, whole
+        ? pathJump(followed, followedStories, () => current() && state.path === followed.id)
+        : null);
     } else if (key === 'catalog') {
       presentation.renderTimelineSections(nodes.results, sections, placements, {
         idPrefix: 'timeline',
@@ -534,6 +603,7 @@ export function createCatalogView({
     }
     const position = key === 'catalog'
       ? commitTimelineContext({
+        drawn: cards ? new Map([...cards.values()].map(({ position: stop, key: story, title }) => [stop, { key: story, title }])) : null,
         dropped: catalog.dropped,
         follow: followed,
         generation,
@@ -543,6 +613,7 @@ export function createCatalogView({
         visibleStories: stories,
       })
       : null;
+    if (cards && opener) restoreStopOpener(opener, followed, cards);
     if (!catalog.dropped) {
       const where = narrowingLabel(key, mine, state);
       const match = state.query ? ` matching “${state.query}”` : '';
@@ -565,6 +636,7 @@ export function createCatalogView({
     state.spotlight = 'all';
     // A stop reached from a card is shown on its whole screen, so a followed path is let go too.
     state.path = null;
+    if (key === 'catalog') followFirst = false;
     const nodes = elements.shelf(key);
     nodes.query.value = '';
     nodes.clear.hidden = true;
@@ -618,8 +690,13 @@ export function createCatalogView({
     stateByShelf.get('spotlights').sort = value === 'popularity' ? 'popularity' : null;
   }
 
-  function setFollowedPath(value) {
+  function setFollowedPath(value, { orFirst = false, opener = null } = {}) {
     stateByShelf.get('catalog').path = typeof value === 'string' && value ? value : null;
+    followFirst = orFirst === true;
+    stopOpener = opener && typeof opener.pathId === 'string' && typeof opener.catalogId === 'string'
+      && ['open', 'preview'].includes(opener.act)
+      ? { pathId: opener.pathId, catalogId: opener.catalogId, act: opener.act }
+      : null;
   }
 
   return {

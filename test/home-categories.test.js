@@ -43,7 +43,7 @@ test('Storylines gateway count uses the same complete eligible pool as ordinary 
 });
 
 test('the current gateway offers three primary modes and three secondary gateways', () => {
-  const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
+  const categories = availableHomeCategories(stories, HOME_CATEGORIES);
   assert.deepEqual(
     categories.map(({ key }) => key),
     [
@@ -51,7 +51,7 @@ test('the current gateway offers three primary modes and three secondary gateway
       'storylines',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'reading-paths',
+      'marvel-ages', 'young-readers',
     ],
   );
   assert.deepEqual(
@@ -68,7 +68,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   assert.equal(categories.find(({ key }) => key === 'timeline').count, currentReadingCensus.modernTimeline);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 209);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
-  assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
+  assert.equal(categories.find(({ key }) => key === 'young-readers').count, 15);
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {
@@ -231,26 +231,32 @@ test('Home holds the one category gateway, painted by the shared renderer', () =
   assert.doesNotMatch(source, /function renderBrowseCategories/);
 });
 
-test('the shared path entry uses resolved path availability and an explicit path noun', () => {
-  const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
-  const entry = categories.find(({ key }) => key === 'reading-paths');
+// #897. The Reading paths card left with its page, and its place went to Young readers: a shelf of its
+// own, counted in Reading Lists like the other shelves, so the path noun is no longer needed.
+test('Young readers takes the retired path entry\'s place and counts its Reading Lists', () => {
+  const categories = availableHomeCategories(stories);
+  const entry = categories.find(({ key }) => key === 'young-readers');
   assert.deepEqual(
     {
       route: entry.route,
+      shelf: entry.shelf,
       tier: entry.tier,
+      heading: entry.heading,
+      label: entry.label,
       count: entry.count,
-      singular: entry.singular,
-      plural: entry.plural,
     },
     {
-      route: 'reading-paths',
+      route: 'young-readers',
+      shelf: 'young-readers',
       tier: 'secondary',
-      count: 3,
-      singular: 'Reading path',
-      plural: 'Reading paths',
+      heading: 'Young readers',
+      label: 'Stories for kids',
+      count: 15,
     },
   );
-  assert.match(mainSource, /availableHomeCategories\([\s\S]*catalogEntries\(catalog\.lists\)[\s\S]*resolveReadingPaths\(catalog\.paths, catalog\.lists\)/);
+  assert.equal('singular' in entry || 'plural' in entry, false);
+  assert.equal(HOME_CATEGORIES.some(({ key, route }) => key === 'reading-paths' || route === 'reading-paths'), false);
+  assert.match(mainSource, /availableHomeCategories\(catalogEntries\(catalog\.lists\), HOME_CATEGORIES\)/);
   assert.match(homeSource, /category\.singular \?\? 'Reading List'/);
   assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 1);
 });

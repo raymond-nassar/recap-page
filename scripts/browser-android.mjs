@@ -16,7 +16,7 @@ import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEduc
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
-import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
+import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
 import { ERA_TILES, ratio } from './check-palette.mjs';
@@ -1414,8 +1414,7 @@ async function eraTileAccents(page, label) {
 
 async function categoryLabelReadability(page, label, viewport) {
   // Home counts each reading since 2026-10-03, as the app's own categoriesForCatalog does.
-  const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES,
-    resolveReadingPaths(catalog.paths, catalog.lists));
+  const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES);
   assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
   const scale = viewport.textScale || 1;
   for (const view of ['home']) {
@@ -4956,7 +4955,7 @@ try {
     await page.evaluate(() => window.__androidTest.back());
     await page.waitForFunction(() => !document.querySelector('dialog[open]'));
     check(await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 1), `${label}: Android Back cancels destructive dialog`);
-    for (const name of ['library', 'progress', 'reading-paths', 'add', 'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual', 'about']) {
+    for (const name of ['library', 'progress', 'young-readers', 'add', 'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual', 'about']) {
       await route(page, name);
       await measure(page, `${label} ${name}`);
     }

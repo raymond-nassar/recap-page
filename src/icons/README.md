@@ -20,7 +20,7 @@ this table, so reusing a glyph for something else fails it.
 | Symbol | Meaning | Where |
 |---|---|---|
 | menu | More | The navigation toggle |
-| books | Library | `#/library` in the side menu and on the phone bar, and the Reading paths card, `#/reading-paths`, until #897 retires that page |
+| books | Library | `#/library` in the side menu and on the phone bar |
 | search | Searching | Search, `#/add`, in the side menu and on the phone bar; Search issues, `#/add-search`; the three search submit buttons |
 | series | A series | Find a series and Series, both `#/add-series` |
 | creator | A creator | Browse a creator and Creators, both `#/add-creator` |
@@ -36,17 +36,18 @@ this table, so reusing a glyph for something else fails it.
 | storylines | Storylines | The Storylines card, `#/lines` |
 | screen | MCU Prep | The MCU Prep card, `#/marvel-on-screen` |
 | ages | Marvel Ages | The Marvel Ages card, `#/marvel-ages`, and the card of every age and period inside it |
+| reader | Young readers | The Young readers card, `#/young-readers` |
 | arrow-right | Opens a category | The destination arrow on every category card |
 | thumb-up | Enjoyed | Rating a completed Reading List |
 | thumb-down | Did not enjoy | Rating a completed Reading List |
 | star | Rating | Your ratings, `#/library-rated`, Rate this issue, and the rating dialog's five stars |
 
-This is 21 symbols. Static markup draws them 25 times in navigation, Library, Search and its search
+This is 22 symbols. Static markup draws them 25 times in navigation, Library, Search and its search
 controls, and draws the star six more times: beside Rate this issue and on the rating dialog's five
 buttons. The completed-list rating adds the two thumbs. Each of Home's six category cards has an
-icon and a destination arrow, adding 12 SVG instances. The six category icons all differ, and only
-Reading paths borrows a glyph, the Library's `books`, until #897 retires its page. The hourglass was
-drawn for Marvel Ages in #873, and `series`, `creator` and `timeline` for #831.
+icon and a destination arrow, adding 12 SVG instances. The six category icons all differ, and each
+names only its own destination. The hourglass was drawn for Marvel Ages in #873, `series`,
+`creator` and `timeline` for #831, and the reader behind an open book for Young readers in #897.
 The same category renderer supplies the age and period cards inside Marvel Ages when those screens
 open; each adds an `ages` and `arrow-right` pair. These are not a fixed runtime node count.
 

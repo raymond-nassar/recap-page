@@ -11,7 +11,7 @@ const CATEGORY_ICONS = {
   E8FD: 'storylines',
   E77B: 'characters',
   E714: 'screen',
-  E8F1: 'books',
+  E7BE: 'reader',
   E81C: 'ages',
 };
 

@@ -57,6 +57,8 @@ export const AXE_ROUTES = [
   { id: 'read', label: 'Reading List', view: 'read', hash: formatRoute({ view: 'read', listId: AXE_LIST }), seeded: true, ready: '#hero-title' },
   { id: 'issue', label: 'Comic', view: 'issue', hash: formatRoute({ view: 'issue', issueId: FIRST.issueId, context: { kind: 'list', id: AXE_LIST } }), seeded: true, ready: '#issue-focus-h' },
   { id: 'catalog', label: 'Modern Timeline', view: 'catalog', hash: formatRoute({ view: 'catalog' }), seeded: true, ready: '#catalog-results > *' },
+  { id: 'catalog-path', label: 'Modern Timeline, following a path', view: 'catalog', hash: formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), seeded: true, ready: '#catalog-results .path-stops' },
+  { id: 'young-readers', label: 'Young readers', view: 'young-readers', hash: formatRoute({ view: 'young-readers' }), seeded: true, ready: '#young-readers-results > *' },
   { id: 'progress', label: 'Progress by series', view: 'progress', hash: formatRoute({ view: 'progress' }), seeded: true, ready: '#series-progress > *' },
   { id: 'library', label: 'Library', view: 'library', hash: formatRoute({ view: 'library' }), seeded: true, ready: '#library-yours-list > li' },
   { id: 'add', label: 'Search', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#add-primary-methods' },

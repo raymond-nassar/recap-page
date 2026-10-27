@@ -40,7 +40,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ## Made for long reading journeys
 
-- **Explore Marvel.** Browse events, eras, characters, modern continuity runs, and MCU Prep.
+- **Explore Marvel.** Browse events, eras, characters, modern continuity runs, MCU Prep, and stories
+  for young readers.
 - **See what's next.** Keep the current comic, next issue, part labels, and progress in view.
 - **Make your own lists.** Select comics from issue, series, and creator searches, then save them
   to a named Reading List. Mark issues read or unread, write notes, and add custom comics.
@@ -48,8 +49,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
   **About this comic**, then **Rate this issue**. The saved score stays compact beside your note.
 - **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
   earlier issues, and reveal descriptions when you're ready.
-- **Follow Reading Paths.** From Home, see each stop's progress from the matching list,
-  another imported version, or **Not added**.
+- **Follow a reading path.** On Modern Timeline, follow one connected story stop by stop, with
+  **You are here** and the path's own progress.
 - **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
   again in **Completed lists** without losing notes or comic progress.
 - **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.

@@ -33,11 +33,13 @@ const SCREENSHOTS = [
     state: 'empty',
   },
   {
+    // #897 moved following a path onto Modern Timeline, so the path is shown there. The image and
+    // the packet's copy are refreshed at the next release.
     file: '03-reading-paths.png',
-    route: '#/reading-paths?path=modern-avengers',
-    view: 'view-reading-paths',
-    wait: '#reading-path-details:not([hidden])',
-    text: ['Reading paths', 'The Modern Avengers', 'House of M'],
+    route: '#/catalog?path=modern-avengers',
+    view: 'view-catalog',
+    wait: '#catalog-results .path-stops .catalog-card',
+    text: ['Modern Timeline', 'Stop 1 of 10', 'House of M'],
     state: 'demo',
   },
   {

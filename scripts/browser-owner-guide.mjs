@@ -94,11 +94,11 @@ export function hasDedicatedCbhOwnerScenario(guide, scenarioIds) {
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
-  // Young readers' lists are character runs, so until their own category exists they are found on
-  // Character spotlights, by name, among that shelf's other runs.
+  // Young readers' lists are found on Young readers, the one screen #897 gave them, by name among
+  // that shelf's other lists.
   const youngReaders = contract.surface === 'young-readers';
-  const category = event ? 'timeline' : youngReaders ? 'character-spotlights' : 'marvel-on-screen';
-  const results = event ? '#catalog-results' : youngReaders ? '#spotlights-results' : '#marvel-on-screen-results';
+  const category = event ? 'timeline' : youngReaders ? 'young-readers' : 'marvel-on-screen';
+  const results = event ? '#catalog-results' : youngReaders ? '#young-readers-results' : '#marvel-on-screen-results';
   const catalog = json('../src/data/catalog.json');
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
@@ -246,8 +246,8 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       const selector = `${results} [data-story="list:${contract.id}"]`;
       const findOnShelf = async () => {
         if (!youngReaders) return;
-        await page.waitForSelector('#spotlights-q');
-        await page.$eval('#spotlights-q', (input, name) => {
+        await page.waitForSelector('#young-readers-q');
+        await page.$eval('#young-readers-q', (input, name) => {
           input.value = name;
           input.dispatchEvent(new Event('input', { bubbles: true }));
         }, contract.name);
@@ -256,7 +256,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         await page.setViewport({ width, height: 900 });
         await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
         await page.waitForSelector('#home-primary-paths .home-path');
-        if (!event && !youngReaders) await page.$eval('#home-more-paths', (node) => { node.open = true; });
+        if (!event) await page.$eval('#home-more-paths', (node) => { node.open = true; });
         await click(page, `#view-home [data-category="${category}"]`);
         await findOnShelf();
         await page.waitForSelector(selector);

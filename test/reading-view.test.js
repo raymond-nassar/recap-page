@@ -823,7 +823,7 @@ test('reading view exports helpers and keeps forbidden dependencies out of the m
   const source = readFileSync(join(ROOT, 'src/js/views/reading.js'), 'utf8');
   assert.match(main, /const readingView = createReadingView\(\{/);
   assert.doesNotMatch(source, /\bfrom\s+['"].*(?:main|storage|api|cache|hydrate|synopsis|reader)\.js['"]/);
-  assert.doesNotMatch(source, /\bfrom\s+['"]\.\/(?:issue|home|library|add|data|catalog|progress|recovery|reading-paths)\.js['"]/);
+  assert.doesNotMatch(source, /\bfrom\s+['"]\.\/(?:issue|home|library|add|data|catalog|progress|recovery)\.js['"]/);
   assert.doesNotMatch(source, /new Store|new MarvelApi|new ResponseCache|new RateLimiter|new Hydrator|new SynopsisRunner/);
 });
 

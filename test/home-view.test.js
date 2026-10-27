@@ -146,15 +146,13 @@ function harness({
       count: 2,
     },
     {
-      key: 'reading-paths',
-      route: 'reading-paths',
+      key: 'young-readers',
+      route: 'young-readers',
       tier: 'secondary',
-      icon: 'E8FD',
-      heading: 'Reading paths',
-      label: 'Follow connected stories',
+      icon: 'E7BE',
+      heading: 'Young readers',
+      label: 'Stories for kids',
       count: 1,
-      singular: 'Reading path',
-      plural: 'Reading paths',
     },
   ];
   const catalog = {

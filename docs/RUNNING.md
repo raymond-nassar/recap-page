@@ -22,15 +22,15 @@ of lists, notes, progress and other saved choices in Recap Page.
 
 ## Jump within a long collection
 
-Reading paths have a **Jump to stop** selector. Long publishing-age pages have
+A path followed on Modern Timeline has a **Jump to stop** selector. Long publishing-age pages have
 **Jump to Reading List**. Choose a named destination, then activate **Jump** to focus
-its existing action or title. Keyboard users can type a name or use the native arrow,
+its title. Keyboard users can type a name or use the native arrow,
 Home and End keys, then Tab to Jump and press Enter. The full original order stays visible.
 
-In a reading path, **Next unfinished stop** means the first stop not explicitly marked
-completed in its current saved version. Reading every issue does not mark a list completed.
-Jump does not open a list, switch saved versions, change progress or save a destination.
-Activate the focused action separately to preview or open it.
+On a followed path, **Next unfinished stop** is the stop marked **You are here**: the first whose
+saved list is neither marked completed nor read in full. Jump does not open a list, switch saved
+versions, change progress, mark anything completed or save a destination. Use the stop's own
+**Preview** or **Open** separately.
 
 ## Choose how to run it
 
@@ -135,11 +135,11 @@ The browser normally opens automatically. If it does not, open this exact addres
 Use Edge, Chrome, Firefox, or Safari, not an editor's preview panel. Preview panels often block
 the reader tab opened by **Read**.
 
-On first run, Home offers Browse and Add, curated Reading Lists by story or publication age,
-and complete Reading paths. The optional Setup guide appears on Modern Timeline, not Home.
-Open Reading paths from Home's
-category cards. Each stop shows matching-list progress, another imported version when needed, or
-**Not added**. Search stays available even when live metadata has to wait.
+On first run, Home offers Browse and Add, and curated Reading Lists by story, by publication age
+and for young readers. The optional Setup guide appears on Modern Timeline, not Home. To read one
+connected story in order, choose it in **Follow a path** on Modern Timeline. Its stops are listed
+in the path's own order, with **You are here** and how many of them are complete. Search stays
+available even when live metadata has to wait.
 
 ## Install it as a browser app
 

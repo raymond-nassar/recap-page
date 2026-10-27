@@ -13,7 +13,7 @@ import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedCom
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
-  .filter((category) => category.kind !== 'reading-paths' && !category.shelf && !PUBLISHING_ROUTES.has(category.route))
+  .filter((category) => !category.shelf && !PUBLISHING_ROUTES.has(category.route))
   .map((category) => category.route);
 
 // Every section the app can reach. This lives here rather than in main.js so that one list backs
@@ -21,7 +21,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'issue', 'library', 'add', 'catalog', 'lines', 'spotlights', 'progress', 'reading-paths',
+  'home', 'read', 'issue', 'library', 'add', 'catalog', 'lines', 'young-readers', 'spotlights', 'progress',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -38,6 +38,12 @@ export const LEGACY_VIEW_ALIASES = {};
 // here rather than an alias, which would land a reader at the top of the page.
 export const HOME_CARDS = 'categories';
 const HOME_CARDS_SEGMENT = 'browse';
+
+// Reading paths was a page of its own until #897 moved following a path onto Modern Timeline. Its
+// addresses, with the path as a segment or as a query, now open the Timeline following that path,
+// so a bookmark or a Back entry written for the page still finds it. One naming no path the catalog
+// holds follows the first, which is what the page showed for it, and the address is then corrected.
+const RETIRED_PATHS_SEGMENT = 'reading-paths';
 
 const ADD_VIEW_LABELS = new Map([
   ['add-search', 'Search issues'],
@@ -259,14 +265,14 @@ export function formatRoute({
     const search = query.toString();
     return `${PREFIX}issue/${id}${search ? `?${search}` : ''}`;
   }
-  const tail = canonical !== 'reading-paths' && listId ? `/${encodeURIComponent(listId)}` : '';
+  const tail = listId ? `/${encodeURIComponent(listId)}` : '';
   const query = new URLSearchParams();
   // An unknown filter is dropped rather than written through, so a value that could not have come
   // from a radio cannot be put into an address by this app and then read back as if it had.
   const known = READING_FILTERS.some((f) => f.value === filter);
-  if (known && filter !== DEFAULT_FILTER && canonical !== 'reading-paths') query.set(FILTER_KEY, filter);
+  if (known && filter !== DEFAULT_FILTER) query.set(FILTER_KEY, filter);
   if (canonical === 'read' && full === true) query.set(FULL_KEY, '1');
-  if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort); if (canonical === 'reading-paths' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
+  if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort);
   // The path the Modern Timeline is following, so a followed path can be bookmarked and Back
   // returns to the previous choice (#897).
   if (canonical === 'catalog' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
@@ -308,7 +314,14 @@ export function parseRoute(hash) {
   // Ahead of the VIEWS check, because the Browse segment no longer names a view of its own.
   const atCards = view === HOME_CARDS_SEGMENT;
   view = atCards ? 'home' : canonicalView(view);
-  if (!VIEWS.includes(view) || ((view === 'reading-paths' || view === 'library-rated') && listId)) return null;
+  if (view === RETIRED_PATHS_SEGMENT) {
+    const named = listId === null ? new URLSearchParams(search).getAll(PATH_KEY) : [listId];
+    const pathId = named.length === 1 && PATH_TOKEN.test(named[0]) ? named[0] : null;
+    return {
+      view: 'catalog', listId: null, filter: null, full: false, pathId, orFirstPath: true,
+    };
+  }
+  if (!VIEWS.includes(view) || (view === 'library-rated' && listId)) return null;
 
   if (view === 'library-rated') {
     return { view, listId: null, filter: null, full: false, rated: parseRatedRoute(search) };
@@ -334,8 +347,8 @@ export function parseRoute(hash) {
   // unknown stored value, because that one is a record only this app writes.
   const params = new URLSearchParams(search);
   const raw = params.get(FILTER_KEY);
-  const filter = view !== 'reading-paths' && READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
-  const fullValues = params.getAll(FULL_KEY); const pathValues = view === 'reading-paths' || view === 'catalog' ? params.getAll(PATH_KEY) : [];
+  const filter = READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
+  const fullValues = params.getAll(FULL_KEY); const pathValues = view === 'catalog' ? params.getAll(PATH_KEY) : [];
   const pathId = pathValues.length === 1 && PATH_TOKEN.test(pathValues[0]) ? pathValues[0] : null;
   const full = view === 'read' && fullValues.length === 1 && fullValues[0] === '1';
   const rawSort = view === 'spotlights' ? params.get(SPOTLIGHT_SORT_KEY) : null;
@@ -343,7 +356,7 @@ export function parseRoute(hash) {
     ? rawSort
     : null;
 
-  if (view === 'reading-paths') return { view, listId: null, filter: null, full: false, pathId }; return sort
+  return sort
     ? {
       view, listId: listId || null, filter, full, sort,
     }

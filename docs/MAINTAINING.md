@@ -132,7 +132,7 @@ MRT_EDGE=/absolute/path/to/browser npm run browser
 The check normally uses an ephemeral port and an isolated profile, stubs catalog requests before
 the page loads, and exits nonzero if a journey fails. Saved progress at the normal app address
 stays untouched. The targeted `cache-generations`,
-`catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
+`catalog-gaps`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
 `import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
@@ -261,9 +261,10 @@ It looks in the `node_modules` directory that holds the driver it found, so the 
 npm run browser -- --axe
 ```
 
-It opens 10 screens: first-run Home, and nine more with a House of M Reading List saved and three
-of its comics read. Each opens in light, dark and forced colors at 1280x900, with reduced motion,
-cover art on and every cover answered by a local stand-in image, on an ephemeral port. It runs
+It opens 12 screens: first-run Home, and 11 more with a House of M Reading List saved and three
+of its comics read, Modern Timeline among them both whole and following a path. Each opens in
+light, dark and forced colors at 1280x900, with reduced motion, cover art on and every cover
+answered by a local stand-in image, on an ephemeral port. It runs
 axe's rules for WCAG 2.0, 2.1 and 2.2 levels A and AA, then writes `axe-report.json` and
 `axe-summary.md`, which reports by route and theme. Add `--axe-out=<directory>` to choose a new
 directory outside the repository, or `--axe-core=<path>` to use an axe-core installed elsewhere.
@@ -1116,20 +1117,24 @@ Use the parsed generated catalog for browser Reading Paths. Ordinary declaration
 validate the resolved set:
 
 ```text
-node --test test/reading-path.test.js test/modern-timeline.test.js
+node --test test/reading-path.test.js test/modern-timeline.test.js test/timeline-path-follow.test.js
 ```
 
-The Reading paths screen keeps every path, including a future story shared by several paths.
-Shelf badges keep only the first path for a stable badge. Never build the complete screen from
-the shelf placement map.
+Modern Timeline follows every path, including a future story shared by several paths. Shelf badges
+keep only the first path for a stable badge. Never build a followed path from the shelf placement
+map.
 
-The route has one path-specific query, `path=<validated-id>`. Selection belongs to browser history,
-not saved state or the reading filter. Keep the requested id while the catalog loads, reject stale
-render continuations, and canonically replace missing or invalid ids after resolution.
+The Timeline's route has one path-specific query, `path=<validated-id>`. Following a path belongs to
+browser history, not saved state or the reading filter. Keep the requested id while the catalog
+loads, reject stale render continuations, and canonically replace a missing id after resolution. An
+address from the retired Reading paths page follows the path it names, or the first path when it
+names none, and is replaced by the Timeline's own.
 
-For each stop's progress, prefer the exact imported catalog id, then the first imported sibling in
-catalog order, then **Not added**. After another tab replaces state or the whole origin is cleared,
-update only progress labels. Rebuilding the selector loses its DOM identity and keyboard focus.
+Count and draw each stop by the exact saved catalog id, then the first saved sibling in catalog
+order, then the reading the path names. A stop is finished when that copy is marked completed or
+read in full, and **Next unfinished stop** is the stop marked **You are here**. After another tab
+replaces state or the whole origin is cleared, repaint only the place. Rebuilding the stops or the
+selector loses their DOM identity and keyboard focus.
 
 ## Build and prove the Microsoft Store bundle
 

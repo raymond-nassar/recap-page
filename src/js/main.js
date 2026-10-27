@@ -14,7 +14,7 @@ import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, catalogEntries,
-  pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
+  pathPlacements, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
@@ -64,7 +64,6 @@ import { createCatalogView } from './views/catalog.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createPreviewView } from './views/preview.js';
 import { createOfflineContent } from './lib/offlineContent.js';
-import { createReadingPathsView } from './views/reading-paths.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
@@ -113,7 +112,6 @@ const listHistory = new ListHistoryStore({
   readerStore: store,
   onChange: (_history, error) => {
     renderAll();
-    readingPathsView.refreshProgress();
     if (error) notify('#save-report', error, 'error', 'history-save');
     else clearNotice('history-save');
   },
@@ -160,11 +158,11 @@ export function dispatchStorageEvent(
   if (event.key === STATE_KEY) {
     const sanitizeCurrent = () => {
       let changed = null;
-      (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+      sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
         adoptCurrent: true,
         onAdopt: (raw, adopted) => { changed = adopted ? raw == null : null; },
         onFailure: (error) => notify('#save-report', error, 'error'),
-      }), readingPathsView.refreshProgress());
+      });
       reconcileReader(changed);
     };
     if (readerStore === store) {
@@ -181,7 +179,7 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    const adopted = readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
+    const adopted = readerStore.adoptForeignWrite(null);
     reconcileReader(adopted ? true : null);
     education.adopt(null);
     renderEducation();
@@ -367,7 +365,7 @@ const LOCAL_CONNECTION_STEPS = 'Your lists and reading progress are safe. Leave 
   + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'reading-paths'),
+  ...HOME_CATEGORIES.filter((category) => !category.shelf),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -1357,7 +1355,7 @@ function syncHash({ push = false } = {}) {
         listId: activeListId(),
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+        sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
       });
   if (!next || next === location.hash) return;
 
@@ -1413,7 +1411,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       return;
     }
     issueView.cancel();
-    issueRoute = null; if (route.view === 'reading-paths') requestedReadingPathId = route.pathId;
+    issueRoute = null;
     // Ahead of the list and reading filter writes, because this address carries neither and
     // applying it must leave both exactly as they were.
     if (route.view === 'library-rated') {
@@ -1432,11 +1430,16 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
-    if (route.view === 'catalog') catalogView.setFollowedPath(route.pathId ?? null);
+    if (route.view === 'catalog') {
+      catalogView.setFollowedPath(route.pathId ?? null, {
+        orFirst: route.orFirstPath === true,
+        opener: focus ? history.state?.pathStopOpener ?? null : null,
+      });
+    }
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
-    if (route.view !== 'reading-paths') { readingView.setFilterAddressed(route.filter !== null);
-      readingView.setFilter(route.filter ?? filterIfAbsent); }
+    readingView.setFilterAddressed(route.filter !== null);
+    readingView.setFilter(route.filter ?? filterIfAbsent);
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -1454,16 +1457,10 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
     showView(route.view, { focus, at: route.at ?? null });
-    if (route.view === 'reading-paths') {
-      void readingPathsView.render({ opener: focus ? history.state?.readingPathOpener : null })
-        .then((pathId) => {
-          if (focus && view === route.view && pathId === requestedReadingPathId) void restoreIssueFocusOpener(route.view);
-        });
-    }
   } finally {
     applyingRoute = false;
   }
-  if (focus && route.view !== 'reading-paths') void restoreIssueFocusOpener(route.view);
+  if (focus) void restoreIssueFocusOpener(route.view);
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -2789,7 +2786,6 @@ export function boot() {
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
   homeUpdatesView.wire();
-  readingPathsView.wire();
   previewView.wire();
   wireAsk();
   completionView.wire();
@@ -3167,11 +3163,7 @@ const savedLists = createSavedListsPresenter({
 });
 
 const homeView = createHomeView({
-  categoriesForCatalog: (catalog) => availableHomeCategories(
-    catalogEntries(catalog.lists),
-    HOME_CATEGORIES,
-    resolveReadingPaths(catalog.paths, catalog.lists),
-  ),
+  categoriesForCatalog: (catalog) => availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES),
   clearCatalogNotice: () => clearNotice(CATALOG_LOAD),
   el,
   elements: () => ({
@@ -3218,9 +3210,7 @@ const homeView = createHomeView({
     isCurrent,
   }),
   onNavigateCategory: (category) => {
-    if (category.route === 'reading-paths') requestedReadingPathId = null;
     showView(category.route, { push: true });
-    if (category.route === 'reading-paths') void readingPathsView.render();
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
   onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
@@ -3321,16 +3311,25 @@ const ratedView = createRatedComicsView({
   onCommit: () => syncHash({ push: true }),
 });
 
-let requestedReadingPathId = null;
-
-function openSavedCatalogList(list, saved, report) {
+function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {
   if (!selectSavedList(saved.id, report)) {
     notify(report, `${list.name} could not be opened because that selection could not be saved.`,
       'error', `open:${list.id}`);
     return;
   }
+  // After the selection, because it changes the active list the address names, and the correction
+  // that follows replaces the entry with nothing marked on it.
+  if (fromCard) rememberPathStop(list, 'open');
   if ($('#preview').open) $('#preview').close();
   showView('read', { push: true });
+}
+
+// Recorded in the current history entry rather than stored, so it lasts only as long as the entry.
+function rememberPathStop(list, act) {
+  const pathId = view === 'catalog' ? catalogView.followedPath() : null;
+  if (!pathId) return;
+  const current = history.state && typeof history.state === 'object' ? history.state : {};
+  history.replaceState({ ...current, pathStopOpener: { pathId, catalogId: list.id, act } }, '', location.href);
 }
 
 const catalogPresentation = createCatalogPresentation({
@@ -3340,8 +3339,13 @@ const catalogPresentation = createCatalogPresentation({
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   onAdd: (list, button, report) => importCurated(list, button, { report }),
   onGoToStop: goToStop,
-  onOpen: openSavedCatalogList,
-  onPreview: (list) => previewView.open(list),
+  // A stop opened or previewed on a followed path is returned to on Back, as the path's own page did
+  // (#897).
+  onOpen: (list, saved, report) => openSavedCatalogList(list, saved, report, { fromCard: true }),
+  onPreview: (list) => {
+    rememberPathStop(list, 'preview');
+    return previewView.open(list);
+  },
   pathHref: (stop) => formatRoute({
     view: stop.shelf,
     sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
@@ -3478,61 +3482,6 @@ const previewView = createPreviewView({
   onOpen: (list, saved) => openSavedCatalogList(list, saved, '#preview-report'),
   presentation: catalogPresentation,
   restoreFocus,
-});
-
-const readingPathsView = createReadingPathsView({
-  clearLoadNotice: () => clearNotice(CATALOG_LOAD),
-  el,
-  elements: () => ({
-    count: $('#reading-path-count'),
-    description: $('#reading-path-description'),
-    details: $('#reading-path-details'),
-    name: $('#reading-path-name'),
-    navigation: $('#reading-path-navigation'),
-    progressOutputs: () => document.querySelectorAll('[data-reading-path-progress]'),
-    select: $('#reading-path-select'),
-    source: $('#reading-path-source'),
-    spine: $('#reading-path-spine'),
-    status: $('#reading-path-status'),
-  }),
-  getRequestedPathId: () => requestedReadingPathId,
-  getState: () => store.state,
-  isCurrent: () => view === 'reading-paths',
-  isCompleted: (state, id) => listHistory.isCompleted(state, id),
-  loadCatalog,
-  onCanonicalPath: (pathId) => {
-    requestedReadingPathId = pathId;
-    syncHash();
-    clearNotice(CATALOG_LOAD);
-  },
-  onLoadFailure: ({ error, retry, isCurrent }) => reportBundledLoadFailure({
-    report: '#reading-paths-report',
-    failure: `Reading paths could not be loaded: ${error.message}. Try this view again.`,
-    key: CATALOG_LOAD,
-    subject: 'Reading paths',
-    retry,
-    isCurrent,
-  }),
-  onOpenStop: (stop, progress) => {
-    const current = history.state && typeof history.state === 'object' ? history.state : {};
-    history.replaceState({
-      ...current,
-      readingPathOpener: { pathId: requestedReadingPathId, stepId: stop.stepId },
-    }, '', location.href);
-    if (progress) {
-      openSavedCatalogList(
-        { id: progress.catalogId, name: progress.name },
-        { id: progress.listId },
-        '#reading-paths-report',
-      );
-    } else {
-      void previewView.open(stop.lists.find((list) => list.id === stop.stepId));
-    }
-  },
-  onSelectedPath: (pathId) => {
-    requestedReadingPathId = pathId;
-    syncHash({ push: true });
-  },
 });
 
 const recommendationResolver = createListRecommendationResolver({ loadBundledOrder });

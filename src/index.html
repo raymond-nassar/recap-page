@@ -676,9 +676,9 @@
 
           <!-- ---------------------------------------- line-wide reading lists view
 
-               The three catalog screens are one renderer over one table, so every id here is the
+               The four catalog screens are one renderer over one table, so every id here is the
                shelf key with the same suffix the catalog view uses. Changing a suffix on one screen
-               and not the others is how they would drift apart, and a test asserts all three carry
+               and not the others is how they would drift apart, and a test asserts all four carry
                the same set. -->
           <section id="view-lines" class="view" hidden aria-labelledby="lines-h">
             <div class="head"><div class="head-left"><h1 id="lines-h">Storylines</h1></div></div>
@@ -741,6 +741,23 @@
               <legend class="visually-hidden">Filter the catalog by category</legend>
             </fieldset>
             <div id="spotlights-results" class="results"></div>
+          </section>
+
+          <!-- ---------------------------------------- young readers view (#897) -->
+          <section id="view-young-readers" class="view" hidden aria-labelledby="young-readers-h">
+            <div class="head"><div class="head-left"><h1 id="young-readers-h">Young readers</h1></div></div>
+            <div id="young-readers-report" class="report"></div>
+            <form id="form-young-readers-search" class="stack" role="search" hidden>
+              <label for="young-readers-q">Search the catalog by title or character</label>
+              <div class="field-row">
+                <input type="search" id="young-readers-q" placeholder="e.g. Spidey, Squirrel Girl" autocomplete="off" />
+                <button type="button" class="btn" id="young-readers-clear" hidden>Clear</button>
+              </div>
+            </form>
+            <fieldset class="filters" id="young-readers-filters" hidden>
+              <legend class="visually-hidden">Filter the catalog by category</legend>
+            </fieldset>
+            <div id="young-readers-results" class="results"></div>
           </section>
 
           <!-- ---------------------------------------- add hub -->
@@ -1223,7 +1240,6 @@
               </p>
             </div>
           </section>
-          <section id="view-reading-paths" class="view" hidden aria-labelledby="reading-paths-h"><div class="head"><div class="head-left"><h1 id="reading-paths-h">Reading paths</h1><p class="sub">See each connected sequence in one place.</p></div></div><div id="reading-paths-report" class="report"></div><p id="reading-path-status" class="rail-hint" role="status">Loading reading paths…</p><div class="reading-path-controls"><label for="reading-path-select">Reading path</label><select id="reading-path-select"></select></div><section id="reading-path-details" hidden aria-labelledby="reading-path-name"><div class="reading-path-summary"><div><h2 id="reading-path-name">Reading path</h2><p id="reading-path-description"></p><p id="reading-path-source" class="rail-hint"></p></div><strong id="reading-path-count" class="reading-path-count"></strong></div><div id="reading-path-navigation"></div><ol id="reading-path-spine" class="reading-path-spine"></ol></section></section>
           <section id="view-completed" class="view view-wide" hidden aria-labelledby="completed-h">
             <div class="head"><div class="head-left"><h1 id="completed-h">Completed lists</h1><p id="completed-count" class="sub">Completed Reading Lists and the ones you enjoyed.</p></div></div>
             <fieldset class="reading-filters completion-filters">
