@@ -21,7 +21,7 @@ A link doesn't guarantee access. Recap Page cannot replace Marvel Unlimited or b
 
 An example with made-up progress:
 
-1. In **Browse**, add **Civil War: Avengers and Aftermath Reading Order** from
+1. On **Home**, open **Modern Timeline** and add **Civil War: Avengers and Aftermath Reading Order** from
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
 2. With the first six comics marked read, **Civil War (2006) #7** is next.
 3. Choose **Read** to open the official reader where a link is available.
@@ -48,11 +48,11 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
   **About this comic**, then **Rate this issue**. The saved score stays compact beside your note.
 - **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
   earlier issues, and reveal descriptions when you're ready.
-- **Follow Reading Paths.** From Home or Browse, see each stop's progress from the matching list,
+- **Follow Reading Paths.** From Home, see each stop's progress from the matching list,
   another imported version, or **Not added**.
 - **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
   again in **Completed lists** without losing notes or comic progress.
-- **Find comics.** Search curated lists in Browse, or issues, series, and creators in Add comics.
+- **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.
 - **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
   unavailable checks.
 - **Back up your progress.** Restore a backup on this device or another. Android and desktop save
@@ -64,7 +64,7 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ### Build a list from search
 
-In **Add comics**, search by issue title, series, or creator. A single matching series or creator
+In **Search**, look up an issue title, series, or creator. A single matching series or creator
 opens its comics; when several names match, choose **Browse comics** beside the one you want.
 Searching and browsing never add comics to your saved lists.
 
@@ -119,7 +119,7 @@ explicit saved-copy action rather than a misleading Undo label.
 It contains the original source, unresolved positions and selected matches, not just saved comics.
 Resolved comics publish even when other positions remain unresolved. Matching a gap fills its
 source position; duplicate occurrences remain in the draft without duplicating list membership.
-Saved source has no automatic expiry: resume it after reload or explicitly discard it from Add comics.
+Saved source has no automatic expiry: resume it after reload or explicitly discard it from Search.
 Restoring reading data does not replace completion history; matching saved lists can reveal
 their retained history again.
 

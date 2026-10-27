@@ -137,9 +137,9 @@ the reader tab opened by **Read**.
 
 On first run, Home offers Browse and Add, curated Reading Lists by story or publication age,
 and complete Reading paths. The optional Setup guide appears on Modern Timeline, not Home.
-Open Reading paths from Home or
-Browse. Each stop shows matching-list progress, another imported version when needed, or
-**Not added**. Add comics stays available even when live metadata has to wait.
+Open Reading paths from Home's
+category cards. Each stop shows matching-list progress, another imported version when needed, or
+**Not added**. Search stays available even when live metadata has to wait.
 
 ## Install it as a browser app
 

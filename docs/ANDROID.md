@@ -48,7 +48,7 @@ The existing Setup guide remains on Modern Timeline and the other browse pages.
 Its short introduction keeps the guide optional; **About this starting point** opens the full
 historical explanation.
 
-The link above a page title opens its immediate parent, such as **Browse** or **Library**.
+The link above a page title opens its immediate parent, such as **Home** or **Library**.
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
 the parent link goes to its named destination.
 
@@ -557,7 +557,7 @@ On short landscape screens a confirmation widens so its answers share one row. T
 undoes and declines the saved copy, and must leave the reading data as it found it. These are Edge
 web checks, not native fontScale or TalkBack acceptance.
 
-`npm run android:browser -- --only=selection-bar` checks the Add comics selection bar on a 50-comic
+`npm run android:browser -- --only=selection-bar` checks Search's selection bar on a 50-comic
 issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both
 themes. It taps a comic far down the list, then checks at five scroll positions that Save selected
 comics and Clear selection stay in view, tappable and above the bottom navigation bar whenever that

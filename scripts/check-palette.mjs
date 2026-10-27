@@ -236,8 +236,8 @@ export const SURFACES = {
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:1848-1850`) and 19% over the raised card on hover
-  // (`src/styles.css:1866-1868`).
+  // card at rest (`src/styles.css:1850-1852`) and 19% over the raised card on hover
+  // (`src/styles.css:1868-1870`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -767,7 +767,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1671` in the rail and `src/js/views/shared/saved-lists.js:32` in the
+// stated as text beside it, at `src/js/main.js:1700` in the rail and `src/js/views/shared/saved-lists.js:32` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when

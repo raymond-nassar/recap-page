@@ -137,7 +137,7 @@ export const mcuPrepOrganization = {
     await page.type(query, 'Daredevil Born Again Season 1');
     t.check('the associated season title is searchable even when absent from the guide title',
       isDeepStrictEqual(await visibleIds(page), ['mcu-prep-daredevil-born-again']));
-    await click(page, '.ri[data-view="browse"]');
+    await click(page, '.brand[data-view="home"]');
     await page.evaluate(() => window.history.back());
     await page.waitForSelector(`${root} .catalog-card`);
     t.check('Back retains the page-local query and direction',

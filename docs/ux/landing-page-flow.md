@@ -8,7 +8,7 @@ App launch, or selecting the brand lockup in the sidebar.
 2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
    list**.
 3. **Browse Reading Lists** is the primary action and opens the Modern Timeline; the secondary
-   **Add comics** action opens the Add hub without
+   **Add comics** action opens Search without
    requiring the narrow Navigation menu or waiting for catalog load. The category tiles remain
    available below.
 4. Setup recommendation cards stay on the dedicated browsing pages rather than Home.
@@ -55,7 +55,7 @@ an open dialog first, then visible narrow navigation, then Home news. Browser-st
 replace installed-device touch, system-text, Back or private-profile acceptance.
 
 ## Transitions
-- First-run Browse reaches the Modern Timeline, while Add reaches its existing hub. Both create browser history entries
+- First-run Browse reaches the Modern Timeline, while Add reaches Search. Both create browser history entries
   and move focus to the destination heading. Back returns to Home.
 - Primary or additional category tile opens its own browse subpage and creates a browser history entry.
 - Marvel Ages first shows populated earlier ages, then populated Modern periods. Its **Browse all

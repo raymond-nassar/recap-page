@@ -203,9 +203,10 @@ try {
         dispatchEvent(new StorageEvent('storage', { key, oldValue, newValue }));
       }, fixture, KEY);
       await page.waitForSelector('#all-read:not([hidden])');
-      await click(page, '#all-read [data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      check(true, prefix('finished-list Browse opens discovery'));
+      await click(page, '#all-read a[href="#/browse"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      check(await page.evaluate(() => location.hash.startsWith('#/browse') && document.activeElement?.id === 'home-cat-h'),
+        prefix('finished-list Browse opens Home at its category cards'));
     }
 
     if (selectedCases.includes('details')) {

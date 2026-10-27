@@ -56,11 +56,10 @@ export const AXE_ROUTES = [
   { id: 'home', label: 'Home', view: 'home', hash: formatRoute({ view: 'home' }), seeded: true, ready: '#home-continue:not([hidden])' },
   { id: 'read', label: 'Reading List', view: 'read', hash: formatRoute({ view: 'read', listId: AXE_LIST }), seeded: true, ready: '#hero-title' },
   { id: 'issue', label: 'Comic', view: 'issue', hash: formatRoute({ view: 'issue', issueId: FIRST.issueId, context: { kind: 'list', id: AXE_LIST } }), seeded: true, ready: '#issue-focus-h' },
-  { id: 'browse', label: 'Browse', view: 'browse', hash: formatRoute({ view: 'browse' }), seeded: true, ready: '#view-browse [data-primary-paths]:not([hidden])' },
   { id: 'catalog', label: 'Modern Timeline', view: 'catalog', hash: formatRoute({ view: 'catalog' }), seeded: true, ready: '#catalog-results > *' },
   { id: 'progress', label: 'Progress by series', view: 'progress', hash: formatRoute({ view: 'progress' }), seeded: true, ready: '#series-progress > *' },
   { id: 'library', label: 'Library', view: 'library', hash: formatRoute({ view: 'library' }), seeded: true, ready: '#library-yours-list > li' },
-  { id: 'add', label: 'Add comics', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#add-primary-methods' },
+  { id: 'add', label: 'Search', view: 'add', hash: formatRoute({ view: 'add' }), seeded: true, ready: '#add-primary-methods' },
   { id: 'data', label: 'Backup & settings', view: 'data', hash: formatRoute({ view: 'data' }), seeded: true, ready: '#view-data .setgroup' },
   { id: 'about', label: 'About this app', view: 'about', hash: formatRoute({ view: 'about' }), seeded: true, ready: '#view-about .card' },
 ];

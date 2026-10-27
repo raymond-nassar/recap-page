@@ -21,7 +21,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'issue', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress', 'reading-paths',
+  'home', 'read', 'issue', 'library', 'add', 'catalog', 'lines', 'spotlights', 'progress', 'reading-paths',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -31,6 +31,13 @@ export const VIEWS = [
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
 // renderable views, so every member of VIEWS still names a real panel.
 export const LEGACY_VIEW_ALIASES = {};
+
+// Browse was a screen of its own until #831, and it showed exactly Home's category cards. Its
+// address now names that place on Home, so a bookmark, a Back entry or a link written for Browse
+// still opens the cards rather than the top of Home. That meaning is why it is a section of Home
+// here rather than an alias, which would land a reader at the top of the page.
+export const HOME_CARDS = 'categories';
+const HOME_CARDS_SEGMENT = 'browse';
 
 const ADD_VIEW_LABELS = new Map([
   ['add-search', 'Search issues'],
@@ -42,8 +49,7 @@ const ADD_VIEW_LABELS = new Map([
 
 const STATIC_VIEW_LABELS = new Map([
   ['library', 'Library'],
-  ['browse', 'Browse'],
-  ['add', 'Add comics'],
+  ['add', 'Search'],
   ['progress', 'Progress by series'],
   ['completed', 'Completed lists'],
   ['library-rated', 'Your ratings'],
@@ -79,6 +85,8 @@ export function breadcrumbHierarchy({
 } = {}) {
   if (!VIEWS.includes(view) || view === 'home') return [];
   const home = linked('home', 'Home');
+  // A category's parent is the set of cards it was chosen from, so its Home crumb returns there.
+  const cards = linked('home', 'Home', { at: HOME_CARDS });
 
   if (view === 'read') {
     return [
@@ -104,8 +112,7 @@ export function breadcrumbHierarchy({
       const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === context.shelf);
       if (shelf) {
         return [
-          home,
-          linked('browse', 'Browse'),
+          cards,
           linked(shelf.key, shelf.heading),
           current(title),
         ];
@@ -121,17 +128,17 @@ export function breadcrumbHierarchy({
 
   const addLabel = ADD_VIEW_LABELS.get(view);
   if (addLabel) {
-    return [home, linked('add', 'Add comics'), current(addLabel)];
+    return [home, linked('add', 'Search'), current(addLabel)];
   }
 
   const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === view);
   if (shelf) {
-    return [home, linked('browse', 'Browse'), current(shelf.heading)];
+    return [cards, current(shelf.heading)];
   }
 
   const publishing = PUBLISHING_CATEGORIES.find((candidate) => candidate.route === view);
   if (publishing) {
-    const ancestors = [home, linked('browse', 'Browse'), linked('marvel-ages', 'Marvel Ages')];
+    const ancestors = [cards, linked('marvel-ages', 'Marvel Ages')];
     if (publishing.parent) {
       const parent = PUBLISHING_CATEGORIES.find((candidate) => candidate.key === publishing.parent);
       if (parent) ancestors.push(linked(parent.route, parent.heading));
@@ -141,7 +148,7 @@ export function breadcrumbHierarchy({
 
   const category = HOME_CATEGORIES.find((candidate) => candidate.route === view);
   if (category) {
-    return [home, linked('browse', 'Browse'), current(category.heading)];
+    return [cards, current(category.heading)];
   }
 
   const label = STATIC_VIEW_LABELS.get(view);
@@ -237,7 +244,7 @@ function parseRatedRoute(search) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -262,7 +269,8 @@ export function formatRoute({
   if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort); if (canonical === 'reading-paths' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
-  return `${PREFIX}${encodeURIComponent(canonical)}${tail}${suffix}`;
+  const segment = canonical === 'home' && at === HOME_CARDS ? HOME_CARDS_SEGMENT : canonical;
+  return `${PREFIX}${encodeURIComponent(segment)}${tail}${suffix}`;
 }
 
 // Returns null for anything that is not one of our routes, which the caller must treat as "not
@@ -294,7 +302,9 @@ export function parseRoute(hash) {
     return null;
   }
 
-  view = canonicalView(view);
+  // Ahead of the VIEWS check, because the Browse segment no longer names a view of its own.
+  const atCards = view === HOME_CARDS_SEGMENT;
+  view = atCards ? 'home' : canonicalView(view);
   if (!VIEWS.includes(view) || ((view === 'reading-paths' || view === 'library-rated') && listId)) return null;
 
   if (view === 'library-rated') {
@@ -334,6 +344,6 @@ export function parseRoute(hash) {
       view, listId: listId || null, filter, full, sort,
     }
     : {
-      view, listId: listId || null, filter, full,
+      view, listId: listId || null, filter, full, ...(atCards ? { at: HOME_CARDS } : {}),
     };
 }

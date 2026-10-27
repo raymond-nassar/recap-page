@@ -52,13 +52,9 @@
             <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
             <span>Library</span>
           </a>
-          <a href="#/browse" class="mobile-link" data-view="browse">
-            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
-            <span>Browse</span>
-          </a>
           <a href="#/add" class="mobile-link" data-view="add">
-            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
-            <span>Add comics</span>
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
+            <span>Search</span>
           </a>
         </div>
 
@@ -73,19 +69,9 @@
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span class="lbl">Library</span>
                   </a></li>
-                </ul>
-              </div>
-
-              <div class="nav-group">
-                <h2 class="rail-h">Discover</h2>
-                <ul class="rail-list">
-                  <li data-bottom-bar><a href="#/browse" class="ri" data-view="browse">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
-                    <span class="lbl">Browse</span>
-                  </a></li>
                   <li data-bottom-bar><a href="#/add" class="ri" data-view="add">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
-                    <span class="lbl">Add comics</span>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
+                    <span class="lbl">Search</span>
                   </a></li>
                 </ul>
               </div>
@@ -385,7 +371,7 @@
                 <div class="empty-glyph" aria-hidden="true">✓</div>
                 <h2 id="all-read-h" tabindex="-1">Every issue marked read</h2>
                 <p>Every issue in this list is marked read.</p>
-                <a href="#/browse" class="btn" data-view="browse">Browse Reading Lists</a>
+                <a href="#/browse" class="btn" data-view="home" data-at="categories">Browse Reading Lists</a>
               </div>
 
               <section id="all-deferred" class="empty-state" hidden aria-labelledby="all-deferred-h">
@@ -551,7 +537,7 @@
             <section class="empty" id="library-empty" hidden>
               <h2>No Reading Lists yet</h2>
               <div class="actions">
-                <a href="#/browse" class="btn primary" data-view="browse">Browse</a>
+                <a href="#/browse" class="btn primary" data-view="home" data-at="categories">Browse</a>
                 <a href="#/add" class="btn" data-view="add">Add comics</a>
               </div>
             </section>
@@ -748,38 +734,22 @@
             <div id="spotlights-results" class="results"></div>
           </section>
 
-          <!-- ---------------------------------------- browse hub -->
-          <section id="view-browse" class="view" hidden aria-labelledby="browse-h">
-            <div class="head"><div class="head-left"><h1 id="browse-h">Browse</h1></div></div>
-            <section class="sec home-categories" data-category-gateway aria-labelledby="browse-cat-h">
-              <div class="sec-h"><h2 id="browse-cat-h" class="visually-hidden">Explore</h2></div>
-              <div id="browse-cat-report" class="report"></div>
-              <p class="rail-hint" data-paths-status role="status">Loading ways to read…</p>
-              <ul class="home-paths home-paths-primary" data-primary-paths hidden></ul>
-              <section class="home-more-paths" data-more-paths hidden aria-labelledby="browse-more-h">
-                <div class="sec-h"><h3 id="browse-more-h">Discover More</h3></div>
-                <ul class="home-paths home-paths-secondary" data-secondary-paths></ul>
-              </section>
-              <p class="rail-hint attribution">Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></p>
-            </section>
-          </section>
-
           <!-- ---------------------------------------- add hub -->
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
-            <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
+            <div class="head"><div class="head-left"><h1 id="add-h">Search</h1></div></div>
             <div class="search-hub-grid add-hub-grid" id="add-primary-methods">
               <a href="#/add-search" class="search-hub-card" data-view="add-search">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
               </a>
               <a href="#/add-series" class="search-hub-card" data-view="add-series">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#series"/></svg><span>Find a series</span>
               </a>
             </div>
             <details class="field-disclosure action-disclosure add-other-methods" id="add-other-methods">
               <summary>More ways to add</summary>
               <div class="search-hub-grid">
                 <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#creator"/></svg><span>Browse a creator</span>
                 </a>
                 <a href="#/add-import" class="search-hub-card" data-view="add-import">
                   <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
@@ -818,11 +788,11 @@
                 <h2 id="search-browse-h">Browse by</h2>
                 <div class="search-hub-grid">
                   <a href="#/add-series" class="search-hub-card" data-view="add-series">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#series"/></svg>
                     <span>Series</span>
                   </a>
                   <a href="#/add-creator" class="search-hub-card" data-view="add-creator">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#creator"/></svg>
                     <span>Creators</span>
                   </a>
                   <a href="#/spotlights" class="search-hub-card" data-view="spotlights">
@@ -830,7 +800,7 @@
                     <span>Characters</span>
                   </a>
                   <a href="#/catalog" class="search-hub-card" data-view="catalog">
-                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#timeline"/></svg>
                     <span>Reading guides</span>
                   </a>
                 </div>
@@ -1265,7 +1235,7 @@
             <div class="cta completion-actions">
               <button type="button" id="btn-complete-list" class="quiet completion-mark" aria-describedby="list-completion-status">Mark as Completed</button>
               <button type="button" id="btn-reopen-list" class="btn btn-g" hidden>Reopen list</button>
-              <button type="button" id="btn-completed-lists" class="btn btn-g">Completed lists</button>
+              <a href="#/completed" id="btn-completed-lists" class="btn btn-g">Completed lists</a>
               <button type="button" id="btn-list-feedback-guide" class="quiet" hidden>Report a list problem</button>
             </div>
             <fieldset id="list-enjoyment" class="completion-enjoyment" hidden>
@@ -1277,7 +1247,7 @@
               <h3 id="list-recommendations-h">What to read next</h3>
               <p id="list-recommendation-status" class="rail-hint" role="status"></p>
               <ul id="list-suggestions" class="recommendation-grid"></ul>
-              <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><button type="button" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</button></div>
+              <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><a href="#/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</a></div>
             </section>
           </section>
           <section id="completion-history-controls" class="card card-static" aria-labelledby="completion-history-h">

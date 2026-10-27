@@ -64,11 +64,15 @@ function between(source, startText, endText) {
   return source.slice(start, end);
 }
 
-test('the rail stays fixed while Library, Browse, and Add own their child pages', () => {
+test('the rail groups Reading and App while Library and Search own their child pages', () => {
   const rail = between(html, '<nav id="sidebar-nav"', '</nav>');
   assert.match(rail, /<h2 id="rail-reading" class="rail-h">Reading<\/h2>/);
   assert.match(rail, /id="list-nav"/, 'the conditional Continue reading slot left the rail');
-  for (const view of ['library', 'browse', 'add', 'data', 'about']) {
+  assert.deepEqual([...rail.matchAll(/class="rail-h">([^<]+)<\/h2>/g)].map(([, name]) => name), ['Reading', 'App']);
+  assert.match(between(rail, 'id="rail-reading"', 'class="nav-group nav-foot"'), /data-view="library"[\s\S]*data-view="add"/,
+    'Search no longer sits in Reading beside Library');
+  assert.doesNotMatch(rail, /data-view="browse"/, 'Browse returned to the rail');
+  for (const view of ['library', 'add', 'data', 'about']) {
     assert.match(rail, new RegExp(`data-view="${view}"`), `${view} is missing from the fixed rail`);
   }
   for (const child of ['library-read', 'progress', 'library-manual', 'catalog', 'lines', 'spotlights', ...['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']]) {
@@ -336,4 +340,25 @@ test('every search field may shrink to a narrow screen', () => {
   for (const id of ['form-search', 'form-series', 'form-creator']) assert.match(html, new RegExp(`<form id="${id}" class="stack">`));
   assert.match(html, /<form id="form-lines-search" class="stack" role="search"/);
   assert.match(read('src/js/views/mcu-prep.js'), /el\('form', \{ class: 'stack mcu-prep-search'/);
+});
+
+test('disclosure chevrons stay out of the names screen readers announce', () => {
+  // UX-17: generated content joins an accessible name, so "List actions" was announced with its arrow.
+  const chevrons = [...styles.matchAll(/content: "›";( content: "›" \/ "";)?/g)];
+  assert.ok(chevrons.length >= 3, 'the disclosure chevrons moved out of the stylesheet');
+  assert.deepEqual(chevrons.filter(([, alternative]) => !alternative).map(([match]) => match), [],
+    'a chevron joins the name of its summary');
+});
+
+test('completion destinations are links that leave modifier clicks to the browser', () => {
+  // UX-18: they were buttons, so a middle click or Open in new tab did nothing.
+  const markup = html;
+  assert.match(markup, /<a href="#\/completed" id="btn-completed-lists" class="btn btn-g">Completed lists<\/a>/);
+  assert.match(markup, /<a href="#\/browse" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists<\/a>/);
+  const source = read('src/js/views/completion.js');
+  for (const owner of ['collectionOpen', 'recommendationBrowse']) {
+    assert.match(source, new RegExp(`nodes\\.${owner}\\.addEventListener\\('click', \\(event\\) => \\{\\s*if \\(!isPlainNavigation\\(event\\)\\) return;`),
+      `${owner} intercepts modifier clicks`);
+  }
+  assert.match(source, /el\('a', \{\s*class: 'btn btn-g',\s*href: formatRoute\(\{ view: 'completed' \}\),\s*text: 'View completed lists',/);
 });

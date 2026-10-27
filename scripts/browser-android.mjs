@@ -248,7 +248,8 @@ async function click(page, selector) {
 }
 async function route(page, name) {
   await page.evaluate((view) => { location.hash = `#/${view}`; }, name);
-  await page.waitForSelector(`#view-${name}:not([hidden])`);
+  // #831: Browse's address opens Home at its category cards.
+  await page.waitForSelector(`#view-${name === 'browse' ? 'home' : name}:not([hidden])`);
 }
 async function backDialog(page) {
   await page.evaluate(() => new Promise((resolve, reject) => {
@@ -1038,7 +1039,7 @@ async function spotlightControlCheck(page, profile) {
   }
   await open();
   await route(page, 'browse');
-  await page.waitForFunction(() => document.activeElement?.id === 'browse-h', { timeout: 5000 });
+  await page.waitForFunction(() => document.activeElement?.id === 'home-cat-h', { timeout: 5000 });
   check(!(await spotlightSnapshot(page)).open, `${label}: hash departure closes before destination focus`);
   await route(page, 'spotlights');
   state.sort = null;
@@ -1417,7 +1418,7 @@ async function categoryLabelReadability(page, label, viewport) {
     resolveReadingPaths(catalog.paths, catalog.lists));
   assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
   const scale = viewport.textScale || 1;
-  for (const view of ['home', 'browse']) {
+  for (const view of ['home']) {
     await route(page, view);
     await page.waitForFunction((id, count) => document.querySelectorAll(`#view-${id} .home-path`).length === count,
       {}, view, categories.length);
@@ -1533,24 +1534,6 @@ async function categoryLabelReadability(page, label, viewport) {
       const rows = new Set(result.cards.slice(3).map((card) => Math.round(card.box.top))).size;
       check(rows === (scale === 1 ? 1 : 2), `${label} ${view}: Discover More takes ${rows} rows`);
     }
-    if (view === 'browse') {
-      // The credit names its metadata source as one unbroken domain, which at 200% text on a 320px
-      // phone ran past its paragraph and widened Browse (#841).
-      const credit = await page.$eval('#view-browse .attribution', (node) => {
-        const box = node.getBoundingClientRect();
-        const range = document.createRange();
-        range.selectNodeContents(node);
-        const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
-        return {
-          exact: node.textContent === `Marvel metadata via marvel.emreparker.com. © ${new Date().getFullYear()} MARVEL`,
-          width: box.width, lines: rects.length, widest: Math.max(...rects.map((rect) => rect.right)) - box.left,
-          inside: rects.every((rect) => rect.left >= box.left - 1 && rect.right <= box.right + 1),
-          onScreen: box.left >= 0 && box.right <= document.documentElement.clientWidth,
-        };
-      });
-      check(credit.exact && credit.lines > 0 && credit.inside && credit.onScreen,
-        `${label} browse: metadata credit wraps inside its paragraph ${JSON.stringify(credit)}`);
-    }
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
     console.log(`CHECKED ${label} ${view}: ${result.cards.length} categories, ${result.cards.reduce((n, card) => n + card.words.length, 0)} words; Publication ${JSON.stringify(result.cards.find((card) => card.key === 'marvel-ages'))}`);
@@ -1570,10 +1553,23 @@ async function categoryLabelReadability(page, label, viewport) {
       else document.documentElement.setAttribute('data-theme', value);
     }, chosen);
   }
+  // #831: Browse showed only Home's cards, with a credit line under them that at 200% text on a 320px
+  // phone once widened the page (#841). Its address now opens Home at those cards, the one copy of them.
+  await route(page, 'browse');
+  const cards = await page.evaluate(() => ({
+    gateways: document.querySelectorAll('[data-category-gateway]').length,
+    cards: document.querySelectorAll('#view-home [data-category-gateway] .home-path').length,
+    elsewhere: document.querySelectorAll('.home-path').length
+      - document.querySelectorAll('#view-home .home-path').length,
+    focus: document.activeElement?.id ?? null,
+    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+  }));
+  check(cards.gateways === 1 && cards.cards === categories.length && cards.focus === 'home-cat-h' && !cards.overflow,
+    `${label}: the Browse address opens Home's one set of ${categories.length} cards within the screen ${JSON.stringify(cards)}`);
   if (viewport.width === 360 && scale === 2) {
     for (const category of categories) {
       await route(page, 'browse');
-      await click(page, `#view-browse [data-category="${category.key}"]`);
+      await click(page, `#view-home [data-category="${category.key}"]`);
       await page.waitForSelector(`#view-${category.route}:not([hidden])`);
       check(parseRoute(new URL(page.url()).hash)?.view === category.route,
         `${label}: ${category.key}: original destination`);
@@ -2491,10 +2487,87 @@ async function homeWordmarkCheck(page, label, viewport) {
   console.log(`WORDMARK ${label}: ${shown.width}x${shown.cap.toFixed(1)}px at ${shown.font}px, footprint ${footprint.toFixed(2)} of the reference`);
 }
 
+// #831: at 200% text the five-item bar cut its labels to "Ho", "Libr" and "Bro". Each visible label is one
+// whole line inside its destination, in one row of four or, when one row cannot hold them, two rows of two,
+// and the bar reads Home, Library, Search and More with the side menu's glyphs. On Android More is its
+// glyph alone, named More, as it has been since 7a3a9cdd. 320 and 360px are measured at 100% and 200% text.
+async function barLabelsCheck(page, label, viewport) {
+  const tokens = ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg'];
+  const own = viewport.textScale || 1;
+  const rescale = (from, to) => page.evaluate((names, a, b) => {
+    const root = document.documentElement;
+    for (const name of names) {
+      const value = parseFloat(getComputedStyle(root).getPropertyValue(name));
+      root.style.setProperty(name, `${(value / a) * b}px`);
+    }
+  }, tokens, from, to);
+  const settled = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+  let current = own;
+  for (const scale of [320, 360].includes(viewport.width) ? [1, 2] : [own]) {
+    if (scale !== current) await rescale(current, scale);
+    current = scale;
+    await settled();
+    const fit = await page.evaluate(() => {
+      const header = document.querySelector('.rail-header');
+      const bar = header.getBoundingClientRect();
+      const items = [...header.querySelectorAll(':scope > :is(.brand, .mobile-link, .rail-toggle)')]
+        .filter((node) => node.getClientRects().length)
+        .map((item) => {
+          const span = [...item.querySelectorAll(':scope > span')].find((node) => node.getClientRects().length) ?? null;
+          const box = item.getBoundingClientRect();
+          const result = {
+            name: item.getAttribute('aria-label') || item.innerText.trim(),
+            glyph: item.querySelector('use')?.getAttribute('href')?.split('#')[1] ?? (item.querySelector('img.mark') ? 'mark' : null),
+            text: span?.textContent.trim() ?? null,
+            onBar: box.left >= bar.left - 0.5 && box.right <= bar.right + 0.5,
+            top: Math.round(box.top), left: Math.round(box.left), w: Math.round(box.width), h: Math.round(box.height),
+          };
+          if (span) {
+            const range = document.createRange();
+            range.selectNodeContents(span);
+            const text = span.getBoundingClientRect();
+            result.lines = [...range.getClientRects()].filter((rect) => rect.width && rect.height).length;
+            result.inside = text.left >= box.left - 0.5 && text.right <= box.right + 0.5
+              && text.top >= box.top - 0.5 && text.bottom <= box.bottom + 0.5;
+          }
+          return result;
+        });
+      // A row is the items whose tops lie within 20px: More is a different height from its neighbours.
+      const rows = [];
+      for (const item of [...items].sort((a, b) => a.top - b.top)) {
+        const row = rows.find((entry) => Math.abs(entry.top - item.top) < 20);
+        if (row) row.items.push(item);
+        else rows.push({ top: item.top, items: [item] });
+      }
+      return {
+        rows: rows.length,
+        twoRows: header.classList.contains('bar-two-rows'),
+        height: Math.round(bar.height),
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+        items: rows.flatMap((row) => row.items.sort((a, b) => a.left - b.left)),
+      };
+    });
+    check(JSON.stringify(fit.items.map(({ name }) => name)) === JSON.stringify(['Home', 'Library', 'Search', 'More'])
+      && JSON.stringify(fit.items.map(({ glyph }) => glyph)) === JSON.stringify(['mark', 'books', 'search', 'menu'])
+      && fit.items.every((item) => item.onBar && item.w >= 44 && item.h >= 44 && (item.text === null
+        ? item.name === 'More' : item.text === item.name && item.lines === 1 && item.inside))
+      && fit.rows === (fit.twoRows ? 2 : 1) && (scale === 2 || !fit.twoRows) && !fit.overflow,
+    `${label} at ${scale * 100}% text: the bar reads Home, Library, Search and More, each label one whole line, in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'} ${JSON.stringify(fit)}`);
+    console.log(`CHECKED ${label} at ${scale * 100}% text: bar in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'}, ${fit.height}px tall, items ${fit.items.map((item) => `${item.text ?? `${item.name} glyph`} ${item.w}px`).join(', ')}`);
+    if (scale !== own) await screenshot(page, label, `bar-${scale * 100}`);
+  }
+  if (current !== own) {
+    await rescale(current, own);
+    await settled();
+  }
+}
+
 async function phoneHeaderCheck(page, label, viewport) {
   const narrow = viewport.width <= 880;
   const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
   if (narrow) {
+    await barLabelsCheck(page, label, viewport);
     await page.focus('#btn-rail-toggle');
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => !document.querySelector('#sidebar-panel').hidden);
@@ -2626,14 +2699,17 @@ async function mobileLayout(page, label, narrow) {
     `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
-  // UX-09 (#836): Browse is on the bar, so the More sheet no longer lists it.
-  await page.tap(narrow ? '.mobile-link[data-view="browse"]' : '#sidebar-panel [data-view="browse"]');
-  await page.waitForSelector('#view-browse:not([hidden])');
-  const focus = await page.$eval('#browse-h', (heading) => ({
+  // UX-09 (#836): the bar's own destinations are not listed in the More sheet. Search took Browse's place
+  // on the bar (#831), so it is the bar destination reached by touch here.
+  await page.tap(narrow ? '.mobile-link[data-view="add"]' : '#sidebar-panel [data-view="add"]');
+  await page.waitForSelector('#view-add:not([hidden])');
+  const focus = await page.$eval('#add-h', (heading) => ({
     focused: document.activeElement === heading,
     outline: getComputedStyle(heading).outlineStyle,
+    text: heading.textContent.trim(),
   }));
-  check(focus.focused && focus.outline === 'none', `${label}: touch navigation focuses heading without a rectangle`);
+  check(focus.focused && focus.outline === 'none' && focus.text === 'Search',
+    `${label}: touch navigation to Search focuses its heading without a rectangle ${JSON.stringify(focus)}`);
   await page.keyboard.press('Tab');
   await route(page, 'catalog');
   check(await page.$eval('#catalog-h', (heading) => (
@@ -2644,10 +2720,9 @@ async function mobileLayout(page, label, narrow) {
     parents: [...document.querySelectorAll('.breadcrumb a')].filter((link) => link.getClientRects().length).map((link) => link.hash),
     current: !!document.querySelector('.breadcrumb [aria-current]')?.getClientRects().length,
   }));
-  check(narrow
-    ? navigation.parents.length === 1 && navigation.parents[0] === '#/browse' && !navigation.current
-    : navigation.parents.length === 2 && navigation.current,
-  `${label}: ${narrow ? 'one parent destination without duplicated title' : 'wide breadcrumb hierarchy retained'}`);
+  // #831: a category's one parent is Home, at the cards it was chosen from, wide or narrow.
+  check(navigation.parents.length === 1 && navigation.parents[0] === '#/browse' && (narrow ? !navigation.current : navigation.current),
+    `${label}: ${narrow ? 'one parent destination without duplicated title' : 'wide breadcrumb hierarchy retained'} ${JSON.stringify(navigation)}`);
   if (narrow) {
     const filters = await page.$eval('#catalog-filters', (group) => {
       const boxes = [...group.querySelectorAll('.fp')].map((node) => node.getBoundingClientRect());
@@ -2674,9 +2749,10 @@ async function mobileLayout(page, label, narrow) {
   await click(page, '#catalog-filters input[value="all"]');
   await page.type('#catalog-q', 'Secret Wars');
   await page.tap('.breadcrumb li:nth-last-child(2) a');
-  await page.waitForSelector('#view-browse:not([hidden])');
-  check(await page.$eval('#browse-h', (heading) => getComputedStyle(heading).outlineStyle === 'none'),
-    `${label}: touch after typing also removes the heading rectangle`);
+  await page.waitForSelector('#view-home:not([hidden])');
+  check(await page.$eval('#home-cat-h', (heading) => document.activeElement === heading
+    && getComputedStyle(heading).outlineStyle === 'none'),
+  `${label}: touch after typing returns to Home's category cards without a heading rectangle`);
   await route(page, 'catalog');
   await click(page, '#catalog-clear');
   await route(page, 'lines');
@@ -4836,7 +4912,7 @@ try {
     await page.evaluate(() => window.__androidTest.back());
     await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden);
     await route(page, 'browse');
-    await measure(page, `${label} Browse`);
+    await measure(page, `${label} Home at its category cards`);
     await route(page, 'catalog');
     await page.waitForSelector('button[aria-label^="Add to library:"]');
     await measure(page, `${label} catalog`);

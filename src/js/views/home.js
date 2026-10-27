@@ -6,9 +6,9 @@ import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
-  E736: 'guide',
+  E736: 'timeline',
   E8FD: 'storylines',
-  E77B: 'person',
+  E77B: 'characters',
   E714: 'screen',
   E8F1: 'books',
   E81C: 'ages',

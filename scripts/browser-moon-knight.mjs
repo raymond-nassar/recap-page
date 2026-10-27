@@ -133,11 +133,11 @@ export const moonKnightActualData = {
       { width: 1280, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 800 },
     ]) {
       await page.setViewport(viewport);
-      for (const gateway of ['home', 'browse']) {
+      for (const gateway of ['home', 'browse address']) {
         const label = `${gateway} at ${viewport.width}x${viewport.height}`;
         await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
-        if (gateway === 'browse') await click(page, '.ri[data-view="browse"]');
-        const target = `#view-${gateway} [data-category="marvel-on-screen"]`;
+        if (gateway === 'browse address') await page.evaluate(() => { location.hash = '#/browse'; });
+        const target = '#view-home:not([hidden]) [data-category="marvel-on-screen"]';
         await page.waitForSelector(target, { visible: true });
         const tile = await page.$eval(target, (node) => ({
           text: node.textContent.trim(), name: node.getAttribute('aria-label'),

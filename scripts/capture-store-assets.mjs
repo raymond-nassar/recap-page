@@ -27,9 +27,9 @@ const SCREENSHOTS = [
   {
     file: '02-browse-reading-lists.png',
     route: '#/browse',
-    view: 'view-browse',
-    wait: '#view-browse [data-primary-paths] .home-path',
-    text: ['Browse', 'Reading Lists', 'Discover More'],
+    view: 'view-home',
+    wait: '#view-home [data-primary-paths] .home-path',
+    text: ['Reading Lists', 'Discover More'],
     state: 'empty',
   },
   {

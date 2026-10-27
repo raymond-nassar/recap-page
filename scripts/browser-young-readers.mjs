@@ -68,8 +68,8 @@ export const youngReadersActualData = {
 
     for (const guide of guides) {
       const total = guide.expected.length;
-      await click(page, '.ri[data-view="browse"]');
-      await click(page, '#view-browse [data-category="character-spotlights"]');
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '#view-home:not([hidden]) [data-category="character-spotlights"]');
       await page.waitForSelector('#spotlights-q');
       await page.$eval('#spotlights-q', (input, name) => {
         input.value = name;

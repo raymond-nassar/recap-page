@@ -201,16 +201,16 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['library-read', ['Home', 'Library', 'Everything read']],
     ['library-manual', ['Home', 'Library', 'Added by hand']],
     ['library-rated', ['Home', 'Library', 'Your ratings']],
-    ['browse', ['Home', 'Browse']], ['reading-paths', ['Home', 'Browse', 'Reading paths']],
-    ['add', ['Home', 'Add comics']],
+    ['reading-paths', ['Home', 'Reading paths']],
+    ['add', ['Home', 'Search']],
     ['data', ['Home', 'Backup & settings']],
     ['about', ['Home', 'About this app']],
-    ['marvel-on-screen', ['Home', 'Browse', 'MCU Prep']],
-    ['marvel-ages', ['Home', 'Browse', 'Marvel Ages']],
+    ['marvel-on-screen', ['Home', 'MCU Prep']],
+    ['marvel-ages', ['Home', 'Marvel Ages']],
     ['issue', ['Home', 'Issue details']],
   ]);
   for (const shelf of CATALOG_SHELVES) {
-    expected.set(shelf.key, ['Home', 'Browse', shelf.heading]);
+    expected.set(shelf.key, ['Home', shelf.heading]);
   }
   for (const [view, label] of [
     ['add-search', 'Search issues'],
@@ -219,10 +219,10 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['add-import', 'Paste a Reading List'],
     ['add-manual', 'Add an issue by hand'],
   ]) {
-    expected.set(view, ['Home', 'Add comics', label]);
+    expected.set(view, ['Home', 'Search', label]);
   }
   for (const category of PUBLISHING_CATEGORIES) {
-    const labels = ['Home', 'Browse', 'Marvel Ages'];
+    const labels = ['Home', 'Marvel Ages'];
     if (category.parent) {
       labels.push(PUBLISHING_CATEGORIES.find(({ key }) => key === category.parent).heading);
     }
@@ -274,7 +274,7 @@ test('dynamic Reading List and issue hierarchies use only validated context', ()
       issueTitle: 'A bundled issue',
       context: { kind: 'order', id: 'order-a', name: 'Transient Preview title', shelf: 'lines' },
     }).map(({ label }) => label),
-    ['Home', 'Browse', 'Storylines', 'A bundled issue'],
+    ['Home', 'Storylines', 'A bundled issue'],
   );
   for (const context of [
     null,
@@ -721,10 +721,47 @@ test('missing empty duplicate and malformed reading path queries select no raw t
 
 test('an extra query is dropped while a path query on another view is ignored', () => {
   assert.equal(parseRoute('#/reading-paths?path=modern-avengers&other=value').pathId, 'modern-avengers');
-  assert.deepEqual(parseRoute('#/browse?path=modern-avengers'), {
-    view: 'browse', listId: null, filter: null, full: false,
+  assert.deepEqual(parseRoute('#/catalog?path=modern-avengers'), {
+    view: 'catalog', listId: null, filter: null, full: false,
   });
-  assert.equal(formatRoute({ view: 'browse', pathId: 'modern-avengers' }), '#/browse');
+  assert.equal(formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), '#/catalog');
+});
+
+const HOME_CARDS = 'categories';
+
+test('Browse is no view, and its address opens Home at the category cards it showed', () => {
+  // #831 removed Browse, which showed exactly Home's six category cards. Bookmarks, Back entries
+  // and the links that led there keep working, and land on those cards rather than the top of Home.
+  assert.equal(VIEWS.includes('browse'), false);
+  lacks(read('src/index.html'), /id="view-browse"|data-view="browse"/, 'a Browse panel or link');
+  assert.deepEqual(parseRoute('#/browse'), {
+    view: 'home', listId: null, filter: null, full: false, at: HOME_CARDS,
+  });
+  assert.deepEqual(parseRoute('#/browse/list-a?filter=unread'), {
+    view: 'home', listId: 'list-a', filter: 'unread', full: false, at: HOME_CARDS,
+  });
+  assert.equal(formatRoute({ view: 'home', at: HOME_CARDS }), '#/browse');
+  assert.equal(formatRoute({ view: 'home', at: HOME_CARDS, listId: 'list-a', filter: 'unread' }), '#/browse/list-a?filter=unread');
+  assert.equal(formatRoute({ view: 'home' }), '#/home');
+  assert.equal('at' in parseRoute('#/home'), false);
+  assert.equal(formatRoute({ view: 'catalog', at: HOME_CARDS }), '#/catalog', 'only Home has the cards section');
+  assert.equal(routeTitle({ view: 'home' }), 'Home | Recap Page');
+  assert.equal(routeTitle({ view: 'add' }), 'Search | Recap Page');
+});
+
+test('a category trail returns to the cards, and every other trail to the top of Home', () => {
+  const cards = { label: 'Home', href: '#/browse' };
+  const top = { label: 'Home', href: '#/home' };
+  for (const view of [...HOME_CATEGORIES.map(({ route }) => route), ...PUBLISHING_CATEGORIES.map(({ route }) => route)]) {
+    assert.deepEqual(breadcrumbHierarchy({ view })[0], cards, view);
+  }
+  assert.deepEqual(breadcrumbHierarchy({
+    view: 'issue', issueTitle: 'A bundled issue', context: { kind: 'order', id: 'order-a', shelf: 'catalog' },
+  })[0], cards);
+  for (const view of ['library', 'add', 'add-search', 'data', 'about', 'completed']) {
+    assert.deepEqual(breadcrumbHierarchy({ view })[0], top, view);
+  }
+  assert.deepEqual(breadcrumbHierarchy({ view: 'issue', issueTitle: 'Resolved title' })[0], top);
 });
 
 test('the controller retains path intent while the view permits only the current generation to finish', () => {

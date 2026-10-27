@@ -106,11 +106,11 @@ export const mcuPrepDescriptions = {
     const homeGateway = '#view-home [data-category="marvel-on-screen"]';
     await click(page, homeGateway);
     await page.waitForSelector(cardSelector(edits[0].id));
-    for (const [surface, width] of [['Home', 1280], ['Browse', 360]]) {
+    for (const [surface, width] of [['Home', 1280], ['Browse address', 360]]) {
       await page.setViewport({ width, height: 900 });
-      if (surface === 'Browse') {
-        await click(page, '.ri[data-view="browse"]');
-        await click(page, '#view-browse [data-category="marvel-on-screen"]');
+      if (surface === 'Browse address') {
+        await page.evaluate(() => { location.hash = '#/browse'; });
+        await click(page, '#view-home:not([hidden]) [data-category="marvel-on-screen"]');
         await page.waitForSelector(cardSelector(edits[0].id));
       }
       const cards = await page.$$eval('#marvel-on-screen-results .catalog-card', (nodes) => nodes.map((node) => ({

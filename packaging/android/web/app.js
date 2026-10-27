@@ -1,4 +1,4 @@
-import { boot, closeHomeUpdatesPanel } from '../js/main.js';
+import { arrivalHeading, boot, closeHomeUpdatesPanel } from '../js/main.js';
 import { setDownloadHandler } from '../js/lib/download.js';
 import { createAndroidBackHandler, createAndroidBridge } from './bridge.js';
 import { wireMobileUi } from './mobile-ui.js';
@@ -28,4 +28,4 @@ const bridge = createAndroidBridge({
 setDownloadHandler(bridge.save);
 // The APK already contains the offline shell. A service worker could retain files from an older APK.
 boot();
-wireMobileUi();
+wireMobileUi({ arrivalHeading });

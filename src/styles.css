@@ -169,7 +169,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:758-765`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:760-767`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -698,7 +698,7 @@ a { color: var(--blue); }
   .rail { padding: 0; gap: 0; border-right: 0; border-bottom: 0; }
   .rail-header {
     position: fixed; z-index: 20; bottom: 0; left: 0; right: 0;
-    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
     padding: var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
     border-top: 1px solid var(--line-2); background: var(--card);
     transition: transform .15s ease; transform: translateY(0);
@@ -709,7 +709,7 @@ a { color: var(--blue); }
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
     min-width: 0; min-height: 44px; width: auto; height: auto; margin: 0;
     padding: var(--space-2); border: 1px solid transparent; border-radius: 6px;
-    color: var(--text); text-align: center; overflow-wrap: anywhere;
+    color: var(--text); text-align: center; white-space: nowrap;
     font-size: var(--t-caption); line-height: 1.2; text-decoration: none;
   }
   .rail-header .brand { order: 0; }
@@ -1180,8 +1180,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   align-items: start;
 }
 .card > summary::-webkit-details-marker { display: none; }
+/* The chevron is decoration, and generated content joins an accessible name, so each of these
+   carries empty alternative text (UX-17). The plain value first is what an engine without it keeps. */
 .card > summary::before {
-  content: "›"; color: var(--muted); transition: transform .15s; display: inline-block;
+  content: "›"; content: "›" / ""; color: var(--muted); transition: transform .15s; display: inline-block;
   grid-column: 1; grid-row: 1; align-self: center;
 }
 .card[open] > summary::before { transform: rotate(90deg); }
@@ -1234,7 +1236,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .setting-more > summary::-webkit-details-marker { display: none; }
 .setting-more > summary::before {
-  content: "›"; display: inline-block; transition: transform .15s; font-size: var(--t-body);
+  content: "›"; content: "›" / ""; display: inline-block; transition: transform .15s; font-size: var(--t-body);
 }
 .setting-more[open] > summary::before { transform: rotate(90deg); }
 .setting-more > summary:hover { color: var(--text); }
@@ -1378,7 +1380,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .field-disclosure > .rail-hint { margin: 0; padding: 0 0 var(--space-5); max-width: 62ch; }
 .action-disclosure > summary { min-height: 48px; gap: var(--space-4); }
 #view-data .action-disclosure > summary > h3 { margin: 0; font: inherit; }
-.action-disclosure > summary::after { content: "›"; margin-left: auto; font-size: var(--t-body-lg); }
+.action-disclosure > summary::after { content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
 .action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }
@@ -1992,8 +1994,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 }
 /* "In library" is a state, so it is named in the label as well as coloured. */
 .btn-added { background: rgb(var(--tint-base) / 5.882%); color: var(--teal); border-color: rgb(var(--teal-line) / 33.333%); font-weight: 600; }
-/* The credit's domain has no break opportunity: at 200% text it measured 339px in a 284px line. */
-.attribution { margin: var(--space-6) var(--space-1) 0; overflow-wrap: anywhere; }
 
 /* ---------------------------------------------------------- preview dialog */
 
@@ -2636,4 +2636,17 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 @media (forced-colors: active) {
   .rail-header [aria-expanded="true"] { background: Highlight; color: HighlightText; border-color: Highlight; }
+}
+
+/* ============================================================ large text on the bottom bar
+
+   #831. A bar label is never split: at 200% text the five-item bar cut "Home", "Library" and "Browse"
+   to "Ho", "Libr" and "Bro". When one row cannot hold every label whole, the bar takes two rows of two,
+   each label beside its icon. main.js chooses by measuring the labels in bold, the weight of the
+   current page, so moving between pages never reflows the bar. Measured in Edge at 200% text, the
+   widest bold label is 3.3em in Segoe UI and 3.1em in Roboto, Android's fallback. */
+@media (max-width: 880px) {
+  .rail-header.bar-measuring :is(.brand, .mobile-link, .rail-toggle) > span { font-weight: 700; }
+  .rail-header.bar-two-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
