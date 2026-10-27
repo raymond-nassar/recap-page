@@ -4,9 +4,19 @@ import { readFileSync } from 'node:fs';
 
 import {
   SCALE, grammarFindings, scaleFindings, spacingInventory, usageFindings,
+  TOKENS, TOKEN_SHEETS, rootTokens, resolveTokens, tokenDefinitionFindings, tokenFindings, tokenGrammarFindings,
+  tokenUsageFindings,
 } from '../scripts/check-spacing.mjs';
 
 const css = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
+const mobile = readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
+const sheets = (styles = css, overlay = mobile) => [[TOKEN_SHEETS[0], styles], [TOKEN_SHEETS[1], overlay]];
+
+// What one rule appended to a stylesheet adds to that sheet's token findings.
+function rawFindings(rule, sheet = 0) {
+  const [file, source] = sheets()[sheet];
+  return tokenGrammarFindings(file, `${source}\n${rule}\n`);
+}
 
 test('the spacing ladder declares the selected ordered steps', () => {
   assert.deepEqual(scaleFindings(css), []);
@@ -78,4 +88,59 @@ test('the baseline inventory maps every normalized spacing value exactly once', 
     { px: 38.4, target: 'var(--space-10)' },
     { px: 240, target: 'var(--setting-control-reserve)' },
   ]);
+});
+
+// -- design tokens (#827) --
+
+test('design tokens are declared once, in the shared :root block, with their listed values', () => {
+  assert.deepEqual(tokenFindings(sheets()), []);
+  const has = (findings, text) => findings.some((finding) => finding.includes(text));
+
+  assert.deepEqual(tokenDefinitionFindings(sheets(css.replace('--radius-md: 8px;', '--radius-md: 9px;'))),
+    ['--radius-md is 9px, not 8px']);
+  const overlay = tokenDefinitionFindings(sheets(css, `${mobile}\n:root { --radius-md: 8px; }\n`));
+  assert.ok(has(overlay, 'packaging/android/web/mobile.css line') && has(overlay, 'declares --radius-md outside the shared :root block'), overlay.join('\n'));
+  assert.ok(has(overlay, 'declares --radius-md a second time'), overlay.join('\n'));
+  const themed = tokenDefinitionFindings(sheets(css.replace(':root[data-theme="light"] {', ':root[data-theme="light"] {\n  --radius-lg: 12px;')));
+  assert.ok(has(themed, 'declares --radius-lg outside the shared :root block'), themed.join('\n'));
+  assert.ok(has(tokenDefinitionFindings(sheets(css.replace('--radius-sm: 4px;', '--radius-sm: 4px;\n  --radius-rogue: 7px;'))),
+    'declares unclassified token --radius-rogue: 7px'));
+  assert.deepEqual(tokenDefinitionFindings(sheets(css.replace(/\n {2}--radius-sm: 4px;/, ''))), ['--radius-sm is missing']);
+});
+
+test('every listed token is declared with its listed value, and the resolver reads them back', () => {
+  const tokens = rootTokens(css);
+  for (const [name, { value }] of TOKENS) assert.equal(tokens.get(name), value, name);
+  assert.equal(resolveTokens('0 var(--radius-marker) var(--radius-marker) 0', tokens), '0 3px 3px 0');
+});
+
+test('radius values in either stylesheet come only from radius tokens', () => {
+  for (const [file, source] of sheets()) assert.deepEqual(tokenGrammarFindings(file, source), [], file);
+  for (const [rule, sheet, expected] of [
+    ['.x { border-radius: 5px; }', 0, ['carries raw radius value 5px']],
+    ['.x { border-top-left-radius: 50%; }', 0, ['carries raw radius value 50%']],
+    ['.x { border-radius: calc(var(--radius-md) - 1px); }', 0, ['carries raw radius value calc(var(--radius-md) - 1px)']],
+    ['.x { border-radius: var(--space-4); }', 0, ['uses var(--space-4), which is not a radius token']],
+    ['.x { border-radius: 12px 12px 0 0; }', 1, ['carries raw radius value 12px', 'carries raw radius value 12px']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { border-radius: 0 var(--radius-marker) var(--radius-marker) 0; }',
+    '.x { border-radius: inherit; }',
+    '.x { border-radius: var(--radius-lg) / var(--radius-md) !important; }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+});
+
+test('a radius kept off the scale exists only for what wears it, and a scale step may wait', () => {
+  assert.deepEqual(tokenUsageFindings(sheets()), []);
+  const unworn = css.replaceAll('border-radius: var(--radius-callout)', 'border-radius: var(--radius-lg)');
+  assert.notEqual(unworn, css, 'the --radius-callout consumers are missing');
+  assert.deepEqual(tokenUsageFindings(sheets(unworn)),
+    ['--radius-callout holds 10px for bordered callouts in the shelf and the timeline, but nothing uses it']);
+  const waiting = css.replaceAll('var(--radius-sm)', 'var(--radius-md)');
+  assert.notEqual(waiting, css, 'the --radius-sm consumer is missing');
+  assert.deepEqual(tokenUsageFindings(sheets(waiting)), []);
 });

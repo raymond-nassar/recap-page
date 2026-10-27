@@ -231,20 +231,197 @@ export function checkAll(source) {
   return [...scaleFindings(source), ...grammarFindings(source), ...usageFindings(source)];
 }
 
+// ---------------------------------------------------------------- design tokens
+//
+// #827 carries this gate past spacing to the other values both stylesheets draw with. Each is a token
+// declared once, in the shared `:root` block of src/styles.css, with the value listed here, and a
+// governed declaration in either stylesheet may name a value of its family only through one of them.
+// The first step changed nothing on screen: every value in use became a token equal to itself. A value
+// on #827's scales took that scale's token; every other value kept a token of its own, named for what
+// wears it, so a later move onto a scale is a change to one token's value, made one screen at a time. A
+// scale step may wait for its first consumer. A kept token exists only for the declarations that wear
+// it, so it has to have one.
+export const TOKEN_SHEETS = ['src/styles.css', 'packaging/android/web/mobile.css'];
+const onScale = (family, value) => ({ family, value, scale: true });
+const kept = (family, value, role) => ({ family, value, scale: false, role });
+
+export const TOKENS = new Map([
+  ['--radius-sm', onScale('radius', '4px')],
+  ['--radius-md', onScale('radius', '8px')],
+  ['--radius-lg', onScale('radius', '12px')],
+  ['--radius-xl', onScale('radius', '16px')],
+  ['--radius-pill', onScale('radius', '999px')],
+  ['--radius-bar', kept('radius', '2px', 'the rail list progress bars')],
+  ['--radius-marker', kept('radius', '3px', 'the current destination marker')],
+  ['--radius-compact', kept('radius', '6px', 'thumbnails, compact controls, code and the focus ring')],
+  ['--radius-callout', kept('radius', '10px', 'bordered callouts in the shelf and the timeline')],
+  ['--radius-card', kept('radius', '14px', 'cards and disclosures')],
+  ['--radius-feature', kept('radius', '20px', 'heroes, Home paths and Android sheets')],
+  ['--radius-circle', kept('radius', '50%', 'dots, knobs and markers')],
+]);
+
+const FAMILY_PREFIXES = new Map([
+  ['radius', /^--radius-/],
+]);
+
+function familyOf(name) {
+  for (const [family, prefix] of FAMILY_PREFIXES) if (prefix.test(name)) return family;
+  return null;
+}
+
+// Splits a value at its top level, outside any function's parentheses, into atoms and commas.
+function atoms(value) {
+  const parts = [];
+  let depth = 0;
+  let atom = '';
+  for (const ch of value) {
+    if (ch === '(') depth += 1;
+    else if (ch === ')') depth -= 1;
+    if (depth === 0 && (/\s/.test(ch) || ch === ',')) {
+      if (atom) parts.push(atom);
+      if (ch === ',') parts.push(',');
+      atom = '';
+    } else {
+      atom += ch;
+    }
+  }
+  if (atom) parts.push(atom);
+  return parts;
+}
+
+// The token an atom names, directly or negated: `var(--name)` or `calc(-1 * var(--name))`.
+function tokenOf(atom) {
+  return /^var\(\s*(--[-\w]+)\s*\)$/.exec(atom)?.[1]
+    ?? /^calc\(\s*-1\s*\*\s*var\(\s*(--[-\w]+)\s*\)\s*\)$/.exec(atom)?.[1]
+    ?? null;
+}
+
+const KEYWORDS = new Set(['0', 'inherit', 'initial', 'unset', 'revert', 'revert-layer']);
+
+// Each family names the properties it governs and judges a value's atoms. An atom that names a token
+// of an accepted family is fine, a token of any other family is the wrong kind of value, and `raw`
+// says which of the remaining atoms are values of this family that have to come from a token.
+const TOKEN_RULES = [
+  {
+    family: 'radius',
+    properties: /^border(?:-(?:top|bottom|start|end)-(?:left|right|start|end))?-radius$/,
+    accepts: (name) => familyOf(name) === 'radius',
+    raw: (atom) => !KEYWORDS.has(atom) && atom !== '/',
+  },
+];
+
+function lastSelector(selector) {
+  return selector.slice(selector.lastIndexOf('{') + 1).replace(/\s+/g, ' ').trim();
+}
+
+// Every custom property a bare `:root` rule declares, by name, for the tests that pin a rendered value
+// through the token a rule now names.
+export function rootTokens(source) {
+  const tokens = new Map();
+  for (const declaration of declarations(source)) {
+    if (declaration.property.startsWith('--') && lastSelector(declaration.selector) === ':root') {
+      tokens.set(declaration.property, declaration.value.replace(/\s+/g, ' ').trim());
+    }
+  }
+  return tokens;
+}
+
+export function resolveTokens(value, tokens) {
+  let current = value;
+  for (let i = 0; i < 12; i += 1) {
+    const next = current.replace(/var\(\s*(--[-\w]+)\s*\)/g, (whole, name) => tokens.get(name) ?? whole);
+    if (next === current) return current;
+    current = next;
+  }
+  throw new Error(`${value} does not resolve: its tokens refer to each other`);
+}
+
+export function tokenDefinitionFindings(sheets) {
+  const findings = [];
+  const declared = new Set();
+  for (const [file, source] of sheets) {
+    for (const declaration of declarations(source)) {
+      const { property, line, selector } = declaration;
+      if (!property.startsWith('--') || !familyOf(property)) continue;
+      const token = TOKENS.get(property);
+      if (!token) {
+        findings.push(`${file} line ${line} declares unclassified token ${property}: ${declaration.value}`);
+        continue;
+      }
+      if (file !== TOKEN_SHEETS[0] || selector.replace(/\s+/g, ' ').trim() !== ':root') {
+        findings.push(`${file} line ${line} declares ${property} outside the shared :root block of ${TOKEN_SHEETS[0]}`);
+      }
+      if (declared.has(property)) findings.push(`${file} line ${line} declares ${property} a second time`);
+      declared.add(property);
+      const value = declaration.value.replace(/\s+/g, ' ').trim();
+      if (value !== token.value) findings.push(`${property} is ${value}, not ${token.value}`);
+    }
+  }
+  for (const name of TOKENS.keys()) if (!declared.has(name)) findings.push(`${name} is missing`);
+  return findings;
+}
+
+export function tokenGrammarFindings(file, source) {
+  const findings = [];
+  for (const declaration of declarations(source)) {
+    if (declaration.property.startsWith('--')) continue;
+    for (const rule of TOKEN_RULES) {
+      if (!rule.properties.test(declaration.property)) continue;
+      const value = declaration.value.replace(/\s*!important\s*$/i, '').trim();
+      for (const atom of atoms(value)) {
+        if (atom === ',') continue;
+        const name = tokenOf(atom);
+        const where = `${file} line ${declaration.line} ${declaration.property}`;
+        if (name) {
+          if (!rule.accepts(name)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
+        } else if (rule.raw(atom)) {
+          findings.push(`${where} carries raw ${rule.family} value ${atom}`);
+        }
+      }
+    }
+  }
+  return findings;
+}
+
+export function tokenUsageFindings(sheets) {
+  const used = new Set();
+  for (const [, source] of sheets) {
+    for (const declaration of declarations(source)) {
+      for (const match of declaration.value.matchAll(/var\(\s*(--[-\w]+)/g)) used.add(match[1]);
+    }
+  }
+  return [...TOKENS]
+    .filter(([name, token]) => !token.scale && !used.has(name))
+    .map(([name, token]) => `${name} holds ${token.value} for ${token.role}, but nothing uses it`);
+}
+
+export function tokenFindings(sheets) {
+  const definitions = tokenDefinitionFindings(sheets);
+  const missing = new Set(definitions.map((finding) => /^(--[-\w]+) is missing$/.exec(finding)?.[1]).filter(Boolean));
+  return [
+    ...definitions,
+    ...sheets.flatMap(([file, source]) => tokenGrammarFindings(file, source)),
+    ...tokenUsageFindings(sheets).filter((finding) => !missing.has(finding.split(' ')[0])),
+  ];
+}
+
 function main() {
   const source = readFileSync(join(ROOT, 'src', 'styles.css'), 'utf8');
   if (process.argv.includes('--inventory')) {
     console.log(JSON.stringify(spacingInventory(source), null, 2));
     return;
   }
-  const findings = checkAll(source);
+  const sheets = TOKEN_SHEETS.map((file) => [file, readFileSync(join(ROOT, ...file.split('/')), 'utf8')]);
+  const findings = [...checkAll(source), ...tokenFindings(sheets)];
   if (findings.length) {
-    console.error(`Spacing check found ${findings.length} problem(s):`);
+    console.error(`Spacing and design token check found ${findings.length} problem(s):`);
     for (const finding of findings) console.error(`  - ${finding}`);
     process.exitCode = 1;
     return;
   }
+  const families = new Set([...TOKENS.values()].map(({ family }) => family)).size;
   console.log(`${SCALE.size} spacing steps; 0 raw, unclassified or unused governed values`);
+  console.log(`${TOKENS.size} design tokens in ${families} ${families === 1 ? 'family' : 'families'}; 0 raw, unclassified or unused values in either stylesheet`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();

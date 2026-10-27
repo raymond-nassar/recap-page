@@ -226,7 +226,7 @@ test('a confirmation holds its answers in view while the question scrolls under 
   assert.match(rule, /position: sticky; bottom: calc\(-1 \* var\(--space-7\)\); background: var\(--card\);/);
   assert.match(rule, /margin: calc\(-1 \* var\(--space-6\)\) calc\(-1 \* var\(--space-8\)\) calc\(-1 \* var\(--space-7\)\);/);
   assert.match(rule, /padding: var\(--space-6\) var\(--space-8\) var\(--space-7\);/);
-  assert.match(css, /\.ask \{[^}]*border-radius: 16px; padding: var\(--space-7\) var\(--space-8\);/);
+  assert.match(css, /\.ask \{[^}]*border-radius: var\(--radius-xl\); padding: var\(--space-7\) var\(--space-8\);/);
   assert.match(css, /\.ask p \{ margin: 0 0 var\(--space-6\);/);
   // At 800x360 with doubled text the answers took two rows of a 480px dialog and hid the first line.
   assert.match(css, /@media \(max-height: 480px\) and \(min-width: 560px\) \{\s*#ask\[data-question="confirm"\] \{ width: min\(40rem, calc\(100vw - 2rem\)\); \}\s*\}/);

@@ -72,7 +72,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   padding: var(--space-6);
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
   border: 1px solid var(--line-2);
-  border-radius: 20px 20px 0 0;
+  border-radius: var(--radius-feature) var(--radius-feature) 0 0;
   background: var(--card);
   color: var(--text);
   overflow-y: auto;
@@ -209,7 +209,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     scroll-padding-inline: var(--space-2);
   }
   .filters .fp { position: relative; flex: 0 0 auto; max-width: 100%; }
-  .filters .fp > span { border-radius: 8px; font-size: var(--t-caption); }
+  .filters .fp > span { border-radius: var(--radius-md); font-size: var(--t-caption); }
   .filters .fp input:checked + span { box-shadow: inset 0 -3px 0 currentColor; }
   #reading-filters { padding: var(--space-3) var(--space-2); }
 }
