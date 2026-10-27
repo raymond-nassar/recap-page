@@ -38,8 +38,10 @@ export const LIBRARY_VIEWS = [
     empty: 'Nothing is marked read yet.',
     // The empty state offers the thing to do rather than describing it. It used to end with
     // "Open a reading order and tick issues off as you go", which is an instruction a reader has
-    // to carry to a different screen and act on from memory.
-    emptyAction: { label: 'Browse Reading Lists', view: 'catalog' },
+    // to carry to a different screen and act on from memory. It opens Home's reading-list
+    // categories, which its label promises (UX-15, #830). `at` is route.js's HOME_CARDS, written
+    // out because route.js imports this module.
+    emptyAction: { label: 'Browse Reading Lists', view: 'home', at: 'categories' },
     // A hand-added issue is otherwise indistinguishable from a curated one here, and it is the
     // one row on this page whose details will never arrive from anywhere.
     markHandAdded: true,

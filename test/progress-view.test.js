@@ -153,7 +153,8 @@ test('the Progress controller owns scope changes and renders list and all-list c
   assert.equal(harness.nodes.radios[1].checked, true);
   assert.deepEqual(harness.nodes.results.children[0].children[2], {
     kind: 'empty-action',
-    action: { label: 'Browse Reading Lists', view: 'catalog' },
+    // Home's reading-list categories, which the label promises (UX-15, #830).
+    action: { label: 'Browse Reading Lists', view: 'home', at: 'categories' },
   });
 });
 

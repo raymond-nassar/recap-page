@@ -425,11 +425,16 @@ export const libraryRatingsFailures = {
     const shelfEmpty = await page.$eval('#library-rated-shelf-status', (n) => n.textContent);
     await page.evaluate(() => { location.hash = '#/library-rated'; });
     await panelShown(page);
+    // Its label promises the reading-list categories, so that is where it goes (UX-15, #830).
     t.check('with no ratings both surfaces explain how to rate and offer a next step',
       shelfEmpty === 'Comics you rate from their Issue details will appear here.'
         && await page.$eval('#library-rated-results', (n) => n.textContent.includes('You have not rated any comics yet')
-          && [...n.querySelectorAll('a.btn')].some((a) => a.textContent === 'Browse Reading Lists' && a.getAttribute('href') === '#/catalog')),
+          && [...n.querySelectorAll('a.btn')].some((a) => a.textContent === 'Browse Reading Lists' && a.getAttribute('href') === '#/browse')),
       await page.$eval('#library-rated-results', (n) => `${n.textContent} ${n.querySelector('a')?.getAttribute('href')}`));
+    await page.$eval('#library-rated-results a.btn', (n) => n.click());
+    await page.waitForFunction(() => /^#\/browse(?:[/?]|$)/.test(location.hash)
+      && !document.querySelector('#view-home')?.hidden && document.activeElement?.id === 'home-cat-h');
+    t.check('and Browse Reading Lists opens Home at its reading-list categories', true);
     t.check('the failure paths introduce no page exceptions', errors.length === 0, errors.join('; '));
   },
 };

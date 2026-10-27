@@ -3,6 +3,7 @@ import {
   progressSummary,
   seriesProgress,
 } from '../lib/model.js';
+import { HOME_CARDS } from '../lib/route.js';
 
 export function createProgressView({
   el,
@@ -82,7 +83,8 @@ export function createProgressView({
         results.append(el('div', { class: 'empty-state' }, [
           el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '☐' }),
           el('p', { text: 'Nothing tracked yet.' }),
-          emptyAction({ label: 'Browse Reading Lists', view: 'catalog' }),
+          // Home's reading-list categories, which the label promises (UX-15, #830).
+          emptyAction({ label: 'Browse Reading Lists', view: 'home', at: HOME_CARDS }),
         ]));
         return;
       }

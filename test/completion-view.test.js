@@ -101,7 +101,7 @@ function fixture() {
     getListId: () => h.state.active, history,
     renderSavedLists: (_section, _results, options) => calls.selected.push(options),
     openList: (id) => calls.opened.push(id),
-    showView: (name) => { h.current = name; },
+    showView: (name, options = {}) => { h.current = name; h.at = options.at ?? null; },
     loadCatalog: async () => catalog,
     resolveRecommendations: (options) => h.resolves(options),
     previewRecommendation: (...args) => calls.previewed.push(args),
@@ -222,11 +222,13 @@ test('healthy history keeps exceptional tools disclosed and incidents open witho
   await h.history.complete('a');
   await h.view.render();
   const browse = gateway.children.find((child) => child.id === 'library-completed-browse');
-  assert.equal(browse.href, '#/catalog');
+  // It opens Home's reading-list categories, which its label promises (UX-15, #830).
+  assert.equal(browse.href, '#/browse');
   assert.equal(browse.hidden, false);
   browse.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('native default intercepted'); } });
   browse.onclick({ button: 0, preventDefault() {} });
-  assert.equal(h.current, 'catalog');
+  assert.equal(h.current, 'home');
+  assert.equal(h.at, 'categories');
   assert.equal(h.nodes.historyTroubleshooting.open, false);
   assert.ok(h.nodes.backupHistory.children.includes(h.nodes.historyControls));
   h.history.known = false;

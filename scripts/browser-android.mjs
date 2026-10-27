@@ -2707,8 +2707,8 @@ async function mobileLayout(page, label, narrow) {
     recommended: !!region.querySelector('#home-recommended'),
     actions: [...region.querySelectorAll(':is(a[href], button)')].map((action) => action.textContent.trim()),
   }));
-  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
-    `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
+  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Start with Modern Timeline', 'Add comics']),
+    `${label}: Home contains only the Modern Timeline and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
   // UX-09 (#836): the bar's own destinations are not listed in the More sheet. Search took Browse's place
@@ -4826,11 +4826,11 @@ try {
       // says which measurement disagreed rather than only that the combined check did.
       const homeMisses = [
         sharedCopy.recommendation && 'Setup recommendation present',
-        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Browse Reading Lists', 'Add comics'])
+        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Start with Modern Timeline', 'Add comics'])
           && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
       ].filter(Boolean);
       check(!homeMisses.length,
-        `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation (${homeMisses.join('; ')})`);
+        `${label}: every platform keeps Home focused on Modern Timeline and Add without a Setup recommendation (${homeMisses.join('; ')})`);
       const footerMisses = [
         sharedCopy.footer !== sharedCopy.expectedFooter
           && `footer ${JSON.stringify(sharedCopy.footer)}, expected ${JSON.stringify(sharedCopy.expectedFooter)}`,

@@ -1266,14 +1266,15 @@ function issueFocusAnchor(issue, {
 
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
-function emptyAction({ label, view }) {
+// `at` names a place within the view, as Home's reading-list categories are (#831).
+function emptyAction({ label, view, at = null }) {
   return el('a', {
     class: 'btn btn-g',
-    href: formatRoute({ view }),
+    href: formatRoute({ view, at }),
     onclick: (event) => {
       if (!isPlainNavigation(event)) return;
       event.preventDefault();
-      navigateTo(view);
+      navigateTo(view, at);
     },
   }, label);
 }

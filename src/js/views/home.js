@@ -87,6 +87,7 @@ export function createHomeView({
         text: 'Browse curated Reading Lists. Add individual issues or your own list.',
       }),
       el('div', { class: 'cta home-start-actions' }, [
+        // Named for where it goes (UX-15, #830): the reading-list categories sit right below it.
         el('a', {
           href: formatRoute({ view: 'catalog' }),
           class: 'btn',
@@ -96,7 +97,7 @@ export function createHomeView({
             event?.preventDefault();
             onNavigateHub('catalog');
           },
-        }, 'Browse Reading Lists'),
+        }, 'Start with Modern Timeline'),
         el('a', {
           href: formatRoute({ view: 'add' }),
           class: 'btn btn-g',

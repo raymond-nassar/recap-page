@@ -6,7 +6,7 @@ import {
   sortRatedComics,
   topRatedComics,
 } from '../lib/ratedComics.js';
-import { normalizeRatedRoute } from '../lib/route.js';
+import { HOME_CARDS, normalizeRatedRoute } from '../lib/route.js';
 
 const VIEW = 'library-rated';
 const GUIDES_INLINE = 3;
@@ -275,7 +275,8 @@ export function createRatedComicsView({
         els.results.append(el('div', { class: 'empty-state' }, [
           el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '\u2606' }),
           el('p', { text: 'You have not rated any comics yet. Open a comic\u2019s Issue details to give it a score.' }),
-          emptyAction({ label: 'Browse Reading Lists', view: 'catalog' }),
+          // Home's reading-list categories, which the label promises (UX-15, #830).
+          emptyAction({ label: 'Browse Reading Lists', view: 'home', at: HOME_CARDS }),
         ]));
         return;
       }

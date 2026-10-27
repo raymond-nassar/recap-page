@@ -5353,7 +5353,7 @@ const SCENARIOS = [
         initial.question === 'Where do you want to start?'
         && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
         && !initial.recommendation
-        && JSON.stringify(initial.startActions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
+        && JSON.stringify(initial.startActions) === JSON.stringify(['Start with Modern Timeline', 'Add comics']),
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -5372,8 +5372,8 @@ const SCENARIOS = [
           homeCurrent: document.querySelector('.brand')?.getAttribute('aria-current'),
         };
       });
-      t.check('at 390 pixels both named Browse and Add choices are visible without opening Navigation',
-        intermediate.browseName === 'Browse Reading Lists'
+      t.check('at 390 pixels both named Modern Timeline and Add choices are visible without opening Navigation',
+        intermediate.browseName === 'Start with Modern Timeline'
         && intermediate.addName === 'Add comics'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
@@ -8314,6 +8314,29 @@ const SCENARIOS = [
         t.check(`${width}px: a narrow view keeps its 876px measure, with the spare width on its right`,
           column === 876, JSON.stringify({ column }));
       }
+    },
+  },
+  {
+    id: 'empty-browse-destinations',
+    title: 'empty Everything read and Progress offer Home at its reading-list categories (UX-15)',
+    async run(page, t) {
+      await open(page, '/');
+      const found = [];
+      for (const route of ['library-read', 'progress']) {
+        await page.evaluate((hash) => { location.hash = hash; }, `#/${route}`);
+        const action = `#view-${route} .empty-state a.btn`;
+        await page.waitForSelector(action, { visible: true, timeout: 15000 });
+        found.push(await page.$eval(action, (link) => ({
+          text: link.textContent.trim(), href: link.getAttribute('href'),
+        })));
+      }
+      t.check('each empty state links Browse Reading Lists to Home at its categories',
+        found.length === 2 && found.every((link) => link.text === 'Browse Reading Lists' && link.href === '#/browse'),
+        JSON.stringify(found));
+      await click(page, '#view-progress .empty-state a.btn');
+      await page.waitForFunction(() => /^#\/browse(?:[/?]|$)/.test(location.hash)
+        && !document.querySelector('#view-home')?.hidden && document.activeElement?.id === 'home-cat-h');
+      t.check('and choosing one lands on those categories with their heading focused', true);
     },
   },
   {
@@ -18217,8 +18240,15 @@ SCENARIOS.push(
         const browse = document.querySelector('#library-completed-browse');
         return { present: Boolean(browse), hidden: browse?.hidden, href: browse?.getAttribute('href') };
       });
-      t.check('known all-completed Library offers a useful native Modern Timeline destination',
-        complete.present && !complete.hidden && complete.href === '#/catalog', JSON.stringify(complete));
+      // Its label promises the reading-list categories, so that is where it goes (UX-15, #830).
+      t.check('known all-completed Library offers Home at its reading-list categories',
+        complete.present && !complete.hidden && complete.href === '#/browse', JSON.stringify(complete));
+      await click(page, '#library-completed-browse');
+      await page.waitForFunction(() => /^#\/browse(?:[/?]|$)/.test(location.hash)
+        && !document.querySelector('#view-home')?.hidden && document.activeElement?.id === 'home-cat-h');
+      t.check('and choosing it lands on those categories with their heading focused', true);
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => !document.querySelector('#view-library')?.hidden);
       await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
       await page.reload({ waitUntil: 'load' });
       const unknown = await page.evaluate(() => ({
