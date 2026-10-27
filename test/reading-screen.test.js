@@ -334,7 +334,7 @@ test('the current row is marked by more than a tint, and the rows carry a rule b
   // The separator is later in the file than `.row.now` at equal specificity, so it has to exclude
   // the marked row by name or it wins that row's top edge back and outlines it on three sides.
   assert.match(css, /\.row \+ \.row:not\(:hover\):not\(\.now\) \{ border-top-color: var\(--line\); \}/);
-  assert.match(css, /\.row\.now \{ box-shadow: inset 3px 0 0 var\(--accent-text\); \}/);
+  assert.match(css, /\.row\.now \{ box-shadow: inset var\(--stroke-3\) 0 0 var\(--accent-text\); \}/);
 });
 
 test('every new surface survives forced colours', () => {

@@ -180,3 +180,42 @@ test('stroke widths come only from stroke tokens, while a stroke may name its co
   assert.notEqual(unworn, css, 'the --stroke-checkbox consumer is missing');
   assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--stroke-checkbox holds 1.5px for the read checkbox, but nothing uses it']);
 });
+
+test('a shadow is a whole elevation token or a ring drawn with stroke widths, and a text shadow is a token', () => {
+  for (const [rule, sheet, expected] of [
+    ['.x { box-shadow: 0 4px 12px rgb(var(--shadow-rgb) / 20%); }', 0, ['carries raw shadow value 4px', 'carries raw shadow value 12px']],
+    ['.x { box-shadow: inset 0 0 0 1px var(--line); }', 0, ['carries raw shadow value 1px']],
+    ['.x { box-shadow: var(--elev-tooltip), 0 0 0 2px var(--accent); }', 0, ['carries raw shadow value 2px']],
+    ['.x { box-shadow: 0 0 0 var(--space-1) var(--line); }', 0, ['uses var(--space-1), which is not a shadow token']],
+    ['.x { box-shadow: var(--text-shadow-art); }', 0, ['uses var(--text-shadow-art), which is not a shadow token']],
+    ['.x { --lift: 0 2px 6px black; box-shadow: var(--lift); }', 0, ['uses var(--lift), which is not a shadow token']],
+    ['.x { box-shadow: inset 0 0 0 var(--lift) var(--line); --lift: 0 2px; }', 0, ['uses var(--lift), which is not a shadow token']],
+    ['.x { text-shadow: 1px 1px 0 var(--accent); }', 0, ['carries raw text shadow value 1px 1px 0 var(--accent)']],
+    ['.x { text-shadow: var(--elev-cover); }', 0, ['uses var(--elev-cover), which is not a text shadow token']],
+    ['.x { box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 24%); }', 1, ['carries raw shadow value 8px', 'carries raw shadow value 24px']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { box-shadow: var(--elev-row-actions); }',
+    '.x { box-shadow: var(--elev-tooltip), inset 0 0 0 var(--stroke-1) var(--line-2) !important; }',
+    '.x { box-shadow: inset 0 calc(-1 * var(--stroke-3)) 0 currentColor; }',
+    '.x { box-shadow: 0 0 0 var(--stroke-node-halo) var(--bg); }',
+    '.x { box-shadow: none; text-shadow: none; }',
+    '.x { text-shadow: var(--text-shadow-offset); }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+
+  // A role token stands for a surface that already plays that role with a shadow scaled by
+  // `--shadow-alpha`; every other shadow keeps a token named for its surface until it gains one.
+  for (const [name, { family, scale, value }] of TOKENS) {
+    if (family === 'elevation' && scale) assert.match(value, /var\(--shadow-alpha\)/, name);
+  }
+
+  // The Done bar's shadow is worn only by the Android overlay, and the overlay's use is enough.
+  const undone = mobile.replace('box-shadow: var(--elev-done-bar)', 'box-shadow: var(--elev-row-actions)');
+  assert.notEqual(undone, mobile, 'the --elev-done-bar consumer is missing');
+  assert.deepEqual(tokenUsageFindings(sheets(css, undone)),
+    ['--elev-done-bar holds 0 8px 24px rgb(var(--shadow-rgb) / 24%) for the Android Done bar, but nothing uses it']);
+});

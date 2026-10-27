@@ -169,7 +169,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
      its outer edge shows. */
   #view-home .home-brand {
     font-size: 6.5vmin; overflow-wrap: normal; paint-order: stroke fill;
-    text-shadow: .0625em .0625em 0 var(--accent);
+    text-shadow: var(--text-shadow-offset);
   }
   #view-home .home-action { display: none; }
   .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }
@@ -210,7 +210,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   }
   .filters .fp { position: relative; flex: 0 0 auto; max-width: 100%; }
   .filters .fp > span { border-radius: var(--radius-md); font-size: var(--t-caption); }
-  .filters .fp input:checked + span { box-shadow: inset 0 -3px 0 currentColor; }
+  .filters .fp input:checked + span { box-shadow: inset 0 calc(-1 * var(--stroke-3)) 0 currentColor; }
   #reading-filters { padding: var(--space-3) var(--space-2); }
 }
 
@@ -315,7 +315,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); margin: 0;
     display: flex; flex-wrap: nowrap; align-items: center;
     background: linear-gradient(rgb(var(--teal-line) / 5.882%), rgb(var(--teal-line) / 5.882%)), var(--card);
-    box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 24%);
+    box-shadow: var(--elev-done-bar);
   }
   #home-continue #done-result .grow { margin-inline-end: 0; }
   main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--done-bar-height, 0px) + var(--space-6)); }

@@ -40,13 +40,29 @@
   --radius-card: 14px;
   --radius-feature: 20px;
   --radius-circle: 50%;
-  /* Stroke widths, on the same terms: the scale's three, then the read checkbox's border and the ring
-     of a timeline era node. */
+  /* Stroke widths, on the same terms: the scale's three, then the read checkbox's border, the ring
+     of a timeline era node and the halo around it. A ring drawn with box-shadow uses them too. */
   --stroke-1: 1px;
   --stroke-2: 2px;
   --stroke-3: 3px;
   --stroke-checkbox: 1.5px;
   --stroke-node: 4px;
+  --stroke-node-halo: 5px;
+  /* Elevation. A role token exists only where a surface already plays that role with a shadow scaled
+     by `--shadow-alpha`, which today is the rail's tooltip alone. Every other shadow keeps a token
+     named for its surface until a later change gives that surface a role's scaled value. */
+  --elev-tooltip: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
+  --elev-action-tip: 0 6px 18px rgb(var(--shadow-rgb) / 22%);
+  --elev-row-actions: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
+  --elev-updates-panel: 0 12px 28px rgb(var(--shadow-rgb) / 22%);
+  --elev-selection-bar: 0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)));
+  --elev-done-bar: 0 8px 24px rgb(var(--shadow-rgb) / 24%);
+  --elev-cover: 0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha)));
+  /* Text shadows, counted with the shadows above: the logotype's offset print, the same offset in em
+     where it grows with the text, and the initials on a cover placeholder. */
+  --text-shadow-logotype: 5px 5px 0 var(--accent);
+  --text-shadow-offset: .0625em .0625em 0 var(--accent);
+  --text-shadow-art: .055em .055em 0 rgb(var(--shadow-rgb) / 45%);
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
      declarations. The values follow the clusters already present in the interface while keeping
      each consolidated edge within 4 CSS pixels of where it began. */
@@ -579,7 +595,7 @@ a { color: var(--blue); }
 .rail-tip {
   background: var(--card-2); color: var(--text); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); font-size: var(--t-caption);
-  box-shadow: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
+  box-shadow: var(--elev-tooltip);
 }
 
 /* 44px minimum on an icon-only target, and the glyph centred inside it. */
@@ -870,7 +886,7 @@ body.nocovers .hero-bg { background-image: none !important; opacity: .5; }
 .art { position: relative; }
 .art img {
   width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg);
-  border: var(--stroke-1) solid rgb(var(--tint-base) / 10.196%); box-shadow: 0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha))); display: block;
+  border: var(--stroke-1) solid rgb(var(--tint-base) / 10.196%); box-shadow: var(--elev-cover); display: block;
 }
 body.nocovers .art img, .art img[hidden] { display: none; }
 .fallback {
@@ -1171,7 +1187,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
   width: 100%; max-width: 36rem; min-width: 0; margin-top: var(--space-3); margin-left: auto;
   padding: var(--space-3); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
-  background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
+  background: var(--card-2); box-shadow: var(--elev-row-actions);
 }
 .row-actions .ract > .rail-hint { grid-column: 1 / -1; text-align: left; }
 .mini {
@@ -1448,7 +1464,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   position: fixed; bottom: var(--space-4); z-index: 2;
   width: var(--comic-selection-width); max-width: 48rem; max-height: 60dvh; overflow-y: auto;
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-lg); background: var(--card);
-  box-shadow: 0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)));
+  box-shadow: var(--elev-selection-bar);
 }
 :root:has(.view:not([hidden]) .comic-builder:not([hidden])) main::after {
   content: ""; display: block; height: calc(var(--comic-selection-height) + var(--space-4));
@@ -1560,7 +1576,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   content: ""; position: absolute;
   top: .85rem; right: .35rem; width: 20px; height: 20px;
   border: var(--stroke-node) solid var(--accent-text); border-radius: var(--radius-circle);
-  background: var(--card-2); box-shadow: 0 0 0 5px var(--bg);
+  background: var(--card-2); box-shadow: 0 0 0 var(--stroke-node-halo) var(--bg);
 }
 .timeline-era-head { margin: 0 0 var(--space-5); }
 .timeline-year-list { grid-column: 1 / -1; display: grid; gap: var(--space-5); }
@@ -1750,7 +1766,7 @@ progress { accent-color: var(--accent); height: 6px; }
   color: var(--logo-fill); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; letter-spacing: .035em; line-height: .9;
   text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: center;
-  -webkit-text-stroke: 1px var(--on-accent); text-shadow: 5px 5px 0 var(--accent);
+  -webkit-text-stroke: 1px var(--on-accent); text-shadow: var(--text-shadow-logotype);
 }
 .home-action {
   margin: 0; color: var(--text); font-size: var(--t-subtitle); font-weight: 800;
@@ -1773,7 +1789,7 @@ progress { accent-color: var(--accent); height: 6px; }
   position: absolute; right: 0; top: 100%; z-index: 30; width: min(34rem, calc(100vw - 3rem));
   max-height: min(32rem, 70vh); max-height: min(32rem, 70dvh); overflow-y: auto;
   padding: var(--space-7); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-lg);
-  background: var(--card); color: var(--text); box-shadow: 0 12px 28px rgb(var(--shadow-rgb) / 22%);
+  background: var(--card); color: var(--text); box-shadow: var(--elev-updates-panel);
   overflow-wrap: anywhere;
 }
 .home-updates-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
@@ -2255,7 +2271,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    specificity, so without the exclusion it would win the top edge of the accent outline back off
    `.row.now` and leave the row you are on outlined on three sides. */
 .row + .row:not(:hover):not(.now) { border-top-color: var(--line); }
-.row.now { box-shadow: inset 3px 0 0 var(--accent-text); }
+.row.now { box-shadow: inset var(--stroke-3) 0 0 var(--accent-text); }
 
 /* The filters stay in reach while a long order scrolls past. Scoped by id: three other fieldsets
    share the class and none of them should move. */
@@ -2377,7 +2393,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .cover-fallback.cover-fallback::before, .cover-fallback.cover-fallback::after {
   position: absolute; z-index: 1; color: hsl(var(--h) var(--fallback-fg));
   font-size: 58cqw; font-weight: 900; font-style: italic; line-height: .8;
-  text-shadow: .055em .055em 0 rgb(var(--shadow-rgb) / 45%);
+  text-shadow: var(--text-shadow-art);
   pointer-events: none;
 }
 .cover-fallback.cover-fallback::before {
@@ -2404,7 +2420,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .tooltip-content { display: block; padding: var(--space-2) var(--space-4); overflow: auto; }
 .action-tip {
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-compact);
-  background: var(--text); color: var(--card); box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 22%);
+  background: var(--text); color: var(--card); box-shadow: var(--elev-action-tip);
   font-weight: 600;
 }
 
@@ -2541,7 +2557,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .completion-enjoyment { border: 0; margin: var(--space-6) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .completion-enjoyment[hidden] { display: none; }
 .completion-enjoyment legend { color: var(--dim); margin-bottom: var(--space-4); }
-.completion-enjoyment button[aria-pressed="true"] { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
+.completion-enjoyment button[aria-pressed="true"] { border-color: var(--teal); box-shadow: inset 0 0 0 var(--stroke-1) var(--teal); }
 .completion-enjoyment button span { display: inline-flex; align-items: center; gap: var(--space-4); }
 /* UX-42 (#836): a tooltip needs hover or focus, so on a narrow or touch screen each icon shows its
    words. The names were always those words; only what is drawn changes. */
@@ -2583,7 +2599,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   font-size: var(--t-title-lg); font-weight: 900; letter-spacing: .035em; line-height: 1;
   text-transform: uppercase; transform: skew(-6deg) rotate(-1deg); transform-origin: left center;
   -webkit-text-stroke: 2px var(--on-accent); paint-order: stroke fill;
-  text-shadow: .0625em .0625em 0 var(--accent); overflow-wrap: normal;
+  text-shadow: var(--text-shadow-offset); overflow-wrap: normal;
 }
 @media (forced-colors: active) {
   .wrapup-cheer { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }
@@ -2615,7 +2631,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
    out again on every frame, and the bar's own rounded clip shapes the end it slides from. */
 .glance-bar {
   height: 6px; max-width: 32rem; margin-top: var(--space-2); border-radius: var(--radius-pill); overflow: hidden;
-  box-shadow: inset 0 0 0 1px var(--line-2);
+  box-shadow: inset 0 0 0 var(--stroke-1) var(--line-2);
 }
 .glance-bar > i {
   display: block; height: 100%; border-radius: inherit; background: var(--accent);

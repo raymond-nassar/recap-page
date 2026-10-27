@@ -263,11 +263,23 @@ export const TOKENS = new Map([
   ['--stroke-3', onScale('stroke', '3px')],
   ['--stroke-checkbox', kept('stroke', '1.5px', 'the read checkbox')],
   ['--stroke-node', kept('stroke', '4px', 'the ring of a timeline era node')],
+  ['--stroke-node-halo', kept('stroke', '5px', 'the halo around a timeline era node')],
+  ['--elev-tooltip', onScale('elevation', '0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)))')],
+  ['--elev-action-tip', kept('elevation', '0 6px 18px rgb(var(--shadow-rgb) / 22%)', 'the action tip')],
+  ['--elev-row-actions', kept('elevation', '0 8px 24px rgb(var(--shadow-rgb) / 28%)', 'the open row actions menu')],
+  ['--elev-updates-panel', kept('elevation', '0 12px 28px rgb(var(--shadow-rgb) / 22%)', 'the Home updates panel')],
+  ['--elev-selection-bar', kept('elevation', '0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)))', 'the selection bar')],
+  ['--elev-done-bar', kept('elevation', '0 8px 24px rgb(var(--shadow-rgb) / 24%)', 'the Android Done bar')],
+  ['--elev-cover', kept('elevation', '0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha)))', 'cover art in a hero')],
+  ['--text-shadow-logotype', kept('elevation', '5px 5px 0 var(--accent)', 'the Home logotype')],
+  ['--text-shadow-offset', kept('elevation', '.0625em .0625em 0 var(--accent)', 'the wrap-up cheer and the Android logotype')],
+  ['--text-shadow-art', kept('elevation', '.055em .055em 0 rgb(var(--shadow-rgb) / 45%)', 'the initials on a cover placeholder')],
 ]);
 
 const FAMILY_PREFIXES = new Map([
   ['radius', /^--radius-/],
   ['stroke', /^--stroke-/],
+  ['elevation', /^--(?:elev|text-shadow)-/],
 ]);
 
 function familyOf(name) {
@@ -302,6 +314,16 @@ function tokenOf(atom) {
     ?? null;
 }
 
+// The comma-separated layers of a value such as a shadow list, each as its atoms.
+function layers(list) {
+  const out = [[]];
+  for (const atom of list) {
+    if (atom === ',') out.push([]);
+    else out.at(-1).push(atom);
+  }
+  return out;
+}
+
 const KEYWORDS = new Set(['0', 'inherit', 'initial', 'unset', 'revert', 'revert-layer']);
 
 // A length, or a function that computes one, standing as one value.
@@ -312,7 +334,9 @@ const LENGTHY = /^(?:-?(?:\d*\.)?\d+[a-z%]+|(?:calc|min|max|clamp)\(.*\))$/i;
 // says which of the remaining atoms are values of this family that have to come from a token. A
 // stroke names its colour through a token outside the families, so `accepts` is also handed the
 // custom properties whose value is a length, which would carry a width past the gate under a colour's
-// name.
+// name. A shadow is judged a layer at a time: `whole` names the tokens that stand for an entire layer,
+// and a layer that is not one of them is a ring drawn with stroke widths, or, where the family has no
+// `raw` test, a raw value in itself.
 const TOKEN_RULES = [
   {
     family: 'radius',
@@ -325,6 +349,18 @@ const TOKEN_RULES = [
     properties: /^(?:border(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?(?:-width)?|column-rule(?:-width)?|text-decoration-thickness)$/,
     accepts: (name, lengths) => familyOf(name) === 'stroke' || (!familyOf(name) && !lengths.has(name)),
     raw: (atom) => LENGTHY.test(atom) || /^(?:thin|medium|thick)$/i.test(atom),
+  },
+  {
+    family: 'shadow',
+    properties: /^box-shadow$/,
+    whole: (name) => name.startsWith('--elev-'),
+    accepts: (name, lengths) => familyOf(name) === 'stroke' || (!familyOf(name) && !lengths.has(name)),
+    raw: (atom) => LENGTHY.test(atom),
+  },
+  {
+    family: 'text shadow',
+    properties: /^text-shadow$/,
+    whole: (name) => name.startsWith('--text-shadow-'),
   },
 ];
 
@@ -354,7 +390,8 @@ export function resolveTokens(value, tokens) {
   throw new Error(`${value} does not resolve: its tokens refer to each other`);
 }
 
-// Every custom property, in any of the sheets and under any selector, that resolves to a length.
+// Every custom property, in any of the sheets and under any selector, whose value is a length or
+// carries one, such as a whole shadow.
 export function lengthTokens(sheets) {
   const values = new Map();
   for (const [, source] of sheets) {
@@ -364,7 +401,7 @@ export function lengthTokens(sheets) {
   }
   const first = new Map([...values].map(([name, list]) => [name, list[0]]));
   return new Set([...values]
-    .filter(([, list]) => list.some((value) => LENGTHY.test(resolveTokens(value, first))))
+    .filter(([, list]) => list.some((value) => atoms(resolveTokens(value, first)).some((atom) => LENGTHY.test(atom))))
     .map(([name]) => name));
 }
 
@@ -400,14 +437,28 @@ export function tokenGrammarFindings(file, source, lengths = lengthTokens([[file
     for (const rule of TOKEN_RULES) {
       if (!rule.properties.test(declaration.property)) continue;
       const value = declaration.value.replace(/\s*!important\s*$/i, '').trim();
-      for (const atom of atoms(value)) {
-        if (atom === ',') continue;
-        const name = tokenOf(atom);
-        const where = `${file} line ${declaration.line} ${declaration.property}`;
-        if (name) {
-          if (!rule.accepts(name, lengths)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
-        } else if (rule.raw(atom)) {
-          findings.push(`${where} carries raw ${rule.family} value ${atom}`);
+      const where = `${file} line ${declaration.line} ${declaration.property}`;
+      const list = atoms(value);
+      for (const layer of rule.whole ? layers(list) : [list.filter((atom) => atom !== ',')]) {
+        if (rule.whole && layer.length === 1) {
+          const name = tokenOf(layer[0]);
+          if (name ? rule.whole(name) : KEYWORDS.has(layer[0]) || layer[0] === 'none') continue;
+          if (name) {
+            findings.push(`${where} uses ${layer[0]}, which is not a ${rule.family} token`);
+            continue;
+          }
+        }
+        if (!rule.raw) {
+          findings.push(`${where} carries raw ${rule.family} value ${layer.join(' ')}`);
+          continue;
+        }
+        for (const atom of layer) {
+          const name = tokenOf(atom);
+          if (name) {
+            if (!rule.accepts(name, lengths)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
+          } else if (rule.raw(atom)) {
+            findings.push(`${where} carries raw ${rule.family} value ${atom}`);
+          }
         }
       }
     }
