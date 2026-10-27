@@ -1649,8 +1649,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3383-3425|0": {
-    "anchor": "src/js/main.js:3383-3425",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3384-3426|0": {
+    "anchor": "src/js/main.js:3384-3426",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1709,23 +1709,23 @@
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3316-3335|0": {
-    "anchor": "src/js/main.js:3316-3335",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3317-3336|0": {
+    "anchor": "src/js/main.js:3317-3336",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3337-3488|0": {
-    "anchor": "src/js/main.js:3337-3488",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3338-3489|0": {
+    "anchor": "src/js/main.js:3338-3489",
     "fp": "302185233d96239f",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3397-3403|0": {
-    "anchor": "src/js/main.js:3397-3403",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3398-3404|0": {
+    "anchor": "src/js/main.js:3398-3404",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3423-3424|0": {
-    "anchor": "src/js/main.js:3423-3424",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3424-3425|0": {
+    "anchor": "src/js/main.js:3424-3425",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -1819,8 +1819,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1435|0": {
-    "anchor": "src/index.html:1435",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1445|0": {
+    "anchor": "src/index.html:1445",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2334,8 +2334,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2213-2215|0": {
-    "anchor": "src/styles.css:2213-2215",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2217-2219|0": {
+    "anchor": "src/styles.css:2217-2219",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2359,8 +2359,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2213-2215|0": {
-    "anchor": "src/styles.css:2213-2215",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2217-2219|0": {
+    "anchor": "src/styles.css:2217-2219",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2414,8 +2414,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2570-2571|0": {
-    "anchor": "src/styles.css:2570-2571",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2574-2575|0": {
+    "anchor": "src/styles.css:2574-2575",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -2484,8 +2484,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2213-2215|0": {
-    "anchor": "src/styles.css:2213-2215",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2217-2219|0": {
+    "anchor": "src/styles.css:2217-2219",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6184,13 +6184,13 @@
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2248|0": {
-    "anchor": "src/styles.css:2248",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2252|0": {
+    "anchor": "src/styles.css:2252",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2272|0": {
-    "anchor": "src/styles.css:2272",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2276|0": {
+    "anchor": "src/styles.css:2276",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

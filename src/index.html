@@ -1387,12 +1387,22 @@
       <form id="issue-rating-form">
         <h2 id="issue-rating-title">Your rating</h2>
         <p id="issue-rating-comic" class="rating-comic"></p>
-        <div id="issue-rating-stars" class="rating-stars" role="group" aria-label="Choose a whole-star rating">
-          <button type="button" data-rating="1" aria-label="Choose 1 star"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="2" aria-label="Choose 2 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="3" aria-label="Choose 3 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="4" aria-label="Choose 4 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="5" aria-label="Choose 5 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+        <div id="issue-rating-stars" class="rating-stars" role="radiogroup" aria-label="Choose a rating">
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-0-5" value="0.5" aria-label="0.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-1" value="1" aria-label="1 star" />
+          <label for="issue-rating-star-1" data-rating="1"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-1-5" value="1.5" aria-label="1.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-2" value="2" aria-label="2 stars" />
+          <label for="issue-rating-star-2" data-rating="2"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-2-5" value="2.5" aria-label="2.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-3" value="3" aria-label="3 stars" />
+          <label for="issue-rating-star-3" data-rating="3"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-3-5" value="3.5" aria-label="3.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-4" value="4" aria-label="4 stars" />
+          <label for="issue-rating-star-4" data-rating="4"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-4-5" value="4.5" aria-label="4.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-5" value="5" aria-label="5 stars" />
+          <label for="issue-rating-star-5" data-rating="5"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
         </div>
         <label class="visually-hidden" for="issue-rating-input">Rating out of five, in half-star increments</label>
         <div class="rating-stepper">

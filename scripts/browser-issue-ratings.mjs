@@ -116,7 +116,9 @@ export const issueRatings = {
       const layout = await page.evaluate(() => {
         const dialog = document.querySelector('#issue-rating-dialog');
         const rect = dialog.getBoundingClientRect();
-        const controls = [...dialog.querySelectorAll('button, input')].filter((node) => node.getClientRects().length);
+        // The radios are visually hidden; the stars that label them are the targets a pointer meets.
+        const controls = [...dialog.querySelectorAll('button, input:not([type="radio"]), .rating-stars label')]
+          .filter((node) => node.getClientRects().length);
         return { visible: dialog.open && rect.width > 0, fits: rect.left >= 0 && rect.right <= innerWidth,
           targets: controls.every((node) => node.getBoundingClientRect().height >= 44),
           overflow: dialog.scrollWidth > dialog.clientWidth + 1 };

@@ -50,6 +50,19 @@ export function shellState(selector, edges) {
   const focused = document.activeElement;
   const inDialog = !!focused && focused !== dialog && dialog.contains(focused);
   const inEdge = inDialog && (!!foot?.contains(focused) || (headHeld && head.contains(focused)));
+  // A control can be drawn by another element. The rating's radios are clipped out of sight, and each
+  // is shown by the star that carries its focus ring: its own label, or for a half value the star after
+  // it. A clipped radio has no point to hit, so what a reader sees take focus, that star, is what must
+  // be clear and reachable.
+  const presenter = (node) => {
+    const style = getComputedStyle(node);
+    if (style.clip !== 'rect(0px, 0px, 0px, 0px)' && !style.clipPath.startsWith('inset(50%')) return node;
+    if (node.labels?.length) return node.labels[0];
+    let next = node.nextElementSibling;
+    while (next && !next.matches('label')) next = next.nextElementSibling;
+    return next ?? node;
+  };
+  const drawn = inDialog ? presenter(focused) : focused;
   const title = dialog.querySelector('h2');
   // A title in a held head is clear of what scrolls by being held, so it need only be in view.
   const titleClear = !!title && shown(title) && (headHeld && head.contains(title)
@@ -76,7 +89,7 @@ export function shellState(selector, edges) {
       name: inDialog ? name(focused) : focused?.tagName,
       inDialog,
       inEdge,
-      clear: inDialog && reachable(focused) && (inEdge || clear(focused.getBoundingClientRect())),
+      clear: inDialog && reachable(drawn) && (inEdge || clear(drawn.getBoundingClientRect())),
     },
     answers: controls(foot),
     headControls: controls(head),
@@ -141,7 +154,17 @@ export function shellFocusStep(selector, edges) {
   const portBottom = Math.min(innerHeight, box.top + dialog.clientTop + dialog.clientHeight);
   const top = sticky(head) ? Math.max(portTop, head.getBoundingClientRect().bottom) : portTop;
   const limit = sticky(foot) ? Math.min(portBottom, foot.getBoundingClientRect().top) : portBottom;
-  const rect = focused.getBoundingClientRect();
+  // As in shellState: a clipped control is measured by the star that draws its focus ring.
+  const presenter = (node) => {
+    const style = getComputedStyle(node);
+    if (style.clip !== 'rect(0px, 0px, 0px, 0px)' && !style.clipPath.startsWith('inset(50%')) return node;
+    if (node.labels?.length) return node.labels[0];
+    let next = node.nextElementSibling;
+    while (next && !next.matches('label')) next = next.nextElementSibling;
+    return next ?? node;
+  };
+  const drawn = presenter(focused);
+  const rect = drawn.getBoundingClientRect();
   // A text field shows where typing goes: browsers reveal its caret on focus, not its whole box, so its
   // first lines are what must be clear. Every other control must be clear whole.
   const field = focused.matches('textarea, input:not([type="checkbox"], [type="radio"], [type="button"], [type="submit"])');
@@ -159,7 +182,7 @@ export function shellFocusStep(selector, edges) {
     key: path.join('>'),
     name: focused.id || focused.getAttribute('aria-label') || focused.textContent.trim().slice(0, 40),
     inEdge,
-    clear: !!hit && (hit === focused || focused.contains(hit)) && (inEdge
+    clear: !!hit && (hit === drawn || drawn.contains(hit)) && (inEdge
       || (rect.top >= top - 0.5 && end <= limit + 0.5)),
     top: Math.round(rect.top),
     bottom: Math.round(rect.bottom),

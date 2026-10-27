@@ -16217,6 +16217,94 @@ SCENARIOS.push({
   },
 });
 
+// UX-26 (#830): the stars are one group of ten radios, 0.5 to 5. Arrow keys move by half a star, the
+// checked radio reports the value, a press on a star still chooses its whole value, and Enter saves.
+SCENARIOS.push({
+  id: 'rating-radios',
+  title: 'the rating stars are one radio group: arrows move by half a star, the value is exposed, and a star press chooses its whole value',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    const [first] = ORDER.items;
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.ratings = { [id]: 3.5 };
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, first.issueId);
+    await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#issue-rating-label')?.textContent.includes('3.5/5'), { timeout: 15000 });
+    await page.focus('#issue-rating-trigger');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => document.querySelector('#issue-rating-dialog').open);
+    const read = () => page.evaluate(() => {
+      const active = document.activeElement;
+      return {
+        focused: active?.name === 'issue-rating' ? active.value : active?.id ?? null,
+        checked: [...document.querySelectorAll('#issue-rating-stars input')].filter((radio) => radio.checked).map((radio) => radio.value),
+        input: document.querySelector('#issue-rating-input').value,
+        rings: [...document.querySelectorAll('#issue-rating-stars label')].filter((label) => {
+          const style = getComputedStyle(label);
+          return style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0;
+        }).map((label) => label.dataset.rating),
+      };
+    });
+    const opened = await read();
+    t.check('the editor opens on the saved score: 3.5 is checked and focused',
+      opened.focused === '3.5' && JSON.stringify(opened.checked) === '["3.5"]' && opened.input === '3.5', JSON.stringify(opened));
+
+    const flatten = (node) => (node ? [node, ...(node.children ?? []).flatMap(flatten)] : []);
+    const ax = flatten(await page.accessibility.snapshot({ root: await page.$('#issue-rating-stars'), interestingOnly: false }));
+    const group = ax.find((node) => node.role === 'radiogroup');
+    const radios = flatten(group).filter((node) => node.role === 'radio');
+    t.check('assistive technology meets one named radio group of ten half-star values with 3.5 stars checked',
+      group?.name === 'Choose a rating' && radios.length === 10
+      && JSON.stringify(radios.filter((node) => node.checked === true).map((node) => node.name)) === '["3.5 stars"]',
+      JSON.stringify({ group: [group?.role, group?.name], radios: radios.map((node) => [node.name, node.checked]) }));
+
+    await page.keyboard.press('ArrowRight');
+    const right = await read();
+    for (let step = 0; step < 3; step += 1) await page.keyboard.press('ArrowLeft');
+    const left = await read();
+    t.check('arrow keys move the choice by half a star, and the stepper follows',
+      right.focused === '4' && JSON.stringify(right.checked) === '["4"]' && right.input === '4'
+      && left.focused === '2.5' && JSON.stringify(left.checked) === '["2.5"]' && left.input === '2.5', JSON.stringify({ right, left }));
+    t.check('the focus ring is drawn on the star that holds the focused value', JSON.stringify(left.rings) === '["3"]', JSON.stringify(left));
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    const forced = await read();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+    await cdp.detach();
+    t.check('forced colors keep that ring', JSON.stringify(forced.rings) === '["3"]', JSON.stringify(forced));
+
+    const star = await (await page.$('#issue-rating-stars label[data-rating="2"]')).boundingBox();
+    await page.mouse.click(star.x + star.width / 2, star.y + star.height / 2);
+    const pressed = await read();
+    const sizes = await page.$$eval('#issue-rating-stars label', (labels) => labels.map((label) => {
+      const { width, height } = label.getBoundingClientRect();
+      return [width, height];
+    }));
+    t.check('a press on a star chooses its whole value, on a 48px target',
+      JSON.stringify(pressed.checked) === '["2"]' && pressed.input === '2' && sizes.every(([width, height]) => width >= 47.5 && height >= 47.5),
+      JSON.stringify({ pressed, sizes }));
+
+    await page.focus('#issue-rating-star-2');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('#issue-rating-dialog').open, { timeout: 3000 }).catch(() => {});
+    const saved = await page.evaluate((id) => ({
+      open: document.querySelector('#issue-rating-dialog').open,
+      rating: JSON.parse(localStorage.getItem('mrt.state.v2')).ratings?.[id] ?? null,
+      focus: document.activeElement?.id ?? null,
+    }), String(first.issueId));
+    t.check('Enter in the group saves the chosen value and returns focus to the trigger',
+      !saved.open && saved.rating === 2.5 && saved.focus === 'issue-rating-trigger', JSON.stringify(saved));
+    t.check('the rating radios raise no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
 MUTATIONS.push(
   {
     id: 'narrow-content-panel-open',

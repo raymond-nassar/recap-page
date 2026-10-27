@@ -2180,9 +2180,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .issue-rating.is-rated .rating-trigger svg { fill: currentColor; }
 .issue-rating.is-rated .rating-trigger { font-weight: 600; font-variant-numeric: tabular-nums; }
 .rating-dialog .rating-comic { color: var(--dim); margin-bottom: var(--space-8); }
-.rating-stars { display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-7); }
-.rating-stars button { width: var(--target-touch); height: var(--target-touch); flex: 0 0 var(--target-touch); display: grid; place-items: center; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
-.rating-stars button:hover { border-color: var(--line-2); background: var(--card-2); }
+.rating-stars { position: relative; display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-7); }
+/* UX-26 (#830): ten radios, 0.5 to 5, hold the value, so arrow keys move by half a star and the checked
+   radio reports it. Each star is the label of its whole value, so a press still chooses a whole star,
+   and the focus ring is drawn on the star that holds the focused value. */
+.rating-stars label { width: var(--target-touch); height: var(--target-touch); flex: 0 0 var(--target-touch); display: grid; place-items: center; margin: 0; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
+.rating-stars label:hover { border-color: var(--line-2); background: var(--card-2); }
+.rating-stars input:focus-visible + label, .rating-stars input:focus-visible + input + label { outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset); }
 .rating-stars svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
 .rating-stars .star-fill { fill: currentColor; visibility: hidden; }
 .rating-stars [data-fill="full"] .star-fill, .rating-stars [data-fill="half"] .star-fill { visibility: visible; }
@@ -2204,7 +2208,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #issue-rating-cancel { margin-left: auto; }
 }
 @media (forced-colors: active) {
-  .rating-trigger, .rating-stars button { border-color: ButtonBorder; }
+  .rating-trigger, .rating-stars label { border-color: ButtonBorder; }
   .rating-trigger svg, .rating-stars svg { color: ButtonText; forced-color-adjust: auto; }
 }
 
