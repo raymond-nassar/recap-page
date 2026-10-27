@@ -16109,6 +16109,114 @@ SCENARIOS.push({
   },
 });
 
+// UX-20 (#830): Read, Mark as read, Add note and Rate share one row at the top of the issue card's text
+// column, Read first, beside the cover when there is room and ahead of it when there is not. The saved
+// actions show only for a saved comic, and stay live when saved data is re-read into new objects,
+// which every boot does after the page paints and another tab's write does too.
+SCENARIOS.push({
+  id: 'issue-action-row',
+  title: 'issue details lead the text column with one action row whose saved actions stay live after saved data is re-read',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    const [first, , last] = ORDER.items;
+    // The last comic leaves saved data, so its details come from the bundled order alone.
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      delete saved.issues[id];
+      saved.lists.fixture.itemIds = saved.lists.fixture.itemIds.filter((itemId) => itemId !== id);
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, last.issueId);
+    // A reload at the details link, the way a bookmark or a shared link arrives.
+    await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#btn-issue-read')?.checkVisibility()
+      && document.querySelector('#issue-rating-trigger')?.checkVisibility(), { timeout: 15000 });
+    await page.waitForNetworkIdle({ idleTime: 500, timeout: 10000 }).catch(() => {});
+
+    const measure = () => page.evaluate(() => {
+      const box = (selector) => {
+        const node = document.querySelector(selector);
+        if (!node?.checkVisibility()) return null;
+        const { top, bottom, left, right, width } = node.getBoundingClientRect();
+        return { top, bottom, left, right, width };
+      };
+      return {
+        read: box('#btn-issue-read'), mark: box('#btn-issue-mark-read'), note: box('#btn-issue-note'),
+        rate: box('#issue-rating-trigger'), row: box('#issue-focus-card .issue-actions'),
+        art: box('#issue-focus-card .art'), byline: box('#issue-focus-by'),
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    });
+    const wide = await measure();
+    const commands = [wide.read, wide.mark, wide.note, wide.rate];
+    t.check('at 1280 pixels Read, Mark as read, Add note and Rate share one row, Read first',
+      commands.every(Boolean)
+      && Math.max(...commands.map((box) => box.top)) < Math.min(...commands.map((box) => box.bottom))
+      && commands.every((box, index) => index === 0 || box.left >= commands[index - 1].right), JSON.stringify(wide));
+    t.check('the row tops the text column beside the cover, above the byline',
+      Boolean(wide.row && wide.art && wide.byline) && wide.row.left >= wide.art.right
+      && Math.abs(wide.row.top - wide.art.top) <= 2 && wide.byline.top >= wide.row.bottom,
+      JSON.stringify({ row: wide.row, art: wide.art, byline: wide.byline }));
+
+    await page.focus('#btn-issue-read');
+    const order = [await page.evaluate(() => document.activeElement?.id)];
+    for (let step = 0; step < 3; step += 1) {
+      await page.keyboard.press('Tab');
+      order.push(await page.evaluate(() => document.activeElement?.id));
+    }
+    t.check('Tab moves from Read to Mark as read, Add note, then Rate',
+      JSON.stringify(order) === JSON.stringify(['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']),
+      JSON.stringify(order));
+
+    const isRead = (id) => page.evaluate((issueId) => Object.hasOwn(JSON.parse(localStorage.getItem('mrt.state.v2')).read ?? {}, issueId), id);
+    const settle = (id, wanted) => page.waitForFunction((issueId, value) => Object.hasOwn(
+      JSON.parse(localStorage.getItem('mrt.state.v2')).read ?? {}, issueId) === value, { timeout: 3000 }, id, wanted).catch(() => {});
+    const id = String(first.issueId);
+    await page.$eval('#btn-issue-mark-read', (node) => node.click());
+    await settle(id, true);
+    t.check('after the reload, Mark as read saves the comic as read and offers Mark as unread',
+      await isRead(id) && await page.$eval('#btn-issue-mark-read', (node) => node.checkVisibility() && node.textContent === 'Mark as unread'));
+
+    // Another tab writes the same comic back in new objects. A static file on this origin shares its
+    // storage without booting a second copy of the app.
+    const other = await page.browserContext().newPage();
+    await other.goto(`${page.__origin}/icons/ui.svg`);
+    await other.evaluate(() => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.lists.fixture.name = 'Renamed in another tab';
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    });
+    await other.close();
+    await page.waitForFunction(() => document.querySelector('#list-nav')?.textContent.includes('Renamed in another tab'), { timeout: 5000 });
+    const before = await isRead(id);
+    await page.$eval('#btn-issue-mark-read', (node) => node.click());
+    await settle(id, !before);
+    t.check('after another tab\'s write, the same comic keeps live actions and pressing one still saves',
+      await isRead(id) === !before && await page.$eval('#btn-issue-mark-read', (node, read) => node.checkVisibility()
+        && node.textContent === (read ? 'Mark as unread' : 'Mark as read'), !before), JSON.stringify({ before }));
+
+    await page.setViewport({ width: 390, height: 844 });
+    const narrow = await measure();
+    t.check('at 390 pixels Read spans the row and the other actions follow it, all ahead of the cover and inside the screen',
+      Boolean(narrow.read && narrow.mark && narrow.rate && narrow.row && narrow.art) && narrow.read.width >= narrow.row.width - 1
+      && narrow.read.bottom <= narrow.mark.top && narrow.rate.bottom <= narrow.art.top && narrow.overflow <= 1, JSON.stringify(narrow));
+
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.evaluate((hash) => { location.hash = hash; }, `#/issue/${last.issueId}?order=${ORDER.id}`);
+    await page.waitForFunction((title) => document.querySelector('#issue-focus-h')?.textContent === title
+      && document.querySelector('#issue-rating-trigger')?.checkVisibility(), { timeout: 15000 }, last.title);
+    const unsaved = await page.evaluate(() => Object.fromEntries(['btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']
+      .map((control) => [control, document.getElementById(control).checkVisibility()])));
+    t.check('a comic that is not saved shows no Mark as read or Add note, which could not act on it',
+      JSON.stringify(unsaved) === JSON.stringify({ 'btn-issue-mark-read': false, 'btn-issue-note': false, 'issue-rating-trigger': true }),
+      JSON.stringify(unsaved));
+    t.check('the action row raises no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
 MUTATIONS.push(
   {
     id: 'narrow-content-panel-open',

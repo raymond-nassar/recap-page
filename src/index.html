@@ -442,10 +442,21 @@
               <div class="hero-fade" aria-hidden="true"></div>
               <div class="hero-in">
                 <div class="issue-reading-controls">
-                  <div class="cta">
+                  <div class="cta issue-actions">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
                       Read
                     </button>
+                    <div class="cta" id="issue-saved-actions" hidden>
+                      <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
+                      <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
+                    </div>
+                    <div id="issue-rating-root" class="issue-rating" hidden>
+                      <button type="button" class="rating-trigger" id="issue-rating-trigger" aria-haspopup="dialog">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/></svg>
+                        <span id="issue-rating-label">Rate this issue</span>
+                      </button>
+                      <p id="issue-rating-status" class="rail-hint" hidden></p>
+                    </div>
                   </div>
                   <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
                 </div>
@@ -461,18 +472,7 @@
                   <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
-                  <div id="issue-rating-root" class="issue-rating" hidden>
-                    <button type="button" class="rating-trigger" id="issue-rating-trigger" aria-haspopup="dialog">
-                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/></svg>
-                      <span id="issue-rating-label">Rate this issue</span>
-                    </button>
-                    <p id="issue-rating-status" class="rail-hint" hidden></p>
-                  </div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
-                  <div class="cta" id="issue-saved-actions" hidden>
-                    <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
-                    <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
-                  </div>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">

@@ -46,7 +46,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **Make your own lists.** Select comics from issue, series, and creator searches, then save them
   to a named Reading List. Mark issues read or unread, write notes, and add custom comics.
 - **Remember your favorites.** Rate individual issues from half a star to five stars. Open
-  **About this comic**, then **Rate this issue**. The saved score stays compact beside your note.
+  **About this comic**, then **Rate this issue**. The saved score stays compact in the row with
+  **Read**.
 - **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
   earlier issues, and reveal descriptions when you're ready.
 - **Follow a reading path.** On Modern Timeline, follow one connected story stop by stop, with

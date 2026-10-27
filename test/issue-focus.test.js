@@ -222,6 +222,36 @@ test('the dedicated view has one heading and distinct Read, synopsis, and Info a
   assert.match(view, /<div class="hero issue-focus" id="issue-focus-card" hidden>/);
 });
 
+test('UX-20 the issue card leads its text column with one action row: Read, Mark as read, Add note, Rate', () => {
+  const html = read('src/index.html');
+  const view = html.slice(html.indexOf('<section id="view-issue"'), html.indexOf('<!-- ---------------------------------------- library hub'));
+  const row = view.match(/<div class="issue-reading-controls">\s*<div class="cta issue-actions">([\s\S]*?)<\/div>\s*<p id="reader-link-temporary"/)?.[1];
+  assert.ok(row, 'one action row opens the reading controls, ahead of the temporary-link note');
+  const commands = ['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger'];
+  assert.deepEqual([...row.matchAll(/id="([^"]+)"/g)].map((match) => match[1]).filter((id) => commands.includes(id)), commands);
+  assert.match(row, /<div class="cta" id="issue-saved-actions" hidden>/, 'the saved actions keep the wrapper the view hides');
+  assert.match(row, /<div id="issue-rating-root" class="issue-rating" hidden>/, 'so does the rating');
+  const body = view.slice(view.indexOf('<div class="hero-body">'));
+  for (const id of ['issue-saved-actions', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-root', 'issue-rating-trigger']) {
+    assert.doesNotMatch(body, new RegExp(`id="${id}"`), `${id} moved out of the text body into the row`);
+  }
+  assert.ok(view.indexOf('class="cta issue-actions"') < view.indexOf('id="issue-focus-img"'), 'the row stays ahead of the cover');
+  assert.ok(view.indexOf('id="issue-focus-facts"') < view.indexOf('id="btn-issue-synopsis"'), 'the summary and links follow');
+
+  const css = read('src/styles.css');
+  assert.match(css, /\.issue-reading-controls \{ grid-column: 2; grid-row: 1; \}/, 'the row tops the text column');
+  assert.match(css, /\.issue-focus \.hero-in > \.art \{ grid-column: 1; grid-row: 1 \/ span 2; \}/);
+  assert.match(css, /\.issue-focus \.hero-body \{ grid-column: 2; grid-row: 2; align-self: start; \}/);
+  assert.match(css, /#issue-saved-actions, #issue-rating-root \{ display: contents; \}/);
+  assert.match(css, /#issue-saved-actions\[hidden\], #issue-rating-root\[hidden\] \{ display: none; \}/,
+    'a hidden wrapper stays hidden, which the flex display of .cta used to override');
+  const narrow = css.slice(css.indexOf('.issue-focus .hero-in { grid-template-rows: none;'), css.indexOf('.byline {'));
+  assert.match(narrow, /\.issue-focus \.hero-in > \.art, \.issue-focus \.hero-body, \.issue-reading-controls \{ grid-column: auto; grid-row: auto; \}/,
+    'one column on narrow screens keeps the reading order: the row, the cover, then the text');
+  assert.match(narrow, /#btn-issue-read \{ min-height: var\(--target-touch\); width: 100%; justify-content: center; \}/);
+  assert.doesNotMatch(css, /\.issue-reading-controls \.btn \{/, 'only Read spans the narrow row');
+});
+
 test('an issue route branches before list adoption and never calls setActive', () => {
   const main = read('src/js/main.js');
   const branch = main.slice(main.indexOf('function applyRoute'), main.indexOf('if (route.listId'));

@@ -933,17 +933,29 @@ body.nocovers .fallback, .fallback.show { display: flex; }
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); background: rgb(var(--tint-base) / 4.706%);
   color: var(--dim); font-size: var(--t-body);
 }
-.issue-focus .hero-body { align-self: center; }
+/* UX-20 (#830): Read, Mark as read, Add note and Rate share one row at the top of the text column, so
+   Read sits with the comic's other actions instead of alone above the cover. The row stays the card's
+   first child, which keeps Read first in reading order and above the cover on narrow screens. */
+.issue-focus .hero-in { grid-template-rows: auto 1fr; row-gap: var(--space-6); }
+.issue-focus .hero-in > .art { grid-column: 1; grid-row: 1 / span 2; }
+.issue-focus .hero-body { grid-column: 2; grid-row: 2; align-self: start; }
 .issue-focus .hero-body > .byline:first-child { margin-top: var(--space-2); }
-.issue-reading-controls { grid-column: 1 / -1; }
+.issue-reading-controls { grid-column: 2; grid-row: 1; }
 .issue-reading-controls .issue-focus-note { margin: var(--space-5) 0 0; }
+/* The views hide the saved actions and the rating by their wrappers, so the wrappers stay and their
+   controls join the row as its items. */
+#issue-saved-actions, #issue-rating-root { display: contents; }
+#issue-saved-actions[hidden], #issue-rating-root[hidden] { display: none; }
+.issue-actions .rating-trigger { margin: 0; }
+.issue-actions .rail-hint { flex-basis: 100%; margin: 0; }
 @media (max-width: 700px) {
-  .issue-focus .hero-in { gap: var(--space-6); }
+  .issue-focus .hero-in { grid-template-rows: none; gap: var(--space-6); }
+  .issue-focus .hero-in > .art, .issue-focus .hero-body, .issue-reading-controls { grid-column: auto; grid-row: auto; }
   .issue-focus .art { max-width: 96px; }
   .issue-focus .fallback { aspect-ratio: auto; min-height: 144px; gap: var(--space-3); }
   .issue-focus .fallback .fs { font-size: var(--t-caption); overflow-wrap: anywhere; }
   .issue-focus .fallback .fn { font-size: var(--t-title-lg); }
-  .issue-reading-controls .btn { min-height: var(--target-touch); width: 100%; justify-content: center; }
+  #btn-issue-read { min-height: var(--target-touch); width: 100%; justify-content: center; }
 }
 .byline { color: var(--dim); margin: 0 0 var(--space-6); font-size: var(--t-body); }
 .desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 var(--space-6); max-width: 58ch; }

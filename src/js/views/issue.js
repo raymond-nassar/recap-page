@@ -4,6 +4,11 @@ import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { isDeferred, isRead } from '../lib/model.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 
+// The fields that name a saved comic, the same ones the rating editor compares.
+const comicIdentity = (issue) => issue
+  ? JSON.stringify([issue.issueId, issue.title, issue.seriesName, issue.number])
+  : null;
+
 export function createIssueView({
   coverUrl,
   decorateResult,
@@ -275,9 +280,14 @@ export function createIssueView({
   }
 
   function currentSavedReference() {
-    return currentResult?.source === 'saved' && savedReference
-      && savedReaderIssue(getState(), currentResult.issue?.issueId) === savedReference
-      ? savedReference : null;
+    if (currentResult?.source !== 'saved' || !savedReference) return null;
+    const now = savedReaderIssue(getState(), currentResult.issue?.issueId);
+    // Saved data is re-read into new objects after this view first paints: on every boot, when the
+    // issue summary cleanup adopts the stored copy, and on a write from another tab. On a reload of a
+    // saved comic's details that left Mark as read and Add note dead about 65ms after they appeared.
+    // The same comic is followed to its new object; a different comic still withdraws them.
+    if (now && now !== savedReference && comicIdentity(now) === comicIdentity(savedReference)) savedReference = now;
+    return now === savedReference ? savedReference : null;
   }
 
   function wire() {
