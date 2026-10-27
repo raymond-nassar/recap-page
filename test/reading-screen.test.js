@@ -14,6 +14,7 @@ import assert from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { rootTokens } from '../scripts/check-spacing.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(here, '..', p), 'utf8');
@@ -23,15 +24,19 @@ const main = read('src/js/main.js');
 const reading = read('src/js/views/reading.js');
 
 test('responsive read boxes allocate real nonoverlapping row space', () => {
-  assert.match(css, /\.cb \{[^}]*width: 24px; height: 24px/);
-  assert.match(css, /grid-template-columns: 44px 44px minmax\(0, 1fr\) auto/);
-  assert.match(css, /\.row \.cb \{ width: 44px; height: 44px; \}/);
+  // The box and its column name the same target token, so they stay the same size as it moves.
+  const tokens = rootTokens(css);
+  assert.equal(tokens.get('--target-min'), '24px');
+  assert.equal(tokens.get('--target'), '44px');
+  assert.match(css, /\.cb \{[^}]*width: var\(--target-min\); height: var\(--target-min\)/);
+  assert.match(css, /grid-template-columns: var\(--target\) 44px minmax\(0, 1fr\) auto/);
+  assert.match(css, /\.row \.cb \{ width: var\(--target\); height: var\(--target\); \}/);
 });
 
 test('narrow hero prose and idle list commands use their available width', () => {
   assert.match(css, /#hero-title \{ clear: both; \}/);
   assert.match(css, /\.list-tools \{[^}]*margin-bottom: var\(--space-4\)/);
-  assert.match(css, /\.list-actions > summary \{[^}]*min-height: 44px/);
+  assert.match(css, /\.list-actions > summary \{[^}]*min-height: var\(--target\)/);
 });
 
 test('native list actions start closed and retain completion and pending controls with focus before close', () => {
@@ -56,7 +61,7 @@ test('native list actions start closed and retain completion and pending control
 });
 
 test('page titles use ordinary focus-visible rather than a forced navigation box', () => {
-  assert.match(css, /:focus-visible \{\s*outline: 3px solid var\(--blue\)/);
+  assert.match(css, /:focus-visible \{\s*outline: var\(--focus-width\) solid var\(--blue\)/);
   assert.doesNotMatch(css, /\.view h1\[tabindex="-1"\]:focus(?!-visible)/);
   assert.match(main, /heading\.setAttribute\('tabindex', '-1'\);\s*heading\.focus/);
 });
@@ -277,11 +282,11 @@ test('Coming up precedes the one native full Reading List disclosure', () => {
 test('the full Reading List summary is a wrapping full-width action', () => {
   const full = css.match(/details\.full \{[^}]*\}/)?.[0] ?? '';
   const summary = css.match(/details\.full > summary \{[^}]*\}/)?.[0] ?? '';
-  assert.match(full, /border: 1px solid var\(--line\)/);
+  assert.match(full, /border: var\(--stroke-1\) solid var\(--line\)/);
   assert.match(full, /background: var\(--card\)/);
   assert.match(summary, /display: flex/);
   assert.match(summary, /flex-wrap: wrap/);
-  assert.match(summary, /min-height: 44px/);
+  assert.match(summary, /min-height: var\(--target\)/);
   assert.match(summary, /width|padding/);
   assert.match(css, /#full-heading \{[^}]*font-size: var\(--t-subtitle\)[^}]*font-weight: 600/);
   assert.match(css, /#full-action \{[^}]*font-weight: 600/);
@@ -297,7 +302,7 @@ test('the full Reading List action and state hooks receive the accepted copy', (
 });
 
 test('all editing commands remain reachable through native List actions', () => {
-  assert.match(css, /\.list-actions-body \{[^}]*border: 1px solid var\(--line\)/);
+  assert.match(css, /\.list-actions-body \{[^}]*border: var\(--stroke-1\) solid var\(--line\)/);
   const ordinaryStrip = css.match(/^\.list-tools \{[^}]*\}/m)?.[0] ?? '';
   assert.match(ordinaryStrip, /display: flex/);
   assert.doesNotMatch(ordinaryStrip, /border:/);
@@ -334,15 +339,15 @@ test('the current row is marked by more than a tint, and the rows carry a rule b
   // The separator is later in the file than `.row.now` at equal specificity, so it has to exclude
   // the marked row by name or it wins that row's top edge back and outlines it on three sides.
   assert.match(css, /\.row \+ \.row:not\(:hover\):not\(\.now\) \{ border-top-color: var\(--line\); \}/);
-  assert.match(css, /\.row\.now \{ box-shadow: inset 3px 0 0 var\(--accent-text\); \}/);
+  assert.match(css, /\.row\.now \{ box-shadow: inset var\(--stroke-3\) 0 0 var\(--accent-text\); \}/);
 });
 
 test('every new surface survives forced colours', () => {
   // An inset shadow and a hairline in a palette token are both discarded by forced colours, so each
   // one that carries meaning needs a replacement the mode is required to honour.
   const forced = css.match(/@media \(forced-colors: active\) \{[\s\S]*$/)[0];
-  assert.match(forced, /\.list-tools \{ border: 1px solid CanvasText; \}/);
-  assert.match(forced, /\.row\.now \{ border: 2px solid Highlight; box-shadow: none; \}/);
+  assert.match(forced, /\.list-tools \{ border: var\(--stroke-1\) solid CanvasText; \}/);
+  assert.match(forced, /\.row\.now \{ border: var\(--stroke-2\) solid Highlight; box-shadow: none; \}/);
   assert.match(forced, /#reading-filters \{ background: Canvas; \}/);
   assert.match(forced, /details\.full, details\.full > summary \{ border-color: CanvasText; background: Canvas; \}/);
 });

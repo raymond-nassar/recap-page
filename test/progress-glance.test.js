@@ -98,6 +98,6 @@ test('the palette gate measures each paint progress at a glance puts on a card, 
       `${part} is painted in ${name}, which the gate does not hold to ${floor} on a card`);
   }
   // Only the fill moves, sliding rather than growing, and the shared reduced-motion rule stops that too.
-  assert.match(rule('.glance-bar > i'), /transform: translateX\(calc\(var\(--glance-share, 0%\) - 100%\)\); transition: transform \.35s ease;/);
+  assert.match(rule('.glance-bar > i'), /transform: translateX\(calc\(var\(--glance-share, 0%\) - 100%\)\); transition: transform var\(--motion-progress\) ease;/);
   assert.doesNotMatch(css.slice(css.indexOf('/* Progress at a glance (#876)')), /animation|@keyframes/);
 });

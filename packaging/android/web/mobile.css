@@ -8,28 +8,28 @@
 
 body { line-height: 1.5; }
 body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
-  min-height: 48px;
-  min-width: 48px;
+  min-height: var(--target-touch);
+  min-width: var(--target-touch);
 }
-body .row-actions-toggle, body .row-actions .mini { min-height: 48px; }
-#marvel-ages-modern-all { min-height: 48px; }
-body #view-home #home-updates :is(button, summary) { min-height: 48px; min-width: 48px; }
+body .row-actions-toggle, body .row-actions .mini { min-height: var(--target-touch); }
+#marvel-ages-modern-all { min-height: var(--target-touch); }
+body #view-home #home-updates :is(button, summary) { min-height: var(--target-touch); min-width: var(--target-touch); }
 body :is(button, .btn, select, input, textarea) { font-size: var(--t-body); }
 body :is(button, .btn, summary) { overflow-wrap: anywhere; white-space: normal; }
 body :is(input[type="text"], input[type="search"], input[type="url"], input[type="file"]) {
-  min-height: 48px;
+  min-height: var(--target-touch);
   max-width: 100%;
 }
-#view-data select, .setting > .setting-ctl, .markdown-export .checkbox { min-height: 48px; }
-#view-data input[type="file"]::file-selector-button { min-height: 48px; }
+#view-data select, .setting > .setting-ctl, .markdown-export .checkbox { min-height: var(--target-touch); }
+#view-data input[type="file"]::file-selector-button { min-height: var(--target-touch); }
 .fp > span, .path > span { display: inline-flex; align-items: center; }
 .field-row, .list-tools, .cta, .filters, .ract, .ask-foot { gap: var(--space-4); }
 .ract { opacity: 1; }
-.row { grid-template-columns: 48px 48px minmax(0, 1fr) auto; }
+.row { grid-template-columns: var(--target-touch) 48px minmax(0, 1fr) auto; }
 .row :is(img, .rf), .row-focus-cover { width: 48px; }
-.row-focus-title { min-height: 48px; display: flex; align-items: center; }
-.row .cb { width: 48px; height: 48px; }
-.breadcrumb a { display: inline-flex; align-items: center; min-height: 48px; }
+.row-focus-title { min-height: var(--target-touch); display: flex; align-items: center; }
+.row .cb { width: var(--target-touch); height: var(--target-touch); }
+.breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
 .setting-ctl, .headright, .hero-body, .chero-body { min-width: 0; }
 .setting-ctl.checkbox { max-width: 100%; white-space: normal; }
 .notice { overflow-wrap: anywhere; }
@@ -71,8 +71,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   margin: 0 auto;
   padding: var(--space-6);
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
-  border: 1px solid var(--line-2);
-  border-radius: 20px 20px 0 0;
+  border: var(--stroke-1) solid var(--line-2);
+  border-radius: var(--radius-feature) var(--radius-feature) 0 0;
   background: var(--card);
   color: var(--text);
   overflow-y: auto;
@@ -109,9 +109,9 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   flex-direction: column; align-items: stretch; gap: var(--space-2); margin: 0; padding: 0; border: 0;
 }
 #android-list-sheet #btn-complete-list:not([hidden]) + #list-actions {
-  border-top: 1px solid var(--line); padding-top: var(--space-2);
+  border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-2);
 }
-#android-list-sheet #list-export { border-block: 1px solid var(--line); padding-block: var(--space-2); }
+#android-list-sheet #list-export { border-block: var(--stroke-1) solid var(--line); padding-block: var(--space-2); }
 #android-list-sheet [hidden] { display: none; }
 
 #android-spotlight-sheet .android-sheet-header { align-items: flex-start; }
@@ -136,7 +136,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
 @media (min-width: 881px) {
   .shell.railed { grid-template-columns: 56px minmax(0, 1fr); }
   .railed .rail { padding-inline: var(--space-2); }
-  body .railed .ri { min-width: 48px; }
+  body .railed .ri { min-width: var(--target-touch); }
 }
 
 @media (max-width: 880px) {
@@ -149,7 +149,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .shell, .shell.railed { min-height: 100dvh; }
   .rail-header { gap: var(--space-4); }
   .rail-toggle { flex-shrink: 0; }
-  body .rail-header .rail-toggle { min-height: 48px; }
+  body .rail-header .rail-toggle { min-height: var(--target-touch); }
   .rail-toggle-label { display: none; }
   .brand[aria-current]::before { content: none; }
   #view-home > .head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: var(--space-4); }
@@ -169,13 +169,13 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
      its outer edge shows. */
   #view-home .home-brand {
     font-size: 6.5vmin; overflow-wrap: normal; paint-order: stroke fill;
-    text-shadow: .0625em .0625em 0 var(--accent);
+    text-shadow: var(--text-shadow-offset);
   }
   #view-home .home-action { display: none; }
   .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }
   .hero-in { padding: var(--space-6); gap: var(--space-6); }
   .hero-in .art, .chero-in .art { max-width: 112px; }
-  .row { grid-template-columns: 48px 48px minmax(0, 1fr); }
+  .row { grid-template-columns: var(--target-touch) 48px minmax(0, 1fr); }
   .row-info, .row-actions { grid-column: 1 / -1; min-width: 0; }
   .row-actions { justify-self: stretch; }
   .row-actions > .ract { flex-wrap: wrap; gap: var(--space-4); }
@@ -191,8 +191,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     content: "";
     width: 8px;
     height: 8px;
-    border-left: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
+    border-left: var(--stroke-2) solid currentColor;
+    border-bottom: var(--stroke-2) solid currentColor;
     transform: rotate(45deg);
     flex: 0 0 auto;
     margin-left: var(--space-2);
@@ -209,8 +209,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     scroll-padding-inline: var(--space-2);
   }
   .filters .fp { position: relative; flex: 0 0 auto; max-width: 100%; }
-  .filters .fp > span { border-radius: 8px; font-size: var(--t-caption); }
-  .filters .fp input:checked + span { box-shadow: inset 0 -3px 0 currentColor; }
+  .filters .fp > span { border-radius: var(--radius-md); font-size: var(--t-caption); }
+  .filters .fp input:checked + span { box-shadow: inset 0 calc(-1 * var(--stroke-3)) 0 currentColor; }
   #reading-filters { padding: var(--space-3) var(--space-2); }
 }
 
@@ -295,7 +295,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   body #view-home #home-updates[open] { width: auto; }
   body #view-home #home-updates-panel {
     position: absolute; width: min(34rem, calc(100vw - 3rem));
-    max-height: calc(100dvh - var(--mobile-nav-height, 80px) - var(--space-6) - 48px - var(--space-4));
+    max-height: calc(100dvh - var(--mobile-nav-height, 80px) - var(--space-6) - var(--target-touch) - var(--space-4));
   }
 }
 
@@ -315,7 +315,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); margin: 0;
     display: flex; flex-wrap: nowrap; align-items: center;
     background: linear-gradient(rgb(var(--teal-line) / 5.882%), rgb(var(--teal-line) / 5.882%)), var(--card);
-    box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 24%);
+    box-shadow: var(--elev-done-bar);
   }
   #home-continue #done-result .grow { margin-inline-end: 0; }
   main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--done-bar-height, 0px) + var(--space-6)); }

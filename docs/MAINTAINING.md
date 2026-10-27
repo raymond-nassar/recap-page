@@ -28,9 +28,10 @@ npm run publication
 ```
 
 All eight run in CI. They check lint and tests, documentation counts, stated file sizes,
-evidence anchors, spacing, contrast and publication content. The browser journeys below are
-manual release checks: they need installed Edge and a driver outside the repository. CI runs four
-of their owners and the accessibility rules pass as well, in [the UI owners job](#the-ui-owners-job).
+evidence anchors, spacing and the design tokens, contrast and publication content. The browser
+journeys below are manual release checks: they need installed Edge and a driver outside the
+repository. CI runs four of their owners and the accessibility rules pass as well, in
+[the UI owners job](#the-ui-owners-job).
 
 Historical-anchor candidate paths use native Windows resolution before containment checks.
 Different spellings of the same directory cannot bypass the worktree boundary. Resolution on
