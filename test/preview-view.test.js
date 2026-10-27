@@ -183,3 +183,35 @@ test('Preview keeps interior padding open and separates saved Open from added st
     delete globalThis.document;
   }
 });
+
+// #830: Preview's foot is held in view while its list scrolls, so it holds the actions only. The offline
+// status reads just above them, with the list, and is still announced as it changes.
+test('Preview puts its offline status above the held actions, not among them', async () => {
+  globalThis.document = { activeElement: null, body: {} };
+  try {
+    const nodes = Object.fromEntries([
+      'add', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'offline', 'offlineStatus', 'paths', 'source',
+    ].map((key) => [key, node()]));
+    const withAttributes = (tag, props, children) => ({
+      ...element(tag, props, children),
+      setAttribute(name, value) { this[name] = value; },
+    });
+    const view = createPreviewView({
+      captureFocus: () => null, el: withAttributes, elements: () => nodes, getState: () => ({ lists: {}, listOrder: [] }),
+      isInLibrary: () => null, issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
+      onAdd: async () => null, onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },
+      onOpen: () => {}, presentation: { attributionLine: () => null }, restoreFocus: () => {},
+    });
+    await view.open(list('one'));
+    assert.deepEqual(nodes.offline.children.map((child) => child.tag), ['button', 'button']);
+    assert.equal(nodes.offline.children[0].dataset.act, 'offline');
+    assert.equal(nodes.offlineStatus.children.length, 1);
+    const [status] = nodes.offlineStatus.children;
+    assert.equal(status.role, 'status');
+    assert.equal(status['aria-live'], 'polite');
+    assert.equal(status.textContent, 'Offline preparation is not available in this browser.');
+    view.invalidate();
+  } finally {
+    delete globalThis.document;
+  }
+});

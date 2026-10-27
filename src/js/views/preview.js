@@ -295,7 +295,12 @@ export function createPreviewView({
     nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
     nodes.add.replaceChildren(...addControls(list));
     const offline = elements().offline;
-    if (offline) offline.replaceChildren(...(createOfflineControls(list) || []));
+    if (offline) {
+      const [action, cancel, status] = createOfflineControls(list);
+      offline.replaceChildren(action, cancel);
+      // #830: the status reads just above the held actions, so it scrolls with the list.
+      elements().offlineStatus?.replaceChildren(status);
+    }
   }
 
   async function loadIssues(list) {

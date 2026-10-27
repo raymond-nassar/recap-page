@@ -21,6 +21,7 @@ import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
 import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
+import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
   parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
@@ -4177,6 +4178,96 @@ async function confirmationQuestions(page, label, viewport) {
   console.log(`CHECKED ${label}: questions ${JSON.stringify({ restore, undo, saved, erase })}`);
 }
 
+// #830: the dialogs that now share the questions' shell, opened the way a reader on a phone reaches
+// them, at the sizes and text scale #849 measured the questions at: the rating from an issue's details,
+// the list feedback note from a completed list, the personal checklist from List options, and a guide's
+// Preview from the catalog. Each closes with Android Back. The list is completed only after the
+// questions above, so they are asked exactly as #849 measured them.
+async function shellDialogs(page, label, viewport) {
+  await page.evaluate((key, format, stateKey) => {
+    const list = JSON.parse(localStorage.getItem(stateKey)).lists.questions;
+    localStorage.setItem(key, JSON.stringify({
+      format, version: 1,
+      records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+    }));
+  }, LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, KEY);
+  await page.reload({ waitUntil: 'networkidle0' });
+  const readList = async () => {
+    await page.evaluate(() => { location.hash = '#/read/questions'; });
+    await page.waitForSelector('#view-read:not([hidden])');
+  };
+  const dialogs = [
+    {
+      name: 'rating', selector: '#issue-rating-dialog',
+      async open() {
+        await page.evaluate(() => { location.hash = '#/issue/849101?list=questions'; });
+        await click(page, '#issue-rating-trigger');
+      },
+    },
+    {
+      name: 'list feedback', selector: '#list-feedback',
+      async open() {
+        await readList();
+        await click(page, '#btn-list-feedback-guide');
+      },
+    },
+    {
+      name: 'personal checklist', selector: '#markdown-export',
+      async open() {
+        await readList();
+        const sheet = await page.$('#android-list-options');
+        if (sheet && await sheet.evaluate((node) => !!node.getClientRects().length)) {
+          await click(page, '#android-list-options');
+        } else {
+          await page.evaluate(() => {
+            for (const group of document.querySelectorAll('#list-actions, #list-export')) group.open = true;
+          });
+        }
+        await click(page, '#btn-export-md');
+      },
+    },
+    {
+      // This mode's catalog holds the 20 issues of House of M, whose Preview runs past a phone's screen.
+      name: 'Preview', selector: '#preview', innerScroll: true, head: true,
+      async open() {
+        await route(page, 'catalog');
+        const opener = `#catalog-results [data-story="list:${orderEntry.id}"] [data-act="preview"]`;
+        await page.waitForSelector(opener);
+        // A guide's card sits in its era, which may be a closed group.
+        await page.$eval(opener, (button) => {
+          for (let node = button.parentElement; node; node = node.parentElement) {
+            if (node.tagName === 'DETAILS') node.open = true;
+          }
+        });
+        await click(page, opener);
+        await page.waitForFunction((count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
+          {}, orderEntry.count);
+      },
+    },
+  ];
+  const summary = {};
+  for (const dialog of dialogs) {
+    await dialog.open();
+    await page.waitForSelector(`${dialog.selector}[open]`);
+    const measured = await measureShellDialog(page, dialog.selector);
+    for (const [claim, holds, detail] of shellVerdicts(measured, dialog)) {
+      check(holds, `${label}: the ${dialog.name} dialog ${claim} ${JSON.stringify(detail)}`);
+    }
+    // Doubled text on a phone is where a dialog runs past its screen, so there the checklist must
+    // actually scroll, or the held answers above would pass without ever having been held.
+    if (dialog.name === 'personal checklist' && viewport.textScale) {
+      check(measured.state.overflows, `${label}: at 200% text the personal checklist overflows its dialog`);
+    }
+    await screenshot(page, label, `shell-${dialog.name.replace(/\s+/g, '-').toLowerCase()}`);
+    // The desktop entry is the desktop build, which has no Android Back, so it closes as Windows does.
+    // Either way the next dialog waits for this one's close event, not just its open attribute.
+    if (viewport.desktop) await escapeShellDialog(page, dialog.selector);
+    else await backDialog(page);
+    summary[dialog.name] = { overflows: measured.state.overflows, footHeight: measured.state.footHeight, stops: measured.walk.length };
+  }
+  console.log(`CHECKED ${label}: shell dialogs ${JSON.stringify(summary)}`);
+}
+
 // #833: an issue search long enough that its 50 rendered comics run well past a phone screen.
 const BAR_ISSUES = Array.from({ length: 50 }, (_, index) => ({
   id: 900400 + index + 1,
@@ -4834,6 +4925,7 @@ try {
     }
     if (confirmations) {
       await confirmationQuestions(page, label, viewport);
+      await shellDialogs(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

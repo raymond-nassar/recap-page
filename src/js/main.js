@@ -72,6 +72,7 @@ import { wireTooltips } from './lib/tooltips.js';
 import { saveDownload, downloadMessage } from './lib/download.js';
 import { setIssueRating } from './lib/model.js';
 import { createIssueRatingView } from './views/issue-rating.js';
+import { holdDialogEdges } from './lib/dialogShell.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -2788,6 +2789,7 @@ export function boot() {
   homeUpdatesView.wire();
   previewView.wire();
   wireAsk();
+  for (const dialog of document.querySelectorAll('dialog.ask, dialog.preview')) holdDialogEdges(dialog);
   completionView.wire();
   listHistory.load();
   renderAll();
@@ -3430,6 +3432,7 @@ const previewView = createPreviewView({
   elements: () => ({
     add: $('#preview-add'),
     offline: $('#preview-offline'),
+    offlineStatus: $('#preview-offline-status'),
     body: $('#preview-body'),
     close: $('#preview-close'),
     description: $('#preview-desc'),

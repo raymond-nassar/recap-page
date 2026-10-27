@@ -547,15 +547,23 @@ must stay inside its row with its full text kept: cut short with an ellipsis at 
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.
 
-`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo and saved-copy
-questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360, and at the
-shared desktop entry at 1280x900. Each must open at its title and the start of what it says, with
-Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of the
-question readable above them once scrolled to (#849). With doubled text the restore question must
+`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo, saved-copy
+and erase questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360,
+and at the shared desktop entry at 1280x900. Each must open at its title and the start of what it
+says, with Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of
+the question readable above them once scrolled to (#849). With doubled text the restore question must
 actually overflow its dialog, so the case is exercised rather than passed by a question that fits.
-On short landscape screens a confirmation widens so its answers share one row. The walk restores,
-undoes and declines the saved copy, and must leave the reading data as it found it. These are Edge
-web checks, not native fontScale or TalkBack acceptance.
+On short landscape screens a question-sized dialog widens so its answers share one row. The walk
+restores, undoes and declines the saved copy, and must leave the reading data as it found it. With
+the list then completed, it opens the dialogs that share the questions' shell the way a phone reader
+reaches them: the rating from an issue's details, the list feedback note, the personal checklist
+from List options, and House of M's Preview from the catalog. Each must open at its start with its
+title clear of what it holds and its focus inside, hold its answers in view with its scroll padded
+clear of them, and keep every control Tab reaches clear of them. Preview, whose only Close is in its
+head, must hold that head in view to the end of its list as well. Each but Preview, whose list still
+scrolls inside it, must also be the one thing that scrolls and read to its end above its answers
+(#830). With doubled text on a phone the checklist must overflow. Each closes with Android Back, or
+Escape at the desktop entry. These are Edge web checks, not native fontScale or TalkBack acceptance.
 
 `npm run android:browser -- --only=selection-bar` checks Search's selection bar on a 50-comic
 issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both

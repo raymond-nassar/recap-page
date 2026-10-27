@@ -123,6 +123,11 @@ checked on 2026-10-03. This is an app-wide standard, not a convention limited to
   contained and provide Escape and a visible cancel/close control. Cancel leaves the action
   unapplied. Restore a usable opener, or choose a logical successor when it is gone or the
   task has advanced. Do not leave focus inside a hidden disclosure or stack modal questions.
+  A dialog that asks or shows something wears the shared shell, the `ask` or `preview` class
+  with its actions in one `dialog-foot` measured by `holdDialogEdges`, so the dialog is the one
+  thing that scrolls and its actions stay in view with focus scrolled clear of them. Keep only
+  actions in that foot: it is held on screen, so notes in it cost every reader the space. A
+  dialog whose only close control sits at its top holds that too, in a `dialog-head`.
   Route headings retain focus for orientation, but pointer navigation must not force a focus box
   around a page title. Keep normal `:focus-visible` indicators for keyboard navigation.
 - **Fields and errors.** Associate a visible label with each visible field. A placeholder is not a
@@ -173,6 +178,7 @@ owners for the changed contract; extend missing coverage with observable behavio
 |---|---|---|
 | Destinations and route intent | `formatRoute` and `isPlainNavigation` in `src/js/lib/route.js` | `test/route.test.js`; `semantic-destinations`, `narrow-navigation` |
 | Questions, cancellation and focus | `askConfirm`, `askText` and `askNote` in `src/js/ask.js` | `test/ask.test.js`; `responsive-controls` |
+| Dialog shell | The `ask` or `preview` class, a `dialog-foot`, and `holdDialogEdges` in `src/js/lib/dialogShell.js` | `test/dialog-shell.test.js`; `dialog-shell` |
 | Field validation | `wireFieldValidation` in `src/js/views/shared/field-validation.js` | `test/add-view.test.js`; `responsive-controls` |
 | Decorative icons | `uiIcon` in `src/js/lib/uiIcon.js` and the local SVG symbols | `test/portable-icons.test.js` |
 | Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |

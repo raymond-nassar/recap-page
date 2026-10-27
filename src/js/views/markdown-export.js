@@ -1,4 +1,5 @@
 import { serializeChecklist } from '../lib/markdown.js';
+import { holdDialogEdges } from '../lib/dialogShell.js';
 
 export function chooseMarkdownExport(list) {
   const opener = document.activeElement;
@@ -24,7 +25,7 @@ export function chooseMarkdownExport(list) {
       <p class="rail-hint">Personal notes are left out unless you select them.</p>
       <p><label for="markdown-export-preview">File preview</label>
         <textarea id="markdown-export-preview" rows="8" readonly spellcheck="false"></textarea></p>
-      <div class="ask-foot">
+      <div class="ask-foot dialog-foot">
         <button type="button" class="btn btn-g" data-action="cancel">Cancel</button>
         <button type="submit" class="btn" value="download">Download Markdown</button>
       </div>
@@ -46,9 +47,11 @@ export function chooseMarkdownExport(list) {
   });
   dialog.querySelector('[data-action="cancel"]').addEventListener('click', () => dialog.close(''));
   document.body.append(dialog);
+  const footObserver = holdDialogEdges(dialog);
   return new Promise((resolve, reject) => {
     dialog.addEventListener('close', () => {
       const result = dialog.returnValue === 'download' ? preview.value : null;
+      footObserver?.disconnect();
       dialog.remove();
       if (opener?.isConnected && !opener.disabled && !opener.inert && opener.getClientRects().length) {
         opener.focus();
@@ -58,6 +61,7 @@ export function chooseMarkdownExport(list) {
     try {
       dialog.showModal();
     } catch (error) {
+      footObserver?.disconnect();
       dialog.remove();
       reject(error);
     }

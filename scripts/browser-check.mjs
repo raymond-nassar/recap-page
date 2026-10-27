@@ -52,6 +52,7 @@ import { SCHEMA_VERSION, addIssuesToList, createEmptyState, createList, normaliz
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
+import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -1907,7 +1908,8 @@ async function checkOfflineSelectedList(browser, origin, t) {
     const idle = await page.$eval('#preview-offline', (node) => ({
       action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
       disabled: node.querySelector('[data-act="offline"]')?.disabled,
-      status: node.querySelector('[role="status"]')?.textContent.trim(),
+      // #830: the status reads above the held actions rather than among them.
+      status: document.querySelector('#preview-offline-status [role="status"]')?.textContent.trim(),
     }));
     t.check('selected Reading List starts as idle with an enabled offline action',
       idle.action === 'Make available offline' && idle.disabled === false,
@@ -1921,7 +1923,7 @@ async function checkOfflineSelectedList(browser, origin, t) {
     const ready = await page.$eval('#preview-offline', (node) => ({
       action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
       disabled: node.querySelector('[data-act="offline"]')?.disabled,
-      status: node.querySelector('[role="status"]')?.textContent.trim(),
+      status: document.querySelector('#preview-offline-status [role="status"]')?.textContent.trim(),
     }));
     const inventory = await page.evaluate(async (listId, file) => {
       const names = (await caches.keys()).filter((name) => name.startsWith('mrt-offline-content-v1-'));
@@ -15581,6 +15583,75 @@ SCENARIOS.push({
     await page.waitForSelector('#view-read:not([hidden])');
     t.check('saved Preview Open remains actionable and enters its Reading List',
       await page.$eval('#view-read', (view) => !view.hidden));
+  },
+});
+
+// #830: every dialog that asks or shows something shares one shell. Each opens at its start with its
+// title clear of what it holds, is the one thing in it that scrolls, holds its answers in view, and keeps
+// every control above them clear of them as focus moves. Preview, whose only Close is in its head,
+// holds that head too. Measured at 1280x900, at 640x450, which is a 1280x900 window at 200% zoom, and
+// on a 390px phone. The long guide's Preview lists 219 comics, so it has to scroll at every size.
+const SHELL_DIALOGS = [
+  { name: 'confirmation', selector: '#ask', from: '/#/read/fixture', opener: '#btn-delete-list' },
+  { name: 'text question', selector: '#ask', from: '/#/read/fixture', opener: '#btn-rename-list', plain: true },
+  { name: 'note question', selector: '#ask', from: '/#/read/fixture', opener: '#btn-list-note', plain: true },
+  { name: 'rating', selector: '#issue-rating-dialog', from: '/#/issue/900001?list=fixture', opener: '#issue-rating-trigger' },
+  { name: 'list feedback', selector: '#list-feedback', from: '/#/read/fixture', opener: '#btn-list-feedback-guide' },
+  { name: 'Markdown export', selector: '#markdown-export', from: '/#/read/fixture', opener: '#btn-export-md' },
+  {
+    name: 'Preview', selector: '#preview', from: '/?long=1#/catalog', innerScroll: true, head: true,
+    opener: '#catalog-results [data-story="list:browser-check"] [data-act="preview"]',
+  },
+];
+
+async function shellDialog(page, t, dialog) {
+  await t.step('open-dialog', async () => {
+    await open(page, dialog.from);
+    await revealReadingControl(page, dialog.opener);
+    await page.waitForSelector(dialog.opener, { visible: true, timeout: 15000 });
+    await page.focus(dialog.opener);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector(`${dialog.selector}[open]`, { timeout: 15000 });
+    if (dialog.selector === '#preview') {
+      await page.waitForFunction(() => document.querySelectorAll('#preview-body .preview-issue-link').length === 219,
+        { timeout: 15000 });
+    }
+  });
+  const measured = await t.step('measure-dialog', () => measureShellDialog(page, dialog.selector));
+  await t.step('close-dialog', () => escapeShellDialog(page, dialog.selector));
+  return measured;
+}
+
+SCENARIOS.push({
+  id: 'dialog-shell',
+  title: 'every dialog opens at its start in one shell, with its answers held in view and focus clear of them',
+  operations: ['open-dialog', 'measure-dialog', 'close-dialog'],
+  async run(page, t) {
+    await seedFixtureState(page);
+    // A completed list, so its wrap-up offers the list feedback note.
+    await page.evaluate(() => {
+      const list = JSON.parse(localStorage.getItem('mrt.state.v2')).lists.fixture;
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    for (const [width, height] of [[1280, 900], [640, 450], [390, 844]]) {
+      await page.setViewport({ width, height });
+      const surfaces = [];
+      for (const dialog of SHELL_DIALOGS) {
+        const measured = await shellDialog(page, t, dialog);
+        for (const [claim, holds, detail] of shellVerdicts(measured, dialog)) {
+          t.check(`${width}x${height} ${dialog.name} ${claim}`, holds, JSON.stringify(detail));
+        }
+        surfaces.push({ dialog: dialog.name, ...measured.state.surface });
+      }
+      const [first] = surfaces;
+      t.check(`${width}x${height} every dialog wears one surface, corner, padding and scrim`,
+        surfaces.every(({ dialog: _name, ...surface }) => JSON.stringify(surface)
+          === JSON.stringify({ ...first, dialog: undefined })),
+        JSON.stringify(surfaces));
+    }
   },
 });
 

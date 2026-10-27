@@ -215,23 +215,6 @@ test('a confirmation opens at its title with Cancel focused, and a text question
   }
 });
 
-// #849: what keeps Cancel in view once a confirmation opens at its title is the held footer, which is
-// stylesheet work the doubles above cannot see. Its offsets are the dialog's padding and the question's
-// own spacing, so the three are pinned together: moving one without the others shows a strip of the
-// scrolling question below the footer or shifts the answers in a question that fits.
-test('a confirmation holds its answers in view while the question scrolls under them', async () => {
-  const { readFile } = await import('node:fs/promises');
-  const css = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
-  const rule = css.match(/#ask\[data-question="confirm"\] \.ask-foot \{([^}]*)\}/)?.[1] ?? '';
-  assert.match(rule, /position: sticky; bottom: calc\(-1 \* var\(--space-7\)\); background: var\(--card\);/);
-  assert.match(rule, /margin: calc\(-1 \* var\(--space-6\)\) calc\(-1 \* var\(--space-8\)\) calc\(-1 \* var\(--space-7\)\);/);
-  assert.match(rule, /padding: var\(--space-6\) var\(--space-8\) var\(--space-7\);/);
-  assert.match(css, /\.ask \{[^}]*border-radius: var\(--radius-xl\); padding: var\(--space-7\) var\(--space-8\);/);
-  assert.match(css, /\.ask p \{ margin: 0 0 var\(--space-6\);/);
-  // At 800x360 with doubled text the answers took two rows of a 480px dialog and hid the first line.
-  assert.match(css, /@media \(max-height: 480px\) and \(min-width: 560px\) \{\s*#ask\[data-question="confirm"\] \{ width: min\(40rem, calc\(100vw - 2rem\)\); \}\s*\}/);
-});
-
 test('an opener removed before close leaves focus untouched by this code', async () => {
   try {
     const { askConfirm, dlg } = await wired();
