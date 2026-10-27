@@ -966,57 +966,59 @@ export function createReadingView({
   function issueRowActions(item, listId, expanded = false) {
     const panelId = `row-actions-${item.issueId}`;
     const reader = readerPresentation(item, 'saved');
+    // UX-13 (#830): the commands come in groups set apart by a rule: opening the comic, its place in
+    // the order and its availability, each a group named for assistive technology, then deferral,
+    // then removal last and alone. As nine equal buttons in one grid, Remove carried the weight of
+    // Move up and no availability choice showed which one was in force.
+    const group = (name, children, props = {}) => el('div', {
+      class: 'ract-group', role: name ? 'group' : null, 'aria-label': name, ...props,
+    }, children);
     const panel = el('div', { class: 'ract', id: panelId }, [
-      el('button', {
-        type: 'button', class: 'mini',
-        'aria-label': labelledName('Read', `${item.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
-        dataset: { key: item.issueId, act: 'open' },
-        hidden: !reader.launchable,
-        onclick: (e) => launch(item, e),
-      }, 'Read'),
-      ...(reader.temporary ? [el('span', {
-        class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
-      })] : []),
-      detailUrl(item)
-        ? el('a', {
+      group('Open', [
+        el('button', {
+          type: 'button', class: 'mini',
+          'aria-label': labelledName('Read', `${item.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
+          dataset: { key: item.issueId, act: 'open' },
+          hidden: !reader.launchable,
+          onclick: (e) => launch(item, e),
+        }, 'Read'),
+        ...(reader.temporary ? [el('span', {
+          class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
+        })] : []),
+        detailUrl(item)
+          ? el('a', {
+            class: 'mini has-tooltip',
+            href: detailUrl(item),
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            'aria-label': labelledName('Info', `${item.title} on marvel.com`),
+            dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
+          }, 'Info')
+          : null,
+      ], { hidden: !reader.launchable && !detailUrl(item) }),
+      group('Order', [
+        el('button', {
+          type: 'button',
           class: 'mini has-tooltip',
-          href: detailUrl(item),
-          target: '_blank',
-          rel: 'noopener noreferrer',
-          'aria-label': labelledName('Info', `${item.title} on marvel.com`),
-          dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
-        }, 'Info')
-        : null,
-      !item.read || item.deferred ? el('button', {
-        type: 'button',
-        class: 'mini',
-        'aria-label': labelledName(item.deferred
-          ? item.read ? 'Clear deferral' : 'Resume in this list'
-          : 'Defer for later', item.title),
-        dataset: { key: item.issueId, act: 'defer' },
-        onclick: () => changeDeferral(listId, item.issueId, !item.deferred),
-      }, item.deferred ? item.read ? 'Clear deferral' : 'Resume in this list' : 'Defer for later') : null,
-      el('button', {
-        type: 'button',
-        class: 'mini has-tooltip',
-        'aria-label': labelledName('Move up', item.title),
-        dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
-        onclick: () => moveSavedIssue(listId, item.issueId, -1),
-      }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↑' }),
-        el('span', { class: 'mini-label', text: 'Move up' }),
+          'aria-label': labelledName('Move up', item.title),
+          dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
+          onclick: () => moveSavedIssue(listId, item.issueId, -1),
+        }, [
+          el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↑' }),
+          el('span', { class: 'mini-label', text: 'Move up' }),
+        ]),
+        el('button', {
+          type: 'button',
+          class: 'mini has-tooltip',
+          'aria-label': labelledName('Move down', item.title),
+          dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
+          onclick: () => moveSavedIssue(listId, item.issueId, 1),
+        }, [
+          el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↓' }),
+          el('span', { class: 'mini-label', text: 'Move down' }),
+        ]),
       ]),
-      el('button', {
-        type: 'button',
-        class: 'mini has-tooltip',
-        'aria-label': labelledName('Move down', item.title),
-        dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
-        onclick: () => moveSavedIssue(listId, item.issueId, 1),
-      }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↓' }),
-        el('span', { class: 'mini-label', text: 'Move down' }),
-      ]),
-      ...[
+      group('Availability', [
         ['available', 'Mark as available'],
         ['unavailable', 'Mark as unavailable'],
         [null, 'Clear availability override'],
@@ -1024,6 +1026,9 @@ export function createReadingView({
         type: 'button',
         class: 'mini has-tooltip availability-choice',
         'aria-label': labelledName(label, item.title),
+        // The choice in force reports itself pressed, and pressing it again clears it, as the enjoyment
+        // thumbs do. Clear is an action rather than a state, so it reports none.
+        'aria-pressed': value ? String((item.override ?? null) === value) : null,
         dataset: {
           key: item.issueId,
           act: `override-${value ?? 'clear'}`,
@@ -1034,14 +1039,24 @@ export function createReadingView({
             announce('That comic is no longer in this Reading List.');
             return;
           }
-          const { ok } = updateState((state) => setOverride(state, item.issueId, value));
-          if (ok) announce(`${item.title}: ${value ? `you marked ${value}` : 'availability override cleared'}.`);
+          const next = value !== null && (getState().overrides[item.issueId] ?? null) === value ? null : value;
+          const { ok } = updateState((state) => setOverride(state, item.issueId, next));
+          if (ok) announce(`${item.title}: ${next ? `you marked ${next}` : 'availability override cleared'}.`);
         },
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '⚑' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: value ? '✓' : '⚑' }),
         el('span', { class: 'mini-label', text: label }),
-      ])),
-      el('button', {
+      ])), { class: 'ract-group ract-availability' }),
+      !item.read || item.deferred ? group(null, [el('button', {
+        type: 'button',
+        class: 'mini',
+        'aria-label': labelledName(item.deferred
+          ? item.read ? 'Clear deferral' : 'Resume in this list'
+          : 'Defer for later', item.title),
+        dataset: { key: item.issueId, act: 'defer' },
+        onclick: () => changeDeferral(listId, item.issueId, !item.deferred),
+      }, item.deferred ? item.read ? 'Clear deferral' : 'Resume in this list' : 'Defer for later')]) : null,
+      group(null, [el('button', {
         type: 'button',
         class: 'mini mini-danger has-tooltip',
         'aria-label': labelledName('Remove from list', item.title),
@@ -1050,7 +1065,7 @@ export function createReadingView({
       }, [
         el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '✕' }),
         el('span', { class: 'mini-label', text: 'Remove from list' }),
-      ]),
+      ])]),
     ]);
     const toggle = el('button', {
       type: 'button',

@@ -87,10 +87,12 @@ export const PAIRS = [
   ['--logo-fill', '--card', LARGE, 'the All read line that opens the wrap-up card, in the masthead treatment (#874)'],
   ['--accent-text', '--bg', BODY, 'the brand as text on the page: an eyebrow, the progress ring'],
   ['--accent-text', '--card', BODY, 'the brand as text on a card, the selected filter pill, and the read figure of progress at a glance (#876)'],
+  ['--accent-text', '--card-2', LARGE, 'the edge of the availability choice in force in a row\'s open actions, which sit on a raised panel (UX-13)'],
   ['--red-fg', '--bg', BODY, 'the Delete list hover, which is danger text on the page'],
   ['--red-fg', '--card', BODY, 'a danger hover and the unavailable badge'],
   ['--red-fg', '--card-2', BODY, 'the Remove button on a salvage row, which is on a raised card'],
   ['--red-fg-2', '--card', BODY, 'an error notice'],
+  ['--red-fg-2', '--card-2', BODY, 'Remove from list at rest in a row\'s open actions, which sit on a raised panel (UX-13)'],
   ['--teal', '--bg', BODY, 'the available badge on the page'],
   ['--teal', '--card', BODY, 'the available badge on a card'],
   ['--teal', '--card-2', BODY, 'the Start here badge on a catalog row'],
@@ -159,7 +161,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2246`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2260`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -222,7 +224,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2222`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2236`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -236,8 +238,8 @@ export const SURFACES = {
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:1906-1908`) and 19% over the raised card on hover
-  // (`src/styles.css:1924-1926`).
+  // card at rest (`src/styles.css:1920-1922`) and 19% over the raised card on hover
+  // (`src/styles.css:1938-1940`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],

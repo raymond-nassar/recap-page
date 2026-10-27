@@ -1203,12 +1203,21 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .row-actions.is-open { grid-column: 1 / -1; justify-self: stretch; }
 .row-actions:not(.is-open) > .ract { display: none; }
 .row-actions.is-open > .ract {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3);
   width: 100%; max-width: 36rem; min-width: 0; margin-top: var(--space-3); margin-left: auto;
   padding: var(--space-3); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   background: var(--card-2); box-shadow: var(--elev-row-actions);
 }
-.row-actions .ract > .rail-hint { grid-column: 1 / -1; text-align: left; }
+/* UX-13 (#830): each group is a row of equal columns, and a hairline sets every group after the
+   first shown apart, so Remove from list stands alone and last. The three availability choices share
+   one row wherever the menu has two columns. Measured at 640x450, giving Clear a row of its own made
+   the menu a sixth row taller and put its first group under the sticky filters once centred; a rule
+   with 6px either side still sets groups further apart than the 8px between commands within one. */
+.ract-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ract-group[hidden] { display: none; }
+.ract-group:not([hidden]) ~ .ract-group { border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-3); }
+.row-actions .ract-group > .rail-hint { grid-column: 1 / -1; text-align: left; }
 .mini {
   border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
   border-radius: var(--radius-compact); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
@@ -1216,6 +1225,11 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .mini-label { display: none; }
 .availability-choice .mini-label { display: inline; }
 .availability-choice .mini-icon { display: none; }
+/* The choice in force carries a check mark and a heavier label as well as the brand edge, so it is not
+   told apart by colour alone. */
+.availability-choice[aria-pressed="true"] { color: var(--text); font-weight: 600; border-color: var(--accent-text); }
+.availability-choice[aria-pressed="true"] .mini-icon { display: inline; }
+.ract .mini-danger { color: var(--red-fg-2); }
 .mini:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .mini-danger:hover { color: var(--red-fg); }
 .ract .mini {
@@ -1224,7 +1238,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .row-actions .mini-label { display: inline; }
 @media (max-width: 620px) {
-  .row-actions.is-open > .ract { grid-template-columns: minmax(0, 1fr); }
+  .ract-group, .ract-availability { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ============================================================ forms, cards, results */
@@ -2339,6 +2353,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .row.now { border: var(--stroke-2) solid Highlight; box-shadow: none; }
   #reading-filters { background: Canvas; }
   details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
+  .availability-choice[aria-pressed="true"] { border-color: Highlight; }
 }
 
 /* ============================================================ library and progress shape

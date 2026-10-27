@@ -140,7 +140,7 @@ Severity: 2, single-rater estimate
 Rationale: affects repeat use rather than first use, and the cost is a slower path rather than a
 blocked one
 Confidence: Observed
-Evidence: `src/index.html:318-319`, `src/js/views/reading.js:1131-1151`
+Evidence: `src/index.html:318-319`, `src/js/views/reading.js:1146-1166`
 Source: heuristic 6 sweep, code-only framing
 Impact: the hero button carries a `kbd` hint, so the shortcut is discoverable at that one spot and
 nowhere else. There is no shortcut reference anywhere in the interface, so a reader who has
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:851`,
-  `src/styles.css:2187-2189`.
+  `src/styles.css:2201-2203`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1144-1147` and `src/styles.css:2543-2544`, sizing both from `src/styles.css:82-83`.
+`src/styles.css:1144-1147` and `src/styles.css:2558-2559`, sizing both from `src/styles.css:82-83`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -379,8 +379,8 @@ breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
 Resolved: all screen sizes now show a visible More actions control, and opening it reveals full text
 labels for every row action. Closed actions take no layout space; hover alone does not reveal them.
-The responsive presentation is defined at `src/styles.css:1201-1228`, and the disclosure preserves
-keyboard focus and Escape handling at `src/js/views/reading.js:966-1078`.
+The responsive presentation is defined at `src/styles.css:1201-1242`, and the disclosure preserves
+keyboard focus and Escape handling at `src/js/views/reading.js:966-1093`.
 
 #### UX-A-006: Status messages are announced twice
 
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2187-2189`.
+`src/styles.css:2201-2203`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -649,7 +649,7 @@ Severity: 3, single-rater estimate
 Rationale: breaks the product's only workflow shortcut at exactly the moment a reader would repeat
 it, and the failure is silent
 Confidence: Observed
-Evidence: `src/js/views/reading.js:1131-1151`, `src/index.html:318-319`
+Evidence: `src/js/views/reading.js:1146-1166`, `src/index.html:318-319`
 Source: heuristic 7 sweep, code-only framing, confirmed against the live tab ring
 Impact: the shortcut handler returns early when the active element is a button, link or input. The
 hero advertises D for Done, next. Clicking that button leaves it focused, so the very next press of
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:851`, `src/styles.css:2187-2189`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:851`, `src/styles.css:2201-2203`.
 
 ## Step 5: Information architecture and generative artifacts
 

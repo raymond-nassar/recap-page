@@ -15857,7 +15857,7 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'defer', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'remove'];
+        const actions = ['open', 'info', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove'];
         await page.mouse.move(0, 0);
         await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
         await page.keyboard.press('Enter');
@@ -15956,6 +15956,156 @@ SCENARIOS.push({
       !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
     t.check('layout and targeting leave saved reading progress and list contents untouched',
       await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+  },
+});
+
+// UX-13 (#830): a row's commands come in named groups set apart by a rule: Open, Order, Availability,
+// then Defer, then Remove from list last and alone in the danger colour. The availability choice in
+// force reports itself pressed, and pressing it again clears it.
+SCENARIOS.push({
+  id: 'row-action-groups',
+  title: 'a row\'s commands come in named groups, the override in force reads as pressed, and Remove stands apart and last',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+    const first = ORDER.items[0];
+    const toggle = `#rows [data-key="${first.issueId}"][data-act="more"]`;
+    const panel = `#row-actions-${first.issueId}`;
+    const command = (act) => `${panel} [data-act="${act}"]`;
+    await page.waitForSelector(toggle, { timeout: 15000 });
+    await page.$eval(toggle, (node) => { node.scrollIntoView({ block: 'center' }); node.focus(); });
+    await page.keyboard.press('Enter');
+    await page.waitForFunction((selector) => document.querySelector(selector)?.checkVisibility(), {}, panel);
+
+    const layout = () => page.$eval(panel, (node) => [...node.children].map((group) => {
+      const style = getComputedStyle(group);
+      return {
+        role: group.getAttribute('role'), name: group.getAttribute('aria-label'), shown: group.checkVisibility(),
+        rule: style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+        acts: [...group.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
+          .map((control) => control.dataset.act),
+      };
+    }));
+    const groups = (await layout()).filter((group) => group.shown);
+    t.check('the panel holds Open, Order, Availability, Defer and Remove in that order, each group after the first ruled apart',
+      JSON.stringify(groups.map((group) => group.acts.filter((act) => act !== 'open' && act !== 'info')))
+        === JSON.stringify([[], ['up', 'down'], ['override-available', 'override-unavailable', 'override-clear'], ['defer'], ['remove']])
+      && groups[0].acts.length > 0 && groups[0].acts.every((act) => act === 'open' || act === 'info')
+      && groups[0].rule === 0 && groups.slice(1).every((group) => group.rule >= 1),
+      JSON.stringify(groups));
+    const ax = await page.accessibility.snapshot({ root: await page.$(panel), interestingOnly: false });
+    const named = [];
+    const visit = (node) => {
+      if (node?.role === 'group') named.push(node.name);
+      for (const child of node?.children ?? []) visit(child);
+    };
+    visit(ax);
+    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Availability']),
+      JSON.stringify(named));
+
+    const pressed = async () => {
+      const states = [];
+      for (const act of ['override-available', 'override-unavailable', 'override-clear']) {
+        const node = await page.accessibility.snapshot({ root: await page.$(command(act)), interestingOnly: false });
+        states.push(node?.pressed ?? null);
+      }
+      return states;
+    };
+    const saved = async () => (await readState(page)).overrides[first.issueId] ?? null;
+    const focusedAct = () => page.evaluate(() => document.activeElement?.dataset?.act ?? null);
+    const rowBadge = (state) => page.waitForFunction((issueId, name) => {
+      const row = document.querySelector(`#rows [data-key="${issueId}"][data-act="more"]`)?.closest('.row');
+      return name ? !!row?.querySelector(`.badge-${name}`) : !row?.querySelector('[class*="badge-override-"]');
+    }, { timeout: 15000 }, first.issueId, state);
+    t.check('with no override in force, neither choice is pressed and Clear reports no state',
+      JSON.stringify(await pressed()) === JSON.stringify([false, false, null]), JSON.stringify(await pressed()));
+
+    await page.focus(command('override-unavailable'));
+    await page.keyboard.press('Enter');
+    await rowBadge('override-unavailable');
+    const marked = await page.$eval(command('override-unavailable'), (node) => {
+      const icon = node.querySelector('.mini-icon');
+      const probe = document.createElement('span');
+      probe.style.setProperty('color', 'var(--accent-text)');
+      node.closest('.ract').append(probe);
+      const accent = getComputedStyle(probe).color;
+      probe.remove();
+      return { icon: icon.textContent, iconShown: icon.checkVisibility(), weight: Number(getComputedStyle(node).fontWeight),
+        edge: getComputedStyle(node).borderTopColor === accent };
+    });
+    t.check('Enter on Mark as unavailable saves it, reports it pressed, and keeps focus on it through the row\'s rebuild',
+      await saved() === 'unavailable' && JSON.stringify(await pressed()) === JSON.stringify([false, true, null])
+      && await focusedAct() === 'override-unavailable', JSON.stringify({ saved: await saved(), pressed: await pressed() }));
+    t.check('the choice in force shows a check mark, a heavier label and the brand edge, so it is not colour alone',
+      marked.icon === '✓' && marked.iconShown && marked.weight >= 600 && marked.edge, JSON.stringify(marked));
+
+    await page.keyboard.press('Enter');
+    await rowBadge(null);
+    const said = await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
+      .includes(': availability override cleared.'), { timeout: 5000 }).then(() => true, () => false);
+    t.check('pressing the choice in force again clears the override, says so, and leaves focus where it was',
+      await saved() === null && JSON.stringify(await pressed()) === JSON.stringify([false, false, null])
+      && await focusedAct() === 'override-unavailable' && said,
+      JSON.stringify({ saved: await saved(), pressed: await pressed(), said }));
+
+    const tap = async (act) => {
+      const box = await page.$eval(command(act), (node) => {
+        const rect = node.getBoundingClientRect();
+        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      });
+      await page.mouse.click(box.x, box.y);
+    };
+    await tap('override-available');
+    await rowBadge('override-available');
+    const available = await pressed();
+    await tap('override-clear');
+    await rowBadge(null);
+    t.check('a pointer press on Mark as available shows it pressed, and Clear removes the override without a state of its own',
+      JSON.stringify(available) === JSON.stringify([true, false, null]) && await saved() === null
+      && JSON.stringify(await pressed()) === JSON.stringify([false, false, null]), JSON.stringify({ available }));
+
+    await page.mouse.move(0, 0);
+    const danger = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      danger.push(await page.$eval(command('remove'), (node) => {
+        const probe = document.createElement('span');
+        probe.style.setProperty('color', 'var(--red-fg-2)');
+        node.closest('.ract').append(probe);
+        const expected = getComputedStyle(probe).color;
+        probe.remove();
+        const last = [...node.closest('.ract').querySelectorAll('[data-act]')].filter((control) => control.checkVisibility()).at(-1);
+        return { theme: document.documentElement.dataset.theme, color: getComputedStyle(node).color, expected, last: last === node };
+      }));
+    }
+    await page.evaluate(() => { delete document.documentElement.dataset.theme; });
+    t.check('Remove from list is the last command and reads as danger at rest in both themes',
+      danger.every((entry) => entry.color === entry.expected && entry.last), JSON.stringify(danger));
+
+    await page.focus(command('override-available'));
+    // The first Escape takes down a showing hint and keeps focus in the menu (#449); the next closes it.
+    if (await page.evaluate(() => !document.querySelector('#action-tip')?.hidden)) await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
+    t.check('Escape still closes the panel and returns focus to More actions',
+      await page.$eval(toggle, (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
+
+    await page.setViewport({ width: 390, height: 844 });
+    await page.$eval(toggle, (node) => { node.scrollIntoView({ block: 'center' }); node.click(); });
+    await page.waitForFunction((selector) => document.querySelector(selector)?.checkVisibility(), {}, panel);
+    const narrow = await page.$eval(panel, (node) => {
+      const choices = [...node.querySelectorAll('.availability-choice')].map((choice) => choice.getBoundingClientRect());
+      const controls = [...node.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
+        .map((control) => control.getBoundingClientRect());
+      return { lefts: [...new Set(choices.map((rect) => Math.round(rect.left)))].length,
+        inside: controls.every((rect) => rect.left >= 0 && rect.right <= document.documentElement.clientWidth + 0.5),
+        targets: controls.every((rect) => rect.height >= 43.5) };
+    });
+    t.check('at 390 pixels each group stacks in one column, inside the screen, with 44px targets',
+      narrow.lefts === 1 && narrow.inside && narrow.targets, JSON.stringify(narrow));
+    t.check('the groups raise no page errors', errors.length === 0, errors.join('; '));
   },
 });
 

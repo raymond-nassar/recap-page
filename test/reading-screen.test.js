@@ -266,6 +266,28 @@ test('reading rows use a labeled disclosure at every width instead of hover-only
   assert.doesNotMatch(css, /\.row:hover \.ract/);
 });
 
+test('UX-13 row command groups are ruled apart, the override in force is marked beyond colour, and Remove reads as danger', () => {
+  assert.match(css, /\.row-actions\.is-open > \.ract \{[^}]*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(css, /\.ract-group \{ display: grid; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
+  // A class that sets display outranks the hidden attribute, so the empty Open group needs this.
+  assert.match(css, /\.ract-group\[hidden\] \{ display: none; \}/);
+  assert.match(css, /\.ract-group:not\(\[hidden\]\) ~ \.ract-group \{ border-top: var\(--stroke-1\) solid var\(--line\);/);
+  assert.match(css, /\.row-actions \.ract-group > \.rail-hint \{ grid-column: 1 \/ -1;/);
+  const pressed = css.match(/\.availability-choice\[aria-pressed="true"\] \{[^}]*\}/)?.[0] ?? '';
+  assert.match(pressed, /font-weight: 600/);
+  assert.match(pressed, /border-color: var\(--accent-text\)/);
+  assert.match(css, /\.availability-choice\[aria-pressed="true"\] \.mini-icon \{ display: inline; \}/);
+  assert.match(css, /\.ract \.mini-danger \{ color: var\(--red-fg-2\); \}/);
+  // The three availability choices share a row while the menu has two columns, so grouping costs no
+  // extra row: with Clear alone, a 640x450 window's sticky filters covered the first group.
+  const trio = css.indexOf('.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }');
+  const narrow = css.search(/@media \(max-width: 620px\) \{\s*\.ract-group, \.ract-availability \{ grid-template-columns: minmax\(0, 1fr\); \}/);
+  assert.ok(trio > css.indexOf('.ract-group { display: grid;') && narrow > trio,
+    'the trio follows the two-column groups, and one column still wins at 620px and below');
+  const forced = css.match(/@media \(forced-colors: active\) \{[^@]*\.row\.now[^@]*\}/)?.[0] ?? '';
+  assert.match(forced, /\.availability-choice\[aria-pressed="true"\] \{ border-color: Highlight; \}/);
+});
+
 test('Coming up precedes the one native full Reading List disclosure', () => {
   const fullAt = html.indexOf('id="full"');
   const shelfAt = html.indexOf('id="shelf-sec"');
