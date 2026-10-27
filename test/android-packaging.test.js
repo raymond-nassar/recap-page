@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, realpathSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { delimiter, dirname, join } from 'node:path';
 import { createAndroidBackHandler, createAndroidBridge, validateExport } from '../packaging/android/web/bridge.js';
 import { createHash } from 'node:crypto';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
@@ -163,95 +163,130 @@ function wrapperShell() {
 }
 const wrapperPowerShell = wrapperShell();
 
-test('the wrapper bootstrap replaces a stale JAR only with a verified download, and runs nothing unverified',
-  { skip: wrapperPowerShell ? false : 'no PowerShell to run the bootstrap with' }, async (t) => {
-    const shipped = await readFile(new URL('../packaging/android/bootstrap-wrapper.ps1', import.meta.url), 'utf8');
-    const source = /'(https:\/\/raw\.githubusercontent\.com\/gradle\/gradle\/v[\d.]+\/gradle\/wrapper\/gradle-wrapper\.jar)'/.exec(shipped);
-    const pin = /^\$expected = '([0-9a-f]{64})'\r?$/m.exec(shipped);
-    assert.ok(source && pin, 'the bootstrap names its source and its pin');
-    const official = Buffer.from('the pinned wrapper JAR');
-    const stale = Buffer.from("the previous version's wrapper JAR");
-    const tampered = Buffer.from('a download that does not match the pin');
-    let served = official;
-    let requests = 0;
-    const server = createServer((request, response) => {
-      requests += 1;
-      response.writeHead(200, { 'content-type': 'application/java-archive' }).end(served);
-    });
-    await new Promise((done) => server.listen(0, '127.0.0.1', done));
-    t.after(() => {
-      server.closeAllConnections();
-      return new Promise((done) => server.close(done));
-    });
-    const root = await mkdtemp(join(tmpdir(), 'recap-wrapper-'));
-    t.after(() => rm(root, { recursive: true, force: true }));
-    const copy = join(root, 'bootstrap-wrapper.ps1');
-    await writeFile(copy, shipped
-      .replaceAll(source[1], `http://127.0.0.1:${server.address().port}/gradle-wrapper.jar`)
-      .replace(pin[0], `$expected = '${createHash('sha256').update(official).digest('hex')}'`));
-    const jar = join(root, 'gradle', 'wrapper', 'gradle-wrapper.jar');
-    const download = `${jar}.download`;
-    await mkdir(dirname(jar), { recursive: true });
-    // The script's own output and the message of anything it throws, each on a line of its own, read
-    // from the exception rather than from the error view, which a console host wraps mid-path.
-    const driver = join(root, 'driver.ps1');
-    await writeFile(driver, `$ErrorActionPreference = 'Stop'
+async function proveWrapperBootstrap(t, env) {
+  const shipped = await readFile(new URL('../packaging/android/bootstrap-wrapper.ps1', import.meta.url), 'utf8');
+  const source = /'(https:\/\/raw\.githubusercontent\.com\/gradle\/gradle\/v[\d.]+\/gradle\/wrapper\/gradle-wrapper\.jar)'/.exec(shipped);
+  const pin = /^\$expected = '([0-9a-f]{64})'\r?$/m.exec(shipped);
+  assert.ok(source && pin, 'the bootstrap names its source and its pin');
+  const official = Buffer.from('the pinned wrapper JAR');
+  const stale = Buffer.from("the previous version's wrapper JAR");
+  const tampered = Buffer.from('a download that does not match the pin');
+  let served = official;
+  let requests = 0;
+  const server = createServer((request, response) => {
+    requests += 1;
+    response.writeHead(200, { 'content-type': 'application/java-archive' }).end(served);
+  });
+  await new Promise((done) => server.listen(0, '127.0.0.1', done));
+  t.after(() => {
+    server.closeAllConnections();
+    return new Promise((done) => server.close(done));
+  });
+  // Node keeps the temporary folder's spelling from TEMP, which can be an 8.3 short name, while
+  // PowerShell reports the script's folder in full. On the Windows release runner the refusal
+  // named the right file under a spelling this test did not expect (run 40543715203), and
+  // pointing TEMP at a short name reproduces that, so the root is taken in the full form
+  // PowerShell uses.
+  const root = realpathSync.native(await mkdtemp(join(tmpdir(), 'recap-wrapper-')));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const copy = join(root, 'bootstrap-wrapper.ps1');
+  await writeFile(copy, shipped
+    .replaceAll(source[1], `http://127.0.0.1:${server.address().port}/gradle-wrapper.jar`)
+    .replace(pin[0], `$expected = '${createHash('sha256').update(official).digest('hex')}'`));
+  const jar = join(root, 'gradle', 'wrapper', 'gradle-wrapper.jar');
+  const download = `${jar}.download`;
+  await mkdir(dirname(jar), { recursive: true });
+  // The script's own output and the message of anything it throws, each on a line of its own, read
+  // from the exception rather than from the error view, which a console host wraps mid-path.
+  const driver = join(root, 'driver.ps1');
+  await writeFile(driver, `$ErrorActionPreference = 'Stop'
 try { & '${copy.replace(/'/g, "''")}' | ForEach-Object { [Console]::Out.WriteLine("OUT $_") } }
 catch { [Console]::Out.WriteLine('REFUSED ' + $_.Exception.Message) }
 `);
-    const run = () => new Promise((resolve, reject) => {
-      const child = spawn(wrapperPowerShell, [
-        '-NoProfile', '-NonInteractive', ...(process.platform === 'win32' ? ['-ExecutionPolicy', 'Bypass'] : []),
-        '-File', driver,
-      ], { stdio: ['ignore', 'pipe', 'pipe'] });
-      let out = '';
-      child.stdout.on('data', (chunk) => { out += chunk; });
-      child.stderr.on('data', (chunk) => { out += chunk; });
-      const timer = setTimeout(() => child.kill(), 60000);
-      child.on('error', reject);
-      child.on('close', () => {
-        clearTimeout(timer);
-        resolve(out);
-      });
+  const run = () => new Promise((resolve, reject) => {
+    const child = spawn(wrapperPowerShell, [
+      '-NoProfile', '-NonInteractive', ...(process.platform === 'win32' ? ['-ExecutionPolicy', 'Bypass'] : []),
+      '-File', driver,
+    ], { stdio: ['ignore', 'pipe', 'pipe'], env });
+    let out = '';
+    child.stdout.on('data', (chunk) => { out += chunk; });
+    child.stderr.on('data', (chunk) => { out += chunk; });
+    const timer = setTimeout(() => child.kill(), 60000);
+    child.on('error', reject);
+    child.on('close', () => {
+      clearTimeout(timer);
+      resolve(out);
     });
-    const current = async () => (existsSync(jar) ? readFile(jar) : null);
+  });
+  const current = async () => (existsSync(jar) ? readFile(jar) : null);
 
-    // The case #904 reports: the previous version's JAR is replaced, verified, and the build may go on.
-    await writeFile(jar, stale);
-    let out = await run();
-    assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
-    assert.deepEqual(await current(), official);
-    assert.equal(requests, 1);
-    assert.equal(existsSync(download), false, 'no download is left beside the JAR');
+  // The case #904 reports: the previous version's JAR is replaced, verified, and the build may go on.
+  await writeFile(jar, stale);
+  let out = await run();
+  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.deepEqual(await current(), official);
+  assert.equal(requests, 1);
+  assert.equal(existsSync(download), false, 'no download is left beside the JAR');
 
-    // A replacement that does not match the pin is deleted, the stale JAR is left unused, and the
-    // message names the file to delete.
-    await writeFile(jar, stale);
-    served = tampered;
-    out = await run();
-    assert.match(out, /^REFUSED The downloaded Gradle wrapper does not match the official Gradle 9\.8\.2 release, so it was deleted and nothing was run\./m, out);
-    assert.ok(out.includes(`delete ${jar}, then run the build again`), out);
-    assert.doesNotMatch(out, /^OUT /m);
-    assert.deepEqual(await current(), stale);
-    assert.equal(existsSync(download), false, 'the refused download is deleted');
+  // A replacement that does not match the pin is deleted, the stale JAR is left unused, and the
+  // message names the file to delete.
+  await writeFile(jar, stale);
+  served = tampered;
+  out = await run();
+  assert.match(out, /^REFUSED The downloaded Gradle wrapper does not match the official Gradle 9\.8\.2 release, so it was deleted and nothing was run\./m, out);
+  assert.ok(out.includes(`delete ${jar}, then run the build again`), out);
+  assert.doesNotMatch(out, /^OUT /m);
+  assert.deepEqual(await current(), stale);
+  assert.equal(existsSync(download), false, 'the refused download is deleted');
 
-    // With no JAR at all, a download that does not match installs nothing.
-    await rm(jar);
-    out = await run();
-    assert.match(out, /^REFUSED The downloaded Gradle wrapper does not match/m, out);
-    assert.equal(existsSync(jar), false);
-    assert.equal(existsSync(download), false);
+  // With no JAR at all, a download that does not match installs nothing.
+  await rm(jar);
+  out = await run();
+  assert.match(out, /^REFUSED The downloaded Gradle wrapper does not match/m, out);
+  assert.equal(existsSync(jar), false);
+  assert.equal(existsSync(download), false);
 
-    // A clean checkout downloads and verifies the pinned JAR, and a JAR that already matches is
-    // verified without asking for it again.
-    served = official;
-    out = await run();
-    assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
-    assert.deepEqual(await current(), official);
-    requests = 0;
-    out = await run();
-    assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
-    assert.equal(requests, 0, 'a matching JAR is not downloaded again');
+  // A clean checkout downloads and verifies the pinned JAR, and a JAR that already matches is
+  // verified without asking for it again.
+  served = official;
+  out = await run();
+  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.deepEqual(await current(), official);
+  requests = 0;
+  out = await run();
+  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.equal(requests, 0, 'a matching JAR is not downloaded again');
+}
+
+test('the wrapper bootstrap replaces a stale JAR only with a verified download, and runs nothing unverified',
+  { skip: wrapperPowerShell ? false : 'no PowerShell to run the bootstrap with' }, (t) => proveWrapperBootstrap(t, process.env));
+
+// #929. On the Windows release runner a PowerShell 7 step ran these tests, and Node passed
+// PowerShell 7's module path on to the Windows PowerShell running the bootstrap, as cmd.exe does
+// for gradlew.bat from a PowerShell 7 prompt. Windows PowerShell then loads PowerShell 7's Utility
+// manifest in place of its own, which names Get-FileHash as a compiled cmdlet Windows PowerShell
+// lacks, so the first hash was refused as an unrecognized command. A manifest of that shape first
+// on the module path reproduces the refusal without PowerShell 7 installed, and every guarantee is
+// proved again under it.
+test('the wrapper bootstrap verifies the same way when Windows PowerShell inherits PowerShell 7\'s module path',
+  { skip: wrapperPowerShell === 'powershell.exe' ? false : 'no Windows PowerShell to run the bootstrap with' }, async (t) => {
+    const modules = await mkdtemp(join(tmpdir(), 'recap-powershell-7-modules-'));
+    t.after(() => rm(modules, { recursive: true, force: true }));
+    const utility = join(modules, 'Microsoft.PowerShell.Utility');
+    await mkdir(utility);
+    await writeFile(join(utility, 'Microsoft.PowerShell.Utility.psd1'), `@{
+ModuleVersion = '7.0.0.0'
+CompatiblePSEditions = @('Core')
+NestedModules = @('Microsoft.PowerShell.Commands.Utility.dll')
+CmdletsToExport = @('Get-FileHash', 'Invoke-WebRequest', 'Write-Output')
+}
+`);
+    // Node hands a Windows child only the first, in sorted order, of names that differ only in
+    // case, and the inherited spelling depends on whatever started the tests. Where it arrived as
+    // PSMODULEPATH, a second spelling was dropped and this test passed without its fixture, so the
+    // inherited spelling is reused.
+    const name = Object.keys(process.env).find((key) => key.toUpperCase() === 'PSMODULEPATH') ?? 'PSModulePath';
+    await proveWrapperBootstrap(t, { ...process.env, [name]: [modules, process.env[name]].filter(Boolean).join(delimiter) });
   });
 
 test('Android generated assets and icons carry their producer tasks through the variant API', async () => {
