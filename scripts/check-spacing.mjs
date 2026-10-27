@@ -274,12 +274,19 @@ export const TOKENS = new Map([
   ['--text-shadow-logotype', kept('elevation', '5px 5px 0 var(--accent)', 'the Home logotype')],
   ['--text-shadow-offset', kept('elevation', '.0625em .0625em 0 var(--accent)', 'the wrap-up cheer and the Android logotype')],
   ['--text-shadow-art', kept('elevation', '.055em .055em 0 rgb(var(--shadow-rgb) / 45%)', 'the initials on a cover placeholder')],
+  ['--motion-fast', onScale('motion', '150ms')],
+  ['--motion-normal', onScale('motion', '200ms')],
+  ['--motion-slow', onScale('motion', '300ms')],
+  ['--ease-out', onScale('motion', 'cubic-bezier(0, 0, 0, 1)')],
+  ['--motion-hover', kept('motion', '120ms', 'the hover on a Home path card')],
+  ['--motion-progress', kept('motion', '350ms', 'the progress ring and the glance bar fill')],
 ]);
 
 const FAMILY_PREFIXES = new Map([
   ['radius', /^--radius-/],
   ['stroke', /^--stroke-/],
   ['elevation', /^--(?:elev|text-shadow)-/],
+  ['motion', /^--(?:motion|ease)-/],
 ]);
 
 function familyOf(name) {
@@ -328,6 +335,9 @@ const KEYWORDS = new Set(['0', 'inherit', 'initial', 'unset', 'revert', 'revert-
 
 // A length, or a function that computes one, standing as one value.
 const LENGTHY = /^(?:-?(?:\d*\.)?\d+[a-z%]+|(?:calc|min|max|clamp)\(.*\))$/i;
+// A duration other than zero, and an easing other than `ease`, which step one kept as it was.
+const DURATION = /^-?(?:\d*\.)?\d+m?s$/i;
+const EASING = /^(?:(?:cubic-bezier|steps|linear)\(.*\)|ease-in|ease-out|ease-in-out|linear|step-start|step-end)$/i;
 
 // Each family names the properties it governs and judges a value's atoms. An atom that names a token
 // of an accepted family is fine, a token of any other family is the wrong kind of value, and `raw`
@@ -361,6 +371,12 @@ const TOKEN_RULES = [
     family: 'text shadow',
     properties: /^text-shadow$/,
     whole: (name) => name.startsWith('--text-shadow-'),
+  },
+  {
+    family: 'motion',
+    properties: /^(?:transition|animation)(?:-(?:duration|delay|timing-function))?$/,
+    accepts: (name) => familyOf(name) === 'motion',
+    raw: (atom) => (DURATION.test(atom) && Number.parseFloat(atom) !== 0) || EASING.test(atom),
   },
 ];
 

@@ -63,6 +63,14 @@
   --text-shadow-logotype: 5px 5px 0 var(--accent);
   --text-shadow-offset: .0625em .0625em 0 var(--accent);
   --text-shadow-art: .055em .055em 0 rgb(var(--shadow-rgb) / 45%);
+  /* Motion. #827's scale is 150, 200 and 300ms on a decelerating curve. Step one keeps today's `ease`
+     and uses the first step alone; the two durations off the scale keep tokens named for what moves. */
+  --motion-fast: 150ms;
+  --motion-normal: 200ms;
+  --motion-slow: 300ms;
+  --ease-out: cubic-bezier(0, 0, 0, 1);
+  --motion-hover: 120ms;
+  --motion-progress: 350ms;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
      declarations. The values follow the clusters already present in the interface while keeping
      each consolidated edge within 4 CSS pixels of where it began. */
@@ -354,7 +362,7 @@ a { color: var(--blue); }
 
 .shell { display: grid; grid-template-columns: 252px 1fr; min-height: 100vh; }
 /* 150ms, and only the column track, so nothing inside the pane reflows twice. */
-.shell { transition: grid-template-columns .15s ease; }
+.shell { transition: grid-template-columns var(--motion-fast) ease; }
 
 /* Collapsed is a 48px icon rail, not a hidden pane: every destination stays one click
    away and the tab order is unchanged. See docs/ux/sidebar-flow.md. */
@@ -738,7 +746,7 @@ a { color: var(--blue); }
     display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
     padding: var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
     border-top: var(--stroke-1) solid var(--line-2); background: var(--card);
-    transition: transform .15s ease; transform: translateY(0);
+    transition: transform var(--motion-fast) ease; transform: translateY(0);
   }
   .rail-header.mobile-nav-hidden { transform: translateY(100%); }
   .rail-header:focus-within { transform: translateY(0); }
@@ -829,7 +837,7 @@ main { min-width: 0; }
    attribute, so the markup keeps a stroke only as the value shown before the stylesheet loads. */
 .ring .ring-track { stroke: var(--line); }
 .ring .ring-arc { stroke: var(--accent-text); }
-#ring-arc { transition: stroke-dashoffset .35s ease; }
+#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }
 
 .list-tools { display: flex; align-items: flex-start; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
 .list-actions { min-width: 0; flex: 0 1 auto; }
@@ -1024,7 +1032,7 @@ details.full > summary:hover { background: var(--card-2); }
 #full-heading { flex: 1 0 100%; font-size: var(--t-subtitle); font-weight: 600; }
 #full-action { flex: 1 1 auto; font-weight: 600; }
 #full-count { color: var(--muted); }
-.chev { display: inline-block; flex: 0 0 auto; transition: transform .15s; }
+.chev { display: inline-block; flex: 0 0 auto; transition: transform var(--motion-fast); }
 details.full[open] > summary .chev { transform: rotate(90deg); }
 details.full[open] > summary { border-bottom: var(--stroke-1) solid var(--line); border-radius: var(--radius-card) var(--radius-card) 0 0; }
 details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--space-6); }
@@ -1220,7 +1228,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 /* The chevron is decoration, and generated content joins an accessible name, so each of these
    carries empty alternative text (UX-17). The plain value first is what an engine without it keeps. */
 .card > summary::before {
-  content: "›"; content: "›" / ""; color: var(--muted); transition: transform .15s; display: inline-block;
+  content: "›"; content: "›" / ""; color: var(--muted); transition: transform var(--motion-fast); display: inline-block;
   grid-column: 1; grid-row: 1; align-self: center;
 }
 .card[open] > summary::before { transform: rotate(90deg); }
@@ -1273,7 +1281,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .setting-more > summary::-webkit-details-marker { display: none; }
 .setting-more > summary::before {
-  content: "›"; content: "›" / ""; display: inline-block; transition: transform .15s; font-size: var(--t-body);
+  content: "›"; content: "›" / ""; display: inline-block; transition: transform var(--motion-fast); font-size: var(--t-body);
 }
 .setting-more[open] > summary::before { transform: rotate(90deg); }
 .setting-more > summary:hover { color: var(--text); }
@@ -1293,11 +1301,11 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .setting-ctl.checkbox > input[type="checkbox"] {
   appearance: none; margin: 0; flex: none; cursor: pointer;
   width: 26px; height: 15px; border-radius: var(--radius-pill); background: var(--track-2);
-  position: relative; transition: background .15s;
+  position: relative; transition: background var(--motion-fast);
 }
 .setting-ctl.checkbox > input[type="checkbox"]::after {
   content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px;
-  border-radius: var(--radius-circle); background: var(--on-accent); transition: left .15s;
+  border-radius: var(--radius-circle); background: var(--on-accent); transition: left var(--motion-fast);
 }
 .setting-ctl.checkbox > input[type="checkbox"]:checked { background: var(--accent); }
 .setting-ctl.checkbox > input[type="checkbox"]:checked::after { left: 13px; }
@@ -1490,7 +1498,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 /* `.stack` sets a display, which would otherwise keep the closed form showing. */
 .comic-save[hidden] { display: none; }
 @media (max-width: 880px) {
-  .comic-builder { bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); transition: bottom .15s ease; }
+  .comic-builder { bottom: calc(var(--mobile-nav-height, 80px) + var(--space-4)); transition: bottom var(--motion-fast) ease; }
   body:has(.rail-header.mobile-nav-hidden:not(:focus-within)) .comic-builder { bottom: var(--space-4); }
 }
 @media (max-width: 560px) {
@@ -1888,7 +1896,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
     linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 8rem),
     var(--card);
   color: var(--text); text-align: left; font: inherit; cursor: pointer;
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+  transition: transform var(--motion-hover) ease, border-color var(--motion-hover) ease, background var(--motion-hover) ease;
 }
 .home-path::before {
   content: ''; position: absolute; inset: 0 0 auto; height: 4px;
@@ -2635,7 +2643,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 .glance-bar > i {
   display: block; height: 100%; border-radius: inherit; background: var(--accent);
-  transform: translateX(calc(var(--glance-share, 0%) - 100%)); transition: transform .35s ease;
+  transform: translateX(calc(var(--glance-share, 0%) - 100%)); transition: transform var(--motion-progress) ease;
 }
 .hero .glance { margin: var(--space-6) 0; }
 @media (forced-colors: active) {

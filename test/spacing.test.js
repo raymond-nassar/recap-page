@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import {
-  SCALE, grammarFindings, scaleFindings, spacingInventory, usageFindings,
+  SCALE, declarations, grammarFindings, scaleFindings, spacingInventory, usageFindings,
   TOKENS, TOKEN_SHEETS, lengthTokens, rootTokens, resolveTokens, tokenDefinitionFindings, tokenFindings,
   tokenGrammarFindings, tokenUsageFindings,
 } from '../scripts/check-spacing.mjs';
@@ -218,4 +218,41 @@ test('a shadow is a whole elevation token or a ring drawn with stroke widths, an
   assert.notEqual(undone, mobile, 'the --elev-done-bar consumer is missing');
   assert.deepEqual(tokenUsageFindings(sheets(css, undone)),
     ['--elev-done-bar holds 0 8px 24px rgb(var(--shadow-rgb) / 24%) for the Android Done bar, but nothing uses it']);
+});
+
+test('durations come only from motion tokens, and step one keeps its one easing, ease', () => {
+  for (const [rule, sheet, expected] of [
+    ['.x { transition: opacity 200ms; }', 0, ['carries raw motion value 200ms']],
+    ['.x { transition: opacity var(--motion-fast) ease-in-out; }', 0, ['carries raw motion value ease-in-out']],
+    ['.x { animation: spin 1s linear infinite; }', 0, ['carries raw motion value 1s', 'carries raw motion value linear']],
+    ['.x { transition-timing-function: cubic-bezier(.2, 0, 0, 1); }', 0, ['carries raw motion value cubic-bezier(.2, 0, 0, 1)']],
+    ['.x { transition-duration: var(--stroke-1); }', 0, ['uses var(--stroke-1), which is not a motion token']],
+    ['.x { --fade: 200ms; transition: opacity var(--fade); }', 0, ['uses var(--fade), which is not a motion token']],
+    ['.x { transition: transform .2s ease; }', 1, ['carries raw motion value .2s']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { transition: transform var(--motion-fast) ease, border-color var(--motion-hover); }',
+    '.x { transition: opacity var(--motion-normal) var(--ease-out); transition-delay: 0s; }',
+    '.x { transition: none; animation: none !important; }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+
+  const unworn = css.replaceAll('var(--motion-hover)', 'var(--motion-fast)');
+  assert.notEqual(unworn, css, 'the --motion-hover consumer is missing');
+  assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--motion-hover holds 120ms for the hover on a Home path card, but nothing uses it']);
+});
+
+test('reduced motion still stops every transition and animation, and nothing outranks it', () => {
+  // The universal rule has no specificity, so any other important transition or animation would win
+  // over it and move for a reader who asked for no motion.
+  const important = sheets().flatMap(([file, source]) => declarations(source)
+    .filter(({ property, value }) => /^(?:transition|animation)/.test(property) && /!important\s*$/i.test(value))
+    .map(({ selector, property, value }) => `${file} ${selector.replace(/\s+/g, ' ').trim()} ${property}: ${value.trim()}`));
+  assert.deepEqual(important, [
+    'src/styles.css @media (prefers-reduced-motion: reduce) { *, *::before, *::after transition: none !important',
+    'src/styles.css @media (prefers-reduced-motion: reduce) { *, *::before, *::after animation: none !important',
+  ]);
 });
