@@ -2489,8 +2489,9 @@ async function homeWordmarkCheck(page, label, viewport) {
 
 // #831: at 200% text the five-item bar cut its labels to "Ho", "Libr" and "Bro". Each visible label is one
 // whole line inside its destination, in one row of four or, when one row cannot hold them, two rows of two,
-// and the bar reads Home, Library, Search and More with the side menu's glyphs. On Android More is its
-// glyph alone, named More, as it has been since 7a3a9cdd. 320 and 360px are measured at 100% and 200% text.
+// and the bar reads Home, Library, Search and More with the side menu's glyphs. #909: More shows its label
+// as the other three do, which on Android it had not since 7a3a9cdd. 320, 360 and 412px are measured at
+// 100% and 200% text.
 async function barLabelsCheck(page, label, viewport) {
   const tokens = ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg'];
   const own = viewport.textScale || 1;
@@ -2504,7 +2505,7 @@ async function barLabelsCheck(page, label, viewport) {
   const settled = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() =>
     requestAnimationFrame(() => requestAnimationFrame(resolve)))));
   let current = own;
-  for (const scale of [320, 360].includes(viewport.width) ? [1, 2] : [own]) {
+  for (const scale of [320, 360, 412].includes(viewport.width) ? [1, 2] : [own]) {
     if (scale !== current) await rescale(current, scale);
     current = scale;
     await settled();
@@ -2550,8 +2551,8 @@ async function barLabelsCheck(page, label, viewport) {
     });
     check(JSON.stringify(fit.items.map(({ name }) => name)) === JSON.stringify(['Home', 'Library', 'Search', 'More'])
       && JSON.stringify(fit.items.map(({ glyph }) => glyph)) === JSON.stringify(['mark', 'books', 'search', 'menu'])
-      && fit.items.every((item) => item.onBar && item.w >= 44 && item.h >= 44 && (item.text === null
-        ? item.name === 'More' : item.text === item.name && item.lines === 1 && item.inside))
+      && fit.items.every((item) => item.onBar && item.w >= 44 && item.h >= 44
+        && item.text === item.name && item.lines === 1 && item.inside)
       && fit.rows === (fit.twoRows ? 2 : 1) && (scale === 2 || !fit.twoRows) && !fit.overflow,
     `${label} at ${scale * 100}% text: the bar reads Home, Library, Search and More, each label one whole line, in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'} ${JSON.stringify(fit)}`);
     console.log(`CHECKED ${label} at ${scale * 100}% text: bar in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'}, ${fit.height}px tall, items ${fit.items.map((item) => `${item.text ?? `${item.name} glyph`} ${item.w}px`).join(', ')}`);
@@ -4712,8 +4713,10 @@ try {
         width, height,
       };
     });
-    check(navigationToggle.labelVisible === (!!viewport.desktop && viewport.width <= 880),
-      `${label}: Android navigation is icon-only; desktop label visibility is unchanged`);
+    // #909: the narrow navigation's More shows its label on Android as on the desktop entry; wide, the
+    // sidebar toggle is its icon and name on both.
+    check(navigationToggle.labelVisible === (viewport.width <= 880),
+      `${label}: narrow navigation shows its More label on Android and desktop alike; wide keeps its icon`);
     // The narrow toggle opens the bottom bar's More panel, so main.js names it More, as the
     // shared browser suite asserts. Each property is named on failure so a miss says which one.
     const navigationMisses = [

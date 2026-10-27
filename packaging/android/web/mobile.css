@@ -150,7 +150,6 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .rail-header { gap: var(--space-4); }
   .rail-toggle { flex-shrink: 0; }
   body .rail-header .rail-toggle { min-height: var(--target-touch); }
-  .rail-toggle-label { display: none; }
   .brand[aria-current]::before { content: none; }
   #view-home > .head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: var(--space-4); }
   .home-lockup { min-width: 0; width: 100%; flex: 1 0 100%; }

@@ -33,8 +33,8 @@ download comics or provide offline comic reading.
 
 ### Phone navigation and controls
 
-On narrow Android screens, the menu button shows only its icon and keeps its **More**
-screen-reader name and 48px minimum touch target. **More** opens a sheet just above the navigation
+On narrow Android screens, the menu button shows its icon and its **More** label, as Home, Library
+and Search do, and keeps a 48px minimum touch target. **More** opens a sheet just above the navigation
 bar with Continue reading, **Backup & settings**, **About this app** and the connection status, and
 nothing the bar already shows. **Close**, Android Back, Escape or a tap outside it closes it, and
 focus returns to **More**. The navigation bar shows the full app icon at
@@ -459,9 +459,10 @@ side, inside the screen and clear of What's new and the content below. WebView m
 size by the system font scale, so the 200% cases double the wordmark as well. The 360x800 case also
 checks forced colors, and wider windows must keep the full masthead and its tagline. Edge draws the
 masthead's Impact, which is narrower than Android's fallback and has no overlapping letter outlines
-for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More must
-open a modal sheet standing on the bar over More that lists only what the bar does not, and Escape
-and Android Back must close it with focus back on More and the address unchanged.
+for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More shows
+its label as the bar's other destinations do (#909), and must open a modal sheet standing on the bar
+over More that lists only what the bar does not, and Escape and Android Back must close it with focus
+back on More and the address unchanged.
 
 Install `puppeteer-core` **outside** the repository, as for the existing browser suite.
 If it or Edge is outside the usual development locations, set `MRT_PUPPETEER` to its absolute
