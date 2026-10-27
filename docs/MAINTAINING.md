@@ -184,7 +184,7 @@ and cannot satisfy release or production acceptance. Invalid flag combinations f
 For the bounded context/export comparison, use `diagnostic_target=ordinary-browser-context-isolation`
 with the same diagnostic-only flags. It runs two fresh Edge processes: blank context plus blank
 sentinel, then the unchanged reader round-trip plus blank sentinel. The limit is four explicit
-contexts and twelve create/page/close calls, with no retry. Edge 152.0.4191.66, Puppeteer 25.7.0,
+contexts and twelve create/page/close calls, with no retry. Edge 152.0.4191.66, Puppeteer 25.13.0,
 the recorded driver lock and supported Page download events are required; a mismatch aborts.
 Download observations retain pending, completed, canceled and unobserved states across navigation.
 They do not change download policy or wait for completion. Observation can affect timing and

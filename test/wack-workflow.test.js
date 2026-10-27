@@ -388,8 +388,8 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     runInNewContext(identity, {
       execFileSync: () => 'a'.repeat(40), createHash, join, process,
       readFileSync: (path) => path.endsWith('package-lock.json') ? 'fixture-lock'
-        : JSON.stringify(path.includes('node_modules') ? { version: '25.7.0' }
-          : { dependencies: { 'puppeteer-core': '25.7.0' } }),
+        : JSON.stringify(path.includes('node_modules') ? { version: '25.13.0' }
+          : { dependencies: { 'puppeteer-core': '25.13.0' } }),
       console: { log: (value) => records.push(JSON.parse(value)), error: (value) => errors.push(value) },
     });
     const rejected = mismatch || target === 'invalid';
@@ -401,7 +401,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
       assert.deepEqual(errors, []);
       assert.deepEqual(records, [{
         diagnostic: target, qualified: false, source: 'a'.repeat(40), workflow: 'a'.repeat(40),
-        run: '123', attempt: '1', driver: '25.7.0',
+        run: '123', attempt: '1', driver: '25.13.0',
         driverLockSha256: createHash('sha256').update('fixture-lock').digest('hex'),
       }]);
     }
