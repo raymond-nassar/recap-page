@@ -2707,8 +2707,8 @@ async function mobileLayout(page, label, narrow) {
     recommended: !!region.querySelector('#home-recommended'),
     actions: [...region.querySelectorAll(':is(a[href], button)')].map((action) => action.textContent.trim()),
   }));
-  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Start with Modern Timeline', 'Add comics']),
-    `${label}: Home contains only the Modern Timeline and Add starting choices ${JSON.stringify(home)}`);
+  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Start with Modern Timeline', 'Search']),
+    `${label}: Home contains only the Modern Timeline and Search starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
   // UX-09 (#836): the bar's own destinations are not listed in the More sheet. Search took Browse's place
@@ -4826,7 +4826,7 @@ try {
       // says which measurement disagreed rather than only that the combined check did.
       const homeMisses = [
         sharedCopy.recommendation && 'Setup recommendation present',
-        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Start with Modern Timeline', 'Add comics'])
+        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Start with Modern Timeline', 'Search'])
           && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
       ].filter(Boolean);
       check(!homeMisses.length,

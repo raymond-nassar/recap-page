@@ -296,7 +296,7 @@ export function createDataView({
           return;
         }
         notify('#draft-transfer-report', result.ok
-          ? 'Import draft restored. Reading data was not changed. Review Resume saved import in Add comics.'
+          ? 'Import draft restored. Reading data was not changed. Review Resume saved import in Search.'
           : `${result.changed === null ? 'Draft storage outcome is unknown; export retained source before reloading.' : 'Draft restore did not finish.'} ${result.error}`, result.ok ? 'ok' : 'error');
       } catch (error) {
         draftValidation.fail(`Import draft restore refused: ${error.message}`);

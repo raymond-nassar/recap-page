@@ -7,10 +7,9 @@ App launch, or selecting the brand lockup in the sidebar.
 1. The page asks **"Where do you want to start?"**
 2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
    list**.
-3. **Browse Reading Lists** is the primary action and opens the Modern Timeline; the secondary
-   **Add comics** action opens Search without
-   requiring the narrow Navigation menu or waiting for catalog load. The category tiles remain
-   available below.
+3. **Start with Modern Timeline** is the primary action and opens the Modern Timeline; the
+   secondary **Search** action opens Search without requiring the narrow Navigation menu or
+   waiting for catalog load. The category tiles remain available below.
 4. Setup recommendation cards stay on the dedicated browsing pages rather than Home.
 5. Three large path tiles appear when their shelves contain published Reading Lists:
    - **Modern Timeline** with the compact label **Browse by year**

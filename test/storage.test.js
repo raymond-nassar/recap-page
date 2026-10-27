@@ -99,7 +99,10 @@ test('foreign revisions, removed key and restored incarnation refuse late choice
   const captured = other.capture();
   const exported = draft.exportText();
   assert.equal((await draft.discard(draft.capture())).ok, true);
-  assert.equal((await other.resolve(1, { issueId: 2, title: 'Two' }, captured)).ok, false);
+  const late = await other.resolve(1, { issueId: 2, title: 'Two' }, captured);
+  assert.equal(late.ok, false);
+  // The refusal names the page where the current draft is reviewed, as the app now calls it (#924).
+  assert.match(late.error, /Reopen Search to review the current draft\./);
   assert.equal((await draft.restore(exported, null)).ok, true);
   assert.notEqual(draft.capture(), captured);
   assert.equal((await other.resolve(1, { issueId: 2, title: 'Two' }, captured)).ok, false);

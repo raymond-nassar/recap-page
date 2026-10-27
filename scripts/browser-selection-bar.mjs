@@ -1,4 +1,4 @@
-// UX-06 (#833): the Add comics selection bar, in a real browser. Once anything is selected, Save
+// UX-06 (#833): Search's selection bar, in a real browser. Once anything is selected, Save
 // selected comics must be visible at any scroll position, above the bottom navigation bar on narrow
 // windows, with Clear selection less prominent than it. The bar must never cover the control that
 // has keyboard focus (WCAG 2.4.11), and the keyboard order through it must stay the page order.

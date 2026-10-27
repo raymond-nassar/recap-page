@@ -107,7 +107,7 @@ export function createHomeView({
             event?.preventDefault();
             onNavigateHub('add');
           },
-        }, 'Add comics'),
+        }, 'Search'),
       ]),
     ]);
     current.categoriesRoot.prepend(section);

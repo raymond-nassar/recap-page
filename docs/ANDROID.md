@@ -43,7 +43,7 @@ Windows **RECAP PAGE!** masthead scaled down to a centered wordmark, at 6.5% of 
 side and without the tagline. Android has none of the masthead's display fonts, so the wordmark is
 drawn in Android's own sans-serif, which is Roboto on stock Android.
 
-Home offers **Start with Modern Timeline** and **Add comics**, without a Setup recommendation.
+Home offers **Start with Modern Timeline** and **Search**, without a Setup recommendation.
 The existing Setup guide remains on Modern Timeline and the other browse pages.
 Its short introduction keeps the guide optional; **About this starting point** opens the full
 historical explanation.

@@ -405,6 +405,25 @@ test('main retains API replacement and service rebinding in the onApiBaseSubmit 
   assert.match(block, /sessionSynopsis\.clear/);
 });
 
+test('a restored import draft sends the reader to Search to resume it', async () => {
+  const notices = [];
+  const nodes = { ...stubElements(), restoreDraft: stubNode() };
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    askConfirm: async () => true,
+    captureDraft: () => 'draft-1',
+    draftFileRefusal: () => null,
+    onRestoreDraft: async () => ({ ok: true }),
+    notify: (selector, message, tone) => notices.push([selector, message, tone]),
+  }));
+  view.wire();
+  const field = { files: [{ text: async () => '{}' }], value: 'draft.json', focus() {} };
+  await nodes.restoreDraft._fire({ target: field });
+  // The page that resumes a draft is named Search everywhere now (#831, #924).
+  assert.deepEqual(notices.at(-1), ['#draft-transfer-report',
+    'Import draft restored. Reading data was not changed. Review Resume saved import in Search.', 'ok']);
+});
+
 // -- helpers --
 
 function stubNode(overrides = {}) {

@@ -646,7 +646,7 @@ const MUTATIONS = [
   {
     id: 'first-run-add-missing',
     breaks: 'home-first-run-wayfinding',
-    why: 'the first-run Add comics action no longer reaches Search',
+    why: 'the first-run Search action no longer reaches the Search page',
     script: () => {
       addEventListener('load', () => {
         document.querySelector('#btn-home-add')?.remove();
@@ -2901,7 +2901,7 @@ const SCENARIOS = [
       });
       await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
       t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
-      t.check('empty list withdraws review and offers Add comics instead',
+      t.check('empty list withdraws review and offers Search instead',
         await page.$eval('#btn-review-earlier', (node) => node.hidden)
         && await page.$eval('#review-earlier', (node) => node.hidden)
         && await page.$eval('#btn-empty-add', (node) => node.checkVisibility()));
@@ -5353,7 +5353,7 @@ const SCENARIOS = [
         initial.question === 'Where do you want to start?'
         && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
         && !initial.recommendation
-        && JSON.stringify(initial.startActions) === JSON.stringify(['Start with Modern Timeline', 'Add comics']),
+        && JSON.stringify(initial.startActions) === JSON.stringify(['Start with Modern Timeline', 'Search']),
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -5372,9 +5372,9 @@ const SCENARIOS = [
           homeCurrent: document.querySelector('.brand')?.getAttribute('aria-current'),
         };
       });
-      t.check('at 390 pixels both named Modern Timeline and Add choices are visible without opening Navigation',
+      t.check('at 390 pixels both named Modern Timeline and Search choices are visible without opening Navigation',
         intermediate.browseName === 'Start with Modern Timeline'
-        && intermediate.addName === 'Add comics'
+        && intermediate.addName === 'Search'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
           && rect.height >= 44) && intermediate.homeCurrent === 'page',
@@ -5439,7 +5439,7 @@ const SCENARIOS = [
         t.check(`${theme} first-run actions retain visible boundaries and names`,
           await page.$eval('#btn-home-add', (button) => {
             const style = getComputedStyle(button);
-            return !button.hidden && button.textContent.trim() === 'Add comics'
+            return !button.hidden && button.textContent.trim() === 'Search'
               && style.borderStyle !== 'none' && style.borderWidth !== '0px';
           }));
       }
@@ -12179,9 +12179,10 @@ const SCENARIOS = [
         && !initial.completed && !initial.hero
         && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
         && initial.focused === 'order-name', JSON.stringify(initial));
-      t.check('an empty list offers Add comics without review, filters or no-match controls',
+      t.check('an empty list offers Search without review, filters or no-match controls',
         initial.reviewHidden && initial.fullHidden && initial.filtersHidden && !initial.noMatch
-        && await page.$eval('#btn-empty-add', (button) => button.checkVisibility()), JSON.stringify(initial));
+        && await page.$eval('#btn-empty-add', (button) => button.checkVisibility()
+          && button.textContent.trim() === 'Search' && !button.hasAttribute('aria-label')), JSON.stringify(initial));
 
       await click(page, '.brand[data-view="home"]');
       const homeEmpty = await page.evaluate(() => ({
@@ -12207,7 +12208,7 @@ const SCENARIOS = [
       await page.focus('#btn-empty-add');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#view-add:not([hidden])');
-      t.check('the empty-state Add comics action opens Search with heading focus',
+      t.check('the empty-state Search action opens the Search page with heading focus',
         await page.$eval('#add-h', (heading) => heading === document.activeElement && heading.textContent.trim() === 'Search')
         && (await readState(page)).active === listId);
       await click(page, '#add-other-methods > summary');
