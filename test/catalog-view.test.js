@@ -5,7 +5,7 @@ import { catalogEntries, publishingCategoryStories } from '../src/js/lib/catalog
 
 import * as catalogView from '../src/js/views/catalog.js';
 
-const { createCatalogView } = catalogView;
+const { createCatalogView, followedPathPosition, followedPathStories } = catalogView;
 
 async function navigationFixture({ entries = [], getNext } = {}) {
   const moduleUrl = new URL('../src/js/views/shared/collection-navigation.js', import.meta.url);
@@ -463,6 +463,222 @@ test('Catalog owns shelf narrowing and delegates presentation through its inject
   assert.equal(nodes.clear.hidden, false);
   assert.equal(nodes.results.children.length, 1);
   assert.equal(rendered.length, 0);
+});
+
+// #897: following a bundled path on the Modern Timeline. A node that keeps what it is given, so the
+// numbered stops and the cards inside them can be read back in order.
+function keptNode(tag, props = {}, children = []) {
+  return {
+    tag,
+    ...props,
+    children: [].concat(children).filter((child) => child != null),
+    dataset: { ...(props.dataset ?? {}) },
+    hidden: props.hidden ?? false,
+    listeners: {},
+    textContent: props.text ?? '',
+    value: props.value ?? '',
+    addEventListener(name, listener) { this.listeners[name] = listener; },
+    append(...more) { this.children.push(...more); },
+    querySelectorAll() { return []; },
+    replaceChildren(...next) { this.children = next; },
+  };
+}
+
+const named = (id, index, name, extra = {}) => timelineList(id, index, { name, ...extra });
+// Thirteen Timeline events and one undated character run, which the Timeline itself never shows.
+const followCatalog = (steps) => ({
+  dropped: 0,
+  lists: [
+    ...Array.from({ length: 13 }, (_, index) => named(`event-${index + 1}`, index, `Event ${index + 1}`)),
+    named('essential', 0, 'Essential', { type: 'character-run', timeline: null }),
+  ],
+  paths: [
+    { id: 'avengers', name: 'Avengers path', description: 'Three stops.', sourceOrigin: 'Compiled for a test.', steps },
+    { id: 'long', name: 'Long path', description: 'Every event.', sourceOrigin: 'Compiled for a test.', steps: ['essential', ...Array.from({ length: 13 }, (_, index) => `event-${13 - index}`)] },
+  ],
+});
+
+function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1'])) {
+  const nodes = {
+    clear: keptNode('button'),
+    filters: keptNode('fieldset'),
+    query: keptNode('input'),
+    results: keptNode('div'),
+    search: keptNode('form'),
+  };
+  const follow = {
+    wrap: keptNode('div', { hidden: true }),
+    select: keptNode('select'),
+    about: keptNode('details', { hidden: true }),
+    description: keptNode('p'),
+    source: keptNode('p'),
+  };
+  const calls = { changes: 0, canonical: 0, timelines: 0, setupHidden: null };
+  const paints = [];
+  const announcements = [];
+  let state = savedState();
+  const view = createCatalogView({
+    announce: (message) => announcements.push(message),
+    clearLoadNotice: () => {},
+    el: keptNode,
+    elements: {
+      shelf: () => nodes,
+      spotlightKinds: () => [],
+      spotlightSorts: () => [],
+      follow: () => follow,
+    },
+    getState: () => state,
+    isCurrent: (key) => key === 'catalog',
+    loadCatalog: async () => catalog,
+    notifyDropped: () => {},
+    onFollowChange: () => { calls.changes += 1; },
+    onFollowCanonical: () => { calls.canonical += 1; },
+    onLoadFailure: () => {},
+    onSortChange: () => {},
+    presentation: {
+      catalogCard: (entry, placement, options) => keptNode('article', { dataset: { story: entry.key }, placement, options }),
+      chosenPath: () => null,
+      ensureSetupGuideFeature: (_lists, _key, _featured, options = {}) => { calls.setupHidden = Boolean(options.hidden); },
+      paintTimelinePosition: (...args) => paints.push(args),
+      renderTimelineSections: () => { calls.timelines += 1; },
+    },
+  });
+  view.wire('catalog');
+  const stops = () => {
+    const list = nodes.results.children.find((child) => child.tag === 'ol');
+    return (list?.children ?? []).map((item) => ({
+      value: item.value,
+      meta: item.children[1].textContent,
+      story: item.children[2].dataset.story,
+    }));
+  };
+  return {
+    announcements, calls, follow, nodes, paints, stops, view,
+    setState: (next) => { state = next; },
+  };
+}
+
+test('following a path shows every stop in the path\'s own order, a stop the Timeline never shows included', async () => {
+  const h = followHarness();
+  await h.view.render('catalog');
+  assert.equal(h.follow.wrap.hidden, false);
+  assert.deepEqual(h.follow.select.children.map((option) => [option.value, option.text]), [
+    ['', 'Whole timeline'], ['avengers', 'Avengers path (3 stops)'], ['long', 'Long path (14 stops)'],
+  ]);
+  assert.equal(h.calls.timelines, 1);
+  assert.deepEqual(h.stops(), []);
+
+  h.view.setFollowedPath('avengers');
+  await h.view.render('catalog');
+  assert.equal(h.follow.select.value, 'avengers');
+  assert.equal(h.follow.about.hidden, false);
+  assert.equal(h.follow.description.textContent, 'Three stops.');
+  assert.equal(h.follow.source.textContent, 'Source: Compiled for a test.');
+  assert.equal(h.calls.timelines, 1, 'a followed path is not drawn as era and year rows');
+  assert.equal(h.calls.setupHidden, true, 'the optional setup guide steps aside for the path');
+  assert.deepEqual(h.stops(), [
+    { value: '1', meta: 'Stop 1 of 3', story: 'list:essential' },
+    { value: '2', meta: 'Stop 2 of 3 · Starts 2009', story: 'list:event-6' },
+    { value: '3', meta: 'Stop 3 of 3 · Starts 2004', story: 'list:event-1' },
+  ]);
+  const card = h.nodes.results.children.find((child) => child.tag === 'ol').children[0].children[2];
+  assert.equal(card.placement, null, 'a stop card does not repeat its step as a disclosure');
+  assert.equal(card.options.level, 'h2');
+});
+
+test('a followed path shows its own progress, counting stops finished out of order', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('avengers');
+  h.setState(savedState([
+    { id: 'saved-essential', catalogId: 'essential', itemIds: [1] },
+    { id: 'saved-event-1', catalogId: 'event-1', itemIds: [2] },
+  ], [1, 2]));
+  await h.view.render('catalog');
+  const [, position, options] = h.paints.at(-1);
+  assert.deepEqual(position, { kind: 'current', storyKey: 'list:event-6', storyName: 'Event 6', stop: 2, completed: 2, total: 3 });
+  assert.equal(options.progress, 'Stop 2 of 3 · 2 of 3 stops complete');
+  await waitForAnnouncement();
+  assert.equal(h.announcements.at(-1),
+    'Modern Timeline follows Avengers path: 3 stops. You are here: Event 6, stop 2 of 3. 2 of 3 stops complete.');
+
+  h.setState(savedState([
+    { id: 'saved-essential', catalogId: 'essential', itemIds: [1] },
+    { id: 'saved-event-6', catalogId: 'event-6', itemIds: [3] },
+    { id: 'saved-event-1', catalogId: 'event-1', itemIds: [2] },
+  ], [1, 2, 3]));
+  assert.equal(h.view.refreshProgress(), true);
+  await waitForAnnouncement();
+  assert.deepEqual(h.paints.at(-1)[1], { kind: 'complete', completed: 3, total: 3 });
+  assert.equal(h.announcements.at(-1), 'Avengers path complete. All 3 stops are complete.');
+});
+
+test('search and filters narrow within a long path and keep its numbering', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('long');
+  await h.view.render('catalog');
+  assert.equal(h.nodes.search.hidden, false, 'a path longer than twelve stops is searchable');
+  assert.deepEqual(h.stops().map(({ story }) => story).slice(0, 3), ['list:essential', 'list:event-13', 'list:event-12']);
+  h.nodes.query.value = 'Event 1';
+  h.nodes.query.listeners.input();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(h.stops().map(({ value, story }) => [value, story]), [
+    ['2', 'list:event-13'], ['3', 'list:event-12'], ['4', 'list:event-11'], ['5', 'list:event-10'], ['14', 'list:event-1'],
+  ]);
+  await waitForAnnouncement();
+  assert.match(h.announcements.at(-1), /^Modern Timeline follows Long path: 5 of 14 stops matching “Event 1”\./);
+  assert.equal(h.paints.at(-1)[2].narrowed, true);
+});
+
+test('choosing another path lets the old narrowing go, and choosing none restores the whole timeline', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('long');
+  await h.view.render('catalog');
+  h.nodes.query.value = 'Event 1';
+  h.nodes.query.listeners.input();
+  await new Promise((resolve) => setImmediate(resolve));
+
+  h.follow.select.value = 'avengers';
+  h.follow.select.listeners.change();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(h.view.followedPath(), 'avengers');
+  assert.equal(h.nodes.query.value, '');
+  assert.equal(h.calls.changes, 1, 'the address records the choice');
+  assert.equal(h.stops().length, 3);
+
+  const timelines = h.calls.timelines;
+  h.follow.select.value = '';
+  h.follow.select.listeners.change();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(h.view.followedPath(), null);
+  assert.equal(h.calls.changes, 2);
+  assert.equal(h.calls.timelines, timelines + 1);
+  assert.deepEqual(h.stops(), []);
+  assert.equal(h.follow.about.hidden, true);
+  assert.equal(h.paints.at(-1)[2].progress, undefined, 'the whole timeline keeps its own count');
+});
+
+test('a path that no longer resolves is let go and the address corrected, rather than drawn empty', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('retired-path');
+  await h.view.render('catalog');
+  assert.equal(h.view.followedPath(), null);
+  assert.equal(h.calls.canonical, 1);
+  assert.equal(h.calls.timelines, 1);
+  h.view.setFollowedPath('avengers');
+  h.view.clearNarrowing('catalog');
+  assert.equal(h.view.followedPath(), null, 'going to a stop from a card shows its whole screen');
+});
+
+test('a followed path\'s stops lead with the reading the path names', () => {
+  const stops = followedPathStories({
+    stops: [{ key: 'group', name: 'Group', stepId: 'complete', lists: [path('essential', 'essential'), path('complete')] }],
+  });
+  assert.deepEqual(stops[0].lists.map(({ id }) => id), ['complete', 'essential']);
+  const owned = savedState([{ id: 'mine', catalogId: 'essential', itemIds: [1] }]);
+  assert.equal(followedPathPosition(owned, stops).storyKey, 'list:essential', 'a saved sibling reading is the one counted');
+  assert.equal(followedPathPosition(savedState(), stops).storyKey, 'list:complete');
+  assert.deepEqual(followedPathPosition(savedState(), [], {}), { kind: 'empty', completed: 0, total: 0 });
+  assert.deepEqual(followedPathPosition(savedState(), stops, { dropped: 1 }), { kind: 'unavailable', dropped: 1 });
 });
 
 test('Catalog-family modules have constructed boundaries without concrete controller imports', () => {

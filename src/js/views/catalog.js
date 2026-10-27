@@ -13,6 +13,7 @@ import {
   modernTimelineFeaturedCard,
   modernTimelineLists,
   pathPlacements,
+  resolveReadingPaths,
   searchCatalog,
   shelfLists,
   storylinesLists,
@@ -21,9 +22,36 @@ import {
   spotlightSortLabel,
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
-import { completionState, listProgress } from '../lib/model.js';
+import { completionState, listForCatalogId, listProgress } from '../lib/model.js';
 
 const FILTER_THRESHOLD = 12;
+
+// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan
+// for every story, which is material at the accepted saved-list ceiling.
+function savedByCatalog(state) {
+  const saved = new Map();
+  for (const id of Array.isArray(state?.listOrder) ? state.listOrder : []) {
+    const list = state?.lists?.[id];
+    if (list?.catalogId && !saved.has(list.catalogId)) saved.set(list.catalogId, list);
+  }
+  return saved;
+}
+
+// The reading a stop is shown and counted by, and whether it is finished: the shallowest saved
+// reading, or the shallowest reading when none is saved.
+function storyStep(state, story, saved, isCompleted) {
+  const list = defaultPath(story, (candidate) => saved.has(candidate.id));
+  const own = list ? saved.get(list.id) : null;
+  const key = list ? catalogEntryKey(list) : story?.key ?? null;
+  const name = list?.name ?? story?.name ?? own?.name ?? 'Reading List';
+  if (!own) return { key, name, done: false };
+  const progress = listProgress(state, own.id);
+  return {
+    key,
+    name,
+    done: Boolean(isCompleted(state, own.id)) || completionState(progress.read, progress.total) === 'done',
+  };
+}
 
 export function modernTimelinePosition(state, stories, { dropped = 0, isCompleted = () => false } = {}) {
   if (Number.isInteger(dropped) && dropped > 0) return { kind: 'unavailable', dropped };
@@ -32,42 +60,53 @@ export function modernTimelinePosition(state, stories, { dropped = 0, isComplete
   const total = ordered.length;
   if (!total) return { kind: 'empty', completed: 0, total: 0 };
 
-  // One index preserves listForCatalogId's first-listOrder answer without repeating its linear
-  // scan for every story, which is material at the accepted saved-list ceiling.
-  const savedByCatalogId = new Map();
-  for (const id of Array.isArray(state?.listOrder) ? state.listOrder : []) {
-    const saved = state?.lists?.[id];
-    if (saved?.catalogId && !savedByCatalogId.has(saved.catalogId)) {
-      savedByCatalogId.set(saved.catalogId, saved);
-    }
-  }
-
+  const saved = savedByCatalog(state);
   for (let completed = 0; completed < total; completed += 1) {
-    const story = ordered[completed];
-    const list = defaultPath(story, (candidate) => savedByCatalogId.has(candidate.id));
-    const saved = list ? savedByCatalogId.get(list.id) : null;
-    if (!saved) {
-      return {
-        kind: 'current',
-        storyKey: list ? catalogEntryKey(list) : story?.key ?? null,
-        storyName: list?.name ?? story?.name ?? 'Reading List',
-        completed,
-        total,
-      };
-    }
-    const progress = listProgress(state, saved.id);
-    if (!isCompleted(state, saved.id) && completionState(progress.read, progress.total) !== 'done') {
-      return {
-        kind: 'current',
-        storyKey: catalogEntryKey(list),
-        storyName: list.name ?? story?.name ?? saved.name ?? 'Reading List',
-        completed,
-        total,
-      };
+    const step = storyStep(state, ordered[completed], saved, isCompleted);
+    if (!step.done) {
+      return { kind: 'current', storyKey: step.key, storyName: step.name, completed, total };
     }
   }
 
   return { kind: 'complete', completed: total, total };
+}
+
+// Where the reader is on one bundled path: its first unfinished stop, and how many of its stops are
+// finished in all. The whole timeline counts the run finished before its first open stop; a path
+// counts a stop finished out of order too, because "3 of 10 stops complete" is read as a total
+// (#897).
+export function followedPathPosition(state, stories, { dropped = 0, isCompleted = () => false } = {}) {
+  if (Number.isInteger(dropped) && dropped > 0) return { kind: 'unavailable', dropped };
+
+  const ordered = Array.isArray(stories) ? stories : [];
+  const total = ordered.length;
+  if (!total) return { kind: 'empty', completed: 0, total: 0 };
+
+  const saved = savedByCatalog(state);
+  let current = null;
+  let completed = 0;
+  ordered.forEach((story, index) => {
+    const step = storyStep(state, story, saved, isCompleted);
+    if (step.done) completed += 1;
+    else current ??= { storyKey: step.key, storyName: step.name, stop: index + 1 };
+  });
+  return current
+    ? { kind: 'current', ...current, completed, total }
+    : { kind: 'complete', completed: total, total };
+}
+
+// A bundled path's stops as the stories the follow mode shows, in the path's order. Each leads with
+// the reading the path names, so a stop with nothing saved shows that reading rather than whichever
+// sibling the catalog lists first.
+export function followedPathStories(path) {
+  return (path?.stops ?? []).map((stop) => {
+    const named = stop.lists.find((list) => list.id === stop.stepId) ?? stop.lists[0];
+    return {
+      key: stop.key,
+      name: stop.name,
+      lists: [named, ...stop.lists.filter((list) => list !== named)],
+    };
+  });
 }
 
 export function createCatalogView({
@@ -80,13 +119,15 @@ export function createCatalogView({
   isCompleted = () => false,
   loadCatalog,
   notifyDropped,
+  onFollowChange = () => {},
+  onFollowCanonical = () => {},
   onLoadFailure,
   onSortChange,
   presentation,
 }) {
   const stateByShelf = new Map(CATALOG_SHELVES.map((shelf) => [
     shelf.key,
-    { facet: 'all', query: '', spotlight: 'all', sort: null },
+    { facet: 'all', query: '', spotlight: 'all', sort: null, path: null },
   ]));
   const generationByShelf = new Map();
   let announceTimer = null;
@@ -106,7 +147,16 @@ export function createCatalogView({
     return `${position.completed} of ${position.total} ${stop} complete.`;
   }
 
+  function pathCount(position) {
+    return `${position.completed} of ${position.total} stop${position.total === 1 ? '' : 's'} complete`;
+  }
+
+  function pathProgressText(position) {
+    return `${pathCount(position)}.`;
+  }
+
   function timelinePositionMessage(position, context) {
+    if (context.follow) return followedPositionMessage(position, context);
     if (position.kind === 'current') {
       const progress = timelineProgressText(position);
       return context.visibleStoryKeys.has(position.storyKey)
@@ -124,8 +174,26 @@ export function createCatalogView({
     return null;
   }
 
+  function followedPositionMessage(position, context) {
+    if (position.kind === 'current') {
+      const progress = pathProgressText(position);
+      return context.visibleStoryKeys.has(position.storyKey)
+        ? `You are here: ${position.storyName}, stop ${position.stop} of ${position.total}. ${progress}`
+        : `Your current stop, ${position.storyName}, is hidden by the current search or filter. ${progress}`;
+    }
+    if (position.kind === 'complete') {
+      return `${context.follow.name} complete. All ${position.total} stops are complete.`;
+    }
+    if (position.kind === 'unavailable') {
+      const entry = position.dropped === 1 ? 'entry is' : 'entries are';
+      return `Your place on this path is unavailable because ${position.dropped} catalog ${entry} incomplete and cannot be shown.`;
+    }
+    return null;
+  }
+
   function timelineSignature(position, context) {
     return JSON.stringify([
+      context.follow?.id ?? null,
       position.kind,
       position.storyKey ?? null,
       position.completed ?? null,
@@ -137,7 +205,8 @@ export function createCatalogView({
   }
 
   function paintTimelineContext(context, { announceChange = false } = {}) {
-    const position = modernTimelinePosition(getState(), context.stories, {
+    const locate = context.follow ? followedPathPosition : modernTimelinePosition;
+    const position = locate(getState(), context.stories, {
       dropped: context.dropped,
       isCompleted,
     });
@@ -150,6 +219,10 @@ export function createCatalogView({
       message,
       narrowed: context.narrowed,
       visibleStoryKeys: context.visibleStoryKeys,
+      // A path's own progress, beside "You are here" on the card it marks (#897).
+      ...(context.follow && position.kind === 'current'
+        ? { progress: `Stop ${position.stop} of ${position.total} · ${pathCount(position)}` }
+        : {}),
     });
     timelinePositionSignature = signature;
     if (announceChange && message) announceResult(message, 'catalog');
@@ -158,6 +231,7 @@ export function createCatalogView({
 
   function commitTimelineContext({
     dropped,
+    follow = null,
     generation,
     narrowed,
     root,
@@ -168,6 +242,7 @@ export function createCatalogView({
     timelinePendingGeneration = null;
     timelineContext = {
       dropped,
+      follow,
       narrowed,
       root,
       stories,
@@ -231,6 +306,54 @@ export function createCatalogView({
     for (const radio of elements.spotlightSorts()) radio.checked = radio.value === checked;
   }
 
+  // The choice of path, and what the chosen one is, kept outside the results so a search typed into
+  // a long path does not close "About this path" with every keystroke.
+  function paintFollowControl(paths, followed) {
+    const nodes = elements.follow?.();
+    if (!nodes) return;
+    nodes.wrap.hidden = paths.length === 0;
+    const signature = paths.map((path) => `${path.id}:${path.stops.length}`).join('|');
+    if (nodes.select.dataset.paths !== signature) {
+      nodes.select.replaceChildren(
+        el('option', { value: '', text: 'Whole timeline' }),
+        ...paths.map((path) => el('option', {
+          value: path.id,
+          text: `${path.name} (${path.stops.length} stops)`,
+        })),
+      );
+      nodes.select.dataset.paths = signature;
+    }
+    nodes.select.value = followed?.id ?? '';
+    nodes.about.hidden = !followed;
+    nodes.description.textContent = followed?.description ?? '';
+    nodes.source.textContent = followed ? `Source: ${followed.sourceOrigin}` : '';
+  }
+
+  // One numbered list in the path's order rather than era and year rows: a path is read in its own
+  // order, and Marvel Knights to Planet X's chapters are not in year order. Each stop keeps the
+  // path's numbering however far a search narrows the list, and says the year it starts.
+  function renderFollowedPath(root, path, entries) {
+    const stopOf = new Map(path.stops.map((stop) => [stop.key, stop]));
+    const list = el('ol', { class: 'path-stops', 'aria-label': `${path.name} stops` });
+    for (const entry of entries) {
+      const stop = stopOf.get(entry.groupKey);
+      if (!stop) continue;
+      list.append(el('li', {
+        class: 'path-stop',
+        value: String(stop.position),
+        dataset: { pathStop: stop.stepId },
+      }, [
+        el('span', { class: 'path-stop-marker', 'aria-hidden': 'true', text: String(stop.position) }),
+        el('p', {
+          class: 'path-stop-meta',
+          text: `Stop ${stop.position} of ${stop.total}${stop.year == null ? '' : ` · Starts ${stop.year}`}`,
+        }),
+        presentation.catalogCard(entry, null, { surface: 'catalog', level: 'h2' }),
+      ]));
+    }
+    root.append(list);
+  }
+
   async function render(key, { isCurrent: isRequestCurrent = () => true } = {}) {
     const generation = (generationByShelf.get(key) ?? 0) + 1;
     generationByShelf.set(key, generation);
@@ -272,10 +395,25 @@ export function createCatalogView({
     if (!current()) return;
 
     if (catalog.dropped) notifyDropped(key, catalog.dropped);
-    const mine = key === 'catalog'
-      ? modernTimelineLists(catalog.lists)
-      : key === 'lines' ? storylinesLists(catalog.lists) : shelfLists(catalog.lists, key);
-    const canonicalTimelineStories = key === 'catalog' ? groupCatalog(mine) : null;
+    // Following a bundled path narrows the Modern Timeline to that path's stops, every one of them
+    // and in the path's own order, including a stop no other screen places on the Timeline (#897).
+    // A path that no longer resolves, because the catalog dropped it, is let go rather than shown as
+    // an empty timeline, and the address is corrected to say so.
+    const paths = key === 'catalog' ? resolveReadingPaths(catalog.paths, catalog.lists) : [];
+    const followed = paths.find((candidate) => candidate.id === state.path) ?? null;
+    if (key === 'catalog' && state.path !== null && !followed) {
+      state.path = null;
+      onFollowCanonical();
+    }
+    if (key === 'catalog') paintFollowControl(paths, followed);
+    const followedStories = followed ? followedPathStories(followed) : null;
+    const owned = (list) => Boolean(listForCatalogId(getState(), list.id));
+    const mine = followed
+      ? followedStories.map((story) => defaultPath(story, owned))
+      : key === 'catalog'
+        ? modernTimelineLists(catalog.lists)
+        : key === 'lines' ? storylinesLists(catalog.lists) : shelfLists(catalog.lists, key);
+    const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
     if (!mine.length) {
       nodes.filters.hidden = true;
@@ -284,6 +422,7 @@ export function createCatalogView({
       if (key === 'catalog') {
         commitTimelineContext({
           dropped: catalog.dropped,
+          follow: followed,
           generation,
           narrowed: false,
           root: nodes.results,
@@ -304,7 +443,7 @@ export function createCatalogView({
     renderFilters(key, mine, searchable);
     if (key === 'catalog') {
       presentation.ensureSetupGuideFeature(catalog.lists, key, modernTimelineFeaturedCard, {
-        hidden: state.facet !== 'all' || Boolean(state.query),
+        hidden: Boolean(followed) || state.facet !== 'all' || Boolean(state.query),
       });
     }
     if (key === 'spotlights') syncSpotlightControls();
@@ -318,13 +457,18 @@ export function createCatalogView({
       : '';
     if (!shown.length) {
       const where = narrowingLabel(key, mine, state);
-      const message = state.query
-        ? `No Reading Lists match “${state.query}”${where}.`
-        : `No Reading Lists${where || ' in that category'}.`;
+      const message = followed
+        ? state.query
+          ? `No stops on ${followed.name} match “${state.query}”${where}.`
+          : `No stops on ${followed.name}${where || ' in that category'}.`
+        : state.query
+          ? `No Reading Lists match “${state.query}”${where}.`
+          : `No Reading Lists${where || ' in that category'}.`;
       nodes.results.append(el('p', { class: 'rail-hint', text: message }));
       const position = key === 'catalog'
         ? commitTimelineContext({
           dropped: catalog.dropped,
+          follow: followed,
           generation,
           narrowed: state.facet !== 'all' || Boolean(state.query),
           root: nodes.results,
@@ -340,7 +484,7 @@ export function createCatalogView({
       ? sortSpotlightStories(catalogEntries(shown), state.sort)
       : catalogEntries(shown);
     const placements = pathPlacements(catalog.paths, catalog.lists);
-    const firstStops = visibleFirstStopGuides(stories, placements, presentation.chosenPath);
+    const firstStops = followed ? [] : visibleFirstStopGuides(stories, placements, presentation.chosenPath);
     if (firstStops.length) {
       const startsByPath = new Map();
       for (const { guide, placement } of firstStops) {
@@ -362,7 +506,9 @@ export function createCatalogView({
         ? decadeSections(stories)
         : [{ ...shelf, stories }];
     const grouped = Boolean(shelf.sections);
-    if (key === 'catalog') {
+    if (followed) {
+      renderFollowedPath(nodes.results, followed, stories);
+    } else if (key === 'catalog') {
       presentation.renderTimelineSections(nodes.results, sections, placements, {
         idPrefix: 'timeline',
         showEmptyYears: state.facet === 'all' && !state.query,
@@ -389,6 +535,7 @@ export function createCatalogView({
     const position = key === 'catalog'
       ? commitTimelineContext({
         dropped: catalog.dropped,
+        follow: followed,
         generation,
         narrowed: state.facet !== 'all' || Boolean(state.query),
         root: nodes.results,
@@ -399,8 +546,12 @@ export function createCatalogView({
     if (!catalog.dropped) {
       const where = narrowingLabel(key, mine, state);
       const match = state.query ? ` matching “${state.query}”` : '';
+      const total = followed?.stops.length;
+      const lead = followed
+        ? `${shelf.heading} follows ${followed.name}: ${stories.length === total ? `${total} stops` : `${stories.length} of ${total} stops`}${match}${where}.`
+        : `${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.`;
       announceResult(
-        `${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.${sortSentence}${position?.message ? ` ${position.message}` : ''}`,
+        `${lead}${sortSentence}${position?.message ? ` ${position.message}` : ''}`,
         key,
       );
     }
@@ -412,6 +563,8 @@ export function createCatalogView({
     state.facet = 'all';
     state.query = '';
     state.spotlight = 'all';
+    // A stop reached from a card is shown on its whole screen, so a followed path is let go too.
+    state.path = null;
     const nodes = elements.shelf(key);
     nodes.query.value = '';
     nodes.clear.hidden = true;
@@ -431,6 +584,18 @@ export function createCatalogView({
       state.query = '';
       nodes.query.focus();
       void render(key);
+    });
+    const follow = key === 'catalog' ? elements.follow?.() : null;
+    // Focus stays on the choice, and the narrowed result is announced as the other narrowing is. A
+    // search or filter chosen for the last path is let go, since it was not chosen for these stops.
+    follow?.select.addEventListener('change', () => {
+      state.path = follow.select.value || null;
+      state.facet = 'all';
+      state.query = '';
+      nodes.query.value = '';
+      nodes.clear.hidden = true;
+      void render(key);
+      onFollowChange();
     });
     if (key === 'spotlights') {
       for (const radio of elements.spotlightKinds()) {
@@ -453,10 +618,16 @@ export function createCatalogView({
     stateByShelf.get('spotlights').sort = value === 'popularity' ? 'popularity' : null;
   }
 
+  function setFollowedPath(value) {
+    stateByShelf.get('catalog').path = typeof value === 'string' && value ? value : null;
+  }
+
   return {
     clearNarrowing,
+    followedPath: () => stateByShelf.get('catalog').path,
     refreshProgress,
     render,
+    setFollowedPath,
     sort: () => stateByShelf.get('spotlights').sort,
     setSort,
     wire,

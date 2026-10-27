@@ -1341,7 +1341,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    a file input are drawn by the platform in a style that belongs to no part of this app, and the
    file input in particular announces itself as "Choose File / No file chosen" in the middle of a
    surface where every other control is a labelled button. */
-#view-data select, .setting select, .reading-path-controls select, .collection-navigation select, .rated-controls select {
+#view-data select, .setting select, .reading-path-controls select, .timeline-follow select, .collection-navigation select, .rated-controls select {
   appearance: none;
   background-image: linear-gradient(45deg, transparent 50%, currentcolor 50%),
     linear-gradient(135deg, currentcolor 50%, transparent 50%);
@@ -1352,7 +1352,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
@@ -2457,10 +2457,12 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 }
 
 /* One linear sequence rather than a proportional year axis. The line shows continuity, while every
-   stop keeps its ordinal and progress in text so shape and colour are never the only explanation. */
-.reading-path-controls { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
-.reading-path-controls label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.reading-path-controls select { width: 100%; min-height: var(--target); }
+   stop keeps its ordinal and progress in text so shape and colour are never the only explanation.
+   The Modern Timeline follows a path with the same line (#897). */
+.reading-path-controls, .timeline-follow { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
+.timeline-follow[hidden], .timeline-follow-about[hidden] { display: none; }
+.reading-path-controls label, .timeline-follow label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.reading-path-controls select, .timeline-follow select { width: 100%; min-height: var(--target); }
 /* The ratings filters sit in one row on a wide screen and stack on a narrow one. Each control keeps a
    visible label above it, the same caption treatment the reading path picker uses, because a
    placeholder alone disappears the moment the reader starts typing. */
@@ -2493,10 +2495,10 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-summary h2 { margin: 0 0 var(--space-3); font-size: var(--t-title); }
 .reading-path-summary p { margin: var(--space-2) 0; }
 .reading-path-count { flex: 0 0 auto; color: var(--muted); font-size: var(--t-caption); }
-.reading-path-spine { list-style: none; margin: 0; padding: 0 0 0 var(--space-7); border-left: var(--stroke-2) solid var(--line-2); }
-.reading-path-stop { position: relative; min-width: 0; padding: 0 0 var(--space-8) var(--space-7); }
-.reading-path-stop:last-child { padding-bottom: var(--space-2); }
-.reading-path-marker {
+.reading-path-spine, .path-stops { list-style: none; margin: 0; padding: 0 0 0 var(--space-7); border-left: var(--stroke-2) solid var(--line-2); }
+.reading-path-stop, .path-stop { position: relative; min-width: 0; padding: 0 0 var(--space-8) var(--space-7); }
+.reading-path-stop:last-child, .path-stop:last-child { padding-bottom: var(--space-2); }
+.reading-path-marker, .path-stop-marker {
   position: absolute; left: -2.05rem; top: -.1rem; display: grid; place-items: center;
   width: 1.7rem; height: 1.7rem; border: var(--stroke-2) solid var(--accent-text); border-radius: var(--radius-circle);
   background: var(--bg); color: var(--text); font-size: var(--t-caption); font-weight: 700;
@@ -2504,18 +2506,19 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card); }
 .reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
 .reading-path-stop-meta, .reading-path-stop-progress { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--t-caption); }
+.path-stop-meta { margin: 0 0 var(--space-3); color: var(--muted); font-size: var(--t-caption); }
 .reading-path-action { margin-top: var(--space-4); min-height: var(--target); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .reading-path-stop[data-progress="done"] .reading-path-stop-progress { color: var(--teal); }
 .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
 @media (max-width: 620px) {
   .reading-path-summary { display: grid; }
-  .reading-path-spine { padding-left: var(--space-5); }
-  .reading-path-stop { padding-left: var(--space-6); }
-  .reading-path-marker { left: -1.72rem; }
+  .reading-path-spine, .path-stops { padding-left: var(--space-5); }
+  .reading-path-stop, .path-stop { padding-left: var(--space-6); }
+  .reading-path-marker, .path-stop-marker { left: -1.72rem; }
 }
 @media (forced-colors: active) {
-  .reading-path-spine { border-color: CanvasText; }
-  .reading-path-marker, .reading-path-stop-copy { border-color: CanvasText; background: Canvas; color: CanvasText; }
+  .reading-path-spine, .path-stops { border-color: CanvasText; }
+  .reading-path-marker, .path-stop-marker, .reading-path-stop-copy { border-color: CanvasText; background: Canvas; color: CanvasText; }
   .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
 }
 

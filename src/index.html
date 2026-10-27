@@ -652,6 +652,15 @@
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
             <div class="head"><div class="head-left"><h1 id="catalog-h">Modern Timeline</h1></div></div>
             <div id="catalog-report" class="report"></div>
+            <div class="timeline-follow" id="catalog-follow" hidden>
+              <label for="catalog-path">Follow a path</label>
+              <select id="catalog-path"></select>
+              <details class="field-disclosure action-disclosure timeline-follow-about" id="catalog-path-about" hidden>
+                <summary>About this path</summary>
+                <p id="catalog-path-description"></p>
+                <p class="rail-hint" id="catalog-path-source"></p>
+              </details>
+            </div>
             <form id="form-catalog-search" class="stack" role="search">
               <label for="catalog-q">Search the catalog by title or character</label>
               <div class="field-row">

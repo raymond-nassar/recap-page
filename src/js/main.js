@@ -1357,7 +1357,7 @@ function syncHash({ push = false } = {}) {
         listId: activeListId(),
         filter: showFilter ? shown : DEFAULT_FILTER,
         full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null, at: homeAt,
+        sort, pathId: view === 'reading-paths' ? requestedReadingPathId : view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
       });
   if (!next || next === location.hash) return;
 
@@ -1432,6 +1432,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
+    if (route.view === 'catalog') catalogView.setFollowedPath(route.pathId ?? null);
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
     if (route.view !== 'reading-paths') { readingView.setFilterAddressed(route.filter !== null);
@@ -3387,6 +3388,13 @@ const catalogView = createCatalogView({
     }),
     spotlightKinds: () => document.querySelectorAll('input[name="spotlights-kind"]'),
     spotlightSorts: () => document.querySelectorAll('input[name="spotlights-sort"]'),
+    follow: () => ({
+      wrap: $('#catalog-follow'),
+      select: $('#catalog-path'),
+      about: $('#catalog-path-about'),
+      description: $('#catalog-path-description'),
+      source: $('#catalog-path-source'),
+    }),
   },
   getState: () => store.state,
   isCurrent: (key) => view === key,
@@ -3406,6 +3414,8 @@ const catalogView = createCatalogView({
     isCurrent,
   }),
   onSortChange: () => syncHash({ push: true }),
+  onFollowChange: () => syncHash({ push: true }),
+  onFollowCanonical: () => syncHash(),
   presentation: catalogPresentation,
 });
 

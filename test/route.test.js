@@ -719,12 +719,28 @@ test('missing empty duplicate and malformed reading path queries select no raw t
   assert.equal(parseRoute('#/reading-paths/saved-list'), null);
 });
 
-test('an extra query is dropped while a path query on another view is ignored', () => {
+test('the Modern Timeline carries the path it follows, while a path query on another view is ignored', () => {
   assert.equal(parseRoute('#/reading-paths?path=modern-avengers&other=value').pathId, 'modern-avengers');
+  // #897: the Modern Timeline follows a bundled path, so its address carries the choice, beside the
+  // active list as every view's does.
   assert.deepEqual(parseRoute('#/catalog?path=modern-avengers'), {
-    view: 'catalog', listId: null, filter: null, full: false,
+    view: 'catalog', listId: null, filter: null, full: false, pathId: 'modern-avengers',
   });
-  assert.equal(formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), '#/catalog');
+  assert.equal(formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), '#/catalog?path=modern-avengers');
+  assert.equal(
+    formatRoute({ view: 'catalog', listId: 'house-of-m', pathId: 'modern-avengers' }),
+    '#/catalog/house-of-m?path=modern-avengers',
+  );
+  assert.deepEqual(parseRoute('#/catalog/house-of-m?path=modern-avengers&other=value'), {
+    view: 'catalog', listId: 'house-of-m', filter: null, full: false, pathId: 'modern-avengers',
+  });
+  for (const unusable of ['#/catalog?path=Modern-Avengers', '#/catalog?path=a&path=b', '#/catalog?path=', '#/catalog?path=a%20b']) {
+    assert.equal(Object.hasOwn(parseRoute(unusable), 'pathId'), false, unusable);
+  }
+  assert.deepEqual(parseRoute('#/lines?path=modern-avengers'), {
+    view: 'lines', listId: null, filter: null, full: false,
+  });
+  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/lines');
 });
 
 const HOME_CARDS = 'categories';

@@ -267,6 +267,9 @@ export function formatRoute({
   if (known && filter !== DEFAULT_FILTER && canonical !== 'reading-paths') query.set(FILTER_KEY, filter);
   if (canonical === 'read' && full === true) query.set(FULL_KEY, '1');
   if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort); if (canonical === 'reading-paths' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
+  // The path the Modern Timeline is following, so a followed path can be bookmarked and Back
+  // returns to the previous choice (#897).
+  if (canonical === 'catalog' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
   const segment = canonical === 'home' && at === HOME_CARDS ? HOME_CARDS_SEGMENT : canonical;
@@ -332,18 +335,20 @@ export function parseRoute(hash) {
   const params = new URLSearchParams(search);
   const raw = params.get(FILTER_KEY);
   const filter = view !== 'reading-paths' && READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
-  const fullValues = params.getAll(FULL_KEY); const pathValues = view === 'reading-paths' ? params.getAll(PATH_KEY) : [];
+  const fullValues = params.getAll(FULL_KEY); const pathValues = view === 'reading-paths' || view === 'catalog' ? params.getAll(PATH_KEY) : [];
+  const pathId = pathValues.length === 1 && PATH_TOKEN.test(pathValues[0]) ? pathValues[0] : null;
   const full = view === 'read' && fullValues.length === 1 && fullValues[0] === '1';
   const rawSort = view === 'spotlights' ? params.get(SPOTLIGHT_SORT_KEY) : null;
   const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
     ? rawSort
     : null;
 
-  if (view === 'reading-paths') return { view, listId: null, filter: null, full: false, pathId: pathValues.length === 1 && PATH_TOKEN.test(pathValues[0]) ? pathValues[0] : null }; return sort
+  if (view === 'reading-paths') return { view, listId: null, filter: null, full: false, pathId }; return sort
     ? {
       view, listId: listId || null, filter, full, sort,
     }
     : {
       view, listId: listId || null, filter, full, ...(atCards ? { at: HOME_CARDS } : {}),
+      ...(view === 'catalog' && pathId ? { pathId } : {}),
     };
 }
