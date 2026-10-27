@@ -70,13 +70,25 @@ async function captureScreen(page, screen, output) {
   await page.waitForSelector(`#${screen.view}:not([hidden])`, { timeout: 10000 });
   await page.waitForFunction((texts) => texts.every((text) => document.body.innerText.includes(text)), { timeout: 10000 }, screen.text);
   await page.evaluate(async (scroll) => {
+    const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
     await document.fonts.ready;
-    if (scroll) document.querySelector(scroll).scrollIntoView({ block: 'start' });
-    else scrollTo(0, 0);
+    if (scroll) {
+      document.querySelector(scroll).scrollIntoView({ block: 'start' });
+      // A reader brings the hidden navigation back by scrolling up a little, so go just past the
+      // card and return to it, a frame apart so the app sees each move as a scroll of its own.
+      const target = scrollY;
+      await frames();
+      scrollTo(0, target + 24);
+      await frames();
+      scrollTo(0, target);
+      await frames();
+    } else scrollTo(0, 0);
+    await Promise.allSettled(document.getAnimations().map((animation) => animation.finished));
   }, screen.scroll);
   const audit = await page.evaluate((view, requiredText, key, expectedState, headingSelector) => {
     const visible = document.querySelector('.view:not([hidden])');
     const heading = visible?.querySelector(headingSelector ?? 'h1');
+    const bar = document.querySelector('.rail-header')?.getBoundingClientRect();
     const text = document.body.innerText;
     const settings = JSON.parse(localStorage.getItem('mrt.settings'));
     const state = JSON.parse(localStorage.getItem(key));
@@ -90,6 +102,12 @@ async function captureScreen(page, screen, output) {
       // at the capture viewport a 1,360px page reported an innerWidth of 1,360, so comparing with it
       // passed. The root's client width stays the 360px screen width.
       noOverflow: document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+      // The phone's bottom navigation hides while the page scrolls down and slides back on the way
+      // up. Scrolled to the reading card, the capture caught it in its hidden state with its slide
+      // still running, and 600 ms later it was wholly off screen, so the image depended on timing.
+      navigation: Boolean(bar && !document.querySelector('.rail-header.mobile-nav-hidden')
+        && bar.top >= 0 && bar.bottom <= document.documentElement.clientHeight + 0.5),
+      settled: document.getAnimations().length === 0,
       android: Boolean(document.querySelector('script[src="./android/app.js"]')
         && document.querySelector('link[href="./android/mobile.css"]')),
       coversOff: settings.covers === false,

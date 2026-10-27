@@ -52,6 +52,8 @@ viewport, scale 3. No native Android device or bridge is used. These are not phy
 captures, release acceptance or approved final Play screenshots. Filenames and the manifest state
 that distinction; keep the manifest with the images. The library is captured from the top; the
 reading view is scrolled to its next-issue card without changing layout or hiding controls.
+Scrolling down hides the phone's bottom navigation, so the capture then scrolls just past the card
+and returns, as a reader does to bring the bar back, and waits for every animation to finish.
 Original CSS cover-off placeholders stay visible.
 
 Each screen uses an isolated, disposable browser context. The
@@ -75,7 +77,8 @@ Browser/font versions can change screenshot bytes. Reproduce from the recorded s
 then compare actual output; never assume compression hashes match across machines.
 
 Missing external tools, unapproved/failed requests, browser errors, unsafe visible content,
-unexpected state changes, image metadata, corrupted PNGs and incorrect dimensions fail explicitly.
+unexpected state changes, a hidden or still-moving bottom navigation, image metadata, corrupted
+PNGs and incorrect dimensions fail explicitly.
 A failed capture removes its incomplete output and produces no success manifest. Temporary shell
 and browser state are removed on exit. Never disable checks to get images. Inspect the failure
 and change the narrow contract only after review.
