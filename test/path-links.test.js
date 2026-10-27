@@ -1,155 +1,75 @@
-// The reading path runs through all three catalogue screens, so a row can name a stop the reader
-// cannot reach by scrolling. Two links answer that, and both are the same rule: draw a link only
-// where pressing it takes the reader to a screen they are not on. "Next" carries them forward, and
-// the path's own name carries them back to the start.
+// UX-11 (#830): a catalog card no longer shows the reading path a story is on. Its "Start" or "Step"
+// disclosure was a third keyboard stop on about a hundred cards, and since #897 paths are followed
+// on Modern Timeline, where every stop is numbered in the path's own order. The two links this file
+// used to hold to account went with it, so it now holds the card to what replaced them: no path
+// line and no link but the source credit, and every bundled path still reachable at its address.
 //
-// Exercised rather than scanned. test/render-rows.test.js records why: source-text tests of a
-// render matched the shape of the code, and every mutation tried against them changed exactly the
-// text the scan read, so passing was close to tautological. These call the function and read what
-// it built. The stand-in below is the smallest node pathLine actually uses.
+// Exercised rather than scanned, as before: these build the shipped catalog's cards and read what
+// was built.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { groupCatalog, parseCatalog, pathPlacements, shelfStories, CATALOG_SHELVES } from '../src/js/lib/catalog.js';
-import { pathLine } from '../src/js/views/shared/catalog-presentation.js';
+import {
+  catalogEntries, parseCatalog, pathPlacements, resolveReadingPaths, shelfKey, sourceLink,
+} from '../src/js/lib/catalog.js';
+import { formatRoute, parseRoute } from '../src/js/lib/route.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
-const stories = groupCatalog(catalog.lists);
 
-function node(tag) {
-  return {
-    tag,
-    attrs: {},
-    children: [],
-    className: '',
-    textContent: '',
-    setAttribute(k, v) { this.attrs[k] = v; },
-    addEventListener() {},
-    append(child) { this.children.push(child); },
-  };
+function el(tag, props = {}, children = []) {
+  return { tag, children: [].concat(children), ...props };
 }
+const descendants = (node) => (typeof node === 'object' && node !== null
+  ? [node, ...node.children.flatMap(descendants)] : []);
+const text = (node) => (typeof node === 'string' ? node
+  : node?.text ?? node?.children.map(text).join('') ?? '');
 
-globalThis.document = {
-  createElement: (tag) => node(tag),
-  createTextNode: (text) => ({ tag: '#text', textContent: text }),
-};
-
-const placed = pathPlacements(catalog.paths, catalog.lists);
-const MODERN_AVENGERS_PATH_ID = 'modern-avengers';
-const modernPlacements = new Map([...placed.entries()].filter(([, placement]) => (
-  placement.pathId === MODERN_AVENGERS_PATH_ID
-)));
-const byPosition = new Map([...modernPlacements.values()].map((p) => [p.position, p]));
-const shelfOf = (key) => CATALOG_SHELVES.find((shelf) => shelfStories(stories, shelf.key).some((s) => s.key === key)).key;
-const keyAt = (position) => [...modernPlacements.entries()].find(([, p]) => p.position === position)[0];
-
-function links(el) {
-  const found = [];
-  const walk = (n) => {
-    if (!n || typeof n !== 'object') return;
-    if (n.tag === 'a') found.push(n);
-    for (const c of n.children ?? []) walk(c);
-  };
-  walk(el);
-  return found;
-}
-
-function words(el) {
-  if (!el || typeof el !== 'object') return '';
-  if (el.tag === '#text') return el.textContent;
-  return (el.textContent || '') + (el.children ?? []).map(words).join('');
-}
-
-const NAME = [...modernPlacements.values()][0].pathName;
-
-// The count the owner's choice rests on, measured rather than asserted from the design. Nine rows
-// take a linked name and two take a linked "Next", and step five takes both, which is the only row
-// in the app pointing at two different screens.
-test('the two links are drawn on exactly the rows that cannot reach the stop by scrolling', () => {
-  const rows = [];
-  for (const surface of CATALOG_SHELVES.map((s) => s.key)) {
-    for (const [position, placement] of byPosition) {
-      const key = keyAt(position);
-      const drawn = shelfOf(key) === surface;
-      if (!drawn) continue;
-      const line = pathLine(placement, surface);
-      const drawnLinks = links(line);
-      const named = drawnLinks.filter((a) => words(a) === NAME);
-      rows.push({ surface, position, name: named.length, next: drawnLinks.length - named.length });
-    }
-  }
-  const total = (field) => rows.reduce((n, r) => n + r[field], 0);
-  assert.equal(total('name'), 9, 'the path name is not linked on the nine rows drawn away from its start');
-  assert.equal(total('next'), 2, 'the forward link is not on the two hops that cross a screen');
-
-  const both = rows.filter((r) => r.name && r.next);
-  assert.deepEqual(both.map((r) => r.position), [5], 'step five is the only row carrying both links');
+const presentation = createCatalogPresentation({
+  el,
+  hueOf: () => 0,
+  isInLibrary: () => false,
+  paintCoverUrl: () => {},
+  shortTitle: (title) => title,
 });
 
-// The basis of the whole decision. A backward stop link was declined because the path's name is
-// already on the row, so linking it closes the same gap for nothing; an implementation that adds a
-// visible word has spent what it was chosen to save.
-test('linking the path name adds no visible word to the row', () => {
-  const opener = byPosition.get(1);
-  const away = byPosition.get(2);
+const placements = pathPlacements(catalog.paths, catalog.lists);
+const stops = catalogEntries(catalog.lists).filter((story) => placements.has(story.groupKey));
 
-  // The row the path starts on draws the name unlinked, because its start is the screen it is on.
-  const plain = pathLine(opener, shelfOf(keyAt(1)));
-  assert.deepEqual(links(plain).map(words), [opener.next.name], 'the opening row linked its own name');
-  assert.equal(words(plain), 'Start here' + NAME + ' · Step 1 of ' + opener.total + ' · Next: ' + opener.next.name);
+test('no path stop\'s card draws a path line or links anywhere but its source', () => {
+  // The count this decision was made on: 98 cards on Modern Timeline, 7 on Storylines and 1 on
+  // Character spotlights.
+  const byShelf = {};
+  for (const story of stops) byShelf[shelfKey(story)] = (byShelf[shelfKey(story)] ?? 0) + 1;
+  assert.deepEqual(byShelf, { catalog: 98, lines: 7, spotlights: 1 });
 
-  // A row drawn away from the start says the same words, with one of them now pressable.
-  const linked = pathLine(away, shelfOf(keyAt(2)));
-  const [name] = links(linked);
-  assert.equal(words(name), NAME, 'the link shows something other than the name already printed');
-  assert.equal(
-    words(linked),
-    'Step ' + away.position + ' of ' + away.total + NAME + ' · Next: ' + away.next.name,
-    'the linked row says more than the row it replaced',
-  );
-});
-
-// A link announced as "The Modern Avengers" does not say that pressing it goes to the start, and
-// nothing may be added on screen to say so. WCAG SC 2.5.3 wants the visible words inside the
-// accessible name rather than beside it, which is the rule accname.js holds for every other control
-// in the app.
-test('the linked name says where it goes without saying it on screen', () => {
-  const away = byPosition.get(2);
-  const [link] = links(pathLine(away, shelfOf(keyAt(2))));
-  const label = link.attrs['aria-label'];
-  assert.ok(label, 'the link carries no accessible name, so it is announced as a bare title');
-  assert.ok(label.startsWith(NAME), 'the accessible name does not contain the words on the control');
-  assert.ok(label.includes(away.first.name), 'the accessible name does not say which stop it goes to');
-  assert.notEqual(label, words(link), 'the accessible name says no more than the visible text');
-});
-
-// Same rule, one implementation. Both links resolve their destination the same way and clear the
-// destination's narrowing the same way, so the href a name link writes is the href the forward link
-// would write for the same stop.
-test('both links address the screen the stop is actually drawn on', () => {
-  for (const [position, placement] of byPosition) {
-    for (const surface of CATALOG_SHELVES.map((s) => s.key)) {
-      if (shelfOf(keyAt(position)) !== surface) continue;
-      for (const a of links(pathLine(placement, surface))) {
-        const stop = words(a) === NAME ? placement.first : placement.next;
-        assert.equal(a.attrs.href, '#/' + stop.shelf, words(a) + ' links somewhere other than its own screen');
-        assert.notEqual(stop.shelf, surface, words(a) + ' links to the screen the reader is already on');
-      }
-    }
+  for (const story of stops) {
+    const card = presentation.catalogCard(story, { surface: shelfKey(story) });
+    const nodes = descendants(card);
+    const name = story.lists[0].name;
+    assert.equal(nodes.some((node) => node.tag === 'details'), false, `${name} carries a disclosure`);
+    assert.doesNotMatch(text(card), /Start here|Step \d+|Next: |Last stop/, `${name} draws its path step`);
+    const links = nodes.filter((node) => node.tag === 'a');
+    const source = sourceLink(story.lists[0]);
+    assert.deepEqual(links.map((link) => link.href), source ? [source] : [], `${name} links past its credit`);
   }
 });
 
-test('the controller can preserve destination route state in generated path links', () => {
-  const placement = byPosition.get(2);
-  const [link] = links(pathLine(
-    placement,
-    shelfOf(keyAt(2)),
-    {},
-    { hrefForStop: (stop) => `#/${stop.shelf}?sort=popularity` },
-  ));
-  assert.equal(link.attrs.href, `#/${placement.first.shelf}?sort=popularity`);
+test('every bundled path is still followed at its address and at the retired page\'s', () => {
+  const paths = resolveReadingPaths(catalog.paths, catalog.lists);
+  assert.deepEqual(paths.map(({ id }) => id), ['modern-avengers', 'x-men-messiah-to-avx', 'marvel-knights-to-planet-x']);
+  for (const { id } of paths) {
+    const hash = formatRoute({ view: 'catalog', pathId: id });
+    assert.equal(hash, `#/catalog?path=${id}`);
+    assert.equal(parseRoute(hash).pathId, id);
+    for (const retired of [`#/reading-paths/${id}`, `#/reading-paths?path=${id}`]) {
+      const route = parseRoute(retired);
+      assert.equal(route.view, 'catalog', retired);
+      assert.equal(route.pathId, id, retired);
+    }
+  }
 });

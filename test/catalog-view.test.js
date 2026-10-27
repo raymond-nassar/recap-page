@@ -523,12 +523,12 @@ function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1
     scrollIntoView() {},
     setAttribute(attribute, value) { this[attribute] = value; },
   });
-  const card = (entry, placement, options) => {
+  const card = (entry, options) => {
     const title = focusable(keptNode('h2', { text: entry.lists[0].name }), `title:${entry.lists[0].id}`);
     const open = focusable(keptNode('a', { dataset: { key: entry.lists[0].id, act: 'open' } }), `open:${entry.lists[0].id}`);
     const preview = focusable(keptNode('button', { dataset: { key: entry.key, act: 'preview' } }), `preview:${entry.lists[0].id}`);
     const controls = { '.catalog-card-title': title, '[data-act="open"]': open, '[data-act="preview"]': preview };
-    return Object.assign(keptNode('article', { dataset: { story: entry.key }, placement, options }, [title, open, preview]), {
+    return Object.assign(keptNode('article', { dataset: { story: entry.key }, options }, [title, open, preview]), {
       querySelector: (selector) => controls[selector] ?? null,
     });
   };
@@ -597,7 +597,6 @@ test('following a path shows every stop in the path\'s own order, a stop the Tim
     { value: '3', meta: 'Stop 3 of 3 · Starts 2004', story: 'list:event-1' },
   ]);
   const card = h.nodes.results.children.find((child) => child.tag === 'ol').children[0].children[2];
-  assert.equal(card.placement, null, 'a stop card does not repeat its step as a disclosure');
   assert.equal(card.options.level, 'h2');
 });
 
@@ -679,14 +678,11 @@ test('a path that no longer resolves is let go and the address corrected, rather
   assert.equal(h.view.followedPath(), null);
   assert.equal(h.calls.canonical, 1);
   assert.equal(h.calls.timelines, 1);
-  h.view.setFollowedPath('avengers');
-  h.view.clearNarrowing('catalog');
-  assert.equal(h.view.followedPath(), null, 'going to a stop from a card shows its whole screen');
 });
 
 // #897. The Reading paths page showed its first path for an address naming none it held, so an
 // address from that page follows the first path here, and the address is corrected to name it. The
-// fallback belongs to that one arrival: it is spent once settled, and a card's reset withdraws it.
+// fallback belongs to that one arrival: it is spent once settled, and a later address withdraws it.
 test('an address from the retired Reading paths page follows the first path when it names none', async () => {
   for (const requested of [null, 'retired-path']) {
     const h = followHarness();
@@ -704,13 +700,6 @@ test('an address from the retired Reading paths page follows the first path when
   await named.view.render('catalog');
   assert.equal(named.view.followedPath(), 'long', 'a path the catalog holds is followed as named');
   assert.equal(named.calls.canonical, 1, 'and the retired address is rewritten as the Timeline\'s own');
-
-  const spent = followHarness();
-  spent.view.setFollowedPath(null, { orFirst: true });
-  spent.view.clearNarrowing('catalog');
-  await spent.view.render('catalog');
-  assert.equal(spent.view.followedPath(), null, 'a card reset withdraws the fallback');
-  assert.equal(spent.stops().length, 0);
 
   const plain = followHarness();
   plain.view.setFollowedPath(null, { orFirst: true });

@@ -71,8 +71,8 @@ function viewFixture(lists, { state = createEmptyState(), paths = [] } = {}) {
   };
   const cards = [];
   const positions = [];
-  const paintCard = (story, placement) => {
-    cards.push({ story, placement });
+  const paintCard = (story, options) => {
+    cards.push({ story, options });
     return node();
   };
   const view = createCatalogView({
@@ -94,9 +94,9 @@ function viewFixture(lists, { state = createEmptyState(), paths = [] } = {}) {
       chosenPath: (story) => story.lists[0],
       ensureSetupGuideFeature: () => {},
       paintTimelinePosition: (_root, position, options) => positions.push({ position, options }),
-      renderTimelineSections: (_root, groups, placements) => {
+      renderTimelineSections: (_root, groups) => {
         for (const section of groups) {
-          for (const story of section.stories) paintCard(story, placements.get(story.groupKey ?? story.key));
+          for (const story of section.stories) paintCard(story);
         }
       },
       shelfSectionHead: () => node(),
@@ -132,7 +132,9 @@ test('independent spotlight choices retain their shared subject rank and stable 
   );
 });
 
-test('Storylines renders both choices independently with the same logical path placement', async () => {
+// A card no longer shows its path step (UX-11, #830), and only Modern Timeline, where paths are
+// followed, says where one starts (UX-14). Sibling choices still render as cards of their own.
+test('Storylines renders both choices independently and names no path start', async () => {
   const after = entry('after', { timeline: 2015 });
   const fixture = viewFixture([fast, full, after], {
     paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
@@ -141,9 +143,40 @@ test('Storylines renders both choices independently with the same logical path p
   assert.equal(fixture.cards.length, 3);
   assert.deepEqual(fixture.cards.map(({ story }) => story.key), ['list:fast', 'list:full', 'list:after']);
   assert.ok(fixture.cards.every(({ story }) => story.lists.length === 1));
-  assert.deepEqual(fixture.cards.slice(0, 2).map(({ placement }) => [placement.position, placement.total]), [[1, 2], [1, 2]]);
+  assert.equal(fixture.nodes.results.children
+    .some(({ class: name }) => name === 'rail-hint shelf-orientation'), false);
+});
+
+test('Modern Timeline names both choices that start the path they share', async () => {
+  const event = (list) => ({ ...list, type: 'event' });
+  const after = entry('after', { type: 'event', timeline: 2015 });
+  const fixture = viewFixture([event(fast), event(full), after], {
+    paths: [{ id: 'route', name: 'Route', steps: ['fast', 'after'] }],
+  });
+  await fixture.view.render('catalog');
   const orientation = fixture.nodes.results.children.find(({ class: name }) => name === 'rail-hint shelf-orientation');
-  assert.equal(orientation.text, `Start Route with ${fast.name} or ${full.name}.`);
+  assert.equal(orientation?.text, `Start Route with ${fast.name} or ${full.name}.`);
+});
+
+// Character spotlights shows three groups of pills, so its category group names itself on the page
+// as Sort and Show do (UX-14, #830). A shelf whose categories are its only group keeps the hidden
+// legend it had.
+test('Character spotlights labels its category group visibly, and other shelves keep the hidden legend', async () => {
+  const lists = (type, extra) => Array.from({ length: 14 }, (_, index) => entry(`${type}-${index}`, {
+    type, beginner: index < 3, ...extra,
+  }));
+  for (const [key, shelf, legend] of [
+    ['spotlights', lists('character-run', { timeline: null, spotlightKind: 'other' }), {
+      class: 'filter-legend', text: 'Category',
+    }],
+    ['lines', lists('creator-run'), { class: 'visually-hidden', text: 'Filter the catalog by category' }],
+  ]) {
+    const fixture = viewFixture(shelf);
+    await fixture.view.render(key);
+    assert.equal(fixture.nodes.filters.hidden, false, key);
+    const [first] = fixture.nodes.filters.children;
+    assert.deepEqual({ tag: first?.tag, class: first?.class, text: first?.text }, { tag: 'legend', ...legend }, key);
+  }
 });
 
 test('search threshold counts individually visible cards rather than collapsed groups', async () => {
@@ -209,14 +242,14 @@ test('each card binds Add or Open and Preview to its own exact list', () => {
   const descendants = (root) => typeof root === 'object' && root !== null
     ? [root, ...root.children.flatMap(descendants)] : [];
   for (const list of [fast, full]) {
-    const card = presentation.catalogCard({ key: `list:${list.id}`, groupKey: 'shared', lists: [list] }, null);
+    const card = presentation.catalogCard({ key: `list:${list.id}`, groupKey: 'shared', lists: [list] });
     const controls = descendants(card);
     const main = controls.find((control) => ['import', 'open'].includes(control.dataset?.act));
     const preview = controls.find((control) => control.dataset?.act === 'preview');
     assert.equal(main.dataset.key, list.id);
     assert.equal(preview.tag, 'button');
-    assert.equal(preview.children[0], 'Preview');
-    assert.equal(preview['aria-label'], `Preview: ${list.name}`);
+    assert.equal(preview.children[0].text, list.name, 'the title is the Preview button');
+    assert.equal(preview['aria-label'], `${list.name}. Preview.`);
     assert.equal(main.tag, list.id === 'full' ? 'a' : 'button');
     if (list.id === 'full') assert.equal(main.href, '#/read/saved-full');
     let prevented = false;

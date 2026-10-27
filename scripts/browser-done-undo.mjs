@@ -292,7 +292,7 @@ export const doneUndo = {
 // description says nothing about D, so turning D off, which strips the tooltip and the shortcut,
 // must leave it in place. Its element is hidden rather than visually hidden: a hidden node that
 // aria-describedby names directly still describes, and browse mode then reads it only once.
-const DESCRIPTION = 'Marks this comic read and shows the next one.';
+const DESCRIPTION = 'Mark as read and continue.';
 
 export const doneDescription = {
   id: 'done-description',
@@ -306,7 +306,7 @@ export const doneDescription = {
       const hero = await page.accessibility.snapshot({ root: await page.$('#hero'), interestingOnly: false });
       const repeated = [];
       const visit = (node) => {
-        if (`${node.name ?? ''}`.includes('Marks this comic read')) repeated.push(node.role);
+        if (`${node.name ?? ''}`.includes('Mark as read and continue')) repeated.push(node.role);
         for (const child of node.children ?? []) visit(child);
       };
       visit(hero);
@@ -486,7 +486,7 @@ export const doneHome = {
 
     await nextIs(page, `Next: ${title(4)}`);
     await press(page, '#btn-chero-done');
-    await nextIs(page, 'You have read every issue in this order.');
+    await nextIs(page, 'You have read every issue in this Reading List.');
     await wait(100);
     const end = await observeHome(page);
     t.check('Done on the last comic keeps the result under the card\'s commands, hides Done with Read and focuses the card heading',
@@ -508,7 +508,7 @@ export const doneHome = {
     await settle(page);
     const narrowStart = await observeHome(page);
     await press(page, '#btn-chero-done');
-    await nextIs(page, 'You have read every issue in this order.');
+    await nextIs(page, 'You have read every issue in this Reading List.');
     const narrow = await observeHome(page);
     const inPage = (observed) => (observed.actions ? observed.actions.top + observed.scrollY : null);
     t.check('at 390px the result sits in the card under its commands, within the screen, without page overflow',

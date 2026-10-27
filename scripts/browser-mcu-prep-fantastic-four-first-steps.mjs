@@ -183,7 +183,7 @@ export const firstStepsActualData = {
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
       text: node.textContent,
       source: node.querySelector('a[href*="/issues/701"]')?.href,
-      path: Boolean(node.querySelector('.result-path')),
+      path: Boolean(node.querySelector('details')),
     }));
     t.check('Browse discovers the owner-attributed 28-original companion without a reading path',
       card.name === payload.name && card.text.includes('28 issues') && card.source === sourceUrl

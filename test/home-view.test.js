@@ -272,7 +272,7 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   assert.deepEqual(h.calls.navigate, ['catalog', 'catalog', 'add']);
 });
 
-test('first-run Home offers only Browse and Add without waiting for catalog load', () => {
+test('first-run Home offers Modern Timeline and Add without waiting for catalog load', () => {
   const h = harness({ catalogLoader: () => new Promise(() => {}) });
   const before = structuredClone(h.state);
   h.view.render();
@@ -281,7 +281,8 @@ test('first-run Home offers only Browse and Add without waiting for catalog load
   const add = findById(firstRun, 'btn-home-add');
   assert.equal(firstRun.hidden, false);
   assert.equal(findById(firstRun, 'home-recommended'), null);
-  assert.equal(browse.children[0], 'Browse Reading Lists');
+  // Named for where it goes, with the same id and destination (UX-15, #830).
+  assert.equal(browse.children[0], 'Start with Modern Timeline');
   assert.equal(browse.href, '#/catalog');
   assert.equal(browse.class, 'btn');
   assert.equal(add.children[0], 'Add comics');
@@ -404,7 +405,7 @@ test('Home view completion state removes the read action without inventing a nex
   const h = harness({ populated: true, nextIssue: null, progress: { read: 2, total: 2 } });
   h.view.render();
 
-  assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this order.');
+  assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this Reading List.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');

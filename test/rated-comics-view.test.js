@@ -325,3 +325,10 @@ test('a blocked store shows recovery guidance instead of ratings on both surface
   assert.equal(action.action.view, 'data');
   assert.doesNotMatch(texts(h.els.results), /Your rating: /);
 });
+
+test('with nothing rated yet, Browse Reading Lists opens Home at its reading-list categories', () => {
+  const h = harness({ ratings: {}, issues: {} });
+  h.view.renderBrowser();
+  const action = find(h.els.results, (n) => n.kind === 'empty-action');
+  assert.deepEqual(action?.action, { label: 'Browse Reading Lists', view: 'home', at: 'categories' });
+});

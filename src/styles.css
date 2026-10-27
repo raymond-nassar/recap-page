@@ -722,28 +722,6 @@ a { color: var(--blue); }
 .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); }
 .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 
-/* Two badges, one treatment. The first stop of a reading path and a beginner-friendly order are
-   different claims and keep different names, so changing what one means cannot silently restyle
-   the other, but both are the answer to "where do I start" and there is no reason for a reader to
-   learn two looks for that.
-   They sit on a surface the palette gate had never measured: a catalog row is `--card-2`, not
-   `--card`, and the gate carried --teal only against --bg and --card. That pair is now measured
-   too, at 8.38:1 in the dark theme and 6.07:1 in the light one against a 4.5:1 floor.
-   They carry more weight than `.pill-ok`, and they earn it with a tint rather than a fill. A fill
-   is not available here: --teal flips polarity between themes, light on a dark page and dark on a
-   light one, so no single foreground can sit on it. Measured, the theme's own --text on a filled
-   badge is 2.83:1 in the light theme and 1.73:1 in the dark one, and a fixed dark glyph fares no
-   better across the pair, reading 9.55:1 on the dark fill and 2.83:1 on the light one. The tint
-   measures 7.16:1 dark and 6.02:1 light on --card, and 7.89:1 and 5.81:1 on --bg. */
-.pill-start, .pill-beginner {
-  color: var(--teal); border-color: rgb(var(--teal-line) / 33.333%);
-  background: rgb(var(--teal-line) / 12%); font-weight: 700;
-}
-
-/* The badge and its sentence share a baseline and wrap together, so a narrow window breaks the
-   line after the badge instead of stranding it on a row of its own. */
-.path-step { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; }
-
 .mobile-link, .mobile-home-label { display: none; }
 .brand, .ri, .home-path, .yours a { text-decoration: none; }
 .library-list-links { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
@@ -810,10 +788,12 @@ main { min-width: 0; }
 .wrap { max-width: var(--canvas); margin: 0 auto; padding: var(--space-8) var(--space-9) var(--space-11); }
 @media (max-width: 620px) { .wrap { padding: var(--space-7) var(--space-6) var(--space-11); } }
 
-/* Views are prose and stay at the reading measure, centred, so the width the wrapper gained
-   appears as margin on both sides rather than as a long line or as a left-hugging column.
-   The furniture that lives outside the views takes the same treatment for the same reason. */
-.view, #save-report, #app-report, #blocked-banner, .wrap > footer { max-width: var(--column); margin-inline: auto; }
+/* Views are prose and stay at the reading measure, aligned to the canvas's left edge, so a narrow
+   view's heading, breadcrumb and content start where a wide view's do and the width the wrapper
+   gained appears as space on the right. Centering them once put the headings of narrow and wide
+   views 44px apart at 1280 and 210px apart at 1920 (UX-21, #830). The furniture that lives outside
+   the views takes the same treatment for the same reason. */
+.view, #save-report, #app-report, #blocked-banner, .wrap > footer { max-width: var(--column); margin-inline: 0 auto; }
 /* The opt-out, for a view that is a browsing surface rather than a document. Home takes it for its
    catalog grid and the reading view for its cover art; the prose in both is capped in characters. */
 .view.view-wide { max-width: none; }
@@ -1090,6 +1070,13 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .spotlight-controls .filters { margin: 0; min-width: 0; }
 .spotlight-filters { justify-content: flex-end; }
 .spotlight-sort { justify-content: flex-end; }
+/* Character spotlights names each of its three pill groups where a reader can see it, so sorting
+   reads apart from filtering and neither "All" stands unlabelled (UX-14, #830). A floated legend
+   is not the fieldset's caption, so it joins the row of pills as its first item. */
+.filter-legend {
+  float: left; align-self: center; margin: 0; padding: 0;
+  color: var(--muted); font-size: var(--t-caption); font-weight: 600;
+}
 
 @media (max-width: 620px) {
   .spotlight-controls { width: 100%; justify-content: flex-start; }
@@ -1714,26 +1701,24 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   position: relative; z-index: 1; grid-column: 1 / -1; margin-top: var(--space-2);
 }
 .catalog-card-title { margin: 0 0 var(--space-2); font-size: var(--t-body); line-height: 1.3; overflow-wrap: anywhere; }
+/* The title opens Preview (UX-11, #830). It reads as the title, with a quiet underline as the cue
+   that it can be pressed. Its 24px minimum target sits on the class alone, because one line of
+   card title is 18.2px tall, and a selector this light lets the Android overlay's 48px touch target
+   replace it. It inherits the heading's wrapping, because that overlay gives every button
+   `overflow-wrap: anywhere`, which would let a long title split beside the art again at 200 per
+   cent text. */
+.catalog-card-preview { min-height: var(--target-min); }
+.catalog-card-title .catalog-card-preview {
+  display: inline-block; max-width: 100%; padding: var(--space-1) 0; border: 0; background: none;
+  color: inherit; font: inherit; text-align: inherit; overflow-wrap: inherit; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
+}
+.catalog-card-title .catalog-card-preview:hover { text-decoration-color: currentColor; }
 .catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
-.catalog-card .path-step { margin: var(--space-4) 0 0; }
-.catalog-card-disclosures {
-  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 var(--space-5); margin-top: var(--space-2);
-}
-.result-path { margin: 0; }
-.result-path > summary {
-  display: inline-flex; align-items: center; min-height: var(--target-min); cursor: pointer;
-  color: var(--muted); font-size: var(--t-caption); list-style: none;
-}
-.result-path > summary::-webkit-details-marker { display: none; }
-.result-path > summary::before { content: "\25B8"; margin-right: var(--space-3); }
-.result-path[open] { flex-basis: 100%; }
-.result-path[open] > summary::before { content: "\25BE"; }
-.result-path > .path-step {
-  margin: var(--space-3) 0 var(--space-1); padding-left: var(--space-5); border-left: var(--stroke-2) solid var(--line-2);
-}
+/* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
+  display: flex; gap: var(--space-4);
   margin-top: auto; padding: 0 var(--space-5) var(--space-5);
 }
 .catalog-card-actions .btn { justify-content: center; min-height: var(--target); }
@@ -2238,8 +2223,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .pbar, .ri .bar { border: var(--stroke-1) solid CanvasText; }
   .pbar i, .ri .bar i { background: Highlight; }
   .rail-tip { border: var(--stroke-1) solid CanvasText; background: Canvas; }
-  /* The path badge and selected filters carry state in colour plus a tinted border. */
-  .pill-start { border: var(--stroke-1) solid CanvasText; }
   .addpri, .pill-held, .res-head, .comic-builder { border-color: CanvasText; }
   #view-data .setgroup > h2 { border-bottom: var(--stroke-1) solid CanvasText; }
   .notice { border: var(--stroke-1) solid CanvasText; }
@@ -2332,6 +2315,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   padding: var(--space-5) var(--space-4); text-decoration: underline; text-underline-offset: 3px;
 }
 .btn-link:hover { filter: none; text-decoration-thickness: var(--stroke-2); }
+/* A search's Clear only empties its field, so it stays quiet beside it instead of being the most
+   prominent control on the screen (UX-24, #830). It keeps the button's size, its edge comes back on
+   hover, and forced colours give it the system border every button has. */
+.search-clear { background: none; color: var(--muted); border-color: transparent; }
+.search-clear:hover { color: var(--text); border-color: var(--line-2); filter: none; }
 
 @media (min-width: 1100px) { .hero-in { grid-template-columns: 248px 1fr; } }
 

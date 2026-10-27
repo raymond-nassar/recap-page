@@ -29,8 +29,8 @@ Home and End keys, then Tab to Jump and press Enter. The full original order sta
 
 On a followed path, **Next unfinished stop** is the stop marked **You are here**: the first whose
 saved list is neither marked completed nor read in full. Jump does not open a list, switch saved
-versions, change progress, mark anything completed or save a destination. Use the stop's own
-**Preview** or **Open** separately.
+versions, change progress, mark anything completed or save a destination. Use the stop's title to
+preview it, or its own **Open**, separately.
 
 ## Choose how to run it
 

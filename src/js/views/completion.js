@@ -297,15 +297,16 @@ export function createCompletionView({
       let gateway = gateways.get(name);
       if (!gateway) {
         const copy = el('p', { class: 'rail-hint' });
+        // Home's reading-list categories, which the label promises (UX-15, #830).
         const browse = el('a', {
           id: `${name}-completed-browse`,
           class: 'btn',
-          href: formatRoute({ view: 'catalog' }),
+          href: formatRoute({ view: 'home', at: HOME_CARDS }),
           text: 'Browse Reading Lists',
           onclick: (event) => {
             if (!isPlainNavigation(event)) return;
             event?.preventDefault();
-            showView('catalog', { push: true });
+            showView('home', { push: true, at: HOME_CARDS });
           },
         });
         const section = el('section', {

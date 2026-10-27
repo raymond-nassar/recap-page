@@ -75,7 +75,8 @@ export function createSavedListsPresenter({
       return;
     }
     const summary = orderStates(ids.map((id) => listProgress(state, id)));
-    const parts = [`${summary.orders} ${summary.orders === 1 ? 'order' : 'orders'}`];
+    // Counted in the app's own word for the thing (UX-25, #830).
+    const parts = [`${summary.orders} ${summary.orders === 1 ? 'Reading List' : 'Reading Lists'}`];
     if (summary.active) parts.push(`${summary.active} in progress`);
     if (summary.done) parts.push(`${summary.done} finished`);
     if (summary.unstarted) parts.push(`${summary.unstarted} not started`);

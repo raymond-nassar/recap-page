@@ -5,7 +5,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { LIBRARY_VIEWS, libraryView, isLibraryView, libraryViewProblems } from '../src/js/lib/library.js';
-import { ADD_VIEWS } from '../src/js/lib/route.js';
+import { ADD_VIEWS, HOME_CARDS, formatRoute } from '../src/js/lib/route.js';
 import {
   createEmptyState, createList, addIssuesToList, markRead, deleteList, removeFromList,
   readIssues, manualIssues, listsContaining, migrate, SCHEMA_VERSION,
@@ -120,6 +120,14 @@ test('every declared empty-state action names a view the rail can actually reach
       );
     }
   }
+});
+
+// Its label promises the reading-list categories, so that is where it goes (UX-15, #830). The place
+// is written out in library.js because route.js imports that module, so this holds the two equal.
+test('Everything read offers Home at its reading-list categories, the place #/browse names', () => {
+  const action = LIBRARY_VIEWS.find((v) => v.value === 'library-read').emptyAction;
+  assert.deepEqual(action, { label: 'Browse Reading Lists', view: 'home', at: HOME_CARDS });
+  assert.equal(formatRoute(action), '#/browse');
 });
 
 test('Everything read is the read map, newest first', () => {

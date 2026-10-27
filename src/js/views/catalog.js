@@ -293,7 +293,11 @@ export function createCatalogView({
       return;
     }
     nodes.filters.replaceChildren(
-      el('legend', { class: 'visually-hidden', text: 'Filter the catalog by category' }),
+      // Character spotlights shows three groups of pills, so each names itself where a reader can
+      // see it (UX-14, #830). Elsewhere the categories are the only group and keep a hidden legend.
+      key === 'spotlights'
+        ? el('legend', { class: 'filter-legend', text: 'Category' })
+        : el('legend', { class: 'visually-hidden', text: 'Filter the catalog by category' }),
       ...options.map(({ key: facet, label, count }) => el('label', { class: 'fp' }, [
         el('input', {
           type: 'radio',
@@ -350,7 +354,7 @@ export function createCatalogView({
     for (const entry of entries) {
       const stop = stopOf.get(entry.groupKey);
       if (!stop) continue;
-      const card = presentation.catalogCard(entry, null, { surface: 'catalog', level: 'h2' });
+      const card = presentation.catalogCard(entry, { surface: 'catalog', level: 'h2' });
       cards.set(stop.stepId, {
         card, key: entry.key, position: stop.position, title: entry.lists[0]?.name ?? stop.name,
       });
@@ -548,8 +552,11 @@ export function createCatalogView({
     const stories = key === 'spotlights'
       ? sortSpotlightStories(catalogEntries(shown), state.sort)
       : catalogEntries(shown);
-    const placements = pathPlacements(catalog.paths, catalog.lists);
-    const firstStops = followed ? [] : visibleFirstStopGuides(stories, placements, presentation.chosenPath);
+    // Paths live on Modern Timeline since #897, so only it says where one starts. Elsewhere the
+    // sentence named a path the page offers no way to follow (UX-14, #830).
+    const firstStops = followed || key !== 'catalog'
+      ? []
+      : visibleFirstStopGuides(stories, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
     if (firstStops.length) {
       const startsByPath = new Map();
       for (const { guide, placement } of firstStops) {
@@ -578,7 +585,7 @@ export function createCatalogView({
         ? pathJump(followed, followedStories, () => current() && state.path === followed.id)
         : null);
     } else if (key === 'catalog') {
-      presentation.renderTimelineSections(nodes.results, sections, placements, {
+      presentation.renderTimelineSections(nodes.results, sections, {
         idPrefix: 'timeline',
         showEmptyYears: state.facet === 'all' && !state.query,
         sectionBlurb: true,
@@ -593,7 +600,7 @@ export function createCatalogView({
         if (grouped) nodes.results.append(presentation.shelfSectionHead(section, { blurb: false }));
         const grid = el('div', { class: 'catalog-grid' });
         for (const story of section.stories) {
-          grid.append(presentation.catalogCard(story, placements.get(story.groupKey), {
+          grid.append(presentation.catalogCard(story, {
             surface: key,
             level: grouped ? 'h3' : 'h2',
           }));
@@ -626,21 +633,6 @@ export function createCatalogView({
         key,
       );
     }
-  }
-
-  function clearNarrowing(key) {
-    const state = stateByShelf.get(key);
-    if (!state) return;
-    state.facet = 'all';
-    state.query = '';
-    state.spotlight = 'all';
-    // A stop reached from a card is shown on its whole screen, so a followed path is let go too.
-    state.path = null;
-    if (key === 'catalog') followFirst = false;
-    const nodes = elements.shelf(key);
-    nodes.query.value = '';
-    nodes.clear.hidden = true;
-    for (const radio of elements.spotlightKinds()) radio.checked = radio.value === 'all';
   }
 
   function wire(key) {
@@ -700,7 +692,6 @@ export function createCatalogView({
   }
 
   return {
-    clearNarrowing,
     followedPath: () => stateByShelf.get('catalog').path,
     refreshProgress,
     render,

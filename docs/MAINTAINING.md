@@ -1120,9 +1120,9 @@ validate the resolved set:
 node --test test/reading-path.test.js test/modern-timeline.test.js test/timeline-path-follow.test.js
 ```
 
-Modern Timeline follows every path, including a future story shared by several paths. Shelf badges
-keep only the first path for a stable badge. Never build a followed path from the shelf placement
-map.
+Modern Timeline follows every path, including a future story shared by several paths. The start
+sentence above the shelf reads the placement map, which keeps only the first path for each story.
+Never build a followed path from the shelf placement map.
 
 The Timeline's route has one path-specific query, `path=<validated-id>`. Following a path belongs to
 browser history, not saved state or the reading filter. Keep the requested id while the catalog

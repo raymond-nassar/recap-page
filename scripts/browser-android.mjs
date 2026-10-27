@@ -23,8 +23,8 @@ import { ERA_TILES, ratio } from './check-palette.mjs';
 import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs';
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import {
-  catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
-  parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
+  catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
+  parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
   sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
 } from '../src/js/lib/catalog.js';
 
@@ -795,6 +795,24 @@ async function spotlightControlCheck(page, profile) {
     && Math.abs(panel.sheet.bottom - profile.height) <= 1 && panel.sheet.y >= 0
     && Math.abs(panel.sheet.x - (profile.width - panel.sheet.width) / 2) <= 1,
   `${label}: centered bottom sheet fits viewport`);
+  // UX-14 floats each group's legend into its row of pills as a muted caption. The sheet keeps the
+  // captions it always drew, so that float, size and colour must stop at the sheet.
+  const captions = await page.evaluate(() => [...document.querySelectorAll('#android-spotlight-sheet fieldset')]
+    .filter((set) => set.getClientRects().length)
+    .map((set) => {
+      const legend = set.querySelector(':scope > legend');
+      const style = getComputedStyle(legend);
+      const group = getComputedStyle(set);
+      const option = set.querySelector('.fp');
+      return {
+        text: legend.textContent.trim(), float: style.float,
+        size: style.fontSize === group.fontSize, color: style.color === group.color,
+        above: Boolean(option) && legend.getBoundingClientRect().bottom <= option.getBoundingClientRect().top + 1,
+      };
+    }));
+  check(JSON.stringify(captions.map((entry) => entry.text)) === JSON.stringify(['Sort', 'Show', 'Category'])
+    && captions.every((entry) => entry.float === 'none' && entry.size && entry.color && entry.above),
+  `${label}: the sheet captions Sort, Show and Category above their options in its own type ${JSON.stringify(captions)}`);
   if (spotlightCase === 'geometry') {
     if (failures.length) return;
     const closed = spotlightGeometry.find((point) => point.checkpoint === 'spotlights settled closed');
@@ -904,20 +922,13 @@ async function spotlightControlCheck(page, profile) {
       input.value = value; input.dispatchEvent(new Event('input', { bubbles: true }));
     }, state.query);
     await settled();
-    assert.ok(stories().length, 'The compound query must render at least one guide before reset');
-    const placements = pathPlacements(parsed.paths, parsed.lists);
-    const originStory = groupCatalog(modernTimelineLists(parsed.lists))
-      .find((story) => placements.get(story.key)?.first.shelf === 'spotlights');
-    assert.ok(originStory, 'A real timeline path link back to a spotlight stop is required');
-    await route(page, 'catalog');
-    const pathRoot = `#catalog-results [data-story=${JSON.stringify(originStory.key)}] .result-path`;
-    await click(page, `${pathRoot} > summary`);
-    await click(page, `${pathRoot} a[href^="#/spotlights"]`);
-    state.kind = 'all'; state.facet = 'all'; state.query = '';
-    await settled({ summary: false });
-    const reset = await spotlightSnapshot(page);
-    check(reset.summary === summaryText(), `${label}: event-free reset refreshes summary while retaining popularity`);
-    raw.eventFreeReset = reset;
+    assert.ok(stories().length, 'The compound query must render at least one guide');
+    raw.compound = await spotlightSnapshot(page);
+    // A stop's path link once reset these as it arrived. It left the cards (UX-11, #830), so the
+    // search is cleared here instead, and the choices below reset kind and category themselves.
+    state.query = '';
+    await click(page, '#spotlights-clear');
+    await settled();
     if (spotlightCase === 'summary') return;
   }
   if (!spotlightCase) {
@@ -2696,8 +2707,8 @@ async function mobileLayout(page, label, narrow) {
     recommended: !!region.querySelector('#home-recommended'),
     actions: [...region.querySelectorAll(':is(a[href], button)')].map((action) => action.textContent.trim()),
   }));
-  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
-    `${label}: Home contains only the Browse and Add starting choices ${JSON.stringify(home)}`);
+  check(!home.recommended && JSON.stringify(home.actions) === JSON.stringify(['Start with Modern Timeline', 'Add comics']),
+    `${label}: Home contains only the Modern Timeline and Add starting choices ${JSON.stringify(home)}`);
   await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
   // UX-09 (#836): the bar's own destinations are not listed in the More sheet. Search took Browse's place
@@ -4815,11 +4826,11 @@ try {
       // says which measurement disagreed rather than only that the combined check did.
       const homeMisses = [
         sharedCopy.recommendation && 'Setup recommendation present',
-        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Browse Reading Lists', 'Add comics'])
+        JSON.stringify(sharedCopy.startActions) !== JSON.stringify(['Start with Modern Timeline', 'Add comics'])
           && `start actions ${JSON.stringify(sharedCopy.startActions)}`,
       ].filter(Boolean);
       check(!homeMisses.length,
-        `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation (${homeMisses.join('; ')})`);
+        `${label}: every platform keeps Home focused on Modern Timeline and Add without a Setup recommendation (${homeMisses.join('; ')})`);
       const footerMisses = [
         sharedCopy.footer !== sharedCopy.expectedFooter
           && `footer ${JSON.stringify(sharedCopy.footer)}, expected ${JSON.stringify(sharedCopy.expectedFooter)}`,

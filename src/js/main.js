@@ -14,7 +14,7 @@ import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, catalogEntries,
-  pathPlacements, availableHomeCategories, HOME_CATEGORIES,
+  availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
@@ -881,15 +881,15 @@ function applyReadingShortcutSetting() {
   const done = $('#btn-hero-done');
   done.classList.toggle('has-tooltip', enabled);
   if (enabled) {
-    done.setAttribute('data-tooltip', 'Mark read and continue. Keyboard shortcut: D');
+    done.setAttribute('data-tooltip', 'Mark as read and continue. Keyboard shortcut: D');
     done.setAttribute('aria-keyshortcuts', 'd');
   } else {
     done.removeAttribute('data-tooltip');
     done.removeAttribute('aria-keyshortcuts');
   }
   $('#reading-shortcut-description').textContent = enabled
-    ? 'Mark it read and move to the next one. Turn off in Backup & settings.'
-    : 'Disabled. Turn on in Backup & settings to mark the current issue read and move to the next one.';
+    ? 'Mark as read and continue. Turn off in Backup & settings.'
+    : 'Disabled. Turn on in Backup & settings to mark the current issue as read and continue.';
 }
 
 function setReadingShortcut(on) {
@@ -1266,14 +1266,15 @@ function issueFocusAnchor(issue, {
 
 // The action an empty state offers. A screen with nothing on it is the one place a reader has no
 // context to work from, so it hands over the next step rather than naming a control elsewhere.
-function emptyAction({ label, view }) {
+// `at` names a place within the view, as Home's reading-list categories are (#831).
+function emptyAction({ label, view, at = null }) {
   return el('a', {
     class: 'btn btn-g',
-    href: formatRoute({ view }),
+    href: formatRoute({ view, at }),
     onclick: (event) => {
       if (!isPlainNavigation(event)) return;
       event.preventDefault();
-      navigateTo(view);
+      navigateTo(view, at);
     },
   }, label);
 }
@@ -1893,11 +1894,6 @@ function loadCatalog() {
     throw err;
   });
   return catalogLoad;
-}
-
-function goToStop(stop) {
-  catalogView.clearNarrowing(stop.shelf);
-  showView(stop.shelf, { focus: true, push: true });
 }
 
 // A second click while the first import is still fetching runs the whole import again and mints a
@@ -2680,18 +2676,15 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     return;
   }
 
-  const placements = pathPlacements(catalog.paths, catalog.lists);
-  const localStoryKeys = new Set(stories.map((story) => story.groupKey));
   if (isPublishingCategoryLeaf(category)) {
     const years = timelineYears(stories);
     catalogPresentation.renderTimelineSections(box, [{
       ...category, stories, from: years[0].year, to: years[years.length - 1].year,
-    }], placements, {
+    }], {
       idPrefix: route, showEmptyYears: true, sectionBlurb: false,
       cardOptions: {
         surface: route,
         report: `#${route}-report`,
-        localStoryKeys,
       },
     });
     const cards = [...box.querySelectorAll('.catalog-card')];
@@ -2715,8 +2708,8 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
-    grid.append(catalogPresentation.catalogCard(story, placements.get(story.groupKey), {
-      surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
+    grid.append(catalogPresentation.catalogCard(story, {
+      surface: route, report: `#${route}-report`, level: 'h2',
     }));
   }
   box.append(grid);
@@ -3341,7 +3334,6 @@ const catalogPresentation = createCatalogPresentation({
   hueOf,
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   onAdd: (list, button, report) => importCurated(list, button, { report }),
-  onGoToStop: goToStop,
   // A stop opened or previewed on a followed path is returned to on Back, as the path's own page did
   // (#897).
   onOpen: (list, saved, report) => openSavedCatalogList(list, saved, report, { fromCard: true }),
@@ -3349,10 +3341,6 @@ const catalogPresentation = createCatalogPresentation({
     rememberPathStop(list, 'preview');
     return previewView.open(list);
   },
-  pathHref: (stop) => formatRoute({
-    view: stop.shelf,
-    sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
-  }),
   paintCoverUrl,
   shortTitle,
 });

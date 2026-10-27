@@ -119,8 +119,9 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   margin: var(--space-6) 0 0; padding: var(--space-2); gap: var(--space-4);
 }
 #android-spotlight-sheet legend {
-  position: static; width: auto; height: auto; overflow: visible; clip: auto;
-  white-space: normal; margin: 0 0 var(--space-4); font-weight: 600; text-align: start;
+  /* The sheet keeps each group's label as its caption, at the sheet's own size and colour. */
+  float: none; margin: 0 0 var(--space-4); color: inherit; font-size: inherit; font-weight: 600;
+  text-align: start;
 }
 #android-spotlight-sheet .fp { position: relative; }
 #android-spotlight-sheet .fp > span {
@@ -262,7 +263,6 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .headright { flex-wrap: wrap; }
   .sec-h { flex-wrap: wrap; }
   .sec-note { text-align: left; }
-  .catalog-card-actions { grid-template-columns: minmax(0, 1fr); }
   #series-results .result { flex-direction: column; align-items: stretch; }
   #series-results .result > .btn { justify-content: center; overflow-wrap: normal; }
   .home-path { grid-template-columns: minmax(0, 1fr) auto; }

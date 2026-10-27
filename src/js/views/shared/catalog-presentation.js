@@ -1,4 +1,4 @@
-import { labelledName } from '../../lib/accname.js';
+import { labelledName, shownName } from '../../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../../lib/route.js';
 import {
   catalogCoverUrl,
@@ -12,97 +12,14 @@ import {
 } from '../../lib/catalog.js';
 const CATALOG_ADD = '+ Add to library';
 
-function domEl(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  const entries = Object.entries(props);
-  for (const [key, value] of entries) {
-    if (value == null || value === false) continue;
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (key === 'dataset') Object.assign(node.dataset, value);
-    else if (key.startsWith('on') && typeof value === 'function') node.addEventListener(key.slice(2), value);
-    else if (key in node && key !== 'aria-label') node[key] = value;
-    else node.setAttribute(key, value === true ? '' : String(value));
-  }
-  const values = Array.isArray(children) ? children : [children];
-  for (const child of values) {
-    if (child == null || child === false) continue;
-    node.append(typeof child === 'string' ? document.createTextNode(child) : child);
-  }
-  return node;
-}
-
-function stopLink(stop, surface, {
-  el = domEl,
-  onGoToStop = () => {},
-  text = stop.name,
-  label = null,
-  localStoryKeys = null,
-  hrefForStop = (entry) => `#/${entry.shelf}`,
-} = {}) {
-  const dest = stop.shelf;
-  if (dest === surface || localStoryKeys?.has(stop.key)) return null;
-  return el('a', {
-    href: hrefForStop(stop),
-    'aria-label': label,
-    onclick: (event) => {
-      if (!isPlainNavigation(event)) return;
-      event.preventDefault();
-      onGoToStop(stop);
-    },
-  }, text);
-}
-
-export function pathLine(
-  placement,
-  surface,
-  { showBadge = true, localStoryKeys = null } = {},
-  {
-    el = domEl,
-    onGoToStop = () => {},
-    hrefForStop = (entry) => `#/${entry.shelf}`,
-  } = {},
-) {
-  if (!placement) return null;
-  const opens = placement.previous === null;
-  const start = stopLink(placement.first, surface, {
-    el,
-    onGoToStop,
-    text: placement.pathName,
-    label: labelledName(placement.pathName, `Start at ${placement.first.name}`),
-    localStoryKeys,
-    hrefForStop,
-  });
-  const link = placement.next
-    ? stopLink(placement.next, surface, {
-      el, onGoToStop, localStoryKeys, hrefForStop,
-    })
-    : null;
-  const lead = opens ? ` · Step 1 of ${placement.total} · ` : ' · ';
-  const badge = showBadge ? el('span', {
-    class: opens ? 'pill pill-start' : 'pill',
-    text: opens ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
-  }) : null;
-  return el('p', { class: 'result-meta path-step' }, [
-    badge,
-    el('span', {}, [
-      start ?? placement.pathName,
-      lead,
-      ...(placement.next ? ['Next: ', link ?? placement.next.name] : ['Last stop']),
-    ]),
-  ].filter(Boolean));
-}
-
 export function createCatalogPresentation({
   el,
   elements,
   hueOf,
   isInLibrary,
   onAdd,
-  onGoToStop,
   onOpen,
   onPreview,
-  pathHref,
   paintCoverUrl,
   shortTitle,
 }) {
@@ -135,13 +52,15 @@ export function createCatalogPresentation({
     }, CATALOG_ADD);
   }
 
+  // The card keeps the credit the sources' permissions rest on, the linked site name, and leaves the
+  // snapshot date and section to Preview, which shows the full attribution (UX-11, #830).
   function attributionLine(list, { compact = false } = {}) {
     const href = sourceLink(list);
     const label = compact && href ? sourceSiteName(href) : sourceLabel(list);
     const section = !compact && typeof list.sourceSection === 'string' && list.sourceSection.trim()
       ? list.sourceSection.trim()
       : null;
-    const updated = updatedLabel(list);
+    const updated = compact ? null : updatedLabel(list);
     if (!label && !section && !updated) return null;
 
     const parts = [];
@@ -161,65 +80,26 @@ export function createCatalogPresentation({
     return el('p', { class: 'result-meta result-source' }, parts);
   }
 
-  function pathDisclosure(placement, surface, { localStoryKeys = null } = {}) {
-    if (!placement) return null;
-    const opens = placement.previous === null;
-    const summary = opens ? `Start · 1/${placement.total}` : `Step ${placement.position}/${placement.total}`;
-    return el('details', { class: 'result-path' }, [
-      el('summary', {
-        'aria-label': `${summary}. Show path details for ${placement.pathName}`,
-      }, summary),
-      pathLine(
-        placement,
-        surface,
-        { showBadge: false, localStoryKeys },
-        { el, onGoToStop, hrefForStop: pathHref },
-      ),
-    ]);
-  }
-
-  function catalogCard(story, placement, {
+  // One prominent action per card (UX-11, #830). The title opens Preview, named by the title it
+  // shows and then by what it does (#905); Add is the one compact secondary action, and a saved list
+  // keeps its primary Open. The title's own words carry the id a section is labelled by, so that
+  // label stays the title rather than the button's name.
+  function catalogCard(story, {
     surface = 'catalog',
     report = null,
-    localStoryKeys = null,
     level = 'h3',
     titleId = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
-    const title = story.lists[0].name;
+    const list = story.lists[0];
+    const title = list.name;
     const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
     const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': 'true' }, [
       el('span', { class: 'ofs', text: shortTitle(title) }),
     ]);
-    const desc = el('p', { class: 'catalog-card-desc' });
-    const meta = el('p', { class: 'catalog-card-meta' });
-    const source = el('div', { class: 'result-source' });
-    const path = pathDisclosure(placement, surface, { localStoryKeys });
-    const disclosures = path ? el('div', { class: 'catalog-card-disclosures' }, [path]) : null;
-    const actions = el('div', { class: 'catalog-card-actions' });
-
-    const paint = (list) => {
-      paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title), title);
-      desc.textContent = firstSentence(list.description);
-      desc.hidden = !desc.textContent;
-      meta.textContent = [
-        `${list.count} issue${list.count === 1 ? '' : 's'}`,
-        ...catalogGapLabels(list),
-      ].join(' · ');
-      source.replaceChildren(...[attributionLine(list, { compact: true })].filter(Boolean));
-      const previewText = 'Preview';
-      actions.replaceChildren(
-        primaryButton(list, reportTarget),
-        el('button', {
-          class: 'btn btn-g',
-          type: 'button',
-          'aria-label': labelledName(previewText, title),
-          dataset: { key: story.key, act: 'preview' },
-          onclick: () => onPreview(list),
-        }, previewText),
-      );
-    };
-    paint(story.lists[0]);
+    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title), title);
+    const desc = firstSentence(list.description);
+    const source = attributionLine(list, { compact: true });
 
     const year = storyYear(story);
     return el('article', {
@@ -229,14 +109,22 @@ export function createCatalogPresentation({
       el('div', { class: 'catalog-card-main' }, [
         el('div', { class: 'ocard-art' }, [img, fallback]),
         el('div', { class: 'catalog-card-text' }, [
-          el(level, { id: titleId, class: 'catalog-card-title', text: title }),
-          desc,
-          meta,
-          disclosures,
-          source,
+          el(level, { class: 'catalog-card-title' }, el('button', {
+            class: 'catalog-card-preview',
+            type: 'button',
+            'aria-label': shownName([title], 'Preview'),
+            dataset: { key: story.key, act: 'preview' },
+            onclick: () => onPreview(list),
+          }, el('span', { id: titleId, text: title }))),
+          desc ? el('p', { class: 'catalog-card-desc', text: desc }) : el('p', { class: 'catalog-card-desc', hidden: true }),
+          el('p', {
+            class: 'catalog-card-meta',
+            text: [`${list.count} issue${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' · '),
+          }),
+          el('div', { class: 'result-source' }, source ? [source] : []),
         ]),
       ]),
-      actions,
+      el('div', { class: 'catalog-card-actions' }, primaryButton(list, reportTarget)),
     ]);
   }
 
@@ -317,7 +205,7 @@ export function createCatalogPresentation({
     ]);
   }
 
-  function renderTimelineSections(box, sections, placements, {
+  function renderTimelineSections(box, sections, {
     idPrefix = 'timeline',
     showEmptyYears,
     sectionBlurb = true,
@@ -369,7 +257,7 @@ export function createCatalogPresentation({
         const yearId = `${idPrefix}-year-${year}`;
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of yearStories) {
-          grid.append(catalogCard(story, placements.get(story.groupKey ?? story.key), {
+          grid.append(catalogCard(story, {
             ...cardOptions,
             level: cardLevel,
           }));
@@ -387,7 +275,7 @@ export function createCatalogPresentation({
       if (!years.length) {
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of section.stories) {
-          grid.append(catalogCard(story, placements.get(story.groupKey ?? story.key), {
+          grid.append(catalogCard(story, {
             ...cardOptions,
             level: undatedCardLevel,
           }));
@@ -443,7 +331,7 @@ export function createCatalogPresentation({
         ]),
       ]),
       el('div', { class: 'catalog-grid setup-guide-grid' }, [
-        catalogCard(story, null, {
+        catalogCard(story, {
           surface,
           report: `#${surface}-report`,
           level: 'h2',

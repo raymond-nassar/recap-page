@@ -149,7 +149,7 @@ test('both setup card placements resolve the same existing catalog identity', ()
 test('the setup feature uses the shared card renderer instead of the old plain action', () => {
   assert.match(
     catalogPresentationSource,
-    /catalogCard\(story, null, \{\s*surface,\s*report: `#\$\{surface\}-report`,/,
+    /catalogCard\(story, \{\s*surface,\s*report: `#\$\{surface\}-report`,/,
   );
   assert.doesNotMatch(catalogPresentationSource, /btn-modern-timeline-feature/);
   assert.doesNotMatch(catalogPresentationSource, /class: 'notice notice-act modern-timeline-feature'/);

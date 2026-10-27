@@ -151,7 +151,7 @@ export const eternalsActualData = {
       name: node.querySelector('.catalog-card-title')?.textContent.trim(),
       text: node.textContent,
       source: node.querySelector('a[href*="/issues/684"]')?.href,
-      path: Boolean(node.querySelector('.result-path')),
+      path: Boolean(node.querySelector('details')),
     }));
     t.check('the MCU Prep gateway discovers the owner-attributed 24-issue Eternals card without a reading path',
       card.name === 'Eternals' && card.text.includes('24 issues')

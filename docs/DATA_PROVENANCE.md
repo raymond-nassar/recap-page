@@ -29,7 +29,7 @@ Countdown and Infinity Wars at the 46 explicit issue-by-issue rows, and Damnatio
 identity is the page and section together without inventing a fragment or DOM id.
 `sourceLicense` stays `null` for every published order, and the full attribution remains recorded
 in `sourceOrigin` as `Compiled for this project from Comic Book Herald's guide`. Cards show the
-linked website name and snapshot date without a disclosure; Preview shows the full attribution
+linked website name without a disclosure; Preview shows the full attribution, the snapshot date
 and `sourceSection`, with the exact source URL unchanged. About credits
 Comic Book Herald, Comic Book Reading Orders, and the upstream emreparker/marvel-comics repository.
 

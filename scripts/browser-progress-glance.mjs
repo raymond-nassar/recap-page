@@ -256,7 +256,7 @@ export const progressGlance = {
           read: document.querySelector('#btn-chero-read').hidden, next: document.querySelector('#chero-next').textContent,
         }));
         t.check(`${theme} all read: Home's bar is full beside the finished list's own words`,
-          !!all.bar && near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every issue in this order.',
+          !!all.bar && near(all.share * all.bar.width, all.bar.width) && finished.read && finished.next === 'You have read every issue in this Reading List.',
           JSON.stringify({ all, finished }));
         await page.evaluate(() => { location.hash = '#/read/glance'; });
         await page.waitForFunction(() => document.querySelector('#ring-sub').textContent === 'All read');

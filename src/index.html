@@ -197,7 +197,7 @@
                   </div>
                   <p class="chero-next" id="chero-next"></p>
                   <div class="cta" id="chero-actions">
-                    <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Marks this comic read and shows the next one.</span>
+                    <button type="button" class="btn" id="btn-chero-read">Read</button><button type="button" class="btn btn-g" id="btn-chero-done" aria-describedby="chero-done-help">Done</button><span id="chero-done-help" hidden>Mark as read and continue.</span>
                     <a href="#/read" class="btn btn-g" id="btn-chero-open">Open the list</a>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                     <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
@@ -316,9 +316,9 @@
                       <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
                         Read
                       </button>
-                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
+                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark as read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
                         Done
-                      </button><span id="hero-done-help" hidden>Marks this comic read and shows the next one.</span>
+                      </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
                     </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <!-- Progress at a glance (#876). The header's ring already reads out how far through the
@@ -668,7 +668,7 @@
               <label for="catalog-q">Search the catalog by title or character</label>
               <div class="field-row">
                 <input type="search" id="catalog-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
-                <button type="button" class="btn" id="catalog-clear" hidden>Clear</button>
+                <button type="button" class="btn search-clear" id="catalog-clear" hidden>Clear</button>
               </div>
             </form>
             <fieldset class="filters" id="catalog-filters" hidden>
@@ -690,7 +690,7 @@
               <label for="lines-q">Search the catalog by title or character</label>
               <div class="field-row">
                 <input type="search" id="lines-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
-                <button type="button" class="btn" id="lines-clear" hidden>Clear</button>
+                <button type="button" class="btn search-clear" id="lines-clear" hidden>Clear</button>
               </div>
             </form>
             <fieldset class="filters" id="lines-filters" hidden>
@@ -705,7 +705,7 @@
               <div class="head-left"><h1 id="spotlights-h">Character spotlights</h1></div>
               <div class="headright spotlight-controls">
                 <fieldset class="filters spotlight-sort">
-                  <legend class="visually-hidden">Sort Character Spotlight guides</legend>
+                  <legend class="filter-legend">Sort</legend>
                   <label class="fp">
                     <input type="radio" name="spotlights-sort" value="current-order" checked />
                     <span>Current order</span>
@@ -716,7 +716,7 @@
                   </label>
                 </fieldset>
                 <fieldset class="filters spotlight-filters">
-                  <legend class="visually-hidden">Filter Character Spotlight guides</legend>
+                  <legend class="filter-legend">Show</legend>
                   <label class="fp">
                     <input type="radio" name="spotlights-kind" value="all" checked />
                     <span>All</span>
@@ -737,11 +737,11 @@
               <label for="spotlights-q">Search the catalog by title or character</label>
               <div class="field-row">
                 <input type="search" id="spotlights-q" placeholder="e.g. Secret Wars, Black Panther" autocomplete="off" />
-                <button type="button" class="btn" id="spotlights-clear" hidden>Clear</button>
+                <button type="button" class="btn search-clear" id="spotlights-clear" hidden>Clear</button>
               </div>
             </form>
             <fieldset class="filters" id="spotlights-filters" hidden>
-              <legend class="visually-hidden">Filter the catalog by category</legend>
+              <legend class="filter-legend">Category</legend>
             </fieldset>
             <div id="spotlights-results" class="results"></div>
           </section>
@@ -754,7 +754,7 @@
               <label for="young-readers-q">Search the catalog by title or character</label>
               <div class="field-row">
                 <input type="search" id="young-readers-q" placeholder="e.g. Spidey, Squirrel Girl" autocomplete="off" />
-                <button type="button" class="btn" id="young-readers-clear" hidden>Clear</button>
+                <button type="button" class="btn search-clear" id="young-readers-clear" hidden>Clear</button>
               </div>
             </form>
             <fieldset class="filters" id="young-readers-filters" hidden>
@@ -1018,7 +1018,7 @@
               <h2>Personalization</h2>
               <div class="card card-static setting">
                 <h3>Reading shortcut</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help reading-shortcut-storage-help" /> Enable D to mark read and move next</label>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help reading-shortcut-storage-help" /> Enable D to mark as read and continue</label>
                 <p id="reading-shortcut-help" class="rail-hint setting-desc">
                   Turn this off to avoid marking an issue read by pressing D.
                 </p>
@@ -1188,7 +1188,7 @@
               <table class="keys">
                 <tbody>
                   <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
-                  <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark it read and move to the next one. Turn off in Backup &amp; settings.</td></tr>
+                  <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark as read and continue. Turn off in Backup &amp; settings.</td></tr>
                   <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
               </table>

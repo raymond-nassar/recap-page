@@ -1,4 +1,4 @@
-import { catalogEntries, pathPlacements } from '../lib/catalog.js';
+import { catalogEntries } from '../lib/catalog.js';
 import { mcuPrepSections, parseMcuPrep, releaseDateLabel } from '../lib/mcuPrep.js';
 
 const ROUTE = 'marvel-on-screen';
@@ -32,7 +32,7 @@ export function createMcuPrepView({
       },
     });
     clear = el('button', {
-      id: `${ROUTE}-clear`, type: 'button', class: 'btn btn-g', hidden: true, text: 'Clear',
+      id: `${ROUTE}-clear`, type: 'button', class: 'btn search-clear', hidden: true, text: 'Clear',
       onclick: () => {
         query = '';
         input.value = '';
@@ -97,16 +97,13 @@ export function createMcuPrepView({
       }));
       return;
     }
-    const placements = pathPlacements(catalog.paths, catalog.lists);
-    const allStories = catalogEntries(catalog.lists.filter((list) => list.type === 'screen-companion'));
-    const localStoryKeys = new Set(allStories.map((story) => story.groupKey));
     for (const section of sections) {
       const headingId = `${ROUTE}-${section.key}-h`;
       const grid = el('div', { class: 'catalog-grid publishing-grid' });
       for (const entry of section.entries) {
         const [story] = catalogEntries([entry.list]);
-        const card = presentation.catalogCard(story, placements.get(story.groupKey), {
-          surface: ROUTE, report: `#${ROUTE}-report`, localStoryKeys, level: 'h3',
+        const card = presentation.catalogCard(story, {
+          surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3',
         });
         if (entry.releases.length) {
           card.querySelector('.catalog-card-title').after(el('ul', { class: 'mcu-prep-releases' },

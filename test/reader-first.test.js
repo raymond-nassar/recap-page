@@ -209,7 +209,7 @@ test('reading groups Read and Done together, with comic details and infrequent a
     assert.match(html, new RegExp(`<button\\b[^>]*id="${id}"[^>]*>\\s*Read\\s*<\\/button>`), id);
   }
   assert.match(primary, /id="btn-hero-done"[^>]*>\s*Done\s*<\/button>/);
-  assert.match(primary, /data-tooltip="Mark read and continue\. Keyboard shortcut: D"/);
+  assert.match(primary, /data-tooltip="Mark as read and continue\. Keyboard shortcut: D"/);
   assert.match(primary, /aria-keyshortcuts="d"/);
   assert.match(reading, /id="hero-reader-temporary"[^>]*hidden/);
   assert.doesNotMatch(primary, /id="btn-hero-(inspect|defer|info)"/);
