@@ -722,6 +722,70 @@ test('UX05 rows keep expected access hedged and offer explicit yes no and clear 
   } finally { h.restore(); }
 });
 
+test('UX-13 row commands come in named groups, show the override in force as pressed, and keep Remove apart and last', () => {
+  const h = harness();
+  try {
+    const panel = () => {
+      let found;
+      walk(h.nodes.rows, (entry) => { if (entry.id === 'row-actions-2') found = entry; });
+      return found;
+    };
+    const acts = (entry) => {
+      const out = [];
+      walk(entry, (child) => { if (child.dataset?.act) out.push(child.dataset.act); });
+      return out;
+    };
+    const command = (act) => {
+      let found;
+      walk(panel(), (child) => { if (child.dataset?.act === act) found = child; });
+      return found;
+    };
+    const pressed = () => ['override-available', 'override-unavailable', 'override-clear']
+      .map((act) => command(act).getAttribute('aria-pressed') ?? null);
+    h.view.renderRows();
+    const groups = panel().childNodes;
+    assert.deepEqual(groups.map((group) => [group.role ?? null, group.getAttribute('aria-label') ?? null, acts(group)]), [
+      ['group', 'Open', ['open', 'info']],
+      ['group', 'Order', ['up', 'down']],
+      ['group', 'Availability', ['override-available', 'override-unavailable', 'override-clear']],
+      [null, null, ['defer']],
+      [null, null, ['remove']],
+    ]);
+    assert.ok(groups.every((group) => group.className.split(' ')[0] === 'ract-group'));
+    assert.equal(groups[2].className, 'ract-group ract-availability', 'the three choices are marked to share one row');
+    assert.ok(command('remove').className.split(' ').includes('mini-danger'), 'Remove keeps its danger treatment');
+    assert.deepEqual(pressed(), ['false', 'false', null], 'no override is in force, and Clear reports no state');
+
+    command('override-unavailable').fire('click');
+    assert.equal(h.state().overrides[2], 'unavailable');
+    h.view.renderRows();
+    assert.deepEqual(pressed(), ['false', 'true', null]);
+    assert.equal(command('override-unavailable').childNodes[0].textContent, '✓', 'the choice in force shows a check mark');
+
+    // Pressing the choice in force again clears it, and says so.
+    command('override-unavailable').fire('click');
+    assert.equal(Object.hasOwn(h.state().overrides, 2), false);
+    assert.equal(h.calls.announce.at(-1), 'Issue Two: availability override cleared.');
+    h.view.renderRows();
+    assert.deepEqual(pressed(), ['false', 'false', null]);
+
+    command('override-available').fire('click');
+    h.view.renderRows();
+    assert.deepEqual(pressed(), ['true', 'false', null]);
+    command('override-clear').fire('click');
+    h.view.renderRows();
+    assert.deepEqual(pressed(), ['false', 'false', null]);
+    assert.equal(Object.hasOwn(h.state().overrides, 2), false);
+
+    // A read row offers no Defer, so its groups close up rather than leaving an empty one. The stub
+    // keeps the null child the app's el() skips, so it is filtered here.
+    let readPanel;
+    walk(h.nodes.rows, (entry) => { if (entry.id === 'row-actions-1') readPanel = entry; });
+    assert.deepEqual(readPanel.childNodes.filter(Boolean).map(acts), [['open', 'info'], ['up', 'down'],
+      ['override-available', 'override-unavailable', 'override-clear'], ['remove']]);
+  } finally { h.restore(); }
+});
+
 test('UX05 synopsis copy distinguishes not loaded from a completed empty result and held text', () => {
   const empty = Symbol('empty');
   assert.equal(synopsisFallback({ hydrated: true }, null, empty), 'Story summary has not been loaded.');

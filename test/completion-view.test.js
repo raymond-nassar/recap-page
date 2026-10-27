@@ -18,9 +18,15 @@ function node(props = {}, children = []) {
     getAttribute(name) { return this.attributes[name] ?? null; },
     removeAttribute(name) { delete this.attributes[name]; },
     replaceChildren(...next) { this.children = next; },
-    prepend(child) { this.children.unshift(child); },
-    append(child) { this.children.push(child); },
+    // As in the DOM, a node has one parent, and inserting it elsewhere takes it from the first.
+    adopt(child) {
+      if (child.parentElement) child.parentElement.children = child.parentElement.children.filter((entry) => entry !== child);
+      child.parentElement = this;
+    },
+    prepend(child) { this.adopt(child); this.children.unshift(child); },
+    append(child) { this.adopt(child); this.children.push(child); },
     insertBefore(child, before) {
+      this.adopt(child);
       const index = this.children.indexOf(before);
       this.children.splice(index < 0 ? this.children.length : index, 0, child);
     },
@@ -42,7 +48,7 @@ function fixture() {
   const records = new Map();
   const calls = { notify: [], announce: [], selected: [], opened: [], previewed: [], downloads: [], confirms: [], retry: 0, focus: 0 };
   const nodes = Object.fromEntries([
-    'readBody', 'listTools', 'wrapup', 'wrapupHeading', 'status', 'complete', 'reopen',
+    'readBody', 'listActions', 'wrapupActions', 'deferredActions', 'wrapup', 'wrapupHeading', 'status', 'complete', 'reopen',
     'collectionOpen', 'ratings', 'up', 'down', 'icons', 'downIcons', 'feedbackGuide',
     'feedbackDialog', 'feedbackClose', 'feedbackLink', 'privateFeedbackLink',
     'recommendations', 'suggestions', 'recommendationStatus', 'recommendationRetry',
@@ -643,4 +649,62 @@ test('874 the wrap-up opens with the All read line exactly while every comic in 
   const before = JSON.stringify(h.state);
   await h.view.render();
   assert.equal(JSON.stringify(h.state), before, 'drawing it writes nothing');
+});
+
+// UX-19 (#830): Mark as Completed lives in List actions while comics are queued, so Read comes before it,
+// and moves beside the hero once nothing is queued: the wrap-up when every comic is read, Nothing queued
+// when the rest are deferred. One element moves, so it keeps its listeners and its saving contract.
+test('UX-19 Mark as Completed sits in List actions while comics are queued, and beside the hero once nothing is', async () => {
+  const h = fixture();
+  const home = () => ['listActions', 'wrapupActions', 'deferredActions']
+    .filter((name) => h.nodes[name].children.includes(h.nodes.complete));
+  await h.view.render();
+  assert.deepEqual(home(), ['listActions'], 'one comic is queued');
+  assert.equal(h.nodes.listActions.children[0], h.nodes.complete, 'first in List actions, before its hairline');
+  h.state = markRead(h.state, 2, true, 2000);
+  await h.view.render();
+  assert.deepEqual(home(), ['deferredActions'], 'the last unread comic is deferred, so Nothing queued holds it');
+  assert.equal(h.nodes.deferredActions.children.at(-1), h.nodes.complete, 'after Review deferred');
+  h.state = markRead(h.state, 3, true, 3000);
+  await h.view.render();
+  assert.deepEqual(home(), ['wrapupActions'], 'every comic is read, so the wrap-up holds it');
+  assert.equal(h.nodes.wrapupActions.children[0], h.nodes.complete);
+  h.state = markRead(h.state, 3, false);
+  h.state = setDeferred(h.state, 'a', 3, false);
+  await h.view.render();
+  assert.deepEqual(home(), ['listActions'], 'a comic queued again sends it back');
+  const empty = fixture();
+  for (const id of [2, 3]) empty.state = markRead(empty.state, id, true, 4000);
+  await empty.view.render();
+  assert.ok(empty.nodes.wrapupActions.children.includes(empty.nodes.complete));
+  empty.state = { ...createList(empty.state, { id: 'b', name: 'Empty list' }), active: 'b' };
+  await empty.view.render();
+  const emptyHome = ['listActions', 'wrapupActions', 'deferredActions']
+    .filter((name) => empty.nodes[name].children.includes(empty.nodes.complete));
+  assert.deepEqual(emptyHome, ['listActions'],
+    'an empty list has nothing queued, but nothing to wrap up either, so it keeps List actions');
+  h.nodes.complete.listeners.click();
+  await h.flush();
+  assert.equal(h.nodes.complete.hidden, true, 'the moved element still completes the list');
+});
+
+test('UX-19 a move while Mark as Completed holds focus hands focus to it again, or to the view heading where its home is closed', async () => {
+  const h = fixture();
+  const page = { activeElement: null };
+  h.nodes.complete.ownerDocument = page;
+  h.nodes.complete.focus = () => { page.activeElement = h.nodes.complete; };
+  await h.view.render();
+  page.activeElement = h.nodes.complete;
+  h.state = markRead(h.state, 2, true, 2000);
+  await h.view.render();
+  assert.equal(page.activeElement, h.nodes.complete, 'focus follows it into Nothing queued');
+  assert.equal(h.calls.focus, 0);
+  h.nodes.complete.checkVisibility = () => false;
+  h.state = markRead(h.state, 2, false);
+  await h.view.render();
+  assert.equal(h.calls.focus, 1, 'back in a closed List actions it cannot be seen, so the heading takes focus');
+  page.activeElement = null;
+  h.state = markRead(h.state, 2, true, 2000);
+  await h.view.render();
+  assert.equal(h.calls.focus, 1, 'a move it does not hold focus through moves no focus');
 });

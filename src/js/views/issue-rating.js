@@ -55,10 +55,13 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
     const value = nodes.input.value === '' ? null : Number(nodes.input.value);
     const valid = isIssueRating(value);
     nodes.input.setAttribute('aria-invalid', String(nodes.input.value !== '' && !valid));
-    for (const button of nodes.stars) {
-      const fill = valid ? Math.max(0, Math.min(1, value - Number(button.dataset.rating) + 1)) : 0;
-      button.dataset.fill = fill === 1 ? 'full' : fill === 0.5 ? 'half' : 'empty';
-      button.disabled = saving || draft.stale;
+    for (const star of nodes.stars) {
+      const fill = valid ? Math.max(0, Math.min(1, value - Number(star.dataset.rating) + 1)) : 0;
+      star.dataset.fill = fill === 1 ? 'full' : fill === 0.5 ? 'half' : 'empty';
+    }
+    for (const radio of nodes.radios) {
+      radio.checked = valid && Number(radio.value) === value;
+      radio.disabled = saving || draft.stale;
     }
     nodes.input.disabled = saving || draft.stale;
     nodes.decrease.disabled = saving || draft.stale || !valid || value <= 0.5;
@@ -80,6 +83,9 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
     error('');
     paintDraft();
     nodes.dialog.showModal();
+    // The dialog would otherwise focus the first radio, 0.5, where an arrow key moves away from the
+    // saved score rather than by half a star from it.
+    ([...nodes.radios].find((radio) => radio.checked) ?? nodes.radios[0])?.focus();
   }
 
   function change(value) {
@@ -151,8 +157,8 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
         ? 'Choose a rating from 0.5 to 5 in half-star increments.' : '');
       paintDraft();
     });
-    for (const button of nodes.stars) {
-      button.addEventListener('click', () => change(Number(button.dataset.rating)));
+    for (const radio of nodes.radios) {
+      radio.addEventListener('change', () => { if (radio.checked) change(Number(radio.value)); });
     }
     nodes.decrease.addEventListener('click', () => change(Math.max(0.5, Number(nodes.input.value) - 0.5)));
     nodes.increase.addEventListener('click', () => change(Math.min(5, Number(nodes.input.value) + 0.5)));

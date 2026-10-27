@@ -183,6 +183,25 @@ test('UX05 replacing a saved Issue reference withdraws actions rather than bindi
   assert.equal(writes, 0);
 });
 
+test('UX-20 saved Issue actions follow the same comic when saved data is re-read into new objects', async () => {
+  const state = { issues: { 42: issue() }, lists: {}, read: {}, notes: {}, overrides: {} };
+  const held = [];
+  const h = harness({ state, onToggleRead: (item, isCurrent) => { held.push({ item, current: isCurrent() }); } });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.savedActions.hidden, false);
+  // What boot's issue summary cleanup and another tab's write both do: the same comic in a new object.
+  state.issues[42] = { ...state.issues[42] };
+  h.nodes.markRead.focus();
+  h.view.refreshReader();
+  assert.equal(h.nodes.savedActions.hidden, false, 'a re-read of the same comic keeps its actions');
+  assert.equal(h.nodes.heading.ownerDocument.activeElement, h.nodes.markRead);
+  await h.nodes.markRead.listeners.click();
+  assert.equal(held.length, 1);
+  assert.equal(held[0].item, state.issues[42], 'the action holds the comic as it is saved now');
+  assert.equal(held[0].current, true);
+});
+
 test('UX05 unsaved-only Issue actions remain absent and a captured action expires on navigation', async () => {
   const state = { issues: {}, lists: {}, read: {}, notes: {}, overrides: {} };
   let isCurrent;

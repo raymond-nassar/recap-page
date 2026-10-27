@@ -15857,7 +15857,7 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'defer', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'remove'];
+        const actions = ['open', 'info', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove'];
         await page.mouse.move(0, 0);
         await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
         await page.keyboard.press('Enter');
@@ -15956,6 +15956,491 @@ SCENARIOS.push({
       !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
     t.check('layout and targeting leave saved reading progress and list contents untouched',
       await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+  },
+});
+
+// UX-13 (#830): a row's commands come in named groups set apart by a rule: Open, Order, Availability,
+// then Defer, then Remove from list last and alone in the danger colour. The availability choice in
+// force reports itself pressed, and pressing it again clears it.
+SCENARIOS.push({
+  id: 'row-action-groups',
+  title: 'a row\'s commands come in named groups, the override in force reads as pressed, and Remove stands apart and last',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+    const first = ORDER.items[0];
+    const toggle = `#rows [data-key="${first.issueId}"][data-act="more"]`;
+    const panel = `#row-actions-${first.issueId}`;
+    const command = (act) => `${panel} [data-act="${act}"]`;
+    await page.waitForSelector(toggle, { timeout: 15000 });
+    await page.$eval(toggle, (node) => { node.scrollIntoView({ block: 'center' }); node.focus(); });
+    await page.keyboard.press('Enter');
+    await page.waitForFunction((selector) => document.querySelector(selector)?.checkVisibility(), {}, panel);
+
+    const layout = () => page.$eval(panel, (node) => [...node.children].map((group) => {
+      const style = getComputedStyle(group);
+      return {
+        role: group.getAttribute('role'), name: group.getAttribute('aria-label'), shown: group.checkVisibility(),
+        rule: style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+        acts: [...group.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
+          .map((control) => control.dataset.act),
+      };
+    }));
+    const groups = (await layout()).filter((group) => group.shown);
+    t.check('the panel holds Open, Order, Availability, Defer and Remove in that order, each group after the first ruled apart',
+      JSON.stringify(groups.map((group) => group.acts.filter((act) => act !== 'open' && act !== 'info')))
+        === JSON.stringify([[], ['up', 'down'], ['override-available', 'override-unavailable', 'override-clear'], ['defer'], ['remove']])
+      && groups[0].acts.length > 0 && groups[0].acts.every((act) => act === 'open' || act === 'info')
+      && groups[0].rule === 0 && groups.slice(1).every((group) => group.rule >= 1),
+      JSON.stringify(groups));
+    const ax = await page.accessibility.snapshot({ root: await page.$(panel), interestingOnly: false });
+    const named = [];
+    const visit = (node) => {
+      if (node?.role === 'group') named.push(node.name);
+      for (const child of node?.children ?? []) visit(child);
+    };
+    visit(ax);
+    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Availability']),
+      JSON.stringify(named));
+
+    const pressed = async () => {
+      const states = [];
+      for (const act of ['override-available', 'override-unavailable', 'override-clear']) {
+        const node = await page.accessibility.snapshot({ root: await page.$(command(act)), interestingOnly: false });
+        states.push(node?.pressed ?? null);
+      }
+      return states;
+    };
+    const saved = async () => (await readState(page)).overrides[first.issueId] ?? null;
+    const focusedAct = () => page.evaluate(() => document.activeElement?.dataset?.act ?? null);
+    const rowBadge = (state) => page.waitForFunction((issueId, name) => {
+      const row = document.querySelector(`#rows [data-key="${issueId}"][data-act="more"]`)?.closest('.row');
+      return name ? !!row?.querySelector(`.badge-${name}`) : !row?.querySelector('[class*="badge-override-"]');
+    }, { timeout: 15000 }, first.issueId, state);
+    t.check('with no override in force, neither choice is pressed and Clear reports no state',
+      JSON.stringify(await pressed()) === JSON.stringify([false, false, null]), JSON.stringify(await pressed()));
+
+    await page.focus(command('override-unavailable'));
+    await page.keyboard.press('Enter');
+    await rowBadge('override-unavailable');
+    const marked = await page.$eval(command('override-unavailable'), (node) => {
+      const icon = node.querySelector('.mini-icon');
+      const probe = document.createElement('span');
+      probe.style.setProperty('color', 'var(--accent-text)');
+      node.closest('.ract').append(probe);
+      const accent = getComputedStyle(probe).color;
+      probe.remove();
+      return { icon: icon.textContent, iconShown: icon.checkVisibility(), weight: Number(getComputedStyle(node).fontWeight),
+        edge: getComputedStyle(node).borderTopColor === accent };
+    });
+    t.check('Enter on Mark as unavailable saves it, reports it pressed, and keeps focus on it through the row\'s rebuild',
+      await saved() === 'unavailable' && JSON.stringify(await pressed()) === JSON.stringify([false, true, null])
+      && await focusedAct() === 'override-unavailable', JSON.stringify({ saved: await saved(), pressed: await pressed() }));
+    t.check('the choice in force shows a check mark, a heavier label and the brand edge, so it is not colour alone',
+      marked.icon === '✓' && marked.iconShown && marked.weight >= 600 && marked.edge, JSON.stringify(marked));
+
+    await page.keyboard.press('Enter');
+    await rowBadge(null);
+    const said = await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
+      .includes(': availability override cleared.'), { timeout: 5000 }).then(() => true, () => false);
+    t.check('pressing the choice in force again clears the override, says so, and leaves focus where it was',
+      await saved() === null && JSON.stringify(await pressed()) === JSON.stringify([false, false, null])
+      && await focusedAct() === 'override-unavailable' && said,
+      JSON.stringify({ saved: await saved(), pressed: await pressed(), said }));
+
+    const tap = async (act) => {
+      const box = await page.$eval(command(act), (node) => {
+        const rect = node.getBoundingClientRect();
+        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      });
+      await page.mouse.click(box.x, box.y);
+    };
+    await tap('override-available');
+    await rowBadge('override-available');
+    const available = await pressed();
+    await tap('override-clear');
+    await rowBadge(null);
+    t.check('a pointer press on Mark as available shows it pressed, and Clear removes the override without a state of its own',
+      JSON.stringify(available) === JSON.stringify([true, false, null]) && await saved() === null
+      && JSON.stringify(await pressed()) === JSON.stringify([false, false, null]), JSON.stringify({ available }));
+
+    await page.mouse.move(0, 0);
+    const danger = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      danger.push(await page.$eval(command('remove'), (node) => {
+        const probe = document.createElement('span');
+        probe.style.setProperty('color', 'var(--red-fg-2)');
+        node.closest('.ract').append(probe);
+        const expected = getComputedStyle(probe).color;
+        probe.remove();
+        const last = [...node.closest('.ract').querySelectorAll('[data-act]')].filter((control) => control.checkVisibility()).at(-1);
+        return { theme: document.documentElement.dataset.theme, color: getComputedStyle(node).color, expected, last: last === node };
+      }));
+    }
+    await page.evaluate(() => { delete document.documentElement.dataset.theme; });
+    t.check('Remove from list is the last command and reads as danger at rest in both themes',
+      danger.every((entry) => entry.color === entry.expected && entry.last), JSON.stringify(danger));
+
+    await page.focus(command('override-available'));
+    // The first Escape takes down a showing hint and keeps focus in the menu (#449); the next closes it.
+    if (await page.evaluate(() => !document.querySelector('#action-tip')?.hidden)) await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
+    t.check('Escape still closes the panel and returns focus to More actions',
+      await page.$eval(toggle, (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
+
+    await page.setViewport({ width: 390, height: 844 });
+    await page.$eval(toggle, (node) => { node.scrollIntoView({ block: 'center' }); node.click(); });
+    await page.waitForFunction((selector) => document.querySelector(selector)?.checkVisibility(), {}, panel);
+    const narrow = await page.$eval(panel, (node) => {
+      const choices = [...node.querySelectorAll('.availability-choice')].map((choice) => choice.getBoundingClientRect());
+      const controls = [...node.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
+        .map((control) => control.getBoundingClientRect());
+      return { lefts: [...new Set(choices.map((rect) => Math.round(rect.left)))].length,
+        inside: controls.every((rect) => rect.left >= 0 && rect.right <= document.documentElement.clientWidth + 0.5),
+        targets: controls.every((rect) => rect.height >= 43.5) };
+    });
+    t.check('at 390 pixels each group stacks in one column, inside the screen, with 44px targets',
+      narrow.lefts === 1 && narrow.inside && narrow.targets, JSON.stringify(narrow));
+    t.check('the groups raise no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
+// UX-20 (#830): Read, Mark as read, Add note and Rate share one row at the top of the issue card's text
+// column, Read first, beside the cover when there is room and ahead of it when there is not. The saved
+// actions show only for a saved comic, and stay live when saved data is re-read into new objects,
+// which every boot does after the page paints and another tab's write does too.
+SCENARIOS.push({
+  id: 'issue-action-row',
+  title: 'issue details lead the text column with one action row whose saved actions stay live after saved data is re-read',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    const [first, , last] = ORDER.items;
+    // The last comic leaves saved data, so its details come from the bundled order alone.
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      delete saved.issues[id];
+      saved.lists.fixture.itemIds = saved.lists.fixture.itemIds.filter((itemId) => itemId !== id);
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, last.issueId);
+    // A reload at the details link, the way a bookmark or a shared link arrives.
+    await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#btn-issue-read')?.checkVisibility()
+      && document.querySelector('#issue-rating-trigger')?.checkVisibility(), { timeout: 15000 });
+    await page.waitForNetworkIdle({ idleTime: 500, timeout: 10000 }).catch(() => {});
+
+    const measure = () => page.evaluate(() => {
+      const box = (selector) => {
+        const node = document.querySelector(selector);
+        if (!node?.checkVisibility()) return null;
+        const { top, bottom, left, right, width } = node.getBoundingClientRect();
+        return { top, bottom, left, right, width };
+      };
+      return {
+        read: box('#btn-issue-read'), mark: box('#btn-issue-mark-read'), note: box('#btn-issue-note'),
+        rate: box('#issue-rating-trigger'), row: box('#issue-focus-card .issue-actions'),
+        art: box('#issue-focus-card .art'), byline: box('#issue-focus-by'),
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    });
+    const wide = await measure();
+    const commands = [wide.read, wide.mark, wide.note, wide.rate];
+    t.check('at 1280 pixels Read, Mark as read, Add note and Rate share one row, Read first',
+      commands.every(Boolean)
+      && Math.max(...commands.map((box) => box.top)) < Math.min(...commands.map((box) => box.bottom))
+      && commands.every((box, index) => index === 0 || box.left >= commands[index - 1].right), JSON.stringify(wide));
+    t.check('the row tops the text column beside the cover, above the byline',
+      Boolean(wide.row && wide.art && wide.byline) && wide.row.left >= wide.art.right
+      && Math.abs(wide.row.top - wide.art.top) <= 2 && wide.byline.top >= wide.row.bottom,
+      JSON.stringify({ row: wide.row, art: wide.art, byline: wide.byline }));
+
+    await page.focus('#btn-issue-read');
+    const order = [await page.evaluate(() => document.activeElement?.id)];
+    for (let step = 0; step < 3; step += 1) {
+      await page.keyboard.press('Tab');
+      order.push(await page.evaluate(() => document.activeElement?.id));
+    }
+    t.check('Tab moves from Read to Mark as read, Add note, then Rate',
+      JSON.stringify(order) === JSON.stringify(['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']),
+      JSON.stringify(order));
+
+    const isRead = (id) => page.evaluate((issueId) => Object.hasOwn(JSON.parse(localStorage.getItem('mrt.state.v2')).read ?? {}, issueId), id);
+    const settle = (id, wanted) => page.waitForFunction((issueId, value) => Object.hasOwn(
+      JSON.parse(localStorage.getItem('mrt.state.v2')).read ?? {}, issueId) === value, { timeout: 3000 }, id, wanted).catch(() => {});
+    const id = String(first.issueId);
+    await page.$eval('#btn-issue-mark-read', (node) => node.click());
+    await settle(id, true);
+    t.check('after the reload, Mark as read saves the comic as read and offers Mark as unread',
+      await isRead(id) && await page.$eval('#btn-issue-mark-read', (node) => node.checkVisibility() && node.textContent === 'Mark as unread'));
+
+    // Another tab writes the same comic back in new objects. A static file on this origin shares its
+    // storage without booting a second copy of the app.
+    const other = await page.browserContext().newPage();
+    await other.goto(`${page.__origin}/icons/ui.svg`);
+    await other.evaluate(() => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.lists.fixture.name = 'Renamed in another tab';
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    });
+    await other.close();
+    await page.waitForFunction(() => document.querySelector('#list-nav')?.textContent.includes('Renamed in another tab'), { timeout: 5000 });
+    const before = await isRead(id);
+    await page.$eval('#btn-issue-mark-read', (node) => node.click());
+    await settle(id, !before);
+    t.check('after another tab\'s write, the same comic keeps live actions and pressing one still saves',
+      await isRead(id) === !before && await page.$eval('#btn-issue-mark-read', (node, read) => node.checkVisibility()
+        && node.textContent === (read ? 'Mark as unread' : 'Mark as read'), !before), JSON.stringify({ before }));
+
+    await page.setViewport({ width: 390, height: 844 });
+    const narrow = await measure();
+    t.check('at 390 pixels Read spans the row and the other actions follow it, all ahead of the cover and inside the screen',
+      Boolean(narrow.read && narrow.mark && narrow.rate && narrow.row && narrow.art) && narrow.read.width >= narrow.row.width - 1
+      && narrow.read.bottom <= narrow.mark.top && narrow.rate.bottom <= narrow.art.top && narrow.overflow <= 1, JSON.stringify(narrow));
+
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.evaluate((hash) => { location.hash = hash; }, `#/issue/${last.issueId}?order=${ORDER.id}`);
+    await page.waitForFunction((title) => document.querySelector('#issue-focus-h')?.textContent === title
+      && document.querySelector('#issue-rating-trigger')?.checkVisibility(), { timeout: 15000 }, last.title);
+    const unsaved = await page.evaluate(() => Object.fromEntries(['btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']
+      .map((control) => [control, document.getElementById(control).checkVisibility()])));
+    t.check('a comic that is not saved shows no Mark as read or Add note, which could not act on it',
+      JSON.stringify(unsaved) === JSON.stringify({ 'btn-issue-mark-read': false, 'btn-issue-note': false, 'issue-rating-trigger': true }),
+      JSON.stringify(unsaved));
+    t.check('the action row raises no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
+// UX-26 (#830): the stars are one group of ten radios, 0.5 to 5. Arrow keys move by half a star, the
+// checked radio reports the value, a press on a star still chooses its whole value, and Enter saves.
+SCENARIOS.push({
+  id: 'rating-radios',
+  title: 'the rating stars are one radio group: arrows move by half a star, the value is exposed, and a star press chooses its whole value',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    const [first] = ORDER.items;
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.ratings = { [id]: 3.5 };
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, first.issueId);
+    await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#issue-rating-label')?.textContent.includes('3.5/5'), { timeout: 15000 });
+    await page.focus('#issue-rating-trigger');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => document.querySelector('#issue-rating-dialog').open);
+    const read = () => page.evaluate(() => {
+      const active = document.activeElement;
+      return {
+        focused: active?.name === 'issue-rating' ? active.value : active?.id ?? null,
+        checked: [...document.querySelectorAll('#issue-rating-stars input')].filter((radio) => radio.checked).map((radio) => radio.value),
+        input: document.querySelector('#issue-rating-input').value,
+        rings: [...document.querySelectorAll('#issue-rating-stars label')].filter((label) => {
+          const style = getComputedStyle(label);
+          return style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0;
+        }).map((label) => label.dataset.rating),
+      };
+    });
+    const opened = await read();
+    t.check('the editor opens on the saved score: 3.5 is checked and focused',
+      opened.focused === '3.5' && JSON.stringify(opened.checked) === '["3.5"]' && opened.input === '3.5', JSON.stringify(opened));
+
+    const flatten = (node) => (node ? [node, ...(node.children ?? []).flatMap(flatten)] : []);
+    const ax = flatten(await page.accessibility.snapshot({ root: await page.$('#issue-rating-stars'), interestingOnly: false }));
+    const group = ax.find((node) => node.role === 'radiogroup');
+    const radios = flatten(group).filter((node) => node.role === 'radio');
+    t.check('assistive technology meets one named radio group of ten half-star values with 3.5 stars checked',
+      group?.name === 'Choose a rating' && radios.length === 10
+      && JSON.stringify(radios.filter((node) => node.checked === true).map((node) => node.name)) === '["3.5 stars"]',
+      JSON.stringify({ group: [group?.role, group?.name], radios: radios.map((node) => [node.name, node.checked]) }));
+
+    await page.keyboard.press('ArrowRight');
+    const right = await read();
+    for (let step = 0; step < 3; step += 1) await page.keyboard.press('ArrowLeft');
+    const left = await read();
+    t.check('arrow keys move the choice by half a star, and the stepper follows',
+      right.focused === '4' && JSON.stringify(right.checked) === '["4"]' && right.input === '4'
+      && left.focused === '2.5' && JSON.stringify(left.checked) === '["2.5"]' && left.input === '2.5', JSON.stringify({ right, left }));
+    t.check('the focus ring is drawn on the star that holds the focused value', JSON.stringify(left.rings) === '["3"]', JSON.stringify(left));
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    const forced = await read();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+    await cdp.detach();
+    t.check('forced colors keep that ring', JSON.stringify(forced.rings) === '["3"]', JSON.stringify(forced));
+
+    const star = await (await page.$('#issue-rating-stars label[data-rating="2"]')).boundingBox();
+    await page.mouse.click(star.x + star.width / 2, star.y + star.height / 2);
+    const pressed = await read();
+    const sizes = await page.$$eval('#issue-rating-stars label', (labels) => labels.map((label) => {
+      const { width, height } = label.getBoundingClientRect();
+      return [width, height];
+    }));
+    t.check('a press on a star chooses its whole value, on a 48px target',
+      JSON.stringify(pressed.checked) === '["2"]' && pressed.input === '2' && sizes.every(([width, height]) => width >= 47.5 && height >= 47.5),
+      JSON.stringify({ pressed, sizes }));
+
+    await page.focus('#issue-rating-star-2');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('#issue-rating-dialog').open, { timeout: 3000 }).catch(() => {});
+    const saved = await page.evaluate((id) => ({
+      open: document.querySelector('#issue-rating-dialog').open,
+      rating: JSON.parse(localStorage.getItem('mrt.state.v2')).ratings?.[id] ?? null,
+      focus: document.activeElement?.id ?? null,
+    }), String(first.issueId));
+    t.check('Enter in the group saves the chosen value and returns focus to the trigger',
+      !saved.open && saved.rating === 2.5 && saved.focus === 'issue-rating-trigger', JSON.stringify(saved));
+    t.check('the rating radios raise no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
+// UX-27 (#830): every progress bar is outlined, as #902 drew the glance bar, rather than drawn on a
+// trough that could not clear 3:1. Measured as #902 measured: the outline and fill colours against the
+// surface painted just above each bar, on every surface a bar is drawn on, in both themes, and the
+// outline's own painted pixels against the same surface.
+SCENARIOS.push({
+  id: 'outlined-bars',
+  title: 'every progress bar is outlined, and its outline and fill clear 3:1 against what is painted behind them',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const { decodePng } = await import('./lib/painted-contrast.mjs');
+    await page.setViewport({ width: 1280, height: 900 });
+    await seedFixtureState(page);
+    // A read comic gives every bar a filled and an unfilled part. The rail's one list bar sits on the
+    // selected rail item while its list is open, and on the rail itself from anywhere else.
+    await page.evaluate((id) => {
+      const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      saved.read = { [id]: 1000 };
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    }, ORDER.items[0].issueId);
+    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#full[open] .order-strip .pbar', { timeout: 15000 });
+    const rgb = (value) => parseColour((value?.match(/rgba?\((\d+), (\d+), (\d+)/) ?? []).slice(1, 4).join(' ')) ?? null;
+    const measure = async (selector, hover = null) => {
+      if (hover) await page.hover(hover);
+      const spot = await page.$eval(selector, (bar) => {
+        bar.scrollIntoView({ block: 'center' });
+        const box = bar.getBoundingClientRect();
+        const fill = bar.querySelector('i')?.getBoundingClientRect();
+        return {
+          left: Math.round(box.left), top: Math.round(box.top), width: Math.round(box.width), height: Math.round(box.height),
+          unfilled: Math.ceil(fill ? fill.right : box.left) + 2, shown: bar.checkVisibility(),
+          outline: getComputedStyle(bar).boxShadow, fill: getComputedStyle(bar.querySelector('i')).backgroundColor,
+          scrollX, scrollY,
+        };
+      });
+      if (hover) await page.hover(hover);
+      // The surface two pixels above the bar, then the bar's own rows in its unfilled part.
+      const shot = decodePng(await page.screenshot({
+        clip: { x: spot.unfilled + spot.scrollX, y: spot.top - 2 + spot.scrollY, width: 1, height: spot.height + 2 },
+        captureBeyondViewport: false,
+      }));
+      const surface = shot.pixel(0, 0);
+      const rows = Array.from({ length: spot.height }, (_, row) => shot.pixel(0, row + 2));
+      const outline = rgb(spot.outline);
+      const fill = rgb(spot.fill);
+      return {
+        shown: spot.shown, surface, outline: outline ? ratio(outline, surface) : 0, fill: fill ? ratio(fill, surface) : 0,
+        painted: Math.max(...rows.map((pixel) => ratio(pixel, surface))),
+      };
+    };
+    const results = [];
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      await page.mouse.move(0, 0);
+      results.push({ theme, where: 'the order strip, on a card', ...await measure('#full .order-strip .pbar') });
+      results.push({ theme, where: 'the selected rail item', ...await measure('#list-nav .ri[aria-current] .bar') });
+    }
+    await click(page, '.ri[data-view="library"]');
+    await page.waitForSelector('#view-library:not([hidden]) .yours a .pbar', { timeout: 15000 });
+    for (const theme of ['dark', 'light']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      await page.mouse.move(0, 0);
+      results.push({ theme, where: 'the rail', ...await measure('#list-nav .ri:not([aria-current]) .bar') });
+      results.push({ theme, where: 'a saved list card', ...await measure('#view-library .yours a .pbar') });
+      results.push({ theme, where: 'a saved list card, pointed at', ...await measure('#view-library .yours a .pbar', '#view-library .yours a') });
+    }
+    const low = results.filter((entry) => !entry.shown || entry.outline < 3 || entry.fill < 3 || entry.painted < 3);
+    console.log(`UX27-BARS ${JSON.stringify(results.map(({ theme, where, outline, fill, painted }) => [theme, where,
+      Number(outline.toFixed(2)), Number(fill.toFixed(2)), Number(painted.toFixed(2))]))}`);
+    t.check('every bar\'s outline and fill clear 3:1 against the surface painted behind it, on the card, the rail and the selected rail item, in both themes',
+      results.length === 10 && low.length === 0, JSON.stringify(low.length ? low : results));
+
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    const forced = await page.$$eval('#list-nav .ri .bar', (bars) => {
+      const probe = document.body.appendChild(document.createElement('span'));
+      probe.style.backgroundColor = 'Highlight';
+      const highlight = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return bars.map((bar) => ({
+        border: getComputedStyle(bar).borderTopStyle, fill: getComputedStyle(bar.querySelector('i')).backgroundColor, highlight,
+      }));
+    });
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
+    await cdp.detach();
+    await page.evaluate(() => { delete document.documentElement.dataset.theme; });
+    t.check('in forced colours the rail bar keeps a border and a Highlight fill, as the other bars do',
+      forced.length === 1 && forced.every((bar) => bar.border === 'solid' && bar.fill === bar.highlight), JSON.stringify(forced));
+    t.check('the outlined bars raise no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
+// UX-22 (#830): Coming up's tiles sit in equal grid columns, so the eighth tile, alone on its row, keeps
+// its siblings' width rather than growing to the tile cap.
+SCENARIOS.push({
+  id: 'coming-up-columns',
+  title: 'Coming up tiles keep one width on every row, the eighth tile included',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await open(page, '/?catalog=browser-check');
+    await page.evaluate(async () => {
+      const model = await import('/js/lib/model.js');
+      let state = model.createList(model.createEmptyState(), { id: 'shelf', name: 'Shelf fixture' });
+      state = model.addIssuesToList(state, 'shelf', Array.from({ length: 12 }, (_, index) => ({
+        issueId: 922001 + index, title: `Shelf fixture (2026) #${index + 1}`, number: String(index + 1),
+        seriesName: 'Shelf fixture (2026)', source: 'manual', hydrated: true,
+      }))).state;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(model.exportBackup(state)));
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
+    });
+    await open(page, '/?catalog=browser-check#/read/shelf');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelectorAll('#shelf .tile').length === 8, { timeout: 15000 });
+    const results = {};
+    for (const [width, height] of [[1280, 900], [390, 844], [2560, 1080]]) {
+      await page.setViewport({ width, height });
+      await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+      const tiles = await page.$$eval('#shelf .tile', (nodes) => nodes.map((node) => {
+        const box = node.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width * 10) / 10 };
+      }));
+      const widths = tiles.map((tile) => tile.width);
+      results[width] = { tiles: tiles.length, rows: new Set(tiles.map((tile) => tile.top)).size,
+        spread: Math.round((Math.max(...widths) - Math.min(...widths)) * 10) / 10, widths };
+    }
+    t.check('at 1280 the shelf wraps and the tile alone on the last row keeps its siblings\' width',
+      results[1280].tiles === 8 && results[1280].rows >= 2 && results[1280].spread <= 0.5, JSON.stringify(results[1280]));
+    t.check('at 390 every tile shares one width', results[390].tiles === 8 && results[390].spread <= 0.5, JSON.stringify(results[390]));
+    t.check('at 2560 the shelf is one row of tiles of one width', results[2560].tiles === 8 && results[2560].rows === 1
+      && results[2560].spread <= 0.5, JSON.stringify(results[2560]));
+    console.log(`UX22-SHELF ${JSON.stringify(results)}`);
+    t.check('the shelf raises no page errors', errors.length === 0, errors.join('; '));
   },
 });
 
@@ -17955,6 +18440,7 @@ async function responsiveHero(page) {
 async function responsiveCommands(page) {
   const actual = await page.evaluate(() => {
     const details = document.querySelector('#list-actions');
+    const body = details?.querySelector('.list-actions-body');
     const complete = document.querySelector('#btn-complete-list');
     const box = (node) => {
       if (!node) return null;
@@ -17962,24 +18448,26 @@ async function responsiveCommands(page) {
       return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
         width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
     };
+    // UX-19 (#830): while comics are queued, Complete heads List actions rather than standing before it.
     const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
       open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
-      completeOutside: Boolean(details && !details.contains(complete)),
-      bodyPainted: Boolean(details?.querySelector('.list-actions-body')?.checkVisibility()) };
+      completeInside: Boolean(body?.contains(complete)), completeFirst: body?.firstElementChild === complete,
+      bodyPainted: Boolean(body?.checkVisibility()) };
     if (details) details.open = true;
     document.querySelector('#list-export').open = true;
-    result.commands = ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    result.opened = box(complete);
+    result.commands = ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list']
       .map((id) => ({ id, ...box(document.getElementById(id)), hidden: document.getElementById(id).hidden }));
     if (details) details.open = false;
     return result;
   });
-  const a = actual.complete;
+  const a = actual.opened;
   const b = actual.summary;
   const overlap = a && b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
     * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : null;
   return { ...actual, overlap, expected: { minimumTarget: 44, ordinaryHeightCap: 112,
-    expandedIds: ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    expandedIds: ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list'] } };
 }
 
@@ -17999,10 +18487,11 @@ function responsiveReflowPredicates(build, card, hero, commands, expanded = fals
       && hero.actionHeight >= 48,
     gutter: card.left <= 16 && card.viewport - card.right <= 16
       && card.left + card.viewport - card.right <= 32 && card.chronologyInset <= 16,
-    commands: commands.open === false && commands.completeOutside && !commands.bodyPainted
+    commands: commands.open === false && commands.completeInside && commands.completeFirst && !commands.bodyPainted
+      && !commands.complete?.visible && commands.opened?.visible
       && commands.overlap === 0 && commands.summary?.width >= 44 && commands.summary?.height >= 44
-      && commands.complete?.width >= 44 && commands.complete?.height >= 44
-      && commands.height <= (expanded ? commands.summary.height + commands.complete.height + 24 : 112)
+      && commands.opened?.width >= 44 && commands.opened?.height >= 44
+      && commands.height <= (expanded ? commands.summary.height + 24 : 112)
       && commands.commands.every((node) => node.hidden || node.visible),
   };
 }
@@ -18097,14 +18586,15 @@ SCENARIOS.push(responsiveOwner({
     const commands = await responsiveCommands(page);
     const commandPredicates = {
       nativeClosed: commands.open === false && !commands.bodyPainted,
-      independentComplete: commands.completeOutside && commands.complete.visible,
+      completeInActions: commands.completeInside && commands.completeFirst && !commands.complete.visible
+        && commands.opened.visible,
       compact: commands.height <= 112,
       targets: commands.summary?.height >= 44 && commands.summary?.width >= 44
-        && commands.complete.height >= 44 && commands.complete.width >= 44,
+        && commands.opened.height >= 44 && commands.opened.width >= 44,
       overlap: commands.overlap === 0,
       expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
     };
-    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact with independent Complete',
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in List actions while comics are queued',
       { ...commands, subpredicates: commandPredicates },
       Object.values(commandPredicates).every(Boolean));
     responsiveStep(page, 'RF07-text-modes');
@@ -18172,7 +18662,7 @@ SCENARIOS.push(responsiveOwner({
     } });
     await responsiveReceipt(page, t, 'RF07', 'retained text modes preserve qualified prose and reflow',
       { modes, expected: { predicates: ['about', 'title', 'card', 'hero', 'gutter', 'commands'],
-        expandedStripCap: 'Complete height + summary height + 24', landscapeViewport: [640, 450] },
+        expandedStripCap: 'summary height + 24', landscapeViewport: [640, 450] },
       subpredicates: Object.fromEntries(modes.flatMap((entry) => Object.entries(entry.subpredicates)
         .map(([key, value]) => [`${entry.mode}:${key}`, value]))) },
       modes.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
@@ -18356,7 +18846,7 @@ SCENARIOS.push(responsiveOwner({
         nestedOpen: document.querySelector('#list-export').open,
         beforeClose: window.__ux09BeforeClose ?? [],
         completeVisible: document.querySelector('#btn-complete-list').checkVisibility(),
-        completeOutside: Boolean(details && !details.contains(document.querySelector('#btn-complete-list'))),
+        completeInside: Boolean(details?.querySelector('.list-actions-body')?.contains(document.querySelector('#btn-complete-list'))),
         pendingOutside: ['btn-cancel-hydrate', 'hydration-status', 'btn-cancel-synopsis', 'synopsis-status']
           .every((id) => !details?.contains(document.getElementById(id))) };
     });
@@ -18446,7 +18936,7 @@ SCENARIOS.push(responsiveOwner({
         && entry.stillOpen && entry.summaryVisible),
       resizePreservesChoice: resized.open && resized.focused,
       escapeClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
-      completeIndependent: focused.completeOutside && focused.completeVisible,
+      completeWithActions: focused.completeInside && !focused.completeVisible,
       pendingIndependent: focused.pendingOutside && pending.outside && pending.statusVisible
         && pending.stopVisible && pending.status.includes('Fetching')
         && synopsisPending.outside && synopsisPending.statusVisible && synopsisPending.stopVisible,
@@ -18458,7 +18948,7 @@ SCENARIOS.push(responsiveOwner({
     await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
       { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
         expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
-          pending: 'painted outside editing disclosure', complete: 'active visible; completed hidden; unavailable disabled' },
+          pending: 'painted outside editing disclosure', complete: 'inside List actions while queued; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
     responsiveStep(page, 'RC04-native-note');
@@ -20366,7 +20856,7 @@ SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
 MUTATIONS.push(...orderedImport.importMutations);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
-SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
+SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionHomes, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
 MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');

@@ -787,6 +787,8 @@ export const completionCommandFocus = {
     }, LIST_HISTORY_KEY);
 
     await holdHistory(page);
+    // UX-19 (#830): with comics queued, Complete is inside List actions, so the reader opens it first.
+    await page.evaluate(() => { document.querySelector('#list-actions').open = true; });
     await page.focus('#btn-complete-list');
     await page.evaluate(() => { window.__commandFrames = []; });
     await page.keyboard.press('Enter');
@@ -871,6 +873,81 @@ export const completionCommandFocus = {
       frames.length > 0 && !frames.includes('BODY'),
       JSON.stringify({ frames: frames.length, onPage: frames.filter((entry) => entry === 'BODY').length }));
     t.check('the held saves raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
+  },
+};
+
+// UX-19 (#830): Mark as Completed sits in List actions while comics are queued, so Read comes first, and
+// moves beside the hero once nothing is queued: into Nothing queued while the rest are deferred, into the
+// wrap-up once every comic is read. It is one element, so it takes focus with it when it moves while
+// focused, and its focus-while-saving contract holds in its new home.
+export const completionHomes = {
+  id: 'completion-homes',
+  title: 'Mark as Completed waits in List actions while comics are queued and moves beside the hero once none are',
+  async run(page, t) {
+    await setup(page);
+    const where = () => page.evaluate(() => {
+      const complete = document.querySelector('#btn-complete-list');
+      const home = complete.closest('.list-actions-body') ? 'list-actions'
+        : complete.closest('#all-deferred') ? 'nothing-queued' : complete.closest('#list-wrap-up') ? 'wrap-up' : 'elsewhere';
+      const tabbable = [...document.querySelectorAll('#view-read :is(a[href], button, summary, input)')]
+        .filter((node) => node.checkVisibility() && !node.disabled && node.tabIndex >= 0).map((node) => node.id);
+      const box = complete.getBoundingClientRect();
+      return { home, shown: complete.checkVisibility(), focused: document.activeElement === complete,
+        readAt: tabbable.indexOf('btn-hero-read'), completeAt: tabbable.indexOf('btn-complete-list'),
+        hairline: !!complete.nextElementSibling?.matches('.tool-sep') && complete.nextElementSibling.checkVisibility(),
+        size: [Math.round(box.width), Math.round(box.height)] };
+    });
+    const queued = await where();
+    t.check('with a comic queued, Mark as Completed waits inside closed List actions, so Read comes first',
+      queued.home === 'list-actions' && !queued.shown && queued.readAt >= 0 && queued.completeAt === -1, JSON.stringify(queued));
+    await page.evaluate(() => { document.querySelector('#list-actions').open = true; });
+    const opened = await where();
+    t.check('opening List actions shows it first, set apart by a hairline, on a 44px target',
+      opened.shown && opened.hairline && opened.size[1] >= 44
+      && await page.$eval('#btn-complete-list', (node) => node.parentElement.firstElementChild === node), JSON.stringify(opened));
+
+    // Another tab marks the queued comic read while Complete holds focus: nothing is queued, and one
+    // unread comic is deferred. A static file on this origin shares the storage without the app.
+    await page.focus('#btn-complete-list');
+    const other = await page.browserContext().newPage();
+    await other.goto(`${page.__origin}/icons/ui.svg`);
+    await other.evaluate((key) => {
+      const saved = JSON.parse(localStorage.getItem(key));
+      saved.read = { ...saved.read, 610002: 222 };
+      localStorage.setItem(key, JSON.stringify(saved));
+    }, KEY);
+    await other.close();
+    await page.waitForFunction(() => document.querySelector('#btn-complete-list').closest('#all-deferred')
+      && !document.querySelector('#all-deferred').hidden, { timeout: 5000 }).catch(() => {});
+    const deferred = await where();
+    const placement = await page.evaluate(() => {
+      const [review, complete] = ['#btn-review-deferred', '#btn-complete-list'].map((selector) => document.querySelector(selector).getBoundingClientRect());
+      return { together: review.top < complete.bottom && complete.top < review.bottom, after: complete.left >= review.right };
+    });
+    t.check('once nothing is queued and the rest is deferred, it moves into Nothing queued after Review deferred, and keeps focus',
+      deferred.home === 'nothing-queued' && deferred.shown && deferred.focused && placement.together && placement.after,
+      JSON.stringify({ deferred, placement }));
+
+    await full(page);
+    await click(page, row(610003, 'read'));
+    await page.waitForFunction(() => document.querySelector('#btn-complete-list').closest('#list-wrap-up')
+      && !document.querySelector('#list-wrap-up').hidden, { timeout: 5000 }).catch(() => {});
+    const allRead = await where();
+    t.check('once every comic is read it moves into the wrap-up, first among its actions',
+      allRead.home === 'wrap-up' && allRead.shown
+      && await page.$eval('#btn-complete-list', (node) => node.parentElement.firstElementChild === node), JSON.stringify(allRead));
+
+    await page.focus('#btn-complete-list');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('#btn-reopen-list').hidden
+      && document.activeElement === document.querySelector('#btn-reopen-list'), { timeout: 5000 }).catch(() => {});
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('#btn-complete-list').hidden
+      && document.activeElement === document.querySelector('#btn-complete-list'), { timeout: 5000 }).catch(() => {});
+    const roundTrip = await where();
+    t.check('in the wrap-up, Complete hands focus to Reopen and Reopen hands it back, as in List actions',
+      roundTrip.home === 'wrap-up' && roundTrip.focused, JSON.stringify(roundTrip));
+    t.check('the homes raise no page errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));
   },
 };
 

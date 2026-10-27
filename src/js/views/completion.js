@@ -199,6 +199,22 @@ export function createCompletionView({
     return held.promise;
   }
 
+  // UX-19 (#830): Mark as Completed sits in List actions while comics are queued, so Read comes before
+  // it, and an empty list keeps it there. Once nothing is queued it moves beside the hero: into the
+  // wrap-up when every comic is read, or into Nothing queued when the rest are deferred. It stays one
+  // element, so the focus-while-saving contract of #858 and #864 holds in every home, and a move while
+  // it holds focus hands focus to it again, or to the view heading where its new home is closed.
+  function placeComplete({ read, total, queued }) {
+    const nodes = elements();
+    const home = queued > 0 || total === 0 ? nodes.listActions
+      : read === total ? nodes.wrapupActions : nodes.deferredActions;
+    if (nodes.complete.parentElement === home) return;
+    const focused = nodes.complete.ownerDocument?.activeElement === nodes.complete;
+    if (home === nodes.deferredActions) home.append(nodes.complete);
+    else home.prepend(nodes.complete);
+    if (focused) focusReplacement(nodes.complete);
+  }
+
   function renderReading() {
     const nodes = elements();
     const list = currentList();
@@ -210,7 +226,7 @@ export function createCompletionView({
     }
     const record = history.getRecord(getState(), list.id);
     const completed = record?.completedAt != null;
-    const { read, total } = listReadingProgress(getState(), list.id);
+    const { read, total, queued } = listReadingProgress(getState(), list.id);
     if (cheer) cheer.hidden = !(total > 0 && read === total);
     nodes.wrapup.hidden = !completed && !(total > 0 && read === total)
       && history.known && !history.writeUnavailable && !history.lastError;
@@ -223,6 +239,7 @@ export function createCompletionView({
     nodes.reopen.hidden = !completed;
     nodes.ratings.hidden = !completed;
     nodes.feedbackGuide.hidden = !completed;
+    placeComplete({ read, total, queued });
     // #858, #864: the pressed command keeps keyboard focus while its save is in flight. Disabling it
     // did not: measured in Edge 155, a focused button disabled across a rendered frame sends focus to
     // the page for good, and the save spans frames whenever the history lock is not granted at once.
@@ -408,7 +425,7 @@ export function createCompletionView({
     });
     nodes.icons.replaceChildren(createIcon('thumb-up', 'gi'));
     nodes.downIcons.replaceChildren(createIcon('thumb-down', 'gi'));
-    nodes.listTools.prepend(nodes.complete);
+    nodes.listActions.prepend(nodes.complete);
     cheer = el('p', { id: 'list-wrap-up-cheer', class: 'wrapup-cheer', hidden: true, text: 'All read!' });
     nodes.wrapup.prepend(cheer);
     nodes.readBody.prepend(nodes.wrapup);

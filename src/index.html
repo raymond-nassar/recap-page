@@ -257,6 +257,7 @@
                 <details id="list-actions" class="list-actions action-disclosure">
                   <summary>List actions</summary>
                   <div class="list-actions-body">
+                    <span class="tool-sep" aria-hidden="true"></span>
                     <button type="button" class="quiet" id="btn-rename-list">Rename</button>
                     <button type="button" class="quiet" id="btn-list-note">Note</button>
                     <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
@@ -378,7 +379,9 @@
                 <h2 id="all-deferred-h" tabindex="-1">Nothing queued</h2>
                 <p id="all-deferred-count"></p>
                 <p>These comics are still unread. Resume an issue to put it back in normal continuation without changing its place.</p>
-                <button type="button" class="btn" id="btn-review-deferred">Review deferred</button>
+                <div class="cta all-deferred-actions">
+                  <button type="button" class="btn" id="btn-review-deferred">Review deferred</button>
+                </div>
               </section>
 
               <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier issues</button>
@@ -442,10 +445,21 @@
               <div class="hero-fade" aria-hidden="true"></div>
               <div class="hero-in">
                 <div class="issue-reading-controls">
-                  <div class="cta">
+                  <div class="cta issue-actions">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
                       Read
                     </button>
+                    <div class="cta" id="issue-saved-actions" hidden>
+                      <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
+                      <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
+                    </div>
+                    <div id="issue-rating-root" class="issue-rating" hidden>
+                      <button type="button" class="rating-trigger" id="issue-rating-trigger" aria-haspopup="dialog">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/></svg>
+                        <span id="issue-rating-label">Rate this issue</span>
+                      </button>
+                      <p id="issue-rating-status" class="rail-hint" hidden></p>
+                    </div>
                   </div>
                   <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
                 </div>
@@ -461,18 +475,7 @@
                   <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
-                  <div id="issue-rating-root" class="issue-rating" hidden>
-                    <button type="button" class="rating-trigger" id="issue-rating-trigger" aria-haspopup="dialog">
-                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/></svg>
-                      <span id="issue-rating-label">Rate this issue</span>
-                    </button>
-                    <p id="issue-rating-status" class="rail-hint" hidden></p>
-                  </div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
-                  <div class="cta" id="issue-saved-actions" hidden>
-                    <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
-                    <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
-                  </div>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
@@ -1387,12 +1390,22 @@
       <form id="issue-rating-form">
         <h2 id="issue-rating-title">Your rating</h2>
         <p id="issue-rating-comic" class="rating-comic"></p>
-        <div id="issue-rating-stars" class="rating-stars" role="group" aria-label="Choose a whole-star rating">
-          <button type="button" data-rating="1" aria-label="Choose 1 star"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="2" aria-label="Choose 2 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="3" aria-label="Choose 3 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="4" aria-label="Choose 4 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
-          <button type="button" data-rating="5" aria-label="Choose 5 stars"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></button>
+        <div id="issue-rating-stars" class="rating-stars" role="radiogroup" aria-label="Choose a rating">
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-0-5" value="0.5" aria-label="0.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-1" value="1" aria-label="1 star" />
+          <label for="issue-rating-star-1" data-rating="1"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-1-5" value="1.5" aria-label="1.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-2" value="2" aria-label="2 stars" />
+          <label for="issue-rating-star-2" data-rating="2"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-2-5" value="2.5" aria-label="2.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-3" value="3" aria-label="3 stars" />
+          <label for="issue-rating-star-3" data-rating="3"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-3-5" value="3.5" aria-label="3.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-4" value="4" aria-label="4 stars" />
+          <label for="issue-rating-star-4" data-rating="4"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-4-5" value="4.5" aria-label="4.5 stars" />
+          <input type="radio" class="visually-hidden" name="issue-rating" id="issue-rating-star-5" value="5" aria-label="5 stars" />
+          <label for="issue-rating-star-5" data-rating="5"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="./icons/ui.svg#star"/><use class="star-fill" href="./icons/ui.svg#star"/></svg></label>
         </div>
         <label class="visually-hidden" for="issue-rating-input">Rating out of five, in half-star increments</label>
         <div class="rating-stepper">

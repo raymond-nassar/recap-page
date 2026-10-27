@@ -266,6 +266,40 @@ test('reading rows use a labeled disclosure at every width instead of hover-only
   assert.doesNotMatch(css, /\.row:hover \.ract/);
 });
 
+test('UX-13 row command groups are ruled apart, the override in force is marked beyond colour, and Remove reads as danger', () => {
+  assert.match(css, /\.row-actions\.is-open > \.ract \{[^}]*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(css, /\.ract-group \{ display: grid; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
+  // A class that sets display outranks the hidden attribute, so the empty Open group needs this.
+  assert.match(css, /\.ract-group\[hidden\] \{ display: none; \}/);
+  assert.match(css, /\.ract-group:not\(\[hidden\]\) ~ \.ract-group \{ border-top: var\(--stroke-1\) solid var\(--line\);/);
+  assert.match(css, /\.row-actions \.ract-group > \.rail-hint \{ grid-column: 1 \/ -1;/);
+  const pressed = css.match(/\.availability-choice\[aria-pressed="true"\] \{[^}]*\}/)?.[0] ?? '';
+  assert.match(pressed, /font-weight: 600/);
+  assert.match(pressed, /border-color: var\(--accent-text\)/);
+  assert.match(css, /\.availability-choice\[aria-pressed="true"\] \.mini-icon \{ display: inline; \}/);
+  assert.match(css, /\.ract \.mini-danger \{ color: var\(--red-fg-2\); \}/);
+  // The three availability choices share a row while the menu has two columns, so grouping costs no
+  // extra row: with Clear alone, a 640x450 window's sticky filters covered the first group.
+  const trio = css.indexOf('.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }');
+  const narrow = css.search(/@media \(max-width: 620px\) \{\s*\.ract-group, \.ract-availability \{ grid-template-columns: minmax\(0, 1fr\); \}/);
+  assert.ok(trio > css.indexOf('.ract-group { display: grid;') && narrow > trio,
+    'the trio follows the two-column groups, and one column still wins at 620px and below');
+  const forced = css.match(/@media \(forced-colors: active\) \{[^@]*\.row\.now[^@]*\}/)?.[0] ?? '';
+  assert.match(forced, /\.availability-choice\[aria-pressed="true"\] \{ border-color: Highlight; \}/);
+});
+
+test('UX-19 List actions opens with a hairline for Mark as Completed, and Nothing queued has a row to hold it', () => {
+  const body = html.match(/<div class="list-actions-body">\s*([\s\S]*?)<\/div>\s*<\/details>\s*<\/div>/)?.[1] ?? '';
+  assert.match(body, /^<span class="tool-sep" aria-hidden="true"><\/span>/, 'the hairline Mark as Completed is placed before');
+  assert.match(css, /\.list-actions-body > \.tool-sep:first-child, #btn-complete-list\[hidden\] \+ \.tool-sep \{ display: none; \}/,
+    'it goes when Mark as Completed moves out or hides');
+  assert.match(html, /<section id="all-deferred"[\s\S]*?<div class="cta all-deferred-actions">\s*<button type="button" class="btn" id="btn-review-deferred">/);
+  assert.match(css, /#all-deferred \.all-deferred-actions \{ justify-content: center; align-items: center; margin-top: var\(--space-5\); \}/);
+  assert.match(main, /listActions: \$\('#list-actions \.list-actions-body'\),\s*wrapupActions: \$\('#list-wrap-up \.completion-actions'\),\s*deferredActions: \$\('#all-deferred \.all-deferred-actions'\),/);
+  assert.doesNotMatch(read('packaging/android/web/mobile.css'), /#btn-complete-list:not\(\[hidden\]\) \+ #list-actions/,
+    'the sheet draws the same hairline rather than a border from where Complete used to stand');
+});
+
 test('Coming up precedes the one native full Reading List disclosure', () => {
   const fullAt = html.indexOf('id="full"');
   const shelfAt = html.indexOf('id="shelf-sec"');
@@ -316,14 +350,17 @@ test('all editing commands remain reachable through native List actions', () => 
 test('the shelf wraps, so no upcoming issue is off the right edge', () => {
   // Measured at 1280x900 before the change: the eighth tile was clipped by the scroller.
   const shelf = css.match(/\n\.shelf \{[^}]*\}/)[0];
-  assert.match(shelf, /flex-wrap: wrap/);
   assert.equal(/overflow-x: auto/.test(shelf), false, 'the shelf is a horizontal scroller again');
   // An auto-fit grid wraps too, and it was the first shape tried. It is excluded by name because it
   // hands the space of each collapsed track to the survivors, which put four remaining tiles a
   // measured 80px apart on a declared 14.4px gap. A cap on the tile does not cap the track.
   assert.equal(/auto-fit/.test(shelf), false, 'the shelf stretches its tracks again');
+  // UX-22 (#830): a wrapping flex row let the eighth tile, alone on its row, grow to the 168px cap
+  // beside siblings of 124px at 1280. Auto-fill keeps every track, filled or not, so each tile is one
+  // column wide on every row, and a short or one-row shelf keeps its tiles at that width too.
+  assert.match(shelf, /display: grid; grid-template-columns: repeat\(auto-fill, minmax\(112px, 1fr\)\);/);
   const tile = css.match(/\n\.tile \{[^}]*\}/)[0];
-  assert.match(tile, /flex: 1 1 112px/);
+  assert.doesNotMatch(tile, /flex: 1 1/, 'a tile grows by flex again');
   assert.match(tile, /max-width: 168px/);
 });
 

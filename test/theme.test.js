@@ -57,7 +57,7 @@ test('checked read foreground clears both themes without changing the shared pal
   assert.match(css, /\.row\.is-read \.cb \{[^}]*color: var\(--bg\)/);
   assert.ok(PAIRS.some(([fg, bg, floor, where]) => fg === '--bg' && bg === '--teal'
     && floor === 3 && where === 'the tick inside a checked read checkbox'));
-  assert.deepEqual(KNOWN, ['dark:--track:--card', 'light:--track:--card', 'dark:--track:--rail', 'light:--track:--rail']);
+  assert.deepEqual(KNOWN, [], 'nothing is recorded below the floor since UX-27 outlined the progress bars');
   for (const [selector, teal, bg] of [[DARK, '#3fcfbb', '#111117'], [LIGHT_ATTR, '#12695f', '#fafaff']]) {
     const tokens = tokensIn(css, selector);
     assert.equal(tokens.get('--teal'), teal);
@@ -781,9 +781,10 @@ test('a control boundary is measured against every surface it is drawn on, not j
   // input's border has that input's own fill on its inner side. Measuring one surface and calling
   // the boundary done is how a token passes the gate and still disappears somewhere on screen.
   //
-  // `--track` is here for the same reason and was added later, by review: the trough renders on a
-  // card in the reading hero and on the rail in the per-list bars, and listing only the card hid a
-  // real degradation when the dark trough was darkened.
+  // `--rail-bar-line` is here for the same reason: the per-list bar's outline is drawn on the rail and,
+  // for the list that is open, on the selected rail item, and UX-27 measured both, in both themes. It
+  // replaced the trough token, which was listed on a card and on the rail after review found a real
+  // degradation hidden on the second.
   //
   // `--accent` and `--track-2` were added later still, by review of BL-067, and their absence is what
   // let that change gate the cover-art switch's off state while leaving the on state of the same
@@ -816,11 +817,11 @@ test('a control boundary is measured against every surface it is drawn on, not j
   const surfaces = (fg) => PAIRS.filter((p) => p[0] === fg).map((p) => p[1]).sort();
   assert.deepEqual(surfaces('--line-2'), ['--bg', '--card', '--card-2', '--rail']);
   assert.deepEqual(surfaces('--cb-line'), ['--bg', '--card']);
-  assert.deepEqual(surfaces('--track'), ['--card', '--rail']);
+  assert.deepEqual(surfaces('--rail-bar-line'), ['--rail', 'the selected rail item']);
   assert.deepEqual(surfaces('--teal'), ['--bg', '--card', '--card-2', 'the Character spotlights card', 'the Character spotlights card on hover']);
   assert.deepEqual(surfaces('--red-fg'), ['--bg', '--card', '--card-2']);
   assert.deepEqual(surfaces('--logo-fill'), ['--bg', '--card']);
-  assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', '--track', 'the selected rail item', 'the unreadable-data banner']);
+  assert.deepEqual(surfaces('--accent'), ['--bg', '--card', '--card-2', '--rail', 'the selected rail item', 'the unreadable-data banner']);
   assert.deepEqual(surfaces('--track-2'), ['--bg']);
   assert.deepEqual(surfaces('--on-accent'), ['--accent', '--track-2']);
   assert.deepEqual(surfaces('--bg'), ['--teal']);
@@ -871,18 +872,32 @@ test('nothing a reader operates is bordered with the ungated hairline token', ()
   assert.deepEqual(offenders, [], 'a control is bordered with --line, which carries no contrast floor');
 });
 
-test('a progress bar is measured where it carries its value, fill against trough', () => {
-  // `--track` on `--card` cannot reach 3:1 while the `--accent` fill still reads as the filled part,
-  // so it stays recorded and this pair is measured in its place. Dropping it would leave the bar
-  // with no gated contrast at all, which is worse than the ratio that is recorded.
-  const pair = PAIRS.find(([fg, bg]) => fg === '--accent' && bg === '--track');
-  assert.ok(pair, 'the fill of a progress bar is no longer measured against its trough');
-  assert.equal(pair[2], 3);
-  for (const [selector, name] of [[DARK, 'dark'], [LIGHT_ATTR, 'light']]) {
-    const tokens = tokensIn(css, selector);
-    const r = ratio(parseHex(tokens.get('--accent')), parseHex(tokens.get('--track')));
-    assert.ok(r >= 3, `the ${name} progress fill measures ${r.toFixed(2)}:1 against its own trough`);
+test('UX-27 every progress bar is outlined at 3:1 where it is drawn, and its fill clears the same surfaces', () => {
+  // A trough could not clear 3:1 against a card and still read as the empty part of the bar, so its
+  // four pairs stayed recorded below the floor. Each bar is now an outline the fill paints
+  // over, as #902 drew the glance bar, so every term that carries the bar's value is a gated pair.
+  const rule = (selector) => stripComments(css).match(new RegExp(`(?:^|\\n)${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\{([^}]*)\\}`))?.[1] ?? '';
+  for (const [selector, line] of [['.pbar', '--line-2'], ['.ri .bar', '--rail-bar-line']]) {
+    const body = rule(selector);
+    assert.match(body, new RegExp(`box-shadow: inset 0 0 0 var\\(--stroke-1\\) var\\(${line}\\);`), `${selector} is not outlined in ${line}`);
+    assert.doesNotMatch(body, /background:/, `${selector} still paints a trough`);
   }
+  assert.doesNotMatch(css, /--track[;:)\s]/, 'the trough token is gone, with its pairs');
+  const drawnOn = { '--line-2': ['--card', '--card-2'], '--rail-bar-line': ['--rail', 'the selected rail item'] };
+  for (const [line, surfaces] of Object.entries(drawnOn)) {
+    for (const surface of [...surfaces]) {
+      for (const fg of [line, '--accent']) {
+        const pair = PAIRS.find(([f, b]) => f === fg && b === surface);
+        assert.ok(pair, `${fg} is not measured on ${surface}, where a progress bar is drawn`);
+        assert.equal(pair[2], 3);
+      }
+    }
+  }
+  // One value per theme, chosen on #830: the boundary token's in dark, and `--muted`'s in light, where
+  // `--line-2` measured 2.63:1 on the selected rail item.
+  const themed = (selector) => tokensIn(css, selector);
+  assert.equal(themed(DARK).get('--rail-bar-line'), themed(DARK).get('--line-2'));
+  assert.equal(themed(LIGHT_ATTR).get('--rail-bar-line'), themed(LIGHT_ATTR).get('--muted'));
 });
 
 test('both themes carry a colour-scheme declaration', () => {

@@ -2923,7 +2923,9 @@ async function mobileLayout(page, label, narrow) {
     const shown = (target) => !!target?.checkVisibility?.() && !!target.getClientRects().length;
     const buttons = [...node.querySelectorAll('.list-tools button')].filter(shown);
     const remove = node.querySelector('#btn-delete-list');
-    const rule = node.querySelector('.tool-sep');
+    const rule = remove.previousElementSibling;
+    // UX-19 (#830): with comics queued, Complete heads the sheet, set apart by a hairline of its own.
+    const completeRule = node.querySelector('#btn-complete-list')?.nextElementSibling;
     return {
       names: buttons.map((button) => button.textContent.trim()),
       expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-export-md',
@@ -2934,14 +2936,16 @@ async function mobileLayout(page, label, narrow) {
       closed: [...node.querySelectorAll('details')].filter((details) => !details.open).map((details) => details.id),
       small: buttons.filter((button) => button.getBoundingClientRect().height < 47.5).map((button) => button.id),
       last: buttons.at(-1)?.id,
-      apart: shown(rule) && rule.getBoundingClientRect().height >= 1
+      apart: !!rule?.matches('.tool-sep') && shown(rule) && rule.getBoundingClientRect().height >= 1
         && rule.getBoundingClientRect().bottom <= remove.getBoundingClientRect().top,
+      completeApart: !!completeRule?.matches('.tool-sep') && shown(completeRule)
+        && completeRule.getBoundingClientRect().height >= 1,
     };
   });
   check(commands.names.length >= 8 && JSON.stringify(commands.names) === JSON.stringify(commands.expected)
     && !commands.summaries.length && !commands.closed.length && !commands.small.length
-    && commands.last === 'btn-delete-list' && commands.apart,
-  `${label}: List options shows every command at once, one tap each, Remove from library apart and last ${JSON.stringify(commands)}`);
+    && commands.last === 'btn-delete-list' && commands.apart && commands.completeApart,
+  `${label}: List options shows every command at once, one tap each, Complete and Remove from library each set apart ${JSON.stringify(commands)}`);
   await page.keyboard.down('Shift');
   await page.keyboard.press('Tab');
   await page.keyboard.up('Shift');
