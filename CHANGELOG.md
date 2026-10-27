@@ -15,11 +15,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## 4.2.0
 
-### A clearer design, offline Reading Lists and Undo for Done
+### A clearer design, Undo for Done and offline Reading Lists on Windows
 
 - Find your way with a clearer menu: Add comics is now Search, Home's category cards replace the
   separate Browse page, and the phone bar reads Home, Library, Search and More.
-- Make any curated Reading List available offline from its preview.
+- On Windows, make any curated Reading List available offline from its preview. The Android app
+  already contains every Reading List, so it needs no offline copy.
 - See what Done marked, with an exact Undo, on the reading screen and in Home's Continue reading,
   and celebrate finishing a section or a whole Reading List.
 - Follow a reading path stop by stop on Modern Timeline, which replaces the separate Reading
@@ -42,12 +43,12 @@ identity was confirmed. 4.1.0 and older builds may discard that marker when they
 comics, so a copy opened there can lose the explanation until the guide is imported again. Issue
 IDs and reading progress stay intact.
 
-An offline copy of a Reading List is stored apart from reading data and is not part of any backup,
-so refreshing or losing it never changes progress. A followed reading path lives only in the page
-address; an older build given that address shows the whole Modern Timeline. Links and bookmarks
-to the retired Browse and Reading paths pages still open: Browse opens Home at its category cards,
-and a reading path opens Modern Timeline following it. Saved copies of revised guides keep their
-comics, order, notes and progress; fresh imports use the revised guides.
+A Windows offline copy of a Reading List is stored apart from reading data and is not part of any
+backup, so refreshing or losing it never changes progress. A followed reading path lives only in
+the page address; an older build given that address shows the whole Modern Timeline. Links and
+bookmarks to the retired Browse and Reading paths pages still open: Browse opens Home at its
+category cards, and a reading path opens Modern Timeline following it. Saved copies of revised
+guides keep their comics, order, notes and progress; fresh imports use the revised guides.
 
 **Builds older than 4.0.0 still cannot edit schema-4 reading data or restore its backups.** Before
 upgrading from one of them, keep an independent reading-data backup and follow the
@@ -118,12 +119,14 @@ you used and goes away when you change screens, choose Done or choose Read again
 no longer draws a focus box around the Recap Page logo. Hints no longer cover Done's message, and
 on a narrow window or a phone the hints for Read and Done no longer cover each other's button.
 
-### Offline Reading Lists
+### Offline Reading Lists on Windows
 
-A curated Reading List's preview has Make available offline. It saves that list, the catalog and
-the app itself to this browser, then reads every piece back and checks the whole set before saying
-it is ready. Refresh offline copy keeps the old copy until the new one is confirmed, so a failed or
-interrupted refresh never leaves you with less than you had.
+In the Windows app, a curated Reading List's preview has Make available offline. It saves that
+list, the catalog and the app itself to this browser, then reads every piece back and checks the
+whole set before saying it is ready. Refresh offline copy keeps the old copy until the new one is
+confirmed, so a failed or interrupted refresh never leaves you with less than you had. The Android
+app needs no offline copy because it already contains every Reading List, so its previews do not
+offer one.
 
 ### Follow a reading path on Modern Timeline
 
