@@ -347,7 +347,7 @@ function diagnosticFixture(
     const events = [];
     const readFileSync = (path) => String(path).endsWith('package-lock.json')
       ? (fault === 'lock' ? 'wrong-lock' : ${JSON.stringify(lock)})
-      : JSON.stringify({ name: 'puppeteer-core', version: fault === 'driver' ? 'unknown' : '25.7.0' });
+      : JSON.stringify({ name: 'puppeteer-core', version: fault === 'driver' ? 'unknown' : '25.13.0' });
     const existsSync = () => true;
     const resolveDriver = () => secret;
     const resolveEdge = () => secret;

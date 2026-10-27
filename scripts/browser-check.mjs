@@ -19336,7 +19336,7 @@ async function diagnosticBrowserIdentity(browser, driver, profiles, completionWa
     distinctProfile: !!profile && !profiles.has(profile),
   };
   console.log(`DIAGNOSTIC identity=${JSON.stringify(facts)}`);
-  if (facts.browser !== 'Edg/152.0.4191.66' || facts.driver !== '25.7.0'
+  if (facts.browser !== 'Edg/152.0.4191.66' || facts.driver !== '25.13.0'
     || facts.pipe || !facts.debuggingPort || !facts.webSocket || !facts.headless
     || !facts.temporaryProfile || !facts.distinctProfile) throw new Error('Diagnostic identity mismatch');
   profiles.add(profile);
@@ -19367,12 +19367,12 @@ async function runContextExportIsolation(mode) {
     const { createHash } = await import('node:crypto');
     const lock = readFileSync(new URL('../.github/browser-proof/package-lock.json', import.meta.url));
     if (createHash('sha256').update(lock).digest('hex')
-      !== '7b6c8f59c3fc5a4d4a9daa564678c53548e3d17646c458971bd933627415d860'
+      !== '579f69a8b9cecb2d583e30705ea8aca202f96f3b9496fe412395ae13e829e607'
       || !/^[0-9a-f]{40}$/.test(process.env.GITHUB_SHA ?? '')
       || process.env.GITHUB_SHA !== process.env.GITHUB_WORKFLOW_SHA
       || !/^[1-9]\d*$/.test(process.env.GITHUB_RUN_ID ?? '')
       || !/^[1-9]\d*$/.test(process.env.GITHUB_RUN_ATTEMPT ?? '')
-      || driverVersion(resolveDriver() ?? '') !== '25.7.0') {
+      || driverVersion(resolveDriver() ?? '') !== '25.13.0') {
       throw new Error('Diagnostic source or driver identity mismatch');
     }
     const recoveryComparison = mode === 'recovery-export-completion';
