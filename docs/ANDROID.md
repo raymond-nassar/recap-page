@@ -551,7 +551,8 @@ acceptance.
 and erase questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360,
 and at the shared desktop entry at 1280x900. Each must open at its title and the start of what it
 says, with Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of
-the question readable above them once scrolled to (#849). With doubled text the restore question must
+the question readable above them once scrolled to (#849). Only the erase answer, which keeps nothing
+to go back to, wears the danger look (#830). With doubled text the restore question must
 actually overflow its dialog, so the case is exercised rather than passed by a question that fits.
 On short landscape screens a question-sized dialog widens so its answers share one row. The walk
 restores, undoes and declines the saved copy, and must leave the reading data as it found it. With

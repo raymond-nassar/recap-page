@@ -4122,6 +4122,7 @@ async function confirmationQuestions(page, label, viewport) {
         focus: document.activeElement?.id,
         cancel: reachable(dialog.querySelector('#ask-cancel')), confirm: reachable(dialog.querySelector('#ask-ok')),
         order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+        danger: dialog.querySelector('#ask-ok').classList.contains('btn-danger'),
       };
       // Held in view, the answers must not hide the end of the question once it is scrolled to.
       dialog.scrollTop = dialog.scrollHeight;
@@ -4133,6 +4134,10 @@ async function confirmationQuestions(page, label, viewport) {
     check(shown.scrollTop === 0 && shown.title && shown.start && shown.end && shown.focus === 'ask-cancel'
       && shown.cancel && shown.confirm && JSON.stringify(shown.order) === JSON.stringify(['ask-cancel', 'ask-ok']),
     `${label}: the ${name} question opens at its title, Cancel focused, both answers in view, and reads to its end ${JSON.stringify(shown)}`);
+    // UX-31 (#830): erasing keeps nothing to go back to, so its answer alone wears the danger look; the
+    // restore, its Undo and the saved copy each keep a copy.
+    check(shown.danger === (name === 'erase'),
+      `${label}: the ${name} answer ${name === 'erase' ? 'wears' : 'does not wear'} the danger look ${JSON.stringify(shown)}`);
     await screenshot(page, label, `question-${name}`);
     return shown;
   };

@@ -850,6 +850,7 @@ export function createAddView({
           title: 'Discard this import source?',
           body: 'This removes the saved source, unresolved positions, selected matches and any previous source snapshots from this browser. Already saved comics and reading progress stay. Download the separate draft backup first if you need it.',
           confirmLabel: 'Discard draft',
+          danger: true,
         });
         button.disabled = false;
         if (!yes) {

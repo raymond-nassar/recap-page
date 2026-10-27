@@ -15679,6 +15679,72 @@ SCENARIOS.push({
   },
 });
 
+// UX-31 (#830): the shared question's answer button, as it looks and as it reads. The ratio composites the
+// danger tint over the dialog, because the answer is translucent red on whatever it sits on.
+function questionAnswer() {
+  const ok = document.querySelector('#ask-ok');
+  const dialog = document.querySelector('#ask');
+  const channels = (value) => value.match(/[\d.]+/g).map(Number);
+  const [r, g, b, a = 1] = channels(getComputedStyle(ok).backgroundColor);
+  const under = channels(getComputedStyle(dialog).backgroundColor);
+  const surface = [r, g, b].map((channel, index) => channel * a + under[index] * (1 - a));
+  const luminance = (rgb) => rgb.map((channel) => {
+    const value = channel / 255;
+    return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  }).reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+  const [light, dark] = [luminance(channels(getComputedStyle(ok).color).slice(0, 3)), luminance(surface)]
+    .sort((x, y) => y - x);
+  return {
+    theme: document.documentElement.getAttribute('data-theme'),
+    label: ok.textContent.trim(),
+    danger: ok.classList.contains('btn-danger'),
+    focus: document.activeElement?.id ?? null,
+    order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+    ratio: Math.round(((light + 0.05) / (dark + 0.05)) * 100) / 100,
+  };
+}
+
+// UX-31 (#830): an answer that cannot be taken back looks it, and only such an answer. Erase everything
+// has no Undo and no kept copy; Remove from library has an Undo, and asked straight after must not
+// inherit the look. Cancel stays first and keeps focus, and the danger answer reads at 4.5:1 on the
+// dialog in both themes.
+SCENARIOS.push({
+  id: 'danger-confirmations',
+  title: 'only an answer with no way back wears the danger look, after a Cancel that keeps focus',
+  async run(page, t) {
+    await seedFixtureState(page);
+    const lists = () => page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2')).lists));
+    const before = await lists();
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((value) => {
+        const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+        localStorage.setItem('mrt.settings', JSON.stringify({ ...settings, theme: value }));
+      }, theme);
+      await page.reload({ waitUntil: 'load' });
+      const ask = async (path, opener) => {
+        await open(page, path);
+        await click(page, opener);
+        await page.waitForSelector('#ask[open]');
+        const answer = await page.evaluate(questionAnswer);
+        await escapeShellDialog(page, '#ask');
+        return answer;
+      };
+      const erase = await ask('/#/data', '#btn-wipe');
+      const remove = await ask('/#/read/fixture', '#btn-delete-list');
+      console.log(`MEASURED danger-confirmations ${theme}: the danger answer reads at ${erase.ratio}:1 on the dialog`);
+      const order = JSON.stringify(['ask-cancel', 'ask-ok']);
+      t.check(`${theme}: Erase everything wears the danger look after Cancel, which keeps focus, and reads at 4.5:1`,
+        erase.theme === theme && erase.label === 'Erase everything' && erase.danger && erase.focus === 'ask-cancel'
+          && JSON.stringify(erase.order) === order && erase.ratio >= 4.5,
+        JSON.stringify(erase));
+      t.check(`${theme}: Remove from library, which has an Undo, asked next looks like any other question`,
+        !remove.danger && remove.focus === 'ask-cancel' && JSON.stringify(remove.order) === order,
+        JSON.stringify(remove));
+    }
+    t.check('declining both questions leaves every list as it was', await lists() === before);
+  },
+});
+
 SCENARIOS.push({
   id: 'issue-443-row-actions',
   title: 'Reading List rows and first/last actions remain unobscured at narrow and desktop sizes',

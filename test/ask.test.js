@@ -18,6 +18,7 @@ async function freshAsk() {
 
 function makeElement(extra = {}) {
   const listeners = new Map();
+  const classes = new Set();
   return {
     textContent: '',
     hidden: false,
@@ -29,6 +30,14 @@ function makeElement(extra = {}) {
     inert: false,
     focusCalls: 0,
     attributes: {},
+    classList: {
+      contains: (name) => classes.has(name),
+      toggle: (name, force = !classes.has(name)) => {
+        if (force) classes.add(name);
+        else classes.delete(name);
+        return force;
+      },
+    },
     setAttribute(name, value) { this.attributes[name] = value; },
     removeAttribute(name) { delete this.attributes[name]; },
     focus() {
@@ -213,6 +222,53 @@ test('a confirmation opens at its title with Cancel focused, and a text question
   } finally {
     clearDom();
   }
+});
+
+// UX-31 (#830): an answer that cannot be taken back wears the danger appearance, and the shared answer
+// button is set on every question, so a question asked after one cannot inherit the look.
+test('only a danger question wears the danger answer, and the next question does not inherit it', async () => {
+  try {
+    const { askConfirm, askText, dlg, parts } = await wired();
+    const ok = parts['ask-ok'];
+    const erase = askConfirm({ title: 'Erase every list?', confirmLabel: 'Erase everything', danger: true });
+    assert.equal(ok.classList.contains('btn-danger'), true);
+    dlg.close('');
+    assert.equal(await within(erase, 'the danger question to settle'), false);
+
+    const remove = askConfirm({ title: 'Remove from library?', confirmLabel: 'Remove' });
+    assert.equal(ok.classList.contains('btn-danger'), false, 'a question with an Undo looks like any other');
+    dlg.close('');
+    await within(remove, 'the plain question to settle');
+
+    askConfirm({ title: 'Erase every list?', confirmLabel: 'Erase everything', danger: true });
+    dlg.close('');
+    const name = askText({ title: 'Rename list', label: 'List name', value: 'Fixture' });
+    assert.equal(ok.classList.contains('btn-danger'), false, 'a text question after a danger one is plain');
+    dlg.close('');
+    await within(name, 'the text question to settle');
+  } finally {
+    clearDom();
+  }
+});
+
+// The four answers with no way back, by their own copy: Erase everything, the completion-history restore
+// ("There is no automatic Undo"), discarding an import source, and removing a salvage copy ("nothing else
+// to recover it from"). Every other question has an Undo, keeps a copy or changes nothing, so it stays plain.
+test('exactly the four irreversible questions ask with danger', async () => {
+  const { readFile, readdir } = await import('node:fs/promises');
+  const root = new URL('../src/js/', import.meta.url);
+  const files = (await readdir(root, { recursive: true })).filter((file) => file.endsWith('.js'));
+  const asked = [];
+  for (const file of files) {
+    const source = await readFile(new URL(file.replaceAll('\\', '/'), root), 'utf8');
+    for (const [, call] of source.matchAll(/askConfirm\(\{([\s\S]*?)\n\s*\}\);/g)) {
+      asked.push({ label: call.match(/confirmLabel: ([^\n]+),/)?.[1], danger: /\n\s*danger: true,/.test(call) });
+    }
+  }
+  assert.ok(asked.length >= 10, `found the confirmations (${asked.length})`);
+  assert.deepEqual(asked.filter((entry) => entry.danger).map((entry) => entry.label).sort(), [
+    "'Discard draft'", "'Erase everything'", "'Remove copy'", "'Restore completion history'",
+  ]);
 });
 
 test('an opener removed before close leaves focus untouched by this code', async () => {

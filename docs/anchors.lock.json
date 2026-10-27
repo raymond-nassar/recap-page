@@ -1594,8 +1594,8 @@
     "fp": "ac161ff9c9fd46ca",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1122-1126|0": {
-    "anchor": "src/js/views/add.js:1122-1126",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1123-1127|0": {
+    "anchor": "src/js/views/add.js:1123-1127",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
@@ -2529,10 +2529,10 @@
     "fp": "40aa5dfbe1353aab",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-122|0": {
-    "anchor": "src/js/ask.js:70-122",
-    "fp": "7ed878e6e36ea978",
-    "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-126|0": {
+    "anchor": "src/js/ask.js:70-126",
+    "fp": "4546fe9ac619181f",
+    "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, dange"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1940|0": {
     "anchor": "src/js/main.js:1940",

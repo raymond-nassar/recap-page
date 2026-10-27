@@ -97,7 +97,7 @@ in which case a rename silently does nothing.
 Recommendation: move naming and confirmation into the page using the existing notice and dialog
 patterns, and route import failures through `notify()` like every other path
 Backlog item: BL-034
-Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-122`, and the
+Resolved: naming and confirmation moved into one `<dialog>` at `src/js/ask.js:70-126`, and the
 three `alert()` calls in `importCurated` now write to a pane the caller names. The Evidence
 anchors name the code as it now stands; the Impact above describes the native dialogs it
 replaced. The suppression case in particular is closed: a browser that blocks dialogs can no
