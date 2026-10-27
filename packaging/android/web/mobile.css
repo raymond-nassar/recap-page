@@ -71,7 +71,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   margin: 0 auto;
   padding: var(--space-6);
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
-  border: 1px solid var(--line-2);
+  border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-feature) var(--radius-feature) 0 0;
   background: var(--card);
   color: var(--text);
@@ -109,9 +109,9 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   flex-direction: column; align-items: stretch; gap: var(--space-2); margin: 0; padding: 0; border: 0;
 }
 #android-list-sheet #btn-complete-list:not([hidden]) + #list-actions {
-  border-top: 1px solid var(--line); padding-top: var(--space-2);
+  border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-2);
 }
-#android-list-sheet #list-export { border-block: 1px solid var(--line); padding-block: var(--space-2); }
+#android-list-sheet #list-export { border-block: var(--stroke-1) solid var(--line); padding-block: var(--space-2); }
 #android-list-sheet [hidden] { display: none; }
 
 #android-spotlight-sheet .android-sheet-header { align-items: flex-start; }
@@ -191,8 +191,8 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
     content: "";
     width: 8px;
     height: 8px;
-    border-left: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
+    border-left: var(--stroke-2) solid currentColor;
+    border-bottom: var(--stroke-2) solid currentColor;
     transform: rotate(45deg);
     flex: 0 0 auto;
     margin-left: var(--space-2);

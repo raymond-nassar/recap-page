@@ -258,10 +258,16 @@ export const TOKENS = new Map([
   ['--radius-card', kept('radius', '14px', 'cards and disclosures')],
   ['--radius-feature', kept('radius', '20px', 'heroes, Home paths and Android sheets')],
   ['--radius-circle', kept('radius', '50%', 'dots, knobs and markers')],
+  ['--stroke-1', onScale('stroke', '1px')],
+  ['--stroke-2', onScale('stroke', '2px')],
+  ['--stroke-3', onScale('stroke', '3px')],
+  ['--stroke-checkbox', kept('stroke', '1.5px', 'the read checkbox')],
+  ['--stroke-node', kept('stroke', '4px', 'the ring of a timeline era node')],
 ]);
 
 const FAMILY_PREFIXES = new Map([
   ['radius', /^--radius-/],
+  ['stroke', /^--stroke-/],
 ]);
 
 function familyOf(name) {
@@ -298,15 +304,27 @@ function tokenOf(atom) {
 
 const KEYWORDS = new Set(['0', 'inherit', 'initial', 'unset', 'revert', 'revert-layer']);
 
+// A length, or a function that computes one, standing as one value.
+const LENGTHY = /^(?:-?(?:\d*\.)?\d+[a-z%]+|(?:calc|min|max|clamp)\(.*\))$/i;
+
 // Each family names the properties it governs and judges a value's atoms. An atom that names a token
 // of an accepted family is fine, a token of any other family is the wrong kind of value, and `raw`
-// says which of the remaining atoms are values of this family that have to come from a token.
+// says which of the remaining atoms are values of this family that have to come from a token. A
+// stroke names its colour through a token outside the families, so `accepts` is also handed the
+// custom properties whose value is a length, which would carry a width past the gate under a colour's
+// name.
 const TOKEN_RULES = [
   {
     family: 'radius',
     properties: /^border(?:-(?:top|bottom|start|end)-(?:left|right|start|end))?-radius$/,
     accepts: (name) => familyOf(name) === 'radius',
     raw: (atom) => !KEYWORDS.has(atom) && atom !== '/',
+  },
+  {
+    family: 'stroke',
+    properties: /^(?:border(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?(?:-width)?|column-rule(?:-width)?|text-decoration-thickness)$/,
+    accepts: (name, lengths) => familyOf(name) === 'stroke' || (!familyOf(name) && !lengths.has(name)),
+    raw: (atom) => LENGTHY.test(atom) || /^(?:thin|medium|thick)$/i.test(atom),
   },
 ];
 
@@ -336,6 +354,20 @@ export function resolveTokens(value, tokens) {
   throw new Error(`${value} does not resolve: its tokens refer to each other`);
 }
 
+// Every custom property, in any of the sheets and under any selector, that resolves to a length.
+export function lengthTokens(sheets) {
+  const values = new Map();
+  for (const [, source] of sheets) {
+    for (const { property, value } of declarations(source)) {
+      if (property.startsWith('--')) values.set(property, [...(values.get(property) ?? []), value.replace(/\s+/g, ' ').trim()]);
+    }
+  }
+  const first = new Map([...values].map(([name, list]) => [name, list[0]]));
+  return new Set([...values]
+    .filter(([, list]) => list.some((value) => LENGTHY.test(resolveTokens(value, first))))
+    .map(([name]) => name));
+}
+
 export function tokenDefinitionFindings(sheets) {
   const findings = [];
   const declared = new Set();
@@ -361,7 +393,7 @@ export function tokenDefinitionFindings(sheets) {
   return findings;
 }
 
-export function tokenGrammarFindings(file, source) {
+export function tokenGrammarFindings(file, source, lengths = lengthTokens([[file, source]])) {
   const findings = [];
   for (const declaration of declarations(source)) {
     if (declaration.property.startsWith('--')) continue;
@@ -373,7 +405,7 @@ export function tokenGrammarFindings(file, source) {
         const name = tokenOf(atom);
         const where = `${file} line ${declaration.line} ${declaration.property}`;
         if (name) {
-          if (!rule.accepts(name)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
+          if (!rule.accepts(name, lengths)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
         } else if (rule.raw(atom)) {
           findings.push(`${where} carries raw ${rule.family} value ${atom}`);
         }
@@ -398,9 +430,10 @@ export function tokenUsageFindings(sheets) {
 export function tokenFindings(sheets) {
   const definitions = tokenDefinitionFindings(sheets);
   const missing = new Set(definitions.map((finding) => /^(--[-\w]+) is missing$/.exec(finding)?.[1]).filter(Boolean));
+  const lengths = lengthTokens(sheets);
   return [
     ...definitions,
-    ...sheets.flatMap(([file, source]) => tokenGrammarFindings(file, source)),
+    ...sheets.flatMap(([file, source]) => tokenGrammarFindings(file, source, lengths)),
     ...tokenUsageFindings(sheets).filter((finding) => !missing.has(finding.split(' ')[0])),
   ];
 }

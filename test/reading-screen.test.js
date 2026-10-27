@@ -277,7 +277,7 @@ test('Coming up precedes the one native full Reading List disclosure', () => {
 test('the full Reading List summary is a wrapping full-width action', () => {
   const full = css.match(/details\.full \{[^}]*\}/)?.[0] ?? '';
   const summary = css.match(/details\.full > summary \{[^}]*\}/)?.[0] ?? '';
-  assert.match(full, /border: 1px solid var\(--line\)/);
+  assert.match(full, /border: var\(--stroke-1\) solid var\(--line\)/);
   assert.match(full, /background: var\(--card\)/);
   assert.match(summary, /display: flex/);
   assert.match(summary, /flex-wrap: wrap/);
@@ -297,7 +297,7 @@ test('the full Reading List action and state hooks receive the accepted copy', (
 });
 
 test('all editing commands remain reachable through native List actions', () => {
-  assert.match(css, /\.list-actions-body \{[^}]*border: 1px solid var\(--line\)/);
+  assert.match(css, /\.list-actions-body \{[^}]*border: var\(--stroke-1\) solid var\(--line\)/);
   const ordinaryStrip = css.match(/^\.list-tools \{[^}]*\}/m)?.[0] ?? '';
   assert.match(ordinaryStrip, /display: flex/);
   assert.doesNotMatch(ordinaryStrip, /border:/);
@@ -341,8 +341,8 @@ test('every new surface survives forced colours', () => {
   // An inset shadow and a hairline in a palette token are both discarded by forced colours, so each
   // one that carries meaning needs a replacement the mode is required to honour.
   const forced = css.match(/@media \(forced-colors: active\) \{[\s\S]*$/)[0];
-  assert.match(forced, /\.list-tools \{ border: 1px solid CanvasText; \}/);
-  assert.match(forced, /\.row\.now \{ border: 2px solid Highlight; box-shadow: none; \}/);
+  assert.match(forced, /\.list-tools \{ border: var\(--stroke-1\) solid CanvasText; \}/);
+  assert.match(forced, /\.row\.now \{ border: var\(--stroke-2\) solid Highlight; box-shadow: none; \}/);
   assert.match(forced, /#reading-filters \{ background: Canvas; \}/);
   assert.match(forced, /details\.full, details\.full > summary \{ border-color: CanvasText; background: Canvas; \}/);
 });

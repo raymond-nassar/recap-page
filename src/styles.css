@@ -40,6 +40,13 @@
   --radius-card: 14px;
   --radius-feature: 20px;
   --radius-circle: 50%;
+  /* Stroke widths, on the same terms: the scale's three, then the read checkbox's border and the ring
+     of a timeline era node. */
+  --stroke-1: 1px;
+  --stroke-2: 2px;
+  --stroke-3: 3px;
+  --stroke-checkbox: 1.5px;
+  --stroke-node: 4px;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
      declarations. The values follow the clusters already present in the interface while keeping
      each consolidated edge within 4 CSS pixels of where it began. */
@@ -341,7 +348,7 @@ a { color: var(--blue); }
 
 .rail {
   background: var(--rail);
-  border-right: 1px solid var(--line);
+  border-right: var(--stroke-1) solid var(--line);
   padding: var(--space-5) var(--space-5) var(--space-6);
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   display: flex; flex-direction: column;
@@ -420,7 +427,7 @@ a { color: var(--blue); }
     border-radius: var(--radius-pill);
     overflow: visible;
     color: var(--muted);
-    border-width: 1px;
+    border-width: var(--stroke-1);
   }
   .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
   .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
@@ -499,9 +506,9 @@ a { color: var(--blue); }
 
 /* Dividers, option C. Two tiers, both CSS borders rather than <hr>, so a screen reader
    is never handed a separator for something that is purely visual rhythm. */
-.rail-list > li:not(:last-child) { border-bottom: 1px solid rgb(var(--tint-base) / 5%); }
+.rail-list > li:not(:last-child) { border-bottom: var(--stroke-1) solid rgb(var(--tint-base) / 5%); }
 .nav-group + .nav-group, .nav-scroll + .nav-foot {
-  border-top: 1px solid rgb(var(--tint-base) / 10%);
+  border-top: var(--stroke-1) solid rgb(var(--tint-base) / 10%);
   margin-top: var(--space-5); padding-top: var(--space-5);
 }
 
@@ -570,7 +577,7 @@ a { color: var(--blue); }
 }
 
 .rail-tip {
-  background: var(--card-2); color: var(--text); border: 1px solid var(--line-2);
+  background: var(--card-2); color: var(--text); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); font-size: var(--t-caption);
   box-shadow: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
 }
@@ -588,7 +595,7 @@ a { color: var(--blue); }
    sidebar turned the depth label into 89px of transparent text and would have turned the reading
    path's "Start here" badge into a 10px dot. Measured in Edge at 1280x900. */
 .railed .rail-foot .pill { width: 10px; height: 10px; padding: 0; border-radius: var(--radius-circle); overflow: hidden;
-  color: transparent; border-width: 2px; justify-self: center; }
+  color: transparent; border-width: var(--stroke-2); justify-self: center; }
 .railed .rail-foot .pill-ok { background: var(--teal); border-color: var(--teal); }
 .railed .rail-foot .pill-warn { background: var(--amber); border-color: var(--amber); }
 .railed .rail-foot .pill-muted { background: var(--muted); border-color: var(--muted); }
@@ -662,7 +669,7 @@ a { color: var(--blue); }
     border-radius: var(--radius-pill);
     overflow: visible;
     color: var(--muted);
-    border-width: 1px;
+    border-width: var(--stroke-1);
   }
   .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
   .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
@@ -675,7 +682,7 @@ a { color: var(--blue); }
 
 .pill {
   font-size: var(--t-caption); border-radius: var(--radius-pill); padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--line); color: var(--muted); justify-self: start;
+  border: var(--stroke-1) solid var(--line); color: var(--muted); justify-self: start;
 }
 .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); }
 .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
@@ -714,7 +721,7 @@ a { color: var(--blue); }
     position: fixed; z-index: 20; bottom: 0; left: 0; right: 0;
     display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
     padding: var(--space-2) var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
-    border-top: 1px solid var(--line-2); background: var(--card);
+    border-top: var(--stroke-1) solid var(--line-2); background: var(--card);
     transition: transform .15s ease; transform: translateY(0);
   }
   .rail-header.mobile-nav-hidden { transform: translateY(100%); }
@@ -722,7 +729,7 @@ a { color: var(--blue); }
   .rail-header .brand, .rail-header .mobile-link, .rail-header .rail-toggle {
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
     min-width: 0; min-height: 44px; width: auto; height: auto; margin: 0;
-    padding: var(--space-2); border: 1px solid transparent; border-radius: var(--radius-compact);
+    padding: var(--space-2); border: var(--stroke-1) solid transparent; border-radius: var(--radius-compact);
     color: var(--text); text-align: center; white-space: nowrap;
     font-size: var(--t-caption); line-height: 1.2; text-decoration: none;
   }
@@ -811,9 +818,9 @@ main { min-width: 0; }
 .list-tools { display: flex; align-items: flex-start; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
 .list-actions { min-width: 0; flex: 0 1 auto; }
 .list-actions[open] { flex-basis: 100%; }
-.list-actions > summary { min-height: 44px; width: fit-content; max-width: 100%; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); border: 1px solid var(--line-2); border-radius: var(--radius-md); }
+.list-actions > summary { min-height: 44px; width: fit-content; max-width: 100%; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
 .list-actions-body, .list-work { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
-.list-actions-body { margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); }
+.list-actions-body { margin-top: var(--space-3); padding: var(--space-3); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); }
 .list-work { margin-bottom: var(--space-4); overflow-wrap: anywhere; }
 /* The rule that keeps the destructive command apart from the reversible ones. */
 .tool-sep { width: 1px; align-self: stretch; margin: var(--space-1) var(--space-4); background: var(--line); }
@@ -824,14 +831,14 @@ main { min-width: 0; }
 .save-education .rail-hint { margin: 0 0 var(--space-5); }
 
 .quiet {
-  border: 1px solid var(--line-2); background: none; color: var(--muted);
+  border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
   border-radius: var(--radius-md); padding: var(--space-2) var(--space-5); font-size: var(--t-body); min-height: 24px;
 }
 .quiet:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .quiet-danger:hover { color: var(--red-fg); border-color: rgb(var(--red-line) / 40%); background: rgb(var(--red-line) / 7.059%); }
 
 .empty-state {
-  border: 1px dashed var(--line-2); border-radius: var(--radius-card);
+  border: var(--stroke-1) dashed var(--line-2); border-radius: var(--radius-card);
   padding: var(--space-10) var(--space-9); text-align: center; color: var(--muted);
 }
 .empty-state h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
@@ -840,7 +847,7 @@ main { min-width: 0; }
 
 /* ============================================================ hero */
 /* Clip, not hidden: as a scroll container, the card let focus near its foot scroll its top away (#846). */
-.hero { position: relative; border: 1px solid var(--line); border-radius: var(--radius-feature); overflow: hidden; overflow: clip; background: var(--card); }
+.hero { position: relative; border: var(--stroke-1) solid var(--line); border-radius: var(--radius-feature); overflow: hidden; overflow: clip; background: var(--card); }
 /* Decoration must never be the scroll anchor. In the Android shell Chromium chose this layer, and its
    1.3 scale moves its top up by 15 per cent of any growth of the hero, so the reader hint growing it
    by 84px scrolled the page up 13px under the reader. Measured in Edge with phone emulation at 800x360. */
@@ -863,12 +870,12 @@ body.nocovers .hero-bg { background-image: none !important; opacity: .5; }
 .art { position: relative; }
 .art img {
   width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg);
-  border: 1px solid rgb(var(--tint-base) / 10.196%); box-shadow: 0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha))); display: block;
+  border: var(--stroke-1) solid rgb(var(--tint-base) / 10.196%); box-shadow: 0 18px 46px rgb(var(--shadow-rgb) / calc(53.333% * var(--shadow-alpha))); display: block;
 }
 body.nocovers .art img, .art img[hidden] { display: none; }
 .fallback {
   display: none; width: 100%; aspect-ratio: 2/3; border-radius: var(--radius-lg);
-  border: 1px solid var(--line-2); padding: var(--space-6);
+  border: var(--stroke-1) solid var(--line-2); padding: var(--space-6);
   flex-direction: column; justify-content: space-between;
   /* `--h` is a per-series hue set from JS. The gradient lives here rather than in a
      style attribute so the page can be served under a strict `style-src 'self'`.
@@ -888,7 +895,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .issue-focus { margin-top: var(--space-6); }
 .issue-focus-note {
   max-width: 58ch; margin: 0 0 var(--space-6); padding: var(--space-5) var(--space-5);
-  border: 1px solid var(--line-2); border-radius: var(--radius-md); background: rgb(var(--tint-base) / 4.706%);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); background: rgb(var(--tint-base) / 4.706%);
   color: var(--dim); font-size: var(--t-body);
 }
 .issue-focus .hero-body { align-self: center; }
@@ -915,7 +922,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 
 .cta { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 .btn {
-  border: 1px solid transparent; border-radius: var(--radius-lg); padding: var(--space-5) var(--space-7);
+  border: var(--stroke-1) solid transparent; border-radius: var(--radius-lg); padding: var(--space-5) var(--space-7);
   background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: var(--t-body);
   display: inline-flex; align-items: center; gap: var(--space-4); text-decoration: none;
 }
@@ -938,7 +945,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 /* No opacity here. The shortcut hint sits on the primary button, and dimming it to
    75% took it to a measured 3.03:1. It is set apart by its border and its size
    instead, both of which cost nothing in contrast. */
-kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%); border-radius: var(--radius-compact); padding: 0 var(--space-2); }
+kbd { font: inherit; font-size: var(--t-caption); border: var(--stroke-1) solid rgb(var(--tint-base) / 30.196%); border-radius: var(--radius-compact); padding: 0 var(--space-2); }
 
 /* Version and data-format numbers in About. Monospaced so a digit cannot be misread
    when someone copies the build number into a bug report. No colour change, because
@@ -965,15 +972,15 @@ kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--ti
 .tile { display: flex; flex: 1 1 112px; flex-direction: column; min-width: 0; max-width: 168px; }
 .tile-focus { display: block; margin-bottom: var(--space-3); color: inherit; text-decoration: none; border-radius: var(--radius-md); }
 .tile-read {
-  width: 100%; margin-top: auto; padding: var(--space-3) var(--space-4); border: 1px solid var(--line-2);
+  width: 100%; margin-top: auto; padding: var(--space-3) var(--space-4); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); background: rgb(var(--tint-base) / 5.882%); color: var(--text);
   font: inherit; font-size: var(--t-caption); font-weight: 600;
 }
-.tile img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--line); display: block; }
+.tile img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-md); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .tile img, .tile img[hidden] { display: none; }
 .tile .tf {
   display: none; width: 100%; aspect-ratio: 2/3; border-radius: var(--radius-md);
-  border: 1px solid var(--line-2); padding: var(--space-4);
+  border: var(--stroke-1) solid var(--line-2); padding: var(--space-4);
   flex-direction: column; justify-content: space-between;
 }
 body.nocovers .tile .tf, .tile .tf.show { display: flex; }
@@ -988,7 +995,7 @@ body.nocovers .tile .tf, .tile .tf.show { display: flex; }
 /* ============================================================ full order */
 
 details.full {
-  margin-top: var(--space-7); border: 1px solid var(--line); border-radius: var(--radius-card);
+  margin-top: var(--space-7); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card);
   background: var(--card); overflow: clip;
 }
 details.full > summary {
@@ -1003,7 +1010,7 @@ details.full > summary:hover { background: var(--card-2); }
 #full-count { color: var(--muted); }
 .chev { display: inline-block; flex: 0 0 auto; transition: transform .15s; }
 details.full[open] > summary .chev { transform: rotate(90deg); }
-details.full[open] > summary { border-bottom: 1px solid var(--line); border-radius: var(--radius-card) var(--radius-card) 0 0; }
+details.full[open] > summary { border-bottom: var(--stroke-1) solid var(--line); border-radius: var(--radius-card) var(--radius-card) 0 0; }
 details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--space-6); }
 
 .filters { display: flex; gap: var(--space-3); margin: var(--space-6) 0 var(--space-5); flex-wrap: wrap; border: 0; padding: 0; }
@@ -1012,7 +1019,7 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .fp { display: inline-flex; }
 .fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .fp span {
-  border: 1px solid var(--line-2); color: var(--muted); border-radius: var(--radius-pill);
+  border: var(--stroke-1) solid var(--line-2); color: var(--muted); border-radius: var(--radius-pill);
   padding: var(--space-2) var(--space-5); font-size: var(--t-body); display: inline-block;
 }
 .fp:hover span { color: var(--text); }
@@ -1061,7 +1068,7 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .row-group {
   display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap;
   margin: var(--space-5) var(--space-1) var(--space-2); padding: var(--space-2) var(--space-4) var(--space-3);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--stroke-1) solid var(--line);
 }
 .row-group:first-child { margin-top: var(--space-1); }
 .rg-name { margin: 0; font-size: var(--t-body); font-weight: 600; letter-spacing: .01em; }
@@ -1070,7 +1077,7 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .row-group.is-done .rg-name { color: var(--read-fg); }
 .row {
   display: grid; grid-template-columns: 26px 44px minmax(0, 1fr) auto; gap: var(--space-5);
-  align-items: center; padding: var(--space-4) var(--space-4); border-radius: var(--radius-md); border: 1px solid transparent;
+  align-items: center; padding: var(--space-4) var(--space-4); border-radius: var(--radius-md); border: var(--stroke-1) solid transparent;
 }
 .row:hover { background: rgb(var(--tint-base) / 2.745%); border-color: var(--line); }
 /* The row you are on. Selection, not danger, though until `--accent-line` existed it was drawn in
@@ -1090,17 +1097,17 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .row .thumb { position: relative; }
 .row-focus-cover { display: block; border-radius: var(--radius-compact); }
 .row-focus-title { display: inline-block; }
-.row img { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: 1px solid var(--line); display: block; }
+.row img { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .row img, .row img[hidden] { display: none; }
 .row .rf {
   display: none; width: 44px; aspect-ratio: 2/3; border-radius: var(--radius-compact);
-  border: 1px solid var(--line-2); align-items: center; justify-content: center;
+  border: var(--stroke-1) solid var(--line-2); align-items: center; justify-content: center;
   font-size: var(--t-caption); font-weight: 700;
 }
 body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 .cb {
-  width: 24px; height: 24px; border-radius: var(--radius-compact); border: 1.5px solid var(--cb-line);
+  width: 24px; height: 24px; border-radius: var(--radius-compact); border: var(--stroke-checkbox) solid var(--cb-line);
   background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-caption); padding: 0;
 }
 .row.is-read .cb { background: var(--teal); border-color: var(--teal); color: var(--bg); }
@@ -1119,10 +1126,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
 }
 .rnote:hover { color: var(--text); }
-.rnote.has-note { color: var(--text); border-left: 2px solid var(--line-2); padding-left: var(--space-4); }
+.rnote.has-note { color: var(--text); border-left: var(--stroke-2) solid var(--line-2); padding-left: var(--space-4); }
 
 .list-note {
-  margin: 0 0 var(--space-6); padding: var(--space-4) var(--space-5); border-left: 2px solid var(--line);
+  margin: 0 0 var(--space-6); padding: var(--space-4) var(--space-5); border-left: var(--stroke-2) solid var(--line);
   color: var(--text); font-size: var(--t-body); white-space: pre-wrap; max-width: 70ch;
 }
 /* These outlines are faint on purpose, and that is a recorded decision rather than an
@@ -1150,7 +1157,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    composited against this dark palette, so BL-032's light theme would void all of them and
    the measurement would have to be redone per theme. Measured twice now, for BL-030 and
    BL-049. */
-.badge { font-size: var(--t-caption); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: var(--space-1) var(--space-3); white-space: nowrap; }
+.badge { font-size: var(--t-caption); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-pill); padding: var(--space-1) var(--space-3); white-space: nowrap; }
 .badge-expected, .badge-override-available { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); }
 .badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
@@ -1163,12 +1170,12 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .row-actions.is-open > .ract {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
   width: 100%; max-width: 36rem; min-width: 0; margin-top: var(--space-3); margin-left: auto;
-  padding: var(--space-3); border: 1px solid var(--line-2); border-radius: var(--radius-md);
+  padding: var(--space-3); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
 }
 .row-actions .ract > .rail-hint { grid-column: 1 / -1; text-align: left; }
 .mini {
-  border: 1px solid var(--line-2); background: none; color: var(--muted);
+  border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
   border-radius: var(--radius-compact); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
 }
 .mini-label { display: none; }
@@ -1187,7 +1194,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 /* ============================================================ forms, cards, results */
 
-.card { border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--card); margin-bottom: var(--space-5); }
+.card { border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card); background: var(--card); margin-bottom: var(--space-5); }
 .card > summary {
   cursor: pointer; list-style: none; padding: var(--space-6) var(--space-6);
   display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-4); row-gap: var(--space-1);
@@ -1306,13 +1313,13 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   background-repeat: no-repeat;
   background-size: 5px 5px, 5px 5px;
   background-position: right 1rem top 55%, right .75rem top 55%;
-  color: var(--muted); border: 1px solid var(--line-2); border-radius: var(--radius-md);
+  color: var(--muted); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: 44px;
   cursor: pointer; width: 100%;
 }
 #view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
 input[type="file"]::file-selector-button {
-  background: none; color: var(--muted); border: 1px solid var(--line-2);
+  background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
   margin-right: var(--space-4); cursor: pointer;
 }
@@ -1356,13 +1363,13 @@ input[type="file"]::file-selector-button:hover { color: var(--text); background:
    the pair `.rail-hint` already uses on this background, so no new boundary is introduced. */
 .salvage-row {
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap;
-  padding: var(--space-4) var(--space-5); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
+  padding: var(--space-4) var(--space-5); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
 }
 .salvage-what { display: grid; gap: var(--space-1); }
 .salvage-when { font-size: var(--t-body); }
 .salvage-size { color: var(--muted); font-size: var(--t-caption); }
 input[type="search"], input[type="text"], input[type="url"], textarea {
-  background: var(--card-2); border: 1px solid var(--line-2); color: var(--text);
+  background: var(--card-2); border: var(--stroke-1) solid var(--line-2); color: var(--text);
   border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); min-width: 0; flex: 1 1 16rem;
 }
 textarea { flex: 1 1 auto; width: 100%; resize: vertical; font-family: ui-monospace, "Cascadia Mono", monospace; font-size: var(--t-body); }
@@ -1372,20 +1379,20 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .add-page { max-width: 48rem; }
 .add-destination {
   display: inline-flex; margin: 0 0 var(--space-5); padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--line); border-radius: var(--radius-pill);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-pill);
   color: var(--dim); background: var(--card-2); font-size: var(--t-caption); font-weight: 600;
 }
 .import-guide { margin-bottom: var(--space-6); }
 .import-guide h2 { font-size: var(--t-body); margin: 0 0 var(--space-3); }
 .import-guide pre {
   margin: 0; padding: var(--space-5); overflow-x: auto; white-space: pre-wrap;
-  border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--card-2);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); background: var(--card-2);
 }
 .import-guide pre code { padding: 0; background: none; }
 .import-guide pre:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; }
 #about-build { overflow-wrap: anywhere; }
 #view-about a, #hero-title { overflow-wrap: anywhere; }
-.field-disclosure { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.field-disclosure { border-top: var(--stroke-1) solid var(--line); border-bottom: var(--stroke-1) solid var(--line); }
 .field-disclosure > summary {
   min-height: 44px; display: flex; align-items: center; cursor: pointer;
   color: var(--dim); font-size: var(--t-body); font-weight: 600;
@@ -1406,7 +1413,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .search-hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); }
 .search-hub-card {
   min-height: 72px; display: flex; align-items: center; gap: var(--space-5); padding: var(--space-5) var(--space-6);
-  border: 1px solid var(--line-2); border-radius: var(--radius-lg); background: var(--card);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-lg); background: var(--card);
   color: var(--text); font: inherit; font-weight: 600; text-align: left; cursor: pointer;
 }
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
@@ -1424,7 +1431,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .results { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
 .res-head {
   color: var(--muted); font-size: var(--t-caption); padding: var(--space-4) var(--space-1) var(--space-4);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--stroke-1) solid var(--line);
 }
 .comic-builder .comic-list-name[hidden] { display: none; }
 /* The selection bar. While comics are selected it holds to the bottom of the window, so saving is
@@ -1440,7 +1447,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .comic-builder {
   position: fixed; bottom: var(--space-4); z-index: 2;
   width: var(--comic-selection-width); max-width: 48rem; max-height: 60dvh; overflow-y: auto;
-  border: 1px solid var(--line-2); border-radius: var(--radius-lg); background: var(--card);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-lg); background: var(--card);
   box-shadow: 0 -6px 20px rgb(var(--shadow-rgb) / calc(30% * var(--shadow-alpha)));
 }
 :root:has(.view:not([hidden]) .comic-builder:not([hidden])) main::after {
@@ -1458,12 +1465,12 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 /* Drawn with borders rather than a character, so it adds nothing to the button's accessible name. */
 .comic-save-toggle::after {
   content: ""; flex: none; width: 7px; height: 7px;
-  border-right: 2px solid currentcolor; border-bottom: 2px solid currentcolor; transform: rotate(-45deg);
+  border-right: var(--stroke-2) solid currentcolor; border-bottom: var(--stroke-2) solid currentcolor; transform: rotate(-45deg);
 }
 /* Open, the form's own Create or Add button is the primary action, so the opener steps back. */
 .comic-save-toggle[aria-expanded="true"] { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); }
 .comic-save-toggle[aria-expanded="true"]::after { transform: rotate(45deg); }
-.comic-save { margin-top: var(--space-2); padding-top: var(--space-5); border-top: 1px solid var(--line); }
+.comic-save { margin-top: var(--space-2); padding-top: var(--space-5); border-top: var(--stroke-1) solid var(--line); }
 /* `.stack` sets a display, which would otherwise keep the closed form showing. */
 .comic-save[hidden] { display: none; }
 @media (max-width: 880px) {
@@ -1492,7 +1499,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 :root:has(.view:not([hidden]) .comic-builder:not([hidden]) :focus) { scroll-padding-bottom: 0; }
 .comic-builder select {
   width: 100%; min-width: 0; min-height: 44px; padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--line-2); border-radius: var(--radius-md);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   background: var(--card-2); color: var(--text); cursor: pointer;
 }
 .comic-builder select:hover { border-color: var(--accent-text); }
@@ -1520,8 +1527,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    on a laptop. */
 .shelf-section {
   margin: var(--space-8) 0 0; padding: var(--space-4) var(--space-5);
-  background: var(--card-2); border: 1px solid var(--line);
-  border-left: 3px solid var(--accent); border-radius: var(--radius-callout);
+  background: var(--card-2); border: var(--stroke-1) solid var(--line);
+  border-left: var(--stroke-3) solid var(--accent); border-radius: var(--radius-callout);
 }
 .shelf-section:first-child { margin-top: 0; }
 .shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
@@ -1552,7 +1559,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .timeline-era-node::after {
   content: ""; position: absolute;
   top: .85rem; right: .35rem; width: 20px; height: 20px;
-  border: 4px solid var(--accent-text); border-radius: var(--radius-circle);
+  border: var(--stroke-node) solid var(--accent-text); border-radius: var(--radius-circle);
   background: var(--card-2); box-shadow: 0 0 0 5px var(--bg);
 }
 .timeline-era-head { margin: 0 0 var(--space-5); }
@@ -1573,7 +1580,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .timeline-year-marker::after {
   content: ""; position: absolute;
   top: .55rem; right: .55rem; width: 12px; height: 12px;
-  border: 3px solid var(--accent-text); border-radius: var(--radius-circle); background: var(--bg);
+  border: var(--stroke-3) solid var(--accent-text); border-radius: var(--radius-circle); background: var(--bg);
 }
 .timeline-year-label { margin: 0; font-size: var(--t-body); line-height: 1.35; }
 .timeline-year-row.is-empty { min-height: 2rem; }
@@ -1584,7 +1591,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .timeline-year-marker.is-empty::before { display: none; }
 .timeline-year-marker.is-empty::after {
   top: .65rem; right: .7rem; width: 8px; height: 8px;
-  border: 2px solid var(--line-2);
+  border: var(--stroke-2) solid var(--line-2);
 }
 .timeline-year-cards { min-width: 0; }
 
@@ -1616,7 +1623,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 }
 .catalog-card {
   scroll-margin-top: 1rem; display: flex; flex-direction: column; min-width: 0;
-  border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--card);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card);
 }
 .catalog-card[aria-current="step"] {
   outline: 3px solid var(--accent-text); outline-offset: 2px;
@@ -1629,13 +1636,13 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   margin: 0 0 var(--space-3);
 }
 .timeline-position-label {
-  padding: var(--space-1) var(--space-3); border: 1px solid var(--accent-text); border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3); border: var(--stroke-1) solid var(--accent-text); border-radius: var(--radius-pill);
   color: var(--accent-text); font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
 }
 .timeline-position-progress { color: var(--muted); }
 .timeline-position-status {
   margin: 0; padding: var(--space-4) var(--space-5);
-  border: 2px solid var(--accent-text); border-radius: var(--radius-callout); background: var(--card-2); color: var(--text);
+  border: var(--stroke-2) solid var(--accent-text); border-radius: var(--radius-callout); background: var(--card-2); color: var(--text);
 }
 .timeline-position-complete {
   position: relative; z-index: 1; grid-column: 1 / -1; margin-top: var(--space-2);
@@ -1657,7 +1664,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .result-path[open] { flex-basis: 100%; }
 .result-path[open] > summary::before { content: "\25BE"; }
 .result-path > .path-step {
-  margin: var(--space-3) 0 var(--space-1); padding-left: var(--space-5); border-left: 2px solid var(--line-2);
+  margin: var(--space-3) 0 var(--space-1); padding-left: var(--space-5); border-left: var(--stroke-2) solid var(--line-2);
 }
 .catalog-card-actions {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
@@ -1671,7 +1678,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 
 .result {
   display: flex; align-items: center; gap: var(--space-5); padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card-2);
 }
 .result-main { flex: 1 1 auto; min-width: 0; }
 .result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
@@ -1685,13 +1692,13 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    "Already in your library" broke across three lines beside a one-line row. Fixing the pill and
    letting the title shrink instead costs the title nothing, because it already truncates. */
 .pill-held {
-  color: var(--teal); border: 1px solid rgb(var(--teal-line) / 33.333%);
+  color: var(--teal); border: var(--stroke-1) solid rgb(var(--teal-line) / 33.333%);
   border-radius: var(--radius-pill); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); font-weight: 600;
   flex: none; white-space: nowrap;
 }
 .pill-held::before { content: "✓ "; }
 
-.notice { border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); font-size: var(--t-body); margin: 0; border: 1px solid var(--line); }
+.notice { border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); font-size: var(--t-body); margin: 0; border: var(--stroke-1) solid var(--line); }
 .notice-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: rgb(var(--teal-line) / 5.882%); }
 .notice-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: rgb(var(--amber-line) / 5.882%); }
 .notice-error { color: var(--red-fg-2); border-color: rgb(var(--red-line) / 33.333%); background: rgb(var(--red-line) / 7.059%); }
@@ -1721,7 +1728,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 progress { accent-color: var(--accent); height: 6px; }
 
 .app-footer {
-  border-top: 1px solid var(--line); margin-top: var(--space-10); padding-top: var(--space-6);
+  border-top: var(--stroke-1) solid var(--line); margin-top: var(--space-10); padding-top: var(--space-6);
   color: var(--muted); font-size: var(--t-caption);
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2);
 }
@@ -1765,7 +1772,7 @@ progress { accent-color: var(--accent); height: 6px; }
 #home-updates-panel {
   position: absolute; right: 0; top: 100%; z-index: 30; width: min(34rem, calc(100vw - 3rem));
   max-height: min(32rem, 70vh); max-height: min(32rem, 70dvh); overflow-y: auto;
-  padding: var(--space-7); border: 1px solid var(--line-2); border-radius: var(--radius-lg);
+  padding: var(--space-7); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-lg);
   background: var(--card); color: var(--text); box-shadow: 0 12px 28px rgb(var(--shadow-rgb) / 22%);
   overflow-wrap: anywhere;
 }
@@ -1795,7 +1802,7 @@ progress { accent-color: var(--accent); height: 6px; }
 /* Continue reading. Deliberately lighter than the reading view's hero: it answers one
    question ("which issue was I on?") and then gets out of the way. */
 .chero {
-  border: 1px solid var(--line); border-radius: var(--radius-feature); background: var(--card);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-feature); background: var(--card);
   padding: var(--space-8) var(--space-8); margin-bottom: var(--space-9); max-width: 72rem;
 }
 /* 132 rather than 106, for the same reason the catalog cover grew: this is the other place a
@@ -1806,7 +1813,7 @@ progress { accent-color: var(--accent); height: 6px; }
 .continue-empty .art { display: none; }
 @media (max-width: 620px) { .chero-in { grid-template-columns: 1fr; } .chero-in .art { max-width: 132px; } }
 .chero h2 { font-size: var(--t-title); margin: var(--space-2) 0 var(--space-5); font-weight: 600; letter-spacing: -.02em; }
-.chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid var(--line); display: block; }
+.chero .art img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-lg); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 /* The shared fallback is sized for the reading view's larger cover, so it is scaled down
    here rather than being duplicated. */
@@ -1829,7 +1836,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .yours li { min-width: 0; }
 .yours a {
-  width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line-2);
+  width: 100%; text-align: left; background: var(--card); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); color: var(--text); min-height: 44px;
   display: grid; gap: var(--space-3);
 }
@@ -1860,7 +1867,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   position: relative; overflow: hidden; width: 100%; height: 100%; min-height: 12rem;
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: end; gap: var(--space-6); padding: var(--space-7);
-  border: 1px solid var(--line-2); border-radius: var(--radius-feature);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-feature);
   background:
     linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 8rem),
     var(--card);
@@ -1924,7 +1931,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
   margin: calc(-1 * var(--space-3)) 0 var(--space-5);
 }
 .publishing-range, .publishing-count, .publishing-highlights li {
-  border-left: 2px solid var(--line); padding: var(--space-1) var(--space-4);
+  border-left: var(--stroke-2) solid var(--line); padding: var(--space-1) var(--space-4);
   color: var(--muted); font-size: var(--t-caption);
 }
 .publishing-count { color: var(--text); }
@@ -1957,7 +1964,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .mcu-prep-sort { flex: 0 1 15rem; min-width: 0; }
 .mcu-prep-sort select {
   width: 100%; min-height: 44px; padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--line-2); border-radius: var(--radius-md); background: var(--card-2); color: var(--text);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); background: var(--card-2); color: var(--text);
 }
 .mcu-prep-date-help { flex-basis: 100%; margin: 0; }
 .mcu-prep-phase + .mcu-prep-phase { margin-top: var(--space-6); }
@@ -1981,12 +1988,12 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .ocard-art { position: relative; flex: 0 0 92px; }
 .ocard-art img {
   width: 92px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact);
-  border: 1px solid var(--line); display: block;
+  border: var(--stroke-1) solid var(--line); display: block;
 }
 body.nocovers .ocard-art img, .ocard-art img[hidden] { display: none; }
 .ocard-art .of {
   display: none; width: 92px; aspect-ratio: 2/3; border-radius: var(--radius-compact);
-  border: 1px solid var(--line-2); padding: var(--space-3);
+  border: var(--stroke-1) solid var(--line-2); padding: var(--space-3);
   flex-direction: column; justify-content: flex-end; gap: var(--space-1);
   --h: 0;
   background: linear-gradient(155deg,
@@ -2013,7 +2020,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 .preview {
   width: min(46rem, calc(100vw - 2rem)); max-height: min(44rem, calc(100vh - 4rem));
-  background: var(--card); color: var(--text); border: 1px solid var(--line-2);
+  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
 }
 .preview::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
@@ -2024,14 +2031,14 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); counter-reset: pv; }
 .preview-list li {
   display: flex; gap: var(--space-4); align-items: baseline; padding: var(--space-2) var(--space-1);
-  border-bottom: 1px solid rgb(var(--tint-base) / 5%); font-size: var(--t-body);
+  border-bottom: var(--stroke-1) solid rgb(var(--tint-base) / 5%); font-size: var(--t-body);
 }
 .preview-list li:last-child { border-bottom: 0; }
 .preview-list .pn { color: var(--muted); font-size: var(--t-caption); font-variant-numeric: tabular-nums; min-width: 2.2rem; }
 .preview-list .preview-group { border-bottom: 0; padding: var(--space-5) 0 var(--space-1); }
 .preview-list .preview-group:first-child { padding-top: 0; }
 .preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
-.preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: var(--space-6); }
+.preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: 44px; scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 
@@ -2040,7 +2047,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask {
   width: min(30rem, calc(100vw - 2rem));
   max-height: calc(100dvh - 2rem); overflow-y: auto;
-  background: var(--card); color: var(--text); border: 1px solid var(--line-2);
+  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
 }
 .ask::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
@@ -2080,7 +2087,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-trigger {
   display: inline-flex; align-items: center; gap: var(--space-4);
   min-height: 44px; padding: var(--space-4); margin: 0 0 var(--space-5);
-  border: 1px solid transparent; border-radius: var(--radius-md); background: none; color: var(--dim); font: inherit;
+  border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--dim); font: inherit;
 }
 .rating-trigger:hover { border-color: var(--line-2); background: rgb(var(--tint-base) / 4%); color: var(--text); }
 .rating-trigger svg { width: 20px; height: 20px; flex: none; color: var(--accent-text); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
@@ -2089,7 +2096,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-dialog { padding: var(--space-8); max-height: calc(100dvh - 2rem); overflow-y: auto; }
 .rating-dialog .rating-comic { color: var(--dim); margin-bottom: var(--space-8); }
 .rating-stars { display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-7); }
-.rating-stars button { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; padding: 0; border: 1px solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
+.rating-stars button { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
 .rating-stars button:hover { border-color: var(--line-2); background: var(--card-2); }
 .rating-stars svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
 .rating-stars .star-fill { fill: currentColor; visibility: hidden; }
@@ -2097,11 +2104,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-stars [data-fill="half"] .star-fill { clip-path: inset(0 50% 0 0); }
 .rating-stepper { display: flex; justify-content: center; align-items: center; gap: var(--space-5); margin-bottom: var(--space-5); }
 .rating-stepper button { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: 0; font-size: var(--t-subtitle); }
-.rating-stepper input { width: 76px; min-height: 44px; padding: var(--space-2); font: inherit; font-size: var(--t-subtitle); font-weight: 600; text-align: center; appearance: textfield; background: var(--bg); color: var(--text); border: 1px solid var(--line-2); border-radius: var(--radius-md); }
+.rating-stepper input { width: 76px; min-height: 44px; padding: var(--space-2); font: inherit; font-size: var(--t-subtitle); font-weight: 600; text-align: center; appearance: textfield; background: var(--bg); color: var(--text); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
 .rating-stepper input::-webkit-inner-spin-button { appearance: none; }
 .rating-stepper span { color: var(--dim); }
 .rating-dialog .rating-hint { color: var(--dim); text-align: center; margin-bottom: var(--space-8); }
-.rating-dialog .rating-privacy { color: var(--muted); font-size: var(--t-caption); padding-top: var(--space-7); margin-bottom: var(--space-7); border-top: 1px solid var(--line); }
+.rating-dialog .rating-privacy { color: var(--muted); font-size: var(--t-caption); padding-top: var(--space-7); margin-bottom: var(--space-7); border-top: var(--stroke-1) solid var(--line); }
 .rating-footer { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
 .rating-footer .btn { min-height: 44px; }
 #issue-rating-remove { margin-right: auto; padding-left: 0; }
@@ -2125,35 +2132,35 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 
 @media (forced-colors: active) {
   .hero-bg, .hero-fade { display: none; }
-  .btn, .quiet, .mini, .ri { border: 1px solid ButtonBorder; }
+  .btn, .quiet, .mini, .ri { border: var(--stroke-1) solid ButtonBorder; }
   /* The accent bar and the raised surface both disappear in forced colours, so the
      selected item is marked with a border the mode is required to honour. */
-  .ri[aria-current], .ri.on, .brand[aria-current] { border: 2px solid Highlight; }
+  .ri[aria-current], .ri.on, .brand[aria-current] { border: var(--stroke-2) solid Highlight; }
   .breadcrumb a { color: LinkText; }
   .breadcrumb [aria-current="page"] { color: CanvasText; }
-  .home-path, .yours a, .preview, .catalog-card { border: 1px solid CanvasText; }
+  .home-path, .yours a, .preview, .catalog-card { border: var(--stroke-1) solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
   .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }
-  .pbar { border: 1px solid CanvasText; }
+  .pbar { border: var(--stroke-1) solid CanvasText; }
   .pbar i { background: Highlight; }
-  .rail-tip { border: 1px solid CanvasText; background: Canvas; }
+  .rail-tip { border: var(--stroke-1) solid CanvasText; background: Canvas; }
   /* The path badge and selected filters carry state in colour plus a tinted border. */
-  .pill-start { border: 1px solid CanvasText; }
+  .pill-start { border: var(--stroke-1) solid CanvasText; }
   .addpri, .pill-held, .res-head, .comic-builder { border-color: CanvasText; }
-  #view-data .setgroup > h2 { border-bottom: 1px solid CanvasText; }
-  .notice { border: 1px solid CanvasText; }
+  #view-data .setgroup > h2 { border-bottom: var(--stroke-1) solid CanvasText; }
+  .notice { border: var(--stroke-1) solid CanvasText; }
   .timeline-era-head { border-color: CanvasText; border-left-color: Highlight; }
   .timeline-era-head .shelf-section-blurb { color: CanvasText; }
   .catalog-card[aria-current="step"] { outline-color: Highlight; }
   .timeline-position-label { border-color: Highlight; color: CanvasText; }
   .timeline-position-status { border-color: Highlight; background: Canvas; color: CanvasText; }
-  .fp input:checked + span { border: 2px solid Highlight; }
+  .fp input:checked + span { border: var(--stroke-2) solid Highlight; }
 }
 
 /* Unreadable-data recovery. Deliberately loud: saving is paused and the user must choose. */
 .blocked {
-  border: 2px solid var(--warn);
+  border: var(--stroke-2) solid var(--warn);
   background: color-mix(in srgb, var(--warn) 12%, var(--panel));
   border-radius: var(--radius-lg);
   padding: var(--space-7) var(--space-7);
@@ -2184,7 +2191,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 #save-report { margin-bottom: var(--space-7); }
 
 @media (forced-colors: active) {
-  .blocked { border: 2px solid CanvasText; background: Canvas; }
+  .blocked { border: var(--stroke-2) solid CanvasText; background: Canvas; }
 }
 
 /* ============================================================ reading screen
@@ -2231,7 +2238,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   background: none; color: var(--blue); border-color: transparent; font-weight: 600;
   padding: var(--space-5) var(--space-4); text-decoration: underline; text-underline-offset: 3px;
 }
-.btn-link:hover { filter: none; text-decoration-thickness: 2px; }
+.btn-link:hover { filter: none; text-decoration-thickness: var(--stroke-2); }
 
 @media (min-width: 1100px) { .hero-in { grid-template-columns: 248px 1fr; } }
 
@@ -2268,10 +2275,10 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 @media (forced-colors: active) {
   /* The strip is the whole affordance for the demoted tools, and a hairline in a palette token is
      one of the things forced colours discards. */
-  .list-tools { border: 1px solid CanvasText; }
+  .list-tools { border: var(--stroke-1) solid CanvasText; }
   /* An inset shadow is discarded outright, so the current row is marked the way the rail marks the
      selected view. */
-  .row.now { border: 2px solid Highlight; box-shadow: none; }
+  .row.now { border: var(--stroke-2) solid Highlight; box-shadow: none; }
   #reading-filters { background: Canvas; }
   details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
 }
@@ -2290,7 +2297,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    Each cell sits on a card so the figures read as a panel rather than as loose text. */
 .sumbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); margin: var(--space-2) 0 var(--space-6); }
 @media (max-width: 640px) { .sumbar { grid-template-columns: 1fr; } }
-.sumcell { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-5); }
+.sumcell { background: var(--card); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-5); }
 .sumfig { font-size: var(--t-title); font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--text); line-height: 1.1; }
 .sumlab { color: var(--muted); font-size: var(--t-caption); margin-top: var(--space-1); }
 
@@ -2298,7 +2305,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    than by weight alone, and its count is quieter and lighter so the label stays a plain heading a
    reader can jump between. The group is a grid so the heading and its rows share the .4rem rhythm. */
 .lgroup { display: grid; gap: var(--space-3); margin: 0 0 var(--space-7); }
-.lgroup-h { margin: 0; padding-bottom: var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--t-subtitle); font-weight: 600; color: var(--text); }
+.lgroup-h { margin: 0; padding-bottom: var(--space-3); border-bottom: var(--stroke-1) solid var(--line); font-size: var(--t-subtitle); font-weight: 600; color: var(--text); }
 .lgroup-n { color: var(--muted); font-size: var(--t-caption); font-weight: 400; margin-left: var(--space-3); }
 
 /* A library row with a cover. Its own grid rather than .result's flex line, so a fixed cover column
@@ -2308,11 +2315,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .result-focus { color: inherit; text-decoration: none; }
 .result-focus:hover .result-title { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
 .rcov { position: relative; width: 44px; }
-.rcov-i { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: 1px solid var(--line); display: block; }
+.rcov-i { width: 44px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .rcov-i, .rcov-i[hidden] { display: none; }
 .rcov-f {
   display: none; width: 44px; aspect-ratio: 2/3; border-radius: var(--radius-compact);
-  border: 1px solid var(--line-2); align-items: center; justify-content: center;
+  border: var(--stroke-1) solid var(--line-2); align-items: center; justify-content: center;
   font-size: var(--art-label-sm); font-weight: 700; color: var(--text);
 }
 body.nocovers .rcov-f, .rcov-f.show { display: flex; }
@@ -2331,11 +2338,11 @@ body.nocovers .rcov-f, .rcov-f.show { display: flex; }
    distinguishes its order. Fixed cells keep the tile a constant height whatever the data holds. */
 .mosaic { display: flex; gap: var(--space-2); }
 .mosaic-c { flex: 0 0 auto; width: 30px; }
-.mosaic-i { width: 30px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: 1px solid var(--line); display: block; }
+.mosaic-i { width: 30px; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-compact); border: var(--stroke-1) solid var(--line); display: block; }
 body.nocovers .mosaic-i, .mosaic-i[hidden] { display: none; }
 .mosaic-f {
   display: none; width: 30px; aspect-ratio: 2/3; border-radius: var(--radius-compact);
-  border: 1px solid var(--line-2);
+  border: var(--stroke-1) solid var(--line-2);
   --h: 0;
   background: linear-gradient(155deg,
     hsl(var(--h) var(--fallback-a)),
@@ -2396,7 +2403,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .visual-tooltip[hidden] { display: none; }
 .tooltip-content { display: block; padding: var(--space-2) var(--space-4); overflow: auto; }
 .action-tip {
-  border: 1px solid var(--line-2); border-radius: var(--radius-compact);
+  border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-compact);
   background: var(--text); color: var(--card); box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 22%);
   font-weight: 600;
 }
@@ -2405,13 +2412,13 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   /* The raised surfaces and tinted edges all flatten here, so every bordered element takes a system
      border and every chip keeps a visible outline, and the dashed and solid edges stay distinct so
      the states are still told apart by shape and not by a colour the mode has replaced. */
-  .sumcell { border: 1px solid CanvasText; }
-  .lgroup-h { border-bottom: 1px solid CanvasText; }
-  .rcov-i, .rcov-f, .mosaic-i, .mosaic-f { border: 1px solid CanvasText; }
+  .sumcell { border: var(--stroke-1) solid CanvasText; }
+  .lgroup-h { border-bottom: var(--stroke-1) solid CanvasText; }
+  .rcov-i, .rcov-f, .mosaic-i, .mosaic-f { border: var(--stroke-1) solid CanvasText; }
   .cover-fallback.cover-fallback::before, .cover-fallback.cover-fallback::after { color: CanvasText; text-shadow: none; }
-  .visual-tooltip { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
-  .badge-done { border: 1px solid CanvasText; }
-  .badge-none { border: 1px dashed CanvasText; }
+  .visual-tooltip { border: var(--stroke-1) solid CanvasText; background: Canvas; color: CanvasText; }
+  .badge-done { border: var(--stroke-1) solid CanvasText; }
+  .badge-none { border: var(--stroke-1) dashed CanvasText; }
 }
 
 /* One linear sequence rather than a proportional year axis. The line shows continuity, while every
@@ -2451,15 +2458,15 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-summary h2 { margin: 0 0 var(--space-3); font-size: var(--t-title); }
 .reading-path-summary p { margin: var(--space-2) 0; }
 .reading-path-count { flex: 0 0 auto; color: var(--muted); font-size: var(--t-caption); }
-.reading-path-spine { list-style: none; margin: 0; padding: 0 0 0 var(--space-7); border-left: 2px solid var(--line-2); }
+.reading-path-spine { list-style: none; margin: 0; padding: 0 0 0 var(--space-7); border-left: var(--stroke-2) solid var(--line-2); }
 .reading-path-stop { position: relative; min-width: 0; padding: 0 0 var(--space-8) var(--space-7); }
 .reading-path-stop:last-child { padding-bottom: var(--space-2); }
 .reading-path-marker {
   position: absolute; left: -2.05rem; top: -.1rem; display: grid; place-items: center;
-  width: 1.7rem; height: 1.7rem; border: 2px solid var(--accent-text); border-radius: var(--radius-circle);
+  width: 1.7rem; height: 1.7rem; border: var(--stroke-2) solid var(--accent-text); border-radius: var(--radius-circle);
   background: var(--bg); color: var(--text); font-size: var(--t-caption); font-weight: 700;
 }
-.reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--card); }
+.reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card); }
 .reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
 .reading-path-stop-meta, .reading-path-stop-progress { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--t-caption); }
 .reading-path-action { margin-top: var(--space-4); min-height: 44px; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
@@ -2503,7 +2510,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 /* Optional review stays in normal reading flow, with no separate prose surface. */
 .review-earlier {
   margin-block: var(--space-6); padding: var(--space-6);
-  border: 1px solid var(--line); border-radius: var(--radius-card);
+  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card);
   background: var(--card); overflow-wrap: anywhere;
 }
 .review-earlier .cta { flex-wrap: wrap; margin-top: var(--space-4); }
@@ -2545,7 +2552,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 .completion-recommendations { margin-top: var(--space-7); }
 .recommendation-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-6); }
-.recommendation-card { min-width: 0; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--panel); }
+.recommendation-card { min-width: 0; padding: var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card); background: var(--panel); }
 .recommendation-card h3 { margin-top: 0; overflow-wrap: anywhere; }
 .recommendation-reasons { padding-left: var(--space-7); color: var(--dim); }
 .recommendation-card .btn { white-space: normal; min-height: 44px; }
@@ -2616,7 +2623,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 }
 .hero .glance { margin: var(--space-6) 0; }
 @media (forced-colors: active) {
-  .glance-bar { border: 1px solid CanvasText; }
+  .glance-bar { border: var(--stroke-1) solid CanvasText; }
   .glance-bar > i { background: Highlight; }
 }
 
@@ -2631,7 +2638,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
     width: min(100%, 40rem); max-width: none;
     max-height: calc(100% - var(--mobile-nav-height, 80px) - var(--space-6));
     margin: 0; padding: var(--space-6); overflow-y: auto; overscroll-behavior: contain;
-    border: 1px solid var(--line-2); border-bottom: 0; border-radius: var(--radius-card) var(--radius-card) 0 0;
+    border: var(--stroke-1) solid var(--line-2); border-bottom: 0; border-radius: var(--radius-card) var(--radius-card) 0 0;
     background: var(--rail); color: var(--text);
   }
   /* The scrim stops at the bar, so the sheet reads as More's and More's open state stays in view. */

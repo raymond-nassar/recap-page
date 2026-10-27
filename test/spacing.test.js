@@ -4,8 +4,8 @@ import { readFileSync } from 'node:fs';
 
 import {
   SCALE, grammarFindings, scaleFindings, spacingInventory, usageFindings,
-  TOKENS, TOKEN_SHEETS, rootTokens, resolveTokens, tokenDefinitionFindings, tokenFindings, tokenGrammarFindings,
-  tokenUsageFindings,
+  TOKENS, TOKEN_SHEETS, lengthTokens, rootTokens, resolveTokens, tokenDefinitionFindings, tokenFindings,
+  tokenGrammarFindings, tokenUsageFindings,
 } from '../scripts/check-spacing.mjs';
 
 const css = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
@@ -14,8 +14,9 @@ const sheets = (styles = css, overlay = mobile) => [[TOKEN_SHEETS[0], styles], [
 
 // What one rule appended to a stylesheet adds to that sheet's token findings.
 function rawFindings(rule, sheet = 0) {
-  const [file, source] = sheets()[sheet];
-  return tokenGrammarFindings(file, `${source}\n${rule}\n`);
+  const all = sheets().map(([file, source], i) => [file, i === sheet ? `${source}\n${rule}\n` : source]);
+  const [file, source] = all[sheet];
+  return tokenGrammarFindings(file, source, lengthTokens(all));
 }
 
 test('the spacing ladder declares the selected ordered steps', () => {
@@ -143,4 +144,39 @@ test('a radius kept off the scale exists only for what wears it, and a scale ste
   const waiting = css.replaceAll('var(--radius-sm)', 'var(--radius-md)');
   assert.notEqual(waiting, css, 'the --radius-sm consumer is missing');
   assert.deepEqual(tokenUsageFindings(sheets(waiting)), []);
+});
+
+test('stroke widths come only from stroke tokens, while a stroke may name its colour through any token', () => {
+  for (const [file, source] of sheets()) assert.deepEqual(tokenGrammarFindings(file, source, lengthTokens(sheets())), [], file);
+  for (const [rule, sheet, expected] of [
+    ['.x { border: 1px solid var(--line); }', 0, ['carries raw stroke value 1px']],
+    ['.x { border-bottom-width: thin; }', 0, ['carries raw stroke value thin']],
+    ['.x { border-top: calc(var(--stroke-1) * 2) solid var(--line); }', 0, ['carries raw stroke value calc(var(--stroke-1) * 2)']],
+    ['.x { text-decoration-thickness: .1em; }', 0, ['carries raw stroke value .1em']],
+    ['.x { border-left: var(--radius-sm) solid var(--accent); }', 0, ['uses var(--radius-sm), which is not a stroke token']],
+    ['.x { --rule-width: 2px; border: var(--rule-width) solid var(--line); }', 0, ['uses var(--rule-width), which is not a stroke token']],
+    ['.x { border-inline-start: var(--space-1) solid var(--line); }', 1, ['uses var(--space-1), which is not a stroke token']],
+    ['.x { border: 2px solid CanvasText; }', 1, ['carries raw stroke value 2px']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { border: var(--stroke-1) solid var(--line); border-top: none; }',
+    '.x { border: 0; }',
+    '.x { border: var(--stroke-2) dashed rgb(var(--shadow-rgb) / 20%) !important; }',
+    '.x { border-bottom: var(--stroke-checkbox) solid color-mix(in srgb, var(--accent) 40%, transparent); }',
+    '.x { text-decoration-thickness: var(--stroke-1); }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+
+  // The overlay draws with widths the main stylesheet declares, so the whole check reads lengths across
+  // both sheets: one sheet alone would take a spacing step in the overlay for a colour.
+  const overlay = `${mobile}\n.x { border: var(--space-1) solid var(--line); }\n`;
+  assert.deepEqual(tokenGrammarFindings(TOKEN_SHEETS[1], overlay), []);
+  assert.ok(tokenFindings(sheets(css, overlay)).some((finding) => finding.endsWith('uses var(--space-1), which is not a stroke token')));
+
+  const unworn = css.replace('border: var(--stroke-checkbox) solid var(--cb-line)', 'border: var(--stroke-2) solid var(--cb-line)');
+  assert.notEqual(unworn, css, 'the --stroke-checkbox consumer is missing');
+  assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--stroke-checkbox holds 1.5px for the read checkbox, but nothing uses it']);
 });
