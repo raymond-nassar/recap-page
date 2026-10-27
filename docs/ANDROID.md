@@ -503,7 +503,9 @@ Android assets and the shared desktop entry. Its fixed 16-case matrix covers 320
 both themes, 150/200% text-token stress, landscape and desktop, plus 700/701px boundary
 measurements. It measures full-width prose, timeline markers, complete credits and gap text,
 meaningful accessibility order, Preview/Add and filter/sort compatibility. Its 320px 200% case
-also checks that the Storylines and MCU Prep search fields fit at 320 and 360px. Cover geometry
+also checks that the Storylines and MCU Prep search fields fit at 320 and 360px. Its 360px 150%
+case also checks that Preview offers no offline copy and says nothing about one, because the
+Android app runs no service worker (#928). Cover geometry
 uses an original local test image, never publisher artwork. Use `--case=M02` for one case;
 `MRT_CATALOG_EVIDENCE` stores measurements. Existing decorative accessibility exposure
 ([#638](https://github.com/raymond-nassar/recap-page/issues/638)) is retained rather than
@@ -563,7 +565,9 @@ reaches them: the rating from an issue's details, the list feedback note, the pe
 from List options, and House of M's Preview from the catalog. Each must open at its start with its
 title clear of what it holds and its focus inside, hold its answers in view with its scroll padded
 clear of them, and keep every control Tab reaches clear of them. Preview, whose only Close is in its
-head, must hold that head in view to the end of its list as well. Each must also be the one thing
+head, must hold that head in view to the end of its list as well. On Android, Preview must offer no
+offline copy and say nothing about one, because the Android app runs no service worker, while the
+desktop entry keeps its offline action and status line (#928). Each must also be the one thing
 that scrolls and read to its end above its answers (#830). With doubled text on a phone the
 checklist must overflow. Each closes with Android Back, or Escape at the desktop entry. These are
 Edge web checks, not native fontScale or TalkBack acceptance.

@@ -4264,12 +4264,30 @@ async function shellDialogs(page, label, viewport) {
         await page.waitForFunction((count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
           {}, orderEntry.count);
       },
+      // #928: the Android app runs no service worker, because its package already holds the app and every
+      // Reading List, so its Preview offers no offline copy and says nothing about one. The desktop entry
+      // keeps the action and its status line. This server refuses workers for that entry too, so there the
+      // action reads unavailable; the desktop suite's local-server-recovery prepares a copy with the real one.
+      async check() {
+        const offline = await page.$eval('#preview', (node) => ({
+          action: !!document.querySelector('#preview-offline [data-act="offline"]'),
+          status: !!document.querySelector('#preview-offline-status [role="status"]'),
+          elements: [...document.querySelectorAll('#preview-offline, #preview-offline-status')].map((found) => found.id),
+          actions: node.querySelectorAll('[data-act="offline"]').length,
+          words: /offline|service worker/i.test(node.innerText),
+        }));
+        check(viewport.desktop ? offline.action && offline.status
+          : !offline.elements.length && !offline.actions && !offline.words,
+        `${label}: ${viewport.desktop ? 'the desktop entry keeps Preview\'s offline action and its status line'
+          : 'the Android app\'s Preview offers no offline copy and says nothing about one'} ${JSON.stringify(offline)}`);
+      },
     },
   ];
   const summary = {};
   for (const dialog of dialogs) {
     await dialog.open();
     await page.waitForSelector(`${dialog.selector}[open]`);
+    await dialog.check?.();
     const measured = await measureShellDialog(page, dialog.selector);
     for (const [claim, holds, detail] of shellVerdicts(measured, dialog)) {
       check(holds, `${label}: the ${dialog.name} dialog ${claim} ${JSON.stringify(detail)}`);
