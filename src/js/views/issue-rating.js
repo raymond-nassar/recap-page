@@ -1,4 +1,5 @@
 import { isIssueRating, issueRating } from '../lib/model.js';
+import { labelledName, shownName } from '../lib/accname.js';
 
 const identity = (issue) => issue
   ? JSON.stringify([issue.issueId, issue.title, issue.seriesName, issue.number])
@@ -30,10 +31,12 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
     const replaced = savedIdentity !== null && identity(state.issues[current.issueId]) !== savedIdentity;
     const score = issueRating(state, current.issueId);
     nodes.trigger.disabled = unavailable || replaced;
-    nodes.label.textContent = unavailable || replaced ? 'Rating unavailable'
+    const label = unavailable || replaced ? 'Rating unavailable'
       : score === null ? 'Rate this issue' : `Your rating: ${score}/5`;
-    nodes.trigger.setAttribute('aria-label', unavailable || replaced ? 'Rating unavailable'
-      : score === null ? `Rate ${current.title}` : `Your rating: ${score} out of 5. Edit rating for ${current.title}.`);
+    nodes.label.textContent = label;
+    // The button's words lead its name, then the comic it rates (#905).
+    nodes.trigger.setAttribute('aria-label', unavailable || replaced ? label
+      : score === null ? labelledName(label, current.title) : shownName([label], `Edit rating for ${current.title}`));
     nodes.root.classList.toggle('is-rated', score !== null && !unavailable);
     nodes.status.textContent = unavailable
       ? 'Ratings are unavailable while saved reading data cannot be read. Open Backup & settings.'

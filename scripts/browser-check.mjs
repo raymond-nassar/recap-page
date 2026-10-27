@@ -15447,7 +15447,7 @@ SCENARIOS.push({
     for (const selector of ['.home-path', 'button:has(.yours-name)']) {
       for (const card of await page.$$(selector)) {
         if (!await card.evaluate((node) => !node.closest('[hidden]') && node.getClientRects().length > 0)) continue;
-        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent);
+        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent.trim());
         const accessible = await page.accessibility.snapshot({ root: card, interestingOnly: false });
         if (title) richNames.push({ title, name: accessible?.name ?? '' });
       }

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { labelledName, labelWords } from '../src/js/lib/accname.js';
+import { labelledName, labelWords, shownName } from '../src/js/lib/accname.js';
 
 // Written against the success criterion rather than against the module, so it can disagree with
 // it. SC 2.5.3 asks that the accessible name contain the visible label's text, and its
@@ -84,4 +84,39 @@ test('a label with no context is the label', () => {
 test('non-ASCII letters and digits survive', () => {
   assert.equal(labelWords('Café #4'), 'Café 4');
   assert.equal(labelledName('Añejo →', 'Zoë'), 'Añejo: Zoë');
+});
+
+// #905. Three more names the rules pass found with their visible pieces out of order or broken up,
+// each beside the text the control showed: a category card's eyebrow, title and count, a saved
+// list's name, count and status, and the comic page's rating button.
+const PIECEWISE_FAILURES = [
+  [['Browse by year', 'Modern Timeline', '152 Reading Lists'], 'Modern Timeline. Browse by year. 152 Reading Lists.'],
+  [['House of M: Main Series and Branded Tie-Ins', '3 / 20', 'Reading'],
+    'House of M Main Series and Branded Tie Ins 3 20: issues read, Reading. Open this list'],
+  [['Rate this issue'], 'Rate House of M (2005) #1'],
+];
+
+test('the containment check rejects the names #905 replaced', () => {
+  for (const [parts, oldName] of PIECEWISE_FAILURES) {
+    assert.equal(nameContainsLabel(oldName, parts.join(' ')), false, `${oldName} should not contain ${parts.join(' ')}`);
+  }
+});
+
+test('a name built from shown pieces contains them in order, then its context', () => {
+  for (const [parts] of PIECEWISE_FAILURES) {
+    const name = shownName(parts, 'House of M');
+    assert.equal(nameContainsLabel(name, parts.join(' ')), true, `${name} should contain ${parts.join(' ')}`);
+    assert.ok(name.endsWith('House of M.'), name);
+  }
+  assert.equal(shownName(['Browse by year', 'Modern Timeline', '152 Reading Lists']),
+    'Browse by year. Modern Timeline. 152 Reading Lists.');
+  assert.equal(shownName(['Your rating: 4.5/5'], 'Edit rating for House of M (2005) #1'),
+    'Your rating: 4.5/5. Edit rating for House of M (2005) #1.');
+});
+
+test('shown pieces keep their punctuation, and a piece that ends a sentence is not ended twice', () => {
+  assert.equal(shownName(['First list', '1 / 2. 1 deferred', 'Completed', 'Enjoyed. Completed today'], 'Open this list'),
+    'First list. 1 / 2. 1 deferred. Completed. Enjoyed. Completed today. Open this list.');
+  assert.equal(shownName(['What If...?', '  spaced\n  out  ', '', null], ''), 'What If...? spaced out.');
+  assert.equal(shownName([], 'Context only'), 'Context only.');
 });

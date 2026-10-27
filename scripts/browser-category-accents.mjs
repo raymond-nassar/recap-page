@@ -104,7 +104,7 @@ export const eraAccents = {
       const tiles = await page.$$eval(ERA_SELECTOR, (nodes) => nodes.map((node) => ({
         key: node.dataset.category,
         list: node.closest('ul')?.id,
-        title: node.querySelector('.home-path-title')?.textContent,
+        title: node.querySelector('.home-path-title')?.textContent.trim(),
         href: node.getAttribute('href'),
       })));
       t.check(`${width}px: the eleven era tiles keep their order, lists, names and links`,

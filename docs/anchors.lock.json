@@ -6134,8 +6134,8 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/shared/saved-lists.js:32|0": {
-    "anchor": "src/js/views/shared/saved-lists.js:32",
+  "scripts/check-palette.mjs|preamble|src/js/views/shared/saved-lists.js:35|0": {
+    "anchor": "src/js/views/shared/saved-lists.js:35",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },

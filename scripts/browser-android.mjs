@@ -1497,8 +1497,8 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      check(card.key === category.key && card.name === `${category.heading}. ${category.label}. ${count}.`
-        && JSON.stringify(card.parts.map((part) => part.text)) === JSON.stringify([category.label, category.heading, count]),
+      check(card.key === category.key && card.name === `${category.label}. ${category.heading}. ${count}.`
+        && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([category.label, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
       const caption = (viewport.desktop ? 12 : 14) * scale;
       const title = category.tier === 'secondary' ? 28 * scale : viewport.desktop ? 28.8 : 20;
