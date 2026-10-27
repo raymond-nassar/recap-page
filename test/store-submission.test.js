@@ -18,9 +18,13 @@ test('the packet separates the first submission from automated future updates', 
   const first = packet.slice(0, packet.indexOf('## Future Store updates'));
   const future = packet.slice(packet.indexOf('## Future Store updates'));
   const futureOperation = future.slice(future.indexOf('After that first free version'));
+  const boundary = future.slice(0, future.indexOf('After that first free version')).replace(/\s+/g, ' ');
   assert.match(first, /manual publishing hold/);
   assert.match(first, /Do not upload or submit a package that differs/);
   assert.match(first, /Do not publish without a separate explicit direction/);
+  assert.match(boundary, /the certification notes are kept current for the next submission/);
+  assert.match(boundary, /Everything else above it records the first submission/);
+  assert.match(boundary, /preserved at commit `8e4a773d`/);
   assert.match(future, /explicit default-branch dispatch/);
   assert.match(future, /Publishing a GitHub or Android release does not start it/);
   assert.match(future, /protected `microsoft-store-production`\s+environment/);

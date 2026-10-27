@@ -159,19 +159,21 @@ It is not a native phone app. No automatic device sync or offline comic reading.
 
 A reading session, using made-up progress rather than someone's reading history:
 
-1. In Browse, add Civil War: Avengers and Aftermath Reading Order, compiled from Comic Book Herald's guide:
+1. On Home, open Modern Timeline and add Civil War: Avengers and Aftermath Reading Order,
+   compiled from Comic Book Herald's guide:
    https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/
 2. Imagine the first six comics are marked read. Civil War (2006) #7 is the next unread issue.
 3. Choose Read. The official reader opens in a separate tab when a link is available. Otherwise the
    new tab looks up the link and falls back to an official issue page, not guaranteed access.
-4. Return to Recap Page and choose Done, next yourself. New Avengers (2004) #21 becomes next;
-   reading is not detected automatically.
+4. Return to Recap Page and choose Done. New Avengers (2004) #21 becomes next; reading is not
+   detected automatically.
 5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
 
 Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
-own order. Browse Reading Paths, add private notes, or track custom issues without changing that
-reading loop. Your progress stays in your browser profile. There is no account, advertising,
-analytics, or telemetry. Reading requires your own Marvel Unlimited subscription.
+own order. Follow a Reading Path on Modern Timeline, add private notes, or track custom issues
+without changing that reading loop. Your progress stays in your browser profile. There is no
+account, advertising, analytics, or telemetry. Reading requires your own Marvel Unlimited
+subscription.
 
 Recap Page contains no comic pages. Cover art is optional and loads directly from Marvel image
 hosts. Search and issue details use a community metadata service. An optional manual lookup can open
@@ -186,7 +188,7 @@ or Disney. Marvel names and marks belong to their respective owners.
 ### Feature fields
 
 1. Curated event, era, character, and continuity reading orders
-2. Reading Paths across connected lists
+2. Reading Paths across connected lists, followed on Modern Timeline
 3. Clear next issue and completion progress
 4. Private read markers, notes, availability overrides, and custom entries
 5. JSON backup and restore
@@ -279,7 +281,7 @@ owner-only action and may add certification time.
 
 Paste this after updating the date if submission occurs later:
 
-> Prepared 2026-09-01.
+> Prepared 2026-10-27.
 >
 > Recap Page is a packaged classic desktop app. Launching it starts the bundled
 > architecture-matched official Node runtime as a hidden local server bound only to
@@ -292,9 +294,10 @@ Paste this after updating the date if submission occurs later:
 > 1. Launch Recap Page from Start.
 > 2. Confirm the default browser opens `http://127.0.0.1:8787/`. A successful launch does not leave
 >    a console open.
-> 3. Open Browse and preview House of M.
-> 4. Under Add comics, find creator Jonathan Hickman and series House of M. These searches use
->    indexes bundled inside the package.
+> 3. On Home, open Modern Timeline, search for House of M, and select its title to preview it.
+> 4. Under Search, use Find a series to find House of M, then open More ways to add and use
+>    Browse a creator to find Jonathan Hickman. These searches use indexes bundled inside the
+>    package.
 > 5. Add a curated Reading List, mark an issue read, and optionally add a note.
 > 6. Close the browser and launch Recap Page again. The same browser profile retains that state.
 > 7. The Read action opens Marvel Unlimited when a direct reader link is known, or the official
@@ -340,9 +343,9 @@ path, email, or account data entered the captures.
 
 | File | Caption for Partner Center |
 |---|---|
-| `01-home-discovery.png` | Home presents clear ways to browse curated Reading Lists and connected Reading Paths. |
-| `02-browse-reading-lists.png` | Browse organizes Reading Lists by timeline, story, character, and other guided routes. |
-| `03-reading-paths.png` | Reading Paths show connected stories in sequence and carry sample progress from matching saved lists. |
+| `01-home-discovery.png` | Home offers a first step on Modern Timeline and category cards for Storylines, Character spotlights, Young readers, and more. |
+| `02-browse-reading-lists.png` | Storylines, reached from Home's category cards, lists story-arc Reading Lists with filters, era groups, and source credits. |
+| `03-reading-paths.png` | Modern Timeline follows a Reading Path stop by stop and marks where you are. |
 | `04-reading-progress.png` | A demonstration Reading List keeps the next issue, issue order, and local completion progress together. |
 | `05-about-privacy.png` | About explains local storage, direct network requests, source credits, and the unofficial-project boundary. |
 | `store-tile-300.png` | Exact 300 x 300 Store tile derived from the existing purple panels app icon. |
@@ -355,11 +358,11 @@ Reviewed asset measurements:
 
 | File | Dimensions | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `01-home-discovery.png` | 1920 x 1080 | 224602 | `A4EC38FB5CA9D8E7E99995BF00DCB42C21E59EF97145504DEEB495E75A9AF0C6` |
-| `02-browse-reading-lists.png` | 1920 x 1080 | 176653 | `4F710F86B8D8558ED064D3F38A6C4D4B54D2EBF90B98BD95DD6E9E8F6BF5F19E` |
-| `03-reading-paths.png` | 1920 x 1080 | 93419 | `A65510D3E503A02E4ACD8197A2A94F8A18088B417B8D9DFA4BA15F1713F8E5DA` |
-| `04-reading-progress.png` | 1920 x 1080 | 307843 | `CCFBB0EBE0EE94450D852FDA992F5D5A1AF0C4471B8F5019B131B3B3CC00080E` |
-| `05-about-privacy.png` | 1920 x 1080 | 122777 | `ED6CAD829AE0A1F3EBC04249CEBB90C16135D8DE6D7D598E5B385D6224302C94` |
+| `01-home-discovery.png` | 1920 x 1080 | 166705 | `AEF71128B1D8F75E269D858873139D714A8E0A8EA7D652EEBCD6E9D018512B4A` |
+| `02-browse-reading-lists.png` | 1920 x 1080 | 159962 | `87C56A2D5FF958D70467264748B51FFE8D71A96915D014FC23E808651F64E1A1` |
+| `03-reading-paths.png` | 1920 x 1080 | 103175 | `1373B4E38405468AD7568BA202D46EEDE591608D5F9FA4CF53A9A82566024AD5` |
+| `04-reading-progress.png` | 1920 x 1080 | 250981 | `920A38B28B18C6D29C6906461B0B4AAE2AC652FBFC225DC0EDBF666B6F8D15FC` |
+| `05-about-privacy.png` | 1920 x 1080 | 119227 | `321533727282615BFFE9F4D14F019B25818478F1F9B28639F84B41CA8A171EE4` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
@@ -419,9 +422,13 @@ unofficial, no-comics, and own-subscription disclosures are present.
 
 ## Future Store updates
 
-Everything above this heading records the first submission. Its package version, reviewed hash,
-manual upload, certification submission, and manual publishing hold remain the factual first-release
-procedure. They do not authorize or describe a later update.
+Above this heading, the listing's descriptions and feature fields, the screenshots and their
+captions, and the certification notes are kept current for the next submission. Everything else
+above it records the first submission. Its package version, reviewed hash, manual upload,
+certification submission, and manual publishing hold remain the factual first-release procedure.
+They do not authorize or describe a later update. The packet as it stood on 2026-09-01, when the
+owner authorized the replacement submission, is preserved at commit `8e4a773d`, copy and
+screenshots included.
 
 After that first free version is live, an explicit default-branch dispatch may start the separate
 Microsoft Store release workflow. Publishing a GitHub or Android release does not start it.
