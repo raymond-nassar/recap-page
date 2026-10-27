@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cloud_qualification_title">Cloud account qualification</string>
+    <string name="cloud_qualification_intro">Native Google sign-in qualification. No reading data will be uploaded.</string>
+    <string name="cloud_qualification_existing_read">Verify this native account, then read one exact existing synthetic test file. No reading data or other files will be read or uploaded.</string>
+    <string name="cloud_qualification_sign_in">Sign in to Google</string>
+    <string name="cloud_qualification_waiting">Waiting for Google account authorization.</string>
+    <string name="cloud_qualification_verifying">Verifying the native account and protected cache.</string>
+    <string name="cloud_qualification_success">Account verified locally. No reading data uploaded.</string>
+    <string name="cloud_qualification_stopped">Native qualification stopped. Return to the test output; local reading is unchanged.</string>
+    <string name="cloud_qualification_result_failure">Could not save the qualification result. Use Cancel or Back; no verified connection was reported.</string>
+    <string name="cloud_qualification_microsoft_intro">Native Microsoft sign-in qualification. No reading data will be uploaded.</string>
+    <string name="cloud_qualification_microsoft_sign_in">Sign in to Microsoft</string>
+    <string name="cloud_qualification_microsoft_waiting">Waiting for Microsoft account authorization.</string>
+    <string name="cloud_qualification_return_ended_title">Return link closed</string>
+    <string name="cloud_qualification_return_ended">This return link is no longer active. A completed sign-in stays complete. Return to the test output to see the result. Your reading data is unchanged.</string>
+</resources>

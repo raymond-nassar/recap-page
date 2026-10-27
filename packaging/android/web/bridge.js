@@ -1,3 +1,5 @@
+import { createAndroidCloudClient } from './cloud.js';
+
 export const MAX_EXPORT_BYTES = 32 * 1024 * 1024;
 const TYPES = new Map([
   ['application/json', '.json'],
@@ -32,10 +34,17 @@ export function validateExport({ filename, type, text }) {
   }
 }
 
-export function createAndroidBridge({ host, report, handleBack }) {
+export function createAndroidBridge({ host, report, handleBack, loadCloudCodec }) {
   let port = null;
   let pending = null;
   let sequence = 0;
+  const cloud = createAndroidCloudClient({
+    loadCodec: loadCloudCodec,
+    send: (message) => {
+      if (!port) throw new Error('Native cloud port is inactive.');
+      port.postMessage(JSON.stringify(message));
+    },
+  });
 
   function finish(saved, message) {
     const request = pending;
@@ -45,6 +54,7 @@ export function createAndroidBridge({ host, report, handleBack }) {
   }
 
   function closePort(message) {
+    cloud.reset();
     finish(false, message);
     port?.close();
     port = null;
@@ -63,6 +73,7 @@ export function createAndroidBridge({ host, report, handleBack }) {
       finish(false, 'Android sent an unreadable response. Please try the download again.');
       return;
     }
+    if (cloud.receive(message)) return;
     if (message?.v !== 1 || typeof message.id !== 'string') {
       finish(false, 'Android sent an unsupported response. Reopen the app and try again.');
       return;
@@ -123,5 +134,5 @@ export function createAndroidBridge({ host, report, handleBack }) {
     });
   }
 
-  return { save, disconnect };
+  return { save, disconnect, cloud };
 }

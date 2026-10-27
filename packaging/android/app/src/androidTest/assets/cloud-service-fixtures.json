@@ -1,0 +1,328 @@
+{
+  "format": "recap-native-service-fixtures",
+  "version": 1,
+  "providers": {
+    "google": {
+      "a": {
+        "components": {
+          "reader": {
+            "schemaVersion": 4,
+            "app": "recap-page",
+            "issues": {
+              "1": {
+                "issueId": 1,
+                "title": "Synthetic first comic",
+                "number": null,
+                "url": "https://www.marvel.com/comics/issue/1/",
+                "seriesId": null,
+                "seriesName": null,
+                "onSale": null,
+                "mu": null,
+                "digitalId": null,
+                "cover": null,
+                "pageCount": null,
+                "creators": null,
+                "source": "api",
+                "hydrated": false,
+                "detailsRefused": false
+              },
+              "2": {
+                "issueId": 2,
+                "title": "Synthetic second comic",
+                "number": null,
+                "url": "https://www.marvel.com/comics/issue/2/",
+                "seriesId": null,
+                "seriesName": null,
+                "onSale": null,
+                "mu": null,
+                "digitalId": null,
+                "cover": null,
+                "pageCount": null,
+                "creators": null,
+                "source": "api",
+                "hydrated": false,
+                "detailsRefused": false
+              }
+            },
+            "read": {
+              "1": 1700000000001,
+              "2": 1700000000002
+            },
+            "overrides": {},
+            "notes": {
+              "2": "Synthetic saved note B"
+            },
+            "ratings": {
+              "1": 4.5
+            },
+            "lists": {
+              "synthetic-native-qualification": {
+                "id": "synthetic-native-qualification",
+                "name": "Synthetic native qualification",
+                "description": "",
+                "note": "",
+                "created": 1700000000000,
+                "catalogId": null,
+                "itemIds": [
+                  1,
+                  2
+                ],
+                "collectedIn": {},
+                "deferredIssueIds": []
+              }
+            },
+            "listOrder": [
+              "synthetic-native-qualification"
+            ],
+            "active": "synthetic-native-qualification"
+          },
+          "history": {
+            "format": "recap-page-list-history",
+            "version": 1,
+            "records": [
+              {
+                "listId": "synthetic-native-qualification",
+                "created": 1700000000000,
+                "catalogId": null,
+                "completedAt": 1700000000001,
+                "rating": "down"
+              }
+            ]
+          },
+          "settings": {
+            "apiBase": "https://metadata.example.test/v1",
+            "covers": false,
+            "filter": "deferred",
+            "hideDescriptions": false,
+            "readingShortcut": false,
+            "sidebarCollapsed": true,
+            "theme": "dark"
+          },
+          "draft": {
+            "destination": {
+              "created": 1700000000000,
+              "id": "synthetic-draft-destination",
+              "name": "Synthetic draft",
+              "newList": true,
+              "prefix": []
+            },
+            "format": "recap-import-draft",
+            "occurrences": [
+              {
+                "title": "Synthetic source position",
+                "url": null,
+                "read": false,
+                "index": 0,
+                "section": null,
+                "line": 3,
+                "choice": null,
+                "applied": false
+              }
+            ],
+            "previousSources": [
+              "Synthetic retained source"
+            ],
+            "rawText": "# Synthetic saved draft B\n\n- [ ] Synthetic source position",
+            "version": 1
+          }
+        },
+        "contentDigest": "b02e153e102a191c4d5c3053e372a7c8bf5c92929d9fcb9a6f82463f06fa8dd3"
+      },
+      "b": {
+        "components": {
+          "reader": {
+            "schemaVersion": 4,
+            "app": "recap-page",
+            "issues": {
+              "1": {
+                "issueId": 1,
+                "title": "Synthetic first comic",
+                "number": null,
+                "url": "https://www.marvel.com/comics/issue/1/",
+                "seriesId": null,
+                "seriesName": null,
+                "onSale": null,
+                "mu": null,
+                "digitalId": null,
+                "cover": null,
+                "pageCount": null,
+                "creators": null,
+                "source": "api",
+                "hydrated": false,
+                "detailsRefused": false
+              },
+              "2": {
+                "issueId": 2,
+                "title": "Synthetic second comic",
+                "number": null,
+                "url": "https://www.marvel.com/comics/issue/2/",
+                "seriesId": null,
+                "seriesName": null,
+                "onSale": null,
+                "mu": null,
+                "digitalId": null,
+                "cover": null,
+                "pageCount": null,
+                "creators": null,
+                "source": "api",
+                "hydrated": false,
+                "detailsRefused": false
+              }
+            },
+            "read": {
+              "1": 1700000000001,
+              "2": 1700000000002
+            },
+            "overrides": {},
+            "notes": {
+              "2": "Synthetic saved note B"
+            },
+            "ratings": {
+              "1": 4.5
+            },
+            "lists": {
+              "synthetic-native-qualification": {
+                "id": "synthetic-native-qualification",
+                "name": "Synthetic native qualification",
+                "description": "",
+                "note": "",
+                "created": 1700000000000,
+                "catalogId": null,
+                "itemIds": [
+                  1,
+                  2
+                ],
+                "collectedIn": {},
+                "deferredIssueIds": []
+              }
+            },
+            "listOrder": [
+              "synthetic-native-qualification"
+            ],
+            "active": "synthetic-native-qualification"
+          },
+          "history": {
+            "format": "recap-page-list-history",
+            "version": 1,
+            "records": [
+              {
+                "listId": "synthetic-native-qualification",
+                "created": 1700000000000,
+                "catalogId": null,
+                "completedAt": 1700000000001,
+                "rating": "down"
+              }
+            ]
+          },
+          "settings": {
+            "apiBase": "https://metadata.example.test/v1",
+            "covers": false,
+            "filter": "deferred",
+            "hideDescriptions": true,
+            "readingShortcut": false,
+            "sidebarCollapsed": true,
+            "theme": "dark"
+          },
+          "draft": {
+            "destination": {
+              "created": 1700000000000,
+              "id": "synthetic-draft-destination",
+              "name": "Synthetic draft",
+              "newList": true,
+              "prefix": []
+            },
+            "format": "recap-import-draft",
+            "occurrences": [
+              {
+                "title": "Synthetic source position",
+                "url": null,
+                "read": false,
+                "index": 0,
+                "section": null,
+                "line": 3,
+                "choice": null,
+                "applied": false
+              }
+            ],
+            "previousSources": [
+              "Synthetic retained source"
+            ],
+            "rawText": "# Synthetic saved draft B\n\n- [ ] Synthetic source position",
+            "version": 1
+          }
+        },
+        "contentDigest": "ce3bd68a99739d1a10730dcf28e0dc3e05e21fa015e15871c591fac7d8772d15"
+      }
+    },
+    "microsoft": {
+      "a": {
+        "components": {
+          "reader": {
+            "schemaVersion": 4,
+            "app": "recap-page",
+            "issues": {},
+            "read": {},
+            "overrides": {},
+            "notes": {
+              "101": "Synthetic publication qualification B"
+            },
+            "ratings": {},
+            "lists": {},
+            "listOrder": [],
+            "active": null
+          },
+          "history": {
+            "format": "recap-page-list-history",
+            "version": 1,
+            "records": []
+          },
+          "settings": {
+            "apiBase": "https://marvel.emreparker.com/v1",
+            "covers": true,
+            "filter": "all",
+            "hideDescriptions": true,
+            "readingShortcut": true,
+            "sidebarCollapsed": null,
+            "theme": "system"
+          },
+          "draft": null
+        },
+        "contentDigest": "63f7ddc416ab861215f41283edf0b80fd83a4cb31c397bb7e9e68fa26734b880"
+      },
+      "b": {
+        "components": {
+          "reader": {
+            "schemaVersion": 4,
+            "app": "recap-page",
+            "issues": {},
+            "read": {},
+            "overrides": {},
+            "notes": {
+              "101": "Synthetic publication qualification B"
+            },
+            "ratings": {},
+            "lists": {},
+            "listOrder": [],
+            "active": null
+          },
+          "history": {
+            "format": "recap-page-list-history",
+            "version": 1,
+            "records": []
+          },
+          "settings": {
+            "apiBase": "https://marvel.emreparker.com/v1",
+            "covers": true,
+            "filter": "all",
+            "hideDescriptions": false,
+            "readingShortcut": true,
+            "sidebarCollapsed": null,
+            "theme": "system"
+          },
+          "draft": null
+        },
+        "contentDigest": "3258e2b1a67fa40b53f016ae03f98b6f41d2d9ed42c60804e4aa73a07805a43e"
+      }
+    }
+  }
+}

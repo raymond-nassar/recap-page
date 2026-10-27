@@ -11,11 +11,18 @@ import { startCloudOAuthCallback } from './cloudCallback.mjs';
 const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
 const MICROSOFT_SCOPE = 'Files.ReadWrite.AppFolder';
 const CACHE_LIMIT = 1024 * 1024;
+const PROVIDER_ERROR_CODES = new Set([
+  'invalid_request', 'invalid_client', 'invalid_grant', 'invalid_scope',
+  'unauthorized_client', 'access_denied', 'temporarily_unavailable',
+  'server_error', 'interaction_required', 'consent_required',
+]);
 
 export class CloudAuthenticationError extends Error {
-  constructor(message) {
+  constructor(message, { status, code } = {}) {
     super(message);
     this.name = 'CloudAuthenticationError';
+    if (status !== undefined) this.status = status;
+    if (code !== undefined) this.code = code;
   }
 }
 
@@ -43,10 +50,15 @@ function boundedTransport(provider, fetchImpl) {
     if (!allowed || url.username || url.password || url.hash) {
       throw new CloudAuthenticationError('The authentication SDK requested an unsupported endpoint.');
     }
-    const response = await fetchImpl(url, {
-      ...options, redirect: 'error', signal: globalThis.AbortSignal.timeout(30000),
-    });
-    if (!response.ok || !response.body) {
+    let response;
+    try {
+      response = await fetchImpl(url, {
+        ...options, redirect: 'error', signal: globalThis.AbortSignal.timeout(30000),
+      });
+    } catch {
+      throw new CloudAuthenticationError('The authentication request failed or timed out. Reconnect when ready.');
+    }
+    if (!response.body) {
       throw new CloudAuthenticationError('The provider could not complete authentication. Reconnect when ready.');
     }
     const reader = response.body.getReader();
@@ -62,15 +74,35 @@ function boundedTransport(provider, fetchImpl) {
         }
         chunks.push(Buffer.from(value));
       }
+    } catch (error) {
+      if (error instanceof CloudAuthenticationError) throw error;
+      throw new CloudAuthenticationError('The authentication response could not be read. Reconnect when ready.');
     } finally {
       await reader.cancel();
     }
-    return { response, data: JSON.parse(Buffer.concat(chunks).toString('utf8')) };
+    let data;
+    try {
+      data = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+    } catch {
+      throw new CloudAuthenticationError('The provider returned an invalid authentication response.');
+    }
+    if (!response.ok) {
+      const code = PROVIDER_ERROR_CODES.has(data?.error) ? data.error : undefined;
+      const advice = provider === 'google' && code === 'invalid_request'
+        && data?.error_description === 'client_secret is missing.'
+        ? 'Configure the registered desktop client credential in the native host before reconnecting.'
+        : 'Check the native OAuth client configuration and account access before reconnecting.';
+      throw new CloudAuthenticationError(
+        `The provider rejected authentication (HTTP ${response.status}${code ? `, ${code}` : ''}). ${advice}`,
+        { status: response.status, code },
+      );
+    }
+    return { response, data };
   };
 }
 
 export async function createWindowsCloudAuth({
-  provider, clientId, profileId, epoch, directory, isCurrent, openBrowser,
+  provider, clientId, clientSecret, profileId, epoch, directory, isCurrent, openBrowser,
   platform = process.platform,
   fetchImpl = globalThis.fetch,
   loadMsal = () => import('@azure/msal-node'),
@@ -82,6 +114,9 @@ export async function createWindowsCloudAuth({
     throw new TypeError('Invalid native cloud authentication configuration.');
   }
   requireValue(clientId, 'A registered public-client identifier is required.');
+  if (provider === 'google') {
+    requireValue(clientSecret, 'Configure the registered Google desktop client credential in the native host before signing in.');
+  }
   const persistence = await createCloudCredentialPersistence({
     directory: join(directory, provider), profileId, platform, loadSdk: loadPersistenceSdk,
   });
@@ -109,7 +144,7 @@ export async function createWindowsCloudAuth({
     } else {
       const { OAuth2Client } = await loadGoogle();
       client = new OAuth2Client({
-        clientId, clientAuthentication: 'None', useAuthRequestParameters: false,
+        clientId, clientSecret, clientAuthentication: 'ClientSecretPost', useAuthRequestParameters: false,
         transporter: {
           async request(options) {
             const { response, data } = await transport(options.url, {

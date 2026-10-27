@@ -87,6 +87,12 @@ installation shows existing backups before it may upload. Restore is an explicit
 review and confirmation; it does not merge devices or synchronize them. The app keeps a recoverable
 copy of local data during a restore and blocks backup while recovery is unresolved.
 
+Google keeps two snapshot files. OneDrive uses two small publication records, up to two committed
+snapshot files, and at most two staging or awaiting-cleanup files per stream. Snapshot files are
+immutable after publication. Unresolved files are preserved; backup pauses rather than deleting
+uncertain data or exceeding that staging limit. Provider-managed upload temporaries and history
+are controlled by the provider.
+
 The provider controls its account, storage, retention and deletion. A provider can retain its own
 copies or history; disconnecting and local erase do not remove remote backups. Provider storage
 encryption is not an end-to-end-encryption guarantee. While offline, changes remain local and

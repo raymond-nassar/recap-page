@@ -127,12 +127,13 @@ function canonicalReaderValue(raw, state, token) {
 }
 
 export class ListHistoryStore {
-  constructor({ readerStore, storage = readerStore?.storage, locks, clock = Date.now, onChange = () => {} } = {}) {
+  constructor({ readerStore, storage = readerStore?.storage, locks, clock = Date.now, onChange = () => {}, onCommit = () => {} } = {}) {
     this.readerStore = readerStore;
     this.storage = storage;
     this.locks = locks;
     this.clock = clock;
     this.onChange = onChange;
+    this.onCommit = onCommit;
     this.records = new Map();
     this.seenRaw = undefined;
     this.known = false;
@@ -333,7 +334,7 @@ export class ListHistoryStore {
       return this.fail('The reading list changed before it could be prepared. Completion history is unchanged.');
     }
     const prepared = setActive(reader.state, id);
-    if (!reader.persist(prepared, raw)) {
+    if (!reader.persist(prepared, raw, { personal: false })) {
       const message = reader.lastError || 'The reading list could not be saved safely.';
       reader.load();
       return this.fail(`${message} Completion history is unchanged.`);
@@ -358,6 +359,10 @@ export class ListHistoryStore {
   }
 
   saveRecords(records) {
+    const before = this.seenRaw;
+    if (JSON.stringify(envelope(records)) === JSON.stringify(envelope(this.records)) && this.known && !this.blocked) {
+      return { ok: true };
+    }
     let candidate;
     try {
       candidate = JSON.stringify({ writeToken: newId('history'), ...envelope(records) });
@@ -384,6 +389,8 @@ export class ListHistoryStore {
     if (actual !== candidate) {
       return this.fail('The completion-history write did not match the saved value. That change was not confirmed.');
     }
+    try { this.onCommit({ component: 'history', before, after: candidate }); }
+    catch { /* Backup observation does not own the saved history result. */ }
     return { ok: true };
   }
 
@@ -550,5 +557,17 @@ export async function eraseReaderAndHistory(readerStore, history, { onReaderEras
     ok: true, readerErased: true, historyKept: !cleanup.ok, snapshotKept,
     readerRaw, error: cleanup.error ?? null,
     readerChanged: cleanup.readerChanged === undefined ? false : cleanup.readerChanged,
+  };
+}
+
+export function prepareListHistoryRestore(text, before) {
+  if (before !== null) boundedText(before);
+  const records = parseListHistory(text);
+  const value = JSON.stringify({ writeToken: newId('history'), ...envelope(records) });
+  boundedText(value);
+  parseListHistory(value);
+  return {
+    owner: 'history', version: 1, before, value,
+    effects: [{ key: LIST_HISTORY_KEY, before, value }],
   };
 }

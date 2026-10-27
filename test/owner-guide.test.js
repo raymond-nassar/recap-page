@@ -13,7 +13,7 @@ import {
 } from '../scripts/lib/owner-guide.mjs';
 import { approvalDigestFor, validateFrozenPacket, validatePacketProposal } from '../scripts/lib/cbh-inventory.mjs';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
-import { ownerPresentation } from '../scripts/browser-owner-guide.mjs';
+import { ownerGuideReflow, ownerPresentation } from '../scripts/browser-owner-guide.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import { beforeIdentityText } from './helpers/owner-identity-history.mjs';
@@ -351,6 +351,61 @@ test('review regression: repeated missing originals preserve canonical gap refer
   request.selections[1].rows[0].gap.kind = 'availability-exclusion';
   request.selections[1].rows[0].gap.status = 'closed';
   await assert.rejects(() => prepareOwnerGuide(request, { root }), /conflicting gap dispositions/);
+});
+
+test('owner guide reflow measures only after fonts, resize frames and finite shell animation settle', async () => {
+  const globals = ['document', 'innerWidth', 'requestAnimationFrame']
+    .map((name) => [name, Object.getOwnPropertyDescriptor(globalThis, name)]);
+  let resolveFonts, resolveAnimation, observedAnimations;
+  const fonts = new Promise((resolve) => { resolveFonts = resolve; });
+  const animation = new Promise((resolve) => { resolveAnimation = resolve; });
+  const animationsSeen = new Promise((resolve) => { observedAnimations = resolve; });
+  let documentWidth = 1280, reads = 0, frames = 0;
+  const shell = {
+    getClientRects: () => [{}],
+    getBoundingClientRect: () => ({ right: documentWidth }),
+    getAnimations() {
+      observedAnimations();
+      return [
+        { playState: 'running', effect: { getComputedTiming: () => ({ endTime: 150 }) }, finished: animation },
+        { playState: 'running', effect: { getComputedTiming: () => ({ endTime: Infinity }) },
+          get finished() { throw new Error('An infinite animation cannot gate a geometry check'); } },
+      ];
+    },
+  };
+  globalThis.document = {
+    fonts: { ready: fonts }, visibilityState: 'visible',
+    documentElement: { dataset: { appReady: 'true' },
+      get scrollWidth() { reads++; return documentWidth; } },
+    querySelector: (selector) => selector === '#shell' ? shell : null,
+  };
+  globalThis.innerWidth = 360;
+  globalThis.requestAnimationFrame = (callback) => { frames++; queueMicrotask(() => callback(frames)); };
+  const measurement = ownerGuideReflow({ evaluate: (callback) => callback() });
+  try {
+    assert.equal(reads, 0, 'an immediate pre-layout width is not a stable reflow measurement');
+    assert.equal(frames, 0, 'font readiness precedes rendering-frame synchronization');
+    resolveFonts();
+    await animationsSeen;
+    assert.equal(frames, 2);
+    assert.equal(reads, 0, 'the finite column transition must finish before sampling width');
+    documentWidth = 360;
+    resolveAnimation();
+    const actual = await measurement;
+    assert.deepEqual(actual, {
+      documentWidth: 360, viewport: 360, ready: true, visibility: 'visible', overflowing: [],
+    });
+    assert.equal(reads, 1);
+    assert.equal(actual.documentWidth <= actual.viewport, true);
+  } finally {
+    resolveFonts();
+    resolveAnimation();
+    await Promise.allSettled([measurement]);
+    for (const [name, descriptor] of globals) {
+      if (descriptor) Object.defineProperty(globalThis, name, descriptor);
+      else delete globalThis[name];
+    }
+  }
 });
 
 test('review regression: mixed collection presentation does not rewrite null stored groups', () => {

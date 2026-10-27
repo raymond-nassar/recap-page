@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <queries>
+        <package android:name="${applicationId}.test" />
+    </queries>
+    <application>
+        <activity
+            android:name=".CloudAuthActivity"
+            android:exported="false"
+            android:process=":cloudCandidate"
+            android:label="@string/cloud_qualification_title" />
+        <activity
+            android:name=".CloudSdkQualificationActivity"
+            android:exported="false"
+            android:process=":cloudCandidate"
+            android:label="@string/cloud_native_qualification_title" />
+        <activity
+            android:name=".CloudSdkRedirectActivity"
+            android:exported="false"
+            android:process=":cloudCandidate" />
+        <receiver
+            android:name=".CloudSdkQualificationActivity$ClosePresentation"
+            android:exported="false"
+            android:process=":cloudCandidate" />
+        <activity
+            android:name=".CloudAuthQualificationActivity"
+            android:exported="false"
+            android:label="@string/cloud_qualification_title" />
+        <activity android:name="net.openid.appauth.RedirectUriReceiverActivity" tools:node="remove" />
+        <activity android:name="net.openid.appauth.AuthorizationManagementActivity" tools:node="remove" />
+        <activity android:name=".CloudMicrosoftRedirectActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="msauth" android:host="${applicationId}" android:path="/lOKXn5S+gV/d953geoTEU4ESLWI=" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

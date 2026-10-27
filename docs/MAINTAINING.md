@@ -129,7 +129,7 @@ MRT_EDGE=/absolute/path/to/browser npm run browser
 
 The check normally uses an ephemeral port and an isolated profile, stubs catalog requests before
 the page loads, and exits nonzero if a journey fails. Saved progress at the normal app address
-stays untouched. The targeted `cache-generations`,
+stays untouched. The targeted `cloud-backup`, `cloud-restore`, `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, `order-only-export`, `ordered-import`,
@@ -139,8 +139,46 @@ stays untouched. The targeted `cache-generations`,
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
 
+`--only=cloud-backup --cloud-source-fixture` and `--only=cloud-restore --cloud-source-fixture`
+check only shared cloud source with a fake native adapter on the isolated ephemeral fixture.
+The restore journey uses real browser IndexedDB and Web Locks, including an actual second tab,
+write-before-checkpoint failure, reload and explicit recovery. These do not change the app origin, authorize real
+uploads or qualify fixed-origin/native provider integration. That option is refused for other
+journeys. Keep this source-only result separate from the required fixed-origin acceptance.
+
+The same restore journey can consume a retained, strictly synthetic native snapshot without
+contacting a provider:
+
+```powershell
+npm run browser -- --only=cloud-restore --cloud-source-fixture --cloud-retained-provider=google --cloud-retained-snapshot="C:\fixtures\synthetic-cloud.json"
+```
+
+Use `microsoft` for a OneDrive fixture and replace the example path with the actual retained
+native snapshot. The input must be a regular, nonsymlink UTF-8 file of at most 32 MiB and pass
+the shared snapshot parser before browser startup. Retained inputs cannot run against the app
+origin, another scenario, diagnostics or mutation proof. The journey checks the exact selected
+input, prepared owner bytes and coherent four-component digest after Finish, including null
+draft and sidebar values. This proves real browser restore/recovery of those bytes through a
+controlled native adapter, not a new provider request or connected cross-platform acceptance.
+
+Normal startup does not connect a provider. A qualified native client must explicitly call
+`configureCloudProviders({client, qualification: true, label})`; the optional controls then own
+inventory consent and initial Restore/separate-device selection. Do not replace this with a default
+fake client, bypass the journal guard or bind the production SDK before its qualification gate.
+An inaccessible restore journal pauses saving and uploads while retaining local viewing/exports.
+Preserve that browser profile and the exact prior download; never clear IndexedDB or its local marker
+as a troubleshooting shortcut. Close other app tabs before explicit recovery. Cache clearing does not
+remove the dedicated restore database.
+
 The runner prints progress before creating each browser context and reports results as they
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.
+The `cache-generations` journey additionally records app readiness, document visibility and
+an allowlisted empty/blocked/removed/other report category at navigation and its first blocked
+cleanup wait. A failed observation never replaces the original failure or changes its deadline.
+Owner-guide Reading List fit checks record numeric document/viewport widths, readiness,
+visibility and fixed layout-selector overflow without changing the required width.
+They measure after font readiness, resize frames and the actual finite shell animation,
+using the same synchronization as the Android alignment check rather than an arbitrary delay.
 Diagnostics include allowlisted browser and driver versions and observed numeric process exit
 or signal values. An unavailable cause is `unknown`, not proof of a crash, resource limit or app
 defect. Exits during requested cleanup are labelled separately. The unsigned hexadecimal exit

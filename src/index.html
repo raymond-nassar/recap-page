@@ -19,8 +19,8 @@
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <div id="announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
-
-    <div class="shell" id="shell">
+    <p id="startup-status" class="rail-hint" role="status">Checking saved data and recovery…</p>
+    <div class="shell" id="shell" inert aria-busy="true">
       <!-- ================================================== rail -->
       <!--
         Collapsed, this becomes a 48px icon rail rather than disappearing, so every
@@ -931,6 +931,33 @@
 
             <section class="setgroup">
               <h2>Data safety</h2>
+              <section class="card card-static setting" id="cloud-backup" aria-labelledby="cloud-backup-h">
+                <h3 id="cloud-backup-h">Optional cloud backup</h3>
+                <p id="cloud-status" class="rail-hint" role="status" aria-live="polite" tabindex="-1">Cloud backup is unavailable in this app build. Local backups and reading remain available.</p>
+                <p id="cloud-identity" class="rail-hint">Not connected.</p>
+                <div class="field-row">
+                  <label for="cloud-provider">Provider</label>
+                  <select id="cloud-provider" disabled><option value="microsoft">OneDrive</option><option value="google">Google Drive</option></select>
+                  <button type="button" class="btn" id="cloud-connect" disabled>Connect</button>
+                  <button type="button" class="btn btn-g" id="cloud-retry" hidden>Retry backup</button>
+                  <button type="button" class="btn btn-g" id="cloud-find" hidden>Find backups to restore</button>
+                  <button type="button" class="btn btn-g" id="cloud-disconnect" hidden>Disconnect</button>
+                  <button type="button" class="btn btn-g" id="cloud-cancel" hidden>Cancel connection</button>
+                </div>
+                <div id="cloud-streams" class="stack"></div>
+                <div class="field-row"><button type="button" class="btn btn-g" id="cloud-separate" hidden>Back up this device separately</button></div>
+                <div id="cloud-report" class="results" tabindex="-1"></div>
+                <section id="cloud-recovery" class="stack" aria-labelledby="cloud-recovery-h" hidden>
+                  <h4 id="cloud-recovery-h">Interrupted complete restore</h4>
+                  <p id="cloud-recovery-status" class="rail-hint"></p>
+                  <p class="rail-hint">Saving and cloud uploads are paused. Download the exact prior copy before recovery. Unknown edits are never overwritten automatically.</p>
+                  <div class="field-row">
+                    <button type="button" class="btn btn-g" id="cloud-export-prior">Download exact prior copy</button>
+                    <button type="button" class="btn btn-g" id="cloud-finish">Finish restore</button>
+                    <button type="button" class="btn btn-g" id="cloud-prior">Restore prior data</button>
+                  </div>
+                </section>
+              </section>
               <div class="card card-static addpri">
                 <h3>Back up reading data</h3>
                 <p class="rail-hint">Reading-data backups contain lists, notes, issue ratings, read progress and deferrals.</p>

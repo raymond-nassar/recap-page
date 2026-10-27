@@ -2818,6 +2818,22 @@ try {
     check(await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read).length === 1), `${label}: progress survives reload`);
     await route(page, 'data');
     await measure(page, `${label} Backup & settings`);
+    const cloudControls = await page.evaluate(() => ({
+      unavailable: document.querySelector('#cloud-status').textContent.includes('unavailable'),
+      disabled: document.querySelector('#cloud-connect').disabled && document.querySelector('#cloud-provider').disabled,
+      named: document.querySelector('#cloud-provider').labels[0].textContent === 'Provider',
+      targets: ['#cloud-connect', '#cloud-provider'].map((selector) => {
+        const box = document.querySelector(selector).getBoundingClientRect(); return { width: box.width, height: box.height };
+      }),
+    }));
+    check(cloudControls.unavailable && cloudControls.disabled && cloudControls.named
+      && cloudControls.targets.every((box) => box.width >= 24 && box.height >= (viewport.desktop ? 24 : 48)),
+    `${label}: unconfigured optional cloud controls stay named, truthful and touch-sized without native sign-in`);
+    check(await page.evaluate(async () => {
+      const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+      return cloudRestoreRuntime()?.isReady() && document.documentElement.dataset.appReady === 'true'
+        && !document.querySelector('#shell').inert;
+    }), `${label}: the Android bootstrap uses the real initialized session guard before controls become ready`);
     await page.select('#opt-theme', 'light');
     await measure(page, `${label} light theme`);
     await page.select('#opt-theme', 'dark');

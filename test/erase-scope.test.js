@@ -34,7 +34,10 @@ function deferred() {
   return { promise, resolve };
 }
 
-function eraseFixture({ locks = { request: async (_name, operation) => operation() }, clear = async () => true } = {}) {
+function eraseFixture({
+  locks = { request: async (_name, operation) => operation() }, clear = async () => true,
+  cloudOpening = false, cloudSession = null,
+} = {}) {
   const map = new Map();
   const storage = {
     map, failReads: new Set(), silentWrites: new Set(),
@@ -62,6 +65,8 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
   const cacheStarted = deferred();
   const h = { storage, reader, history, calls, cacheStarted, undo: { list: reader.state.lists.old }, temporaryLink: 'old reference' };
   const dependencies = {
+    cloudOpening, cloudSession,
+    restoreSession: null, cloudView: { beforeErase: async () => true },
     store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY, IMPORT_DRAFT_KEY: 'mrt.import.draft.v1',
     eraseReaderAndHistory, eraseOutcome,
     cache: { async clear(...args) { calls.cache.push(args); cacheStarted.resolve(); return clear(h, ...args); } },
@@ -92,7 +97,9 @@ async function saveLaterReading(h) {
   const restored = h.reader.restore(JSON.stringify(exportBackup(h.reader.state)));
   assert.equal(restored.ok, true);
   h.undo = { list: h.reader.state.lists['removed-later'] };
-  h.reader.update((state) => deleteList(state, 'removed-later').state);
+  h.reader.update((state) => deleteList(state, 'removed-later'));
+  assert.equal(h.reader.lastUpdateOk, true);
+  assert.equal(h.reader.state.lists['removed-later'], undefined);
   h.temporaryLink = 'newer reference';
   return {
     undo: h.undo, readerRaw: h.storage.getItem(KEY),
@@ -139,6 +146,22 @@ test('actual erase follow-through withdraws old offers before waits and preserve
     assert.doesNotMatch(h.calls.notify.at(-1)[1], /copy could not be removed/);
     assert.doesNotMatch([...h.calls.announce, ...h.calls.notify.map((args) => args[1])].join(' '), /All local data erased/);
     assert.equal(h.calls.forget, 1, delayed);
+  }
+});
+
+test('actual erase refuses unresolved cloud initialization and failed suspension before any local removal', async () => {
+  for (const options of [
+    { cloudOpening: true },
+    { cloudSession: { async beforeErase() { throw new Error('Native suspension not verified'); } } },
+  ]) {
+    const h = eraseFixture(options);
+    const before = [...h.storage.map];
+    await h.run();
+    assert.deepEqual([...h.storage.map], before);
+    assert.equal(h.calls.cache.length, 0);
+    assert.equal(h.calls.forget, 0);
+    assert.equal(h.calls.announce.length, 0);
+    assert.match(h.calls.notify.at(-1)[1], /cloud/i);
   }
 });
 

@@ -74,6 +74,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.7.0'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.4.0'
+    debugImplementation 'com.google.android.gms:play-services-auth:22.0.0'
+    debugImplementation 'net.openid:appauth:0.11.1'
 }
 
 def prepareAssets = tasks.register('prepareAndroidAssets', PrepareAndroidAssets) {
@@ -116,3 +118,27 @@ tasks.register('policyTest', JavaExec) {
     mainClass = 'io.github.raymondnassar.recappage.prototype.NavigationPolicyTest'
 }
 tasks.named('check').configure { dependsOn 'policyTest' }
+
+tasks.register('reportCloudDebugAuth') {
+    doLast {
+        def artifacts = configurations.debugRuntimeClasspath.resolvedConfiguration.resolvedArtifacts
+        def report = artifacts.collect { artifact ->
+            def digest = java.security.MessageDigest.getInstance('SHA-256')
+            artifact.file.withInputStream { input ->
+                byte[] buffer = new byte[65536]
+                int count
+                while ((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
+            }
+            [
+                dependency: artifact.moduleVersion.id.toString(),
+                artifact: artifact.file.name,
+                sha256: digest.digest().encodeHex().toString(),
+                file: artifact.file.absolutePath,
+            ]
+        }.sort { it.dependency }
+        def output = layout.buildDirectory.file('outputs/cloud-auth-qualification/debug-runtime.json').get().asFile
+        output.parentFile.mkdirs()
+        output.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(report)) + '\n'
+        println "Recorded ${report.size()} debug auth artifacts; release dependencies and provider accounts unchanged."
+    }
+}

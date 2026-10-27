@@ -163,6 +163,8 @@ export const ALLOWED = new Map([
     'the fixed browser-version literal after a ternary colon in the reporter fixture, not an assigned credential'],
   ['test/google-play-publisher.test.js|a secret assigned in code|' + 'token' + " = 'fixture-token-never-recorded'",
     'the fixed noncredential bearer sentinel used only by the mocked Play transport tests'],
+  ['test/cloud-host.test.js|a secret assigned in code|' + 'token' + ": 'synthetic-access'",
+    'the fixed fabricated access-token sentinel in the native authentication cache fixture, not a provider credential'],
 ]);
 
 export function findings(label, text, sink) {

@@ -107,10 +107,10 @@ function safePath(urlPath) {
 // drive the contract below on an ephemeral port without taking 8787, and without this module
 // opening a browser the moment it is imported. The optional handler makes the outer fail-closed
 // response testable without manufacturing a filesystem race.
-export function createStaticServer(requestHandler = handle) {
+export function createStaticServer(requestHandler = handle, cloudControl = null) {
   return createServer(async (req, res) => {
     try {
-      await requestHandler(req, res);
+      await (cloudControl?.handles(req) ? cloudControl.handle : requestHandler)(req, res);
     } catch {
       // A request must never be able to kill the process. Without this, any throw in the handler
       // becomes an unhandled rejection and Node exits. URLs and thrown errors can contain tokens.

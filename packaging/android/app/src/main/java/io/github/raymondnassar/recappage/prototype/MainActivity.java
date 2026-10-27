@@ -51,7 +51,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public final class MainActivity extends Activity {
+public class MainActivity extends Activity {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final ExecutorService writer = Executors.newSingleThreadExecutor();
     private final Set<String> seenRequests = new HashSet<>();
@@ -61,6 +61,7 @@ public final class MainActivity extends Activity {
     private WebView web;
     private FrameLayout root;
     private WebMessagePort port;
+    private CloudPort cloudPort;
     private int generation;
     private boolean destroyed;
     private boolean writing;
@@ -105,6 +106,7 @@ public final class MainActivity extends Activity {
     public void onCreate(Bundle state) {
         super.onCreate(state);
         try {
+            prepareNativeCloud();
             local = new LocalAssets(getAssets());
         } catch (IOException | JSONException | IllegalArgumentException error) {
             showFatal("The bundled app could not be loaded. Rebuild and reinstall the prototype.");
@@ -126,6 +128,10 @@ public final class MainActivity extends Activity {
         lastRoute = local.policy.restoredRoute(state == null ? null : state.getString("route"));
         web.loadUrl(lastRoute);
     }
+
+    protected void prepareNativeCloud() throws IOException {}
+
+    protected CloudPort.Factory cloudFactory() throws IOException { return null; }
 
     private void showFatal(String message) {
         TextView text = new TextView(this);
@@ -464,9 +470,16 @@ public final class MainActivity extends Activity {
             }
         }, handler);
         try {
+            // No production auth configuration is installed until its platform/provider gates pass.
+            cloudPort = new CloudPort(cloudFactory(), (raw) -> handler.post(() -> {
+                if (destroyed || port != connectedPort || generation != page) return;
+                try { connectedPort.postMessage(new WebMessage(raw)); }
+                catch (RuntimeException error) { if (cloudPort != null) cloudPort.invalidate(); }
+            }), () -> !destroyed && port == connectedPort && generation == page, page);
             web.postWebMessage(new WebMessage("recap:connect:v1",
                     new WebMessagePort[] { channel[1] }), Uri.parse(local.origin));
-        } catch (RuntimeException error) {
+            cloudPort.ready();
+        } catch (IOException | RuntimeException error) {
             channel[1].close();
             invalidatePage();
             notice("Android file integration is unavailable. Update Android System WebView and reopen the app.");
@@ -502,6 +515,10 @@ public final class MainActivity extends Activity {
             String kind = request.getString("kind");
             if (source != port || page != generation || destroyed) {
                 saveResult(source, id, "failed", "The page changed. Start the export again.");
+                return;
+            }
+            if (kind.equals("cloud") || kind.equals("cloud-codec-result") || kind.equals("cloud-cancel")) {
+                if (cloudPort != null) cloudPort.receive(raw);
                 return;
             }
             if (kind.equals("back-result")) {
@@ -653,6 +670,10 @@ public final class MainActivity extends Activity {
     }
 
     private void invalidatePage() {
+        if (cloudPort != null) {
+            cloudPort.invalidate();
+            cloudPort = null;
+        }
         clearBack();
         cancelFileChooser();
         if (pendingSave != null) {

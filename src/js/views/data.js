@@ -11,7 +11,7 @@ import { wireFieldValidation } from './shared/field-validation.js';
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:637-640` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:673-676` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -138,6 +138,7 @@ export function createDataView({
   onExportDraft,
   onRestoreDraft,
   eraseHistory = false,
+  cloudEraseNotice = '',
 }) {
   let restoring = false;
 
@@ -377,7 +378,7 @@ export function createDataView({
       try {
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${cloudEraseNotice ? ` ${cloudEraseNotice}` : ''}`,
           confirmLabel: 'Erase everything',
         });
         if (!yes) {

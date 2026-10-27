@@ -2,12 +2,65 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+import { isAbsolute, resolve } from 'node:path';
 
 const source = readFileSync(new URL('../scripts/browser-check.mjs', import.meta.url), 'utf8');
 const start = source.indexOf('function tally()');
 const end = source.indexOf('\nasync function seedRemovalFixture(', start);
 const entry = source.lastIndexOf('\nmain().catch(');
 assert.ok(start > 0 && end > start && entry > end, 'browser runner boundaries exist');
+
+test('retained cloud restore inputs require an isolated exact selector and bounded native file', async () => {
+  const begin = source.indexOf('function retainedCloudRestoreInput(');
+  const finish = source.indexOf('\nasync function installCloudUiFixture(', begin);
+  assert.ok(begin > 0 && finish > begin, 'the actual retained-input admission function exists');
+  const path = resolve('synthetic-retained-cloud.json');
+  let bytes = Buffer.from('{"synthetic":"complete native input"}');
+  let descriptor = { isFile: () => true, isSymbolicLink: () => false, size: bytes.length };
+  let reads = 0;
+  const load = new Function('lstatSync', 'readFileSync', 'isAbsolute',
+    `${source.slice(begin, finish)}\nreturn retainedCloudRestoreInput;`)(
+    (name) => { assert.equal(name, path); return descriptor; },
+    (name) => { assert.equal(name, path); reads++; return bytes; }, isAbsolute);
+  const required = ['--only=cloud-restore', '--cloud-source-fixture',
+    '--cloud-retained-provider=microsoft', `--cloud-retained-snapshot=${path}`];
+  assert.equal(load([]), null);
+  assert.deepEqual(load(required), { provider: 'microsoft', text: bytes.toString('utf8') });
+  assert.equal(reads, 1);
+  const helperStart = source.indexOf('async function installCloudUiFixture(');
+  const helperEnd = source.indexOf('\nasync function cloudConfirm(', helperStart);
+  assert.ok(helperEnd > helperStart);
+  const retained = { provider: 'microsoft', text: bytes.toString('utf8') };
+  const install = new Function('retainedCloudRestore',
+    `${source.slice(helperStart, helperEnd)}\nreturn installCloudUiFixture;`)(retained);
+  let passed;
+  await install({ evaluate: async (_callback, value) => { passed = value; } }, { existing: true });
+  assert.deepEqual(passed, { hasExisting: true, retained }, 'the actual page fixture must receive the admitted native input');
+  for (const invalid of [
+    required.filter((value) => value !== '--cloud-source-fixture'),
+    required.map((value) => value === '--only=cloud-restore' ? '--only=cloud-backup' : value),
+    [...required, '--prove'], [...required, '--diagnostic=context-export-isolation'],
+    [...required, '--cloud-retained-provider=google'], [...required, '--cloud-retained-unknown=yes'],
+    required.map((value) => value === '--cloud-retained-provider=microsoft' ? '--cloud-retained-provider=unknown' : value),
+    required.map((value) => value.startsWith('--cloud-retained-snapshot=') ? '--cloud-retained-snapshot=relative.json' : value),
+    required.filter((value) => !value.startsWith('--cloud-retained-provider=')),
+  ]) assert.throws(() => load(invalid), TypeError);
+  assert.equal(reads, 1, 'invalid command shapes cannot read private native inputs');
+  descriptor = { ...descriptor, isSymbolicLink: () => true };
+  assert.throws(() => load(required), TypeError);
+  descriptor = { ...descriptor, isSymbolicLink: () => false, isFile: () => false };
+  assert.throws(() => load(required), TypeError);
+  descriptor = { ...descriptor, isFile: () => true, size: 32 * 1024 * 1024 + 1 };
+  assert.throws(() => load(required), TypeError);
+  descriptor = { ...descriptor, size: 0 };
+  assert.throws(() => load(required), TypeError);
+  bytes = Buffer.from('\ufeff{"synthetic":"unchanged bytes"}');
+  descriptor = { ...descriptor, size: bytes.length };
+  assert.deepEqual(Buffer.from(load(required).text), bytes, 'file admission must not silently strip a native byte-order mark');
+  bytes = Buffer.from([0xff]);
+  descriptor = { ...descriptor, size: bytes.length };
+  assert.throws(() => load(required), TypeError, 'invalid UTF8 cannot become a different portable input');
+});
 
 function fixture(failAt, fault = '') {
   // Run the actual lifecycle and command entry, not a second implementation of its reporter.

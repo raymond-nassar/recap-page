@@ -119,7 +119,7 @@ test('the maintainer browser instructions match the runner interface', () => {
   assert.match(section, /--only=<scenario-name>/);
   assert.doesNotMatch(section, /--scenario/);
   assert.match(section, /ephemeral port/);
-  const fixedPortExpression = /const port = \[([^\]]+)\]\.includes\(only\) \? DEFAULT_PORT : 0;/
+  const fixedPortExpression = /const port = (?:!cloudSourceFixture && )?\[([^\]]+)\]\.includes\(only\) \? DEFAULT_PORT : 0;/
     .exec(browserRunner);
   assert.ok(fixedPortExpression, 'the browser runner no longer exposes its fixed-port exceptions');
   const fixedPortScenarios = [...fixedPortExpression[1].matchAll(/'([^']+)'/g)]

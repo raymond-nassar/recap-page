@@ -73,10 +73,22 @@ import { wireTooltips } from './lib/tooltips.js';
 import { saveDownload, downloadMessage } from './lib/download.js';
 import { setIssueRating } from './lib/model.js';
 import { createIssueRatingView } from './views/issue-rating.js';
+import { createCloudBackupSession, savePersonalValue } from './lib/cloudPersistence.js';
+import { cloudRestoreRuntime, initializeCloudRestore } from './lib/cloudSession.js';
+import { createCloudBackupView } from './views/cloud-backup.js';
+
+// Both desktop and Android import this module. No mutation owner may precede the recovery check.
+if (globalThis.document?.nodeType === 9) await initializeCloudRestore();
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const SIDEBAR_KEY = 'sidebar.collapsed';
+let cloudSession = null;
+let cloudOpening = false;
+let cloudSessionEpoch = 0;
+const personalCommit = () => cloudSession?.committed();
+const restoreSession = cloudRestoreRuntime();
+const localStorage = restoreSession?.storage ?? globalThis.localStorage;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -93,6 +105,8 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // report was previously discarded here, so the UI would announce "marked read" while the row
 // silently reverted on the next paint.
 const store = new Store({
+  storage: localStorage,
+  onCommit: personalCommit,
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
@@ -100,9 +114,10 @@ const store = new Store({
     else clearNotice('reader-save');
   },
 });
-const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
+const saveEducation = createSaveEducation({ storage: localStorage });
 const importDraft = new ImportDraftStore({
   reader: store,
+  onCommit: personalCommit,
   onChange: () => {
     renderAll();
     if (importDraft.error) notify('#save-report', importDraft.error, 'error', 'import-draft-save');
@@ -111,6 +126,7 @@ const importDraft = new ImportDraftStore({
 });
 const listHistory = new ListHistoryStore({
   readerStore: store,
+  onCommit: personalCommit,
   onChange: (_history, error) => {
     renderAll();
     readingPathsView.refreshProgress();
@@ -120,6 +136,41 @@ const listHistory = new ListHistoryStore({
 });
 const homeUpdatesSeen = createHomeUpdatesSeen({ storage: store.storage, locks: globalThis.navigator?.locks });
 const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
+
+export async function configureCloudBackup(options) {
+  if (cloudSession || cloudOpening) throw new Error('Disconnect the existing cloud session before selecting another destination.');
+  cloudOpening = true;
+  const openingEpoch = ++cloudSessionEpoch;
+  try {
+    const opened = await createCloudBackupSession({
+      ...options, storage: store.storage, owners: { reader: store, history: listHistory, draft: importDraft },
+      ...(restoreSession ? { interlocks: {
+        isReady: restoreSession.isReady,
+        isBlocked: () => restoreSession.isBlocked() || options.interlocks?.isBlocked?.() === true,
+        beforeErase: restoreSession.beforeErase,
+        subscribe(listener) {
+          const local = restoreSession.subscribe(listener);
+          const extra = options.interlocks?.subscribe?.(listener);
+          return () => { local(); extra?.(); };
+        },
+      } } : {}),
+      onChange: (state) => {
+        if (openingEpoch === cloudSessionEpoch) { options.onChange?.(state); cloudView.render(); }
+      },
+    });
+    if (openingEpoch !== cloudSessionEpoch) {
+      opened.stop();
+      throw new Error('Cloud connection was cancelled before initialization finished.');
+    }
+    cloudSession = opened;
+  } finally { cloudOpening = false; }
+  const session = cloudSession;
+  return {
+    get state() { return session.coordinator.state; },
+    resume: () => session.resume(),
+    stop: () => { session.stop(); if (cloudSession === session) cloudSession = null; },
+  };
+}
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
@@ -479,8 +530,10 @@ function saveSettings() {
       readingShortcut: settings.readingShortcut,
       hideDescriptions: settings.hideDescriptions,
     });
-    localStorage.setItem(SETTINGS_KEY, serialized);
-    return localStorage.getItem(SETTINGS_KEY) === serialized;
+    const saved = savePersonalValue(localStorage, SETTINGS_KEY, serialized, personalCommit);
+    if (!saved) notify('#save-report', 'Preferences apply to this tab, but could not be saved. They may change after reload.', 'error', 'settings-save');
+    else clearNotice('settings-save');
+    return saved;
   } catch { return false; }
 }
 
@@ -630,7 +683,7 @@ export function sanitizeStoredIssueDescriptions(
     onFailure(`Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
     return { needed: true, cleared: false };
   }
-  const cleared = sanitizer.persist(sanitizer.state, currentRaw);
+  const cleared = sanitizer.persist(sanitizer.state, currentRaw, { personal: false, operation: 'cleanup' });
   if (!cleared) {
     if (sanitizer.conflicted && retryConflict) {
       return sanitizeStoredIssueDescriptions(readerStore, sourceRaw, {
@@ -723,7 +776,7 @@ function selectSavedList(id, report = '#save-report') {
     return false;
   }
   if (activeListId() === id) return true;
-  store.update((state) => setActive(state, id));
+  store.update((state) => setActive(state, id), { personal: false });
   return store.lastUpdateOk;
 }
 
@@ -974,7 +1027,9 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
   railed = Boolean(next);
   renderSidebar();
   if (persist) {
-    try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }
+    if (!savePersonalValue(localStorage, SIDEBAR_KEY, String(railed), personalCommit)) {
+      notify('#save-report', 'Sidebar preference applies to this tab, but could not be saved. It may change after reload.', 'error', 'sidebar-save');
+    } else clearNotice('sidebar-save');
   }
   if (announceIt) announce(railed ? 'Sidebar collapsed.' : 'Sidebar expanded.');
 }
@@ -1222,7 +1277,7 @@ async function newEmptyList() {
   const created = store.update((s) => createList(s, { name }));
   if (!store.lastUpdateOk) return;
   const id = created.listOrder[created.listOrder.length - 1];
-  store.update((s) => setActive(s, id));
+  store.update((s) => setActive(s, id), { personal: false });
   showView('read', { push: true });
   announceIfSaved(`Created list ${name}.`);
 }
@@ -1337,7 +1392,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       return;
     }
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
-      store.update((s) => setActive(s, route.listId));
+      store.update((s) => setActive(s, route.listId), { personal: false });
       if (!store.lastUpdateOk) {
         applyingRoute = false;
         showView(view, { focus });
@@ -1854,7 +1909,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
       return null;
     }
     if (navigate) {
-      store.update((s) => setActive(s, listId));
+      store.update((s) => setActive(s, listId), { personal: false });
       if (!store.lastUpdateOk) {
         clearNotice(importKey);
         return listId;
@@ -1863,7 +1918,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     } else if (!store.state.active) {
       // Nothing was being read, so the first order added becomes the one "Continue reading"
       // resumes. It does not steal the active list from a reader who already had one.
-      store.update((s) => setActive(s, listId));
+      store.update((s) => setActive(s, listId), { personal: false });
       if (!store.lastUpdateOk) {
         clearNotice(importKey);
         return listId;
@@ -2111,14 +2166,32 @@ const dataView = createDataView({
       notify('#cache-report', `Cached metadata could not be cleared (${err?.message ?? err}).`, 'error');
     }
   },
+  cloudEraseNotice: 'Cloud backup must disconnect first. Existing remote backups remain; this does not delete provider files or revoke your OS account.',
   eraseHistory: true,
   onErase: async (draftExpected) => {
+    if (cloudOpening) {
+      notify('#save-report', 'Wait for cloud initialization to finish before erasing local data.', 'error');
+      return;
+    }
+    if (restoreSession?.isBlocked() || !await cloudView.beforeErase()) {
+      notify('#save-report', 'Cloud recovery or disconnect must finish before erasing local data. Existing remote backups remain.', 'error');
+      return;
+    }
+    if (cloudSession) {
+      try { await cloudSession.beforeErase(); }
+      catch {
+        notify('#save-report', 'Cloud backup could not be disconnected safely. Local data was not erased; existing remote backups remain.', 'error');
+        return;
+      }
+      cloudSession = null;
+    }
     const result = await eraseReaderAndHistory(store, listHistory, {
       onReaderErased: () => {
         readerLinkView.reconcile({ changed: true });
         readingView.forgetDeleted();
       },
     });
+
     let cacheFailure = null;
     let historyKept = result.historyKept;
     let snapshotKept = result.snapshotKept;
@@ -2173,6 +2246,65 @@ const dataView = createDataView({
     else announce(outcome);
   },
 });
+
+const cloudView = createCloudBackupView({
+  elements: () => ({
+    group: $('#cloud-backup'), provider: $('#cloud-provider'), connect: $('#cloud-connect'),
+    identity: $('#cloud-identity'), status: $('#cloud-status'), streams: $('#cloud-streams'),
+    disconnect: $('#cloud-disconnect'), cancel: $('#cloud-cancel'), retry: $('#cloud-retry'),
+    find: $('#cloud-find'), separate: $('#cloud-separate'), recovery: $('#cloud-recovery'),
+    recoveryStatus: $('#cloud-recovery-status'), finish: $('#cloud-finish'), prior: $('#cloud-prior'),
+    exportPrior: $('#cloud-export-prior'),
+  }),
+  el, restore: restoreSession, storage: restoreSession?.rawStorage ?? localStorage, askConfirm, notify, download,
+  getBackupState: () => cloudSession?.coordinator.state,
+  startBackup: Object.assign(configureCloudBackup, { retry: () => cloudSession?.coordinator.retry() }),
+  stopBackup: () => { ++cloudSessionEpoch; cloudSession?.stop(); cloudSession = null; },
+  draftRecovery: () => importDraft.recovery.slice(),
+});
+
+export async function configureCloudProviders(options) {
+  return cloudView.configure(options);
+}
+
+export function cloudBackupStatus() {
+  return { opening: cloudOpening, state: cloudSession?.coordinator.state ?? null };
+}
+
+async function adoptCloudRestore(image, { direction }) {
+  if (!Object.entries(image).every(([key, value]) => store.storage.getItem(key) === value)) return false;
+  store.load();
+  store.undoSnapshot = null;
+  store.undoMain = null;
+  store.snapshotSummary = null;
+  listHistory.load();
+  importDraft.uncertain = false;
+  importDraft.recovery = direction === 'prior' ? restoreSession.record.prepared.owners[3].retainedSources.slice() : [];
+  importDraft.load();
+  const previousBase = settings.apiBase;
+  Object.assign(settings, loadSettings());
+  if (settings.apiBase !== previousBase) {
+    cache = new ResponseCache({ baseUrl: settings.apiBase });
+    api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: onApiStatus });
+    hydrator.api = api;
+    synopsisRunner.api = api;
+  }
+  sessionSynopsis.clear();
+  synopsisDisclosure.clear();
+  issueView.resetSynopsis();
+  readingView.resetSynopsis();
+  readerLinkView.clearDocument();
+  readingView.forgetDeleted();
+  applyCoversSetting();
+  applyThemeSetting();
+  applyReadingShortcutSetting();
+  $('#opt-description-hiding').checked = settings.hideDescriptions;
+  $('#api-base').value = settings.apiBase;
+  setRailed(loadRailed() ?? window.innerWidth < RAIL_BREAKPOINT);
+  renderAll();
+  return !store.blocked && listHistory.known && !listHistory.blocked && !importDraft.blocked
+    && Object.entries(image).every(([key, value]) => store.storage.getItem(key) === value);
+}
 
 // Deliberately not announced and not a live region. The only change here worth hearing is the one
 // after Clear cached metadata, and that handler already speaks through notify(), so a live region
@@ -2675,6 +2807,18 @@ export function boot() {
   readingPathsView.wire();
   previewView.wire();
   wireAsk();
+  if (restoreSession) {
+    restoreSession.adopt = adoptCloudRestore;
+    restoreSession.subscribe((state) => {
+      if (state.phase === 'restoring' || state.phase === 'recovery' || state.phase === 'unknown') {
+        hydrator.cancel();
+        synopsisRunner.cancel();
+        cloudSession?.coordinator.stop();
+      }
+      if (state.phase === 'ready') clearNotice('cloud-recovery');
+    });
+  }
+  cloudView.wire();
   completionView.wire();
   listHistory.load();
   renderAll();
@@ -2689,6 +2833,10 @@ export function boot() {
   const bootRoute = parseRoute(location.hash);
   if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
   else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
+  if (restoreSession?.isBlocked()) {
+    showView('data', { focus: false });
+    notify('#save-report', restoreSession.state.error || 'Cloud recovery could not be checked. Saving is paused; preserve your local exports.', 'error', 'cloud-recovery');
+  }
 
   // Back and Forward arrive here, as does anyone editing the address by hand. A hash that is not one
   // of ours is left entirely alone: index.html ships a skip link to #main, and answering that with a
@@ -2740,6 +2888,10 @@ export function boot() {
   // has touched anything.
   $('#about-version').textContent = APP_VERSION;
   $('#about-schema').textContent = String(SCHEMA_VERSION);
+  $('#shell').inert = false;
+  $('#shell').setAttribute('aria-busy', 'false');
+  $('#startup-status').hidden = true;
+  document.documentElement.dataset.appReady = 'true';
 }
 
 // ------------------------------------------------------------------ library and progress bands
@@ -2807,7 +2959,7 @@ function ensureAddList(name) {
     const created = store.update((state) => createList(state, { name }));
     if (!store.lastUpdateOk) return { listId: null, ok: false };
     id = created.listOrder[created.listOrder.length - 1];
-    store.update((state) => setActive(state, id));
+    store.update((state) => setActive(state, id), { personal: false });
     if (!store.lastUpdateOk) return { listId: id, ok: false };
   }
   return { listId: id, ok: true };

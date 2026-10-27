@@ -29,7 +29,7 @@
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -1815,10 +1815,12 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     }, JSON.stringify(createEmptyState()), origin);
     console.log('HOME_UPDATES offline-stage=real-worker-control');
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await waitForAppStartup(page);
     await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
     // A controlled arrival also caches the real catalog naturally, even if its first response
     // arrived after the first-visit resource-timing snapshot. No fixture fetch or warming list.
     await page.reload({ waitUntil: 'load' });
+    await waitForAppStartup(page);
     const required = ['/js/lib/homeUpdatesContent.js', '/js/lib/homeUpdatesSeen.js',
       '/js/views/home-updates.js', '/data/catalog.json'];
     console.log('HOME_UPDATES offline-stage=actual-cache');
@@ -1852,6 +1854,7 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     console.log('HOME_UPDATES offline-stage=fresh-offline-document');
     await page.goto('about:blank');
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await waitForAppStartup(page);
     const currentDocument = await page.evaluate(() => ({
       id: window.__newsDocument, closed: !document.querySelector('#home-updates').open,
     }));
@@ -1892,8 +1895,10 @@ async function checkOfflineSelectedList(browser, origin, t) {
     }, origin);
     console.log('OFFLINE_CONTENT stage=real-worker-control');
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await waitForAppStartup(page);
     await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
     await page.reload({ waitUntil: 'load' });
+    await waitForAppStartup(page);
 
     const selected = await page.evaluate(async () => {
       const response = await fetch('/data/catalog.json', { cache: 'no-store' });
@@ -2008,6 +2013,7 @@ async function checkOfflineSelectedList(browser, origin, t) {
     console.log('OFFLINE_CONTENT stage=fresh-offline-document');
     await page.goto('about:blank');
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await waitForAppStartup(page);
     const fresh = await page.evaluate(() => ({
       id: window.__offlineDocument,
       home: Boolean(document.querySelector('#view-home:not([hidden])')),
@@ -8655,6 +8661,18 @@ const SCENARIOS = [
     id: 'cache-generations',
     title: 'an old tab and current code use separate cache generations',
     async run(page, t) {
+      const observeStartup = async (stage) => {
+        const observed = await page.evaluate(() => {
+          const text = document.querySelector('#cache-report')?.textContent ?? '';
+          return {
+            ready: document.documentElement.dataset.appReady === 'true',
+            visibility: document.visibilityState === 'hidden' ? 'hidden' : 'visible',
+            report: text.includes('Close other tabs') ? 'blocked'
+              : text.includes('Older cached metadata was removed') ? 'removed' : text ? 'other' : 'empty',
+          };
+        });
+        console.log(`CACHE_GENERATIONS stage=${stage} ready=${observed.ready} visibility=${observed.visibility} report=${observed.report}`);
+      };
       const legacy = await page.browserContext().newPage();
       await legacy.setViewport({ width: 1280, height: 900 });
       await legacy.goto(`${page.__origin}/open.html`, { waitUntil: 'load' });
@@ -8699,10 +8717,16 @@ const SCENARIOS = [
         JSON.stringify(legacyState.issues?.['6']));
 
       await page.goto(`${page.__origin}/#/settings`, { waitUntil: 'domcontentloaded' });
+      await observeStartup('document-loaded');
       await page.waitForFunction(
         () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
         { timeout: 15000 },
-      );
+      ).catch(async (error) => {
+        try { await observeStartup('blocked-wait-failed'); }
+        catch { console.log('CACHE_GENERATIONS stage=blocked-wait-failed observation=unavailable'); }
+        throw error;
+      });
+      await observeStartup('blocked-observed');
       t.check('cleanup reports that older metadata is still waiting on another tab', true);
       const preloadedState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
       t.check('saved-state prose is removed before waiting on a blocked legacy deletion',
@@ -8935,9 +8959,13 @@ const SCENARIOS = [
         const denied = () => {
           throw new DOMException('Storage access denied by the browser.', 'SecurityError');
         };
+        const real = indexedDB;
         Object.defineProperty(globalThis, 'indexedDB', {
           configurable: true,
-          value: { open: denied, deleteDatabase: denied },
+          value: {
+            open(name, ...args) { return name === 'mrt-cloud-restore-v1' ? real.open(name, ...args) : denied(); },
+            deleteDatabase: denied,
+          },
         });
       });
       await open(unavailable, '/#/settings');
@@ -8946,7 +8974,7 @@ const SCENARIOS = [
         { polling: 100, timeout: 15000 },
       ).then(() => true, () => false);
       const unavailableReport = await unavailable.$eval('#cache-report', (el) => el.textContent);
-      t.check('automatic boot records access-denied IndexedDB without announcing permanent failure',
+      t.check('automatic boot records access-denied cache storage without announcing permanent failure when recovery is readable',
         unavailableRecorded && !/could not|unavailable/i.test(unavailableReport),
         JSON.stringify({ unavailableRecorded, unavailableReport }));
       await unavailable.close();
@@ -8961,7 +8989,8 @@ const SCENARIOS = [
           configurable: true,
           value: {
             deleteDatabase: real.deleteDatabase.bind(real),
-            open() {
+            open(name, ...args) {
+              if (name === 'mrt-cloud-restore-v1') return real.open(name, ...args);
               throw new DOMException('Active cache access denied.', 'SecurityError');
             },
           },
@@ -15698,6 +15727,11 @@ async function open(page, path) {
   await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
 }
 
+async function waitForAppStartup(page) {
+  await page.waitForFunction(() => !document.querySelector('#shell')
+    || document.documentElement.dataset.appReady === 'true');
+}
+
 // page.click is unreliable here: an element the app has just rendered is frequently reported as
 // not clickable while it is perfectly present and wired. Dispatching the click from inside the
 // page is what the app's own handlers see anyway.
@@ -15872,6 +15906,14 @@ async function manualReport(page) {
 async function preparePage(page, origin, mutation, scenarioId = null) {
   page.__origin = origin;
   page.__mutation = mutation;
+  for (const method of ['goto', 'reload']) {
+    const navigate = page[method].bind(page);
+    page[method] = async (...args) => {
+      const response = await navigate(...args);
+      await waitForAppStartup(page);
+      return response;
+    };
+  }
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();
@@ -18153,6 +18195,11 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
 }
 
 async function main() {
+  if (process.argv.some((arg) => arg.startsWith('--cloud-retained-'))) {
+    retainedCloudRestore = retainedCloudRestoreInput(process.argv.slice(2));
+    const { parseCloudSnapshot } = await import('../src/js/lib/cloudSnapshot.js');
+    await parseCloudSnapshot(retainedCloudRestore.text);
+  }
   if (process.argv.some((arg) => arg.startsWith('--diagnostic'))) {
     const mode = process.argv[2]?.slice('--diagnostic='.length);
     if (process.argv.slice(2).length !== 1
@@ -18167,7 +18214,9 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const cloudSourceFixture = process.argv.includes('--cloud-source-fixture');
+  if (cloudSourceFixture && !['cloud-backup', 'cloud-restore'].includes(only)) throw new Error('The cloud source fixture requires the exact cloud-backup or cloud-restore selector.');
+  const port = !cloudSourceFixture && ['cloud-backup', 'cloud-restore', 'storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -20465,6 +20514,595 @@ MUTATIONS.push(
   { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
     rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
 );
+
+let retainedCloudRestore = null;
+
+function retainedCloudRestoreInput(args) {
+  const inputFlags = args.filter((arg) => arg.startsWith('--cloud-retained-'));
+  if (!inputFlags.length) return null;
+  const files = args.filter((arg) => arg.startsWith('--cloud-retained-snapshot='));
+  const providers = args.filter((arg) => arg.startsWith('--cloud-retained-provider='));
+  if (inputFlags.length !== 2 || files.length !== 1 || providers.length !== 1
+    || args.filter((arg) => arg.startsWith('--only=')).length !== 1 || !args.includes('--only=cloud-restore')
+    || args.filter((arg) => arg === '--cloud-source-fixture').length !== 1 || args.includes('--prove')
+    || args.some((arg) => arg.startsWith('--diagnostic'))) {
+    throw new TypeError('Retained cloud input requires only the isolated cloud-restore source-fixture journey.');
+  }
+  const provider = providers[0].slice('--cloud-retained-provider='.length);
+  const filename = files[0].slice('--cloud-retained-snapshot='.length);
+  if (!['google', 'microsoft'].includes(provider) || !isAbsolute(filename)) {
+    throw new TypeError('Retained cloud input requires an explicit supported provider and absolute local file.');
+  }
+  const info = lstatSync(filename);
+  if (!info.isFile() || info.isSymbolicLink() || info.size < 1 || info.size > 32 * 1024 * 1024) {
+    throw new TypeError('Retained cloud input must be one bounded regular native snapshot file.');
+  }
+  const bytes = readFileSync(filename);
+  if (bytes.length < 1 || bytes.length > 32 * 1024 * 1024) throw new TypeError('Retained cloud input changed beyond its byte bound.');
+  return { provider, text: new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes) };
+}
+
+async function installCloudUiFixture(page, { existing = false } = {}) {
+  return page.evaluate(async ({ hasExisting, retained }) => {
+    const { configureCloudProviders } = await import('/js/main.js');
+    const { captureCloudContent, createCloudSnapshot, parseCloudSnapshot } = await import('/js/lib/cloudSnapshot.js');
+    const { sourceOccurrences, DRAFT_FORMAT, DRAFT_VERSION } = await import('/js/lib/importDraft.js');
+    const { LIST_HISTORY_FORMAT } = await import('/js/lib/listHistory.js');
+    const cloud = window.__cloudUi = { calls: [], writes: [], state: 'disconnected', epoch: 0, ack: null,
+      failDisconnect: false, statusCalls: 0 };
+    let encoded;
+    if (retained) encoded = { text: retained.text, snapshot: await parseCloudSnapshot(retained.text) };
+    else {
+      const { components } = await captureCloudContent({ storage: localStorage, isBlocked: () => false });
+      const firstId = Object.keys(components.reader.issues)[0];
+      components.reader.notes[firstId] = 'Synthetic restored cloud note';
+      components.reader.read[firstId] = 12345;
+      const listId = components.reader.listOrder[0];
+      const list = components.reader.lists[listId];
+      components.history = { format: LIST_HISTORY_FORMAT, version: 1,
+        records: [{ listId, created: list.created, catalogId: list.catalogId ?? null, completedAt: 12345, rating: 'up' }] };
+      components.settings.theme = 'light';
+      components.settings.sidebarCollapsed = null;
+      const rawText = '- [x] [Synthetic unresolved source](https://www.marvel.com/comics/issue/999999/)\n- [ ] Unresolved gap';
+      components.draft = { format: DRAFT_FORMAT, version: DRAFT_VERSION, rawText,
+        occurrences: sourceOccurrences(rawText), previousSources: [],
+        destination: { id: 'cloud-draft', created: 1, name: 'Paused cloud source', newList: true, prefix: [] } };
+      encoded = await createCloudSnapshot(components, {
+        captureId: 'a'.repeat(64), streamId: 'b'.repeat(64), slotId: 'synthetic-slot',
+        attemptId: 'd'.repeat(64), generation: 2, capturedAt: '2026-10-23T00:00:00.000Z', label: 'Synthetic other device',
+      });
+    }
+    const meta = Object.fromEntries(['captureId', 'streamId', 'slotId', 'attemptId', 'generation', 'capturedAt', 'label']
+      .map((key) => [key, encoded.snapshot[key]]));
+    const provider = retained?.provider ?? 'google';
+    const bytes = new TextEncoder().encode(encoded.text);
+    const hash = await crypto.subtle.digest('SHA-256', bytes);
+    const digest = [...new Uint8Array(hash)].map((n) => n.toString(16).padStart(2, '0')).join('');
+    cloud.snapshot = encoded.snapshot;
+    cloud.text = encoded.text;
+    const summary = {
+      id: meta.slotId, name: `recap-backup-${meta.streamId}-0.json`, size: bytes.length,
+      digest, generation: meta.generation, attemptId: meta.attemptId, captureId: meta.captureId, contentDigest: encoded.snapshot.contentDigest,
+      label: meta.label, version: 1, capturedAt: meta.capturedAt, modifiedAt: meta.capturedAt,
+    };
+    cloud.summary = summary;
+    cloud.streams = hasExisting ? [{ streamId: meta.streamId, current: summary, previous: null }] : [];
+    cloud.snapshots = { [encoded.snapshot.attemptId]: encoded.snapshot };
+    cloud.reads = [];
+    const transport = {
+      async status() {
+        const reply = { provider, state: cloud.state === 'active' ? 'connected' : cloud.state,
+          phase: cloud.state, epoch: cloud.epoch, account: cloud.state === 'disconnected' ? null
+            : { id: 'synthetic-ui-account', label: 'Synthetic UI account' }, acknowledgement: cloud.ack };
+        if (++cloud.statusCalls === cloud.holdAt) await new Promise((resolve) => { cloud.releaseStatus = resolve; });
+        return reply;
+      },
+      async connect() {
+        cloud.calls.push('connect'); cloud.epoch++; cloud.state = 'discovering';
+        return { provider, state: 'discovering', epoch: cloud.epoch,
+          account: { id: 'synthetic-ui-account', label: 'Synthetic UI account' } };
+      },
+      async disconnect() {
+        cloud.calls.push('disconnect');
+        if (cloud.failDisconnect) throw new Error('Synthetic disconnect refusal');
+        cloud.state = 'disconnected';
+      },
+      async discover() {
+        cloud.calls.push('discover');
+        if (cloud.state !== 'active') cloud.state = 'awaiting-choice';
+        return { provider, state: cloud.state, epoch: cloud.epoch, discoveryId: 'f'.repeat(64),
+          streams: cloud.streams, rejected: [] };
+      },
+      async chooseSeparate() { cloud.calls.push('choose'); cloud.state = 'active';
+        return { provider, state: 'active', epoch: cloud.epoch, streamId: 'c'.repeat(64) }; },
+      async readSnapshot({ streamId, selection }) {
+        cloud.calls.push('read');
+        cloud.reads.push({ streamId, attemptId: selection.attemptId });
+        const value = cloud.snapshots[selection.attemptId];
+        if (!value || value.streamId !== streamId) throw new Error('Wrong fixture copy');
+        return value;
+      },
+      async reconcile() { return cloud.ack ?? { provider, epoch: cloud.epoch, phase: 'empty', acknowledgement: null }; },
+      async writeSnapshot({ components: saved }) {
+        const generation = cloud.writes.push(saved);
+        const value = await createCloudSnapshot(saved, { ...meta, streamId: 'c'.repeat(64), generation,
+          attemptId: generation.toString(16).padStart(64, '0') });
+        cloud.ack = { provider, phase: 'acknowledged', epoch: cloud.epoch, attemptEpoch: cloud.epoch,
+          streamId: 'c'.repeat(64), attemptId: value.snapshot.attemptId, generation,
+          contentDigest: value.snapshot.contentDigest, byteDigest: 'e'.repeat(64) };
+        return cloud.ack;
+      },
+    };
+    await configureCloudProviders({ qualification: true, label: 'Synthetic UI device',
+      client: { forProvider(selected) { if (selected !== provider) throw new Error('Wrong fixture provider'); return transport; } } });
+    return { text: encoded.text, provider, contentDigest: encoded.snapshot.contentDigest,
+      theme: encoded.snapshot.components.settings.theme, sidebarCollapsed: encoded.snapshot.components.settings.sidebarCollapsed,
+      hasDraft: encoded.snapshot.components.draft !== null };
+  }, { hasExisting: existing, retained: retainedCloudRestore });
+}
+
+async function cloudConfirm(page) {
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => !document.querySelector('#ask').open);
+}
+
+SCENARIOS.push({
+  id: 'cloud-backup',
+  title: 'actual local owners queue complete backups without blocking reading or bypassing recovery',
+  async run(page, t) {
+    await page.setViewport({ width: 1280, height: 900 });
+    await importOrder(page);
+    t.check('desktop transport renews only predispatch refusals with exact bytes and the same native profile',
+      await page.evaluate(async () => {
+        const { createWindowsCloudClient } = await import('/js/lib/cloudPersistence.js');
+        const input = { epoch: 7, label: 'Original', components: { reader: { note: 'Original' } } };
+        const expected = JSON.stringify({ ...input, provider: 'google' });
+        const writes = [];
+        let sessions = 0;
+        let operations = 0;
+        const transport = createWindowsCloudClient({
+          origin: 'http://127.0.0.1:8787',
+          fetchImpl: async (url, request) => {
+            if (url.endsWith('/session')) {
+              sessions++;
+              if (sessions === 2) input.components.reader.note = 'Changed during renewal';
+              return Response.json({
+                csrf: (sessions === 1 ? 'c' : 'd').repeat(64),
+                profileId: (sessions < 3 ? 'a' : 'b').repeat(64),
+              });
+            }
+            operations++;
+            if (url.endsWith('/write')) {
+              writes.push(request.body);
+              if (writes.length === 2) return Response.json({ provider: 'google', epoch: 7 });
+            }
+            return Response.json({ code: 'session-required', error: 'Expired before dispatch' }, { status: 403 });
+          },
+        }).forProvider('google');
+        const pending = transport.writeSnapshot(input);
+        input.epoch = 99;
+        input.components.reader.note = 'Changed during bootstrap';
+        const result = await pending;
+        let refusal = null;
+        try { await transport.status(); }
+        catch (error) { refusal = error.code; }
+        return result.epoch === 7 && sessions === 3 && operations === 3 && writes.length === 2
+          && writes.every((body) => body === expected) && refusal === 'connection';
+      }));
+    await page.evaluate(async () => {
+      const { configureCloudBackup } = await import('/js/main.js');
+      const { createCloudSnapshot } = await import('/js/lib/cloudSnapshot.js');
+      const cloud = window.__cloud = { writes: [], ack: null, blocked: false, hold: false };
+      const streamId = 'b'.repeat(64);
+      const transport = {
+        async status() {
+          return { provider: 'google', state: 'connected', phase: 'active', epoch: 1,
+            account: { id: 'synthetic-edge', label: 'Synthetic Edge' }, acknowledgement: cloud.ack };
+        },
+        async reconcile() {
+          return cloud.ack ?? { provider: 'google', epoch: 1, phase: 'empty', acknowledgement: null };
+        },
+        async writeSnapshot({ components }) {
+          const generation = cloud.writes.push(components);
+          if (cloud.hold) {
+            cloud.hold = false;
+            await new Promise((resolve) => { cloud.release = resolve; });
+          }
+          const encoded = await createCloudSnapshot(components, {
+            captureId: generation.toString(16).padStart(64, '0'), streamId, slotId: generation % 2 ? 'a' : 'b',
+            attemptId: generation.toString(16).padStart(64, '0'), generation,
+            capturedAt: '2026-10-23T00:00:00.000Z', label: 'Synthetic Edge',
+          });
+          const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(encoded.text));
+          cloud.ack = { provider: 'google', phase: 'acknowledged', epoch: 1, attemptEpoch: 1,
+            streamId, attemptId: encoded.snapshot.attemptId, generation,
+            contentDigest: encoded.snapshot.contentDigest,
+            byteDigest: [...new Uint8Array(hash)].map((n) => n.toString(16).padStart(2, '0')).join('') };
+          return cloud.ack;
+        },
+      };
+      cloud.session = await configureCloudBackup({
+        transport, provider: 'google', epoch: 1, streamId, label: 'Synthetic Edge',
+        qualification: true, consent: true,
+        interlocks: {
+          isReady: () => true, isBlocked: () => cloud.blocked, beforeErase: async () => false,
+          subscribe(callback) { cloud.wake = callback; return () => { cloud.wake = null; }; },
+        },
+      });
+    });
+    await page.waitForFunction(() => window.__cloud.session.state.phase === 'up-to-date');
+    t.check('ordinary local startup needed no cloud connection and explicit fixture starts one complete copy',
+      await page.evaluate(() => window.__cloud.writes.length === 1
+        && Object.keys(window.__cloud.writes[0]).sort().join(',') === 'draft,history,reader,settings'));
+    await page.evaluate(() => { window.__cloud.hold = true; });
+    await click(page, '#btn-hero-done');
+    await page.waitForFunction(() => window.__cloud.writes.length === 2);
+    t.check('Read is saved and usable while native upload remains held', Object.keys((await readState(page)).read).length === 1);
+    await click(page, '.ri[data-view="library"]');
+    await click(page, '#btn-new-list');
+    await page.waitForSelector('#ask[open] #ask-input');
+    await page.$eval('#ask-input', (input) => { input.value = 'Cloud pending new list'; });
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    await page.waitForFunction(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      return state.listOrder.some((id) => state.lists[id].name === 'Cloud pending new list');
+    });
+    await click(page, '#btn-rail-toggle');
+    const heldState = await readState(page);
+    const expectedLists = await page.evaluate(() => window.__cloud.writes[0].reader.listOrder.length + 1);
+    t.check('list and preference commits do not wait for the old upload',
+      heldState.listOrder.length === expectedLists && await page.evaluate(() => window.__cloud.writes.length === 2),
+      JSON.stringify({ lists: heldState.listOrder, expectedLists }));
+    await page.evaluate(() => window.__cloud.release());
+    await page.waitForFunction(() => window.__cloud.writes.length === 3 && window.__cloud.session.state.phase === 'up-to-date');
+    t.check('one newest complete snapshot follows the old ACK with list, Read and sidebar preference intact',
+      await page.evaluate((count) => {
+        const value = window.__cloud.writes[2];
+        return value.reader.listOrder.length === count && Object.keys(value.reader.read).length === 1
+          && value.settings.sidebarCollapsed === (localStorage.getItem('sidebar.collapsed') === 'true');
+      }, expectedLists));
+    await page.evaluate(() => { window.__cloud.blocked = true; });
+    await click(page, '#btn-rail-toggle');
+    await page.waitForFunction(() => window.__cloud.session.state.phase === 'paused');
+    t.check('an actual saved preference cannot upload mixed recovery state',
+      await page.evaluate(() => window.__cloud.writes.length === 3));
+    await page.evaluate(() => { window.__cloud.blocked = false; window.__cloud.wake(); });
+    await page.waitForFunction(() => window.__cloud.writes.length === 4 && window.__cloud.session.state.phase === 'up-to-date');
+    await page.evaluate(() => {
+      const original = Storage.prototype.setItem;
+      window.__cloud.restoreStorage = () => { Storage.prototype.setItem = original; };
+      Storage.prototype.setItem = function(key, value) {
+        if (key !== 'sidebar.collapsed') return original.call(this, key, value);
+      };
+    });
+    await click(page, '#btn-rail-toggle');
+    t.check('silent sidebar refusal is visible and never becomes an upload',
+      await page.evaluate(() => document.querySelector('#save-report').textContent.includes('could not be saved')
+        && window.__cloud.writes.length === 4));
+    await page.evaluate(() => window.__cloud.restoreStorage());
+    for (const width of [950, 700, 1280]) await page.setViewport({ width, height: 900 });
+    t.check('responsive-only sidebar changes do not write or queue a backup',
+      await page.evaluate(() => window.__cloud.writes.length === 4));
+    await page.evaluate(async () => {
+      const { Store } = await import('/js/storage.js');
+      const reader = new Store();
+      reader.load();
+      const id = Number(Object.keys(reader.state.issues)[0]);
+      reader.update((state) => ({ ...state, issues: {
+        ...state.issues, [id]: { ...state.issues[id], digitalId: 123456 },
+      } }), { personal: false });
+      window.__cloud.session.resume();
+    });
+    await page.waitForFunction(() => window.__cloud.session.state.phase === 'metadata-only');
+    t.check('metadata-only persisted changes do not upload or counterfeit the acknowledged full digest',
+      await page.evaluate(() => window.__cloud.writes.length === 4
+        && window.__cloud.session.state.acknowledgement.contentDigest === window.__cloud.ack.contentDigest));
+    await page.evaluate(() => window.__cloud.session.stop());
+    await click(page, '.ri[data-view="data"]');
+    t.check('ordinary boot reports the unconfigured host without making a native connection',
+      await page.$eval('#cloud-status', (node) => node.textContent.includes('unavailable')));
+    await installCloudUiFixture(page);
+    await page.select('#cloud-provider', 'google');
+    await click(page, '#cloud-connect');
+    await page.waitForSelector('#ask[open]');
+    t.check('explicit consent names all four categories and automatic changes with safe initial focus',
+      await page.evaluate(() => ['reading data', 'completion history', 'settings', 'saved import drafts', 'Every saved change']
+        .every((text) => document.querySelector('#ask-body').textContent.includes(text))
+        && document.activeElement.id === 'ask-cancel' && window.__cloudUi.calls.length === 0));
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#cloud-connect').disabled);
+    t.check('cancelled consent performs no native action', await page.evaluate(() => window.__cloudUi.calls.length === 0));
+    await click(page, '#cloud-connect'); await cloudConfirm(page);
+    await page.waitForFunction(() => !document.querySelector('#cloud-separate').hidden && !document.querySelector('#cloud-separate').disabled);
+    t.check('discovery shows the selected account and no upload before an initial choice',
+      await page.evaluate(() => document.querySelector('#cloud-identity').textContent.includes('Synthetic UI account')
+        && window.__cloudUi.writes.length === 0 && document.querySelector('#cloud-streams').textContent.includes('No valid')));
+    await click(page, '#cloud-cancel');
+    await page.waitForFunction(() => !document.querySelector('#cloud-connect').disabled);
+    t.check('cancel disconnects without selecting or uploading a stream',
+      await page.evaluate(() => window.__cloudUi.state === 'disconnected' && window.__cloudUi.writes.length === 0
+        && !localStorage.getItem('mrt.cloud.consent.v1')));
+    await click(page, '#cloud-connect'); await cloudConfirm(page);
+    await page.waitForFunction(() => !document.querySelector('#cloud-separate').disabled);
+    await page.evaluate(() => { window.__cloudUi.holdAt = window.__cloudUi.statusCalls + 2; });
+    await click(page, '#cloud-separate'); await cloudConfirm(page);
+    await page.waitForFunction(() => typeof window.__cloudUi.releaseStatus === 'function');
+    await click(page, '#cloud-cancel');
+    await page.waitForFunction(() => !document.querySelector('#cloud-connect').disabled);
+    await page.evaluate(() => window.__cloudUi.releaseStatus());
+    await page.waitForFunction(async () => {
+      const { cloudBackupStatus } = await import('/js/main.js');
+      return !cloudBackupStatus().opening;
+    });
+    t.check('a late native ACTIVE status cannot resurrect a cancelled connection or dispatch an upload',
+      await page.evaluate(async () => {
+        const { cloudBackupStatus } = await import('/js/main.js');
+        return window.__cloudUi.writes.length === 0 && window.__cloudUi.state === 'disconnected'
+          && !localStorage.getItem('mrt.cloud.consent.v1') && cloudBackupStatus().state === null;
+      }));
+    await click(page, '#cloud-connect'); await cloudConfirm(page);
+    await page.waitForFunction(() => !document.querySelector('#cloud-separate').disabled);
+    await click(page, '#cloud-separate'); await cloudConfirm(page);
+    await page.waitForFunction(() => document.querySelector('#cloud-status').textContent.includes('All current'));
+    t.check('explicit separate-device choice enables the first complete automatic backup',
+      await page.evaluate(() => window.__cloudUi.writes.length === 1 && window.__cloudUi.calls.includes('choose')));
+    const copies = await page.evaluate(async () => {
+      const cloud = window.__cloudUi;
+      const { createCloudSnapshot } = await import('/js/lib/cloudSnapshot.js');
+      async function copy(streamId, generation, marker) {
+        const value = await createCloudSnapshot(cloud.snapshot.components, {
+          streamId, generation, slotId: `copy-${marker}`, attemptId: marker.repeat(64),
+          captureId: marker.repeat(64), capturedAt: '2026-10-24T00:00:00.000Z', label: cloud.snapshot.label,
+        });
+        cloud.snapshots[value.snapshot.attemptId] = value.snapshot;
+        const bytes = new TextEncoder().encode(value.text);
+        const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
+          .map((n) => n.toString(16).padStart(2, '0')).join('');
+        return { ...cloud.summary, id: value.snapshot.slotId, name: `recap-backup-${streamId}-${generation % 2}.json`,
+          generation, attemptId: value.snapshot.attemptId, captureId: value.snapshot.captureId,
+          capturedAt: value.snapshot.capturedAt, modifiedAt: value.snapshot.capturedAt, digest, size: bytes.length };
+      }
+      const other = '9'.repeat(64);
+      cloud.streams = [
+        { streamId: cloud.snapshot.streamId, current: cloud.summary, previous: await copy(cloud.snapshot.streamId, 1, '1') },
+        { streamId: other, current: await copy(other, 2, '2'), previous: null },
+      ];
+      return { first: cloud.snapshot.streamId, other };
+    });
+    await click(page, '#cloud-find');
+    await page.waitForFunction(() => !document.querySelector('#cloud-find').disabled);
+    const copyIds = [
+      `cloud-copy-${copies.first}-current`, `cloud-copy-${copies.first}-previous`, `cloud-copy-${copies.other}-current`,
+    ];
+    const exactCopies = await page.evaluate(({ ids, first, other }) => {
+      const nodes = ids.map((id) => document.getElementById(id));
+      return nodes.every(Boolean) && new Set(nodes.map((node) => node.id)).size === 3
+        && nodes[0].textContent === nodes[2].textContent
+        && nodes[0].dataset.cloudStream === first && nodes[1].dataset.cloudStream === first
+        && nodes[2].dataset.cloudStream === other
+        && nodes[0].dataset.cloudCopy === 'current' && nodes[1].dataset.cloudCopy === 'previous'
+        && nodes[0].dataset.cloudGeneration === '2' && nodes[1].dataset.cloudGeneration === '1';
+    }, { ids: copyIds, first: copies.first, other: copies.other });
+    t.check('same-label current and previous copies expose unique exact stream, kind and generation identity', exactCopies);
+    if (!exactCopies) return;
+    const beforeCopyCancel = await readState(page);
+    const beforeCopyWrites = await page.evaluate(() => window.__cloudUi.writes.length);
+    await click(page, `#${copyIds[2]}`);
+    await page.waitForSelector('#ask[open]');
+    t.check('copy identity remains stable and disabled while the exact restore question is open',
+      await page.evaluate((ids) => ids.every((id) => document.getElementById(id)?.disabled), copyIds));
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#cloud-find').disabled);
+    t.check('selecting a same-label copy addresses only that stream and cancel leaves data and uploads unchanged',
+      await page.evaluate(({ other, before, writes }) => window.__cloudUi.reads.at(-1).streamId === other
+        && window.__cloudUi.reads.at(-1).attemptId === '2'.repeat(64)
+        && JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2'))) === JSON.stringify(before)
+        && window.__cloudUi.writes.length === writes,
+      { other: copies.other, before: beforeCopyCancel, writes: beforeCopyWrites }));
+    const beforeErase = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.evaluate(() => { window.__cloudUi.failDisconnect = true; });
+    await click(page, '#btn-wipe'); await cloudConfirm(page);
+    await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('disconnect'));
+    t.check('failed native disconnect refuses actual whole-app erase without uploading an empty state',
+      await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before && window.__cloudUi.writes.length === 1, beforeErase));
+    await page.evaluate(() => { window.__cloudUi.failDisconnect = false; });
+    await click(page, '#cloud-disconnect'); await cloudConfirm(page);
+    await page.waitForFunction(() => !document.querySelector('#cloud-connect').disabled);
+    t.check('disconnect keeps data and returns usable focus without a remote delete',
+      await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before
+        && document.activeElement.id === 'cloud-connect' && window.__cloudUi.state === 'disconnected', beforeErase));
+  },
+});
+
+SCENARIOS.push({
+  id: 'cloud-restore',
+  title: 'real IndexedDB recovery and Web Locks preserve exact data across interrupted complete restore and reload',
+  operations: ['peer-prepare', 'peer-open', 'peer-ready', 'peer-refusal-confirm', 'peer-refusal-status', 'peer-released',
+    'interrupted-restore', 'capture-journal', 'reload-recovery', 'finish-recovery', 'prior-recovery'],
+  async run(page, t) {
+    await page.setViewport({ width: 1280, height: 900 });
+    await importOrder(page);
+    await click(page, '.ri[data-view="data"]');
+    const fixture = await installCloudUiFixture(page, { existing: true });
+    if (process.argv.some((arg) => arg.startsWith('--cloud-retained-'))) {
+      const expected = retainedCloudRestoreInput(process.argv.slice(2));
+      const { parseCloudSnapshot } = await import('../src/js/lib/cloudSnapshot.js');
+      const snapshot = await parseCloudSnapshot(expected.text);
+      t.check('the selected retained native envelope and provider reach the actual restore journey unchanged',
+        fixture.text === expected.text && fixture.provider === expected.provider && fixture.contentDigest === snapshot.contentDigest,
+        JSON.stringify({ provider: expected.provider, contentDigest: snapshot.contentDigest, bytes: Buffer.byteLength(expected.text) }));
+    }
+    await page.select('#cloud-provider', fixture.provider);
+    await click(page, '#cloud-connect'); await cloudConfirm(page);
+    const restoreButton = '#cloud-streams button';
+    await page.waitForSelector(restoreButton);
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await click(page, restoreButton);
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#cloud-streams button').disabled);
+    t.check('validated backup summary can be cancelled without any replacement or upload',
+      await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw
+        && window.__cloudUi.writes.length === 0 && !localStorage.getItem('mrt.cloud.restore.v1'), before));
+    const other = await page.browserContext().newPage();
+    try {
+      await t.step('peer-prepare', () => preparePage(other, page.__origin, null));
+      await t.step('peer-open', () => open(other, '/'));
+      await t.step('peer-ready', () => other.waitForFunction(async () => {
+        const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+        return cloudRestoreRuntime()?.isReady();
+      }));
+      await page.bringToFront();
+      await t.step('peer-refusal-confirm', async () => { await click(page, restoreButton); await cloudConfirm(page); });
+      await t.step('peer-refusal-status', async () => {
+        await page.waitForFunction(() => !document.querySelector('#cloud-streams button').disabled);
+        const observed = await page.evaluate(async () => {
+          const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+          return { status: document.querySelector('#cloud-status').textContent, state: cloudRestoreRuntime().state,
+            locks: await navigator.locks.query() };
+        });
+        t.check('another-tab refusal is actionable', observed.status.includes('other app tabs'), JSON.stringify(observed));
+        if (!observed.status.includes('other app tabs')) throw new Error('Unexpected peer restore outcome');
+      });
+      t.check('another real tab holding a shared lifetime lease prevents all restore writes',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw
+          && !localStorage.getItem('mrt.cloud.restore.v1') && window.__cloudUi.writes.length === 0, before));
+    } finally { await other.close(); }
+    await t.step('peer-released', () => page.waitForFunction(async () =>
+      (await navigator.locks.query()).held.filter((lock) => lock.name === 'mrt.cloud.session.v1').length === 1));
+    await page.evaluate(() => {
+      const put = IDBObjectStore.prototype.put;
+      IDBObjectStore.prototype.put = function(value, ...args) {
+        if (this.name === 'restore' && value.position === 3 && value.phase === 'applying') {
+          IDBObjectStore.prototype.put = put;
+          throw new Error('Synthetic crash after the reader replacement, before its checkpoint');
+        }
+        return put.call(this, value, ...args);
+      };
+    });
+    await t.step('interrupted-restore', async () => {
+      await click(page, restoreButton); await cloudConfirm(page);
+      await page.waitForFunction(() => !document.querySelector('#cloud-recovery').hidden
+        && !document.querySelector('#cloud-recovery-status').textContent.includes('Restoring complete'));
+    });
+    const saved = await t.step('capture-journal', () => page.evaluate(async () => {
+      const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+      const session = cloudRestoreRuntime();
+      try { return { prior: session.exportPrior(), record: await session.journal.read() }; }
+      catch { return { failure: session.state }; }
+    }));
+    t.check('interrupted restore has a verified journal', !saved.failure, JSON.stringify(saved.failure));
+    if (saved.failure) throw new Error('The interrupted restore did not prepare a journal');
+    t.check('actual failed IndexedDB checkpoint retains exact prior bytes and a prepared reader replacement',
+      saved.record.position === 2 && saved.record.prepared.before['mrt.state.v2'] === before
+        && await page.evaluate(() => window.__cloudUi.writes.length === 0 && !!localStorage.getItem('mrt.cloud.restore.v1')));
+    t.check('a real persistence owner cannot write or upload during partial recovery',
+      await page.evaluate(async () => {
+        const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+        const { Store, KEY } = await import('/js/storage.js');
+        const session = cloudRestoreRuntime();
+        const prior = localStorage.getItem(KEY);
+        const reader = new Store({ storage: session.storage });
+        reader.load();
+        reader.update((state) => ({ ...state, notes: { ...state.notes, 999999: 'Must not save' } }));
+        return !reader.lastUpdateOk && localStorage.getItem(KEY) === prior && window.__cloudUi.writes.length === 0;
+      }));
+    await t.step('reload-recovery', async () => {
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForFunction(() => !document.querySelector('#cloud-recovery').hidden);
+    });
+    t.check('reload checks the real journal before owners initialize and preserves the original downloadable copy',
+      await page.evaluate(async (prior) => {
+        const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+        const session = cloudRestoreRuntime();
+        return session.isBlocked() && session.exportPrior() === prior
+          && !document.querySelector('#view-data').hidden && document.querySelector('#cloud-connect').disabled;
+      }, saved.prior));
+    await t.step('finish-recovery', async () => {
+      await click(page, '#cloud-finish'); await cloudConfirm(page);
+      await page.waitForFunction(() => document.querySelector('#cloud-recovery').hidden);
+    });
+    t.check('explicit Finish recognizes exact write-before-checkpoint bytes and verifies all four live owners',
+      await page.evaluate(async ({ expected, prepared }) => {
+        const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+        const { captureCloudContent } = await import('/js/lib/cloudSnapshot.js');
+        const session = cloudRestoreRuntime();
+        const draft = JSON.parse(localStorage.getItem('mrt.import.draft.v1'));
+        const captured = await captureCloudContent({ storage: localStorage, isBlocked: () => session.isBlocked() });
+        return !session.isBlocked() && await session.journal.read() === null
+          && localStorage.getItem('mrt.state.v2') === prepared.owners[0].value
+          && localStorage.getItem('mrt.list-history.v1') === prepared.owners[1].value
+          && localStorage.getItem('mrt.settings') === prepared.owners[2].effects[0].value
+          && captured.contentDigest === expected.contentDigest
+          && localStorage.getItem('sidebar.collapsed') === (expected.sidebarCollapsed === null ? null : String(expected.sidebarCollapsed))
+          && document.querySelector('#opt-theme').value === expected.theme
+          && (expected.hasDraft ? draft?.paused && draft.pending === null : draft === null)
+          && !document.querySelector('#btn-undo-restore').textContent.includes('Undo last')
+          && document.activeElement.id === 'cloud-status';
+      }, { expected: fixture, prepared: saved.record.prepared }));
+    const priorSecond = await page.evaluate(() => {
+      const put = IDBObjectStore.prototype.put;
+      IDBObjectStore.prototype.put = function(value, ...args) {
+        if (this.name === 'restore' && value.position === 6 && value.phase === 'applying') {
+          IDBObjectStore.prototype.put = put;
+          throw new Error('Synthetic settings checkpoint failure');
+        }
+        return put.call(this, value, ...args);
+      };
+      return Object.fromEntries(['mrt.state.v2', 'mrt.state.restore.tmp', 'mrt.state.prerestore', 'mrt.list-history.v1',
+        'mrt.settings', 'sidebar.collapsed', 'mrt.import.draft.v1'].map((key) => [key, localStorage.getItem(key)]));
+    });
+    await page.evaluate(async (text) => {
+      const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+      await cloudRestoreRuntime().restore(text);
+    }, fixture.text);
+    await t.step('prior-recovery', async () => {
+      await click(page, '#cloud-prior'); await cloudConfirm(page);
+      await page.waitForFunction(() => document.querySelector('#cloud-recovery').hidden);
+    });
+    t.check('explicit Restore prior reverses every recognized effect to the exact original seven-key image',
+      await page.evaluate((image) => Object.entries(image).every(([key, raw]) => localStorage.getItem(key) === raw)
+        && !localStorage.getItem('mrt.cloud.restore.v1'), priorSecond));
+    for (const theme of ['dark', 'light', 'system']) {
+      await page.select('#opt-theme', theme);
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    }
+    await page.setViewport({ width: 390, height: 844 });
+    await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]).catch(() => {});
+    t.check('cloud controls retain names and fit narrow layout using existing native field and button patterns',
+      await page.evaluate(() => document.querySelector('#cloud-provider').labels[0].textContent === 'Provider'
+        && document.documentElement.scrollWidth <= innerWidth
+        && [...document.querySelectorAll('#cloud-backup button:not([hidden])')].every((node) => {
+          const box = node.getBoundingClientRect(); return !box.width || box.height >= 24;
+        })));
+    const denied = await page.browserContext().newPage();
+    try {
+      await preparePage(denied, page.__origin, null);
+      await denied.evaluateOnNewDocument(() => {
+        Object.defineProperty(globalThis, 'indexedDB', { configurable: true, value: {
+          open() { throw new DOMException('Synthetic denied recovery journal.', 'SecurityError'); },
+          deleteDatabase() { throw new DOMException('Synthetic denied recovery journal.', 'SecurityError'); },
+        } });
+      });
+      await open(denied, '/');
+      const prior = await denied.evaluate(() => ({
+        reader: localStorage.getItem('mrt.state.v2'), settings: localStorage.getItem('mrt.settings'),
+      }));
+      await denied.select('#opt-theme', 'dark');
+      t.check('an inaccessible startup journal leaves reading and exports available but refuses an actual user-state writer',
+        await denied.evaluate(async (raw) => {
+          const { cloudRestoreRuntime } = await import('/js/lib/cloudSession.js');
+          return cloudRestoreRuntime().isBlocked() && localStorage.getItem('mrt.state.v2') === raw.reader
+            && localStorage.getItem('mrt.settings') === raw.settings
+            && document.documentElement.dataset.appReady === 'true' && !document.querySelector('#shell').inert
+            && !document.querySelector('#btn-export-json').disabled
+            && document.querySelector('#save-report').textContent.includes('could not be saved');
+        }, prior));
+    } finally { await denied.close(); }
+  },
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

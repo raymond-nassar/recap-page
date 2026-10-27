@@ -57,12 +57,44 @@ function tokenOf(raw) {
   return found ? found[1] : null;
 }
 
+export function personalRevisionOf(raw) {
+  const token = tokenOf(raw);
+  if (!token?.startsWith('c1|')) return token;
+  const parts = token.split('|');
+  if (parts.length !== 3) throw new Error('The saved personal revision is invalid.');
+  return parts[1] === 'none' ? null : parts[1];
+}
+
+function commitToken(raw, personal) {
+  const revision = personal ? newToken() : personalRevisionOf(raw);
+  if (revision !== null && (revision.length > 48 || revision.includes('|'))) {
+    throw new Error('The saved personal revision cannot be preserved.');
+  }
+  return `c1|${revision ?? 'none'}|${newToken()}`;
+}
+
+function sameContent(a, b) {
+  const content = (state) => {
+    const value = exportBackup(state);
+    delete value.exportedAt;
+    return JSON.stringify(value);
+  };
+  return content(a) === content(b);
+}
+
+function reportCommit(owner, component, before, after) {
+  if (before === after) return;
+  try { owner.onCommit({ component, before, after }); }
+  catch { /* Backup observation cannot change the local persistence outcome. */ }
+}
+
 export class ImportDraftStore {
-  constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {} }) {
+  constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {}, onCommit = () => {} }) {
     this.reader = reader;
     this.storage = storage;
     this.locks = locks;
     this.onChange = onChange;
+    this.onCommit = onCommit;
     this.raw = null;
     this.draft = null;
     this.error = null;
@@ -146,6 +178,7 @@ export class ImportDraftStore {
       this.draft = JSON.parse(raw);
       this.error = null;
       this.recovery = [];
+      reportCommit(this, 'draft', previous, raw);
       return { ok: true, changed: true };
     }
     if (actual !== previous) {
@@ -312,9 +345,11 @@ export class ImportDraftStore {
           error: `Import draft removal was not confirmed${removalError ? ` (${removalError.message})` : ''}.${this.uncertain ? ' Export retained source before reloading; the storage outcome is unknown.' : ' Stored source was not overwritten.'}`,
         };
       }
+      const previous = this.raw;
       this.raw = null;
       this.draft = null;
       this.recovery = [];
+      reportCommit(this, 'draft', previous, null);
       return { ok: true, changed: true };
     });
   }
@@ -341,9 +376,10 @@ export class ImportDraftStore {
 }
 
 export class Store {
-  constructor({ storage = globalThis.localStorage, onChange = () => {} } = {}) {
+  constructor({ storage = globalThis.localStorage, onChange = () => {}, onCommit = () => {} } = {}) {
     this.storage = storage;
     this.onChange = onChange;
+    this.onCommit = onCommit;
     this.state = createEmptyState();
     this.lastError = null;
     // Set when saved data exists but could not be read. While it is set the store refuses to
@@ -670,15 +706,21 @@ export class Store {
   // Applies a pure transformation. If persistence fails, the in-memory state is rolled back
   // so the UI never displays progress that was not actually saved. lastUpdateOk lets callers
   // gate their success messages and navigation on the write actually having happened.
-  update(fn) {
+  update(fn, { personal = true, operation = 'write' } = {}) {
     const previous = this.state;
     const next = withoutIssueDescriptions(fn(previous), 'State update');
     if (next === previous) {
       this.lastUpdateOk = true;
       return previous;
     }
+    if (sameContent(next, previous)) {
+      this.state = next;
+      this.lastUpdateOk = true;
+      this.onChange(next, this.lastError);
+      return next;
+    }
     this.state = next;
-    if (!this.persist(next)) {
+    if (!this.persist(next, undefined, { personal, operation })) {
       // A conflict is the one rollback that must not restore the previous state. That state is the
       // stale snapshot the refusal was about, so putting it back on screen would show the reader
       // data this tab has just established is not what is saved, and the next edit would be refused
@@ -712,7 +754,7 @@ export class Store {
     }
   }
 
-  persist(state = this.state, expectedRaw = undefined) {
+  persist(state = this.state, expectedRaw = undefined, { personal = true, operation = 'write' } = {}) {
     // Cleared on entry so it can only ever describe the call that just ran. It used to be cleared
     // only in update()'s conflict branch, so a refusal raised for startFresh() outlived that call,
     // and the next ordinary edit, refused by the blocked latch for an entirely unrelated reason,
@@ -757,12 +799,34 @@ export class Store {
         + 'up to date, so please make the change again.';
       return false;
     }
-    const token = newToken();
+    let token;
+    let serialized;
     try {
-      this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));
+      token = commitToken(held, personal);
+      serialized = JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) });
+      this.storage.setItem(KEY, serialized);
+      const actual = this.storage.getItem(KEY);
+      if (actual !== serialized) {
+        this.conflicted = actual !== held;
+        this.lastError = operation === 'cleanup'
+          ? 'The saved-state cleanup write could not be verified.'
+          : `The reading-data ${operation === 'erase' ? 'erase' : 'write'} did not match the saved value. That change was not confirmed.`;
+        return false;
+      }
       this.seenToken = token;
+      if (personal) reportCommit(this, 'reader', held, serialized);
       return true;
     } catch (err) {
+      if (serialized !== undefined) {
+        let actual;
+        try { actual = this.storage.getItem(KEY); } catch { actual = undefined; }
+        if (actual !== held) {
+          this.blocked = true;
+          this.blockedReason = 'The reading-data save outcome is unknown. Export retained data before reloading.';
+          this.lastError = this.blockedReason;
+          return false;
+        }
+      }
       this.lastError =
         err?.name === 'QuotaExceededError'
           ? 'Reading-data storage is full, so that change was not saved. Download and check a backup before removing unneeded recovery copies or reading lists in Backup & settings. Clearing cached metadata does not free this separate storage.'
@@ -985,7 +1049,9 @@ export class Store {
       this.seenToken = tokenOf(durable);
       this.undoSnapshot = recovering ? null : priorMain || null;
       this.undoMain = recovering ? null : durable;
-      return this.adoptRestored(state);
+      const result = this.adoptRestored(state);
+      reportCommit(this, 'reader', priorMain, durable);
+      return result;
     }
 
     this.rewindSnapshot(heldSnapshot);
@@ -1119,7 +1185,7 @@ export class Store {
   // snapshotKept is asked of storage rather than inferred from the removal, because a storage
   // that refuses the removal is exactly the case the caller has to describe.
   eraseAll() {
-    this.update(() => createEmptyState());
+    this.update(() => createEmptyState(), { operation: 'erase' });
     if (this.lastUpdateOk) {
       this.forgetPreRestore();
       // The staging key is left behind by a restore whose own cleanup removal threw, which the
@@ -1130,4 +1196,65 @@ export class Store {
     }
     return { ok: this.lastUpdateOk, snapshotKept: this.hasPreRestoreSnapshot() };
   }
+}
+
+export const READER_RESTORE_PREPARATION_KEYS = Object.freeze({
+  main: KEY, snapshot: PRERESTORE_KEY, temporary: TEMP_KEY,
+});
+
+function preparedRestoreText(value, label) {
+  if (value !== null && (typeof value !== 'string' || value.length > MAX_BACKUP_BYTES
+    || new TextEncoder().encode(value).length > MAX_BACKUP_BYTES)) {
+    throw new Error(`${label} exceeds the 8 MiB restore-preparation limit.`);
+  }
+  return value;
+}
+
+export function prepareReaderRestore(candidate, before) {
+  if (!before || Object.keys(before).sort().join(',') !== 'main,snapshot,temporary') {
+    throw new TypeError('Reader preparation requires exact prior main, snapshot and temporary values.');
+  }
+  const prior = Object.fromEntries(Object.entries(before).map(([key, value]) =>
+    [key, preparedRestoreText(value, 'Prior reading data')]));
+  const raw = typeof candidate === 'string' ? candidate : JSON.stringify(candidate);
+  preparedRestoreText(raw, 'Restored reading data');
+  const checked = validateBackup(JSON.parse(raw));
+  if (!checked.ok) throw new Error(checked.errors.join(' '));
+  const value = preparedRestoreText(JSON.stringify({
+    [WRITE_TOKEN]: newToken(), ...exportBackup(checked.state),
+  }), 'Prepared reading data');
+  return {
+    owner: 'reader', version: 1, before: prior, value,
+    effects: [
+      { key: TEMP_KEY, before: prior.temporary, value },
+      { key: PRERESTORE_KEY, before: prior.snapshot, value: prior.main ?? '' },
+      { key: KEY, before: prior.main, value },
+      { key: TEMP_KEY, before: value, value: null },
+    ],
+  };
+}
+
+export function prepareImportDraftRestore(candidate, before, recovery = []) {
+  preparedRestoreText(before, 'Prior import draft');
+  if (!Array.isArray(recovery) || recovery.some((value) => typeof value !== 'string')) {
+    throw new TypeError('Import draft recovery sources must be exact retained strings.');
+  }
+  preparedRestoreText(JSON.stringify(recovery), 'Retained import draft sources');
+  let value = null;
+  if (candidate !== null) {
+    const text = typeof candidate === 'string' ? candidate : JSON.stringify(candidate);
+    const held = validateImportDraft(preparedRestoreText(text, 'Restored import draft'));
+    value = JSON.stringify({
+      ...held, incarnation: newToken(), revision: newToken(), paused: true,
+      pending: held.pending ? { ...held.pending, beforeToken: `restored:${newToken()}`, beforeAbsent: false } : null,
+      previousSources: [...new Set([
+        ...held.previousSources, ...recovery, ...(before !== null ? [before] : []),
+      ])],
+    });
+    validateImportDraft(preparedRestoreText(value, 'Prepared import draft with retained sources'));
+  }
+  return {
+    owner: 'draft', version: 1, before, value, retainedSources: [...new Set(recovery)],
+    effects: [{ key: IMPORT_DRAFT_KEY, before, value }],
+  };
 }

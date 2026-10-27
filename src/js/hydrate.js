@@ -56,7 +56,7 @@ export class Hydrator {
         if (full) {
           // Partial progress is persisted as we go, so cancelling or closing the tab
           // never throws away work already paid for in rate limit.
-          this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));
+          this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }), { personal: false });
         }
       } catch (err) {
         if (err?.name === 'AbortError') break;
@@ -69,7 +69,7 @@ export class Hydrator {
         // receive the same refusal, so it is recorded and leaves the queue. `api.issue` throws
         // ApiError carrying the status, which is the same field `friendly` already reads to say
         // "Not found in the metadata snapshot."
-        if (err?.status === 404) this.store.update((s) => markDetailsRefused(s, issueId));
+        if (err?.status === 404) this.store.update((s) => markDetailsRefused(s, issueId), { personal: false });
       }
       // A cancelled run may still be unwinding a long rate-limit wait when the user starts a
       // new one. Without this guard its teardown would clear the *new* run's fields, leaving

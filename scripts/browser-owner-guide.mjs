@@ -39,6 +39,28 @@ export function ownerPresentation(expected) {
   return { rows, headings };
 }
 
+export async function ownerGuideReflow(page) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    await Promise.all(document.querySelector('#shell').getAnimations()
+      .filter((animation) => animation.playState === 'running' && Number.isFinite(animation.effect.getComputedTiming().endTime))
+      .map((animation) => animation.finished));
+  });
+  return page.evaluate(() => {
+    const documentWidth = document.documentElement.scrollWidth;
+    const viewport = innerWidth;
+    return {
+      documentWidth, viewport, ready: document.documentElement.dataset.appReady === 'true',
+      visibility: document.visibilityState === 'hidden' ? 'hidden' : 'visible',
+      overflowing: ['#shell', '#rows', '#order-name', '.list-tools', '.wrap', '.rail'].filter((selector) => {
+        const node = document.querySelector(selector);
+        return node?.getClientRects().length && node.getBoundingClientRect().right > viewport;
+      }),
+    };
+  });
+}
+
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = afterMcuEditorialEntry(contract).description;
   const event = contract.surface === 'modern-timeline';
@@ -269,8 +291,10 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count, {}, expected.length);
         t.check(`Reading List retains all originals and groups at ${width}px`,
           isDeepStrictEqual(await rendered(page, false), presentation));
+        const reflow = await ownerGuideReflow(page);
+        console.log(`OWNER_GUIDE_REFLOW width=${width} document=${reflow.documentWidth} viewport=${reflow.viewport} ready=${reflow.ready} visibility=${reflow.visibility} overflowing=${reflow.overflowing.join(',') || 'none'}`);
         t.check(`Reading List fits at ${width}px`,
-          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+          reflow.documentWidth <= reflow.viewport, JSON.stringify(reflow));
       }
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);

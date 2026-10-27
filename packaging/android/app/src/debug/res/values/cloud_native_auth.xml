@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cloud_native_qualification_title">Cloud source qualification</string>
+    <string name="cloud_native_auth_title_google">Connect Google Drive</string>
+    <string name="cloud_native_auth_title_microsoft">Connect OneDrive</string>
+    <string name="cloud_native_auth_intro">Connect your selected cloud account. Your reading data stays on this device until you choose how to use existing backups.</string>
+    <string name="cloud_native_auth_microsoft">Continue with Microsoft</string>
+    <string name="cloud_native_auth_waiting">Waiting for account permission. You can cancel without changing local reading data.</string>
+    <item name="cloud_native_continue" type="id" />
+    <item name="cloud_native_auth_status" type="id" />
+    <item name="cloud_native_auth_heading" type="id" />
+    <item name="cloud_native_cancel" type="id" />
+</resources>

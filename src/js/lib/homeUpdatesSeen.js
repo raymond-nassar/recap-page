@@ -86,7 +86,7 @@ export function createHomeUpdatesSeen({ storage, locks } = {}) {
   }
 
   function handleStorageEvent(event) {
-    if (event.storageArea !== storage || (event.key !== HOME_UPDATES_SEEN_KEY && event.key !== null)) return false;
+    if (event.storageArea !== (storage.source ?? storage) || (event.key !== HOME_UPDATES_SEEN_KEY && event.key !== null)) return false;
     const durable = observe(read(), true);
     if (durable.reason === 'unreadable' || durable.reason === 'malformed') {
       status = { remembered: false, canceled: false, reason: durable.reason, error: durable.error };
