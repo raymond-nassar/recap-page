@@ -8289,6 +8289,32 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'heading-edge',
+    title: 'narrow and wide views start at one left edge, and narrow ones keep their measure (UX-21)',
+    async run(page, t) {
+      for (const width of [1280, 1920]) {
+        await page.setViewport({ width, height: 900 });
+        await open(page, '/?catalog=publishing#/home');
+        const edges = {};
+        // Modern Timeline and Backup & settings are narrow views; a publishing age page is wide.
+        for (const [route, heading] of [['catalog', '#catalog-h'], ['data', '#data-h'], ['age-modern', '#age-modern-h']]) {
+          await page.evaluate((hash) => { location.hash = hash; }, `#/${route}`);
+          await page.waitForSelector(heading, { visible: true, timeout: 15000 });
+          edges[route] = await page.$eval(heading, (node) => Math.round(node.getBoundingClientRect().left));
+        }
+        edges.footer = await page.$eval('.wrap > footer', (node) => Math.round(node.getBoundingClientRect().left));
+        const lefts = Object.values(edges);
+        t.check(`${width}px: narrow and wide headings and the footer share one left edge`,
+          Math.max(...lefts) - Math.min(...lefts) <= 1, JSON.stringify(edges));
+        await page.evaluate(() => { location.hash = '#/data'; });
+        await page.waitForSelector('#data-h', { visible: true, timeout: 15000 });
+        const column = await page.$eval('#view-data', (node) => Math.round(node.getBoundingClientRect().width));
+        t.check(`${width}px: a narrow view keeps its 876px measure, with the spare width on its right`,
+          column === 876, JSON.stringify({ column }));
+      }
+    },
+  },
+  {
     id: 'rail-collapse',
     title: 'collapsing the sidebar does not reach into the shelf',
     async run(page, t) {

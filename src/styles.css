@@ -788,10 +788,12 @@ main { min-width: 0; }
 .wrap { max-width: var(--canvas); margin: 0 auto; padding: var(--space-8) var(--space-9) var(--space-11); }
 @media (max-width: 620px) { .wrap { padding: var(--space-7) var(--space-6) var(--space-11); } }
 
-/* Views are prose and stay at the reading measure, centred, so the width the wrapper gained
-   appears as margin on both sides rather than as a long line or as a left-hugging column.
-   The furniture that lives outside the views takes the same treatment for the same reason. */
-.view, #save-report, #app-report, #blocked-banner, .wrap > footer { max-width: var(--column); margin-inline: auto; }
+/* Views are prose and stay at the reading measure, aligned to the canvas's left edge, so a narrow
+   view's heading, breadcrumb and content start where a wide view's do and the width the wrapper
+   gained appears as space on the right. Centering them once put the headings of narrow and wide
+   views 44px apart at 1280 and 210px apart at 1920 (UX-21, #830). The furniture that lives outside
+   the views takes the same treatment for the same reason. */
+.view, #save-report, #app-report, #blocked-banner, .wrap > footer { max-width: var(--column); margin-inline: 0 auto; }
 /* The opt-out, for a view that is a browsing surface rather than a document. Home takes it for its
    catalog grid and the reading view for its cover art; the prose in both is capped in characters. */
 .view.view-wide { max-width: none; }
