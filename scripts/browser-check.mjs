@@ -16399,6 +16399,51 @@ SCENARIOS.push({
   },
 });
 
+// UX-22 (#830): Coming up's tiles sit in equal grid columns, so the eighth tile, alone on its row, keeps
+// its siblings' width rather than growing to the tile cap.
+SCENARIOS.push({
+  id: 'coming-up-columns',
+  title: 'Coming up tiles keep one width on every row, the eighth tile included',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await open(page, '/?catalog=browser-check');
+    await page.evaluate(async () => {
+      const model = await import('/js/lib/model.js');
+      let state = model.createList(model.createEmptyState(), { id: 'shelf', name: 'Shelf fixture' });
+      state = model.addIssuesToList(state, 'shelf', Array.from({ length: 12 }, (_, index) => ({
+        issueId: 922001 + index, title: `Shelf fixture (2026) #${index + 1}`, number: String(index + 1),
+        seriesName: 'Shelf fixture (2026)', source: 'manual', hydrated: true,
+      }))).state;
+      localStorage.setItem('mrt.state.v2', JSON.stringify(model.exportBackup(state)));
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
+    });
+    await open(page, '/?catalog=browser-check#/read/shelf');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelectorAll('#shelf .tile').length === 8, { timeout: 15000 });
+    const results = {};
+    for (const [width, height] of [[1280, 900], [390, 844], [2560, 1080]]) {
+      await page.setViewport({ width, height });
+      await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+      const tiles = await page.$$eval('#shelf .tile', (nodes) => nodes.map((node) => {
+        const box = node.getBoundingClientRect();
+        return { top: Math.round(box.top), width: Math.round(box.width * 10) / 10 };
+      }));
+      const widths = tiles.map((tile) => tile.width);
+      results[width] = { tiles: tiles.length, rows: new Set(tiles.map((tile) => tile.top)).size,
+        spread: Math.round((Math.max(...widths) - Math.min(...widths)) * 10) / 10, widths };
+    }
+    t.check('at 1280 the shelf wraps and the tile alone on the last row keeps its siblings\' width',
+      results[1280].tiles === 8 && results[1280].rows >= 2 && results[1280].spread <= 0.5, JSON.stringify(results[1280]));
+    t.check('at 390 every tile shares one width', results[390].tiles === 8 && results[390].spread <= 0.5, JSON.stringify(results[390]));
+    t.check('at 2560 the shelf is one row of tiles of one width', results[2560].tiles === 8 && results[2560].rows === 1
+      && results[2560].spread <= 0.5, JSON.stringify(results[2560]));
+    console.log(`UX22-SHELF ${JSON.stringify(results)}`);
+    t.check('the shelf raises no page errors', errors.length === 0, errors.join('; '));
+  },
+});
+
 MUTATIONS.push(
   {
     id: 'narrow-content-panel-open',

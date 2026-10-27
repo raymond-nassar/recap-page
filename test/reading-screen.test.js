@@ -350,14 +350,17 @@ test('all editing commands remain reachable through native List actions', () => 
 test('the shelf wraps, so no upcoming issue is off the right edge', () => {
   // Measured at 1280x900 before the change: the eighth tile was clipped by the scroller.
   const shelf = css.match(/\n\.shelf \{[^}]*\}/)[0];
-  assert.match(shelf, /flex-wrap: wrap/);
   assert.equal(/overflow-x: auto/.test(shelf), false, 'the shelf is a horizontal scroller again');
   // An auto-fit grid wraps too, and it was the first shape tried. It is excluded by name because it
   // hands the space of each collapsed track to the survivors, which put four remaining tiles a
   // measured 80px apart on a declared 14.4px gap. A cap on the tile does not cap the track.
   assert.equal(/auto-fit/.test(shelf), false, 'the shelf stretches its tracks again');
+  // UX-22 (#830): a wrapping flex row let the eighth tile, alone on its row, grow to the 168px cap
+  // beside siblings of 124px at 1280. Auto-fill keeps every track, filled or not, so each tile is one
+  // column wide on every row, and a short or one-row shelf keeps its tiles at that width too.
+  assert.match(shelf, /display: grid; grid-template-columns: repeat\(auto-fill, minmax\(112px, 1fr\)\);/);
   const tile = css.match(/\n\.tile \{[^}]*\}/)[0];
-  assert.match(tile, /flex: 1 1 112px/);
+  assert.doesNotMatch(tile, /flex: 1 1/, 'a tile grows by flex again');
   assert.match(tile, /max-width: 168px/);
 });
 

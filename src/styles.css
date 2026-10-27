@@ -1011,17 +1011,17 @@ kbd { font: inherit; font-size: var(--t-caption); border: var(--stroke-1) solid 
 .sec-h h2 { font-size: var(--t-subtitle); margin: 0; font-weight: 600; }
 .sec-h span { color: var(--muted); font-size: var(--t-caption); }
 
-/* A wrapping row rather than a horizontal scroller. Measured at 1280x900 the scroller clipped the
-   eighth tile at the right edge, and a shelf whose last item is off screen is a shelf that answers
-   "what is coming up" with seven eighths of the truth. Wrapping flex rather than an auto-fit grid:
-   auto-fit gives the space of every track it collapses to the survivors, and a cap on the tile does
-   not cap the track, so four tiles left in an order sat a measured 80px apart on a declared 14.4px
-   gap. Growing each tile to that cap instead packs them, and leaves the slack at the end of the row
-   where it belongs. Measured after: eight tiles land on one 149px row at 2560 and wrap to two rows
-   at 1280, and one tile left is one 168px tile at the left rather than a cover the width of the
-   screen. */
-.shelf { display: flex; flex-wrap: wrap; gap: var(--space-7) var(--space-6); padding: 0; margin: 0; list-style: none; }
-.tile { display: flex; flex: 1 1 112px; flex-direction: column; min-width: 0; max-width: 168px; }
+/* A wrapping grid rather than a horizontal scroller. Measured at 1280x900 the scroller clipped the
+   eighth tile at the right edge, so it answered "what is coming up" with seven eighths of the
+   truth. Auto-fill, not auto-fit: auto-fit collapses empty tracks and gives their space to the
+   tiles left, and the 168px cap on a tile does not cap its track, so four tiles at 1280 sat a
+   measured 77px apart on a declared 16px gap. Auto-fill keeps every track, so a tile is one column
+   wide whether its row is full or not, and the slack stays at the end. The cap binds only where a
+   column is wider, as in the two 171px tracks at 390. Measured against the flex row it replaced
+   (UX-22, #830): at 1280 the eighth tile, alone on its row, went from 168px to its siblings' 124px,
+   two tiles left from 168px to 124px, and at 2560 a row of eight from 148px to 115.2px. */
+.shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: var(--space-7) var(--space-6); padding: 0; margin: 0; list-style: none; }
+.tile { display: flex; flex-direction: column; min-width: 0; max-width: 168px; }
 .tile-focus { display: block; margin-bottom: var(--space-3); color: inherit; text-decoration: none; border-radius: var(--radius-md); }
 .tile-read {
   width: 100%; margin-top: auto; padding: var(--space-3) var(--space-4); border: var(--stroke-1) solid var(--line-2);
