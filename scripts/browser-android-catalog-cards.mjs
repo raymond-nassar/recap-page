@@ -616,6 +616,15 @@ async function readingOptionInteractions(page, primary, catalog, check, click, r
       'M13: full Preview description remains accessible');
     check(await page.$eval('#preview-source', (node, credit) => node.textContent.includes(credit), first.sourceOrigin),
       'M13: full Preview provenance retained');
+    // #928: the Android app runs no service worker, so its Preview offers no offline copy and says nothing
+    // about one. Checked here as well as in the confirmations mode because this owner runs on every pull request.
+    const offline = await page.$eval('#preview', (node) => ({
+      elements: [...document.querySelectorAll('#preview-offline, #preview-offline-status')].map((found) => found.id),
+      actions: node.querySelectorAll('[data-act="offline"]').length,
+      words: /offline|service worker/i.test(node.innerText),
+    }));
+    check(!offline.elements.length && !offline.actions && !offline.words,
+      `M13: the Android app's Preview offers no offline copy and says nothing about one ${JSON.stringify(offline)}`);
     await click(page, '#preview-close');
     await page.waitForSelector('#preview:not([open])');
     const add = `${selectedCard} [data-act="import"][data-key="${selected.id}"]:not([disabled])`;

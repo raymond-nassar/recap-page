@@ -27,5 +27,11 @@ const bridge = createAndroidBridge({
 
 setDownloadHandler(bridge.save);
 // The APK already contains the offline shell. A service worker could retain files from an older APK.
+// So no worker ever controls this page, and Preview's offline copy could only say it was unavailable:
+// measured at 360 by 800, every curated list's Preview held a disabled "Offline preparation
+// unavailable" under Add to library, with a status line above them naming the service worker (#928).
+// The package already holds every Reading List, so its Preview offers neither. Preview draws them
+// only into these two elements and skips both when they are absent.
+for (const id of ['preview-offline', 'preview-offline-status']) document.getElementById(id)?.remove();
 boot();
 wireMobileUi({ arrivalHeading });
