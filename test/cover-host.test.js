@@ -179,7 +179,6 @@ test('nothing paints a cover except from a vetted builder', () => {
     'src/js/main.js',
     'src/js/views/catalog.js',
     'src/js/views/preview.js',
-    'src/js/views/reading-paths.js',
     'src/js/views/shared/catalog-presentation.js',
   ].map(read).join('\n')
     .split(/\r?\n/)

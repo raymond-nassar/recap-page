@@ -11,7 +11,7 @@ const click = async (page, selector) => {
 const GUIDE = 'https://www.comicbookherald.com/best-marvel-comics-for-kids/';
 
 // #898. The seven young readers' lists from Comic Book Herald's guide, through the journey a reader
-// takes: find the card on Character spotlights, preview it, add it, open it and reload. Expected
+// takes: find the card on Young readers, its own page since #897, preview it, add it, open it and reload. Expected
 // order comes from the independent vectors the delivery's unit test also uses, not from the payloads
 // being checked. The owner's eight picks are covered by their registered owner-guide scenarios.
 const catalog = json('../src/data/catalog.json');
@@ -49,6 +49,29 @@ export const youngReadersActualData = {
     await page.waitForSelector('#home-primary-paths .home-path');
     t.check('the seven Comic Book Herald lists are under test', guides.length === 7, JSON.stringify(guides.map(({ id }) => id)));
 
+    // #897. Young readers is the one screen for every young readers' list, so Character spotlights,
+    // where these were found before it existed, no longer shows any of them.
+    const everyYoung = json('../test/fixtures/young-readers-vectors.json').lists.map(({ id }) => `list:${id}`).sort();
+    const homeCard = await page.$eval('#view-home [data-category="young-readers"]', (node) => ({
+      title: node.querySelector('.home-path-title')?.textContent.trim(),
+      count: node.querySelector('.home-path-count')?.textContent.trim(),
+    }));
+    await click(page, '#view-home:not([hidden]) [data-category="young-readers"]');
+    await page.waitForSelector('#young-readers-results .catalog-card');
+    const youngShelf = await page.evaluate(() => ({
+      heading: document.querySelector('#young-readers-h')?.textContent.trim(),
+      cards: [...document.querySelectorAll('#young-readers-results .catalog-card')].map((card) => card.dataset.story),
+    }));
+    await click(page, '.brand[data-view="home"]');
+    await click(page, '#view-home:not([hidden]) [data-category="character-spotlights"]');
+    await page.waitForSelector('#spotlights-results .catalog-card');
+    const spotlightCards = await page.$$eval('#spotlights-results .catalog-card', (cards) => cards.map((card) => card.dataset.story));
+    t.check('Young readers is the one screen for all fifteen young readers\' lists',
+      homeCard.title === 'Young readers' && homeCard.count === '15 Reading Lists'
+      && youngShelf.heading === 'Young readers' && isDeepStrictEqual([...youngShelf.cards].sort(), everyYoung)
+      && spotlightCards.length === 71 && !spotlightCards.some((story) => everyYoung.includes(story)),
+      JSON.stringify({ homeCard, young: youngShelf.cards.length, spotlights: spotlightCards.length }));
+
     const stored = (catalogId) => page.evaluate((key, id) => {
       const state = JSON.parse(localStorage.getItem(key));
       const matches = Object.values(state.lists).filter((list) => list.catalogId === id);
@@ -69,13 +92,13 @@ export const youngReadersActualData = {
     for (const guide of guides) {
       const total = guide.expected.length;
       await click(page, '.brand[data-view="home"]');
-      await click(page, '#view-home:not([hidden]) [data-category="character-spotlights"]');
-      await page.waitForSelector('#spotlights-q');
-      await page.$eval('#spotlights-q', (input, name) => {
+      await click(page, '#view-home:not([hidden]) [data-category="young-readers"]');
+      await page.waitForSelector('#young-readers-q');
+      await page.$eval('#young-readers-q', (input, name) => {
         input.value = name;
         input.dispatchEvent(new Event('input', { bubbles: true }));
       }, guide.name);
-      const selector = `#spotlights-results [data-story="list:${guide.id}"]`;
+      const selector = `#young-readers-results [data-story="list:${guide.id}"]`;
       await page.waitForSelector(selector, { timeout: 15000 });
       const card = await page.$eval(selector, (node, url) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
@@ -83,7 +106,7 @@ export const youngReadersActualData = {
         source: [...node.querySelectorAll('a')].find((link) => link.href === url)?.getAttribute('aria-label'),
         add: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }), GUIDE);
-      t.check(`${guide.name} is found on Character spotlights with ${total} issues and Comic Book Herald credit`,
+      t.check(`${guide.name} is found on Young readers with ${total} issues and Comic Book Herald credit`,
         card.name === guide.name && card.text.includes(`${total} issues`)
         && card.source === `Source of ${guide.name}: Comic Book Herald` && card.add === `Add to library: ${guide.name}`
         && card.text.includes('no Marvel Unlimited links yet') === (guide.gaps > 0), JSON.stringify({ ...card, text: undefined }));

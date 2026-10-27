@@ -64,7 +64,7 @@ test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue')) {
     const parsed = parseRoute(formatRoute({ view }));
     assert.deepEqual(parsed, {
-      view, listId: null, filter: null, full: false, ...(view === 'reading-paths' ? { pathId: null } : {}),
+      view, listId: null, filter: null, full: false,
       ...(view === 'library-rated' ? {
         rated: {
           min: null, q: '', character: '', sort: 'rating',
@@ -201,7 +201,6 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['library-read', ['Home', 'Library', 'Everything read']],
     ['library-manual', ['Home', 'Library', 'Added by hand']],
     ['library-rated', ['Home', 'Library', 'Your ratings']],
-    ['reading-paths', ['Home', 'Reading paths']],
     ['add', ['Home', 'Search']],
     ['data', ['Home', 'Backup & settings']],
     ['about', ['Home', 'About this app']],
@@ -656,7 +655,7 @@ test('route application separates explicit disclosure intent from restored filte
   const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function showView'));
   has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
     'opening derived from explicit parsed route fields');
-  has(body, /if \(route\.view !== 'reading-paths'\) \{ readingView\.setFilterAddressed\(route\.filter !== null\);\s*readingView\.setFilter\(route\.filter \?\? filterIfAbsent\); \}/,
+  has(body, /readingView\.setFilterAddressed\(route\.filter !== null\);\s*readingView\.setFilter\(route\.filter \?\? filterIfAbsent\);/,
     'route application remembering whether the effective filter was explicit');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
@@ -683,48 +682,75 @@ test('nothing sets the filter behind setFilter back', () => {
   assert.equal(writes.length, 2, 'the filter is written somewhere other than setFilter and the restore');
 });
 
-test('one syntactically valid reading path query round trips without unrelated route state', () => {
+// #897 retired the Reading paths page. Its addresses still parse, to Modern Timeline following the
+// path they name, so bookmarks and Back entries keep working, and the app never writes one again.
+test('a Reading paths address opens Modern Timeline following the path it names', () => {
+  for (const hash of [
+    '#/reading-paths?path=x-men-messiah-to-avx',
+    '#/reading-paths/x-men-messiah-to-avx',
+    '#/reading-paths/x-men-messiah-to-avx?path=modern-avengers',
+  ]) {
+    assert.deepEqual(parseRoute(hash), {
+      view: 'catalog', listId: null, filter: null, full: false, pathId: 'x-men-messiah-to-avx', orFirstPath: true,
+    }, hash);
+  }
+  assert.equal(formatRoute({ view: 'reading-paths', pathId: 'x-men-messiah-to-avx' }), '');
+  assert.equal(VIEWS.includes('reading-paths'), false);
+  assert.deepEqual(breadcrumbHierarchy({ view: 'reading-paths' }), []);
   assert.equal(
     formatRoute({
-      view: 'reading-paths',
+      view: 'catalog',
       listId: 'saved-list',
       filter: 'unread',
       full: true,
       sort: 'popularity',
       pathId: 'x-men-messiah-to-avx',
     }),
-    '#/reading-paths?path=x-men-messiah-to-avx',
+    '#/catalog/saved-list?filter=unread&path=x-men-messiah-to-avx',
   );
-  assert.deepEqual(parseRoute('#/reading-paths?path=x-men-messiah-to-avx'), {
-    view: 'reading-paths',
-    listId: null,
-    filter: null,
-    full: false,
-    pathId: 'x-men-messiah-to-avx',
-  });
 });
 
-test('missing empty duplicate and malformed reading path queries select no raw token', () => {
+// The page showed its first path for an address naming none it held, so the Timeline follows the
+// first path for one, and the view corrects the address once the catalog says which that is.
+test('a bare or unusable Reading paths address follows the first path', () => {
   for (const hash of [
     '#/reading-paths',
+    '#/reading-paths/',
     '#/reading-paths?path=',
     '#/reading-paths?path=one&path=two',
     '#/reading-paths?path=Uppercase',
     '#/reading-paths?path=has%20space',
+    '#/reading-paths/Uppercase',
   ]) {
     assert.deepEqual(parseRoute(hash), {
-      view: 'reading-paths', listId: null, filter: null, full: false, pathId: null,
+      view: 'catalog', listId: null, filter: null, full: false, pathId: null, orFirstPath: true,
     }, hash);
   }
-  assert.equal(parseRoute('#/reading-paths/saved-list'), null);
+  assert.equal(parseRoute('#/reading-paths/one/two'), null);
 });
 
-test('an extra query is dropped while a path query on another view is ignored', () => {
+test('the Modern Timeline carries the path it follows, while a path query on another view is ignored', () => {
   assert.equal(parseRoute('#/reading-paths?path=modern-avengers&other=value').pathId, 'modern-avengers');
+  // #897: the Modern Timeline follows a bundled path, so its address carries the choice, beside the
+  // active list as every view's does.
   assert.deepEqual(parseRoute('#/catalog?path=modern-avengers'), {
-    view: 'catalog', listId: null, filter: null, full: false,
+    view: 'catalog', listId: null, filter: null, full: false, pathId: 'modern-avengers',
   });
-  assert.equal(formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), '#/catalog');
+  assert.equal(formatRoute({ view: 'catalog', pathId: 'modern-avengers' }), '#/catalog?path=modern-avengers');
+  assert.equal(
+    formatRoute({ view: 'catalog', listId: 'house-of-m', pathId: 'modern-avengers' }),
+    '#/catalog/house-of-m?path=modern-avengers',
+  );
+  assert.deepEqual(parseRoute('#/catalog/house-of-m?path=modern-avengers&other=value'), {
+    view: 'catalog', listId: 'house-of-m', filter: null, full: false, pathId: 'modern-avengers',
+  });
+  for (const unusable of ['#/catalog?path=Modern-Avengers', '#/catalog?path=a&path=b', '#/catalog?path=', '#/catalog?path=a%20b']) {
+    assert.equal(Object.hasOwn(parseRoute(unusable), 'pathId'), false, unusable);
+  }
+  assert.deepEqual(parseRoute('#/lines?path=modern-avengers'), {
+    view: 'lines', listId: null, filter: null, full: false,
+  });
+  assert.equal(formatRoute({ view: 'lines', pathId: 'modern-avengers' }), '#/lines');
 });
 
 const HOME_CARDS = 'categories';
@@ -764,21 +790,24 @@ test('a category trail returns to the cards, and every other trail to the top of
   assert.deepEqual(breadcrumbHierarchy({ view: 'issue', issueTitle: 'Resolved title' })[0], top);
 });
 
-test('the controller retains path intent while the view permits only the current generation to finish', () => {
+// #897 moved following a path onto Modern Timeline. The address's path, and the retired page's
+// fallback to the first path, reach the view before it renders, the view settles them only in the
+// render that is still current, and a corrected address replaces the entry rather than adding one.
+test('the Timeline keeps the path an address asks for while only the current render may settle it', () => {
   const main = read('src/js/main.js');
-  const readingPaths = read('src/js/views/reading-paths.js');
-  has(main, /if \(route\.view === 'reading-paths'\) requestedReadingPathId = route\.pathId/,
-    'route application retaining the raw requested path token');
-  has(readingPaths, /const currentGeneration = \+\+generation/,
+  const timeline = read('src/js/views/catalog.js');
+  has(main, /catalogView\.setFollowedPath\(route\.pathId \?\? null, \{\s*orFirst: route\.orFirstPath === true,\s*opener: focus \? history\.state\?\.pathStopOpener \?\? null : null,\s*\}\);/,
+    'route application handing the requested path, its fallback and a stop to return to, to the Timeline');
+  has(timeline, /const current = \(\) => generation === generationByShelf\.get\(key\) && isCurrent\(key\) && isRequestCurrent\(\);/,
     'a render generation captured before asynchronous catalog loading');
-  has(readingPaths, /!isCurrent\(\) \|\| currentGeneration !== generation/,
-    'stale or hidden render continuations being refused');
-  has(readingPaths, /if \(requestedId !== selected\.id\) onCanonicalPath\(selected\.id\)/,
-    'post-load fallback canonicalized through passive replacement');
-  has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), readingPathsView\.refreshProgress\(\)\);/,
-    'an adopted cross-tab write refreshing only visible reading-path progress');
-  has(main, /readerStore\.adoptForeignWrite\(null\); readingPathsView\.refreshProgress\(\);/,
-    'an adopted cross-tab origin clear removing visible reading-path progress');
+  has(timeline, /catalog = await loadCatalog\(\);[\s\S]*?if \(!current\(\)\) return;\s*\r?\n\s*if \(catalog\.dropped\)/,
+    'stale or hidden render continuations being refused before a path is settled');
+  has(timeline, /if \(key === 'catalog' && \(retired \|\| state\.path !== \(followed\?\.id \?\? null\)\)\) \{\s*state\.path = followed\?\.id \?\? null;\s*onFollowCanonical\(\);/,
+    'post-load fallback and retired addresses canonicalized');
+  has(main, /onFollowCanonical: \(\) => syncHash\(\),/, 'the corrected address replacing rather than pushing');
+  has(main, /function renderAll\(\) \{[\s\S]*?catalogView\.refreshProgress\(\);/,
+    'every render, an adopted cross-tab write among them, refreshing the followed path\'s position');
+  lacks(main, /readingPathsView|requestedReadingPathId|readingPathOpener/, 'the retired page\'s controller state');
 });
 
 test('the ratings browser address carries only its own filters and omits defaults', () => {

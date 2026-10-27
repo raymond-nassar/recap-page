@@ -55,6 +55,8 @@ function harness({ source = 'saved', score = null } = {}) {
 test('Issue rating summary stays compact and opens an initially unselected editor', () => {
   const h = harness();
   assert.equal(h.nodes.label.textContent, 'Rate this issue');
+  // #905: the button's words first, then the comic it rates.
+  assert.equal(h.nodes.trigger.attributes['aria-label'], 'Rate this issue: Comic');
   h.click('trigger');
   assert.equal(h.nodes.dialog.open, true);
   assert.equal(h.nodes.comic.textContent, 'Comic');
@@ -76,6 +78,7 @@ test('whole-star shortcuts plus half-step controls save only the explicit score'
   h.submit();
   assert.deepEqual(h.saves, [[42, 3.5]]);
   assert.equal(h.nodes.label.textContent, 'Your rating: 3.5/5');
+  assert.equal(h.nodes.trigger.attributes['aria-label'], 'Your rating: 3.5/5. Edit rating for Comic.');
   assert.equal(h.nodes.dialog.open, false);
   assert.strictEqual(h.doc.activeElement, h.nodes.trigger);
   assert.strictEqual(h.state.read, read);

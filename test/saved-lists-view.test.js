@@ -13,6 +13,9 @@ function element(tag, props = {}, children = []) {
   return { tag, props, children: [].concat(children) };
 }
 
+// A tile's element children, without the white space kept between its pieces.
+const pieces = (link) => link.children.filter((child) => typeof child !== 'string');
+
 function sectionFixture() {
   const head = {
     note: null,
@@ -80,10 +83,12 @@ test('completed-list presentation overrides status and details without falsifyin
     summary: () => '1 completed list',
   });
   const button = target.results.children[0].children[0];
-  assert.equal(button.children[3].props.text, '1 / 2. 1 deferred');
-  assert.equal(button.children[4].props.text, 'Completed');
-  assert.equal(button.children[5].props.text, 'Enjoyed. Completed today');
-  assert.match(button.props['aria-label'], /1 deferred.*Completed.*Enjoyed/);
+  assert.equal(pieces(button)[3].props.text, '1 / 2. 1 deferred');
+  assert.equal(pieces(button)[4].props.text, 'Completed');
+  assert.equal(pieces(button)[5].props.text, 'Enjoyed. Completed today');
+  // #905: the tile's text in the order it is shown, then what the count means.
+  assert.equal(button.props['aria-label'],
+    'First list. 1 / 2. 1 deferred. Completed. Enjoyed. Completed today. 1 of 2 issues read. Open this list.');
   assert.equal(target.head.note.textContent, '1 completed list');
 });
 
@@ -113,8 +118,17 @@ test('one saved-list presenter paints Home and Library and delegates opening', (
   );
   assert.equal(
     home.results.children[0].children[0].props['aria-label'],
-    'First list 1 2: issues read, Reading. Open this list',
+    'First list. 1 / 2. Reading. 1 of 2 issues read. Open this list.',
   );
+  // The visible text, read off the tile in order and stripped as speech input strips it, is one run
+  // at the start of the name. A name with words spliced between its pieces fails this (#905).
+  const words = (text) => String(text).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).join(' ');
+  const shown = pieces(home.results.children[0].children[0])
+    .filter((part) => part.props['aria-hidden'] !== 'true')
+    .map((part) => part.props.text).join(' ');
+  assert.ok(words(home.results.children[0].children[0].props['aria-label']).startsWith(words(shown)), shown);
+  // Separate words in the tile's own text, as well as in its name, for anything reading the text.
+  assert.deepEqual(home.results.children[0].children[0].children.filter((child) => typeof child === 'string'), [' ', ' ']);
   home.results.children[1].children[0].props.onclick();
   assert.deepEqual(opened, ['second']);
   assert.equal(covers.length, 12);

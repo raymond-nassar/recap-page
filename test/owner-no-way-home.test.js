@@ -177,7 +177,7 @@ test('owner No Way Home withdrawal leaves only the original guide in new discove
   assert.equal(screenIds.filter((id) => id === ownerId).length, 0);
   assert.equal(screenIds.filter((id) => id === legacyId).length, 1);
   assert.ok(availableHomeCategories(stories).some(({ key }) => key === 'marvel-on-screen'));
-  assert.deepEqual(CATALOG_SHELVES.map(({ key }) => key), ['catalog', 'lines', 'spotlights']);
+  assert.deepEqual(CATALOG_SHELVES.map(({ key }) => key), ['catalog', 'lines', 'young-readers', 'spotlights']);
   for (const { key } of CATALOG_SHELVES) {
     assert.equal(shelfLists(catalog.lists, key).some(({ id }) => id === ownerId), false);
   }

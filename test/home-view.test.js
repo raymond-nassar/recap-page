@@ -146,15 +146,13 @@ function harness({
       count: 2,
     },
     {
-      key: 'reading-paths',
-      route: 'reading-paths',
+      key: 'young-readers',
+      route: 'young-readers',
       tier: 'secondary',
-      icon: 'E8FD',
-      heading: 'Reading paths',
-      label: 'Follow connected stories',
+      icon: 'E7BE',
+      heading: 'Young readers',
+      label: 'Stories for kids',
       count: 1,
-      singular: 'Reading path',
-      plural: 'Reading paths',
     },
   ];
   const catalog = {
@@ -257,7 +255,13 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
     assert.equal(gatewayEntry.nodes.status.classList.contains('visually-hidden'), true);
   }
   const tile = h.nodes.gateways[0].nodes.primary.children[0].children[0];
-  assert.equal(tile.attributes['aria-label'], 'Modern Timeline. Browse by year. 2 Reading Lists.');
+  // #905: the eyebrow, title and count in the order the card shows them.
+  assert.equal(tile.attributes['aria-label'], 'Browse by year. Modern Timeline. 2 Reading Lists.');
+  // And the card's own text keeps them apart as words, which a reader of the text, the axe rules
+  // pass among them, would otherwise run together as "Browse by yearModern Timeline2 Reading Lists".
+  const text = (part) => (typeof part === 'string' ? part : part.textContent || part.children.map(text).join(''));
+  const copy = tile.children.find((child) => child.classList?.contains('home-path-copy'));
+  assert.equal(text(copy), 'Browse by year Modern Timeline 2 Reading Lists');
   tile.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
 

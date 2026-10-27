@@ -243,6 +243,7 @@ export function createCatalogPresentation({
   function paintTimelinePosition(root, position, {
     message = '',
     narrowed = false,
+    progress = null,
     visibleStoryKeys = new Set(),
   } = {}) {
     if (!root || !position) return;
@@ -275,7 +276,7 @@ export function createCatalogPresentation({
         el('span', { class: 'timeline-position-label', text: 'You are here' }),
         el('span', {
           class: 'timeline-position-progress',
-          text: `${position.completed} of ${position.total} ${stop} complete`,
+          text: progress ?? `${position.completed} of ${position.total} ${stop} complete`,
         }),
       ]);
       (card.querySelector('.catalog-card-text') ?? card).prepend(marker);

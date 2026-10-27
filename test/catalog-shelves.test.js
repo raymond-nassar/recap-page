@@ -29,10 +29,10 @@ import {
 import { VIEWS } from '../src/js/lib/route.js';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 
-// The catalog is split across three screens. Three screens is three chances to drop a story, and a
+// The catalog is split across four screens. Four screens is four chances to drop a story, and a
 // story reachable from no screen at all is the worst outcome available here: it is bundled with the
 // app, listed in no index, and the reader has no way to learn it exists. So the partition is
-// asserted as a property rather than as three counts, and it is asserted at both levels, because a
+// asserted as a property rather than as four counts, and it is asserted at both levels, because a
 // story is only whole on a shelf if every one of its readings came with it.
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -73,8 +73,10 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 86);
-  assert.equal(groupCatalog(spotlights).length, 85);
+  // #897: the fifteen young readers' lists moved to their own screen, so they are counted there.
+  assert.equal(spotlights.length, 71);
+  assert.equal(groupCatalog(spotlights).length, 70);
+  assert.equal(spotlights.some((list) => list.audience === 'young-readers'), false);
 
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
@@ -83,7 +85,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 8, 8],
     ['complete-guide', 38, 38],
-    ['other', 40, 39],
+    ['other', 25, 24],
 
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -221,6 +223,7 @@ test('filtering Modern Timeline leaves every story on a discovery path', () => {
   add(modernTimelineStories(stories));
   add(shelfStories(stories, 'lines'));
   add(shelfStories(stories, 'spotlights'));
+  add(shelfStories(stories, 'young-readers'));
   add(publishingAgeGroups(stories).stories);
 
   const featured = modernTimelineFeaturedList(catalog.lists);
@@ -265,7 +268,30 @@ test('a type no screen names still reaches a reader', () => {
 test('screen companions remain reachable on the existing Storylines screen', () => {
   const companion = { key: 'screen', lists: [{ type: 'screen-companion' }] };
   assert.deepEqual(keys.filter((key) => shelfStories([companion], key).length), ['lines']);
-  assert.equal(CATALOG_SHELVES.length, 3, 'a fourth browse screen was added');
+  // The fourth is Young readers, added by #897 as its lists' one screen.
+  assert.equal(CATALOG_SHELVES.length, 4, 'a fifth browse screen was added');
+});
+
+// #897. Young readers is chosen by audience, so it is the one screen for every young readers' list
+// of any type, and no other screen takes one. The table's order decides none of it.
+test('young readers\' lists reach Young readers alone, whatever their type', () => {
+  const young = shelfLists(catalog.lists, 'young-readers');
+  assert.deepEqual(young.map((list) => list.id).sort(),
+    catalog.lists.filter((list) => list.audience === 'young-readers').map((list) => list.id).sort());
+  assert.equal(young.length, 15);
+  assert.equal(groupCatalog(young).length, 15);
+  for (const type of ['event', 'character-run', 'creator-run', 'era', 'screen-companion']) {
+    const story = { key: type, lists: [{ id: type, name: type, type, audience: 'young-readers' }] };
+    assert.deepEqual(keys.filter((key) => shelfStories([story], key).length), ['young-readers'], type);
+    const plain = { key: type, lists: [{ id: type, name: type, type, audience: null }] };
+    assert.equal(shelfStories([plain], 'young-readers').length, 0, `${type} with no audience`);
+  }
+  const mixed = { key: 'mixed', lists: [
+    { id: 'a', name: 'A', type: 'character-run', audience: 'young-readers' },
+    { id: 'b', name: 'B', type: 'character-run', audience: null },
+  ] };
+  assert.deepEqual(keys.filter((key) => shelfStories([mixed], key).length), ['lines'],
+    'a story whose readings disagree about audience goes where a story mixing types goes');
 });
 
 // An empty screen is dropped rather than drawn as a heading with nothing under it, the same rule the

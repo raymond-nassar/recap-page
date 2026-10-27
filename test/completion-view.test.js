@@ -389,7 +389,10 @@ test('suggestions open saved candidates or preview unsaved ones and expose failu
     ],
     failures: [{ message: 'Candidate metadata could not be loaded.' }], cancelled: false,
   });
+  const announced = h.calls.announce.length;
   await h.view.render();
+  // #897 item 2: a path's next stop is offered by its own text, with no announcement of its own.
+  assert.equal(h.calls.announce.length, announced);
   assert.equal(h.nodes.suggestions.children.length, 2);
   for (const suggestion of h.nodes.suggestions.children) {
     const button = suggestion.children[2];

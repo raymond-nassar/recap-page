@@ -280,16 +280,18 @@ test('aggregate paths retain shared stories independently with catalog-ordered s
   assert.equal(resolved[1].stops[0].next.name, 'other');
 });
 
+// #897 moved following a path onto Modern Timeline, which counts each stop by the same saved copy the
+// path's own page did: the exact import first, then a sibling in catalog order, then none at all.
 test('aggregate progress prefers the exact import, then catalog-order sibling, then nothing', async () => {
-  const { readingPathProgress } = await import('../src/js/views/reading-paths.js');
-  const stop = resolveReadingPaths(
+  const { followedPathPosition, followedPathStories } = await import('../src/js/views/catalog.js');
+  const [shared] = followedPathStories(resolveReadingPaths(
     [path({ steps: ['one', 'shared-exact'] })],
     [
       shelf('one'),
       shelf('shared-main', { group: 'shared', groupName: 'Shared' }),
       shelf('shared-exact', { group: 'shared', groupName: 'Shared' }),
     ],
-  )[0].stops[1];
+  )[0]).slice(1);
   const imported = (id, catalogId, itemIds) => ({
     id, name: id, catalogId, itemIds, collectedIn: {},
   });
@@ -302,19 +304,14 @@ test('aggregate progress prefers the exact import, then catalog-order sibling, t
     read: { 1: 1, 2: 1, 3: 1 },
   };
 
-  assert.deepEqual(readingPathProgress(state, stop), {
-    listId: 'exact',
-    catalogId: 'shared-exact',
-    name: 'exact',
-    read: 0,
-    total: 2,
-    state: 'unstarted',
-    match: 'exact',
-  });
+  assert.deepEqual(followedPathPosition(state, [shared]), {
+    kind: 'current', storyKey: 'list:shared-exact', storyName: 'shared-exact', stop: 1, completed: 0, total: 1,
+  }, 'the unread exact import is counted, not the finished sibling before it');
   const siblingOnly = { ...state, lists: { sibling: state.lists.sibling }, listOrder: ['sibling'] };
-  assert.equal(readingPathProgress(siblingOnly, stop).catalogId, 'shared-main');
-  assert.equal(readingPathProgress(siblingOnly, stop).read, 3);
-  assert.equal(readingPathProgress({ ...state, lists: {}, listOrder: [] }, stop), null);
+  assert.deepEqual(followedPathPosition(siblingOnly, [shared]), { kind: 'complete', completed: 1, total: 1 });
+  assert.deepEqual(followedPathPosition({ ...state, lists: {}, listOrder: [] }, [shared]), {
+    kind: 'current', storyKey: 'list:shared-exact', storyName: 'shared-exact', stop: 1, completed: 0, total: 1,
+  }, 'with nothing saved the stop is the reading the path names');
 });
 
 test('aggregate paths reject duplicate identities and sequences with fewer than two surviving stops', () => {

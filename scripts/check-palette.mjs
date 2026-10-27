@@ -23,18 +23,18 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const BODY = 4.5;
 export const LARGE = 3;
 
-// The six category cards on Home and Browse, by the name of the surface each icon is measured on,
-// then the channel its tint is made of and the ink its icon is drawn in. The Discover More cards'
+// The six category cards on Home, by the name of the surface each icon is measured on, then the
+// channel its tint is made of and the ink its icon is drawn in. The Discover More cards'
 // channels are set per theme (#872), so their icons are drawn straight from them. The top row's are
 // one value for both themes and cannot clear 3:1 in both, so its icons take the hue's own per-theme
-// text color (#873).
+// text color (#873). Young readers took Reading paths' place and its green channel (#897).
 export const CATEGORY_CARDS = [
   ['the Modern Timeline card', '--accent-line', '--accent-text'],
   ['the Storylines card', '--amber-line', '--amber'],
   ['the Character spotlights card', '--teal-line', '--teal'],
   ['the MCU Prep card', '--azure-line', '--azure-line'],
   ['the Marvel Ages card', '--magenta-line', '--magenta-line'],
-  ['the Reading paths card', '--green-line', '--green-line'],
+  ['the Young readers card', '--green-line', '--green-line'],
 ];
 
 // The eleven Marvel era tiles that #875 gave an accent of their own: the era's key, the name of the
@@ -767,7 +767,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1700` in the rail and `src/js/views/shared/saved-lists.js:32` in the
+// stated as text beside it, at `src/js/main.js:1698` in the rail and `src/js/views/shared/saved-lists.js:35` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when

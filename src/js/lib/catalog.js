@@ -13,8 +13,8 @@ export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 's
 export const SPOTLIGHT_KINDS = ['best-of', 'complete-guide', 'other'];
 // Who a list is suited to, as its sources state it. A closed vocabulary rather than a keyword,
 // because keywords are free search text any list can carry, and a Home category selecting on one
-// would gain members nobody chose for it. It crosses shelves the way MCU Prep does: a young
-// readers' list keeps its own shelf by type.
+// would gain members nobody chose for it. A list carrying one is shelved by it rather than by its
+// type, so a young readers' list has Young readers as its one screen (#897).
 export const LIST_AUDIENCES = ['young-readers'];
 
 const SPOTLIGHT_KIND_LABELS = {
@@ -750,10 +750,11 @@ export function firstSentence(value) {
 
 // ------------------------------------------------------------------ shelf sections
 
-// The three shelves the catalog is split across, and the only place any story's screen is decided.
-// One screen per kind of reading rather than one screen with headings in it, because the three
-// answer different questions: where the line goes, what a whole run of it looks like, and what to
-// read about one character. Three renderers read this table; none of them tests `type` itself.
+// The four shelves the catalog is split across, and the only place any story's screen is decided.
+// One screen per kind of reading rather than one screen with headings in it, because the four
+// answer different questions: where the line goes, what a whole run of it looks like, what to read
+// about one character, and what suits a younger reader. The renderers read this table; none of them
+// tests `type` or `audience` itself.
 //
 // Keyed on `type` rather than on whether an order carries a `timeline` year. Today those two rules
 // produce the same split, but that is a property of the data as it stands rather than a rule
@@ -791,6 +792,17 @@ export const CATALOG_SHELVES = [
     blurb: 'Selected named stories, events and arcs, whole runs, and on-screen companion picks. Choose a reading that interests you; its original Timeline or Spotlight placement stays unchanged.',
     empty: 'No storylines or on-screen companion picks are bundled with this build.',
   },
+  // Chosen by who a list is for rather than by what kind of reading it is, so it names every type: a
+  // list its sources mark for younger readers is found here whatever it is, and only here (#897).
+  {
+    key: 'young-readers',
+    types: LIST_TYPES,
+    audience: 'young-readers',
+    sections: null,
+    heading: 'Young readers',
+    blurb: 'Stories their sources suggest for younger readers. Each stands on its own, so begin with whichever hero a young reader already likes.',
+    empty: 'No Reading Lists for young readers are bundled with this build.',
+  },
   {
     key: 'spotlights',
     types: ['character-run'],
@@ -809,10 +821,16 @@ const FALLBACK_SHELF = CATALOG_SHELVES.find((shelf) => !shelf.types);
 // story mixing types falls through to the shelf that takes everything, which is the one that cannot
 // cut a reading path in two. No bundled story mixes types today, so the rule decides nothing yet.
 // It decides what happens the first time one does.
+//
+// A reading matches on its stated audience as well as its type. A shelf naming no audience takes
+// only readings that state none, so Character spotlights and Young readers cannot both claim a
+// young readers' run, and the answer never depends on which row of the table comes first.
 export function shelfKey(story) {
   const lists = Array.isArray(story?.lists) ? story.lists : [];
+  const fits = (shelf, list) => shelf.types.includes(list?.type)
+    && (list?.audience ?? null) === (shelf.audience ?? null);
   const shelf = lists.length
-    ? CATALOG_SHELVES.find((s) => s.types && lists.every((l) => s.types.includes(l?.type)))
+    ? CATALOG_SHELVES.find((s) => s.types && lists.every((l) => fits(s, l)))
     : null;
   return (shelf ?? FALLBACK_SHELF).key;
 }
@@ -1180,14 +1198,24 @@ export const HOME_CATEGORIES = [
     highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],
     select: typeCategory('screen-companion'),
   },
-  MARVEL_AGES_CATEGORY, { key: 'reading-paths', route: 'reading-paths', heading: 'Reading paths', label: 'Follow connected stories', icon: 'E8F1', tier: 'secondary', kind: 'reading-paths', singular: 'Reading path', plural: 'Reading paths' },
+  MARVEL_AGES_CATEGORY,
+  {
+    key: 'young-readers',
+    route: 'young-readers',
+    shelf: 'young-readers',
+    heading: 'Young readers',
+    label: 'Stories for kids',
+    icon: 'E7BE',
+    tier: 'secondary',
+    select: shelfCategory('young-readers'),
+  },
 ];
 
-export function availableHomeCategories(stories, definitions = HOME_CATEGORIES, paths = []) {
+export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
   const all = Array.isArray(stories) ? stories : [];
   return definitions.flatMap(({ select, ...category }) => {
-    const matches = category.kind === 'reading-paths' ? (Array.isArray(paths) ? paths : []) : select(all);
-    const count = category.kind === 'reading-paths' ? matches.length : matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
+    const matches = select(all);
+    const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
     return matches.length ? [{ ...category, count }] : [];
   });
 }

@@ -3,6 +3,7 @@ import { isLaunchable } from '../reader.js';
 import { deferredCount } from '../lib/model.js';
 import { paintGlance } from '../lib/progressGlance.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
+import { shownName } from '../lib/accname.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -10,7 +11,7 @@ const CATEGORY_ICONS = {
   E8FD: 'storylines',
   E77B: 'characters',
   E714: 'screen',
-  E8F1: 'books',
+  E7BE: 'reader',
   E81C: 'ages',
 };
 
@@ -194,7 +195,7 @@ export function createHomeView({
     return el('li', {}, el('a', {
       href: formatRoute({ view: category.route }),
       class: `home-path home-path-${category.tier}`,
-      'aria-label': `${category.heading}. ${category.label}. ${count}.`,
+      'aria-label': shownName([category.label, category.heading, count]),
       dataset: { category: category.key },
       onclick: (event) => {
         if (!isPlainNavigation(event)) return;
@@ -203,9 +204,15 @@ export function createHomeView({
       },
     }, [
       createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
+      // Each piece but the last ends in a space, which is not drawn because it ends a line, so the
+      // pieces stay separate words for anything that reads the card's text rather than its boxes.
+      // The axe rules pass is one: it joins sibling text as it finds it, and read this card as
+      // "Browse by yearModern Timeline152 Reading Lists", which no name can contain (#905). The space
+      // is inside each piece rather than between them because on Home the wrapper is laid out with
+      // `display: contents`, and axe drops text whose parent draws no box of its own.
       el('span', { class: 'home-path-copy' }, [
-        el('span', { class: 'eyebrow home-path-label', text: category.label }),
-        el('span', { class: 'home-path-title', text: category.heading }),
+        el('span', { class: 'eyebrow home-path-label' }, [category.label, ' ']),
+        el('span', { class: 'home-path-title' }, [category.heading, ' ']),
         el('span', { class: 'home-path-count', text: count }),
       ]),
       createIcon('arrow-right', 'gi home-path-arrow'),

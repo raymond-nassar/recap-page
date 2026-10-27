@@ -7,7 +7,7 @@ const HTML = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8')
 function aboutView() {
   const start = HTML.indexOf('<section id="view-about"');
   assert.notEqual(start, -1, 'the About view must remain in the page');
-  const end = HTML.indexOf('<section id="view-reading-paths"', start);
+  const end = HTML.indexOf('<section id="view-completed"', start);
   assert.notEqual(end, -1, 'the About view must remain bounded by the next view');
   return HTML.slice(start, end);
 }

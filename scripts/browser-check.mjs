@@ -35,7 +35,6 @@ import { constants, homedir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
-import { readingPathProgress } from '../src/js/views/reading-paths.js';
 
 import {
   LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
@@ -291,10 +290,10 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Thirty-six entries make thirty-four logical stories. Four event choices share three path stops,
+// Thirty-seven entries make thirty-five logical stories. Four event choices share three path stops,
 // while two storylines each cross to another browse screen. Fourteen Character Spotlight choices put
-// that shelf over its search threshold, the ten extra events do the same for Timeline, and five
-// screen companions populate MCU Prep.
+// that shelf over its search threshold, the ten extra events do the same for Timeline, five screen
+// companions populate MCU Prep, and one young readers' list populates Young readers (#897).
 // The third stop offers two explicit guides that share one logical placement and saved progress.
 //
 // The character fixture freezes the five Best of and two complete-guide baseline that introduced the
@@ -356,6 +355,9 @@ const CATALOG = {
       `Other Spotlight ${index + 1}`,
       { type: 'character-run', spotlightKind: 'other' },
     )),
+    shelfEntry('young-readers-fixture', 'Young Readers Fixture', {
+      type: 'character-run', spotlightKind: 'other', audience: 'young-readers', beginner: true,
+    }),
     shelfEntry('avengers-disassembled', 'Avengers Disassembled', { timeline: 2004, beginner: true }),
     ...Array.from({ length: 9 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
@@ -3739,7 +3741,7 @@ const SCENARIOS = [
             label: 'Publication history',
             title: 'Marvel Ages',
             count: '16 Reading Lists',
-          }, { key: 'reading-paths', label: 'Follow connected stories', title: 'Reading paths', count: '3 Reading paths' },
+          }, { key: 'young-readers', label: 'Stories for kids', title: 'Young readers', count: '1 Reading List' },
         ]),
         JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
@@ -3762,12 +3764,12 @@ const SCENARIOS = [
           && text === '6 ways to read available.'),
         JSON.stringify(context.statuses));
 
-      // #872: MCU Prep, Marvel Ages and Reading paths each draw their edge, tint and icon from a hue of
-      // their own, so Home shows six hues and Browse the same six, in both themes. Forced colors keep
-      // one system color for every edge, as before. Since #873 the top row's icons take a darker or
-      // lighter ink of their card's hue to clear 3:1 on its tint, so the icon is matched to its edge by
-      // OKLCH hue: the widest gap between an ink and its edge measured 4.7 degrees, and the six edges
-      // sit at least 30 degrees apart.
+      // #872: MCU Prep, Marvel Ages and Young readers, which took Reading paths' place and hue in #897,
+      // each draw their edge, tint and icon from a hue of their own, so Home shows six hues in both
+      // themes. Forced colors keep one system color for every edge, as before. Since #873 the top row's
+      // icons take a darker or lighter ink of their card's hue to clear 3:1 on its tint, so the icon is
+      // matched to its edge by OKLCH hue: the widest gap between an ink and its edge measured 4.7
+      // degrees, and the six edges sit at least 30 degrees apart.
       const accents = () => page.evaluate(() => {
         const hue = (color) => {
           const [r, g, b] = color.match(/[\d.]+/g).slice(0, 3).map((channel) => {
@@ -3798,8 +3800,8 @@ const SCENARIOS = [
           home.length === 6 && new Set(home.map(({ edge }) => edge)).size === 6
           && home.every(({ gap }) => gap <= 10),
           JSON.stringify(home));
-        t.check(`${theme}: MCU Prep, Marvel Ages and Reading paths leave the brand purple to Modern Timeline`,
-          ['marvel-on-screen', 'marvel-ages', 'reading-paths'].every((key) => {
+        t.check(`${theme}: MCU Prep, Marvel Ages and Young readers leave the brand purple to Modern Timeline`,
+          ['marvel-on-screen', 'marvel-ages', 'young-readers'].every((key) => {
             const card = home.find((entry) => entry.key === key);
             return card && card.edge !== purple;
           }),
@@ -4153,9 +4155,10 @@ const SCENARIOS = [
         complete: await readSubset('complete-guide'),
         bestOf: await readSubset('best-of'),
       };
+      // #897 moved the fifteen young readers' lists from All to Young readers, their one screen.
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 86 && desktop.all.stories === 85
-        && desktop.all.cards === 86 && desktop.all.adamCards === 1
+        desktop.all.readings === 71 && desktop.all.stories === 70
+        && desktop.all.cards === 71 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 8 && desktop.bestOf.stories === 8
@@ -4170,8 +4173,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 86 && narrow.all.stories === 85
-        && narrow.all.cards === 86 && narrow.all.adamCards === 1
+        narrow.all.readings === 71 && narrow.all.stories === 70
+        && narrow.all.cards === 71 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 8 && narrow.bestOf.stories === 8
@@ -12674,8 +12677,8 @@ const SCENARIOS = [
     },
   },
   {
-    id: 'reading-path-stop-actions',
-    title: 'Reading Paths stops reuse preview, saved lists and visible return focus',
+    id: 'path-follow-stop-actions',
+    title: 'a followed path\'s stops reuse preview, saved lists and visible return focus (#897)',
     async run(page, t) {
       await page.setViewport({ width: 1280, height: 900 });
       await page.evaluateOnNewDocument(() => {
@@ -12683,9 +12686,22 @@ const SCENARIOS = [
       });
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
-      const first = '[data-reading-path-action="browser-check"]';
-      const last = '[data-reading-path-action="browser-check-three-short"]';
-      await open(page, '/?catalog=reading-path-stop-actions#/reading-paths?path=bc-path');
+      // #897 moved following a path onto Modern Timeline, where each stop is a catalog card with the
+      // card's own Preview and Open, in place of the retired page's one button per stop.
+      // Every view's address carries the active list and reading filter beside its own choice, so a
+      // followed route is read by its view and path rather than matched as one whole string.
+      await page.evaluateOnNewDocument(() => {
+        window.__pathRoute = () => {
+          const [head, query = ''] = location.hash.split('?');
+          return { view: head.split('/')[1] ?? null, path: new URLSearchParams(query).get('path') };
+        };
+      });
+      const route = '#/catalog?path=bc-path';
+      const action = (id, act) => `#catalog-results [data-path-stop="${id}"] [data-act="${act}"]`;
+      const first = action('browser-check', 'preview');
+      const last = action('browser-check-three-short', 'preview');
+      const lastOpen = action('browser-check-three-short', 'open');
+      await open(page, `/?catalog=path-follow-stop-actions${route}`);
       await page.waitForSelector(last);
       const before = await readState(page);
       await page.focus(first);
@@ -12732,13 +12748,13 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('#preview').open
         && document.activeElement?.classList.contains('preview-issue-link'));
       const returned = await page.evaluate(() => ({
-        path: document.querySelector('#reading-path-select').value,
+        path: document.querySelector('#catalog-path').value,
         choices: document.querySelectorAll('#preview-paths input').length,
         title: document.querySelector('#preview-h').textContent,
         add: document.querySelector('#preview-add button')?.dataset.key,
         meta: document.querySelector('#preview-meta').textContent,
       }));
-      t.check('Back from preview issue details restores the path and exact authored guide without a chooser',
+      t.check('Back from preview issue details restores the followed path and exact authored guide without a chooser',
         returned.path === 'bc-path' && returned.choices === 0
         && returned.title === 'Third Stop: The Short Way' && returned.add === 'browser-check-three-short'
         && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
@@ -12752,11 +12768,13 @@ const SCENARIOS = [
       const saved = library.lists.fixture;
       library.schemaVersion = SCHEMA_VERSION;
       saved.deferredIssueIds = [];
+      // The first stop saved and read in full, so a refresh has a place on the path to move.
       library.lists = {
+        first: { ...saved, id: 'first', name: 'Saved first stop', catalogId: 'browser-check', itemIds: [saved.itemIds[0]] },
         sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
         exact: { ...saved, id: 'exact', name: 'Saved short version', catalogId: 'browser-check-three-short' },
       };
-      library.listOrder = ['sibling', 'exact'];
+      library.listOrder = ['first', 'sibling', 'exact'];
       library.active = 'sibling';
       library.read = { [saved.itemIds[0]]: 1 };
       library.notes = { [saved.itemIds[1]]: 'Keep this saved issue note' };
@@ -12769,26 +12787,36 @@ const SCENARIOS = [
           key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
         }));
       }, state);
-      await page.evaluate((selector) => { window.__stopAction438 = document.querySelector(selector); }, last);
+      await page.evaluate((selector) => { window.__stopAction897 = document.querySelector(selector); }, last);
       await adopt(library);
-      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved list', {}, last);
-      t.check('a foreign progress refresh keeps the focused stop control instead of replacing it',
-        await page.evaluate(() => document.activeElement === window.__stopAction438));
+      await page.waitForFunction(() => document.querySelector(
+        '#catalog-results [data-path-stop="browser-check-two"] .timeline-position-current',
+      ));
+      const refreshed = await page.evaluate(() => ({
+        same: document.activeElement === window.__stopAction897 && window.__stopAction897.isConnected,
+        progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
+      }));
+      t.check('a foreign progress refresh moves the path\'s place and keeps the focused stop control',
+        refreshed.same && refreshed.progress === 'Stop 2 of 12 · 1 of 12 stops complete', JSON.stringify(refreshed));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector(lastOpen);
       const beforeRefusedSelection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.evaluate(() => {
-        window.__setItem438 = Storage.prototype.setItem;
+        window.__setItem897 = Storage.prototype.setItem;
         Storage.prototype.setItem = function (key, value) {
           if (key === 'mrt.state.v2') throw new DOMException('Fixture storage refusal', 'QuotaExceededError');
-          return window.__setItem438.call(this, key, value);
+          return window.__setItem897.call(this, key, value);
         };
       });
+      await page.focus(lastOpen);
       await page.keyboard.press('Enter');
       t.check('a refused saved-list selection stays on the path and surfaces the failure without changing storage',
-        await page.evaluate((raw) => location.hash === '#/reading-paths?path=bc-path'
+        await page.evaluate((raw) => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === 'bc-path'
           && localStorage.getItem('mrt.state.v2') === raw
-          && document.querySelector('#reading-paths-report').textContent.includes('could not be opened'), beforeRefusedSelection));
-      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem438; });
-      await page.focus(last);
+          && document.querySelector('#catalog-report').textContent.includes('could not be opened'), beforeRefusedSelection));
+      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem897; });
+      await page.focus(lastOpen);
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
       const exact = await readState(page);
@@ -12800,7 +12828,7 @@ const SCENARIOS = [
         issue: document.querySelector('#btn-hero-inspect').dataset.issueId,
       }));
       const beforeSelection = JSON.parse(beforeRefusedSelection);
-      t.check('an owned stop opens the exact saved list whose progress it shows',
+      t.check('an owned stop opens the exact saved list the path counts it by',
         exact.active === 'exact' && exactView.visible && exactView.name === 'Saved short version'
         && exactView.context === 'exact' && exactView.issue === String(saved.itemIds[1])
         && exactView.next === library.issues[saved.itemIds[1]].title
@@ -12808,65 +12836,69 @@ const SCENARIOS = [
           JSON.stringify(exact[key]) === JSON.stringify(beforeSelection[key])
         )), JSON.stringify(exactView));
       await page.evaluate(() => history.back());
-      await page.waitForFunction((selector) => location.hash === '#/reading-paths?path=bc-path'
-        && document.activeElement === document.querySelector(selector), {}, last);
-      const visible = await page.$eval(last, (node) => {
+      await page.waitForFunction((selector) => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === 'bc-path'
+        && document.activeElement === document.querySelector(selector), {}, lastOpen);
+      const visible = await page.$eval(lastOpen, (node) => {
         const rect = node.getBoundingClientRect();
         return { top: rect.top, bottom: rect.bottom, height: innerHeight, scroll: scrollY };
       });
-      t.check('Back brings a far-down original stop fully into view without a stored scroll position',
+      t.check('Back returns focus to a far-down stop\'s Open and brings it fully into view',
         visible.top >= 0 && visible.bottom <= visible.height && visible.scroll > 0, JSON.stringify(visible));
       delete library.lists.exact;
-      library.listOrder = ['sibling'];
+      library.listOrder = ['first', 'sibling'];
       await adopt(library);
-      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved version', {}, last);
-      const sibling = await page.$eval(last, (node) => ({
-        name: node.getAttribute('aria-label'),
-        progress: node.closest('li').querySelector('.reading-path-stop-progress').textContent,
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector(lastOpen);
+      const sibling = await page.$eval('#catalog-results [data-path-stop="browser-check-three-short"]', (item) => ({
+        title: item.querySelector('.catalog-card-title')?.textContent.trim(),
+        href: item.querySelector('[data-act="open"]')?.getAttribute('href'),
+        name: item.querySelector('[data-act="open"]')?.getAttribute('aria-label'),
       }));
-      t.check('alternate ownership names the saved version without implying the exact stop was added',
-        sibling.name.includes('Saved complete version')
-        && sibling.progress.includes('Alternate reading version.'), JSON.stringify(sibling));
+      t.check('a saved sibling is drawn as itself, without implying the exact stop was added',
+        sibling.title === 'Third Stop: The Long Way' && sibling.href === '#/read/sibling'
+        && sibling.name.includes('Third Stop: The Long Way') && !sibling.name.includes('Short Way'),
+        JSON.stringify(sibling));
+      await page.focus(lastOpen);
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash.startsWith('#/read/sibling'));
       const after = await readState(page);
       t.check('opening a saved sibling preserves lists, read markers, notes and availability overrides',
         ['lists', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(after[key]) === JSON.stringify(library[key])));
       await page.evaluate(() => history.back());
-      await page.waitForFunction((selector) => document.activeElement === document.querySelector(selector), {}, last);
+      await page.waitForFunction((selector) => document.activeElement === document.querySelector(selector), {}, lastOpen);
 
       for (const theme of ['dark', 'light']) {
         await page.setViewport({ width: 320, height: 900 });
         await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-        await page.focus(last);
-        const layout = await page.$$eval('[data-reading-path-action]', (buttons) => ({
+        await page.focus(lastOpen);
+        const layout = await page.$$eval('#catalog-results .path-stop .catalog-card-actions > *', (controls) => ({
           viewport: innerWidth, width: document.documentElement.scrollWidth,
-          buttons: buttons.map((button) => {
-            const rect = button.getBoundingClientRect();
-            const style = getComputedStyle(button);
+          controls: controls.map((control) => {
+            const rect = control.getBoundingClientRect();
+            const style = getComputedStyle(control);
             return {
               left: rect.left, right: rect.right, height: rect.height,
-              fits: button.scrollWidth <= button.clientWidth,
-              text: button.textContent, name: button.getAttribute('aria-label'),
+              fits: control.scrollWidth <= control.clientWidth,
+              text: control.textContent.replace(/[^\w\s]/g, '').trim(), name: control.getAttribute('aria-label'),
               color: style.color, background: style.backgroundColor,
             };
           }),
         }));
         t.check(`${theme} narrow stop actions wrap without overflow and retain labelled 44px targets`,
-          layout.width === layout.viewport && layout.buttons.length === 12
-          && layout.buttons.every((button) => button.left >= 0 && button.right <= layout.viewport
-            && button.height >= 44 && button.fits && button.name.includes(button.text)
-            && button.color !== button.background), JSON.stringify(layout));
+          layout.width === layout.viewport && layout.controls.length === 24
+          && layout.controls.every((control) => control.left >= 0 && control.right <= layout.viewport
+            && control.height >= 44 && control.fits && control.name.startsWith(control.text)
+            && control.color !== control.background), JSON.stringify(layout));
       }
       t.check('stop journeys produce no page errors or reader-tab launches',
         errors.length === 0 && await page.evaluate(() => window.__opened.length === 0), errors.join(' / '));
     },
   },
   {
-    id: 'reading-paths',
-    title: 'one reading-path view preserves route, progress, overlap and focus',
+    id: 'path-follow',
+    title: 'Modern Timeline follows a path, keeping route, progress, overlap and focus (#897)',
     async run(page, t) {
-      const issues = Object.fromEntries(Array.from({ length: 9 }, (_, index) => {
+      const issues = Object.fromEntries(Array.from({ length: 10 }, (_, index) => {
         const issueId = index + 1;
         return [issueId, { issueId, title: `Path issue ${issueId}` }];
       }));
@@ -12885,219 +12917,244 @@ const SCENARIOS = [
         active: 'main',
       };
       await page.evaluateOnNewDocument((state) => {
-        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
-        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+        if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        if (!localStorage.getItem('mrt.settings')) localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
       }, saved);
+      // Every view's address carries the active list and reading filter beside its own choice, so a
+      // followed route is read by its view and path rather than matched as one whole string.
+      await page.evaluateOnNewDocument(() => {
+        window.__pathRoute = () => {
+          const [head, query = ''] = location.hash.split('?');
+          return { view: head.split('/')[1] ?? null, path: new URLSearchParams(query).get('path') };
+        };
+      });
+      const stops = () => page.$$eval('#catalog-results .path-stop', (items) => items.map((item) => ({
+        id: item.dataset.pathStop,
+        value: item.value,
+        title: item.querySelector('.catalog-card-title')?.textContent.trim(),
+        meta: item.querySelector('.path-stop-meta')?.textContent.trim(),
+        open: item.querySelector('[data-act="open"]')?.getAttribute('href') ?? null,
+        add: Boolean(item.querySelector('[data-act="import"]')),
+      })));
 
-      await open(page, '/?catalog=reading-paths&path-delay=600#/reading-paths?path=bc-path');
-      await page.waitForSelector('#view-reading-paths:not([hidden])');
-      await page.evaluate(() => { location.hash = '#/reading-paths?path=spotlight-arrival'; });
-      await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'spotlight-arrival');
+      await open(page, '/?catalog=path-follow&path-delay=600#/catalog?path=bc-path');
+      await page.waitForSelector('#view-catalog:not([hidden])');
+      await page.evaluate(() => { location.hash = '#/catalog?path=spotlight-arrival'; });
+      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+        && document.querySelector('#catalog-results .path-stop'));
       const lateRoute = await page.evaluate(() => ({
-        hash: location.hash,
-        selected: document.querySelector('#reading-path-select')?.value,
-        titles: [...document.querySelectorAll('#reading-path-spine h3')].map((node) => node.textContent.trim()),
+        route: window.__pathRoute(),
+        selected: document.querySelector('#catalog-path')?.value,
+        titles: [...document.querySelectorAll('#catalog-results .path-stop .catalog-card-title')].map((node) => node.textContent.trim()),
       }));
       t.check('a late earlier catalog continuation cannot overwrite the newer path route',
-        lateRoute.hash === '#/reading-paths?path=spotlight-arrival'
+        lateRoute.route.view === 'catalog' && lateRoute.route.path === 'spotlight-arrival'
         && lateRoute.selected === 'spotlight-arrival'
         && lateRoute.titles.join('|') === 'Third Stop: The Long Way|Off The Path',
         JSON.stringify(lateRoute));
 
+      // The Reading paths card left with its page, and Young readers took its place.
       await click(page, '.brand[data-view="home"]');
-      await page.waitForSelector('#view-home [data-category="reading-paths"]');
-      const homeEntry = await page.$eval('#view-home [data-category="reading-paths"]', (node) => ({
-        title: node.querySelector('.home-path-title')?.textContent.trim(),
-        count: node.querySelector('.home-path-count')?.textContent.trim(),
-        label: node.getAttribute('aria-label'),
+      await page.waitForSelector('#view-home [data-category="young-readers"]');
+      const homeEntry = await page.evaluate(() => ({
+        retired: document.querySelectorAll('[data-category="reading-paths"], a[href^="#/reading-paths"]').length,
+        secondary: [...document.querySelectorAll('#home-secondary-paths .home-path')].map((node) => node.dataset.category),
+        title: document.querySelector('#view-home [data-category="young-readers"] .home-path-title')?.textContent.trim(),
+        count: document.querySelector('#view-home [data-category="young-readers"] .home-path-count')?.textContent.trim(),
+        label: document.querySelector('#view-home [data-category="young-readers"]')?.getAttribute('aria-label'),
       }));
-      // #831: Browse repeated this entry, and Home now holds the one copy of it. The Browse address is
-      // checked by navigation's own owners; going there by address here would reset the stored filter
-      // that Back and Forward are checked against below, as any address naming no filter does.
-      const browseEntry = await page.$eval('#view-home [data-category="reading-paths"]', (node) => ({
-        title: node.querySelector('.home-path-title')?.textContent.trim(),
-        count: node.querySelector('.home-path-count')?.textContent.trim(),
-        label: node.getAttribute('aria-label'),
-        copies: document.querySelectorAll('[data-category="reading-paths"]').length,
-      }));
-      t.check('Home holds the one secondary entry, with the path count and noun',
-        JSON.stringify(homeEntry) === JSON.stringify({ ...browseEntry, copies: undefined }) && browseEntry.copies === 1
-        && browseEntry.title === 'Reading paths'
-        && browseEntry.count === '3 Reading paths'
-        && browseEntry.label.includes('3 Reading paths'),
-        JSON.stringify({ homeEntry, browseEntry }));
-
-      await page.focus('#view-home [data-category="reading-paths"]');
+      t.check('Home leads to no retired page, and Young readers holds the place its card had',
+        homeEntry.retired === 0
+        && homeEntry.secondary.join('|') === 'marvel-on-screen|marvel-ages|young-readers'
+        && homeEntry.title === 'Young readers' && homeEntry.count === '1 Reading List'
+        && homeEntry.label === 'Stories for kids. Young readers. 1 Reading List.',
+        JSON.stringify(homeEntry));
+      await page.focus('#view-home [data-category="young-readers"]');
       await page.keyboard.press('Enter');
-      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-path');
-      const gatewayArrival = await page.evaluate(() => ({
+      await page.waitForFunction(() => window.__pathRoute().view === 'young-readers'
+        && document.activeElement?.id === 'young-readers-h');
+      const youngArrival = await page.evaluate(() => ({
         visible: document.querySelector('.view:not([hidden])')?.id,
-        focused: document.activeElement?.id,
-        selected: document.querySelector('#reading-path-select')?.value,
+        cards: [...document.querySelectorAll('#young-readers-results .catalog-card')].map((card) => card.dataset.story),
+        crumbs: [...document.querySelectorAll('#view-young-readers .breadcrumb li')].map((item) => item.textContent.trim()),
       }));
-      t.check('keyboard activation reaches one canonical view and focuses its heading',
-        gatewayArrival.visible === 'view-reading-paths'
-        && gatewayArrival.focused === 'reading-paths-h'
-        && gatewayArrival.selected === 'bc-path',
-        JSON.stringify(gatewayArrival));
+      t.check('keyboard activation reaches the Young readers page and focuses its heading',
+        youngArrival.visible === 'view-young-readers'
+        && youngArrival.cards.join('|') === 'list:young-readers-fixture'
+        && youngArrival.crumbs.join('|') === 'Home|Young readers',
+        JSON.stringify(youngArrival));
 
-      const selector = await page.$eval('#reading-path-select', (node) => ({
+      for (const [address, expected] of [
+        ['#/reading-paths', 'bc-path'],
+        ['#/reading-paths/spotlight-arrival', 'spotlight-arrival'],
+        ['#/reading-paths?path=not-a-path', 'bc-path'],
+        ['#/reading-paths?path=bc-path', 'bc-path'],
+      ]) {
+        await page.evaluate((hash) => { location.hash = hash; }, address);
+        await page.waitForFunction((path) => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === path
+          && document.querySelector('#catalog-results .path-stop')
+          && document.activeElement?.id === 'catalog-h', {}, expected);
+        const arrived = await page.evaluate(() => ({
+          visible: document.querySelector('.view:not([hidden])')?.id,
+          selected: document.querySelector('#catalog-path')?.value,
+        }));
+        t.check(`${address} opens Modern Timeline following its path, and says so in the address`,
+          arrived.visible === 'view-catalog' && arrived.selected === expected,
+          JSON.stringify(arrived));
+      }
+
+      const selector = await page.$eval('#catalog-path', (node) => ({
         tag: node.tagName,
         labels: [...node.labels].map((label) => label.textContent.trim()),
         options: [...node.options].map((option) => option.value),
         selected: [...node.selectedOptions].map((option) => option.value),
       }));
-      t.check('one labelled native selector exposes every path and one selected option',
+      t.check('one labelled native selector exposes every path, the whole timeline and one selected option',
         selector.tag === 'SELECT'
-        && selector.labels.join('|') === 'Reading path'
-        && selector.options.join('|') === 'bc-path|bc-age-path|spotlight-arrival'
+        && selector.labels.join('|') === 'Follow a path'
+        && selector.options.join('|') === '|bc-path|bc-age-path|spotlight-arrival'
         && selector.selected.join('|') === 'bc-path',
         JSON.stringify(selector));
 
       const firstPath = await page.evaluate(() => ({
-        listCount: document.querySelectorAll('#reading-path-spine').length,
-        ordered: document.querySelector('#reading-path-spine')?.tagName,
-        stops: [...document.querySelectorAll('#reading-path-spine .reading-path-stop')].map((stop) => ({
-          id: stop.dataset.readingPathStop,
-          title: stop.querySelector('h3')?.textContent.trim(),
-          meta: stop.querySelector('.reading-path-stop-meta')?.textContent.trim(),
-          progress: stop.querySelector('.reading-path-stop-progress')?.textContent.trim(),
-        })),
+        lists: document.querySelectorAll('#catalog-results ol.path-stops').length,
+        label: document.querySelector('#catalog-results ol.path-stops')?.getAttribute('aria-label'),
       }));
-      t.check('the selected spine contains every stop once in source order with ordinals and years',
-        firstPath.listCount === 1
-        && firstPath.ordered === 'OL'
-        && firstPath.stops.map(({ id }) => id).join('|') === 'browser-check|browser-check-two|browser-check-three-short'
-        && firstPath.stops.map(({ meta }) => meta).join('|') === 'Stop 1 of 3 · Starts 2004|Stop 2 of 3 · Starts 2005|Stop 3 of 3 · Starts 2006',
-        JSON.stringify(firstPath));
-      t.check('exact imported progress wins over an earlier catalog sibling',
-        firstPath.stops[2].progress === '0 of 2 issues read in Exact short import. Not started.',
-        firstPath.stops[2].progress);
-      t.check('a stop with no imported sibling says Not added',
-        firstPath.stops[1].progress === 'Not added',
-        firstPath.stops[1].progress);
+      const firstStops = await stops();
+      t.check('the followed path lists every stop once in its own order with ordinals and years',
+        firstPath.lists === 1 && firstPath.label === 'The Fixture Path stops'
+        && firstStops.map(({ id }) => id).join('|') === 'browser-check|browser-check-two|browser-check-three-short'
+        && firstStops.map(({ value }) => value).join('|') === '1|2|3'
+        && firstStops.map(({ meta }) => meta).join('|') === 'Stop 1 of 3 · Starts 2004|Stop 2 of 3 · Starts 2005|Stop 3 of 3 · Starts 2006',
+        JSON.stringify({ firstPath, firstStops }));
+      t.check('the exact import is the stop, ahead of an earlier saved catalog sibling',
+        firstStops[2].title === 'Third Stop: The Short Way' && firstStops[2].open === '#/read/exact',
+        JSON.stringify(firstStops[2]));
+      t.check('a stop with nothing saved offers to add it rather than to open it',
+        firstStops[1].open === null && firstStops[1].add,
+        JSON.stringify(firstStops[1]));
+      await page.select('#catalog-path-jump', 'next-unfinished');
+      await page.$eval('#catalog-path-navigation form', (form) => form.requestSubmit());
+      const jumped = await page.evaluate(() => ({
+        focused: document.activeElement?.closest('[data-path-stop]')?.dataset.pathStop,
+        title: document.activeElement?.classList.contains('catalog-card-title'),
+        here: document.querySelector('#catalog-results .timeline-position-current')?.closest('[data-path-stop]')?.dataset.pathStop,
+        status: document.querySelector('#catalog-path-jump-status')?.textContent.trim(),
+      }));
+      t.check('the jump to the next unfinished stop lands on the stop marked You are here',
+        jumped.focused === 'browser-check' && jumped.title && jumped.here === 'browser-check'
+        && jumped.status === 'Jumped to Browser Check Order (1 of 3).', JSON.stringify(jumped));
 
-      await page.evaluate(() => { window.__readingPathSelector = document.querySelector('#reading-path-select'); });
-      await page.focus('#reading-path-select');
+      await page.evaluate(() => { window.__pathSelector = document.querySelector('#catalog-path'); });
+      await page.focus('#catalog-path');
       await page.keyboard.press('ArrowDown');
-      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-age-path');
+      await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
+        && document.querySelector('#catalog-results [data-path-stop="x-men-spine"]'));
       const selectorChange = await page.evaluate(() => ({
-        same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
-        focused: document.activeElement === document.querySelector('#reading-path-select'),
-        value: document.querySelector('#reading-path-select')?.value,
+        same: window.__pathSelector === document.querySelector('#catalog-path'),
+        focused: document.activeElement === document.querySelector('#catalog-path'),
+        value: document.querySelector('#catalog-path')?.value,
       }));
       t.check('keyboard selection pushes one route while retaining selector identity and focus',
         selectorChange.same && selectorChange.focused && selectorChange.value === 'bc-age-path',
         JSON.stringify(selectorChange));
-      const fallback = await page.$eval(
-        '#reading-path-spine [data-reading-path-stop="x-men-spine"] .reading-path-stop-progress',
-        (node) => node.textContent.trim(),
-      );
-      t.check('the first imported sibling in catalog order supplies fallback progress and its name',
-        fallback === '2 of 4 issues read in Fallback complete import. Reading. Alternate reading version.',
-        fallback);
+      const fallback = (await stops()).find(({ id }) => id === 'x-men-spine');
+      t.check('the first saved sibling in catalog order is the stop when the named reading is not saved',
+        fallback.title === 'X-Men Complete' && fallback.open === '#/read/fallback',
+        JSON.stringify(fallback));
 
       await page.keyboard.press('ArrowDown');
-      await page.waitForFunction(() => location.hash === '#/reading-paths?path=spotlight-arrival');
-      const overlap = await page.evaluate(() => {
-        const stops = [...document.querySelectorAll('#reading-path-spine .reading-path-stop')];
-        return {
-          selected: document.querySelector('#reading-path-select')?.value,
-          first: stops[0]?.dataset.readingPathStop,
-          firstMeta: stops[0]?.querySelector('.reading-path-stop-meta')?.textContent.trim(),
-          next: stops[0]?.nextElementSibling?.querySelector('h3')?.textContent.trim(),
-        };
-      });
-      t.check('a shared story keeps this path own ordinal and neighbour context',
-        overlap.selected === 'spotlight-arrival'
-        && overlap.first === 'browser-check-three-main'
-        && overlap.firstMeta === 'Stop 1 of 2 · Starts 2006'
-        && overlap.next === 'Off The Path',
+      await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
+        && document.querySelector('#catalog-results [data-path-stop="browser-check-off"]'));
+      const overlap = await stops();
+      t.check('a shared story keeps this path\'s own ordinal and neighbour',
+        overlap[0].id === 'browser-check-three-main' && overlap[0].meta === 'Stop 1 of 2 · Starts 2006'
+        && overlap[1].title === 'Off The Path',
         JSON.stringify(overlap));
 
       await page.evaluate(() => history.back());
-      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-age-path'
-        && document.activeElement?.id === 'reading-paths-h');
-      const back = await page.$eval('#reading-path-select', (node) => node.value);
+      await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
+        && document.activeElement?.id === 'catalog-h');
+      const back = await page.$eval('#catalog-path', (node) => node.value);
       await page.evaluate(() => history.forward());
-      await page.waitForFunction(() => location.hash === '#/reading-paths?path=spotlight-arrival'
-        && document.activeElement?.id === 'reading-paths-h');
-      const forward = await page.$eval('#reading-path-select', (node) => ({
+      await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
+        && document.activeElement?.id === 'catalog-h');
+      const forward = await page.$eval('#catalog-path', (node) => ({
         value: node.value,
         filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        addressed: new URLSearchParams(location.hash.split('?')[1] ?? '').get('filter') ?? 'all',
       }));
-      t.check('Back and Forward restore path selection and focus the route heading',
-        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === 'unread',
+      // The retired page's address carried no reading filter and was exempt from it. The Timeline's
+      // carries it as every view's does, so the stored filter is the one the address names.
+      t.check('Back and Forward restore the followed path and focus the route heading',
+        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === forward.addressed,
         JSON.stringify({ back, forward }));
 
       const beforeReload = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.reload({ waitUntil: 'load' });
-      await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'spotlight-arrival');
+      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+        && document.querySelector('#catalog-results .path-stop'));
       const reloaded = await page.evaluate(() => ({
-        hash: location.hash,
-        stops: document.querySelectorAll('#reading-path-spine .reading-path-stop').length,
+        route: window.__pathRoute(),
+        stops: document.querySelectorAll('#catalog-results .path-stop').length,
         state: localStorage.getItem('mrt.state.v2'),
       }));
-      t.check('reload restores the addressed path without storing path selection',
-        reloaded.hash === '#/reading-paths?path=spotlight-arrival'
+      t.check('reload restores the addressed path without storing the choice',
+        reloaded.route.view === 'catalog' && reloaded.route.path === 'spotlight-arrival'
         && reloaded.stops === 2
         && reloaded.state === beforeReload,
-        JSON.stringify({ hash: reloaded.hash, stops: reloaded.stops, stateChanged: reloaded.state !== beforeReload }));
+        JSON.stringify({ route: reloaded.route, stops: reloaded.stops, stateChanged: reloaded.state !== beforeReload }));
 
-      await page.select('#reading-path-select', 'bc-path');
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await page.select('#catalog-path', 'bc-path');
+      await page.waitForFunction(() => window.__pathRoute().path === 'bc-path'
+        && document.querySelector('#catalog-results [data-path-stop="browser-check"]'));
       await page.evaluate(() => {
-        const select = document.querySelector('#reading-path-select');
-        window.__readingPathSelector = select;
+        const select = document.querySelector('#catalog-path');
+        window.__pathSelector = select;
         select.focus();
       });
       await page.evaluate(async () => {
         const oldValue = localStorage.getItem('mrt.state.v2');
         const state = JSON.parse(oldValue);
-        state.read['4'] = Date.now();
+        // The first stop saved and read in full in another tab, so the path's place moves on.
+        state.lists.first = {
+          id: 'first', name: 'First stop import', description: '', note: '', created: 4,
+          catalogId: 'browser-check', itemIds: [10], collectedIn: {},
+        };
+        state.listOrder.push('first');
+        state.read['10'] = Date.now();
         const newValue = JSON.stringify(state);
         localStorage.clear();
         dispatchEvent(new StorageEvent('storage', {
-          key: null,
-          oldValue: null,
-          newValue: null,
-          storageArea: localStorage,
-          url: location.href,
+          key: null, oldValue: null, newValue: null, storageArea: localStorage, url: location.href,
         }));
         await new Promise((resolve) => setTimeout(resolve, 100));
-        window.__readingPathCleared = {
-          same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
-          focused: document.activeElement === document.querySelector('#reading-path-select'),
-          progress: document.querySelector(
-            '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
-          )?.textContent.trim(),
+        window.__pathCleared = {
+          same: window.__pathSelector === document.querySelector('#catalog-path'),
+          focused: document.activeElement === document.querySelector('#catalog-path'),
+          progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         };
         localStorage.setItem('mrt.state.v2', newValue);
         dispatchEvent(new StorageEvent('storage', {
-          key: 'mrt.state.v2',
-          oldValue,
-          newValue,
-          storageArea: localStorage,
-          url: location.href,
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
         }));
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       const repainted = await page.evaluate(() => ({
-        same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
-        focused: document.activeElement === document.querySelector('#reading-path-select'),
-        hash: location.hash,
-        progress: document.querySelector(
-          '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
-        )?.textContent.trim(),
-        cleared: window.__readingPathCleared,
-        storedRead: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read),
+        same: window.__pathSelector === document.querySelector('#catalog-path'),
+        focused: document.activeElement === document.querySelector('#catalog-path'),
+        route: window.__pathRoute(),
+        here: document.querySelector('#catalog-results .timeline-position-current')?.closest('[data-path-stop]')?.dataset.pathStop,
+        progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
+        cleared: window.__pathCleared,
       }));
-      t.check('state repaint updates progress without replacing or blurring the selector',
+      t.check('a state repaint moves the path\'s progress without replacing or blurring the selector',
         repainted.same && repainted.focused
-        && repainted.hash === '#/reading-paths?path=bc-path'
+        && repainted.route.view === 'catalog' && repainted.route.path === 'bc-path'
         && repainted.cleared.same && repainted.cleared.focused
-        && repainted.cleared.progress === 'Not added'
-        && repainted.progress === '1 of 2 issues read in Exact short import. Reading.',
+        && repainted.cleared.progress === 'Stop 1 of 3 · 0 of 3 stops complete'
+        && repainted.here === 'browser-check-two'
+        && repainted.progress === 'Stop 2 of 3 · 1 of 3 stops complete',
         JSON.stringify(repainted));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -13105,46 +13162,40 @@ const SCENARIOS = [
       const narrow = await page.evaluate(() => ({
         viewport: innerWidth,
         scrollWidth: document.documentElement.scrollWidth,
-        lefts: [...document.querySelectorAll('#reading-path-spine .reading-path-stop')]
+        lefts: [...document.querySelectorAll('#catalog-results .path-stop')]
           .map((stop) => Math.round(stop.getBoundingClientRect().left)),
-        states: [...document.querySelectorAll('.reading-path-stop-progress')]
-          .map((node) => node.textContent.trim()),
+        metas: [...document.querySelectorAll('#catalog-results .path-stop-meta')].map((node) => node.textContent.trim()),
+        here: document.querySelector('#catalog-results .timeline-position-label')?.textContent.trim(),
       }));
-      t.check('the narrow spine stays in one readable column without overflow and with state words',
+      t.check('the narrow path stays in one readable column without overflow, with its stop and place words',
         narrow.scrollWidth === narrow.viewport
         && new Set(narrow.lefts).size === 1
-        && narrow.states.some((text) => text.includes('Reading.'))
-        && narrow.states.some((text) => text === 'Not added'),
+        && narrow.metas.length === 3 && narrow.here === 'You are here',
         JSON.stringify(narrow));
 
       if (await page.evaluate(() => matchMedia('(forced-colors: active)').matches)) {
-        const forced = await page.evaluate(() => {
-          const select = getComputedStyle(document.querySelector('#reading-path-select'));
-          const normal = getComputedStyle(document.querySelector('.reading-path-stop-copy'));
-          const absent = getComputedStyle(document.querySelector('.reading-path-stop[data-progress="not-added"] .reading-path-stop-copy'));
-          return {
-            selectBorder: select.borderTopWidth,
-            normalBorder: normal.borderTopWidth,
-            absentStyle: absent.borderTopStyle,
-            text: document.querySelector('.reading-path-stop-progress')?.textContent.trim(),
-          };
-        });
-        t.check('forced colors retain bordered controls, spine stops and visible progress text',
-          forced.selectBorder !== '0px'
-          && forced.normalBorder !== '0px'
-          && forced.absentStyle === 'dashed'
-          && forced.text.length > 0,
+        const forced = await page.evaluate(() => ({
+          selectBorder: getComputedStyle(document.querySelector('#catalog-path')).borderTopWidth,
+          spine: getComputedStyle(document.querySelector('#catalog-results .path-stops')).borderLeftWidth,
+          marker: getComputedStyle(document.querySelector('#catalog-results .path-stop-marker')).borderTopWidth,
+          text: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
+        }));
+        t.check('forced colors retain the bordered selector, the path line, its stop markers and visible progress',
+          forced.selectBorder !== '0px' && forced.spine !== '0px' && forced.marker !== '0px' && forced.text.length > 0,
           JSON.stringify(forced));
       }
 
-      await openBrowseCategory(page, 'timeline');
-      await page.waitForSelector('#catalog-results [data-story="list:browser-check"]');
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.select('#catalog-path', '');
+      await page.waitForFunction(() => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === null
+        && document.querySelector('#catalog-results [data-story="list:browser-check"] .result-path summary'));
       const shelf = await page.$eval('#catalog-results [data-story="list:browser-check"]', (card) => ({
         badge: card.querySelector('.result-path summary')?.textContent.replace(/\s+/g, ' ').trim(),
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
+        stops: document.querySelectorAll('#catalog-results .path-stop').length,
       }));
-      t.check('the shelf keeps its path badge plus the corrected issue count and gap disclosure',
-        shelf.badge === 'Start · 1/3'
+      t.check('choosing the whole timeline restores it, with its path badge, issue count and gap disclosure',
+        shelf.badge === 'Start · 1/3' && shelf.stops === 0
         && shelf.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
         JSON.stringify(shelf));
     },
@@ -15447,7 +15498,7 @@ SCENARIOS.push({
     for (const selector of ['.home-path', 'button:has(.yours-name)']) {
       for (const card of await page.$$(selector)) {
         if (!await card.evaluate((node) => !node.closest('[hidden]') && node.getClientRects().length > 0)) continue;
-        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent);
+        const title = await card.evaluate((node) => node.querySelector('.home-path-title, .yours-name')?.textContent.trim());
         const accessible = await page.accessibility.snapshot({ root: card, interestingOnly: false });
         if (title) richNames.push({ title, name: accessible?.name ?? '' });
       }
@@ -15789,14 +15840,12 @@ MUTATIONS.push(
 );
 
 MUTATIONS.push({
-  id: 'reading-paths-sibling-first',
-  breaks: 'reading-paths',
-  why: 'an earlier imported sibling is chosen before the exact path step',
-  rewriteReadingPaths: (source) => source.replace(
-    / {2}const imported = exact \?\? \(stop\?\.lists \?\? \[\]\)\r?\n {4}\.map\(\(list\) => listForCatalogId\(state, list\.id\)\)\r?\n {4}\.find\(Boolean\);/,
-    `  const imported = (stop?.lists ?? [])
-    .map((list) => listForCatalogId(state, list.id))
-    .find(Boolean) ?? exact;`,
+  id: 'path-follow-sibling-first',
+  breaks: 'path-follow',
+  why: 'a followed stop leads with a sibling reading rather than the step the path names',
+  rewriteCatalogView: (source) => source.replace(
+    'const named = stop.lists.find((list) => list.id === stop.stepId) ?? stop.lists[0];',
+    'const named = stop.lists.find((list) => list.id !== stop.stepId) ?? stop.lists[0];',
   ),
 });
 
@@ -16115,7 +16164,7 @@ SCENARIOS.push({
         .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
-          || button.getAttribute('aria-label')?.includes('Follow connected stories'))
+          || button.getAttribute('aria-label')?.includes('Stories for kids'))
         .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 6));
     t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
 
@@ -16150,7 +16199,7 @@ SCENARIOS.push({
         geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
         JSON.stringify(geometry));
     }
-    t.check('all 19 navigation and search symbol shapes were rendered', seen.size === 19, [...seen].join(', '));
+    t.check('all 20 navigation and search symbol shapes were rendered', seen.size === 20, [...seen].join(', '));
 
     await page.evaluate(() => { location.hash = '#/add-search'; });
     await page.waitForSelector('#view-add-search:not([hidden])');
@@ -16683,7 +16732,6 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
     ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
-    ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
     ['/js/views/shared/collection-navigation.js', mutation?.rewriteCollectionNavigation],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
@@ -17237,8 +17285,8 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       'position-incomplete': INCOMPLETE_POSITION_CATALOG,
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
-      sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
-      'reading-path-stop-actions': {
+      sparse: SPARSE_PUBLISHING_CATALOG, 'path-follow': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
+      'path-follow-stop-actions': {
         ...CATALOG,
         lists: CATALOG.lists.map((list) => (
           list.id === 'browser-check-three-main' ? { ...list, sourceOrigin: 'Complete fixture source' }
@@ -18290,14 +18338,15 @@ SCENARIOS.push(responsiveOwner({
       await open(page, '/#/data');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
       const themeField = await fieldBox('#opt-theme');
-      await open(page, '/?catalog=actual#/reading-paths');
-      await page.waitForSelector('#reading-path-select option');
+      // #897 moved the path picker from its own page onto Modern Timeline.
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForSelector('#catalog-path option');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-      const pathField = await fieldBox('#reading-path-select');
-      await page.focus('#reading-path-select');
-      const selectedBefore = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      const pathField = await fieldBox('#catalog-path');
+      await page.focus('#catalog-path');
+      const selectedBefore = await page.$eval('#catalog-path', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowDown');
-      const selectedAfter = await page.$eval('#reading-path-select', (node) => node.selectedIndex);
+      const selectedAfter = await page.$eval('#catalog-path', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowUp');
       await open(page, '/#/add-manual');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
@@ -19057,7 +19106,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -20406,7 +20455,27 @@ const UX10_PATHS = resolveReadingPaths(ACTUAL_CATALOG.paths, ACTUAL_CATALOG.list
 const UX10_LONG = UX10_PATHS.find(({ id }) => id === 'marvel-knights-to-planet-x');
 const UX10_MODERN = UX10_PATHS.find(({ id }) => id === 'modern-avengers');
 const UX10_HISTORY_KEY = 'mrt.list-history.v1';
-const ux10PathAction = (id) => `[data-reading-path-action="${id}"]`;
+// A followed path's place, worked out here rather than by the view's own function, so a wrong rule in
+// the view cannot agree with itself. A stop is counted by its exact saved copy, else the first saved
+// sibling in catalog order, and is finished when that copy is marked completed or read in full: the
+// Timeline's rule, which Next unfinished stop shares by the decision of 2026-10-26 on #897.
+function ux10PathPlace(path, state, isCompleted) {
+  const saved = new Map();
+  for (const id of state.listOrder) {
+    const list = state.lists[id];
+    if (list?.catalogId && !saved.has(list.catalogId)) saved.set(list.catalogId, list);
+  }
+  const stops = path.stops.map((stop) => {
+    const lists = [stop.lists.find(({ id }) => id === stop.stepId), ...stop.lists.filter(({ id }) => id !== stop.stepId)]
+      .filter(Boolean);
+    const chosen = lists.find(({ id }) => saved.has(id)) ?? lists[0];
+    const copy = saved.get(chosen.id) ?? null;
+    const done = Boolean(copy) && (isCompleted(copy.id)
+      || (copy.itemIds.length > 0 && copy.itemIds.every((issueId) => state.read[issueId])));
+    return { id: stop.stepId, story: `list:${chosen.id}`, href: copy ? `#/read/${copy.id}` : null, done };
+  });
+  return { stops, here: stops.find(({ done }) => !done)?.id ?? null };
+}
 const ux10AgeCards = (key) => publishingCategoryStories(catalogEntries(ACTUAL_CATALOG.lists), key)
   .map((story, index) => ({ story, index }))
   .sort((a, b) => storyYear(a.story) - storyYear(b.story) || a.index - b.index)
@@ -20467,12 +20536,18 @@ async function runLongCollectionNavigation(page, t) {
     }
   };
   const sameRaw = (before, after) => isDeepStrictEqual(before, after);
-  const pathUrl = (id = UX10_LONG.id, fixture = 'actual') => `/?catalog=${fixture}#/reading-paths?path=${id}`;
+  // A followed path's address may gain the active list beside the path, as every view's does.
+  const routeOf = (hash) => ({
+    view: hash.split('?')[0].split('/')[1] ?? null, path: new URLSearchParams(hash.split('?')[1] ?? '').get('path'),
+  });
+  // #897 moved following a path, and its jump, from the retired Reading paths page onto Modern Timeline.
+  const pathUrl = (id = UX10_LONG.id, fixture = 'actual') => `/?catalog=${fixture}#/catalog?path=${id}`;
   const ageUrl = (key) => `/?catalog=actual#/age-${key}`;
   const pathReady = async (id = UX10_LONG.id, fixture = 'actual') => {
     await open(page, pathUrl(id, fixture));
-    await page.waitForFunction((expected) => document.querySelector('#reading-path-select')?.value === expected
-      && document.querySelector('#reading-path-spine [data-reading-path-action]'), {}, id);
+    await page.waitForFunction((expected) => document.querySelector('#catalog-path')?.value === expected
+      && document.querySelector('#catalog-results [data-path-stop] .catalog-card')
+      && document.querySelector('#catalog-path-navigation form'), {}, id);
     await settle();
   };
   const ageReady = async (key) => {
@@ -20481,7 +20556,7 @@ async function runLongCollectionNavigation(page, t) {
       && !document.querySelector(`#${route}-results > p[aria-hidden="true"]`), {}, `age-${key}`);
     await settle();
   };
-  const pathVector = () => page.$$eval('#reading-path-spine [data-reading-path-stop]', (rows) => rows.map((row) => row.dataset.readingPathStop));
+  const pathVector = () => page.$$eval('#catalog-results [data-path-stop]', (rows) => rows.map((row) => row.dataset.pathStop));
   const ageVector = (key) => page.$$eval(`#age-${key}-results .catalog-card`, (cards) => cards.map((card) => card.dataset.story));
   const focus = () => page.evaluate(() => {
     const target = document.activeElement;
@@ -20498,7 +20573,7 @@ async function runLongCollectionNavigation(page, t) {
       return css.position === 'sticky' && css.top === '0px' && rect.top <= 0 && rect.bottom > 0;
     }).reduce((max, node) => Math.max(max, node.getBoundingClientRect().bottom), 0);
     return {
-      id: target.dataset.readingPathAction ?? target.closest('.catalog-card')?.dataset.story ?? target.id,
+      id: target.closest('[data-path-stop]')?.dataset.pathStop ?? target.closest('.catalog-card')?.dataset.story ?? target.id,
       tag: target.tagName, tabindex: target.getAttribute('tabindex'),
       rect: { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height },
       outline: { width: parseFloat(style.outlineWidth), style: style.outlineStyle },
@@ -20528,43 +20603,35 @@ async function runLongCollectionNavigation(page, t) {
     }, before, after);
     return actual;
   };
-  const paintedExpectations = (stops, state, completion) => stops.map((stop) => {
-    const progress = readingPathProgress(state, stop, {
-      isCompleted: (current, id) => typeof completion !== 'string' && completion.records.some((record) => {
-        const saved = current.lists[id];
-        return record.listId === id && record.created === saved.created
-          && record.catalogId === saved.catalogId && record.completedAt !== null;
-      }),
+  const paintedExpectations = (path, state, completion) => {
+    const completed = (id) => typeof completion !== 'string' && completion.records.some((record) => {
+      const saved = state.lists[id];
+      return record.listId === id && record.created === saved.created
+        && record.catalogId === saved.catalogId && record.completedAt !== null;
     });
-    return {
-      id: stop.stepId,
-      name: progress?.name ?? stop.name,
-      action: progress ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version') : 'Preview',
-      count: progress ? `${progress.read} of ${progress.total}` : null,
-      deferred: progress?.deferred ?? 0,
-      completed: Boolean(progress?.completed),
-      alternate: progress?.match === 'sibling',
-    };
-  });
+    const place = ux10PathPlace(path, state, completed);
+    return { stops: place.stops.map(({ id, story, href }) => ({ id, story, href })), here: place.here };
+  };
+  const placeOf = () => page.evaluate(() => document.querySelector('#catalog-results .timeline-position-current')
+    ?.closest('[data-path-stop]')?.dataset.pathStop ?? null);
+  const waitPlace = (here) => page.waitForFunction((expected) => (document.querySelector('#catalog-results .timeline-position-current')
+    ?.closest('[data-path-stop]')?.dataset.pathStop ?? null) === expected, {}, here);
   const waitPainted = async (expected, fixture) => {
     console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'wait-painted', expected })}`);
-    await page.waitForFunction((expected) => expected.every((entry) => {
-      const row = document.querySelector(`[data-reading-path-stop="${entry.id}"]`);
-      if (!row) return false;
-      const action = row.querySelector('[data-reading-path-action]');
-      const text = row.querySelector('.reading-path-stop-progress').textContent;
-      return action.textContent === entry.action && action.getAttribute('aria-label').includes(entry.name)
-        && (entry.count === null ? text === 'Not added' : text.includes(entry.count) && text.includes(entry.name))
-        && text.includes('Marked as completed') === entry.completed
-        && text.includes('Alternate reading version.') === entry.alternate
-        && (entry.deferred === 0 ? !text.includes(' deferred.') : text.includes(`${entry.deferred} deferred.`));
+    await page.waitForFunction((expected) => expected.stops.every((entry) => {
+      const card = document.querySelector(`#catalog-results [data-path-stop="${entry.id}"] .catalog-card`);
+      if (!card || card.dataset.story !== entry.story) return false;
+      const open = card.querySelector('[data-act="open"]');
+      return entry.href === null
+        ? !open && Boolean(card.querySelector('[data-act="import"]'))
+        : open?.getAttribute('href') === entry.href;
     }), {}, expected);
-    const actual = await page.evaluate((expected) => expected.map(({ id }) => {
-      const row = document.querySelector(`[data-reading-path-stop="${id}"]`);
-      const action = row.querySelector('[data-reading-path-action]');
-      return { id, action: action.textContent, label: action.getAttribute('aria-label'), progress: row.querySelector('.reading-path-stop-progress').textContent };
+    await waitPlace(expected.here);
+    const actual = await page.evaluate((expected) => expected.stops.map(({ id }) => {
+      const card = document.querySelector(`#catalog-results [data-path-stop="${id}"] .catalog-card`);
+      return { id, story: card.dataset.story, href: card.querySelector('[data-act="open"]')?.getAttribute('href') ?? null };
     }), expected);
-    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'painted-qualified', expected, actual })}`);
+    console.log(`UX10-FIXTURE ${JSON.stringify({ fixture, stage: 'painted-qualified', expected, actual, here: await placeOf() })}`);
   };
   const seed = async ({ state, history: completion }, url) => {
     await page.evaluate((next, historyValue) => {
@@ -20573,7 +20640,7 @@ async function runLongCollectionNavigation(page, t) {
     }, state, completion);
     await open(page, url);
     await page.reload({ waitUntil: 'load' });
-    await page.waitForSelector('#reading-path-spine [data-reading-path-action]');
+    await page.waitForSelector('#catalog-results [data-path-stop] .catalog-card');
     const pathId = new URLSearchParams(new URL(url, page.__origin).hash.split('?')[1]).get('path');
     const fixturePath = pathId === 'bc-path'
       ? resolveReadingPaths([{
@@ -20584,7 +20651,7 @@ async function runLongCollectionNavigation(page, t) {
       }], CATALOG.lists)[0]
       : UX10_PATHS.find(({ id }) => id === pathId);
     if (!fixturePath) throw new Error(`UX10 seed has no declared fixture path ${pathId}`);
-    await waitPainted(paintedExpectations(fixturePath.stops, state, completion), `fresh seed ${pathId}`);
+    await waitPainted(paintedExpectations(fixturePath, state, completion), `fresh seed ${pathId}`);
     if (typeof completion === 'string') {
       await page.waitForFunction((expected) => localStorage.getItem('mrt.list-history.v1') === expected
         && document.body.textContent.includes('Completion history') && document.body.textContent.includes('kept'), {}, completion);
@@ -20597,7 +20664,7 @@ async function runLongCollectionNavigation(page, t) {
     const vector = await pathVector();
     receipt('LC01', 'accepted full spine', UX10_LONG.stops.map(({ stepId }) => stepId), vector,
       { count78: vector.length === 78, exactOrder: isDeepStrictEqual(vector, UX10_LONG.stops.map(({ stepId }) => stepId)) });
-    const exists = await page.$('#reading-path-navigation form');
+    const exists = await page.$('#catalog-path-navigation form');
     receipt('LC01', 'desired native late-stop keyboard widget', 'native form/select/Jump/status', Boolean(exists), { desiredWidget: Boolean(exists) });
     if (!exists) {
       for (let index = 2; index <= 11; index += 1) console.log(`UX10-BLOCKED ${JSON.stringify({ journey: `LC${String(index).padStart(2, '0')}`, reason: 'LC01 desired widget absent', completed: false })}`);
@@ -20606,7 +20673,7 @@ async function runLongCollectionNavigation(page, t) {
       throw error;
     }
     const sourceBytes = {};
-    for (const modulePath of ['/js/views/reading-paths.js', '/js/views/shared/collection-navigation.js']) {
+    for (const modulePath of ['/js/views/catalog.js', '/js/views/shared/collection-navigation.js']) {
       const original = readFileSync(new URL(`../src${modulePath}`, import.meta.url), 'utf8');
       const served = await page.evaluate(async (path) => (await fetch(path)).text(), modulePath);
       const originalSha256 = createHash('sha256').update(original).digest('hex');
@@ -20614,20 +20681,21 @@ async function runLongCollectionNavigation(page, t) {
       sourceBytes[modulePath] = { originalSha256, servedSha256, exactOriginal: served === original };
     }
     receipt('LC01', 'bound module responses and restoration', page.__mutation?.id ?? 'original source bytes', sourceBytes, {
-      readingModuleBound: sourceBytes['/js/views/reading-paths.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-read-is-complete'),
+      readingModuleBound: sourceBytes['/js/views/catalog.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-read-is-complete'),
       sharedModuleBound: sourceBytes['/js/views/shared/collection-navigation.js'].exactOriginal === (page.__mutation?.id !== 'long-navigation-wrong-target'),
     });
-    const options = await page.$$eval('#reading-path-navigation option', (nodes) => nodes.filter((node) => node.value.startsWith('entry:')).map((node) => ({ id: node.value.slice(6), label: node.textContent })));
-    receipt('LC01', 'full name-first ordinal vector', UX10_LONG.stops.map(({ stepId, name, position }) => ({ id: stepId, label: `${name} (${position} of 78)` })), options, {
+    const options = await page.$$eval('#catalog-path-navigation option', (nodes) => nodes.filter((node) => node.value.startsWith('entry:')).map((node) => ({ id: node.value.slice(6), label: node.textContent })));
+    const stepName = (stop) => ACTUAL_CATALOG.lists.find(({ id }) => id === stop.stepId).name;
+    receipt('LC01', 'full name-first ordinal vector', UX10_LONG.stops.map((stop) => ({ id: stop.stepId, label: `${stepName(stop)} (${stop.position} of 78)` })), options, {
       fullOrder: isDeepStrictEqual(options.map(({ id }) => id), vector),
-      namesAndOrdinals: options.every((option, index) => option.label === `${UX10_LONG.stops[index].name} (${index + 1} of 78)`),
+      namesAndOrdinals: options.every((option, index) => option.label === `${stepName(UX10_LONG.stops[index])} (${index + 1} of 78)`),
     });
-    await measureJump('LC01', 'three-key late stop', '#reading-path-navigation', `entry:${vector[77]}`, vector[77], true);
+    await measureJump('LC01', 'three-key late stop', '#catalog-path-navigation', `entry:${vector[77]}`, vector[77], true);
     const typeaheadBefore = await raw();
-    await page.focus('#reading-path-navigation select');
+    await page.focus('#catalog-path-navigation select');
     await page.keyboard.press('Home');
     await page.keyboard.type('Planet');
-    const typed = await page.$eval('#reading-path-navigation select', (node) => ({ value: node.value, focused: document.activeElement === node }));
+    const typed = await page.$eval('#catalog-path-navigation select', (node) => ({ value: node.value, focused: document.activeElement === node }));
     await page.keyboard.press('Tab'); await page.keyboard.press('Enter'); await settle();
     receipt('LC01', 'native typeahead', vector[77], { typed, focus: await focus() }, {
       nameTypeahead: typed.value === `entry:${vector[77]}`, selectionInert: typed.focused,
@@ -20697,34 +20765,54 @@ async function runLongCollectionNavigation(page, t) {
       noForm: !(await page.$('#age-marvel-now-navigation form')),
     });
 
-    enter('LC05 explicit completion synthetic 78');
+    // One screen, one answer (#897, 2026-10-26): Next unfinished stop is the stop You are here marks,
+    // and a stop whose saved list is read in full is finished there even when it is not marked.
+    enter('LC05 Timeline completion synthetic 78');
     const completionFixture = ux10Library(UX10_LONG.stops);
     await seed(completionFixture, pathUrl());
-    const progress = await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent));
-    receipt('LC05', 'normalized exact completion fixture', { read76: 2, deferred77: 1 }, progress.slice(75, 77), {
-      readButUnmarked76: progress[75].includes('2 of 2') && !progress[75].includes('Marked as completed'),
-      completedUnreadDeferred77: progress[76].includes('0 of 2') && progress[76].includes('1 deferred') && progress[76].includes('Marked as completed'),
+    const fixtureFacts = await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const history = JSON.parse(localStorage.getItem('mrt.list-history.v1'));
+      const read = (id) => state.lists[id].itemIds.filter((issueId) => state.read[issueId]).length;
+      const marked = (id) => history.records.some((record) => record.listId === id && record.completedAt !== null);
+      return {
+        stop76: { read: read('ux10-stop-76'), marked: marked('ux10-stop-76') },
+        stop77: { read: read('ux10-stop-77'), deferred: state.lists['ux10-stop-77'].deferredIssueIds.length, marked: marked('ux10-stop-77') },
+        here: document.querySelector('#catalog-results .timeline-position-current') ? 'current' : null,
+      };
     });
-    await measureJump('LC05', 'next skips only explicit completions', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[75].stepId);
-    receipt('LC05', 'progress and reader launch unchanged', progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent)), {
-      sameProgress: isDeepStrictEqual(progress, await page.$$eval('#reading-path-spine .reading-path-stop-progress', (nodes) => nodes.map((node) => node.textContent))),
+    receipt('LC05', 'normalized completion fixture', { stop76: { read: 2, marked: false }, stop77: { read: 0, deferred: 1, marked: true } }, fixtureFacts, {
+      readButUnmarked76: fixtureFacts.stop76.read === 2 && !fixtureFacts.stop76.marked,
+      completedUnreadDeferred77: fixtureFacts.stop77.read === 0 && fixtureFacts.stop77.deferred === 1 && fixtureFacts.stop77.marked,
+      noStopMarkedHere: fixtureFacts.here === null,
+    });
+    const allDoneBefore = await raw();
+    const allDone = await jump('#catalog-path-navigation', 'next-unfinished');
+    const allDoneAfter = await raw();
+    receipt('LC05', 'a stop read in full is finished, as You are here counts it', 'All displayed stops are complete.', allDone, {
+      sameAnswerAsYouAreHere: allDone.status === 'All displayed stops are complete.',
+      noTargetFocus: allDone.focus.tag === 'BUTTON',
+      noWritesOrRouting: sameRaw(allDoneBefore, allDoneAfter),
       noReaderTab: await page.evaluate(() => window.__opened.length === 0),
-    });
+    }, allDoneBefore, allDoneAfter);
 
     enter('LC06 empty, all-complete, unknown and empty age');
     await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl());
-    await measureJump('LC06', 'empty library first stop', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    await measureJump('LC06', 'empty library first stop', '#catalog-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
     await seed(ux10Library(UX10_LONG.stops, { allComplete: true }), pathUrl());
     const completeBefore = await raw();
-    const complete = await jump('#reading-path-navigation', 'next-unfinished');
+    const complete = await jump('#catalog-path-navigation', 'next-unfinished');
     const completeAfter = await raw();
-    receipt('LC06', 'all explicitly complete', 'All displayed stops are marked as completed.', complete, {
-      explicitMessage: complete.status === 'All displayed stops are marked as completed.',
+    receipt('LC06', 'all explicitly complete', 'All displayed stops are complete.', complete, {
+      explicitMessage: complete.status === 'All displayed stops are complete.',
       noTargetFocus: complete.focus.tag === 'BUTTON', retainedBytes: sameRaw(completeBefore, completeAfter),
-      unreadRetained: await page.$eval(`${ux10PathAction(UX10_LONG.stops[76].stepId)}`, (action) => action.parentElement.textContent.includes('0 of 2')),
+      unreadRetained: await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.lists['ux10-stop-77'].itemIds.every((issueId) => !state.read[issueId]);
+      }),
     }, completeBefore, completeAfter);
     await seed({ state: completionFixture.state, history: '{UX10 corrupt history' }, pathUrl());
-    await measureJump('LC06', 'unknown history is unfinished', '#reading-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
+    await measureJump('LC06', 'unknown history is unfinished', '#catalog-path-navigation', 'next-unfinished', UX10_LONG.stops[0].stepId);
     const unknown = await page.evaluate(() => ({ raw: localStorage.getItem('mrt.list-history.v1'), text: document.body.textContent }));
     receipt('LC06', 'unknown history report is explicit', 'preserved corrupt history with guidance', unknown, {
       rawPreserved: unknown.raw === '{UX10 corrupt history', explicitGuidance: unknown.text.includes('Completion history') && unknown.text.includes('kept'),
@@ -20740,8 +20828,8 @@ async function runLongCollectionNavigation(page, t) {
     const identity = ux10Library(UX10_MODERN.stops, { identity: true });
     await seed(identity, pathUrl(UX10_MODERN.id));
     await page.evaluate(() => {
-      window.__ux10Form = document.querySelector('#reading-path-navigation form');
-      window.__ux10Action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+      window.__ux10Form = document.querySelector('#catalog-path-navigation form');
+      window.__ux10Action = document.querySelector('#catalog-results [data-path-stop="hickman-minimal"] .catalog-card');
     });
     const adopt = async (key, value) => {
       await page.evaluate((key, value) => {
@@ -20756,12 +20844,12 @@ async function runLongCollectionNavigation(page, t) {
       identity.state.listOrder = identity.state.listOrder.filter((entry) => entry !== id);
       if (identity.state.active === id) identity.state.active = identity.state.listOrder[0] ?? null;
     };
-    for (const [stage, chosen, nextIndex, actionText] of [
-      ['A', 'ux10-hickman-first', 7, 'Open saved list'],
-      ['B', 'ux10-hickman-second', 8, 'Open saved list'],
-      ['C', 'ux10-hickman-full', 8, 'Open saved version'],
-      ['D', 'ux10-hickman-full', 7, 'Open saved version'],
-      ['E', null, 7, 'Preview'],
+    for (const [stage, chosen, nextIndex] of [
+      ['A', 'ux10-hickman-first', 7],
+      ['B', 'ux10-hickman-second', 8],
+      ['C', 'ux10-hickman-full', 8],
+      ['D', 'ux10-hickman-full', 7],
+      ['E', null, 7],
     ]) {
       if (stage === 'B') { removeCopy('ux10-hickman-first'); await adopt('mrt.state.v2', identity.state); }
       if (stage === 'C') { removeCopy('ux10-hickman-second'); await adopt('mrt.state.v2', identity.state); }
@@ -20773,30 +20861,37 @@ async function runLongCollectionNavigation(page, t) {
         removeCopy('ux10-hickman-full'); removeCopy('ux10-hickman-doomsday');
         await adopt('mrt.state.v2', identity.state);
       }
-      await waitPainted(paintedExpectations(UX10_MODERN.stops, identity.state, identity.history), `LC07 live ${stage}`);
+      // The write is adopted when the address names the active list it leaves, since a followed path's
+      // address carries the list as every view's does; the place alone may not move in a stage.
+      await page.waitForFunction((active) => (location.hash.split('?')[0].split('/')[2] ?? null) === active,
+        {}, identity.state.active ?? null);
+      await waitPlace(UX10_MODERN.stops[nextIndex].stepId);
       const association = await page.evaluate(async () => {
-        const { readingPathProgress } = await import('/js/views/reading-paths.js');
         const { parseListHistory, listHistoryIdentity } = await import('/js/lib/listHistory.js');
         const { resolveReadingPaths } = await import('/js/lib/catalog.js');
         const catalog = await (await fetch('/data/catalog.json')).json();
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         const records = parseListHistory(localStorage.getItem('mrt.list-history.v1'));
-        const stop = resolveReadingPaths(catalog.paths, catalog.lists).find((path) => path.id === 'modern-avengers').stops[7];
-        const progress = readingPathProgress(state, stop, { isCompleted: (current, id) => Boolean(records.get(listHistoryIdentity(current.lists[id]))?.completedAt) });
-        const action = document.querySelector('[data-reading-path-action="hickman-minimal"]');
+        const stop = resolveReadingPaths(catalog.paths, catalog.lists).find((entry) => entry.id === 'modern-avengers').stops[7];
+        const lists = [stop.lists.find(({ id }) => id === stop.stepId), ...stop.lists.filter(({ id }) => id !== stop.stepId)];
+        const saved = state.listOrder.map((id) => state.lists[id]).filter(Boolean);
+        const counted = lists.map((list) => saved.find((copy) => copy.catalogId === list.id)).find(Boolean) ?? null;
+        const done = Boolean(counted) && (Boolean(records.get(listHistoryIdentity(counted))?.completedAt)
+          || (counted.itemIds.length > 0 && counted.itemIds.every((issueId) => state.read[issueId])));
         return {
-          chosen: progress?.listId ?? null, progress,
-          text: action.textContent, label: action.getAttribute('aria-label'), painted: action.parentElement.querySelector('.reading-path-stop-progress').textContent,
-          sameForm: window.__ux10Form === document.querySelector('#reading-path-navigation form'), sameAction: window.__ux10Action === action,
+          chosen: counted?.id ?? null, done,
+          progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim() ?? null,
+          sameForm: window.__ux10Form === document.querySelector('#catalog-path-navigation form'),
+          sameCard: window.__ux10Action === document.querySelector('#catalog-results [data-path-stop="hickman-minimal"] .catalog-card'),
         };
       });
-      receipt('LC07', `${stage} chosen saved version`, { chosen, next: UX10_MODERN.stops[nextIndex].stepId, actionText }, association, {
-        exactChosen: association.chosen === chosen, actionLabel: association.text === actionText && association.label.includes(chosen ?? UX10_MODERN.stops[7].name),
-        truthfulProgress: chosen ? association.progress.read === 1 && association.progress.total === 2 && association.painted.includes('1 of 2') : association.painted === 'Not added',
-        alternateWording: stage === 'C' || stage === 'D' ? association.painted.includes('Alternate reading version.') : !association.painted.includes('Alternate reading version.'),
-        formAndActionIdentity: association.sameForm && association.sameAction,
+      receipt('LC07', `${stage} counted saved version`, { chosen, next: UX10_MODERN.stops[nextIndex].stepId }, association, {
+        exactChosen: association.chosen === chosen,
+        countedAsPlaced: association.done === (nextIndex === 8),
+        pathProgress: association.progress === `Stop ${nextIndex + 1} of 10 · ${nextIndex} of 10 stops complete`,
+        formAndCardIdentity: association.sameForm && association.sameCard,
       });
-      await measureJump('LC07', `${stage} live next`, '#reading-path-navigation', 'next-unfinished', UX10_MODERN.stops[nextIndex].stepId);
+      await measureJump('LC07', `${stage} live next`, '#catalog-path-navigation', 'next-unfinished', UX10_MODERN.stops[nextIndex].stepId);
     }
 
     enter('LC08 finite invalid native and stale generation handling');
@@ -20804,7 +20899,7 @@ async function runLongCollectionNavigation(page, t) {
     const invalid = async (branch, mode, expectedValue, expectedText) => {
       const before = await raw();
       const actual = await page.evaluate((mode) => {
-        const form = document.querySelector('#reading-path-navigation form');
+        const form = document.querySelector('#catalog-path-navigation form');
         const select = form.querySelector('select');
         const originalValue = select.value;
         let option;
@@ -20828,8 +20923,8 @@ async function runLongCollectionNavigation(page, t) {
     await invalid('absent value deselects', 'absent', '', 'Choose');
     await invalid('selected injected option rejects', 'injected', 'entry:ux10-absent', 'no longer available');
     const disconnected = await page.evaluate((id) => {
-      const form = document.querySelector('#reading-path-navigation form');
-      const target = document.querySelector(`[data-reading-path-action="${id}"]`);
+      const form = document.querySelector('#catalog-path-navigation form');
+      const target = document.querySelector(`#catalog-results [data-path-stop="${id}"] .catalog-card-title`);
       const parent = target.parentElement; const next = target.nextSibling;
       target.remove(); form.querySelector('select').value = `entry:${id}`;
       form.querySelector('button').focus(); form.requestSubmit();
@@ -20838,17 +20933,17 @@ async function runLongCollectionNavigation(page, t) {
       return result;
     }, UX10_LONG.stops[77].stepId);
     receipt('LC08', 'detached target', 'unavailable/no fallback', disconnected, { unavailable: disconnected.text.includes('no longer available'), noFallback: disconnected.target === 'BUTTON' });
-    await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#reading-path-navigation form'); });
-    await page.select('#reading-path-select', UX10_MODERN.id);
+    await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#catalog-path-navigation form'); });
+    await page.select('#catalog-path', UX10_MODERN.id);
     await settle();
     const stale = await page.evaluate(() => {
       const before = document.activeElement;
       window.__ux10OldForm.requestSubmit();
-      return { sameFocus: document.activeElement === before, newForm: window.__ux10OldForm !== document.querySelector('#reading-path-navigation form') };
+      return { sameFocus: document.activeElement === before, newForm: window.__ux10OldForm !== document.querySelector('#catalog-path-navigation form') };
     });
     receipt('LC08', 'path switch rejects old form', true, stale, { noStolenFocus: stale.sameFocus, newGeneration: stale.newForm });
-    await measureJump('LC08', 'current valid form remains usable', '#reading-path-navigation', `entry:${UX10_MODERN.stops[9].stepId}`, UX10_MODERN.stops[9].stepId);
-    await page.evaluate(() => { window.__ux10Inactive = document.querySelector('#reading-path-navigation form'); });
+    await measureJump('LC08', 'current valid form remains usable', '#catalog-path-navigation', `entry:${UX10_MODERN.stops[9].stepId}`, UX10_MODERN.stops[9].stepId);
+    await page.evaluate(() => { window.__ux10Inactive = document.querySelector('#catalog-path-navigation form'); });
     await click(page, '.brand[data-view="home"]'); await settle();
     const away = await page.evaluate(() => { const before = document.activeElement; window.__ux10Inactive.requestSubmit(); return document.activeElement === before; });
     receipt('LC08', 'navigation away rejects old form', true, away, { noFocusSteal: away });
@@ -20865,40 +20960,53 @@ async function runLongCollectionNavigation(page, t) {
     enter('LC09 deep links and native Preview/Open return');
     await pathReady();
     const reloadBefore = await raw(); await page.reload({ waitUntil: 'load' });
-    await page.waitForSelector('#reading-path-spine [data-reading-path-action]'); await settle();
-    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#reading-path-select', (node) => node.value), {
-      pathRetained: await page.$eval('#reading-path-select', (node) => node.value) === UX10_LONG.id,
-      hashRetained: (await raw()).hash === reloadBefore.hash,
+    await page.waitForSelector('#catalog-results [data-path-stop] .catalog-card'); await settle();
+    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#catalog-path', (node) => node.value), {
+      pathRetained: await page.$eval('#catalog-path', (node) => node.value) === UX10_LONG.id,
+      hashRetained: isDeepStrictEqual(routeOf((await raw()).hash), routeOf(reloadBefore.hash)),
     });
     await ageReady('event-era'); await page.reload({ waitUntil: 'load' }); await page.waitForSelector('#age-event-era-results .catalog-card'); await settle();
     const ageBeforeNavigation = await raw();
-    await page.evaluate(() => { location.hash = '#/reading-paths?path=modern-avengers'; });
-    await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'modern-avengers'); await settle();
+    await page.evaluate(() => { location.hash = '#/catalog?path=modern-avengers'; });
+    await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'modern-avengers'
+      && document.querySelector('#catalog-results [data-path-stop] .catalog-card')); await settle();
     await page.evaluate(() => history.back());
     await page.waitForFunction(() => document.activeElement?.id === 'age-event-era-h'); await settle();
     const backed = await raw();
     await page.evaluate(() => history.forward());
-    await page.waitForFunction(() => document.activeElement?.id === 'reading-paths-h'); await settle();
-    receipt('LC09', 'age/path Back Forward', { back: '#/age-event-era', forward: '#/reading-paths?path=modern-avengers' }, { back: backed, forward: await raw() }, {
-      backAge: backed.hash === ageBeforeNavigation.hash, forwardPath: (await raw()).hash === '#/reading-paths?path=modern-avengers',
-      headingFocus: await page.evaluate(() => document.activeElement.id === 'reading-paths-h'),
+    await page.waitForFunction(() => document.activeElement?.id === 'catalog-h'); await settle();
+    const forwardPath = (hash) => hash.split('?')[0].split('/')[1] === 'catalog' && new URLSearchParams(hash.split('?')[1] ?? '').get('path') === 'modern-avengers';
+    receipt('LC09', 'age/path Back Forward', { back: '#/age-event-era', forward: '#/catalog?path=modern-avengers' }, { back: backed, forward: await raw() }, {
+      backAge: backed.hash === ageBeforeNavigation.hash, forwardPath: forwardPath((await raw()).hash),
+      headingFocus: await page.evaluate(() => document.activeElement.id === 'catalog-h'),
     });
-    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
-    const previewJump = await measureJump('LC09', 'authored synthetic Preview jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
-    if (previewJump.focus.id === 'browser-check-three-short') {
+    await seed({ state: createEmptyState(), history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'path-follow-stop-actions'));
+    const previewJump = await measureJump('LC09', 'authored synthetic Preview jump', '#catalog-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    // The jump focuses the stop's title, so its own Preview is reached by Tab, as a reader would.
+    const tabTo = async (act) => {
+      for (let presses = 0; presses < 4; presses += 1) {
+        await page.keyboard.press('Tab');
+        const reached = await page.evaluate((wanted) => document.activeElement?.dataset.act === wanted
+          && document.activeElement.closest('[data-path-stop]')?.dataset.pathStop === 'browser-check-three-short', act);
+        if (reached) return true;
+      }
+      return false;
+    };
+    if (previewJump.focus.id === 'browser-check-three-short' && await tabTo('preview')) {
       const beforePreview = await raw();
       await page.keyboard.press('Enter'); await page.waitForSelector('#preview[open] .preview-issue-link');
       const preview = await page.evaluate(() => ({ title: document.querySelector('#preview-h').textContent, choices: document.querySelectorAll('#preview-paths input').length, key: document.querySelector('#preview-add button')?.dataset.key }));
       receipt('LC09', 'exact authored Preview', 'Third Stop: The Short Way', preview, { correctTitle: preview.title === 'Third Stop: The Short Way', noChooser: preview.choices === 0, exactKey: preview.key === 'browser-check-three-short' });
       await page.keyboard.press('Escape');
-      await page.waitForFunction(() => !document.querySelector('#preview').open && document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      await page.waitForFunction(() => !document.querySelector('#preview').open && document.activeElement?.dataset.act === 'preview'
+        && document.activeElement.closest('[data-path-stop]')?.dataset.pathStop === 'browser-check-three-short'); await settle();
       receipt('LC09', 'native close focus settlement', 'browser-check-three-short', await focus(), { exactReturn: (await focus()).id === 'browser-check-three-short', noSavedBytesChange: (await raw()).reader === beforePreview.reader && (await raw()).history === beforePreview.history });
     } else receipt('LC09', 'activation refused after wrong-target fault', 'correct focus prerequisite', previewJump.focus, { exactTargetRequired: false });
     const savedFixture = fixtureReadingState();
     savedFixture.schemaVersion = SCHEMA_VERSION;
     savedFixture.lists.fixture.catalogId = 'browser-check-three-short';
-    await seed({ state: savedFixture, history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'reading-path-stop-actions'));
-    await open(page, '/?catalog=reading-path-stop-actions#/catalog');
+    await seed({ state: savedFixture, history: { format: 'recap-page-list-history', version: 1, records: [] } }, pathUrl('bc-path', 'path-follow-stop-actions'));
+    await open(page, '/?catalog=path-follow-stop-actions#/catalog');
     await page.waitForFunction((expectedName) => {
       const target = document.querySelector('#catalog-results [data-key="browser-check-three-short"][data-act="open"]');
       return target?.tagName === 'A' && target.getAttribute('href') === '#/read/fixture'
@@ -20916,14 +21024,15 @@ async function runLongCollectionNavigation(page, t) {
       appDoesNotIntercept: modifier.prevented === false, nativeSavedLink: modifier.tag === 'A' && modifier.href === '#/read/fixture',
       noSelectionOrRouting: sameRaw(modifiedBefore, await raw()),
     }, modifiedBefore, await raw());
-    await pathReady('bc-path', 'reading-path-stop-actions');
-    const savedJump = await measureJump('LC09', 'saved exact Open jump', '#reading-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
-    if (savedJump.focus.id === 'browser-check-three-short') {
+    await pathReady('bc-path', 'path-follow-stop-actions');
+    const savedJump = await measureJump('LC09', 'saved exact Open jump', '#catalog-path-navigation', 'entry:browser-check-three-short', 'browser-check-three-short');
+    if (savedJump.focus.id === 'browser-check-three-short' && await tabTo('open')) {
       await page.keyboard.press('Enter'); await page.waitForSelector('#view-read:not([hidden])');
       const reading = await page.evaluate(() => ({ active: JSON.parse(localStorage.getItem('mrt.state.v2')).active, hash: location.hash }));
       receipt('LC09', 'explicit saved Open', 'fixture', reading, { sameSavedId: reading.active === 'fixture', readingRoute: reading.hash === '#/read/fixture' });
       await page.evaluate(() => history.back());
-      await page.waitForFunction(() => document.activeElement?.dataset.readingPathAction === 'browser-check-three-short'); await settle();
+      await page.waitForFunction(() => document.activeElement?.dataset.act === 'open'
+        && document.activeElement.closest('[data-path-stop]')?.dataset.pathStop === 'browser-check-three-short'); await settle();
       receipt('LC09', 'saved Back return', 'browser-check-three-short', await focus(), { exactActionReturn: (await focus()).id === 'browser-check-three-short', visibleReturn: (await focus()).usable });
     } else receipt('LC09', 'Open refused after wrong-target fault', 'correct focus prerequisite', savedJump.focus, { exactTargetRequired: false });
 
@@ -20931,7 +21040,7 @@ async function runLongCollectionNavigation(page, t) {
     for (const [width, height] of [[1280, 900], [320, 900], [320, 480]]) {
       await page.setViewport({ width, height });
       for (const [surface, host, value, target] of [
-        ['path', '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId],
+        ['path', '#catalog-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId],
         ['age', '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential'],
       ]) {
         if (surface === 'path') await pathReady(); else await ageReady('event-era');
@@ -20971,7 +21080,7 @@ async function runLongCollectionNavigation(page, t) {
     ]) {
       await cdp.send('Emulation.setEmulatedMedia', { features });
       await pathReady();
-      await measureJump('LC11', `${mode} path`, '#reading-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId);
+      await measureJump('LC11', `${mode} path`, '#catalog-path-navigation', `entry:${UX10_LONG.stops[77].stepId}`, UX10_LONG.stops[77].stepId);
       await ageReady('event-era');
       await measureJump('LC11', `${mode} age`, '#age-event-era-navigation', 'entry:list:civil-war-essential', 'list:civil-war-essential');
     }
@@ -21000,11 +21109,11 @@ function ux10Splice(source, before, after, id) {
 }
 MUTATIONS.push(
   {
-    id: 'long-navigation-read-is-complete', title: 'read progress wrongly implies explicit completion',
+    id: 'long-navigation-read-is-complete', title: 'a stop read in full is wrongly left unfinished, away from You are here',
     breaks: 'long-collection-navigation',
-    rewriteReadingPaths: (source) => ux10Splice(source,
-      'return !readingPathProgress(getState(), stop, { isCompleted })?.completed;',
-      "return readingPathProgress(getState(), stop, { isCompleted })?.state !== 'done';", 'M01'),
+    rewriteCatalogView: (source) => ux10Splice(source,
+      'const index = stories.findIndex((story) => !storyStep(state, story, saved, isCompleted).done);',
+      'const index = stories.findIndex((story) => !isCompleted(state, saved.get(defaultPath(story, (list) => saved.has(list.id))?.id)?.id));', 'M01'),
   },
   {
     id: 'long-navigation-wrong-target', title: 'late choice wrongly focuses first collection target',

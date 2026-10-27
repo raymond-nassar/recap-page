@@ -21,7 +21,7 @@ test('main constructs Recovery once with no controller or forbidden dependency',
   // recovery.js must not import controller, Store, MarvelApi, ResponseCache, Hydrator,
   // SynopsisRunner, or concrete sibling views.
   assert.doesNotMatch(source, /(?:main|storage|api|cache|hydrate|synopsis)\.js/);
-  assert.doesNotMatch(source, /views\/(?:home|library|progress|issue|catalog|preview|reading-paths|add|data)\.js/);
+  assert.doesNotMatch(source, /views\/(?:home|library|progress|issue|catalog|preview|add|data)\.js/);
   assert.doesNotMatch(source, /new Store|new MarvelApi|new ResponseCache|new RateLimiter|new Hydrator|new SynopsisRunner/);
 });
 

@@ -552,7 +552,7 @@ async function withoutCatalogComposition(page, selector) {
 async function searchFieldReflow(page, profile, check, route) {
   for (const [width, height] of [[320, 740], [360, 800]]) {
     await page.setViewport({ width, height, isMobile: true, hasTouch: true });
-    for (const [view, form] of [['lines', '#form-lines-search'], ['marvel-on-screen', '.mcu-prep-search']]) {
+    for (const [view, form] of [['lines', '#form-lines-search'], ['marvel-on-screen', '.mcu-prep-search'], ['young-readers', '#form-young-readers-search']]) {
       await route(page, view);
       const selector = `#view-${view} ${form}`;
       await page.waitForSelector(`${selector} input[type="search"]`, { visible: true });

@@ -31,7 +31,7 @@ export function createCollectionNavigation({
         const next = getNext();
         if (!isCurrent()) return;
         if (next.kind === 'complete') {
-          status.textContent = 'All displayed stops are marked as completed.';
+          status.textContent = 'All displayed stops are complete.';
           return;
         }
         entry = choices.get(`entry:${next.id}`);

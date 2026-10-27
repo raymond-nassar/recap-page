@@ -31,7 +31,7 @@ test('main constructs Data once with no controller or forbidden dependency', () 
   // a comment is not an import.
   assert.doesNotMatch(source, /\bfrom\s+['"].*(?:main|storage|api|cache|hydrate|synopsis)\.js['"]/);
   assert.doesNotMatch(source, /\bimport\b.*(?:main|storage|api|cache|hydrate|synopsis)\.js/);
-  assert.doesNotMatch(source, /views\/(?:home|library|progress|issue|catalog|preview|reading-paths|add)\.js/);
+  assert.doesNotMatch(source, /views\/(?:home|library|progress|issue|catalog|preview|add)\.js/);
   assert.doesNotMatch(source, /new Store|new MarvelApi|new ResponseCache|new RateLimiter|new Hydrator|new SynopsisRunner/);
 });
 

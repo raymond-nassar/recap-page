@@ -86,8 +86,9 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   target that page, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
 - Each catalog choice has its own title, Add or Open action and Preview. Preview inspects that
-  specific list rather than offering a hidden reading-option selector. Reading Paths preview their
-  explicitly named choice while recognizing a saved alternate version.
+  specific list rather than offering a hidden reading-option selector. A path followed on Modern
+  Timeline shows each stop as the reading the path names, or as a saved alternate version when only
+  that one is saved.
 - MCU Prep repeats the Secret Wars fast track as **Avengers: Doomsday & Avengers: Secret Wars**.
   It creates its own named library list with the same issues and trade sections. Issue read marks
   are shared with the fast track, while each saved list keeps its own name and list note.

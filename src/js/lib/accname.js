@@ -34,3 +34,18 @@ export function labelledName(label, context) {
   if (!words) return extra;
   return extra ? `${words}: ${extra}` : words;
 }
+
+// A control whose visible text is several pieces, such as a category card's eyebrow, title and
+// count, is named by those pieces in the order they are shown, then by whatever it adds. The axe
+// rules pass found three controls naming the same pieces in another order, or with words spliced
+// between them, which a speech-input user cannot say as one phrase (#905). Unlike labelledName this
+// keeps punctuation, because these pieces are text a reader sees rather than symbols beside a
+// label: "3 / 20" is read as a count, where its words alone would be read "3 20". Each piece ends
+// as a sentence, so a screen reader pauses between pieces that are visibly separate.
+export function shownName(parts, context) {
+  return [...parts, context]
+    .map((part) => String(part ?? '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .map((part) => (/[.!?]$/.test(part) ? part : `${part}.`))
+    .join(' ');
+}
