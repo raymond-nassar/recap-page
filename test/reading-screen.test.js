@@ -56,7 +56,7 @@ test('native list actions start closed and retain completion and pending control
 });
 
 test('page titles use ordinary focus-visible rather than a forced navigation box', () => {
-  assert.match(css, /:focus-visible \{\s*outline: 3px solid var\(--blue\)/);
+  assert.match(css, /:focus-visible \{\s*outline: var\(--focus-width\) solid var\(--blue\)/);
   assert.doesNotMatch(css, /\.view h1\[tabindex="-1"\]:focus(?!-visible)/);
   assert.match(main, /heading\.setAttribute\('tabindex', '-1'\);\s*heading\.focus/);
 });

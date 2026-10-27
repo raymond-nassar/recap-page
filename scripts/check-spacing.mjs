@@ -280,6 +280,10 @@ export const TOKENS = new Map([
   ['--ease-out', onScale('motion', 'cubic-bezier(0, 0, 0, 1)')],
   ['--motion-hover', kept('motion', '120ms', 'the hover on a Home path card')],
   ['--motion-progress', kept('motion', '350ms', 'the progress ring and the glance bar fill')],
+  ['--focus-width', onScale('focus', '3px')],
+  ['--focus-offset', onScale('focus', '2px')],
+  ['--focus-offset-landing', kept('focus', '4px', 'the heading a collection jump lands on')],
+  ['--focus-offset-code', kept('focus', '3px', 'a code example in the import guide')],
 ]);
 
 const FAMILY_PREFIXES = new Map([
@@ -287,6 +291,7 @@ const FAMILY_PREFIXES = new Map([
   ['stroke', /^--stroke-/],
   ['elevation', /^--(?:elev|text-shadow)-/],
   ['motion', /^--(?:motion|ease)-/],
+  ['focus', /^--focus-/],
 ]);
 
 function familyOf(name) {
@@ -378,7 +383,23 @@ const TOKEN_RULES = [
     accepts: (name) => familyOf(name) === 'motion',
     raw: (atom) => (DURATION.test(atom) && Number.parseFloat(atom) !== 0) || EASING.test(atom),
   },
+  // The focus ring's width is a focus token and every other outline is a stroke; an offset is a focus
+  // token, and a ring drawn inside its control is offset by the ring's own width, negated.
+  {
+    family: 'outline',
+    properties: /^outline(?:-width)?$/,
+    accepts: (name, lengths) => name === '--focus-width' || familyOf(name) === 'stroke' || (!familyOf(name) && !lengths.has(name)),
+    raw: (atom) => LENGTHY.test(atom) || /^(?:thin|medium|thick)$/i.test(atom),
+  },
+  {
+    family: 'outline offset',
+    properties: /^outline-offset$/,
+    accepts: (name) => familyOf(name) === 'focus',
+    raw: (atom) => !KEYWORDS.has(atom),
+  },
 ];
+
+const article = (word) => (/^[aeiou]/i.test(word) ? 'an' : 'a');
 
 function lastSelector(selector) {
   return selector.slice(selector.lastIndexOf('{') + 1).replace(/\s+/g, ' ').trim();
@@ -460,7 +481,7 @@ export function tokenGrammarFindings(file, source, lengths = lengthTokens([[file
           const name = tokenOf(layer[0]);
           if (name ? rule.whole(name) : KEYWORDS.has(layer[0]) || layer[0] === 'none') continue;
           if (name) {
-            findings.push(`${where} uses ${layer[0]}, which is not a ${rule.family} token`);
+            findings.push(`${where} uses ${layer[0]}, which is not ${article(rule.family)} ${rule.family} token`);
             continue;
           }
         }
@@ -471,7 +492,7 @@ export function tokenGrammarFindings(file, source, lengths = lengthTokens([[file
         for (const atom of layer) {
           const name = tokenOf(atom);
           if (name) {
-            if (!rule.accepts(name, lengths)) findings.push(`${where} uses ${atom}, which is not a ${rule.family} token`);
+            if (!rule.accepts(name, lengths)) findings.push(`${where} uses ${atom}, which is not ${article(rule.family)} ${rule.family} token`);
           } else if (rule.raw(atom)) {
             findings.push(`${where} carries raw ${rule.family} value ${atom}`);
           }

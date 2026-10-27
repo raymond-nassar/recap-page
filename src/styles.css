@@ -71,6 +71,12 @@
   --ease-out: cubic-bezier(0, 0, 0, 1);
   --motion-hover: 120ms;
   --motion-progress: 350ms;
+  /* Focus. The ring is 3px wide and sits 2px outside its control; the two other offsets in use keep
+     tokens named for where they are drawn, and a ring drawn inside sits one ring's width in. */
+  --focus-width: 3px;
+  --focus-offset: 2px;
+  --focus-offset-landing: 4px;
+  --focus-offset-code: 3px;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
      declarations. The values follow the clusters already present in the interface while keeping
      each consolidated edge within 4 CSS pixels of where it began. */
@@ -333,16 +339,16 @@ button { cursor: pointer; }
 a { color: var(--blue); }
 
 :focus-visible {
-  outline: 3px solid var(--blue);
-  outline-offset: 2px;
+  outline: var(--focus-width) solid var(--blue);
+  outline-offset: var(--focus-offset);
   border-radius: var(--radius-compact);
 }
 
 /* Collection jumps keep an explicit landing marker. Page navigation uses ordinary
    :focus-visible, so pointer activation does not box a heading that is not a control. */
 .catalog-card-title[tabindex="-1"]:focus {
-  outline: 3px solid var(--blue);
-  outline-offset: 4px;
+  outline: var(--focus-width) solid var(--blue);
+  outline-offset: var(--focus-offset-landing);
 }
 
 .visually-hidden {
@@ -553,7 +559,7 @@ a { color: var(--blue); }
    because the ring is 3px wide and any less leaves its outer edge past the button. */
 .rail .ri:focus-visible,
 .rail .brand:focus-visible,
-.rail .rail-toggle:focus-visible { outline-offset: -3px; }
+.rail .rail-toggle:focus-visible { outline-offset: calc(-1 * var(--focus-width)); }
 
 /* The selected state is a purple accent bar AND a raised surface AND a heavier label, so it
    never depends on colour alone. */
@@ -1057,7 +1063,7 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
   background: rgb(var(--accent-line) / 10%); color: var(--accent-text);
   border-color: var(--accent-text);
 }
-.fp input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+.fp input:focus-visible + span { outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset); }
 .spotlight-controls { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
 .spotlight-controls .filters { margin: 0; min-width: 0; }
 .spotlight-filters { justify-content: flex-end; }
@@ -1413,7 +1419,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); background: var(--card-2);
 }
 .import-guide pre code { padding: 0; background: none; }
-.import-guide pre:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; }
+.import-guide pre:focus-visible { outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset-code); }
 #about-build { overflow-wrap: anywhere; }
 #view-about a, #hero-title { overflow-wrap: anywhere; }
 .field-disclosure { border-top: var(--stroke-1) solid var(--line); border-bottom: var(--stroke-1) solid var(--line); }
@@ -1650,7 +1656,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card);
 }
 .catalog-card[aria-current="step"] {
-  outline: 3px solid var(--accent-text); outline-offset: 2px;
+  outline: var(--focus-width) solid var(--accent-text); outline-offset: var(--focus-offset);
 }
 .catalog-card-main { display: flex; align-items: flex-start; gap: var(--space-5); padding: var(--space-5); }
 .catalog-card-text { min-width: 0; }
@@ -2588,7 +2594,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #restore-history-file { display: block; margin-block: var(--space-4); max-width: 100%; }
 @media (forced-colors: active) {
   .completion-wrapup.is-completed, .recommendation-card { border-color: CanvasText; }
-  .completion-enjoyment button[aria-pressed="true"] { border-color: Highlight; outline: 2px solid Highlight; }
+  .completion-enjoyment button[aria-pressed="true"] { border-color: Highlight; outline: var(--stroke-2) solid Highlight; }
   .completion-wrapup .btn[aria-disabled="true"] { color: GrayText; }
   .quiet.completion-mark[aria-disabled="true"] { color: GrayText; border-color: GrayText; }
 }

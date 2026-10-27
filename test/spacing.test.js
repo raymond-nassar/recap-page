@@ -256,3 +256,29 @@ test('reduced motion still stops every transition and animation, and nothing out
     'src/styles.css @media (prefers-reduced-motion: reduce) { *, *::before, *::after animation: none !important',
   ]);
 });
+
+test('a focus ring takes its width and offset from the focus tokens, and any other outline is a stroke', () => {
+  for (const [rule, sheet, expected] of [
+    ['.x { outline: 3px solid var(--blue); }', 0, ['carries raw outline value 3px']],
+    ['.x { outline-width: thin; }', 0, ['carries raw outline value thin']],
+    ['.x { outline: var(--focus-offset) solid var(--blue); }', 0, ['uses var(--focus-offset), which is not an outline token']],
+    ['.x { outline-offset: 2px; }', 0, ['carries raw outline offset value 2px']],
+    ['.x { outline-offset: -3px; }', 0, ['carries raw outline offset value -3px']],
+    ['.x { outline-offset: var(--stroke-2); }', 0, ['uses var(--stroke-2), which is not an outline offset token']],
+    ['.x { outline: 2px solid Highlight; }', 1, ['carries raw outline value 2px']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { outline: var(--focus-width) solid var(--blue); outline-offset: var(--focus-offset); }',
+    '.x { outline-offset: calc(-1 * var(--focus-width)); }',
+    '.x { outline: var(--stroke-2) solid Highlight; }',
+    '.x { outline: none; outline-offset: 0; }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+
+  const unworn = css.replace('outline-offset: var(--focus-offset-code)', 'outline-offset: var(--focus-offset)');
+  assert.notEqual(unworn, css, 'the --focus-offset-code consumer is missing');
+  assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--focus-offset-code holds 3px for a code example in the import guide, but nothing uses it']);
+});
