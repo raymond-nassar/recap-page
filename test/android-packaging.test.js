@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, realpathSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
@@ -182,7 +182,12 @@ async function proveWrapperBootstrap(t, env) {
     server.closeAllConnections();
     return new Promise((done) => server.close(done));
   });
-  const root = await mkdtemp(join(tmpdir(), 'recap-wrapper-'));
+  // Node keeps the temporary folder's spelling from TEMP, which can be an 8.3 short name, while
+  // PowerShell reports the script's folder in full. On the Windows release runner the refusal
+  // named the right file under a spelling this test did not expect (run 40543715203), and
+  // pointing TEMP at a short name reproduces that, so the root is taken in the full form
+  // PowerShell uses.
+  const root = realpathSync.native(await mkdtemp(join(tmpdir(), 'recap-wrapper-')));
   t.after(() => rm(root, { recursive: true, force: true }));
   const copy = join(root, 'bootstrap-wrapper.ps1');
   await writeFile(copy, shipped
