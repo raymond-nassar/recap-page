@@ -48,7 +48,8 @@ test('native fields and path selects share the scoped Field typography and targe
 });
 
 test('the native ask dialog authors viewport bounds and vertical scroll without replacing its controls', () => {
-  assert.match(css, /\.ask \{[^}]*max-height: calc\(100dvh - 2rem\);[^}]*overflow-y: auto/);
+  // #830: the bounds and the scroll are the dialog shell's, which every question shares with Preview.
+  assert.match(css, /\.ask, \.preview \{[^}]*max-height: calc\(100dvh - 2rem\); overflow-y: auto/);
   assert.match(read('src/index.html'), /<textarea id="ask-area" rows="5"/);
 });
 

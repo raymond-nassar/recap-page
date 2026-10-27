@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:758-765`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:759-766`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2051,18 +2051,63 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 /* "In library" is a state, so it is named in the label as well as coloured. */
 .btn-added { background: rgb(var(--tint-base) / 5.882%); color: var(--teal); border-color: rgb(var(--teal-line) / 33.333%); font-weight: 600; }
 
-/* ---------------------------------------------------------- preview dialog */
+/* ---------------------------------------------------------- dialog shell */
 
-.preview {
-  width: min(46rem, calc(100vw - 2rem)); max-height: min(44rem, calc(100vh - 4rem));
+/* #830: one shell for every dialog that asks or shows something: the questions, the rating, the list
+   feedback note, the Markdown export and the Preview. One surface, corner, padding and scrim, and the
+   dialog is the one thing in it that scrolls. Its answers are held at its foot while what is above them
+   scrolls under them, as #849 began for confirmations, and Preview's head is held at its top, because
+   its only Close is there. The dialog pads its scroll by the held edges' heights, kept current from the
+   edges themselves by src/js/lib/dialogShell.js, so a control that takes focus between them is
+   scrolled clear of them rather than under them. */
+.ask, .preview {
+  max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain;
+  scroll-padding-top: calc(var(--dialog-head-height, 0px) + var(--space-4));
+  scroll-padding-bottom: calc(var(--dialog-foot-height, 0px) + var(--space-4));
   background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
 }
-.preview::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
+.ask { width: min(30rem, calc(100vw - 2rem)); }
+.preview { width: min(46rem, calc(100vw - 2rem)); max-height: min(44rem, calc(100dvh - 2rem)); }
+:is(.ask, .preview)::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
+/* The offsets are the dialog's padding, which scrolling insets a sticky edge by, so a held edge reaches
+   the dialog's sides and covers the strip of padding beyond it too. */
+.dialog-head {
+  position: sticky; top: calc(-1 * var(--space-7)); background: var(--card);
+  margin-inline: calc(-1 * var(--space-8)); margin-top: calc(-1 * var(--space-7));
+  padding-inline: var(--space-8); padding-top: var(--space-7);
+}
+.dialog-foot {
+  position: sticky; bottom: calc(-1 * var(--space-7)); background: var(--card);
+  margin-inline: calc(-1 * var(--space-8)); margin-bottom: calc(-1 * var(--space-7));
+  padding-inline: var(--space-8); padding-bottom: var(--space-7);
+}
+/* A question's foot also covers the space above its answers, so they never sit on the scrolling text.
+   The negative margin collapses with the last paragraph's own, so a question that fits is laid out as
+   before. Preview's foot draws its own rule above instead. */
+.ask .dialog-foot { margin-top: calc(-1 * var(--space-6)); padding-top: var(--space-6); }
+/* A text or note question focuses its field, which a held foot could cover on a phone with its keyboard
+   up, so it keeps the plain one (#849). */
+#ask:is([data-question="text"], [data-question="note"]) .dialog-foot { position: static; margin: 0; padding: 0; }
+@media (max-width: 420px) {
+  :is(.ask, .preview) { padding-inline: var(--space-7); }
+  :is(.dialog-head, .dialog-foot) { margin-inline: calc(-1 * var(--space-7)); padding-inline: var(--space-7); }
+}
+/* At 800x360 with text tokens doubled, a 480px question put Cancel and a long action on two rows, which
+   left no room for its first line (#849). On short landscape screens a question-sized dialog widens so
+   its answers share one row. */
+@media (max-height: 480px) and (min-width: 560px) {
+  .ask { width: min(40rem, calc(100vw - 2rem)); }
+}
+
+/* ---------------------------------------------------------- preview dialog */
+
 .preview-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); }
 .preview-head h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .preview-desc { max-width: 62ch; }
-#preview-body { max-height: 22rem; overflow-y: auto; margin: var(--space-5) 0; }
+/* UX-12 (#830): the list reads in the dialog's own scroll, the one scroller, rather than in a box of its
+   own inside a dialog that also scrolled, which put two scrollbars side by side. */
+#preview-body { margin: var(--space-5) 0; }
 .preview-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); counter-reset: pv; }
 .preview-list li {
   display: flex; gap: var(--space-4); align-items: baseline; padding: var(--space-2) var(--space-1);
@@ -2076,16 +2121,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+/* Success just after an add keeps a hint's spacing, in the text colour so it is not missed. */
+.preview-added { color: var(--text); font-weight: 600; }
+.preview-notes { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-5); }
 
 /* ============================================================ ask dialog */
 
-.ask {
-  width: min(30rem, calc(100vw - 2rem));
-  max-height: calc(100dvh - 2rem); overflow-y: auto;
-  background: var(--card); color: var(--text); border: var(--stroke-1) solid var(--line-2);
-  border-radius: var(--radius-xl); padding: var(--space-7) var(--space-8);
-}
-.ask::backdrop { background: rgb(var(--shadow-rgb) / calc(70.196% * var(--shadow-alpha))); }
 .ask h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); font-weight: 600; }
 .ask p { margin: 0 0 var(--space-6); max-width: 52ch; }
 .ask label { display: block; font-size: var(--t-body); color: var(--muted); margin-bottom: var(--space-2); }
@@ -2099,22 +2140,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: var(--target); }
-/* #849: a long confirmation scrolls under its answers instead of the answers scrolling it away from its
-   title. The negative margins reach the dialog's edges and collapse with the question's own, so a
-   question that fits is laid out exactly as before. The bottom offset matches the dialog's padding,
-   which scrolling insets a sticky edge by, so the footer covers that strip too. A text or note question
-   focuses its field, which a held footer could cover, so it keeps the plain one. */
-#ask[data-question="confirm"] .ask-foot {
-  position: sticky; bottom: calc(-1 * var(--space-7)); background: var(--card);
-  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-8)) calc(-1 * var(--space-7));
-  padding: var(--space-6) var(--space-8) var(--space-7);
-}
-/* At 800x360 with text tokens doubled, the 480px dialog put Cancel and a long action on two rows, which
-   left no room for the question's first line. On short landscape screens a confirmation widens so its
-   answers share one row. #830's shared dialog shell supersedes this. */
-@media (max-height: 480px) and (min-width: 560px) {
-  #ask[data-question="confirm"] { width: min(40rem, calc(100vw - 2rem)); }
-}
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
 .markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
 .markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
@@ -2128,7 +2153,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-trigger svg { width: 20px; height: 20px; flex: none; color: var(--accent-text); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
 .issue-rating.is-rated .rating-trigger svg { fill: currentColor; }
 .issue-rating.is-rated .rating-trigger { font-weight: 600; font-variant-numeric: tabular-nums; }
-.rating-dialog { padding: var(--space-8); max-height: calc(100dvh - 2rem); overflow-y: auto; }
 .rating-dialog .rating-comic { color: var(--dim); margin-bottom: var(--space-8); }
 .rating-stars { display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-7); }
 .rating-stars button { width: var(--target-touch); height: var(--target-touch); flex: 0 0 var(--target-touch); display: grid; place-items: center; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
@@ -2149,7 +2173,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 #issue-rating-remove { margin-right: auto; padding-left: 0; }
 #issue-rating-remove[hidden] + #issue-rating-cancel { margin-left: auto; }
 @media (max-width: 420px) {
-  .rating-dialog { padding: var(--space-7); }
   .rating-stars { gap: 0; }
   #issue-rating-remove { flex-basis: 100%; justify-content: flex-start; }
   #issue-rating-cancel { margin-left: auto; }
@@ -2584,7 +2607,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .recommendation-card .btn { white-space: normal; min-height: var(--target); }
 .yours-detail { color: var(--dim); font-size: var(--t-caption); }
 .completion-filters { border: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
-.list-feedback { overflow-wrap: anywhere; max-height: 85vh; overflow-y: auto; }
+.list-feedback { overflow-wrap: anywhere; }
 .list-feedback h2 { font-size: var(--t-subtitle); }
 #completion-history-controls { overflow-wrap: anywhere; }
 #restore-history-file { display: block; margin-block: var(--space-4); max-width: 100%; }

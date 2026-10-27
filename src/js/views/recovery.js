@@ -269,6 +269,7 @@ export function createRecoveryView({
         body: `This deletes the copy ${named}. It is a copy of saved data this app could not read, so `
           + 'there is nothing else to recover it from. Download it first if you are not sure.',
         confirmLabel: 'Remove copy',
+        danger: true,
       });
       if (!yes) return;
       const gone = forgetSalvage(key);

@@ -52,6 +52,7 @@ import { SCHEMA_VERSION, addIssuesToList, createEmptyState, createList, normaliz
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
+import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -1907,7 +1908,8 @@ async function checkOfflineSelectedList(browser, origin, t) {
     const idle = await page.$eval('#preview-offline', (node) => ({
       action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
       disabled: node.querySelector('[data-act="offline"]')?.disabled,
-      status: node.querySelector('[role="status"]')?.textContent.trim(),
+      // #830: the status reads above the held actions rather than among them.
+      status: document.querySelector('#preview-offline-status [role="status"]')?.textContent.trim(),
     }));
     t.check('selected Reading List starts as idle with an enabled offline action',
       idle.action === 'Make available offline' && idle.disabled === false,
@@ -1921,7 +1923,7 @@ async function checkOfflineSelectedList(browser, origin, t) {
     const ready = await page.$eval('#preview-offline', (node) => ({
       action: node.querySelector('[data-act="offline"]')?.textContent.trim(),
       disabled: node.querySelector('[data-act="offline"]')?.disabled,
-      status: node.querySelector('[role="status"]')?.textContent.trim(),
+      status: document.querySelector('#preview-offline-status [role="status"]')?.textContent.trim(),
     }));
     const inventory = await page.evaluate(async (listId, file) => {
       const names = (await caches.keys()).filter((name) => name.startsWith('mrt-offline-content-v1-'));
@@ -15572,15 +15574,174 @@ SCENARIOS.push({
     });
     const savedButton = await page.$('#preview-add a[data-act="main"]');
     const accessible = await page.accessibility.snapshot({ root: savedButton, interestingOnly: false });
-    t.check('a newly saved guide keeps Open visible and named, with separate Added feedback',
-      accessible?.name.startsWith('Open')
-        && await page.$eval('#preview-add', (host) => host.querySelector('a[data-act="main"]').textContent.includes('Open')
-          && [...host.children].some((node) => node.getAttribute('role') === 'status' && /Added|In library/.test(node.textContent))),
-      JSON.stringify(accessible));
+    // UX-12 (#830): after an add, Open list is the dialog's one primary action and names its list, and the
+    // line beside it says how many comics were saved and stays, rather than giving way after 1.5s. It is
+    // a status in the dialog because the page's announcer is behind the modal: measured in Edge 156, the
+    // announcer is absent from the accessibility tree while Preview is open.
+    const afterAdd = () => page.evaluate(() => {
+      const host = document.querySelector('#preview-add');
+      const saved = Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).lists)
+        .find((entry) => entry.catalogId === 'browser-check');
+      return {
+        text: host.querySelector('a[data-act="main"]').textContent.trim(),
+        primary: [...document.querySelectorAll('#preview .preview-foot .btn')]
+          .filter((button) => !button.classList.contains('btn-g') && button.checkVisibility())
+          .map((button) => button.textContent.trim()),
+        success: host.querySelector('.preview-added')?.textContent ?? null,
+        role: host.querySelector('.preview-added')?.getAttribute('role') ?? null,
+        count: saved?.itemIds.length ?? null,
+      };
+    });
+    const added = await afterAdd();
+    await new Promise((resolve) => setTimeout(resolve, 1800));
+    const later = await afterAdd();
+    const status = await page.$('#preview-add .preview-added');
+    const spoken = status ? await page.accessibility.snapshot({ root: status, interestingOnly: false }) : null;
+    t.check('after an add, Open list is the one primary action and names its list, beside a success line that stays',
+      accessible?.name === 'Open list: Browser Check Order' && added.text === 'Open list'
+        && JSON.stringify(added.primary) === JSON.stringify(['Open list'])
+        && added.count > 0 && added.success === `Added to your Library: ${added.count} issues.`
+        && added.role === 'status' && spoken?.role === 'status' && JSON.stringify(later) === JSON.stringify(added),
+      JSON.stringify({ name: accessible?.name, added, later, spoken: spoken?.role ?? null }));
     await click(page, '#preview-add a[data-act="main"]');
     await page.waitForSelector('#view-read:not([hidden])');
     t.check('saved Preview Open remains actionable and enters its Reading List',
       await page.$eval('#view-read', (view) => !view.hidden));
+  },
+});
+
+// #830: every dialog that asks or shows something shares one shell. Each opens at its start with its
+// title clear of what it holds, is the one thing in it that scrolls, holds its answers in view, and keeps
+// every control above them clear of them as focus moves. Preview, whose only Close is in its head,
+// holds that head too. Measured at 1280x900, at 640x450, which is a 1280x900 window at 200% zoom, and
+// on a 390px phone. The long guide's Preview lists 219 comics, so it has to scroll at every size.
+const SHELL_DIALOGS = [
+  { name: 'confirmation', selector: '#ask', from: '/#/read/fixture', opener: '#btn-delete-list' },
+  { name: 'text question', selector: '#ask', from: '/#/read/fixture', opener: '#btn-rename-list', plain: true },
+  { name: 'note question', selector: '#ask', from: '/#/read/fixture', opener: '#btn-list-note', plain: true },
+  { name: 'rating', selector: '#issue-rating-dialog', from: '/#/issue/900001?list=fixture', opener: '#issue-rating-trigger' },
+  { name: 'list feedback', selector: '#list-feedback', from: '/#/read/fixture', opener: '#btn-list-feedback-guide' },
+  { name: 'Markdown export', selector: '#markdown-export', from: '/#/read/fixture', opener: '#btn-export-md' },
+  {
+    name: 'Preview', selector: '#preview', from: '/?long=1#/catalog', head: true,
+    opener: '#catalog-results [data-story="list:browser-check"] [data-act="preview"]',
+  },
+];
+
+async function shellDialog(page, t, dialog) {
+  await t.step('open-dialog', async () => {
+    await open(page, dialog.from);
+    await revealReadingControl(page, dialog.opener);
+    await page.waitForSelector(dialog.opener, { visible: true, timeout: 15000 });
+    await page.focus(dialog.opener);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector(`${dialog.selector}[open]`, { timeout: 15000 });
+    if (dialog.selector === '#preview') {
+      await page.waitForFunction(() => document.querySelectorAll('#preview-body .preview-issue-link').length === 219,
+        { timeout: 15000 });
+    }
+  });
+  const measured = await t.step('measure-dialog', () => measureShellDialog(page, dialog.selector));
+  await t.step('close-dialog', () => escapeShellDialog(page, dialog.selector));
+  return measured;
+}
+
+SCENARIOS.push({
+  id: 'dialog-shell',
+  title: 'every dialog opens at its start in one shell, with its answers held in view and focus clear of them',
+  operations: ['open-dialog', 'measure-dialog', 'close-dialog'],
+  async run(page, t) {
+    await seedFixtureState(page);
+    // A completed list, so its wrap-up offers the list feedback note.
+    await page.evaluate(() => {
+      const list = JSON.parse(localStorage.getItem('mrt.state.v2')).lists.fixture;
+      localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+        format: 'recap-page-list-history', version: 1,
+        records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 123456, rating: null }],
+      }));
+    });
+    for (const [width, height] of [[1280, 900], [640, 450], [390, 844]]) {
+      await page.setViewport({ width, height });
+      const surfaces = [];
+      for (const dialog of SHELL_DIALOGS) {
+        const measured = await shellDialog(page, t, dialog);
+        for (const [claim, holds, detail] of shellVerdicts(measured, dialog)) {
+          t.check(`${width}x${height} ${dialog.name} ${claim}`, holds, JSON.stringify(detail));
+        }
+        surfaces.push({ dialog: dialog.name, ...measured.state.surface });
+      }
+      const [first] = surfaces;
+      t.check(`${width}x${height} every dialog wears one surface, corner, padding and scrim`,
+        surfaces.every(({ dialog: _name, ...surface }) => JSON.stringify(surface)
+          === JSON.stringify({ ...first, dialog: undefined })),
+        JSON.stringify(surfaces));
+    }
+  },
+});
+
+// UX-31 (#830): the shared question's answer button, as it looks and as it reads. The ratio composites the
+// danger tint over the dialog, because the answer is translucent red on whatever it sits on.
+function questionAnswer() {
+  const ok = document.querySelector('#ask-ok');
+  const dialog = document.querySelector('#ask');
+  const channels = (value) => value.match(/[\d.]+/g).map(Number);
+  const [r, g, b, a = 1] = channels(getComputedStyle(ok).backgroundColor);
+  const under = channels(getComputedStyle(dialog).backgroundColor);
+  const surface = [r, g, b].map((channel, index) => channel * a + under[index] * (1 - a));
+  const luminance = (rgb) => rgb.map((channel) => {
+    const value = channel / 255;
+    return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  }).reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+  const [light, dark] = [luminance(channels(getComputedStyle(ok).color).slice(0, 3)), luminance(surface)]
+    .sort((x, y) => y - x);
+  return {
+    theme: document.documentElement.getAttribute('data-theme'),
+    label: ok.textContent.trim(),
+    danger: ok.classList.contains('btn-danger'),
+    focus: document.activeElement?.id ?? null,
+    order: [...dialog.querySelectorAll('.ask-foot button')].map((button) => button.id),
+    ratio: Math.round(((light + 0.05) / (dark + 0.05)) * 100) / 100,
+  };
+}
+
+// UX-31 (#830): an answer that cannot be taken back looks it, and only such an answer. Erase everything
+// has no Undo and no kept copy; Remove from library has an Undo, and asked straight after must not
+// inherit the look. Cancel stays first and keeps focus, and the danger answer reads at 4.5:1 on the
+// dialog in both themes.
+SCENARIOS.push({
+  id: 'danger-confirmations',
+  title: 'only an answer with no way back wears the danger look, after a Cancel that keeps focus',
+  async run(page, t) {
+    await seedFixtureState(page);
+    const lists = () => page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2')).lists));
+    const before = await lists();
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((value) => {
+        const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+        localStorage.setItem('mrt.settings', JSON.stringify({ ...settings, theme: value }));
+      }, theme);
+      await page.reload({ waitUntil: 'load' });
+      const ask = async (path, opener) => {
+        await open(page, path);
+        await click(page, opener);
+        await page.waitForSelector('#ask[open]');
+        const answer = await page.evaluate(questionAnswer);
+        await escapeShellDialog(page, '#ask');
+        return answer;
+      };
+      const erase = await ask('/#/data', '#btn-wipe');
+      const remove = await ask('/#/read/fixture', '#btn-delete-list');
+      console.log(`MEASURED danger-confirmations ${theme}: the danger answer reads at ${erase.ratio}:1 on the dialog`);
+      const order = JSON.stringify(['ask-cancel', 'ask-ok']);
+      t.check(`${theme}: Erase everything wears the danger look after Cancel, which keeps focus, and reads at 4.5:1`,
+        erase.theme === theme && erase.label === 'Erase everything' && erase.danger && erase.focus === 'ask-cancel'
+          && JSON.stringify(erase.order) === order && erase.ratio >= 4.5,
+        JSON.stringify(erase));
+      t.check(`${theme}: Remove from library, which has an Undo, asked next looks like any other question`,
+        !remove.danger && remove.focus === 'ask-cancel' && JSON.stringify(remove.order) === order,
+        JSON.stringify(remove));
+    }
+    t.check('declining both questions leaves every list as it was', await lists() === before);
   },
 });
 

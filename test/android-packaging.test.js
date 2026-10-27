@@ -43,6 +43,9 @@ test('Android More retains its 48px target over shared bottom-navigation styles'
   ]);
   assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: var\(--target-touch\)/);
   assert.equal(rootTokens(shared).get('--target-touch'), '48px');
+  // #909: More is labelled on the phone bar as Home, Library and Search are, so the overlay leaves the
+  // shared label alone and the bar's fit measures it with the others.
+  assert.doesNotMatch(css, /\.rail-toggle-label\b/);
 });
 
 // #827: the overlay's 48px override is the shared touch-target token, so every control it sizes for

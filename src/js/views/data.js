@@ -422,6 +422,7 @@ export function createDataView({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
           body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
           confirmLabel: 'Erase everything',
+          danger: true,
         });
         if (!yes) {
           cancelled = true;

@@ -168,6 +168,7 @@ export default [
       'scripts/browser-progress-glance.mjs',
       'scripts/browser-axe.mjs',
       'scripts/lib/painted-contrast.mjs',
+      'scripts/lib/dialog-shell.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

@@ -33,8 +33,8 @@ download comics or provide offline comic reading.
 
 ### Phone navigation and controls
 
-On narrow Android screens, the menu button shows only its icon and keeps its **More**
-screen-reader name and 48px minimum touch target. **More** opens a sheet just above the navigation
+On narrow Android screens, the menu button shows its icon and its **More** label, as Home, Library
+and Search do, and keeps a 48px minimum touch target. **More** opens a sheet just above the navigation
 bar with Continue reading, **Backup & settings**, **About this app** and the connection status, and
 nothing the bar already shows. **Close**, Android Back, Escape or a tap outside it closes it, and
 focus returns to **More**. The navigation bar shows the full app icon at
@@ -459,9 +459,10 @@ side, inside the screen and clear of What's new and the content below. WebView m
 size by the system font scale, so the 200% cases double the wordmark as well. The 360x800 case also
 checks forced colors, and wider windows must keep the full masthead and its tagline. Edge draws the
 masthead's Impact, which is narrower than Android's fallback and has no overlapping letter outlines
-for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More must
-open a modal sheet standing on the bar over More that lists only what the bar does not, and Escape
-and Android Back must close it with focus back on More and the address unchanged.
+for the stroke to trace, so these are not proof of how a phone draws it. On a narrow screen More shows
+its label as the bar's other destinations do (#909), and must open a modal sheet standing on the bar
+over More that lists only what the bar does not, and Escape and Android Back must close it with focus
+back on More and the address unchanged.
 
 Install `puppeteer-core` **outside** the repository, as for the existing browser suite.
 If it or Edge is outside the usual development locations, set `MRT_PUPPETEER` to its absolute
@@ -547,15 +548,24 @@ must stay inside its row with its full text kept: cut short with an ellipsis at 
 and whole in landscape, where it fits. These are Edge web checks, not native fontScale or TalkBack
 acceptance.
 
-`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo and saved-copy
-questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360, and at the
-shared desktop entry at 1280x900. Each must open at its title and the start of what it says, with
-Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of the
-question readable above them once scrolled to (#849). With doubled text the restore question must
+`npm run android:browser -- --only=confirmations` asks the reading-data restore, Undo, saved-copy
+and erase questions at 360x800, 800x360 and 320x740 with 200% text tokens, at 360x800 and 800x360,
+and at the shared desktop entry at 1280x900. Each must open at its title and the start of what it
+says, with Cancel focused, Cancel and the answer both in view and reachable by a tap, and the end of
+the question readable above them once scrolled to (#849). Only the erase answer, which keeps nothing
+to go back to, wears the danger look (#830). With doubled text the restore question must
 actually overflow its dialog, so the case is exercised rather than passed by a question that fits.
-On short landscape screens a confirmation widens so its answers share one row. The walk restores,
-undoes and declines the saved copy, and must leave the reading data as it found it. These are Edge
-web checks, not native fontScale or TalkBack acceptance.
+On short landscape screens a question-sized dialog widens so its answers share one row. The walk
+restores, undoes and declines the saved copy, and must leave the reading data as it found it. With
+the list then completed, it opens the dialogs that share the questions' shell the way a phone reader
+reaches them: the rating from an issue's details, the list feedback note, the personal checklist
+from List options, and House of M's Preview from the catalog. Each must open at its start with its
+title clear of what it holds and its focus inside, hold its answers in view with its scroll padded
+clear of them, and keep every control Tab reaches clear of them. Preview, whose only Close is in its
+head, must hold that head in view to the end of its list as well. Each must also be the one thing
+that scrolls and read to its end above its answers (#830). With doubled text on a phone the
+checklist must overflow. Each closes with Android Back, or Escape at the desktop entry. These are
+Edge web checks, not native fontScale or TalkBack acceptance.
 
 `npm run android:browser -- --only=selection-bar` checks Search's selection bar on a 50-comic
 issue search at 360x800, 412x915 and 800x360, each with and without 200% text tokens, in both

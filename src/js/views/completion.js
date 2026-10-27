@@ -380,6 +380,7 @@ export function createCompletionView({
         title: 'Replace completion and enjoyment history?',
         body: 'This replaces completion dates and enjoyment choices only. Reading lists, notes and comic progress are unchanged. There is no automatic Undo; download a completion-history backup first to keep the current history.',
         confirmLabel: 'Restore completion history',
+        danger: true,
       });
       if (!yes) cancelled = true;
       if (!yes || generation !== importGeneration || getView() !== 'data') return;

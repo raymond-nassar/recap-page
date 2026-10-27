@@ -1312,7 +1312,7 @@
       rather than ours.
     -->
     <dialog id="preview" class="preview" aria-labelledby="preview-h">
-      <div class="preview-head">
+      <div class="preview-head dialog-head">
         <!-- Given text for the same reason #hero-title is: an empty heading fails whether
              or not its dialog has been opened yet. openPreview replaces it with the name of
              the order being previewed. -->
@@ -1334,11 +1334,18 @@
            catalog would normally use cannot be read. notify() prefers a .report inside
            the open dialog for that reason. -->
       <div id="preview-report" class="report"></div>
-      <div class="preview-foot">
-        <div id="preview-add"></div>
-        <div id="preview-offline" class="preview-offline"></div>
+      <!-- #830: the foot is held in view while the list scrolls, so it holds the dialog's actions
+           only. Measured at 360x800, holding the offline status and the metadata credit as well made
+           it 311px tall, two fifths of the screen; they scroll with the list instead, just above the
+           actions they describe. -->
+      <div class="preview-notes">
+        <div id="preview-offline-status"></div>
         <span class="grow"></span>
         <span class="rail-hint">Marvel metadata via marvel.emreparker.com.</span>
+      </div>
+      <div class="preview-foot dialog-foot">
+        <div id="preview-add"></div>
+        <div id="preview-offline" class="preview-offline"></div>
       </div>
     </dialog>
 
@@ -1369,7 +1376,7 @@
           <label for="ask-area" id="ask-area-label"></label>
           <textarea id="ask-area" rows="5" maxlength="2000" autocomplete="off"></textarea>
         </p>
-        <div class="ask-foot">
+        <div class="ask-foot dialog-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>
           <button type="submit" class="btn" id="ask-ok" value="ok">OK</button>
         </div>
@@ -1397,7 +1404,7 @@
         <p class="rating-hint" id="issue-rating-hint">Choose a star, then fine-tune by half a star.</p>
         <p class="rating-privacy">Your rating only. It won't change reading progress.</p>
         <p id="issue-rating-error" class="report" role="status" aria-live="polite"></p>
-        <div class="rating-footer">
+        <div class="rating-footer dialog-foot">
           <button type="button" class="btn btn-link" id="issue-rating-remove">Remove rating</button>
           <button type="button" class="btn btn-g" id="issue-rating-cancel">Cancel</button>
           <button type="submit" class="btn" id="issue-rating-save">Save rating</button>
@@ -1411,7 +1418,7 @@
       <p>Microsoft Forms opens outside Recap Page. Your saved reading data and thumb choice are not attached. Microsoft processes your form visit and submitted report.</p>
       <p><a id="list-feedback-link" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open feedback form</a></p>
       <p>Do not include notes, backups, reading progress or personal details. For a security or private data-loss concern, follow the <a id="list-private-feedback-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">private reporting policy</a> instead.</p>
-      <button type="button" id="list-feedback-close" class="btn btn-g">Close</button>
+      <div class="ask-foot dialog-foot"><button type="button" id="list-feedback-close" class="btn btn-g">Close</button></div>
     </dialog>
     <!--
       More on a narrow screen. The rail's panel moves in while the sheet is open, so its links and

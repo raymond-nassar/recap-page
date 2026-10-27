@@ -67,7 +67,7 @@ export function wireAsk() {
 
 // Resolves when the reader answers. Escape and Cancel both count as backing out, which is what
 // makes the destructive default "no".
-function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {
+function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false }) {
   const { dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, ok } = parts();
   if (!dlg || pending) return Promise.resolve({ ok: false, value: '', area: '' });
 
@@ -75,6 +75,10 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
   p.textContent = body;
   p.hidden = !body;
   ok.textContent = confirmLabel;
+  // UX-31 (#830): an answer that cannot be taken back wears the danger appearance Erase all local data
+  // already has, so it does not look like every other confirmation. Set on every question, so the next
+  // one cannot inherit it. Cancel still comes first and takes focus.
+  ok.classList.toggle('btn-danger', danger);
 
   const asksForText = prefill !== null && !multiline;
   const asksForNote = prefill !== null && multiline;
@@ -121,8 +125,9 @@ function open({ title, body, confirmLabel, prefill = null, inputLabel = '', mult
   return answered;
 }
 
-export async function askConfirm({ title, body = '', confirmLabel = 'Confirm' }) {
-  const { ok } = await open({ title, body, confirmLabel });
+// `danger` is for an answer with no way back: no Undo, no kept copy, nothing else to recover from.
+export async function askConfirm({ title, body = '', confirmLabel = 'Confirm', danger = false }) {
+  const { ok } = await open({ title, body, confirmLabel, danger });
   return ok;
 }
 
