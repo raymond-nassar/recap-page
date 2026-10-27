@@ -148,7 +148,11 @@ checked on 2026-10-03. This is an app-wide standard, not a convention limited to
 - Put optional detail and advanced controls behind the existing native disclosure pattern.
   Use a meaningful `summary`, preserve draft state on expansion/collapse, and keep the task's
   required controls and essential feedback reachable without guessing where they went.
-- Reuse the palette, spacing and type tokens and native-field styles in `src/styles.css`.
+- Reuse the palette, spacing and type tokens and native-field styles in `src/styles.css`, and its
+  radius, stroke, elevation, motion, focus and target-size tokens. `npm run spacing` rejects a raw
+  corner radius, border or outline width, shadow, duration, easing other than `ease`, outline
+  offset or 24, 44 or 48 pixel minimum size in either stylesheet; a value off a scale needs a
+  token of its own, named for what wears it and listed in `scripts/check-spacing.mjs`.
   Use the existing checker owners for any new paint or geometry; do not bypass a gate or lower
   a threshold to accept it. Selection, disabled and error states need a non-colour cue.
 - Check light, dark and system themes, keyboard focus, reduced motion and forced colours for
@@ -174,6 +178,7 @@ owners for the changed contract; extend missing coverage with observable behavio
 | Action hierarchy and disclosures | Native `details`/`summary` and the existing Add view action groups | `test/add-view.test.js`; `copy-density` |
 | Theme and reflow | Tokens and native controls in `src/styles.css` | `test/theme.test.js`, `scripts/check-palette.mjs`; `responsive-reflow`, `responsive-controls` |
 | Spacing | `--space-*` and classified geometry in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
+| Design tokens | `--radius-*`, `--stroke-*`, `--elev-*`, `--text-shadow-*`, `--motion-*`, `--ease-*`, `--focus-*` and `--target*` in `src/styles.css` | `test/spacing.test.js`, `scripts/check-spacing.mjs` |
 
 The browser owner names in this table belong to [scripts/browser-check.mjs](scripts/browser-check.mjs).
 They are focused regression checks, not a claim that every screen or accessibility requirement
@@ -231,8 +236,8 @@ npm run publication
 ```
 
 All eight run in CI on every pull request. They check unit behavior, lint, evidence anchors, backlog
-counts, stated file sizes, spacing, colour contrast, and publication safety. The publication check
-covers tracked files and Git history.
+counts, stated file sizes, spacing and the design tokens, colour contrast, and publication safety.
+The publication check covers tracked files and Git history.
 
 ### Historical evidence anchors
 

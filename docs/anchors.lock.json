@@ -2239,8 +2239,8 @@
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:1050|0": {
-    "anchor": "src/styles.css:1050",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:1055|0": {
+    "anchor": "src/styles.css:1055",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2299,13 +2299,13 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2159-2161|0": {
-    "anchor": "src/styles.css:2159-2161",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2164-2166|0": {
+    "anchor": "src/styles.css:2164-2166",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:341-345|0": {
-    "anchor": "src/styles.css:341-345",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:346-350|0": {
+    "anchor": "src/styles.css:346-350",
     "fp": "d9d7960f54d817a6",
     "head": ":focus-visible {"
   },
@@ -2314,8 +2314,8 @@
     "fp": "a5b4761171505d57",
     "head": "--focus-width: 3px;"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:846|0": {
-    "anchor": "src/styles.css:846",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:851|0": {
+    "anchor": "src/styles.css:851",
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
@@ -2324,13 +2324,13 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2159-2161|0": {
-    "anchor": "src/styles.css:2159-2161",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2164-2166|0": {
+    "anchor": "src/styles.css:2164-2166",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:846|0": {
-    "anchor": "src/styles.css:846",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:851|0": {
+    "anchor": "src/styles.css:851",
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
@@ -2339,28 +2339,28 @@
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:178-184|0": {
-    "anchor": "src/styles.css:178-184",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:183-189|0": {
+    "anchor": "src/styles.css:183-189",
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:178-184|1": {
-    "anchor": "src/styles.css:178-184",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:183-189|1": {
+    "anchor": "src/styles.css:183-189",
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:978|0": {
-    "anchor": "src/styles.css:978",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:983|0": {
+    "anchor": "src/styles.css:983",
     "fp": "fa2e5d6a0448cd58",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: var(--stroke-1) solid rgb(var(--tint-base)"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1122-1123|0": {
-    "anchor": "src/styles.css:1122-1123",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1127-1128|0": {
+    "anchor": "src/styles.css:1127-1128",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1125|0": {
-    "anchor": "src/styles.css:1125",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1130|0": {
+    "anchor": "src/styles.css:1130",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2369,29 +2369,34 @@
     "fp": "da4f7804aad19a9a",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:889-896|0": {
-    "anchor": "src/styles.css:889-896",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:894-901|0": {
+    "anchor": "src/styles.css:894-901",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1139-1142|0": {
-    "anchor": "src/styles.css:1139-1142",
-    "fp": "de63aef7bcfc8ad6",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1144-1147|0": {
+    "anchor": "src/styles.css:1144-1147",
+    "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2524-2525|0": {
-    "anchor": "src/styles.css:2524-2525",
-    "fp": "216c8709fab455f9",
-    "head": ".row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }"
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2529-2530|0": {
+    "anchor": "src/styles.css:2529-2530",
+    "fp": "50a15115f9d51e98",
+    "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
+  },
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:82-83|0": {
+    "anchor": "src/styles.css:82-83",
+    "fp": "c2ca4aa4ff10907b",
+    "head": "--target-min: 24px;"
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:966-1078|0": {
     "anchor": "src/js/views/reading.js:966-1078",
     "fp": "91f84b1d128c3126",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1196-1223|0": {
-    "anchor": "src/styles.css:1196-1223",
-    "fp": "576535c28cebbb4f",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1201-1228|0": {
+    "anchor": "src/styles.css:1201-1228",
+    "fp": "571b236e52b29956",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
   "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:113|0": {
@@ -2439,13 +2444,13 @@
     "fp": "68f0263068782dee",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:157|0": {
-    "anchor": "src/styles.css:157",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:162|0": {
+    "anchor": "src/styles.css:162",
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2159-2161|0": {
-    "anchor": "src/styles.css:2159-2161",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2164-2166|0": {
+    "anchor": "src/styles.css:2164-2166",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2454,13 +2459,13 @@
     "fp": "c79a9c5150900e20",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:379-385|0": {
-    "anchor": "src/styles.css:379-385",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:384-390|0": {
+    "anchor": "src/styles.css:384-390",
     "fp": "af710fc8b2bd45bb",
     "head": ".rail {"
   },
-  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:387-390|0": {
-    "anchor": "src/styles.css:387-390",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:392-395|0": {
+    "anchor": "src/styles.css:392-395",
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
@@ -6134,43 +6139,43 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1901-1903|0": {
-    "anchor": "src/styles.css:1901-1903",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1906-1908|0": {
+    "anchor": "src/styles.css:1906-1908",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1919-1921|0": {
-    "anchor": "src/styles.css:1919-1921",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1924-1926|0": {
+    "anchor": "src/styles.css:1924-1926",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2194|0": {
-    "anchor": "src/styles.css:2194",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2199|0": {
+    "anchor": "src/styles.css:2199",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2218|0": {
-    "anchor": "src/styles.css:2218",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2223|0": {
+    "anchor": "src/styles.css:2223",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:567|0": {
-    "anchor": "src/styles.css:567",
+  "scripts/check-palette.mjs|preamble|src/styles.css:572|0": {
+    "anchor": "src/styles.css:572",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:567|1": {
-    "anchor": "src/styles.css:567",
+  "scripts/check-palette.mjs|preamble|src/styles.css:572|1": {
+    "anchor": "src/styles.css:572",
     "fp": "0aa89ba98945a96a",
     "head": "background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:571|0": {
-    "anchor": "src/styles.css:571",
+  "scripts/check-palette.mjs|preamble|src/styles.css:576|0": {
+    "anchor": "src/styles.css:576",
     "fp": "625387adc8d9b735",
     "head": "width: 3px; height: 60%; border-radius: 0 var(--radius-marker) var(--radius-marker) 0; background: v"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:969|0": {
-    "anchor": "src/styles.css:969",
+  "scripts/check-palette.mjs|preamble|src/styles.css:974|0": {
+    "anchor": "src/styles.css:974",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },

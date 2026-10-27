@@ -12,6 +12,7 @@ import {
   tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
   inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences, CATEGORY_CARDS, ERA_TILES,
 } from '../scripts/check-palette.mjs';
+import { rootTokens, resolveTokens } from '../scripts/check-spacing.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(ROOT, ...rel.split('/')), 'utf8');
@@ -42,7 +43,8 @@ test('launcher standalone palette follows every explicit and system theme withou
 });
 
 test('native fields and path selects share the scoped Field typography and target contract', () => {
-  assert.match(css, /select, input\[type="search"\], input\[type="text"\], input\[type="url"\] \{[^}]*min-height: 44px;[^}]*font: inherit;[^}]*font-size: var\(--t-body\)/);
+  assert.match(css, /select, input\[type="search"\], input\[type="text"\], input\[type="url"\] \{[^}]*min-height: var\(--target\);[^}]*font: inherit;[^}]*font-size: var\(--t-body\)/);
+  assert.equal(rootTokens(css).get('--target'), '44px');
 });
 
 test('the native ask dialog authors viewport bounds and vertical scroll without replacing its controls', () => {
@@ -898,10 +900,12 @@ test('every pair resolves in both themes, so nothing is skipped unmeasured', () 
   assert.deepEqual(unresolvable.map((f) => f.message), []);
 });
 
+// A minimum names its target token since #827, so the declaration is read through the tokens of the
+// shared :root block and still measured in pixels.
 function declaredPixelMinHeight(selector) {
   const rule = stripComments(css).match(new RegExp(`${selector}\\s*\\{([^}]*)\\}`));
   assert.ok(rule, `${selector} has no rule`);
-  const declaration = rule[1].match(/(?:^|;)\s*min-height:\s*([\d.]+)px\s*(?:;|$)/);
+  const declaration = resolveTokens(rule[1], rootTokens(css)).match(/(?:^|;)\s*min-height:\s*([\d.]+)px\s*(?:;|$)/);
   assert.ok(declaration, `${selector} has no pixel minimum height`);
   return Number(declaration[1]);
 }

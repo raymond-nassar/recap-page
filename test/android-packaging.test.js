@@ -11,6 +11,7 @@ import { createHash } from 'node:crypto';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { saveDownload, setDownloadHandler, browserDownload } from '../src/js/lib/download.js';
 import { prepareAndroid } from '../scripts/prepare-android.mjs';
+import { rootTokens } from '../scripts/check-spacing.mjs';
 
 function fixture() {
   const listeners = new Map();
@@ -36,8 +37,20 @@ function fixture() {
 const file = { filename: 'recap-page-backup.json', type: 'application/json', text: '{"notes":"Caf\u00e9"}' };
 
 test('Android More retains its 48px target over shared bottom-navigation styles', async () => {
+  const [css, shared] = await Promise.all([
+    readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+    readFile(new URL('../src/styles.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: var\(--target-touch\)/);
+  assert.equal(rootTokens(shared).get('--target-touch'), '48px');
+});
+
+// #827: the overlay's 48px override is the shared touch-target token, so every control it sizes for
+// touch stays 48px and moves with the token rather than with a copy of its number.
+test('the Android overlay sizes every control for touch through the shared token', async () => {
   const css = await readFile(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
-  assert.match(css, /body \.rail-header \.rail-toggle \{[^}]*min-height: 48px/);
+  assert.match(css, /body :is\(button, \.btn, select, summary, \.checkbox, \.fp > span, \.path > span\) \{\s*min-height: var\(--target-touch\);\s*min-width: var\(--target-touch\);\s*\}/);
+  assert.doesNotMatch(css, /min-(?:height|width): 48px/);
 });
 
 // UX-08 (#836): behind List actions, with Export a second disclosure inside it, most list commands took

@@ -77,6 +77,11 @@
   --focus-offset: 2px;
   --focus-offset-landing: 4px;
   --focus-offset-code: 3px;
+  /* Target sizes: the WCAG 2.5.8 minimum, the 44px most controls take, and the 48px touch size that
+     the Android overlay gives every control and the narrow layout gives its main actions. */
+  --target-min: 24px;
+  --target: 44px;
+  --target-touch: 48px;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
      declarations. The values follow the clusters already present in the interface while keeping
      each consolidated edge within 4 CSS pixels of where it began. */
@@ -403,7 +408,7 @@ a { color: var(--blue); }
   .rail-toggle {
     width: auto;
     height: auto;
-    min-height: 44px;
+    min-height: var(--target);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -506,7 +511,7 @@ a { color: var(--blue); }
 }
 
 .rail-toggle {
-  width: 44px; height: 44px; min-height: 44px; border: 0; border-radius: var(--radius-md);
+  width: var(--target); height: var(--target); min-height: var(--target); border: 0; border-radius: var(--radius-md);
   background: none; color: var(--muted); display: grid; place-items: center;
   margin: 0 0 var(--space-4);
 }
@@ -517,7 +522,7 @@ a { color: var(--blue); }
 .brand {
   position: relative; display: flex; align-items: center; gap: var(--space-4); margin: 0 0 var(--space-6);
   background: none; border: 0; color: inherit; text-align: left;
-  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); width: 100%; min-height: 44px;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); width: 100%; min-height: var(--target);
 }
 .brand:hover { background: rgb(var(--tint-base) / 3.922%); }
 .brand .mark {
@@ -547,7 +552,7 @@ a { color: var(--blue); }
   display: flex; align-items: center; gap: var(--space-4);
   width: 100%; text-align: left; background: none; border: 0;
   color: var(--muted); padding: var(--space-4) var(--space-4); border-radius: var(--radius-md); font-size: var(--t-body);
-  min-height: 44px;
+  min-height: var(--target);
 }
 .ri:hover { background: rgb(var(--tint-base) / 4%); color: var(--text); }
 
@@ -613,7 +618,7 @@ a { color: var(--blue); }
 }
 
 /* 44px minimum on an icon-only target, and the glyph centred inside it. */
-.railed .ri { justify-content: center; padding: var(--space-4) 0; min-width: 44px; }
+.railed .ri { justify-content: center; padding: var(--space-4) 0; min-width: var(--target); }
 .railed .ri .init { display: grid; }
 .railed .ri[aria-current]::before, .railed .ri.on::before, .railed .brand[aria-current]::before { height: 70%; }
 .railed .rail-foot { padding-left: 0; padding-right: 0; justify-items: center; }
@@ -645,7 +650,7 @@ a { color: var(--blue); }
   .rail-toggle {
     width: auto;
     height: auto;
-    min-height: 44px;
+    min-height: var(--target);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -742,7 +747,7 @@ a { color: var(--blue); }
 .mobile-link, .mobile-home-label { display: none; }
 .brand, .ri, .home-path, .yours a { text-decoration: none; }
 .library-list-links { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
-.library-list-links a { min-height: 44px; display: inline-flex; align-items: center; }
+.library-list-links a { min-height: var(--target); display: inline-flex; align-items: center; }
 
 @media (max-width: 880px) {
   .shell, .shell.railed { grid-template-rows: auto 1fr; }
@@ -758,7 +763,7 @@ a { color: var(--blue); }
   .rail-header:focus-within { transform: translateY(0); }
   .rail-header .brand, .rail-header .mobile-link, .rail-header .rail-toggle {
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
-    min-width: 0; min-height: 44px; width: auto; height: auto; margin: 0;
+    min-width: 0; min-height: var(--target); width: auto; height: auto; margin: 0;
     padding: var(--space-2); border: var(--stroke-1) solid transparent; border-radius: var(--radius-compact);
     color: var(--text); text-align: center; white-space: nowrap;
     font-size: var(--t-caption); line-height: 1.2; text-decoration: none;
@@ -848,7 +853,7 @@ main { min-width: 0; }
 .list-tools { display: flex; align-items: flex-start; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
 .list-actions { min-width: 0; flex: 0 1 auto; }
 .list-actions[open] { flex-basis: 100%; }
-.list-actions > summary { min-height: 44px; width: fit-content; max-width: 100%; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
+.list-actions > summary { min-height: var(--target); width: fit-content; max-width: 100%; display: flex; align-items: center; cursor: pointer; padding: var(--space-3) var(--space-4); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
 .list-actions-body, .list-work { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
 .list-actions-body { margin-top: var(--space-3); padding: var(--space-3); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-md); }
 .list-work { margin-bottom: var(--space-4); overflow-wrap: anywhere; }
@@ -862,7 +867,7 @@ main { min-width: 0; }
 
 .quiet {
   border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
-  border-radius: var(--radius-md); padding: var(--space-2) var(--space-5); font-size: var(--t-body); min-height: 24px;
+  border-radius: var(--radius-md); padding: var(--space-2) var(--space-5); font-size: var(--t-body); min-height: var(--target-min);
 }
 .quiet:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .quiet-danger:hover { color: var(--red-fg); border-color: rgb(var(--red-line) / 40%); background: rgb(var(--red-line) / 7.059%); }
@@ -938,7 +943,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
   .issue-focus .fallback { aspect-ratio: auto; min-height: 144px; gap: var(--space-3); }
   .issue-focus .fallback .fs { font-size: var(--t-caption); overflow-wrap: anywhere; }
   .issue-focus .fallback .fn { font-size: var(--t-title-lg); }
-  .issue-reading-controls .btn { min-height: 48px; width: 100%; justify-content: center; }
+  .issue-reading-controls .btn { min-height: var(--target-touch); width: 100%; justify-content: center; }
 }
 .byline { color: var(--dim); margin: 0 0 var(--space-6); font-size: var(--t-body); }
 .desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 var(--space-6); max-width: 58ch; }
@@ -962,7 +967,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
    field already carries above it, so the row loses a word without losing the action, and the word
    is still reachable as the tooltip and as the accessible name. Square to the same 44px target the
    search inputs beside it keep. */
-.btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
+.btn-icon { padding: 0; min-width: var(--target); min-height: var(--target); justify-content: center; }
 .btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled, .completion-wrapup .btn[aria-disabled="true"] { opacity: .5; cursor: default; filter: none; }
@@ -1030,7 +1035,7 @@ details.full {
 }
 details.full > summary {
   cursor: pointer; list-style: none; display: flex; align-items: center; flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5); min-height: 44px; padding: var(--space-5) var(--space-6); color: var(--text);
+  gap: var(--space-2) var(--space-5); min-height: var(--target); padding: var(--space-5) var(--space-6); color: var(--text);
   background: var(--card); border-radius: inherit;
 }
 details.full > summary::-webkit-details-marker { display: none; }
@@ -1137,7 +1142,7 @@ body.nocovers .row img, .row img[hidden] { display: none; }
 body.nocovers .row .rf, .row .rf.show { display: flex; }
 
 .cb {
-  width: 24px; height: 24px; border-radius: var(--radius-compact); border: var(--stroke-checkbox) solid var(--cb-line);
+  width: var(--target-min); height: var(--target-min); border-radius: var(--radius-compact); border: var(--stroke-checkbox) solid var(--cb-line);
   background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-caption); padding: 0;
 }
 .row.is-read .cb { background: var(--teal); border-color: var(--teal); color: var(--bg); }
@@ -1194,7 +1199,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .badge-override-unavailable { color: var(--red-fg); border-color: rgb(var(--red-line) / 33.333%); }
 
 .row-actions { position: relative; justify-self: end; text-align: right; }
-.row-actions-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: var(--space-3) var(--space-4); }
+.row-actions-toggle { display: inline-flex; align-items: center; min-height: var(--target); padding: var(--space-3) var(--space-4); }
 .row-actions.is-open { grid-column: 1 / -1; justify-self: stretch; }
 .row-actions:not(.is-open) > .ract { display: none; }
 .row-actions.is-open > .ract {
@@ -1214,7 +1219,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .mini:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 .mini-danger:hover { color: var(--red-fg); }
 .ract .mini {
-  display: flex; align-items: center; gap: var(--space-4); width: 100%; min-height: 44px;
+  display: flex; align-items: center; gap: var(--space-4); width: 100%; min-height: var(--target);
   text-align: left;
 }
 .row-actions .mini-label { display: inline; }
@@ -1271,7 +1276,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   margin: 0; max-width: 13rem;
 }
 .setting-action {
-  min-width: 12rem; min-height: 44px; padding: var(--space-5) var(--space-7) !important;
+  min-width: 12rem; min-height: var(--target); padding: var(--space-5) var(--space-7) !important;
   justify-content: center; text-align: center;
 }
 .setting > .setting-desc { margin: 0; max-width: 62ch; }
@@ -1302,7 +1307,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    Fluent switch is: the track, then its label beside it, with no outline around the pair. The pill
    outline this replaced left "Show cover art" touching its border and wrapped longer labels inside
    it (UX-23). The label still wraps the input, so the whole line remains the target. */
-.setting-ctl.checkbox { padding: var(--space-2) 0; gap: var(--space-4); min-height: 24px; }
+.setting-ctl.checkbox { padding: var(--space-2) 0; gap: var(--space-4); min-height: var(--target-min); }
 .setting-ctl.checkbox:hover { color: var(--text); }
 .setting-ctl.checkbox > input[type="checkbox"] {
   appearance: none; margin: 0; flex: none; cursor: pointer;
@@ -1344,7 +1349,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   background-size: 5px 5px, 5px 5px;
   background-position: right 1rem top 55%, right .75rem top 55%;
   color: var(--muted); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: 44px;
+  padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
 #view-data select:hover, .setting select:hover, .reading-path-controls select:hover, .collection-navigation select:hover, .rated-controls select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
@@ -1355,7 +1360,7 @@ input[type="file"]::file-selector-button {
 }
 input[type="file"]::file-selector-button:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
 #view-data input[type="file"]::file-selector-button {
-  min-height: 44px; padding: var(--space-5) var(--space-7); border-radius: var(--radius-lg);
+  min-height: var(--target); padding: var(--space-5) var(--space-7); border-radius: var(--radius-lg);
   background: rgb(var(--tint-base) / 5.882%); color: var(--text); font-weight: 600;
 }
 #view-data input[type="file"]::file-selector-button:hover {
@@ -1364,7 +1369,7 @@ input[type="file"]::file-selector-button:hover { color: var(--text); background:
 
 .addpri { border-color: rgb(var(--tint-base) / 20%); background: rgb(var(--tint-base) / 3.922%); }
 .addpri h2, #view-data .addpri h3 { font-size: var(--t-subtitle); }
-.addpri .field-row input[type="search"] { flex: 1 1 24rem; min-height: 44px; }
+.addpri .field-row input[type="search"] { flex: 1 1 24rem; min-height: var(--target); }
 .add-more > h2 { font-size: var(--t-subtitle); margin: var(--space-7) var(--space-1) 0; }
 .add-more > .rail-hint { margin: var(--space-2) var(--space-1) var(--space-5); max-width: 64ch; }
 
@@ -1403,8 +1408,8 @@ input[type="search"], input[type="text"], input[type="url"], textarea {
   border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); min-width: 0; flex: 1 1 16rem;
 }
 textarea { flex: 1 1 auto; width: 100%; resize: vertical; font-family: ui-monospace, "Cascadia Mono", monospace; font-size: var(--t-body); }
-input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: 24px; }
-.checkbox { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--t-body); color: var(--dim); min-height: 24px; }
+input[type="file"] { color: var(--muted); font-size: var(--t-body); min-height: var(--target-min); }
+.checkbox { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--t-body); color: var(--dim); min-height: var(--target-min); }
 code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-compact); padding: var(--space-1) var(--space-2); font-size: .85em; }
 .add-page { max-width: 48rem; }
 .add-destination {
@@ -1424,12 +1429,12 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 #view-about a, #hero-title { overflow-wrap: anywhere; }
 .field-disclosure { border-top: var(--stroke-1) solid var(--line); border-bottom: var(--stroke-1) solid var(--line); }
 .field-disclosure > summary {
-  min-height: 44px; display: flex; align-items: center; cursor: pointer;
+  min-height: var(--target); display: flex; align-items: center; cursor: pointer;
   color: var(--dim); font-size: var(--t-body); font-weight: 600;
 }
 .field-disclosure > .stack { padding: var(--space-2) 0 var(--space-5); }
 .field-disclosure > .rail-hint { margin: 0; padding: 0 0 var(--space-5); max-width: 62ch; }
-.action-disclosure > summary { min-height: 48px; gap: var(--space-4); }
+.action-disclosure > summary { min-height: var(--target-touch); gap: var(--space-4); }
 #view-data .action-disclosure > summary > h3 { margin: 0; font: inherit; }
 .action-disclosure > summary::after { content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); }
 .action-disclosure[open] > summary::after { transform: rotate(90deg); }
@@ -1528,12 +1533,12 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    in, the padding sent the page to its very end looking for room the bar can never leave. */
 :root:has(.view:not([hidden]) .comic-builder:not([hidden]) :focus) { scroll-padding-bottom: 0; }
 .comic-builder select {
-  width: 100%; min-width: 0; min-height: 44px; padding: var(--space-4) var(--space-5);
+  width: 100%; min-width: 0; min-height: var(--target); padding: var(--space-4) var(--space-5);
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md);
   background: var(--card-2); color: var(--text); cursor: pointer;
 }
 .comic-builder select:hover { border-color: var(--accent-text); }
-.comic-builder input[type="text"] { width: 100%; min-height: 44px; }
+.comic-builder input[type="text"] { width: 100%; min-height: var(--target); }
 .comic-selection-count { flex: 1 1 auto; margin: 0; color: var(--dim); font-variant-numeric: tabular-nums; }
 .comic-results-heading { overflow-wrap: anywhere; }
 .comic-result-tools { justify-content: space-between; }
@@ -1543,9 +1548,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .comic-choice .pill-held { max-width: 100%; white-space: normal; }
 .comic-select {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 44px; min-height: 44px; flex: none; cursor: pointer;
+  min-width: var(--target); min-height: var(--target); flex: none; cursor: pointer;
 }
-.comic-select input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }
+.comic-select input { width: var(--target-min); height: var(--target-min); margin: 0; accent-color: var(--accent); }
 
 /* The heading over one stretch of the shelf. It used to be a bold line in the same column as the
    rows, at the same size as a row title, so scrolling a 46-row screen gave no felt boundary between
@@ -1686,7 +1691,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 }
 .result-path { margin: 0; }
 .result-path > summary {
-  display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
+  display: inline-flex; align-items: center; min-height: var(--target-min); cursor: pointer;
   color: var(--muted); font-size: var(--t-caption); list-style: none;
 }
 .result-path > summary::-webkit-details-marker { display: none; }
@@ -1700,7 +1705,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);
   margin-top: auto; padding: 0 var(--space-5) var(--space-5);
 }
-.catalog-card-actions .btn { justify-content: center; min-height: 44px; }
+.catalog-card-actions .btn { justify-content: center; min-height: var(--target); }
 
 @media (max-width: 700px) {
   .timeline-position-current { align-items: flex-start; flex-direction: column; }
@@ -1744,7 +1749,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .notice-act { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
 .notice-act .grow { flex: 1; }
 .notice-act button {
-  min-height: 44px; padding-inline: var(--space-6); display: inline-flex; align-items: center;
+  min-height: var(--target); padding-inline: var(--space-6); display: inline-flex; align-items: center;
 }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing
@@ -1791,7 +1796,7 @@ progress { accent-color: var(--accent); height: 6px; }
   color: var(--muted);
 }
 #home-updates-toggle, #home-updates .home-updates-more > summary {
-  cursor: pointer; min-width: 44px; min-height: 44px; padding: var(--space-5) var(--space-4);
+  cursor: pointer; min-width: var(--target); min-height: var(--target); padding: var(--space-5) var(--space-4);
   border-radius: var(--radius-compact); font-size: var(--t-body); color: var(--text);
 }
 #home-updates-toggle:hover, #home-updates .home-updates-more > summary:hover { background: var(--card-2); }
@@ -1808,7 +1813,7 @@ progress { accent-color: var(--accent); height: 6px; }
 }
 .home-updates-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
 #home-updates-title { margin: 0; font-size: var(--t-subtitle); }
-#home-updates :is(button, .home-updates-more > summary) { min-height: 44px; min-width: 44px; }
+#home-updates :is(button, .home-updates-more > summary) { min-height: var(--target); min-width: var(--target); }
 #home-updates h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-4); }
 #home-updates ul { padding-left: var(--space-7); margin: 0; }
 #home-updates li + li { margin-top: var(--space-5); }
@@ -1867,7 +1872,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .yours li { min-width: 0; }
 .yours a {
   width: 100%; text-align: left; background: var(--card); border: var(--stroke-1) solid var(--line-2);
-  border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); color: var(--text); min-height: 44px;
+  border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); color: var(--text); min-height: var(--target);
   display: grid; gap: var(--space-3);
 }
 .yours a:hover { background: var(--card-2); }
@@ -1972,7 +1977,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .publishing-periods { margin-top: var(--space-6); }
 .publishing-periods .sec-h h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .marvel-ages-group + .marvel-ages-group { margin-top: var(--space-9); }
-#marvel-ages-modern-all { min-height: 44px; }
+#marvel-ages-modern-all { min-height: var(--target); }
 .publishing-grid { margin-top: 0; }
 .publishing-empty { margin-top: var(--space-6); }
 /* Each Marvel era wears its own accent on its tile (#875): edge, tint and icon, through the channel the
@@ -1993,7 +1998,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .mcu-prep-search { flex: 1 1 22rem; min-width: 0; }
 .mcu-prep-sort { flex: 0 1 15rem; min-width: 0; }
 .mcu-prep-sort select {
-  width: 100%; min-height: 44px; padding: var(--space-4) var(--space-5);
+  width: 100%; min-height: var(--target); padding: var(--space-4) var(--space-5);
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); background: var(--card-2); color: var(--text);
 }
 .mcu-prep-date-help { flex-basis: 100%; margin: 0; }
@@ -2069,7 +2074,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-list .preview-group:first-child { padding-top: 0; }
 .preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
-.preview-foot .btn { min-height: 44px; scroll-margin: var(--space-3); }
+.preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
 .preview-offline { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 
 /* ============================================================ ask dialog */
@@ -2087,13 +2092,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 /* The shared input rule already carries the colours and the border. Only the box needs
    saying here: inside a dialog the field is the whole width, and it has to clear the 44px
    target minimum that a form row elsewhere gets from its neighbours. */
-.ask input { width: 100%; box-sizing: border-box; min-height: 44px; font: inherit; }
+.ask input { width: 100%; box-sizing: border-box; min-height: var(--target); font: inherit; }
 /* Only the font and the height need saying. The shared textarea rule already carries the
    colours, border and radius, but it also sets monospace, which is right for the paste box it
    was written for and wrong for a note, which is prose. */
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
-.ask-foot .btn { min-height: 44px; }
+.ask-foot .btn { min-height: var(--target); }
 /* #849: a long confirmation scrolls under its answers instead of the answers scrolling it away from its
    title. The negative margins reach the dialog's edges and collapse with the question's own, so a
    question that fits is laid out exactly as before. The bottom offset matches the dialog's padding,
@@ -2111,12 +2116,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #ask[data-question="confirm"] { width: min(40rem, calc(100vw - 2rem)); }
 }
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
-.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: 44px; }
+.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
 .markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
 
 .rating-trigger {
   display: inline-flex; align-items: center; gap: var(--space-4);
-  min-height: 44px; padding: var(--space-4); margin: 0 0 var(--space-5);
+  min-height: var(--target); padding: var(--space-4); margin: 0 0 var(--space-5);
   border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--dim); font: inherit;
 }
 .rating-trigger:hover { border-color: var(--line-2); background: rgb(var(--tint-base) / 4%); color: var(--text); }
@@ -2126,21 +2131,21 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-dialog { padding: var(--space-8); max-height: calc(100dvh - 2rem); overflow-y: auto; }
 .rating-dialog .rating-comic { color: var(--dim); margin-bottom: var(--space-8); }
 .rating-stars { display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-7); }
-.rating-stars button { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
+.rating-stars button { width: var(--target-touch); height: var(--target-touch); flex: 0 0 var(--target-touch); display: grid; place-items: center; padding: 0; border: var(--stroke-1) solid transparent; border-radius: var(--radius-md); background: none; color: var(--accent-text); }
 .rating-stars button:hover { border-color: var(--line-2); background: var(--card-2); }
 .rating-stars svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
 .rating-stars .star-fill { fill: currentColor; visibility: hidden; }
 .rating-stars [data-fill="full"] .star-fill, .rating-stars [data-fill="half"] .star-fill { visibility: visible; }
 .rating-stars [data-fill="half"] .star-fill { clip-path: inset(0 50% 0 0); }
 .rating-stepper { display: flex; justify-content: center; align-items: center; gap: var(--space-5); margin-bottom: var(--space-5); }
-.rating-stepper button { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: 0; font-size: var(--t-subtitle); }
-.rating-stepper input { width: 76px; min-height: 44px; padding: var(--space-2); font: inherit; font-size: var(--t-subtitle); font-weight: 600; text-align: center; appearance: textfield; background: var(--bg); color: var(--text); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
+.rating-stepper button { min-width: var(--target); min-height: var(--target); display: grid; place-items: center; padding: 0; font-size: var(--t-subtitle); }
+.rating-stepper input { width: 76px; min-height: var(--target); padding: var(--space-2); font: inherit; font-size: var(--t-subtitle); font-weight: 600; text-align: center; appearance: textfield; background: var(--bg); color: var(--text); border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); }
 .rating-stepper input::-webkit-inner-spin-button { appearance: none; }
 .rating-stepper span { color: var(--dim); }
 .rating-dialog .rating-hint { color: var(--dim); text-align: center; margin-bottom: var(--space-8); }
 .rating-dialog .rating-privacy { color: var(--muted); font-size: var(--t-caption); padding-top: var(--space-7); margin-bottom: var(--space-7); border-top: var(--stroke-1) solid var(--line); }
 .rating-footer { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
-.rating-footer .btn { min-height: 44px; }
+.rating-footer .btn { min-height: var(--target); }
 #issue-rating-remove { margin-right: auto; padding-left: 0; }
 #issue-rating-remove[hidden] + #issue-rating-cancel { margin-left: auto; }
 @media (max-width: 420px) {
@@ -2253,10 +2258,10 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
   #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin: var(--space-5) 0 var(--space-4); }
-  #hero-primary-actions > .btn { min-height: 48px; width: 100%; justify-content: center; }
-  .reading-comic-actions > .btn { min-height: 48px; }
-  #view-data .setting-more > summary { min-height: 48px; box-sizing: border-box; }
-  #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: 48px; min-height: 48px; }
+  #hero-primary-actions > .btn { min-height: var(--target-touch); width: 100%; justify-content: center; }
+  .reading-comic-actions > .btn { min-height: var(--target-touch); }
+  #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
+  #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }
   /* Without a shrinkable column a search form grows to its field's intrinsic width: at 200 per cent
      text the Storylines and MCU Prep fields stayed 393px wide on 320 and 360px phones. */
   #form-search, #form-series, #form-creator, #form-catalog-search, #form-lines-search, .mcu-prep-search { grid-template-columns: minmax(0, 1fr); }
@@ -2455,7 +2460,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
    stop keeps its ordinal and progress in text so shape and colour are never the only explanation. */
 .reading-path-controls { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
 .reading-path-controls label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.reading-path-controls select { width: 100%; min-height: 44px; }
+.reading-path-controls select { width: 100%; min-height: var(--target); }
 /* The ratings filters sit in one row on a wide screen and stack on a narrow one. Each control keeps a
    visible label above it, the same caption treatment the reading path picker uses, because a
    placeholder alone disappears the moment the reader starts typing. */
@@ -2465,7 +2470,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 }
 .rated-field { display: grid; gap: var(--space-3); min-width: 0; }
 .rated-field label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.rated-field input[type="search"] { width: 100%; min-height: 44px; }
+.rated-field input[type="search"] { width: 100%; min-height: var(--target); }
 .rated-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); grid-column: 1 / -1; }
 .rated-count { color: var(--muted); font-size: var(--t-caption); margin: 0; }
 .rated-notice:empty { display: none; }
@@ -2478,8 +2483,8 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 }
 .collection-navigation label, .collection-navigation p { grid-column: 1 / -1; margin: 0; }
 .collection-navigation label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.collection-navigation select { width: 100%; min-width: 0; min-height: 44px; }
-.collection-navigation .btn { min-height: 44px; }
+.collection-navigation select { width: 100%; min-width: 0; min-height: var(--target); }
+.collection-navigation .btn { min-height: var(--target); }
 @media (max-width: 700px) {
   .collection-navigation { grid-template-columns: minmax(0, 1fr); }
   .collection-navigation .btn { width: 100%; }
@@ -2499,7 +2504,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-lg); background: var(--card); }
 .reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
 .reading-path-stop-meta, .reading-path-stop-progress { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--t-caption); }
-.reading-path-action { margin-top: var(--space-4); min-height: 44px; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.reading-path-action { margin-top: var(--space-4); min-height: var(--target); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .reading-path-stop[data-progress="done"] .reading-path-stop-progress { color: var(--teal); }
 .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
 @media (max-width: 620px) {
@@ -2521,8 +2526,8 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .row-info .badge { max-width: 100%; white-space: normal; }
 .row-actions > .ract { gap: var(--space-4); }
 @media (max-width: 700px) {
-  .row { grid-template-columns: 44px 44px minmax(0, 1fr) auto; }
-  .row .cb { width: 44px; height: 44px; }
+  .row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }
+  .row .cb { width: var(--target); height: var(--target); }
   .row-info, .row-actions { grid-column: 1 / -1; }
   .row-actions { justify-self: stretch; min-width: 0; }
   .row-actions > .ract { flex-wrap: wrap; }
@@ -2535,7 +2540,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .timeline-year-marker::after, .timeline-year-marker.is-empty::after { left: .2rem; }
 }
 select, input[type="search"], input[type="text"], input[type="url"] {
-  min-height: 44px; font: inherit; font-size: var(--t-body); border-radius: var(--radius-md);
+  min-height: var(--target); font: inherit; font-size: var(--t-body); border-radius: var(--radius-md);
 }
 /* Optional review stays in normal reading flow, with no separate prose surface. */
 .review-earlier {
@@ -2564,10 +2569,10 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .empty-state #done-result { margin: 0 auto var(--space-5); text-align: start; }
 
 .completion-wrapup { margin-block: var(--space-6); overflow-wrap: anywhere; }
-.completion-mark { min-height: 44px; color: var(--accent-text); font-weight: 600; }
+.completion-mark { min-height: var(--target); color: var(--accent-text); font-weight: 600; }
 .completion-wrapup.is-completed { border-color: var(--teal); }
 .completion-actions { flex-wrap: wrap; }
-.completion-actions .btn, .completion-enjoyment .btn { min-height: 44px; white-space: normal; }
+.completion-actions .btn, .completion-enjoyment .btn { min-height: var(--target); white-space: normal; }
 .completion-enjoyment { border: 0; margin: var(--space-6) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .completion-enjoyment[hidden] { display: none; }
 .completion-enjoyment legend { color: var(--dim); margin-bottom: var(--space-4); }
@@ -2585,7 +2590,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 .recommendation-card { min-width: 0; padding: var(--space-6); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card); background: var(--panel); }
 .recommendation-card h3 { margin-top: 0; overflow-wrap: anywhere; }
 .recommendation-reasons { padding-left: var(--space-7); color: var(--dim); }
-.recommendation-card .btn { white-space: normal; min-height: 44px; }
+.recommendation-card .btn { white-space: normal; min-height: var(--target); }
 .yours-detail { color: var(--dim); font-size: var(--t-caption); }
 .completion-filters { border: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .list-feedback { overflow-wrap: anywhere; max-height: 85vh; overflow-y: auto; }

@@ -14,6 +14,7 @@ import assert from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { rootTokens } from '../scripts/check-spacing.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(here, '..', p), 'utf8');
@@ -23,15 +24,19 @@ const main = read('src/js/main.js');
 const reading = read('src/js/views/reading.js');
 
 test('responsive read boxes allocate real nonoverlapping row space', () => {
-  assert.match(css, /\.cb \{[^}]*width: 24px; height: 24px/);
-  assert.match(css, /grid-template-columns: 44px 44px minmax\(0, 1fr\) auto/);
-  assert.match(css, /\.row \.cb \{ width: 44px; height: 44px; \}/);
+  // The box and its column name the same target token, so they stay the same size as it moves.
+  const tokens = rootTokens(css);
+  assert.equal(tokens.get('--target-min'), '24px');
+  assert.equal(tokens.get('--target'), '44px');
+  assert.match(css, /\.cb \{[^}]*width: var\(--target-min\); height: var\(--target-min\)/);
+  assert.match(css, /grid-template-columns: var\(--target\) 44px minmax\(0, 1fr\) auto/);
+  assert.match(css, /\.row \.cb \{ width: var\(--target\); height: var\(--target\); \}/);
 });
 
 test('narrow hero prose and idle list commands use their available width', () => {
   assert.match(css, /#hero-title \{ clear: both; \}/);
   assert.match(css, /\.list-tools \{[^}]*margin-bottom: var\(--space-4\)/);
-  assert.match(css, /\.list-actions > summary \{[^}]*min-height: 44px/);
+  assert.match(css, /\.list-actions > summary \{[^}]*min-height: var\(--target\)/);
 });
 
 test('native list actions start closed and retain completion and pending controls with focus before close', () => {
@@ -281,7 +286,7 @@ test('the full Reading List summary is a wrapping full-width action', () => {
   assert.match(full, /background: var\(--card\)/);
   assert.match(summary, /display: flex/);
   assert.match(summary, /flex-wrap: wrap/);
-  assert.match(summary, /min-height: 44px/);
+  assert.match(summary, /min-height: var\(--target\)/);
   assert.match(summary, /width|padding/);
   assert.match(css, /#full-heading \{[^}]*font-size: var\(--t-subtitle\)[^}]*font-weight: 600/);
   assert.match(css, /#full-action \{[^}]*font-weight: 600/);

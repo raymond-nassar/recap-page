@@ -282,3 +282,23 @@ test('a focus ring takes its width and offset from the focus tokens, and any oth
   assert.notEqual(unworn, css, 'the --focus-offset-code consumer is missing');
   assert.deepEqual(tokenUsageFindings(sheets(unworn)), ['--focus-offset-code holds 3px for a code example in the import guide, but nothing uses it']);
 });
+
+test('a minimum of 24, 44 or 48 pixels is a target and names its token, and other minimums stay layout', () => {
+  for (const [rule, sheet, expected] of [
+    ['.x { min-height: 44px; }', 0, ['carries raw target value 44px']],
+    ['.x { min-width: 24px; min-height: 48px; }', 0, ['carries raw target value 24px', 'carries raw target value 48px']],
+    ['.x { min-block-size: 44px; }', 0, ['carries raw target value 44px']],
+    ['.x { min-height: var(--radius-card); }', 0, ['uses var(--radius-card), which is not a target token']],
+    ['.x { min-height: 48px; }', 1, ['carries raw target value 48px']],
+  ]) {
+    const findings = rawFindings(rule, sheet);
+    assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
+    expected.forEach((text, i) => assert.ok(findings[i].endsWith(text), `${rule}: ${findings[i]}`));
+  }
+  for (const rule of [
+    '.x { min-height: var(--target); min-width: var(--target-touch); }',
+    '.x { min-height: 12rem; min-width: 0; }',
+    '.x { min-height: calc(var(--mobile-nav-height, 80px) + var(--space-4)); }',
+    '.x { min-height: 40px; }',
+  ]) assert.deepEqual(rawFindings(rule), [], rule);
+});

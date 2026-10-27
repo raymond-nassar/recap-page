@@ -284,6 +284,9 @@ export const TOKENS = new Map([
   ['--focus-offset', onScale('focus', '2px')],
   ['--focus-offset-landing', kept('focus', '4px', 'the heading a collection jump lands on')],
   ['--focus-offset-code', kept('focus', '3px', 'a code example in the import guide')],
+  ['--target-min', onScale('targets', '24px')],
+  ['--target', onScale('targets', '44px')],
+  ['--target-touch', onScale('targets', '48px')],
 ]);
 
 const FAMILY_PREFIXES = new Map([
@@ -292,6 +295,7 @@ const FAMILY_PREFIXES = new Map([
   ['elevation', /^--(?:elev|text-shadow)-/],
   ['motion', /^--(?:motion|ease)-/],
   ['focus', /^--focus-/],
+  ['targets', /^--target(?:-|$)/],
 ]);
 
 function familyOf(name) {
@@ -396,6 +400,14 @@ const TOKEN_RULES = [
     properties: /^outline-offset$/,
     accepts: (name) => familyOf(name) === 'focus',
     raw: (atom) => !KEYWORDS.has(atom),
+  },
+  // A minimum size of 24, 44 or 48 pixels is a target and names its token. Other minimums are layout,
+  // so they stay free, and so do the custom properties they are built from.
+  {
+    family: 'target',
+    properties: /^min-(?:height|width|block-size|inline-size)$/,
+    accepts: (name) => [null, 'targets'].includes(familyOf(name)),
+    raw: (atom) => /^(?:24|44|48)px$/.test(atom),
   },
 ];
 
