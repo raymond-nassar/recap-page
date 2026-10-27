@@ -87,6 +87,8 @@ Unfinished selections are not saved across a reload; the browser warns before yo
 ### Finish a reading list without removing it
 
 Choose **Mark as Completed** when you are finished, even if you skipped or deferred comics.
+While comics are still queued it waits in **List actions** (**List options** on Android). Once
+nothing is queued it moves onto the page, into the wrap-up or under **Nothing queued**.
 The list keeps its order, notes, and actual reading progress. It leaves active reading shelves,
 but remains available under **Library > Completed lists**. **Reopen list** brings it back.
 Older saved lists receive the same completion confirmation and keyboard focus after their

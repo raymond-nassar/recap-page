@@ -18301,6 +18301,7 @@ async function responsiveHero(page) {
 async function responsiveCommands(page) {
   const actual = await page.evaluate(() => {
     const details = document.querySelector('#list-actions');
+    const body = details?.querySelector('.list-actions-body');
     const complete = document.querySelector('#btn-complete-list');
     const box = (node) => {
       if (!node) return null;
@@ -18308,24 +18309,26 @@ async function responsiveCommands(page) {
       return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
         width: rect.width, height: rect.height, visible: node.checkVisibility(), text: node.textContent.trim() };
     };
+    // UX-19 (#830): while comics are queued, Complete heads List actions rather than standing before it.
     const result = { height: document.querySelector('.list-tools').getBoundingClientRect().height,
       open: details?.open ?? null, summary: box(details?.querySelector('summary')), complete: box(complete),
-      completeOutside: Boolean(details && !details.contains(complete)),
-      bodyPainted: Boolean(details?.querySelector('.list-actions-body')?.checkVisibility()) };
+      completeInside: Boolean(body?.contains(complete)), completeFirst: body?.firstElementChild === complete,
+      bodyPainted: Boolean(body?.checkVisibility()) };
     if (details) details.open = true;
     document.querySelector('#list-export').open = true;
-    result.commands = ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    result.opened = box(complete);
+    result.commands = ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list']
       .map((id) => ({ id, ...box(document.getElementById(id)), hidden: document.getElementById(id).hidden }));
     if (details) details.open = false;
     return result;
   });
-  const a = actual.complete;
+  const a = actual.opened;
   const b = actual.summary;
   const overlap = a && b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
     * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : null;
   return { ...actual, overlap, expected: { minimumTarget: 44, ordinaryHeightCap: 112,
-    expandedIds: ['btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    expandedIds: ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list'] } };
 }
 
@@ -18345,10 +18348,11 @@ function responsiveReflowPredicates(build, card, hero, commands, expanded = fals
       && hero.actionHeight >= 48,
     gutter: card.left <= 16 && card.viewport - card.right <= 16
       && card.left + card.viewport - card.right <= 32 && card.chronologyInset <= 16,
-    commands: commands.open === false && commands.completeOutside && !commands.bodyPainted
+    commands: commands.open === false && commands.completeInside && commands.completeFirst && !commands.bodyPainted
+      && !commands.complete?.visible && commands.opened?.visible
       && commands.overlap === 0 && commands.summary?.width >= 44 && commands.summary?.height >= 44
-      && commands.complete?.width >= 44 && commands.complete?.height >= 44
-      && commands.height <= (expanded ? commands.summary.height + commands.complete.height + 24 : 112)
+      && commands.opened?.width >= 44 && commands.opened?.height >= 44
+      && commands.height <= (expanded ? commands.summary.height + 24 : 112)
       && commands.commands.every((node) => node.hidden || node.visible),
   };
 }
@@ -18443,14 +18447,15 @@ SCENARIOS.push(responsiveOwner({
     const commands = await responsiveCommands(page);
     const commandPredicates = {
       nativeClosed: commands.open === false && !commands.bodyPainted,
-      independentComplete: commands.completeOutside && commands.complete.visible,
+      completeInActions: commands.completeInside && commands.completeFirst && !commands.complete.visible
+        && commands.opened.visible,
       compact: commands.height <= 112,
       targets: commands.summary?.height >= 44 && commands.summary?.width >= 44
-        && commands.complete.height >= 44 && commands.complete.width >= 44,
+        && commands.opened.height >= 44 && commands.opened.width >= 44,
       overlap: commands.overlap === 0,
       expandedReachability: commands.commands.every((node) => node.hidden || node.visible),
     };
-    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact with independent Complete',
+    await responsiveReceipt(page, t, 'RF06', 'idle commands are compact, with Complete first in List actions while comics are queued',
       { ...commands, subpredicates: commandPredicates },
       Object.values(commandPredicates).every(Boolean));
     responsiveStep(page, 'RF07-text-modes');
@@ -18518,7 +18523,7 @@ SCENARIOS.push(responsiveOwner({
     } });
     await responsiveReceipt(page, t, 'RF07', 'retained text modes preserve qualified prose and reflow',
       { modes, expected: { predicates: ['about', 'title', 'card', 'hero', 'gutter', 'commands'],
-        expandedStripCap: 'Complete height + summary height + 24', landscapeViewport: [640, 450] },
+        expandedStripCap: 'summary height + 24', landscapeViewport: [640, 450] },
       subpredicates: Object.fromEntries(modes.flatMap((entry) => Object.entries(entry.subpredicates)
         .map(([key, value]) => [`${entry.mode}:${key}`, value]))) },
       modes.every((entry) => Object.values(entry.subpredicates).every(Boolean)));
@@ -18702,7 +18707,7 @@ SCENARIOS.push(responsiveOwner({
         nestedOpen: document.querySelector('#list-export').open,
         beforeClose: window.__ux09BeforeClose ?? [],
         completeVisible: document.querySelector('#btn-complete-list').checkVisibility(),
-        completeOutside: Boolean(details && !details.contains(document.querySelector('#btn-complete-list'))),
+        completeInside: Boolean(details?.querySelector('.list-actions-body')?.contains(document.querySelector('#btn-complete-list'))),
         pendingOutside: ['btn-cancel-hydrate', 'hydration-status', 'btn-cancel-synopsis', 'synopsis-status']
           .every((id) => !details?.contains(document.getElementById(id))) };
     });
@@ -18792,7 +18797,7 @@ SCENARIOS.push(responsiveOwner({
         && entry.stillOpen && entry.summaryVisible),
       resizePreservesChoice: resized.open && resized.focused,
       escapeClosed: focused.closed && focused.focused, nestedState: focused.nestedOpen,
-      completeIndependent: focused.completeOutside && focused.completeVisible,
+      completeWithActions: focused.completeInside && !focused.completeVisible,
       pendingIndependent: focused.pendingOutside && pending.outside && pending.statusVisible
         && pending.stopVisible && pending.status.includes('Fetching')
         && synopsisPending.outside && synopsisPending.statusVisible && synopsisPending.stopVisible,
@@ -18804,7 +18809,7 @@ SCENARIOS.push(responsiveOwner({
     await responsiveReceipt(page, t, 'RC06', 'resizing preserves command choice and Escape returns focus before closing',
       { disclosure, resized, focused, wide, pending, synopsisPending, completedState, unavailable,
         expected: { breakpoint: [701, 700, 701], closeOrder: 'Escape focuses visible summary before open=false',
-          pending: 'painted outside editing disclosure', complete: 'active visible; completed hidden; unavailable disabled' },
+          pending: 'painted outside editing disclosure', complete: 'inside List actions while queued; completed hidden; unavailable disabled' },
         subpredicates: disclosurePredicates }, Object.values(disclosurePredicates).every(Boolean));
 
     responsiveStep(page, 'RC04-native-note');
@@ -20712,7 +20717,7 @@ SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
 MUTATIONS.push(...orderedImport.importMutations);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
-SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
+SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionHomes, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
 MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 const doneUndo = await import('./browser-done-undo.mjs');

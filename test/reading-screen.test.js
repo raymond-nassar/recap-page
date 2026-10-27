@@ -288,6 +288,18 @@ test('UX-13 row command groups are ruled apart, the override in force is marked 
   assert.match(forced, /\.availability-choice\[aria-pressed="true"\] \{ border-color: Highlight; \}/);
 });
 
+test('UX-19 List actions opens with a hairline for Mark as Completed, and Nothing queued has a row to hold it', () => {
+  const body = html.match(/<div class="list-actions-body">\s*([\s\S]*?)<\/div>\s*<\/details>\s*<\/div>/)?.[1] ?? '';
+  assert.match(body, /^<span class="tool-sep" aria-hidden="true"><\/span>/, 'the hairline Mark as Completed is placed before');
+  assert.match(css, /\.list-actions-body > \.tool-sep:first-child, #btn-complete-list\[hidden\] \+ \.tool-sep \{ display: none; \}/,
+    'it goes when Mark as Completed moves out or hides');
+  assert.match(html, /<section id="all-deferred"[\s\S]*?<div class="cta all-deferred-actions">\s*<button type="button" class="btn" id="btn-review-deferred">/);
+  assert.match(css, /#all-deferred \.all-deferred-actions \{ justify-content: center; align-items: center; margin-top: var\(--space-5\); \}/);
+  assert.match(main, /listActions: \$\('#list-actions \.list-actions-body'\),\s*wrapupActions: \$\('#list-wrap-up \.completion-actions'\),\s*deferredActions: \$\('#all-deferred \.all-deferred-actions'\),/);
+  assert.doesNotMatch(read('packaging/android/web/mobile.css'), /#btn-complete-list:not\(\[hidden\]\) \+ #list-actions/,
+    'the sheet draws the same hairline rather than a border from where Complete used to stand');
+});
+
 test('Coming up precedes the one native full Reading List disclosure', () => {
   const fullAt = html.indexOf('id="full"');
   const shelfAt = html.indexOf('id="shelf-sec"');

@@ -53,10 +53,10 @@ It replaces the full breadcrumb trail and current title. Android Back follows yo
 the parent link goes to its named destination.
 
 On a Reading List, open **List options** to rename, edit notes, duplicate, export, manage metadata
-or delete. Every command shows at once in the bottom sheet, grouped, with **Remove from library**
-apart and last, so each is one tap. Choosing an action closes the sheet
-before opening its editor or confirmation. **Close**, Android Back, Escape or a tap outside
-dismisses the sheet without taking action.
+or delete. Every command shows at once in the bottom sheet, grouped, with **Mark as Completed**
+apart and first while comics are queued and **Remove from library** apart and last, so each is one
+tap. Choosing an action closes the sheet before opening its editor or confirmation. **Close**,
+Android Back, Escape or a tap outside dismisses the sheet without taking action.
 
 Read and **Done, next** stay together. **About this comic** opens reader-focused details with Read
 near the title, useful comic information and optional, spoiler-protected story summaries.
@@ -444,9 +444,10 @@ bundled recommendation, full catalog and Hickman minimal guide. Alongside the th
 sizes above, it adds a 1280x900 window and a 360x800 case with 130% text tokens.
 It checks recommendation geometry, touch and keyboard focus, parent links, filter scrolling,
 list-sheet dismissal and editor handoff, and that the list sheet shows every command at once, one
-tap each, with Remove from library apart and last, and closes on Escape from any of them. Once a
-list is marked as completed, Enjoyed and Did not enjoy must draw their names beside their icons at
-every size it checks, the wide one included, because each is a touch screen.
+tap each, with Mark as Completed first and Remove from library last, each set apart, and closes on
+Escape from any of them. Once a list is marked as completed, Enjoyed and Did not enjoy must draw
+their names beside their icons at every size it checks, the wide one included, because each is a
+touch screen.
 Text-token stress tests browser layout, not Android's
 native font scaling. Use `--viewport=360x800` to isolate the normal-text case while iterating.
 
@@ -533,12 +534,12 @@ reported case. These are Edge web checks, not native fontScale or TalkBack accep
 
 `npm run android:browser -- --only=completion-focus` holds a completion-history save open from the
 page at 412x915 and 800x360, by keyboard and by tap, and checks where focus is. On a narrow screen
-Complete lives in the List options sheet, which closes as Complete is pressed and gives focus to
-List options. So focus stays on List options while Complete saves and after another tab's write
-refuses it, and moves to Reopen when the save succeeds. Reopen keeps focus while it saves and after
-a refusal. When it succeeds the reading view's heading takes focus, because Complete is in the
-closed sheet. No rendered frame may find focus on the page. These are Edge web checks, not native
-TalkBack acceptance.
+with comics queued, Complete lives in the List options sheet, which closes as Complete is pressed
+and gives focus to List options. So focus stays on List options while Complete saves and after
+another tab's write refuses it, and moves to Reopen when the save succeeds. Reopen keeps focus while
+it saves and after a refusal. When it succeeds the reading view's heading takes focus, because
+Complete is in the closed sheet. No rendered frame may find focus on the page. These are Edge web
+checks, not native TalkBack acceptance.
 
 `npm run android:browser -- --only=long-list-name` opens the More sheet on a Reading List whose
 name is 79 characters long, at 360x800, 412x915, 320x740 and 800x360, and at 360x800 and 412x915

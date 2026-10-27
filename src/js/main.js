@@ -3493,7 +3493,9 @@ const completionView = createCompletionView({
   el,
   elements: () => ({
     readBody: $('#reading-body'),
-    listTools: $('#reading-body .list-tools'),
+    listActions: $('#list-actions .list-actions-body'),
+    wrapupActions: $('#list-wrap-up .completion-actions'),
+    deferredActions: $('#all-deferred .all-deferred-actions'),
     wrapup: $('#list-wrap-up'),
     wrapupHeading: $('#list-wrap-up-h'),
     status: $('#list-completion-status'),

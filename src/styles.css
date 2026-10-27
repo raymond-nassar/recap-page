@@ -859,6 +859,9 @@ main { min-width: 0; }
 .list-work { margin-bottom: var(--space-4); overflow-wrap: anywhere; }
 /* The rule that keeps the destructive command apart from the reversible ones. */
 .tool-sep { width: 1px; align-self: stretch; margin: var(--space-1) var(--space-4); background: var(--line); }
+/* UX-19 (#830): a hairline also sets Mark as Completed apart at the head of List actions, and goes with
+   it when it moves out or hides. */
+.list-actions-body > .tool-sep:first-child, #btn-complete-list[hidden] + .tool-sep { display: none; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
    inset a settings card gives it. */
 .order-desc { margin-top: var(--space-4); }
@@ -879,6 +882,8 @@ main { min-width: 0; }
 .empty-state h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
 .empty-state p { margin: 0 auto; max-width: 52ch; font-size: var(--t-body); }
 .empty-state .btn { margin-top: var(--space-5); }
+#all-deferred .all-deferred-actions { justify-content: center; align-items: center; margin-top: var(--space-5); }
+#all-deferred .all-deferred-actions .btn { margin-top: 0; }
 
 /* ============================================================ hero */
 /* Clip, not hidden: as a scroll container, the card let focus near its foot scroll its top away (#846). */

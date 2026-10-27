@@ -257,6 +257,7 @@
                 <details id="list-actions" class="list-actions action-disclosure">
                   <summary>List actions</summary>
                   <div class="list-actions-body">
+                    <span class="tool-sep" aria-hidden="true"></span>
                     <button type="button" class="quiet" id="btn-rename-list">Rename</button>
                     <button type="button" class="quiet" id="btn-list-note">Note</button>
                     <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
@@ -378,7 +379,9 @@
                 <h2 id="all-deferred-h" tabindex="-1">Nothing queued</h2>
                 <p id="all-deferred-count"></p>
                 <p>These comics are still unread. Resume an issue to put it back in normal continuation without changing its place.</p>
-                <button type="button" class="btn" id="btn-review-deferred">Review deferred</button>
+                <div class="cta all-deferred-actions">
+                  <button type="button" class="btn" id="btn-review-deferred">Review deferred</button>
+                </div>
               </section>
 
               <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier issues</button>
