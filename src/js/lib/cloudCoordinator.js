@@ -283,7 +283,10 @@ export class CloudBackupCoordinator {
         const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
         const last = await this.lastUploaded();
         if (!this.current(run)) return;
-        if (Number.isFinite(last?.uploadedAt)) this.lastUploadAt = Math.max(this.lastUploadAt, last.uploadedAt);
+        // A time ahead of this clock, from a backup made while the clock ran ahead, says nothing about when
+        // the next may go, so it is not counted (stage 1 review, L6). Clamped to now instead, it would be
+        // read as now again at every run and hold every scheduled backup back for good.
+        if (Number.isFinite(last?.uploadedAt) && last.uploadedAt <= this.clock()) this.lastUploadAt = Math.max(this.lastUploadAt, last.uploadedAt);
         if (last?.personalDigest !== digest) {
           // Another tab of this installation may have uploaded meanwhile, so the interval is measured
           // from the shared record, not from this tab's memory.
@@ -298,8 +301,10 @@ export class CloudBackupCoordinator {
         }
         this.retries = 0;
         this.retryAt = 0;
-        this.flushing = false;
         if (this.changes === seen) this.dirty = false;
+        // A page hidden during this run asked for its changes to go at once, and one saved meanwhile is still
+        // to go, so the flush carries on for it rather than waiting out the spacing (stage 1 review, L5).
+        this.flushing = this.dirty && this.isHidden();
       });
     } catch (error) {
       if (this.current(run)) this.failed(error);

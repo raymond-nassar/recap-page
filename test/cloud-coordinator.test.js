@@ -10,8 +10,8 @@ import {
   CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, createSavedChanges, observeSavedWrites, personalDigest,
 } from '../src/js/lib/cloudCoordinator.js';
 import { CAPTURE_KEYS } from '../src/js/lib/completeBackup.js';
-import { KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY } from '../src/js/storage.js';
-import { LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
+import { KEY, SETTINGS_KEY, SIDEBAR_KEY, IMPORT_DRAFT_KEY, ImportDraftStore } from '../src/js/storage.js';
+import { LIST_HISTORY_KEY, ListHistoryStore } from '../src/js/lib/listHistory.js';
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -105,6 +105,7 @@ function harness({ blocked = false, online = true, hidden = false, locks = fakeL
       const outcome = env.uploadOutcomes?.shift();
       if (outcome instanceof Error) throw outcome;
       if (outcome === 'hang') await new Promise(() => {});
+      if (typeof outcome === 'function') await outcome();
       env.record.value = { personalDigest: digest, uploadedAt: env.time.now() };
     },
     lastUploaded: async () => env.record.value,
@@ -157,13 +158,27 @@ test('every write to what a backup holds is reported once the browser accepts it
 
 // Every owner of saved data in the app is handed the one storage object main.js makes, so wrapping it
 // is what lets one observer see every writer. Nothing in main.js writes past it with the browser's own.
+// The Store is given the wrapped object by name, and the import draft and completion history take theirs
+// from the Store, so none of the three may be handed another (stage 1 review, L7).
 test('main.js wraps the guard every owner of saved data writes through, before any owner is made', () => {
-  const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+  const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
   const wrap = src.indexOf('const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedChanges.notify);');
   assert.ok(wrap !== -1, 'the guard is wrapped by the observer');
-  for (const owner of ['new Store({', 'new ImportDraftStore({', 'new ListHistoryStore({']) {
-    assert.ok(wrap < src.indexOf(owner), `${owner} comes after the wrap`);
+  const made = (declaration) => {
+    const start = src.indexOf(`${declaration}({`);
+    assert.ok(start !== -1 && wrap < start, `${declaration} comes after the wrap`);
+    return src.slice(start, src.indexOf('\n});', start));
+  };
+  assert.match(made('const store = new Store'), /^const store = new Store\(\{\n {2}storage: localStorage,\n/, 'the Store is given the wrapped object');
+  for (const [declaration, reader] of [['const importDraft = new ImportDraftStore', 'reader: store,'], ['const listHistory = new ListHistoryStore', 'readerStore: store,']]) {
+    const options = made(declaration);
+    assert.ok(options.includes(`\n  ${reader}\n`), `${declaration} reads through the Store`);
+    assert.doesNotMatch(options, /\bstorage\s*:/, `${declaration} is handed no storage of its own`);
   }
+  const storage = memoryStorage();
+  const reader = { storage, state: null, blocked: false };
+  assert.equal(new ImportDraftStore({ reader, locks: null }).storage, storage, 'the import draft writes where the Store does');
+  assert.equal(new ListHistoryStore({ readerStore: reader, locks: null }).storage, storage, 'and so does completion history');
   assert.doesNotMatch(src, /globalThis\.localStorage\??\.(setItem|removeItem)\(/, 'nothing writes past the observer');
 });
 
@@ -224,6 +239,45 @@ test('a hidden page backs up at once, without waiting for quiet or the five minu
   env.events.dispatchEvent(new Event('visibilitychange'));
   await env.time.advance(0, [coordinator]);
   assert.equal(env.uploads.length, 2, 'nothing more to send');
+});
+
+// The page is hidden while a backup is under way, after another change was saved: the person left, so
+// that change goes at once when the backup ends, not five minutes later (stage 1 review, L5).
+test('a change saved during a backup goes at once when the page was hidden meanwhile', async () => {
+  const env = harness();
+  const coordinator = env.start();
+  await env.time.advance(quietMs, [coordinator]);
+  let release;
+  env.uploadOutcomes = [() => new Promise((resolve) => { release = resolve; })];
+  env.content = { ...env.content, read: { ...env.content.read, 7: 700 } };
+  coordinator.notify();
+  await env.time.advance(minIntervalMs);
+  await until(() => env.uploads.length === 2 && release);
+  env.content = { ...env.content, read: { ...env.content.read, 8: 800 } };
+  coordinator.notify();
+  env.hidden = true;
+  env.events.dispatchEvent(new Event('visibilitychange'));
+  release();
+  await coordinator.idle();
+  await env.time.advance(0, [coordinator]);
+  assert.equal(env.uploads.length, 3, 'the change saved meanwhile went as the page was left');
+  assert.equal(env.uploads[2].digest, await personalDigest(snapshotOf(env.content).backup, webcrypto));
+  await env.time.advance(0, [coordinator]);
+  assert.equal(env.uploads.length, 3, 'and then nothing more');
+});
+
+// A backup recorded while the clock ran a day ahead, then corrected, says nothing about when the next may
+// go. It must not hold scheduled backups back until that time (stage 1 review, L6).
+test('a verified backup time ahead of the clock does not hold back the next backups', async () => {
+  const time = fakeTime();
+  const env = harness({ time, record: { value: { personalDigest: 'f'.repeat(64), uploadedAt: time.now() + 24 * 60 * MINUTE } } });
+  const coordinator = env.start();
+  for (let n = 1; n <= 6; n += 1) {
+    env.content = { ...env.content, read: { ...env.content.read, [n]: n } };
+    coordinator.notify();
+    await env.time.advance(10 * MINUTE, [coordinator]);
+  }
+  assert.equal(env.uploads.length, 6, 'one backup for each change ten minutes apart');
 });
 
 test('changes saved in another tab reach this tab, and nothing else from storage does', async () => {
@@ -383,9 +437,11 @@ test('an import still being saved waits for the next change; a capture that race
 // ------------------------------------------------------------------ restarts and tabs
 
 // The digest is computed with real Web Crypto, so a run that is still on its way to the upload is waited
-// for here rather than assumed.
-async function until(condition) {
-  for (let i = 0; i < 1000 && !condition(); i += 1) await new Promise((resolve) => { setImmediate(resolve); });
+// for here rather than assumed. Bounded by time, not by event-loop turns, because Web Crypto finishes on
+// Node's thread pool, which a busy machine can hold for longer than any fixed number of turns.
+async function until(condition, timeoutMs = 10_000) {
+  const end = Date.now() + timeoutMs;
+  while (!condition() && Date.now() < end) await new Promise((resolve) => { setImmediate(resolve); });
   assert.ok(condition(), 'the run reached the point the test waits for');
 }
 
