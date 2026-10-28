@@ -55,6 +55,7 @@ import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createFeedback } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
+import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
 import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
@@ -3089,6 +3090,18 @@ const addView = createAddView({
   ymd,
 });
 
+const bulkReadView = createBulkReadView({
+  store,
+  button: () => $('#btn-mark-all-read'),
+  getListId: activeListId,
+  isCurrent: () => view === 'read',
+  askConfirm,
+  notify,
+  clearNotice,
+  reconcile: () => renderAll(),
+  focusCurrentView: () => focusViewHeading(view),
+});
+
 const readingView = createReadingView({
   $,
   activeListId,
@@ -3124,6 +3137,7 @@ const readingView = createReadingView({
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
   onHydrate: (listId) => hydrator.start(listId),
+  onMarkAllRead: () => bulkReadView.markAllRead(),
   onStartSynopsis: startSynopsisRun,
   openIssueFocus,
   paintCover,
@@ -3132,6 +3146,7 @@ const readingView = createReadingView({
   recordDirectProgressSave,
   readerPresentation,
   renderSaveEducation,
+  renderBulkRead: () => bulkReadView.render(),
   retireReaderHelp,
   saveSettings,
   seriesOnly,
