@@ -1131,3 +1131,91 @@ export class Store {
     return { ok: this.lastUpdateOk, snapshotKept: this.hasPreRestoreSnapshot() };
   }
 }
+
+// ------------------------------------------------------------------ complete restore
+//
+// A complete restore replaces every kind of saved data at once, so each owner is asked for the exact
+// bytes it would write, generated tokens included, before anything is written. Those bytes go into the
+// restore journal beside the exact prior values, and recovery replays them rather than preparing again:
+// a token minted twice would make a finished second run disagree with the interrupted first.
+//
+// The settings and sidebar keys are named here, beside every other key the recovery paths depend on,
+// because a complete restore writes them too. main.js reads and writes them under these names.
+export const SETTINGS_KEY = 'mrt.settings';
+export const SIDEBAR_KEY = 'sidebar.collapsed';
+// Absent, or "active:", "cleaning:" or "done:" and the restore id. Read synchronously at startup, so a
+// start with nothing pending never waits for the journal, which lives in IndexedDB under the name below.
+export const RESTORE_MARKER_KEY = 'mrt.complete-restore.v1';
+export const RESTORE_LOCK = 'mrt.complete-restore.lock.v1';
+export const RESTORE_DATABASE = 'mrt-complete-restore-v1';
+// In sessionStorage, not localStorage: the one message a finished restore leaves for the reload it asks
+// for, read and removed by that reload.
+export const RESTORE_NOTICE_KEY = 'mrt.complete-restore.notice';
+export const READER_RESTORE_KEYS = Object.freeze({ main: KEY, snapshot: PRERESTORE_KEY, temporary: TEMP_KEY });
+
+// Prior values are only kept, never parsed or restored by the single-kind paths, so they are held to
+// the complete file's ceiling rather than the 8 MiB one. A restore must never be refused because the
+// data it is about to replace is large.
+const PRIOR_VALUE_LIMIT = 4 * MAX_BACKUP_BYTES;
+
+function preparedText(value, label, limit = MAX_BACKUP_BYTES) {
+  if (value !== null && (typeof value !== 'string' || value.length > limit
+    || new TextEncoder().encode(value).length > limit)) {
+    throw new Error(`${label} exceeds its ${limit / (1024 * 1024)} MiB limit.`);
+  }
+  return value;
+}
+
+// The four writes Store.restore() makes, in its order: stage, keep the replaced value as the saved
+// reading-data copy, swap, clear the stage. So the copy a complete restore leaves behind is the one the
+// reading-data card already offers, and nothing about it is new.
+export function prepareReaderRestore(candidate, before) {
+  if (!before || Object.keys(before).sort().join(',') !== 'main,snapshot,temporary') {
+    throw new TypeError('Reader preparation needs the exact prior main, snapshot and temporary values.');
+  }
+  const prior = Object.fromEntries(Object.entries(before).map(([key, value]) =>
+    [key, preparedText(value, 'Prior reading data', PRIOR_VALUE_LIMIT)]));
+  const raw = preparedText(typeof candidate === 'string' ? candidate : JSON.stringify(candidate), 'Restored reading data');
+  const checked = validateBackup(JSON.parse(raw));
+  if (!checked.ok) throw new Error(checked.errors.join(' '));
+  const value = preparedText(JSON.stringify({
+    [WRITE_TOKEN]: newToken(), ...exportBackup(checked.state),
+  }), 'Prepared reading data');
+  return {
+    owner: 'reader', before: prior, value,
+    effects: [
+      { key: TEMP_KEY, before: prior.temporary, value },
+      { key: PRERESTORE_KEY, before: prior.snapshot, value: prior.main ?? '' },
+      { key: KEY, before: prior.main, value },
+      { key: TEMP_KEY, before: value, value: null },
+    ],
+  };
+}
+
+// The draft arrives paused, with no pending publication and no reader token, so it can never apply old
+// read markers by itself. Every source it displaces, the saved draft and any unsaved source this tab
+// is holding, is kept inside it, and a result over the draft's own limit is refused here, before any
+// component has been written.
+export function prepareImportDraftRestore(candidate, before, recovery = []) {
+  preparedText(before, 'Prior import draft', PRIOR_VALUE_LIMIT);
+  if (!Array.isArray(recovery) || recovery.some((value) => typeof value !== 'string')) {
+    throw new TypeError('Retained import draft sources must be exact strings.');
+  }
+  preparedText(JSON.stringify(recovery), 'Retained import draft sources', PRIOR_VALUE_LIMIT);
+  let value = null;
+  if (candidate !== null) {
+    const held = validateImportDraft(preparedText(
+      typeof candidate === 'string' ? candidate : JSON.stringify(candidate), 'Restored import draft',
+    ));
+    value = JSON.stringify({
+      ...held, incarnation: newToken(), revision: newToken(), paused: true,
+      expected: null, readerToken: null, pending: null,
+      previousSources: [...new Set([...held.previousSources, ...recovery, ...(before !== null ? [before] : [])])],
+    });
+    validateImportDraft(preparedText(value, 'The restored import draft with its retained sources'));
+  }
+  return {
+    owner: 'draft', before, value, retainedSources: [...new Set(recovery)],
+    effects: [{ key: IMPORT_DRAFT_KEY, before, value }],
+  };
+}

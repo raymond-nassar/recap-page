@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1448`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1476`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -21,7 +21,7 @@ The browser loads ES modules directly from `src/`, without bundling or transpila
 ## The module graph, drawn as ownership
 
 Most modules expose stateless functions and contracts. The controller constructs the core services
-at `src/js/main.js:86-127` and keeps application-wide bookkeeping at module scope. Constructed views
+at `src/js/main.js:84-138` and keeps application-wide bookkeeping at module scope. Constructed views
 own their screen-local state. That block shows service wiring, not every value held in memory.
 
 ```mermaid
@@ -44,6 +44,7 @@ flowchart TD
     education["Save education: one-way browser preference"]
     synopses["SessionSynopsis: tab-memory prose"]
     synopsisRunner["SynopsisRunner: cancellable memory-only fetches"]
+    restore["CompleteRestore: the restore journal, its marker, and the guard every saved-data write passes"]
   end
 
   view ==> store
@@ -56,12 +57,14 @@ flowchart TD
   view ==> education
   view ==> synopses
   view ==> synopsisRunner
+  view ==> restore
 
   api --> limiter
   api --> cache
   hydrator --> api
   hydrator --> store
   history --> store
+  store --> restore
   synopsisRunner --> api
   synopsisRunner --> store
   synopsisRunner --> synopses
@@ -71,11 +74,13 @@ flowchart TD
     discovery["catalog, route, library, librarySummary, issueFocus"]
     policy["availability, sort, markdown, filters, shortcuts, theme, API and cover policy"]
     integrations["name index, wiki parsing, offline registration, version"]
+    backup["completeBackup: the complete file and the exact bytes a restore writes"]
   end
 
   view -.-> lib
   store -.-> model
   hydrator -.-> model
+  restore -.-> backup
   api -.-> lib
   cache -.-> lib
   launch -.-> lib
@@ -92,7 +97,7 @@ its queue and two rolling windows at `src/js/lib/limiter.js:11-20`, so separate 
 independent budgets. Save education and session synopsis state are instance-owned too.
 
 **Changing the API base replaces the client and cache.** The replacement goes to the Hydrator and
-SynopsisRunner at `src/js/main.js:2190-2205`. In-flight synopsis work is cancelled and its memory
+SynopsisRunner at `src/js/main.js:2217-2232`. In-flight synopsis work is cancelled and its memory
 cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
 connection, not the configured service.
 
@@ -192,7 +197,7 @@ flowchart TD
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
 at `scripts/vendor-orders.mjs:617-671`. Runtime loads and parses that same-origin catalog once at
-`src/js/main.js:1885-1896`, independently of the metadata service.
+`src/js/main.js:1912-1923`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
 from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
@@ -269,7 +274,7 @@ a function to the Store. That transform returns new state without side effects a
 `src/js/storage.js:673-700`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
-Announcements at `src/js/main.js:319-321` depend on save success, so a screen reader does not hear
+Announcements at `src/js/main.js:330-332` depend on save success, so a screen reader does not hear
 "marked read" after a rollback.
 
 **Failed writes repaint too.** The callback receives the previous state and failure reason.
@@ -288,7 +293,7 @@ and it shares the same single offer: the result goes under the card's commands, 
 stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2720-2746`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2823-2849`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -353,11 +358,14 @@ the page's announcer sits behind the modal; interior dialog padding is not a bac
 
 ## Where a reader's data lives
 
-Storage declares five key names at `src/js/storage.js:16-20`. Settings, cache-cleanup, and sidebar
-preferences are owned by the controller at `src/js/main.js:77-79`; save education owns another key
+Storage declares five key names at `src/js/storage.js:16-20`, and at `src/js/storage.js:1144-1153`
+the settings and sidebar names and the complete restore's own names, so a complete backup can use
+them without importing the controller. The controller still owns settings and the sidebar
+preference, and declares the cache-cleanup key at `src/js/main.js:81`; save education owns another key
 at `src/js/lib/saveEducation.js:1`. The companion history store owns completion and enjoyment at
 `src/js/lib/listHistory.js:7`. Home highlights viewing belongs to `src/js/lib/homeUpdatesSeen.js`.
-Metadata uses IndexedDB, offline app files use the Cache API, and synopsis prose stays in memory.
+Metadata uses IndexedDB, a complete restore's journal uses a second IndexedDB database, offline app
+files use the Cache API, and synopsis prose stays in memory.
 
 Backup staging and undo are separate from failed-read salvage. They serve different recovery paths:
 
@@ -405,29 +413,33 @@ Every `localStorage` name the tracker writes, and why it exists:
 
 | Key | Written by | Cleared by | Why it exists |
 |---|---|---|---|
-| `mrt.state.v2` | every saved change, at `src/js/storage.js:762` | erasing everything, which writes an empty state rather than removing the key | The lists, reading progress, notes, issue ratings and availability overrides. This is the reader's data. |
-| `mrt.list-history.v1` | the companion history store, with read-back verified writes at `src/js/lib/listHistory.js:360-388` | verified reader erase followed by checked history cleanup | Exact saved-list identities, completion dates, and optional enjoyment. It has a separate backup and no automatic expiry or orphan pruning. |
-| `mrt.import.draft.v1` | checked source, choices and checkpoints through ImportDraftStore | confirmed draft discard or verified reader erase plus unchanged captured draft/reader cleanup | Exact pasted source and positions, explicit matches, pending outcome evidence and retained previous source snapshots. Separate versioned backup; no automatic expiry. Start fresh/cache cleanup preserve it. Reading restore/Undo pause rather than replay it. |
-| `mrt.state.restore.tmp` | a restore, before anything is swapped, at `src/js/storage.js:902-914` | the same restore, on the line after the swap, and again if the write throws; any later restore, which overwrites it and then removes it; and the reader's erase | Staging, so the swap cannot half happen. It exists only for the moment between validating a backup and installing it. A removal that itself throws leaves the key behind holding a whole tracker, which nothing reads and nothing offers, so it sits there until the next restore or an erase clears it. Erasing discards it because that dialog says this browser has nothing left, and it is the only route that clears one without a restore. |
-| `mrt.state.prerestore` | the same restore, after staging, verified before reader replacement | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:1038-1055`, in two of its four routes | Exact prior reader bytes, including legacy raw copies. The copy outlives reload and Start fresh. A tab identifies one Undo by the exact snapshot it created; Undo consumes that identity without deleting recovery bytes. After Undo, reload or snapshot replacement, restoration is neutrally labeled as a saved-copy replacement. Both actions confirm replacement and reject changed captured reader/snapshot values. The replaced data becomes the next raw copy, not an automatic Redo. Download preserves raw bytes even if validation refuses them. `undoRestore()` at `src/js/storage.js:1057-1074` validates promotion and refuses an identical live copy. Failed swaps rewind the earlier snapshot when possible; existing rewind withdrawal applies when no earlier copy exists or repair fails, while an unreadable earlier slot is not guessed. Erasing is the deliberate removal route. No persistent direction metadata, combined backup envelope or new reader schema is introduced. |
+| `mrt.state.v2` | every saved change, at `src/js/storage.js:762`, and a complete restore | erasing everything, which writes an empty state rather than removing the key | The lists, reading progress, notes, issue ratings and availability overrides. This is the reader's data. |
+| `mrt.list-history.v1` | the companion history store, with read-back verified writes at `src/js/lib/listHistory.js:360-388`, and a complete restore | verified reader erase followed by checked history cleanup | Exact saved-list identities, completion dates, and optional enjoyment. It has a separate backup and no automatic expiry or orphan pruning. |
+| `mrt.import.draft.v1` | checked source, choices and checkpoints through ImportDraftStore, and a complete restore of a file holding a draft | confirmed draft discard, verified reader erase plus unchanged captured draft/reader cleanup, or a complete restore of a file holding no draft, which its question names | Exact pasted source and positions, explicit matches, pending outcome evidence and retained previous source snapshots. Separate versioned backup; no automatic expiry. Start fresh/cache cleanup preserve it. Reading restore/Undo pause rather than replay it. |
+| `mrt.state.restore.tmp` | a restore, before anything is swapped, at `src/js/storage.js:902-914`; a complete restore stages the same way | the same restore, on the line after the swap, and again if the write throws; any later restore, which overwrites it and then removes it; and the reader's erase | Staging, so the swap cannot half happen. It exists only for the moment between validating a backup and installing it. A removal that itself throws leaves the key behind holding a whole tracker, which nothing reads and nothing offers, so it sits there until the next restore or an erase clears it. Erasing discards it because that dialog says this browser has nothing left, and it is the only route that clears one without a restore. |
+| `mrt.state.prerestore` | the same restore, after staging, verified before reader replacement; a complete restore writes it too | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:1038-1055`, in two of its four routes | Exact prior reader bytes, including legacy raw copies. The copy outlives reload and Start fresh. A tab identifies one Undo by the exact snapshot it created; Undo consumes that identity without deleting recovery bytes. After Undo, reload or snapshot replacement, restoration is neutrally labeled as a saved-copy replacement. Both actions confirm replacement and reject changed captured reader/snapshot values. The replaced data becomes the next raw copy, not an automatic Redo. Download preserves raw bytes even if validation refuses them. `undoRestore()` at `src/js/storage.js:1057-1074` validates promotion and refuses an identical live copy. Failed swaps rewind the earlier snapshot when possible; existing rewind withdrawal applies when no earlier copy exists or repair fails, while an unreadable earlier slot is not guessed. Erasing is the deliberate removal route. No persistent direction metadata, combined backup envelope or new reader schema is introduced. |
 | `mrt.state.salvage` | a failed read, and only when the slot is empty or already holds the same bytes | the reader, from Backup and settings | A copy of data that could not be read, kept because saving is paused and the original must not be overwritten. |
 | `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:467-473` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
-| `mrt.settings` | the settings form, cover art, theme, D shortcut, description hiding and reading filter controls, at `src/js/main.js:475-486` | nothing | Preferences, not data, and excluded from reading-progress backups and restores. Deliberately outside the state so a settings write can never fail a progress write. D shortcut and description hiding default on; failed saves apply to this tab with a visible reload warning. Description hiding stores only a boolean: actual changes reset individual disclosure choices, not tab-held prose, and never fetch. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
-| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:444-462` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
-| `sidebar.collapsed` | deliberate desktop sidebar toggles, inside the persist guard at `src/js/main.js:1038-1045` | nothing | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
+| `mrt.settings` | the settings form, cover art, theme, D shortcut, description hiding and reading filter controls, at `src/js/main.js:498-509`, and a complete restore, which replaces those five and keeps every other stored field | nothing | Preferences, not data, and excluded from reading-progress backups and restores. A complete backup carries cover art, theme, reading filter, D shortcut and description hiding, never the API base, and its restore keeps the saved API base. Deliberately outside the state so a settings write can never fail a progress write. D shortcut and description hiding default on; failed saves apply to this tab with a visible reload warning. Description hiding stores only a boolean: actual changes reset individual disclosure choices, not tab-held prose, and never fetch. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
+| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:455-473` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
+| `sidebar.collapsed` | deliberate desktop sidebar toggles, inside the persist guard at `src/js/main.js:1065-1072`, and a complete restore of a file that set it | a complete restore of a file made while it was unset | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 | `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest viewed release batch on this device, held outside reading data and backups. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; only another explicit opening can recreate it. |
+| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:751` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
 
-Ten rows in all: nine fixed names, and one family whose suffix is the moment it was written. Five
-belong outside the Store, which is why an enumeration taken from the storage module alone finds only
-the reader-data and recovery names.
+Thirteen rows in all: twelve fixed names, and one family whose suffix is the moment it was written.
+The storage module declares eight of the fixed names: its own five, and the settings, sidebar and
+complete-restore marker names it holds for the complete backup. The other four are declared by their
+owners, which is why an enumeration taken from the storage module alone misses them. One route
+crosses every row a complete restore writes: Restore prior data, offered when a complete restore is
+interrupted, puts each key back exactly as it was, so it removes a key that did not exist before.
 
 Only the reader removes salvage copies, one at a time in Backup and settings. The app cannot decide
 that unreadable data is no longer wanted. A copy protecting an active saving block remains listed
 but cannot be removed: downloading or starting fresh still needs it. Removal becomes available after
 the block is resolved.
 
-The erase names itself in four rows, and that is a different kind of naming. Its reader write must
+The erase names itself in six rows, and that is a different kind of naming. Its reader write must
 be verified as the exact empty payload with this erase's token before history cleanup is allowed.
 Cleanup checks the captured reader and history values again; a later tab's data is not erased.
 Partial or unconfirmed cleanup is reported explicitly. **It does not reach the salvage copies.** Measuring that needs
@@ -502,6 +514,127 @@ The archived name is now checked to be free before it is used. The lesson is the
 was drawn to make: the fault was found by attacking a claim, not by re-reading the code that made
 it.
 
+## Complete backups
+
+A complete backup is one file holding everything a person would move to a new device: reading data,
+completion history, the five portable settings at `src/js/lib/completeBackup.js:35` with the
+sidebar choice, and the import draft or an explicit null. The metadata service address is never in
+it, so a file from anyone cannot redirect the app's metadata requests. The file is canonical JSON with
+no timestamp and a SHA-256 digest of its contents, so the same data always makes the same bytes, and
+it is refused above 32 MiB before it is read. Each component still passes its own single-kind
+validator. Every single-kind restore refuses the complete file with nothing written, which is also all
+an earlier version of the app can do with one.
+
+Restoring one replaces seven keys belonging to four owners, in eight writes, and a browser can stop
+between any two writes. So a restore takes an exclusive Web Lock that every tab holds shared while it
+can save, prepares every owner's exact bytes first, generated tokens included, and then runs in this
+order:
+
+1. Save a journal holding the backup, every prior value and every prepared value in IndexedDB, and
+   read it back whole, at `src/js/lib/completeRestore.js:744-749`.
+2. Set the marker to `active:` and the restore's id.
+3. Write each component, recording progress in the journal after every write.
+4. Check that every component holds its prepared bytes, record the journal as finished, set the
+   marker to `done:`, and reload, so every owner reads the restored data afresh.
+
+Cleanup runs the other way round, and every path that ends a restore's record takes it: the marker
+says `cleaning:`, the journal is removed and checked gone, then the marker is cleared, at
+`src/js/lib/completeRestore.js:596-600`. Over a journal that cannot be read, keeping the current data
+and erase leave the journal for a later start to offer again, and clear only an `active:` or
+unrecognized marker, directly rather than through `cleaning:`, which would tell a later start to remove
+that journal. A `done:` or `cleaning:` marker stays, so a later start that can read the journal
+applies its rows.
+
+**Why a finished restore keeps its journal.** Chromium's storage service holds localStorage writes in
+memory and commits them as one batch at least five seconds later. Only a normal exit, the last page
+using them closing, or an explicit flush commits sooner, and a killed browser loses the batch. An
+IndexedDB transaction's complete event fires after its commit, and strict durability, which every
+journal write asks for at `src/js/lib/completeRestore.js:149`, also flushes it to disk. Both were
+read on 2026-10-28 in Chromium's
+[storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc),
+[local_storage_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/local_storage_impl.cc)
+and
+[transaction.cc](https://raw.githubusercontent.com/chromium/chromium/main/content/browser/indexed_db/instance/transaction.cc).
+So the journal reaches disk before the marker that relies on it, but a restore's own writes can be
+lost after the reader was told it finished. The journal is therefore kept under a `done:` marker
+until a start at least a day after the restore finished, with no other Recap Page tab open, cleans
+it up, at `src/js/lib/completeRestore.js:46`, unless the next complete restore, keeping the current
+data, or erase removes it sooner. What survives a kill is localStorage as it stood at its last
+commit, so each component is judged by its bytes against every state the restore passes it through,
+never by the journal's progress. The desktop browser check watches this happen: after a real Edge
+process kill part way through a restore, the marker was gone and the journal was not, and Finish
+restore completed the restore exactly.
+
+The marker, the journal and the stored bytes decide what the next start does, at
+`src/js/lib/completeRestore.js:285`. The first row that matches applies. Rows describe a restore
+toward the backup; Restore prior data runs the same rows toward the earlier data.
+
+| Marker | Journal | Stored data | At the next start |
+|---|---|---|---|
+| none, `done:` or `cleaning:` | IndexedDB cannot be read | any | Normal start, because each follows data the reader already accepted. Complete restore is off until the page is reloaded, and its card says the check could not be made; a reload checks again. The marker stays for a start that can read the journal |
+| any other | IndexedDB cannot be read | any | Saving paused: the recovery copy could not be checked. Reload to try again, or keep the current data, which leaves the copy for a later start to offer again |
+| none | none | any | Normal start |
+| none | never advanced | no restore write in it | Normal start; the journal is discarded |
+| none | finished | every kind restored | Normal start, because only the marker was lost; the journal is cleaned up a day after it finished |
+| none or `active:` | matching | some kind in no state the restore passes through | Saving paused: changed outside the restore and never overwritten. The exact prior copy, then keep the current data |
+| none or `active:` | matching | anything else | Saving paused. Finish restore, the exact prior copy, and Restore prior data, or keeping the current data when every kind is already as it was. With no marker, the browser lost the restore's last writes |
+| none or `done:` | a record that fails its checks | any | Saving paused. The raw record, then keep the current data |
+| `active:` | none, failing its checks, or another restore's | any | Saving paused: the recovery copy is missing. Any readable record, then keep the current data |
+| `cleaning:` | none or matching | any | The cleanup finishes, then a normal start. A cleanup that cannot finish pauses saving and says so as a cleanup |
+| `cleaning:` | failing its checks or another restore's | any | The marker is cleared, then the rows without a marker apply |
+| `done:` | matching | any | Normal start; the journal is cleaned up a day after it finished |
+| `done:` | none | any | The stale marker is cleared, then a normal start |
+| `done:` | another restore's | any | The rows without a marker apply |
+| unrecognized | any other | any | Saving paused: the recovery copy is missing. Keep the current data |
+
+Saving starts paused only when the marker says a restore was running or being cleaned up, or cannot
+be read, so a start with nothing pending renders without waiting for IndexedDB or the lock. Writes to
+the keys a restore replaces wait for the lock's answer instead. With no marker the journal is read
+after the first render; if it then calls for recovery, saving pauses, and anything saved in that
+moment is judged like any other change outside the restore. If IndexedDB or Web Locks is missing,
+only complete restore is unavailable, and its card says why. A journal read that fails once is not
+that: IndexedDB can time out, abort or fail and then succeed, so such a copy is said as one that
+could not be checked, never as missing.
+
+**Keeping the current data, and the exact prior copy.** Keeping the current data decides again under
+the lock, from what it reads then. It removes only the copy that was offered, and only when keeping
+was offered; a copy that can be read again, or any other change, is shown again instead and nothing
+is removed. Where nothing waits for a choice any more, keeping finishes the upkeep that is left, such
+as a cleanup; if that upkeep fails, or clears a `cleaning:` marker and so uncovers another restore's
+journal, saving stays paused and the choices are shown again. A journal that cannot be read is never
+removed or written over: keeping leaves it for a later start to offer again, and a new restore refuses
+to begin over it. The exact prior copy can be downloaded but not restored by this version, which says
+so before the copy is deleted; it is for recovering the earlier data by hand or with help, and #946
+tracks a way to restore it.
+
+**Other tabs.** A restore refuses, with nothing replaced, while another tab of this version is open,
+because that tab holds the lock shared. A tab opened during a restore pauses its saving and reloads
+when the restore lets go, and a page restored from the back-forward cache reloads if the marker
+changed while it was away, so neither writes back what it held before. A tab whose start overlaps
+the end of another tab's restore reloads too. Its lock is requested just after it reads the marker,
+and its settings are read even earlier, so another tab can finish in between and leave nothing
+pending. So when the first lock answer arrives, and again before the deferred journal read, the tab
+compares the marker with what it last knew, counting its own writes, and reloads before it saves
+anything if another tab changed it. A tab still running an earlier version holds no lock and cannot
+see a restore, so the restore question asks for every other tab, including older ones, to be closed
+first. That is a documented limit. A write such a tab makes while a restore or recovery runs is found
+as a change outside it, unless it races a restore write to the same key, in which case it can be
+lost; one made afterwards replaces restored data with what that tab held. Closing older tabs, which
+the question asks for, is the mitigation.
+
+**Known limits.** The `done:` guarantee rests on how Chromium commits localStorage and is verified
+for Chromium only. Chromium does not retry a commit that fails on disk: its commit-completion handler
+only changes how the area is cached, as read in
+[storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc)
+on 2026-10-28. So after a disk error a `done:` marker could be saved while an earlier component
+write was not, and the kept journal would be cleaned up a day later with nobody told. Chromium also
+caps localStorage at 10 MiB for each origin, in
+[dom_storage_constants.h](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/dom_storage_constants.h),
+and during a restore the reading-data component holds three copies at once: the staged value, the
+saved copy and the live value. So a complete restore of reading data above roughly a third of that
+cap probably stops part way with storage full and goes into recovery, rather than losing data; this
+is inferred, not measured.
+
 ## What is intentionally centralized
 
 The controller owns routes, shared events and rendering, and long-lived services. Constructed views
@@ -541,8 +674,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:99-111`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:3386-3392` and
-`src/js/main.js:3412-3413`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:3515-3521` and
+`src/js/main.js:3541-3542`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:276-278`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:317-323`.
@@ -559,14 +692,14 @@ unread or deferred comics never finish one. Each stop is counted and drawn by th
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
 the reading the path names, at `src/js/views/catalog.js:41-55` and `src/js/views/catalog.js:75-97`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:2729`, preserving the selector, the stops
+which every Store-driven render calls at `src/js/main.js:2832`, preserving the selector, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
 **You are here**, at `src/js/views/catalog.js:379-403`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled the address, at `src/js/main.js:3310-3329`. After Back renders that path,
+any selection has settled the address, at `src/js/main.js:3439-3458`. After Back renders that path,
 focus returns to the control and brings it into view at `src/js/views/catalog.js:405-416`; there is
 no persisted scroll position.
 
@@ -574,7 +707,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3331-3477`.
+`src/js/main.js:3460-3606`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -601,8 +734,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:131-182`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3372-3414`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2720-2746`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:3501-3543`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2823-2849`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Completion is independent history, not a reader migration

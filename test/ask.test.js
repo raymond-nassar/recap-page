@@ -251,10 +251,12 @@ test('only a danger question wears the danger answer, and the next question does
   }
 });
 
-// The four answers with no way back, by their own copy: Erase everything, the completion-history restore
-// ("There is no automatic Undo"), discarding an import source, and removing a salvage copy ("nothing else
-// to recover it from"). Every other question has an Undo, keeps a copy or changes nothing, so it stays plain.
-test('exactly the four irreversible questions ask with danger', async () => {
+// The seven answers with no way back, by their own copy: Erase everything, the completion-history restore
+// ("There is no automatic Undo"), discarding an import source, removing a salvage copy ("nothing else
+// to recover it from"), and the complete restore's three: restoring a complete backup and finishing an
+// interrupted one ("cannot be undone as a whole"), and keeping current data, which deletes the recovery
+// copy. Every other question has an Undo, keeps a copy or changes nothing, so it stays plain.
+test('exactly the seven irreversible questions ask with danger', async () => {
   const { readFile, readdir } = await import('node:fs/promises');
   const root = new URL('../src/js/', import.meta.url);
   const files = (await readdir(root, { recursive: true })).filter((file) => file.endsWith('.js'));
@@ -267,7 +269,8 @@ test('exactly the four irreversible questions ask with danger', async () => {
   }
   assert.ok(asked.length >= 10, `found the confirmations (${asked.length})`);
   assert.deepEqual(asked.filter((entry) => entry.danger).map((entry) => entry.label).sort(), [
-    "'Discard draft'", "'Erase everything'", "'Remove copy'", "'Restore completion history'",
+    "'Discard draft'", "'Erase everything'", "'Finish restore'", "'Keep current data'", "'Remove copy'",
+    "'Restore complete backup'", "'Restore completion history'",
   ]);
 });
 

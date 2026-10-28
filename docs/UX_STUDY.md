@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:95-102`, `src/js/main.js:2720-2746`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:103-111`, `src/js/main.js:2823-2849`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1936`, `src/js/views/reading.js:379-387`, `src/js/views/reading.js:404-418`, against
+Evidence: `src/js/main.js:1963`, `src/js/views/reading.js:379-387`, `src/js/views/reading.js:404-418`, against
 `src/js/views/shared/feedback.js:229-252`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/views/reading.js:404-418`, `src/js/views/data.js:364-392`
+Evidence: `src/js/views/reading.js:404-418`, `src/js/views/data.js:366-394`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1187-1198`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1215-1226`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1505-1507`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1532-1534`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:22-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:89-167`,
-`src/js/main.js:1544-1587`, `test/ux-completion.test.js:87-98`.
+`src/js/main.js:1571-1614`, `test/ux-completion.test.js:87-98`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1471-1541`,
+src/ returning no matches`, `src/js/main.js:1498-1568`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No

@@ -1524,6 +1524,36 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeBackup.js:35|0": {
+    "anchor": "src/js/lib/completeBackup.js:35",
+    "fp": "f5c2fbf10ed259d6",
+    "head": "export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hid"
+  },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:149|0": {
+    "anchor": "src/js/lib/completeRestore.js:149",
+    "fp": "4ea7082d4cf406af",
+    "head": "tx = mode === 'readwrite' ? db.transaction(JOURNAL_STORE, mode, { durability: 'strict' }) : db.trans"
+  },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:285|0": {
+    "anchor": "src/js/lib/completeRestore.js:285",
+    "fp": "b64917b5675de610",
+    "head": "export function decideRestoreState(marker, journal, storage, now) {"
+  },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:46|0": {
+    "anchor": "src/js/lib/completeRestore.js:46",
+    "fp": "f3d6cfa7a0ac9997",
+    "head": "export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;"
+  },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:596-600|0": {
+    "anchor": "src/js/lib/completeRestore.js:596-600",
+    "fp": "0cdfa6c7feff8a77",
+    "head": "async cleanUp(id, { journal = true } = {}) {"
+  },
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:744-749|0": {
+    "anchor": "src/js/lib/completeRestore.js:744-749",
+    "fp": "4e2c08fc7d7cb7d2",
+    "head": "await this.journal.begin(record);"
+  },
   "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:617-671|0": {
     "anchor": "scripts/vendor-orders.mjs:617-671",
     "fp": "d7f8b76b9f7b7b8c",
@@ -1534,8 +1564,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1885-1896|0": {
-    "anchor": "src/js/main.js:1885-1896",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1912-1923|0": {
+    "anchor": "src/js/main.js:1912-1923",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
@@ -1564,13 +1594,13 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2720-2746|0": {
-    "anchor": "src/js/main.js:2720-2746",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2823-2849|0": {
+    "anchor": "src/js/main.js:2823-2849",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:319-321|0": {
-    "anchor": "src/js/main.js:319-321",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:330-332|0": {
+    "anchor": "src/js/main.js:330-332",
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
@@ -1644,13 +1674,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2720-2746|0": {
-    "anchor": "src/js/main.js:2720-2746",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2823-2849|0": {
+    "anchor": "src/js/main.js:2823-2849",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3372-3414|0": {
-    "anchor": "src/js/main.js:3372-3414",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3501-3543|0": {
+    "anchor": "src/js/main.js:3501-3543",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1704,28 +1734,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2729|0": {
-    "anchor": "src/js/main.js:2729",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2832|0": {
+    "anchor": "src/js/main.js:2832",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3310-3329|0": {
-    "anchor": "src/js/main.js:3310-3329",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3439-3458|0": {
+    "anchor": "src/js/main.js:3439-3458",
     "fp": "30f600f9bd9e5fc8",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3331-3477|0": {
-    "anchor": "src/js/main.js:3331-3477",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3460-3606|0": {
+    "anchor": "src/js/main.js:3460-3606",
     "fp": "86d82ba465df7f66",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3386-3392|0": {
-    "anchor": "src/js/main.js:3386-3392",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3515-3521|0": {
+    "anchor": "src/js/main.js:3515-3521",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3412-3413|0": {
-    "anchor": "src/js/main.js:3412-3413",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3541-3542|0": {
+    "anchor": "src/js/main.js:3541-3542",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -1799,15 +1829,15 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2190-2205|0": {
-    "anchor": "src/js/main.js:2190-2205",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2217-2232|0": {
+    "anchor": "src/js/main.js:2217-2232",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:86-127|0": {
-    "anchor": "src/js/main.js:86-127",
-    "fp": "5cefb4fd22ef7534",
-    "head": "const settings = loadSettings();"
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:84-138|0": {
+    "anchor": "src/js/main.js:84-138",
+    "fp": "e3cc3461185005aa",
+    "head": "const completeRestore = new CompleteRestore();"
   },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/synopsis.js:8-15|0": {
     "anchor": "src/js/synopsis.js:8-15",
@@ -1819,8 +1849,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1448|0": {
-    "anchor": "src/index.html:1448",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1476|0": {
+    "anchor": "src/index.html:1476",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1834,10 +1864,15 @@
     "fp": "2c436fb3c32130cb",
     "head": "<script type=\"module\" src=\"./open.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:444-462|0": {
-    "anchor": "src/js/main.js:444-462",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:455-473|0": {
+    "anchor": "src/js/main.js:455-473",
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:751|0": {
+    "anchor": "src/js/lib/completeRestore.js:751",
+    "fp": "ac32d3d991d78be7",
+    "head": "try { this.markOwn(`active:${record.id}`); }"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-list-history-v1|src/js/lib/listHistory.js:360-388|0": {
     "anchor": "src/js/lib/listHistory.js:360-388",
@@ -1849,8 +1884,8 @@
     "fp": "34a63c10ee7c6918",
     "head": "export function createSaveEducation({ storage } = {}) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:475-486|0": {
-    "anchor": "src/js/main.js:475-486",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:498-509|0": {
+    "anchor": "src/js/main.js:498-509",
     "fp": "d04eedd9cd784a4a",
     "head": "const serialized = JSON.stringify({"
   },
@@ -1879,8 +1914,8 @@
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1038-1045|0": {
-    "anchor": "src/js/main.js:1038-1045",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1065-1072|0": {
+    "anchor": "src/js/main.js:1065-1072",
     "fp": "ac2e0db17077fe22",
     "head": "function setRailed(next, { announceIt = false, persist = false } = {}) {"
   },
@@ -1914,10 +1949,15 @@
     "fp": "610c96e2c8507a76",
     "head": "export const SAVE_EDUCATION_KEY = 'mrt.saveEducation.v1';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:77-79|0": {
-    "anchor": "src/js/main.js:77-79",
-    "fp": "b150c9694bbc2e50",
-    "head": "const SETTINGS_KEY = 'mrt.settings';"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:81|0": {
+    "anchor": "src/js/main.js:81",
+    "fp": "215b776d62ddf598",
+    "head": "export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:1144-1153|0": {
+    "anchor": "src/js/storage.js:1144-1153",
+    "fp": "a2caa4caf14defd5",
+    "head": "export const SETTINGS_KEY = 'mrt.settings';"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:16-20|0": {
     "anchor": "src/js/storage.js:16-20",
@@ -2059,8 +2099,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1170-1174|0": {
-    "anchor": "src/index.html:1170-1174",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1198-1202|0": {
+    "anchor": "src/index.html:1198-1202",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2219,8 +2259,8 @@
     "fp": "62811155d6fac990",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1544-1587|0": {
-    "anchor": "src/js/main.js:1544-1587",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1571-1614|0": {
+    "anchor": "src/js/main.js:1571-1614",
     "fp": "f344ddda7790e906",
     "head": "function renderBreadcrumbs() {"
   },
@@ -2474,8 +2514,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1505-1507|0": {
-    "anchor": "src/js/main.js:1505-1507",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1532-1534|0": {
+    "anchor": "src/js/main.js:1532-1534",
     "fp": "68f0263068782dee",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view], .mobile-link[data-view]')) {"
   },
@@ -2519,23 +2559,23 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2720-2746|0": {
-    "anchor": "src/js/main.js:2720-2746",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:103-111|0": {
+    "anchor": "src/js/main.js:103-111",
+    "fp": "30990219b3c5e62c",
+    "head": "const store = new Store({"
+  },
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2823-2849|0": {
+    "anchor": "src/js/main.js:2823-2849",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
-  },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:95-102|0": {
-    "anchor": "src/js/main.js:95-102",
-    "fp": "40aa5dfbe1353aab",
-    "head": "const store = new Store({"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-126|0": {
     "anchor": "src/js/ask.js:70-126",
     "fp": "4546fe9ac619181f",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, dange"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1936|0": {
-    "anchor": "src/js/main.js:1936",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1963|0": {
+    "anchor": "src/js/main.js:1963",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2554,8 +2594,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:364-392|0": {
-    "anchor": "src/js/views/data.js:364-392",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/data.js:366-394|0": {
+    "anchor": "src/js/views/data.js:366-394",
     "fp": "3b6c0c221341c6b6",
     "head": "nodes.undoRestore.addEventListener('click', async () => {"
   },
@@ -2564,8 +2604,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1187-1198|0": {
-    "anchor": "src/index.html:1187-1198",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1215-1226|0": {
+    "anchor": "src/index.html:1215-1226",
     "fp": "ffcb81a9757243c0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
@@ -2579,8 +2619,8 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1471-1541|0": {
-    "anchor": "src/js/main.js:1471-1541",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1498-1568|0": {
+    "anchor": "src/js/main.js:1498-1568",
     "fp": "9dc83092b1b48b6f",
     "head": "function showView(next, { focus = true, push = false, at = null } = {}) {"
   },
@@ -6164,8 +6204,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1700|0": {
-    "anchor": "src/js/main.js:1700",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1727|0": {
+    "anchor": "src/js/main.js:1727",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
@@ -6259,8 +6299,8 @@
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
-  "src/styles.css|preamble|src/js/main.js:759-766|0": {
-    "anchor": "src/js/main.js:759-766",
+  "src/styles.css|preamble|src/js/main.js:786-793|0": {
+    "anchor": "src/js/main.js:786-793",
     "fp": "3545013deeb0c474",
     "head": "function fallbackHue(issue, fallbackName = '') {"
   },

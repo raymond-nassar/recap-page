@@ -8868,7 +8868,7 @@ const SCENARIOS = [
       });
       t.check('reading data, completion history and the import draft each keep their download, restore and report together',
         groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
-          && JSON.stringify(groups.order) === JSON.stringify(['Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
         JSON.stringify(groups));
       const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
         const input = document.getElementById(id);
@@ -12048,7 +12048,7 @@ const SCENARIOS = [
       t.check('the switch is labelled and describes its local-only boundary',
         await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.trim() === 'Enable D to mark as read and continue'
           && input.getAttribute('aria-describedby') === 'reading-shortcut-help reading-shortcut-storage-help')
-        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress and backups')));
+        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress, and only a complete backup includes it')));
       await click(page, '#opt-reading-shortcut');
       t.check('off removes shortcut metadata and changes the reference without touching progress',
         disabled(await presentation())
@@ -19510,6 +19510,533 @@ MUTATIONS.push(
     }),
   },
 );
+
+// ------------------------------------------------------------------ complete backups (#810)
+
+const COMPLETE_KEYS = ['mrt.state.v2', 'mrt.list-history.v1', 'mrt.settings', 'sidebar.collapsed', 'mrt.import.draft.v1'];
+
+// Saved data of every kind, written straight to storage, then read by a reload.
+async function seedCompleteData(page, { list, theme, apiBase, sidebar, draft = true }) {
+  await page.evaluate(async ({ list, theme, apiBase, sidebar, draft }) => {
+    const { createEmptyState, createList, addIssuesToList, exportBackup } = await import('./js/lib/model.js');
+    const { sourceOccurrences, DRAFT_FORMAT, DRAFT_VERSION } = await import('./js/lib/importDraft.js');
+    let state = createList(createEmptyState(), { id: list, name: `${list} list` });
+    state = addIssuesToList(state, list, [{ issueId: 1, title: 'One' }, { issueId: 2, title: 'Two' }]).state;
+    state.read[1] = 1000;
+    state.notes[2] = `A note in ${list}`;
+    localStorage.setItem('mrt.state.v2', JSON.stringify({ writeToken: `seed-${list}`, ...exportBackup(state) }));
+    localStorage.setItem('mrt.list-history.v1', JSON.stringify({
+      format: 'recap-page-list-history', version: 1,
+      records: [{ listId: list, created: state.lists[list].created, catalogId: null, completedAt: 5000, rating: 'up' }],
+    }));
+    localStorage.setItem('mrt.settings', JSON.stringify({
+      apiBase, covers: theme !== 'dark', theme, filter: theme === 'dark' ? 'unread' : 'all',
+      readingShortcut: theme !== 'dark', hideDescriptions: theme !== 'dark',
+    }));
+    localStorage.setItem('sidebar.collapsed', String(sidebar));
+    if (draft) {
+      const rawText = `- [ ] [One](https://www.marvel.com/comics/issue/1/) ${list}`;
+      localStorage.setItem('mrt.import.draft.v1', JSON.stringify({
+        format: DRAFT_FORMAT, version: DRAFT_VERSION, rawText, occurrences: sourceOccurrences(rawText),
+        incarnation: 'seed', revision: 'seed', previousSources: [],
+        destination: { id: 'dest', created: 1, name: 'Pasted', newList: true, prefix: [] },
+        expected: null, readerToken: null, paused: true, pending: null,
+      }));
+    } else localStorage.removeItem('mrt.import.draft.v1');
+  }, { list, theme, apiBase, sidebar, draft });
+}
+
+async function savedComplete(page) {
+  return page.evaluate((keys) => Object.fromEntries(keys.map((key) => [key, localStorage.getItem(key)])), COMPLETE_KEYS);
+}
+
+// A complete backup of a different moment, made by the app's own codec from a scratch storage.
+async function completeFileOf(page, list) {
+  return page.evaluate(async (list) => {
+    const { createEmptyState, createList, addIssuesToList, exportBackup } = await import('./js/lib/model.js');
+    const { captureCompleteBackup } = await import('./js/lib/completeBackup.js');
+    let state = createList(createEmptyState(), { id: list, name: `${list} list` });
+    state = addIssuesToList(state, list, [{ issueId: 7, title: 'Seven' }]).state;
+    state.read[7] = 7000;
+    const map = new Map([
+      ['mrt.state.v2', JSON.stringify(exportBackup(state))],
+      ['mrt.settings', JSON.stringify({ covers: false, theme: 'dark', filter: 'unread', readingShortcut: false, hideDescriptions: false })],
+      ['sidebar.collapsed', 'true'],
+    ]);
+    return (await captureCompleteBackup({ storage: { getItem: (key) => map.get(key) ?? null } })).text;
+  }, list);
+}
+
+async function pickFile(page, selector, text, name = 'recap-page-complete-backup.json') {
+  await page.evaluate((selector, text, name) => {
+    const files = new DataTransfer();
+    files.items.add(new File([text], name, { type: 'application/json' }));
+    const input = document.querySelector(selector);
+    input.files = files.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, selector, text, name);
+}
+
+async function restoreMarker(page) {
+  return page.evaluate(() => localStorage.getItem('mrt.complete-restore.v1'));
+}
+
+// Runs an action that starts a native download and waits until that download completes or is canceled.
+// Reloading while it is still writing cancels it: measured, a reload about 240 ms after the download
+// began canceled it, which the native download check then reported.
+async function untilDownloadSettles(page, action) {
+  const session = await page.createCDPSession();
+  try {
+    await session.send('Page.enable');
+    const settled = new Promise((resolve) => {
+      session.on('Page.downloadProgress', (event) => {
+        if (event.state === 'completed' || event.state === 'canceled') resolve(event.state);
+      });
+    });
+    await action();
+    return await Promise.race([settled, new Promise((resolve) => { setTimeout(() => resolve('timeout'), 15000); })]);
+  } finally {
+    await session.detach().catch(() => {});
+  }
+}
+
+async function journalHeld(page) {
+  return page.evaluate(() => new Promise((resolve) => {
+    const request = indexedDB.open('mrt-complete-restore-v1', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('journal');
+    request.onsuccess = () => {
+      const tx = request.result.transaction('journal', 'readonly');
+      const get = tx.objectStore('journal').get('plan');
+      get.onsuccess = () => { resolve(get.result !== undefined); request.result.close(); };
+    };
+    request.onerror = () => resolve(null);
+  }));
+}
+
+// Makes the journal's Nth put fail, so a restore stops part way with a recovery to offer: the begin
+// makes two puts and each checkpoint one, so the fifth fails after three of the eight writes. Only the
+// journal's own store is counted, so a metadata-cache write cannot move the failure.
+async function failJournalPut(page, at) {
+  await page.evaluate((at) => {
+    const real = IDBObjectStore.prototype.put;
+    let count = 0;
+    IDBObjectStore.prototype.put = function put(...args) {
+      if (this.name === 'journal') count += 1;
+      if (this.name === 'journal' && count === at) throw new DOMException('Injected journal failure', 'UnknownError');
+      return real.apply(this, args);
+    };
+  }, at);
+}
+
+// The card and its recovery section where the interface contract asks: keyboard order with a visible
+// focus ring, accessible names, the width a phone gives (320), a 1280x900 window at 200% zoom (640x450),
+// and forced colors with reduced motion. Each region is checked as it is shown, so the recovery section
+// is checked while a recovery is actually offered.
+async function completePresentation(page, t, { label, root, order, names }) {
+  const original = page.viewport();
+  await page.focus(order[0]);
+  const steps = [];
+  for (const selector of order.slice(1)) {
+    await page.keyboard.press('Tab');
+    steps.push(await page.evaluate((expected) => {
+      const node = document.activeElement;
+      const style = getComputedStyle(node);
+      return {
+        expected, reached: node === document.querySelector(expected),
+        ring: node.matches(':focus-visible') && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+      };
+    }, selector));
+  }
+  t.check(`${label}: Tab reaches each control in order, each with a visible focus ring`,
+    steps.every((step) => step.reached && step.ring), JSON.stringify(steps));
+  const spoken = {};
+  for (const [selector, name] of Object.entries(names)) {
+    const node = await page.$(selector);
+    spoken[selector] = { want: name, got: (await page.accessibility.snapshot({ root: node, interestingOnly: false }))?.name ?? '' };
+  }
+  t.check(`${label}: each control's accessible name is its visible text`,
+    Object.values(spoken).every((entry) => entry.got.includes(entry.want)), JSON.stringify(spoken));
+  const layout = [];
+  for (const viewport of [{ width: 320, height: 900 }, { width: 640, height: 450 }]) {
+    await page.setViewport(viewport);
+    layout.push(await page.$eval(root, (node, size) => {
+      node.scrollIntoView({ block: 'start' });
+      const controls = [...node.querySelectorAll('button, input, summary')].filter((el) => el.getClientRects().length);
+      return {
+        size, controls: controls.length,
+        page: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
+        inside: controls.every((el) => { const box = el.getBoundingClientRect(); return box.left >= -1 && box.right <= innerWidth + 1; }),
+        unclipped: node.scrollWidth <= node.clientWidth + 1,
+      };
+    }, `${viewport.width}x${viewport.height}`));
+  }
+  await page.setViewport(original);
+  t.check(`${label}: at 320 pixels and at 200% zoom nothing overflows the page or its region`,
+    layout.every((entry) => entry.controls > 0 && entry.page && entry.inside && entry.unclipped), JSON.stringify(layout));
+  const cdp = await page.createCDPSession();
+  await cdp.send('Emulation.setEmulatedMedia', {
+    features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+  });
+  const modes = await page.$eval(root, (node) => {
+    const buttons = [...node.querySelectorAll('button')].filter((el) => el.getClientRects().length);
+    const edges = buttons.map((el) => {
+      const style = getComputedStyle(el);
+      return { id: el.id, style: style.borderTopStyle, width: style.borderTopWidth, color: style.borderTopColor };
+    });
+    return {
+      forced: matchMedia('(forced-colors: active)').matches,
+      reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      edged: edges.length > 0 && edges.every((edge) => edge.style !== 'none' && parseFloat(edge.width) > 0 && edge.color !== 'rgba(0, 0, 0, 0)'),
+      still: node.getAnimations({ subtree: true }).length === 0,
+      edges,
+    };
+  });
+  await cdp.send('Emulation.setEmulatedMedia', { features: [] });
+  await cdp.detach();
+  t.check(`${label}: in forced colors every button keeps a visible edge, and with reduced motion nothing animates`,
+    modes.forced && modes.reduced && modes.edged && modes.still, JSON.stringify(modes));
+}
+
+SCENARIOS.push({
+  id: 'complete-backup',
+  nativeDownloads: 1,
+  title: 'a complete backup round-trips every kind of saved data, and a refused or cancelled restore changes nothing',
+  async run(page, t) {
+    await open(page, '/#/data');
+    await seedCompleteData(page, { list: 'kept', theme: 'dark', apiBase: 'https://metadata.example.test', sidebar: true });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+    const original = await savedComplete(page);
+    t.check('the complete backup card follows the moving-devices summary, before the single-kind backups',
+      await page.evaluate(() => {
+        const summary = document.querySelector('#transfer-summary');
+        const card = document.querySelector('#complete-backup');
+        return summary.nextElementSibling === card
+          && Boolean(card.compareDocumentPosition(document.querySelector('#btn-export-json')) & Node.DOCUMENT_POSITION_FOLLOWING)
+          && summary.textContent.includes('download a complete backup');
+      }));
+    await completePresentation(page, t, {
+      label: 'the complete backup card, dark theme',
+      root: '#complete-backup',
+      order: ['#btn-export-complete', '#restore-complete', '#complete-backup summary', '#btn-export-json'],
+      names: {
+        '#btn-export-complete': 'Download complete backup',
+        '#restore-complete': 'Restore a complete backup',
+        '#complete-backup summary': 'About complete backups',
+      },
+    });
+    const downloaded = await untilDownloadSettles(page, () => click(page, '#btn-export-complete'));
+    await page.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.text.includes('recap-page-complete-backup')));
+    const file = await page.evaluate(() => window.__mrtDownloads.find((entry) => entry.text.includes('recap-page-complete-backup')).text);
+    const parsed = JSON.parse(file);
+    t.check('the download holds every component and no metadata service',
+      downloaded === 'completed' && parsed.format === 'recap-page-complete-backup' && parsed.components.reader.listOrder[0] === 'kept'
+        && parsed.components.history.records.length === 1 && parsed.components.settings.theme === 'dark'
+        && parsed.components.settings.sidebarCollapsed === true && parsed.components.draft !== null
+        && !file.includes('metadata.example.test') && !file.includes('apiBase'),
+      file.slice(0, 300));
+    await seedCompleteData(page, { list: 'other', theme: 'light', apiBase: 'https://other.example.test', sidebar: false, draft: false });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+    const replaced = await savedComplete(page);
+    await pickFile(page, '#restore-complete', file);
+    await page.waitForSelector('#ask[open]');
+    const question = await page.evaluate(() => ({
+      title: document.querySelector('#ask-title').textContent,
+      body: document.querySelector('#ask-body').textContent,
+      danger: document.querySelector('#ask-ok').classList.contains('btn-danger'),
+      cancelFirst: Boolean(document.querySelector('#ask-cancel').compareDocumentPosition(document.querySelector('#ask-ok')) & Node.DOCUMENT_POSITION_FOLLOWING),
+      focus: document.activeElement?.id,
+    }));
+    t.check('the question names what is replaced, asks for other tabs to close, and is a danger question with Cancel first',
+      question.title === 'Replace all saved data with this complete backup?'
+        && question.body.includes("your reading data with this file's 1 list") && question.body.includes('your completion history with its 1 record')
+        && question.body.includes('your import draft with the one in this file') && question.body.includes('including ones running an older version')
+        && question.danger && question.cancelFirst && question.focus === 'ask-cancel',
+      JSON.stringify(question));
+    await click(page, '#ask-cancel');
+    await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+    t.check('Cancel writes nothing and hands focus back to the file field',
+      JSON.stringify(await savedComplete(page)) === JSON.stringify(replaced) && await restoreMarker(page) === null
+        && await page.evaluate(() => document.activeElement?.id === 'restore-complete'));
+    await pickFile(page, '#restore-complete', file);
+    await page.waitForSelector('#ask[open]');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+    const after = await savedComplete(page);
+    const restoredSettings = JSON.parse(after['mrt.settings']);
+    const restoredDraft = JSON.parse(after['mrt.import.draft.v1'] ?? 'null');
+    t.check('the restore brings back every component, keeps the metadata service, and reloads the page to show them',
+      JSON.parse(after['mrt.state.v2']).lists.kept?.name === 'kept list'
+        && after['mrt.list-history.v1'].includes('"rating":"up"') && after['sidebar.collapsed'] === 'true'
+        && restoredSettings.theme === 'dark' && restoredSettings.filter === 'unread' && restoredSettings.covers === false
+        && restoredSettings.apiBase === 'https://other.example.test'
+        && restoredDraft?.paused === true && restoredDraft.readerToken === null
+        && await page.evaluate(() => document.documentElement.getAttribute('data-theme') === 'dark' && document.body.classList.contains('nocovers')),
+      JSON.stringify({ settings: restoredSettings, sidebar: after['sidebar.collapsed'] }));
+    t.check('the replaced reading data is the saved copy, offered as a copy rather than an Undo',
+      await page.$eval('#btn-undo-restore', (node) => !node.hidden && node.textContent === 'Restore saved reading-data copy')
+        && JSON.parse(await page.evaluate(() => localStorage.getItem('mrt.state.prerestore'))).lists.other?.name === 'other list');
+    t.check('a finished restore leaves its marker done and keeps its journal for the delayed save',
+      /^done:[a-f0-9]{64}$/.test(await restoreMarker(page) ?? '') && await journalHeld(page) === true
+        && await page.$eval('#complete-restore-recovery', (node) => node.hidden));
+    const settled = await savedComplete(page);
+    await pickFile(page, '#restore-complete', original['mrt.state.v2'], 'reading-backup.json');
+    await page.waitForFunction(() => document.querySelector('#restore-complete').getAttribute('aria-invalid') === 'true');
+    t.check('a reading-data backup is refused by the complete restore, by name, with nothing changed',
+      await page.$eval('#complete-backup-report', (node) => node.textContent.includes('This is a reading-data backup. Restore it under Reading data.'))
+        && JSON.stringify(await savedComplete(page)) === JSON.stringify(settled));
+    await pickFile(page, '#restore-file', file);
+    await page.waitForFunction(() => document.querySelector('#restore-file').getAttribute('aria-invalid') === 'true');
+    t.check('the reading-data restore refuses the complete file with nothing changed',
+      await page.$eval('#restore-report', (node) => node.textContent.includes('Reading data is unchanged'))
+        && JSON.stringify(await savedComplete(page)) === JSON.stringify(settled));
+  },
+});
+
+// A second browser with a profile of its own, so it can be killed outright and started again on the
+// same storage: the one way to see what a browser-process kill leaves behind.
+async function launchProfileBrowser(userDataDir) {
+  const { default: puppeteer } = await import(pathToFileURL(resolveDriver()).href);
+  return puppeteer.launch({
+    executablePath: resolveEdge(), headless: !process.env.MRT_HEADED, userDataDir,
+    args: ['--no-first-run', '--no-default-browser-check'],
+  });
+}
+
+async function profilePage(browser, origin) {
+  const page = await browser.newPage();
+  page.__origin = origin;
+  await page.setViewport({ width: 1280, height: 900 });
+  await page.setBypassServiceWorker(true);
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    if (new URL(request.url()).origin === origin) void request.continue();
+    else void request.abort();
+  });
+  await page.evaluateOnNewDocument(() => {
+    window.__mrtDownloads = [];
+    const real = URL.createObjectURL.bind(URL);
+    URL.createObjectURL = (blob) => {
+      Promise.resolve(blob?.text?.()).then((text) => window.__mrtDownloads.push({ text: text ?? '', type: blob?.type ?? '' }));
+      return real(blob);
+    };
+  });
+  try {
+    const session = await browser.target().createCDPSession();
+    await session.send('Browser.setDownloadBehavior', { behavior: 'deny' });
+  } catch { /* the downloads are read from the page either way */ }
+  return page;
+}
+
+async function killBrowser(browser) {
+  const pid = browser.process()?.pid;
+  const { execFileSync } = await import('node:child_process');
+  if (process.platform === 'win32') {
+    try { execFileSync('taskkill', ['/F', '/T', '/PID', String(pid)], { stdio: 'ignore' }); } catch { /* already gone */ }
+  } else {
+    try { process.kill(pid, 'SIGKILL'); } catch { /* already gone */ }
+  }
+  await new Promise((resolve) => {
+    const child = browser.process();
+    if (!child || child.exitCode !== null) resolve();
+    else child.once('exit', resolve);
+  });
+}
+
+SCENARIOS.push({
+  id: 'complete-restore',
+  title: 'an interrupted complete restore survives a browser kill, another tab and a back-forward return without losing or overwriting data',
+  async run(page, t) {
+    const origin = page.__origin;
+    await open(page, '/#/data');
+    await seedCompleteData(page, { list: 'local', theme: 'light', apiBase: 'https://metadata.example.test', sidebar: false });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+    const file = await completeFileOf(page, 'restored');
+    const before = await savedComplete(page);
+
+    // Two tabs: the restore is refused, nothing replaced and no journal begun.
+    const peer = await page.browserContext().newPage();
+    peer.__denyExternal = true;
+    await preparePage(peer, origin, page.__mutation);
+    await open(peer, '/#/data');
+    await peer.waitForSelector('#view-data:not([hidden])');
+    // A reader answers in the tab they can see. Edge delivers a dialog's close event with the next
+    // frame, and a hidden tab draws none, so a question answered there would never settle.
+    await page.bringToFront();
+    await pickFile(page, '#restore-complete', file);
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Nothing was replaced'));
+    // The whole report, so a lead-in that repeats the outcome the message already states is caught.
+    const refusal = await page.$eval('#complete-backup-report', (node) => node.textContent);
+    t.check('with another tab open the restore refuses, naming other tabs, and replaces nothing',
+      refusal === 'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.'
+        && JSON.stringify(await savedComplete(page)) === JSON.stringify(before)
+        && await restoreMarker(page) === null && await journalHeld(page) === false,
+      refusal);
+    await peer.close();
+
+    // A tab opened while another holds the restore lock waits, saves nothing, and reloads after.
+    await page.goto(`${origin}/js/app.js`, { waitUntil: 'load' });
+    await page.evaluate(() => {
+      navigator.locks.request('mrt.complete-restore.lock.v1', { mode: 'exclusive' }, () => new Promise((resolve) => { window.__releaseRestoreLock = resolve; }));
+    });
+    const late = await page.browserContext().newPage();
+    late.__denyExternal = true;
+    await preparePage(late, origin, page.__mutation);
+    await open(late, '/#/data');
+    await late.waitForFunction(() => document.querySelector('#app-report').textContent.includes('Another Recap Page tab is restoring'));
+    await late.evaluate(() => { window.__beforeRestoreReload = true; });
+    await click(late, '#opt-reading-shortcut');
+    await late.waitForFunction(() => document.querySelector('#reading-shortcut-report').textContent.includes('could not be saved'));
+    t.check('a tab opened during a restore pauses saving and writes nothing',
+      JSON.stringify(await savedComplete(late)) === JSON.stringify(before));
+    await Promise.all([late.waitForNavigation({ waitUntil: 'load' }), page.evaluate(() => window.__releaseRestoreLock())]);
+    await late.waitForSelector('#view-data:not([hidden])');
+    t.check('and reloads once the restore lets go, rather than writing what it held from before',
+      await late.evaluate(() => window.__beforeRestoreReload === undefined && !document.querySelector('#app-report').textContent.includes('restoring')));
+    await late.close();
+
+    // A real browser-process kill part way through, then a fresh start on the same profile.
+    const { mkdtempSync, rmSync } = await import('node:fs');
+    const { tmpdir } = await import('node:os');
+    const profile = mkdtempSync(join(tmpdir(), 'mrt-complete-restore-'));
+    let edge = null;
+    try {
+      edge = await launchProfileBrowser(profile);
+      let tab = await profilePage(edge, origin);
+      await open(tab, '/#/data');
+      await seedCompleteData(tab, { list: 'local', theme: 'light', apiBase: 'https://metadata.example.test', sidebar: false });
+      // A normal browser exit saves localStorage at once, so the data the restore replaces is on disk
+      // before the kill and only the restore's own writes are at stake. Closing the tab alone did not:
+      // measured here, the seeded data was missing after the kill, so every key read as changed.
+      await edge.close();
+      edge = await launchProfileBrowser(profile);
+      tab = await profilePage(edge, origin);
+      await open(tab, '/#/data');
+      await tab.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+      const prior = await savedComplete(tab);
+      await failJournalPut(tab, 5);
+      await pickFile(tab, '#restore-complete', file);
+      await tab.waitForSelector('#ask[open]');
+      await click(tab, '#ask-ok');
+      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'));
+      t.check('a restore that stops part way pauses saving and offers recovery at once',
+        await tab.evaluate(() => !document.querySelector('#complete-restore-recovery').hidden
+          && !document.querySelector('#btn-complete-finish').hidden
+          && document.querySelector('#app-report').textContent.includes('did not finish')));
+      await killBrowser(edge);
+      edge = await launchProfileBrowser(profile);
+      tab = await profilePage(edge, origin);
+      await open(tab, '/#/data');
+      await tab.waitForFunction(() => !document.querySelector('#complete-restore-recovery').hidden, { timeout: 15000 });
+      const offered = await tab.evaluate(() => ({
+        status: document.querySelector('#complete-restore-recovery-status').textContent,
+        finish: !document.querySelector('#btn-complete-finish').hidden,
+        copy: !document.querySelector('#btn-complete-prior-copy').hidden,
+        paused: document.querySelector('#app-report').textContent.includes('did not finish'),
+        marker: localStorage.getItem('mrt.complete-restore.v1'),
+      }));
+      // Evidence for the durability research: whether the kill dropped the restore's uncommitted writes.
+      console.log(`COMPLETE-RESTORE after-kill marker=${offered.marker === null ? 'absent' : offered.marker.split(':')[0]}`);
+      t.check('after a real browser kill the next start still pauses saving and offers Finish and the exact prior copy',
+        offered.finish && offered.copy && offered.paused, JSON.stringify(offered));
+      await completePresentation(tab, t, {
+        label: 'the recovery section after the kill, light theme',
+        root: '#complete-restore-recovery',
+        order: ['#btn-complete-prior-copy', '#btn-complete-finish', '#btn-complete-keep'],
+        names: {
+          '#btn-complete-prior-copy': 'Download exact prior copy',
+          '#btn-complete-finish': 'Finish restore',
+          '#btn-complete-keep': 'Keep the data that is here now',
+        },
+      });
+      await click(tab, '#btn-complete-prior-copy');
+      await tab.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.text.includes('recap-page-complete-restore-prior')));
+      const copy = JSON.parse(await tab.evaluate(() => window.__mrtDownloads.find((entry) => entry.text.includes('recap-page-complete-restore-prior')).text));
+      t.check('the exact prior copy holds the bytes from before the restore',
+        COMPLETE_KEYS.every((key) => copy.values[key] === prior[key]), JSON.stringify(Object.keys(copy.values ?? {})));
+      await click(tab, '#btn-complete-finish');
+      await tab.waitForSelector('#ask[open]');
+      t.check('finishing is a danger question', await tab.$eval('#ask-ok', (node) => node.classList.contains('btn-danger')));
+      await Promise.all([tab.waitForNavigation({ waitUntil: 'load' }), click(tab, '#ask-ok')]);
+      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('restore is finished'));
+      const finished = await savedComplete(tab);
+      t.check('Finish completes the restore exactly, and saving starts again',
+        JSON.parse(finished['mrt.state.v2']).lists.restored?.name === 'restored list'
+          && JSON.parse(finished['mrt.settings']).apiBase === 'https://metadata.example.test'
+          && /^done:/.test(await restoreMarker(tab) ?? '')
+          && await tab.$eval('#complete-restore-recovery', (node) => node.hidden));
+
+      // A foreign edit while a recovery waits is never overwritten; the keep-current exit ends it.
+      await failJournalPut(tab, 5);
+      await pickFile(tab, '#restore-complete', await completeFileOf(tab, 'third'));
+      await tab.waitForSelector('#ask[open]');
+      await click(tab, '#ask-ok');
+      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'));
+      const foreign = JSON.stringify({ format: 'recap-page-list-history', version: 1, writeToken: 'foreign', records: [] });
+      await tab.evaluate((value) => localStorage.setItem('mrt.list-history.v1', value), foreign);
+      await tab.reload({ waitUntil: 'load' });
+      await tab.waitForFunction(() => !document.querySelector('#complete-restore-recovery').hidden, { timeout: 15000 });
+      t.check('a foreign edit is reported, Finish is withdrawn, and the keep-current exit is offered',
+        await tab.evaluate(() => document.querySelector('#complete-restore-recovery-status').textContent.includes('changed afterwards')
+          && document.querySelector('#btn-complete-finish').hidden && !document.querySelector('#btn-complete-keep').hidden));
+      await click(tab, '#btn-complete-keep');
+      await tab.waitForSelector('#ask[open]');
+      const keepDanger = await tab.$eval('#ask-ok', (node) => node.classList.contains('btn-danger'));
+      const keepBody = await tab.$eval('#ask-body', (node) => node.textContent);
+      await Promise.all([tab.waitForNavigation({ waitUntil: 'load' }), click(tab, '#ask-ok')]);
+      await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Recovery ended'));
+      t.check('keeping current data says the prior copy cannot be restored here, writes no user data, removes the copy and marker, and resumes saving',
+        keepDanger && keepBody.includes('This version cannot restore that copy: it is for recovering the earlier data by hand or with help.')
+          && await tab.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === foreign
+          && await restoreMarker(tab) === null && await journalHeld(tab) === false
+          && !(await tab.evaluate(() => document.querySelector('#app-report').textContent.includes('did not finish'))),
+        keepBody);
+      await edge.close();
+      edge = null;
+    } finally {
+      // A failed check must not leave the second browser running: it holds the profile open and keeps
+      // this process alive after the report.
+      if (edge) await killBrowser(edge).catch(() => {});
+      try { rmSync(profile, { recursive: true, force: true }); } catch { /* the temporary profile is left for the system to clear */ }
+    }
+
+    // A page that comes back from the back-forward cache after a restore elsewhere reads it afresh.
+    await open(page, '/#/data');
+    await seedCompleteData(page, { list: 'local', theme: 'light', apiBase: 'https://metadata.example.test', sidebar: false });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.evaluate(() => addEventListener('pageshow', (event) => { sessionStorage.setItem('mrt.check.persisted', String(event.persisted)); }));
+    await page.goto(`${origin}/js/app.js`, { waitUntil: 'load' });
+    const other = await page.browserContext().newPage();
+    other.__denyExternal = true;
+    await preparePage(other, origin, page.__mutation);
+    await open(other, '/#/data');
+    await other.waitForFunction(() => !document.querySelector('#restore-complete').disabled);
+    await pickFile(other, '#restore-complete', file);
+    await other.waitForSelector('#ask[open]');
+    await Promise.all([other.waitForNavigation({ waitUntil: 'load' }), click(other, '#ask-ok')]);
+    await other.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+    await other.close();
+    await page.goBack({ waitUntil: 'load' });
+    await page.waitForSelector('#view-data:not([hidden])');
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-theme') === 'dark', { timeout: 15000 });
+    await click(page, '#opt-reading-shortcut');
+    const resumed = await savedComplete(page);
+    const persisted = await page.evaluate(() => sessionStorage.getItem('mrt.check.persisted'));
+    console.log(`COMPLETE-RESTORE back-forward persisted=${persisted ?? 'reloaded'}`);
+    t.check('a page returning from the back-forward cache shows the restored settings and never writes the earlier ones',
+      persisted === 'true' && JSON.parse(resumed['mrt.settings']).theme === 'dark' && JSON.parse(resumed['mrt.settings']).covers === false,
+      `persisted=${persisted} ${resumed['mrt.settings']}`);
+  },
+});
 
 function tally() {
   const rows = [];

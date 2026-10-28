@@ -552,3 +552,17 @@ export async function eraseReaderAndHistory(readerStore, history, { onReaderEras
     readerChanged: cleanup.readerChanged === undefined ? false : cleanup.readerChanged,
   };
 }
+
+// The exact value a complete restore writes for completion history, with its write identity minted
+// once here so the restore journal can replay it. Refused before anything is written, like the rest of
+// a complete restore's preparation.
+export function prepareListHistoryRestore(text, before) {
+  if (before !== null && (typeof before !== 'string' || new TextEncoder().encode(before).length > 4 * MAX_HISTORY_BYTES)) {
+    throw new Error('The prior completion history could not be kept for recovery.');
+  }
+  const records = parseListHistory(text);
+  const value = JSON.stringify({ writeToken: newId('history'), ...envelope(records) });
+  boundedText(value);
+  parseListHistory(value);
+  return { owner: 'history', before, value, effects: [{ key: LIST_HISTORY_KEY, before, value }] };
+}

@@ -54,3 +54,27 @@ test('pending outcome requires unchanged before token and never replays a comple
   assert.equal(pendingOutcome(draft, createEmptyState(), 'other', false), 'unknown');
   assert.equal(after.read[1], 10);
 });
+// A complete backup, for the refusal pins below and nothing else.
+async function completeBackupText() {
+  const { createCompleteBackup } = await import('../src/js/lib/completeBackup.js');
+  const { createEmptyState: empty, exportBackup: exported } = await import('../src/js/lib/model.js');
+  const reader = exported(empty());
+  delete reader.exportedAt;
+  const settings = { covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: true, sidebarCollapsed: null };
+  return (await createCompleteBackup({ reader, history: { format: 'recap-page-list-history', version: 1, records: [] }, settings, draft: null })).text;
+}
+
+// Characterization pin, exempt from fail-first by name: the import-draft restore is unchanged since
+// 4.2.0 and already refuses a complete backup by its format, without a write.
+test('the import-draft restore refuses a complete backup file and writes nothing', async () => {
+  const { Store, ImportDraftStore } = await import('../src/js/storage.js');
+  const map = new Map();
+  const storage = { getItem: (key) => map.get(key) ?? null, setItem: (key, value) => map.set(key, value), removeItem: (key) => map.delete(key) };
+  const reader = new Store({ storage });
+  reader.load();
+  const draft = new ImportDraftStore({ reader, locks: { request: async (_name, operation) => operation() } });
+  const result = await draft.restore(await completeBackupText(), draft.capture());
+  assert.deepEqual([result.ok, result.changed, result.invalid], [false, false, true]);
+  assert.match(result.error, /not a supported import draft file/);
+  assert.equal(map.size, 0);
+});
