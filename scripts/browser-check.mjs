@@ -8868,7 +8868,7 @@ const SCENARIOS = [
       });
       t.check('reading data, completion history and the import draft each keep their download, restore and report together',
         groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
-          && JSON.stringify(groups.order) === JSON.stringify(['Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
         JSON.stringify(groups));
       const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
         const input = document.getElementById(id);
@@ -12048,7 +12048,7 @@ const SCENARIOS = [
       t.check('the switch is labelled and describes its local-only boundary',
         await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.trim() === 'Enable D to mark as read and continue'
           && input.getAttribute('aria-describedby') === 'reading-shortcut-help reading-shortcut-storage-help')
-        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress and backups')));
+        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress, and only a complete backup includes it')));
       await click(page, '#opt-reading-shortcut');
       t.check('off removes shortcut metadata and changes the reference without touching progress',
         disabled(await presentation())

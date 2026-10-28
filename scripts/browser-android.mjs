@@ -4471,6 +4471,131 @@ async function selectionBarCheck(page, label, viewport) {
   console.log(`CHECKED ${label}: selection bar at ${positions.length} scroll positions, form open and keyboard ${keyboard}px`);
 }
 
+// #810: the complete backup through the Android web layer. This harness serves the Android assets to
+// desktop Edge, so its kill is a page reload: the restore's own writes survive it, which leaves the
+// marked row of the recovery table. A browser-process kill, which loses them, is the desktop owner's
+// complete-restore scenario, and a phone's own process kill is not simulated here.
+async function completeBackupAndroidCheck(page, label) {
+  const keys = ['mrt.state.v2', 'mrt.list-history.v1', 'mrt.settings', 'sidebar.collapsed', 'mrt.import.draft.v1'];
+  const saved = () => page.evaluate((names) => Object.fromEntries(names.map((key) => [key, localStorage.getItem(key)])), keys);
+  // The write token and the save time are minted by every save, so they differ by design.
+  const readerOf = (raw) => {
+    const parsed = JSON.parse(raw);
+    delete parsed.writeToken;
+    delete parsed.exportedAt;
+    return JSON.stringify(parsed);
+  };
+  const nativeSave = async (selector) => {
+    const sent = await page.evaluate(() => window.__androidTest.requests.length);
+    await click(page, selector);
+    await page.waitForFunction((count) => window.__androidTest.requests.length > count, {}, sent);
+    return page.evaluate(() => {
+      const request = window.__androidTest.requests.at(-1);
+      window.__androidTest.reply(request, 'saved');
+      return request;
+    });
+  };
+  const pick = (text) => page.evaluate((raw) => {
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([raw], 'recap-page-complete-backup.json', { type: 'application/json' }));
+    const input = document.querySelector('#restore-complete');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, text);
+  const confirmWithReload = () => Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), click(page, '#ask-ok')]);
+
+  await route(page, 'data');
+  await page.waitForFunction(() => !document.querySelector('#btn-export-complete').disabled);
+  const original = await saved();
+  const exported = await nativeSave('#btn-export-complete');
+  let file = null;
+  try { file = JSON.parse(exported.text); } catch { /* reported below */ }
+  check(exported.filename === 'recap-page-complete-backup.json' && exported.type === 'application/json'
+    && file?.format === 'recap-page-complete-backup' && file.components.reader.listOrder.length === 1
+    && file.components.settings.theme === 'dark' && !exported.text.includes('apiBase'),
+  `${label}: the complete backup reaches the native transport as one JSON file holding every component`);
+
+  await page.select('#opt-theme', 'light');
+  await pick(exported.text);
+  await page.waitForSelector('#ask[open]');
+  await measure(page, `${label} complete restore question`);
+  await confirmWithReload();
+  await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Complete backup restored'));
+  // This harness writes its own settings at every page load, so restored settings cannot be read back
+  // after the reload a restore ends in; the desktop round trip reads them.
+  const restored = await saved();
+  const roundTrip = {
+    reader: readerOf(restored['mrt.state.v2']) === readerOf(original['mrt.state.v2']),
+    history: JSON.parse(restored['mrt.list-history.v1'] ?? 'null')?.records?.length === file?.components.history.records.length,
+    sidebar: restored['sidebar.collapsed'] === original['sidebar.collapsed'],
+  };
+  check(Object.values(roundTrip).every(Boolean),
+    `${label}: a complete backup chosen in the picker restores the reading data, history and sidebar choice it holds ${JSON.stringify(roundTrip)}`);
+
+  // A restore stopped part way, then a reload in place of the kill.
+  const other = await page.evaluate(async () => {
+    const { createEmptyState, createList, addIssuesToList, exportBackup } = await import('./js/lib/model.js');
+    const { captureCompleteBackup } = await import('./js/lib/completeBackup.js');
+    let state = createList(createEmptyState(), { id: 'android-restored', name: 'Restored on Android' });
+    state = addIssuesToList(state, 'android-restored', [{ issueId: 7, title: 'Seven' }]).state;
+    const map = new Map([
+      ['mrt.state.v2', JSON.stringify(exportBackup(state))],
+      ['mrt.settings', JSON.stringify({ covers: false, theme: 'light', filter: 'unread', readingShortcut: false, hideDescriptions: false })],
+      ['sidebar.collapsed', 'true'],
+    ]);
+    return (await captureCompleteBackup({ storage: { getItem: (key) => map.get(key) ?? null } })).text;
+  });
+  // The begin makes two journal puts and each checkpoint one, so the fifth fails after three writes.
+  await page.evaluate(() => {
+    const real = IDBObjectStore.prototype.put;
+    let count = 0;
+    IDBObjectStore.prototype.put = function put(...args) {
+      if (this.name === 'journal' && ++count === 5) throw new DOMException('Injected journal failure', 'UnknownError');
+      return real.apply(this, args);
+    };
+  });
+  const prior = await saved();
+  await pick(other);
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
+  await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('stopped part way'));
+  await page.reload({ waitUntil: 'networkidle0' });
+  await page.waitForFunction(() => !document.querySelector('#complete-restore-recovery').hidden, { timeout: 15000 });
+  await page.$eval('#complete-restore-recovery', (node) => node.scrollIntoView({ block: 'center' }));
+  await measure(page, `${label} complete restore recovery`);
+  await screenshot(page, label, 'complete-restore-recovery');
+  const offered = await page.evaluate(() => ({
+    copy: !document.querySelector('#btn-complete-prior-copy').hidden,
+    finish: !document.querySelector('#btn-complete-finish').hidden,
+    prior: !document.querySelector('#btn-complete-restore-prior').hidden,
+    keep: !document.querySelector('#btn-complete-keep').hidden,
+    paused: document.querySelector('#app-report').textContent.includes('did not finish'),
+    marker: localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null,
+  }));
+  check(offered.copy && offered.finish && offered.prior && !offered.keep && offered.paused && offered.marker === 'active',
+    `${label}: after a reload in place of a kill, saving stays paused and recovery offers the prior copy, Finish and Restore prior data ${JSON.stringify(offered)}`);
+  const copy = await nativeSave('#btn-complete-prior-copy');
+  let values = null;
+  try { values = JSON.parse(copy.text).values; } catch { /* reported below */ }
+  check(copy.filename === 'recap-page-complete-restore-prior.json' && keys.every((key) => values?.[key] === prior[key]),
+    `${label}: the exact prior copy reaches the native transport with the bytes from before the restore`);
+  await click(page, '#btn-complete-finish');
+  await page.waitForSelector('#ask[open]');
+  await confirmWithReload();
+  await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('restore is finished'));
+  const finished = await saved();
+  const outcome = {
+    list: JSON.parse(finished['mrt.state.v2']).lists['android-restored']?.name === 'Restored on Android',
+    sidebar: finished['sidebar.collapsed'] === 'true',
+    marker: await page.evaluate(() => localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null),
+    closed: await page.$eval('#complete-restore-recovery', (node) => node.hidden),
+    saving: !(await page.$eval('#app-report', (node) => node.textContent.includes('did not finish'))),
+  };
+  check(outcome.list && outcome.sidebar && outcome.marker === 'done' && outcome.closed && outcome.saving,
+    `${label}: Finish completes the interrupted restore exactly and saving starts again ${JSON.stringify(outcome)}`);
+  console.log(`CHECKED ${label}: complete backup export, picker restore, reload recovery, prior copy and Finish`);
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
@@ -5096,6 +5221,10 @@ try {
       await mkdir(process.env.MRT_ANDROID_SCREENSHOTS, { recursive: true });
       await route(page, 'read');
       await page.screenshot({ path: join(process.env.MRT_ANDROID_SCREENSHOTS, `android-${label}.png`), fullPage: true });
+    }
+    // Once, at the first phone profile: each pass restores twice and reloads three times.
+    if (!onlyArgs.length && !noStyle && viewport.width === 360 && viewport.height === 800 && !viewport.textScale) {
+      await completeBackupAndroidCheck(page, label);
     }
     await page.goto(`${origin}/open.html`, { waitUntil: 'networkidle0' });
     const launch = await page.evaluate(() => ({

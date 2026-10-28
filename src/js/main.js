@@ -126,7 +126,9 @@ const listHistory = new ListHistoryStore({
     else clearNotice('history-save');
   },
 });
-const homeUpdatesSeen = createHomeUpdatesSeen({ storage: store.storage, locks: globalThis.navigator?.locks });
+// The browser's own object, not the guard: Home updates ignores a storage event whose area is not the
+// storage it was given, and its key is not one a complete restore replaces.
+const homeUpdatesSeen = createHomeUpdatesSeen({ storage: globalThis.localStorage, locks: globalThis.navigator?.locks });
 const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the

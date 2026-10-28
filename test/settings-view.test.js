@@ -266,10 +266,8 @@ test('normal reading, history and draft transfers precede exceptional recovery w
   }
   const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
   assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
-  assert.ok(summary.includes('download a complete backup and restore it on the new device'), summary);
-  assert.ok(summary.includes('reading data, completion history, personalization settings and any import draft'), summary);
-  assert.ok(summary.includes('The backups below each hold one kind of data.'), summary);
-  assert.doesNotMatch(summary, /Settings are not included/, 'settings now travel in the complete backup');
+  assert.ok(summary.includes('download a complete backup and restore it there.'), summary);
+  assert.ok(summary.includes('The backups below each hold one kind of data. Settings are not included in them.'), summary);
   assert.match(VIEW, /draft or retained draft source/);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
@@ -343,7 +341,7 @@ function disclosureHolding(fragment, marker) {
 // disclosures that start closed.
 test('restore warnings stay visible with their fields while explanations start closed', () => {
   for (const [fragment, field, hint, warning] of [
-    [VIEW, 'restore-complete', 'restore-complete-hint', 'Restoring replaces all reading data, completion history, personalization settings and the import draft after confirmation. It cannot be undone as a whole.'],
+    [VIEW, 'restore-complete', 'restore-complete-hint', 'Restoring replaces everything it holds after confirmation and cannot be undone as a whole.'],
     [VIEW, 'restore-file', 'restore-file-hint', 'Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces.'],
     [HISTORY, 'restore-history-file', 'restore-history-hint', 'Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.'],
   ]) {

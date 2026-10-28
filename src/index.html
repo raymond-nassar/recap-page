@@ -947,14 +947,14 @@
 
             <section class="setgroup">
               <h2>Data safety</h2>
-              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it on the new device. It holds your reading data, completion history, personalization settings and any import draft. The backups below each hold one kind of data.</p>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it there. The backups below each hold one kind of data. Settings are not included in them.</p>
               <div class="card card-static addpri" id="complete-backup">
                 <h3>Complete backup</h3>
                 <div class="field-row">
                   <button type="button" id="btn-export-complete" class="btn">Download complete backup</button>
                 </div>
                 <label class="backup-restore-label" for="restore-complete">Restore a complete backup</label>
-                <p class="rail-hint" id="restore-complete-hint">Restoring replaces all reading data, completion history, personalization settings and the import draft after confirmation. It cannot be undone as a whole.</p>
+                <p class="rail-hint" id="restore-complete-hint">Restoring replaces everything it holds after confirmation and cannot be undone as a whole.</p>
                 <p class="rail-hint" id="complete-restore-unavailable" hidden></p>
                 <div class="field-row">
                   <input type="file" id="restore-complete" accept="application/json,.json" aria-describedby="restore-complete-hint complete-restore-unavailable complete-backup-report" />
@@ -1052,7 +1052,7 @@
                 </p>
                 <details class="setting-more">
                   <summary>About this preference</summary>
-                  <p class="rail-hint" id="reading-shortcut-storage-help">Done still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
+                  <p class="rail-hint" id="reading-shortcut-storage-help">Done still works. Your choice is kept in this browser, separately from reading progress, and only a complete backup includes it.</p>
                 </details>
                 <div id="reading-shortcut-report" class="results"></div>
               </div>
@@ -1100,7 +1100,7 @@
                     Turn off to show already-fetched summaries without Show and Hide controls.
                     This does not identify spoilers or filter titles and covers.
                     Changing this choice resets individual reveal choices, not fetched text.
-                    The preference is saved in this browser, separately from progress and backups.
+                    The preference is saved in this browser, separately from progress, and only a complete backup includes it.
                   </p>
                 </details>
                 <div id="description-hiding-report" class="results"></div>

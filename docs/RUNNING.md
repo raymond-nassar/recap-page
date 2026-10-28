@@ -321,12 +321,16 @@ paste and manual-entry choices. Search keeps its alternatives in **Other ways to
 and an empty result offers **Add an issue by hand** directly.
 
 Under **Backup & settings**, **Data safety** opens with a short **Moving to another device**
-summary, then gives reading data, completion history and the import draft one group each, with
-its download beside its labelled restore, above exceptional recovery tools. For a complete reading
-and history transfer, download both files and the separate import-draft file when a draft or
-retained draft source is present. Settings are not included; these formats cannot be substituted
-for each other. Each group's longer explanation is in its closed **About** disclosure, and each
-restore warning stays on screen beside its field.
+summary, then a **Complete backup** group, then gives reading data, completion history and the
+import draft one group each, with its download beside its labelled restore, above exceptional
+recovery tools. For a complete transfer, download the complete backup and restore it on the new
+device. It holds reading data, completion history, the **Personalization** choices and any import
+draft, but not the metadata source under **Advanced**, and earlier versions of the app cannot read
+it. The single-kind files leave settings out, and none of these formats can be substituted for
+another. A complete restore asks for other Recap Page tabs to be closed first. If one is
+interrupted, saving waits, and its group offers to finish it, put the earlier data back, or
+download an exact copy of that earlier data. Each group's longer explanation is in its closed
+**About** disclosure, and each restore warning stays on screen beside its field.
 
 Reading-data restore and saved-copy replacement ask for confirmation. The previous exact reading
 data is retained and downloadable. **Undo last restore** is a one-shot offer in the restoring tab.
@@ -379,8 +383,8 @@ To show fetched descriptions without Reveal/Hide controls, turn hiding off in
 setting resets individual choices in both views but keeps fetched text. Turning hiding back on
 starts collapsed again.
 
-Only the boolean preference is saved, separately from progress and backups. If saving fails, a
-warning says it applies to this tab only.
+Only the boolean preference is saved, separately from progress, and only a complete backup includes
+it. If saving fails, a warning says it applies to this tab only.
 
 ### Reviewing earlier comics
 
