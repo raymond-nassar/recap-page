@@ -1539,8 +1539,8 @@
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:552-553|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:552-553",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:559-560|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:559-560",
     "fp": "5513fa894d547460",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
   },

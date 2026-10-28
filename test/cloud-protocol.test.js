@@ -937,6 +937,26 @@ test('a deletion that fails part way says which files remain, and stops at the f
   assert.deepEqual(env.transport.calls, ['list', 'delete'], 'no further deletes after the first refusal');
 });
 
+// A provider may answer not found for a file another device removed after the list. That file is gone,
+// which is what deleting it was for, so neither pruning nor deletion stops on it (stage 1 review, L2).
+test('a delete refused as not found counts as done, for pruning and for deleting this device\'s backups', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (let n = 1; n <= 3; n += 1) {
+    home.mark(n);
+    if (n === 3) env.transport.faults.delete.push('timeout');
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [1, 2, 3], 'pruning lagged once');
+  home.mark(4);
+  env.transport.faults.delete.push('not-found');
+  await protocol.upload(await home.snapshot());
+  assert.deepEqual(env.transport.generations(stream), [1, 3, 4], 'pruning went on past generation 1 and removed generation 2');
+  env.transport.faults.delete.push('not-found');
+  assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 3, failed: [] });
+});
+
 // ------------------------------------------------------------------ with the coordinator
 
 test('under the coordinator, a burst makes one backup at the cadence, opening a list makes none, and a lost reply is a new generation', async () => {

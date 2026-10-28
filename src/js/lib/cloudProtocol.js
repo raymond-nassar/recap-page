@@ -503,6 +503,13 @@ export class CloudBackupProtocol {
     try { await this.transport.delete(id, { connection }); } catch { /* removed by a later backup's pruning */ }
   }
 
+  // A delete refused as not found means the file is already gone, which is what a delete is for, however
+  // the provider says it (stage 1 review, L2). Pruning goes on past it, and deletion counts it as deleted.
+  async remove(id, connection) {
+    try { await this.transport.delete(id, { connection }); }
+    catch (error) { if (error?.code !== 'not-found') throw error; }
+  }
+
   // ---------------------------------------------------------------- one backup
 
   // Per backup: one create, one read, at most one list and at most two deletes, the second only while
@@ -551,7 +558,7 @@ export class CloudBackupProtocol {
     const { known } = await this.listed(connection);
     const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)
       .sort((a, b) => a.generation - b.generation).slice(0, CLOUD_PRUNE_PER_BACKUP);
-    for (const item of stale) await this.transport.delete(item.id, { connection });
+    for (const item of stale) await this.remove(item.id, connection);
     return stale.length;
   }
 
@@ -642,7 +649,7 @@ export class CloudBackupProtocol {
       for (const item of own) {
         if (stopped) { failed.push({ id: item.id, name: item.name, code: stopped }); continue; }
         try {
-          await this.transport.delete(item.id, { connection: named });
+          await this.remove(item.id, named);
           deleted += 1;
         } catch (error) {
           const code = typeof error?.code === 'string' ? error.code : 'transient';

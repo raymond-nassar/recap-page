@@ -683,7 +683,7 @@ naming its stream, generation, device label and time, compressed with gzip, and 
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup then deletes this stream's files older than
-its second-newest verified generation, at `src/js/lib/cloudProtocol.js:552-553`: one delete keeps pace
+its second-newest verified generation, at `src/js/lib/cloudProtocol.js:559-560`: one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
 A connection belongs to the Windows host or the Android app and is shared by every browser profile
