@@ -32,10 +32,22 @@ const HISTORY = sliceElement(
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'completion-history-controls')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'transfer-summary',
+  'complete-backup',
+  'btn-export-complete',
+  'restore-complete',
+  'restore-complete-hint',
+  'complete-restore-unavailable',
+  'complete-backup-report',
+  'complete-restore-recovery',
+  'complete-restore-recovery-status',
+  'btn-complete-prior-copy',
+  'btn-complete-finish',
+  'btn-complete-restore-prior',
+  'btn-complete-keep',
   'btn-export-json',
   'backup-contents',
   'btn-export-md-2',
@@ -248,14 +260,16 @@ test('each report pane hears only about the control it sits with', () => {
 });
 
 test('normal reading, history and draft transfers precede exceptional recovery with independent formats', () => {
-  const order = ['transfer-summary', 'btn-export-json', 'restore-file', 'normal-backup-history', 'btn-export-draft', 'restore-draft', 'salvage-list'];
+  const order = ['transfer-summary', 'btn-export-complete', 'restore-complete', 'btn-export-json', 'restore-file', 'normal-backup-history', 'btn-export-draft', 'restore-draft', 'salvage-list'];
   for (let i = 1; i < order.length; i += 1) {
     assert.ok(idPosition(VIEW, order[i - 1]) < idPosition(VIEW, order[i]), `${order[i - 1]} precedes ${order[i]}`);
   }
   const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
   assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
-  assert.ok(summary.includes('the import draft only if you have one'), summary);
-  assert.ok(summary.includes('Settings are not included.'), summary);
+  assert.ok(summary.includes('download a complete backup and restore it on the new device'), summary);
+  assert.ok(summary.includes('reading data, completion history, personalization settings and any import draft'), summary);
+  assert.ok(summary.includes('The backups below each hold one kind of data.'), summary);
+  assert.doesNotMatch(summary, /Settings are not included/, 'settings now travel in the complete backup');
   assert.match(VIEW, /draft or retained draft source/);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
@@ -274,10 +288,17 @@ test('each backup group keeps its download, labelled restore and report together
   };
   const reading = cardOf('btn-export-json');
   const draft = cardOf('btn-export-draft');
+  const complete = cardOf('btn-export-complete');
   assert.ok(reading && draft && reading !== draft, 'reading data and the import draft are separate groups');
+  assert.ok(complete && complete !== reading && complete.end < reading.start, 'the complete backup is its own group, first');
+  assert.equal(headingText(complete.html, 3), 'Complete backup');
   assert.equal(headingText(reading.html, 3), 'Reading data');
   assert.equal(headingText(draft.html, 3), 'Import draft');
   assert.equal(headingText(HISTORY, 3), 'Completion history');
+  for (const id of ['restore-complete', 'restore-complete-hint', 'complete-restore-unavailable', 'complete-backup-report', 'complete-restore-recovery',
+    'btn-complete-prior-copy', 'btn-complete-finish', 'btn-complete-restore-prior', 'btn-complete-keep']) {
+    assert.equal(cardOf(id), complete, `${id} belongs with the complete-backup download`);
+  }
   for (const id of ['restore-file', 'restore-file-hint', 'btn-undo-restore', 'btn-export-restore-copy', 'restore-copy-summary', 'restore-report', 'backup-contents']) {
     assert.equal(cardOf(id), reading, `${id} belongs with the reading-data download`);
   }
@@ -285,7 +306,7 @@ test('each backup group keeps its download, labelled restore and report together
   for (const id of ['btn-export-history', 'restore-history-file', 'restore-history-hint', 'history-report']) {
     assert.ok(HISTORY.includes(`id="${id}"`), `${id} belongs with the completion-history download`);
   }
-  for (const [fragment, download, field] of [[reading.html, 'btn-export-json', 'restore-file'], [draft.html, 'btn-export-draft', 'restore-draft'],
+  for (const [fragment, download, field] of [[complete.html, 'btn-export-complete', 'restore-complete'], [reading.html, 'btn-export-json', 'restore-file'], [draft.html, 'btn-export-draft', 'restore-draft'],
     [HISTORY, 'btn-export-history', 'restore-history-file']]) {
     assert.ok(idPosition(fragment, download) < fragment.indexOf(`for="${field}"`), `${download} comes before the restore it pairs with`);
     assert.ok(fragment.indexOf(`for="${field}"`) < idPosition(fragment, field), `${field}'s label comes before it`);
@@ -300,7 +321,7 @@ test('each backup group keeps its download, labelled restore and report together
 test('every file input on Backup & settings has a visible associated label', () => {
   const both = VIEW + HISTORY;
   const inputs = openingTags(both, 'input').filter((entry) => getAttribute(entry.open, 'type') === 'file');
-  assert.deepEqual(inputs.map((entry) => getAttribute(entry.open, 'id')).sort(), ['restore-draft', 'restore-file', 'restore-history-file']);
+  assert.deepEqual(inputs.map((entry) => getAttribute(entry.open, 'id')).sort(), ['restore-complete', 'restore-draft', 'restore-file', 'restore-history-file']);
   for (const { open } of inputs) {
     const id = getAttribute(open, 'id');
     const labels = [...both.matchAll(new RegExp(`<label\\b[^>]*\\bfor="${escapeRegExp(id)}"[^>]*>([^<]+)</label>`, 'g'))];
@@ -322,6 +343,7 @@ function disclosureHolding(fragment, marker) {
 // disclosures that start closed.
 test('restore warnings stay visible with their fields while explanations start closed', () => {
   for (const [fragment, field, hint, warning] of [
+    [VIEW, 'restore-complete', 'restore-complete-hint', 'Restoring replaces all reading data, completion history, personalization settings and the import draft after confirmation. It cannot be undone as a whole.'],
     [VIEW, 'restore-file', 'restore-file-hint', 'Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces.'],
     [HISTORY, 'restore-history-file', 'restore-history-hint', 'Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.'],
   ]) {
@@ -358,6 +380,7 @@ test('the local connection control names its status and recovery guidance', () =
 
 test('settings actions use full-size buttons while preserving their hierarchy', () => {
   const expected = new Map([
+    ['btn-export-complete', ['btn']],
     ['btn-export-json', ['btn']],
     ['btn-export-md-2', ['btn', 'btn-g']],
     ['btn-undo-restore', ['btn', 'btn-g']],

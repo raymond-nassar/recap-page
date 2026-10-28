@@ -164,6 +164,7 @@ export function createDataView({
   draftFileRefusal,
   onExportDraft,
   onRestoreDraft,
+  getRecoveryCopy = null,
   eraseHistory = false,
 }) {
   let restoring = false;
@@ -418,9 +419,16 @@ export function createDataView({
       let cancelled = false;
       const draftExpected = captureDraft?.();
       try {
+        // Asked of the journal itself, so the question names a recovery copy only while one is held:
+        // true names it, false leaves it out, and null says the app could not check.
+        let recoveryCopy = false;
+        try { recoveryCopy = getRecoveryCopy ? await getRecoveryCopy() : false; } catch { recoveryCopy = null; }
+        const recovery = recoveryCopy === null
+          ? ' The app could not check for a recovery copy kept by a complete restore. If there is one, it is erased too.'
+          : recoveryCopy ? ' The recovery copy kept by a complete restore is erased too.' : '';
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.`,
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${recovery}`,
           confirmLabel: 'Erase everything',
           danger: true,
         });
@@ -443,4 +451,192 @@ export function createDataView({
     renderLocalConnectionStatus,
     renderRestoreOffer,
   };
+}
+
+// ------------------------------------------------------------------ complete backup
+//
+// The Complete backup card: one file holding every kind of saved data, its restore, and the recovery
+// section an interrupted restore leaves behind. Like the rest of this module it checks locally and
+// hands every change to an injected callback, so it never touches storage or the restore engine.
+//
+// The restore question wears the danger appearance because a finished complete restore cannot be undone
+// as a whole: its recovery copy is for an interrupted restore, not an Undo. Putting the earlier data
+// back during recovery does not, because the backup file is still there to restore again.
+
+function plural(count, one, many = `${one}s`) {
+  return `${count} ${count === 1 ? one : many}`;
+}
+
+export function completeRestoreQuestion({ lists, records, draft }) {
+  return `This replaces your reading data (${plural(lists, 'list')}), completion history (${plural(records, 'record')}), `
+    + `personalization settings and the import draft${draft ? ', with the one in this file' : ', with none, because this file has none'}. `
+    + 'A finished complete restore cannot be undone as a whole, so download a complete backup first if you might want the current data back. '
+    + 'Close any other Recap Page tabs and windows first, including ones running an older version.';
+}
+
+export function createCompleteBackupView({
+  elements, askConfirm, notify, getState, onExport, parse, summarize, fileRefusal,
+  onRestore, onRecover, onKeepCurrent, onDownloadPrior, onFinished,
+}) {
+  let working = false;
+  let validation = null;
+  const report = (message, kind = 'error') => notify('#complete-backup-report', message, kind);
+
+  function render(state = getState()) {
+    const nodes = elements();
+    if (!nodes.card) return;
+    const recovery = state.recovery;
+    // A file made while a restore is running or waiting for recovery would mix two moments.
+    nodes.download.disabled = working || !['open', 'unavailable'].includes(state.phase);
+    nodes.restore.disabled = working || !state.available;
+    nodes.unavailable.hidden = !state.unavailableReason;
+    nodes.unavailable.textContent = state.unavailableReason ?? '';
+    nodes.recovery.hidden = !recovery;
+    nodes.status.textContent = recovery?.message ?? '';
+    nodes.priorCopy.hidden = !recovery?.download;
+    nodes.finish.hidden = !recovery?.canFinish;
+    nodes.restorePrior.hidden = !recovery?.canRestorePrior;
+    nodes.keep.hidden = !recovery?.canKeep;
+    for (const button of [nodes.priorCopy, nodes.finish, nodes.restorePrior, nodes.keep]) {
+      button.disabled = working || state.busy;
+    }
+  }
+
+  // The control that started an action is disabled while it runs, so the shared question cannot hand
+  // focus back to it when it closes. It is handed back here once the control is usable again.
+  async function run(action) {
+    if (working) return;
+    const opener = globalThis.document?.activeElement ?? null;
+    working = true;
+    render();
+    try { await action(); }
+    finally {
+      working = false;
+      render();
+      const lost = !globalThis.document?.activeElement || globalThis.document.activeElement === globalThis.document.body;
+      if (lost && opener?.isConnected && !opener.disabled && !opener.closest?.('[hidden]')) opener.focus();
+    }
+  }
+
+  function exportBackup() {
+    return run(async () => {
+      try { await onExport(); }
+      catch (error) { report(`The complete backup was not made. ${error.message}`); }
+    });
+  }
+
+  async function restoreFile(event) {
+    const field = event.target;
+    const file = field.files?.[0];
+    if (!file || working) return;
+    const refusal = fileRefusal(file);
+    if (refusal) {
+      validation.fail(refusal);
+      field.value = '';
+      return;
+    }
+    let cancelled = false;
+    await run(async () => {
+      try {
+        const text = await file.text();
+        let backup;
+        try { backup = await parse(text); }
+        catch (error) {
+          validation.fail(`Nothing was changed. ${error.message}`);
+          return;
+        }
+        const yes = await askConfirm({
+          title: 'Replace all saved data with this complete backup?',
+          body: completeRestoreQuestion(summarize(backup)),
+          confirmLabel: 'Restore complete backup',
+          danger: true,
+        });
+        if (!yes) { cancelled = true; return; }
+        validation.clear();
+        const result = await onRestore(text);
+        if (result.ok) { onFinished('Complete backup restored. Any import draft from it waits in Search for your review.'); return; }
+        if (result.invalid) { validation.fail(`Nothing was changed. ${result.error}`); return; }
+        report(result.changed === false ? `Nothing was replaced. ${result.error}`
+          : `The restore stopped part way. ${result.error}`);
+      } catch (error) {
+        report(`The backup file could not be read (${error.message}). Nothing was changed.`);
+      } finally {
+        field.value = '';
+      }
+    });
+    // Cancel leaves the restore unapplied and the reader where they chose the file.
+    if (cancelled && field.isConnected && !field.disabled) field.focus();
+  }
+
+  function recover(direction) {
+    const finish = direction === 'forward';
+    return run(async () => {
+      // Two questions rather than one with a computed style: finishing cannot be taken back as a whole,
+      // while putting the earlier data back can, because the backup file is still there to restore.
+      let yes;
+      if (finish) {
+        yes = await askConfirm({
+          title: 'Finish the complete restore?',
+          body: 'This writes the rest of the restored data. A finished complete restore cannot be undone as a whole, so download the exact prior copy first if you might want the earlier data.',
+          confirmLabel: 'Finish restore',
+          danger: true,
+        });
+      } else {
+        yes = await askConfirm({
+          title: 'Put the earlier data back?',
+          body: 'This writes back exactly the data from before the restore. The backup file you restored from is unchanged, so you can restore it again later.',
+          confirmLabel: 'Restore prior data',
+        });
+      }
+      if (!yes) return;
+      const result = await onRecover(direction);
+      if (result.ok) {
+        onFinished(finish ? 'The complete restore is finished. Any import draft from it waits in Search for your review.'
+          : 'The earlier data is back, and saving has started again.');
+        return;
+      }
+      report(result.error);
+    });
+  }
+
+  function keepCurrent() {
+    return run(async () => {
+      const yes = await askConfirm({
+        title: 'Keep the data that is here now?',
+        body: 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data. The recovery copy is deleted, so download the exact prior copy first if you might need it.',
+        confirmLabel: 'Keep current data',
+        danger: true,
+      });
+      if (!yes) return;
+      const result = await onKeepCurrent();
+      if (result.ok) { onFinished('Recovery ended. Saving has started again with the data that was here.'); return; }
+      report(result.error);
+    });
+  }
+
+  function downloadPrior() {
+    return run(async () => {
+      try { await onDownloadPrior(); }
+      catch (error) { report(`The prior copy could not be downloaded. ${error.message}`); }
+    });
+  }
+
+  function wire() {
+    const nodes = elements();
+    if (!nodes.card) return;
+    validation = wireFieldValidation({
+      field: nodes.restore, reportId: 'complete-backup-report',
+      reportError: (message) => report(message),
+      invalidMessage: 'Choose a complete backup file from this app.',
+    });
+    nodes.download.addEventListener('click', () => { void exportBackup(); });
+    nodes.restore.addEventListener('change', (event) => { void restoreFile(event); });
+    nodes.priorCopy.addEventListener('click', () => { void downloadPrior(); });
+    nodes.finish.addEventListener('click', () => { void recover('forward'); });
+    nodes.restorePrior.addEventListener('click', () => { void recover('prior'); });
+    nodes.keep.addEventListener('click', () => { void keepCurrent(); });
+    render();
+  }
+
+  return { wire, render };
 }

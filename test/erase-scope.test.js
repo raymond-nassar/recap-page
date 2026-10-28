@@ -71,6 +71,12 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
     renderAll() {},
     draftExpected: null,
     importDraft: { discard: async () => h.draftResult ?? ({ ok: true, changed: true }) },
+    // The restore engine's erase runs the user-data erase it is handed, then any recovery copy.
+    completeRestore: {
+      erase: async (operation) => (h.restoreErase
+        ? h.restoreErase(operation)
+        : { ok: true, erased: await operation(), copyRemoved: false }),
+    },
     notify: (...args) => calls.notify.push(args),
     announce: (message) => calls.announce.push(message),
   };
@@ -429,4 +435,38 @@ test('the erase route repaints the salvage list, and does it before it speaks', 
   const speak = src.indexOf('const outcome = eraseOutcome(');
   assert.ok(repaint !== -1, 'the erase route has to rebuild the list it now describes');
   assert.ok(repaint < speak, 'and rebuild it before describing it, or the two disagree on screen');
+});
+
+// A complete restore can leave a recovery copy, and erase reaches it in every state: after the user
+// data, never before, and with nothing erased when the restore engine refuses (another tab holds the
+// restore lock). A copy that could not be removed is reported rather than passed over.
+test('erase removes a complete restore\'s recovery copy only after the user data, and erases nothing when refused', async () => {
+  const h = eraseFixture();
+  const lists = () => JSON.parse(h.storage.getItem(KEY)).listOrder.length;
+  const order = [];
+  h.restoreErase = async (operation) => {
+    order.push(['before', lists()]);
+    const erased = await operation();
+    order.push(['recovery copy removed after', lists(), erased]);
+    return { ok: true, erased, copyRemoved: true };
+  };
+  await h.run();
+  assert.deepEqual(order, [['before', 1], ['recovery copy removed after', 0, true]]);
+  assert.deepEqual(h.calls.announce, ['All local data erased.']);
+
+  const refused = eraseFixture();
+  const held = refused.storage.getItem(KEY);
+  refused.restoreErase = async () => ({ ok: false, erased: false, error: 'Close other Recap Page tabs, then try again.' });
+  await refused.run();
+  assert.equal(refused.storage.getItem(KEY), held);
+  assert.equal(refused.calls.cache.length, 0);
+  assert.equal(refused.calls.notify.at(-1)[1], 'Nothing was erased. Close other Recap Page tabs, then try again.');
+
+  const kept = eraseFixture();
+  kept.restoreErase = async (operation) => ({
+    ok: true, erased: await operation(), copyRemoved: false, error: 'The recovery copy could not be removed. It is still kept.',
+  });
+  await kept.run();
+  assert.match(kept.calls.notify.at(-1)[1], /^All local data erased\. The recovery copy could not be removed\. It is still kept\.$/);
+  assert.equal(kept.calls.notify.at(-1)[2], 'warn');
 });

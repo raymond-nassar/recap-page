@@ -947,7 +947,35 @@
 
             <section class="setgroup">
               <h2>Data safety</h2>
-              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download each backup below, the import draft only if you have one, and restore each on the new device. Settings are not included.</p>
+              <p class="rail-hint setgroup-note" id="transfer-summary"><strong>Moving to another device:</strong> download a complete backup and restore it on the new device. It holds your reading data, completion history, personalization settings and any import draft. The backups below each hold one kind of data.</p>
+              <div class="card card-static addpri" id="complete-backup">
+                <h3>Complete backup</h3>
+                <div class="field-row">
+                  <button type="button" id="btn-export-complete" class="btn">Download complete backup</button>
+                </div>
+                <label class="backup-restore-label" for="restore-complete">Restore a complete backup</label>
+                <p class="rail-hint" id="restore-complete-hint">Restoring replaces all reading data, completion history, personalization settings and the import draft after confirmation. It cannot be undone as a whole.</p>
+                <p class="rail-hint" id="complete-restore-unavailable" hidden></p>
+                <div class="field-row">
+                  <input type="file" id="restore-complete" accept="application/json,.json" aria-describedby="restore-complete-hint complete-restore-unavailable complete-backup-report" />
+                </div>
+                <div id="complete-backup-report" class="results" tabindex="-1"></div>
+                <section id="complete-restore-recovery" aria-labelledby="complete-restore-recovery-h" hidden>
+                  <h4 id="complete-restore-recovery-h">Unfinished complete restore</h4>
+                  <p class="rail-hint" id="complete-restore-recovery-status"></p>
+                  <div class="field-row">
+                    <button type="button" id="btn-complete-prior-copy" class="btn btn-g">Download exact prior copy</button>
+                    <button type="button" id="btn-complete-finish" class="btn btn-g">Finish restore</button>
+                    <button type="button" id="btn-complete-restore-prior" class="btn btn-g">Restore prior data</button>
+                    <button type="button" id="btn-complete-keep" class="btn btn-g">Keep the data that is here now</button>
+                  </div>
+                </section>
+                <details class="setting-more">
+                  <summary>About complete backups</summary>
+                  <p class="rail-hint" id="complete-backup-contents">A complete backup holds everything the three backups below hold, plus cover art, theme, reading filter, reading shortcut, story summary and sidebar choices. The metadata source under Advanced is not included, so a backup can never change which service the app asks for comic details.</p>
+                  <p class="rail-hint">Versions before this one cannot read a complete backup. Close other Recap Page tabs before restoring one; if a restore is interrupted, this card offers to finish it or put the earlier data back.</p>
+                </details>
+              </div>
               <div class="card card-static addpri">
                 <h3>Reading data</h3>
                 <div class="field-row">

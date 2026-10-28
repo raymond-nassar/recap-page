@@ -1752,3 +1752,26 @@ test('an erase that lands turns a live copy into one the reader can remove', () 
     'so the copy is removable now and was not a moment ago, which is a row that has to be repainted',
   );
 });
+// A complete backup, for the refusal pins below and nothing else.
+async function completeBackupText() {
+  const { createCompleteBackup } = await import('../src/js/lib/completeBackup.js');
+  const { createEmptyState: empty, exportBackup: exported } = await import('../src/js/lib/model.js');
+  const reader = exported(empty());
+  delete reader.exportedAt;
+  const settings = { covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: true, sidebarCollapsed: null };
+  return (await createCompleteBackup({ reader, history: { format: 'recap-page-list-history', version: 1, records: [] }, settings, draft: null })).text;
+}
+
+// Characterization pin, exempt from fail-first by name: the reading-data restore is unchanged since
+// 4.2.0 and already refuses a complete backup, which has no schemaVersion of its own, without a write.
+test('the reading-data restore refuses a complete backup file and writes nothing', async () => {
+  const storage = fakeStorage();
+  const store = new Store({ storage });
+  store.load();
+  store.update((state) => createList(state, { name: 'Kept' }));
+  const before = new Map(storage.map);
+  const result = store.restore(await completeBackupText());
+  assert.deepEqual([result.ok, result.changed, result.invalid], [false, false, true]);
+  assert.match(result.errors.join(' '), /Missing schemaVersion/);
+  assert.deepEqual(storage.map, before);
+});

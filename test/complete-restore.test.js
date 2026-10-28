@@ -267,11 +267,12 @@ test('a restore journals and reads back before its marker, writes in order, and 
 test('saving through the guard pauses during a restore and is refused before the lock answer, never run unguarded', async () => {
   const env = environment();
   const tab = env.make();
+  const original = env.storage.map.get(KEY);
   assert.throws(() => tab.storage.setItem(SETTINGS_KEY, '{}'), /checking its other tabs|not saved/i, 'nothing writes before start');
   const settled = tab.start();
   assert.equal(tab.state.phase, 'pending');
   assert.throws(() => tab.storage.setItem(KEY, '{}'), /checking its other tabs/, 'a guarded write before the answer is not run');
-  assert.equal(env.storage.map.get(KEY), localEntries()[0][1]);
+  assert.equal(env.storage.map.get(KEY), original);
   tab.storage.setItem('mrt.cache-purge.v1', '1');
   assert.equal(env.storage.map.get('mrt.cache-purge.v1'), '1', 'keys a restore never replaces are not guarded');
   await settled;

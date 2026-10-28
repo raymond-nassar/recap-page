@@ -20,7 +20,7 @@ import {
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
-import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY } from './storage.js';
+import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
 import { createListRecommendationResolver } from './lib/listRecommendations.js';
 import { createCompletionView } from './views/completion.js';
@@ -66,17 +66,25 @@ import { createPreviewView } from './views/preview.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
 import { createAddView, persistSearchSelection } from './views/add.js';
-import { createDataView, eraseOutcome } from './views/data.js';
+import { createDataView, createCompleteBackupView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
 import { saveDownload, downloadMessage } from './lib/download.js';
 import { setIssueRating } from './lib/model.js';
 import { createIssueRatingView } from './views/issue-rating.js';
 import { holdDialogEdges } from './lib/dialogShell.js';
+import { CompleteRestore, PRIOR_COPY_FILENAME, RESTORE_MESSAGES } from './lib/completeRestore.js';
+import {
+  captureCompleteBackup, parseCompleteBackup, completeBackupFileRefusal, completeBackupSummary, COMPLETE_BACKUP_FILENAME,
+} from './lib/completeBackup.js';
 
-const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
-const SIDEBAR_KEY = 'sidebar.collapsed';
+// Made before any owner of saved data, so the first write any of them attempts already passes its
+// guard. Static, so the offline copy of the app always holds the recovery path a crash may need.
+const completeRestore = new CompleteRestore();
+// Every read and write of saved data below goes through the guard. Reads pass straight through;
+// writes to what a complete restore replaces wait until no restore is running or waiting for recovery.
+const localStorage = completeRestore.storage ?? globalThis.localStorage;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -93,6 +101,7 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // report was previously discarded here, so the UI would announce "marked read" while the row
 // silently reverted on the next paint.
 const store = new Store({
+  storage: localStorage,
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
@@ -461,7 +470,19 @@ export async function writeCachePurgeMark(
   });
 }
 
+// Boot's own settings writes, the reading filter it repairs or takes from the address, run before the
+// tab lock has answered, when nothing may write. Each is made once the answer arrives, from the
+// settings as they are then, and dropped if a restore elsewhere means this tab is about to reload.
+let settingsSaveDeferred = null;
+
 function saveSettings() {
+  if (completeRestore.state.phase === 'pending') {
+    settingsSaveDeferred ??= completeRestore.settled.then(() => {
+      settingsSaveDeferred = null;
+      if (completeRestore.writable()) saveSettings();
+    });
+    return true;
+  }
   // Only the real settings are written. rejectedApiBase is a report about this boot, and
   // persisting it would turn a one-off complaint into part of the stored record.
   //
@@ -678,6 +699,10 @@ function reportBlockedLegacyCleanup({ activeCleared }) {
 }
 
 async function runCachePurge() {
+  // Its first write can come before the tab lock answers, so it waits for the answer, and a start
+  // that is paused for a restore leaves the cleanup to the next one.
+  await completeRestore.settled;
+  if (!completeRestore.writable()) return;
   const marker = cachePurgeMark(localStorage);
   sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY), {
     adoptCurrent: true,
@@ -2222,21 +2247,33 @@ const dataView = createDataView({
       notify('#cache-report', `Cached metadata could not be cleared (${err?.message ?? err}).`, 'error');
     }
   },
+  getRecoveryCopy: () => completeRestore.recoveryCopyHeld(),
   eraseHistory: true,
   onErase: async (draftExpected) => {
-    const result = await eraseReaderAndHistory(store, listHistory, {
-      onReaderErased: () => {
-        readerLinkView.reconcile({ changed: true });
-        readingView.forgetDeleted();
-      },
+    // User data first, then any recovery copy a complete restore kept, which the restore engine removes
+    // in cleanup order. While a recovery is pending, this is the one change allowed past the pause.
+    let result = null;
+    let draftRemoved = null;
+    const erasure = await completeRestore.erase(async () => {
+      result = await eraseReaderAndHistory(store, listHistory, {
+        onReaderErased: () => {
+          readerLinkView.reconcile({ changed: true });
+          readingView.forgetDeleted();
+        },
+      });
+      if (result.readerErased === true) draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
+      return result.readerErased === true;
     });
+    if (!result) {
+      notify('#save-report', `Nothing was erased. ${erasure.error}`, 'error');
+      return;
+    }
     let cacheFailure = null;
     let historyKept = result.historyKept;
     let snapshotKept = result.snapshotKept;
     let readerChanged = result.readerChanged;
     let draftKept = null;
     if (result.readerErased === true) {
-      const draftRemoved = await importDraft.discard(draftExpected, { readerRaw: result.readerRaw });
       if (!draftRemoved.ok) notify('#save-report', `Reading data was erased, but import draft cleanup did not finish. ${draftRemoved.error}`, 'error', 'import-draft-save');
       try {
         if (await cache.clear() !== true) {
@@ -2280,10 +2317,72 @@ const dataView = createDataView({
     const outcome = eraseOutcome(snapshotKept, store.salvageCopies(), {
       historyKept, readerChanged, cacheFailure, currentFacts: true, draftKept,
     });
-    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false) notify('#save-report', outcome, 'warn');
+    const copyKept = erasure.error ? ` ${erasure.error}` : '';
+    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure || draftKept !== false || copyKept) notify('#save-report', `${outcome}${copyKept}`, 'warn');
     else announce(outcome);
   },
 });
+
+// The Complete backup card. A restore and each recovery action end in a reload, so every owner and view
+// reads the restored data afresh and the reading-data card offers the saved copy, not an Undo of a
+// restore this page never ran.
+const completeBackupView = createCompleteBackupView({
+  elements: () => ({
+    card: $('#complete-backup'), download: $('#btn-export-complete'), restore: $('#restore-complete'),
+    unavailable: $('#complete-restore-unavailable'), recovery: $('#complete-restore-recovery'),
+    status: $('#complete-restore-recovery-status'), priorCopy: $('#btn-complete-prior-copy'),
+    finish: $('#btn-complete-finish'), restorePrior: $('#btn-complete-restore-prior'), keep: $('#btn-complete-keep'),
+  }),
+  askConfirm,
+  notify,
+  getState: () => completeRestore.state,
+  onExport: async () => {
+    const { text } = await captureCompleteBackup({ storage: localStorage });
+    const result = await download(COMPLETE_BACKUP_FILENAME, text, 'application/json');
+    if (result) announce(downloadMessage(result, 'Complete backup'));
+  },
+  parse: (text) => parseCompleteBackup(text),
+  summarize: completeBackupSummary,
+  fileRefusal: completeBackupFileRefusal,
+  onRestore: (text) => completeRestore.restore(text, { draftRecovery: importDraft.recovery.slice() }),
+  onRecover: (direction) => completeRestore.recover(direction),
+  onKeepCurrent: () => completeRestore.keepCurrent(),
+  onDownloadPrior: async () => {
+    const result = await download(PRIOR_COPY_FILENAME, await completeRestore.exportPrior(), 'application/json');
+    if (result) announce(downloadMessage(result, 'Exact prior copy'));
+  },
+  onFinished: reloadWithNotice,
+});
+
+const COMPLETE_RESTORE_NOTICE = 'complete-restore';
+
+// Said in the pane that follows the reader between views, because a pause stops saving everywhere.
+function renderCompleteRestore(state) {
+  completeBackupView.render(state);
+  if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
+    notify('#app-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
+  } else clearNotice(COMPLETE_RESTORE_NOTICE);
+  // Background fetches save as they go, and every one of those saves would be refused while paused.
+  if (state.phase === 'paused') {
+    hydrator.cancel();
+    synopsisRunner.cancel();
+  }
+}
+
+function reloadWithNotice(message) {
+  try { globalThis.sessionStorage?.setItem(RESTORE_NOTICE_KEY, message); } catch { /* the reload still shows the result */ }
+  globalThis.location?.reload();
+}
+
+function takeRestoreNotice() {
+  try {
+    const message = globalThis.sessionStorage?.getItem(RESTORE_NOTICE_KEY) ?? null;
+    globalThis.sessionStorage?.removeItem(RESTORE_NOTICE_KEY);
+    return message;
+  } catch {
+    return null;
+  }
+}
 
 // Deliberately not announced and not a live region. The only change here worth hearing is the one
 // after Clear cached metadata, and that handler already speaks through notify(), so a live region
@@ -2757,6 +2856,15 @@ function renderAll() {
 // boot call is a ReferenceError rather than an undefined, because the temporal dead zone does
 // not hoist the way function declarations do.
 export function boot() {
+  // The marker alone decides, synchronously, whether saving starts paused; the tab lock is requested
+  // here and answered a few milliseconds after this function returns. Nothing waits for it to draw,
+  // but nothing can be operated before it either, because no change could be saved yet.
+  completeRestore.start();
+  const shell = $('#shell');
+  if (shell && completeRestore.state.phase === 'pending') {
+    shell.inert = true;
+    void completeRestore.settled.then(() => { shell.inert = false; });
+  }
   setInterval(renderQueue, 1000);
 
   progressView.wire();
@@ -2775,6 +2883,9 @@ export function boot() {
   globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
   dataView.wire();
+  completeBackupView.wire();
+  completeRestore.subscribe(renderCompleteRestore);
+  renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
@@ -2786,17 +2897,29 @@ export function boot() {
   completionView.wire();
   listHistory.load();
   renderAll();
-  // The address bar is now allowed to be written, but not before: renderAll has just run once, and
-  // an ungated sync inside it would have overwritten the incoming hash before it was read.
-  routeReady = true;
   // A reader with nothing to read has no reading view to show, so the landing page is where
   // they start. One with an active list resumes it, which is the whole point of the app.
   // An address that names a view wins over both, which is what makes a bookmark, a shared link and
   // a reload land where they say they will. focus:false either way, so arriving at the page never
   // takes focus off the document the reader has not started interacting with yet.
   const bootRoute = parseRoute(location.hash);
-  if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
-  else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
+  const startRoute = () => {
+    // The address bar is now allowed to be written, but not before: renderAll has just run once, and
+    // an ungated sync inside it would have overwritten the incoming hash before it was read.
+    routeReady = true;
+    if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
+    else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
+  };
+  // An address naming a list other than the active one saves that choice, so it waits for the tab
+  // lock's answer like every other write, with the address left exactly as it arrived until then.
+  const choosesList = Boolean(bootRoute?.listId) && bootRoute.listId !== activeListId()
+    && Object.hasOwn(store.state.lists, bootRoute.listId);
+  if (choosesList && completeRestore.state.phase === 'pending') void completeRestore.settled.then(startRoute);
+  else startRoute();
+  // The deferred journal read, after the first render, so a start with nothing pending never waits.
+  void completeRestore.settled.then(() => completeRestore.inspect());
+  const restoreNotice = takeRestoreNotice();
+  if (restoreNotice) notify('#complete-backup-report', restoreNotice, 'ok');
 
   // Back and Forward arrive here, as does anyone editing the address by hand. A hash that is not one
   // of ours is left entirely alone: index.html ships a skip link to #main, and answering that with a

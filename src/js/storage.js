@@ -1148,6 +1148,9 @@ export const SIDEBAR_KEY = 'sidebar.collapsed';
 export const RESTORE_MARKER_KEY = 'mrt.complete-restore.v1';
 export const RESTORE_LOCK = 'mrt.complete-restore.lock.v1';
 export const RESTORE_DATABASE = 'mrt-complete-restore-v1';
+// In sessionStorage, not localStorage: the one message a finished restore leaves for the reload it asks
+// for, read and removed by that reload.
+export const RESTORE_NOTICE_KEY = 'mrt.complete-restore.notice';
 export const READER_RESTORE_KEYS = Object.freeze({ main: KEY, snapshot: PRERESTORE_KEY, temporary: TEMP_KEY });
 
 // Prior values are only kept, never parsed or restored by the single-kind paths, so they are held to

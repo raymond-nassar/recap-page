@@ -594,3 +594,27 @@ test('history cleanup verifies absence and refuses unavailable or changed erase 
   assert.equal(unknown.readerChanged, null);
   assert.equal(unknown.historyKept, true);
 });
+// A complete backup, for the refusal pins below and nothing else.
+async function completeBackupText() {
+  const { createCompleteBackup } = await import('../src/js/lib/completeBackup.js');
+  const { createEmptyState: empty, exportBackup: exported } = await import('../src/js/lib/model.js');
+  const reader = exported(empty());
+  delete reader.exportedAt;
+  const settings = { covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: true, sidebarCollapsed: null };
+  return (await createCompleteBackup({ reader, history: { format: 'recap-page-list-history', version: 1, records: [] }, settings, draft: null })).text;
+}
+
+// Characterization pin, exempt from fail-first by name: the completion-history restore is unchanged
+// since 4.2.0 and already refuses a complete backup by its format, without a write.
+test('the completion-history restore refuses a complete backup file and writes nothing', async () => {
+  const storage = memoryStorage();
+  const reader = new Store({ storage });
+  reader.load();
+  const history = new ListHistoryStore({ readerStore: reader, locks: { request: async (_name, operation) => operation() } });
+  history.load();
+  const before = new Map(storage.map);
+  const result = await history.restore(await completeBackupText());
+  assert.equal(result.ok, false);
+  assert.match(result.error, /not a supported completion-history backup/);
+  assert.deepEqual(storage.map, before);
+});
