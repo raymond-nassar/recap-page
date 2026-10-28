@@ -9,9 +9,11 @@
 //
 // This file is intentionally tiny. Anything added here is code no test can reach, because this
 // is the one module that a test cannot import without starting the app.
-import { boot } from './main.js';
+import { boot, notify } from './main.js';
 import { registerOffline } from './lib/offline.js';
+import { wireInstallation } from './lib/install.js';
 
+wireInstallation({ notify });
 boot();
 
 // After boot, and the order is the whole of the reasoning. Registering the offline worker is a

@@ -125,7 +125,7 @@ export function registerOffline(scope = globalThis) {
   // and warming again would be a second download of every file on every visit forever.
   const controlledOnArrival = Boolean(nav.serviceWorker.controller);
 
-  return nav.serviceWorker.register(WORKER_URL)
+  return nav.serviceWorker.register(WORKER_URL, { updateViaCache: 'none' })
     .then(() => {
       if (controlledOnArrival) return { ok: true, reason: null, warmed: 0 };
       return warmShell(scope).then((warm) => ({ ok: true, reason: null, warmed: warm.warmed }));

@@ -12,11 +12,16 @@ The desktop source has three pages at one origin, each loading one module: the t
 `src/index.html:1476`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
-The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
+The tracker entry wires optional installation, calls `boot()` and registers the offline worker at
+`src/js/app.js:12-26`.
 Separating startup lets tests import view functions without booting the app. The external module
 also satisfies `script-src 'self'`; inline startup code would require a content security policy change.
 
 The browser loads ES modules directly from `src/`, without bundling or transpilation.
+The existing standalone manifest retains its root identity, launch address, scope and app icons.
+Installation uses the browser's deferred prompt only after a deliberate button press in Connectivity
+settings. Unsupported browsers and installed standalone windows have no install offer.
+No account, storage migration or native wrapper is introduced.
 
 ## The module graph, drawn as ownership
 
@@ -465,9 +470,12 @@ older tab blocks it. IndexedDB restrictions and the separate `file://`, `localho
 **The offline shell uses a different browser store for a different job.** Cache API cache
 `mrt-offline-v2` stores successful 200 responses to same-origin GET requests the worker handles,
 including the warmed app shell and later requested bundled payloads. The worker rejects other
-origins before opening that cache, at `src/sw.js:61-73`, so Marvel covers and metadata responses
-cannot enter it. Network is always tried first, and each successful response replaces its cached
-copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:76-166`.
+origins before opening that cache, at `src/sw.js:61-74`, so Marvel covers and metadata responses
+cannot enter it. Network is always tried first, and each cacheable successful response replaces its cached
+copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-168`.
+Requests marked `no-store` bypass the worker, and responses marked `no-store` are not stored.
+Worker registration bypasses HTTP caching for update checks. App files remain network first:
+reload or relaunch adopts updated served files without forcibly interrupting an open document.
 There is no in-app control that clears this cache. Activation removes older `mrt-offline-*`
 generations but leaves the current one in place, at `src/sw.js:46-58`.
 

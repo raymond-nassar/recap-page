@@ -165,6 +165,7 @@ export default [
       'scripts/browser-selection-bar.mjs',
       'scripts/browser-category-accents.mjs',
       'scripts/browser-theme-color.mjs',
+      'scripts/browser-pwa.mjs',
       'scripts/browser-progress-glance.mjs',
       'scripts/browser-axe.mjs',
       'scripts/lib/painted-contrast.mjs',

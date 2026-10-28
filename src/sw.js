@@ -70,6 +70,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   if (url.origin !== self.location.origin) return;
+  if (request.cache === 'no-store') return;
   event.respondWith(networkThenCache(event));
 });
 
@@ -157,6 +158,7 @@ async function remember(request, response) {
   // and a 204 or a 205 has nothing in it worth keeping. Our server sends none of the three
   // today, which is a reason to write the guard rather than a reason to leave it out.
   if (response.status !== 200) return;
+  if (/(?:^|,)\s*no-store\s*(?:,|$)/i.test(response.headers?.get('cache-control') || '')) return;
   try {
     const cache = await self.caches.open(CACHE);
     await cache.put(request, response);

@@ -120,7 +120,7 @@ async function loadWorker(world) {
 
 function fireFetch(world, url, init = {}) {
   globalThis.self = world;
-  const request = { url, method: init.method ?? 'GET' };
+  const request = { url, method: init.method ?? 'GET', cache: init.cache };
   let answered = null;
   world.listeners.get('fetch')({
     request,
@@ -166,6 +166,21 @@ test('a request to another origin is left entirely alone, so no cover byte can b
 test('a request that is not a GET is left alone', async () => {
   const world = await loadWorker(makeWorld());
   assert.equal(fireFetch(world, `${ORIGIN}/`, { method: 'POST' }), null);
+});
+
+test('no-store requests bypass the worker, including its offline fallback', async () => {
+  const world = await loadWorker(makeWorld());
+  assert.equal(fireFetch(world, `${ORIGIN}/private`, { cache: 'no-store' }), null);
+  assert.deepEqual(world.caches.calls.opened, []);
+});
+
+test('a no-store response is returned without putting dynamic data in the offline cache', async () => {
+  const response = makeResponse();
+  response.clone = () => ({ ...makeResponse(), headers: new Headers({ 'cache-control': 'private, no-store' }) });
+  const world = await loadWorker(makeWorld({ fetch: async () => response }));
+  assert.equal(await fireFetch(world, `${ORIGIN}/private`), response);
+  await settle(world);
+  assert.deepEqual(world.caches.calls.put, []);
 });
 
 test('a same-origin request is answered from the network and the answer is kept', async () => {
@@ -479,6 +494,14 @@ test('a later visit is already controlled, so nothing is downloaded a second tim
   assert.equal(result.ok, true);
   assert.equal(result.warmed, 0);
   assert.deepEqual(scope.fetched, [], 'every visit re-downloads the whole app');
+});
+
+test('worker update checks bypass the HTTP cache while keeping the existing scope', async () => {
+  const scope = pageScope({ controller: { state: 'activated' } });
+  let args;
+  scope.navigator.serviceWorker.register = async (...received) => { args = received; };
+  assert.equal((await registerOffline(scope)).ok, true);
+  assert.deepEqual(args, [WORKER_URL, { updateViaCache: 'none' }]);
 });
 
 test('the server hands the worker back as JavaScript, which is what registration requires', async () => {
