@@ -30,6 +30,12 @@ const OPERATIONS = new Set(CLOUD_API_OPERATIONS);
 const SMALL_BODY = 16 * 1024;
 const CREATE_BODY = Math.ceil(MAX_ITEM_BYTES / 3) * 4 + 16 * 1024;
 const MAX_IN_FLIGHT = 16;
+// The longest each data operation may take here, from the token store through every request, each five
+// seconds inside the deadline the page's engine states for it (CLOUD_TRANSPORT_DEADLINES_MS in
+// src/js/lib/cloudProtocol.js), so the page always hears an answer before it gives up. A test holds the two
+// together. Work cut off this way goes on behind the answer: a create keeps its place in the upload
+// tracker, so the next list still waits for it or cancels it.
+export const HOST_DEADLINES_MS = Object.freeze({ list: 115_000, read: 595_000, create: 595_000, delete: 25_000 });
 const CONNECTION = /^[a-f0-9]{32}$/;
 const ITEM_ID = /^[A-Za-z0-9!._-]{1,256}$/;
 // Only names of the shape the backup protocol writes, so nothing reaching this API can put any other kind
@@ -83,7 +89,7 @@ export function createCloudHost({
   store = createTokenStore({ directory: tokenDirectory(env), protector: createProtector({ platform, spawnImpl }) }),
   sessionCheck = createSessionCheck({ platform }),
   openUrl = (url) => openBrowser(url, { platform, spawnImpl }),
-  clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS,
+  clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS, deadlines = HOST_DEADLINES_MS,
 } = {}) {
   const clientId = client.providers.onedrive.clientId;
   const tracker = createUploadTracker();
@@ -278,30 +284,42 @@ export function createCloudHost({
     return input.id;
   }
 
+  function within(operation, work) {
+    const limit = deadlines[operation];
+    let timer;
+    const late = new Promise((resolve, reject) => {
+      timer = setTimeout(() => reject(new ProviderError('timeout', `OneDrive did not finish within ${Math.round(limit / 1000)} seconds.`)), limit);
+    });
+    const done = work();
+    done.catch(() => {});
+    return Promise.race([done, late]).finally(() => clearTimeout(timer));
+  }
+
   const operations = {
     status: async () => ({ status: await status() }),
     connect: async () => ({ status: await connect() }),
     disconnect: async () => ({ status: await disconnect() }),
-    list: async (input) => ({ items: await (await drive(input)).list() }),
-    read: async (input) => {
+    list: (input) => within('list', async () => ({ items: await (await drive(input)).list() })),
+    read: (input) => within('read', async () => {
       const onedrive = await drive(input);
       return { bytes: (await onedrive.read(itemId(input))).toString('base64') };
-    },
-    create: async (input) => {
+    }),
+    create: (input) => within('create', async () => {
       const onedrive = await drive(input);
       if (typeof input.name !== 'string' || !ITEM_NAME.test(input.name)
         || typeof input.bytes !== 'string' || !BASE64.test(input.bytes)) {
         throw new ProviderError('invalid', 'The request did not hold a backup to create.');
       }
       const bytes = Buffer.from(input.bytes, 'base64');
-      if (bytes.length === 0 || bytes.length > MAX_ITEM_BYTES) throw new ProviderError('invalid', 'That backup is empty or too large.');
+      if (bytes.length === 0) throw new ProviderError('invalid', 'That backup is empty.');
+      if (bytes.length > MAX_ITEM_BYTES) throw new ProviderError('too-large', 'That backup is larger than a cloud backup can be.');
       return { item: await onedrive.create(input.name, bytes) };
-    },
-    delete: async (input) => {
+    }),
+    delete: (input) => within('delete', async () => {
       const onedrive = await drive(input);
       await onedrive.delete(itemId(input));
       return {};
-    },
+    }),
   };
 
   async function handle(req, res) {
@@ -321,7 +339,7 @@ export function createCloudHost({
     // session's process gets no answer beyond this, and its connection is closed.
     if (!(await sessionCheck(req.socket))) return refuse(403, 'session', 'This request came from another Windows session.');
     if (!OPERATIONS.has(operation)) return refuse(404, 'operation', 'There is no such cloud operation.');
-    if (inFlight >= MAX_IN_FLIGHT) return refuse(429, 'busy', 'Too many cloud requests at once.');
+    if (inFlight >= MAX_IN_FLIGHT) return refuse(429, 'unavailable', 'Too many cloud requests at once.');
     inFlight += 1;
     try {
       const text = await readBody(req, operation === 'create' ? CREATE_BODY : SMALL_BODY);

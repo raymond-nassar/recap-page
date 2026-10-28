@@ -21,7 +21,8 @@ import {
 import {
   GRAPH, MICROSOFT_LOGIN, authorizationUrl, createOneDrive, idTokenClaims, redeemCode, refreshTokens,
 } from '../host/oneDrive.mjs';
-import { CLOUD_API_HEADER, CLOUD_API_PREFIX, createCloudHost } from '../host/cloudHost.mjs';
+import { CLOUD_API_HEADER, CLOUD_API_PREFIX, HOST_DEADLINES_MS, createCloudHost } from '../host/cloudHost.mjs';
+import { CLOUD_TRANSPORT_DEADLINES_MS } from '../src/js/lib/cloudProtocol.js';
 
 // Never a real registration, and never shaped like a GUID, which the publication gate would report.
 const CLIENT = 'test-client.recap-page';
@@ -420,18 +421,18 @@ test('token requests are public-client requests, and each refusal, wait and outa
   const cases = [
     [json(400, { error: 'invalid_grant' }), 'refused'],
     [json(400, { error: 'interaction_required' }), 'refused'],
-    [json(429, { error: 'too_many' }, { 'retry-after': '7' }), 'busy'],
-    [json(400, { error: 'temporarily_unavailable' }), 'busy'],
-    [json(500, { error: 'server_error' }), 'transient'],
+    [json(429, { error: 'too_many' }, { 'retry-after': '7' }), 'unavailable'],
+    [json(400, { error: 'temporarily_unavailable' }), 'unavailable'],
+    [json(500, { error: 'server_error' }), 'unavailable'],
     [json(200, { token_type: 'Bearer' }), 'invalid'],
-    [new TypeError('fetch failed'), 'transient'],
+    [new TypeError('fetch failed'), 'unavailable'],
     [Object.assign(new Error('timed out'), { name: 'TimeoutError' }), 'timeout'],
   ];
   for (const [reply, code] of cases) {
     const fake = fakeFetch([{ method: 'POST', url: token, reply }]);
     await assert.rejects(refreshTokens({ fetchImpl: fake.fetchImpl, clientId: CLIENT, refreshToken: 'r' }), (error) => {
       assert.equal(error.code, code);
-      if (code === 'busy' && reply.status === 429) assert.equal(error.retryAfterMs, 7000);
+      if (reply.status === 429) assert.equal(error.retryAfterMs, 7000);
       return true;
     });
   }
@@ -481,13 +482,13 @@ test('creating opens a body-free upload session that fails on an existing name, 
   assert.ok(capabilityUrl('https://sn3302.up.1drv.com/up/session') && capabilityUrl(UPLOAD), 'Microsoft\'s hosts, with no list of them');
 
   const taken = drive([{ method: 'POST', url: SESSION, reply: json(409, { error: { code: 'nameAlreadyExists' } }) }]);
-  await assert.rejects(taken.onedrive.create(NAME, bytes), { code: 'conflict' });
+  await assert.rejects(taken.onedrive.create(NAME, bytes), { code: 'exists' });
   const late = drive([
     { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
     { method: 'PUT', url: UPLOAD, reply: json(409, { error: { code: 'nameAlreadyExists' } }) },
     { method: 'DELETE', url: UPLOAD, reply: new Response(null, { status: 204 }) },
   ]);
-  await assert.rejects(late.onedrive.create(NAME, bytes), { code: 'conflict' });
+  await assert.rejects(late.onedrive.create(NAME, bytes), { code: 'exists' });
   assert.deepEqual(late.calls.map((call) => call.method), ['POST', 'PUT', 'DELETE'], 'the refused session is cancelled');
 });
 
@@ -510,7 +511,7 @@ test('an upload that gets no answer is settled before the reply: cancelled first
     { method: 'DELETE', url: UPLOAD, reply: new Response(null, { status: 204 }) },
     { method: 'GET', url: LOOKUP, reply: json(404, { error: { code: 'itemNotFound' } }) },
   ]);
-  await assert.rejects(missed.onedrive.create(NAME, bytes), { code: 'transient' }, 'cancelled and not there, so it never will be');
+  await assert.rejects(missed.onedrive.create(NAME, bytes), { code: 'unavailable' }, 'cancelled and not there, so it never will be');
 
   let cancelOk = false;
   const unknown = drive([
@@ -519,7 +520,7 @@ test('an upload that gets no answer is settled before the reply: cancelled first
     { method: 'DELETE', url: UPLOAD, reply: () => (cancelOk ? new Response(null, { status: 204 }) : new TypeError('fetch failed')) },
     { method: 'GET', url: CHILDREN, reply: json(200, { value: [] }) },
   ]);
-  await assert.rejects(unknown.onedrive.create(NAME, bytes), { code: 'unknown' });
+  await assert.rejects(unknown.onedrive.create(NAME, bytes), { code: 'timeout' }, 'not cancelled, so whether it landed is not known');
   cancelOk = true;
   unknown.calls.length = 0;
   assert.deepEqual(await unknown.onedrive.list(), []);
@@ -559,7 +560,7 @@ test('reading follows exactly one redirect, the download carries no Authorizatio
     [[new Response(null, { status: 302, headers: { location: 'http://public.ch.files.1drv.com/x' } })], 'invalid'],
     [[new Response(null, { status: 302, headers: { location: DOWNLOAD } }), new Response(null, { status: 302, headers: { location: DOWNLOAD } })], 'invalid'],
     [[json(404, { error: { code: 'itemNotFound' } })], 'not-found'],
-    [[new Response(null, { status: 302, headers: { location: DOWNLOAD } }), new Response('x', { status: 200, headers: { 'content-length': String(33 * 1024 * 1024) } })], 'invalid'],
+    [[new Response(null, { status: 302, headers: { location: DOWNLOAD } }), new Response('x', { status: 200, headers: { 'content-length': String(33 * 1024 * 1024) } })], 'too-large'],
   ];
   for (const [[first, second], code] of cases) {
     const odd = drive([
@@ -568,6 +569,24 @@ test('reading follows exactly one redirect, the download carries no Authorizatio
     ]);
     await assert.rejects(odd.onedrive.read('ITEM!7'), { code });
   }
+
+  // An item over the cap that declares no length is read to the cap and no further, and nothing of it is
+  // returned (stage 1 review, L8).
+  const MIB = 1024 * 1024;
+  let pulled = 0;
+  const endless = new ReadableStream({
+    pull(controller) {
+      pulled += MIB;
+      controller.enqueue(new Uint8Array(MIB));
+      if (pulled >= 40 * MIB) controller.close();
+    },
+  });
+  const streamed = drive([
+    { method: 'GET', url: content, reply: new Response(null, { status: 302, headers: { location: DOWNLOAD } }) },
+    { method: 'GET', url: DOWNLOAD, reply: new Response(endless, { status: 200 }) },
+  ]);
+  await assert.rejects(streamed.onedrive.read('ITEM!7'), { code: 'too-large' });
+  assert.ok(pulled <= 34 * MIB, `stopped at the cap, after ${pulled / MIB} MiB of 40`);
 });
 
 test('listing follows every page, and an app folder that does not exist yet lists as empty', async () => {
@@ -590,11 +609,11 @@ test('deleting an item already gone succeeds, throttling carries the provider\'s
     await done.onedrive.delete('ITEM!7');
   }
   const cases = [
-    [json(429, {}, { 'retry-after': '7' }), 'busy', 7000],
-    [json(503, {}, { 'retry-after': '120' }), 'busy', 120_000],
-    [json(507, { error: { code: 'quotaLimitReached' } }), 'refused', 0],
+    [json(429, {}, { 'retry-after': '7' }), 'unavailable', 7000],
+    [json(503, {}, { 'retry-after': '120' }), 'unavailable', 120_000],
+    [json(507, { error: { code: 'quotaLimitReached' } }), 'quota', 0],
     [json(403, { error: { code: 'accessDenied' } }), 'refused', 0],
-    [json(500, {}), 'transient', 0],
+    [json(500, {}), 'unavailable', 0],
   ];
   for (const [reply, code, wait] of cases) {
     const odd = drive([{ method: 'DELETE', url: item, reply }]);
@@ -684,10 +703,10 @@ async function hostServer(host) {
   return { port, call, close: () => new Promise((resolve) => server.close(resolve)) };
 }
 
-function host({ store = memoryStore(), fetch = microsoft(), session = async () => true, opened = [], clock = Date.now } = {}) {
+function host({ store = memoryStore(), fetch = microsoft(), session = async () => true, opened = [], clock = Date.now, deadlines } = {}) {
   const sessions = [];
   const instance = createCloudHost({
-    clientText: CLIENT_TEXT, platform: 'win32', fetchImpl: fetch.fetchImpl, store, clock,
+    clientText: CLIENT_TEXT, platform: 'win32', fetchImpl: fetch.fetchImpl, store, clock, ...(deadlines ? { deadlines } : {}),
     sessionCheck: async (socket) => {
       sessions.push(socket.remotePort);
       return session(socket);
@@ -856,6 +875,33 @@ test('a page that names another connection is refused, and disconnecting removes
   }
 });
 
+// Every data operation answers within the deadline this host states, from the token store through every
+// request, and each sits at least five seconds inside the deadline the page's engine states, so the page
+// always hears an answer before it gives up (stage 1 review, L8; the transport contract, CQ-2).
+test('every data operation answers within its deadline, inside the one the engine states', async () => {
+  for (const operation of ['list', 'read', 'create', 'delete']) {
+    assert.ok(HOST_DEADLINES_MS[operation] + 5_000 <= CLOUD_TRANSPORT_DEADLINES_MS[operation], operation);
+  }
+  const silent = {
+    fetchImpl: (url, options = {}) => new Promise((resolve, reject) => {
+      options.signal?.addEventListener('abort', () => reject(options.signal.reason));
+    }),
+  };
+  const env = host({ store: memoryStore({ ...RECORD }), fetch: silent, deadlines: { list: 60, read: 60, create: 60, delete: 60 } });
+  const api = await hostServer(env.instance);
+  try {
+    for (const [operation, input] of [['list', {}], ['read', { id: 'ITEM!7' }], ['create', { name: NAME, bytes: 'aGk=' }], ['delete', { id: 'ITEM!7' }]]) {
+      const started = Date.now();
+      const answer = await api.call(operation, { connection: RECORD.connection, ...input });
+      assert.deepEqual([answer.body.ok, answer.body.error?.code], [false, 'timeout'], operation);
+      assert.ok(Date.now() - started < 5_000, `${operation} answered after ${Date.now() - started} ms`);
+    }
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
 test('a refresh that finishes after a disconnect never writes the connection back', async () => {
   const pending = deferred();
   const fetch = microsoft({ refresh: () => pending.promise });
@@ -895,5 +941,5 @@ test('where Windows restricts PowerShell, cloud backup says why, signs nothing i
   }
   const elsewhere = createCloudHost({ clientText: CLIENT_TEXT, platform: 'linux', store: memoryStore(), sessionCheck: async () => true, openUrl: async () => {} });
   assert.equal((await elsewhere.status()).state, 'unavailable');
-  assert.ok(new ProviderError('busy', 'x', { retryAfterMs: 5 }).retryAfterMs === 5);
+  assert.ok(new ProviderError('unavailable', 'x', { retryAfterMs: 5 }).retryAfterMs === 5);
 });

@@ -59,9 +59,9 @@ async function tokenRequest({ fetchImpl, clientId, form, clock = Date.now }) {
     };
   }
   if (response.status === 429 || response.status === 503 || body?.error === 'temporarily_unavailable') {
-    throw new ProviderError('busy', 'Microsoft sign-in asked to wait before trying again.', { retryAfterMs: wait });
+    throw new ProviderError('unavailable', 'Microsoft sign-in asked to wait before trying again.', { retryAfterMs: wait });
   }
-  if (response.status >= 500) throw new ProviderError('transient', 'Microsoft sign-in did not answer this time.');
+  if (response.status >= 500) throw new ProviderError('unavailable', 'Microsoft sign-in did not answer this time.');
   // invalid_grant, interaction_required and every other refusal: only a new sign-in can follow.
   throw new ProviderError('refused', 'Microsoft refused the sign-in.');
 }
@@ -149,10 +149,10 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
     if (status === 401) return new ProviderError('needs-sign-in', 'OneDrive asked for the sign-in to be made again.');
     if (status === 403) return new ProviderError('refused', 'OneDrive refused access to the app folder.');
     if (status === 404) return new ProviderError('not-found', 'That item is no longer in OneDrive.');
-    if (status === 409) return new ProviderError('conflict', 'OneDrive already holds an item with that name.');
-    if (status === 429 || status === 503) return new ProviderError('busy', 'OneDrive asked to wait before trying again.', { retryAfterMs: wait });
-    if (status === 507) return new ProviderError('refused', 'OneDrive is full, so nothing more can be backed up there.');
-    if (status >= 500) return new ProviderError('transient', 'OneDrive did not answer this time.');
+    if (status === 409) return new ProviderError('exists', 'OneDrive already holds an item with that name.');
+    if (status === 429 || status === 503) return new ProviderError('unavailable', 'OneDrive asked to wait before trying again.', { retryAfterMs: wait });
+    if (status === 507) return new ProviderError('quota', 'OneDrive is full, so nothing more can be backed up there.');
+    if (status >= 500) return new ProviderError('unavailable', 'OneDrive did not answer this time.');
     return new ProviderError('invalid', `OneDrive answered in a way this version does not expect (${status}).`);
   }
 
@@ -182,13 +182,15 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
 
   // An upload that got no answer may still have been committed. Its session is cancelled first, so nothing
   // can complete after this reply, and then its name is looked up: the file is there now, or never will be.
+  // A session that cannot be cancelled leaves the outcome unknown, which the contract calls a timeout: the
+  // next list cancels it first and shows whether it landed.
   async function settle(name, upload) {
     if (!(await cancel(upload))) {
       tracker.unsettled.set(name, upload);
-      throw new ProviderError('unknown', 'OneDrive did not say whether the backup was saved.');
+      throw new ProviderError('timeout', 'OneDrive did not say whether the backup was saved.');
     }
     const found = await lookup(name);
-    if (!found) throw new ProviderError('transient', 'The backup did not reach OneDrive.');
+    if (!found) throw new ProviderError('unavailable', 'The backup did not reach OneDrive.');
     return found;
   }
 
@@ -278,10 +280,12 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
         }
       }
       if (content.status !== 200) throw await failure(content);
+      // Read to the cap and no further, whatever the response declares, so an item over it is refused
+      // without its bytes ever being returned.
       const bytes = await readBounded(content, MAX_ITEM_BYTES).catch(() => {
-        throw new ProviderError('transient', 'The download from OneDrive stopped part way.');
+        throw new ProviderError('unavailable', 'The download from OneDrive stopped part way.');
       });
-      if (!bytes) throw new ProviderError('invalid', 'That item is larger than a cloud backup can be.');
+      if (!bytes) throw new ProviderError('too-large', 'That item is larger than a cloud backup can be.');
       return bytes;
     },
 

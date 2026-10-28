@@ -717,16 +717,18 @@ the connection the page's consent was for:
 - `read` resolves to an item's bytes. It refuses an item whose stored bytes exceed 32 MiB without
   returning them; the upload cap, by contrast, applies to the envelope before compression.
 - `create` makes a new item and resolves to it. It never knowingly replaces one, refuses a name it can
-  tell is taken, and a create it reports as failed never appears later.
+  tell is taken, and a create refused with any code but `timeout` never appears later.
 - `delete` removes an item, and one already gone counts as removed.
 
 Item ids are opaque and may equal names, as a CloudKit record's would. A connection id is opaque too,
-and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, and the iOS
+and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, kept only
+when the same account signs in again after its sign-in expired, so its backups resume, and the iOS
 provider one it binds natively to an account digest. The engine takes any string of 1 to 128
 characters without control characters and compares it exactly. Each operation settles within the
 deadline the engine states at `src/js/lib/cloudProtocol.js:42`: two minutes for a list, ten for a
 read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
-reply, then counts the operation as timed out. A request whose page closed, or that was given up on,
+reply, then counts the operation as timed out. The Windows host holds each to five seconds less, from
+its token store through every request. A request whose page closed, or that was given up on,
 settles on the provider's side with no reply to the page that loads next, and the list before the
 next create shows whatever it left. Refusals carry a code, and may carry the wait a provider asked
 for:

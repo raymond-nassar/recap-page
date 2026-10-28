@@ -317,8 +317,8 @@ export class CloudBackupProtocol {
   //   read(id, { connection }) resolves to the item's bytes, refusing with 'too-large' an item whose stored
   //   bytes exceed 32 MiB, without returning them, and with 'not-found' one that is gone.
   //   create(name, bytes, { connection }) makes a new item and resolves to it. It never knowingly replaces
-  //   one, refuses with 'exists' a name it can tell is taken, and a create it reports as failed never
-  //   appears later.
+  //   one, refuses with 'exists' a name it can tell is taken, and a create refused with any code but
+  //   'timeout' never appears later.
   //   delete(id, { connection }) removes one, and an item already gone counts as removed.
   //   Each settles within CLOUD_TRANSPORT_DEADLINES_MS, and a refusal may carry the wait the provider
   //   asked for as retryAfterMs. Item ids are opaque and may equal names.

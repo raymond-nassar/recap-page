@@ -27,7 +27,7 @@ const MAX_STRAY_CALLBACKS = 32;
 const MAX_WAIT_MS = 60 * 60_000;
 
 // One kind of failure for everything a provider or a sign-in can do, carrying the code the page and the
-// coordinator act on: 'needs-sign-in' and 'refused' stop backups, anything else is retried.
+// coordinator act on. The codes are the transport contract's, under Cloud backup in docs/ARCHITECTURE.md.
 export class ProviderError extends Error {
   constructor(code, message, { retryAfterMs = 0 } = {}) {
     super(message);
@@ -255,5 +255,5 @@ export function retryAfterMs(response, now = Date.now()) {
 export function networkFailure(error, what) {
   return error?.name === 'TimeoutError' || error?.name === 'AbortError'
     ? new ProviderError('timeout', `${what} did not answer in time.`)
-    : new ProviderError('transient', `${what} could not be reached.`);
+    : new ProviderError('unavailable', `${what} could not be reached.`);
 }
