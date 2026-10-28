@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1215-1226`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1225-1236`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
