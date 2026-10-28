@@ -44,7 +44,9 @@ const RECORD_STORE = 'stream';
 const RECORD_SLOT = 'record';
 const RECORD_OPEN_MS = 5000;
 const RECORD_FIELDS = ['consent', 'device', 'nextGeneration', 'stream', 'validated', 'version'];
-const CONSENT_FIELDS = ['at', 'connection', 'provider'];
+// The id is random for every consent, so an acknowledgement can tell consent given again from the consent
+// its backup was made under, even for the same connection in the same millisecond (stage 1 review, L1).
+const CONSENT_FIELDS = ['at', 'connection', 'id', 'provider'];
 const VERIFIED_FIELDS = ['generation', 'personalDigest', 'uploadedAt'];
 const ENVELOPE_FIELDS = ['backup', 'createdAt', 'device', 'format', 'generation', 'stream', 'version'];
 const DEFAULT_DEVICE = 'Recap Page';
@@ -63,7 +65,18 @@ export class CloudBackupError extends Error {
 }
 
 function refuse(message, code) { throw new CloudBackupError(message, code); }
-const recordLost = () => new CloudBackupError('This browser could not keep its cloud backup record, so nothing was uploaded.', 'storage');
+// A record failure can stop any operation, so these say only what went wrong, and each operation adds what
+// that left undone. None claims an outcome its operation did not have (stage 1 review, L3).
+const RECORD_LOST = 'This browser could not keep its cloud backup record.';
+const RECORD_UNREADABLE = 'This browser\'s cloud backup record cannot be read.';
+const recordLost = () => new CloudBackupError(RECORD_LOST, 'storage');
+async function saying(consequence, operation) {
+  try { return await operation(); }
+  catch (error) {
+    if (error instanceof CloudBackupError && error.code === 'storage') throw new CloudBackupError(`${error.message} ${consequence}`, 'storage');
+    throw error;
+  }
+}
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 function exactFields(value, fields) { return object(value) && Object.keys(value).sort().join(',') === fields.join(','); }
 function nonNegative(value) { return Number.isSafeInteger(value) && value >= 0; }
@@ -116,7 +129,8 @@ export function cloudDeviceLabel(value) {
 function validConsent(value) {
   return exactFields(value, CONSENT_FIELDS) && typeof value.connection === 'string' && value.connection.length > 0
     && value.connection.length <= 128 && controlFree(value.connection)
-    && typeof value.provider === 'string' && PROVIDER.test(value.provider) && nonNegative(value.at);
+    && typeof value.provider === 'string' && PROVIDER.test(value.provider) && nonNegative(value.at)
+    && typeof value.id === 'string' && STREAM.test(value.id);
 }
 
 function validVerified(value, nextGeneration) {
@@ -135,7 +149,7 @@ function checkRecord(value) {
     && Array.isArray(value.validated) && value.validated.length <= 2
     && value.validated.every((entry) => validVerified(entry, value.nextGeneration))
     && (value.validated.length < 2 || value.validated[0].generation > value.validated[1].generation);
-  if (!valid) refuse('This browser\'s cloud backup record cannot be read, so nothing was uploaded.', 'storage');
+  if (!valid) refuse(RECORD_UNREADABLE, 'storage');
   return value;
 }
 
@@ -345,26 +359,32 @@ export class CloudBackupProtocol {
   // and its old files then show in discovery as another device's. Backups verified under another
   // connection, perhaps another account, are not in this one, so they no longer count as made.
   async recordConsent({ connection, provider, device } = {}) {
-    const consent = { connection, provider, at: this.now() };
+    const consent = { connection, provider, at: this.now(), id: this.randomId() };
     if (!validConsent(consent)) refuse('That connection cannot be used for cloud backup.', 'invalid');
     const label = cloudDeviceLabel(device);
-    const stream = this.randomStream();
-    await this.records.write((current) => {
-      let record;
-      try { record = current === null ? null : checkRecord(current); } catch { record = null; }
-      if (!record) return { version: 1, stream, nextGeneration: 1, device: label, consent, validated: [] };
-      const validated = record.consent?.connection === consent.connection ? record.validated : [];
-      return { ...record, device: label, consent, validated };
+    const stream = this.randomId();
+    return saying('Cloud backup was not turned on.', async () => {
+      await this.records.write((current) => {
+        let record;
+        try { record = current === null ? null : checkRecord(current); } catch { record = null; }
+        if (!record) return { version: 1, stream, nextGeneration: 1, device: label, consent, validated: [] };
+        const validated = record.consent?.connection === consent.connection ? record.validated : [];
+        return { ...record, device: label, consent, validated };
+      });
+      const held = await this.record();
+      if (!held || canonical(held.consent) !== canonical(consent)) throw recordLost();
+      return held;
     });
-    const held = await this.record();
-    if (!held || canonical(held.consent) !== canonical(consent)) throw recordLost();
-    return held;
   }
 
   // Withdrawn before anything is deleted, and kept, so automatic backup stays stopped even if a deletion
   // stops part way. The stream and its counter stay, so no number is ever used twice; what was verified
   // is forgotten, because a later consent may find those files deleted or in another account.
   async withdrawConsent() {
+    return saying('Cloud backup may still be on.', () => this.withdraw());
+  }
+
+  async withdraw() {
     await this.records.write((current) => (current === null ? undefined : { ...checkRecord(current), consent: null, validated: [] }));
     const held = await this.record();
     if (held && (held.consent !== null || held.validated.length > 0)) throw recordLost();
@@ -379,7 +399,7 @@ export class CloudBackupProtocol {
       if (current === null) refuse(NOT_ON, 'refused');
       const record = checkRecord(current);
       if (record.consent === null) refuse(NOT_ON, 'refused');
-      taken = { stream: record.stream, generation: record.nextGeneration, device: record.device, connection: record.consent.connection };
+      taken = { stream: record.stream, generation: record.nextGeneration, device: record.device, consent: record.consent };
       return { ...record, nextGeneration: record.nextGeneration + 1 };
     });
     const held = await this.record();
@@ -387,15 +407,18 @@ export class CloudBackupProtocol {
     return taken;
   }
 
-  // Keeps the two highest generations, so a late acknowledgement can never displace a newer one.
-  async acknowledge({ stream, generation, connection, personalDigest, uploadedAt }) {
+  // Keeps the two highest generations, so a late acknowledgement can never displace a newer one. The
+  // whole consent is compared, not its connection alone: consent withdrawn and given again for the same
+  // connection, as a deletion in one tab and consent in another can do, would otherwise count a backup
+  // that the deletion then removes (stage 1 review, L1).
+  async acknowledge({ stream, generation, consent, personalDigest, uploadedAt }) {
     const entry = { generation, personalDigest, uploadedAt };
     await this.records.write((current) => {
       const record = current === null ? null : checkRecord(current);
-      // Erased, started afresh, withdrawn or moved to another connection while this backup was made: its
-      // file belongs to a stream or an account this record no longer describes, so it must not count.
-      if (!record || record.stream !== stream || record.consent?.connection !== connection) {
-        refuse('Cloud backup was turned off while this backup was made.', 'refused');
+      // Erased, started afresh, withdrawn or agreed to again while this backup was made: its file belongs
+      // to a stream, an account or a consent this record no longer describes, so it must not count.
+      if (!record || record.stream !== stream || canonical(record.consent) !== canonical(consent)) {
+        refuse('Cloud backup was turned off, or agreed to again, while this backup was made, so it does not count as made.', 'refused');
       }
       const validated = [entry, ...record.validated.filter((held) => held.generation !== generation)]
         .sort((a, b) => b.generation - a.generation).slice(0, 2);
@@ -406,9 +429,10 @@ export class CloudBackupProtocol {
     return held;
   }
 
-  randomStream() {
+  // 128 random bits as hex, for a stream or a consent.
+  randomId() {
     if (typeof this.cryptoProvider?.getRandomValues !== 'function') {
-      refuse('This browser cannot make a random stream id, so cloud backup is unavailable here.', 'unsupported');
+      refuse('This browser cannot make random ids, so cloud backup is unavailable here.', 'unsupported');
     }
     return hex(this.cryptoProvider.getRandomValues(new Uint8Array(16)));
   }
@@ -522,7 +546,8 @@ export class CloudBackupProtocol {
     // The file holds the complete backup's exact bytes, which are its canonical form.
     if (canonical(backup) !== text) refuse('The backup to upload does not match its own text.', 'invalid');
     this.supported();
-    const { stream, generation, device, connection } = await this.allocate();
+    const { stream, generation, device, consent } = await saying('Nothing was uploaded.', () => this.allocate());
+    const { connection } = consent;
     // Keys in sorted order, which makes this the envelope's canonical form without serializing the
     // backup a second time.
     const envelope = `{"backup":${text},"createdAt":${this.now()},"device":${JSON.stringify(device)},`
@@ -544,7 +569,8 @@ export class CloudBackupProtocol {
       await this.discard(created.id, connection);
       refuse('The cloud copy did not read back as it was sent, so it was removed and will be made again.', 'verify');
     }
-    const record = await this.acknowledge({ stream, generation, connection, personalDigest, uploadedAt: this.now() });
+    const record = await saying('The backup was uploaded, but it does not count as made.',
+      () => this.acknowledge({ stream, generation, consent, personalDigest, uploadedAt: this.now() }));
     // The backup is made and verified, so a failure from here on only leaves a file for a later backup.
     try { await this.prune(record, connection); } catch { /* deletes may lag */ }
     return { stream, generation, name };
@@ -638,7 +664,7 @@ export class CloudBackupProtocol {
   // unrecognized files are never touched.
   async deleteOwnBackups({ connection } = {}) {
     const named = connectionOf(connection);
-    const record = await this.withdrawConsent();
+    const record = await saying('Nothing was deleted, and cloud backup may still be on.', () => this.withdraw());
     if (!record) return { deleted: 0, failed: [] };
     return this.exclusive(async () => {
       const { known } = await this.listed(named);

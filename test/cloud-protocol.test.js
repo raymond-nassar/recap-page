@@ -701,6 +701,37 @@ test('nothing is sent without this browser\'s consent, a kept record, a backup w
   assert.equal(fresh.nextGeneration, 1);
 });
 
+// One record failure can stop any operation, so each refusal says what its own operation left undone,
+// and none says nothing was uploaded after an upload (stage 1 review, L3).
+test('a record that cannot be kept or read is reported for the operation it stopped', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const home = device();
+  home.mark(1);
+  const snapshot = await home.snapshot();
+  const lost = 'This browser could not keep its cloud backup record.';
+  const unreadable = 'This browser\'s cloud backup record cannot be read.';
+  env.idb.faults.abort = 1;
+  await assert.rejects(protocol.upload(snapshot), { code: 'storage', message: `${lost} Nothing was uploaded.` });
+  assert.deepEqual(env.transport.calls, []);
+  env.transport.faults.create.push(async () => { env.idb.faults.abort = 1; });
+  await assert.rejects(protocol.upload(snapshot), { code: 'storage', message: `${lost} The backup was uploaded, but it does not count as made.` });
+  assert.deepEqual(env.transport.calls, ['create', 'read'], 'it was made and read back first');
+  env.idb.faults.abort = 1;
+  await assert.rejects(protocol.recordConsent(CONSENT), { code: 'storage', message: `${lost} Cloud backup was not turned on.` });
+  env.idb.faults.abort = 1;
+  await assert.rejects(protocol.withdrawConsent(), { code: 'storage', message: `${lost} Cloud backup may still be on.` });
+  env.idb.faults.abort = 1;
+  env.transport.calls.length = 0;
+  await assert.rejects(protocol.deleteOwnBackups(ON), { code: 'storage', message: `${lost} Nothing was deleted, and cloud backup may still be on.` });
+  const held = await protocol.record();
+  await createCloudRecordStore(env.idb).write(() => ({ ...held, nextGeneration: 0 }));
+  await assert.rejects(protocol.upload(snapshot), { code: 'storage', message: `${unreadable} Nothing was uploaded.` });
+  await assert.rejects(protocol.deleteOwnBackups(ON), { code: 'storage', message: `${unreadable} Nothing was deleted, and cloud backup may still be on.` });
+  await assert.rejects(protocol.lastUploaded(ON), { code: 'storage', message: unreadable });
+  assert.deepEqual(env.transport.calls, [], 'no refusal before a deletion reached the account');
+});
+
 // ------------------------------------------------------------------ discovery
 
 test('discovery shows each stream\'s newest valid backup and the one before, trusting nothing it reads and writing nothing', async () => {
@@ -905,6 +936,35 @@ test('deleting this device\'s backups withdraws consent first, then removes ever
   assert.deepEqual([record.stream, record.consent, record.validated, record.nextGeneration], [stream, null, [], 6],
     'the counter stays, so no number is reused, and nothing counts as backed up');
   await assert.rejects(protocol.upload(await home.snapshot()), { code: 'refused' });
+});
+
+// A deletion in one tab withdraws consent, then another tab gives it again for the same connection, while a
+// backup made under the first consent is in flight. The deletion waits for that backup and then removes
+// its file, so the backup must not count, or this browser would report up to date over an account holding
+// nothing of its stream (stage 1 review, L1).
+test('a backup made under consent that was withdrawn and given again for the same connection does not count', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  home.mark(1);
+  const snapshot = await home.snapshot();
+  const deleter = env.make();
+  const again = env.make();
+  let deleting;
+  env.transport.faults.create.push(async () => {
+    deleting = deleter.deleteOwnBackups(ON);
+    await until(async () => (await again.record()).consent === null, 'the deletion withdrew consent');
+    await again.recordConsent(CONSENT);
+  });
+  const backup = env.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, () => protocol.upload(snapshot));
+  await assert.rejects(backup, {
+    code: 'refused', message: 'Cloud backup was turned off, or agreed to again, while this backup was made, so it does not count as made.',
+  });
+  assert.deepEqual(await deleting, { deleted: 1, failed: [] }, 'the deletion removed the file that backup made');
+  assert.deepEqual(env.transport.generations(stream), []);
+  const record = await protocol.record();
+  assert.deepEqual([record.consent?.connection, record.validated], [CONSENT.connection, []], 'consent was given again, and nothing counts');
+  assert.equal(await protocol.lastUploaded(ON), null);
 });
 
 test('a deletion that fails part way says which files remain, and stops at the first sign-in refusal', async () => {
