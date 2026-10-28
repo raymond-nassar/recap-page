@@ -6,6 +6,7 @@
 // module never touches the Store, cache, API, Hydrator, or SynopsisRunner.
 
 import { wireFieldValidation } from './shared/field-validation.js';
+import { RESTORE_MESSAGES } from '../lib/completeRestore.js';
 
 // ------------------------------------------------------------------ reading-data contents
 //
@@ -488,23 +489,25 @@ export function completeRestoreQuestion({ lists, records, draft }) {
 }
 
 // Keeping the current data deletes the recovery copy only when one can be read, so the question says
-// what happens to the copy this recovery actually has. The exact prior copy can be downloaded but not
+// what happens to the copy this recovery actually has. A copy this browser cannot remove yet, as on a
+// full disk, goes at a later start instead (#947). The exact prior copy can be downloaded but not
 // restored by this version, so the question says so before the copy goes.
 export function keepCurrentQuestion(recovery) {
   const lead = 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data.';
+  const when = 'at once, or at a later start if this browser cannot remove it yet';
   if (recovery?.download === 'prior') {
-    return `${lead} The recovery copy is then deleted, so download the exact prior copy first if you might need it. `
+    return `${lead} The recovery copy is then deleted, ${when}, so download the exact prior copy first if you might need it. `
       + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
   }
   if (recovery?.download === 'raw') {
-    return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
+    return `${lead} The recovery copy, which this version cannot read, is then deleted, ${when}, so download it first if you might need it. `
       + 'Its data can only be recovered by hand or with help.';
   }
   if (recovery?.kind === 'unchecked') {
     return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;
   }
   if (recovery?.kind === 'cleanup') {
-    return `${lead} The cleanup after the earlier restore is then finished, which deletes any recovery copy it left.`;
+    return `${lead} The cleanup after the earlier restore then runs and deletes any recovery copy it left, ${when}.`;
   }
   return `${lead} There is no recovery copy left to delete.`;
 }
@@ -644,7 +647,12 @@ export function createCompleteBackupView({
       });
       if (!yes) return;
       const result = await onKeepCurrent();
-      if (result.ok) { onFinished('Recovery ended. Saving has started again with the data that was here.'); return; }
+      if (result.ok) {
+        onFinished(result.copyKept
+          ? `Recovery ended. Saving has started again with the data that was here. ${RESTORE_MESSAGES.copyKept}`
+          : 'Recovery ended. Saving has started again with the data that was here.');
+        return;
+      }
       report(result.error);
     });
   }

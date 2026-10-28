@@ -293,6 +293,9 @@ test('each backup group keeps its download, labelled restore and report together
   assert.ok(reading && draft && reading !== draft, 'reading data and the import draft are separate groups');
   assert.ok(complete && complete !== reading && complete.end < reading.start, 'the complete backup is its own group, first');
   assert.equal(headingText(complete.html, 3), 'Complete backup');
+  // The recovery section shows a restore that stopped, one that finished but was lost, and a cleanup
+  // after one that finished, so its heading names the choice rather than an unfinished restore (#947).
+  assert.equal(headingText(complete.html, 4), 'Complete restore needs a choice');
   assert.equal(headingText(reading.html, 3), 'Reading data');
   assert.equal(headingText(draft.html, 3), 'Import draft');
   assert.equal(headingText(HISTORY, 3), 'Completion history');
