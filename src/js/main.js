@@ -77,14 +77,18 @@ import { CompleteRestore, PRIOR_COPY_FILENAME, RESTORE_MESSAGES } from './lib/co
 import {
   captureCompleteBackup, parseCompleteBackup, completeBackupFileRefusal, completeBackupSummary, COMPLETE_BACKUP_FILENAME,
 } from './lib/completeBackup.js';
+import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 // Made before any owner of saved data, so the first write any of them attempts already passes its
 // guard. Static, so the offline copy of the app always holds the recovery path a crash may need.
 const completeRestore = new CompleteRestore();
+// Every saved change of what a backup holds is reported here, by every owner at once, because they all
+// write through the one object below. Nothing listens until cloud backup is turned on.
+const savedChanges = createSavedChanges();
 // Every read and write of saved data below goes through the guard. Reads pass straight through;
 // writes to what a complete restore replaces wait until no restore is running or waiting for recovery.
-const localStorage = completeRestore.storage ?? globalThis.localStorage;
+const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedChanges.notify);
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
