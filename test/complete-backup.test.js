@@ -5,7 +5,7 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { webcrypto } from 'node:crypto';
+import { createHash, webcrypto } from 'node:crypto';
 import {
   COMPLETE_BACKUP_FORMAT, COMPLETE_BACKUP_VERSION, MAX_COMPLETE_BACKUP_BYTES, CompleteBackupError,
   captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan,
@@ -14,7 +14,7 @@ import {
 import {
   createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue, MAX_BACKUP_BYTES,
 } from '../src/js/lib/model.js';
-import { KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, Store } from '../src/js/storage.js';
+import { KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, Store, ImportDraftStore } from '../src/js/storage.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, ListHistoryStore } from '../src/js/lib/listHistory.js';
 import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences } from '../src/js/lib/importDraft.js';
 import { availability } from '../src/js/lib/availability.js';
@@ -22,8 +22,10 @@ import { availability } from '../src/js/lib/availability.js';
 const crypto = { cryptoProvider: webcrypto };
 const API_BASE = 'https://metadata.example.test/v1';
 
-function completeFixture() {
+function completeFixture({ created } = {}) {
   let state = createList(createEmptyState(), { id: '__proto__', name: 'Kept identity' });
+  // The one clock reading in this fixture, fixed where a test pins exact bytes.
+  if (created !== undefined) state.lists.__proto__.created = created;
   state = addIssuesToList(state, '__proto__', [
     { issueId: 1, title: 'One' }, { issueId: 2, title: 'Two', unlimitedDate: '2099-01-01' },
     { issueId: 3, title: 'Three', unlimitedDate: '2000-01-01' },
@@ -346,17 +348,38 @@ test('a prepared record that differs from its file in any written byte is never 
 });
 
 // Characterization pins: the single-kind exports are unchanged by this feature, so these pass on the
-// parent commit by design and are exempt from the fail-first rule.
-test('single-kind exports are byte-identical for the same state', () => {
-  const f = completeFixture();
+// parent commit by design and are exempt from the fail-first rule. Each expected value is the SHA-256 of
+// the exact bytes the v4.2.0 tag's own code (13d43f14) writes for this saved data, with the export time
+// fixed: reading data as its download is serialized, completion history, and the import draft both as
+// stored and with unsaved source this page still holds. Measured on 2026-10-28.
+test('single-kind exports keep the exact bytes v4.2.0 writes for the same saved data', () => {
+  const sha256 = (text) => createHash('sha256').update(text, 'utf8').digest('hex');
+  const f = completeFixture({ created: 1700000000000 });
   const reader = new Store({ storage: f.storage });
   reader.load();
   const exported = exportBackup(reader.state);
-  const expected = exportBackup(JSON.parse(JSON.stringify(reader.state)));
-  exported.exportedAt = expected.exportedAt;
-  assert.equal(JSON.stringify(exported, null, 2), JSON.stringify(expected, null, 2));
+  exported.exportedAt = '2026-10-28T00:00:00.000Z';
+  assert.equal(sha256(JSON.stringify(exported, null, 2)), '5b50a4ba4cea15b002d10bd555209aa9443c3a90e86a4ea42931a715acca5dd2');
   const history = new ListHistoryStore({ readerStore: reader, locks: null });
   history.load();
   assert.equal(history.exportBackup(), JSON.stringify({ format: LIST_HISTORY_FORMAT, version: 1, records: f.history.records }));
+  assert.equal(sha256(history.exportBackup()), '3c41eca79ff976c6f288583344fa7226bce6960707f800bdd32daa98581c6d8a');
+  const draft = new ImportDraftStore({ reader, locks: null });
+  assert.equal(sha256(draft.exportText()), 'e3aba20da8540c6e849c9be4217ea6feaf65e343973dc1e7a7056f6a772b12d7');
+  draft.recovery = [JSON.stringify({ ...f.draft, revision: 'UNSAVED_REVISION', previousSources: [] })];
+  assert.equal(sha256(draft.exportText()), 'a875d443aad3d97da10cd3425b29df8705a054e64987d899f0b4912dfb839c84');
+  assert.equal(f.writes(), 0);
+});
+
+// Source this page could not save is held only by the import-draft store, never in storage, so a file
+// read from storage would leave it out while the card says the file holds everything.
+test('the complete download refuses while this page holds import source it could not save', async () => {
+  const f = completeFixture();
+  for (const importDraft of [{ recovery: ['unsaved source'], uncertain: false }, { recovery: [], uncertain: true }]) {
+    await assert.rejects(captureCompleteBackup({ storage: f.storage, importDraft, ...crypto }), (error) => error instanceof CompleteBackupError
+      && error.code === 'unsaved' && error.message.includes('Download it with Download import-draft backup instead.'), JSON.stringify(importDraft));
+  }
+  const { backup } = await captureCompleteBackup({ storage: f.storage, importDraft: { recovery: [], uncertain: false }, ...crypto });
+  assert.equal(backup.components.draft.rawText, f.draft.rawText, 'with nothing unsaved, the stored draft is captured as before');
   assert.equal(f.writes(), 0);
 });

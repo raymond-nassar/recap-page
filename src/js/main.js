@@ -2339,7 +2339,9 @@ const completeBackupView = createCompleteBackupView({
   notify,
   getState: () => completeRestore.state,
   onExport: async () => {
-    const { text } = await captureCompleteBackup({ storage: localStorage });
+    // Source this page could not save lives only in the import-draft store, so it is named rather
+    // than silently left out of a file that says it holds everything.
+    const { text } = await captureCompleteBackup({ storage: localStorage, importDraft });
     const result = await download(COMPLETE_BACKUP_FILENAME, text, 'application/json');
     if (result) announce(downloadMessage(result, 'Complete backup'));
   },

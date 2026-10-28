@@ -271,8 +271,15 @@ function fromWitness(witness) {
 
 // Read twice, before and after the digest, and retried when the two differ, so a save in another tab
 // part way through cannot produce a file that mixes two moments.
-export async function captureCompleteBackup({ storage, cryptoProvider = globalThis.crypto } = {}) {
+//
+// The import-draft store, when given, is asked first: source it could not save is held only in memory,
+// so a file read from storage alone would leave it out while claiming to hold everything. That case
+// is refused, as a pending import is, and the import-draft download, which does carry it, is named.
+export async function captureCompleteBackup({ storage, cryptoProvider = globalThis.crypto, importDraft = null } = {}) {
   if (typeof storage?.getItem !== 'function') throw new TypeError('A complete backup needs browser storage.');
+  if (importDraft && ((importDraft.recovery?.length ?? 0) > 0 || importDraft.uncertain === true)) {
+    refuse('This page holds import source that could not be saved, and the complete backup would leave it out. Download it with Download import-draft backup instead.', 'unsaved');
+  }
   const read = () => {
     try {
       return Object.fromEntries(CAPTURE_KEYS.map((key) => [key, storage.getItem(key) ?? null]));
