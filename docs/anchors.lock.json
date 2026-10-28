@@ -1546,8 +1546,8 @@
   },
   "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:540-544|0": {
     "anchor": "src/js/lib/completeRestore.js:540-544",
-    "fp": "00030ec6e74af7f3",
-    "head": "async cleanUp(id) {"
+    "fp": "eaf6a8b6c938ec06",
+    "head": "async cleanUp(id, { journal = true } = {}) {"
   },
   "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:676-681|0": {
     "anchor": "src/js/lib/completeRestore.js:676-681",

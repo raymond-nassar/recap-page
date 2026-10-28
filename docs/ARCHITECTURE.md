@@ -536,8 +536,9 @@ prepares every owner's exact bytes first, generated tokens included, and then ru
 4. Check that every component holds its prepared bytes, record the journal as finished, set the
    marker to `done:`, and reload, so every owner reads the restored data afresh.
 
-Cleanup runs the other way round: the marker says `cleaning:`, the journal is removed and checked
-gone, then the marker is cleared, at `src/js/lib/completeRestore.js:540-544`.
+Cleanup runs the other way round, and every path that ends a restore's record takes it: the marker
+says `cleaning:`, the journal is removed and checked gone, then the marker is cleared, at
+`src/js/lib/completeRestore.js:540-544`.
 
 **Why a finished restore keeps its journal.** Chromium's storage service holds localStorage writes in
 memory and commits them as one batch at least five seconds later. Only a normal exit, the last page

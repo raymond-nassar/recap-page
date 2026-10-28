@@ -537,9 +537,9 @@ export class CompleteRestore {
 
   // Cleanup order: the marker says cleaning, the journal goes and is checked gone, then the marker
   // goes. A marker never outlives its journal except as "cleaning", which the next start finishes.
-  async cleanUp(id) {
+  async cleanUp(id, { journal = true } = {}) {
     writeMarker(this.raw, `cleaning:${id ?? NO_ID}`);
-    await this.removeJournal();
+    if (journal) await this.removeJournal();
     writeMarker(this.raw, null);
   }
 
@@ -737,9 +737,8 @@ export class CompleteRestore {
       const marker = readMarker(this.raw);
       const found = await this.readJournal();
       const id = found.kind === 'valid' ? found.record.id : marker.id ?? NO_ID;
-      writeMarker(this.raw, `cleaning:${id}`);
-      if (found.kind !== 'unreadable') await this.removeJournal();
-      writeMarker(this.raw, null);
+      // A journal IndexedDB cannot read is left for a later start rather than guessed at.
+      await this.cleanUp(id, { journal: found.kind !== 'unreadable' });
       this.recovery = null;
       this.markerSeen = null;
       return { ok: true, changed: false };
@@ -779,9 +778,7 @@ export class CompleteRestore {
       if (held.state === 'absent' && ['absent', 'unreadable'].includes(found.kind)) return { ok: true, erased: true, copyRemoved: false };
       try {
         const id = found.kind === 'valid' ? found.record.id : held.id ?? NO_ID;
-        writeMarker(this.raw, `cleaning:${id}`);
-        if (found.kind !== 'unreadable' && found.kind !== 'absent') await this.removeJournal();
-        writeMarker(this.raw, null);
+        await this.cleanUp(id, { journal: found.kind !== 'unreadable' && found.kind !== 'absent' });
         this.recovery = null;
         this.markerSeen = null;
         return { ok: true, erased: true, copyRemoved: true };
