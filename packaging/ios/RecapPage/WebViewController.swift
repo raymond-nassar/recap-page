@@ -68,9 +68,9 @@ final class WebViewController: UIViewController {
         loadAppPage()
     }
 
-    func loadAppPage(_ url: URL? = nil) {
-        guard let webView, let target = url ?? appPage else { return }
-        webView.load(URLRequest(url: target))
+    func loadAppPage() {
+        guard let webView, let appPage else { return }
+        webView.load(URLRequest(url: appPage))
     }
 
     func open(externally url: URL) {
@@ -82,8 +82,12 @@ final class WebViewController: UIViewController {
     /// started over, as the Android app tells its reader in the same case.
     func contentProcessDidTerminate() {
         restartNoticePending = true
-        if let current = webView?.url, policy?.isAppPage(current) == true {
-            loadAppPage(current)
+        if let webView, let current = webView.url, policy?.isAppPage(current) == true {
+            // A reload, not a load of the same address. Where the document survived, loading an
+            // address that differs from it only in the fragment is a same-document navigation, which
+            // finishes no load, so the page was never told: the iOS 26.5 Simulator waited 30 s for
+            // the notice that way. A reload starts the page again either way.
+            webView.reload()
         } else {
             loadAppPage()
         }

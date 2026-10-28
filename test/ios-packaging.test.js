@@ -307,6 +307,29 @@ test('Debug-only test surfaces cannot reach a Release build', () => {
   assert.ok(debug.some(({ settings }) => setting(settings, 'SWIFT_ACTIVE_COMPILATION_CONDITIONS') === 'DEBUG $(inherited)'));
 });
 
+test('the Swift code reaches WebKit only through methods iOS 18 has', async () => {
+  // Built with the iOS 26 SDK, WebKit's Swift refinements of its Objective-C methods live in
+  // libswiftWebKit.dylib, which iOS 18 does not have. One call to them stopped the app at launch on
+  // the iOS 18.5 Simulator, so the code calls the double-underscore Objective-C forms instead.
+  const refined = [
+    /(?<!\w)callAsyncJavaScript\s*\(/,
+    /(?<!\w)evaluateJavaScript\s*\([^)]*\bin:/,
+    /(?<!\w)(?:createPDF|createWebArchiveData)\s*\(/,
+  ];
+  let objectiveC = 0;
+  for (const directory of ['RecapPage', 'RecapPageTests', 'RecapPageUITests']) {
+    const files = (await filesUnder(path(`packaging/ios/${directory}`))).filter((name) => name.endsWith('.swift'));
+    for (const file of files) {
+      const text = read(`packaging/ios/${directory}/${file}`);
+      objectiveC += (text.match(/\.__callAsyncJavaScript\(/g) ?? []).length;
+      text.split(/\r?\n/).forEach((line, index) => {
+        for (const pattern of refined) assert.doesNotMatch(line, pattern, `${directory}/${file} line ${index + 1}`);
+      });
+    }
+  }
+  assert.ok(objectiveC >= 2, `found ${objectiveC} Objective-C calls into the page, so this would barely check`);
+});
+
 test('the iOS overlay names only shared design tokens, never a raw color', () => {
   const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);

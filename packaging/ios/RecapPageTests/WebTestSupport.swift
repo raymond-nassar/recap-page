@@ -32,14 +32,15 @@ enum WebTestSupport {
         return webView
     }
 
+    /// Runs a function body in the page through the Objective-C method, as the app's probe does, so the
+    /// tests link nothing iOS 18 lacks.
     static func evaluate(_ webView: WKWebView, _ body: String) async throws -> Any? {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Any?, Error>) in
-            webView.callAsyncJavaScript(body, arguments: [:], in: nil, in: .page) { result in
-                switch result {
-                case .success(let value):
-                    continuation.resume(returning: value)
-                case .failure(let error):
+            webView.__callAsyncJavaScript(body, arguments: [:], inFrame: nil, in: .page) { value, error in
+                if let error {
                     continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: value)
                 }
             }
         }

@@ -44,9 +44,11 @@ final class LaunchUITests: XCTestCase {
     func testHomeAndAListPreviewOpenWithEveryRemoteLoadBlocked() throws {
         let app = launch(probe: Self.homeAndPreview)
         let result = try probeResult(of: app)
+        try record("home-and-preview", result)
         XCTAssertEqual(result["origin"] as? String, "recappage://localhost")
         XCTAssertEqual(result["home"] as? Bool, true)
-        XCTAssertGreaterThan(result["previewIssues"] as? Int ?? 0, 0)
+        XCTAssertEqual(result["opener"] as? Bool, true, "House of M's card offered Preview")
+        XCTAssertEqual(result["previewIssues"] as? Int, 20, "Preview listed all twenty House of M issues")
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "preview-with-remote-loads-blocked"
         screenshot.lifetime = .keepAlways
@@ -98,10 +100,30 @@ final class LaunchUITests: XCTestCase {
       const view = document.getElementById('view-home');
       return Boolean(view) && !view.hidden;
     }, 30000);
+    // A named single list, as the desktop checks open one: the first card in the timeline can open a
+    // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues.
     location.hash = '#/catalog';
-    const opener = await until(() => document.querySelector('#view-catalog [data-act="preview"]'), 30000);
+    const search = await until(() => {
+      const view = document.getElementById('view-catalog');
+      return view && !view.hidden ? document.getElementById('catalog-q') : null;
+    }, 30000);
+    if (search) {
+      search.value = 'House of M';
+      search.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    const opener = await until(
+      () => document.querySelector('#catalog-results [data-story="list:house-of-m"] [data-act="preview"]'), 30000);
     opener?.click();
-    const previewIssues = await until(() => document.querySelectorAll('#preview[open] .preview-issue-link').length, 30000);
-    return JSON.stringify({ origin: location.origin, home: Boolean(home), previewIssues: previewIssues ?? 0 });
+    await until(() => document.querySelectorAll('#preview[open] .preview-issue-link').length >= 20, 30000);
+    const body = document.getElementById('preview-body');
+    return JSON.stringify({
+      origin: location.origin,
+      home: Boolean(home),
+      searched: Boolean(search),
+      opener: Boolean(opener),
+      previewOpen: Boolean(document.querySelector('#preview[open]')),
+      previewIssues: document.querySelectorAll('#preview[open] .preview-issue-link').length,
+      previewText: (body?.textContent ?? '').trim().slice(0, 160),
+    });
     """#
 }

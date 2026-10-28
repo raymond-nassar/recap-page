@@ -55,12 +55,15 @@ enum DebugSupport {
         label.accessibilityLabel = "pending"
         label.alpha = 0.1
         view.addSubview(label)
-        webView.callAsyncJavaScript(script, arguments: [:], in: nil, in: .page) { result in
-            switch result {
-            case .success(let value):
-                label.accessibilityLabel = (value as? String) ?? "error: the probe returned \(String(describing: value))"
-            case .failure(let error):
+        // The Objective-C method, not WebKit's Swift refinement of it. Built with the iOS 26 SDK, the
+        // refinement lives in libswiftWebKit.dylib, which iOS 18 does not have: on the iOS 18.5
+        // Simulator this build stopped at launch with "Library not loaded:
+        // /usr/lib/swift/libswiftWebKit.dylib".
+        webView.__callAsyncJavaScript(script, arguments: [:], inFrame: nil, in: .page) { value, error in
+            if let error {
                 label.accessibilityLabel = "error: \(error.localizedDescription)"
+            } else {
+                label.accessibilityLabel = (value as? String) ?? "error: the probe returned \(String(describing: value))"
             }
         }
     }
