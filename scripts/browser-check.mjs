@@ -19609,6 +19609,75 @@ async function failJournalPut(page, at) {
   }, at);
 }
 
+// The card and its recovery section where the interface contract asks: keyboard order with a visible
+// focus ring, accessible names, the width a phone gives (320), a 1280x900 window at 200% zoom (640x450),
+// and forced colors with reduced motion. Each region is checked as it is shown, so the recovery section
+// is checked while a recovery is actually offered.
+async function completePresentation(page, t, { label, root, order, names }) {
+  const original = page.viewport();
+  await page.focus(order[0]);
+  const steps = [];
+  for (const selector of order.slice(1)) {
+    await page.keyboard.press('Tab');
+    steps.push(await page.evaluate((expected) => {
+      const node = document.activeElement;
+      const style = getComputedStyle(node);
+      return {
+        expected, reached: node === document.querySelector(expected),
+        ring: node.matches(':focus-visible') && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+      };
+    }, selector));
+  }
+  t.check(`${label}: Tab reaches each control in order, each with a visible focus ring`,
+    steps.every((step) => step.reached && step.ring), JSON.stringify(steps));
+  const spoken = {};
+  for (const [selector, name] of Object.entries(names)) {
+    const node = await page.$(selector);
+    spoken[selector] = { want: name, got: (await page.accessibility.snapshot({ root: node, interestingOnly: false }))?.name ?? '' };
+  }
+  t.check(`${label}: each control's accessible name is its visible text`,
+    Object.values(spoken).every((entry) => entry.got.includes(entry.want)), JSON.stringify(spoken));
+  const layout = [];
+  for (const viewport of [{ width: 320, height: 900 }, { width: 640, height: 450 }]) {
+    await page.setViewport(viewport);
+    layout.push(await page.$eval(root, (node, size) => {
+      node.scrollIntoView({ block: 'start' });
+      const controls = [...node.querySelectorAll('button, input, summary')].filter((el) => el.getClientRects().length);
+      return {
+        size, controls: controls.length,
+        page: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
+        inside: controls.every((el) => { const box = el.getBoundingClientRect(); return box.left >= -1 && box.right <= innerWidth + 1; }),
+        unclipped: node.scrollWidth <= node.clientWidth + 1,
+      };
+    }, `${viewport.width}x${viewport.height}`));
+  }
+  await page.setViewport(original);
+  t.check(`${label}: at 320 pixels and at 200% zoom nothing overflows the page or its region`,
+    layout.every((entry) => entry.controls > 0 && entry.page && entry.inside && entry.unclipped), JSON.stringify(layout));
+  const cdp = await page.createCDPSession();
+  await cdp.send('Emulation.setEmulatedMedia', {
+    features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+  });
+  const modes = await page.$eval(root, (node) => {
+    const buttons = [...node.querySelectorAll('button')].filter((el) => el.getClientRects().length);
+    const edges = buttons.map((el) => {
+      const style = getComputedStyle(el);
+      return { id: el.id, style: style.borderTopStyle, width: style.borderTopWidth, color: style.borderTopColor };
+    });
+    return {
+      forced: matchMedia('(forced-colors: active)').matches,
+      reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      edged: edges.length > 0 && edges.every((edge) => edge.style !== 'none' && parseFloat(edge.width) > 0 && edge.color !== 'rgba(0, 0, 0, 0)'),
+      still: node.getAnimations({ subtree: true }).length === 0,
+      edges,
+    };
+  });
+  await cdp.send('Emulation.setEmulatedMedia', { features: [] });
+  await cdp.detach();
+  t.check(`${label}: in forced colors every button keeps a visible edge, and with reduced motion nothing animates`,
+    modes.forced && modes.reduced && modes.edged && modes.still, JSON.stringify(modes));
+}
+
 SCENARIOS.push({
   id: 'complete-backup',
   nativeDownloads: 1,
@@ -19628,6 +19697,16 @@ SCENARIOS.push({
           && Boolean(card.compareDocumentPosition(document.querySelector('#btn-export-json')) & Node.DOCUMENT_POSITION_FOLLOWING)
           && summary.textContent.includes('download a complete backup');
       }));
+    await completePresentation(page, t, {
+      label: 'the complete backup card, dark theme',
+      root: '#complete-backup',
+      order: ['#btn-export-complete', '#restore-complete', '#complete-backup summary', '#btn-export-json'],
+      names: {
+        '#btn-export-complete': 'Download complete backup',
+        '#restore-complete': 'Restore a complete backup',
+        '#complete-backup summary': 'About complete backups',
+      },
+    });
     await click(page, '#btn-export-complete');
     await page.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.text.includes('recap-page-complete-backup')));
     const file = await page.evaluate(() => window.__mrtDownloads.find((entry) => entry.text.includes('recap-page-complete-backup')).text);
@@ -19846,6 +19925,16 @@ SCENARIOS.push({
       console.log(`COMPLETE-RESTORE after-kill marker=${offered.marker === null ? 'absent' : offered.marker.split(':')[0]}`);
       t.check('after a real browser kill the next start still pauses saving and offers Finish and the exact prior copy',
         offered.finish && offered.copy && offered.paused, JSON.stringify(offered));
+      await completePresentation(tab, t, {
+        label: 'the recovery section after the kill, light theme',
+        root: '#complete-restore-recovery',
+        order: ['#btn-complete-prior-copy', '#btn-complete-finish', '#btn-complete-keep'],
+        names: {
+          '#btn-complete-prior-copy': 'Download exact prior copy',
+          '#btn-complete-finish': 'Finish restore',
+          '#btn-complete-keep': 'Keep the data that is here now',
+        },
+      });
       await click(tab, '#btn-complete-prior-copy');
       await tab.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.text.includes('recap-page-complete-restore-prior')));
       const copy = JSON.parse(await tab.evaluate(() => window.__mrtDownloads.find((entry) => entry.text.includes('recap-page-complete-restore-prior')).text));
