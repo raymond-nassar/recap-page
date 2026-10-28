@@ -9,8 +9,9 @@ import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import { createGunzip, gunzipSync, gzipSync } from 'node:zlib';
 import {
-  CLOUD_ENVELOPE_FORMAT, CLOUD_ENVELOPE_VERSION, CLOUD_PRUNE_PER_BACKUP, MAX_CLOUD_BACKUP_BYTES,
-  CloudBackupError, CloudBackupProtocol, cloudBackupName, cloudDeviceLabel, createCloudRecordStore, parseCloudBackupName,
+  CLOUD_DEADLINE_GRACE_MS, CLOUD_ENVELOPE_FORMAT, CLOUD_ENVELOPE_VERSION, CLOUD_PRUNE_PER_BACKUP, CLOUD_TRANSPORT_DEADLINES_MS,
+  MAX_CLOUD_BACKUP_BYTES, CloudBackupError, CloudBackupProtocol, cloudBackupName, cloudDeviceLabel, createCloudRecordStore,
+  parseCloudBackupName,
 } from '../src/js/lib/cloudProtocol.js';
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
@@ -208,7 +209,7 @@ function fakeTransport({ duplicates = false, connection = 'connection-one' } = {
       }
       if (planned === 'renamed') return item(store(`${name} (1)`, bytes));
       if (planned) throw failure(planned);
-      if (!duplicates && [...files.values()].some((file) => file.name === name)) throw failure('conflict');
+      if (!duplicates && [...files.values()].some((file) => file.name === name)) throw failure('exists');
       return item(store(name, bytes));
     },
     async delete(id, options) {
@@ -446,7 +447,7 @@ test('a backup is one gzip file holding the exact complete backup, read back bef
   reading();
   assert.deepEqual(await uploading, { stream, generation: 1, name: cloudBackupName(stream, 1) });
   assert.deepEqual(counted, [2], 'the generation was committed before its file was created');
-  assert.deepEqual(env.transport.calls, ['create', 'read'], 'a first backup has nothing to prune, so it lists nothing');
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read'], 'every backup lists before it creates, and a first one has nothing to prune');
 
   const [file] = env.transport.files.values();
   assert.equal(file.name, cloudBackupName(stream, 1));
@@ -474,11 +475,17 @@ test('each backup costs one create, one read, one list and one delete, and exact
     costs.push(env.transport.calls.join(','));
   }
   assert.deepEqual(costs, [
-    'create,read', 'create,read,list',
-    'create,read,list,delete', 'create,read,list,delete', 'create,read,list,delete', 'create,read,list,delete',
+    'list,create,read', 'list,create,read',
+    'list,create,read,delete', 'list,create,read,delete', 'list,create,read,delete', 'list,create,read,delete',
   ]);
   assert.deepEqual(env.transport.generations(stream), [5, 6]);
   assert.deepEqual((await protocol.record()).validated.map((entry) => entry.generation), [6, 5]);
+  // The list comes first, so a backup that cannot make it creates nothing.
+  home.mark(7);
+  env.transport.calls.length = 0;
+  env.transport.faults.list.push('unavailable');
+  await assert.rejects(protocol.upload(await home.snapshot()), { code: 'unavailable' });
+  assert.deepEqual(env.transport.calls, ['list']);
 });
 
 // ------------------------------------------------------------------ generations
@@ -581,7 +588,7 @@ test('pruning that fails only lags, and never touches another stream, an unknown
   await protocol.upload(kept);
   assert.deepEqual(await protocol.lastUploaded(ON), { personalDigest: kept.personalDigest, uploadedAt: env.time.now }, 'the backup still counts');
   home.mark(5);
-  env.transport.faults.list.push('needs-sign-in');
+  env.transport.faults.delete.push('timeout');
   await protocol.upload(await home.snapshot());
   assert.deepEqual(env.transport.generations(stream), [2, 3, 4, 5], 'two backups whose pruning failed');
 
@@ -635,7 +642,7 @@ test('a host reconnected to another account between allocating and creating uplo
   const { protocol, stream } = await consented(env);
   const snapshot = await device().snapshot();
   await protocol.upload(snapshot);
-  assert.deepEqual(env.transport.named, ['connection-one', 'connection-one'], 'the create and its read-back name the consented connection');
+  assert.deepEqual(env.transport.named, ['connection-one', 'connection-one', 'connection-one'], 'the list, the create and its read-back name the consented connection');
   const before = env.transport.files.size;
   // Another profile reconnects the host after this browser has taken its number, before the create.
   env.transport.faults.create.push(async () => { env.transport.connection = 'connection-two'; });
@@ -716,7 +723,7 @@ test('a record that cannot be kept or read is reported for the operation it stop
   assert.deepEqual(env.transport.calls, []);
   env.transport.faults.create.push(async () => { env.idb.faults.abort = 1; });
   await assert.rejects(protocol.upload(snapshot), { code: 'storage', message: `${lost} The backup was uploaded, but it does not count as made.` });
-  assert.deepEqual(env.transport.calls, ['create', 'read'], 'it was made and read back first');
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read'], 'it was made and read back first');
   env.idb.faults.abort = 1;
   await assert.rejects(protocol.recordConsent(CONSENT), { code: 'storage', message: `${lost} Cloud backup was not turned on.` });
   env.idb.faults.abort = 1;
@@ -730,6 +737,125 @@ test('a record that cannot be kept or read is reported for the operation it stop
   await assert.rejects(protocol.deleteOwnBackups(ON), { code: 'storage', message: `${unreadable} Nothing was deleted, and cloud backup may still be on.` });
   await assert.rejects(protocol.lastUploaded(ON), { code: 'storage', message: unreadable });
   assert.deepEqual(env.transport.calls, [], 'no refusal before a deletion reached the account');
+});
+
+// ------------------------------------------------------------------ copies of the record (M6)
+
+// What a device or system backup brings back: the record as it stood when that backup was taken, in a
+// browser of its own, talking to the same account.
+async function copyOf(env, record) {
+  const idb = fakeIndexedDB();
+  await createCloudRecordStore(idb).write(() => structuredClone(record));
+  return harness({ idb, transport: env.transport, locks: fakeLocks(), time: env.time }).make();
+}
+
+test('a record restored from an older device backup never uses a number its stream already has', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  home.mark(1);
+  await protocol.upload(await home.snapshot());
+  const saved = await protocol.record();
+  for (let n = 2; n <= 4; n += 1) {
+    home.mark(n);
+    await protocol.upload(await home.snapshot());
+  }
+  assert.deepEqual(env.transport.generations(stream), [3, 4]);
+  const restored = await copyOf(env, saved);
+  env.transport.calls.length = 0;
+  home.mark(5);
+  const made = await restored.upload(await home.snapshot());
+  assert.notEqual(made.stream, stream, 'it starts a new stream instead of making generation 2 again');
+  assert.equal(made.generation, 1);
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read'], 'at no extra cost');
+  assert.equal(env.transport.created.length, new Set(env.transport.created).size, 'no name was ever sent twice');
+  assert.deepEqual(env.transport.generations(stream), [3, 4], 'the old stream is left alone');
+  const record = await restored.record();
+  assert.deepEqual([record.stream, record.nextGeneration, record.validated.map((entry) => entry.generation)], [made.stream, 2, [1]]);
+  assert.equal(record.device, saved.device, 'it keeps its label and its consent');
+  assert.equal(canonical(record.consent), canonical(saved.consent));
+});
+
+test('two installations sharing one stream part ways at the first list that shows the other ahead', async () => {
+  for (const duplicates of [false, true]) {
+    const env = harness({ transport: fakeTransport({ duplicates }) });
+    const { protocol: first, stream } = await consented(env);
+    const home = device();
+    home.mark(1);
+    await first.upload(await home.snapshot());
+    const second = await copyOf(env, await first.record());
+    home.mark(2);
+    await first.upload(await home.snapshot());
+    home.mark(3);
+    const parted = await second.upload(await home.snapshot());
+    assert.notEqual(parted.stream, stream, `duplicates ${duplicates}: the copy starts its own stream`);
+    home.mark(4);
+    assert.equal((await first.upload(await home.snapshot())).stream, stream, 'and the first carries on with its own');
+    assert.equal(env.transport.created.length, new Set(env.transport.created).size, 'no name was ever sent twice');
+  }
+});
+
+// The copy lists before the first makes generation 2, then creates the same name. OneDrive refuses it, so
+// the copy starts a new stream; Google keeps both, so the list is its only guard, and the next list parts
+// them.
+test('a create refused because its name exists starts a new stream, and that number is never tried again', async () => {
+  for (const duplicates of [false, true]) {
+    const env = harness({ transport: fakeTransport({ duplicates }) });
+    const { protocol: first, stream } = await consented(env);
+    const home = device();
+    home.mark(1);
+    await first.upload(await home.snapshot());
+    const second = await copyOf(env, await first.record());
+    home.mark(2);
+    const theirs = await home.snapshot();
+    env.transport.faults.create.push(async () => { await first.upload(theirs); });
+    home.mark(3);
+    const taken = cloudBackupName(stream, 2);
+    if (!duplicates) {
+      await assert.rejects(second.upload(await home.snapshot()), { code: 'exists' });
+      const record = await second.record();
+      assert.notEqual(record.stream, stream);
+      assert.deepEqual([record.nextGeneration, record.validated], [1, []], 'the next backup is the new stream\'s first');
+    } else {
+      assert.equal((await second.upload(await home.snapshot())).stream, stream, 'Google kept both');
+      home.mark(4);
+      await first.upload(await home.snapshot());
+    }
+    home.mark(5);
+    const made = await second.upload(await home.snapshot());
+    assert.notEqual(made.stream, stream, `duplicates ${duplicates}: parted`);
+    assert.equal(env.transport.created.filter((name) => name === taken).length, 2, 'the shared number was sent once by each, never again');
+  }
+});
+
+// ------------------------------------------------------------------ the transport contract
+
+test('a transport that never answers is given up on at the deadline the engine states', async () => {
+  assert.deepEqual({ ...CLOUD_TRANSPORT_DEADLINES_MS }, { list: 120_000, read: 600_000, create: 600_000, delete: 30_000 });
+  assert.equal(CLOUD_DEADLINE_GRACE_MS, 15_000);
+  const env = harness();
+  const { protocol } = await consented(env, { deadlines: { list: 5, read: 5, create: 5, delete: 5 }, graceMs: 5 });
+  const home = device();
+  home.mark(1);
+  env.transport.faults.create.push(() => new Promise(() => {}));
+  await assert.rejects(protocol.upload(await home.snapshot()), { code: 'timeout' });
+  assert.equal(await protocol.lastUploaded(ON), null);
+  env.transport.faults.list.push(() => new Promise(() => {}));
+  await assert.rejects(protocol.discover(ON), { code: 'timeout' });
+});
+
+test('a read refused as too large counts as a file that fails its checks, and discovery goes on', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const home = device();
+  for (let n = 1; n <= 2; n += 1) {
+    home.mark(n);
+    await protocol.upload(await home.snapshot());
+  }
+  env.transport.faults.read.push('too-large');
+  const found = await harness({ transport: env.transport }).make().discover(ON);
+  const shown = found.devices.find((entry) => entry.stream === stream);
+  assert.deepEqual([shown.current?.generation, shown.previous, shown.invalid], [1, null, 1]);
 });
 
 // ------------------------------------------------------------------ discovery
@@ -1036,7 +1162,7 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
   let heldDuringCreate = null;
   env.transport.faults.create.push(async () => { heldDuringCreate = env.locks.held(CLOUD_BACKUP_LOCK); });
   await time.advance(quietMs, [coordinator]);
-  assert.deepEqual(env.transport.calls, ['create', 'read']);
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read']);
   assert.equal(heldDuringCreate, 1, 'the coordinator backs up under the lock a deletion waits for');
   assert.equal(coordinator.state.phase, 'up-to-date');
 
@@ -1047,7 +1173,7 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
     await time.advance(1000, [coordinator]);
   }
   await time.advance(minIntervalMs, [coordinator]);
-  assert.deepEqual(env.transport.calls, ['create', 'read', 'list'], 'ten changes, one backup');
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read'], 'ten changes, one backup');
 
   env.transport.calls.length = 0;
   home.open('later');

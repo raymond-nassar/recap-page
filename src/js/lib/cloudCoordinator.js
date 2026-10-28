@@ -33,8 +33,10 @@ const MAX_TIMER_MS = 2_147_483_647;
 // Refusals from a capture that a later save clears by itself: an import still being saved, or source
 // the import draft could not save. Retrying on a timer would only refuse again.
 const WAIT_FOR_CHANGE = new Set(['pending', 'unsaved']);
-// Refusals no amount of waiting fixes without a change: the saved data cannot be read or is too large.
-const STOP_UNTIL_CHANGE = new Set(['unreadable', 'storage', 'oversize', 'unsupported', 'hash', 'invalid', 'refused']);
+// Refusals no amount of waiting fixes without a change: the saved data cannot be read or is too large, or
+// the account is full or refuses it. The transport's codes and their meanings are under Cloud backup in
+// docs/ARCHITECTURE.md; every code not named here, such as 'unavailable', 'timeout' or 'exists', is retried.
+const STOP_UNTIL_CHANGE = new Set(['unreadable', 'storage', 'oversize', 'unsupported', 'hash', 'invalid', 'refused', 'too-large', 'quota']);
 // The host holds another connection than the one this browser agreed to, or none: only the person can
 // give consent again, so nothing is retried until they do (stage 1 review, M1).
 const NEEDS_CONSENT = new Set(['needs-consent', 'not-connected']);
@@ -98,9 +100,9 @@ export class CloudBackupCoordinator {
   //   backup under the connection the host holds now, or null. It is read at every run, because another
   //   tab may have made one meanwhile, and another profile may have reconnected the host.
   // upload: stores one backup and resolves only once that record says so. It may throw an error with
-  //   code 'needs-sign-in', 'needs-consent', 'not-connected' or 'refused', or any other error, which is
-  //   retried: a backup is written once and never overwrites another, so a retry after a lost reply costs
-  //   a file, never a backup.
+  //   code 'needs-sign-in', 'needs-consent' or 'not-connected', which wait for the person, one of the codes
+  //   that stop until the data changes, or any other error, which is retried: a backup is written once and
+  //   never overwrites another, so a retry after a lost reply costs a file, never a backup.
   constructor({
     capture, upload, lastUploaded,
     isBlocked = () => false,

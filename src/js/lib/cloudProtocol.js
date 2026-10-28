@@ -35,6 +35,12 @@ export const MAX_CLOUD_BACKUP_BYTES = MAX_COMPLETE_BACKUP_BYTES;
 export const CLOUD_PRUNE_PER_BACKUP = 2;
 // What discovery reads at most: the newest streams first, and in each, files until two pass.
 export const CLOUD_DISCOVERY_LIMITS = Object.freeze({ streams: 16, readsPerStream: 4 });
+// The longest each transport operation may take, which every provider stays within. A read or a create
+// moves at most 32 MiB, and ten minutes carries that at 56 KB a second, a slow mobile link. A list may
+// follow many pages, and on the Windows host it first waits for a create still under way. The engine
+// waits the grace beyond each, for the reply to arrive, and then treats the operation as timed out.
+export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 600_000, delete: 30_000 });
+export const CLOUD_DEADLINE_GRACE_MS = 15_000;
 
 const NAME = /^recap-page-backup-v1-([a-f0-9]{32})-([1-9][0-9]{0,15})\.json\.gz$/;
 const STREAM = /^[a-f0-9]{32}$/;
@@ -300,25 +306,27 @@ function itemOf(value) {
 // ------------------------------------------------------------------ the protocol
 
 export class CloudBackupProtocol {
-  // transport: the app's own area of one account, as the host holding the connection sees it now. Every
-  // call names a connection, and the transport refuses with code 'needs-consent' when it holds a different
-  // one, or 'not-connected' when it holds none, so nothing is listed, read, created or deleted in an account
-  // this browser has not agreed to. A connection belongs to the host and is shared by every browser profile
-  // on it, so another profile can reconnect it to another account at any moment (stage 1 review, M1).
+  // transport: the app's own area of one account, installed through the page's one registration point:
+  // the Windows host's fetch transport, or the bridge the Android or iOS app supplies. The full contract,
+  // with every refusal code and what the engine does about it, is under Cloud backup in
+  // docs/ARCHITECTURE.md. Every call names a connection, and the transport refuses with code
+  // 'needs-consent' when it holds a different one, or 'not-connected' when it holds none, so nothing is
+  // listed, read, created or deleted in an account this browser has not agreed to (stage 1 review, M1).
   //   list({ connection }) resolves to every item, as { id, name, size, created }; an area not made yet
   //   lists as empty.
-  //   read(id, { connection }) resolves to the item's bytes, refusing an item over 32 MiB without returning
-  //   its bytes, or rejects with code 'not-found' once it is gone.
-  //   create(name, bytes, { connection }) makes a new item and resolves to it; it never knowingly replaces
-  //   one, and a create it reports as failed can never appear later.
+  //   read(id, { connection }) resolves to the item's bytes, refusing with 'too-large' an item whose stored
+  //   bytes exceed 32 MiB, without returning them, and with 'not-found' one that is gone.
+  //   create(name, bytes, { connection }) makes a new item and resolves to it. It never knowingly replaces
+  //   one, refuses with 'exists' a name it can tell is taken, and a create it reports as failed never
+  //   appears later.
   //   delete(id, { connection }) removes one, and an item already gone counts as removed.
-  //   Every call settles within the host's stated deadline. Any may reject with code 'needs-sign-in',
-  //   'needs-consent', 'not-connected', 'refused' or another code, with a wait the provider asked for as
-  //   retryAfterMs; the coordinator decides what each means.
+  //   Each settles within CLOUD_TRANSPORT_DEADLINES_MS, and a refusal may carry the wait the provider
+  //   asked for as retryAfterMs. Item ids are opaque and may equal names.
   constructor({
     transport, records = createCloudRecordStore(), cryptoProvider = globalThis.crypto, streams = globalThis,
     locks = globalThis.navigator?.locks, clock = Date.now, maxBytes = MAX_CLOUD_BACKUP_BYTES,
-    limits = CLOUD_DISCOVERY_LIMITS,
+    limits = CLOUD_DISCOVERY_LIMITS, deadlines = CLOUD_TRANSPORT_DEADLINES_MS, graceMs = CLOUD_DEADLINE_GRACE_MS,
+    setTimer = (callback, ms) => globalThis.setTimeout(callback, ms), clearTimer = (timer) => globalThis.clearTimeout(timer),
   } = {}) {
     if (['list', 'read', 'create', 'delete'].some((operation) => typeof transport?.[operation] !== 'function')) {
       throw new TypeError('Cloud backup needs a transport that can list, read, create and delete.');
@@ -326,8 +334,22 @@ export class CloudBackupProtocol {
     if (typeof records?.read !== 'function' || typeof records?.write !== 'function' || typeof clock !== 'function') {
       throw new TypeError('Cloud backup needs its record and a clock.');
     }
-    Object.assign(this, { transport, records, cryptoProvider, streams, clock, maxBytes, limits });
+    Object.assign(this, { transport, records, cryptoProvider, streams, clock, maxBytes, limits, deadlines, graceMs, setTimer, clearTimer });
     this.locks = typeof locks?.request === 'function' ? locks : null;
+  }
+
+  // Every transport call is held to its deadline and the grace, so a provider that never answers cannot
+  // hold the worker lock for good. The call is not cancelled: a create that lands after it was given up on
+  // only adds a generation this browser already spent, and the list before the next create sees it.
+  call(operation, ...args) {
+    const limit = this.deadlines[operation] + this.graceMs;
+    let timer;
+    const late = new Promise((resolve, reject) => {
+      timer = this.setTimer(() => reject(new CloudBackupError(
+        `The cloud account did not answer within ${Math.round(limit / 1000)} seconds.`, 'timeout')), limit);
+    });
+    const answer = new Promise((resolve) => { resolve(this.transport[operation](...args)); });
+    return Promise.race([answer, late]).finally(() => this.clearTimer(timer));
   }
 
   // ---------------------------------------------------------------- the record
@@ -429,6 +451,29 @@ export class CloudBackupProtocol {
     return held;
   }
 
+  // A device or system backup can bring this record back with a counter behind the files its stream
+  // already has: a phone restored from an older backup, a new one set up from it while the old one still
+  // runs, or a profile restored the same way. Nothing on any platform says so, so the list before every
+  // create is the check (M6). A file of this stream at or above the number taken, or a create refused with
+  // 'exists', means another copy of this record is in use, so this browser starts a new stream rather than
+  // use that number. The old stream's files stay, because the other copy may still be making them. With
+  // `allocate`, the new stream's first number is taken in the same write, for the backup under way.
+  async restream(taken, { allocate }) {
+    const stream = this.randomId();
+    let fresh = null;
+    await this.records.write((current) => {
+      const record = current === null ? null : checkRecord(current);
+      if (!record || record.stream !== taken.stream || canonical(record.consent) !== canonical(taken.consent)) {
+        refuse('Cloud backup was turned off, or agreed to again, while this backup was being made, so nothing was uploaded.', 'refused');
+      }
+      fresh = { stream, generation: 1, device: record.device, consent: record.consent };
+      return { ...record, stream, nextGeneration: allocate ? 2 : 1, validated: [] };
+    });
+    const held = await this.record();
+    if (!held || held.stream !== stream || (allocate && held.nextGeneration <= fresh.generation)) throw recordLost();
+    return fresh;
+  }
+
   // 128 random bits as hex, for a stream or a consent.
   randomId() {
     if (typeof this.cryptoProvider?.getRandomValues !== 'function') {
@@ -510,7 +555,7 @@ export class CloudBackupProtocol {
   // Every item whose name this version writes, with its stream and generation, and how many others there
   // were. The others are never read or touched.
   async listed(connection) {
-    const items = await this.transport.list({ connection });
+    const items = await this.call('list', { connection });
     if (!Array.isArray(items)) refuse('The cloud account did not answer with a list.', 'invalid');
     const known = [];
     let unrecognized = 0;
@@ -524,32 +569,19 @@ export class CloudBackupProtocol {
   }
 
   async discard(id, connection) {
-    try { await this.transport.delete(id, { connection }); } catch { /* removed by a later backup's pruning */ }
+    try { await this.call('delete', id, { connection }); } catch { /* removed by a later backup's pruning */ }
   }
 
   // A delete refused as not found means the file is already gone, which is what a delete is for, however
   // the provider says it (stage 1 review, L2). Pruning goes on past it, and deletion counts it as deleted.
   async remove(id, connection) {
-    try { await this.transport.delete(id, { connection }); }
+    try { await this.call('delete', id, { connection }); }
     catch (error) { if (error?.code !== 'not-found') throw error; }
   }
 
-  // ---------------------------------------------------------------- one backup
-
-  // Per backup: one create, one read, at most one list and at most two deletes, the second only while
-  // files left behind earlier remain. Resolves only once the record holds this backup as verified, which
-  // is what the coordinator's spacing and comparison read.
-  async upload({ text, backup, personalDigest } = {}) {
-    if (typeof text !== 'string' || !object(backup) || typeof personalDigest !== 'string' || !DIGEST.test(personalDigest)) {
-      refuse('The backup to upload is incomplete.', 'invalid');
-    }
-    // The file holds the complete backup's exact bytes, which are its canonical form.
-    if (canonical(backup) !== text) refuse('The backup to upload does not match its own text.', 'invalid');
-    this.supported();
-    const { stream, generation, device, consent } = await saying('Nothing was uploaded.', () => this.allocate());
-    const { connection } = consent;
-    // Keys in sorted order, which makes this the envelope's canonical form without serializing the
-    // backup a second time.
+  // The envelope, compressed. Keys in sorted order, which makes it the envelope's canonical form without
+  // serializing the backup a second time. The cap is on the envelope before it is compressed.
+  async pack(text, { stream, generation, device }) {
     const envelope = `{"backup":${text},"createdAt":${this.now()},"device":${JSON.stringify(device)},`
       + `"format":"${CLOUD_ENVELOPE_FORMAT}","generation":${generation},"stream":"${stream}","version":${CLOUD_ENVELOPE_VERSION}}`;
     const plain = new TextEncoder().encode(envelope);
@@ -557,14 +589,50 @@ export class CloudBackupProtocol {
     if (!bytes || bytes.byteLength > this.maxBytes) {
       refuse(`This backup is larger than the ${mebibytes(this.maxBytes)} MiB a cloud backup can be, so it was not uploaded.`, 'oversize');
     }
+    return bytes;
+  }
+
+  // ---------------------------------------------------------------- one backup
+
+  // Per backup: one list, one create, one read and at most two deletes, the second only while files left
+  // behind earlier remain. The list comes before the create, so a stream that another copy of this record
+  // has gone ahead in is caught before any number of it is used (M6), and pruning works from that list.
+  // Resolves only once the record holds this backup as verified, which is what the coordinator's spacing
+  // and comparison read.
+  async upload({ text, backup, personalDigest } = {}) {
+    if (typeof text !== 'string' || !object(backup) || typeof personalDigest !== 'string' || !DIGEST.test(personalDigest)) {
+      refuse('The backup to upload is incomplete.', 'invalid');
+    }
+    // The file holds the complete backup's exact bytes, which are its canonical form.
+    if (canonical(backup) !== text) refuse('The backup to upload does not match its own text.', 'invalid');
+    this.supported();
+    let taken = await saying('Nothing was uploaded.', () => this.allocate());
+    const { connection } = taken.consent;
+    // Packed before the list, so a backup over the cap never reaches the account. A new stream only
+    // shortens the envelope, since its first number has the fewest digits.
+    let bytes = await this.pack(text, taken);
+    const { known } = await this.listed(connection);
+    if (known.some((item) => item.stream === taken.stream && item.generation >= taken.generation)) {
+      taken = await saying('Nothing was uploaded.', () => this.restream(taken, { allocate: true }));
+      bytes = await this.pack(text, taken);
+    }
+    const { stream, generation, consent } = taken;
     const name = cloudBackupName(stream, generation);
     const sent = await this.digest(bytes);
-    const created = itemOf(await this.transport.create(name, bytes, { connection }));
+    let created;
+    try { created = itemOf(await this.call('create', name, bytes, { connection })); }
+    catch (error) {
+      if (error?.code !== 'exists') throw error;
+      // Only another copy of this record can have made this name. The number is never tried again, and
+      // the next backup is the new stream's first.
+      await saying('Nothing was uploaded.', () => this.restream(taken, { allocate: false }));
+      refuse('A backup with this number was already in the account, perhaps made by a device restored from this one, so this browser now starts its backups afresh, and this one will be made again.', 'exists');
+    }
     if (!created || created.name !== name) {
       if (created) await this.discard(created.id, connection);
       refuse('The cloud copy was not kept under the name it was given, so it was removed and will be made again.', 'verify');
     }
-    const returned = bytesOf(await this.transport.read(created.id, { connection }));
+    const returned = bytesOf(await this.call('read', created.id, { connection }));
     if (!returned || await this.digest(returned) !== sent) {
       await this.discard(created.id, connection);
       refuse('The cloud copy did not read back as it was sent, so it was removed and will be made again.', 'verify');
@@ -572,16 +640,16 @@ export class CloudBackupProtocol {
     const record = await saying('The backup was uploaded, but it does not count as made.',
       () => this.acknowledge({ stream, generation, consent, personalDigest, uploadedAt: this.now() }));
     // The backup is made and verified, so a failure from here on only leaves a file for a later backup.
-    try { await this.prune(record, connection); } catch { /* deletes may lag */ }
+    try { await this.prune(record, known, connection); } catch { /* deletes may lag */ }
     return { stream, generation, name };
   }
 
-  // This stream's files older than its second-newest verified generation, oldest first. Files of other
-  // streams, unrecognized files and anything newer are never touched.
-  async prune(record, connection) {
+  // This stream's files older than its second-newest verified generation, oldest first, from the list made
+  // before this backup's create. Files of other streams, unrecognized files and anything newer are never
+  // touched.
+  async prune(record, known, connection) {
     const floor = record.validated[1]?.generation;
     if (floor === undefined) return 0;
-    const { known } = await this.listed(connection);
     const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)
       .sort((a, b) => a.generation - b.generation).slice(0, CLOUD_PRUNE_PER_BACKUP);
     for (const item of stale) await this.remove(item.id, connection);
@@ -632,12 +700,14 @@ export class CloudBackupProtocol {
     return { own, devices, omitted: Math.max(0, ordered.length - this.limits.streams), unrecognized: unrecognized + oversized };
   }
 
-  // The checked file, null when it fails a check, or undefined when it was gone by the time it was read.
+  // The checked file, null when it fails a check, or undefined when it was gone by the time it was read. A
+  // read refused as too large is a file that fails a check, since its stored bytes pass the cap.
   async inspect(item, connection) {
     let bytes;
-    try { bytes = bytesOf(await this.transport.read(item.id, { connection })); }
+    try { bytes = bytesOf(await this.call('read', item.id, { connection })); }
     catch (error) {
       if (error?.code === 'not-found') return undefined;
+      if (error?.code === 'too-large') return null;
       throw error;
     }
     return this.decode(bytes, item);

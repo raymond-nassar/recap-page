@@ -677,25 +677,78 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:396-407`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:418-429`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup then deletes this stream's files older than
-its second-newest verified generation, at `src/js/lib/cloudProtocol.js:585-586`: one delete keeps pace
+its second-newest verified generation, at `src/js/lib/cloudProtocol.js:653-654`: one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
 A connection belongs to the Windows host or the Android app and is shared by every browser profile
 there, while consent belongs to each browser. So every list, read, create and delete names the
 connection this browser agreed to, and the host refuses any other: after another profile reconnects,
 perhaps to another account, backups stop until this browser has seen what that account holds and
-agreed again, and nothing it verified before counts as backed up there.
+agreed again, and nothing it verified before counts as backed up there. Consent given again, even for
+the same connection, is a new consent with its own random id, and a backup counts only under the
+consent it was made under.
+
+**Copies of the record.** A device or system backup can bring the stream record back: an iPhone
+restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
+or Android profile restored the same way. Such a record holds a counter behind the files its stream
+already has, and nothing on any platform says so. So every backup lists before it creates, at
+`src/js/lib/cloudProtocol.js:614-615`: a file of this stream at or above the number just taken, or a
+create refused because its name is taken, means another copy of the record is in use, and the browser
+starts a new stream, committed with strict durability and read back, rather than use that number. The
+old stream's files are left alone, because the other copy may still be making them, and discovery
+shows them as another device's under the same label. Google Drive allows one name twice, so there the
+list is the only guard: two copies that take the same number at the same moment both keep their
+files, and the next list that shows one ahead of the other parts them.
+
+**The transport.** Below the protocol is one transport per page, the only way the engine reaches a
+provider, and no token ever crosses it. It is installed through one registration point in the page's
+wiring, which P02-T05 builds: the Windows host's fetch transport, or the bridge the Android app or the
+iOS app (#949) supplies. Its four operations act on the app's own area of one account, and each names
+the connection the page's consent was for:
+
+- `list` resolves to every item as an id, a name, a size and a creation time. An area not made yet
+  lists as empty.
+- `read` resolves to an item's bytes. It refuses an item whose stored bytes exceed 32 MiB without
+  returning them; the upload cap, by contrast, applies to the envelope before compression.
+- `create` makes a new item and resolves to it. It never knowingly replaces one, refuses a name it can
+  tell is taken, and a create it reports as failed never appears later.
+- `delete` removes an item, and one already gone counts as removed.
+
+Item ids are opaque and may equal names, as a CloudKit record's would. A connection id is opaque too,
+and the provider mints one at each connect: the Windows host 32 random hexadecimal digits, and the iOS
+provider one it binds natively to an account digest. The engine takes any string of 1 to 128
+characters without control characters and compares it exactly. Each operation settles within the
+deadline the engine states at `src/js/lib/cloudProtocol.js:42`: two minutes for a list, ten for a
+read or a create, and thirty seconds for a delete. The engine waits fifteen seconds more for the
+reply, then counts the operation as timed out. A request whose page closed, or that was given up on,
+settles on the provider's side with no reply to the page that loads next, and the list before the
+next create shows whatever it left. Refusals carry a code, and may carry the wait a provider asked
+for:
+
+| Code | Meaning | What happens |
+|---|---|---|
+| `needs-consent` | The provider holds another connection than the one named, or the person deleted the app's area in the account | Backups stop until the person sees what the account holds and agrees again, and a deletion stops |
+| `not-connected` | There is no connection | As `needs-consent` |
+| `needs-sign-in` | The connection stays, but its sign-in has to be made again | Backups stop in a visible sign-in-again state, never silently |
+| `unavailable` | The provider is busy, throttled or unreachable | Retried with backoff, never sooner than the wait asked for |
+| `timeout` | No answer within the deadline | Retried, and a create's number stays spent |
+| `too-large` | An item's stored bytes exceed 32 MiB | A read counts the item as failing its checks; a create stops backups until the data changes or the person retries |
+| `exists` | A create's name is already taken | The browser starts a new stream, and the next backup is its first |
+| `not-found` | The item is gone | A read skips it, a restore says it is gone, and a delete counts it as done |
+| `quota` | The account is full | Backups stop until the data changes or the person retries |
+| `refused` | Refused for a reason no wait fixes | Backups stop until the data changes or the person retries |
+| `invalid` | A request or an answer this version does not expect | Backups stop until the data changes or the person retries |
 
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:471`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:516`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 
