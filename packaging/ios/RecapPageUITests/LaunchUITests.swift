@@ -43,7 +43,9 @@ final class LaunchUITests: XCTestCase {
     @MainActor
     func testHomeAndAListPreviewOpenWithEveryRemoteLoadBlocked() throws {
         let app = launch(probe: Self.homeAndPreview)
-        let result = try probeResult(of: app)
+        // The iOS 18.5 Simulator runs the page at about half the newest runtime's speed, and missed a
+        // 90 s wait for this probe that the newest runtime finished in under a minute.
+        let result = try probeResult(of: app, timeout: 240)
         try record("home-and-preview", result)
         XCTAssertEqual(result["origin"] as? String, "recappage://localhost")
         XCTAssertEqual(result["home"] as? Bool, true)

@@ -174,6 +174,41 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     ...outcome(store.restore(fileA, { expected: store.captureRestore() })),
   };
   localStorage.clear();
+
+  // The width the engine charges for the saved reading data itself, read from the room left beside
+  // it: about 1 byte per character for a string held at one byte, 2 for one held at two. A string
+  // can be held at two bytes when every character is Latin-1, if it was built from text the engine
+  // decoded that way, and then the Latin-1 case above costs what the wide one does. The second
+  // figure is a copy with every character above U+007F escaped as JSON allows, rebuilt from its
+  // ASCII bytes, which is one way the app could store the same data at one byte per character.
+  const width = (value) => {
+    localStorage.clear();
+    try {
+      localStorage.setItem(heldKey, value);
+      const room = largest('a');
+      return Number(((quota.latin1Chars - heldKey.length - room) / value.length).toFixed(3));
+    } catch (error) {
+      return `error: ${error?.message ?? error}`;
+    } finally {
+      localStorage.clear();
+    }
+  };
+  let widths;
+  try {
+    const ascii = savedRaw.replace(/[\u0080-\uffff]/g, (character) =>
+      `\\u${character.charCodeAt(0).toString(16).padStart(4, '0')}`);
+    const rebuilt = new TextDecoder('latin1').decode(new TextEncoder().encode(ascii));
+    widths = {
+      saved: width(savedRaw),
+      escaped: width(ascii),
+      escapedRebuilt: width(rebuilt),
+      escapedChars: rebuilt.length,
+      escapedSameData: JSON.stringify(JSON.parse(rebuilt)) === JSON.stringify(JSON.parse(savedRaw)),
+    };
+  } catch (error) {
+    widths = { error: String(error?.message ?? error) };
+  }
+
   // Asked only after the measurement, so the answer cannot affect what was measured.
   let persist = 'unavailable';
   try {
@@ -191,6 +226,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     persist,
     quota,
     accounting,
+    widths,
     owner: {
       targetBytes,
       completeBackupBytes,
