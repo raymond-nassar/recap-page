@@ -329,7 +329,8 @@ draft, but not the metadata source under **Advanced**, and earlier versions of t
 it. The single-kind files leave settings out, and none of these formats can be substituted for
 another. A complete restore asks for other Recap Page tabs to be closed first. If one is
 interrupted, saving waits, and its group offers to finish it, put the earlier data back, or
-download an exact copy of that earlier data. Each group's longer explanation is in its closed
+download an exact copy of that earlier data. This version cannot restore that copy; it is for
+recovering the earlier data by hand or with help. Each group's longer explanation is in its closed
 **About** disclosure, and each restore warning stays on screen beside its field.
 
 Reading-data restore and saved-copy replacement ask for confirmation. The previous exact reading
