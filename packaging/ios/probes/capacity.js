@@ -139,6 +139,13 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     ...outcome(store.restore(fileA, { expected: store.captureRestore() })),
   };
   localStorage.clear();
+  // Asked only after the measurement, so the answer cannot affect what was measured.
+  let persist = 'unavailable';
+  try {
+    if (navigator.storage?.persist) persist = await navigator.storage.persist();
+  } catch (error) {
+    persist = `error: ${error?.message ?? error}`;
+  }
 
   const readerStoredBytes = storedBytes(savedRaw);
   return JSON.stringify({
@@ -146,6 +153,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     variant: wideText ? 'wide' : 'latin1',
     engine: navigator.userAgent,
     origin: location.origin,
+    persist,
     quota,
     owner: {
       targetBytes,

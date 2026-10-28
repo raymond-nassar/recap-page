@@ -85,7 +85,8 @@ The capacity probe in `packaging/ios/probes/capacity.js` measures this through t
 and restore code. It fills the app with reading lists from the bundled files until a complete backup
 is the size of the owner's, 1,183 KB, then saves, restores into an empty app, restores into the app
 that already holds data, and restores once more. It does this twice, once with text above Latin-1 and
-once without.
+once without. Each run also records the page's origin and whether WebKit agrees, when asked, to keep
+the app's data.
 
 On WebKit, measured first with Playwright's WebKit build on Windows as a stand-in for iOS, at that
 size:

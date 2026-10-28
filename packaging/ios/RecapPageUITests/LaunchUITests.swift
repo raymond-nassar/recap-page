@@ -29,6 +29,17 @@ final class LaunchUITests: XCTestCase {
         return try XCTUnwrap(object, label)
     }
 
+    /// The same record the unit tests write, so the workflow's summary finds UI test measurements too.
+    @MainActor
+    private func record(_ name: String, _ result: [String: Any]) throws {
+        let json = String(decoding: try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys]), as: UTF8.self)
+        print("RECAP_PROBE_RESULT \(name) \(json)")
+        let attachment = XCTAttachment(string: json)
+        attachment.name = "\(name).json"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
     @MainActor
     func testHomeAndAListPreviewOpenWithEveryRemoteLoadBlocked() throws {
         let app = launch(probe: Self.homeAndPreview)
@@ -49,9 +60,20 @@ final class LaunchUITests: XCTestCase {
         localStorage.setItem('recap-ios-relaunch-probe', '\(token)');
         // WebKit commits stored values in batches, so the write is given time to land before the app ends.
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        return JSON.stringify({ written: localStorage.getItem('recap-ios-relaunch-probe') });
+        let persist = 'unavailable';
+        try {
+          if (navigator.storage?.persist) persist = await navigator.storage.persist();
+        } catch (error) {
+          persist = `error: ${error.message}`;
+        }
+        return JSON.stringify({ origin: location.origin, persist, written: localStorage.getItem('recap-ios-relaunch-probe') });
         """)
-        XCTAssertEqual(try probeResult(of: writer)["written"] as? String, token)
+        let written = try probeResult(of: writer)
+        try record("relaunch-writer", written)
+        XCTAssertEqual(written["origin"] as? String, "recappage://localhost")
+        // Recorded rather than asserted, as the capability probe records it.
+        XCTAssertNotNil(written["persist"])
+        XCTAssertEqual(written["written"] as? String, token)
         writer.terminate()
 
         let reader = launch(probe: """
