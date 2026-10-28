@@ -89,8 +89,11 @@ uninstalls and verifies removal of the test registration, Start entry and any te
 All external requests are fulfilled with fixtures; cookie continuity is synthetic, not a live
 Marvel Unlimited subscription check.
 
-The same run checks keyboard cancellation, narrow layout, shared saved progress, network-first
-module updates, worker replacement and exclusion of responses marked `no-store`.
+The same run checks cancellation with a synthetic `beforeinstallprompt` whose prompt settles only
+after rendered frames, at 1280 and 360 pixels, as Edge's own dialog cannot be driven here. It also
+checks shared saved progress, network-first module updates, worker replacement and exclusion of
+responses marked `no-store`. The install option is offered only at `http://127.0.0.1:8787`, so the
+check serves the install module with its scratch origin substituted for that constant.
 Set `MRT_PWA_OBSERVE=1` to hold the installed window for a minute for native inspection before
 automatic cleanup. Check its title bar, taskbar and Alt+Tab appearance, and check a real reader
 handoff separately with your own subscription. Do not equate programmatic standalone detection

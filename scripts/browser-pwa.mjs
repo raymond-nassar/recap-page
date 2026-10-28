@@ -8,6 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { createStaticServer, HOST } from '../server.mjs';
 import { createEmptyState, createList, addIssuesToList } from '../src/js/lib/model.js';
 import { formatRoute } from '../src/js/lib/route.js';
+import { APP_ORIGIN } from '../src/js/lib/install.js';
 
 const driver = process.env.MRT_PUPPETEER
   || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
@@ -29,6 +30,14 @@ server.on('request', (req, res) => {
     readFile(new URL('../src/sw.js', import.meta.url), 'utf8').then((source) => {
       res.writeHead(200, { 'content-type': 'text/javascript', 'cache-control': 'no-cache' });
       res.end(`${source}\nself.addEventListener('message', event => event.ports[0].postMessage(${generation}));\n`);
+    }).catch((error) => { res.destroy(error); });
+  } else if (req.url === '/js/lib/install.js') {
+    // The offer is gated to the fixed origin; this scratch server is on an ephemeral port.
+    readFile(new URL('../src/js/lib/install.js', import.meta.url), 'utf8').then((source) => {
+      const gated = `export const APP_ORIGIN = '${APP_ORIGIN}';`;
+      if (!source.includes(gated)) throw new Error('install.js no longer declares APP_ORIGIN as expected');
+      res.writeHead(200, { 'content-type': 'text/javascript', 'cache-control': 'no-cache' });
+      res.end(source.replace(gated, `export const APP_ORIGIN = '${origin}';`));
     }).catch((error) => { res.destroy(error); });
   } else {
     serve(req, res);
@@ -150,12 +159,19 @@ try {
   check('Edge reports no installability errors', (await pageCdp.send('Page.getInstallabilityErrors')).installabilityErrors.length === 0);
 
   // Deterministic UI transitions complement, rather than stand in for, actual installation below.
-  await page.evaluate(() => {
+  // The synthetic prompt settles only after rendered frames, as Edge's own dialog does.
+  const offerInstall = () => page.evaluate(() => {
     const event = new Event('beforeinstallprompt', { cancelable: true });
-    event.prompt = () => Promise.resolve();
-    event.userChoice = Promise.resolve({ outcome: 'dismissed' });
+    const frames = () => new Promise((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 150)));
+    });
+    let choose;
+    event.userChoice = new Promise((resolve) => { choose = resolve; });
+    event.prompt = () => frames().then(frames).then(() => choose({ outcome: 'dismissed' }));
+    document.getElementById('pwa-install-report').replaceChildren();
     window.dispatchEvent(event);
   });
+  await offerInstall();
   await page.waitForSelector('#pwa-install', { visible: true });
   for (const width of [1280, 360]) {
     await page.setViewport({ width, height: 900 });
@@ -209,12 +225,35 @@ try {
       && button.scrollWidth <= button.clientWidth;
   }));
   await pageCdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
-  await page.focus('#btn-install');
-  await page.keyboard.press('Enter');
-  await page.waitForFunction(() => document.getElementById('pwa-install').hidden);
-  check('keyboard cancellation hides spent offer and restores usable focus',
-    await page.evaluate(() => document.activeElement.id === 'btn-check-local-connection'
-      && document.getElementById('app-report').textContent.includes('canceled')));
+  for (const width of [1280, 360]) {
+    await page.setViewport({ width, height: 900 });
+    if (width !== 1280) {
+      await offerInstall();
+      await page.waitForSelector('#pwa-install', { visible: true });
+    }
+    await page.$eval('#btn-install', (button) => button.scrollIntoView({ block: 'center' }));
+    await page.focus('#btn-install');
+    await page.keyboard.press('Enter');
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    check(`${width}px pending prompt keeps focus on the unavailable install control across rendered frames`,
+      await page.evaluate(() => {
+        const button = document.getElementById('btn-install');
+        return document.activeElement === button && button.getAttribute('aria-disabled') === 'true'
+          && !button.disabled && button.textContent.startsWith('Waiting');
+      }));
+    await page.waitForFunction(() => document.getElementById('pwa-install').hidden);
+    check(`${width}px keyboard cancellation after rendered frames shows its message beside a focused Check connection`,
+      await page.evaluate(() => {
+        const inView = (node) => {
+          const box = node.getBoundingClientRect();
+          return box.height > 0 && box.top >= 0 && box.bottom <= innerHeight && box.left >= 0 && box.right <= innerWidth;
+        };
+        const report = document.getElementById('pwa-install-report');
+        return document.activeElement.id === 'btn-check-local-connection'
+          && report.textContent.includes('canceled') && !document.getElementById('app-report').textContent.includes('canceled')
+          && inView(report) && inView(document.activeElement);
+      }));
+  }
   await page.setViewport({ width: 1280, height: 900 });
   const listId = 'pwa-continuity';
   let state = createList(createEmptyState(), { id: listId, name: 'PWA continuity fixture' });

@@ -13,12 +13,18 @@ import { boot, notify } from './main.js';
 import { registerOffline } from './lib/offline.js';
 import { wireInstallation } from './lib/install.js';
 
-wireInstallation({ notify });
 boot();
+// Optional, like the worker below, so it must not be able to stop the app drawing. Nothing is lost
+// by waiting: the browser's install offer arrives in a later task.
+try {
+  wireInstallation({ notify });
+} catch (error) {
+  console.error('Install option is unavailable:', error);
+}
 
 // After boot, and the order is the whole of the reasoning. Registering the offline worker is a
 // promise about the next launch rather than about this one, so nothing on screen waits for it,
-// and putting it second means a browser that refuses workers has already drawn the app before
+// and putting it after boot means a browser that refuses workers has already drawn the app before
 // the refusal is known. The same bargain this file already makes for boot(): the decision it
 // calls into is tested in src/js/lib/offline.js, and the one untestable line is the call.
 registerOffline().then((result) => {

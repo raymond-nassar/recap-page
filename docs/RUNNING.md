@@ -144,20 +144,23 @@ available even when live metadata has to wait.
 ## Install it as a browser app
 
 In Edge or Chrome, open **Backup & settings**, then **Connectivity**, and choose **Install Recap Page**
-when offered. The option appears only when the browser provides an installation prompt, and stays
-hidden in the installed app. Canceling leaves the browser version unchanged. You can also use the
+when offered. The option appears only at the exact local address and only when the browser provides
+an installation prompt, and stays hidden in the installed app. Canceling leaves the browser version
+unchanged. You can also use the
 install icon in Edge or Chrome's address bar, or **Add to Dock** in Safari.
 Recap Page gets its own window and app icon without changing its storage.
 In Edge and Chrome its title bar follows the **Theme** chosen in Backup & settings.
 
-On Windows, launch it from Start like other apps. Keep using the same Edge profile and the exact
+On Windows, launch it from Start like other apps. If Start shows two **Recap Page** entries, the
+Microsoft Store one starts the local app and then opens the browser, while the browser-installed one
+opens only the app window. Keep using the same Edge profile and the exact
 local address. Read opens Marvel's site separately in that profile, using your existing Marvel
 Unlimited sign-in; Recap Page has no sign-in of its own.
 
 The installed app loads from the same local copy as the browser version. After updating that copy
 through Microsoft Store or replacing the downloaded files, keep its local server running and reload
-or close and reopen the app window. Network responses take priority over offline copies, and worker
-update checks bypass the browser's HTTP cache. An already open page is not forcibly reloaded, so
+or close and reopen the app window. Network responses take priority over offline copies. An already
+open page is not forcibly reloaded, so
 unfinished work is not interrupted. Installing does not download new releases or start the local server.
 
 After a successful first visit, the installed window can open its cached app shell with the server
