@@ -1524,6 +1524,31 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudCoordinator.js:25-31|0": {
+    "anchor": "src/js/lib/cloudCoordinator.js:25-31",
+    "fp": "095eb3e10df0bee6",
+    "head": "export const CLOUD_BACKUP_CADENCE = Object.freeze({"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:357-368|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:357-368",
+    "fp": "2b8bf70d233061dd",
+    "head": "async allocate() {"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:428|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:428",
+    "fp": "677baafd30c320ae",
+    "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:533-534|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:533-534",
+    "fp": "5513fa894d547460",
+    "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
+  },
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/main.js:91|0": {
+    "anchor": "src/js/main.js:91",
+    "fp": "21d594471401e0e6",
+    "head": "const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedCha"
+  },
   "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeBackup.js:35|0": {
     "anchor": "src/js/lib/completeBackup.js:35",
     "fp": "f5c2fbf10ed259d6",

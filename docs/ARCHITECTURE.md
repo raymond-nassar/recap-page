@@ -119,7 +119,8 @@ normalization drops prose, API cache writes strip it, and the request uses `no-s
 `scripts/vendor-orders.mjs:31` and `scripts/author-cbh-packet.mjs:6`. These never run in the browser.
 The Node-only `scripts/lib/chapter-orders.mjs` turns a noncatalog source order into ordinary child
 payloads, catalog entries, a reading path, and overlap evidence. The browser needs no partition
-model. Every other module under `src/js/lib/` is browser-reachable.
+model. Every other module under `src/js/lib/` is browser-reachable, except the cloud backup protocol,
+which no page loads until a build can turn cloud backup on.
 
 ## Routes and generated views
 
@@ -370,8 +371,8 @@ them without importing the controller. The controller still owns settings and th
 preference, and declares the cache-cleanup key at `src/js/main.js:82`; save education owns another key
 at `src/js/lib/saveEducation.js:1`. The companion history store owns completion and enjoyment at
 `src/js/lib/listHistory.js:7`. Home highlights viewing belongs to `src/js/lib/homeUpdatesSeen.js`.
-Metadata uses IndexedDB, a complete restore's journal uses a second IndexedDB database, offline app
-files use the Cache API, and synopsis prose stays in memory.
+Metadata uses IndexedDB, a complete restore's journal uses a second IndexedDB database and cloud
+backup's record a third, offline app files use the Cache API, and synopsis prose stays in memory.
 
 Backup staging and undo are separate from failed-read salvage. They serve different recovery paths:
 
@@ -650,6 +651,48 @@ and during a restore the reading-data component holds three copies at once: the 
 saved copy and the live value. So a complete restore of reading data above roughly a third of that
 cap probably stops part way with storage full and goes into recovery, rather than losing data; this
 is inferred, not measured.
+
+## Cloud backup
+
+Cloud backup copies the complete backup to the person's own OneDrive or Google Drive. It is off: no
+build turns it on yet, and a build will learn whether it can from the Windows host or the Android app
+(#810). Two modules hold its logic in the page, and neither one sees a provider or a token.
+
+**When.** Every owner of saved data writes through the guarded storage object main.js makes, and an
+observer around it reports each accepted write of a key a complete backup holds, at
+`src/js/main.js:91`. The coordinator in `src/js/lib/cloudCoordinator.js` decides whether a backup is
+due by content alone: the SHA-256 of the complete backup with the active list left out, compared with
+the newest backup this browser verified. Changes made offline, in another tab or by a complete restore
+are covered that way without special cases. It waits ten quiet seconds, runs at most once every five
+minutes and at most ten minutes after a change, and runs at once when the page is hidden, at
+`src/js/lib/cloudCoordinator.js:25-31`.
+
+**How.** The protocol in `src/js/lib/cloudProtocol.js` never overwrites anything. Each browser has a
+random stream id and a generation counter, and every backup creates a new file named for both, so a
+lost reply or a request that lands late can only add an older generation. The counter lives in
+IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
+backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
+committed with strict durability and read back before the file it names is created, at
+`src/js/lib/cloudProtocol.js:357-368`, because a browser that is killed can roll localStorage back,
+as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
+naming its stream, generation, device label and time, compressed with gzip, and its name declares the
+format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
+create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
+only then does the generation count as made. Each backup then deletes this stream's files older than
+its second-newest verified generation, at `src/js/lib/cloudProtocol.js:533-534`: one delete keeps pace
+with one new file, and a second removes a file that a lost reply or a closed page left behind.
+
+**Discovery and restore.** Before a browser's first upload it lists what is already in the account:
+for each stream, the newest file that passes every check and the one before it. Discovery only lists
+and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
+`src/js/lib/cloudProtocol.js:428`, so a small file that expands without end costs no more than the
+cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
+there is read and checked again, then restored through the complete restore engine above.
+
+**Deleting.** Deleting this browser's cloud backups withdraws its consent first, then deletes every
+generation of its stream and nothing else, once any backup another tab has under way is done. On
+OneDrive every file this app deletes goes to the person's recycle bin for up to 30 days unless it is
+emptied, because the access the app asks for cannot delete permanently.
 
 ## What is intentionally centralized
 

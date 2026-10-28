@@ -19,6 +19,7 @@
 //   two leaves one superseded file there. Backups therefore wait ten quiet seconds, run at most once every
 //   five minutes, and run at once when the page is hidden, so a reading session costs a few files an hour.
 
+import { CLOUD_BACKUP_LOCK } from '../storage.js';
 import { CAPTURE_KEYS, canonical } from './completeBackup.js';
 
 export const CLOUD_BACKUP_CADENCE = Object.freeze({
@@ -28,7 +29,6 @@ export const CLOUD_BACKUP_CADENCE = Object.freeze({
   retryMs: Object.freeze([5_000, 15_000, 60_000, 5 * 60_000]),
   recheckMs: 5_000,
 });
-const WORKER_LOCK = 'mrt.cloud-backup.worker.v1';
 const MAX_TIMER_MS = 2_147_483_647;
 // Refusals from a capture that a later save clears by itself: an import still being saved, or source
 // the import draft could not save. Retrying on a timer would only refuse again.
@@ -245,7 +245,7 @@ export class CloudBackupCoordinator {
 
   async withWorker(run, operation) {
     if (!this.locks) return operation();
-    return this.locks.request(WORKER_LOCK, { mode: 'exclusive', signal: run.controller.signal }, operation);
+    return this.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive', signal: run.controller.signal }, operation);
   }
 
   async work() {
