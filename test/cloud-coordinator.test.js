@@ -271,6 +271,34 @@ test('nothing is read while a complete restore or its recovery holds saving paus
   assert.equal(env.uploads.length, 1, 'it looks again a few seconds later and goes');
 });
 
+test('a capture that a complete restore started under is discarded, and the next capture once saving opens is backed up', async () => {
+  const env = harness();
+  let straddle = true;
+  const coordinator = env.start({
+    capture: async () => {
+      env.captures += 1;
+      const snapshot = snapshotOf(env.content);
+      // The person starts a complete restore while this capture is reading storage.
+      if (straddle) env.blocked = true;
+      straddle = false;
+      return snapshot;
+    },
+  });
+  await env.time.advance(quietMs, [coordinator]);
+  assert.equal(env.captures, 1);
+  assert.equal(env.uploads.length, 0, 'nothing captured beside a restore is uploaded');
+  assert.deepEqual({ phase: coordinator.state.phase, code: coordinator.state.code }, { phase: 'waiting', code: 'paused' });
+  await env.time.advance(3 * recheckMs, [coordinator]);
+  assert.equal(env.captures, 1, 'nothing is read again while saving stays paused');
+  env.content = { ...env.content, read: { ...env.content.read, 9: 900 } };
+  env.blocked = false;
+  await env.time.advance(recheckMs, [coordinator]);
+  assert.equal(env.captures, 2);
+  assert.equal(env.uploads.length, 1);
+  assert.equal(JSON.parse(env.uploads[0].text).reader.read['9'], 900, 'the backup holds what storage says once it is open');
+  coordinator.stop();
+});
+
 test('a failed upload is retried after 5 s, 15 s, a minute and five minutes, and never sooner than the provider asks', async () => {
   const env = harness();
   const transient = (retryAfterMs) => Object.assign(new Error('Service unavailable'), { code: 'transient', retryAfterMs });

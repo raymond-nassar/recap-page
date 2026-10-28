@@ -273,6 +273,11 @@ export class CloudBackupCoordinator {
         const seen = this.changes;
         const snapshot = await this.capture();
         if (!this.current(run)) return;
+        // A complete restore that started while the capture read storage can leave it holding restored
+        // data beside data from before, which the capture's own second read cannot see when no restore
+        // write lands between its two reads (stage 1 review, M2). Such a capture is discarded, and the next
+        // run reads again once saving is open. One that finished before a restore began is consistent.
+        if (this.isBlocked()) { this.wait('paused'); return; }
         const digest = await personalDigest(snapshot.backup, this.cryptoProvider);
         const last = await this.lastUploaded();
         if (!this.current(run)) return;
