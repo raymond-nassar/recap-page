@@ -1417,6 +1417,11 @@
           <label for="ask-area" id="ask-area-label"></label>
           <textarea id="ask-area" rows="5" maxlength="2000" autocomplete="off"></textarea>
         </p>
+        <!-- One choice beside a confirmation, unchecked every time it is asked. Only the answer it leads
+             to has no way back, so the answer's label and its danger appearance follow it (#810). -->
+        <p id="ask-choice-field" class="ask-choice" hidden>
+          <label class="checkbox"><input type="checkbox" id="ask-choice" /> <span id="ask-choice-label"></span></label>
+        </p>
         <div class="ask-foot dialog-foot">
           <button type="button" class="btn btn-g" id="ask-cancel">Cancel</button>
           <button type="submit" class="btn" id="ask-ok" value="ok">OK</button>

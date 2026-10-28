@@ -2157,8 +2157,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: var(--target); }
 .markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
-.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
-.markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
+:is(.markdown-export, .ask-choice) .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: var(--target); }
+:is(.markdown-export, .ask-choice) input[type="checkbox"] { width: auto; min-height: auto; }
 
 .rating-trigger {
   display: inline-flex; align-items: center; gap: var(--space-4);

@@ -86,7 +86,7 @@ function makeDialog() {
   return dlg;
 }
 
-function installDom({ withDialog = true } = {}) {
+function installDom({ withDialog = true, withChoice = true } = {}) {
   const parts = {
     ask: withDialog ? makeDialog() : null,
     'ask-form': makeElement(),
@@ -98,6 +98,7 @@ function installDom({ withDialog = true } = {}) {
     'ask-error': makeElement(),
     'ask-ok': makeElement(),
     'ask-cancel': makeElement(),
+    ...(withChoice ? { 'ask-choice-field': makeElement({ hidden: true }), 'ask-choice-label': makeElement(), 'ask-choice': makeElement({ checked: false }) } : {}),
   };
   globalThis.document = { activeElement: null, getElementById: (id) => parts[id] ?? null };
   return parts;
@@ -552,6 +553,83 @@ test('the field is shown and selected for a name, and hidden and optional for a 
     assert.equal(parts['ask-body'].hidden, true, 'an empty body left an empty paragraph on screen');
     dlg.close('');
     await within(confirmed, 'confirmed to settle');
+  } finally {
+    clearDom();
+  }
+});
+
+// Disconnecting cloud backup can also delete this device's backups (#810, P02-T05). Only that answer has
+// no way back, so the choice starts unchecked on every question, and the answer's label and danger
+// appearance follow it rather than the question.
+const DISCONNECT = {
+  title: 'Disconnect cloud backup?', body: 'Backups already made stay in OneDrive.', confirmLabel: 'Disconnect',
+  choiceLabel: 'Also delete this device\'s cloud backups', choiceConfirmLabel: 'Disconnect and delete',
+};
+
+test('a choice starts unchecked every time, and only while it is checked is the answer the danger one', async () => {
+  try {
+    const { askConfirm, askConfirmChoice, dlg, parts } = await wired();
+    const [field, box, ok, cancel] = [parts['ask-choice-field'], parts['ask-choice'], parts['ask-ok'], parts['ask-cancel']];
+    const tick = (checked) => { box.checked = checked; box.fire('change'); };
+
+    const chosen = askConfirmChoice(DISCONNECT);
+    assert.deepEqual([field.hidden, parts['ask-choice-label'].textContent, box.checked], [false, DISCONNECT.choiceLabel, false]);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    assert.equal(globalThis.document.activeElement, cancel, 'Cancel has focus, not the choice the dialog would focus first');
+    assert.equal(dlg.attributes['data-question'], 'confirm');
+    tick(true);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect and delete', true]);
+    tick(false);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    tick(true);
+    dlg.close('ok');
+    assert.deepEqual(await within(chosen, 'the chosen answer to settle'), { choice: true });
+
+    const again = askConfirmChoice(DISCONNECT);
+    assert.equal(box.checked, false, 'the last answer\'s choice is not carried into this one');
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Disconnect', false]);
+    dlg.close('ok');
+    assert.deepEqual(await within(again, 'the plain answer to settle'), { choice: false });
+
+    for (const backOut of [() => { tick(true); dlg.pressEscape(); }, () => { tick(true); cancel.fire('click'); }]) {
+      const answer = askConfirmChoice(DISCONNECT);
+      backOut();
+      assert.equal(await within(answer, 'backing out to settle'), null, 'a checked choice is nothing without the answer');
+    }
+
+    const plain = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    assert.deepEqual([field.hidden, parts['ask-choice-label'].textContent, box.checked], [true, '', false]);
+    tick(true);
+    assert.deepEqual([ok.textContent, ok.classList.contains('btn-danger')], ['Delete', false], 'a question without a choice ignores the box');
+    dlg.close('ok');
+    assert.equal(await within(plain, 'the plain question to settle'), true);
+  } finally {
+    clearDom();
+  }
+});
+
+test('a question that needs a choice backs out where it cannot be asked, and wedges nothing after it', async () => {
+  try {
+    const { askConfirm, askConfirmChoice, dlg, parts } = await wired();
+    dlg.isOpen = true;
+    assert.equal(await within(askConfirmChoice(DISCONNECT), 'the refused question to settle'), null);
+    dlg.isOpen = false;
+    const next = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    parts['ask-choice'].checked = true;
+    parts['ask-choice'].fire('change');
+    assert.equal(parts['ask-ok'].textContent, 'Delete', 'the failed choice question left nothing behind');
+    dlg.close('ok');
+    assert.equal(await within(next, 'the next question to settle'), true);
+  } finally {
+    clearDom();
+  }
+  try {
+    const { askConfirm, askConfirmChoice, dlg } = await wired({ withChoice: false });
+    assert.equal(await within(askConfirmChoice(DISCONNECT), 'the question to settle'), null);
+    assert.equal(dlg.showModalCalls, 0, 'nothing was asked without the choice it needed');
+    const next = askConfirm({ title: 'Delete this list?', confirmLabel: 'Delete' });
+    dlg.close('ok');
+    assert.equal(await within(next, 'the next question to settle'), true);
   } finally {
     clearDom();
   }

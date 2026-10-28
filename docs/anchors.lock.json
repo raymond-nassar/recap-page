@@ -1884,8 +1884,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1486|0": {
-    "anchor": "src/index.html:1486",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1491|0": {
+    "anchor": "src/index.html:1491",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -2604,10 +2604,10 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:70-126|0": {
-    "anchor": "src/js/ask.js:70-126",
-    "fp": "4546fe9ac619181f",
-    "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, dange"
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/ask.js:91-166|0": {
+    "anchor": "src/js/ask.js:91-166",
+    "fp": "b7c965a3b4dc79b5",
+    "head": "function open({"
   },
   "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1967|0": {
     "anchor": "src/js/main.js:1967",
