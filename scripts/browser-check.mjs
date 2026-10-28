@@ -19581,6 +19581,25 @@ async function restoreMarker(page) {
   return page.evaluate(() => localStorage.getItem('mrt.complete-restore.v1'));
 }
 
+// Runs an action that starts a native download and waits until that download completes or is canceled.
+// Reloading while it is still writing cancels it: measured, a reload about 240 ms after the download
+// began canceled it, which the native download check then reported.
+async function untilDownloadSettles(page, action) {
+  const session = await page.createCDPSession();
+  try {
+    await session.send('Page.enable');
+    const settled = new Promise((resolve) => {
+      session.on('Page.downloadProgress', (event) => {
+        if (event.state === 'completed' || event.state === 'canceled') resolve(event.state);
+      });
+    });
+    await action();
+    return await Promise.race([settled, new Promise((resolve) => { setTimeout(() => resolve('timeout'), 15000); })]);
+  } finally {
+    await session.detach().catch(() => {});
+  }
+}
+
 async function journalHeld(page) {
   return page.evaluate(() => new Promise((resolve) => {
     const request = indexedDB.open('mrt-complete-restore-v1', 1);
@@ -19707,12 +19726,12 @@ SCENARIOS.push({
         '#complete-backup summary': 'About complete backups',
       },
     });
-    await click(page, '#btn-export-complete');
+    const downloaded = await untilDownloadSettles(page, () => click(page, '#btn-export-complete'));
     await page.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.text.includes('recap-page-complete-backup')));
     const file = await page.evaluate(() => window.__mrtDownloads.find((entry) => entry.text.includes('recap-page-complete-backup')).text);
     const parsed = JSON.parse(file);
     t.check('the download holds every component and no metadata service',
-      parsed.format === 'recap-page-complete-backup' && parsed.components.reader.listOrder[0] === 'kept'
+      downloaded === 'completed' && parsed.format === 'recap-page-complete-backup' && parsed.components.reader.listOrder[0] === 'kept'
         && parsed.components.history.records.length === 1 && parsed.components.settings.theme === 'dark'
         && parsed.components.settings.sidebarCollapsed === true && parsed.components.draft !== null
         && !file.includes('metadata.example.test') && !file.includes('apiBase'),
@@ -19733,8 +19752,8 @@ SCENARIOS.push({
     }));
     t.check('the question names what is replaced, asks for other tabs to close, and is a danger question with Cancel first',
       question.title === 'Replace all saved data with this complete backup?'
-        && question.body.includes('reading data (1 list)') && question.body.includes('completion history (1 record)')
-        && question.body.includes('with the one in this file') && question.body.includes('including ones running an older version')
+        && question.body.includes("your reading data with this file's 1 list") && question.body.includes('your completion history with its 1 record')
+        && question.body.includes('your import draft with the one in this file') && question.body.includes('including ones running an older version')
         && question.danger && question.cancelFirst && question.focus === 'ask-cancel',
       JSON.stringify(question));
     await click(page, '#ask-cancel');
@@ -19854,10 +19873,13 @@ SCENARIOS.push({
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Nothing was replaced'));
+    // The whole report, so a lead-in that repeats the outcome the message already states is caught.
+    const refusal = await page.$eval('#complete-backup-report', (node) => node.textContent);
     t.check('with another tab open the restore refuses, naming other tabs, and replaces nothing',
-      await page.$eval('#complete-backup-report', (node) => node.textContent.includes('Close other Recap Page tabs'))
+      refusal === 'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.'
         && JSON.stringify(await savedComplete(page)) === JSON.stringify(before)
-        && await restoreMarker(page) === null && await journalHeld(page) === false);
+        && await restoreMarker(page) === null && await journalHeld(page) === false,
+      refusal);
     await peer.close();
 
     // A tab opened while another holds the restore lock waits, saves nothing, and reloads after.
@@ -19968,12 +19990,15 @@ SCENARIOS.push({
       await click(tab, '#btn-complete-keep');
       await tab.waitForSelector('#ask[open]');
       const keepDanger = await tab.$eval('#ask-ok', (node) => node.classList.contains('btn-danger'));
+      const keepBody = await tab.$eval('#ask-body', (node) => node.textContent);
       await Promise.all([tab.waitForNavigation({ waitUntil: 'load' }), click(tab, '#ask-ok')]);
       await tab.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Recovery ended'));
-      t.check('keeping current data writes no user data, removes the copy and marker, and resumes saving',
-        keepDanger && await tab.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === foreign
+      t.check('keeping current data says the prior copy cannot be restored here, writes no user data, removes the copy and marker, and resumes saving',
+        keepDanger && keepBody.includes('This version cannot restore that copy: it is for recovering the earlier data by hand or with help.')
+          && await tab.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === foreign
           && await restoreMarker(tab) === null && await journalHeld(tab) === false
-          && !(await tab.evaluate(() => document.querySelector('#app-report').textContent.includes('did not finish'))));
+          && !(await tab.evaluate(() => document.querySelector('#app-report').textContent.includes('did not finish'))),
+        keepBody);
       await edge.close();
       edge = null;
     } finally {

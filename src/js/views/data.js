@@ -47,8 +47,9 @@ const READING_DATA_CONTENTS = 'lists, notes, issue ratings, reading progress, de
 // does it in the state where a copy is likeliest to exist at all. Location is claimed either
 // way, because that half is true either way; only the button is conditional.
 //
-// Settings are named because they outlive every one of these answers. Nothing in the app removes
-// mrt.settings or sidebar.collapsed, so this branch's old sentence, that the route clears
+// Settings are named because they outlive every one of these answers. Erasing never removes
+// mrt.settings or sidebar.collapsed (of the data routes, only a complete restore, or putting back
+// what one replaced, touches them), so this branch's old sentence, that the route clears
 // everything this browser has stored for the tracker, was false for any reader who had ever
 // changed the theme. docs/ARCHITECTURE.md holds the whole list and calls those two preferences
 // rather than data, which is why the message said afterwards still reports all local data erased
@@ -424,7 +425,7 @@ export function createDataView({
         let recoveryCopy = false;
         try { recoveryCopy = getRecoveryCopy ? await getRecoveryCopy() : false; } catch { recoveryCopy = null; }
         const recovery = recoveryCopy === null
-          ? ' The app could not check for a recovery copy kept by a complete restore. If there is one, it is erased too.'
+          ? ' The app could not check for a recovery copy kept by a complete restore, so one may still be kept after the erase.'
           : recoveryCopy ? ' The recovery copy kept by a complete restore is erased too.' : '';
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
@@ -467,11 +468,42 @@ function plural(count, one, many = `${one}s`) {
   return `${count} ${count === 1 ? one : many}`;
 }
 
+// Each report states its outcome once. Messages from the backup file and the restore engine often end
+// by saying what happened, so the lead-in that says the same thing is added only when they do not.
+const UNCHANGED = /\bnothing (?:further |more )?was (?:changed|replaced|removed)\b/i;
+const STOPPED = /\bstopped\b/i;
+export function withOutcome(lead, message, said) {
+  return said.test(message) ? message : `${lead} ${message}`;
+}
+
+// The counts belong to the file, so they are attached to it: a device with ten lists restoring a file
+// with two is replacing its ten with the file's two, not "your reading data (2 lists)".
 export function completeRestoreQuestion({ lists, records, draft }) {
-  return `This replaces your reading data (${plural(lists, 'list')}), completion history (${plural(records, 'record')}), `
-    + `personalization settings and the import draft${draft ? ', with the one in this file' : ', with none, because this file has none'}. `
+  const counted = `This replaces your reading data with this file's ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
+  return `${counted}${draft
+    ? ', your display and reading preferences with the ones in this file, and your import draft with the one in this file. '
+    : ' and your display and reading preferences with the ones in this file, and removes any import draft, because this file has none. '}`
     + 'A finished complete restore cannot be undone as a whole, so download a complete backup first if you might want the current data back. '
     + 'Close any other Recap Page tabs and windows first, including ones running an older version.';
+}
+
+// Keeping the current data deletes the recovery copy only when one can be read, so the question says
+// what happens to the copy this recovery actually has. The exact prior copy can be downloaded but not
+// restored by this version, so the question says so before the copy goes.
+export function keepCurrentQuestion(recovery) {
+  const lead = 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data.';
+  if (recovery?.download === 'prior') {
+    return `${lead} The recovery copy is then deleted, so download the exact prior copy first if you might need it. `
+      + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
+  }
+  if (recovery?.download === 'raw') {
+    return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
+      + 'Its data can only be recovered by hand or with help.';
+  }
+  if (recovery?.kind === 'unchecked') {
+    return `${lead} The recovery copy could not be checked, so it is not deleted, and a later start offers it again once it can be read.`;
+  }
+  return `${lead} There is no recovery copy left to delete.`;
 }
 
 export function createCompleteBackupView({
@@ -542,7 +574,7 @@ export function createCompleteBackupView({
         let backup;
         try { backup = await parse(text); }
         catch (error) {
-          validation.fail(`Nothing was changed. ${error.message}`);
+          validation.fail(withOutcome('Nothing was changed.', error.message, UNCHANGED));
           return;
         }
         const yes = await askConfirm({
@@ -555,9 +587,9 @@ export function createCompleteBackupView({
         validation.clear();
         const result = await onRestore(text);
         if (result.ok) { onFinished('Complete backup restored. Any import draft from it waits in Search for your review.'); return; }
-        if (result.invalid) { validation.fail(`Nothing was changed. ${result.error}`); return; }
-        report(result.changed === false ? `Nothing was replaced. ${result.error}`
-          : `The restore stopped part way. ${result.error}`);
+        if (result.invalid) { validation.fail(withOutcome('Nothing was changed.', result.error, UNCHANGED)); return; }
+        report(result.changed === false ? withOutcome('Nothing was replaced.', result.error, UNCHANGED)
+          : withOutcome('The restore stopped part way.', result.error, STOPPED));
       } catch (error) {
         report(`The backup file could not be read (${error.message}). Nothing was changed.`);
       } finally {
@@ -603,7 +635,7 @@ export function createCompleteBackupView({
     return run(async () => {
       const yes = await askConfirm({
         title: 'Keep the data that is here now?',
-        body: 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data. The recovery copy is deleted, so download the exact prior copy first if you might need it.',
+        body: keepCurrentQuestion(getState().recovery),
         confirmLabel: 'Keep current data',
         danger: true,
       });
