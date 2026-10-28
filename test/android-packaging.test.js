@@ -149,6 +149,35 @@ test('Android wrapper bootstrap matches the distribution and runs before the Win
     'Verify or restore the wrapper before executing it');
 });
 
+// #934. The candidate accepts only a reviewed toolchain record, and the producer reads that record from
+// the application's own files: Gradle from the wrapper, the plugin from the root build file, and build
+// tools from its own constant. Dependabot moved the wrapper to 9.8.2 while the pin still said 9.8.0, so
+// the 4.2.0 candidate was signed before it was refused, and its code was spent. Holding the pins to
+// those files here fails the bump's own pull request instead of a protected signing run.
+test('the candidate toolchain pins follow the wrapper, the plugin and the producer', async () => {
+  const [properties, rootBuild, producer, candidate] = await Promise.all([
+    readFile(new URL('../packaging/android/gradle/wrapper/gradle-wrapper.properties', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/build.gradle', import.meta.url), 'utf8'),
+    readFile(new URL('../scripts/android-release-candidate.sh', import.meta.url), 'utf8'),
+    readFile(new URL('../scripts/android-candidate.mjs', import.meta.url), 'utf8'),
+  ]);
+  // Derived exactly as the producer derives them, which these first checks hold it to.
+  assert.ok(producer.includes('gradle: wrapper.match(/gradle-([\\d.]+)-bin\\.zip/)?.[1]'), 'Gradle comes from the wrapper');
+  assert.ok(producer.includes("agp: build.match(/version '([\\d.]+)'/)?.[1]"), 'the plugin comes from the root build file');
+  const recorded = {
+    gradle: properties.match(/gradle-([\d.]+)-bin\.zip/)?.[1],
+    agp: rootBuild.match(/version '([\d.]+)'/)?.[1],
+    sdkBuildTools: producer.match(/sdkBuildTools: '([\d.]+)'/)?.[1],
+  };
+  const pinned = {
+    gradle: candidate.match(/tools\.gradle === '([\d.]+)'/)?.[1],
+    agp: candidate.match(/tools\.agp === '([\d.]+)'/)?.[1],
+    sdkBuildTools: candidate.match(/tools\.sdkBuildTools === '([\d.]+)'/)?.[1],
+  };
+  assert.ok([...Object.values(recorded), ...Object.values(pinned)].every(Boolean), JSON.stringify({ recorded, pinned }));
+  assert.deepEqual(pinned, recorded, 'Review the toolchain bump, then move the candidate\'s pins to match');
+});
+
 // #904. The JAR is ignored by git, so a wrapper version bump left the previous version's JAR in
 // place, and the bootstrap refused it: every local build that had run before the bump failed until
 // someone deleted the file by hand. This runs a copy of the real script whose source and pin point
