@@ -362,6 +362,10 @@ test('track digest normalizes documented defaults and unordered codes and langua
     trackDigest({ track: 'qa', releases: [reordered] }));
   assert.throws(() => trackSnapshot({ track: 'qa', releases: [{ ...first,
     releaseNotes: [first.releaseNotes[0], first.releaseNotes[0]] }] }));
+  const unfinished = { name: 'Unfinished Console draft', status: 'draft' };
+  assert.equal(trackDigest({ track: 'qa', releases: [unfinished] }),
+    trackDigest({ track: 'qa', releases: [{ ...unfinished, versionCodes: [] }] }));
+  assert.throws(() => trackSnapshot({ track: 'qa', releases: [{ ...unfinished, versionCodes: null }] }));
 });
 
 test('proposed track refuses stale, complex or unapproved retained-version changes', () => {
@@ -583,10 +587,31 @@ test('a refused tracks read names the object and keys without values, before any
   assert.doesNotMatch(JSON.stringify(extra.receipts), /secret-value|another-secret|not a key/);
   assert.deepEqual(extra.calls.map((call) => call.method), ['POST', 'GET'], 'only the edit and the tracks read');
 
-  const missing = harness({ tracks: [{ track: 'qa', releases: [{ status: 'draft' }] }] });
-  await assert.rejects(operation('Publish', missing), /UNEXPECTED_FIELDS \(release: missing versionCodes\)$/);
-  assert.deepEqual(missing.receipts.at(-1).fields, { context: 'release', missing: ['versionCodes'], unexpected: [] });
+  const missing = harness({ tracks: [{ track: 'qa', releases: [{ versionCodes: ['3000001'] }] }] });
+  await assert.rejects(operation('Publish', missing), /UNEXPECTED_FIELDS \(release: missing status\)$/);
+  assert.deepEqual(missing.receipts.at(-1).fields, { context: 'release', missing: ['status'], unexpected: [] });
   assert.equal(missing.calls.length, 2);
+});
+
+// #941. Google leaves an empty list out, so a release holding no bundle, such as a draft started in
+// the Play Console, arrives without versionCodes. It reads as having none; the target policy is unchanged.
+// These run under capture-current-simple, the policy the real 4.2.0 Publish resolved to.
+test('a release sent without version codes reads as empty under the unchanged target policy', async () => {
+  const unfinished = { name: 'Unfinished Console draft', status: 'draft' };
+  const elsewhere = harness({ tracks: [emptyTrack(), { track: 'production', releases: [unfinished] }] });
+  assert.equal((await transact(resolved(), bytes, artifact, elsewhere)).state, 'submitted-publication-unverified');
+  assert.equal(elsewhere.calls.length, 9);
+
+  const target = harness({ tracks: [{ track: 'qa', releases: [unfinished] }, { track: 'production', releases: [] }] });
+  const replaced = await transact(resolved(), bytes, artifact, target);
+  assert.equal(replaced.trackStatePolicy, 'capture-current-simple');
+  assert.equal(replaced.state, 'submitted-publication-unverified');
+  assert.deepEqual(replaced.targetBefore, { track: 'qa', releases: [{ ...unfinished, versionCodes: [] }] });
+  assert.deepEqual(replaced.desiredTarget, { track: 'qa', releases: [release()] });
+
+  const beside = harness({ tracks: [{ track: 'qa', releases: [{ ...release(), versionCodes: ['3000003'] }, unfinished] }] });
+  await assert.rejects(transact(resolved(), bytes, artifact, beside), /COMPLEX_TRACK_REQUIRES_OPERATOR_RECONCILIATION/);
+  assert.equal(beside.calls.length, 4);
 });
 
 test('workflow protects the exact main operation before narrow short-lived authentication', async () => {

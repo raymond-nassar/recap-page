@@ -192,7 +192,9 @@ before the operation.
 
 Track digests ignore object-key order, version-code set order, note-language order and an
 explicit default update priority of zero. They do not trim copy, guess retained codes, drop
-unknown fields or erase non-default rollout/targeting intent.
+unknown fields or erase non-default rollout/targeting intent. Google leaves an empty list out of
+its responses, so a release it sends without version codes, such as a draft started in the
+Console with no bundle, is read as having none.
 
 ## Transaction and outcomes
 
@@ -202,10 +204,12 @@ tracks, bundles and APKs, compares the upload's returned SHA-256 and code, reads
 and server-validates before committing.
 
 Capture permits only an empty target or one draft/completed release without rollout, country
-targeting or non-default priority. Before upload, the durable receipt records the resolved policy,
-strict normalized actual target, its digest and the desired target. Failure to persist that
-evidence stops upload. The approved intent is not rewritten to insert a newly captured digest.
-Explicit pinning retains exact digest equality and the same simple-track restrictions.
+targeting or non-default priority. An unfinished Console draft on the target counts as that one
+release and is replaced; beside another release it is refused. Before upload, the durable receipt
+records the resolved policy, strict normalized actual target, its digest and the desired target.
+Failure to persist that evidence stops upload. The approved intent is not rewritten to insert a
+newly captured digest. Explicit pinning retains exact digest equality and the same simple-track
+restrictions.
 
 Commit always sets `changesInReviewBehavior=ERROR_IF_IN_REVIEW`. Google's cancellation default
 is not used. No failed request changes this flag automatically. This does not isolate the commit
