@@ -1273,7 +1273,11 @@ async function main() {
     await mkdir(publicRoot, { mode: 0o700 });
     const tools = await json(join(work, 'toolchain.json'));
     exactKeys(tools, ['jdk', 'gradle', 'agp', 'sdkBuildTools']);
-    requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.8.0'
+    // A reviewed pin, not a copy of the source. Dependabot moved the wrapper to 9.8.2 without it,
+    // and the 4.2.0 candidate for 3000010 was signed and then refused here, consuming the code
+    // (#934). test/android-packaging.test.js now ties these pins to the files the record is read
+    // from, so a bump fails its own pull request instead.
+    requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.8.2'
       && tools.agp === '9.4.1' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
     const attestation = {
       schemaVersion: 1, kind: receipt.input.mode === 'Candidate' ? 'qualified-candidate' : 'rehearsal-only',
