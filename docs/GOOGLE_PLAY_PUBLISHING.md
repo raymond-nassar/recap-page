@@ -215,6 +215,9 @@ concurrent publisher, and do not interpret acknowledgement as immediate tester a
 The retained `google-play-RUN_ID-ATTEMPT` artifact contains only a sanitized operation receipt,
 not the token, account configuration, bundle, raw server response or full native logs.
 Attempted stages are written before requests. Mutations are sent once without automatic retries.
+When a strict read refuses a response, the receipt and the log name the object and the
+unrecognized or missing keys, never their values, so a changed Google response can be judged
+before the allowlist changes.
 
 | Outcome | Meaning |
 |---|---|
