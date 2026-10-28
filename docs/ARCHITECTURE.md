@@ -757,7 +757,10 @@ there is read and checked again, then restored through the complete restore engi
 **Deleting.** Deleting this browser's cloud backups withdraws its consent first, then deletes every
 generation of its stream and nothing else, once any backup another tab has under way is done. On
 OneDrive every file this app deletes goes to the person's recycle bin for up to 30 days unless it is
-emptied, because the access the app asks for cannot delete permanently.
+emptied, because the access the app asks for cannot delete permanently. A person who deletes the app's
+folder there has withdrawn consent in the contract's terms: the Windows host knows the folder by its id,
+so its next list or create finds it gone, gives the connection a new id, and every browser sees what the
+account holds and agrees again before a backup makes the folder anew.
 
 ## What is intentionally centralized
 

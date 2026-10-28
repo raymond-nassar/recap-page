@@ -61,6 +61,7 @@ const SIGN_IN_ENDED = Object.freeze({
   failed: 'Sign-in stopped unexpectedly.',
 });
 const CONNECTED_AGAIN = 'Cloud backup was connected again since this browser agreed to it, so it asks again first.';
+const FOLDER_GONE = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
 
 function send(res, status, body, extra = {}) {
   if (res.headersSent) return;
@@ -172,10 +173,15 @@ export function createCloudHost({
       await serial(async () => {
         if (epoch !== started || signIn !== job) return;
         const previous = record;
+        // A sign-in again after a refused refresh keeps the connection for the same account and the same
+        // app folder, so backups resume. A folder deleted meanwhile is consent withdrawn, as another account
+        // is, so every browser asks again (the transport contract under Cloud backup in ARCHITECTURE).
+        const same = previous?.account.id === account && (previous.folder === null || previous.folder === folder.id);
         const next = {
           version: 1, provider: 'onedrive',
-          connection: previous?.account.id === account ? previous.connection : Buffer.from(random(16)).toString('hex'),
-          account: { id: account, hint: claims.hint }, refreshToken: tokens.refreshToken, savedAt: Math.floor(clock()),
+          connection: same ? previous.connection : Buffer.from(random(16)).toString('hex'),
+          account: { id: account, hint: claims.hint }, folder: folder.id, refreshToken: tokens.refreshToken,
+          savedAt: Math.floor(clock()),
         };
         await store.save(next);
         record = next;
@@ -223,8 +229,8 @@ export function createCloudHost({
       tokens = await refreshTokens({ fetchImpl, clientId, clock, refreshToken: current.refreshToken });
     } catch (error) {
       if (error?.code !== 'refused') throw error;
-      // The refresh token is dead. The connection and the account stay, so signing in again to the same
-      // account carries on without any browser having to agree again.
+      // The refresh token is dead. The connection, the account and the folder stay, so signing in again to
+      // the same account, with its folder still there, carries on without any browser agreeing again.
       await serial(async () => {
         if (epoch !== started || record !== current) return;
         const next = { ...current, refreshToken: null, savedAt: Math.floor(clock()) };
@@ -276,7 +282,50 @@ export function createCloudHost({
     // perhaps to another account, so this browser has to see what is there and agree again first.
     if (record.connection !== input.connection) throw new ProviderError('needs-consent', CONNECTED_AGAIN);
     if (!record.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
-    return createOneDrive({ fetchImpl, clock, tracker, accessToken: tokenFor(input.connection) });
+    const current = record;
+    const onedrive = createOneDrive({
+      fetchImpl, clock, tracker, accessToken: tokenFor(input.connection), folder: current.folder,
+      onFolder: (id) => learnFolder(current, id),
+    });
+    const gone = async (error) => {
+      if (error?.code === 'folder-gone') await forgetFolder(current);
+      throw error;
+    };
+    return {
+      list: () => onedrive.list().catch(gone),
+      read: (id) => onedrive.read(id),
+      create: (name, bytes) => onedrive.create(name, bytes).catch(gone),
+      delete: (id) => onedrive.delete(id),
+    };
+  }
+
+  // The person deleted the app folder in OneDrive, which the transport contract treats as consent
+  // withdrawn: a new connection id makes every browser see what the account holds and agree again before
+  // its next backup, and the folder is forgotten, so the next create makes a new one and teaches its id.
+  // The record is matched by connection and folder, not by identity, because a refresh within the same
+  // operation replaces it. Should the store refuse, a restarted host finds the old folder gone again.
+  async function forgetFolder(current) {
+    await serial(async () => {
+      const latest = record;
+      if (!latest || latest.connection !== current.connection || latest.folder !== current.folder) return;
+      const next = { ...latest, connection: Buffer.from(random(16)).toString('hex'), folder: null, savedAt: Math.floor(clock()) };
+      await store.save(next).catch(() => {});
+      record = next;
+      access = null;
+    });
+    throw new ProviderError('needs-consent', FOLDER_GONE);
+  }
+
+  // Learned in place rather than by replacing the record: a refresh under way checks that the record it
+  // started from is still current, and a new folder id is no reason for it to fail.
+  function learnFolder(current, id) {
+    void serial(async () => {
+      const latest = record;
+      if (!latest || latest.connection !== current.connection || latest.folder !== null) return;
+      latest.folder = id;
+      latest.savedAt = Math.floor(clock());
+      await store.save(latest).catch(() => {});
+    });
   }
 
   function itemId(input) {

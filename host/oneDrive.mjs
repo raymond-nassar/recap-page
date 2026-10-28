@@ -122,7 +122,11 @@ export function createUploadTracker() {
   return { inflight: new Set(), unsettled: new Map() };
 }
 
-export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, tracker = createUploadTracker() }) {
+export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, tracker = createUploadTracker(), folder = null, onFolder = () => {} }) {
+  // The app folder by its item id once known, so a folder the person deleted answers 404 rather than
+  // being made again without a word; until then the special app-root path, which Microsoft resolves.
+  const base = folder ? `/me/drive/items/${encodeURIComponent(folder)}` : '/me/drive/special/approot';
+  const gone = () => new ProviderError('folder-gone', 'The Recap Page folder was deleted from OneDrive.');
   async function call(method, path, { body, timeoutMs = METADATA_MS } = {}) {
     for (let attempt = 0; ; attempt += 1) {
       const token = await accessToken({ renew: attempt > 0 });
@@ -169,7 +173,7 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
   }
 
   async function lookup(name) {
-    const response = await call('GET', `/me/drive/special/approot:/${encodeURIComponent(name)}?${ITEM_FIELDS}`);
+    const response = await call('GET', `${base}:/${encodeURIComponent(name)}?${ITEM_FIELDS}`);
     if (response.status === 404) {
       await discard(response);
       return null;
@@ -196,8 +200,12 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
 
   async function createOnce(name, bytes) {
     const opened = await call('POST',
-      `/me/drive/special/approot:/${encodeURIComponent(name)}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`,
+      `${base}:/${encodeURIComponent(name)}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`,
       { body: '' });
+    if (opened.status === 404 && folder) {
+      await discard(opened);
+      throw gone();
+    }
     if (!opened.ok) throw await failure(opened);
     const upload = capabilityUrl((await readJson(opened, 64 * 1024))?.uploadUrl);
     if (!upload) throw new ProviderError('invalid', 'OneDrive did not return a usable upload address.');
@@ -211,8 +219,14 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
       return settle(name, upload);
     }
     if (response.status === 200 || response.status === 201) {
-      const created = item(await readJson(response, 64 * 1024));
-      return created && created.name === name ? created : settle(name, upload);
+      const body = await readJson(response, 64 * 1024);
+      const created = item(body);
+      if (!created || created.name !== name) return settle(name, upload);
+      // A folder made again by this create, after the old one was deleted, is learned from its answer, so
+      // a later deletion is noticed again.
+      const parent = body?.parentReference?.id;
+      if (!folder && typeof parent === 'string' && ITEM_ID.test(parent)) onFolder(parent);
+      return created;
     }
     if (response.status === 202) {
       await discard(response);
@@ -224,29 +238,35 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
   }
 
   return {
-    // The app folder's drive, which names the account: a later sign-in to the same drive keeps the
-    // connection, so no browser has to agree to backups again.
+    // The app folder's own id, and its drive, which names the account: a later sign-in to the same drive
+    // and the same folder keeps the connection, so no browser has to agree to backups again.
     async appFolder() {
       const response = await call('GET', '/me/drive/special/approot?$select=id,parentReference');
       if (response.status === 404) {
         await discard(response);
-        return { driveId: null };
+        return { id: null, driveId: null };
       }
       if (!response.ok) throw await failure(response);
-      const driveId = (await readJson(response, 64 * 1024))?.parentReference?.driveId;
-      return { driveId: typeof driveId === 'string' && ITEM_ID.test(driveId) ? driveId : null };
+      const body = await readJson(response, 64 * 1024);
+      const driveId = body?.parentReference?.driveId;
+      return {
+        id: typeof body?.id === 'string' && ITEM_ID.test(body.id) ? body.id : null,
+        driveId: typeof driveId === 'string' && ITEM_ID.test(driveId) ? driveId : null,
+      };
     },
 
-    // Every item in the app folder, all pages. A folder that does not exist yet lists as empty.
+    // Every item in the app folder, all pages. A folder not made yet lists as empty; the folder this host
+    // recorded answering 404 means the person deleted it.
     async list() {
       await Promise.allSettled([...tracker.inflight]);
       for (const [name, upload] of tracker.unsettled) if (await cancel(upload)) tracker.unsettled.delete(name);
       const items = [];
-      let path = `/me/drive/special/approot/children?${ITEM_FIELDS}&$top=200`;
+      let path = `${base}/children?${ITEM_FIELDS}&$top=200`;
       for (let page = 0; page < MAX_PAGES; page += 1) {
         const response = await call('GET', path);
         if (response.status === 404 && page === 0) {
           await discard(response);
+          if (folder) throw gone();
           return [];
         }
         if (!response.ok) throw await failure(response);

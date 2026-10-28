@@ -216,7 +216,7 @@ function fakePowerShell(answer = ({ data }) => ({ code: 0, out: Buffer.from(data
 
 const RECORD = Object.freeze({
   version: 1, provider: 'onedrive', connection: 'c'.repeat(32), account: { id: 'drive:drive-one', hint: 'reader@example.test' },
-  refreshToken: 'refresh-token-never-in-plain-text', savedAt: 1_800_000_000_000,
+  folder: 'APP!1', refreshToken: 'refresh-token-never-in-plain-text', savedAt: 1_800_000_000_000,
 });
 
 test('the token store protects through a fixed PowerShell script, with the bytes on standard input only', async () => {
@@ -602,6 +602,34 @@ test('listing follows every page, and an app folder that does not exist yet list
   await assert.rejects(away.onedrive.list(), { code: 'invalid' });
 });
 
+// The person deleting the app folder means consent and discovery run again (the transport contract), so a
+// folder known by its id answers 404 as deleted rather than being made again without a word.
+test('with the app folder known, listing and creating go by its id, and a 404 for it means it was deleted', async () => {
+  const children = `${GRAPH}/me/drive/items/APP!1/children?$select=id,name,size,createdDateTime&$top=200`;
+  const session = `${GRAPH}/me/drive/items/APP!1:/${NAME}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`;
+  const learned = [];
+  const known = fakeFetch([
+    { method: 'GET', url: children, reply: json(200, { value: [CREATED] }) },
+    { method: 'POST', url: session, reply: json(200, { uploadUrl: UPLOAD }) },
+    { method: 'PUT', url: UPLOAD, reply: json(201, { ...CREATED, parentReference: { id: 'APP!1' } }) },
+  ]);
+  const byId = createOneDrive({ fetchImpl: known.fetchImpl, accessToken: async () => 'access', folder: 'APP!1', onFolder: (id) => learned.push(id) });
+  assert.deepEqual((await byId.list()).map((entry) => entry.id), ['ITEM!7']);
+  assert.equal((await byId.create(NAME, Buffer.from('hello'))).id, 'ITEM!7');
+  assert.deepEqual(learned, [], 'a folder already known is not learned again');
+  for (const [method, url] of [['GET', children], ['POST', session]]) {
+    const deleted = fakeFetch([{ method, url, reply: json(404, { error: { code: 'itemNotFound' } }) }]);
+    const onedrive = createOneDrive({ fetchImpl: deleted.fetchImpl, accessToken: async () => 'access', folder: 'APP!1' });
+    await assert.rejects(method === 'GET' ? onedrive.list() : onedrive.create(NAME, Buffer.from('hello')), { code: 'folder-gone' }, method);
+  }
+  const fresh = fakeFetch([
+    { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
+    { method: 'PUT', url: UPLOAD, reply: json(201, { ...CREATED, parentReference: { id: 'APP!2', driveId: 'drive-one' } }) },
+  ]);
+  await createOneDrive({ fetchImpl: fresh.fetchImpl, accessToken: async () => 'access', onFolder: (id) => learned.push(id) }).create(NAME, Buffer.from('hello'));
+  assert.deepEqual(learned, ['APP!2'], 'with no folder known, a create teaches the one it made');
+});
+
 test('deleting an item already gone succeeds, throttling carries the provider\'s wait, and a second 401 needs sign-in', async () => {
   const item = `${GRAPH}/me/drive/items/ITEM!7`;
   for (const status of [204, 404]) {
@@ -652,8 +680,13 @@ function memoryStore(initial = null) {
   };
 }
 
-function microsoft({ driveId = 'drive-one', nonce = () => null, refresh = () => json(200, { access_token: 'access-refreshed', refresh_token: 'refresh-2', expires_in: 3600, scope: 'Files.ReadWrite.AppFolder' }) } = {}) {
-  const state = { driveId, items: [] };
+// Microsoft as the host meets it. The app folder is known by its id: a request for a folder that is no
+// longer the current one answers 404, as a folder the person deleted does, and the app-root path resolves to
+// the current folder, as Microsoft makes it again on demand.
+function microsoft({ driveId = 'drive-one', folderId = 'APP!1', nonce = () => null, refresh = () => json(200, { access_token: 'access-refreshed', refresh_token: 'refresh-2', expires_in: 3600, scope: 'Files.ReadWrite.AppFolder' }) } = {}) {
+  const state = { driveId, folderId, items: [] };
+  const folderIn = (url) => /\/me\/drive\/items\/([^/:?]+)/.exec(url)?.[1] ?? null;
+  const gone = () => json(404, { error: { code: 'itemNotFound' } });
   const fake = fakeFetch([
     {
       method: 'POST', url: `${MICROSOFT_LOGIN}/token`,
@@ -667,8 +700,14 @@ function microsoft({ driveId = 'drive-one', nonce = () => null, refresh = () => 
         });
       },
     },
-    { method: 'GET', url: `${GRAPH}/me/drive/special/approot?$select=id,parentReference`, reply: () => json(200, { id: 'APP!1', parentReference: { driveId: state.driveId } }) },
+    { method: 'GET', url: `${GRAPH}/me/drive/special/approot?$select=id,parentReference`, reply: () => json(200, { id: state.folderId, parentReference: { driveId: state.driveId } }) },
     { method: 'GET', url: CHILDREN, reply: () => json(200, { value: state.items }) },
+    { method: 'GET', url: /\/me\/drive\/items\/[^/]+\/children\?/, reply: (call) => (folderIn(call.url) === state.folderId ? json(200, { value: state.items }) : gone()) },
+    {
+      method: 'POST', url: /:\/createUploadSession\?/,
+      reply: (call) => (folderIn(call.url) && folderIn(call.url) !== state.folderId ? gone() : json(200, { uploadUrl: UPLOAD })),
+    },
+    { method: 'PUT', url: UPLOAD, reply: () => json(201, { ...CREATED, parentReference: { id: state.folderId, driveId: state.driveId } }) },
   ]);
   return { ...fake, state };
 }
@@ -799,7 +838,7 @@ test('connecting signs in through the browser and the callback, keeps only prote
     assert.equal(form.client_secret, undefined);
     assert.deepEqual(env.store.saved, {
       version: 1, provider: 'onedrive', connection: status.connection, account: { id: 'drive:drive-one', hint: 'reader@example.test' },
-      refreshToken: 'refresh-1', savedAt: env.store.saved.savedAt,
+      folder: 'APP!1', refreshToken: 'refresh-1', savedAt: env.store.saved.savedAt,
     });
     fetch.state.items.push(CREATED);
     const listed = await api.call('list', { connection: status.connection });
@@ -872,6 +911,56 @@ test('a page that names another connection is refused, and disconnecting removes
   } finally {
     env.instance.close();
     await api.close();
+  }
+});
+
+test('a deleted app folder asks every browser again under a new connection, and the next create teaches the new folder', async () => {
+  const store = memoryStore({ ...RECORD });
+  const fetch = microsoft();
+  const env = host({ store, fetch });
+  const api = await hostServer(env.instance);
+  try {
+    fetch.state.folderId = 'APP!2';
+    const refused = await api.call('list', { connection: RECORD.connection });
+    assert.equal(refused.body.error?.code, 'needs-consent', 'the person deleted the folder, so consent runs again');
+    const status = (await api.call('status')).body.status;
+    assert.equal(status.state, 'connected');
+    assert.notEqual(status.connection, RECORD.connection, 'a new connection, so every browser asks again');
+    assert.deepEqual([store.saved.connection, store.saved.folder], [status.connection, null]);
+    assert.equal((await api.call('create', { connection: RECORD.connection, name: NAME, bytes: 'aGk=' })).body.error?.code, 'needs-consent',
+      'nothing is made under the old consent');
+    assert.deepEqual((await api.call('list', { connection: status.connection })).body.items, [], 'discovery under the new one');
+    const made = await api.call('create', { connection: status.connection, name: NAME, bytes: 'aGk=' });
+    assert.equal(made.body.ok, true);
+    await until(() => store.saved?.folder === 'APP!2', 'the folder that create made is learned');
+    assert.equal(store.saved.connection, status.connection, 'learning it asks nobody again');
+    fetch.state.items.push(CREATED);
+    assert.deepEqual((await api.call('list', { connection: status.connection })).body.items.map((entry) => entry.name), [NAME]);
+    assert.ok(fetch.calls.some((call) => call.url.startsWith(`${GRAPH}/me/drive/items/APP!2/children?`)), 'listed by the new folder\'s id');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
+test('signing in again after the app folder was deleted is a new connection; the same folder keeps it', async () => {
+  for (const [folderId, kept] of [['APP!1', true], ['APP!2', false]]) {
+    const nonceRef = { value: null };
+    const fetch = microsoft({ nonce: () => nonceRef.value, folderId });
+    const store = memoryStore({ ...RECORD, refreshToken: null });
+    const env = host({ store, fetch });
+    const api = await hostServer(env.instance);
+    try {
+      assert.equal((await api.call('status')).body.status.state, 'needs-sign-in');
+      await signIn(env, api, { nonceRef });
+      const status = (await api.call('status')).body.status;
+      assert.equal(status.state, 'connected');
+      assert.equal(status.connection === RECORD.connection, kept, folderId);
+      assert.equal(store.saved.folder, folderId);
+    } finally {
+      env.instance.close();
+      await api.close();
+    }
   }
 });
 

@@ -40,6 +40,8 @@ const MAX_OUTPUT = 1024 * 1024;
 const MAX_RECORD = 64 * 1024;
 const BASE64 = /^[A-Za-z0-9+/]*={0,2}$/;
 const CONNECTION = /^[a-f0-9]{32}$/;
+// The app folder's OneDrive item id, by which the host lists and creates, so a deleted folder is noticed.
+const FOLDER_ID = /^[A-Za-z0-9!._-]{1,256}$/;
 export const TOKEN_FILE = 'onedrive.v1';
 
 const REASONS = Object.freeze({
@@ -133,11 +135,12 @@ function validText(value, limit) {
 
 export function validRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
-    && Object.keys(value).sort().join(',') === 'account,connection,provider,refreshToken,savedAt,version'
+    && Object.keys(value).sort().join(',') === 'account,connection,folder,provider,refreshToken,savedAt,version'
     && value.version === 1 && value.provider === 'onedrive' && typeof value.connection === 'string'
     && CONNECTION.test(value.connection) && value.account !== null && typeof value.account === 'object'
     && Object.keys(value.account).sort().join(',') === 'hint,id' && validText(value.account.id, 512)
     && (value.account.hint === null || validText(value.account.hint, 256))
+    && (value.folder === null || (typeof value.folder === 'string' && FOLDER_ID.test(value.folder)))
     && (value.refreshToken === null || validText(value.refreshToken, 16 * 1024))
     && Number.isSafeInteger(value.savedAt) && value.savedAt >= 0;
 }
