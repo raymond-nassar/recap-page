@@ -143,11 +143,16 @@ function fakeJournal() {
   let plan = null;
   let progress = null;
   let progressCalls = 0;
-  const faults = { progressAt: null, begin: false, remove: false };
+  // read: how many of the next reads fail, as IndexedDB does after an open timeout, abort or error.
+  const faults = { progressAt: null, begin: false, remove: false, read: 0 };
   const log = [];
   return {
     available: true, log, faults,
     async read() {
+      if (faults.read > 0) {
+        faults.read -= 1;
+        throw new Error('Injected read failure');
+      }
       if (plan === null && progress === null) return null;
       if (plan && progress && plan.id === progress.id) return structuredClone({ ...plan, ...progress });
       return { unmatched: true, plan: structuredClone(plan), progress: structuredClone(progress) };
@@ -348,6 +353,40 @@ test('a page restored from the back-forward cache reloads when a restore ran mea
   assert.equal((await other.restore((await fileBackup()).text)).ok, true);
   listeners.pageshow({ persisted: true });
   assert.equal(env.reloads, 1, 'the resumed page is read afresh rather than writing settings from before the restore');
+});
+
+// The lock is requested a microtask after start() reads the marker, and settings were read even earlier,
+// so another tab can finish a whole restore, or its last write, in between. The lock then answers at
+// once and nothing is pending, yet this page holds what it read before. Here the browser answers this
+// tab's lock request only after the other tab has finished and let go.
+test('a tab whose start overlaps the end of another tab\'s restore reloads before it saves anything', async () => {
+  for (const seenAtStart of ['active', 'absent']) {
+    const env = environment();
+    let release;
+    const restoring = env.locks.request('restore', { mode: 'exclusive' }, () => new Promise((resolve) => { release = resolve; }));
+    let answer;
+    const gate = new Promise((resolve) => { answer = resolve; });
+    const late = env.make({ lockAnswerMs: 5000, locks: { request: async (...args) => { await gate; return env.locks.request(...args); } } });
+    let finish;
+    if (seenAtStart === 'active') {
+      const { record } = await planted(env, { marker: 'active', phase: 'done', writes: 8, steps: 8, finishedAt: env.now });
+      finish = async () => { env.storage.map.set(RESTORE_MARKER_KEY, `done:${record.id}`); };
+    } else {
+      finish = () => planted(env, { marker: 'done', phase: 'done', writes: 8, steps: 8, finishedAt: env.now });
+    }
+    const settled = late.start();
+    assert.equal(late.state.phase, seenAtStart === 'active' ? 'paused' : 'pending', seenAtStart);
+    await finish();
+    release();
+    await restoring;
+    answer();
+    await settled;
+    await late.inspect();
+    assert.equal(env.reloads, 1, `${seenAtStart}: the page is read again`);
+    assert.notEqual(late.state.phase, 'open', seenAtStart);
+    assert.throws(() => late.storage.setItem(SETTINGS_KEY, '{"theme":"light"}'), /reloading/, `${seenAtStart}: nothing it read before is saved`);
+    assert.equal(JSON.parse(env.storage.map.get(SETTINGS_KEY)).theme, 'dark', seenAtStart);
+  }
 });
 
 // ------------------------------------------------------------------ interruptions
@@ -636,6 +675,106 @@ test('row 14: a done marker with an unreadable journal pauses as an unreadable j
   assert.equal(decideRestoreState(readMarker(env.storage), { kind: 'absent' }, env.storage, env.now).kind, 'clear-marker');
 });
 
+// IndexedDB can fail a read once (an open timeout, an abort, an error) and succeed on the next. Such a
+// copy is said as one that could not be checked, never as missing, so nothing treats it as gone.
+test('an active marker with a journal that cannot be read is unchecked; keeping leaves the copy for a later start', async () => {
+  const env = environment();
+  const { record } = await planted(env, { marker: 'active', writes: 3, steps: 3 });
+  env.journal.faults.read = Infinity;
+  const tab = await env.open();
+  assert.deepEqual(
+    { kind: tab.state.recovery?.kind, download: tab.state.recovery?.download, finish: tab.state.recovery?.canFinish, keep: tab.state.recovery?.canKeep },
+    { kind: 'unchecked', download: null, finish: false, keep: true },
+  );
+  assert.match(tab.state.recovery.message, /could not be checked just now/);
+  assert.equal(await tab.recoveryCopyHeld(), null, 'the erase question says it could not check');
+  assert.equal((await tab.keepCurrent()).ok, true);
+  assert.equal(readMarker(env.storage).state, 'absent');
+  assert.equal(env.journal.record?.id, record.id, 'the copy was never deleted');
+  env.journal.faults.read = 0;
+  await tab.releaseShared();
+  const later = await env.open();
+  assert.equal(later.state.recovery?.kind, 'interrupted', 'a later start that can read it offers it again');
+  assert.equal(later.state.recovery.download, 'prior');
+
+  // With no marker the page opens, and only complete restore waits for a reload, which checks again.
+  const quiet = environment();
+  await planted(quiet, { marker: null, writes: 3, steps: 3 });
+  quiet.journal.faults.read = Infinity;
+  const page = await quiet.open();
+  assert.equal(page.state.phase, 'open');
+  assert.equal(page.state.available, false);
+  assert.equal(page.state.unavailableReason, RESTORE_MESSAGES.journalUnchecked, 'a failed check, not a missing capability');
+  const refused = await page.restore((await fileBackup()).text);
+  assert.equal(refused.error, RESTORE_MESSAGES.restoreUnchecked);
+  quiet.journal.faults.read = 0;
+  assert.equal(quiet.journal.record?.writes, 3, 'an earlier journal that could not be read is never written over');
+});
+
+test('a copy unreadable at the start is never deleted unseen: keeping finds it readable and shows it again', async () => {
+  const env = environment();
+  const { record } = await planted(env, { marker: 'active', writes: 3, steps: 3 });
+  env.journal.faults.read = 1;
+  const tab = await env.open();
+  assert.equal(tab.state.recovery?.kind, 'unchecked');
+  assert.equal(tab.state.unavailableReason, null, 'no verdict for the rest of the session');
+  const kept = await tab.keepCurrent();
+  assert.equal(kept.ok, false);
+  assert.equal(kept.error, RESTORE_MESSAGES.copyReadable);
+  assert.equal(env.journal.record?.id, record.id, 'the copy is still there');
+  assert.equal(readMarker(env.storage).raw, `active:${record.id}`);
+  assert.deepEqual(
+    { kind: tab.state.recovery?.kind, download: tab.state.recovery?.download, finish: tab.state.recovery?.canFinish },
+    { kind: 'interrupted', download: 'prior', finish: true },
+    'the copy, Finish and Restore prior data are offered instead',
+  );
+  assert.equal(JSON.parse(await tab.exportPrior()).restoreId, record.id);
+  assert.equal(tab.state.phase, 'paused');
+});
+
+test('a copy unreadable when a restore stops is never deleted unseen either', async () => {
+  const env = environment();
+  const prior = priorOf(env);
+  const tab = await env.open();
+  const progress = env.journal.progress;
+  let calls = 0;
+  env.journal.progress = async (record) => {
+    calls += 1;
+    if (calls === 3) {
+      env.journal.faults.read = 1;
+      throw new Error('Injected checkpoint failure');
+    }
+    return progress(record);
+  };
+  assert.equal((await tab.restore((await fileBackup()).text)).ok, false);
+  assert.equal(tab.state.recovery?.kind, 'unchecked', 'the failed read is said as one');
+  const id = env.journal.record.id;
+  env.journal.progress = progress;
+  const kept = await tab.keepCurrent();
+  assert.equal(kept.ok, false);
+  assert.equal(env.journal.record?.id, id);
+  assert.equal(tab.state.recovery?.kind, 'interrupted');
+  assert.equal(tab.state.recovery.download, 'prior');
+  assert.equal((await tab.recover('prior')).ok, true);
+  assertImage(env, prior, 'and the earlier data can still be put back');
+});
+
+test('keeping the current data is refused when the recovery never offered it', async () => {
+  const env = environment();
+  const { record } = await planted(env, { marker: 'active', writes: 3, steps: 3 });
+  const tab = await env.open();
+  assert.equal(tab.state.recovery?.kind, 'interrupted');
+  assert.equal(tab.state.recovery.canKeep, false);
+  const before = priorOf(env);
+  const kept = await tab.keepCurrent();
+  assert.equal(kept.ok, false);
+  assert.equal(kept.error, RESTORE_MESSAGES.keepNotOffered);
+  assert.equal(env.journal.record?.id, record.id);
+  assert.equal(readMarker(env.storage).raw, `active:${record.id}`);
+  assert.deepEqual(priorOf(env), before);
+  assert.equal(tab.state.phase, 'paused');
+});
+
 // ------------------------------------------------------------------ order, exits and erase
 
 test('a journal that cannot be saved stops the restore before its marker, with nothing written', async () => {
@@ -709,6 +848,22 @@ test('erase works while a recovery is pending: user data first, then the journal
   assert.equal(await plain.recoveryCopyHeld(), true, 'a kept journal is named too');
   assert.equal((await plain.erase(async () => true)).copyRemoved, true);
   assert.equal(kept.journal.record, null);
+});
+
+// A restore holds the lock from before its marker exists, while it prepares and saves its journal, so
+// an erase in the same tab would otherwise run as if nothing were pending and could remove that journal.
+test('erase waits for this tab\'s own restore instead of reaching past it', async () => {
+  const env = environment();
+  const tab = await env.open();
+  const begin = env.journal.begin;
+  let during = null;
+  env.journal.begin = async (record) => {
+    during = await tab.erase(async () => { throw new Error('the erase ran'); });
+    return begin(record);
+  };
+  const restored = await tab.restore((await fileBackup()).text);
+  assert.deepEqual(during, { ok: false, erased: false, error: RESTORE_MESSAGES.busy });
+  assert.equal(restored.ok, true);
 });
 
 test('without Web Locks or IndexedDB only complete restore is turned off, with its reason, and saving works', async () => {

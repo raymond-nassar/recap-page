@@ -2916,8 +2916,10 @@ export function boot() {
   // lock's answer like every other write, with the address left exactly as it arrived until then.
   const choosesList = Boolean(bootRoute?.listId) && bootRoute.listId !== activeListId()
     && Object.hasOwn(store.state.lists, bootRoute.listId);
-  if (choosesList && completeRestore.state.phase === 'pending') void completeRestore.settled.then(startRoute);
-  else startRoute();
+  if (choosesList && completeRestore.state.phase === 'pending') {
+    // A page that has to reload because another tab changed saved data writes nothing first.
+    void completeRestore.settled.then(() => { if (!completeRestore.state.reloading) startRoute(); });
+  } else startRoute();
   // The deferred journal read, after the first render, so a start with nothing pending never waits.
   void completeRestore.settled.then(() => completeRestore.inspect());
   const restoreNotice = takeRestoreNotice();
