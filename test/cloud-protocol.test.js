@@ -21,6 +21,8 @@ import { CLOUD_BACKUP_DATABASE, CLOUD_BACKUP_LOCK, KEY, SETTINGS_KEY, SIDEBAR_KE
 const MIB = 1024 * 1024;
 const API_BASE = 'https://metadata.example.test/v1';
 const CONSENT = Object.freeze({ connection: 'connection-one', provider: 'onedrive', device: 'Edge on Windows' });
+// The connection the host holds in most cases, as discovery, restores, deletion and the coordinator name it.
+const ON = Object.freeze({ connection: CONSENT.connection });
 const OTHER = 'f'.repeat(32);
 
 // ------------------------------------------------------------------ fakes
@@ -132,16 +134,21 @@ function fakeIndexedDB() {
   };
 }
 
-// The app's own area of one account, in memory. Every call is logged, so a test can count what a backup
-// costs, and faults holds what the next call of each kind does instead of succeeding: a code to reject
-// with, a function to wait on first, or one of the named shapes below. Names are refused twice, as
-// OneDrive is asked to; { duplicates: true } allows them, as Google Drive does.
-function fakeTransport({ duplicates = false } = {}) {
+// The app's own area of one account, in memory, as a host holding one connection serves it. Every call is
+// logged, so a test can count what a backup costs, and faults holds what the next call of each kind does
+// instead of succeeding: a code to reject with, a function to wait on first, or one of the named shapes
+// below. Every call must name the connection the host holds now, which a test can change between calls to
+// stand for another profile reconnecting the host. Names are refused twice, as OneDrive is asked to;
+// { duplicates: true } allows them, as Google Drive does.
+function fakeTransport({ duplicates = false, connection = 'connection-one' } = {}) {
   const files = new Map();
   const calls = [];
   const created = [];
   const limbo = [];
   const faults = { list: [], read: [], create: [], delete: [] };
+  const host = { connection };
+  // The connection each call named, in order.
+  const named = [];
   let next = 1;
   let created_at = 1_700_000_000_000;
   const failure = (code, message = `Injected ${code}`) => Object.assign(new Error(message), { code });
@@ -156,17 +163,27 @@ function fakeTransport({ duplicates = false } = {}) {
     if (typeof planned === 'function') { await planned(); return null; }
     return planned ?? null;
   };
+  // Checked after a fault's wait, so a test can switch the connection while a call is on its way.
+  const guard = (options) => {
+    named.push(options?.connection ?? null);
+    if (host.connection === null) throw failure('not-connected');
+    if (options?.connection !== host.connection) throw failure('needs-consent');
+  };
   return {
-    files, calls, created, faults, store,
-    async list() {
+    files, calls, created, faults, store, named,
+    get connection() { return host.connection; },
+    set connection(value) { host.connection = value; },
+    async list(options) {
       calls.push('list');
       const planned = await fault('list');
+      guard(options);
       if (planned) throw failure(planned);
       return [...files.keys()].map(item);
     },
-    async read(id) {
+    async read(id, options) {
       calls.push('read');
       const planned = await fault('read');
+      guard(options);
       if (planned === 'corrupt') {
         const bytes = new Uint8Array(files.get(id).bytes);
         bytes[bytes.length - 1] ^= 1;
@@ -176,10 +193,11 @@ function fakeTransport({ duplicates = false } = {}) {
       if (!files.has(id)) throw failure('not-found');
       return new Uint8Array(files.get(id).bytes);
     },
-    async create(name, bytes) {
+    async create(name, bytes, options) {
       calls.push('create');
       created.push(name);
       const planned = await fault('create');
+      guard(options);
       if (planned === 'lost') {
         store(name, bytes);
         throw failure('timeout', 'The reply was lost.');
@@ -193,9 +211,10 @@ function fakeTransport({ duplicates = false } = {}) {
       if (!duplicates && [...files.values()].some((file) => file.name === name)) throw failure('conflict');
       return item(store(name, bytes));
     },
-    async delete(id) {
+    async delete(id, options) {
       calls.push('delete');
       const planned = await fault('delete');
+      guard(options);
       if (planned) throw failure(planned);
       files.delete(id);
     },
@@ -290,8 +309,11 @@ function fakeTime(start = 1_800_000_000_000) {
 }
 
 const settle = () => new Promise((resolve) => { setImmediate(resolve); });
-async function until(check, message) {
-  for (let turn = 0; turn < 500; turn += 1) {
+// Bounded by time rather than by event-loop turns: gzip and SHA-256 run on Node's thread pool, and one full
+// suite run on a loaded machine needed more than the 500 turns this used to allow (2026-10-28).
+async function until(check, message, timeoutMs = 10_000) {
+  const end = Date.now() + timeoutMs;
+  while (Date.now() < end) {
     if (await check()) return;
     await settle();
   }
@@ -412,15 +434,15 @@ test('a backup is one gzip file holding the exact complete backup, read back bef
   const snapshot = await home.snapshot();
   const counted = [];
   const create = env.transport.create;
-  env.transport.create = async (name, bytes) => {
+  env.transport.create = async (name, bytes, options) => {
     counted.push((await createCloudRecordStore(env.idb).read()).nextGeneration);
-    return create(name, bytes);
+    return create(name, bytes, options);
   };
   let reading;
   env.transport.faults.read.push(() => new Promise((resolve) => { reading = resolve; }));
   const uploading = protocol.upload(snapshot);
   await until(() => reading, 'the read-back starts');
-  assert.equal(await protocol.lastUploaded(), null, 'not counted while its read-back is pending');
+  assert.equal(await protocol.lastUploaded(ON), null, 'not counted while its read-back is pending');
   reading();
   assert.deepEqual(await uploading, { stream, generation: 1, name: cloudBackupName(stream, 1) });
   assert.deepEqual(counted, [2], 'the generation was committed before its file was created');
@@ -437,7 +459,7 @@ test('a backup is one gzip file holding the exact complete backup, read back bef
   });
   assert.equal(canonical(envelope.backup), snapshot.text, 'the complete backup, byte for byte');
   assert.deepEqual([...file.bytes.subarray(0, 2)], [0x1f, 0x8b], 'gzip');
-  assert.deepEqual(await protocol.lastUploaded(), { personalDigest: snapshot.personalDigest, uploadedAt: env.time.now });
+  assert.deepEqual(await protocol.lastUploaded(ON), { personalDigest: snapshot.personalDigest, uploadedAt: env.time.now });
 });
 
 test('each backup costs one create, one read, one list and one delete, and exactly the newest two remain', async () => {
@@ -496,11 +518,11 @@ test('a lost reply or a create that lands late only ever adds an older generatio
   home.mark(4);
   const newest = await home.snapshot();
   await protocol.upload(newest);
-  assert.deepEqual(await protocol.lastUploaded(), { personalDigest: newest.personalDigest, uploadedAt: env.time.now });
+  assert.deepEqual(await protocol.lastUploaded(ON), { personalDigest: newest.personalDigest, uploadedAt: env.time.now });
 
   env.transport.land();
   assert.deepEqual(env.transport.generations(stream), [1, 2, 3, 4], 'generation 3 landed after generation 4');
-  const elsewhere = await harness({ transport: env.transport }).make().discover();
+  const elsewhere = await harness({ transport: env.transport }).make().discover(ON);
   assert.deepEqual([elsewhere.devices[0].current.generation, elsewhere.devices[0].previous.generation], [4, 3],
     'the late file is never taken for the newest');
   assert.equal(elsewhere.devices[0].current.text, undefined, 'discovery shows what a backup holds, not its bytes');
@@ -523,7 +545,7 @@ test('a copy that does not read back as sent is removed and never counted, and a
     env.transport.calls.length = 0;
     env.transport.faults[where].push(fault);
     await assert.rejects(protocol.upload(await home.snapshot()), { code: 'verify' }, fault);
-    assert.equal(await protocol.lastUploaded(), null, fault);
+    assert.equal(await protocol.lastUploaded(ON), null, fault);
     assert.equal(env.transport.calls.at(-1), 'delete', `${fault}: the copy is removed`);
     assert.equal(env.transport.files.size, 0, fault);
   }
@@ -531,7 +553,7 @@ test('a copy that does not read back as sent is removed and never counted, and a
   home.mark(3);
   env.transport.faults.read.push('timeout');
   await assert.rejects(protocol.upload(await home.snapshot()), { code: 'timeout' });
-  assert.equal(await protocol.lastUploaded(), null, 'an unread copy is not counted');
+  assert.equal(await protocol.lastUploaded(ON), null, 'an unread copy is not counted');
   assert.deepEqual(env.transport.generations(stream), [3]);
   for (let n = 4; n <= 6; n += 1) {
     home.mark(n);
@@ -557,7 +579,7 @@ test('pruning that fails only lags, and never touches another stream, an unknown
   env.transport.faults.delete.push('timeout');
   const kept = await home.snapshot();
   await protocol.upload(kept);
-  assert.deepEqual(await protocol.lastUploaded(), { personalDigest: kept.personalDigest, uploadedAt: env.time.now }, 'the backup still counts');
+  assert.deepEqual(await protocol.lastUploaded(ON), { personalDigest: kept.personalDigest, uploadedAt: env.time.now }, 'the backup still counts');
   home.mark(5);
   env.transport.faults.list.push('needs-sign-in');
   await protocol.upload(await home.snapshot());
@@ -580,21 +602,24 @@ test('consent for another connection, or after this device\'s backups were delet
   const snapshot = await device().snapshot();
   await protocol.upload(snapshot);
   await protocol.recordConsent({ ...CONSENT, device: 'Renamed' });
-  assert.notEqual(await protocol.lastUploaded(), null, 'the same connection keeps what it verified');
+  assert.notEqual(await protocol.lastUploaded(ON), null, 'the same connection keeps what it verified');
 
   // Perhaps another account: it holds none of this browser's backups yet, so the same content goes again.
-  const moved = await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
+  const TWO = { connection: 'connection-two' };
+  env.transport.connection = TWO.connection;
+  const moved = await protocol.recordConsent({ ...CONSENT, ...TWO });
   assert.deepEqual([moved.stream, moved.validated], [stream, []]);
-  assert.equal(await protocol.lastUploaded(), null);
+  assert.equal(await protocol.lastUploaded(TWO), null);
   assert.equal((await protocol.upload(snapshot)).generation, 2, 'the counter carries on, so no number is reused');
 
-  await protocol.deleteOwnBackups();
-  assert.equal(await protocol.lastUploaded(), null, 'nothing is backed up once it is deleted');
-  await protocol.recordConsent({ ...CONSENT, connection: 'connection-two' });
-  assert.equal(await protocol.lastUploaded(), null, 'so the first backup after consenting again goes at once');
+  await protocol.deleteOwnBackups(TWO);
+  assert.equal(await protocol.lastUploaded(TWO), null, 'nothing is backed up once it is deleted');
+  await protocol.recordConsent({ ...CONSENT, ...TWO });
+  assert.equal(await protocol.lastUploaded(TWO), null, 'so the first backup after consenting again goes at once');
   assert.equal((await protocol.upload(snapshot)).generation, 3);
 
-  // A connection that changes while a backup is under way: that backup belonged to the old one.
+  // Consent given again for another connection while a backup is under way: that backup belonged to the
+  // old consent, so it does not count.
   let reading;
   env.transport.faults.read.push(() => new Promise((resolve) => { reading = resolve; }));
   const uploading = protocol.upload(snapshot);
@@ -602,7 +627,46 @@ test('consent for another connection, or after this device\'s backups were delet
   await protocol.recordConsent({ ...CONSENT, connection: 'connection-three' });
   reading();
   await assert.rejects(uploading, { code: 'refused' });
-  assert.equal(await protocol.lastUploaded(), null);
+  assert.equal(await protocol.lastUploaded({ connection: 'connection-three' }), null);
+});
+
+test('a host reconnected to another account between allocating and creating uploads nothing and acknowledges nothing', async () => {
+  const env = harness();
+  const { protocol, stream } = await consented(env);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  assert.deepEqual(env.transport.named, ['connection-one', 'connection-one'], 'the create and its read-back name the consented connection');
+  const before = env.transport.files.size;
+  // Another profile reconnects the host after this browser has taken its number, before the create.
+  env.transport.faults.create.push(async () => { env.transport.connection = 'connection-two'; });
+  await assert.rejects(protocol.upload(snapshot), { code: 'needs-consent' });
+  assert.equal(env.transport.named.at(-1), 'connection-one', 'the create named the consent, which the host no longer holds');
+  assert.equal(env.transport.files.size, before, 'nothing landed in the account this browser never agreed to');
+  const record = await protocol.record();
+  assert.deepEqual([record.stream, record.validated.map((entry) => entry.generation), record.nextGeneration], [stream, [1], 3],
+    'the second backup was not acknowledged');
+  assert.equal(await protocol.lastUploaded({ connection: 'connection-two' }), null, 'so the host\'s account is never reported up to date');
+  await assert.rejects(protocol.upload(snapshot), { code: 'needs-consent' }, 'every later backup asks for consent too');
+  await assert.rejects(protocol.discover(ON), { code: 'needs-consent' });
+  assert.equal(env.transport.files.size, before);
+});
+
+test('after the host reconnects, the backups this browser verified no longer count, so it never reports up to date', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const snapshot = await device().snapshot();
+  await protocol.upload(snapshot);
+  assert.equal((await protocol.lastUploaded(ON)).personalDigest, snapshot.personalDigest);
+  // The record cannot know that another profile reconnected the host; the host's current connection says.
+  env.transport.connection = 'connection-two';
+  assert.equal(await protocol.lastUploaded({ connection: 'connection-two' }), null);
+  assert.equal(await protocol.lastUploaded({}), null, 'a caller that names no connection is never told it is up to date');
+  await assert.rejects(protocol.upload(snapshot), { code: 'needs-consent' });
+  env.transport.connection = null;
+  await assert.rejects(protocol.upload(snapshot), { code: 'not-connected' });
+  for (const call of [() => protocol.discover({}), () => protocol.deleteOwnBackups(), () => protocol.fetchBackup({ id: 'item-1', stream: 'a'.repeat(32), generation: 1 })]) {
+    await assert.rejects(call(), { code: 'invalid' }, 'each names the connection it acts under');
+  }
 });
 
 test('nothing is sent without this browser\'s consent, a kept record, a backup within the cap and a browser that can compress', async () => {
@@ -670,7 +734,7 @@ test('discovery shows each stream\'s newest valid backup and the one before, tru
   const looking = env.make();
   transport.calls.length = 0;
   const filesBefore = [...transport.files.keys()];
-  const found = await looking.discover();
+  const found = await looking.discover(ON);
   assert.ok(transport.calls.every((call) => call === 'list' || call === 'read'), transport.calls.join(','));
   assert.deepEqual([...transport.files.keys()], filesBefore);
   assert.equal(await looking.record(), null);
@@ -687,13 +751,13 @@ test('discovery shows each stream\'s newest valid backup and the one before, tru
   assert.equal(theirs.invalid, 4, 'altered, misnamed, not JSON and not gzip');
   assert.equal(theirs.current, null, 'four reads at most for one stream, all failed');
 
-  const wider = await env.make({ limits: { streams: 16, readsPerStream: 8 } }).discover();
+  const wider = await env.make({ limits: { streams: 16, readsPerStream: 8 } }).discover(ON);
   const other = wider.devices.find((entry) => entry.stream === OTHER);
   assert.deepEqual([other.current.generation, other.previous.generation, other.current.device], [4, 3, 'Phone'],
     'a generation stored twice is shown once');
 
   // The browser that made them sees its own stream first and marked as its own.
-  const own = await homeProtocol.discover();
+  const own = await homeProtocol.discover(ON);
   assert.equal(own.own, stream);
   assert.equal(own.devices[0].stream, stream);
   assert.equal(own.devices[0].own, true);
@@ -717,7 +781,7 @@ test('discovery stops decompressing at 32 MiB, so a small file that expands with
       }));
     }
   }
-  const found = await env.make({ streams: { Blob, CompressionStream, DecompressionStream: Counting } }).discover();
+  const found = await env.make({ streams: { Blob, CompressionStream, DecompressionStream: Counting } }).discover(ON);
   const bomb = found.devices.find((entry) => entry.stream === OTHER);
   assert.deepEqual([bomb.current, bomb.invalid], [null, 1]);
   assert.ok(produced > MAX_CLOUD_BACKUP_BYTES && produced < MAX_CLOUD_BACKUP_BYTES + MIB, `stopped after ${produced} bytes`);
@@ -726,8 +790,8 @@ test('discovery stops decompressing at 32 MiB, so a small file that expands with
   const big = harness();
   big.transport.store(cloudBackupName(OTHER, 2), new Uint8Array(4));
   const list = big.transport.list;
-  big.transport.list = async () => (await list()).map((item) => ({ ...item, size: MAX_CLOUD_BACKUP_BYTES + 1 }));
-  const listed = await big.make().discover();
+  big.transport.list = async (options) => (await list(options)).map((item) => ({ ...item, size: MAX_CLOUD_BACKUP_BYTES + 1 }));
+  const listed = await big.make().discover(ON);
   assert.deepEqual([listed.devices.length, listed.unrecognized], [0, 1]);
   assert.ok(!big.transport.calls.includes('read'));
 });
@@ -745,10 +809,10 @@ test('a backup found in the account restores through the complete restore engine
 
   const env = harness({ transport });
   const protocol = env.make();
-  const found = await protocol.discover();
+  const found = await protocol.discover(ON);
   const [old] = found.devices;
   assert.deepEqual([found.own, old.own, old.current.device, old.current.summary.lists], [null, false, 'Old laptop', 2]);
-  const chosen = await protocol.fetchBackup(old.current);
+  const chosen = await protocol.fetchBackup(old.current, ON);
   assert.equal(chosen.text, saved.text, 'the exact complete backup that was uploaded');
 
   const fresh = memoryStorage();
@@ -766,15 +830,15 @@ test('a backup found in the account restores through the complete restore engine
   const mine = await protocol.recordConsent({ ...CONSENT, device: 'New desktop' });
   assert.notEqual(mine.stream, old.stream, 'a restore never adopts the stream it came from');
   await protocol.upload({ text: restored.text, backup: restored.backup, personalDigest: await personalDigest(restored.backup, webcrypto) });
-  const after = await protocol.discover();
+  const after = await protocol.discover(ON);
   assert.deepEqual(after.devices.map((entry) => [entry.own, entry.current.device, entry.current.generation]),
     [[true, 'New desktop', 1], [false, 'Old laptop', 1]]);
   assert.equal((await away.record()).nextGeneration, 2, 'the old stream was never written by the new browser');
 
   transport.files.clear();
-  await assert.rejects(protocol.fetchBackup(old.current), { code: 'gone' });
+  await assert.rejects(protocol.fetchBackup(old.current, ON), { code: 'gone' });
   const misnamed = transport.store(cloudBackupName(old.stream, 1), envelopeFile({ stream: old.stream, generation: 2, backup: saved.backup }));
-  await assert.rejects(protocol.fetchBackup({ ...old.current, id: misnamed }), { code: 'invalid' }, 'checked again when chosen');
+  await assert.rejects(protocol.fetchBackup({ ...old.current, id: misnamed }, ON), { code: 'invalid' }, 'checked again when chosen');
 });
 
 // ------------------------------------------------------------------ deleting
@@ -782,7 +846,7 @@ test('a backup found in the account restores through the complete restore engine
 test('deleting this device\'s backups withdraws consent first, then removes every generation of its stream and nothing else', async () => {
   const env = harness();
   const { protocol, stream } = await consented(env);
-  assert.deepEqual(await harness().make().deleteOwnBackups(), { deleted: 0, failed: [] }, 'a browser that never turned it on');
+  assert.deepEqual(await harness().make().deleteOwnBackups(ON), { deleted: 0, failed: [] }, 'a browser that never turned it on');
   const home = device();
   for (let n = 1; n <= 3; n += 1) {
     home.mark(n);
@@ -803,7 +867,7 @@ test('deleting this device\'s backups withdraws consent first, then removes ever
   const inFlight = env.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, () => otherTab.upload(snapshot));
   await until(() => landing, 'the other tab\'s create is in flight');
   env.transport.calls.length = 0;
-  const deleting = protocol.deleteOwnBackups();
+  const deleting = protocol.deleteOwnBackups(ON);
   await until(async () => (await protocol.record()).consent === null, 'consent is withdrawn before anything else');
   await until(() => env.locks.waiting(CLOUD_BACKUP_LOCK) === 1, 'the deletion waits for the backup under way');
   assert.deepEqual(env.transport.calls, [], 'nothing is listed or deleted while that backup runs');
@@ -831,10 +895,10 @@ test('a deletion that fails part way says which files remain, and stops at the f
   }
   assert.deepEqual(env.transport.generations(stream), [1, 2, 3, 4]);
   env.transport.faults.delete.push('timeout');
-  const first = await protocol.deleteOwnBackups();
+  const first = await protocol.deleteOwnBackups(ON);
   assert.equal(first.deleted, 3);
   assert.deepEqual(first.failed.map((entry) => [parseCloudBackupName(entry.name).generation, entry.code]), [[1, 'timeout']]);
-  assert.deepEqual(await protocol.deleteOwnBackups(), { deleted: 1, failed: [] }, 'asking again finishes the job');
+  assert.deepEqual(await protocol.deleteOwnBackups(ON), { deleted: 1, failed: [] }, 'asking again finishes the job');
 
   await protocol.recordConsent(CONSENT);
   for (let n = 5; n <= 7; n += 1) {
@@ -844,7 +908,7 @@ test('a deletion that fails part way says which files remain, and stops at the f
   }
   env.transport.calls.length = 0;
   env.transport.faults.delete.push('needs-sign-in');
-  const refused = await protocol.deleteOwnBackups();
+  const refused = await protocol.deleteOwnBackups(ON);
   assert.equal(refused.deleted, 0);
   assert.deepEqual(refused.failed.map((entry) => entry.code), ['needs-sign-in', 'needs-sign-in', 'needs-sign-in']);
   assert.deepEqual(env.transport.calls, ['list', 'delete'], 'no further deletes after the first refusal');
@@ -861,7 +925,7 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
   const seen = [];
   const coordinator = new CloudBackupCoordinator({
     capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
-    upload: (snapshot) => protocol.upload(snapshot), lastUploaded: () => protocol.lastUploaded(),
+    upload: (snapshot) => protocol.upload(snapshot), lastUploaded: () => protocol.lastUploaded({ connection: env.transport.connection }),
     locks: env.locks, events: new EventTarget(), clock: time.now, setTimer: time.setTimer, clearTimer: time.clearTimer,
     cryptoProvider: webcrypto, isOnline: () => true, isHidden: () => false, onChange: (state) => seen.push(state),
   });

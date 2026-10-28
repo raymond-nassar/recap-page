@@ -35,6 +35,11 @@ const MAX_TIMER_MS = 2_147_483_647;
 const WAIT_FOR_CHANGE = new Set(['pending', 'unsaved']);
 // Refusals no amount of waiting fixes without a change: the saved data cannot be read or is too large.
 const STOP_UNTIL_CHANGE = new Set(['unreadable', 'storage', 'oversize', 'unsupported', 'hash', 'invalid', 'refused']);
+// The host holds another connection than the one this browser agreed to, or none: only the person can
+// give consent again, so nothing is retried until they do (stage 1 review, M1).
+const NEEDS_CONSENT = new Set(['needs-consent', 'not-connected']);
+// Halts that only the person can end, so a saved change does not lift them.
+const WAITS_FOR_PERSON = new Set(['needs-sign-in', 'needs-consent']);
 
 // Wraps the storage every owner writes through. Reads pass straight through. A write to a key a backup
 // holds is passed on first and reported only once the browser has accepted it, so a write that throws
@@ -90,10 +95,12 @@ export async function personalDigest(backup, cryptoProvider = globalThis.crypto)
 export class CloudBackupCoordinator {
   // capture: resolves to { text, backup } for the newest saved state, or throws with a code.
   // lastUploaded: resolves to { personalDigest, uploadedAt } for this installation's newest verified
-  //   backup, or null. It is read at every run, because another tab may have made one meanwhile.
+  //   backup under the connection the host holds now, or null. It is read at every run, because another
+  //   tab may have made one meanwhile, and another profile may have reconnected the host.
   // upload: stores one backup and resolves only once that record says so. It may throw an error with
-  //   code 'needs-sign-in' or 'refused', or any other error, which is retried: a backup is written once
-  //   and never overwrites another, so a retry after a lost reply costs a file, never a backup.
+  //   code 'needs-sign-in', 'needs-consent', 'not-connected' or 'refused', or any other error, which is
+  //   retried: a backup is written once and never overwrites another, so a retry after a lost reply costs
+  //   a file, never a backup.
   constructor({
     capture, upload, lastUploaded,
     isBlocked = () => false,
@@ -175,7 +182,7 @@ export class CloudBackupCoordinator {
   notify() {
     if (!this.active) return;
     this.markDirty();
-    if (this.halted && this.halted !== 'needs-sign-in') this.halted = null;
+    if (this.halted && !WAITS_FOR_PERSON.has(this.halted)) this.halted = null;
     if (this.waiting && WAIT_FOR_CHANGE.has(this.waiting)) this.waiting = null;
     this.schedule();
   }
@@ -314,6 +321,7 @@ export class CloudBackupCoordinator {
     }
     if (WAIT_FOR_CHANGE.has(code)) { this.waiting = code; return; }
     if (code === 'needs-sign-in') { this.halted = code; return; }
+    if (NEEDS_CONSENT.has(code)) { this.halted = 'needs-consent'; this.code = code; return; }
     if (STOP_UNTIL_CHANGE.has(code)) { this.halted = 'failed'; this.code = code; return; }
     // Anything else is retried, and each wait is at least as long as the provider asked for.
     const delay = this.cadence.retryMs[Math.min(this.retries, this.cadence.retryMs.length - 1)];
@@ -328,6 +336,7 @@ export class CloudBackupCoordinator {
     let code = null;
     if (!this.active) phase = 'off';
     else if (this.halted === 'needs-sign-in') phase = 'needs-sign-in';
+    else if (this.halted === 'needs-consent') { phase = 'needs-consent'; code = this.code; }
     else if (this.halted) { phase = 'failed'; code = this.code; }
     else if (this.saving) phase = 'saving';
     else if (this.waiting) { phase = 'waiting'; code = this.waiting; }

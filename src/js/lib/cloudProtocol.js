@@ -51,6 +51,8 @@ const DEFAULT_DEVICE = 'Recap Page';
 const MAX_DEVICE_CHARACTERS = 64;
 const INFLATE_SLICE = 1024;
 const NOT_ON = 'Cloud backup is not turned on for this browser, so nothing was uploaded.';
+// Refusals that every later delete in the same account would meet too.
+const STOPS_DELETION = new Set(['needs-sign-in', 'needs-consent', 'not-connected']);
 
 export class CloudBackupError extends Error {
   constructor(message, code) {
@@ -73,6 +75,13 @@ function controlFree(text) {
 }
 function hex(bytes) { return [...bytes].map((value) => value.toString(16).padStart(2, '0')).join(''); }
 const mebibytes = (bytes) => bytes / (1024 * 1024);
+// The connection a page names for discovery, a restore or a deletion, as the host reported it.
+function connectionOf(value) {
+  if (typeof value !== 'string' || value.length === 0 || value.length > 128 || !controlFree(value)) {
+    refuse('No cloud connection was named, so nothing was read or changed.', 'invalid');
+  }
+  return value;
+}
 
 // ------------------------------------------------------------------ names and labels
 
@@ -277,13 +286,21 @@ function itemOf(value) {
 // ------------------------------------------------------------------ the protocol
 
 export class CloudBackupProtocol {
-  // transport: the app's own area of one account.
-  //   list() resolves to every item, as { id, name, size, created }; an area not made yet lists as empty.
-  //   read(id) resolves to the item's bytes, or rejects with code 'not-found' once it is gone.
-  //   create(name, bytes) makes a new item and resolves to it; it never knowingly replaces one.
-  //   delete(id) removes one, and an item already gone counts as removed.
-  //   Any of them may reject with code 'needs-sign-in', 'refused' or another code, and a wait the
-  //   provider asked for as retryAfterMs; the coordinator decides what each means.
+  // transport: the app's own area of one account, as the host holding the connection sees it now. Every
+  // call names a connection, and the transport refuses with code 'needs-consent' when it holds a different
+  // one, or 'not-connected' when it holds none, so nothing is listed, read, created or deleted in an account
+  // this browser has not agreed to. A connection belongs to the host and is shared by every browser profile
+  // on it, so another profile can reconnect it to another account at any moment (stage 1 review, M1).
+  //   list({ connection }) resolves to every item, as { id, name, size, created }; an area not made yet
+  //   lists as empty.
+  //   read(id, { connection }) resolves to the item's bytes, refusing an item over 32 MiB without returning
+  //   its bytes, or rejects with code 'not-found' once it is gone.
+  //   create(name, bytes, { connection }) makes a new item and resolves to it; it never knowingly replaces
+  //   one, and a create it reports as failed can never appear later.
+  //   delete(id, { connection }) removes one, and an item already gone counts as removed.
+  //   Every call settles within the host's stated deadline. Any may reject with code 'needs-sign-in',
+  //   'needs-consent', 'not-connected', 'refused' or another code, with a wait the provider asked for as
+  //   retryAfterMs; the coordinator decides what each means.
   constructor({
     transport, records = createCloudRecordStore(), cryptoProvider = globalThis.crypto, streams = globalThis,
     locks = globalThis.navigator?.locks, clock = Date.now, maxBytes = MAX_CLOUD_BACKUP_BYTES,
@@ -315,9 +332,11 @@ export class CloudBackupProtocol {
   }
 
   // For the coordinator: this browser's newest verified backup, read afresh every time, because another
-  // tab may have made one meanwhile.
-  async lastUploaded() {
-    const newest = (await this.record())?.validated[0];
+  // tab may have made one meanwhile. It counts only while the host still holds the connection this browser
+  // agreed to: after a reconnect to another account the record cannot know about, nothing is up to date.
+  async lastUploaded({ connection } = {}) {
+    const record = await this.record();
+    const newest = record?.consent && record.consent.connection === connection ? record.validated[0] : undefined;
     return newest ? { personalDigest: newest.personalDigest, uploadedAt: newest.uploadedAt } : null;
   }
 
@@ -466,8 +485,8 @@ export class CloudBackupProtocol {
 
   // Every item whose name this version writes, with its stream and generation, and how many others there
   // were. The others are never read or touched.
-  async listed() {
-    const items = await this.transport.list();
+  async listed(connection) {
+    const items = await this.transport.list({ connection });
     if (!Array.isArray(items)) refuse('The cloud account did not answer with a list.', 'invalid');
     const known = [];
     let unrecognized = 0;
@@ -480,8 +499,8 @@ export class CloudBackupProtocol {
     return { known, unrecognized };
   }
 
-  async discard(id) {
-    try { await this.transport.delete(id); } catch { /* removed by a later backup's pruning */ }
+  async discard(id, connection) {
+    try { await this.transport.delete(id, { connection }); } catch { /* removed by a later backup's pruning */ }
   }
 
   // ---------------------------------------------------------------- one backup
@@ -508,31 +527,31 @@ export class CloudBackupProtocol {
     }
     const name = cloudBackupName(stream, generation);
     const sent = await this.digest(bytes);
-    const created = itemOf(await this.transport.create(name, bytes));
+    const created = itemOf(await this.transport.create(name, bytes, { connection }));
     if (!created || created.name !== name) {
-      if (created) await this.discard(created.id);
+      if (created) await this.discard(created.id, connection);
       refuse('The cloud copy was not kept under the name it was given, so it was removed and will be made again.', 'verify');
     }
-    const returned = bytesOf(await this.transport.read(created.id));
+    const returned = bytesOf(await this.transport.read(created.id, { connection }));
     if (!returned || await this.digest(returned) !== sent) {
-      await this.discard(created.id);
+      await this.discard(created.id, connection);
       refuse('The cloud copy did not read back as it was sent, so it was removed and will be made again.', 'verify');
     }
     const record = await this.acknowledge({ stream, generation, connection, personalDigest, uploadedAt: this.now() });
     // The backup is made and verified, so a failure from here on only leaves a file for a later backup.
-    try { await this.prune(record); } catch { /* deletes may lag */ }
+    try { await this.prune(record, connection); } catch { /* deletes may lag */ }
     return { stream, generation, name };
   }
 
   // This stream's files older than its second-newest verified generation, oldest first. Files of other
   // streams, unrecognized files and anything newer are never touched.
-  async prune(record) {
+  async prune(record, connection) {
     const floor = record.validated[1]?.generation;
     if (floor === undefined) return 0;
-    const { known } = await this.listed();
+    const { known } = await this.listed(connection);
     const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)
       .sort((a, b) => a.generation - b.generation).slice(0, CLOUD_PRUNE_PER_BACKUP);
-    for (const item of stale) await this.transport.delete(item.id);
+    for (const item of stale) await this.transport.delete(item.id, { connection });
     return stale.length;
   }
 
@@ -540,11 +559,13 @@ export class CloudBackupProtocol {
 
   // What is already in the account, shown before this browser's first upload and whenever asked: per
   // stream, the newest file that passes every check and the one before it. It only lists and reads, so it
-  // never creates anything in the account.
-  async discover() {
+  // never creates anything in the account. The connection is the one the host reports, since discovery
+  // comes before this browser's consent.
+  async discover({ connection } = {}) {
     this.supported();
+    const named = connectionOf(connection);
     const own = await this.record().then((record) => record?.stream ?? null, () => null);
-    const { known, unrecognized } = await this.listed();
+    const { known, unrecognized } = await this.listed(named);
     const groups = new Map();
     let oversized = 0;
     for (const item of known) {
@@ -566,7 +587,7 @@ export class CloudBackupProtocol {
         // Google allows one name twice; a generation already shown is not shown again.
         if (found.some((held) => held.generation === item.generation)) continue;
         reads += 1;
-        const checked = await this.inspect(item);
+        const checked = await this.inspect(item, named);
         if (checked) {
           const shown = { ...checked };
           delete shown.text;
@@ -579,9 +600,9 @@ export class CloudBackupProtocol {
   }
 
   // The checked file, null when it fails a check, or undefined when it was gone by the time it was read.
-  async inspect(item) {
+  async inspect(item, connection) {
     let bytes;
-    try { bytes = bytesOf(await this.transport.read(item.id)); }
+    try { bytes = bytesOf(await this.transport.read(item.id, { connection })); }
     catch (error) {
       if (error?.code === 'not-found') return undefined;
       throw error;
@@ -591,11 +612,12 @@ export class CloudBackupProtocol {
 
   // A backup chosen from discovery, read and checked again, because the account may have changed since.
   // Its text goes to the complete restore engine, which checks it once more and journals before writing.
-  async fetchBackup({ id, stream, generation } = {}) {
+  async fetchBackup({ id, stream, generation } = {}, { connection } = {}) {
     this.supported();
+    const named = connectionOf(connection);
     if (typeof id !== 'string' || id.length === 0 || typeof stream !== 'string' || !STREAM.test(stream)
       || !Number.isSafeInteger(generation) || generation < 1) refuse('That backup cannot be found.', 'invalid');
-    const checked = await this.inspect({ id, stream, generation });
+    const checked = await this.inspect({ id, stream, generation }, named);
     if (checked === undefined) refuse('That backup is no longer in the cloud account. Nothing was changed.', 'gone');
     if (checked === null) refuse('That backup was changed or cannot be read, so it was not restored. Nothing was changed.', 'invalid');
     return checked;
@@ -604,13 +626,15 @@ export class CloudBackupProtocol {
   // ---------------------------------------------------------------- deleting
 
   // "Delete this device's cloud backups": consent is withdrawn first, then every file of this stream is
-  // deleted, every generation. It waits for a backup another tab has under way, so a file that backup
-  // creates cannot be missed. Other streams and unrecognized files are never touched.
-  async deleteOwnBackups() {
+  // deleted, every generation, in the account of the connection the host reports. It waits for a backup
+  // another tab has under way, so a file that backup creates cannot be missed. Other streams and
+  // unrecognized files are never touched.
+  async deleteOwnBackups({ connection } = {}) {
+    const named = connectionOf(connection);
     const record = await this.withdrawConsent();
     if (!record) return { deleted: 0, failed: [] };
     return this.exclusive(async () => {
-      const { known } = await this.listed();
+      const { known } = await this.listed(named);
       const own = known.filter((item) => item.stream === record.stream).sort((a, b) => a.generation - b.generation);
       let deleted = 0;
       let stopped = null;
@@ -618,13 +642,13 @@ export class CloudBackupProtocol {
       for (const item of own) {
         if (stopped) { failed.push({ id: item.id, name: item.name, code: stopped }); continue; }
         try {
-          await this.transport.delete(item.id);
+          await this.transport.delete(item.id, { connection: named });
           deleted += 1;
         } catch (error) {
           const code = typeof error?.code === 'string' ? error.code : 'transient';
           failed.push({ id: item.id, name: item.name, code });
           // Every later delete would be refused the same way, so they are not sent.
-          if (code === 'needs-sign-in') stopped = code;
+          if (STOPS_DELETION.has(code)) stopped = code;
         }
       }
       return { deleted, failed };

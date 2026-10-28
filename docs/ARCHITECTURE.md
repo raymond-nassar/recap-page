@@ -673,19 +673,25 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:357-368`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:376-387`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup then deletes this stream's files older than
-its second-newest verified generation, at `src/js/lib/cloudProtocol.js:533-534`: one delete keeps pace
+its second-newest verified generation, at `src/js/lib/cloudProtocol.js:552-553`: one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
+
+A connection belongs to the Windows host or the Android app and is shared by every browser profile
+there, while consent belongs to each browser. So every list, read, create and delete names the
+connection this browser agreed to, and the host refuses any other: after another profile reconnects,
+perhaps to another account, backups stop until this browser has seen what that account holds and
+agreed again, and nothing it verified before counts as backed up there.
 
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:428`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:447`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 

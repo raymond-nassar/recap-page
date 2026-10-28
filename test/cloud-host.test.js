@@ -836,7 +836,12 @@ test('a page that names another connection is refused, and disconnecting removes
   const api = await hostServer(env.instance);
   try {
     const stale = await api.call('list', { connection: 'd'.repeat(32) });
-    assert.equal(stale.body.error.code, 'not-connected', 'a consent given for another connection writes nothing');
+    assert.equal(stale.body.error.code, 'needs-consent', 'a consent given for another connection writes nothing and asks again');
+    for (const [operation, input] of [['read', { id: 'ITEM!7' }], ['create', { name: NAME, bytes: 'aGk=' }], ['delete', { id: 'ITEM!7' }]]) {
+      const answer = await api.call(operation, { connection: 'd'.repeat(32), ...input });
+      assert.equal(answer.body.error.code, 'needs-consent', operation);
+    }
+    assert.equal(env.fetch.calls.length, 0, 'none of them reached OneDrive');
     assert.equal((await api.call('list', {})).body.error.code, 'invalid');
     assert.equal((await api.call('create', { connection: RECORD.connection, name: '../escape', bytes: 'aGk=' })).body.error.code, 'invalid');
     assert.equal((await api.call('create', { connection: RECORD.connection, name: NAME, bytes: '' })).body.error.code, 'invalid');

@@ -54,6 +54,7 @@ const SIGN_IN_ENDED = Object.freeze({
   invalid: 'Sign-in was stopped after answers it did not expect.',
   failed: 'Sign-in stopped unexpectedly.',
 });
+const CONNECTED_AGAIN = 'Cloud backup was connected again since this browser agreed to it, so it asks again first.';
 
 function send(res, status, body, extra = {}) {
   if (res.headersSent) return;
@@ -242,7 +243,8 @@ export function createCloudHost({
   function tokenFor(connection) {
     return async ({ renew = false } = {}) => {
       const current = record;
-      if (!current || current.connection !== connection) throw new ProviderError('not-connected', 'Cloud backup was disconnected.');
+      if (!current) throw new ProviderError('not-connected', 'Cloud backup was disconnected.');
+      if (current.connection !== connection) throw new ProviderError('needs-consent', CONNECTED_AGAIN);
       if (!current.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
       if (!renew && access?.connection === connection && access.expiresAt - 60_000 > clock()) return access.token;
       // One refresh at a time for a connection: the second caller waits for the first one's token rather
@@ -263,9 +265,10 @@ export function createCloudHost({
     if (!object(input) || typeof input.connection !== 'string' || !CONNECTION.test(input.connection)) {
       throw new ProviderError('invalid', 'The request did not name a connection.');
     }
-    if (!record || record.connection !== input.connection) {
-      throw new ProviderError('not-connected', 'Cloud backup was disconnected or connected again since this page last checked.');
-    }
+    if (!record) throw new ProviderError('not-connected', 'Cloud backup is not connected on this computer.');
+    // A different connection than the one this browser agreed to: another profile reconnected the host,
+    // perhaps to another account, so this browser has to see what is there and agree again first.
+    if (record.connection !== input.connection) throw new ProviderError('needs-consent', CONNECTED_AGAIN);
     if (!record.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
     return createOneDrive({ fetchImpl, clock, tracker, accessToken: tokenFor(input.connection) });
   }

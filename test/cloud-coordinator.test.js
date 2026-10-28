@@ -306,6 +306,26 @@ test('a sign-in the provider refuses stops backups where the person can see it, 
   assert.equal(coordinator.state.phase, 'up-to-date');
 });
 
+test('a host that holds another connection, or none, stops backups until this browser agrees again', async () => {
+  for (const code of ['needs-consent', 'not-connected']) {
+    const env = harness();
+    env.uploadOutcomes = [Object.assign(new Error('Agree again'), { code })];
+    const coordinator = env.start();
+    await env.time.advance(quietMs, [coordinator]);
+    assert.deepEqual({ phase: coordinator.state.phase, code: coordinator.state.code }, { phase: 'needs-consent', code }, code);
+    env.content = { ...env.content, read: { ...env.content.read, 7: 700 } };
+    coordinator.notify();
+    await env.time.advance(10 * MINUTE, [coordinator]);
+    assert.equal(env.uploads.length, 1, `${code}: a saved change does not upload into an account nobody agreed to`);
+    assert.equal(coordinator.state.phase, 'needs-consent');
+    coordinator.retry();
+    await env.time.advance(0, [coordinator]);
+    assert.equal(env.uploads.length, 2, `${code}: agreeing again resumes`);
+    assert.equal(coordinator.state.phase, 'up-to-date');
+    coordinator.stop();
+  }
+});
+
 test('an import still being saved waits for the next change; a capture that raced looks again shortly', async () => {
   const env = harness();
   const refusal = (code) => Object.assign(new Error('refused'), { code });
