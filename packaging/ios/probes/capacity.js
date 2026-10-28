@@ -65,6 +65,41 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     wideBytes: wideChars * 2 + quotaKey.length,
   };
 
+  // Whether a Latin-1 value still costs one byte per character once it is stored. The iOS 26.5
+  // Simulator refused a Latin-1 restore whose three copies come to well under the quota at one byte
+  // each, so the room left beside a held 1 MiB value is measured three ways: at once, after a pause
+  // long enough for the engine to commit it, and when the held value is a string read back from
+  // storage, as the copy a restore keeps for Undo is. Beside a value counted at one byte per
+  // character the room is about the quota less 1 MiB; at two, less 2 MiB.
+  const heldKey = 'recap-capacity-held';
+  const held = 1024 * 1024;
+  const roomBeside = async ({ pause = 0, readBack = false } = {}) => {
+    let value = 'a'.repeat(held);
+    if (readBack) {
+      localStorage.setItem(heldKey, value);
+      value = localStorage.getItem(heldKey);
+      localStorage.removeItem(heldKey);
+    }
+    localStorage.setItem(heldKey, value);
+    try {
+      if (pause) await new Promise((resolve) => setTimeout(resolve, pause));
+      return largest('a');
+    } finally {
+      localStorage.removeItem(heldKey);
+    }
+  };
+  let accounting;
+  try {
+    accounting = {
+      heldLatin1Chars: held,
+      roomAtOnce: await roomBeside(),
+      roomAfterPause: await roomBeside({ pause: 1500 }),
+      roomBesideReadBack: await roomBeside({ readBack: true }),
+    };
+  } catch (error) {
+    accounting = { error: String(error?.message ?? error) };
+  }
+
   // Reading data at the owner's size, made the way Add to library makes it: curated lists from the
   // bundled files, in catalog order, until the export reaches the target.
   const catalog = await (await fetch(new URL('data/catalog.json', base))).json();
@@ -155,6 +190,7 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
     origin: location.origin,
     persist,
     quota,
+    accounting,
     owner: {
       targetBytes,
       completeBackupBytes,
