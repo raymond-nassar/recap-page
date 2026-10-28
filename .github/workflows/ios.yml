@@ -1,0 +1,167 @@
+name: iOS
+
+on:
+  # Every pull request, with no path filter. The iOS app bundles the shared web app, the Android
+  # app's phone layer and the preparation script, so a change almost anywhere in the repository can
+  # break it, and a filter would be a list of paths someone has to keep complete.
+  pull_request:
+  push:
+    branches: [main]
+  # The recovery path, as in CI: once this file is on main, a result for any ref can be asked for.
+  workflow_dispatch:
+
+# The workflow only reads the repository. It signs nothing, uploads nothing to Apple and uses no
+# secret: these are unsigned Simulator builds.
+permissions:
+  contents: read
+
+# A newer push to the same branch makes an in-flight run irrelevant.
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  newest:
+    name: iOS app on the newest runtime
+    runs-on: macos-26
+    # The backstop for time outside any step. The steps below declare 70 minutes between them, and as
+    # in CI the step deadline is the one that should fire, so an overrun reports failure on the step
+    # that ran long rather than cancelled on the job. Generous until this job has runs to measure.
+    timeout-minutes: 75
+    env:
+      # Selected by path rather than by the image's default, which moves when the image does.
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      DESTINATION: platform=iOS Simulator,name=iPhone 17,OS=latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          # Nothing in this job pushes.
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Show the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      # Preparation uses Node's standard library alone, so nothing is installed.
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Build for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Run the unit and UI tests
+        timeout-minutes: 30
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-newest.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
+
+      # The probes' measurements, where a reader of the run finds them without opening the bundle.
+      - name: Summarize the probe results
+        if: ${{ !cancelled() }}
+        timeout-minutes: 2
+        run: |
+          {
+            echo '### Probe results on the newest runtime'
+            echo '```'
+            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/test.log" | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the result bundle
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-results-newest-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/RecapPage-newest.xcresult
+          if-no-files-found: warn
+
+  minimum:
+    name: iOS app on the lowest iOS 18 runtime
+    # The app supports iOS and iPadOS 18.0 and later. No image carries the 18.0 runtime, and this one
+    # carries 18.5 beside Xcode 26, which every App Store build must use, so the same build is tested
+    # on the oldest system the runners have.
+    runs-on: macos-15
+    timeout-minutes: 75
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+      DESTINATION: platform=iOS Simulator,name=iPhone 16e,OS=18.5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          # Nothing in this job pushes.
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Show the toolchain
+        timeout-minutes: 3
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+          node --version
+
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
+      - name: Build for testing
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build-for-testing
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Run the unit and UI tests
+        timeout-minutes: 30
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
+
+      - name: Summarize the probe results
+        if: ${{ !cancelled() }}
+        timeout-minutes: 2
+        run: |
+          {
+            echo '### Probe results on the lowest iOS 18 runtime'
+            echo '```'
+            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/test.log" | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the result bundle
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-results-minimum-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/RecapPage-minimum.xcresult
+          if-no-files-found: warn

@@ -886,3 +886,12 @@ flowchart LR
 [Maintaining Recap Page](MAINTAINING.md) owns the exact form contract, deployment settings, hosted
 verification and rollback order. Removing source files alone does not unpublish an existing Page,
 and removing the form cannot recall an Issue or reply that GitHub has already published.
+
+## The iOS app serves the same pages from its own origin
+
+The [iOS app](IOS.md), in development, loads the same generated pages as the Android app from its own
+bundle, at `recappage://localhost` rather than `http://127.0.0.1:8787`, because iOS cannot hand http
+to an app. A native scheme handler does what the Android app's request interception does: it serves
+only the files its manifest lists, with the Windows server's security headers. Reading data is stored
+under that origin in WebKit's storage, which allows each origin 5 MiB;
+[Storage capacity](IOS.md#storage-capacity) records what that holds.

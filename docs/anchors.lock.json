@@ -6254,8 +6254,8 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "SECURITY.md|about-the-app|package.json:62-66|0": {
-    "anchor": "package.json:62-66",
+  "SECURITY.md|about-the-app|package.json:63-67|0": {
+    "anchor": "package.json:63-67",
     "fp": "8d565e435f89864e",
     "head": "\"devDependencies\": {"
   },
