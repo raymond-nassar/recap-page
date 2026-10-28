@@ -264,12 +264,16 @@ export function validateQualification(report, record, recordBytes, spec, produce
 }
 
 function actualRelease(value) {
-  object(value, ['versionCodes', 'status'], ['name', 'releaseNotes', 'userFraction',
+  object(value, ['status'], ['versionCodes', 'name', 'releaseNotes', 'userFraction',
     'countryTargeting', 'inAppUpdatePriority'], 'release');
+  // Google omits an empty repeated field, so a release holding no bundle, such as a draft started in
+  // the Play Console, arrives with no versionCodes key at all. The second 4.2.0 Publish was refused
+  // on exactly that (#941). It reads as an empty list and is never filled with a guessed code.
+  const versionCodes = value.versionCodes === undefined ? [] : value.versionCodes;
   demand(['draft', 'completed', 'inProgress', 'halted'].includes(value.status)
-    && Array.isArray(value.versionCodes) && value.versionCodes.length <= 100, 'INVALID_REMOTE_RELEASE');
-  value.versionCodes.forEach((code) => integer(code, ANDROID_CODE_LIMIT));
-  demand(new Set(value.versionCodes).size === value.versionCodes.length, 'DUPLICATE_REMOTE_CODE');
+    && Array.isArray(versionCodes) && versionCodes.length <= 100, 'INVALID_REMOTE_RELEASE');
+  versionCodes.forEach((code) => integer(code, ANDROID_CODE_LIMIT));
+  demand(new Set(versionCodes).size === versionCodes.length, 'DUPLICATE_REMOTE_CODE');
   if (value.name !== undefined) text(value.name, 1000);
   if (value.releaseNotes !== undefined) {
     demand(Array.isArray(value.releaseNotes) && value.releaseNotes.length <= 100, 'INVALID_REMOTE_NOTES');
@@ -295,7 +299,7 @@ function actualRelease(value) {
     demand(value.countryTargeting.includeRestOfWorld === undefined
       || typeof value.countryTargeting.includeRestOfWorld === 'boolean', 'INVALID_REMOTE_COUNTRIES');
   }
-  const result = { ...value, versionCodes: [...value.versionCodes].sort((a, b) => Number(a) - Number(b)) };
+  const result = { ...value, versionCodes: [...versionCodes].sort((a, b) => Number(a) - Number(b)) };
   if (value.releaseNotes) result.releaseNotes = [...value.releaseNotes]
     .sort((a, b) => a.language < b.language ? -1 : a.language > b.language ? 1 : 0);
   if (result.inAppUpdatePriority === 0) delete result.inAppUpdatePriority;
@@ -306,7 +310,8 @@ export function trackSnapshot(value) {
   demand(typeof value.track === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,99}$/.test(value.track),
     'INVALID_REMOTE_TRACK');
   if (value.kind !== undefined) demand(value.kind === 'androidpublisher#track', 'INVALID_REMOTE_TRACK_KIND');
-  // Google omits empty repeated fields; only its documented release array is normalized.
+  // Google omits empty repeated fields; only the release array and a release's version codes are
+  // normalized, each to an empty list.
   const releases = value.releases === undefined ? [] : value.releases;
   demand(Array.isArray(releases) && releases.length <= 100, 'INVALID_REMOTE_RELEASES');
   return { track: value.track, releases: releases.map(actualRelease) };
