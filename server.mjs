@@ -83,6 +83,46 @@ const SECURITY_HEADERS = Object.freeze({
   'x-frame-options': 'DENY',
 });
 
+// Cloud backup's control API, under one prefix on this origin (#810, P02-T01 sections 3.6 and 3.8). Its
+// modules load at the first request here, and only when this build carries a client configuration, so a
+// build without one loads nothing new and answers 404 here, as for any unknown path. A packaged build
+// reads only the configuration its packager put beside this file and a checkout only the path in
+// MRT_CLOUD_CLIENT_CONFIG, so nothing in a reader's environment can point a release at another client.
+// The prefix is the host's CLOUD_API_PREFIX, which a test holds equal, because the startup contract lets
+// this file import only the two modules it names.
+const CLOUD_PREFIX = '/__recap_cloud__/v1/';
+let cloudHost = null;
+
+async function cloudClientText() {
+  const packaged = await stat(fileURLToPath(new URL('./src/build-info.json', import.meta.url))).then(() => true, () => false);
+  const path = packaged ? fileURLToPath(new URL('./cloud-client.json', import.meta.url)) : process.env.MRT_CLOUD_CLIENT_CONFIG;
+  if (!path) return null;
+  const text = await readFile(path, 'utf8').catch(() => null);
+  if (text === null || text.length > 4096) return null;
+  try {
+    return JSON.parse(text.replace(/^\uFEFF/, ''))?.format === 'recap-page-cloud-client' ? text : null;
+  } catch {
+    return null;
+  }
+}
+
+// Made once and kept. A configuration that is missing is looked for again at the next request, which in a
+// build without one only ever comes from something other than this app; one the host refuses is reported.
+async function cloudHandler() {
+  if (!cloudHost) {
+    const text = await cloudClientText();
+    if (text === null) return null;
+    cloudHost ??= import('./host/cloudHost.mjs')
+      .then(({ createCloudHost }) => createCloudHost({ clientText: text }))
+      .catch((err) => {
+        console.error(`Cloud backup is unavailable: ${err?.message ?? err}`);
+        cloudHost = null;
+        return null;
+      });
+  }
+  return cloudHost;
+}
+
 function safePath(urlPath) {
   // decodeURIComponent throws URIError on a malformed escape such as "/%" or "/a%2". This runs
   // before the request handler's try block, so an unhandled rejection would terminate the whole
@@ -127,6 +167,21 @@ export function createStaticServer(requestHandler = handle) {
 }
 
 async function handle(req, res) {
+  // Before the method check, because the control API is POST only and answers for itself.
+  if ((req.url || '/').split('?')[0].split('#')[0].startsWith(CLOUD_PREFIX)) {
+    const host = await cloudHandler();
+    if (host) {
+      await host.handle(req, res);
+      return;
+    }
+    req.resume();
+    res.writeHead(404, {
+      ...SECURITY_HEADERS,
+      'content-type': 'text/plain; charset=utf-8',
+    }).end('Not found');
+    return;
+  }
+
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, {
       ...SECURITY_HEADERS,
@@ -311,5 +366,5 @@ function start() {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) start();
 
 export {
-  CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, safePath,
+  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, safePath,
 };

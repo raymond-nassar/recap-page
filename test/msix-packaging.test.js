@@ -159,24 +159,40 @@ async function populateStartupLayout(fixture, architecture = 'x64', version = '2
 }
 
 test('startup expectations bind three package variants and reject an unlisted executable import', async (t) => {
-  const { startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
+  const { SOURCE_FILES, startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
   for (const [architecture, version] of [['x64', '2.0.3.0'], ['arm64', '2.0.3.0'], ['x64', '2.0.3.1']]) {
     const fixture = startupLayoutFixture();
     try {
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 10);
+      assert.equal(variant.files.length, 16);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
   try {
-    for (const path of ['packaging/windows/Launcher.mjs', 'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js']) {
-      fixture.put(path, readFileSync(join(ROOT, ...path.split('/'))));
-    }
+    for (const [, source] of SOURCE_FILES) fixture.put(source, readFileSync(join(ROOT, ...source.split('/'))));
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
     assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')));
+    // The cloud backup host imports only its own modules, and server.mjs imports it once, by name.
+    const cloudHost = read(join(ROOT, 'host', 'cloudHost.mjs'));
+    for (const altered of [
+      `${cloudHost}\nimport 'left-pad';\n`, `${cloudHost}\nimport './unlisted.mjs';\n`, `${cloudHost}\nimport('./oneDrive.mjs');\n`,
+    ]) {
+      fixture.put('host/cloudHost.mjs', altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    }
+    fixture.put('host/cloudHost.mjs', cloudHost);
+    const server = read(join(ROOT, 'server.mjs'));
+    for (const altered of [
+      `${server}\nimport('./host/cloudHost.mjs');\n`, server.replace("import('./host/cloudHost.mjs')", "import('./host/' + 'cloudHost.mjs')"),
+    ]) {
+      fixture.put('server.mjs', altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    }
+    fixture.put('server.mjs', server);
+    t.diagnostic('startup-host-imports fixtures=5 rejected=5');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
@@ -206,7 +222,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 4);
+    assert.equal(startupSourceInputs(fixture.root).length, 10);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -216,7 +232,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 10);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 16);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);

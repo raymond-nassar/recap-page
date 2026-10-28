@@ -747,6 +747,16 @@ for:
 | `refused` | Refused for a reason no wait fixes | Backups stop until the data changes or the person retries |
 | `invalid` | A request or an answer this version does not expect | Backups stop until the data changes or the person retries |
 
+**The Windows host.** On Windows the local server answers the transport itself, under one prefix on
+the app's own origin, so the page needs no cross-origin access. The host's six modules in `host/` load
+at the first request there, and only in a build that carries a client configuration; any other build
+answers 404 there, as for an unknown path, and loads nothing new. A packaged build reads only the
+configuration its packager put beside the server, and a checkout only the path in
+`MRT_CLOUD_CLIENT_CONFIG`. The host answers only POSTs from the app's origin made by a process in the
+same Windows session, and keeps every token to itself. The startup contract binds the six modules'
+bytes as startup files, allows the server exactly one dynamic import of the host, and lets the host's
+modules import nothing but one another and Node's built-ins.
+
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at

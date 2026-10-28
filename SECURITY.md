@@ -108,7 +108,7 @@ Consider these safeguards when preparing a report:
 - The development server sends its content security policy on every application-generated
   response, built at `server.mjs:64-75`, alongside the three companion headers assembled at
   `server.mjs:79-84`. The server contract checks all seven application statuses at
-  `test/server-contract.test.js:274-315`. Responses rejected by Node's HTTP parser before the
+  `test/server-contract.test.js:359-400`. Responses rejected by Node's HTTP parser before the
   request handler runs are outside that guarantee.
 - Keep secrets out of the repository. The default metadata API needs no key.
 - Dependabot alerts and security updates are enabled. Secret scanning and push protection were

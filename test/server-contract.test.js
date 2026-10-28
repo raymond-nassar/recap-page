@@ -2,13 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { request } from 'node:http';
 import { connect } from 'node:net';
-import { readFileSync } from 'node:fs';
-import { sep } from 'node:path';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, sep } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 import {
-  CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, browserCommand, createStaticServer, parsePort, safePath,
+  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, browserCommand, createStaticServer, parsePort, safePath,
 } from '../server.mjs';
+import { CLOUD_API_PREFIX } from '../host/cloudHost.mjs';
 import {
   LOCAL_SERVER_GENERATION_HEADER_NAME,
   LOCAL_SERVER_HEADER_NAME,
@@ -243,6 +245,89 @@ test('anything other than GET or HEAD is refused and says what is allowed', asyn
       }
     }
   });
+});
+
+// Cloud backup's control API is the one prefix that answers other methods (#810, P02-T01 section 3.6).
+// Without a client configuration, which is every build until cloud backup is turned on, it answers 404
+// to every method, as an unknown path does, and every other path keeps its contract. Runs before the
+// case below that loads the host, which the server then keeps for the life of the process.
+test('without a client configuration the cloud prefix answers 404 to every method', async () => {
+  assert.equal(CLOUD_PREFIX, CLOUD_API_PREFIX, 'the server routes the prefix the host answers');
+  const saved = process.env.MRT_CLOUD_CLIENT_CONFIG;
+  delete process.env.MRT_CLOUD_CLIENT_CONFIG;
+  try {
+    await withServer(async (port) => {
+      for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS']) {
+        const res = await fetchPath(port, `${CLOUD_PREFIX}status`, { method });
+        assert.equal(res.status, 404, method);
+        assertSecurityHeaders(res, `${method} cloud prefix`);
+      }
+      assert.equal((await fetchPath(port, '/', { method: 'POST' })).status, 405, 'every other path is unchanged');
+    });
+  } finally {
+    if (saved === undefined) delete process.env.MRT_CLOUD_CLIENT_CONFIG;
+    else process.env.MRT_CLOUD_CLIENT_CONFIG = saved;
+  }
+});
+
+test('with a client configuration the host answers the cloud prefix, and one of another shape loads nothing', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-cloud-client-'));
+  const saved = process.env.MRT_CLOUD_CLIENT_CONFIG;
+  try {
+    const other = join(directory, 'other.json');
+    writeFileSync(other, JSON.stringify({ format: 'something-else' }));
+    process.env.MRT_CLOUD_CLIENT_CONFIG = other;
+    await withServer(async (port) => {
+      assert.equal((await fetchPath(port, `${CLOUD_PREFIX}status`, { method: 'POST' })).status, 404);
+    });
+    const client = join(directory, 'cloud-client.json');
+    writeFileSync(client, JSON.stringify({
+      format: 'recap-page-cloud-client', version: 1, providers: { onedrive: { clientId: 'test-client.recap-page', authority: 'consumers' } },
+    }));
+    process.env.MRT_CLOUD_CLIENT_CONFIG = client;
+    await withServer(async (port) => {
+      const res = await fetchPath(port, `${CLOUD_PREFIX}status`, { method: 'POST', headers: { 'content-type': 'application/json' } });
+      assert.equal(res.status, 403, 'the host answered, and refused a request that is not the served page\'s');
+      assert.equal(JSON.parse(res.body.toString('utf8')).error.code, 'origin');
+      assert.equal((await fetchPath(port, '/', { method: 'POST' })).status, 405, 'every other path is unchanged');
+    });
+  } finally {
+    if (saved === undefined) delete process.env.MRT_CLOUD_CLIENT_CONFIG;
+    else process.env.MRT_CLOUD_CLIENT_CONFIG = saved;
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// A packaged build carries src/build-info.json, which no checkout has. It reads only the configuration
+// its packager put beside the server, so nothing in a reader's environment can point a release at another
+// client; a checkout reads only the path it is given.
+test('a packaged build reads only the configuration beside its server, and a checkout only the path it is given', async () => {
+  const body = source.match(/^async function cloudClientText\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(body);
+  const run = async ({ packaged, env, content = JSON.stringify({ format: 'recap-page-cloud-client' }) }) => {
+    const read = [];
+    const text = await runInNewContext(`${body.replaceAll('import.meta.url', "'file:///app/server.mjs'")}\ncloudClientText();`, {
+      process: { env }, URL,
+      fileURLToPath: (url) => String(url),
+      stat: async (path) => {
+        if (packaged && path === 'file:///app/src/build-info.json') return {};
+        throw new Error('missing');
+      },
+      readFile: async (path) => {
+        read.push(path);
+        return content;
+      },
+    });
+    return { text, read };
+  };
+  const elsewhere = { MRT_CLOUD_CLIENT_CONFIG: 'C:/elsewhere/client.json' };
+  assert.deepEqual((await run({ packaged: true, env: elsewhere })).read, ['file:///app/cloud-client.json'], 'the environment is ignored');
+  assert.deepEqual((await run({ packaged: false, env: elsewhere })).read, ['C:/elsewhere/client.json']);
+  const none = await run({ packaged: false, env: {} });
+  assert.deepEqual([none.text, none.read], [null, []], 'a checkout told nothing reads nothing');
+  for (const content of ['{"format":"something-else"}', 'not json', `{"format":"recap-page-cloud-client","pad":"${'x'.repeat(4096)}"}`]) {
+    assert.equal((await run({ packaged: false, env: elsewhere, content })).text, null, 'nothing else is taken for a configuration, so the host never loads for it');
+  }
 });
 
 test('the local health response is identifiable and cannot be cached by the worker', async () => {

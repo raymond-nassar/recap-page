@@ -82,13 +82,14 @@ async function fetchRuntime(architecture = NODE_ARCH) {
 // What goes in is derived from git rather than listed here. A list is a thing someone has to keep
 // complete, and the failure it produces is an archive missing a file nobody noticed, on a machine
 // nobody here is sitting at. The rule is what the running app touches: the server, everything it
-// serves, the launcher it is started by, and the licences.
+// serves, the cloud backup host it loads, the launcher it is started by, and the licences.
 function appFiles() {
   const tracked = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' })
     .split(/\r?\n/)
     .filter(Boolean);
 
   const wanted = tracked.filter((path) => path.startsWith('src/')
+    || path.startsWith('host/')
     || path === 'server.mjs'
     || path === 'Start on Windows.cmd'
     || path === 'LICENSE');

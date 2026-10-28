@@ -34,6 +34,7 @@ on:
       - package.json
       - packaging/windows/**
       - server.mjs
+      - host/**
       - src/**
       - scripts/inspect-msix.mjs
       - scripts/build-native-launcher.ps1
@@ -354,6 +355,7 @@ jobs:
             scripts/pack-msix.mjs `
             scripts/pack-windows.mjs `
             server.mjs `
+            host `
             src
           if ($LASTEXITCODE -ne 0) {
             throw 'Packaging inputs were dirty before the exact-head build.'
