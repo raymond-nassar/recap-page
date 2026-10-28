@@ -967,7 +967,8 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .btn-icon { padding: 0; min-width: var(--target); min-height: var(--target); justify-content: center; }
 .btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
-.btn:disabled, .completion-wrapup .btn[aria-disabled="true"] { opacity: .5; cursor: default; filter: none; }
+.btn:disabled, .completion-wrapup .btn[aria-disabled="true"], #btn-mark-all-read:disabled { opacity: .5; cursor: default; filter: none; }
+#btn-mark-all-read:disabled { pointer-events: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
 .btn-danger {
   background: rgb(var(--red-line) / 7.059%); color: var(--red-fg);

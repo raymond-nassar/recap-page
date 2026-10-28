@@ -58,8 +58,10 @@ function harness(t, initial = fixture(), answer = async () => true) {
   const notices = new Map();
   let current = true;
   let active = 'bulk';
+  let canSave = true;
   const view = createBulkReadView({
     store, button: () => control, getListId: () => active, isCurrent: () => current,
+    canSave: () => canSave,
     askConfirm: async (question) => { calls.asks.push(question); return answer(question); },
     notify: (_selector, message, kind, key, action, dismiss) => {
       const notice = { message, kind, action, dismiss };
@@ -69,6 +71,7 @@ function harness(t, initial = fixture(), answer = async () => true) {
     clearNotice: (key) => notices.delete(key),
     reconcile: () => { calls.reconciles += 1; paint(); },
     focusCurrentView: () => { calls.focus += 1; },
+    focusRetry: () => { calls.focus += 1; },
   });
   function paint() {
     calls.paints.push({ blocked: store.blocked, read: { ...store.state.read } });
@@ -81,6 +84,7 @@ function harness(t, initial = fixture(), answer = async () => true) {
     notice: () => notices.get('bulk-read'),
     setCurrent: (value) => { current = value; },
     setActive: (id) => { active = id; },
+    setCanSave: (value) => { canSave = value; },
   };
 }
 
@@ -240,10 +244,68 @@ test('failed Undo retains a safe retry and silent Undo repaints saved progress',
     } else {
       assert.equal(Object.keys(h.calls.paints.at(-1).read).length, 3);
       assert.equal(h.notice().action.label, 'Try Undo again');
+      if (mode === 'silent') assert.match(h.notice().message, /The outcome could not be verified/);
       h.storage.mode = null;
       h.notice().action.onClick();
       assert.deepEqual(h.store.state.read, { 1: 123 });
       assert.equal(h.notice().action, null);
     }
   }
+});
+
+test('a complete-restore pause disables the action without asking or writing', async (t) => {
+  const h = harness(t);
+  h.setCanSave(false);
+  h.view.render();
+  const disabled = h.control.disabled;
+  await h.view.markAllRead();
+  assert.deepEqual({ disabled, questions: h.calls.asks.length, writes: h.storage.writes },
+    { disabled: true, questions: 0, writes: 0 });
+  h.setCanSave(true);
+  h.view.render();
+  assert.equal(h.control.disabled, false);
+});
+
+test('a complete-restore pause during confirmation refuses the write', async (t) => {
+  const h = harness(t, fixture(), async () => {
+    h.setCanSave(false);
+    h.view.render();
+    return true;
+  });
+  await h.view.markAllRead();
+  assert.equal(h.storage.writes, 0);
+  assert.equal(h.notice().kind, 'error');
+  assert.equal(h.control.disabled, true);
+});
+
+test('Store-reported write refusal and conflict receive only a short bulk outcome', async (t) => {
+  for (const mode of ['throw', 'conflict']) {
+    await t.test(mode, async (t) => {
+      const h = harness(t, fixture(), async () => {
+        if (mode === 'throw') h.storage.mode = mode;
+        else {
+          const other = new Store({ storage: h.storage });
+          other.load();
+          other.update((s) => markRead(s, 2, true, 789));
+        }
+        return true;
+      });
+      await h.view.markAllRead();
+      assert.ok(h.store.lastError);
+      assert.equal(h.notice().message, 'No comics were marked read.');
+    });
+  }
+});
+
+test('a Store-reported Undo conflict gets a short outcome without a retry', async (t) => {
+  const h = harness(t);
+  await h.view.markAllRead();
+  const action = h.notice().action;
+  const other = new Store({ storage: h.storage });
+  other.load();
+  other.update((s) => setListNote(s, 'bulk', 'From another tab'));
+  action.onClick();
+  assert.equal(h.notice().message, 'No read marks were undone.');
+  assert.equal(h.notice().action, null);
+  assert.equal(h.store.state.lists.bulk.note, 'From another tab');
 });

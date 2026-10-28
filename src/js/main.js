@@ -2364,6 +2364,7 @@ const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 // Said in the pane that follows the reader between views, because a pause stops saving everywhere.
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
+  bulkReadView.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
     notify('#app-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
@@ -3092,6 +3093,7 @@ const addView = createAddView({
 
 const bulkReadView = createBulkReadView({
   store,
+  canSave: () => completeRestore.writable(),
   button: () => $('#btn-mark-all-read'),
   getListId: activeListId,
   isCurrent: () => view === 'read',
@@ -3100,6 +3102,12 @@ const bulkReadView = createBulkReadView({
   clearNotice,
   reconcile: () => renderAll(),
   focusCurrentView: () => focusViewHeading(view),
+  focusRetry: () => {
+    const retry = [...document.querySelectorAll('.report button:not(.notice-dismiss)')]
+      .find((control) => control.textContent === 'Try Undo again' && control.checkVisibility());
+    if (retry) retry.focus();
+    else focusViewHeading(view);
+  },
 });
 
 const readingView = createReadingView({

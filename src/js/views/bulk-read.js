@@ -14,11 +14,15 @@ function unreadIds(state, id) {
 }
 
 export function createBulkReadView({
-  store, button, getListId, isCurrent, askConfirm, notify, clearNotice, reconcile, focusCurrentView,
+  store, button, getListId, isCurrent, canSave, askConfirm, notify, clearNotice, reconcile, focusCurrentView, focusRetry,
 }) {
   let pending = false;
   let undo = null;
   let settling = false;
+
+  function canWrite() {
+    return !store.blocked && Boolean(store.storage) && canSave();
+  }
 
   function holds(record) {
     return !store.blocked && store.seenToken === record.token
@@ -34,7 +38,7 @@ export function createBulkReadView({
 
   function render() {
     const control = button();
-    control.disabled = store.blocked || !store.storage || unreadIds(store.state, getListId()).length === 0;
+    control.disabled = !canWrite() || unreadIds(store.state, getListId()).length === 0;
     control.setAttribute('aria-disabled', String(pending || control.disabled));
     if (undo && !settling && !holds(undo)) forget();
   }
@@ -48,7 +52,7 @@ export function createBulkReadView({
 
   function save(updater) {
     const state = store.update(updater);
-    if (!store.lastUpdateOk) return { ok: false, error: store.lastError };
+    if (!store.lastUpdateOk) return { ok: false, storeReported: true };
     let error;
     try {
       if (canonicalReaderValue(store.storage.getItem(KEY), state, store.seenToken)) return { ok: true, state };
@@ -64,9 +68,9 @@ export function createBulkReadView({
     return { ok: false, error: `${error} The outcome could not be verified. Review your saved progress before trying again.` };
   }
 
-  function offer(record, failed = false) {
+  function offer(record, failed = false, error = null) {
     report(failed
-      ? 'Undo could not be saved. You can try again while your reading data is unchanged.'
+      ? (error ?? 'Undo could not be saved. You can try again while your reading data is unchanged.')
       : `Marked ${record.ids.length} issue${record.ids.length === 1 ? '' : 's'} read in ${record.name}. Undo is available until your next saved reading-data change.`,
     failed ? 'error' : 'ok', {
       label: failed ? 'Try Undo again' : 'Undo mark all read',
@@ -78,6 +82,7 @@ export function createBulkReadView({
     if (undo !== record || !holds(record)) {
       forget();
       report('That bulk change can no longer be undone. You can mark individual comics unread in the full Reading List.');
+      focusCurrentView();
       return;
     }
     settling = true;
@@ -92,17 +97,21 @@ export function createBulkReadView({
       settling = false;
     }
     if (!result.ok) {
-      if (holds(record)) offer(record, true);
+      const retry = holds(record);
+      if (retry) offer(record, true, result.error);
       else {
         forget();
-        report(result.error);
+        report(result.storeReported ? 'No read marks were undone.' : result.error);
       }
       render();
+      if (retry) focusRetry();
+      else focusCurrentView();
       return;
     }
     forget();
     report(`Undid marking ${record.ids.length} issue${record.ids.length === 1 ? '' : 's'} read in ${record.name}.`, 'ok');
     render();
+    focusCurrentView();
   }
 
   async function markAllRead() {
@@ -111,7 +120,7 @@ export function createBulkReadView({
     const state = store.state;
     const list = state.lists[id];
     const ids = unreadIds(state, id);
-    if (!isCurrent() || !list || store.blocked || !store.storage || !ids.length) {
+    if (!isCurrent() || !list || !canWrite() || !ids.length) {
       report('There are no unread comics to mark, or saving is paused. Review the current Reading List.');
       return;
     }
@@ -125,7 +134,7 @@ export function createBulkReadView({
         confirmLabel: 'Mark All Read',
       });
       if (!yes) return;
-      if (!isCurrent() || getListId() !== id || store.blocked
+      if (!isCurrent() || getListId() !== id || !canWrite()
         || listScope(store.state, id) !== scope
         || JSON.stringify(unreadIds(store.state, id)) !== JSON.stringify(ids)) {
         report('The Reading List or its progress changed while the question was open. Review it and choose Mark All Read again.');
@@ -138,7 +147,7 @@ export function createBulkReadView({
         return { ...current, read };
       });
       if (!result.ok) {
-        report(result.error);
+        report(result.storeReported ? 'No comics were marked read.' : result.error);
         return;
       }
       undo = { id, scope, ids, name: list.name, token: store.seenToken };
