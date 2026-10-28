@@ -72,7 +72,11 @@ export const RESTORE_MESSAGES = Object.freeze({
   copyUnchecked: 'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
   // A copy that can be read but not removed, as on a full disk, waits with its marker for a later start.
   copyKept: 'The recovery copy could not be removed, perhaps because storage is full, so a later start tries again.',
+  // A copy that fails its checks cannot wait that way: the next start clears its marker and pauses on it
+  // again, so it is said as what happens, a copy offered again until it can be removed (#954).
+  copyOffered: 'The recovery copy could not be removed, perhaps because storage is full, so the next start offers it again.',
   copyStuck: 'Recap Page could not remove the recovery copy from an earlier complete restore, perhaps because storage is full, so complete restore is off until a later start removes it. Every other backup still works.',
+  copyStuckOffered: 'Recap Page could not remove a recovery copy it cannot read, perhaps because storage is full, so complete restore is off and the next start offers that copy again. Every other backup still works.',
   reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it.',
 });
 
@@ -421,7 +425,7 @@ export class CompleteRestore {
     else if (!this.shared) { phase = 'pending'; message = RESTORE_MESSAGES.starting; }
     this.phase = phase;
     const unavailableReason = this.unavailableReason ?? (this.journalUnchecked ? RESTORE_MESSAGES.journalUnchecked : null)
-      ?? (this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
+      ?? (this.copyStuck === 'offered' ? RESTORE_MESSAGES.copyStuckOffered : this.copyStuck ? RESTORE_MESSAGES.copyStuck : null);
     this.state = Object.freeze({
       phase, message, recovery: this.recovery,
       available: this.capable && !unavailableReason && !this.recovery && phase === 'open',
@@ -595,27 +599,28 @@ export class CompleteRestore {
     if (result?.ok === false && decision.wait && !result.copyKept) this.recovery = recoveryOf('cleanup', { kind: 'absent' }).recovery;
   }
 
-  async removeJournal() {
+  async removeJournal({ offered = false } = {}) {
     let gone;
     try { gone = await this.journal.remove() === true && await this.journal.read() === null; }
     catch { gone = false; }
-    if (!gone) throw Object.assign(new Error(RESTORE_MESSAGES.copyKept), { copyKept: true });
+    if (!gone) throw Object.assign(new Error(offered ? RESTORE_MESSAGES.copyOffered : RESTORE_MESSAGES.copyKept), { copyKept: true, offered });
     this.copyStuck = false;
   }
 
   // Keeping and erase end the pause even when the copy cannot be removed yet: the cleaning: marker
   // already written stays with it, so a later start finishes the cleanup, and complete restore is off
   // until then. Nothing else is left half done, because the person's choice was made before the cleanup.
-  leaveCopyForLater() {
+  // A copy that fails its checks is offered again by the next start instead, which is what it says.
+  leaveCopyForLater(offered = false) {
     this.recovery = null;
-    this.copyStuck = true;
+    this.copyStuck = offered ? 'offered' : true;
   }
 
   // Cleanup order: the marker says cleaning, the journal goes and is checked gone, then the marker
   // goes. A marker never outlives its journal except as "cleaning", which the next start finishes.
-  async cleanUp(id, { journal = true } = {}) {
+  async cleanUp(id, { journal = true, offered = false } = {}) {
     this.markOwn(`cleaning:${id ?? NO_ID}`);
-    if (journal) await this.removeJournal();
+    if (journal) await this.removeJournal({ offered });
     this.markOwn(null);
   }
 
@@ -643,7 +648,7 @@ export class CompleteRestore {
       try {
         return (await operation()) ?? { ok: true };
       } catch (error) {
-        if (error?.copyKept) this.copyStuck = true;
+        if (error?.copyKept) this.copyStuck = error.offered ? 'offered' : true;
         return {
           ok: false, changed: error && 'changed' in error ? error.changed : false,
           error: error?.message || 'The complete restore could not continue.',
@@ -865,8 +870,8 @@ export class CompleteRestore {
         try { await this.act(fresh, { inside: true }); }
         catch (error) {
           if (error?.copyKept) {
-            this.leaveCopyForLater();
-            return { ok: true, changed: false, copyKept: true };
+            this.leaveCopyForLater(error.offered);
+            return { ok: true, changed: false, copyKept: true, ...(error.offered ? { offered: true } : {}) };
           }
           this.recovery = shown ?? (fresh.wait ? recoveryOf('cleanup', { kind: 'absent' }).recovery : null);
           throw error;
@@ -884,14 +889,15 @@ export class CompleteRestore {
         throw new Error(RESTORE_MESSAGES.keepNotOffered);
       }
       // A journal IndexedDB cannot read is left for a later start rather than guessed at, and so is one
-      // it can read but not remove, once its cleaning: marker says so.
+      // it can read but not remove, once its cleaning: marker says so. One that fails its checks and
+      // cannot be removed is offered again by the next start, which clears that marker (#954).
       if (journal.kind === 'unreadable') this.clearOverUnchecked();
       else {
-        try { await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID); }
+        try { await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, { offered: journal.kind === 'invalid' }); }
         catch (error) {
           if (!error?.copyKept) throw error;
-          this.leaveCopyForLater();
-          return { ok: true, changed: false, copyKept: true };
+          this.leaveCopyForLater(error.offered);
+          return { ok: true, changed: false, copyKept: true, ...(error.offered ? { offered: true } : {}) };
         }
       }
       this.recovery = null;
@@ -943,11 +949,11 @@ export class CompleteRestore {
       try {
         const present = found.kind === 'valid' || found.kind === 'invalid';
         const id = found.kind === 'valid' ? found.record.id : held.id ?? NO_ID;
-        await this.cleanUp(id, { journal: present });
+        await this.cleanUp(id, { journal: present, offered: found.kind === 'invalid' });
         this.recovery = null;
         return { ok: true, erased: true, copyRemoved: present };
       } catch (error) {
-        if (error?.copyKept) this.leaveCopyForLater();
+        if (error?.copyKept) this.leaveCopyForLater(error.offered);
         return { ok: true, erased: true, copyRemoved: false, error: error.message };
       }
     };

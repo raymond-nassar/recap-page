@@ -15,7 +15,7 @@ import {
 import {
   createCompleteBackup, prepareCompleteRestore, restorePlan, canonical, RESTORE_KEYS,
 } from '../src/js/lib/completeBackup.js';
-import { keepCurrentQuestion } from '../src/js/views/data.js';
+import { keepCurrentQuestion, keptNotice } from '../src/js/views/data.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
 import { KEY, IMPORT_DRAFT_KEY, PRERESTORE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_MARKER_KEY } from '../src/js/storage.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT } from '../src/js/lib/listHistory.js';
@@ -1023,13 +1023,46 @@ test('keeping whose recovery copy cannot be removed ends the pause, and the copy
   assert.equal(later.state.unavailableReason, null);
 });
 
-test('the keep question says a recovery copy goes at once, or at a later start if this browser cannot remove it yet', () => {
+test('the keep question says a recovery copy goes at once, or at a later start if this browser cannot remove it yet, except one the next start offers again', () => {
   const later = 'at once, or at a later start if this browser cannot remove it yet';
-  for (const recovery of [{ kind: 'interrupted', download: 'prior' }, { kind: 'invalid', download: 'raw' }, { kind: 'cleanup', download: null }]) {
+  for (const recovery of [{ kind: 'interrupted', download: 'prior' }, { kind: 'cleanup', download: null }]) {
     assert.ok(keepCurrentQuestion(recovery).includes(later), recovery.kind);
   }
+  const raw = keepCurrentQuestion({ kind: 'invalid', download: 'raw' });
+  assert.ok(!raw.includes(later), 'a copy that fails its checks is never removed by a later start on its own');
+  assert.ok(raw.includes('If this browser cannot remove it yet, the next start offers it again.'), raw);
   assert.ok(!keepCurrentQuestion({ kind: 'unchecked', download: null }).includes(later), 'an unchecked copy is never deleted by keeping');
   assert.ok(keepCurrentQuestion({ kind: 'missing', download: null }).endsWith('There is no recovery copy left to delete.'));
+});
+
+// A copy that fails its checks cannot wait with its cleaning: marker the way a readable one does: the
+// next start clears that marker and offers the copy again (#954). The behavior is left as it is; what
+// keeping and erase say about it is what this holds. Both recoveries over such a copy are covered.
+test('a recovery copy that fails its checks and cannot be removed is offered again at the next start, and keeping and erase say so', async () => {
+  for (const variant of ['invalid', 'missing']) {
+    const env = environment();
+    env.journal.plantRaw({ id: 'x', backup: 'not a backup' }, null);
+    if (variant === 'missing') env.storage.map.set(RESTORE_MARKER_KEY, `active:${'a'.repeat(64)}`);
+    const tab = await env.open();
+    assert.deepEqual({ kind: tab.state.recovery?.kind, download: tab.state.recovery?.download }, { kind: variant, download: 'raw' });
+    env.journal.faults.remove = true;
+    const kept = await tab.keepCurrent();
+    assert.deepEqual(kept, { ok: true, changed: false, copyKept: true, offered: true }, variant);
+    assert.equal(keptNotice(kept), 'The data that was here is unchanged, but the recovery copy could not be removed, perhaps because storage is full, so it is offered again.');
+    assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.copyStuckOffered, variant);
+    await tab.releaseShared();
+    const next = await env.open();
+    assert.deepEqual({ phase: next.state.phase, kind: next.state.recovery?.kind }, { phase: 'paused', kind: 'invalid' }, `${variant}: the reload after keeping offers it again`);
+    const erased = await next.erase(async () => true);
+    assert.deepEqual(erased, { ok: true, erased: true, copyRemoved: false, error: RESTORE_MESSAGES.copyOffered }, variant);
+    assert.equal(next.state.unavailableReason, RESTORE_MESSAGES.copyStuckOffered, variant);
+    await next.releaseShared();
+    const after = await env.open();
+    assert.deepEqual({ phase: after.state.phase, kind: after.state.recovery?.kind }, { phase: 'paused', kind: 'invalid' }, `${variant}: and so does the next start after erase`);
+    assert.equal(env.journal.record?.id, 'x', 'the copy is still there');
+  }
+  // A copy that can be read keeps its own wording: it waits for a later start.
+  assert.equal(keptNotice({ ok: true, copyKept: true }), `Recovery ended. Saving has started again with the data that was here. ${RESTORE_MESSAGES.copyKept}`);
 });
 
 test('keeping that uncovers another restore\'s journal shows its choices instead of ending recovery over it', async () => {

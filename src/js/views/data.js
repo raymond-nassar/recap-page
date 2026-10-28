@@ -490,8 +490,9 @@ export function completeRestoreQuestion({ lists, records, draft }) {
 
 // Keeping the current data deletes the recovery copy only when one can be read, so the question says
 // what happens to the copy this recovery actually has. A copy this browser cannot remove yet, as on a
-// full disk, goes at a later start instead (#947). The exact prior copy can be downloaded but not
-// restored by this version, so the question says so before the copy goes.
+// full disk, goes at a later start instead (#947), except one that fails its checks: the next start
+// offers that one again (#954). The exact prior copy can be downloaded but not restored by this
+// version, so the question says so before the copy goes.
 export function keepCurrentQuestion(recovery) {
   const lead = 'Recovery ends and saving starts again with the data this browser holds now, which may mix restored and earlier data.';
   const when = 'at once, or at a later start if this browser cannot remove it yet';
@@ -500,8 +501,8 @@ export function keepCurrentQuestion(recovery) {
       + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
   }
   if (recovery?.download === 'raw') {
-    return `${lead} The recovery copy, which this version cannot read, is then deleted, ${when}, so download it first if you might need it. `
-      + 'Its data can only be recovered by hand or with help.';
+    return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
+      + 'If this browser cannot remove it yet, the next start offers it again. Its data can only be recovered by hand or with help.';
   }
   if (recovery?.kind === 'unchecked') {
     return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;
@@ -510,6 +511,16 @@ export function keepCurrentQuestion(recovery) {
     return `${lead} The cleanup after the earlier restore then runs and deletes any recovery copy it left, ${when}.`;
   }
   return `${lead} There is no recovery copy left to delete.`;
+}
+
+// Said after the reload that follows keeping. That reload is the next start, and it offers a copy that
+// fails its checks again when the copy could not be removed (#954), so recovery is not said to have
+// ended there.
+export function keptNotice(result) {
+  const ended = 'Recovery ended. Saving has started again with the data that was here.';
+  if (!result?.copyKept) return ended;
+  if (result.offered) return 'The data that was here is unchanged, but the recovery copy could not be removed, perhaps because storage is full, so it is offered again.';
+  return `${ended} ${RESTORE_MESSAGES.copyKept}`;
 }
 
 export function createCompleteBackupView({
@@ -648,9 +659,7 @@ export function createCompleteBackupView({
       if (!yes) return;
       const result = await onKeepCurrent();
       if (result.ok) {
-        onFinished(result.copyKept
-          ? `Recovery ended. Saving has started again with the data that was here. ${RESTORE_MESSAGES.copyKept}`
-          : 'Recovery ended. Saving has started again with the data that was here.');
+        onFinished(keptNotice(result));
         return;
       }
       report(result.error);
