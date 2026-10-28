@@ -168,15 +168,38 @@ test('installation is offered only on the fixed origin that owns saved progress'
   }
 });
 
-for (const transition of ['offer', 'appinstalled', 'standalone']) {
+test('installation feedback is retired when a new attempt starts', async () => {
+  const t = setup();
+  let finish;
+  const waiting = new Promise((resolve) => { finish = resolve; });
+  t.prompt({ userChoice: waiting });
+  // The previous attempt can settle after Chromium has already supplied another offer.
+  t.report.textContent = 'Installation canceled.';
+  const pending = t.click();
+  assert.equal(t.report.textContent, '');
+  finish({ outcome: 'accepted' });
+  await pending;
+});
+
+test('a fresh offer immediately after cancellation preserves the outcome', async () => {
+  const t = setup();
+  t.prompt();
+  await t.click();
+  const outcome = t.report.textContent;
+  assert.match(outcome, /canceled/);
+  t.prompt();
+  assert.equal(t.card.hidden, false);
+  assert.equal(t.report.textContent, outcome);
+});
+
+for (const transition of ['appinstalled', 'standalone']) {
   test(`installation feedback is retired on ${transition}`, async () => {
     for (const failed of [false, true]) {
       const t = setup();
       t.prompt(failed ? { prompt() { throw new Error('refused'); } } : {});
       await t.click();
       assert.match(t.report.textContent, failed ? /could not/ : /canceled/);
-      if (transition === 'offer') t.prompt();
-      else if (transition === 'appinstalled') t.emit('appinstalled');
+      if (transition === 'appinstalled') t.emit('appinstalled');
       else {
         t.media.matches = true;
         t.mediaListeners.get('change')();

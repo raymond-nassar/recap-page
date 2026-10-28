@@ -161,14 +161,19 @@ try {
   // Deterministic UI transitions complement, rather than stand in for, actual installation below.
   // The synthetic prompt settles only after rendered frames, as Edge's own dialog does.
   const offerInstall = () => page.evaluate(() => {
-    const event = new Event('beforeinstallprompt', { cancelable: true });
     const frames = () => new Promise((resolve) => {
       requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 150)));
     });
-    let choose;
-    event.userChoice = new Promise((resolve) => { choose = resolve; });
-    event.prompt = () => frames().then(frames).then(() => choose({ outcome: 'dismissed' }));
-    window.dispatchEvent(event);
+    const dispatchOffer = () => {
+      const event = new Event('beforeinstallprompt', { cancelable: true });
+      let choose;
+      event.userChoice = new Promise((resolve) => { choose = resolve; });
+      event.prompt = () => frames().then(frames).then(() => choose({ outcome: 'dismissed' }));
+      // Chromium supplies another offer just after a dismissed choice resolves.
+      event.userChoice.then(() => setTimeout(dispatchOffer, 0));
+      window.dispatchEvent(event);
+    };
+    dispatchOffer();
   });
   await offerInstall();
   await page.waitForSelector('#pwa-install', { visible: true });
@@ -229,6 +234,8 @@ try {
     await page.$eval('#btn-install', (button) => button.scrollIntoView({ block: 'center' }));
     await page.focus('#btn-install');
     await page.keyboard.press('Enter');
+    check(`${width}px starting an installation attempt clears its previous outcome`,
+      await page.$eval('#pwa-install-report', (report) => report.textContent === ''));
     await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     check(`${width}px pending prompt keeps focus on the unavailable install control across rendered frames`,
       await page.evaluate(() => {
@@ -236,7 +243,11 @@ try {
         return document.activeElement === button && button.getAttribute('aria-disabled') === 'true'
           && !button.disabled && button.textContent.startsWith('Waiting');
       }));
-    await page.waitForFunction(() => document.getElementById('pwa-install').hidden);
+    await page.waitForFunction(() => {
+      const button = document.getElementById('btn-install');
+      return !document.getElementById('pwa-install').hidden && !button.hasAttribute('aria-disabled')
+        && document.getElementById('pwa-install-report').textContent.includes('canceled');
+    });
     check(`${width}px keyboard cancellation after rendered frames shows its message beside a focused Check connection`,
       await page.evaluate(() => {
         const inView = (node) => {
@@ -256,9 +267,12 @@ try {
         const token = parseFloat(root.getPropertyValue('--space-7')) * parseFloat(root.fontSize);
         return expected > 0 && Math.abs(expected - token) < 1 && gap >= expected - 1;
       }));
-    await offerInstall();
-    check(`${width}px fresh offer retires previous installation feedback`,
-      await page.$eval('#pwa-install-report', (report) => report.textContent === ''));
+    check(`${width}px immediate re-offer keeps the outcome beside the returned card`,
+      await page.$eval('#pwa-install-report', (report) => {
+        const card = document.getElementById('pwa-install');
+        return !card.hidden && report.previousElementSibling === card
+          && report.textContent.includes('canceled');
+      }));
   }
   await page.setViewport({ width: 1280, height: 900 });
   const listId = 'pwa-continuity';

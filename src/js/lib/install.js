@@ -27,7 +27,6 @@ export function wireInstallation({ scope = globalThis, notify, appOrigin = APP_O
   scope.addEventListener('beforeinstallprompt', (event) => {
     if (!fixedOrigin || installed || typeof event.prompt !== 'function') return;
     event.preventDefault();
-    report.replaceChildren();
     offer = event;
     render();
   });
@@ -51,6 +50,7 @@ export function wireInstallation({ scope = globalThis, notify, appOrigin = APP_O
     // A deferred event is single-use, even when the reader cancels or the browser refuses it.
     offer = null;
     pending = true;
+    report.replaceChildren();
     render();
     try {
       // Keep prompt() on the click's user-activation stack.
