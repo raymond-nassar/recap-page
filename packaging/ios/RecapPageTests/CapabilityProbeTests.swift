@@ -12,7 +12,8 @@ final class CapabilityProbeTests: XCTestCase {
         defer { webView.removeFromSuperview() }
         try await WebTestSupport.loadAppPage(webView, assets: assets)
 
-        let json = try XCTUnwrap(try await WebTestSupport.evaluate(webView, Self.probe) as? String)
+        let value = try await WebTestSupport.evaluate(webView, Self.probe)
+        let json = try XCTUnwrap(value as? String)
         WebTestSupport.record("capability", json, in: self)
         let result = try WebTestSupport.object(json)
         XCTAssertEqual(result["origin"] as? String, AppAssets.permanentOrigin)

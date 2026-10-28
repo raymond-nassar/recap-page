@@ -26,7 +26,8 @@ final class CapacityProbeTests: XCTestCase {
 
         for wide in [true, false] {
             let call = "return await window.recapCapacityProbe({ targetBytes: \(Self.ownerBytes), wideText: \(wide) });"
-            let json = try XCTUnwrap(try await WebTestSupport.evaluate(webView, call) as? String)
+            let value = try await WebTestSupport.evaluate(webView, call)
+            let json = try XCTUnwrap(value as? String)
             WebTestSupport.record("capacity-\(wide ? "wide" : "latin1")", json, in: self)
             let result = try WebTestSupport.object(json)
             let owner = try XCTUnwrap(result["owner"] as? [String: Any])
