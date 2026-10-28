@@ -6,6 +6,7 @@ export function wireInstallation({ scope = globalThis, notify, appOrigin = APP_O
   const card = scope.document.getElementById('pwa-install');
   const button = scope.document.getElementById('btn-install');
   const nextControl = scope.document.getElementById('btn-check-local-connection');
+  const report = scope.document.getElementById('pwa-install-report');
   const standalone = scope.matchMedia('(display-mode: standalone)');
   const fixedOrigin = scope.location.origin === appOrigin;
   let installed = scope.navigator.standalone === true || standalone.matches;
@@ -26,16 +27,19 @@ export function wireInstallation({ scope = globalThis, notify, appOrigin = APP_O
   scope.addEventListener('beforeinstallprompt', (event) => {
     if (!fixedOrigin || installed || typeof event.prompt !== 'function') return;
     event.preventDefault();
+    report.replaceChildren();
     offer = event;
     render();
   });
   scope.addEventListener('appinstalled', () => {
+    report.replaceChildren();
     installed = true;
     offer = null;
     render();
   });
   standalone.addEventListener('change', () => {
     installed = scope.navigator.standalone === true || standalone.matches;
+    if (installed) report.replaceChildren();
     offer = null;
     render();
   });

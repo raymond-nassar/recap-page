@@ -168,7 +168,6 @@ try {
     let choose;
     event.userChoice = new Promise((resolve) => { choose = resolve; });
     event.prompt = () => frames().then(frames).then(() => choose({ outcome: 'dismissed' }));
-    document.getElementById('pwa-install-report').replaceChildren();
     window.dispatchEvent(event);
   });
   await offerInstall();
@@ -227,10 +226,6 @@ try {
   await pageCdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
   for (const width of [1280, 360]) {
     await page.setViewport({ width, height: 900 });
-    if (width !== 1280) {
-      await offerInstall();
-      await page.waitForSelector('#pwa-install', { visible: true });
-    }
     await page.$eval('#btn-install', (button) => button.scrollIntoView({ block: 'center' }));
     await page.focus('#btn-install');
     await page.keyboard.press('Enter');
@@ -253,6 +248,17 @@ try {
           && report.textContent.includes('canceled') && !document.getElementById('app-report').textContent.includes('canceled')
           && inView(report) && inView(document.activeElement);
       }));
+    check(`${width}px installation feedback has the shared gap before the next card`,
+      await page.$eval('#pwa-install-report', (report) => {
+        const gap = report.nextElementSibling.getBoundingClientRect().top - report.getBoundingClientRect().bottom;
+        const expected = parseFloat(getComputedStyle(report).marginBottom);
+        const root = getComputedStyle(document.documentElement);
+        const token = parseFloat(root.getPropertyValue('--space-7')) * parseFloat(root.fontSize);
+        return expected > 0 && Math.abs(expected - token) < 1 && gap >= expected - 1;
+      }));
+    await offerInstall();
+    check(`${width}px fresh offer retires previous installation feedback`,
+      await page.$eval('#pwa-install-report', (report) => report.textContent === ''));
   }
   await page.setViewport({ width: 1280, height: 900 });
   const listId = 'pwa-continuity';

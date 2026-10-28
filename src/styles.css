@@ -2263,8 +2263,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    recorded one surface earlier. */
 .blocked .btn-g { border-color: var(--muted); }
 
-#save-report:empty { display: none; }
-#save-report { margin-bottom: var(--space-7); }
+#save-report:empty, #pwa-install-report:empty { display: none; }
+#save-report, #pwa-install-report { margin-bottom: var(--space-7); }
 
 @media (forced-colors: active) {
   .blocked { border: var(--stroke-2) solid CanvasText; background: Canvas; }

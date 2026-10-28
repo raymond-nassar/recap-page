@@ -16,7 +16,8 @@ function setup({ standalone = false, ios = false, origin = 'http://127.0.0.1:878
     getAttribute: (name) => attributes.get(name) ?? null,
   };
   const next = { focus() { scope.document.activeElement = next; } };
-  const nodes = { 'pwa-install': card, 'btn-install': button, 'btn-check-local-connection': next };
+  const report = { textContent: '', replaceChildren() { this.textContent = ''; } };
+  const nodes = { 'pwa-install': card, 'btn-install': button, 'btn-check-local-connection': next, 'pwa-install-report': report };
   const messages = [];
   const errors = [];
   const media = { matches: standalone, addEventListener: (type, fn) => mediaListeners.set(type, fn) };
@@ -28,7 +29,7 @@ function setup({ standalone = false, ios = false, origin = 'http://127.0.0.1:878
     addEventListener: (type, fn) => listeners.set(type, fn),
     console: { error: (...args) => errors.push(args) },
   };
-  wireInstallation({ scope, notify: (...args) => messages.push(args) });
+  wireInstallation({ scope, notify: (...args) => { messages.push(args); report.textContent = args[1]; } });
   const emit = (type, event = {}) => listeners.get(type)(event);
   const prompt = (overrides = {}) => {
     const event = {
@@ -41,7 +42,7 @@ function setup({ standalone = false, ios = false, origin = 'http://127.0.0.1:878
     emit('beforeinstallprompt', event);
     return event;
   };
-  return { scope, card, button, next, messages, errors, media, mediaListeners, emit, prompt, click: () => clicks.get('click')() };
+  return { scope, card, button, next, report, messages, errors, media, mediaListeners, emit, prompt, click: () => clicks.get('click')() };
 }
 
 test('installation is hidden until a usable browser offer, and hidden in standalone modes', () => {
@@ -166,3 +167,21 @@ test('installation is offered only on the fixed origin that owns saved progress'
     assert.equal(offer.prevented, offered, origin);
   }
 });
+
+for (const transition of ['offer', 'appinstalled', 'standalone']) {
+  test(`installation feedback is retired on ${transition}`, async () => {
+    for (const failed of [false, true]) {
+      const t = setup();
+      t.prompt(failed ? { prompt() { throw new Error('refused'); } } : {});
+      await t.click();
+      assert.match(t.report.textContent, failed ? /could not/ : /canceled/);
+      if (transition === 'offer') t.prompt();
+      else if (transition === 'appinstalled') t.emit('appinstalled');
+      else {
+        t.media.matches = true;
+        t.mediaListeners.get('change')();
+      }
+      assert.equal(t.report.textContent, '');
+    }
+  });
+}
