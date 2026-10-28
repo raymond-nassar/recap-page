@@ -501,7 +501,10 @@ export function keepCurrentQuestion(recovery) {
       + 'Its data can only be recovered by hand or with help.';
   }
   if (recovery?.kind === 'unchecked') {
-    return `${lead} The recovery copy could not be checked, so it is not deleted, and a later start offers it again once it can be read.`;
+    return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;
+  }
+  if (recovery?.kind === 'cleanup') {
+    return `${lead} The cleanup after the earlier restore is then finished, which deletes any recovery copy it left.`;
   }
   return `${lead} There is no recovery copy left to delete.`;
 }

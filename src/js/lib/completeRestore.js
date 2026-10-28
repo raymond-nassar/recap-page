@@ -55,6 +55,7 @@ export const RESTORE_MESSAGES = Object.freeze({
   checking: 'Recap Page is checking an earlier complete restore, so saving is paused for a moment.',
   cleaning: 'Recap Page is finishing an earlier complete restore. Close other Recap Page tabs and saving starts again.',
   recovery: 'A complete restore did not finish, so saving is paused. Open Backup & settings to finish it or keep the data that is here.',
+  cleanupFailed: 'Recap Page could not finish cleaning up after an earlier complete restore, so saving is paused. Reload the page to try again, or keep the data that is here in Backup & settings.',
   closeTabs: 'Close other Recap Page tabs and windows, including ones running an older version, then try again. Nothing was replaced.',
   busy: 'A complete restore action is already running. Wait for it to finish.',
   noLocks: 'This browser cannot coordinate Recap Page tabs, so complete restore is turned off here. Every other backup still works.',
@@ -62,12 +63,12 @@ export const RESTORE_MESSAGES = Object.freeze({
   // A read that failed once is not a missing capability, so it is said as a check this page could not
   // make, which a reload makes again.
   journalUnchecked: 'Recap Page could not check for an unfinished complete restore just now, so complete restore is off until you reload the page. Every other backup still works.',
-  restoreUnchecked: 'Recap Page could not check the recovery copy of an earlier complete restore just now, so nothing was replaced. Reload the page to try again.',
+  restoreUnchecked: 'Recap Page could not check for a recovery copy from an earlier complete restore just now, so nothing was replaced. Reload the page to try again.',
   copyReadable: 'The recovery copy can be read now, so nothing was removed. Download the exact prior copy before you choose again.',
   copyChanged: 'The recovery copy changed after these choices were shown, so nothing was removed. Choose again from the options shown now.',
   keepNotOffered: 'Keeping the data that is here now is not offered for this restore, so nothing was removed. Finish it or restore the prior data.',
-  copyUnchecked: 'A recovery copy kept by a complete restore could not be checked, so it may still be in this browser.',
-  reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it. That change was not saved.',
+  copyUnchecked: 'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
+  reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it.',
 });
 
 const RECOVERY_TEXT = {
@@ -77,6 +78,7 @@ const RECOVERY_TEXT = {
   missing: 'A complete restore did not finish, and its recovery copy is missing. Saving is paused until you keep the data that is here now.',
   invalid: 'The recovery copy from an earlier complete restore cannot be read. Saving is paused. Download it if you want it, then keep the data that is here now.',
   unchecked: 'A complete restore did not finish, and its recovery copy could not be checked just now, so saving is paused. Reload the page to try again. Keeping the data that is here now leaves the copy in place, and a later start offers it again if it can.',
+  cleanup: 'Recap Page could not finish cleaning up after an earlier complete restore, so saving is paused. Reload the page to try again, or keep the data that is here now.',
 };
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
@@ -293,7 +295,12 @@ export function decideRestoreState(marker, journal, storage, now) {
   };
   if (journal.kind === 'unreadable') {
     // Not "missing": the copy may be there and readable on the next try, so nothing may treat it as gone.
-    return ['absent', 'done'].includes(marker.state) ? { kind: 'none', unavailable: true } : { ...recoveryOf('unchecked', journal), unavailable: true };
+    // A done: or cleaning: marker follows data the reader already accepted, so it waits, as no marker
+    // does, for a start that can read the journal and apply its rows. Pausing on one would ask the
+    // same question at every start for as long as IndexedDB failed.
+    return ['absent', 'done', 'cleaning'].includes(marker.state)
+      ? { kind: 'none', unavailable: true }
+      : { ...recoveryOf('unchecked', journal), unavailable: true };
   }
   switch (marker.state) {
     case 'active':
@@ -401,7 +408,7 @@ export class CompleteRestore {
     else if (this.cleaning) { phase = 'paused'; message = RESTORE_MESSAGES.cleaning; }
     else if (this.busy) { phase = 'paused'; message = RESTORE_MESSAGES.working; }
     else if (this.otherTab) { phase = 'paused'; message = RESTORE_MESSAGES.otherTab; }
-    else if (this.recovery) { phase = 'paused'; message = RESTORE_MESSAGES.recovery; }
+    else if (this.recovery) { phase = 'paused'; message = this.recovery.kind === 'cleanup' ? RESTORE_MESSAGES.cleanupFailed : RESTORE_MESSAGES.recovery; }
     else if (this.checking) { phase = 'paused'; message = RESTORE_MESSAGES.checking; }
     else if (this.timedOut) { phase = 'paused'; message = RESTORE_MESSAGES.unchecked; }
     else if (!this.capable) phase = 'unavailable';
@@ -574,7 +581,9 @@ export class CompleteRestore {
     this.refresh();
     const result = await this.withExclusive(maintain, { wait: Boolean(decision.wait), quiet: true });
     this.cleaning = false;
-    if (result?.ok === false && decision.wait) this.recovery = recoveryOf('missing', { kind: 'absent' }).recovery;
+    // Only a cleaning: marker waits, so what failed here is a cleanup, and it is said as one: the restore
+    // it follows finished or was kept, and its copy is still there.
+    if (result?.ok === false && decision.wait) this.recovery = recoveryOf('cleanup', { kind: 'absent' }).recovery;
   }
 
   async removeJournal() {
@@ -588,6 +597,15 @@ export class CompleteRestore {
     this.markOwn(`cleaning:${id ?? NO_ID}`);
     if (journal) await this.removeJournal();
     this.markOwn(null);
+  }
+
+  // Over a journal that cannot be read, only a marker that pauses every start is cleared, and directly:
+  // a cleaning: step would tell a later start to remove the copy being left for it to offer. A done: or
+  // cleaning: marker stays, so a later start that can read the journal applies its rows.
+  clearOverUnchecked() {
+    if (!['active', 'invalid', 'unreadable'].includes(readMarker(this.raw).state)) return false;
+    this.markOwn(null);
+    return true;
   }
 
   async withExclusive(operation, { wait = false } = {}) {
@@ -798,9 +816,15 @@ export class CompleteRestore {
       const journal = await this.readJournal();
       const fresh = decideRestoreState(readMarker(this.raw), journal, this.raw, this.clock());
       if (fresh.kind !== 'recovery') {
-        // Nothing waits for a choice any more; whatever upkeep that leaves is finished here.
-        await this.act(fresh, { inside: true });
-        this.recovery = null;
+        // Nothing waits for a choice any more; whatever upkeep that leaves is finished here. Upkeep that
+        // fails leaves saving paused with the choices that were shown, and upkeep that uncovers another
+        // restore's journal shows that journal's choices rather than ending recovery over it.
+        try { await this.act(fresh, { inside: true }); }
+        catch (error) {
+          this.recovery = shown ?? (fresh.wait ? recoveryOf('cleanup', { kind: 'absent' }).recovery : null);
+          throw error;
+        }
+        if (this.recovery) throw new Error(RESTORE_MESSAGES.copyChanged);
         return { ok: true, changed: false };
       }
       const offer = fresh.recovery;
@@ -813,7 +837,8 @@ export class CompleteRestore {
         throw new Error(RESTORE_MESSAGES.keepNotOffered);
       }
       // A journal IndexedDB cannot read is left for a later start rather than guessed at.
-      await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, { journal: journal.kind !== 'unreadable' });
+      if (journal.kind === 'unreadable') this.clearOverUnchecked();
+      else await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID);
       this.recovery = null;
       return { ok: true, changed: false };
     });
@@ -852,14 +877,20 @@ export class CompleteRestore {
       if (erased !== true) return { ok: true, erased: false, copyRemoved: false };
       const held = readMarker(this.raw);
       const found = this.journal?.available ? await this.readJournal() : { kind: 'absent' };
-      // A journal that could not be read is left where it is, and the report says so.
-      const unchecked = found.kind === 'unreadable' ? { error: RESTORE_MESSAGES.copyUnchecked } : {};
-      if (held.state === 'absent' && ['absent', 'unreadable'].includes(found.kind)) return { ok: true, erased: true, copyRemoved: false, ...unchecked };
+      // A journal that could not be read is left where it is, and the report says so. Its marker goes
+      // only when it would pause every start; done: and cleaning: stay with it for a later start.
+      if (found.kind === 'unreadable') {
+        try { if (this.clearOverUnchecked()) this.recovery = null; }
+        catch (error) { return { ok: true, erased: true, copyRemoved: false, error: `${RESTORE_MESSAGES.copyUnchecked} ${error.message}` }; }
+        return { ok: true, erased: true, copyRemoved: false, error: RESTORE_MESSAGES.copyUnchecked };
+      }
+      if (held.state === 'absent' && found.kind === 'absent') return { ok: true, erased: true, copyRemoved: false };
       try {
+        const present = found.kind === 'valid' || found.kind === 'invalid';
         const id = found.kind === 'valid' ? found.record.id : held.id ?? NO_ID;
-        await this.cleanUp(id, { journal: found.kind !== 'unreadable' && found.kind !== 'absent' });
+        await this.cleanUp(id, { journal: present });
         this.recovery = null;
-        return { ok: true, erased: true, copyRemoved: found.kind !== 'unreadable', ...unchecked };
+        return { ok: true, erased: true, copyRemoved: present };
       } catch (error) {
         return { ok: true, erased: true, copyRemoved: false, error: error.message };
       }
@@ -873,10 +904,10 @@ export class CompleteRestore {
   }
 
   // Whether erasing would also remove a recovery copy, for the erase question: true, false, or null
-  // when the journal could not be read, which the question says as a check it could not make.
+  // when the journal could not be read, which the question says as a check it could not make. Asked of
+  // the journal itself, as erase does, because a marker or an earlier recovery alone can promise a copy
+  // that erase then cannot remove.
   async recoveryCopyHeld() {
-    if (this.recovery) return this.recovery.kind === 'unchecked' ? null : true;
-    if (readMarker(this.raw).state !== 'absent') return true;
     const found = await this.readJournal();
     if (found.kind === 'unreadable') return this.journal?.available ? null : false;
     return found.kind === 'valid' || found.kind === 'invalid';

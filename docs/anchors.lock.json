@@ -1529,13 +1529,13 @@
     "fp": "f5c2fbf10ed259d6",
     "head": "export const PORTABLE_SETTINGS = Object.freeze(['covers', 'theme', 'filter', 'readingShortcut', 'hid"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:147|0": {
-    "anchor": "src/js/lib/completeRestore.js:147",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:149|0": {
+    "anchor": "src/js/lib/completeRestore.js:149",
     "fp": "4ea7082d4cf406af",
     "head": "tx = mode === 'readwrite' ? db.transaction(JOURNAL_STORE, mode, { durability: 'strict' }) : db.trans"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:283|0": {
-    "anchor": "src/js/lib/completeRestore.js:283",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:285|0": {
+    "anchor": "src/js/lib/completeRestore.js:285",
     "fp": "b64917b5675de610",
     "head": "export function decideRestoreState(marker, journal, storage, now) {"
   },
@@ -1544,13 +1544,13 @@
     "fp": "f3d6cfa7a0ac9997",
     "head": "export const KEEP_FINISHED_JOURNAL_MS = 24 * 60 * 60 * 1000;"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:587-591|0": {
-    "anchor": "src/js/lib/completeRestore.js:587-591",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:596-600|0": {
+    "anchor": "src/js/lib/completeRestore.js:596-600",
     "fp": "0cdfa6c7feff8a77",
     "head": "async cleanUp(id, { journal = true } = {}) {"
   },
-  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:726-731|0": {
-    "anchor": "src/js/lib/completeRestore.js:726-731",
+  "docs/ARCHITECTURE.md|complete-backups|src/js/lib/completeRestore.js:744-749|0": {
+    "anchor": "src/js/lib/completeRestore.js:744-749",
     "fp": "4e2c08fc7d7cb7d2",
     "head": "await this.journal.begin(record);"
   },
@@ -1869,8 +1869,8 @@
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:733|0": {
-    "anchor": "src/js/lib/completeRestore.js:733",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-complete-restore-v1|src/js/lib/completeRestore.js:751|0": {
+    "anchor": "src/js/lib/completeRestore.js:751",
     "fp": "ac32d3d991d78be7",
     "head": "try { this.markOwn(`active:${record.id}`); }"
   },
