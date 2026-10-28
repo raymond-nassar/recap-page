@@ -30,11 +30,12 @@ const IDENTITY_INPUTS = ['source_sha', 'ledger_sha', 'artifact_id', 'version_cod
 const API = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${OFFICIAL_ID}`;
 
 export class PublisherError extends Error {
-  constructor(code, { status = null, uncertain = false } = {}) {
-    super(`Google Play publisher: ${code}`);
+  constructor(code, { status = null, uncertain = false, fields = null } = {}) {
+    super(`Google Play publisher: ${code}${fields ? ` ${describeFields(fields)}` : ''}`);
     this.code = code;
     this.status = status;
     this.uncertain = uncertain;
+    this.fields = fields;
   }
 }
 const demand = (value, code) => { if (!value) throw new PublisherError(code); };
@@ -46,10 +47,27 @@ export function canonical(value) {
   }
   return JSON.stringify(value);
 }
-function object(value, required, optional = []) {
+// A strict read reports the keys it refused, never their values. The first 4.2.0 Publish was
+// refused at read-tracks with only UNEXPECTED_FIELDS, which could not tell a new Google field from
+// a missing one, or say which object held it (#939). A key that is not identifier-shaped is
+// counted rather than repeated, so a value used as a key cannot reach the receipt.
+const fieldName = (key) => (/^[A-Za-z_][A-Za-z0-9_]{0,63}$/.test(key) ? key : '<unnamed>');
+const fieldNames = (keys) => [...new Set(keys.map(fieldName))].slice(0, 20);
+function describeFields({ context, missing, unexpected }) {
+  const parts = [unexpected.length && `unexpected ${unexpected.join(', ')}`,
+    missing.length && `missing ${missing.join(', ')}`].filter(Boolean);
+  return `(${context || 'object'}: ${parts.join('; ')})`;
+}
+function object(value, required, optional = [], context = null) {
   demand(value && typeof value === 'object' && !Array.isArray(value), 'OBJECT_REQUIRED');
-  demand(required.every((key) => Object.hasOwn(value, key))
-    && Object.keys(value).every((key) => [...required, ...optional].includes(key)), 'UNEXPECTED_FIELDS');
+  const allowed = [...required, ...optional];
+  const missing = required.filter((key) => !Object.hasOwn(value, key));
+  const unexpected = Object.keys(value).filter((key) => !allowed.includes(key));
+  if (missing.length || unexpected.length) {
+    throw new PublisherError('UNEXPECTED_FIELDS', {
+      fields: { context, missing: fieldNames(missing), unexpected: fieldNames(unexpected) },
+    });
+  }
 }
 function integer(value, maximum = Number.MAX_SAFE_INTEGER) {
   demand(typeof value === 'string' && /^[1-9]\d*$/.test(value)
@@ -247,7 +265,7 @@ export function validateQualification(report, record, recordBytes, spec, produce
 
 function actualRelease(value) {
   object(value, ['versionCodes', 'status'], ['name', 'releaseNotes', 'userFraction',
-    'countryTargeting', 'inAppUpdatePriority']);
+    'countryTargeting', 'inAppUpdatePriority'], 'release');
   demand(['draft', 'completed', 'inProgress', 'halted'].includes(value.status)
     && Array.isArray(value.versionCodes) && value.versionCodes.length <= 100, 'INVALID_REMOTE_RELEASE');
   value.versionCodes.forEach((code) => integer(code, ANDROID_CODE_LIMIT));
@@ -257,7 +275,7 @@ function actualRelease(value) {
     demand(Array.isArray(value.releaseNotes) && value.releaseNotes.length <= 100, 'INVALID_REMOTE_NOTES');
     const languages = new Set();
     for (const note of value.releaseNotes) {
-      object(note, ['language', 'text']);
+      object(note, ['language', 'text'], [], 'releaseNote');
       text(note.language, 100);
       text(note.text, 4096);
       demand(!languages.has(note.language), 'DUPLICATE_REMOTE_NOTE_LANGUAGE');
@@ -269,7 +287,7 @@ function actualRelease(value) {
   if (value.inAppUpdatePriority !== undefined) demand(Number.isInteger(value.inAppUpdatePriority)
     && value.inAppUpdatePriority >= 0 && value.inAppUpdatePriority <= 5, 'INVALID_REMOTE_PRIORITY');
   if (value.countryTargeting !== undefined) {
-    object(value.countryTargeting, [], ['countries', 'includeRestOfWorld']);
+    object(value.countryTargeting, [], ['countries', 'includeRestOfWorld'], 'countryTargeting');
     demand(value.countryTargeting.countries === undefined
       || (Array.isArray(value.countryTargeting.countries)
         && value.countryTargeting.countries.every((country) => /^[A-Z]{2}$/.test(country))),
@@ -284,7 +302,7 @@ function actualRelease(value) {
   return result;
 }
 export function trackSnapshot(value) {
-  object(value, ['track'], ['releases', 'kind']);
+  object(value, ['track'], ['releases', 'kind'], 'track');
   demand(typeof value.track === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,99}$/.test(value.track),
     'INVALID_REMOTE_TRACK');
   if (value.kind !== undefined) demand(value.kind === 'androidpublisher#track', 'INVALID_REMOTE_TRACK_KIND');
@@ -315,7 +333,7 @@ export function proposedTrack(spec, current) {
   return { track: spec.track, releases: [spec.release] };
 }
 function tracksBody(value) {
-  object(value, [], ['kind', 'tracks']);
+  object(value, [], ['kind', 'tracks'], 'tracksListResponse');
   if (value.kind !== undefined) demand(value.kind === 'androidpublisher#tracksListResponse', 'INVALID_TRACKS_KIND');
   const tracks = value.tracks === undefined ? [] : value.tracks;
   demand(Array.isArray(tracks) && tracks.length <= 200, 'INVALID_TRACK_LIST');
@@ -324,7 +342,7 @@ function tracksBody(value) {
   return result;
 }
 function binaryList(value, property) {
-  object(value, [], [property, 'kind']);
+  object(value, [], [property, 'kind'], `${property}ListResponse`);
   const items = value[property] === undefined ? [] : value[property];
   demand(Array.isArray(items) && items.length <= 10000, 'INVALID_BINARY_LIST');
   for (const item of items) demand(Number.isSafeInteger(item.versionCode)
@@ -482,6 +500,7 @@ export async function transact(spec, bundle, artifact, {
       && receipt.httpStatus >= 200 && receipt.httpStatus < 300;
     receipt.state = (error instanceof PublisherError && error.uncertain) || unverifiedMutation ? 'uncertain' : 'blocked';
     receipt.code = error instanceof PublisherError ? error.code : 'UNEXPECTED_FAILURE';
+    if (error instanceof PublisherError && error.fields) receipt.fields = error.fields;
     if (error instanceof PublisherError && error.status !== null) receipt.httpStatus = error.status;
     await save();
     throw error;

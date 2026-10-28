@@ -569,6 +569,26 @@ test('expired or malformed API state fails explicitly without subsequent publish
   assert.equal(malformed.calls.length, 2);
 });
 
+// #939. The first 4.2.0 Publish was refused at read-tracks with only a code, which could not tell a
+// new Google field from a missing one. A refusal now names the object and its keys, never values.
+test('a refused tracks read names the object and keys without values, before any upload', async () => {
+  const extra = harness({ tracks: [{ track: 'qa', releases: [{ versionCodes: ['3000001'], status: 'completed',
+    rolloutStage: 'secret-value', 'not a key!': 'another-secret' }] }, { track: 'production', releases: [] }] });
+  await assert.rejects(operation('Publish', extra),
+    /UNEXPECTED_FIELDS \(release: unexpected rolloutStage, <unnamed>\)$/);
+  const refused = extra.receipts.at(-1);
+  assert.equal(refused.state, 'blocked');
+  assert.equal(refused.stage, 'read-tracks');
+  assert.deepEqual(refused.fields, { context: 'release', missing: [], unexpected: ['rolloutStage', '<unnamed>'] });
+  assert.doesNotMatch(JSON.stringify(extra.receipts), /secret-value|another-secret|not a key/);
+  assert.deepEqual(extra.calls.map((call) => call.method), ['POST', 'GET'], 'only the edit and the tracks read');
+
+  const missing = harness({ tracks: [{ track: 'qa', releases: [{ status: 'draft' }] }] });
+  await assert.rejects(operation('Publish', missing), /UNEXPECTED_FIELDS \(release: missing versionCodes\)$/);
+  assert.deepEqual(missing.receipts.at(-1).fields, { context: 'release', missing: ['versionCodes'], unexpected: [] });
+  assert.equal(missing.calls.length, 2);
+});
+
 test('workflow protects the exact main operation before narrow short-lived authentication', async () => {
   const workflow = await readFile(new URL('../.github/workflows/google-play-release.yml', import.meta.url), 'utf8');
   assert.match(workflow, /workflow_dispatch:/);
