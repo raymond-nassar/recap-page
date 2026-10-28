@@ -1054,6 +1054,43 @@ test('keeping that uncovers another restore\'s journal shows its choices instead
   assert.equal(readMarker(env.storage).state, 'absent');
 });
 
+// Keeping ends a pause over a cleanup that failed only when what failed was removing a copy. A marker it
+// cannot save or clear may hide another restore's half-applied journal, so keeping stays paused with the
+// choices shown and nothing changed. Each case below reaches one of keep's two guards.
+const MARKER_REFUSED = 'The restore marker could not be saved. Nothing further was changed.';
+
+test('keeping behind a cleaning marker it cannot clear, beside another restore\'s journal, stays paused with nothing changed', async () => {
+  const env = environment();
+  const { record } = await planted(env, { id: 'b'.repeat(64), marker: null, writes: 3, steps: 3 });
+  env.storage.map.set(RESTORE_MARKER_KEY, `cleaning:${'a'.repeat(64)}`);
+  env.storage.refuseRemoval.add(RESTORE_MARKER_KEY);
+  const tab = await env.open();
+  const shown = tab.state.recovery;
+  assert.deepEqual({ phase: tab.state.phase, kind: shown?.kind }, { phase: 'paused', kind: 'cleanup' });
+  const kept = await tab.keepCurrent();
+  assert.deepEqual({ ok: kept.ok, error: kept.error, copyKept: kept.copyKept }, { ok: false, error: MARKER_REFUSED, copyKept: undefined });
+  assert.equal(tab.state.phase, 'paused');
+  assert.deepEqual(tab.state.recovery, shown, 'the choices shown are unchanged');
+  assert.equal(env.journal.record?.id, record.id, 'the other restore\'s journal is kept');
+  assert.equal(readMarker(env.storage).raw, `cleaning:${'a'.repeat(64)}`);
+});
+
+test('keeping a recovery whose cleanup cannot save its marker stays paused with nothing changed', async () => {
+  const env = environment();
+  const { record } = await planted(env, { marker: 'active', writes: 3, steps: 3 });
+  env.storage.map.set(LIST_HISTORY_KEY, 'FOREIGN');
+  const tab = await env.open();
+  const shown = tab.state.recovery;
+  assert.deepEqual({ kind: shown?.kind, keep: shown?.canKeep }, { kind: 'foreign', keep: true });
+  env.storage.refuse.add(RESTORE_MARKER_KEY);
+  const kept = await tab.keepCurrent();
+  assert.deepEqual({ ok: kept.ok, error: kept.error, copyKept: kept.copyKept }, { ok: false, error: MARKER_REFUSED, copyKept: undefined });
+  assert.equal(tab.state.phase, 'paused');
+  assert.deepEqual(tab.state.recovery, shown, 'the choices shown are unchanged');
+  assert.equal(env.journal.record?.id, record.id, 'the recovery copy is kept');
+  assert.equal(readMarker(env.storage).raw, `active:${record.id}`);
+});
+
 // ------------------------------------------------------------------ order, exits and erase
 
 test('a journal that cannot be saved stops the restore before its marker, with nothing written', async () => {
