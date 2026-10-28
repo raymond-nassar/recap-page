@@ -1849,15 +1849,15 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1476|0": {
-    "anchor": "src/index.html:1476",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1486|0": {
+    "anchor": "src/index.html:1486",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/js/app.js:12-24|0": {
-    "anchor": "src/js/app.js:12-24",
-    "fp": "4cd15120f1ae0634",
-    "head": "import { boot } from './main.js';"
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/js/app.js:12-32|0": {
+    "anchor": "src/js/app.js:12-32",
+    "fp": "7ed12b22483f669a",
+    "head": "import { boot, notify } from './main.js';"
   },
   "docs/ARCHITECTURE.md|the-three-entry-points|src/open.html:24|0": {
     "anchor": "src/open.html:24",
@@ -1984,14 +1984,14 @@
     "fp": "2cae02a7f2d8af9e",
     "head": "self.addEventListener('activate', (event) => {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:61-73|0": {
-    "anchor": "src/sw.js:61-73",
-    "fp": "c3742c3194952bdf",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:61-74|0": {
+    "anchor": "src/sw.js:61-74",
+    "fp": "e967f1f041a97dc5",
     "head": "self.addEventListener('fetch', (event) => {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:76-166|0": {
-    "anchor": "src/sw.js:76-166",
-    "fp": "b2f041a8892481e9",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:77-168|0": {
+    "anchor": "src/sw.js:77-168",
+    "fp": "9c4a55814397835e",
     "head": "async function networkThenCache(event) {"
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:226-232|0": {
@@ -2099,8 +2099,8 @@
     "fp": "53704fbb7799b35b",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1198-1202|0": {
-    "anchor": "src/index.html:1198-1202",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1208-1212|0": {
+    "anchor": "src/index.html:1208-1212",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2604,8 +2604,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1215-1226|0": {
-    "anchor": "src/index.html:1215-1226",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1225-1236|0": {
+    "anchor": "src/index.html:1225-1236",
     "fp": "ffcb81a9757243c0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },

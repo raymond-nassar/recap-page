@@ -71,6 +71,34 @@ On Windows PowerShell, use:
 $env:MRT_CONTRACT_ORDER_ID='<order-id>'; $env:MRT_CONTRACT_ISSUE_ID='<issue-id>'; npm run contract
 ```
 
+## Check an installed Edge window
+
+Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.
+
+On Windows with installed Edge and the scratch driver, run:
+
+```text
+node scripts/browser-pwa.mjs
+```
+
+For this command, `MRT_PUPPETEER` names the driver's absolute JavaScript entry file.
+The check uses a fresh temporary profile and an ephemeral loopback port, never the reader's
+profile or normal local server. It installs through Edge's DevTools PWA domain over a trusted pipe,
+sets standalone display, checks Start registration and an actual separate app window, then
+uninstalls and verifies removal of the test registration, Start entry and any test shortcuts.
+All external requests are fulfilled with fixtures; cookie continuity is synthetic, not a live
+Marvel Unlimited subscription check.
+
+The same run checks cancellation with a synthetic `beforeinstallprompt` whose prompt settles only
+after rendered frames, at 1280 and 360 pixels, as Edge's own dialog cannot be driven here. It also
+checks shared saved progress, network-first module updates, worker replacement and exclusion of
+responses marked `no-store`. The install option is offered only at `http://127.0.0.1:8787`, so the
+check serves the install module with its scratch origin substituted for that constant.
+Set `MRT_PWA_OBSERVE=1` to hold the installed window for a minute for native inspection before
+automatic cleanup. Check its title bar, taskbar and Alt+Tab appearance, and check a real reader
+handoff separately with your own subscription. Do not equate programmatic standalone detection
+with those human observations.
+
 ## Run the browser check
 
 Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.

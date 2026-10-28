@@ -32,7 +32,7 @@ const HISTORY = sliceElement(
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'completion-history-controls')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 4, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'transfer-summary',
@@ -70,6 +70,9 @@ const REQUIRED_IDS = [
   'description-hiding-help',
   'description-hiding-report',
   'api-base',
+  'pwa-install',
+  'btn-install',
+  'pwa-install-report',
   'btn-check-local-connection',
   'local-connection-status',
   'local-connection-help',

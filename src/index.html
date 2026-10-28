@@ -1109,6 +1109,16 @@
 
             <section class="setgroup">
               <h2>Connectivity</h2>
+              <div class="card card-static setting" id="pwa-install" hidden>
+                <h3>App window</h3>
+                <p class="rail-hint setting-desc" id="pwa-install-help">Open Recap Page in its own window, using this browser's saved progress.</p>
+                <button type="button" class="btn btn-g setting-ctl setting-action" id="btn-install" aria-describedby="pwa-install-help">Install Recap Page</button>
+                <details class="setting-more">
+                  <summary>What installation changes</summary>
+                  <p class="rail-hint">Adds an app icon without moving your data. The local app still needs to run for uncached content. Comics and live lookups need an internet connection.</p>
+                </details>
+              </div>
+              <div id="pwa-install-report"></div>
               <div class="card card-static setting">
                 <h3>Local app connection</h3>
                 <p id="local-connection-status" class="rail-hint setting-desc">Checking the local app connection…</p>
