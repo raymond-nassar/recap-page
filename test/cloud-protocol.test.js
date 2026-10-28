@@ -7,7 +7,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
-import { gunzipSync, gzipSync } from 'node:zlib';
+import { createGunzip, gunzipSync, gzipSync } from 'node:zlib';
 import {
   CLOUD_ENVELOPE_FORMAT, CLOUD_ENVELOPE_VERSION, CLOUD_PRUNE_PER_BACKUP, MAX_CLOUD_BACKUP_BYTES,
   CloudBackupError, CloudBackupProtocol, cloudBackupName, cloudDeviceLabel, createCloudRecordStore, parseCloudBackupName,
@@ -769,22 +769,45 @@ test('discovery stops decompressing at 32 MiB, so a small file that expands with
   env.transport.store(cloudBackupName(OTHER, 1), gzipSync(Buffer.alloc(48 * MIB)));
   env.transport.store(cloudBackupName('e'.repeat(32), 1), new Uint8Array(0));
   let produced = 0;
-  class Counting {
+  const written = [];
+  // Chromium's DecompressionStream inflates every written chunk whole before anything reads its output:
+  // in Edge 156 one 64 KiB chunk of a gzip bomb produced 67,415,144 bytes before the next write, against
+  // 1,032,260 for a 1 KiB chunk (stage 1 review, M3). Node's honours backpressure inside a chunk, so it
+  // could never show what the slicing is for. This double behaves as Chromium does and records the size
+  // of every chunk it is given.
+  class ChromiumLike {
     constructor(format) {
-      const inner = new DecompressionStream(format);
-      this.writable = inner.writable;
-      this.readable = inner.readable.pipeThrough(new TransformStream({
-        transform(chunk, controller) {
-          produced += chunk.byteLength;
-          controller.enqueue(chunk);
+      assert.equal(format, 'gzip');
+      const gunzip = createGunzip();
+      const pending = [];
+      gunzip.on('data', (out) => {
+        produced += out.length;
+        pending.push(out);
+      });
+      const failed = new Promise((resolve) => { gunzip.once('error', resolve); });
+      const stream = new TransformStream({
+        async transform(chunk, controller) {
+          written.push(chunk.byteLength);
+          const error = await Promise.race([new Promise((resolve) => { gunzip.write(chunk, () => resolve(null)); }), failed]);
+          if (error) throw error;
+          for (const out of pending.splice(0)) controller.enqueue(out);
         },
-      }));
+        async flush(controller) {
+          const error = await Promise.race([new Promise((resolve) => { gunzip.end(() => resolve(null)); }), failed]);
+          if (error) throw error;
+          for (const out of pending.splice(0)) controller.enqueue(out);
+        },
+      });
+      this.writable = stream.writable;
+      this.readable = stream.readable;
     }
   }
-  const found = await env.make({ streams: { Blob, CompressionStream, DecompressionStream: Counting } }).discover(ON);
+  const found = await env.make({ streams: { Blob, CompressionStream, DecompressionStream: ChromiumLike } }).discover(ON);
   const bomb = found.devices.find((entry) => entry.stream === OTHER);
   assert.deepEqual([bomb.current, bomb.invalid], [null, 1]);
-  assert.ok(produced > MAX_CLOUD_BACKUP_BYTES && produced < MAX_CLOUD_BACKUP_BYTES + MIB, `stopped after ${produced} bytes`);
+  assert.ok(written.length > 1 && Math.max(...written) <= 1024, `fed in kibibyte slices, the largest ${Math.max(...written)} bytes`);
+  assert.ok(produced > MAX_CLOUD_BACKUP_BYTES && produced < MAX_CLOUD_BACKUP_BYTES + 4 * MIB,
+    `stopped after ${produced} bytes, where a whole chunk would have produced 48 MiB`);
 
   // A listed size above the cap is never read at all.
   const big = harness();
