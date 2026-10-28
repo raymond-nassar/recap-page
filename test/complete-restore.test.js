@@ -787,6 +787,98 @@ test('keeping the current data is refused when the recovery never offered it', a
   assert.equal(tab.state.phase, 'paused');
 });
 
+// The card hides Finish restore and Restore prior data wherever a recovery leaves them out, so only a
+// stale or scripted call reaches the next three cases, and the cloud backup will call this engine.
+// Unguarded, either choice wrote over a restore the reader had been told was finished (#947).
+function assertUntouched(env, record, marker, message) {
+  assert.equal(readMarker(env.storage).raw, marker, `${message}: marker`);
+  assert.deepEqual(env.journal.record, record, `${message}: journal`);
+}
+
+test('Finish and Restore prior data are refused during the cleanup after a finished restore, and after it', async () => {
+  // A cleanup that cannot remove the journal a finished restore kept.
+  const cleanup = environment();
+  await planted(cleanup, { marker: 'cleaning', phase: 'done', writes: 8, steps: 8, finishedAt: cleanup.now });
+  cleanup.journal.faults.remove = true;
+  const paused = await cleanup.open();
+  assert.equal(paused.state.recovery?.kind, 'cleanup');
+  const restored = priorOf(cleanup);
+  const kept = cleanup.journal.record;
+  const marker = readMarker(cleanup.storage).raw;
+  for (const [direction, error] of [['prior', RESTORE_MESSAGES.priorNotOffered], ['forward', RESTORE_MESSAGES.finishNotOffered]]) {
+    const result = await paused.recover(direction);
+    assert.deepEqual({ ok: result.ok, changed: result.changed, error: result.error }, { ok: false, changed: false, error }, direction);
+    assert.deepEqual(priorOf(cleanup), restored, `${direction}: the restored data stays`);
+    assertUntouched(cleanup, kept, marker, direction);
+  }
+  assert.equal(paused.state.recovery?.kind, 'cleanup', 'the cleanup choices stay on screen');
+
+  // A finished restore whose journal is kept, with nothing shown at all.
+  const finished = environment();
+  const page = await finished.open();
+  assert.equal((await page.restore((await fileBackup()).text)).ok, true);
+  assert.equal(page.state.recovery, null);
+  const done = priorOf(finished);
+  const journal = finished.journal.record;
+  assert.equal((await page.recover('prior')).error, RESTORE_MESSAGES.priorNotOffered);
+  assert.deepEqual(priorOf(finished), done, 'a finished restore is never undone by a call nothing offered');
+  assertUntouched(finished, journal, `done:${journal.id}`, 'finished');
+});
+
+test('a choice the shown recovery leaves out is refused, even where it would hold under the lock', async () => {
+  // Finish was never on screen for a foreign edit. Here the edit is undone behind the page, as a tab of
+  // an earlier version could, so only the recovery that was shown can refuse it.
+  const foreign = environment();
+  const { record: edited } = await planted(foreign, { marker: 'active', writes: 3, steps: 3 });
+  const original = foreign.storage.map.get(LIST_HISTORY_KEY);
+  foreign.storage.map.set(LIST_HISTORY_KEY, 'FOREIGN_SAVED_EDIT');
+  const reported = await foreign.open();
+  assert.equal(reported.state.recovery?.kind, 'foreign');
+  if (original === undefined) foreign.storage.map.delete(LIST_HISTORY_KEY);
+  else foreign.storage.map.set(LIST_HISTORY_KEY, original);
+  const before = priorOf(foreign);
+  const finish = await reported.recover('forward');
+  assert.deepEqual({ ok: finish.ok, changed: finish.changed, error: finish.error }, { ok: false, changed: false, error: RESTORE_MESSAGES.finishNotOffered });
+  assert.deepEqual(priorOf(foreign), before, 'nothing is written');
+  assertUntouched(foreign, edited, `active:${edited.id}`, 'foreign');
+
+  // A recovery that offers one direction only: the restore's writes were all lost, so nothing is put back.
+  const lost = environment();
+  await planted(lost, { marker: null, phase: 'done', writes: 8, finishedAt: lost.now });
+  const reopened = await lost.open();
+  assert.deepEqual(
+    { kind: reopened.state.recovery?.kind, finish: reopened.state.recovery?.canFinish, prior: reopened.state.recovery?.canRestorePrior },
+    { kind: 'lost', finish: true, prior: false },
+  );
+  const record = lost.journal.record;
+  assert.equal((await reopened.recover('prior')).error, RESTORE_MESSAGES.priorNotOffered);
+  assertUntouched(lost, record, null, 'lost');
+});
+
+test('an offer that no longer holds under the lock is refused, and the choices that hold now are shown', async () => {
+  // Every restore write is put back behind the page, so there is nothing left to restore the prior data
+  // over, and the decision made again under the lock says so, as keeping does.
+  const stale = environment();
+  const prior = priorOf(stale);
+  const { record: interrupted } = await planted(stale, { marker: 'active', writes: 2, steps: 2 });
+  const shown = await stale.open();
+  assert.equal(shown.state.recovery?.canRestorePrior, true);
+  for (const [key, value] of Object.entries(prior)) {
+    if (value === null) stale.storage.map.delete(key);
+    else stale.storage.map.set(key, value);
+  }
+  const refused = await shown.recover('prior');
+  assert.deepEqual({ ok: refused.ok, changed: refused.changed, error: refused.error }, { ok: false, changed: false, error: RESTORE_MESSAGES.priorNotOffered });
+  assert.deepEqual(
+    { kind: shown.state.recovery?.kind, prior: shown.state.recovery?.canRestorePrior, finish: shown.state.recovery?.canFinish },
+    { kind: 'interrupted', prior: false, finish: true },
+    'the choices shown are the ones that hold now',
+  );
+  assertUntouched(stale, interrupted, `active:${interrupted.id}`, 'stale');
+  assert.deepEqual(priorOf(stale), prior, 'nothing is written');
+  assert.equal(shown.state.phase, 'paused');
+});
+
 // A done: or cleaning: marker follows data the reader already accepted. Beside a journal that cannot be
 // read it stays, so a later start that can read the journal applies its rows. Cleared, the journal a
 // finished restore kept would come back as a foreign recovery saying that restore did not finish.

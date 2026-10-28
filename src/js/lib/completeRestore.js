@@ -67,6 +67,8 @@ export const RESTORE_MESSAGES = Object.freeze({
   copyReadable: 'The recovery copy can be read now, so nothing was removed. Download the exact prior copy before you choose again.',
   copyChanged: 'The recovery copy changed after these choices were shown, so nothing was removed. Choose again from the options shown now.',
   keepNotOffered: 'Keeping the data that is here now is not offered for this restore, so nothing was removed. Finish it or restore the prior data.',
+  finishNotOffered: 'Finishing this restore is not offered now, so nothing was replaced. Choose again from the options shown now.',
+  priorNotOffered: 'Restoring the prior data is not offered for this restore now, so nothing was replaced. Choose again from the options shown now.',
   copyUnchecked: 'The app could not check for a recovery copy kept by a complete restore, so one may still be in this browser.',
   reloading: 'Another Recap Page tab changed saved data, so this page is reloading to show it.',
 });
@@ -773,8 +775,16 @@ export class CompleteRestore {
     else this.recovery = recoveryOf(journal.kind === 'unreadable' ? 'unchecked' : 'missing', journal).recovery;
   }
 
+  // Finish and Restore prior data act only on the recovery that was shown, and only in a direction it
+  // offers, decided again under the lock as keeping is. The card hides both where a recovery leaves
+  // them out, but a stale or scripted call used to reach past that: during the cleanup after a finished
+  // restore, Restore prior data wrote the earlier data back over the restored data (#947).
   async recover(direction) {
     if (!['forward', 'prior'].includes(direction)) return { ok: false, changed: false, error: 'Choose Finish restore or Restore prior data.' };
+    const offers = (offer) => (direction === 'forward' ? offer?.canFinish : offer?.canRestorePrior) === true;
+    const notOffered = direction === 'forward' ? RESTORE_MESSAGES.finishNotOffered : RESTORE_MESSAGES.priorNotOffered;
+    const shown = this.recovery;
+    if (!offers(shown)) return { ok: false, changed: false, error: notOffered };
     return this.withExclusive(async () => {
       const marker = readMarker(this.raw);
       const found = await this.readJournal();
@@ -790,6 +800,15 @@ export class CompleteRestore {
       if (check.foreign) {
         await this.settleFailure();
         throw new Error('Saved data changed after the restore stopped, so it was not replaced. Download the exact prior copy, then keep the data that is here now.');
+      }
+      // Where the fresh decision offers something else, its choices are shown instead. Where it offers
+      // no choice at all, the shown one stays until keeping or a reload settles it, so a refusal here
+      // never removes or rewrites anything.
+      const fresh = decideRestoreState(marker, found, this.raw, this.clock());
+      const offer = fresh.kind === 'recovery' ? fresh.recovery : null;
+      if (!offers(offer) || offer.id !== shown.id) {
+        if (offer) this.recovery = offer;
+        throw new Error(notOffered);
       }
       const record = { ...found.record, direction, phase: 'applying', finishedAt: null };
       await this.checkpoint(record);

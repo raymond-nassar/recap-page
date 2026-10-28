@@ -431,7 +431,7 @@ Every `localStorage` name the tracker writes, and why it exists:
 | `sidebar.collapsed` | deliberate desktop sidebar toggles, inside the persist guard at `src/js/main.js:1065-1072`, and a complete restore of a file that set it | a complete restore of a file made while it was unset | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 | `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest viewed release batch on this device, held outside reading data and backups. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; only another explicit opening can recreate it. |
-| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:751` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
+| `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:753` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
 
 Thirteen rows in all: twelve fixed names, and one family whose suffix is the moment it was written.
 The storage module declares eight of the fixed names: its own five, and the settings, sidebar and
@@ -541,7 +541,7 @@ can save, prepares every owner's exact bytes first, generated tokens included, a
 order:
 
 1. Save a journal holding the backup, every prior value and every prepared value in IndexedDB, and
-   read it back whole, at `src/js/lib/completeRestore.js:744-749`.
+   read it back whole, at `src/js/lib/completeRestore.js:746-751`.
 2. Set the marker to `active:` and the restore's id.
 3. Write each component, recording progress in the journal after every write.
 4. Check that every component holds its prepared bytes, record the journal as finished, set the
@@ -549,7 +549,7 @@ order:
 
 Cleanup runs the other way round, and every path that ends a restore's record takes it: the marker
 says `cleaning:`, the journal is removed and checked gone, then the marker is cleared, at
-`src/js/lib/completeRestore.js:596-600`. Over a journal that cannot be read, keeping the current data
+`src/js/lib/completeRestore.js:598-602`. Over a journal that cannot be read, keeping the current data
 and erase leave the journal for a later start to offer again, and clear only an `active:` or
 unrecognized marker, directly rather than through `cleaning:`, which would tell a later start to remove
 that journal. A `done:` or `cleaning:` marker stays, so a later start that can read the journal
@@ -559,7 +559,7 @@ applies its rows.
 memory and commits them as one batch at least five seconds later. Only a normal exit, the last page
 using them closing, or an explicit flush commits sooner, and a killed browser loses the batch. An
 IndexedDB transaction's complete event fires after its commit, and strict durability, which every
-journal write asks for at `src/js/lib/completeRestore.js:149`, also flushes it to disk. Both were
+journal write asks for at `src/js/lib/completeRestore.js:151`, also flushes it to disk. Both were
 read on 2026-10-28 in Chromium's
 [storage_area_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/storage_area_impl.cc),
 [local_storage_impl.cc](https://raw.githubusercontent.com/chromium/chromium/main/components/services/storage/dom_storage/local_storage_impl.cc)
@@ -576,8 +576,11 @@ process kill part way through a restore, the marker was gone and the journal was
 restore completed the restore exactly.
 
 The marker, the journal and the stored bytes decide what the next start does, at
-`src/js/lib/completeRestore.js:285`. The first row that matches applies. Rows describe a restore
-toward the backup; Restore prior data runs the same rows toward the earlier data.
+`src/js/lib/completeRestore.js:287`. The first row that matches applies. Rows describe a restore
+toward the backup; Restore prior data runs the same rows toward the earlier data. Finish restore and
+Restore prior data each run only when the recovery shown offers that choice and, decided again under
+the lock, still offers it for the same copy; otherwise nothing is written, and any choices that hold
+now are shown instead.
 
 | Marker | Journal | Stored data | At the next start |
 |---|---|---|---|
