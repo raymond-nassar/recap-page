@@ -1,7 +1,8 @@
 // The Windows host behind cloud backup (#810, P02-T04): its configuration, the session check, the token
-// store and its PowerShell protection, sign-in, the OneDrive primitives and the control API. Providers are
-// fakes: a fetch that answers as Microsoft's endpoints do, and processes that answer as netstat, tasklist
-// and PowerShell do, in English and in German. One case runs the real Windows PowerShell on Windows.
+// store and its PowerShell protection, sign-in, the OneDrive primitives and the control API, and the
+// page's transport that speaks to it (P02-T05). Providers are fakes: a fetch that answers as Microsoft's
+// endpoints do, and processes that answer as netstat, tasklist and PowerShell do, in English and in
+// German. One case runs the real Windows PowerShell on Windows.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -22,7 +23,9 @@ import {
   GRAPH, MICROSOFT_LOGIN, authorizationUrl, createOneDrive, idTokenClaims, redeemCode, refreshTokens,
 } from '../host/oneDrive.mjs';
 import { CLOUD_API_HEADER, CLOUD_API_PREFIX, HOST_DEADLINES_MS, createCloudHost } from '../host/cloudHost.mjs';
-import { CLOUD_TRANSPORT_DEADLINES_MS } from '../src/js/lib/cloudProtocol.js';
+import { CloudBackupError, CLOUD_TRANSPORT_DEADLINES_MS } from '../src/js/lib/cloudProtocol.js';
+import { CLOUD_HOST_HEADER, CLOUD_HOST_PREFIX, createCloudHostTransport } from '../src/js/lib/cloudHostTransport.js';
+import { createStaticServer } from '../server.mjs';
 
 // Never a real registration, and never shaped like a GUID, which the publication gate would report.
 const CLIENT = 'test-client.recap-page';
@@ -807,9 +810,9 @@ test('the control API refuses every request that is not the served page\'s, befo
   }
 });
 
-async function signIn(env, api, { nonceRef }) {
-  const started = await api.call('connect');
-  assert.equal(started.body.status.state, 'signing-in');
+async function signIn(env, api, { nonceRef, start = async () => (await api.call('connect')).body.status }) {
+  const started = await start();
+  assert.equal(started.state, 'signing-in');
   await until(() => env.opened.length > 0, 'the browser was asked to open the sign-in');
   const url = new URL(env.opened.at(-1));
   nonceRef.value = url.searchParams.get('nonce');
@@ -1031,4 +1034,170 @@ test('where Windows restricts PowerShell, cloud backup says why, signs nothing i
   const elsewhere = createCloudHost({ clientText: CLIENT_TEXT, platform: 'linux', store: memoryStore(), sessionCheck: async () => true, openUrl: async () => {} });
   assert.equal((await elsewhere.status()).state, 'unavailable');
   assert.ok(new ProviderError('unavailable', 'x', { retryAfterMs: 5 }).retryAfterMs === 5);
+});
+
+// ------------------------------------------------------------------ the page's transport
+
+// The browser's part of a request from the served page: the absolute address, and the Origin and fetch
+// metadata a browser adds to a same-origin POST. Everything else is the transport's own.
+function pageFetch(api, { origin = `http://127.0.0.1:${api.port}` } = {}) {
+  const seen = [];
+  const fetchImpl = (path, init = {}) => {
+    seen.push({ path, init });
+    return globalThis.fetch(`http://127.0.0.1:${api.port}${path}`, { ...init, headers: { ...init.headers, origin, 'sec-fetch-site': 'same-origin' } });
+  };
+  return { fetchImpl, seen };
+}
+
+test('the page\'s transport speaks the control API as the served page does, and every byte crosses it unchanged', async () => {
+  assert.equal(CLOUD_HOST_PREFIX, CLOUD_API_PREFIX);
+  assert.equal(CLOUD_HOST_HEADER, CLOUD_API_HEADER);
+  const nonceRef = { value: null };
+  const fetch = microsoft({ nonce: () => nonceRef.value });
+  const env = host({ fetch });
+  const api = await hostServer(env.instance);
+  const page = pageFetch(api);
+  const transport = createCloudHostTransport({ fetchImpl: page.fetchImpl });
+  try {
+    assert.deepEqual(await transport.status(), {
+      enabled: true, provider: 'onedrive', state: 'not-connected', connection: null, account: null, message: null, signInExpiresAt: null,
+    });
+    let started = null;
+    await signIn(env, api, { nonceRef, start: async () => { started = await transport.connect(); return started; } });
+    assert.ok(Number.isSafeInteger(started.signInExpiresAt) && started.signInExpiresAt > Date.now(), 'the page can say how long the sign-in stays open');
+    const status = await transport.status();
+    assert.deepEqual([status.state, status.account], ['connected', 'reader@example.test']);
+    const { connection } = status;
+    assert.deepEqual(await transport.list({ connection }), []);
+
+    // Every byte value, across more than one of the pieces the page encodes in.
+    const bytes = new Uint8Array(100_000).map((value, at) => (at * 7919) % 256);
+    assert.deepEqual(await transport.create(NAME, bytes, { connection }), {
+      id: 'ITEM!7', name: NAME, size: 5, created: Date.parse(CREATED.createdDateTime),
+    });
+    assert.ok(Buffer.from(bytes).equals(fetch.calls.find((call) => call.method === 'PUT').body), 'OneDrive received exactly the page\'s bytes');
+    fetch.routes.push(
+      { method: 'GET', url: `${GRAPH}/me/drive/items/ITEM!7/content`, reply: () => new Response(null, { status: 302, headers: { location: DOWNLOAD } }) },
+      { method: 'GET', url: DOWNLOAD, reply: () => new Response(Buffer.from(bytes), { status: 200 }) },
+      { method: 'DELETE', url: `${GRAPH}/me/drive/items/ITEM!7`, reply: () => new Response(null, { status: 204 }) },
+    );
+    assert.deepEqual(await transport.read('ITEM!7', { connection }), bytes);
+    assert.equal(await transport.delete('ITEM!7', { connection }), undefined);
+    assert.equal((await transport.disconnect()).state, 'not-connected');
+
+    assert.deepEqual(page.seen.map(({ path }) => path), ['status', 'connect', 'status', 'list', 'create', 'read', 'delete', 'disconnect']
+      .map((operation) => `${CLOUD_API_PREFIX}${operation}`));
+    for (const { init } of page.seen) {
+      assert.deepEqual([init.method, init.headers['content-type'], init.headers[CLOUD_API_HEADER]], ['POST', 'application/json', '1']);
+    }
+    assert.ok(page.seen.slice(3, 7).every(({ init }) => JSON.parse(init.body).connection === connection), 'every data operation names the consented connection');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
+test('the page\'s transport keeps every refusal\'s code and wait, and a request the host turned away halts with the reason', async () => {
+  let inSession = true;
+  const fetch = microsoft();
+  const store = memoryStore({ ...RECORD });
+  const env = host({ store, fetch, session: async () => inSession });
+  const api = await hostServer(env.instance);
+  const transport = createCloudHostTransport({ fetchImpl: pageFetch(api).fetchImpl });
+  try {
+    const refusal = (code, extra = {}) => (error) => error instanceof CloudBackupError && error.code === code
+      && Object.entries(extra).every(([key, value]) => (value instanceof RegExp ? value.test(error[key]) : error[key] === value));
+    await assert.rejects(transport.list({ connection: 'd'.repeat(32) }), refusal('needs-consent'));
+    await assert.rejects(transport.list({}), refusal('invalid'));
+    fetch.routes.unshift({ method: 'GET', url: /\/children\?/, reply: () => json(429, {}, { 'retry-after': '7' }) });
+    await assert.rejects(transport.list({ connection: RECORD.connection }), refusal('unavailable', { retryAfterMs: 7000 }));
+
+    inSession = false;
+    const session = /could not confirm that this browser runs in the Windows account that started it/;
+    const away = await transport.status();
+    assert.deepEqual([away.enabled, away.state, away.connection], [true, 'unavailable', null], 'cloud backup is here, but not for this browser');
+    assert.match(away.message, session);
+    await assert.rejects(transport.list({ connection: RECORD.connection }), refusal('refused', { message: session }));
+    inSession = true;
+
+    const elsewhere = createCloudHostTransport({ fetchImpl: pageFetch(api, { origin: `http://localhost:${api.port}` }).fetchImpl });
+    assert.match((await elsewhere.status()).message, /only in Recap Page opened at http:\/\/127\.0\.0\.1:8787/);
+    await assert.rejects(elsewhere.list({ connection: RECORD.connection }), refusal('refused', { message: /opened at http:\/\/127\.0\.0\.1:8787/ }));
+    assert.equal(store.saved.connection, RECORD.connection, 'nothing a refusal answered changed the connection');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+
+  const restricted = memoryStore({ ...RECORD });
+  restricted.faults.load = new CloudTokenError('language');
+  const limited = host({ store: restricted });
+  const limitedApi = await hostServer(limited.instance);
+  try {
+    const transportHere = createCloudHostTransport({ fetchImpl: pageFetch(limitedApi).fetchImpl });
+    const status = await transportHere.status();
+    assert.deepEqual([status.state, status.provider], ['unavailable', 'onedrive']);
+    assert.match(status.message, /restricting PowerShell/);
+    await assert.rejects(transportHere.connect(), (error) => error instanceof CloudBackupError && error.code === 'language' && /restricting PowerShell/.test(error.message));
+  } finally {
+    limited.instance.close();
+    await limitedApi.close();
+  }
+});
+
+test('a build without cloud backup, a server that is not this app\'s and no answer at all read as not enabled', async () => {
+  assert.equal(process.env.MRT_CLOUD_CLIENT_CONFIG, undefined, 'this checkout carries no client configuration');
+  const server = createStaticServer();
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  try {
+    const { port } = server.address();
+    const dormant = createCloudHostTransport({ fetchImpl: (path, init) => globalThis.fetch(`http://127.0.0.1:${port}${path}`, init) });
+    assert.deepEqual(await dormant.status(), { enabled: false });
+    await assert.rejects(dormant.list({ connection: RECORD.connection }), { code: 'unavailable', message: /not part of this build/ });
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
+  }
+
+  const answering = (respond) => createCloudHostTransport({ fetchImpl: async () => respond() });
+  const text = (status) => () => new Response('Not here', { status, headers: { 'content-type': 'text/plain' } });
+  const body = (status, value) => () => json(status, value);
+  const notEnabled = [
+    [() => { throw new TypeError('fetch failed'); }, 'unavailable'],
+    [text(405), 'invalid'],
+    [body(200, { hello: 'world' }), 'invalid'],
+    [body(200, { ok: true, status: { state: 'somewhere else' } }), 'invalid'],
+  ];
+  for (const [respond, code] of notEnabled) {
+    assert.deepEqual(await answering(respond).status(), { enabled: false }, String(respond));
+    await assert.rejects(answering(respond).list({ connection: RECORD.connection }), { code }, String(respond));
+  }
+  await assert.rejects(answering(body(200, { ok: true, items: 'many' })).list({ connection: RECORD.connection }), { code: 'invalid' });
+  await assert.rejects(answering(body(200, { ok: true, bytes: '***' })).read('ITEM!7', { connection: RECORD.connection }), { code: 'invalid' });
+  await assert.rejects(answering(body(200, { ok: true })).read('ITEM!7', { connection: RECORD.connection }), { code: 'invalid' });
+
+  const busy = body(429, { ok: false, error: { code: 'unavailable', message: 'Too many cloud requests at once.' } });
+  assert.deepEqual(await answering(busy).status(), {
+    enabled: true, provider: null, state: 'unavailable', connection: null, account: null,
+    message: 'The Recap Page app is busy. Try again in a moment.', signInExpiresAt: null,
+  });
+  await assert.rejects(answering(busy).list({ connection: RECORD.connection }), { code: 'unavailable' });
+  const full = body(200, { ok: false, error: { code: 'quota', message: 'OneDrive is full.', retryAfterMs: 5 } });
+  await assert.rejects(answering(full).create(NAME, new Uint8Array([1]), { connection: RECORD.connection }),
+    (error) => error.code === 'quota' && error.message === 'OneDrive is full.' && error.retryAfterMs === 5);
+  await assert.rejects(answering(body(200, { ok: false, error: { code: 7 } })).delete('ITEM!7', { connection: RECORD.connection }), { code: 'failed' });
+
+  // A host that never answers, or stops partway through its answer, is given up on at the engine's
+  // deadline and the grace, and a status that never comes reads as not enabled.
+  const silent = createCloudHostTransport({
+    deadlines: { list: 30, read: 30, create: 30, delete: 30 }, graceMs: 0, accountMs: 30,
+    fetchImpl: async (path, init) => {
+      if (path.endsWith('read')) {
+        return new Response(new ReadableStream({ start(controller) { init.signal.addEventListener('abort', () => controller.error(init.signal.reason)); } }), { status: 200 });
+      }
+      return new Promise((resolve, reject) => { init.signal.addEventListener('abort', () => reject(init.signal.reason)); });
+    },
+  });
+  assert.deepEqual(await silent.status(), { enabled: false });
+  await assert.rejects(silent.list({ connection: RECORD.connection }), { code: 'timeout' });
+  await assert.rejects(silent.read('ITEM!7', { connection: RECORD.connection }), { code: 'timeout' });
 });
