@@ -12,6 +12,7 @@ import {
 } from './pack-windows.mjs';
 import { NATIVE_NAME, VERIFIER_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
 import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
+import { cloudClientInjection } from './lib/cloud-client.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
@@ -133,12 +134,14 @@ async function layoutGeneration(layout) {
   return digest.digest('hex');
 }
 
-async function prepareLayout(staging, version, target, runtimeDir, native) {
+async function prepareLayout(staging, version, target, runtimeDir, native, cloudClient) {
   const layout = layoutPath(staging, version, target.id);
   await mkdir(layout, { recursive: true });
   await copyApp(layout);
+  if (cloudClient) await writeFile(join(layout, cloudClient.name), cloudClient.bytes);
   await writeBuildIdentity(join(layout, 'src'),
-    await buildIdentity('windows-msix', version, version === PROOF_UPDATE_VERSION ? 'proof' : undefined));
+    await buildIdentity('windows-msix', version, version === PROOF_UPDATE_VERSION ? 'proof' : undefined, ROOT,
+      { cloudClient: cloudClient?.sha256 ?? null }));
   await copyFile(LAUNCHER_SOURCE, join(layout, LAUNCHER_NAME));
   await copyFile(join(native.root, target.id, VERIFIER_NAME), join(layout, VERIFIER_NAME));
   await copyFile(join(native.root, target.id, NATIVE_NAME), join(layout, NATIVE_NAME));
@@ -198,7 +201,9 @@ function packageLayout(layout, output, password) {
 }
 
 async function build() {
-  const identity = await buildIdentity('windows-msix', STORE_PACKAGE_VERSION);
+  // Asked for by argument only, and never by default: see scripts/lib/cloud-client.mjs.
+  const cloudClient = cloudClientInjection();
+  const identity = await buildIdentity('windows-msix', STORE_PACKAGE_VERSION, undefined, ROOT, { cloudClient: cloudClient?.sha256 ?? null });
   const native = await verifyNativeArtifact();
   const version = winAppCliVersion(run('winapp', ['--version']));
   if (version !== '0.6.0') {
@@ -228,6 +233,7 @@ async function build() {
         target,
         runtimeDirectories.get(target.id),
         native,
+        cloudClient,
       ));
     }
     const x64 = architecture('x64');
@@ -237,6 +243,7 @@ async function build() {
       x64,
       runtimeDirectories.get(x64.id),
       native,
+      cloudClient,
     );
     const password = randomBytes(32).toString('hex');
     run('winapp', [

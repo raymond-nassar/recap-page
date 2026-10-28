@@ -910,10 +910,22 @@ jobs:
               + `$zip = [IO.Compression.ZipFile]::OpenRead(${literal(archivePath)}); `
               + 'try { ConvertTo-Json -InputObject @($zip.Entries | ForEach-Object { $_.FullName }) -Compress } finally { $zip.Dispose() }'],
             { encoding: 'utf8', timeout: 120000 }));
+            if (names.includes(`${PAYLOAD_NAME}/cloud-client.json`)) expected.set('cloud-client.json', Buffer.alloc(0));
             verifyPortableNames(expected, names, PAYLOAD_NAME);
             unpack(archivePath, join(scratch, 'portable'));
             const outer = await readdir(join(scratch, 'portable'));
             assert.deepEqual(outer, [PAYLOAD_NAME], 'portable root differs');
+            // A cloud backup client configuration put in for a release is the one entry not rebuilt here,
+            // because this verifier is never given it. It is admitted by name, checked once unpacked as the
+            // host checks it, and the build identity must record its digest (#810, P02-T01 section 3.2).
+            if (expected.has('cloud-client.json')) {
+              const client = await readFile(join(scratch, 'portable', PAYLOAD_NAME, 'cloud-client.json'));
+              const { parseCloudClient } = await import(pathToFileURL(join(root, 'host', 'cloudConfig.mjs')));
+              parseCloudClient(client.toString('utf8'));
+              const carried = await buildIdentity('windows-portable', pkg.version, 'candidate', root, { cloudClient: digest(client) });
+              expected.set('cloud-client.json', client);
+              expected.set('src/build-info.json', Buffer.from(JSON.stringify(carried, null, 2) + '\n'));
+            }
             verifyPortableEntries(expected, await entries(join(scratch, 'portable', PAYLOAD_NAME)));
             const record = candidateRecord({
               repository: process.env.GITHUB_REPOSITORY, commit, expectedCommit: process.env.GITHUB_SHA, tree,

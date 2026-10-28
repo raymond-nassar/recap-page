@@ -258,6 +258,10 @@ It transfers only exact native binaries and source/output hash records to the ex
 jobs. Consumers verify the producer digest, current commit, source bytes, PE policy and output
 hashes before use. Packages, certificates, private keys and raw reports are not transferred.
 
+Proof packages carry no cloud backup client configuration, so cloud backup is off in them. A release
+that turns it on passes one from the protected `microsoft-store-production` environment as
+`--cloud-client=<absolute path outside the repository>`, as RELEASING.md describes; P05 wires that (#810).
+
 In that controlled runner, build the native inputs before packaging:
 
 ```text

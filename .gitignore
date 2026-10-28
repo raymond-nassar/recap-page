@@ -51,3 +51,8 @@ packaging/android/gradle/wrapper/gradle-wrapper.jar.download
 # ignore rule that has been deleted looks exactly like one that was never needed.
 .copilot-tracking/
 .github/prompts/
+
+# A cloud backup client configuration is put into a release build from a protected secret and never
+# committed (#810, OD-06). The packagers refuse one inside this repository anyway; this keeps a copy left
+# here by hand out of every commit.
+cloud-client.json
