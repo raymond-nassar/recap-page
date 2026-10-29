@@ -2400,7 +2400,7 @@ const cloudBackupView = createCloudBackupView({
     progress: $('#cloud-backup-progress'), primary: $('#cloud-backup-primary'), signIn: $('#btn-cloud-sign-in'),
     retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
-    remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'),
+    remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
   }),
   askConfirm,
   askConfirmChoice,

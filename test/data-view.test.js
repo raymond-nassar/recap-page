@@ -465,6 +465,8 @@ function buttonsIn(node) {
 
 function cloudNodes() {
   const nodes = Object.fromEntries(['card', ...CONTROLS, 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  // The line under the card, which the page's notify writes into and the card withdraws from.
+  nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
     children: [],
     replaceChildren(...parts) { this.children = parts; },
@@ -481,7 +483,7 @@ function cloudCard(model, overrides = {}) {
     el: fakeEl, elements: () => nodes, getModel: () => state.model, when, at: when,
     askConfirm: async (options) => { state.asked.push(options); return state.answers.shift() ?? false; },
     askConfirmChoice: async (options) => { state.asked.push(options); return state.answers.shift() ?? null; },
-    notify: (selector, message, kind) => state.notices.push([selector, message, kind]),
+    notify: (selector, message, kind) => { state.notices.push([selector, message, kind]); nodes.report.children = [message]; },
     onConnect: record('connect'), onTurnOn: record('on'), onTurnOff: record('off'), onDiscover: record('discover'),
     onFetch: record('fetch', (copy) => ({ ...copy, text: '{"backup":true}' })), onRestore: record('restore', { ok: true }),
     onDeleteOwn: record('delete', { deleted: 2, failed: [] }), onDisconnect: record('disconnect'), onRetry: () => state.calls.push(['retry']),
@@ -537,6 +539,46 @@ test('the cloud card shows only what each state allows, and nothing at all in a 
   assert.equal(card.nodes.autoInput.checked, false);
   card.show({ ...CLOUD, agreed: true, reason, discovery: FOUND });
   assert.equal(card.nodes.status.textContent, 'Connected to OneDrive as reader@example.test.', 'only a browser being asked again is told why');
+});
+
+// Coordinator decision, 2026-10-28: the line under the card says what the switch shows, or nothing.
+test('the line under the card never says automatic backup is on beside an unticked switch, nor off beside a ticked one', async () => {
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  const reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  const ON = 'Automatic backup is on for this browser.';
+  // Asked again once on: the person deleted the folder, so the host says why, or another profile reconnected.
+  for (const asked of [{ reason }, { reason: null }]) {
+    const card = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { card.state.model = on; } });
+    await card.nodes.autoInput._fire({ target: { checked: true } });
+    await settled();
+    assert.deepEqual([card.state.notices.at(-1)?.[1], card.nodes.report.children, card.nodes.autoInput.checked], [ON, [ON], true]);
+    card.show({ ...on, on: false, askedAgain: true, ...asked });
+    assert.equal(card.nodes.autoInput.checked, false);
+    assert.deepEqual(card.nodes.report.children, [], `withdrawn once the switch shows off (${asked.reason ? 'folder deleted' : 'reconnected'})`);
+    card.show(on);
+    assert.deepEqual(card.nodes.report.children, [], 'and not put back');
+  }
+  // The host held another connection by the time this browser agreed: never said to be on at all.
+  const raced = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { raced.state.model = { ...on, on: false, askedAgain: true }; } });
+  await raced.nodes.autoInput._fire({ target: { checked: true } });
+  await settled();
+  assert.deepEqual([raced.state.notices, raced.nodes.autoInput.checked], [[], false]);
+  // Disconnected in another profile: consent is still recorded, but the switch is hidden and nothing backs up.
+  const gone = cloudCard({ ...CLOUD, discovery: FOUND }, { onTurnOn: async () => { gone.state.model = on; } });
+  await gone.nodes.autoInput._fire({ target: { checked: true } });
+  await settled();
+  gone.show({ ...on, host: 'not-connected', account: null, on: false });
+  assert.deepEqual([gone.nodes.auto.hidden, gone.nodes.report.children], [true, []]);
+  // Off stays true while the switch is hidden, and is withdrawn once another tab turns backups on.
+  const off = cloudCard(on, { onTurnOff: async () => { off.state.model = { ...CLOUD, agreed: false, hasStream: true, discovery: FOUND }; } });
+  await off.nodes.autoInput._fire({ target: { checked: false } });
+  await settled();
+  const OFF = 'Automatic backup is off for this browser. Backups already in OneDrive stay there.';
+  assert.deepEqual(off.nodes.report.children, [OFF]);
+  off.show({ ...CLOUD, host: 'not-connected', account: null, agreed: false });
+  assert.deepEqual(off.nodes.report.children, [OFF], 'disconnected elsewhere: still off');
+  off.show(on);
+  assert.deepEqual(off.nodes.report.children, [], 'turned on in another tab: withdrawn');
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {

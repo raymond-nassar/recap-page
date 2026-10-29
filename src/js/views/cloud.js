@@ -111,7 +111,14 @@ export function createCloudBackupView({
   let toggling = null;
   let shownDiscovery = null;
   let opened = false;
-  const report = (message, kind = 'error') => notify('#cloud-backup-report', message, kind);
+  // Whether the line under the card says automatic backup is on (true) or off (false) for this browser.
+  // It is withdrawn once the switch shows otherwise, as when the folder is deleted or another profile
+  // reconnects and this browser is asked again, so the card never says on beside an unticked switch.
+  let claimed = null;
+  const report = (message, kind = 'error', claims = null) => {
+    claimed = claims;
+    notify('#cloud-backup-report', message, kind);
+  };
 
   function copyRow(device, copy, which, from) {
     const made = when(copy.createdAt);
@@ -181,6 +188,11 @@ export function createCloudBackupView({
     const agreed = model.agreed && !model.askedAgain;
     nodes.auto.hidden = !(connected || (model.agreed && host !== 'not-connected' && host !== 'signing-in'));
     nodes.autoInput.checked = toggling ?? agreed;
+    // A hidden switch is off: with nobody connected, backups are not on here.
+    if (claimed !== null && toggling === null && claimed !== (!nodes.auto.hidden && nodes.autoInput.checked)) {
+      claimed = null;
+      nodes.report?.replaceChildren();
+    }
     nodes.discovery.hidden = !connected;
     // A browser asked to agree sees what the account holds first; the person's own opening and closing
     // is left alone after that.
@@ -241,10 +253,12 @@ export function createCloudBackupView({
       try {
         if (on) {
           await onTurnOn();
-          report('Automatic backup is on for this browser.', 'ok');
+          // Should the host hold another connection by now, this browser is asked again instead, which the
+          // card's status says, so it is never told that backups are on.
+          if (getModel().on) report('Automatic backup is on for this browser.', 'ok', true);
         } else {
           await onTurnOff();
-          report(`Automatic backup is off for this browser. Backups already in ${name} stay there.`, 'ok');
+          report(`Automatic backup is off for this browser. Backups already in ${name} stay there.`, 'ok', false);
         }
       } catch (error) {
         report(on ? `Automatic backup was not turned on. ${error.message}` : `Automatic backup was not turned off. ${error.message}`);
@@ -298,12 +312,12 @@ export function createCloudBackupView({
     const total = result.deleted + result.failed.length;
     if (result.failed.length === 0) {
       report(result.deleted === 0 ? `No backups of this browser were in ${name}. Automatic backup is off for this browser.`
-        : `Deleted ${plural(result.deleted, 'backup')} of this browser from ${name}, where ${result.deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin until it is emptied. Automatic backup is off for this browser.`, 'ok');
+        : `Deleted ${plural(result.deleted, 'backup')} of this browser from ${name}, where ${result.deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin until it is emptied. Automatic backup is off for this browser.`, 'ok', false);
       return true;
     }
     const reason = result.failed[0].code === 'needs-sign-in' ? 'sign in again first'
       : result.failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${result.failed.length === 1 ? 'it' : 'them'}`;
-    report(`Deleted ${result.deleted} of ${plural(total, 'backup')} of this browser. ${plural(result.failed.length, 'backup')} could not be deleted (${reason}). Automatic backup is off for this browser; delete again to finish.`, 'warn');
+    report(`Deleted ${result.deleted} of ${plural(total, 'backup')} of this browser. ${plural(result.failed.length, 'backup')} could not be deleted (${reason}). Automatic backup is off for this browser; delete again to finish.`, 'warn', false);
     return false;
   }
 

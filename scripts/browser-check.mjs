@@ -20201,6 +20201,7 @@ SCENARIOS.push({
     const asked = await cloudCard(page);
     t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
       told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
+    t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });
