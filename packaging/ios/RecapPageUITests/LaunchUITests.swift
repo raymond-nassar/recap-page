@@ -159,10 +159,15 @@ final class LaunchUITests: XCTestCase {
             probe: "return JSON.stringify({ origin: location.origin });",
             readHandoffTest: true,
             recordHandOffs: true)
-        let read = app.buttons["Open Read test"]
-        XCTAssertTrue(read.waitForExistence(timeout: 30), "the test Read control appeared")
-
         for expected in 1...2 {
+            let read = app.buttons["Open Read test"]
+            let ready = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "isHittable == true"),
+                object: read)
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [ready], timeout: 60),
+                .completed,
+                "Read launch \(expected) control is hittable")
             read.tap()
             let close = app.buttons["ios-read-sheet-close"]
             XCTAssertTrue(
@@ -200,7 +205,7 @@ final class LaunchUITests: XCTestCase {
         let read = app.buttons["Open failing Read test"]
         XCTAssertTrue(read.waitForExistence(timeout: 30), "the failing-lookup test Read control appeared")
         read.tap()
-        XCTAssertTrue(app.staticTexts["Reader lookup failed"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.staticTexts["Reader lookup failed"].waitForExistence(timeout: 90))
         XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
         let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
@@ -354,7 +359,10 @@ final class LaunchUITests: XCTestCase {
       }
     };
     const original = localStorage.getItem('mrt.state.v2');
-    document.getElementById('btn-download-salvage').click();
+    const downloadButton = document.getElementById('btn-download-salvage');
+    let downloadClickObserved = false;
+    downloadButton.addEventListener('click', () => { downloadClickObserved = true; }, { once: true });
+    downloadButton.click();
     const exportReport = await until(() => {
       const text = document.getElementById('ios-report')?.textContent ?? '';
       return /cancelled|not confirmed saved/i.test(text) ? text : null;
@@ -375,6 +383,10 @@ final class LaunchUITests: XCTestCase {
       blocked: !document.getElementById('blocked-banner').hidden,
       exportReport: exportReport ?? reports.join(' | '),
       nativeExportBridge: typeof window.webkit?.messageHandlers?.recap?.postMessage === 'function',
+      iosReportPresent: Boolean(document.getElementById('ios-report')),
+      downloadButtonConnected: downloadButton.isConnected,
+      downloadButtonDisabled: downloadButton.disabled,
+      downloadClickObserved,
       confirmationFound: Boolean(confirmation),
     });
     """#

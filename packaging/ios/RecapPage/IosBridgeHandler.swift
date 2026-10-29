@@ -109,6 +109,9 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
             replyHandler(nil, "This download request is not a supported text file.")
             return
         }
+        #if DEBUG
+        NSLog("Recap Page iOS export handler received a request.")
+        #endif
         beginExport(request, reply: replyHandler)
     }
 
@@ -241,6 +244,9 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
         case .cancelled: status = "cancelled"
         case .failed: status = "failed"
         }
+        #if DEBUG
+        NSLog("Recap Page iOS export outcome: \(status)")
+        #endif
         request.reply([
             "v": 1,
             "kind": "save-result",
