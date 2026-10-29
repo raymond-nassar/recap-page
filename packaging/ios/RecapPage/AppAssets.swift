@@ -62,7 +62,7 @@ struct AppAssets {
     }
 
     var appPageURL: URL {
-        guard let url = URL(string: "\(config.origin)/") else {
+        guard let url = URL(string: "\(config.scheme)://elsewhere/") else {
             preconditionFailure("The checked origin always forms a URL")
         }
         return url
