@@ -23,6 +23,8 @@
   min-width: var(--target);
   min-height: var(--target);
   height: var(--target);
+  line-height: var(--target);
+  padding-block: 0;
   align-items: center;
   opacity: 0;
   pointer-events: none;

@@ -152,6 +152,7 @@ final class PresentationUITests: XCTestCase {
               width: rect.width,
               height: rect.height,
               display: style.display,
+              lineHeight: style.lineHeight,
               minWidth: style.minWidth,
               minHeight: style.minHeight,
             };
@@ -236,7 +237,7 @@ final class PresentationUITests: XCTestCase {
         let link = app.links.matching(identifier: linkName).firstMatch
         if !link.isHittable {
             let toggle = moreToggle(of: app)
-            let close = app.buttons["more-sheet-close"]
+            let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
             XCTAssertTrue(
                 toggle.waitForExistence(timeout: 30),
                 "the narrow navigation toggle is available: \(app.debugDescription)")
@@ -318,6 +319,10 @@ final class PresentationUITests: XCTestCase {
                     try XCTUnwrap(skipLinkMetrics["height"] as? Double),
                     44,
                     "the iOS skip link has a 44-point target")
+                XCTAssertEqual(
+                    skipLinkMetrics["lineHeight"] as? String,
+                    "44px",
+                    "the iOS skip link text wrapper fills its target")
 
                 let safeInsets = try XCTUnwrap((result["safeInsets"] as? [NSNumber])?.map(\.doubleValue))
                 XCTAssertEqual(safeInsets.count, 4)
@@ -417,6 +422,7 @@ final class PresentationUITests: XCTestCase {
                     "#\(id) has a 48-point hit region")
                 let computed = try XCTUnwrap(element["computed"] as? [String: Any])
                 XCTAssertEqual(computed["minHeight"] as? String, "48px", "#\(id) uses the iOS target token")
+                XCTAssertEqual(computed["lineHeight"] as? String, "48px", "#\(id) text fills its target")
                 let matchingRules = try XCTUnwrap(element["matchingRules"] as? [[String: Any]])
                 XCTAssertTrue(
                     matchingRules.contains { ($0["href"] as? String)?.hasSuffix("/ios/launcher.css") == true },

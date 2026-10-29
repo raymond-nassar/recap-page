@@ -36,8 +36,9 @@ The native shell maps the system text size to the six shared type tokens. It doe
 or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
 header one column so the What's new control keeps enough width to read. This adjustment is confined
 to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
-shared 44-pixel target token, and the standalone Read links use the shared 48-pixel touch-target
-token.
+shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
+`--target-touch` token for 48-point regions. Their text line boxes fill those targets so WebKit's
+native accessibility audit sees the full hit region.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current

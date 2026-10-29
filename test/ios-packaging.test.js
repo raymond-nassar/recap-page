@@ -484,6 +484,8 @@ test('the Read-sheet probe reports stylesheet loading, matching rules and target
   assert.match(presentationTests, /readSheetStyleProbe\(of: app\)/);
   assert.match(presentationTests, /ios\/launcher\.css/);
   assert.match(presentationTests, /minHeight/);
+  assert.match(presentationTests, /skipLinkMetrics\["lineHeight"\] as\? String,\s*"44px"/);
+  assert.match(presentationTests, /computed\["lineHeight"\] as\? String,\s*"48px"/);
 });
 
 test('iOS presentation diagnostics use DOM target geometry and observed accessibility types', () => {
@@ -499,7 +501,9 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
   assert.doesNotMatch(presentationTests, /manualLink\.frame\.(?:width|height)/);
   assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
   assert.match(presentationTests, /return app\.otherElements\.matching\(more\)\.firstMatch/);
+  assert.match(presentationTests, /let close = app\.buttons\.matching\(NSPredicate\(format: "label == %@", "Close"\)\)\.firstMatch/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
+  assert.doesNotMatch(presentationTests, /app\.buttons\["more-sheet-close"\]/);
 });
 
 test('T03 accessibility audit and More-sheet failures retain actionable diagnostics', () => {
@@ -513,6 +517,13 @@ test('the iOS token overlay matches the phone layer root specificity', () => {
   const overlay = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.match(phone, /^:root\s*\{/m, 'the phone layer declares its tokens on :root');
   assert.match(overlay, /^:root\s*\{/m, 'the later iOS overlay must not lose token overrides to :root');
+});
+
+test('iOS hit-area text wrappers receive token-sized line boxes', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  const launcher = read('packaging/ios/web/launcher.css');
+  assert.match(overlay, /:root \.skip-link\s*\{[^}]*line-height:\s*var\(--target\);[^}]*padding-block:\s*0;/s);
+  assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
 });
 
 test('the iOS app icon is the web app mark drawn opaque from the same geometry', async () => {
