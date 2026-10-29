@@ -221,9 +221,13 @@ export function createCloudBackup({
     },
 
     // At startup, once saving is open and the page is idle: backups go on only where this browser
-    // already agreed, which its record says, and a browser without one makes no request at all.
+    // already agreed, which its record says, and a browser without consent makes no request at all, so
+    // one that turned backups off, deleted its backups or was erased asks nothing (stage 3 review, S3a-6).
+    // A record that cannot be read is said when Backup & settings opens.
     async resume() {
       if (await recordExists() !== true) return model ?? compose();
+      const held = await protocol.record().catch(() => null);
+      if (!held?.consent) return model ?? compose();
       return refresh();
     },
 

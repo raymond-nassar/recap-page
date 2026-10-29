@@ -1393,6 +1393,36 @@ test('a host that does not answer stops no backups: they go on by themselves whe
   assert.equal(env.transport.created.length, made + 2);
 });
 
+// Startup asks the host only for a browser whose record holds consent. One that turned backups off, deleted
+// its backups or was erased keeps its record database, and asks nothing (stage 3 review, S3a-6).
+test('startup asks the host only when this browser holds consent', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const asked = async () => {
+    const before = env.transport.host.statuses;
+    await page({ env, home: tab.home }).cloud.resume();
+    return env.transport.host.statuses - before;
+  };
+  assert.equal(await asked(), 1, 'agreed: asked once');
+  await tab.cloud.turnOff();
+  assert.equal(await asked(), 0, 'turned off');
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  await tab.cloud.deleteOwn();
+  assert.equal(await asked(), 0, 'its backups deleted');
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.cloud.beforeErase();
+  tab.home.storage.clear();
+  await tab.cloud.afterErase(true);
+  assert.deepEqual([await asked(), env.idb.databases.has(CLOUD_BACKUP_DATABASE)], [0, true], 'erased, the database kept');
+});
+
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {
   const env = harness();
   windowsHost(env.transport);
