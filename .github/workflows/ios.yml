@@ -30,14 +30,14 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 105 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 167 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 110
+    timeout-minutes: 170
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
-      SIMULATOR_NAME: iPhone 17
+      SIMULATOR_NAME: iPhone 17 Pro Max
       SIMULATOR_RUNTIME: latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -82,6 +82,23 @@ jobs:
           xcrun simctl bootstatus "$udid" -b
           echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
 
+      - name: Boot the 13-inch iPad Simulator before building
+        timeout-minutes: 5
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices).filter((runtime) =>
+              runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-")
+            ).sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name.startsWith("iPad Pro 13-inch"));
+            if (!device) throw new Error("Requested 13-inch iPad Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
       - name: Build the Release Simulator configuration
         timeout-minutes: 20
         run: >-
@@ -111,7 +128,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
       - name: Run the UI tests
-        timeout-minutes: 18
+        timeout-minutes: 40
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
@@ -136,6 +153,33 @@ jobs:
               exit 1
             fi
             echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+          done
+
+      - name: Run presentation UI tests on iPad
+        timeout-minutes: 35
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-ipad-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "$IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-ipad-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+              exit 1
+            fi
+            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
           done
 
       - name: Check live metadata CORS from the app origin

@@ -22,6 +22,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self], action: #selector(preferredContentSizeCategoryDidChange))
         let assets: AppAssets
         do {
             assets = try AppAssets.bundled()
@@ -37,32 +38,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         #endif
         let bridge = IosBridgeHandler(policy: policy, presenter: self, dataLossState: dataLossState)
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
-        #if DEBUG
-        if DebugSupport.clearsReadingData {
-            configuration.userContentController.addUserScript(WKUserScript(
-                source: "localStorage.removeItem('mrt.state.v2');",
-                injectionTime: .atDocumentStart,
-                forMainFrameOnly: true))
-        }
-        #endif
-        configuration.userContentController.addUserScript(WKUserScript(
-            source: dataLossState.pageStateScript,
-            injectionTime: .atDocumentStart,
-            forMainFrameOnly: true))
-        #if DEBUG
-        if DebugSupport.seedsRestoreTest {
-            configuration.userContentController.addUserScript(WKUserScript(
-                source: DebugSupport.restoreTestSeedScript,
-                injectionTime: .atDocumentStart,
-                forMainFrameOnly: true))
-        }
-        if DebugSupport.seedsUnreadableRecovery {
-            configuration.userContentController.addUserScript(WKUserScript(
-                source: DebugSupport.unreadableRecoveryScript,
-                injectionTime: .atDocumentStart,
-                forMainFrameOnly: true))
-        }
-        #endif
+        installPageScripts(in: configuration.userContentController)
         let webView = WKWebView(frame: .zero, configuration: configuration)
         WebViewFactory.configure(webView)
         webView.isOpaque = false
@@ -90,14 +66,68 @@ final class WebViewController: UIViewController, WKUIDelegate {
         appPage = assets.appPageURL
         #if DEBUG
         DebugSupport.prepareHandOffRecorder(in: view)
+        #endif
+        startLoading()
+    }
+
+    private func installPageScripts(in controller: WKUserContentController) {
+        #if DEBUG
+        if DebugSupport.clearsReadingData {
+            controller.addUserScript(WKUserScript(
+                source: "localStorage.removeItem('mrt.state.v2');",
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        #endif
+        controller.addUserScript(WKUserScript(
+            source: dataLossState.pageStateScript,
+            injectionTime: .atDocumentStart,
+            forMainFrameOnly: true))
+        controller.addUserScript(WKUserScript(
+            source: Self.dynamicTypeScaleScript(for: traitCollection),
+            injectionTime: .atDocumentStart,
+            forMainFrameOnly: true))
+        #if DEBUG
+        if DebugSupport.seedsRestoreTest {
+            controller.addUserScript(WKUserScript(
+                source: DebugSupport.restoreTestSeedScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        if DebugSupport.seedsUnreadableRecovery {
+            controller.addUserScript(WKUserScript(
+                source: DebugSupport.unreadableRecoveryScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
         if DebugSupport.readHandoffTestEnabled {
-            configuration.userContentController.addUserScript(WKUserScript(
+            controller.addUserScript(WKUserScript(
                 source: DebugSupport.readHandoffTestScript,
                 injectionTime: .atDocumentStart,
                 forMainFrameOnly: true))
         }
         #endif
-        startLoading()
+    }
+
+    private static func dynamicTypeScaleScript(for traits: UITraitCollection) -> String {
+        let bodySize = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traits).pointSize
+        let scale = String(Double(bodySize) / 17.0)
+        return """
+        (() => {
+          const apply = () => document.documentElement?.style.setProperty('--ios-text-scale', '\(scale)');
+          if (document.documentElement) apply();
+          else document.addEventListener('DOMContentLoaded', apply, { once: true });
+        })();
+        """
+    }
+
+    @objc private func preferredContentSizeCategoryDidChange() {
+        guard let webView else { return }
+        webView.evaluateJavaScript(Self.dynamicTypeScaleScript(for: traitCollection)) { _, error in
+            if let error {
+                NSLog("Could not update the page's Dynamic Type scale: %@", error.localizedDescription)
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -239,6 +269,8 @@ final class WebViewController: UIViewController, WKUIDelegate {
         // Set before any script of the page that loads next, which reads it when it starts. The
         // page learns it that way whenever its own module runs: an event sent once the reload had
         // finished reached the page on both Simulator runtimes and still left the notice hidden.
+        webView.configuration.userContentController.removeAllUserScripts()
+        installPageScripts(in: webView.configuration.userContentController)
         webView.configuration.userContentController.addUserScript(WKUserScript(
             source: "window.recapIosRestarted = true;", injectionTime: .atDocumentStart, forMainFrameOnly: true))
         if let current = webView.url, policy?.isAppPage(current) == true {
@@ -253,10 +285,11 @@ final class WebViewController: UIViewController, WKUIDelegate {
     func pageDidFinishLoading() {
         guard let webView else { return }
         if restartNoticePending {
-            // The page that just loaded has held the flag since it started, so later pages are not
-            // given it. The flag is the only user script the app adds.
+            // Remove the one-load restart flag without losing scripts that restore page state,
+            // apply Dynamic Type, and support the Debug-only Simulator probes.
             restartNoticePending = false
             webView.configuration.userContentController.removeAllUserScripts()
+            installPageScripts(in: webView.configuration.userContentController)
         }
         #if DEBUG
         DebugSupport.runProbeIfRequested(in: webView, over: view)

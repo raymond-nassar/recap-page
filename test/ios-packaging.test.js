@@ -250,6 +250,15 @@ test('every permanent iOS name agrees with the identity file', async () => {
   const plist = read('packaging/ios/RecapPage-Info.plist');
   assert.equal(/<key>CFBundleDisplayName<\/key>\s*<string>([^<]+)<\/string>/.exec(plist)?.[1], identity.displayName);
   assert.doesNotMatch(plist, /UIRequiresFullScreen/);
+  assert.match(plist, /<key>UIApplicationSupportsMultipleScenes<\/key>\s*<false\/>/);
+  const ipadOrientations = /<key>UISupportedInterfaceOrientations~ipad<\/key>\s*<array>([\s\S]*?)<\/array>/.exec(plist)?.[1];
+  assert.ok(ipadOrientations, 'the iPad orientation list is explicit');
+  assert.deepEqual([...ipadOrientations.matchAll(/<string>([^<]+)<\/string>/g)].map((match) => match[1]), [
+    'UIInterfaceOrientationPortrait',
+    'UIInterfaceOrientationPortraitUpsideDown',
+    'UIInterfaceOrientationLandscapeLeft',
+    'UIInterfaceOrientationLandscapeRight',
+  ]);
   const assets = appSource('AppAssets');
   assert.equal(/static let permanentOrigin = "([^"]+)"/.exec(assets)?.[1], identity.origin);
 });
@@ -375,7 +384,31 @@ test('the iOS overlay names only shared design tokens, never a raw color', () =>
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
   assert.doesNotMatch(css, /\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(\s*(?!var\()/i);
   const shared = rootTokens(read('src/styles.css'));
-  for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) assert.ok(shared.has(name), `${name} is a shared token`);
+  for (const [, name] of css.matchAll(/var\(\s*(--[-\w]+)/g)) {
+    if (name !== '--ios-text-scale') assert.ok(shared.has(name), `${name} is a shared token`);
+  }
+});
+
+test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit process restart', () => {
+  const sharedTypes = [...read('src/styles.css').matchAll(/^\s*(--t-[\w-]+):\s*([\d.]+)px;\s*$/gm)]
+    .map(([, token, size]) => [token, Number(size)]);
+  const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const scaledTypes = [...css.matchAll(/^\s*(--t-[\w-]+):\s*calc\(var\(--ios-text-scale\)\s*\*\s*([\d.]+)px\);\s*$/gm)]
+    .map(([, token, size]) => [token, Number(size)]);
+  assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
+  assert.match(css, /--ios-text-scale:\s*1\s*;/);
+  assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
+
+  const controller = appSource('WebViewController');
+  assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
+  assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
+  assert.match(controller, /document\.documentElement\?\.style\.setProperty\('--ios-text-scale'/);
+  assert.match(controller, /removeAllUserScripts\(\)[\s\S]*?installPageScripts\(in:\s*webView\.configuration\.userContentController\)/,
+    'the persistent app scripts are restored after the restart-only flag is removed');
+  assert.match(controller, /webView\.topAnchor\.constraint\(equalTo:\s*guide\.topAnchor\)/);
+  assert.match(controller, /webView\.leadingAnchor\.constraint\(equalTo:\s*guide\.leadingAnchor\)/);
+  assert.match(controller, /webView\.trailingAnchor\.constraint\(equalTo:\s*guide\.trailingAnchor\)/);
+  assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
 });
 
 test('the iOS app icon is the web app mark drawn opaque from the same geometry', async () => {

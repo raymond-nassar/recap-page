@@ -1,9 +1,16 @@
 /* The iOS overlay, loaded after styles.css and the shared phone layer in mobile/mobile.css.
-   It may name only the shared design tokens declared in styles.css, never a raw value of its own. */
+   The native scale may adjust shared text tokens, but does not introduce independent design values. */
 
 /* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
    would read at two sizes. This keeps the size the page sets in both orientations. */
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  --ios-text-scale: 1;
+  --t-caption: calc(var(--ios-text-scale) * 12px);
+  --t-body: calc(var(--ios-text-scale) * 14px);
+  --t-body-lg: calc(var(--ios-text-scale) * 18px);
+  --t-subtitle: calc(var(--ios-text-scale) * 20px);
+  --t-title: calc(var(--ios-text-scale) * 28px);
+  --t-title-lg: calc(var(--ios-text-scale) * 40px);
 }

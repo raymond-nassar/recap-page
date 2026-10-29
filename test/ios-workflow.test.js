@@ -102,8 +102,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 2, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 5,
-    'the two unit tests, two UI suites and one opt-in CORS test each run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 6,
+    'the two unit tests, two iPhone UI suites, the iPad presentation suite and one opt-in CORS test each run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -132,6 +132,19 @@ test('the newest runtime and the app\'s oldest supported system are both tested,
   assert.match(jobs[1].env.SIMULATOR_RUNTIME, new RegExp(`^iOS-${major}-\\d+$`));
 });
 
+test('the newest runtime checks the 6.9-inch iPhone and the 13-inch iPad presentation matrix', () => {
+  const newest = jobSource('newest');
+  assert.equal(jobs[0].env.SIMULATOR_NAME, 'iPhone 17 Pro Max');
+  assert.match(newest, /Boot the 13-inch iPad Simulator before building/);
+  assert.match(newest, /entry\.name\.startsWith\("iPad Pro 13-inch"\)/);
+  assert.match(newest, /IPAD_DESTINATION=platform=iOS Simulator,id=\$udid/);
+  assert.match(newest, /-only-testing:RecapPageUITests\/PresentationUITests/);
+  assert.match(newest, /RecapPage-newest-ipad-ui-\$attempt\.xcresult/);
+  assert.match(newest, /timeout-minutes: 35\n {8}run: \|/);
+  assert.match(newest, /\$RUNNER_TEMP\/ui-\$attempt\.log/);
+  assert.match(newest, /\$RUNNER_TEMP\/ui-ipad-\$attempt\.log/);
+});
+
 function jobSource(name) {
   return workflow.split(`\n  ${name}:\n`)[1]?.split(/\n {2}\w+:\n/)[0] ?? '';
 }
@@ -158,7 +171,13 @@ async function runScript(root, script, env = {}) {
   await writeFile(path, script);
   const result = spawnSync(bash, ['--noprofile', '--norc', '-e', '-o', 'pipefail', path], {
     encoding: 'utf8', timeout: 15000,
-    env: { ...process.env, RUNNER_TEMP: root, DESTINATION: 'platform=iOS Simulator,id=chosen-device', ...env },
+    env: {
+      ...process.env,
+      RUNNER_TEMP: root,
+      DESTINATION: 'platform=iOS Simulator,id=chosen-device',
+      IPAD_DESTINATION: 'platform=iOS Simulator,id=chosen-ipad',
+      ...env,
+    },
   });
   assert.ifError(result.error);
   return result;
@@ -202,6 +221,46 @@ test('both iOS jobs boot and wait for the chosen Simulator before building and k
     } finally {
       await rm(root, { recursive: true, force: true });
     }
+  }
+});
+
+test('the newest runtime boots the available 13-inch iPad before presentation tests', async () => {
+  const boot = stepScript(jobSource('newest'), 'Boot the 13-inch iPad Simulator before building');
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-boot-'));
+  try {
+    const fixture = {
+      devices: {
+        'com.apple.CoreSimulator.SimRuntime.iOS-18-5': [{ name: 'iPad Pro 13-inch (M4)', udid: 'older-ipad' }],
+        'com.apple.CoreSimulator.SimRuntime.iOS-26-5': [
+          { name: 'iPhone 17 Pro Max', udid: 'newest-phone' },
+          { name: 'iPad Pro 13-inch (M5)', udid: 'newest-ipad' },
+        ],
+      },
+    };
+    await writeFile(join(root, 'devices.json'), JSON.stringify(fixture));
+    const stub = `xcrun() {
+  if [ "$*" = "simctl list devices available --json" ]; then
+    cat "$RUNNER_TEMP/devices.json"
+  else
+    printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  fi
+}
+`;
+    const githubEnv = join(root, 'github-env');
+    const result = await runScript(root, stub + boot, { GITHUB_ENV: githubEnv });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'),
+      'simctl boot newest-ipad\nsimctl bootstatus newest-ipad -b\n');
+    assert.equal(await readFile(githubEnv, 'utf8'),
+      'IPAD_DESTINATION=platform=iOS Simulator,id=newest-ipad\n');
+    await writeFile(join(root, 'devices.json'), JSON.stringify({ devices: {} }));
+    const missing = await runScript(root, stub + boot, { GITHUB_ENV: githubEnv });
+    assert.notEqual(missing.status, 0);
+    assert.match(missing.stderr, /Requested 13-inch iPad Simulator is not available/);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'),
+      'simctl boot newest-ipad\nsimctl bootstatus newest-ipad -b\n');
+  } finally {
+    await rm(root, { recursive: true, force: true });
   }
 });
 
@@ -256,6 +315,50 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
         }
       });
     }
+  }
+});
+
+test('the iPad presentation suite retries only the recognized UI infrastructure failures', async (t) => {
+  const script = stepScript(jobSource('newest'), 'Run presentation UI tests on iPad');
+  const scenarios = [
+    { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
+    { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
+    { name: 'real assertion', logs: [assertion], codes: [65], calls: 1, exit: 1 },
+  ];
+  for (const scenario of scenarios) {
+    await t.test(scenario.name, async () => {
+      const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-retry-'));
+      try {
+        for (const [index, log] of scenario.logs.entries()) {
+          await writeFile(join(root, `fixture-${index + 1}.log`), log + '\n');
+        }
+        const stub = `xcodebuild() {
+  printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  invocation=$(wc -l < "$RUNNER_TEMP/calls" | tr -d ' ')
+  cat "$RUNNER_TEMP/fixture-$invocation.log"
+  case "$invocation" in
+    1) return ${scenario.codes[0]} ;;
+    2) return ${scenario.codes[1] ?? 99} ;;
+    *) return 99 ;;
+  esac
+}
+`;
+        const result = await runScript(root, stub + script);
+        assert.equal(result.status, scenario.exit, result.stderr + result.stdout);
+        const calls = (await readFile(join(root, 'calls'), 'utf8')).trim().split('\n');
+        assert.equal(calls.length, scenario.calls);
+        for (const [index, call] of calls.entries()) {
+          assert.match(call, /^test-without-building /);
+          assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
+          assert.ok(call.includes('-destination platform=iOS Simulator,id=chosen-ipad'));
+          assert.ok(call.includes(`RecapPage-newest-ipad-ui-${index + 1}.xcresult`));
+          assert.equal(await readFile(join(root, `ui-ipad-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
+        }
+        assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
+      } finally {
+        await rm(root, { recursive: true, force: true });
+      }
+    });
   }
 });
 
