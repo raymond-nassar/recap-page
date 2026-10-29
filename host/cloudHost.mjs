@@ -17,7 +17,7 @@
 import { randomBytes } from 'node:crypto';
 import { parseCloudClient } from './cloudConfig.mjs';
 import { createSessionCheck } from './cloudSession.mjs';
-import { CloudTokenError, createProtector, createTokenStore, tokenDirectory } from './cloudTokens.mjs';
+import { CloudTokenError, createProtector, createTokenStore, lastsForHostLife, tokenDirectory } from './cloudTokens.mjs';
 import { ProviderError, SIGN_IN_MS, newAuthorization, openBrowser, startCallback } from './cloudSignIn.mjs';
 import {
   MAX_ITEM_BYTES, authorizationUrl, createOneDrive, createUploadTracker, grantsAppFolder, idTokenClaims, redeemCode, refreshTokens,
@@ -125,7 +125,7 @@ export function createCloudHost({
       try {
         record = (await store.exists()) ? await store.load() : null;
       } catch (error) {
-        if (error?.code === 'language' || error?.code === 'platform') {
+        if (lastsForHostLife(error)) {
           unavailable = error;
         } else if (error?.code === 'unreadable' || error?.code === 'invalid') {
           // A sign-in this Windows account cannot read is no use to anyone; a new one is asked for.
@@ -213,7 +213,7 @@ export function createCloudHost({
         signInJob(job)
           .catch((error) => {
             // The save after a sign-in meets a restriction the probe could not, should one arrive later.
-            if (error?.code === 'language' || error?.code === 'platform') unavailable = error;
+            if (lastsForHostLife(error)) unavailable = error;
             if (signIn === job) message = error?.message ?? SIGN_IN_ENDED.failed;
           })
           .finally(() => { if (signIn === job) signIn = null; });
@@ -228,7 +228,7 @@ export function createCloudHost({
   function probe() {
     probed ??= store.probe().catch((error) => {
       probed = null;
-      if (error?.code === 'language' || error?.code === 'platform') unavailable = error;
+      if (lastsForHostLife(error)) unavailable = error;
       throw error;
     });
     return probed;

@@ -47,6 +47,7 @@ export const TOKEN_FILE = 'onedrive.v1';
 
 const REASONS = Object.freeze({
   platform: 'Cloud backup can keep a sign-in only on Windows in this version.',
+  location: 'This Windows account has no local app data folder that Recap Page can use, so cloud backup cannot keep a sign-in here.',
   language: 'Windows is restricting PowerShell on this computer, so cloud backup cannot protect a sign-in here.',
   unreadable: 'The saved sign-in could not be read on this Windows account, so it has to be made again.',
   failed: 'Windows could not protect or read the cloud backup sign-in.',
@@ -60,6 +61,14 @@ export class CloudTokenError extends Error {
     this.name = 'CloudTokenError';
     this.code = code;
   }
+}
+
+// What holds for as long as the host runs, because nothing done in Recap Page changes it: another system,
+// an unusable local app data folder, or restricted PowerShell. Named once, so the host's three places that
+// ask cannot disagree about it.
+const PERMANENT = new Set(['platform', 'location', 'language']);
+export function lastsForHostLife(error) {
+  return PERMANENT.has(error?.code);
 }
 
 export function powershellPath(system = systemDirectory()) {
@@ -123,7 +132,8 @@ export function createProtector({
 }
 
 // Local application data is private to the person, and for an installed package Windows keeps it in the
-// package's own location and removes it on uninstall.
+// package's own location and removes it on uninstall. Without a drive path there, the store has no folder,
+// which is its own reason rather than the platform's: the account is still on Windows.
 export function tokenDirectory(env = process.env) {
   const base = typeof env.LOCALAPPDATA === 'string' && /^[A-Za-z]:\\/.test(env.LOCALAPPDATA) ? env.LOCALAPPDATA : null;
   return base ? join(base, 'Recap Page', 'cloud') : null;
@@ -154,7 +164,7 @@ export function createTokenStore({ directory, protector, fs = { mkdir, readFile,
     // rather than after the person has signed in (stage 2 review, L2). It protects a fixed value and
     // writes nothing.
     async probe() {
-      if (!file) throw new CloudTokenError('platform');
+      if (!file) throw new CloudTokenError('location');
       await protector.protect(Buffer.from('recap-page cloud backup probe', 'utf8'));
     },
     // Whether a sign-in is stored at all, answered without PowerShell, so a computer that never
@@ -169,7 +179,7 @@ export function createTokenStore({ directory, protector, fs = { mkdir, readFile,
       }
     },
     async load() {
-      if (!file) throw new CloudTokenError('platform');
+      if (!file) throw new CloudTokenError('location');
       let sealed;
       try { sealed = await fs.readFile(file); }
       catch (error) {
@@ -187,7 +197,7 @@ export function createTokenStore({ directory, protector, fs = { mkdir, readFile,
     // Written beside the file and renamed over it, so a crash leaves the old sign-in or the new one,
     // never half of either.
     async save(record) {
-      if (!file) throw new CloudTokenError('platform');
+      if (!file) throw new CloudTokenError('location');
       if (!validRecord(record)) throw new CloudTokenError('invalid');
       const sealed = await protector.protect(Buffer.from(JSON.stringify(record), 'utf8'));
       if (sealed.includes(Buffer.from(record.refreshToken ?? record.connection, 'utf8'))) throw new CloudTokenError('failed');

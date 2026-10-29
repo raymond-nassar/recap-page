@@ -269,8 +269,8 @@ test('restricted PowerShell, an unreadable blob, a hung PowerShell and a non-Win
       await assert.rejects(store.probe(), { code }, `${code}: the probe meets it too`);
       assert.deepEqual(readdirSync(directory), [], `${code}: nothing written`);
     }
-    await assert.rejects(createTokenStore({ directory: null, protector: createProtector({ platform: 'win32' }) }).probe(), { code: 'platform' },
-      'no private folder to keep a sign-in in');
+    await assert.rejects(createTokenStore({ directory: null, protector: createProtector({ platform: 'win32' }) }).probe(), { code: 'location' },
+      'no private folder to keep a sign-in in, which is not a matter of the platform');
     const hung = fakePowerShell(() => 'hang');
     let killed = null;
     const spawnImpl = (...args) => {
@@ -1201,6 +1201,37 @@ test('a computer that cannot protect a sign-in says so before Microsoft\'s page 
     signed.instance.close();
     await laterApi.close();
   }
+});
+
+// A Windows account whose local app data is missing, or not on a drive, has nowhere private to keep a
+// sign-in, and the card used to say so as though the computer were not running Windows at all (the
+// residual P02-T05 recorded). It has its own reason now, found before Microsoft's page opens and kept.
+test('a Windows account with no usable local app data folder says so in its own words, before Microsoft\'s page opens', async () => {
+  const opened = [];
+  let spawned = 0;
+  const fetch = microsoft();
+  for (const env of [{}, { LOCALAPPDATA: '\\\\server\\share' }]) {
+    const instance = createCloudHost({
+      clientText: CLIENT_TEXT, platform: 'win32', env, fetchImpl: fetch.fetchImpl,
+      spawnImpl: () => { spawned += 1; throw new Error('PowerShell must not start'); },
+      sessionCheck: async () => true, openUrl: async (url) => { opened.push(url); },
+    });
+    const api = await hostServer(instance);
+    try {
+      assert.equal((await api.call('status')).body.status.state, 'not-connected', 'nothing has needed the folder yet');
+      const refused = (await api.call('connect')).body;
+      assert.deepEqual([refused.ok, refused.error.code], [false, 'location']);
+      const status = (await api.call('status')).body.status;
+      assert.equal(status.state, 'unavailable');
+      assert.match(status.message, /no local app data folder that Recap Page can use/);
+      assert.doesNotMatch(status.message, /only on Windows/);
+      assert.equal((await api.call('connect')).body.error.code, 'location', 'refused at once from then on');
+    } finally {
+      instance.close();
+      await api.close();
+    }
+  }
+  assert.deepEqual([opened.length, spawned, fetch.calls.length], [0, 0, 0], 'no browser, no PowerShell, nothing sent to Microsoft');
 });
 
 // ------------------------------------------------------------------ the page's transport
