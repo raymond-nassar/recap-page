@@ -1387,7 +1387,9 @@ export function createReadingView({
       // Rebuilt narrow rows close their actions panel, so its matching control cannot take focus.
       const more = [...$('#rows').querySelectorAll('[data-act="more"]')]
         .find((control) => Number(control.dataset.key) === issueId);
-      focusRemovalTarget(more);
+      focusRemovalTarget(more, { avoidFilters: true });
+    } else if (document.activeElement?.dataset?.act === 'defer') {
+      focusRemovalTarget(document.activeElement, { avoidFilters: true });
     }
   }
 

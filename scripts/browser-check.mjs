@@ -22,6 +22,7 @@
 // story. The app-origin scenarios are the exceptions because their acceptance
 // explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
 // automation profile, not the person's installed browser profile.
+// Use --ephemeral on a shared machine to leave an installed app's listener alone.
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
@@ -15453,10 +15454,10 @@ SCENARIOS.push({
         }
       }
       const points = [[.5, .5], [.05, .15], [.95, .15], [.05, .85], [.95, .85]];
-      const hits = points.every(([x, y]) => {
-        const hit = document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y);
-        return hit === control || control.contains(hit);
-      });
+      const hitTargets = points.map(([x, y]) => document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y));
+      const hits = hitTargets.every((hit) => hit === control || control.contains(hit));
+      const blockedBy = hits ? [] : hitTargets.filter((hit) => hit !== control && !control.contains(hit))
+        .map((hit) => ({ tag: hit?.tagName, id: hit?.id, class: hit?.className }));
       const ringHits = !focused || [
         [bounds.left + .5, rect.top + rect.height / 2],
         [bounds.right - .5, rect.top + rect.height / 2],
@@ -15467,7 +15468,7 @@ SCENARIOS.push({
         return hit === control || control.contains(hit) || hit?.contains(control);
       });
       const filterBounds = document.querySelector('#reading-filters').getBoundingClientRect();
-      return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+      return { act: control.dataset.act, focused, ring, clips, hits, blockedBy, ringHits, bounds,
         filterBottom: filterBounds.bottom,
         scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop,
         visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
@@ -15638,7 +15639,8 @@ SCENARIOS.push({
       const style = getComputedStyle(group);
       return {
         role: group.getAttribute('role'), name: group.getAttribute('aria-label'), shown: group.checkVisibility(),
-        rule: style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+        rule: Math.max(style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+          style.borderLeftStyle === 'solid' ? parseFloat(style.borderLeftWidth) : 0),
         acts: [...group.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
           .map((control) => control.dataset.act),
       };
@@ -15657,7 +15659,7 @@ SCENARIOS.push({
       for (const child of node?.children ?? []) visit(child);
     };
     visit(ax);
-    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Availability']),
+    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Marvel Unlimited record']),
       JSON.stringify(named));
 
     const pressed = async () => {
@@ -19941,7 +19943,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
