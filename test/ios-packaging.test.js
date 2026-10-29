@@ -134,7 +134,10 @@ test('the iOS page loads the phone layer and the iOS overlay after the shared st
   }
   assert.match(entry, /wireMobileUi\(\{ arrivalHeading \}\)/);
   assert.match(entry, /\['preview-offline', 'preview-offline-status'\]/);
-  assert.match(entry, /'recap:ios-restarted'/);
+  // The flag the shell sets before any page script runs after an ending is the one the page reads.
+  assert.match(entry, /^if \(window\.recapIosRestarted === true\) \{$/m);
+  assert.match(read('packaging/ios/RecapPage/WebViewController.swift'),
+    /source: "window\.recapIosRestarted = true;", injectionTime: \.atDocumentStart, forMainFrameOnly: true/);
 });
 
 test('iOS About and its build report name an unreserved development build', async () => {

@@ -20,11 +20,9 @@ final class TerminationTests: XCTestCase {
         try await Task.sleep(nanoseconds: 500_000_000)
         XCTAssertFalse(controller.restartNoticePending)
         let documentBefore = try await WebTestSupport.evaluate(webView, "return performance.timeOrigin;") as? Double
-        // Test-only counters for the diagnostics below: the documents this web view starts from here
-        // on, and the restart events any of them receives.
+        // Test-only counter for the diagnostics below: the documents this web view starts from here on.
         webView.configuration.userContentController.addUserScript(WKUserScript(source: """
         sessionStorage.setItem('recap-test-documents', String(Number(sessionStorage.getItem('recap-test-documents') ?? 0) + 1));
-        window.addEventListener('recap:ios-restarted', () => sessionStorage.setItem('recap-test-events', String(Number(sessionStorage.getItem('recap-test-events') ?? 0) + 1)));
         """, injectionTime: .atDocumentStart, forMainFrameOnly: true))
 
         // The content process is ended for real, so WebKit itself tells the navigation delegate, as it
@@ -42,11 +40,11 @@ final class TerminationTests: XCTestCase {
                 webView, "Boolean(document.getElementById('ios-report')) && !document.getElementById('ios-report').hidden")
         } catch {
             // What the page and the controller hold when the notice never appeared: whether a new
-            // document loaded, how many did, whether the restart was consumed and reached a page.
+            // document loaded, how many did, whether the restart was consumed and the page had the flag.
             let page = try? await WebTestSupport.evaluate(webView, """
             return JSON.stringify({ href: location.href, readyState: document.readyState, timeOrigin: performance.timeOrigin,
               report: Boolean(document.getElementById('ios-report')), hidden: document.getElementById('ios-report')?.hidden ?? null,
-              documents: sessionStorage.getItem('recap-test-documents'), events: sessionStorage.getItem('recap-test-events') });
+              documents: sessionStorage.getItem('recap-test-documents'), flag: window.recapIosRestarted ?? null });
             """) as? String
             WebTestSupport.record("termination-diagnostics", """
             {"pending":\(controller.restartNoticePending),"loading":\(webView.isLoading),"url":"\(webView.url?.absoluteString ?? "")","documentBefore":\(documentBefore ?? -1),"page":\(page ?? "null")}
