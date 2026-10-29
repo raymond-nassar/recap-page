@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -29,6 +29,7 @@ import {
 } from '../src/js/views/reading.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
 
 function classList(value = '') {
   const names = new Set(value.split(/\s+/).filter(Boolean));

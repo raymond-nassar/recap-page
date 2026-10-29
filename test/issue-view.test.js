@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -9,6 +9,7 @@ import { ApiError } from '../src/js/api.js';
 import { createSynopsisDisclosure } from '../src/js/lib/synopsisDisclosure.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
 
 function node(textContent = '') {
   return {

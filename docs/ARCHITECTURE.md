@@ -539,6 +539,10 @@ it is refused above 32 MiB before it is read. Each component still passes its ow
 validator. Every single-kind restore refuses the complete file with nothing written, which is also all
 an earlier version of the app can do with one.
 
+Import drafts saved before reader-link intake was withdrawn retain their original source positions,
+including unresolved reader URLs, and their selections through complete backup, capture and restore.
+This compatibility path does not admit reader links in a new paste and changes no saved-data format.
+
 Restoring one replaces seven keys belonging to four owners, in eight writes, and a browser can stop
 between any two writes. So a restore takes an exclusive Web Lock that every tab holds shared while it
 can save, prepares every owner's exact bytes first, generated tokens included, and then runs in this

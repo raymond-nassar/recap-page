@@ -7,6 +7,7 @@ import { addIssuesToList, createEmptyState, createList, exportBackup, markRead }
 import { originalReaderDescription, readerLinkReport } from '../src/js/lib/temporaryReaderLink.js';
 
 const origin = 'http://127.0.0.1:8787';
+const beforeCutoff = new Date(2026, 11, 6, 12);
 const order = JSON.parse(readFileSync(new URL('../src/data/new_ultimate_universe_trades.json', import.meta.url)));
 const sibling = JSON.parse(readFileSync(new URL('../src/data/new_ultimate_universe.json', import.meta.url)));
 const missing = order.items.filter((item) => item.digitalId == null && item.detailsRefused === true);
@@ -67,20 +68,20 @@ test('known book IDs and tab-only corrections retain priority; popup stays synch
   globalThis.window = { open(...args) { calls.push(args); return null; } };
   try {
     const source = { ...missing[0] };
-    assert.equal(openIssue(source, { origin }).target, 'page');
+    assert.equal(openIssue(source, { origin, now: beforeCutoff }).target, 'page');
     assert.equal(calls.length, 1);
     assert.equal(calls[0][1], '_blank');
     assert.equal(calls[0][2], 'noopener');
     assert.equal(new URL(calls[0][0]).searchParams.get('u'), source.url);
     for (const digitalId of [38811, 77777]) {
-      const result = openIssue({ ...source, digitalId }, { origin });
+      const result = openIssue({ ...source, digitalId }, { origin, now: beforeCutoff });
       assert.equal(result.target, 'reader');
       const launch = new URL(calls.at(-1)[0]);
       assert.equal(launch.searchParams.get('d'), String(digitalId));
       assert.equal(launch.searchParams.has('u'), false);
       assert.equal(launch.searchParams.has('p'), false);
     }
-    const unknown = openIssue({ ...source, detailsRefused: false }, { origin });
+    const unknown = openIssue({ ...source, detailsRefused: false }, { origin, now: beforeCutoff });
     assert.equal(unknown.target, 'lookup');
     assert.equal(new URL(calls.at(-1)[0]).searchParams.get('u'), source.url);
   } finally {
@@ -108,6 +109,8 @@ test('synthetic saved progress and shared issue identities do not change on laun
 
 let desktopCase = 0;
 async function desktopLauncher(search, fetchImpl, { settings = null, readError = false, exercise = null } = {}) {
+  const query = new URLSearchParams(search);
+  if (!query.has('r')) query.set('r', 'unlimited');
   const previous = Object.fromEntries(['window', 'location', 'document', 'localStorage', 'fetch',
     'setTimeout', 'clearTimeout'].map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   const navigations = [];
@@ -144,7 +147,7 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
     querySelector: (selector) => selector === 'meta[name="color-scheme"]' ? meta : null,
     querySelectorAll: (selector) => (selector === 'meta[name="theme-color"]' ? themeColorTags : []) };
   const host = { opener: { private: true } };
-  const mockLocation = { search, replace(url) {
+  const mockLocation = { search: `?${query}`, replace(url) {
     assert.equal(host.opener, null, 'sever the opener before navigation');
     navigations.push(url);
   } };
@@ -180,7 +183,7 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
 }
 
 test('desktop launcher revalidates and opens exact known-refused URL without lookup or delay', async () => {
-  const search = new URL(launchUrl(missing.find((item) => item.issueId === 129224), origin)).search;
+  const search = new URL(launchUrl(missing.find((item) => item.issueId === 129224), origin, { now: beforeCutoff })).search;
   const f = await desktopLauncher(search, () => assert.fail('Known-refused page must not fetch'));
   assert.deepEqual(f.navigations, [page]);
   assert.equal(f.nodes.fallback.href, page);
