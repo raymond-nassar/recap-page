@@ -134,6 +134,29 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(prepared.manifest.build.platform, 'ios');
 });
 
+test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {
+  const launcher = await readFile(join(output, 'open.html'), 'utf8');
+  const sharedLink = launcher.indexOf('<link rel="stylesheet" href="./open.css" />');
+  const iosLink = launcher.indexOf('<link rel="stylesheet" href="./ios/launcher.css" />');
+  assert.ok(sharedLink >= 0 && iosLink > sharedLink, 'the iOS launcher overlay follows open.css');
+  assert.equal(launcher.split('href="./ios/launcher.css"').length, 2, 'the overlay is linked once');
+
+  const stylesheetPath = 'ios/launcher.css';
+  const stylesheet = await readFile(join(output, stylesheetPath));
+  assert.deepEqual(stylesheet, await readFile(new URL('packaging/ios/web/launcher.css', ROOT)));
+  const entry = prepared.manifest.files.find(({ path }) => path === stylesheetPath);
+  assert.ok(entry, 'the manifest allowlists the linked launcher stylesheet');
+  assert.equal(entry.sha256, sha256(stylesheet), 'the manifest digest matches the generated stylesheet');
+  assert.equal(entry.source, 'packaging/ios/web/launcher.css');
+
+  assert.match(appSource('AppAssets'), /paths = Set\(manifest\.files\.map\(\\\.path\)\)/);
+  const responder = appSource('AssetResponder');
+  assert.match(responder, /assets\.paths\.contains\(path\)/);
+  assert.match(responder, /Data\(contentsOf: assets\.root\.appendingPathComponent\(path\)/);
+  assert.match(responder, /case "css": return "text\/css; charset=utf-8"/);
+  assert.match(appSource('AppSchemeHandler'), /responder\.reply\(to: request\.url, method: request\.httpMethod\)/);
+});
+
 test('the iOS page loads the phone layer and the iOS overlay after the shared styles, at the cover viewport', async () => {
   const page = await readFile(join(output, 'index.html'), 'utf8');
   assert.equal(page.split('viewport-fit=cover').length, 2);

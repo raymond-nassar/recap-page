@@ -1,6 +1,13 @@
 import UIKit
 import XCTest
 
+private func layoutMetrics(from label: String) -> [String: Any]? {
+    let prefix = "recap-layout-probe "
+    guard label.hasPrefix(prefix),
+          let data = String(label.dropFirst(prefix.count)).data(using: .utf8) else { return nil }
+    return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+}
+
 @MainActor
 final class PresentationUITests: XCTestCase {
     private static let defaultTypeSizes: [String: Double] = [
@@ -118,10 +125,32 @@ final class PresentationUITests: XCTestCase {
           viewportWidth: document.documentElement.clientWidth,
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
+          widestOverflowingElements: [...document.querySelectorAll('body *')]
+            .filter((element) => element !== monitor)
+            .flatMap((element) => {
+              const rect = element.getBoundingClientRect();
+              const style = getComputedStyle(element);
+              if (style.display === 'none' || (!rect.width && !rect.height)) return [];
+              const extent = Math.max(rect.right, rect.left + element.scrollWidth);
+              if (rect.left >= -1 && extent <= document.documentElement.clientWidth + 1) return [];
+              return [{
+                tag: element.tagName.toLowerCase(),
+                id: element.id,
+                className: typeof element.className === 'string' ? element.className : '',
+                left: Math.round(rect.left * 10) / 10,
+                right: Math.round(rect.right * 10) / 10,
+                extent: Math.round(extent * 10) / 10,
+                width: Math.round(rect.width * 10) / 10,
+                scrollWidth: element.scrollWidth,
+                clientWidth: element.clientWidth,
+              }];
+            })
+            .sort((a, b) => b.extent - a.extent || b.width - a.width)
+            .slice(0, 8),
         });
         const refreshMonitor = () => {
           monitor.textContent = JSON.stringify(snapshot('current'));
-          monitor.setAttribute('aria-label', monitor.textContent);
+          monitor.setAttribute('aria-label', `recap-layout-probe ${monitor.textContent}`);
         };
         window.addEventListener('resize', refreshMonitor);
         window.visualViewport?.addEventListener('resize', refreshMonitor);
@@ -219,8 +248,12 @@ final class PresentationUITests: XCTestCase {
                     let viewport = try XCTUnwrap(screen["viewportWidth"] as? Double)
                     let document = try XCTUnwrap(screen["documentWidth"] as? Double)
                     let screenRoot = try XCTUnwrap(screen["rootFontSize"] as? Double)
+                    let overflow = String(describing: screen["widestOverflowingElements"] ?? [])
                     XCTAssertGreaterThan(viewport, 0)
-                    XCTAssertLessThanOrEqual(document, viewport, "\(screen["view"] ?? "unknown") has no horizontal overflow")
+                    XCTAssertLessThanOrEqual(
+                        document,
+                        viewport,
+                        "\(screen["view"] ?? "unknown") has no horizontal overflow; widest elements: \(overflow)")
                     XCTAssertEqual(screenRoot, 16, accuracy: 0.1)
                 }
 
@@ -331,8 +364,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(webView.frame.maxY, window.frame.maxY)
         let monitor = layoutMonitor(of: app)
         XCTAssertTrue(monitor.waitForExistence(timeout: 30))
-        let layout = try XCTUnwrap(monitor.label.data(using: .utf8))
-        let current = try XCTUnwrap(try JSONSerialization.jsonObject(with: layout) as? [String: Any])
+        let current = try XCTUnwrap(layoutMetrics(from: monitor.label), monitor.label)
         let documentWidth = try XCTUnwrap((current["documentWidth"] as? NSNumber)?.doubleValue)
         let viewportWidth = try XCTUnwrap((current["viewportWidth"] as? NSNumber)?.doubleValue)
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
@@ -354,7 +386,7 @@ final class PresentationUITests: XCTestCase {
 
     private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)
-            .matching(NSPredicate(format: "label CONTAINS[c] %@", "viewportWidth"))
+            .matching(NSPredicate(format: "label BEGINSWITH %@", "recap-layout-probe "))
             .firstMatch
     }
 
@@ -404,8 +436,7 @@ final class PresentationUITests: XCTestCase {
             let settled = XCTNSPredicateExpectation(
                 predicate: NSPredicate { object, _ in
                     guard let element = object as? XCUIElement,
-                          let data = element.label.data(using: .utf8),
-                          let metrics = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                          let metrics = layoutMetrics(from: element.label),
                           let width = (metrics["viewportWidth"] as? NSNumber)?.doubleValue,
                           let documentWidth = (metrics["documentWidth"] as? NSNumber)?.doubleValue else { return false }
                     return width > 0 && documentWidth <= width
