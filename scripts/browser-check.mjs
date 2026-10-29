@@ -19892,7 +19892,7 @@ SCENARIOS.push({
 const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
 
 function cloudFixtureHost() {
-  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [] };
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [], gate: null };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const status = () => ({
     provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
@@ -19905,6 +19905,12 @@ function cloudFixtureHost() {
   };
   const shape = ({ id, name, size, created }) => ({ id, name, size, created });
   function handle(operation, input) {
+    // A create held until the check lets it go, so the card can be seen while a backup runs.
+    if (operation === 'create' && host.gate) {
+      const gate = host.gate;
+      host.gate = null;
+      return gate.then(() => handle(operation, input));
+    }
     host.calls.push(operation);
     if (operation === 'status') return { ok: true, status: status() };
     if (operation === 'connect') {
@@ -20134,7 +20140,25 @@ SCENARIOS.push({
     t.check('the automatic backup switch is set out as the other settings switches are, track first and its label beside it, unboxed, at 1280 and 360 pixels',
       switchAt.every((entry) => entry.unboxed && entry.beside && entry.inside && entry.height >= 24), JSON.stringify(switchAt));
 
+    // The first backup is held at its create, so the card can be seen while one runs. Edge paints an
+    // indeterminate bar's movement itself, out of reach of the rule that stops CSS animation, so under
+    // reduced motion the bar is hidden and the status line alone says a backup is running (stage 3
+    // review, S3b-4).
+    let release = () => {};
+    fixture.host.gate = new Promise((resolve) => { release = resolve; });
     await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.endsWith('Backing up now.'), { timeout: 20000 });
+    const bar = () => page.$eval('#cloud-backup-progress', (node) => getComputedStyle(node).display !== 'none' && node.getClientRects().length > 0);
+    const motion = { moving: await bar() };
+    const media = await page.createCDPSession();
+    await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+    motion.reduced = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+    motion.still = !(await bar());
+    await media.send('Emulation.setEmulatedMedia', { features: [] });
+    await media.detach();
+    t.check('while a backup runs the card shows a moving bar beside its words, and under reduced motion the words alone',
+      motion.moving && motion.reduced && motion.still, JSON.stringify(motion));
+    release();
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
     t.check('turning automatic backup on makes the first backup at once, read back and counted',
       fixture.host.items.size === 1 && [...fixture.host.items.values()][0].name.startsWith('recap-page-backup-v1-')

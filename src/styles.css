@@ -2222,6 +2222,13 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
+/* Edge paints an indeterminate bar's movement itself, out of reach of the rule above: measured at
+   1280x900 under reduced motion, 8 distinct frames of 8. There the cloud backup bar is hidden, and its
+   status line alone says a backup is running. */
+@media (prefers-reduced-motion: reduce) {
+  #cloud-backup-progress { display: none; }
+}
+
 @media (forced-colors: active) {
   .hero-bg, .hero-fade { display: none; }
   .btn, .quiet, .mini, .ri { border: var(--stroke-1) solid ButtonBorder; }
