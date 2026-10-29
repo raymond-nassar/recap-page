@@ -1613,6 +1613,27 @@ test('signing in waits for the browser, then shows the account before asking; si
   assert.equal(tab.cloud.model.backup.phase, 'up-to-date');
 });
 
+// After a sign-in, a tab can hear of it twice: from another tab's broadcast, whose refresh shows the account
+// and opens the card's list of what it holds, and from its own sign-in poll. Measured in Edge, three tabs open
+// through a sign-in made five discoveries, each a list and up to 64 reads, because the poll discovered again
+// whatever had started (stage 2 review, S1b, found while measuring the page's requests).
+test('a sign-in finishing is discovered once, however many ways a tab hears of it', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  env.transport.signedIn(null);
+  env.transport.host.state = 'not-connected';
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.connect();
+  env.transport.signedIn('connection-two');
+  await tab.cloud.refresh();
+  const opened = tab.cloud.discover();
+  await tab.run(CLOUD_SIGN_IN_POLL_MS);
+  await opened;
+  await until(() => tab.cloud.model.discovery.state === 'ready', 'what the account holds is shown');
+  assert.equal(env.transport.calls.filter((call) => call === 'list').length, 1, 'one list for one sign-in');
+});
+
 test('deleting this device\'s backups stops them first and reads the account again; disconnecting deletes nothing', async () => {
   const env = harness();
   windowsHost(env.transport);

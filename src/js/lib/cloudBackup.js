@@ -201,7 +201,8 @@ export function createCloudBackup({
       if (status?.state === 'signing-in') watchSignIn();
       else {
         announce();
-        if (status?.state === 'connected' && !isOn()) void discover();
+        // Not again where the card, or another tab's news, already set this connection discovering.
+        if (status?.state === 'connected' && !isOn() && discovery.connection !== status.connection) void discover();
       }
     }, CLOUD_SIGN_IN_POLL_MS);
   }
