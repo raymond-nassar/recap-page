@@ -2,10 +2,13 @@
 // operations on the app's own folder that the shared protocol needs, list, read, create and delete.
 //
 // What each request looks like rests on what was observed rather than assumed. Creating goes through an
-// upload session whose URL asks to fail on an existing name, then one PUT of every byte to the address it
-// returns, without the Authorization header: that is the documented route for conflict behavior, and the
-// only one the stopped session saw work under the app-folder permission in the owner's own folder
-// (2026-10-22), where the JSON-body variant failed three times. Reading follows exactly one redirect to a
+// upload session whose JSON body asks to fail on an existing name, then one PUT of every byte to the
+// address it returns, without the Authorization header. The body is where Microsoft's createUploadSession
+// reference puts conflict behavior, and it documents a 409 nameAlreadyExists for a taken name (retrieved
+// 2026-10-29). Asked only in the URL, as the driveItem reference says to, OneDrive replaced an existing
+// file in the owner's own folder on 2026-10-29 (B8 in the P02-T07 session). The stopped session's bodies of
+// 2026-10-22, answered 400, also named the item, and its record does not say what content type they
+// carried; this body names nothing and says it is JSON. Reading follows exactly one redirect to a
 // preauthenticated address, again without Authorization (B10 in the P02-T01 facts, retrieved 2026-10-28).
 
 import { ProviderError, capabilityUrl, discard, networkFailure, readBounded, readJson, retryAfterMs } from './cloudSignIn.mjs';
@@ -23,6 +26,8 @@ const MAX_PAGES = 50;
 const ITEM_FIELDS = '$select=id,name,size,createdDateTime';
 // Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
 const ITEM_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
+// Only the conflict behavior: a name here would have to equal the path's, which the reference requires.
+const CREATE_SESSION = JSON.stringify({ item: { '@microsoft.graph.conflictBehavior': 'fail' } });
 
 export function authorizationUrl({ clientId, redirectUri, authorization }) {
   const params = new URLSearchParams({
@@ -128,13 +133,13 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
   // being made again without a word; until then the special app-root path, which Microsoft resolves.
   const base = folder ? `/me/drive/items/${encodeURIComponent(folder)}` : '/me/drive/special/approot';
   const gone = () => new ProviderError('folder-gone', 'The Recap Page folder was deleted from OneDrive.');
-  async function call(method, path, { body, timeoutMs = METADATA_MS } = {}) {
+  async function call(method, path, { body, headers = {}, timeoutMs = METADATA_MS } = {}) {
     for (let attempt = 0; ; attempt += 1) {
       const token = await accessToken({ renew: attempt > 0 });
       let response;
       try {
         response = await fetchImpl(`${GRAPH}${path}`, {
-          method, headers: { authorization: `Bearer ${token}` }, body, redirect: 'manual', signal: AbortSignal.timeout(timeoutMs),
+          method, headers: { ...headers, authorization: `Bearer ${token}` }, body, redirect: 'manual', signal: AbortSignal.timeout(timeoutMs),
         });
       } catch (error) {
         throw networkFailure(error, 'OneDrive');
@@ -201,9 +206,8 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
   }
 
   async function createOnce(name, bytes) {
-    const opened = await call('POST',
-      `${base}:/${encodeURIComponent(name)}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`,
-      { body: '' });
+    const opened = await call('POST', `${base}:/${encodeURIComponent(name)}:/createUploadSession`,
+      { body: CREATE_SESSION, headers: { 'content-type': 'application/json' } });
     if (opened.status === 404 && folder) {
       await discard(opened);
       throw gone();
@@ -237,7 +241,9 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
     // A timeout or a server failure may come after every byte was committed, a gateway's 504 in particular,
     // so it is settled as a lost reply is: a create refused with any code but timeout must never appear
     // later (stage 2 review, L1). The Android and iOS providers follow this one, so it holds the contract
-    // exactly. Other refusals, such as 409, 403 or a full account's 507, are definite.
+    // exactly. Other refusals are definite: the 409 nameAlreadyExists Microsoft documents for a taken name
+    // at the last byte range, a 403, or a full account's 507. The session is cancelled, so the bytes it
+    // holds can never be committed under another name later.
     if (response.status === 408 || (response.status >= 500 && response.status !== 507)) {
       const wait = retryAfterMs(response, clock());
       await discard(response);

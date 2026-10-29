@@ -66,7 +66,7 @@ function fakeFetch(routes = []) {
     const method = options.method ?? 'GET';
     const headers = new Headers(options.headers);
     const body = options.body === undefined ? undefined : Buffer.from(options.body);
-    const call = { method, url: String(url), authorization: headers.get('authorization'), range: headers.get('content-range'), body, redirect: options.redirect };
+    const call = { method, url: String(url), authorization: headers.get('authorization'), range: headers.get('content-range'), type: headers.get('content-type'), body, redirect: options.redirect };
     calls.push(call);
     const route = routes.find((entry) => entry.method === method
       && (typeof entry.url === 'string' ? entry.url === call.url : entry.url.test(call.url)));
@@ -452,7 +452,7 @@ test('token requests are public-client requests, and each refusal, wait and outa
 
 // ------------------------------------------------------------------ OneDrive primitives
 
-const SESSION = `${GRAPH}/me/drive/special/approot:/${NAME}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`;
+const SESSION = `${GRAPH}/me/drive/special/approot:/${NAME}:/createUploadSession`;
 const LOOKUP = `${GRAPH}/me/drive/special/approot:/${NAME}?$select=id,name,size,createdDateTime`;
 const CHILDREN = `${GRAPH}/me/drive/special/approot/children?$select=id,name,size,createdDateTime&$top=200`;
 const CREATED = { id: 'ITEM!7', name: NAME, size: 5, createdDateTime: '2026-10-28T20:00:00Z' };
@@ -469,7 +469,10 @@ function drive(routes, { renewals = [] } = {}) {
   return { ...fake, onedrive, renewals };
 }
 
-test('creating opens a body-free upload session that fails on an existing name, then puts every byte without Authorization', async () => {
+// Asked in the URL alone, OneDrive replaced an existing file in the owner's session (P02-T07, B8), so the
+// request asks in its JSON body, where Microsoft's createUploadSession reference puts it, and names nothing
+// else, since a name there would have to equal the path's.
+test('creating opens an upload session whose JSON body asks to fail on an existing name, then puts every byte without Authorization', async () => {
   const bytes = Buffer.from('hello');
   const { onedrive, calls } = drive([
     { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD, expirationDateTime: '2026-10-29T00:00:00Z' }) },
@@ -479,7 +482,10 @@ test('creating opens a body-free upload session that fails on an existing name, 
   assert.deepEqual(calls.map((call) => [call.method, call.url, Boolean(call.authorization)]), [
     ['POST', SESSION, true], ['PUT', UPLOAD, false],
   ]);
-  assert.equal(calls[0].body.length, 0, 'the session request has no body');
+  assert.deepEqual(JSON.parse(calls[0].body.toString('utf8')), { item: { '@microsoft.graph.conflictBehavior': 'fail' } },
+    'the session request asks to fail on a taken name in its body, and says nothing else');
+  assert.equal(calls[0].type, 'application/json', 'and says its body is JSON');
+  assert.equal(new URL(calls[0].url).search, '', 'with nothing asked in the URL');
   assert.equal(calls[1].range, 'bytes 0-4/5');
   assert.deepEqual(calls[1].body, bytes);
 
@@ -669,7 +675,7 @@ test('listing follows every page, and an app folder that does not exist yet list
 // folder known by its id answers 404 as deleted rather than being made again without a word.
 test('with the app folder known, listing and creating go by its id, and a 404 for it means it was deleted', async () => {
   const children = `${GRAPH}/me/drive/items/APP!1/children?$select=id,name,size,createdDateTime&$top=200`;
-  const session = `${GRAPH}/me/drive/items/APP!1:/${NAME}:/createUploadSession?@microsoft.graph.conflictBehavior=fail`;
+  const session = `${GRAPH}/me/drive/items/APP!1:/${NAME}:/createUploadSession`;
   const learned = [];
   const known = fakeFetch([
     { method: 'GET', url: children, reply: json(200, { value: [CREATED] }) },
@@ -771,7 +777,7 @@ function microsoft({ driveId = 'drive-one', folderId = 'APP!1', nonce = () => nu
     { method: 'GET', url: CHILDREN, reply: () => json(200, { value: state.items }) },
     { method: 'GET', url: /\/me\/drive\/items\/[^/]+\/children\?/, reply: (call) => (folderIn(call.url) === state.folderId ? json(200, { value: state.items }) : gone()) },
     {
-      method: 'POST', url: /:\/createUploadSession\?/,
+      method: 'POST', url: /:\/createUploadSession$/,
       reply: (call) => (folderIn(call.url) && folderIn(call.url) !== state.folderId ? gone() : json(200, { uploadUrl: UPLOAD })),
     },
     { method: 'PUT', url: UPLOAD, reply: () => json(201, { ...CREATED, parentReference: { id: state.folderId, driveId: state.driveId } }) },

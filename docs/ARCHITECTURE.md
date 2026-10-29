@@ -710,12 +710,17 @@ already has, and nothing on any platform says so. So every backup lists before i
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
-shows them as another device's under the same label. Google Drive allows one name twice, so there two
-copies that take the same number at the same moment can both create it, and discovery, which shows a
-number once, could offer only one of them. So with such a provider every backup lists again after its
-create: a copy that finds another file of its own stream and number removes its own, starts a new stream,
-and makes the backup again within seconds, when its coordinator retries, so each copy's data stays one
-discovery offers, without waiting for that data to change.
+shows them as another device's under the same label. The Windows host asks OneDrive to refuse a taken
+name in the create's request body, where Microsoft's upload-session reference puts that request and
+documents a 409 for a name already taken. Asked only in the request's address, OneDrive replaced the
+existing file when the owner tried it on 2026-10-29, which would let the second of two copies that take
+one number at the same moment replace the first one's backup without either knowing. Google Drive
+allows one name twice, so there two copies that take the same number at the same moment can both
+create it, and discovery, which shows a number once, could offer only one of them. So with such a
+provider every backup lists again after its create: a copy that finds another file of its own stream
+and number removes its own, starts a new stream, and makes the backup again within seconds, when its
+coordinator retries, so each copy's data stays one discovery offers, without waiting for that data to
+change.
 
 **The transport.** Below the protocol is one transport per page, the only way the engine reaches a
 provider, and no token ever crosses it. It is installed through one registration point in the page's
