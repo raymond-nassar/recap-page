@@ -8706,6 +8706,76 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'pending-hash-navigation',
+    title: 'a redraw before hashchange preserves changed addresses and Back entries',
+    async run(page, t) {
+      await open(page, '/#/home');
+      await page.waitForSelector('#view-home:not([hidden])');
+      const changed = await page.evaluate(async () => {
+        const settled = new Promise((resolve) => {
+          addEventListener('hashchange', () => requestAnimationFrame(() => resolve({
+            hash: location.hash,
+            view: document.querySelector('.view:not([hidden])')?.id,
+            focus: document.activeElement?.id,
+          })), { once: true });
+        });
+        location.hash = '#/catalog';
+        window.dispatchEvent(new StorageEvent('storage', { key: 'mrt.list-history.v1' }));
+        const between = {
+          hash: location.hash,
+          view: document.querySelector('.view:not([hidden])')?.id,
+        };
+        return { between, after: await settled };
+      });
+      t.check('a same-task redraw leaves the changed address for hashchange and then focuses Catalog',
+        changed.between.hash === '#/catalog' && changed.between.view === 'view-home'
+        && changed.after.hash === '#/catalog' && changed.after.view === 'view-catalog'
+        && changed.after.focus === 'catalog-h', JSON.stringify(changed));
+
+      // A new document isolates the Back stack from the changed-address case, even on failure.
+      await open(page, '/?race=back#/home');
+      await page.waitForSelector('#view-home:not([hidden])');
+      const initialLength = await page.evaluate(() => history.length);
+      await click(page, '#btn-home-browse');
+      await page.waitForSelector('#view-catalog:not([hidden])');
+      const back = await page.evaluate(async () => {
+        let between;
+        const settled = new Promise((resolve) => {
+          addEventListener('popstate', () => {
+            window.dispatchEvent(new StorageEvent('storage', { key: 'mrt.list-history.v1' }));
+            between = {
+              hash: location.hash,
+              view: document.querySelector('.view:not([hidden])')?.id,
+            };
+          }, { once: true });
+          addEventListener('hashchange', () => requestAnimationFrame(() => resolve({
+            hash: location.hash,
+            view: document.querySelector('.view:not([hidden])')?.id,
+            focus: document.activeElement?.id,
+            length: history.length,
+          })), { once: true });
+        });
+        history.back();
+        return { after: await settled, between };
+      });
+      const keptHome = back.between.hash === '#/home' && back.between.view === 'view-catalog'
+        && back.after.hash === '#/home' && back.after.view === 'view-home'
+        && back.after.focus === 'home-h' && back.after.length === initialLength + 1;
+      t.check('a popstate redraw preserves the Home entry Back reached and then focuses Home',
+        keptHome, JSON.stringify(back));
+      if (keptHome) {
+        await page.evaluate(() => history.forward());
+        await page.waitForFunction(() => location.hash === '#/catalog'
+          && document.activeElement?.id === 'catalog-h');
+        await page.evaluate(() => history.back());
+        await page.waitForFunction(() => location.hash === '#/home'
+          && document.activeElement?.id === 'home-h');
+        t.check('Forward and a second Back retain both original destinations without extra entries',
+          await page.evaluate(() => history.length) === initialLength + 1);
+      }
+    },
+  },
+  {
     id: 'navigation',
     title: 'the address bar tracks the view, and back returns to it',
     async run(page, t) {

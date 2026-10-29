@@ -500,7 +500,7 @@ test('main.js listens for hashchange and acts on the route it reads', () => {
   const main = read('src/js/main.js');
   has(
     main,
-    /addEventListener\('hashchange',[^)]*\(\) => \{\s*const route = parseRoute\(location\.hash\);\s*if \(route\) applyRoute\(route, \{ focus: true,/,
+    /addEventListener\('hashchange',[^)]*\(\) => \{\s*acknowledgedHash = location\.hash;\s*const route = parseRoute\(location\.hash\);\s*if \(route\) applyRoute\(route, \{ focus: true,/,
     'a hashchange handler that reads the route and applies it with focus',
   );
   has(main, /const bootRoute = parseRoute\(location\.hash\)/, 'the boot read of location.hash');
