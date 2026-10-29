@@ -8979,10 +8979,14 @@ const SCENARIOS = [
           }),
         };
       });
+      // The ceiling sits at the count. It was 80 until the owner approved a note naming the three
+      // single-kind backups on 2026-10-28 (#810, stage 3, S3b-8), which added 4 words; #835 brought this
+      // group down from about 200 and asked only that its guidance be roughly halved.
       t.check('Data safety leads with a short transfer summary and keeps its warnings on screen, explanations closed',
-        guidance.summary?.startsWith('Moving to another device:') && guidance.summary.includes('Settings are not included')
+        guidance.summary?.startsWith('Moving to another device:')
+          && guidance.summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.')
           && guidance.warnings.every(Boolean) && guidance.described.every(Boolean) && guidance.closed.every(Boolean)
-          && guidance.words <= 80,
+          && guidance.words <= 84,
         JSON.stringify(guidance));
       t.check('the import draft group still names retained draft source and the backups that leave it out',
         await page.evaluate(() => {

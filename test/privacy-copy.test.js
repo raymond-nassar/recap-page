@@ -817,6 +817,13 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there.');
   assert.equal(cloudDisconnectQuestion({ ...connected, host: 'needs-sign-in' }, false),
     'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there. To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.');
+  // E. The Data safety note, the same in every build, because the complete and cloud backups below it hold
+  // every kind of data and the settings.
+  const html = read('src/index.html');
+  for (const state of STATES) {
+    assert.equal(section(html, '<p class="rail-hint setgroup-note" id="transfer-summary">', '</p>', state),
+      'Moving to another device: download a complete backup and restore it there. The reading data, completion history and import draft backups below each hold one kind of data and no settings.');
+  }
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

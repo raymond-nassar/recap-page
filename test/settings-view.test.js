@@ -286,7 +286,7 @@ test('normal reading, history and draft transfers precede exceptional recovery w
   const summary = sliceElement(VIEW, 'p', openingTags(VIEW, 'p').find((entry) => getAttribute(entry.open, 'id') === 'transfer-summary').start);
   assert.ok(summary.includes('<strong>Moving to another device:</strong>'), summary);
   assert.ok(summary.includes('download a complete backup and restore it there.'), summary);
-  assert.ok(summary.includes('The backups below each hold one kind of data. Settings are not included in them.'), summary);
+  assert.ok(summary.includes('The reading data, completion history and import draft backups below each hold one kind of data and no settings.'), summary);
   assert.match(VIEW, /draft or retained draft source/);
   const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
     .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
