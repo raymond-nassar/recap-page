@@ -85,6 +85,14 @@ async function readBody(req, limit) {
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 
+const UNEXPECTED = 'Cloud backup stopped unexpectedly.';
+// Only this host's own errors carry words written for the page. Anything else, such as a raw Node error
+// naming a file in the person's profile, is said in general words, by status as by every other operation
+// (stage 2 review, S1a finding 4).
+function publicMessage(error, fallback = UNEXPECTED) {
+  return error instanceof ProviderError || error instanceof CloudTokenError ? error.message : fallback;
+}
+
 export function createCloudHost({
   clientText, client = parseCloudClient(clientText),
   env = process.env, platform = process.platform, fetchImpl = globalThis.fetch, spawnImpl,
@@ -156,7 +164,7 @@ export function createCloudHost({
       provider: 'onedrive', state,
       connection: problem ? null : record?.connection ?? null,
       account: problem ? null : record?.account.hint ?? null,
-      message: problem?.message ?? message,
+      message: problem ? publicMessage(problem) : message,
       reason: !problem && record && changed?.connection === record.connection ? changed.reason : null,
       signInExpiresAt: signIn?.expiresAt ?? null,
     };
@@ -225,7 +233,7 @@ export function createCloudHost({
           .catch((error) => {
             // The save after a sign-in meets a restriction the probe could not, should one arrive later.
             if (lastsForHostLife(error)) unavailable = error;
-            if (signIn === job) message = error?.message ?? SIGN_IN_ENDED.failed;
+            if (signIn === job) message = publicMessage(error, SIGN_IN_ENDED.failed);
           })
           .finally(() => { if (signIn === job) signIn = null; });
       }
@@ -460,7 +468,7 @@ export function createCloudHost({
           ok: false,
           error: {
             code: known ? error.code : 'failed',
-            message: known ? error.message : 'Cloud backup stopped unexpectedly.',
+            message: publicMessage(error),
             ...(known && error.retryAfterMs > 0 ? { retryAfterMs: error.retryAfterMs } : {}),
           },
         });

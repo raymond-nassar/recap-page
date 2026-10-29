@@ -1115,6 +1115,46 @@ test('where Windows restricts PowerShell, cloud backup says why, signs nothing i
   assert.ok(new ProviderError('unavailable', 'x', { retryAfterMs: 5 }).retryAfterMs === 5);
 });
 
+// Only the host's own errors carry words written for the page. A raw error from below, such as a file
+// system error naming the token file in the person's profile, reaches status only in general words, as it
+// already did for every other operation (stage 2 review, S1a finding 4).
+test('status says a raw error from the token store or a sign-in in general words, never in its own', async () => {
+  // Assembled at run time, so the source never holds a path inside a user profile for the publication gate to find.
+  const profile = ['C:', 'Users', 'someone', 'AppData', 'Local', 'Recap Page', 'cloud', 'onedrive.v1'].join('\\');
+  const raw = () => Object.assign(new Error(`EPERM: operation not permitted, open ${profile}`), { code: 'EPERM' });
+  const store = memoryStore({ ...RECORD });
+  store.exists = async () => { throw raw(); };
+  const env = host({ store });
+  const api = await hostServer(env.instance);
+  try {
+    const answer = await api.call('status');
+    const { status } = answer.body;
+    assert.deepEqual([status.state, status.message], ['unavailable', 'Cloud backup stopped unexpectedly.']);
+    assert.ok(!answer.text.includes('someone'), 'nothing of the path reaches the page');
+    assert.equal((await api.call('list', { connection: RECORD.connection })).body.error.message, 'Cloud backup stopped unexpectedly.', 'as every other operation says it');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+  const failing = createCloudHost({
+    clientText: CLIENT_TEXT, platform: 'win32', store: memoryStore(), fetchImpl: microsoft().fetchImpl, sessionCheck: async () => true,
+    openUrl: async () => { throw raw(); },
+  });
+  const signing = await hostServer(failing);
+  try {
+    await signing.call('connect');
+    let status = (await signing.call('status')).body.status;
+    for (let tries = 0; status.state === 'signing-in' && tries < 200; tries += 1) {
+      await new Promise((resolve) => { setTimeout(resolve, 10); });
+      status = (await signing.call('status')).body.status;
+    }
+    assert.deepEqual([status.state, status.message], ['not-connected', 'Sign-in stopped unexpectedly.']);
+  } finally {
+    failing.close();
+    await signing.close();
+  }
+});
+
 // The first request to a freshly started host reads the stored sign-in, and a disconnect can land while
 // PowerShell unprotects it. That read used to finish after the disconnect and put the old sign-in back,
 // so the disconnect answered connected and the next refresh saved it again (stage 2 review, M1).
