@@ -1,4 +1,4 @@
-// Marvel Unlimited availability.
+// Historical Marvel Unlimited availability, not access to Marvel Comics.
 //
 // `unlimitedDate` is NOT proof of entitlement:
 //   * absence of a date is not evidence of unavailability;
@@ -23,19 +23,22 @@ export const STATE = {
 };
 
 export const LABELS = {
-  [STATE.UNKNOWN]: 'Availability unknown',
-  [STATE.SCHEDULED]: 'Scheduled',
-  [STATE.EXPECTED]: 'Expected in Unlimited',
-  [STATE.OVERRIDE_AVAILABLE]: 'You marked available',
-  [STATE.OVERRIDE_UNAVAILABLE]: 'You marked unavailable',
+  [STATE.UNKNOWN]: 'No recorded Unlimited date',
+  [STATE.SCHEDULED]: 'Unlimited date: DATE (future)',
+  [STATE.EXPECTED]: 'Unlimited date: DATE (passed)',
+  [STATE.OVERRIDE_AVAILABLE]: 'You marked it available in Unlimited',
+  [STATE.OVERRIDE_UNAVAILABLE]: 'You marked it unavailable in Unlimited',
 };
 
+export const RECORD_HEADING = 'Marvel Unlimited record';
+export const RECORD_NOTE = 'This is a historical record, not availability in Marvel Comics.';
+
 export const SHORT = {
-  [STATE.UNKNOWN]: '?',
-  [STATE.SCHEDULED]: 'soon',
-  [STATE.EXPECTED]: 'MU',
-  [STATE.OVERRIDE_AVAILABLE]: 'MU\u2713',
-  [STATE.OVERRIDE_UNAVAILABLE]: 'no',
+  [STATE.UNKNOWN]: 'MU?',
+  [STATE.SCHEDULED]: 'MU date',
+  [STATE.EXPECTED]: 'MU past',
+  [STATE.OVERRIDE_AVAILABLE]: 'MU yes',
+  [STATE.OVERRIDE_UNAVAILABLE]: 'MU no',
 };
 
 // Local calendar day as YYYY-MM-DD, so comparisons happen in the user's own timezone.
@@ -66,6 +69,5 @@ export function availability(issue, { override, today = localDayString() } = {})
 
 export function describe(issue, opts) {
   const a = availability(issue, opts);
-  if (a.state === STATE.SCHEDULED) return `${LABELS[a.state]} ${a.date}`;
-  return LABELS[a.state];
+  return LABELS[a.state].replace('DATE', a.date);
 }

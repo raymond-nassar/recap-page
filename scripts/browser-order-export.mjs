@@ -131,7 +131,7 @@ export const orderOnlyExport = {
     t.check('mixed official, manual and unresolved positions retain their exact order and labels',
       JSON.stringify(rows.map((row) => [row.issueId ?? null, row.title, row.section])) === JSON.stringify([
         [900001, items[0].title, 'Volume one'], [null, items[1].title, 'Volume one'],
-        [bookId, items[2].title, 'Volume two'], [900003, items[3].title, null],
+        [null, items[2].title, 'Volume two'], [900003, items[3].title, null],
       ]), JSON.stringify(rows));
     t.check('the loaded exact-catalog credit and source URL survive',
       markdown.includes('Source: Synthetic curator') && markdown.includes(sourceUrl)
@@ -167,7 +167,7 @@ export const orderOnlyExport = {
       document.querySelector('#import-new-list').checked = true;
       document.querySelector('#form-import').requestSubmit();
     }, markdown);
-    await page.waitForFunction(() => /Imported 3 issues/.test(document.querySelector('#import-report').textContent));
+    await page.waitForFunction(() => /Imported 2 issues/.test(document.querySelector('#import-report').textContent));
     const imported = await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
       return {
@@ -179,24 +179,28 @@ export const orderOnlyExport = {
     });
     const list = imported.saved.lists[imported.saved.active];
     t.check('fresh import keeps supported identities and sections in their original order',
-      JSON.stringify(list.itemIds) === JSON.stringify([900001, bookId, 900003])
+      JSON.stringify(list.itemIds) === JSON.stringify([900001, 900003])
       && list.collectedIn[900001] === 'Volume one'
-      && list.collectedIn[bookId] === 'Volume two'
+      && !list.collectedIn[bookId]
       && !list.collectedIn[900003], JSON.stringify(list));
-    t.check('fresh import keeps the official detail link and reserved reader identity',
+    t.check('fresh import keeps the official detail link without minting a retired reader identity',
       imported.saved.issues[900003].url === items[3].url
-      && imported.saved.issues[bookId].digitalId === 129648
-      && imported.saved.issues[bookId].source === 'manual');
+      && !imported.saved.issues[bookId]);
     t.check('fresh import contains no read marks, notes, overrides or deferrals',
       Object.keys(imported.saved.read).length === 0 && Object.keys(imported.saved.notes).length === 0
       && Object.keys(imported.saved.overrides).length === 0 && !list.note
       && list.deferredIssueIds.length === 0, JSON.stringify(imported.saved));
-    t.check('the unresolved manual position remains explicitly offered for resolution',
-      imported.unresolved.length === 1 && imported.unresolved[0] === `Find match: ${items[1].title}`
+    t.check('unresolved manual and historical reader positions remain explicitly offered for resolution',
+      JSON.stringify(imported.unresolved) === JSON.stringify([`Find match: ${items[1].title}`, `Find match: ${items[2].title}`])
       && imported.draft.occurrences[1].title === items[1].title
       && imported.draft.occurrences[1].choice === null
       && !imported.draft.occurrences[1].applied
-      && imported.report.includes(items[1].title), imported.report);
+      && imported.draft.occurrences[2].title === items[2].title
+      && imported.draft.occurrences[2].section === 'Volume two'
+      && imported.draft.occurrences[2].read === false
+      && imported.draft.occurrences[2].choice === null
+      && !imported.draft.occurrences[2].applied
+      && imported.report.includes(items[1].title) && imported.report.includes(items[2].title), imported.report);
 
     await page.evaluate(() => {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));

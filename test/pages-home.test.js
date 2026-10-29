@@ -154,13 +154,12 @@ async function copyApprovedSources(root) {
   }
 }
 
-test('the project home distinguishes Android development from the earlier beta', () => {
+test('the project home distinguishes the released Android app from its earlier beta and browser previews', () => {
   const android = html.match(/<section id="android"[\s\S]*?<\/section>/)?.[0] ?? '';
   const copy = android.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  assert.match(copy, /Android in development/);
-  assert.match(copy, /Not available on Google Play/);
-  assert.match(copy, /The beta doesn't include all the features shown here/);
-  assert.match(copy, /Open in browser/);
+  assert.match(copy, /The released app is available on Google Play/);
+  assert.doesNotMatch(copy, /Android in development|Not available on Google Play/);
+  assert.match(copy, /Android's Read uses an installed browser, not the Marvel Unlimited app/);
   assert.match(copy, /No computer needed/);
   assert.match(copy, /Lists and progress are made up/);
   assert.match(copy, /previews made in a desktop browser, not on a phone/);
@@ -170,9 +169,8 @@ test('the project home distinguishes Android development from the earlier beta',
   const features = html.match(/<section id="features"[\s\S]*?<\/section>/)?.[0] ?? '';
   for (const feature of [
     'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
-    'Defer for later', 'notes', 'descriptions', 'unknown, scheduled, or expected',
-    'available or unavailable', 'JSON backup', 'Markdown checklist', 'Share an order',
-    'source credits',
+    'Defer for later', 'notes', 'descriptions', 'Marvel Unlimited record',
+    'historical record, not availability in Marvel Comics', 'JSON backup', 'Markdown checklist', 'Share an order',
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
   assert.match(copy, /Desktop and Android save separately/);
   assert.match(copy, /Restoring replaces the app's saved data/);

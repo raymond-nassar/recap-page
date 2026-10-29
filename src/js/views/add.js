@@ -8,7 +8,7 @@ import {
   setActive,
 } from '../lib/model.js';
 import {
-  digitalIdFromUrl,
+  digitalIdFromUrl, isReaderUrl,
   isSafeMarvelUrl,
   issueIdFromUrl,
   parseChecklist,
@@ -724,7 +724,7 @@ export function createAddView({
     const row = el('div', { class: 'result' });
     const main = el('div', { class: 'result-main' }, [
       el('div', { class: 'result-title', text: entry.title }),
-      el('div', { class: 'result-meta', text: `Source line ${entry.line}, position ${entry.index + 1}: no issue link, search to resolve` }),
+      el('div', { class: 'result-meta', text: `Source line ${entry.line}, position ${entry.index + 1}: ${entry.reason ?? 'no issue link, search to resolve'}` }),
     ]);
     const button = el('button', {
       type: 'button', class: 'btn btn-g', 'aria-label': labelledName('Find match', entry.title),
@@ -991,8 +991,10 @@ export function createAddView({
       manualTitleValidation.fail('A title is required.');
       return;
     }
-    if (url && !isSafeMarvelUrl(url)) {
-      manualUrlValidation.fail('That URL is not a marvel.com address. Leave it blank if you do not have one.');
+    if (url && (!isSafeMarvelUrl(url) || isReaderUrl(url))) {
+      manualUrlValidation.fail(isReaderUrl(url)
+        ? 'Marvel Unlimited reader links are no longer accepted. Use a comic details address or leave it blank.'
+        : 'That URL is not a marvel.com address. Leave it blank if you do not have one.');
       return;
     }
     const wikiId = manualMatch?.marvelIssueId ?? null;
@@ -1054,11 +1056,7 @@ export function createAddView({
       '#manual-report',
       withSaveEducation([
         `Added “${title}”.`,
-        digitalId
-          ? 'Read opens it in Marvel Unlimited.'
-          : wikiId
-            ? 'Read has no Marvel Unlimited link to use, so it opens the issue page on marvel.com instead. Paste the reader address above to change that.'
-            : null,
+        wikiId ? 'Read uses the recorded comic reference. It does not mark the comic read.' : null,
         filled ? `Filled from the wiki: ${filled}.` : null,
         digitalId
           ? 'Availability still shows as unknown, because that is a separate field the metadata snapshot would have supplied.'
@@ -1079,7 +1077,7 @@ export function createAddView({
       field: $('#manual-url'),
       reportId: 'manual-report',
       reportError: (message) => notify('#manual-report', message, 'error'),
-      invalidMessage: 'Enter a complete marvel.com or Marvel Unlimited address, or leave it blank.',
+      invalidMessage: 'Enter a complete marvel.com comic details address, or leave it blank.',
     });
     for (const config of searches) {
       createBuilder(config);

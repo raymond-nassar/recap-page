@@ -10,10 +10,10 @@ export function listSignature(list) {
   ]) : null;
 }
 
-export function sourceOccurrences(rawText) {
+export function sourceOccurrences(rawText, options) {
   if (typeof rawText !== 'string' || rawText.length > MAX_BACKUP_BYTES
     || new TextEncoder().encode(rawText).length > MAX_BACKUP_BYTES) throw new Error('The import draft source exceeds the 8 MiB limit.');
-  const parsed = parseChecklist(rawText);
+  const parsed = parseChecklist(rawText, options);
   const entries = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
   if (entries.length > MAX_ISSUES || entries.some((entry) => entry.issueId != null
     && (!Number.isSafeInteger(entry.issueId) || entry.issueId === 0))) throw new Error('The import draft has too many source positions or an invalid comic identity.');
@@ -47,18 +47,23 @@ export function validateImportDraft(text) {
   if (typeof draft.rawText !== 'string' || !Array.isArray(draft.occurrences)
     || draft.occurrences.length > MAX_ISSUES) throw new Error('The import draft source is invalid.');
   const source = sourceOccurrences(draft.rawText);
+  const legacySource = sourceOccurrences(draft.rawText, { legacyReaderLinks: true });
   if (!source.length || source.length !== draft.occurrences.length) throw new Error('The import draft source positions do not match.');
   source.forEach((entry, index) => {
     const held = draft.occurrences[index];
     const { choice, applied, ...original } = held;
-    const expected = { ...entry };
-    delete expected.choice;
-    delete expected.applied;
-    if (JSON.stringify(original) !== JSON.stringify(expected)
+    const matchesSource = (candidate) => {
+      const expected = { ...candidate };
+      delete expected.choice;
+      delete expected.applied;
+      return JSON.stringify(original) === JSON.stringify(expected);
+    };
+    const originalEntry = matchesSource(entry) ? entry : legacySource[index];
+    if (!matchesSource(originalEntry)
       || typeof applied !== 'boolean') throw new Error('The import draft source was changed.');
     if (choice !== null) {
       const normalized = normalizeIssue(choice);
-      if (entry.issueId != null || !normalized || normalized.issueId <= 0
+      if (originalEntry.issueId != null || !normalized || normalized.issueId <= 0
         || JSON.stringify(choice) !== JSON.stringify(normalized)) throw new Error('The import draft has an invalid selected comic.');
     }
   });

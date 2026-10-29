@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   ttlFor, isExpired, selectEvictions, cacheKey, sizeOf, TTL, DEFAULT_BUDGET_BYTES,
 } from '../src/js/lib/cachePolicy.js';
-import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable } from '../src/js/reader.js';
+import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable, openIssue } from '../src/js/reader.js';
 import {
   digitalIdFromUrl, parseChecklist, readerIssueId,
 } from '../src/js/lib/markdown.js';
@@ -120,6 +120,45 @@ test('the default budget is a real cap, not unlimited', () => {
 });
 
 // ------------------------------------------------------------------ reader links
+
+test('Read snapshots the device-local December 7 cutoff synchronously before opening a fresh tab', () => {
+  const priorWindow = globalThis.window;
+  const opened = [];
+  globalThis.window = { open: (...args) => { opened.push(args); return null; } };
+  try {
+    for (const [now, destination, target] of [
+      [new Date(2026, 11, 6, 23, 59, 59, 999), 'unlimited', 'reader'],
+      [new Date(2026, 11, 7, 0, 0, 0, 0), 'comics', 'comics'],
+      [new Date(2027, 0, 1), 'comics', 'comics'],
+    ]) {
+      const result = openIssue({ issueId: 52447, digitalId: 38164 }, { origin: 'http://example.test', now });
+      assert.equal(result.target, target);
+      const [url, frame, features] = opened.at(-1);
+      assert.equal(new URL(url).searchParams.get('r'), destination);
+      assert.equal(frame, '_blank');
+      assert.equal(features, 'noopener');
+      assert.equal(result.ok, true, 'noopener null is not a blocked-popup observation');
+    }
+    assert.equal(opened.length, 3);
+  } finally {
+    if (priorWindow === undefined) delete globalThis.window;
+    else globalThis.window = priorWindow;
+  }
+});
+
+test('the cutoff reads local calendar parts, not UTC or network time, and retains legacy reference bytes', () => {
+  const localClock = (day) => ({
+    getFullYear: () => 2026, getMonth: () => 11, getDate: () => day,
+    toISOString: () => assert.fail('UTC must not choose the local cutoff'),
+    valueOf: () => assert.fail('No implicit instant comparison'),
+  });
+  for (const [day, expected] of [[6, 'unlimited'], [7, 'comics']]) {
+    const url = new URL(launchUrl({ issueId: -7, digitalId: 129648 }, 'http://example.test', { now: localClock(day) }));
+    assert.equal(url.searchParams.get('r'), expected);
+    assert.equal(url.searchParams.get('d'), '129648');
+    assert.equal(url.searchParams.has('i'), false);
+  }
+});
 
 test('the reader URL is the hash form the live reader actually uses', () => {
   assert.equal(readerUrl(38164), `${READER_PREFIX}38164`);
@@ -270,11 +309,11 @@ test('a hand-added issue keeps its pasted book id and launches at the reader', (
   assert.equal(readerUrl(stored.digitalId), 'https://read.marvel.com/#/book/129648');
 });
 
-test('a reader checklist entry keeps its reserved identity and enters no provider queue', () => {
+test('a saved legacy reader entry keeps its reserved identity and enters no provider queue', () => {
   const parsed = parseChecklist([
     '## Ghost-Spider',
     '- [x] [All-New Spider-Gwen: The Ghost-Spider (2026) #9](https://read.marvel.com/#/book/129648/page/4)',
-  ].join('\n'));
+  ].join('\n'), { legacyReaderLinks: true });
   const entry = parsed.entries[0];
   const staged = stageChecklistEntry(entry);
 

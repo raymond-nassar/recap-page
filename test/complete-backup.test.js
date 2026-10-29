@@ -6,6 +6,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash, webcrypto } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import {
   COMPLETE_BACKUP_FORMAT, COMPLETE_BACKUP_VERSION, MAX_COMPLETE_BACKUP_BYTES, CompleteBackupError,
   captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan,
@@ -21,6 +22,50 @@ import { availability } from '../src/js/lib/availability.js';
 
 const crypto = { cryptoProvider: webcrypto };
 const API_BASE = 'https://metadata.example.test/v1';
+const historicalBackups = JSON.parse(readFileSync(new URL('./fixtures/historical-reader-complete-backups.json', import.meta.url))).fixtures;
+
+test('complete backups from before reader-link withdrawal parse with byte-identical portable content', async () => {
+  for (const fixture of historicalBackups) {
+    const expected = JSON.parse(fixture.text);
+    const parsed = await parseCompleteBackup(fixture.text, crypto);
+    assert.deepEqual(JSON.parse(JSON.stringify(parsed)), expected, fixture.name);
+    assert.equal((await createCompleteBackup(parsed.components, crypto)).text, fixture.text, 'the complete file remains byte-identical');
+  }
+});
+
+test('complete backup capture preserves installed historical reader-link drafts and their digest', async () => {
+  for (const fixture of historicalBackups) {
+    const expected = JSON.parse(fixture.text);
+    const map = new Map([
+      [KEY, JSON.stringify(expected.components.reader)],
+      [IMPORT_DRAFT_KEY, JSON.stringify(fixture.draft)],
+    ]);
+    const storage = { getItem: (key) => map.get(key) ?? null };
+    const captured = await captureCompleteBackup({ storage, ...crypto });
+    assert.equal(captured.text, fixture.text, 'capture preserves the baseline portable content and digest');
+  }
+});
+
+test('complete restore prepares historical reader-link drafts without rewriting source or selections', async () => {
+  for (const fixture of historicalBackups) {
+    const prepared = prepareCompleteRestore({
+      backup: await parseCompleteBackup(fixture.text, crypto), storage: { getItem: () => null }, isExclusive: () => true,
+    });
+    const restored = JSON.parse(prepared.owners.at(-1).value);
+    assert.deepEqual(restored.occurrences, fixture.draft.occurrences);
+    assert.equal(restored.rawText, fixture.draft.rawText);
+    assert.equal(restored.paused, true);
+    assert.equal(restored.pending, null);
+    assert.equal(restored.readerToken, null);
+    const current = sourceOccurrences(fixture.draft.rawText);
+    assert.ok(current.every((entry) => entry.issueId == null), 'new pastes still refuse reader links');
+    assert.ok(fixture.draft.occurrences.some((entry) => entry.issueId < 0));
+    if (fixture.name === 'unresolved-reader') {
+      assert.equal(Object.hasOwn(restored.occurrences[0], 'issueId'), false, 'the malformed historical URL remains unresolved');
+      assert.equal(restored.occurrences[0].choice.issueId, 7, 'its explicit selected comic survives');
+    }
+  }
+});
 
 function completeFixture({ created } = {}) {
   let state = createList(createEmptyState(), { id: '__proto__', name: 'Kept identity' });

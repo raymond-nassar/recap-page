@@ -19,6 +19,13 @@ test('draft validator preserves verbatim physical provenance and refuses invalid
   const draft = sample();
   const restored = validateImportDraft(JSON.stringify(draft));
   assert.equal(restored.rawText, draft.rawText);
+  const legacy = sample('- [x] [Saved reader](https://read.marvel.com/#/book/129648)\n- [ ] [Old invalid link](https://read.marvel.com/)');
+  legacy.occurrences = sourceOccurrences(legacy.rawText, { legacyReaderLinks: true });
+  assert.deepEqual(validateImportDraft(JSON.stringify(legacy)), legacy, 'previously saved drafts restore without rewriting identity or provenance');
+  const fresh = sample(legacy.rawText);
+  assert.equal(fresh.occurrences[0].issueId, undefined);
+  assert.equal(fresh.occurrences[0].read, true);
+  assert.deepEqual(validateImportDraft(JSON.stringify(fresh)), fresh);
   assert.deepEqual(restored.occurrences.map((row) => [row.index, row.line]), [[0, 4], [1, 5]]);
   for (const mutate of [
     (value) => { value.version = 2; },

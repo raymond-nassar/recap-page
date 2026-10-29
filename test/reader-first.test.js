@@ -163,7 +163,7 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
 
   events.length = 0;
   for (const [target, said] of [
-    ['reader', `Opening ${issue.title} in Marvel Unlimited in a new tab.`],
+    ['reader', `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`],
     ['page', `Opening the Marvel issue page for ${issue.title} in a new tab.`],
     ['lookup', `Opening ${issue.title} in a new tab and looking up its Unlimited link.`],
   ]) {
@@ -223,19 +223,20 @@ test('reading groups Read and Done together, with comic details and infrequent a
   assert.ok(reading.indexOf('id="hero-primary-actions"') < reading.indexOf('id="btn-hero-description"'));
 });
 
-test('comic details put Read before artwork and technical help, with a separate temporary-link warning', () => {
+test('comic details put Read before artwork and destination help without retired link controls', () => {
   const issue = view('issue');
   const readAt = issue.indexOf('id="btn-issue-read"');
   const artworkAt = issue.indexOf('id="issue-focus-img"');
   const temporaryAt = issue.indexOf('id="reader-link-temporary"');
   const helpAt = issue.indexOf('id="reader-link-help"');
   assert.ok(readAt >= 0 && readAt < artworkAt, 'Read must precede artwork and metadata');
-  assert.ok(temporaryAt > readAt && temporaryAt < artworkAt, 'Active temporary-link context belongs near Read');
+  assert.equal(temporaryAt, -1, 'Retired temporary-link context is absent');
   assert.ok(artworkAt < helpAt);
   const help = disclosure(issue, 'reader-link-help');
-  assert.match(help, /<summary id="reader-link-heading">Trouble opening this comic\?<\/summary>/);
-  for (const id of ['summary', 'edit', 'revert', 'form', 'reportToggle', 'reportPanel', 'reportDisclosure']) {
-    assert.ok(help.includes(`id="reader-link-${id}"`), `${id} must remain in troubleshooting`);
+  assert.match(help, /<summary id="reader-link-heading">Where Read opens<\/summary>/);
+  assert.ok(help.includes('id="reader-link-summary"'));
+  for (const id of ['edit', 'revert', 'form', 'reportToggle', 'reportPanel', 'reportDisclosure']) {
+    assert.ok(!help.includes(`id="reader-link-${id}"`), `${id} must not accept a retired reader link`);
   }
   assert.doesNotMatch(help, /id="reader-link-temporary"/);
   assert.doesNotMatch(help, /id="issue-focus-facts"/);
@@ -380,7 +381,9 @@ test('Coming up Read buttons carry their name once, with no title repeating it',
   // UX-29: the title repeated the accessible name as a description, so it was announced twice.
   const source = read('../src/js/views/reading.js');
   const start = source.indexOf("class: 'tile-read',");
-  const button = source.slice(start, source.indexOf("}, 'Read'),", start));
+  const end = source.indexOf('}, readerAction()),', start);
+  assert.ok(end > start, 'the Coming up Read button must have an explicit boundary');
+  const button = source.slice(start, end);
   assert.notEqual(start, -1, 'the Coming up Read button moved');
   assert.match(button, /'aria-label': readName/);
   assert.doesNotMatch(button, /\btitle:/);

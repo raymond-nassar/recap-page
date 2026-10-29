@@ -5,6 +5,21 @@ import {
   digitalIdFromUrl, readerIssueId, isSafeMarvelUrl, normalizeTitle, resolveUniqueExact, stripInlineMarkdown,
 } from '../src/js/lib/markdown.js';
 
+test('pasted retired reader URLs remain explicit unresolved rows, preserving checklist position and read state', () => {
+  const parsed = parseChecklist([
+    '- [ ] [One](https://www.marvel.com/comics/issue/1/one)',
+    '- [x] [Old reader export](https://read.marvel.com/#/book/129648)',
+    '- [ ] [Two](https://www.marvel.com/comics/issue/2/two)',
+  ].join('\n'));
+  assert.deepEqual(parsed.entries.map((entry) => entry.issueId), [1, 2]);
+  assert.equal(parsed.unresolved.length, 1);
+  assert.equal(parsed.unresolved[0].title, 'Old reader export');
+  assert.equal(parsed.unresolved[0].read, true);
+  assert.equal(parsed.unresolved[0].index, 1);
+  assert.equal(parsed.unresolved[0].url, null);
+  assert.match(parsed.unresolved[0].reason, /reader links are no longer accepted/);
+});
+
 test('parses the upstream checklist format', () => {
   const { entries } = parseChecklist(
     '- [ ] [Secret Warriors (2009) #1](https://www.marvel.com/comics/issue/23648/secret_warriors_2009_1)',
@@ -196,14 +211,14 @@ test('reader book ids map into a stable reserved issue range', () => {
   }
 });
 
-test('reader checklist links resolve with stable identity and no stored detail URL', () => {
+test('the historical draft decoder retains stable reader identity and no stored detail URL', () => {
   const input = [
     '- [x] [Future One](https://read.marvel.com/#/book/129648/page/4)',
     '- [ ] [Future Two](http://read.marvel.com/#/book/1067)',
     '- [ ] [Future One Again](https://read.marvel.com/#/book/129648)',
   ].join('\n');
-  const first = parseChecklist(input);
-  const second = parseChecklist(input);
+  const first = parseChecklist(input, { legacyReaderLinks: true });
+  const second = parseChecklist(input, { legacyReaderLinks: true });
 
   assert.equal(first.unresolved.length, 0);
   assert.deepEqual(
@@ -247,7 +262,7 @@ test('serialize then parse is lossless for id, title and read state', () => {
   );
 });
 
-test('reader entries round-trip through a canonical URL with read and section state', () => {
+test('legacy reader exports retain read and section state while fresh pastes require review', () => {
   const digitalId = 129648;
   const issueId = readerIssueId(digitalId);
   const md = serializeChecklist({
@@ -265,8 +280,10 @@ test('reader entries round-trip through a canonical URL with read and section st
   assert.match(md, /\(https:\/\/read\.marvel\.com\/#\/book\/129648\)/);
   assert.doesNotMatch(md, /comics\/issue\/999/, 'canonical reader export must outrank a stray detail URL');
   const { entries, unresolved } = parseChecklist(md);
-  assert.equal(unresolved.length, 0);
-  assert.deepEqual(entries, [{
+  assert.equal(entries.length, 0);
+  assert.equal(unresolved.length, 1);
+  assert.deepEqual([unresolved[0].read, unresolved[0].section, unresolved[0].index], [true, 'Ghost-Spider', 0]);
+  assert.deepEqual(parseChecklist(md, { legacyReaderLinks: true }).entries, [{
     issueId,
     title: 'All-New Spider-Gwen: The Ghost-Spider (2026) #9',
     url: null,

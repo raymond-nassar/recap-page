@@ -101,7 +101,7 @@ export function isSafeMarvelUrl(url) {
 // serializeChecklist writes the list's own name as `# name`, so treating it as a section would
 // put every issue in one section named after the list. An order with no sub-headings, which is
 // every order vendored before trade orders existed, reports `section: null` throughout.
-export function parseChecklist(text) {
+export function parseChecklist(text, { legacyReaderLinks = false } = {}) {
   const entries = [];
   const unresolved = [];
   const headings = [];
@@ -188,7 +188,7 @@ export function parseChecklist(text) {
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
         ...(identified.identityEvidenceKind ? { identityEvidenceKind: identified.identityEvidenceKind } : {}),
       });
-    } else if (digitalId != null) {
+    } else if (digitalId != null && legacyReaderLinks) {
       entries.push({
         issueId: readerIssueId(digitalId), title, url: null, read, index: at, section, digitalId,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
@@ -196,7 +196,8 @@ export function parseChecklist(text) {
     } else {
       // A title we could not map to a Marvel issue id. Never silently dropped.
       unresolved.push({
-        title, url: url && isSafeMarvelUrl(url) ? url : null, read, index: at, section,
+        title, url: url && isSafeMarvelUrl(url) && (legacyReaderLinks || !isReaderUrl(url)) ? url : null, read, index: at, section,
+        ...(!legacyReaderLinks && isReaderUrl(url) ? { reason: 'Marvel Unlimited reader links are no longer accepted. Find the comic by title to review a match.' } : {}),
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
       });
     }
@@ -205,6 +206,14 @@ export function parseChecklist(text) {
   return {
     entries, unresolved, headings, sourcePositions,
   };
+}
+
+export function isReaderUrl(value) {
+  try {
+    return new URL(value).hostname.toLowerCase() === 'read.marvel.com';
+  } catch {
+    return false;
+  }
 }
 
 // Plain title list: one per line, optional leading bullet or checkbox.

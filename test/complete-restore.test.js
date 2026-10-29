@@ -213,6 +213,26 @@ function environment(entries = localEntries()) {
 
 const priorOf = (env) => Object.fromEntries(RESTORE_KEYS.map((key) => [key, env.storage.map.get(key) ?? null]));
 
+test('complete restore applies authentic pre-withdrawal reader drafts and keeps their exact source and selections', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { fixtures } = JSON.parse(readFileSync(new URL('./fixtures/historical-reader-complete-backups.json', import.meta.url)));
+  for (const fixture of fixtures) {
+    const env = environment();
+    const priorDraft = env.storage.getItem(IMPORT_DRAFT_KEY);
+    const tab = await env.open();
+    const result = await tab.restore(fixture.text);
+    assert.equal(result.ok, true, result.error);
+    const restored = JSON.parse(env.storage.getItem(IMPORT_DRAFT_KEY));
+    assert.equal(restored.rawText, fixture.draft.rawText);
+    assert.deepEqual(restored.occurrences, fixture.draft.occurrences);
+    assert.ok(restored.previousSources.includes(priorDraft), 'the displaced draft stays recoverable');
+    assert.equal(restored.paused, true);
+    assert.equal(restored.pending, null);
+    assert.equal(restored.readerToken, null);
+    assert.equal(env.journal.record.phase, 'done');
+  }
+});
+
 async function planted(env, { id = 'a'.repeat(64), writes = 0, phase = 'applying', direction = 'forward', finishedAt = null, steps = 0, marker } = {}) {
   const { backup } = await fileBackup();
   const prepared = prepareCompleteRestore({ backup, storage: env.storage, isExclusive: () => true });

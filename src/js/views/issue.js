@@ -1,4 +1,5 @@
 import { labelledName } from '../lib/accname.js';
+import { readerAction, readerContext } from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 import { isDeferred, isRead } from '../lib/model.js';
@@ -121,7 +122,7 @@ export function createIssueView({
     nodes.byline.textContent = presentation.byline;
     paintDescription(issue);
     nodes.facts.replaceChildren(...presentation.facts.map((item) => (
-      fact(item.key, item.value, item.className)
+      fact(item.key, item.value, item.className, item.hint)
     )));
     nodes.note.textContent = context?.note ?? '';
     nodes.note.hidden = !nodes.note.textContent;
@@ -268,11 +269,11 @@ export function createIssueView({
     }
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
-    const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
+    const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = 'Read';
-    nodes.read.setAttribute('aria-label', labelledName('Read',
-      `${currentResult.issue.title} in Marvel Unlimited${temporary ? ' with temporary link' : ''}`));
+    nodes.read.textContent = readerAction();
+    nodes.read.setAttribute('aria-label', labelledName(readerAction(),
+      readerContext(currentResult.issue.title)));
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });

@@ -110,7 +110,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 1. **Secret scanning, and then push protection**, closing BL-089. Push protection depends on secret
    scanning, and asking for push protection on its own is accepted and quietly does nothing, which
-   is the trap recorded at `SECURITY.md:114-116`. Turn on scanning first, confirm its alerts
+   is the trap recorded at `SECURITY.md:117-119`. Turn on scanning first, confirm its alerts
    endpoint stops answering 404, and only then turn on protection.
 2. **Private vulnerability reporting**, closing BL-096. This is the one with a user-visible
    consequence: until it is on, the security policy sends a reporter to a public issue.
@@ -132,7 +132,7 @@ BL-133, so the passages named below no longer say what this table says they said
 | Where | What it asserted before publication | Why publication broke it |
 |---|---|---|
 | `SECURITY.md:34-36` | Private reporting cannot be turned on here, so a reporter should open a public issue asking for a channel and put no detail in it | The fallback stops being the live route once BL-096 is on. The paragraph still needs its other half, for a reporter who does not find the option because it was never enabled |
-| `SECURITY.md:114-116` | Secret scanning is not on and cannot be, with the exact refusal GitHub gives | Both halves of that become wrong once BL-089 is done, including the note that push protection accepts a request and changes nothing |
+| `SECURITY.md:117-119` | Secret scanning is not on and cannot be, with the exact refusal GitHub gives | Both halves of that become wrong once BL-089 is done, including the note that push protection accepts a request and changes nothing |
 | `CONTRIBUTING.md:4` | Nobody outside can see the code, open an issue or send a change, so the guide describes contributing rather than reporting it | The whole paragraph is about a condition that has ended. It also points at the security policy's private route as a parallel case, so the two want editing together |
 | `CODE_OF_CONDUCT.md:43-45` | There is no private channel to the maintainer, and GitHub's private reporting features are unavailable | This one asks for its own revision in its last sentence. Whether a private channel now exists is a decision, not an automatic consequence |
 | `.github/ISSUE_TEMPLATE/config.yml:1-7` | Blank issues must stay on because the security policy's fallback is the live route rather than a spare one | The reason weakens, but read the rest of that comment before acting on it. Turning blank issues off would still leave a reporter with three forms that all ask for detail and no way to ask for a channel |

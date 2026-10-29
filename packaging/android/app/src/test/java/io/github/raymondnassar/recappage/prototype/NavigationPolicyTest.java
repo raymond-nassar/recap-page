@@ -33,6 +33,7 @@ public final class NavigationPolicyTest {
         check(policy.isPopupPage(origin + "/open.html?d=1"), "Popup launch");
         check(policy.isPopupAsset("js/lib/apiBase.js"), "Popup settings dependency");
         check(policy.isPopupAsset("js/lib/issuePageUrl.js"), "Popup issue-page dependency");
+        check(policy.isPopupAsset("js/lib/readerDestination.js"), "Popup shared cutoff dependency");
         check(!policy.isPopupAsset("js/lib/model.js"), "No unrelated popup library module");
         check(policy.isPopupAsset("android/launch.css"), "Package-only popup accessibility stylesheet");
         check(!policy.isPopupAsset("android/bridge.js"), "No popup bridge");
@@ -45,14 +46,18 @@ public final class NavigationPolicyTest {
         check(!policy.isOfficialReader("http://read.marvel.com/"), "No plain HTTP handoff");
         String marvelIssue = "marvelunlimited://issue/drn:src:marvel:unison::prod:"
                 + "03baf094-d1bf-4eb6-8533-0840ebc0d0b9";
-        check(policy.isMarvelIssue(marvelIssue), "Exact Marvel DRN handoff");
+        check(!policy.isOfficialReader(marvelIssue), "Marvel Unlimited app links are retired");
+        check(policy.isOfficialReader("https://marvel.webtoon.com/"), "Exact general Marvel Comics website");
         for (String rejected : new String[] {
                 null, "", "marvelunlimited://reader/38811", marvelIssue.toUpperCase(),
+                "https://marvel.webtoon.com.evil/", "https://user@marvel.webtoon.com/",
+                "https://marvel.webtoon.com:8443/", "https://marvel.webtoon.com/path",
+                "https://marvel.webtoon.com/?x=1", "https://marvel.webtoon.com/#comic",
                 marvelIssue + "/", marvelIssue + "?x=1", marvelIssue + "#fragment",
                 marvelIssue.replace("prod:", "stage:"), marvelIssue.replace("issue/", "user@issue/"),
                 marvelIssue.replace("issue/", "issue:443/"), marvelIssue.replace("drn:", "%64rn:"),
                 marvelIssue.replace("marvelunlimited:", "intent:"), "https://evil.example/" + marvelIssue
-        }) check(!policy.isMarvelIssue(rejected), "Reject app-link bypass: " + rejected);
+        }) check(!policy.isOfficialReader(rejected), "Reject reader handoff bypass: " + rejected);
         check(policy.isPopupAsset("android/launcher.js"), "Android launcher entry permitted");
         check(policy.isPopupAsset("android/reader.js"), "Android reader controller permitted");
         check(!policy.isPopupAsset("android/app.js"), "Popup still has no app entry");

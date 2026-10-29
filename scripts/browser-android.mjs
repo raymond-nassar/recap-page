@@ -2066,18 +2066,17 @@ async function readingSemantics(page) {
     await route(page, 'read');
     check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before, `M01 ${kind}: render preserves saved state`);
   }
-  // Since fbb55575 the fact is named Unlimited availability and its five values carry no short badge.
   for (const [mu, override, label] of [
-    [null, null, 'Availability unknown'], ['2999-01-01', null, 'Scheduled 2999-01-01'],
-    ['2014-02-27', null, 'Expected in Unlimited'], [null, 'available', 'You marked available'],
-    [null, 'unavailable', 'You marked unavailable'],
+    [null, null, 'No recorded Unlimited date'], ['2999-01-01', null, 'Unlimited date: 2999-01-01 (future)'],
+    ['2014-02-27', null, 'Unlimited date: 2014-02-27 (passed)'], [null, 'available', 'You marked it available in Unlimited'],
+    [null, 'unavailable', 'You marked it unavailable in Unlimited'],
   ]) {
     let state = readingState();
     state.issues[readingIssue.issueId].mu = mu;
     if (override) state = setOverride(state, readingIssue.issueId, override);
     await readingReplaceState(page, state);
     await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
-    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'Unlimited availability'),
+    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'Marvel Unlimited recordThis is a historical record, not availability in Marvel Comics.'),
       `M01 ${label}: factual label retained`);
     const geometry = await readingGeometry(page);
     check(!geometry.clipped.length && !geometry.overlaps.length && !geometry.overflow, `M01 ${label}: readable status, not a boolean`);
@@ -4760,8 +4759,9 @@ try {
     const context = await browser.createBrowserContext();
     const page = await context.newPage();
     const errors = [];
-    let lookupMode = 'empty';
     let appLookups = 0;
+    let metadataLookups = 0;
+    const browserIntents = [];
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
@@ -4784,6 +4784,17 @@ try {
     }
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      if (launcherOnly && request.isNavigationRequest() && new URL(request.url()).origin !== origin) {
+        browserIntents.push(request.url());
+        return request.respond({ status: 204 });
+      }
+      if (launcherOnly && request.url() === 'https://marvel.emreparker.com/v1/issues/52986') {
+        metadataLookups++;
+        return request.respond({
+          status: 200, contentType: 'application/json',
+          headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ digitalId: 38811 }),
+        });
+      }
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
       if ((readingComposition || placeholderAx || saveNotice || homeContinue || progressGlance) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
@@ -4797,12 +4808,11 @@ try {
       }
       if (request.url().startsWith('https://bifrost.marvel.com/')) {
         appLookups++;
-        if (lookupMode === 'offline') return request.abort('failed');
         return request.respond({
           status: 200, contentType: 'application/json',
           headers: { 'access-control-allow-origin': '*' },
           body: JSON.stringify({ data: { dynamicQueryOrError: { entity: {
-            contents: lookupMode === 'empty' ? [] : [{ content: { id: 'https://untrusted.example/' } }],
+            contents: [],
           } } } }),
         });
       }
@@ -5122,32 +5132,44 @@ try {
     }
     if (launcherOnly) {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-      for (const mode of ['empty', 'malformed', 'offline']) {
-        lookupMode = mode;
-        await page.goto(`${origin}/open.html?d=38811&i=52986&t=${encodeURIComponent('<img> fixture')}`,
-          { waitUntil: 'networkidle0' });
-        await page.waitForFunction(() => document.querySelector('#p').textContent.includes('Could not resolve'));
-        check(new URL(page.url()).pathname === '/open.html', `${label} ${mode}: failure retains launcher`);
-        check(await page.$eval('#fallback', (node) => node.href === 'https://read.marvel.com/#/book/38811'
-          && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48),
-        `${label} ${mode}: readable browser escape preserves digital identity`);
+      for (const [mode, query, expected, lookups] of [
+        ['before-known', 'd=38811&r=unlimited', 'https://read.marvel.com/#/book/38811', 0],
+        ['before-lookup', 'i=52986&r=unlimited', 'https://read.marvel.com/#/book/38811', 1],
+        ['after-known', 'd=38811&r=comics', 'https://marvel.webtoon.com/', 0],
+        ['after-unknown', 'i=52986&r=comics', 'https://marvel.webtoon.com/', 0],
+      ]) {
+        browserIntents.length = 0;
+        metadataLookups = 0;
+        const handoff = page.waitForRequest((request) => request.isNavigationRequest()
+          && new URL(request.url()).origin !== origin);
+        await page.goto(`${origin}/open.html?${query}&t=${encodeURIComponent('<img> fixture')}`,
+          { waitUntil: 'domcontentloaded' });
+        await handoff;
+        check(new URL(page.url()).pathname === '/open.html', `${label} ${mode}: intercepted handoff retains launcher for observation`);
+        check(await page.$eval('#fallback', (node, url) => node.href === url
+          && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48, expected),
+        `${label} ${mode}: intended full browser URL and accessible fallback are exact`);
+        check(browserIntents.length === 1 && browserIntents[0] === expected,
+          `${label} ${mode}: one intercepted browser navigation preserves the destination ${JSON.stringify(browserIntents)}`);
+        check(metadataLookups === lookups, `${label} ${mode}: metadata lookups ${metadataLookups}, expected ${lookups}`);
         // The shared launch page has offered "Back to Recap Page" since d6a995d1. It is a same-origin
         // route to Home, not a Marvel Unlimited action, so it is allowed only in exactly that form.
         const links = await page.$$eval('a', (nodes) => nodes.filter((node) => node.getClientRects().length)
           .map((node) => ({ id: node.id, href: node.href, target: node.target })));
         check(links.every((link) => link.id === 'fallback'
           || (link.id === 'return' && link.href === `${origin}/#/home` && !link.target)),
-        `${label} ${mode}: no app action without a validated identifier ${JSON.stringify(links)}`);
-        check(await page.$eval('#h', (node) => node.textContent.includes('<img>') && !node.querySelector('img')),
-          `${label} ${mode}: title remains text, not markup`);
+        `${label} ${mode}: no Marvel Unlimited app action ${JSON.stringify(links)}`);
+        check(await page.$eval('#h', (node, pre) => (pre ? node.textContent.includes('<img>')
+          : node.textContent === 'Opening Marvel Comics website') && !node.querySelector('img'), mode.startsWith('before')),
+        `${label} ${mode}: title remains text, not markup`);
         check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),
           `${label} ${mode}: isolated launcher disowns opener and has no main app bridge`);
         check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
           `${label} ${mode}: no progress or schema write`);
       }
-      check(appLookups === 3, `${label}: one on-demand request per attempted issue, no retries`);
+      check(appLookups === 0, `${label}: no Bifrost requests on either side of the cutoff`);
       check(errors.length === 0, `${label}: no uncaught launcher errors`);
-      console.log(`CHECKED ${label}: launcher error/fallback/identity/privacy DOM`);
+      console.log(`CHECKED ${label}: browser-only launcher cutoff/fallback/identity/privacy DOM`);
       await context.close();
       continue;
     }
