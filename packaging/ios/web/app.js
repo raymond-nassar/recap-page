@@ -1,5 +1,7 @@
 import { arrivalHeading, boot } from '../js/main.js';
 import { wireMobileUi } from '../mobile/mobile-ui.js';
+import { setDownloadHandler } from '../js/lib/download.js';
+import { createIosBridge } from './bridge.js';
 
 const report = document.createElement('p');
 report.id = 'ios-report';
@@ -8,6 +10,23 @@ report.setAttribute('role', 'status');
 report.setAttribute('aria-live', 'polite');
 report.hidden = true;
 document.querySelector('.wrap').prepend(report);
+
+window.addEventListener('recapios:external-open', (event) => {
+  report.hidden = false;
+  report.textContent = event.detail?.status === 'opened'
+    ? 'Opening the link in your browser.'
+    : 'The link could not be opened. Check your browser and try again.';
+});
+
+const downloadBridge = createIosBridge({
+  host: window,
+  native: window.webkit?.messageHandlers?.recap,
+  report: (message) => {
+    report.hidden = false;
+    report.textContent = message;
+  },
+});
+setDownloadHandler(downloadBridge.save);
 
 // iOS can end a web view's content process while the app is in the background. The shell then
 // reloads the page with this flag set before any page script runs, so the reader learns why the page

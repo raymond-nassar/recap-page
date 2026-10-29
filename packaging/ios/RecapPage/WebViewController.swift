@@ -2,11 +2,14 @@ import UIKit
 import WebKit
 
 /// The app's one screen: the shared web app in a web view, at its permanent origin.
-final class WebViewController: UIViewController {
+final class WebViewController: UIViewController, WKUIDelegate {
     private(set) var webView: WKWebView?
     private var policy: NavigationPolicy?
     private var coordinator: NavigationCoordinator?
+    private var bridge: IosBridgeHandler?
     private var appPage: URL?
+    private var pendingReadSheets: [ReadSheetController] = []
+    private var presentedReadSheet: ReadSheetController?
     /// Set when iOS ended the page's content process, until the reloaded page has been told.
     private(set) var restartNoticePending = false
 
@@ -26,7 +29,24 @@ final class WebViewController: UIViewController {
             return
         }
         let policy = NavigationPolicy(config: assets.config)
-        let webView = WKWebView(frame: .zero, configuration: WebViewFactory.configuration(assets: assets))
+        let bridge = IosBridgeHandler(policy: policy, presenter: self)
+        let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
+        #if DEBUG
+        if DebugSupport.seedsRestoreTest {
+            configuration.userContentController.addUserScript(WKUserScript(
+                source: DebugSupport.restoreTestSeedScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        if DebugSupport.seedsUnreadableRecovery {
+            configuration.userContentController.addUserScript(WKUserScript(
+                source: DebugSupport.unreadableRecoveryScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        #endif
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        WebViewFactory.configure(webView)
         webView.isOpaque = false
         webView.backgroundColor = .recapPageBackground
         webView.scrollView.backgroundColor = .recapPageBackground
@@ -44,10 +64,21 @@ final class WebViewController: UIViewController {
         ])
         let coordinator = NavigationCoordinator(policy: policy, controller: self)
         webView.navigationDelegate = coordinator
+        webView.uiDelegate = self
         self.webView = webView
         self.policy = policy
         self.coordinator = coordinator
+        self.bridge = bridge
         appPage = assets.appPageURL
+        #if DEBUG
+        DebugSupport.prepareHandOffRecorder(in: view)
+        if DebugSupport.readHandoffTestEnabled {
+            configuration.userContentController.addUserScript(WKUserScript(
+                source: DebugSupport.readHandoffTestScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        #endif
         startLoading()
     }
 
@@ -73,8 +104,104 @@ final class WebViewController: UIViewController {
         webView.load(URLRequest(url: appPage))
     }
 
-    func open(externally url: URL) {
-        UIApplication.shared.open(url)
+    func pageWillStartNavigation() {
+        bridge?.pageWillEnd()
+    }
+
+    func open(externally url: URL, completion: ((Bool) -> Void)? = nil) {
+        #if DEBUG
+        if DebugSupport.recordsHandOffs {
+            DebugSupport.recordHandOff(url)
+            reportExternalOpen(success: true)
+            completion?(true)
+            return
+        }
+        #endif
+        UIApplication.shared.open(url) { [weak self] success in
+            Task { @MainActor in
+                self?.reportExternalOpen(success: success)
+                completion?(success)
+            }
+        }
+    }
+
+    func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        guard webView === self.webView,
+              navigationAction.targetFrame == nil,
+              let url = navigationAction.request.url,
+              let policy,
+              policy.isLauncherPage(url) else { return nil }
+
+        let child = WKWebView(frame: .zero, configuration: configuration)
+        WebViewFactory.configure(child)
+        let sheet = ReadSheetController(
+            webView: child,
+            policy: policy,
+            openExternally: { [weak self] url, completion in
+                guard let self else {
+                    completion(false)
+                    return
+                }
+                self.open(externally: url, completion: completion)
+            },
+            onClose: { [weak self] sheet in self?.closeReadSheet(sheet) })
+        pendingReadSheets.append(sheet)
+        #if DEBUG
+        if DebugSupport.recordsHandOffs {
+            DebugSupport.recordLauncherOpened(child)
+        }
+        #endif
+        presentNextReadSheet()
+        return child
+    }
+
+    private func presentNextReadSheet() {
+        guard presentedReadSheet == nil, !pendingReadSheets.isEmpty, presentedViewController == nil else { return }
+        let sheet = pendingReadSheets.removeFirst()
+        presentedReadSheet = sheet
+        let navigation = UINavigationController(rootViewController: sheet)
+        navigation.modalPresentationStyle = .pageSheet
+        if let presentation = navigation.sheetPresentationController {
+            presentation.detents = [.large()]
+            presentation.prefersGrabberVisible = true
+        }
+        present(navigation, animated: true) {
+            navigation.presentationController?.delegate = sheet
+        }
+    }
+
+    private func closeReadSheet(_ sheet: ReadSheetController) {
+        guard presentedReadSheet === sheet else {
+            pendingReadSheets.removeAll { $0 === sheet }
+            return
+        }
+        guard let navigation = sheet.navigationController,
+              navigation.presentingViewController != nil else {
+            presentedReadSheet = nil
+            presentNextReadSheet()
+            return
+        }
+        navigation.dismiss(animated: true) { [weak self, weak sheet] in
+            guard let self, let sheet, self.presentedReadSheet === sheet else { return }
+            self.presentedReadSheet = nil
+            self.presentNextReadSheet()
+        }
+    }
+
+    private func closeReadSheets() {
+        pendingReadSheets.removeAll()
+        presentedReadSheet?.closeForProcessTermination()
+    }
+
+    private func reportExternalOpen(success: Bool) {
+        let status = success ? "opened" : "failed"
+        webView?.evaluateJavaScript(
+            "window.dispatchEvent(new CustomEvent('recapios:external-open', { detail: { status: '\(status)' } }));")
     }
 
     /// iOS can end the page's content process, most often while the app is in the background. Saved
@@ -82,6 +209,8 @@ final class WebViewController: UIViewController {
     /// started over, as the Android app tells its reader in the same case.
     func contentProcessDidTerminate() {
         restartNoticePending = true
+        bridge?.pageWillEnd()
+        closeReadSheets()
         guard let webView else { return }
         // Set before any script of the page that loads next, which reads it when it starts. The
         // page learns it that way whenever its own module runs: an event sent once the reload had

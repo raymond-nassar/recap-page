@@ -33,7 +33,10 @@ final class TerminationTests: XCTestCase {
         // runtime. The selector is WebKit's own test hook, called only from this test bundle, which no
         // build of the app contains.
         let kill = NSSelectorFromString("_killWebContentProcess")
-        try XCTSkipUnless(webView.responds(to: kill), "this WebKit gives a test no way to end its content process")
+        guard webView.responds(to: kill) else {
+            XCTFail("The pinned WebKit is missing _killWebContentProcess; termination behavior was not exercised.")
+            return
+        }
         _ = webView.perform(kill)
 
         do {

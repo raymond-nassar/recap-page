@@ -10,6 +10,7 @@ import {
   EXCLUDED, IOS_ASSET_DIR, IOS_ICON_PATH, IOS_ICON_SIZE, PHONE_FILES, iosAppIcon, iosIndex, iosLauncher,
   prepareIos, readIosIdentity,
 } from '../scripts/prepare-ios.mjs';
+import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.js';
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
@@ -17,6 +18,7 @@ import { rootTokens } from '../scripts/check-spacing.mjs';
 const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
 const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
+const terminationTests = read('packaging/ios/RecapPageTests/TerminationTests.swift');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
@@ -309,7 +311,7 @@ function debugLines(text) {
 // shipped binary is a use of non-public API, so the dynamic call and the private name are each held
 // to Debug wherever they appear.
 const DEBUG_ONLY = [
-  ['a Debug-only surface', /DebugSupport|RECAP_PROBE|RECAP_ISOLATE|XCTest/],
+  ['a Debug-only surface', /DebugSupport|RECAP_PROBE|RECAP_ISOLATE|RECAP_IOS_|XCTest/],
   ['a method called by name', /\bNSSelectorFromString\b|\bperform\s*\(/],
   ['a private selector name', /"_[A-Za-z_][\w:]*"/],
 ];
@@ -363,6 +365,11 @@ test('the Swift code reaches WebKit only through methods iOS 18 has', async () =
   assert.ok(objectiveC >= 2, `found ${objectiveC} Objective-C calls into the page, so this would barely check`);
 });
 
+test('the termination test fails visibly if the pinned WebKit hook is absent', () => {
+  assert.match(terminationTests, /guard webView\.responds\(to: kill\) else \{\s*XCTFail\("The pinned WebKit is missing _killWebContentProcess; termination behavior was not exercised\."\)\s*return\s*\}/);
+  assert.doesNotMatch(terminationTests, /XCTSkip(?:Unless|If)/);
+});
+
 test('the iOS overlay names only shared design tokens, never a raw color', () => {
   const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
@@ -387,4 +394,91 @@ test('the capacity probe lives where the unit test that runs it looks', () => {
   const probe = read('packaging/ios/probes/capacity.js');
   assert.match(probe, /^window\.recapCapacityProbe = async function recapCapacityProbe\(/m);
   assert.match(testSource, /ownerBytes = 1183 \* 1024/);
+});
+
+test('iOS export validation mirrors Android for bounded text files and basenames', () => {
+  const file = { filename: 'backup.json', type: 'application/json', text: 'saved bytes' };
+  assert.doesNotThrow(() => validateIosExport(file));
+  assert.doesNotThrow(() => validateIosExport({ filename: 'reading-list.md', type: 'text/markdown', text: '' }));
+  for (const invalid of [
+    { filename: '../secret.json' }, { filename: 'bad\\name.json' }, { filename: '.json' },
+    { filename: 'backup.html' }, { filename: 'x'.repeat(181) + '.json' },
+    { type: 'image/png' }, { text: null }, { text: '\u00e9'.repeat(17 * 1024 * 1024) },
+  ]) assert.throws(() => validateIosExport({ ...file, ...invalid }));
+});
+
+test('iOS download waits for native confirmation and refuses a second pending export', async () => {
+  let resolveNative;
+  const messages = [];
+  const reports = [];
+  const host = { addEventListener() {} };
+  const bridge = createIosBridge({
+    host,
+    native: { postMessage: (message) => { messages.push(message); return new Promise((resolve) => { resolveNative = resolve; }); } },
+    report: (message) => reports.push(message),
+  });
+  let settled = false;
+  const result = bridge.save({ filename: 'backup.json', type: 'application/json', text: '{"kept":true}' })
+    .then((value) => { settled = true; return value; });
+  assert.deepEqual(messages, [{
+    v: 1, kind: 'save', id: 'save-1', filename: 'backup.json', type: 'application/json', text: '{"kept":true}',
+  }]);
+  assert.equal(await bridge.save({ filename: 'second.json', type: 'application/json', text: '{}' }), false);
+  assert.equal(messages.length, 1);
+  assert.equal(settled, false, 'a picker request is not a saved file');
+  resolveNative({ v: 1, kind: 'save-result', id: 'save-1', status: 'saved' });
+  assert.equal(await result, true);
+  assert.match(reports.at(-1), /saved to the location you chose/);
+});
+
+test('the shipping iOS web view installs a reply-capable download handler', () => {
+  const factory = appSource('WebViewFactory');
+  const controller = appSource('WebViewController');
+  const handler = appSource('IosBridgeHandler');
+  assert.match(factory, /addScriptMessageHandler\(\s*bridgeHandler,\s*contentWorld:\s*\.page,\s*name:\s*IosBridgeHandler\.name/s);
+  assert.match(controller, /IosBridgeHandler\(policy:\s*policy,\s*presenter:\s*self\)/);
+  assert.match(handler, /WKScriptMessageHandlerWithReply/);
+  assert.match(handler, /isTrustedPage\(/);
+  assert.match(handler, /UIDocumentPickerViewController\(forExporting:\s*\[fileURL\],\s*asCopy:\s*true\)/);
+  assert.match(handler, /case \.cancelled: status = "cancelled"/);
+});
+
+test('the Read child is guarded before its launcher can navigate', () => {
+  const controller = appSource('WebViewController');
+  const childCreation = controller.slice(controller.indexOf('    func webView('), controller.indexOf('    private func presentNextReadSheet()'));
+  const sheet = appSource('ReadSheetController');
+  const initializer = sheet.slice(sheet.indexOf('    init('), sheet.indexOf('    required init'));
+  assert.match(childCreation, /let child = WKWebView\(frame: \.zero, configuration: configuration\)/);
+  assert.match(initializer, /super\.init[\s\S]*webView\.navigationDelegate = self[\s\S]*webView\.uiDelegate = self/);
+  assert.match(sheet, /policy\.decideLauncher\(/);
+  assert.match(sheet, /case \.openExternally:[\s\S]*return \.cancel/);
+  assert.match(sheet, /WebViewFactory\.configure\(webView\)/);
+});
+
+test('iOS cancellation, failure, malformed replies and teardown never confirm an export', async () => {
+  for (const status of ['cancelled', 'failed', 'unrecognized']) {
+    const reports = [];
+    const bridge = createIosBridge({
+      host: { addEventListener() {} },
+      native: { postMessage: async ({ id }) => ({ v: 1, kind: 'save-result', id, status, message: 'Provider unavailable.' }) },
+      report: (message) => reports.push(message),
+    });
+    assert.equal(await bridge.save({ filename: 'backup.json', type: 'application/json', text: '{}' }), false);
+    assert.match(reports.at(-1), /cancelled|not confirmed saved/);
+  }
+
+  let resolveNative;
+  let pagehide;
+  const reports = [];
+  const bridge = createIosBridge({
+    host: { addEventListener: (name, listener) => { if (name === 'pagehide') pagehide = listener; } },
+    native: { postMessage: () => new Promise((resolve) => { resolveNative = resolve; }) },
+    report: (message) => reports.push(message),
+  });
+  const result = bridge.save({ filename: 'backup.json', type: 'application/json', text: '{}' });
+  pagehide();
+  assert.equal(await result, false);
+  resolveNative({ v: 1, kind: 'save-result', id: 'save-1', status: 'saved' });
+  await Promise.resolve();
+  assert.match(reports.at(-1), /interrupted|not confirmed saved/);
 });

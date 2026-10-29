@@ -85,17 +85,32 @@ test('the iOS workflow runs on every pull request with no path filter, on pushes
   const triggers = block('on').split('\n').filter((line) => line.trim() && !/^\s*#/.test(line));
   assert.deepEqual(triggers.filter((line) => /^ {2}\S/.test(line)).map((line) => line.trim()),
     ['pull_request:', 'push:', 'workflow_dispatch:']);
-  assert.deepEqual(triggers.filter((line) => /^ {4}\S/.test(line)).map((line) => line.trim()), ['branches: [main]']);
+  assert.deepEqual(triggers.filter((line) => /^ {4}\S/.test(line)).map((line) => line.trim()),
+    ['branches: [main]', 'inputs:']);
   assert.doesNotMatch(triggers.join('\n'), /paths|paths-ignore|branches-ignore|types:/);
 });
 
 test('the iOS workflow reads the repository and nothing more: no secret, no environment and no signing', () => {
   assert.equal(block('permissions').trim(), 'contents: read');
   assert.doesNotMatch(workflow, /secrets\.|\benvironment:|id-token|allowProvisioningUpdates|exportArchive|\barchive\b|authenticationKey/);
-  const builds = [...workflow.matchAll(/xcodebuild (?:build-for-testing|test-without-building)[\s\S]*?CODE_SIGNING_ALLOWED=NO/g)];
-  assert.equal(builds.length, [...workflow.matchAll(/xcodebuild (?:build-for-testing|test-without-building)/g)].length);
-  assert.equal(builds.length, 4, 'each job builds once and tests once, unsigned');
+  const builds = [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)[\s\S]*?CODE_SIGNING_ALLOWED=NO/g)];
+  assert.equal(builds.length, [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)/g)].length);
+  assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 2, 'each job builds once');
+  assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
+    'the newest runtime compiles the Release configuration');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 3,
+    'each job tests once, with one additional opt-in CORS test');
+  assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
+    /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
+});
+
+test('live metadata CORS is off by default and runs only from an opted-in manual dispatch', () => {
+  assert.match(workflow,
+    /workflow_dispatch:\n {4}inputs:\n {6}live_cors:\n {8}description: Check whether the live metadata API permits the app origin\n {8}required: false\n {8}type: boolean\n {8}default: false/);
+  assert.match(workflow,
+    /- name: Check live metadata CORS from the app origin\n {8}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.live_cors \}\}\n {8}timeout-minutes: 10\n {8}env:\n {10}RECAP_RUN_LIVE_CORS: '1'/);
+  assert.match(workflow, /-only-testing:RecapPageUITests\/LaunchUITests\/testManualLiveMetadataCorsFromTheAppOrigin/);
 });
 
 test('the newest runtime and the app\'s oldest supported system are both tested, with Xcode chosen by path', () => {

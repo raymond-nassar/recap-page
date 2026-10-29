@@ -62,8 +62,18 @@ struct NavigationPolicy {
     /// follows to the web leaves the app for the system, and everything else is refused.
     func decide(url: URL?, isMainFrame: Bool, opensNewWindow: Bool, userActivated: Bool) -> Decision {
         guard let url else { return .refuse }
+        if opensNewWindow && isLauncherPage(url) { return .allow }
         if isMainFrame && !opensNewWindow && isAppPage(url) { return .allow }
         if userActivated && isWebLink(url) { return .openExternally }
+        return .refuse
+    }
+
+    /// The child web view may display only the bundled launcher. Its validated HTTPS destination
+    /// leaves the app rather than rendering a remote page in the sheet.
+    func decideLauncher(url: URL?, isMainFrame: Bool, opensNewWindow: Bool) -> Decision {
+        guard let url, isMainFrame else { return .refuse }
+        if !opensNewWindow && isLauncherPage(url) { return .allow }
+        if isWebLink(url) { return .openExternally }
         return .refuse
     }
 }

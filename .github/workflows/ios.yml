@@ -9,6 +9,12 @@ on:
     branches: [main]
   # The recovery path, as in CI: once this file is on main, a result for any ref can be asked for.
   workflow_dispatch:
+    inputs:
+      live_cors:
+        description: Check whether the live metadata API permits the app origin
+        required: false
+        type: boolean
+        default: false
 
 # The workflow only reads the repository. It signs nothing, uploads nothing to Apple and uses no
 # secret: these are unsigned Simulator builds.
@@ -24,10 +30,10 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 70 minutes between them, and as
-    # in CI the step deadline is the one that should fire, so an overrun reports failure on the step
-    # that ran long rather than cancelled on the job. Generous until this job has runs to measure.
-    timeout-minutes: 75
+    # The backstop for time outside any step. The steps below declare 100 minutes between them, and
+    # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
+    # step that ran long rather than cancelled on the job.
+    timeout-minutes: 110
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -56,6 +62,15 @@ jobs:
         timeout-minutes: 3
         run: node scripts/prepare-ios.mjs
 
+      - name: Build the Release Simulator configuration
+        timeout-minutes: 20
+        run: >-
+          xcodebuild build
+          -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
+          -configuration Release -destination "$DESTINATION"
+          -derivedDataPath "$RUNNER_TEMP/ReleaseDerivedData"
+          CODE_SIGNING_ALLOWED=NO
+
       - name: Build for testing
         timeout-minutes: 20
         run: >-
@@ -73,6 +88,29 @@ jobs:
             -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             -resultBundlePath "$RUNNER_TEMP/RecapPage-newest.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
+
+      - name: Check live metadata CORS from the app origin
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.live_cors }}
+        timeout-minutes: 10
+        env:
+          RECAP_RUN_LIVE_CORS: '1'
+        run: |
+          set +e
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-live-cors.xcresult" \
+            -only-testing:RecapPageUITests/LaunchUITests/testManualLiveMetadataCorsFromTheAppOrigin \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/live-cors.log"
+          status=$?
+          set -e
+          {
+            echo '### Live metadata CORS check'
+            echo "xcodebuild exit code: $status"
+            grep -h 'RECAP_PROBE_RESULT live-metadata-cors' "$RUNNER_TEMP/live-cors.log" | sed 's/^.*RECAP_PROBE_RESULT //' || true
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
 
       # The probes' measurements, where a reader of the run finds them without opening the bundle.
       - name: Summarize the probe results

@@ -33,6 +33,11 @@ final class NavigationCoordinator: NSObject, WKNavigationDelegate {
         controller?.pageDidFinishLoading()
     }
 
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard webView === controller?.webView else { return }
+        controller?.pageWillStartNavigation()
+    }
+
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         controller?.contentProcessDidTerminate()
     }

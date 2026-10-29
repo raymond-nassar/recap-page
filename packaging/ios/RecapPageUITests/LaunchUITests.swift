@@ -8,10 +8,25 @@ final class LaunchUITests: XCTestCase {
     }
 
     @MainActor
-    private func launch(probe: String) -> XCUIApplication {
+    private func launch(
+        probe: String,
+        pickerOutcome: String? = nil,
+        unreadableRecovery: Bool = false,
+        readHandoffTest: Bool = false,
+        recordHandOffs: Bool = false,
+        isolateRequests: Bool = true,
+        liveCorsCheck: Bool = false,
+        restoreTestSeed: Bool = false
+    ) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1"
+        if isolateRequests { app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1" }
         app.launchEnvironment["RECAP_PROBE_SCRIPT"] = probe
+        if let pickerOutcome { app.launchEnvironment["RECAP_IOS_EXPORT_PICKER"] = pickerOutcome }
+        if unreadableRecovery { app.launchEnvironment["RECAP_IOS_UNREADABLE_RECOVERY"] = "1" }
+        if readHandoffTest { app.launchEnvironment["RECAP_IOS_READ_HANDOFF_TEST"] = "1" }
+        if recordHandOffs { app.launchEnvironment["RECAP_IOS_RECORD_HANDOFFS"] = "1" }
+        if liveCorsCheck { app.launchEnvironment["RECAP_IOS_LIVE_CORS_CHECK"] = "1" }
+        if restoreTestSeed { app.launchEnvironment["RECAP_IOS_RESTORE_TEST_SEED"] = "1" }
         app.launch()
         return app
     }
@@ -27,6 +42,24 @@ final class LaunchUITests: XCTestCase {
         XCTAssertFalse(label.hasPrefix("error:"), label)
         let object = try JSONSerialization.jsonObject(with: Data(label.utf8)) as? [String: Any]
         return try XCTUnwrap(object, label)
+    }
+
+    @MainActor
+    private func handOffRecord(of app: XCUIApplication, launches: Int, handoffs: Int, timeout: TimeInterval = 30) throws -> [String: Any] {
+        let element = app.staticTexts["ios-handoff-recorder"]
+        XCTAssertTrue(element.waitForExistence(timeout: timeout), "the hand-off recorder appeared")
+        let predicate = NSPredicate { object, _ in
+            guard let element = object as? XCUIElement,
+                  let data = element.label.data(using: .utf8),
+                  let record = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let recordedLaunches = record["launches"] as? Int,
+                  let recordedHandOffs = record["handoffs"] as? [String] else { return false }
+            return recordedLaunches >= launches && recordedHandOffs.count >= handoffs
+        }
+        let settled = XCTNSPredicateExpectation(predicate: predicate, object: element)
+        XCTAssertEqual(XCTWaiter().wait(for: [settled], timeout: timeout), .completed, "the requested hand-offs completed")
+        let data = try XCTUnwrap(element.label.data(using: .utf8))
+        return try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any], element.label)
     }
 
     /// The same record the unit tests write, so the workflow's summary finds UI test measurements too.
@@ -51,6 +84,16 @@ final class LaunchUITests: XCTestCase {
         XCTAssertEqual(result["home"] as? Bool, true)
         XCTAssertEqual(result["opener"] as? Bool, true, "House of M's card offered Preview")
         XCTAssertEqual(result["previewIssues"] as? Int, 20, "Preview listed all twenty House of M issues")
+        XCTAssertEqual(result["routeRequests"] as? Int, 1, "the route fix handles the first catalog request without a retry")
+        let routeAttempts = try XCTUnwrap(result["routeAttempts"] as? [[String: Any]])
+        XCTAssertFalse(routeAttempts.isEmpty, "at least one catalog route attempt was recorded")
+        for attempt in routeAttempts {
+            XCTAssertNotNil(attempt["address"])
+            XCTAssertNotNil(attempt["branch"])
+            XCTAssertNotNil(attempt["addressAfterRequest"])
+            XCTAssertNotNil(attempt["branchAfterRequest"])
+            XCTAssertNotNil(attempt["replaceStateCalls"] as? [[String: Any]])
+        }
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "preview-with-remote-loads-blocked"
         screenshot.lifetime = .keepAlways
@@ -88,6 +131,132 @@ final class LaunchUITests: XCTestCase {
         XCTAssertEqual(try probeResult(of: reader)["found"] as? String, token)
     }
 
+    @MainActor
+    func testCancelledAndFailedUnreadableDataExportsDoNotAuthorizeStartingFresh() throws {
+        for outcome in ["cancel", "fail"] {
+            let app = launch(
+                probe: Self.recoveryExport,
+                pickerOutcome: outcome,
+                unreadableRecovery: true)
+            let result = try probeResult(of: app)
+            try record("recovery-export-\(outcome)", result)
+            XCTAssertEqual(result["original"] as? String, "{unreadable")
+            XCTAssertEqual(result["after"] as? String, "{unreadable", "the unreadable original remains untouched")
+            XCTAssertEqual(result["blocked"] as? Bool, true, "saving remains paused")
+            XCTAssertEqual(result["confirmationFound"] as? Bool, true, "the attempted fresh start required confirmation")
+            let report = result["exportReport"] as? String ?? ""
+            if outcome == "cancel" {
+                XCTAssertTrue(report.localizedCaseInsensitiveContains("cancelled"), report)
+            } else {
+                XCTAssertTrue(report.localizedCaseInsensitiveContains("not confirmed saved"), report)
+            }
+        }
+    }
+
+    @MainActor
+    func testReadOpensTwoFreshLaunchersAndHandsOffEachResolvedDestination() throws {
+        let app = launch(
+            probe: "return JSON.stringify({ origin: location.origin });",
+            readHandoffTest: true,
+            recordHandOffs: true)
+        let read = app.buttons["Open Read test"]
+        XCTAssertTrue(read.waitForExistence(timeout: 30), "the test Read control appeared")
+
+        for expected in 1...2 {
+            read.tap()
+            XCTAssertTrue(
+                app.buttons["ios-read-sheet-close"].waitForExistence(timeout: 30),
+                "Read launch \(expected) appeared in a sheet with a Close control")
+            _ = try handOffRecord(of: app, launches: expected, handoffs: expected)
+        }
+
+        let result = try handOffRecord(of: app, launches: 2, handoffs: 2)
+        let urls = try XCTUnwrap(result["handoffs"] as? [String])
+        XCTAssertEqual(urls.count, 2)
+        let destinations = try urls.map { value -> URL in
+            let destination = try XCTUnwrap(URL(string: value), value)
+            XCTAssertEqual(destination.scheme, "https")
+            XCTAssertFalse(destination.host?.isEmpty ?? true)
+            return destination
+        }
+        XCTAssertEqual(destinations[0], destinations[1], "the launcher produced the same destination for each tap")
+        try record("read-hand-offs", result)
+    }
+
+    @MainActor
+    func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {
+        let app = launch(
+            probe: "return JSON.stringify({ origin: location.origin });",
+            readHandoffTest: true,
+            recordHandOffs: true)
+        let read = app.buttons["Open failing Read test"]
+        XCTAssertTrue(read.waitForExistence(timeout: 30), "the failing-lookup test Read control appeared")
+        read.tap()
+        XCTAssertTrue(app.staticTexts["Reader lookup failed"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
+        let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
+        let urls = try XCTUnwrap(result["handoffs"] as? [String])
+        XCTAssertEqual(urls.count, 1)
+        XCTAssertEqual(try XCTUnwrap(URL(string: urls[0])).scheme, "https")
+        try record("read-failed-lookup-fallback", result)
+    }
+
+    @MainActor
+    func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen() throws {
+        let app = launch(
+            probe: """
+            document.querySelector('[data-view="about"]').click();
+            await new Promise((resolve) => setTimeout(resolve, 250));
+            return JSON.stringify({ hash: location.hash });
+            """,
+            recordHandOffs: true)
+        XCTAssertTrue(app.links["Comic Book Herald"].waitForExistence(timeout: 30))
+        app.links["Comic Book Herald"].tap()
+        let result = try handOffRecord(of: app, launches: 0, handoffs: 1)
+        let urls = try XCTUnwrap(result["handoffs"] as? [String])
+        XCTAssertEqual(urls.count, 1)
+        XCTAssertEqual(try XCTUnwrap(URL(string: urls[0])).scheme, "https")
+        XCTAssertTrue(app.staticTexts["Opening the link in your browser."].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["About this app"].exists, "the app stayed on its About page")
+        XCTAssertTrue(app.links["Comic Book Herald"].exists, "the original credit link remains in the app")
+        try record("credit-link-hand-off", result)
+    }
+
+    @MainActor
+    func testValidReadingBackupRestoresThroughTheFileInput() throws {
+        let app = launch(
+            probe: Self.validReadingRestore,
+            restoreTestSeed: true)
+        let result = try probeResult(of: app)
+        try record("reading-backup-restore", result)
+        XCTAssertTrue((result["report"] as? String ?? "").contains("Reading data restored"))
+        XCTAssertEqual(result["restoredList"] as? String, "Restored by iOS file chooser")
+    }
+
+    @MainActor
+    func testInvalidReadingBackupDoesNotWrite() throws {
+        let app = launch(
+            probe: Self.invalidReadingRestore,
+            restoreTestSeed: true)
+        let result = try probeResult(of: app)
+        try record("invalid-reading-backup-restore", result)
+        XCTAssertEqual(result["before"] as? String, result["after"] as? String)
+        XCTAssertTrue((result["report"] as? String ?? "").contains("Reading data is unchanged"))
+        XCTAssertEqual(result["dialogOpen"] as? Bool, false)
+    }
+
+    @MainActor
+    func testManualLiveMetadataCorsFromTheAppOrigin() throws {
+        guard ProcessInfo.processInfo.environment["RECAP_RUN_LIVE_CORS"] == "1" else {
+            throw XCTSkip("The live metadata CORS check runs only from an opted-in workflow_dispatch.")
+        }
+        let app = launch(probe: Self.liveCorsProbe, isolateRequests: false, liveCorsCheck: true)
+        let result = try probeResult(of: app)
+        try record("live-metadata-cors", result)
+        XCTAssertEqual(result["origin"] as? String, "recappage://localhost")
+        XCTAssertEqual(result["cors"] as? String, "allowed", String(describing: result))
+    }
+
     private static let homeAndPreview = #"""
     const until = async (check, ms) => {
       const end = Date.now() + ms;
@@ -103,20 +272,41 @@ final class LaunchUITests: XCTestCase {
       return Boolean(view) && !view.hidden;
     }, 30000);
     // A named single list, as the desktop checks open one: the first card in the timeline can open a
-    // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues. The
-    // route is asked for again because on both Simulator runtimes one request went unanswered: a
-    // redraw landing before hashchange can undo one (#961), and the retry goes once that is fixed.
+    // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues. #963
+    // fixes the hash/redraw race that once forced this probe to retry; each attempt records the URL
+    // and any replaceState call, and the UI test requires the first request to succeed.
     const catalogShown = () => {
       const view = document.getElementById('view-catalog');
       return Boolean(view) && !view.hidden;
     };
+    const replaceStateCalls = [];
+    const replaceState = history.replaceState;
+    history.replaceState = function (state, title, url) {
+      replaceStateCalls.push({ address: location.href, branch: location.hash, url: url ?? null });
+      return replaceState.call(this, state, title, url);
+    };
+    const routeAttempts = [];
     let routeRequests = 0;
     const routeEnd = Date.now() + 60000;
     while (!catalogShown() && Date.now() < routeEnd) {
       routeRequests += 1;
+      const replaceStateStart = replaceStateCalls.length;
+      const address = location.href;
+      const branch = location.hash;
       if (location.hash === '#/catalog') window.dispatchEvent(new HashChangeEvent('hashchange'));
       else location.hash = '#/catalog';
+      const addressAfterRequest = location.href;
+      const branchAfterRequest = location.hash;
       await until(catalogShown, 3000);
+      routeAttempts.push({
+        address,
+        branch,
+        addressAfterRequest,
+        branchAfterRequest,
+        addressAfterWait: location.href,
+        branchAfterWait: location.hash,
+        replaceStateCalls: replaceStateCalls.slice(replaceStateStart),
+      });
     }
     const search = catalogShown() ? document.getElementById('catalog-q') : null;
     if (search) {
@@ -132,6 +322,7 @@ final class LaunchUITests: XCTestCase {
       origin: location.origin,
       home: Boolean(home),
       routeRequests,
+      routeAttempts,
       hash: location.hash,
       views: [...document.querySelectorAll('.view:not([hidden])')].map((view) => view.id),
       dialogs: [...document.querySelectorAll('dialog[open]')].map((dialog) => dialog.id),
@@ -141,6 +332,116 @@ final class LaunchUITests: XCTestCase {
       previewOpen: Boolean(document.querySelector('#preview[open]')),
       previewIssues: document.querySelectorAll('#preview[open] .preview-issue-link').length,
       previewText: (body?.textContent ?? '').trim().slice(0, 160),
+    });
+    """#
+
+    private static let recoveryExport = #"""
+    const until = async (check, ms) => {
+      const end = Date.now() + ms;
+      for (;;) {
+        const value = check();
+        if (value) return value;
+        if (Date.now() > end) return null;
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    const original = localStorage.getItem('mrt.state.v2');
+    document.getElementById('btn-download-salvage').click();
+    const exportReport = await until(() => {
+      const text = document.getElementById('ios-report')?.textContent ?? '';
+      return /cancelled|not confirmed saved/i.test(text) ? text : null;
+    }, 30000);
+    document.getElementById('btn-start-fresh').click();
+    const dialog = await until(() => document.querySelector('dialog[open]'), 10000);
+    const confirmation = [...(dialog?.querySelectorAll('button') ?? [])]
+      .find((button) => button.textContent.trim() === 'Start fresh');
+    confirmation?.click();
+    await until(() => !document.querySelector('dialog[open]'), 10000);
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    return JSON.stringify({
+      original,
+      after: localStorage.getItem('mrt.state.v2'),
+      blocked: !document.getElementById('blocked-banner').hidden,
+      exportReport,
+      confirmationFound: Boolean(confirmation),
+    });
+    """#
+
+    private static let liveCorsProbe = #"""
+    let settings = JSON.parse(localStorage.getItem('mrt.settings') || '{}');
+    let base = String(settings.apiBase || 'https://marvel.emreparker.com/v1').replace(/\/+$/, '');
+    const target = new URL(`${base}/issues/6482`);
+    try {
+      const response = await fetch(target.href, {
+        headers: { accept: 'application/json' },
+        cache: 'no-store',
+      });
+      await response.text();
+      return JSON.stringify({ origin: location.origin, cors: 'allowed', status: response.status });
+    } catch (error) {
+      return JSON.stringify({ origin: location.origin, cors: 'blocked', error: error.message });
+    }
+    """#
+
+    private static let validReadingRestore = #"""
+    const until = async (check, ms) => {
+      const end = Date.now() + ms;
+      for (;;) {
+        const value = check();
+        if (value) return value;
+        if (Date.now() > end) throw new Error('Timed out waiting for the reading backup restore');
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    document.querySelector('[data-view="data"]').click();
+    await until(() => !document.getElementById('view-data').hidden, 15000);
+    const model = await import(new URL('./js/lib/model.js', location.href).href);
+    const state = model.createList(model.createEmptyState(), {
+      id: 'ios-picker-restore',
+      name: 'Restored by iOS file chooser',
+    });
+    const file = new File([JSON.stringify(model.exportBackup(state))], 'reading-backup.json', {
+      type: 'application/json',
+    });
+    const transfer = new DataTransfer();
+    transfer.items.add(file);
+    const input = document.getElementById('restore-file');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await until(() => document.getElementById('ask').open, 15000);
+    document.getElementById('ask-ok').click();
+    await until(() => document.getElementById('restore-report').textContent.includes('Reading data restored'), 30000);
+    const stored = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return JSON.stringify({
+      report: document.getElementById('restore-report').textContent,
+      restoredList: stored.lists['ios-picker-restore']?.name ?? null,
+    });
+    """#
+
+    private static let invalidReadingRestore = #"""
+    const until = async (check, ms) => {
+      const end = Date.now() + ms;
+      for (;;) {
+        const value = check();
+        if (value) return value;
+        if (Date.now() > end) throw new Error('Timed out waiting for the invalid-file refusal');
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    document.querySelector('[data-view="data"]').click();
+    await until(() => !document.getElementById('view-data').hidden, 15000);
+    const before = localStorage.getItem('mrt.state.v2');
+    const transfer = new DataTransfer();
+    transfer.items.add(new File(['not a backup'], 'invalid.json', { type: 'application/json' }));
+    const input = document.getElementById('restore-file');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await until(() => document.getElementById('restore-report').textContent.length > 0, 15000);
+    return JSON.stringify({
+      before,
+      after: localStorage.getItem('mrt.state.v2'),
+      report: document.getElementById('restore-report').textContent,
+      dialogOpen: document.getElementById('ask').open,
     });
     """#
 }
