@@ -398,7 +398,6 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
   assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
   assert.match(css, /--ios-text-scale:\s*1\s*;/);
   assert.doesNotMatch(css, /\b(?:font-size|zoom)\s*:/, 'root rem dimensions and page zoom stay unchanged');
-
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
@@ -409,6 +408,13 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
   assert.match(controller, /webView\.leadingAnchor\.constraint\(equalTo:\s*guide\.leadingAnchor\)/);
   assert.match(controller, /webView\.trailingAnchor\.constraint\(equalTo:\s*guide\.trailingAnchor\)/);
   assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
+});
+
+test('the iOS token overlay matches the phone layer root specificity', () => {
+  const phone = read('packaging/android/web/mobile.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const overlay = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.match(phone, /^:root\s*\{/m, 'the phone layer declares its tokens on :root');
+  assert.match(overlay, /^:root\s*\{/m, 'the later iOS overlay must not lose token overrides to :root');
 });
 
 test('the iOS app icon is the web app mark drawn opaque from the same geometry', async () => {

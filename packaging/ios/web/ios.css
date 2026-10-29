@@ -3,7 +3,7 @@
 
 /* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
    would read at two sizes. This keeps the size the page sets in both orientations. */
-html {
+:root {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   --ios-text-scale: 1;

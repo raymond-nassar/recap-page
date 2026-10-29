@@ -102,8 +102,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 2, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 6,
-    'the two unit tests, two iPhone UI suites, the iPad presentation suite and one opt-in CORS test each run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 7,
+    'the two unit tests, two iPhone UI suites, iPad and optional 375-point presentation suites, and one opt-in CORS test each run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -135,7 +135,14 @@ test('the newest runtime and the app\'s oldest supported system are both tested,
 test('the newest runtime checks the 6.9-inch iPhone and the 13-inch iPad presentation matrix', () => {
   const newest = jobSource('newest');
   assert.equal(jobs[0].env.SIMULATOR_NAME, 'iPhone 17 Pro Max');
-  assert.match(newest, /Boot the 13-inch iPad Simulator before building/);
+  assert.match(newest, /Start the 13-inch iPad Simulator boot/);
+  assert.match(newest, /Wait for the 13-inch iPad Simulator after the build/);
+  assert.ok(newest.indexOf('Start the 13-inch iPad Simulator boot') <
+    newest.indexOf('name: Build the Release Simulator configuration'));
+  assert.ok(newest.indexOf('name: Build for testing') <
+    newest.indexOf('Wait for the 13-inch iPad Simulator after the build'));
+  assert.match(newest, /xcrun simctl boot "\$udid" > "\$RUNNER_TEMP\/ipad-boot\.log" 2>&1 &/);
+  assert.match(newest, /xcrun simctl bootstatus "\$IPAD_UDID" -b/);
   assert.match(newest, /entry\.name\.startsWith\("iPad Pro 13-inch"\)/);
   assert.match(newest, /IPAD_DESTINATION=platform=iOS Simulator,id=\$udid/);
   assert.match(newest, /-only-testing:RecapPageUITests\/PresentationUITests/);
@@ -224,8 +231,17 @@ test('both iOS jobs boot and wait for the chosen Simulator before building and k
   }
 });
 
-test('the newest runtime boots the available 13-inch iPad before presentation tests', async () => {
-  const boot = stepScript(jobSource('newest'), 'Boot the 13-inch iPad Simulator before building');
+test('the newest runtime starts iPad boot before building and waits after the build', async () => {
+  const source = jobSource('newest');
+  const start = stepScript(source, 'Start the 13-inch iPad Simulator boot');
+  const wait = stepScript(source, 'Wait for the 13-inch iPad Simulator after the build');
+  assert.ok(source.indexOf('Start the 13-inch iPad Simulator boot') < source.indexOf('name: Build the Release Simulator configuration'));
+  assert.ok(source.indexOf('name: Build for testing') < source.indexOf('Wait for the 13-inch iPad Simulator after the build'));
+  assert.ok(source.indexOf('Wait for the 13-inch iPad Simulator after the build') <
+    source.indexOf('name: Run presentation UI tests on iPad'));
+  assert.match(start, /xcrun simctl boot "\$udid" > "\$RUNNER_TEMP\/ipad-boot\.log" 2>&1 &/);
+  assert.match(wait, /xcrun simctl bootstatus "\$IPAD_UDID" -b/);
+  assert.match(source, /- name: Wait for the 13-inch iPad Simulator after the build\n {8}timeout-minutes: 5/);
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-boot-'));
   try {
     const fixture = {
@@ -247,18 +263,127 @@ test('the newest runtime boots the available 13-inch iPad before presentation te
 }
 `;
     const githubEnv = join(root, 'github-env');
-    const result = await runScript(root, stub + boot, { GITHUB_ENV: githubEnv });
+    const result = await runScript(root, stub + start, { GITHUB_ENV: githubEnv });
     assert.equal(result.status, 0, result.stderr);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'), 'simctl boot newest-ipad\n');
+    assert.equal(await readFile(githubEnv, 'utf8'),
+      'IPAD_UDID=newest-ipad\nIPAD_DESTINATION=platform=iOS Simulator,id=newest-ipad\n');
+    const waited = await runScript(root, stub + wait, { IPAD_UDID: 'newest-ipad' });
+    assert.equal(waited.status, 0, waited.stderr);
     assert.equal(await readFile(join(root, 'calls'), 'utf8'),
       'simctl boot newest-ipad\nsimctl bootstatus newest-ipad -b\n');
-    assert.equal(await readFile(githubEnv, 'utf8'),
-      'IPAD_DESTINATION=platform=iOS Simulator,id=newest-ipad\n');
     await writeFile(join(root, 'devices.json'), JSON.stringify({ devices: {} }));
-    const missing = await runScript(root, stub + boot, { GITHUB_ENV: githubEnv });
+    const missing = await runScript(root, stub + start, { GITHUB_ENV: githubEnv });
     assert.notEqual(missing.status, 0);
     assert.match(missing.stderr, /Requested 13-inch iPad Simulator is not available/);
     assert.equal(await readFile(join(root, 'calls'), 'utf8'),
       'simctl boot newest-ipad\nsimctl bootstatus newest-ipad -b\n');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('the minimum runtime tests 375-point iPhone SE presentation only when available', async () => {
+  const source = jobSource('minimum');
+  const detect = stepScript(source, 'Find the iPhone SE (3rd generation) Simulator');
+  const boot = stepScript(source, 'Boot iPhone SE (3rd generation) Simulator');
+  const wait = stepScript(source, 'Wait for the 375-point iPhone SE Simulator after the build');
+  const test = stepScript(source, 'Run presentation UI tests on iPhone SE (3rd generation)');
+  assert.equal(jobs[1].env.SIMULATOR_NAME, 'iPhone 16e');
+  assert.match(source, /- name: Find the iPhone SE \(3rd generation\) Simulator\n {8}id: iphone-se/);
+  assert.match(source,
+    /- name: Wait for the 375-point iPhone SE Simulator after the build\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+  assert.match(source,
+    /- name: Boot iPhone SE \(3rd generation\) Simulator\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+  assert.match(source,
+    /- name: Boot iPhone SE \(3rd generation\) Simulator\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+  assert.match(source,
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+  assert.ok(source.indexOf('name: Build for testing') < source.indexOf('name: Wait for the 375-point iPhone SE Simulator after the build'));
+  assert.ok(source.indexOf('name: Find the iPhone SE (3rd generation) Simulator') <
+    source.indexOf('name: Boot iPhone SE (3rd generation) Simulator'));
+  assert.match(boot, /xcrun simctl boot "\$IPHONE_375_UDID" > "\$RUNNER_TEMP\/iphone-se-boot\.log" 2>&1 &/);
+  assert.ok(source.indexOf('name: Run the UI tests') < source.indexOf('name: Run presentation UI tests on iPhone SE (3rd generation)'));
+  assert.match(wait, /xcrun simctl bootstatus "\$IPHONE_375_UDID" -b/);
+  assert.match(source, /375-point iPhones are untested/);
+  assert.match(stepScript(source, 'Run the UI tests'), /-destination "\$DESTINATION"/);
+  assert.match(test, /-only-testing:RecapPageUITests\/PresentationUITests/);
+  assert.match(test, /-destination "platform=iOS Simulator,id=\$IPHONE_375_UDID"/);
+  assert.doesNotMatch(test, /-only-testing:RecapPageUITests\s/);
+
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-iphone-se-'));
+  try {
+    const fixture = {
+      devices: {
+        'com.apple.CoreSimulator.SimRuntime.iOS-18-5': [
+          { name: 'iPhone SE (3rd generation)', udid: 'iOS-18-SE3' },
+        ],
+        'com.apple.CoreSimulator.SimRuntime.iOS-26-5': [
+          { name: 'iPhone SE (3rd generation)', udid: 'newest-SE3' },
+        ],
+      },
+    };
+    await writeFile(join(root, 'devices.json'), JSON.stringify(fixture));
+    const stub = `xcrun() {
+  if [ "$*" = "simctl list devices available --json" ]; then
+    cat "$RUNNER_TEMP/devices.json"
+  else
+    printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  fi
+}
+`;
+    const env = {
+      ...jobs[1].env,
+      GITHUB_ENV: join(root, 'github-env'),
+      GITHUB_OUTPUT: join(root, 'github-output'),
+    };
+    const available = await runScript(root, stub + detect, env);
+    assert.equal(available.status, 0, available.stderr);
+    assert.equal(await readFile(env.GITHUB_OUTPUT, 'utf8'), 'available=true\n');
+    assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), 'IPHONE_375_UDID=iOS-18-SE3\nIPHONE_375_AVAILABLE=true\n');
+    const booted = await runScript(root, stub + boot, { IPHONE_375_UDID: 'iOS-18-SE3' });
+    assert.equal(booted.status, 0, booted.stderr);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'), 'simctl boot iOS-18-SE3\n');
+    const waited = await runScript(root, stub + wait, { IPHONE_375_UDID: 'iOS-18-SE3' });
+    assert.equal(waited.status, 0, waited.stderr);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'),
+      'simctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n');
+
+    const tested = await runScript(root, `xcodebuild() {
+  printf '%s\\n' "$*" >> "$RUNNER_TEMP/test-calls"
+  invocation=$(wc -l < "$RUNNER_TEMP/test-calls" | tr -d ' ')
+  case "$invocation" in
+    1) echo '${infrastructure[0]}'; return 65 ;;
+    2) echo passed; return 0 ;;
+    *) return 99 ;;
+  esac
+}
+${test}`, { GITHUB_ENV: env.GITHUB_ENV, IPHONE_375_UDID: 'iOS-18-SE3' });
+    assert.equal(tested.status, 0, tested.stderr + tested.stdout);
+    const calls = (await readFile(join(root, 'test-calls'), 'utf8')).trim().split('\n');
+    assert.equal(calls.length, 2);
+    for (const call of calls) {
+      assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
+      assert.match(call, /-destination platform=iOS Simulator,id=iOS-18-SE3/);
+      assert.doesNotMatch(call, /-only-testing:RecapPageUITests(?:\s|$)/);
+    }
+    assert.match(calls[0], /RecapPage-minimum-iphone-se-ui-1\.xcresult/);
+    assert.match(calls[1], /RecapPage-minimum-iphone-se-ui-2\.xcresult/);
+    assert.equal((tested.stdout.match(/::warning::/g) ?? []).length, 1);
+
+    await writeFile(join(root, 'devices.json'), JSON.stringify({
+      devices: { 'com.apple.CoreSimulator.SimRuntime.iOS-18-5': [] },
+    }));
+    await writeFile(env.GITHUB_OUTPUT, '');
+    await writeFile(env.GITHUB_ENV, '');
+    const unavailable = await runScript(root, stub + detect, env);
+    assert.equal(unavailable.status, 0, unavailable.stderr);
+    assert.equal(await readFile(env.GITHUB_OUTPUT, 'utf8'), 'available=false\n');
+    assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), 'IPHONE_375_AVAILABLE=false\n');
+    assert.match(unavailable.stdout, /375-point iPhones are untested/);
+    assert.equal(await readFile(join(root, 'calls'), 'utf8'),
+      'simctl boot iOS-18-SE3\nsimctl bootstatus iOS-18-SE3 -b\n',
+      'an unavailable device is not booted');
   } finally {
     await rm(root, { recursive: true, force: true });
   }

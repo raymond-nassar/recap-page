@@ -60,6 +60,7 @@ final class PresentationUITests: XCTestCase {
           { name: 'home', id: 'view-home', selector: '[data-view="home"]' },
           { name: 'library', id: 'view-library', selector: '[data-view="library"]' },
           { name: 'search', id: 'view-add', selector: '[data-view="add"]' },
+          { name: 'issue-search', id: 'view-add-search', selector: '[data-view="add-search"]' },
           { name: 'data', id: 'view-data', selector: '[data-view="data"]' },
         ];
         const waitFor = async (condition, name) => {
@@ -118,6 +119,7 @@ final class PresentationUITests: XCTestCase {
         const restartRegion = document.getElementById('ios-report');
         const refreshMonitor = () => { monitor.textContent = JSON.stringify(snapshot('current')); };
         window.addEventListener('resize', refreshMonitor);
+        window.visualViewport?.addEventListener('resize', refreshMonitor);
         new ResizeObserver(refreshMonitor).observe(document.documentElement);
         refreshMonitor();
         const screens = [];
@@ -233,6 +235,7 @@ final class PresentationUITests: XCTestCase {
     func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category)
+            _ = try probeResult(of: app)
             for (name, headingID, nextLink) in [
                 ("home", "home-h", "Library"),
                 ("library", "library-h", "Search"),
@@ -263,13 +266,20 @@ final class PresentationUITests: XCTestCase {
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
             app.buttons["ios-read-sheet-close"].tap()
-            XCTAssertTrue(app.staticTexts["home-h"].waitForExistence(timeout: 30), "closing Read returns to the app")
+            let sheetClosed = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"),
+                object: app.buttons["ios-read-sheet-close"])
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [sheetClosed], timeout: 30),
+                .completed,
+                "closing Read dismisses its sheet")
+            XCTAssertTrue(app.webViews.firstMatch.waitForExistence(timeout: 30), "the app web view remains after closing Read")
             app.terminate()
         }
     }
 
     func testRotationAndKeyboardKeepSearchUsableWithinTheWindow() throws {
-        let app = launch(route: "search")
+        let app = launch(route: "issue-search")
         let result = try probeResult(of: app)
         let initialInsets = try XCTUnwrap(result["safeInsets"] as? [Double])
         XCTAssertTrue(initialInsets.allSatisfy { $0 >= 0 })
@@ -350,7 +360,10 @@ final class PresentationUITests: XCTestCase {
                     return width > 0 && documentWidth <= width
                 },
                 object: monitor)
-            XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 30), .completed, "orientation \(orientation.rawValue) has no horizontal overflow")
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [settled], timeout: 30),
+                .completed,
+                "orientation \(orientation.rawValue) has no horizontal overflow; metrics: \(monitor.label)")
         }
 
         capture(app, named: "t03-final-orientation")

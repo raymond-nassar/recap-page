@@ -30,10 +30,10 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 167 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 170 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 170
+    timeout-minutes: 173
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -57,6 +57,23 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
           node --version
+
+      - name: Start the 13-inch iPad Simulator boot
+        timeout-minutes: 3
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) => runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-"))
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name.startsWith("iPad Pro 13-inch"));
+            if (!device) throw new Error("Requested 13-inch iPad Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid" > "$RUNNER_TEMP/ipad-boot.log" 2>&1 &
+          echo "IPAD_UDID=$udid" >> "$GITHUB_ENV"
+          echo "IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
 
       # Preparation uses Node's standard library alone, so nothing is installed.
       - name: Prepare the bundled web app
@@ -82,23 +99,6 @@ jobs:
           xcrun simctl bootstatus "$udid" -b
           echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
 
-      - name: Boot the 13-inch iPad Simulator before building
-        timeout-minutes: 5
-        run: |
-          udid=$(xcrun simctl list devices available --json | node -e '
-            const fs = require("node:fs");
-            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
-            const runtimes = Object.keys(devices).filter((runtime) =>
-              runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-")
-            ).sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
-            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name.startsWith("iPad Pro 13-inch"));
-            if (!device) throw new Error("Requested 13-inch iPad Simulator is not available");
-            process.stdout.write(device.udid);
-          ')
-          xcrun simctl boot "$udid"
-          xcrun simctl bootstatus "$udid" -b
-          echo "IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
-
       - name: Build the Release Simulator configuration
         timeout-minutes: 20
         run: >-
@@ -115,6 +115,14 @@ jobs:
           -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
           -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
           CODE_SIGNING_ALLOWED=NO
+
+      - name: Wait for the 13-inch iPad Simulator after the build
+        timeout-minutes: 5
+        run: |
+          if ! xcrun simctl bootstatus "$IPAD_UDID" -b; then
+            cat "$RUNNER_TEMP/ipad-boot.log"
+            exit 1
+          fi
 
       - name: Run the unit tests
         timeout-minutes: 12
@@ -247,7 +255,8 @@ jobs:
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
     runs-on: macos-15
-    timeout-minutes: 80
+    # Optional 375-point coverage adds 31 minutes; keep the job deadline outside its 106 step minutes.
+    timeout-minutes: 110
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       SIMULATOR_NAME: iPhone 16e
@@ -270,6 +279,38 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
           node --version
+
+      - name: Find the iPhone SE (3rd generation) Simulator
+        id: iphone-se
+        timeout-minutes: 3
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices)
+              .filter((runtime) =>
+                runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-") &&
+                runtime.endsWith("." + process.env.SIMULATOR_RUNTIME)
+              )
+              .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name === "iPhone SE (3rd generation)");
+            if (device) process.stdout.write(device.udid);
+          ')
+          if [ -z "$udid" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "IPHONE_375_AVAILABLE=false" >> "$GITHUB_ENV"
+            echo "::notice::iPhone SE (3rd generation) is unavailable on the iOS 18 runtime; 375-point iPhones are untested."
+            exit 0
+          fi
+          echo "available=true" >> "$GITHUB_OUTPUT"
+          echo "IPHONE_375_UDID=$udid" >> "$GITHUB_ENV"
+          echo "IPHONE_375_AVAILABLE=true" >> "$GITHUB_ENV"
+
+      - name: Boot iPhone SE (3rd generation) Simulator
+        if: steps.iphone-se.outputs.available == 'true'
+        timeout-minutes: 3
+        run: |
+          xcrun simctl boot "$IPHONE_375_UDID" > "$RUNNER_TEMP/iphone-se-boot.log" 2>&1 &
 
       - name: Prepare the bundled web app
         timeout-minutes: 3
@@ -300,6 +341,15 @@ jobs:
           -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage
           -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
           CODE_SIGNING_ALLOWED=NO
+
+      - name: Wait for the 375-point iPhone SE Simulator after the build
+        if: steps.iphone-se.outputs.available == 'true'
+        timeout-minutes: 5
+        run: |
+          if ! xcrun simctl bootstatus "$IPHONE_375_UDID" -b; then
+            cat "$RUNNER_TEMP/iphone-se-boot.log"
+            exit 1
+          fi
 
       - name: Run the unit tests
         timeout-minutes: 12
@@ -340,12 +390,48 @@ jobs:
             echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
           done
 
+      - name: Run presentation UI tests on iPhone SE (3rd generation)
+        if: steps.iphone-se.outputs.available == 'true'
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-iphone-se-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "platform=iOS Simulator,id=$IPHONE_375_UDID" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests/PresentationUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-iphone-se-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              echo "IPHONE_375_PRESENTATION_PASSED=true" >> "$GITHUB_ENV"
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+              exit 1
+            fi
+            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator"
+          done
+
       - name: Summarize the probe results
         if: ${{ !cancelled() }}
         timeout-minutes: 2
         run: |
           {
             echo '### Probe results on the lowest iOS 18 runtime'
+            if [ "${IPHONE_375_PRESENTATION_PASSED:-false}" = true ]; then
+              echo '375-point iPhone SE (3rd generation): presentation tests passed.'
+            elif [ "${IPHONE_375_AVAILABLE:-false}" = true ]; then
+              echo '375-point iPhone SE (3rd generation): available, but its presentation tests did not pass.'
+            else
+              echo '375-point iPhones are untested because iPhone SE (3rd generation) is unavailable on the iOS 18 runtime.'
+            fi
             echo '```'
             grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/unit-test.log" "$RUNNER_TEMP"/ui-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
             echo '```'
