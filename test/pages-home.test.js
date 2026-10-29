@@ -42,6 +42,7 @@ const workflow = readFileSync(WORKFLOW, 'utf8');
 
 const APP_ORIGIN = 'http://127.0.0.1:8787/';
 const REPOSITORY = 'https://github.com/raymond-nassar/recap-page';
+const PLAY_LISTING = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
 const QUESTION_FORM_URL = `${REPOSITORY}/issues/new?template=project-question.yml`;
 const QUESTION_CONTEXT_LINKS = [
   `${REPOSITORY}#readme`,
@@ -62,8 +63,8 @@ const EXPECTED_HREFS = [
   '#feedback',
   '#getting-started',
   '#android',
+  PLAY_LISTING,
   `${REPOSITORY}/blob/main/docs/ANDROID.md`,
-  `${REPOSITORY}/releases/tag/android-v3.0.1-beta.2`,
   './assets/android-library-preview.png',
   './assets/android-reading-preview.png',
   '#demo',
@@ -72,11 +73,10 @@ const EXPECTED_HREFS = [
   './assets/home-960.png',
   './assets/avengers-disassembled-reading-960.png',
   'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q',
-  `${REPOSITORY}/blob/main/docs/ANDROID_BETA.md`,
+  PLAY_LISTING,
   `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   APP_ORIGIN,
-  `${REPOSITORY}/blob/main/docs/ANDROID_BETA.md#send-back-a-short-report`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
   `${REPOSITORY}/blob/main/SUPPORT.md`,
   '#project-questions',
@@ -154,26 +154,128 @@ async function copyApprovedSources(root) {
   }
 }
 
-test('the project home distinguishes the released Android app from its earlier beta and browser previews', () => {
-  const android = html.match(/<section id="android"[\s\S]*?<\/section>/)?.[0] ?? '';
-  const copy = android.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  assert.match(copy, /The released app is available on Google Play/);
-  assert.doesNotMatch(copy, /Android in development|Not available on Google Play/);
+function plain(source) {
+  return source
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/ ([.,;:!?])/g, '$1')
+    .trim();
+}
+
+function section(id) {
+  return html.match(new RegExp(`<section id="${id}"[\\s\\S]*?<\\/section>`))?.[0] ?? '';
+}
+
+function links(source) {
+  return [...source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].map((match) => {
+    const attrs = attributes(match[1]);
+    return {
+      href: attrs.href,
+      button: (attrs.class ?? '').split(/\s+/).includes('button'),
+      name: plain(match[2]),
+    };
+  });
+}
+
+test('the project home sends Android readers to Google Play and keeps the preview caveats', () => {
+  const gradle = readFileSync(join(ROOT, 'packaging', 'android', 'app', 'build.gradle'), 'utf8');
+  const applicationId = /^\s*applicationId '([\w.]+)'$/m.exec(gradle)?.[1];
+  assert.equal(PLAY_LISTING, `https://play.google.com/store/apps/details?id=${applicationId}`);
+
+  const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
+  assert.deepEqual(links(navigation)[0], { href: '#android', button: false, name: 'Android' });
+
+  const overview = section('overview');
+  assert.match(
+    overview,
+    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p class="platform-status">Available for Windows and Android\. Coming soon for iPhone and iPad\.<\/p>\s*<p class="action-row">/,
+  );
+  assert.deepEqual(links(overview), [
+    { href: '#getting-started', button: true, name: 'Get started' },
+    { href: '#android', button: false, name: 'See the Android app' },
+  ]);
+
+  const android = section('android');
+  const copy = plain(android);
+  assert.deepEqual(links(android).slice(0, 2), [
+    { href: PLAY_LISTING, button: true, name: 'Open Google Play' },
+    { href: `${REPOSITORY}/blob/main/docs/ANDROID.md`, button: false, name: 'About the Android app' },
+  ]);
+  assert.doesNotMatch(copy, /The released app is available on Google Play|Android in development|Not available on Google Play/);
   assert.match(copy, /Android's Read uses an installed browser, not the Marvel Unlimited app/);
   assert.match(copy, /No computer needed/);
-  assert.match(copy, /Lists and progress are made up/);
-  assert.match(copy, /previews made in a desktop browser, not on a phone/);
-  assert.ok(android.includes(`${REPOSITORY}/blob/main/docs/ANDROID.md`));
-  assert.ok(android.includes(`${REPOSITORY}/releases/tag/android-v3.0.1-beta.2`));
-  assert.doesNotMatch(html, /not a native phone app|play\.google\.com\/store|Get it on Google Play/);
-  const features = html.match(/<section id="features"[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.match(
+    copy,
+    /Android previews made in a desktop browser, not on a phone\. Lists and progress are made up; cover art is off\./,
+  );
+  assert.match(copy, /Desktop and Android save separately/);
+  assert.match(copy, /Restoring replaces the app's saved data/);
+
+  assert.doesNotMatch(html, /releases\/tag\/android-|ANDROID_BETA\.md/);
+  assert.doesNotMatch(
+    plain(html),
+    /Try the beta|Android beta|Android preview\b|What we're building|not a native phone app|Get it on Google Play/,
+  );
+
+  const features = section('features');
+  assert.match(features, /<p>On desktop and Android\.<\/p>/);
   for (const feature of [
     'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
     'Defer for later', 'notes', 'descriptions', 'Marvel Unlimited record',
     'historical record, not availability in Marvel Comics', 'JSON backup', 'Markdown checklist', 'Share an order',
   ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
-  assert.match(copy, /Desktop and Android save separately/);
-  assert.match(copy, /Restoring replaces the app's saved data/);
+});
+
+test('Get started offers both app stores and names iPhone and iPad as coming soon', () => {
+  const start = section('getting-started');
+  const cards = [...start.matchAll(/<article class="card route-card">([\s\S]*?)<\/article>/g)]
+    .map((match) => ({
+      name: plain(match[1].match(/<h3>([\s\S]*?)<\/h3>/)?.[1] ?? ''),
+      copy: plain(match[1].match(/<p>([\s\S]*?)<\/p>/)?.[1] ?? ''),
+      links: links(match[1]),
+    }));
+  assert.deepEqual(cards, [
+    {
+      name: 'Windows',
+      copy: 'Install and update through Microsoft Store.',
+      links: [{ href: 'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q', button: true, name: 'Open Microsoft Store' }],
+    },
+    {
+      name: 'Android',
+      copy: 'Android 8 or later, with an up-to-date Android System WebView.',
+      links: [{ href: PLAY_LISTING, button: true, name: 'Open Google Play' }],
+    },
+    {
+      name: 'Windows download',
+      copy: 'Unzip, then run Start on Windows.cmd.',
+      links: [{
+        href: `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
+        button: false,
+        name: 'Download for Windows',
+      }],
+    },
+    {
+      name: 'Run from source',
+      copy: 'Requires Node.js 20 or newer.',
+      links: [{ href: `${REPOSITORY}/blob/main/docs/RUNNING.md`, button: false, name: 'Source setup guide' }],
+    },
+    { name: 'iPhone and iPad', copy: 'Coming soon.', links: [] },
+  ]);
+  assert.match(
+    plain(start.slice(start.indexOf('<p class="platform-note">'))),
+    /^Uninstalling the Android app deletes its saved data\. Save and check a backup first\./,
+  );
+
+  assert.deepEqual(links(section('troubleshooting')).map(({ href, name }) => [href, name]), [
+    [`${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`, 'Fix a problem Startup, reader links, or missing progress.'],
+    [`${REPOSITORY}/blob/main/SUPPORT.md`, 'Get support Where to ask for help.'],
+    ['#project-questions', 'Ask a question About Recap Page and how it works.'],
+  ]);
+  assert.deepEqual(links(section('documentation'))[0], {
+    href: `${REPOSITORY}/blob/main/docs/ANDROID.md`,
+    button: false,
+    name: 'Android app Setup and features.',
+  });
 });
 
 test('the showcase includes the supplied artwork and current phone previews', () => {

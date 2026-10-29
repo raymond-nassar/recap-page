@@ -14581,6 +14581,47 @@ const SCENARIOS = [
       const { tmpdir } = await import('node:os');
       const { buildPages } = await import('./build-pages.mjs');
       const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-browser-'));
+      const playListing = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
+      const platformCards = ['Windows', 'Android', 'Windows download', 'Run from source', 'iPhone and iPad'];
+      const platformGrid = () => page.$eval('#getting-started .platform-grid', (grid) => ({
+        width: innerWidth,
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+        cards: [...grid.querySelectorAll('.route-card')].map((card) => {
+          const box = card.getBoundingClientRect();
+          const link = card.querySelector('a');
+          const linkBox = link?.getBoundingClientRect();
+          return {
+            name: card.querySelector('h3')?.textContent.trim() ?? '',
+            left: Math.round(box.left),
+            top: Math.round(box.top),
+            clipped: card.scrollWidth - card.clientWidth > 1,
+            link: link ? {
+              name: link.textContent.trim(),
+              href: link.getAttribute('href'),
+              button: link.classList.contains('button'),
+              height: linkBox.height,
+              inside: linkBox.left >= box.left - 0.5 && linkBox.right <= box.right + 0.5,
+            } : null,
+          };
+        }),
+      }));
+      const platformWraps = (grid, columns) => {
+        const [windows, android, , source, iPhone] = grid.cards;
+        return grid.overflow <= 1
+          && grid.columns === columns
+          && JSON.stringify(grid.cards.map(({ name }) => name)) === JSON.stringify(platformCards)
+          && grid.cards.every((card) => !card.clipped
+            && (card.link === null || (card.link.inside && card.link.height >= 24)))
+          && windows.link?.button === true && windows.link.height >= 44
+          && android.link?.name === 'Open Google Play' && android.link.href === playListing
+          && android.link.button && android.link.height >= 44
+          && iPhone.link === null
+          && iPhone.left === windows.left
+          && (columns === 1
+            ? grid.cards.every((card, index) => index === 0 || card.top > grid.cards[index - 1].top)
+            : android.top === windows.top && iPhone.top > source.top);
+      };
       const webRequests = [];
       const browserErrors = [];
       page.on('request', (request) => {
@@ -14682,18 +14723,51 @@ const SCENARIOS = [
           webRequests.length === 0,
           webRequests.join(' / '));
 
+        const overview = await page.evaluate(() => ({
+          navigation: [...document.querySelectorAll('.section-nav a')].map((link) => link.textContent.trim()),
+          status: document.querySelector('#overview .platform-status')?.textContent.trim() ?? null,
+          actions: [...document.querySelectorAll('#overview .action-row a')].map((link) => ({
+            name: link.textContent.trim(),
+            href: link.getAttribute('href'),
+          })),
+        }));
+        t.check('the overview names where the app is available and where it is coming',
+          JSON.stringify(overview.navigation)
+            === JSON.stringify(['Android', 'Features', 'Get started', 'Guides', 'Feedback'])
+          && overview.status === 'Available for Windows and Android. Coming soon for iPhone and iPad.'
+          && JSON.stringify(overview.actions) === JSON.stringify([
+            { name: 'Get started', href: '#getting-started' },
+            { name: 'See the Android app', href: '#android' },
+          ]),
+          JSON.stringify(overview));
+
         await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.hash === '#android');
         const android = await page.$eval('#android', (section) => ({
           copy: section.innerText.replace(/\s+/g, ' '),
+          actions: [...section.querySelectorAll('.action-row a')].map((link) => ({
+            name: link.textContent.trim(),
+            href: link.getAttribute('href'),
+            button: link.classList.contains('button'),
+            // Under --forced-colors the plain link reported a painted background too, since forced
+            // colours paint every element Canvas. The primary action's border survives there.
+            bordered: Number.parseFloat(getComputedStyle(link).borderTopWidth) > 0,
+            height: link.getBoundingClientRect().height,
+          })),
           previews: [...section.querySelectorAll('figcaption a')].map((link) => ({
             href: link.getAttribute('href'),
             height: link.getBoundingClientRect().height,
           })),
         }));
-        t.check('Android navigation explains release status and browser reading with usable full-size previews',
-          /The released app is available on Google Play/.test(android.copy)
+        t.check('Android navigation leads with Google Play and keeps browser reading and preview caveats',
+          android.actions.length === 2
+          && android.actions[0].name === 'Open Google Play'
+          && android.actions[0].href === playListing
+          && android.actions[0].button && android.actions[0].bordered && android.actions[0].height >= 44
+          && android.actions[1].name === 'About the Android app'
+          && !android.actions[1].button && !android.actions[1].bordered && android.actions[1].height >= 24
+          && !/beta/i.test(android.copy)
           && /Android's Read uses an installed browser, not the Marvel Unlimited app/.test(android.copy)
           && /previews made in a desktop browser, not on a phone/.test(android.copy)
           && android.previews.length === 2
@@ -14710,6 +14784,18 @@ const SCENARIOS = [
         t.check('keyboard section navigation reaches the maintained-document routes',
           documentation.visible && documentation.links === 12,
           JSON.stringify(documentation));
+
+        const wideGrid = await platformGrid();
+        t.check('the five Get started cards wrap cleanly in two columns at desktop width',
+          platformWraps(wideGrid, 2),
+          JSON.stringify(wideGrid));
+
+        await page.setViewport({ width: 768, height: 900 });
+        await page.waitForFunction(() => innerWidth === 768);
+        const middleGrid = await platformGrid();
+        t.check('the five Get started cards keep two clean columns at a middle width',
+          platformWraps(middleGrid, 2),
+          JSON.stringify(middleGrid));
 
         await page.setViewport({ width: 320, height: 900 });
         await page.waitForFunction(() => innerWidth === 320);
@@ -14746,6 +14832,10 @@ const SCENARIOS = [
             item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
           JSON.stringify(narrow.navigation));
+        const narrowGrid = await platformGrid();
+        t.check('the five Get started cards stack in one column at 320 CSS pixels',
+          platformWraps(narrowGrid, 1),
+          JSON.stringify(narrowGrid));
 
         const client = await page.createCDPSession();
         const forcedColorsRequested = process.argv.includes('--forced-colors');

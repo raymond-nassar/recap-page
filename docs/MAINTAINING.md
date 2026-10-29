@@ -1255,8 +1255,8 @@ the two phone layouts are selected, inspected copies from `npm run play:assets`,
 the source revision recorded in [the asset provenance](project-home-assets.json). That record
 binds the source, renderer, fictional fixture and image hashes; it is not deployed with the site.
 The page labels these as desktop-rendered development previews, not native-device screenshots
-or approved Play assets. Keep that distinction and the earlier-beta warning visible. A new
-capture does not authorize a store listing, release or publication.
+or approved Play assets. Keep that distinction visible. A new capture does not authorize a store
+listing, release or publication.
 
 Refresh these copies deliberately, with the provenance and image contracts in
 `test/pages-home.test.js`. The original generated preview packet remains ignored; never

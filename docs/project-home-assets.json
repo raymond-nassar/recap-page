@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Informational project-home artwork and Android development previews, not a Google Play submission.",
-  "capturedOn": "2026-10-27",
+  "capturedOn": "2026-10-29",
   "featureArtwork": {
     "file": "pages/assets/android-feature-graphic.png",
     "source": "Owner-supplied Recap Page feature graphic requested for this project-home update.",
@@ -11,10 +11,10 @@
   },
   "androidPreviews": {
     "command": "npm run play:assets",
-    "sourceRevision": "13d43f141303c98dfcb7045643dd0209b88deab0",
-    "sourceTree": "f33878b81582fb2923ea45fa276c6a7051889f02",
+    "sourceRevision": "2673c8e39325edb7bb403113e702c99538f7b503",
+    "sourceTree": "1b0c95ee37bbee186c7e1ab51d9b291f5afcd158",
     "sourceDirty": false,
-    "androidManifestSha256": "27381c2f65a7e80c88887b253dd4613abb46268f222c4ec4d3475fa767674789",
+    "androidManifestSha256": "235f059daaaae51d43862c448c2db782f1b227357d12c2936f9206adee228a37",
     "renderer": {
       "name": "Microsoft Edge",
       "version": "Edg/156.0.4314.42",
@@ -52,8 +52,8 @@
         "scrollTarget": "#hero",
         "width": 1080,
         "height": 1920,
-        "bytes": 187477,
-        "sha256": "4b5bd327d5a8ee91f69b87da4bce6caf4a121ad4db895f36b6050b77fbe5f7c7"
+        "bytes": 194373,
+        "sha256": "5ae3481bcd6b26e106e51144ce0a6458618fe66f97402ce037d0e4fb55ae307b"
       }
     ]
   }
