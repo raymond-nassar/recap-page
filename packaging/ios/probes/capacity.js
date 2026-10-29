@@ -1,11 +1,13 @@
 // The capacity probe: how much of the app's saved data WebKit's localStorage holds at the owner's
 // data size, measured through the app's own storage and restore code rather than estimated.
 //
-// WebKit allows each origin 5 MiB of localStorage and counts a string at two bytes per character
-// once any character in it is above U+00FF, which titles in the bundled lists are. A reading-data
-// restore holds up to three copies of that data at once: the saved data, the restore's staged copy,
-// and the copy kept for Undo. The owner's complete backup is 1,183 KB, so whether a restore fits is
-// the question this answers, on whatever engine runs it.
+// WebKit allows each origin 5 MiB of localStorage and charges a string one or two bytes per
+// character by the form the engine holds it in. A string with any character above U+00FF is held in
+// the two-byte form, and on the iOS 26.5 and 18.5 Simulators the app's saved reading data was held in
+// it even when every character was Latin-1, which is why this probe measures the width as well. A
+// reading-data restore holds up to three copies of that data at once: the saved data, the restore's
+// staged copy, and the copy kept for Undo. The owner's complete backup is 1,183 KB, so whether a
+// restore fits is the question this answers, on whatever engine runs it.
 //
 // It runs inside the app's own page and leaves localStorage empty when it finishes. Nothing here
 // ships in the app: the iOS unit tests load it from the repository, and so can any WebKit browser.
@@ -16,8 +18,8 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
   const [storage, model, complete] = await Promise.all([
     load('js/storage.js'), load('js/lib/model.js'), load('js/lib/completeBackup.js'),
   ]);
-  // How WebKit counts a stored string: one byte per character when every character fits in Latin-1,
-  // otherwise two for every character.
+  // An estimate from the characters alone: one byte per character when every character fits in
+  // Latin-1, otherwise two. The engine can charge more, which the width measurement below finds.
   const wide = (text) => /[\u0100-\uffff]/.test(text);
   const storedBytes = (text) => text.length * (wide(text) ? 2 : 1);
   const usage = () => {
@@ -218,6 +220,9 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
   }
 
   const readerStoredBytes = storedBytes(savedRaw);
+  // The bytes the engine actually charges, from the measured width where it was measured.
+  const readerChargedBytes = typeof widths?.saved === 'number'
+    ? Math.round(savedRaw.length * widths.saved) : readerStoredBytes;
   return JSON.stringify({
     probe: 'recap-capacity-v1',
     variant: wideText ? 'wide' : 'latin1',
@@ -235,11 +240,12 @@ window.recapCapacityProbe = async function recapCapacityProbe({ targetBytes = 11
       readerChars: savedRaw.length,
       readerWide: wide(savedRaw),
       readerStoredBytes,
+      readerChargedBytes,
       lists: lists.length,
       issues: issueIds.length,
       // Arithmetic, not a measurement: how many copies of this reading data the measured quota
-      // holds, against the three a populated restore needs at its peak.
-      copiesThatFit: readerStoredBytes ? Math.floor(Math.min(quota.latin1Bytes, quota.wideBytes) / readerStoredBytes) : null,
+      // holds at the charged width, against the three a populated restore needs at its peak.
+      copiesThatFit: readerChargedBytes ? Math.floor(quota.latin1Bytes / readerChargedBytes) : null,
     },
     save,
     restoreIntoEmpty,

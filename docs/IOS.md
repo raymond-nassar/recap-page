@@ -76,30 +76,35 @@ On a Mac, run `npm run ios:prepare` and open `packaging/ios/RecapPage.xcodeproj`
 
 ## Storage capacity
 
-WebKit gives each origin 5 MiB of storage for saved reading data. It counts a stored value at one byte
-per character while every character is in Latin-1, and at two bytes per character once any character
-is above it, such as a curly apostrophe in a title or a note. Restoring a reading-data backup briefly
-holds up to three copies: the saved data, the restore's staged copy and the copy kept for Undo.
+WebKit gives each origin 5 MiB of storage for saved reading data, and charges a stored string by the
+form the engine holds it in: one byte per character for a string held in its one-byte form, two for one
+held in its two-byte form. On iOS the app's saved reading data is held in the two-byte form even when
+every character is Latin-1, so it costs two bytes per character either way. Restoring a reading-data
+backup briefly holds up to three copies: the saved data, the restore's staged copy and the copy kept
+for Undo.
 
 The capacity probe in `packaging/ios/probes/capacity.js` measures this through the app's own storage
 and restore code. It fills the app with reading lists from the bundled files until a complete backup
 is the size of the owner's, 1,183 KB, then saves, restores into an empty app, restores into the app
 that already holds data, and restores once more. It does this twice, once with text above Latin-1 and
-once without. Each run also records the page's origin and whether WebKit agrees, when asked, to keep
-the app's data.
+once without. Each run also records the page's origin, whether WebKit agrees, when asked, to keep the
+app's data, and the width WebKit charges for the saved data.
 
-On WebKit, measured first with Playwright's WebKit build on Windows as a stand-in for iOS, at that
-size:
+Measured on the iOS 26.5 and iOS 18.5 Simulators, with the same result on both, at that size:
 
 | Step | Text above Latin-1 | Latin-1 only |
 |---|---|---|
 | Saving | Fits | Fits |
 | Restoring into an empty app | Fits | Fits |
-| Restoring into an app that holds data | Refused | Fits |
-| Restoring again | Refused | Fits |
+| Restoring into an app that holds data | Refused | Refused |
+| Restoring again | Refused | Refused |
 
-A refused restore changes nothing and says so. The Simulator's measurement is recorded on #949, and
-what to do if it confirms the refusal is the owner's decision there.
+A refused restore changes nothing and says so. At two bytes per character, three copies of reading
+data the owner's size come to about 7.5 MB and two to about 5.0 MB, against 5.24 MB, which is why only
+the restore into an empty app fits. Until reading data is stored at one byte per character (#960), a
+restore of data this size on iOS has to go into an empty app: export, erase, then restore. Playwright's
+WebKit build on Windows, measured first as a stand-in, holds Latin-1 data in its one-byte form, so it
+refused only the restore with text above Latin-1. The measurements are recorded on #949.
 
 ## Known limits
 
