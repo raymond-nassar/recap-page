@@ -1,21 +1,21 @@
 # Recap Page
 
-**A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a tour and setup.
+**Track Marvel reading orders and progress. Comics are not included.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a tour and setup.
 
-Follow a Marvel story across series, open the next unread comic, and keep your place. Recap Page
-runs locally in your desktop browser without an account, with an Android app in development.
+Follow a Marvel story across series and keep your place with credited reading orders. Mark comics
+read yourself, resume at the next unread issue, and keep private notes and custom entries.
 No automatic device sync or offline comic reading.
 
-The [Android development build](docs/ANDROID.md) has phone-sized controls, Marvel Unlimited app
-links and a browser fallback. No computer needed. The
+[Android's Read](docs/ANDROID.md) uses an installed browser, not the Marvel Unlimited app.
+No computer needed. The
 [earlier beta](https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2)
-doesn't include all the current features. Not available on Google Play.
+doesn't include all the current features. The released app is available on Google Play.
 See the [phone previews](https://raymond-nassar.github.io/recap-page/#android)
 and [beta guide](docs/ANDROID_BETA.md) before testing.
 
-Comics and a Marvel Unlimited subscription aren't included. On desktop, **Read** opens a separate
-tab: the official reader if a link is found, or the comic's official issue page on marvel.com.
-A link doesn't guarantee access. Recap Page cannot replace Marvel Unlimited or bypass a subscription.
+Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link
+is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link.
+Your saved lists, progress and backups stay unchanged.
 
 ## A reading session, from start to resume
 
@@ -24,7 +24,9 @@ An example with made-up progress:
 1. On **Home**, open **Modern Timeline** and add **Civil War: Avengers and Aftermath Reading Order** from
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
 2. With the first six comics marked read, **Civil War (2006) #7** is next.
-3. Choose **Read** to open the official reader where a link is available.
+3. Choose Read. Until December 7, 2026, the Marvel Unlimited web reader opens in a separate tab when
+   a link is recorded, with a comic details page as the fallback. From that date, Read opens the
+   general Marvel Comics website, not a single-comic link.
 4. Return and choose **Done**. **New Avengers (2004) #21** is next.
    Reading isn't detected automatically.
 5. Reopen the list in the same browser profile to resume.
@@ -55,8 +57,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
   again in **Completed lists** without losing notes or comic progress.
 - **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.
-- **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
-  unavailable checks.
+- **Marvel Unlimited record**
+  This is a historical record, not availability in Marvel Comics.
 - **Back up your progress.** Restore a backup on this device or another. Android and desktop save
   separately. Reading data and completion history have separate backups; each restore replaces
   only that kind of data.
@@ -177,11 +179,13 @@ Some features make direct requests:
 - Series and creator name searches use bundled indexes. Browsing a series or creator requests its
   comics from the database. Selecting comics and choosing where to save them stays on your device.
 - Cover images load from Marvel's own image servers unless cover art is switched off in **Backup & settings**.
-- **Read** opens Marvel Unlimited if the reader link is known. Otherwise the new tab asks the
-  comics database for that link, falling back to the issue page on marvel.com.
-- Android also sends the digital issue ID to Marvel's Bifrost service to find an app link.
-  It sends no credentials, lists, notes, or read markers, saves no returned app identifier,
-  and keeps **Open in browser** available.
+- Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
+  known. Otherwise it looks up the missing link or opens the recorded comic details page.
+  From the start of December 7 on the device's local clock, it opens the general Marvel Comics
+  website without a reader-link lookup. This is not a single-comic link.
+- Android's Read uses an installed browser, not the Marvel Unlimited app. Recap Page no longer
+  contacts Bifrost to resolve app links. **Open in browser** remains available if a browser does
+  not open.
 - **Look up on Marvel Fandom** sends your hand-entered title to that wiki only when you choose it.
   It does not fetch a cover.
 

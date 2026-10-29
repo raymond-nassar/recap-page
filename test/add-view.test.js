@@ -654,11 +654,11 @@ test('the paste page shows both Markdown states and explains them in the example
   assert.match(source, /links are optional/i, 'the example makes links look required');
 });
 
-test('the optional reader address is behind a disclosure on the manual page', () => {
+test('the optional comic details address is behind a disclosure on the manual page', () => {
   const source = pages.get('add-manual');
   assert.match(
     source,
-    /<details class="field-disclosure">[\s\S]*?<summary>Add a reader link \(optional\)<\/summary>[\s\S]*?id="manual-url"/,
+    /<details class="field-disclosure">[\s\S]*?<summary>Add a comic details link \(optional\)<\/summary>[\s\S]*?id="manual-url"/,
     'the address field is standing open or its disclosure lost its label',
   );
 });

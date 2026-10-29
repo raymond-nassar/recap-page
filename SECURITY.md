@@ -94,13 +94,16 @@ Consider these safeguards when preparing a report:
   asks the comics database whether it is reachable. Issue searches send the words you type; browsing
   a selected series or creator requests the comics it lists. Details requests name the comic,
   and covers load from Marvel's own image servers. Those services see which issues you request;
-  the reachability check names none. Pressing **Read** opens Marvel Unlimited when a reader link
-  is known. Otherwise the launch tab asks the metadata service for that link and falls back to the
-  issue page on marvel.com. The hand-entry lookup sends your title to the Marvel Fandom wiki only
-  when you press the lookup button, with no cookie, referrer, or library data. The Android prototype
-  also sends the digital issue ID to Marvel's Bifrost service for an app link. That request sends
-  no credentials or referrer, bypasses caching, and saves no response. Marvel sees the digital ID
-  and network address. Saved progress and notes are never sent by these service requests.
+  the reachability check names none. Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
+  known. Otherwise it looks up the missing link or opens the recorded comic details page.
+  From the start of December 7 on the device's local clock, it opens the general Marvel Comics
+  website without a reader-link lookup. This is not a single-comic link.
+  Android's Read uses an installed browser, not the Marvel Unlimited app. Recap Page no longer
+  contacts Bifrost to resolve app links. **Open in browser** remains available if a browser does
+  not open.
+  The hand-entry lookup sends your title to the Marvel Fandom wiki only
+  when you press the lookup button, with no cookie, referrer, or library data.
+  Saved progress and notes are never sent by these service requests.
   The app has no software update check or download; Microsoft Store delivers Store package updates.
 - Covers are requested only from Marvel's image host. A metadata service could return a hostile
   URL, so other hosts are rejected before any request. `src/js/lib/coverHost.js` supplies the

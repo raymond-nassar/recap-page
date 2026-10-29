@@ -199,7 +199,7 @@ test('presentation derives shared facts without up-next or progress actions', ()
   assert.equal(shown.byline, 'Test Series · Writer One & Artist One');
   assert.equal(shown.description, 'Held for this tab.');
   assert.deepEqual(shown.facts.map(({ key, value }) => [key, value]), [
-    ['Unlimited availability', `Scheduled ${futureMuDate}`],
+    ['Marvel Unlimited record', `Unlimited date: ${futureMuDate} (future)`],
     ['Pages', '24'],
     ['Released', '2026-08-26'],
     ['Position', '2 of 5'],
@@ -225,8 +225,8 @@ test('the dedicated view has one heading and distinct Read, synopsis, and Info a
 test('UX-20 the issue card leads its text column with one action row: Read, Mark as read, Add note, Rate', () => {
   const html = read('src/index.html');
   const view = html.slice(html.indexOf('<section id="view-issue"'), html.indexOf('<!-- ---------------------------------------- library hub'));
-  const row = view.match(/<div class="issue-reading-controls">\s*<div class="cta issue-actions">([\s\S]*?)<\/div>\s*<p id="reader-link-temporary"/)?.[1];
-  assert.ok(row, 'one action row opens the reading controls, ahead of the temporary-link note');
+  const row = view.match(/<div class="issue-reading-controls">\s*<div class="cta issue-actions">([\s\S]*?)<\/div>\s*<\/div>\s*<div class="art">/)?.[1];
+  assert.ok(row, 'one action row opens the reading controls, ahead of the cover');
   const commands = ['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger'];
   assert.deepEqual([...row.matchAll(/id="([^"]+)"/g)].map((match) => match[1]).filter((id) => commands.includes(id)), commands);
   assert.match(row, /<div class="cta" id="issue-saved-actions" hidden>/, 'the saved actions keep the wrapper the view hides');

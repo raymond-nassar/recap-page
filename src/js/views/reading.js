@@ -19,7 +19,8 @@ import {
   coverUrl,
   isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
 } from '../lib/model.js';
-import { availability, describe, localDayString, STATE } from '../lib/availability.js';
+import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
+import { readerAction, readerContext } from '../lib/readerDestination.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
 import { isPlainNavigation } from '../lib/route.js';
@@ -657,7 +658,7 @@ export function createReadingView({
       disclosure: synopsisDisclosure,
     });
     $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
-      fact(item.key, item.value, item.className)
+      fact(item.key, item.value, item.className, item.hint)
     )));
     // The same numbers the header's ring reads out, set large for the eye (#876).
     paintGlance(el, { count: $('#hero-progress-count'), fill: $('#hero-progress-fill') }, { read, total }, ` of ${total} read`);
@@ -683,9 +684,9 @@ export function createReadingView({
     const reader = readerPresentation(issue, 'saved');
     const button = $('#btn-hero-read');
     button.hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
-    button.textContent = 'Read';
-    button.setAttribute('aria-label', labelledName('Read', issue
-      ? `${issue.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}` : ''));
+    button.textContent = readerAction();
+    button.setAttribute('aria-label', labelledName(readerAction(), issue
+      ? readerContext(issue.title) : ''));
     const temporary = $('#hero-reader-temporary');
     temporary.hidden = button.hidden || !reader.temporary;
     temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
@@ -720,9 +721,8 @@ export function createReadingView({
         const short = shortTitle(item.title);
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
-        const readContext = 'Open in Marvel Unlimited';
         const reader = readerPresentation(item, 'saved');
-        const readName = labelledName('Read', `${label}: ${readContext}${reader.temporary ? ' with temporary link' : ''}`);
+        const readName = labelledName(readerAction(), readerContext(label));
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -748,7 +748,7 @@ export function createReadingView({
             dataset: { key: item.issueId, act: 'open' },
             hidden: !reader.launchable,
             onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
-          }, 'Read'),
+          }, readerAction()),
         ]));
       }
     }, {
@@ -896,7 +896,7 @@ export function createReadingView({
               item.deferred ? el('span', { class: 'badge badge-unknown' }, item.read
                 ? 'Read; deferral kept if marked unread' : 'Deferred in this list') : null,
               item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
-              el('span', { class: `badge ${badgeClass}` }, [
+              el('span', { class: `badge availability-record ${badgeClass}` }, [
                 describe(item, { override, today }),
               ]),
               detailsBadge(el, item),
@@ -981,11 +981,11 @@ export function createReadingView({
       group('Open', [
         el('button', {
           type: 'button', class: 'mini',
-          'aria-label': labelledName('Read', `${item.title} in Marvel Unlimited${reader.temporary ? ' with temporary link' : ''}`),
+          'aria-label': labelledName(readerAction(), readerContext(item.title)),
           dataset: { key: item.issueId, act: 'open' },
           hidden: !reader.launchable,
           onclick: (e) => launch(item, e),
-        }, 'Read'),
+        }, readerAction()),
         ...(reader.temporary ? [el('span', {
           class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
         })] : []),
@@ -1022,35 +1022,40 @@ export function createReadingView({
           el('span', { class: 'mini-label', text: 'Move down' }),
         ]),
       ]),
-      group('Availability', [
-        ['available', 'Mark as available'],
-        ['unavailable', 'Mark as unavailable'],
-        [null, 'Clear availability override'],
-      ].map(([value, label]) => el('button', {
-        type: 'button',
-        class: 'mini has-tooltip availability-choice',
-        'aria-label': labelledName(label, item.title),
-        // The choice in force reports itself pressed, and pressing it again clears it, as the enjoyment
-        // thumbs do. Clear is an action rather than a state, so it reports none.
-        'aria-pressed': value ? String((item.override ?? null) === value) : null,
-        dataset: {
-          key: item.issueId,
-          act: `override-${value ?? 'clear'}`,
-          tooltip: label,
-        },
-        onclick: () => {
-          if (!getState().lists[listId]?.itemIds.includes(item.issueId)) {
-            announce('That comic is no longer in this Reading List.');
-            return;
-          }
-          const next = value !== null && (getState().overrides[item.issueId] ?? null) === value ? null : value;
-          const { ok } = updateState((state) => setOverride(state, item.issueId, next));
-          if (ok) announce(`${item.title}: ${next ? `you marked ${next}` : 'availability override cleared'}.`);
-        },
-      }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: value ? '✓' : '⚑' }),
-        el('span', { class: 'mini-label', text: label }),
-      ])), { class: 'ract-group ract-availability' }),
+      group(RECORD_HEADING, [
+        el('p', { class: 'rail-hint' }, [
+          el('strong', { text: RECORD_HEADING }), el('br'), RECORD_NOTE,
+        ]),
+        ...[
+          ['available', 'Record as available in Unlimited'],
+          ['unavailable', 'Record as unavailable in Unlimited'],
+          [null, 'Clear your Unlimited record'],
+        ].map(([value, label]) => el('button', {
+          type: 'button',
+          class: 'mini has-tooltip availability-choice',
+          'aria-label': labelledName(label, item.title),
+          // The choice in force reports itself pressed, and pressing it again clears it, as the enjoyment
+          // thumbs do. Clear is an action rather than a state, so it reports none.
+          'aria-pressed': value ? String((item.override ?? null) === value) : null,
+          dataset: {
+            key: item.issueId,
+            act: `override-${value ?? 'clear'}`,
+            tooltip: label,
+          },
+          onclick: () => {
+            if (!getState().lists[listId]?.itemIds.includes(item.issueId)) {
+              announce('That comic is no longer in this Reading List.');
+              return;
+            }
+            const next = value !== null && (getState().overrides[item.issueId] ?? null) === value ? null : value;
+            const { ok } = updateState((state) => setOverride(state, item.issueId, next));
+            if (ok) announce(`${item.title}: ${next ? `you marked ${next}` : 'availability override cleared'}.`);
+          },
+        }, [
+          el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: value ? '✓' : '⚑' }),
+          el('span', { class: 'mini-label', text: label }),
+        ])),
+      ], { class: 'ract-group ract-availability' }),
       !item.read || item.deferred ? group(null, [el('button', {
         type: 'button',
         class: 'mini',
@@ -1382,7 +1387,9 @@ export function createReadingView({
       // Rebuilt narrow rows close their actions panel, so its matching control cannot take focus.
       const more = [...$('#rows').querySelectorAll('[data-act="more"]')]
         .find((control) => Number(control.dataset.key) === issueId);
-      focusRemovalTarget(more);
+      focusRemovalTarget(more, { avoidFilters: true });
+    } else if (document.activeElement?.dataset?.act === 'defer') {
+      focusRemovalTarget(document.activeElement, { avoidFilters: true });
     }
   }
 

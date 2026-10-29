@@ -22,6 +22,7 @@
 // story. The app-origin scenarios are the exceptions because their acceptance
 // explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
 // automation profile, not the person's installed browser profile.
+// Use --ephemeral on a shared machine to leave an installed app's listener alone.
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
@@ -29,6 +30,7 @@
 // Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
+import { retiredReaderHelp, retiredManualLink, legacyReaderBackup } from './browser-marvel-interim.mjs';
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { constants, homedir } from 'node:os';
@@ -2364,307 +2366,8 @@ const SCENARIOS = [
   },
   {
     id: 'temporary-reader-link',
-    title: '453 temporary same-comic links and deliberate manual reporting never change saved facts',
-    async run(page, t) {
-      const errors = [];
-      page.on('pageerror', (error) => errors.push(error.message));
-      await page.evaluateOnNewDocument(() => {
-        window.__mrtBlockExternal = true;
-        window.__link453 = { opens: [] };
-        window.open = (...args) => { window.__link453.opens.push(args); return {}; };
-      });
-      await seedFixtureState(page);
-      const go = async (hash, selector) => {
-        await page.evaluate((next) => {
-          // Keep the synthetic route and its notification together: a background repaint can
-          // otherwise restore the previous hash before the queued hashchange is delivered.
-          history.pushState(null, '', next);
-          dispatchEvent(new HashChangeEvent('hashchange'));
-        }, hash);
-        try {
-          await page.waitForSelector(selector);
-        } catch (error) {
-          const state = await page.evaluate(() => ({
-            hash: location.hash,
-            status: document.querySelector('#issue-focus-status')?.textContent,
-            heading: document.querySelector('#issue-focus-h')?.textContent,
-            saved: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2') ?? '{}').issues ?? {}),
-          }));
-          throw new Error(`${error.message}; temporary route ${JSON.stringify(state)}; errors ${JSON.stringify(errors)}`, { cause: error });
-        }
-        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      };
-      const focusIssue = (id) => go(`#/issue/${id}`, '#issue-focus-card:not([hidden])');
-      const reading = () => go('#/read/fixture', '#view-read:not([hidden])');
-      const openHelp = async () => {
-        if (!await page.$eval('#reader-link-help', (node) => node.open)) {
-          await click(page, '#reader-link-heading');
-        }
-      };
-      const paste = async (value) => page.$eval('#reader-link-input', (input, text) => {
-        input.value = text;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      }, value);
-      const use = async (id, book) => {
-        await focusIssue(id);
-        await openHelp();
-        await click(page, '#reader-link-edit');
-        await paste(`https://read.marvel.com/#/book/${book}`);
-        await click(page, '#reader-link-apply');
-      };
-      const rendered = (selector) => page.$eval(selector, (node) => node.getClientRects().length > 0);
-      const closed = async (selector) => page.$eval(selector, (node) => {
-        const controls = [...node.querySelectorAll('input,button,textarea,a[href]')];
-        const before = document.activeElement;
-        const excluded = controls.every((control) => {
-          control.focus();
-          return document.activeElement !== control;
-        });
-        before?.focus();
-        return !node.getClientRects().length && excluded;
-      });
-      const readLabel = async (selector, context, temporary = false, statusSelector = null) => {
-        const actual = await page.$eval(selector, (button, selectedStatus) => {
-          const status = selectedStatus ? document.querySelector(selectedStatus)
-            : button.closest('.ract, .tile')?.querySelector('[data-reader-temporary]');
-          return {
-            text: button.textContent.trim(),
-            name: button.getAttribute('aria-label') || button.textContent.trim(),
-            visible: button.getClientRects().length > 0,
-            status: status?.textContent.trim() ?? '',
-            statusVisible: Boolean(status?.getClientRects().length),
-          };
-        }, statusSelector);
-        const predicates = {
-          label: actual.text === 'Read',
-          name: actual.name.startsWith('Read') && actual.name.includes(context),
-          visible: actual.visible,
-          temporaryContext: !temporary || (/temporary link/.test(actual.name)
-            && /temporary reader link/i.test(actual.status) && actual.statusVisible),
-        };
-        console.log(`READER-LABEL ${JSON.stringify({ selector, context, temporary, actual, predicates })}`);
-        t.check(`${selector} keeps the Read label and ${temporary ? 'visible temporary' : 'comic'} context`,
-          Object.values(predicates).every(Boolean), JSON.stringify(actual));
-      };
-      await go('#/home', '#view-home:not([hidden])');
-      await readLabel('#btn-chero-read', ORDER.items[0].title);
-      await reading();
-      await readLabel('#btn-hero-read', ORDER.items[0].title);
-      const done = await page.$eval('#btn-hero-done', (button) => ({
-        text: button.textContent.trim(), shortcut: button.getAttribute('aria-keyshortcuts'),
-        help: button.dataset.tooltip,
-      }));
-      console.log(`READER-DONE ${JSON.stringify(done)}`);
-      t.check('Done remains the distinct mark-read-and-continue control',
-        done.text === 'Done' && done.shortcut === 'd'
-          && done.help === 'Mark as read and continue. Keyboard shortcut: D', JSON.stringify(done));
-      await focusIssue(ORDER.items[0].issueId);
-      await readLabel('#btn-issue-read', ORDER.items[0].title);
-      const seed = fixtureReadingState();
-      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
-      seed.lists.fixture.itemIds.unshift(-8);
-      seed.notes[-8] = 'Private note excluded from reports';
-      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
-      await page.reload({ waitUntil: 'load' });
-      await focusIssue(-8);
-      t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-      t.check('manual comic without an original reference has editor but no Read', await page.$eval(
-        '#btn-issue-read', (node) => node.hidden,
-      ) && await page.$eval('#reader-link-edit', (node) => !node.disabled));
-      await openHelp();
-      await click(page, '#reader-link-edit');
-      t.check('explicit Edit renders the editor only', await rendered('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      await paste('https://wrong.example/reader/44');
-      await click(page, '#reader-link-apply');
-      t.check('invalid address retains draft and URL focus', await page.$eval('#reader-link-input', (node) => (
-        node.value.includes('wrong.example') && node.getAttribute('aria-invalid') === 'true' && document.activeElement === node
-      )));
-      await paste('http://read.marvel.com/#/book/00044/page/9');
-      t.check('canonical numeric destination is shown before deliberate use', await page.$eval(
-        '#reader-link-preview', (node) => node.textContent.includes('https://read.marvel.com/#/book/44'),
-      ));
-      await click(page, '#reader-link-apply');
-      t.check('Apply really hides editor controls', await closed('#reader-link-form'));
-      t.check('Use is memory only and does not launch', await page.evaluate((before) => (
-        localStorage.getItem('mrt.state.v2') === before && window.__link453.opens.length === 0
-        && document.activeElement.id === 'reader-link-edit'
-      ), saved));
-      t.check('manual Read becomes usable while Info and original reference stay absent', await page.evaluate(() => (
-        !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
-        && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
-      )));
-      await readLabel('#btn-issue-read', seed.issues[-8].title, true, '#reader-link-temporary');
-      await click(page, '#reader-link-reportToggle');
-      t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
-      t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
-        node.value.includes('/#/book/44') && !node.value.includes('-8') && !node.value.includes('Private note')
-      )));
-      t.check('GitHub form has fixed URL and no-referrer with no automatic submission', await page.$eval(
-        '#reader-link-reportLink', (node) => node.href === 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml'
-          && node.target === '_blank' && node.rel === 'noopener noreferrer' && node.referrerPolicy === 'no-referrer',
-      ));
-      await page.$eval('#reader-link-reportText', (node) => { node.value = 'Only my reviewed details'; });
-      await page.focus('#reader-link-reportText');
-      await page.keyboard.press('Tab');
-      t.check('manual report remains editable with keyboard navigation', await page.$eval(
-        '#reader-link-reportText', (node) => node.value === 'Only my reviewed details',
-      ));
-      await click(page, '#btn-issue-read');
-      await reading();
-      t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
-      await readLabel('#btn-hero-read', seed.issues[-8].title, true, '#hero-reader-temporary');
-      await click(page, '#btn-hero-read');
-      await page.focus('#order-name');
-      await page.keyboard.press('Enter');
-      await openFullOrder(page);
-      const toggle = '#rows [data-key="-8"][data-act="more"]';
-      if (await page.$eval(toggle, (button) => button.getAttribute('aria-expanded') !== 'true')) await click(page, toggle);
-      await readLabel('#rows [data-key="-8"][data-act="open"]', seed.issues[-8].title, true);
-      await click(page, '#rows [data-key="-8"][data-act="open"]');
-      await go('#/home', '#view-home:not([hidden])');
-      await readLabel('#btn-chero-read', seed.issues[-8].title, true, '#chero-next');
-      await click(page, '#btn-chero-read');
-      t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
-        window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
-          new URL(url).searchParams.get('d') === '44' && !new URL(url).searchParams.has('i')
-          && target === '_blank' && features === 'noopener'
-        ))
-      )));
-      const positive = ORDER.items[0].issueId;
-      await use(positive, 55);
-      await reading();
-      await readLabel(`#shelf [data-key="${positive}"][data-act="open"]`, 'Browser Check #1 2026', true);
-      await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
-      t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
-        new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
-      )));
-      await focusIssue(-8);
-      await openHelp();
-      await click(page, '#reader-link-edit');
-      await paste('https://read.marvel.com/#/book/66');
-      await page.keyboard.press('Escape');
-      t.check('Cancel really hides editor controls', await closed('#reader-link-form'));
-      t.check('Cancel retains active link and restores Edit focus', await page.evaluate(() => (
-        document.querySelector('#reader-link-form').hidden && document.activeElement.id === 'reader-link-edit'
-        && document.querySelector('#reader-link-summary').textContent.includes('/#/book/44')
-      )));
-      await page.evaluate(() => {
-        const before = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(before);
-        state.read[999999] = 1;
-        const raw = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', raw);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue: before, newValue: raw }));
-      });
-      await page.waitForFunction(() => document.querySelector('#reader-link-summary').textContent.includes('/#/book/44'));
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      t.check('unrelated foreign progress preserves active temporary mapping', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      await click(page, '#reader-link-edit');
-      await page.evaluate(() => {
-        const raw = localStorage.getItem('mrt.state.v2');
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: raw }));
-      });
-      await page.waitForFunction(() => document.querySelector('#reader-link-apply').disabled);
-      t.check('foreign record adoption invalidates only the open draft', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      await click(page, '#reader-link-cancel');
-      const restore = async (text) => {
-        await go('#/data', '#view-data:not([hidden])');
-        await page.evaluate((raw) => {
-          document.querySelector('#restore-report').replaceChildren();
-          const transfer = new DataTransfer();
-          transfer.items.add(new File([raw], 'synthetic-reader-link-backup.json', { type: 'application/json' }));
-          const input = document.querySelector('#restore-file');
-          input.files = transfer.files;
-          input.dispatchEvent(new Event('change', { bubbles: true }));
-        }, text);
-        if (text !== 'invalid json') {
-          await page.waitForSelector('#ask[open]');
-          await click(page, '#ask-ok');
-        }
-        await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
-        await focusIssue(-8);
-      };
-      await restore('invalid json');
-      t.check('known-unchanged restore refusal retains temporary link', await page.$eval(
-        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
-      ));
-      const backup = await page.evaluate(() => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        state.lists.fixture.name = 'Synthetic replacement with same comic IDs';
-        return JSON.stringify(state);
-      });
-      await restore(backup);
-      t.check('actual same-identity restore clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await go('#/data', '#view-data:not([hidden])');
-      await click(page, '#btn-undo-restore');
-      await page.waitForSelector('#ask[open]');
-      await click(page, '#ask-ok');
-      await focusIssue(-8);
-      t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await click(page, '#reader-link-revert');
-      t.check('Use original removes only the temporary destination', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await use(-8, 44);
-      await page.setViewport({ width: 390, height: 900 });
-      await click(page, '#reader-link-edit');
-      await page.focus('#reader-link-input');
-      t.check('narrow form stays in viewport and retains a visible focus outline', await page.evaluate(() => {
-        const input = document.querySelector('#reader-link-input');
-        const rect = input.getBoundingClientRect();
-        return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth
-          && getComputedStyle(input).outlineStyle !== 'none';
-      }));
-      t.check('forced colors retains a visible editor boundary when active', await page.evaluate(() => (
-        !matchMedia('(forced-colors: active)').matches
-        || getComputedStyle(document.querySelector('#reader-link-help')).borderTopStyle !== 'none'
-      )));
-      await page.setViewport({ width: 1280, height: 900 });
-      await page.reload({ waitUntil: 'load' });
-      await page.waitForSelector('#issue-focus-card:not([hidden])');
-      t.check('reload clears link and draft without changing saved base', await page.evaluate(() => (
-        document.querySelector('#btn-issue-read').hidden && document.querySelector('#reader-link-form').hidden
-        && JSON.parse(localStorage.getItem('mrt.state.v2')).issues[-8].digitalId === null
-      )));
-      for (const control of ['btn-issue-read', 'reader-link-edit', 'reader-link-revert', 'reader-link-input']) {
-        await restore(backup);
-        await use(-8, 44);
-        if (control === 'reader-link-input') await click(page, '#reader-link-edit');
-        await page.focus(`#${control}`);
-        await page.evaluate(() => {
-          localStorage.removeItem('mrt.state.v2');
-          dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
-        });
-        await page.waitForFunction(() => document.querySelector('#reader-link-edit').disabled);
-        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-        t.check(`foreign invalidation rescues disappearing ${control} focus`, await page.evaluate(() => {
-          const active = document.activeElement;
-          return active.id === 'issue-focus-h' && active.getClientRects().length > 0;
-        }));
-      }
-      t.check('actual foreign erase withdraws stale Read and editor', await page.$eval('#btn-issue-read', (node) => node.hidden));
-      await restore(backup);
-      await use(-8, 44);
-      await go('#/data', '#view-data:not([hidden])');
-      await click(page, '#metadata-settings > summary');
-      await page.focus('#api-base');
-      await page.waitForSelector('#list-nav .ri');
-      await page.evaluate(() => {
-        localStorage.removeItem('mrt.state.v2');
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
-      });
-      await page.waitForFunction(() => document.querySelectorAll('#list-nav .ri').length === 0);
-      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      t.check('hidden Issue controls do not steal unrelated settings input focus', await page.evaluate(() => (
-        document.activeElement.id === 'api-base' && document.activeElement.getClientRects().length > 0
-      )));
-      t.check('no runtime error in temporary flow', errors.length === 0, errors);
-    },
+    title: 'retired reader help and both local-clock handoffs preserve saved facts',
+    run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER }),
   },
   {
     id: 'reorientation-445',
@@ -9725,8 +9428,8 @@ const SCENARIOS = [
         .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
       placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab.', { timeout: 5000 });
-      t.check('the spoken announcement is unchanged', true);
+        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab. Reading ends December 7, 2026.', { timeout: 5000 });
+      t.check('the spoken announcement includes the approved reading deadline', true);
       await page.evaluate(() => document.querySelector('#btn-hero-done').click());
       await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
       t.check('Done retires the hint', await hintCount() === 0);
@@ -11243,193 +10946,14 @@ const SCENARIOS = [
   },
   {
     id: 'manual-book-id',
-    title: 'a pasted reader address becomes a working Read button, and a marvel.com address says so',
-    async run(page, t) {
-      await open(page, '/');
-      await click(page, '[data-view="add-manual"]');
-      await page.evaluate(() => {
-        const d = document.querySelector('#manual-url')?.closest('details');
-        if (d && !d.open) d.open = true;
-      });
-      await page.waitForSelector('#manual-url', { timeout: 15000 });
-
-      // The hint is the only place that says which of the two addresses gets you a working Read
-      // button, and the field points at it, so a screen reader reaches that from the field rather
-      // than only by reading past it. This is the first aria-describedby in the page.
-      const hint = await page.evaluate(() => {
-        const input = document.querySelector('#manual-url');
-        const ids = (input?.getAttribute('aria-describedby') ?? '').split(/\s+/);
-        const p = ids.includes('manual-url-hint') ? document.getElementById('manual-url-hint') : null;
-        return { ids, text: (p?.textContent ?? '').replace(/\s+/g, ' ').trim() };
-      });
-      t.check('the address field names its own explanation', hint.ids.includes('manual-url-hint'), JSON.stringify(hint.ids));
-      t.check('and that explanation says where to get the address',
-        /paste.*Marvel Unlimited.*Read/i.test(hint.text), hint.text.slice(0, 100));
-
-      await addByHand(page, 'All-New Spider-Gwen: The Ghost-Spider (2026) #9', 'https://read.marvel.com/#/book/129648');
-      const readerSaid = await manualReport(page);
-      t.check('a reader address is reported as reaching Marvel Unlimited',
-        readerSaid.includes('Read opens it in Marvel Unlimited'), readerSaid);
-
-      const afterReader = await readState(page);
-      const byReader = Object.values(afterReader?.issues ?? {}).find((i) => i.digitalId === 129648) ?? null;
-      t.check('the book id was read off the address and saved', Boolean(byReader),
-        JSON.stringify(Object.values(afterReader?.issues ?? {}).map((i) => i.digitalId)));
-      // A reader address kept as the issue url would light up Info, which says marvel.com and
-      // would open the reader the Read button already opens. Nothing offers it, so nothing to see.
-      t.check('and the reader address was not kept as a detail page',
-        (byReader?.url ?? null) === null, JSON.stringify(byReader?.url));
-
-      await addByHand(page, 'Secret Wars (2015) #1', 'https://www.marvel.com/comics/issue/52447/secret_wars');
-      const detailSaid = await manualReport(page);
-      t.check('a marvel.com address is reported without promising the reader',
-        detailSaid.includes('Availability shows as unknown') && !detailSaid.includes('Read opens it'), detailSaid);
-
-      const afterDetail = await readState(page);
-      const byDetail = afterDetail?.issues?.['52447'] ?? null;
-      t.check('that one keeps the marvel.com address it was given',
-        String(byDetail?.url ?? '').includes('/comics/issue/52447'), JSON.stringify(byDetail?.url));
-      t.check('and carries no book id, because none was stated',
-        (byDetail?.digitalId ?? null) === null, JSON.stringify(byDetail?.digitalId));
-    },
+    title: 'retired reader paste keeps its invalid draft while comic details still save',
+    run: (page, t) => retiredManualLink(page, t, { open, click, addByHand, manualReport, readState }),
   },
   {
     id: 'reader-round-trip',
     nativeDownloads: 1,
-    title: 'an imported reader address survives export and reload without provider requests',
-    async run(page, t) {
-      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'refuse'; });
-      await open(page, '/');
-      await click(page, '[data-view="add-import"]');
-
-      const source = [
-        '# Future issues',
-        '',
-        '## Ghost-Spider',
-        '',
-        '- [x] [All-New Spider-Gwen: The Ghost-Spider (2026) #9](http://read.marvel.com/#/book/129648/page/4)',
-      ].join('\n');
-      await page.evaluate((text) => {
-        document.querySelector('#import-text').value = text;
-        document.querySelector('#import-new-list').checked = false;
-        document.querySelector('#form-import').requestSubmit();
-      }, source);
-      await page.waitForFunction(
-        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
-        { timeout: 15000 },
-      );
-
-      await page.evaluate(() => document.querySelector('#form-import').requestSubmit());
-      await page.waitForFunction(
-        () => /Imported 0 issues, 1 already present/.test(document.querySelector('#import-report')?.textContent ?? ''),
-        { timeout: 15000 },
-      );
-
-      const first = await page.evaluate((issueId) => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        const list = state.lists[state.active];
-        const issue = state.issues[issueId];
-        return {
-          issue,
-          itemIds: list?.itemIds ?? [],
-          read: Object.hasOwn(state.read, issueId),
-          section: list?.collectedIn?.[issueId] ?? null,
-          requests: window.__mrtIssueRequests ?? 0,
-          hydrateHidden: document.querySelector('#btn-hydrate')?.hidden ?? null,
-        };
-      }, READER_ISSUE_ID);
-      t.check('the pasted address is one reserved URL-null reader record',
-        first.issue?.issueId === READER_ISSUE_ID
-          && first.issue?.digitalId === READER_DIGITAL_ID
-          && first.issue?.url === null
-          && first.issue?.source === 'manual'
-          && first.issue?.hydrated === true
-          && first.itemIds.length === 1,
-        JSON.stringify(first));
-      t.check('repeat import keeps its read mark and collected edition',
-        first.read && first.section === 'Ghost-Spider', JSON.stringify(first));
-      t.check('hydration offers and requests nothing for the reader record',
-        first.hydrateHidden && first.requests === 0, JSON.stringify(first));
-
-      await click(page, '#list-nav a[data-act="open"]');
-      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
-      await openFullOrder(page);
-      const actions = await page.evaluate((issueId) => ({
-        read: Boolean(document.querySelector(`button[data-act="open"][data-key="${issueId}"]`)),
-        info: Boolean(document.querySelector(`a[data-act="info"][data-key="${issueId}"]`)),
-      }), READER_ISSUE_ID);
-      t.check('the row offers Read and no duplicate Info destination',
-        actions.read && !actions.info, JSON.stringify(actions));
-
-      await page.evaluate(() => { window.__opened = []; });
-      await click(page, `button[data-act="open"][data-key="${READER_ISSUE_ID}"]`);
-      const opened = await page.evaluate(() => window.__opened);
-      const launch = new URL(opened[0]?.url ?? '', page.__origin);
-      t.check('Read launches directly with the book id and no provider issue lookup',
-        launch.searchParams.get('d') === String(READER_DIGITAL_ID)
-          && launch.searchParams.get('i') === null,
-        JSON.stringify(opened));
-
-      await click(page, '#btn-synopsis');
-      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
-      await click(page, '#ask-ok');
-      await new Promise((resolve) => setTimeout(resolve, 550));
-      const synopsisRequests = await page.evaluate(() => window.__mrtIssueRequests ?? 0);
-      t.check('a synopsis run makes zero provider requests for the reader record',
-        synopsisRequests === 0, String(synopsisRequests));
-
-      await click(page, '#list-export > summary');
-      await page.focus('#btn-export-md');
-      await click(page, '#btn-export-md');
-      await page.waitForSelector('#markdown-export[open]');
-      await click(page, '#markdown-export input[name="includeLinks"]');
-      await click(page, '#markdown-export input[name="includeSections"]');
-      await click(page, '#markdown-export button[type="submit"]');
-      await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
-      const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
-      const exportedLinks = [...markdown.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]);
-      t.check('export writes the canonical HTTPS reader address',
-        exportedLinks.length === 1
-          && exportedLinks[0] === `https://read.marvel.com/#/book/${READER_DIGITAL_ID}`,
-        JSON.stringify(exportedLinks));
-
-      await page.evaluate(() => {
-        localStorage.removeItem('mrt.state.v2');
-        localStorage.removeItem('mrt.import.draft.v1');
-      });
-      await open(page, '/');
-      await click(page, '[data-view="add-import"]');
-      await page.evaluate((text) => {
-        document.querySelector('#import-text').value = text;
-        document.querySelector('#import-new-list').checked = true;
-        document.querySelector('#form-import').requestSubmit();
-      }, markdown);
-      await page.waitForFunction(
-        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
-        { timeout: 15000 },
-      );
-      await page.reload({ waitUntil: 'load' });
-
-      const restored = await page.evaluate((issueId) => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        const list = state.lists[state.active];
-        return {
-          issue: state.issues[issueId],
-          read: Object.hasOwn(state.read, issueId),
-          section: list?.collectedIn?.[issueId] ?? null,
-          requests: window.__mrtIssueRequests ?? 0,
-        };
-      }, READER_ISSUE_ID);
-      t.check('re-import and reload preserve identity, book id, read state, and section',
-        restored.issue?.issueId === READER_ISSUE_ID
-          && restored.issue?.digitalId === READER_DIGITAL_ID
-          && restored.issue?.url === null
-          && restored.read
-          && restored.section === 'Ghost-Spider',
-        JSON.stringify(restored));
-      t.check('re-import and reload still make zero provider requests',
-        restored.requests === 0, JSON.stringify(restored));
-    },
+    title: 'legacy JSON restores exactly and historical Markdown rows require review',
+    run: (page, t) => legacyReaderBackup(page, t, { seedFixtureState, click, openFullOrder, readerId: READER_ISSUE_ID, digitalId: READER_DIGITAL_ID }),
   },
   {
     id: 'undo-delete-dismiss',
@@ -15178,9 +14702,9 @@ const SCENARIOS = [
             height: link.getBoundingClientRect().height,
           })),
         }));
-        t.check('Android navigation explains development status and offers usable full-size previews',
-          /Not available on Google Play/.test(android.copy)
-          && /The beta doesn't include all the features shown here/.test(android.copy)
+        t.check('Android navigation explains release status and browser reading with usable full-size previews',
+          /The released app is available on Google Play/.test(android.copy)
+          && /Android's Read uses an installed browser, not the Marvel Unlimited app/.test(android.copy)
           && /previews made in a desktop browser, not on a phone/.test(android.copy)
           && android.previews.length === 2
           && android.previews.every((link) => link.href.startsWith('./assets/') && link.height >= 44),
@@ -15292,9 +14816,9 @@ const SCENARIOS = [
       const actions = [
         ['up', 'Move up'],
         ['down', 'Move down'],
-        ['override-available', 'Mark as available'],
-        ['override-unavailable', 'Mark as unavailable'],
-        ['override-clear', 'Clear availability override'],
+        ['override-available', 'Record as available in Unlimited'],
+        ['override-unavailable', 'Record as unavailable in Unlimited'],
+        ['override-clear', 'Clear your Unlimited record'],
         ['remove', 'Remove from list'],
       ];
       const metadata = [
@@ -15420,11 +14944,11 @@ SCENARIOS.push({
 
     const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
     t.check('the unchanged availability filter predicate has a visibly hedged label',
-      filter === 'Expected or marked available', filter);
+      filter === 'Past Unlimited date or marked available', filter);
     for (const [act, badge, text] of [
-      ['override-unavailable', 'override-unavailable', 'You marked unavailable'],
-      ['override-available', 'override-available', 'You marked available'],
-      ['override-clear', 'expected', 'Expected in Unlimited'],
+      ['override-unavailable', 'override-unavailable', 'You marked it unavailable in Unlimited'],
+      ['override-available', 'override-available', 'You marked it available in Unlimited'],
+      ['override-clear', 'expected', `Unlimited date: ${first.mu.slice(0, 10)} (passed)`],
     ]) {
       await click(page, row(first.issueId, act));
       const visible = await page.$eval(`#rows .row .badge-${badge}`, (node) => node.textContent);
@@ -15436,19 +14960,18 @@ SCENARIOS.push({
     await click(page, '#btn-hero-inspect');
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     t.check('availability is visible normal metadata with no troubleshooting disclosure',
-      await page.$eval('#issue-focus-facts', (node) => node.textContent.includes('Expected in Unlimited'))
+      await page.$eval('#issue-focus-facts', (node, date) => node.textContent.includes(`Unlimited date: ${date} (passed)`), first.mu.slice(0, 10))
       && !await page.$eval('#reader-link-help', (node) => node.open));
     t.check('metadata hydration does not claim the story summary has already been fetched',
       await page.$eval('#issue-focus-desc', (node) => node.textContent === 'Story summary has not been loaded.'));
-    t.check('original-link help has no temporary lifetime until an editor is explicitly opened',
+    t.check('reader help has no temporary lifetime or retired editor',
       !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
     await click(page, '#reader-link-heading');
-    await click(page, '#reader-link-edit');
-    t.check('a current draft explains its temporary lifetime',
-      await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
-    await click(page, '#reader-link-cancel');
-    t.check('cancel withdraws the lifetime claim for the original link',
-      !await page.$eval('#reader-link-summary', (node) => node.textContent.includes('until the page reloads or closes')));
+    t.check('opening help cannot offer a new pasted reader link',
+      await page.$eval('#reader-link-help', (node) => node.open && !node.querySelector('input, form, button')));
+    await click(page, '#reader-link-heading');
+    t.check('closing help restores the quiet comic context',
+      !await page.$eval('#reader-link-help', (node) => node.open));
 
     const opened = await readState(page);
     await page.focus('#btn-issue-mark-read');
@@ -16011,10 +15534,10 @@ SCENARIOS.push({
         }
       }
       const points = [[.5, .5], [.05, .15], [.95, .15], [.05, .85], [.95, .85]];
-      const hits = points.every(([x, y]) => {
-        const hit = document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y);
-        return hit === control || control.contains(hit);
-      });
+      const hitTargets = points.map(([x, y]) => document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y));
+      const hits = hitTargets.every((hit) => hit === control || control.contains(hit));
+      const blockedBy = hits ? [] : hitTargets.filter((hit) => hit !== control && !control.contains(hit))
+        .map((hit) => ({ tag: hit?.tagName, id: hit?.id, class: hit?.className }));
       const ringHits = !focused || [
         [bounds.left + .5, rect.top + rect.height / 2],
         [bounds.right - .5, rect.top + rect.height / 2],
@@ -16025,7 +15548,7 @@ SCENARIOS.push({
         return hit === control || control.contains(hit) || hit?.contains(control);
       });
       const filterBounds = document.querySelector('#reading-filters').getBoundingClientRect();
-      return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+      return { act: control.dataset.act, focused, ring, clips, hits, blockedBy, ringHits, bounds,
         filterBottom: filterBounds.bottom,
         scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop,
         visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
@@ -16196,7 +15719,8 @@ SCENARIOS.push({
       const style = getComputedStyle(group);
       return {
         role: group.getAttribute('role'), name: group.getAttribute('aria-label'), shown: group.checkVisibility(),
-        rule: style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+        rule: Math.max(style.borderTopStyle === 'solid' ? parseFloat(style.borderTopWidth) : 0,
+          style.borderLeftStyle === 'solid' ? parseFloat(style.borderLeftWidth) : 0),
         acts: [...group.querySelectorAll('[data-act]')].filter((control) => control.checkVisibility())
           .map((control) => control.dataset.act),
       };
@@ -16215,7 +15739,7 @@ SCENARIOS.push({
       for (const child of node?.children ?? []) visit(child);
     };
     visit(ax);
-    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Availability']),
+    t.check('assistive technology meets the groups by name', JSON.stringify(named) === JSON.stringify(['Open', 'Order', 'Marvel Unlimited record']),
       JSON.stringify(named));
 
     const pressed = async () => {
@@ -20939,7 +20463,7 @@ async function main() {
   }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
+  const port = !process.argv.includes('--ephemeral') && ['storylines-discovery-actual-data', 'discovery-priorities', 'cache-generations', 'catalog-gaps', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export', 'ordered-import', 'import-draft-lifecycle', 'reading-state-clarity', 'mcu-prep-organization', 'local-server-recovery'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
@@ -23105,14 +22629,16 @@ async function ux11Preload(page, fixture) {
 }
 
 const UX11_TITLES = {
-  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited',
+  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited web reader',
+  comics: 'Opening Marvel Comics website',
   page: 'Opening Marvel issue page', 'no-reader-link': 'No direct reader link',
   'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
   'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
 };
 const UX11_CAPTIONS = {
-  pending: 'Looking up the recorded Marvel Unlimited link for this issue.',
-  resolved: 'Opening the recorded reader link. Reading progress has not changed.',
+  pending: 'Looking up the Marvel Unlimited link for this issue. Reading ends December 7, 2026.',
+  resolved: 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.',
+  comics: 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.',
   page: 'Opening the Marvel issue page. Reading progress has not changed.',
   'no-reader-link': 'No direct reader link is recorded. Opening the Marvel issue page instead.',
   'lookup-error': 'The metadata lookup failed. Opening the Marvel issue page instead.',
@@ -23144,6 +22670,8 @@ async function runReaderLauncherFeedback(page, t) {
     { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
     { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
       apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
+    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
+    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
   ];
   const rawState = {};
   let useTap = false;
@@ -23159,7 +22687,8 @@ async function runReaderLauncherFeedback(page, t) {
     Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
       selected: localStorage.getItem('mrt.selectedList') })));
     for (const f of fixtures) {
-      const query = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const baseQuery = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
+      const query = baseQuery.includes('r=comics') ? baseQuery : `${baseQuery}&r=unlimited`;
       const nonce = `${f.id}-${Date.now()}`;
       const expectedUrl = `${page.__origin}/open.html?${query}`;
       page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,

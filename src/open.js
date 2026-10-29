@@ -23,6 +23,7 @@
 import { isAllowedApiBase } from './js/lib/apiBase.js';
 import { issuePageUrl } from './js/lib/issuePageUrl.js';
 import { themeAttribute, normaliseTheme, applyThemeMeta } from './js/lib/theme.js';
+import { launchDestination, MARVEL_COMICS_URL } from './js/lib/readerDestination.js';
 
 // Disown the opener before anything else, and in particular before any navigation.
 // The opener belongs to the tab rather than to the document, so severing it here also
@@ -92,14 +93,15 @@ const readerUrl = (d) => `https://read.marvel.com/#/book/${d}`;
 const detailUrl = (i) => `https://www.marvel.com/comics/issue/${i}/`;
 
 const presentation = {
-  pending: ['Looking up reader link', 'Looking up the recorded Marvel Unlimited link for this issue.'],
-  resolved: ['Opening Marvel Unlimited', 'Opening the recorded reader link. Reading progress has not changed.'],
+  pending: ['Looking up reader link', 'Looking up the Marvel Unlimited link for this issue. Reading ends December 7, 2026.'],
+  resolved: ['Opening Marvel Unlimited web reader', 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.'],
   page: ['Opening Marvel issue page', 'Opening the Marvel issue page. Reading progress has not changed.'],
   'no-reader-link': ['No direct reader link', 'No direct reader link is recorded. Opening the Marvel issue page instead.'],
   'lookup-error': ['Reader lookup failed', 'The metadata lookup failed. Opening the Marvel issue page instead.'],
   timeout: ['Reader lookup timed out', 'The metadata lookup timed out. Opening the Marvel issue page instead.'],
   'lookup-unavailable': ['Reader lookup unavailable', 'Saved lookup settings could not be used. Opening the Marvel issue page instead.'],
   'missing-reference': ['Nothing to open', 'This link was missing an issue reference.'],
+  comics: ['Opening Marvel Comics website', 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.'],
 };
 function present(state) {
   const [heading, caption] = presentation[state];
@@ -160,7 +162,10 @@ async function resolveAndGo(id, page = detailUrl(id)) {
   setTimeout(() => go(page), 1400);
 }
 
-if (digitalId) {
+if (launchDestination(q) === 'comics' && (digitalId || issueId)) {
+  present('comics');
+  go(MARVEL_COMICS_URL);
+} else if (digitalId) {
   present('resolved');
   go(readerUrl(digitalId));
 } else if (knownPage) {

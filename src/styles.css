@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:794-801`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:795-802`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1202,6 +1202,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
 .badge-override-unavailable { color: var(--red-fg); border-color: rgb(var(--red-line) / 33.333%); }
+.badge.availability-record { white-space: normal; overflow-wrap: anywhere; }
 
 .row-actions { position: relative; justify-self: end; text-align: right; }
 .row-actions-toggle { display: inline-flex; align-items: center; min-height: var(--target); padding: var(--space-3) var(--space-4); }
@@ -1219,10 +1220,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
    the menu a sixth row taller and put its first group under the sticky filters once centred; a rule
    with 6px either side still sets groups further apart than the 8px between commands within one. */
 .ract-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
-.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--space-3); }
 .ract-group[hidden] { display: none; }
 .ract-group:not([hidden]) ~ .ract-group { border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-3); }
-.row-actions .ract-group > .rail-hint { grid-column: 1 / -1; text-align: left; }
+.row-actions .ract-group > .rail-hint { grid-column: 1 / -1; margin: 0; text-align: left; }
 .mini {
   border: var(--stroke-1) solid var(--line-2); background: none; color: var(--muted);
   border-radius: var(--radius-compact); padding: var(--space-1) var(--space-4); font-size: var(--t-caption); text-decoration: none;
@@ -1244,6 +1245,18 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .row-actions .mini-label { display: inline; }
 @media (max-width: 620px) {
   .ract-group, .ract-availability { grid-template-columns: minmax(0, 1fr); }
+}
+/* At 640x450 the historical note pushed Remove under the bottom navigation. Sharing the first
+   row keeps both named groups intact and every command between the filters and navigation. */
+@media (min-width: 621px) {
+  .row-actions.is-open > .ract { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ract > .ract-group { grid-column: 1 / -1; }
+  .ract > .ract-group:first-child:not([hidden]),
+  .ract > .ract-group:first-child:not([hidden]) + .ract-group { grid-column: auto; }
+  .ract > .ract-group:first-child:not([hidden]) + .ract-group {
+    border-top: 0; padding-top: 0;
+    border-left: var(--stroke-1) solid var(--line); padding-left: var(--space-3);
+  }
 }
 
 /* ============================================================ forms, cards, results */
@@ -2366,8 +2379,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   margin: 0 0 var(--space-2); padding: var(--space-5) 0 var(--space-5);
 }
 /* The filter pills wrap with width and text size; their real height is the scroll obstruction. */
+:root:has(#view-read:not([hidden]) #full[open] #rows :focus) {
+  scroll-padding-top: var(--reading-filter-height, 0px);
+}
 #rows [data-act], .row-actions > .ract {
-  scroll-margin-top: calc(var(--reading-filter-height, 0px) + var(--space-4));
+  scroll-margin-top: var(--space-4);
 }
 
 /* A finished collected edition already dims its name. Its count takes the positive colour too, so

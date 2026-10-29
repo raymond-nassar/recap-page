@@ -70,7 +70,7 @@ function node(id, ownerDocument) {
   };
 }
 
-function harness() {
+function harness(now = new Date(2026, 11, 6, 23, 59)) {
   let state = fixture();
   const doc = { activeElement: null };
   const nodes = Object.fromEntries([
@@ -95,6 +95,7 @@ function harness() {
   let changes = 0;
   let fallback = 0;
   const view = createReaderLinkView({
+    now: () => now,
     elements: () => nodes,
     getState: () => state,
     links,
@@ -250,36 +251,19 @@ test('temporary memory retains valid bindings through unchanged outcomes and inv
   assert.throws(() => links.reconcile(state, { changed: 'unknown' }), TypeError);
 });
 
-test('manual report opens a static project URL without private context', () => {
-  const h = harness();
+test('historical manual report formatting keeps private context out, without a shipped report action', () => {
   assert.deepEqual(REPORT_LINK, {
     href: 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml',
     target: '_blank', rel: 'noopener noreferrer', referrerpolicy: 'no-referrer',
   });
-  for (const [key, value] of Object.entries(REPORT_LINK)) assert.equal(h.nodes.reportLink.getAttribute(key), value);
-  h.nodes.edit.fire('click');
-  h.paste('https://read.marvel.com/?secret=discarded#/book/22/page/private');
-  h.nodes.reportToggle.fire('click');
-  assert.match(h.nodes.reportText.value, /Proposed reader link: Not supplied/);
-  h.nodes.form.fire('submit');
-  h.nodes.regenerate.fire('click');
-  const report = h.nodes.reportText.value;
+  const report = readerLinkReport(fixture().issues[7], 22);
   assert.match(report, /Original reader link: https:\/\/read.marvel.com\/#\/book\/11/);
   assert.match(report, /Proposed reader link: https:\/\/read.marvel.com\/#\/book\/22/);
   assert.match(report, /Marvel comic ID: 7/);
   for (const secret of ['secret', 'discarded', 'page/private', 'Private note', 'Private list', 'Second list', '127.0.0.1']) {
     assert.equal(report.includes(secret), false, secret);
   }
-  h.nodes.reportText.value = 'My manually reviewed report';
-  h.view.refresh();
-  assert.equal(h.nodes.reportText.value, 'My manually reviewed report');
-  h.links.use(h.state(), 7, 'https://read.marvel.com/#/book/33');
-  h.view.refresh();
-  assert.match(h.nodes.reportStatus.textContent, /earlier context/);
-  assert.equal(h.nodes.reportText.value, 'My manually reviewed report');
-  assert.equal(h.nodes.reportLink.getAttribute('href'), REPORT_LINK.href);
-  assert.equal(h.nodes.reportLink.fire('click').prevented, false, 'native external link, no submission handler');
-  const manualReport = readerLinkReport(h.state().issues[-8], 44);
+  const manualReport = readerLinkReport(fixture().issues[-8], 44);
   assert.equal(manualReport.includes('-8'), false);
   assert.match(manualReport, /local manual\/reader-only entry/);
   assert.equal(originalReaderDescription({ issueId: -8, digitalId: 'not a book' }), 'No original reader reference');
@@ -288,181 +272,152 @@ test('manual report opens a static project URL without private context', () => {
     const text = readFileSync(new URL(path, import.meta.url), 'utf8');
     assert.doesNotMatch(text, /\b(?:localStorage|sessionStorage|indexedDB|clipboard)\b|\bfetch\s*\(|window\.open|\.update\s*\(/);
   }
+  const html = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8');
+  assert.doesNotMatch(html, /id="reader-link-(?:reportLink|reportToggle|reportPanel)"/);
 });
 
-test('injected reader form retains invalid drafts and never saves or opens automatically', () => {
+test('retired reader help accepts no pasted links and never saves or opens automatically', () => {
   const h = harness();
   const before = structuredClone(h.state());
   h.view.wire();
   h.nodes.edit.fire('click');
-  assert.equal(h.doc.activeElement, h.nodes.input);
-  assert.equal(h.nodes.form.hidden, false);
   h.paste('https://wrong.example/book/22');
-  assert.equal(h.nodes.form.fire('submit').prevented, true);
+  assert.equal(h.nodes.form.fire('submit').prevented, false);
   assert.equal(h.links.size, 0);
-  assert.equal(h.nodes.form.hidden, false);
-  assert.equal(h.nodes.input.getAttribute('aria-invalid'), 'true');
-  assert.match(h.nodes.error.textContent, /read\.marvel\.com/);
+  assert.equal(h.nodes.input.getAttribute('aria-invalid'), null);
   h.paste('http://read.marvel.com/#/book/022/5');
-  assert.match(h.nodes.preview.textContent, /https:\/\/read\.marvel\.com\/#\/book\/22/);
+  assert.equal(h.nodes.preview.textContent, '');
   assert.equal(h.links.size, 0);
   h.nodes.form.fire('submit');
-  assert.equal(h.links.get(h.state(), 7), 22);
-  assert.equal(h.changes(), 1, 'wire is idempotent');
-  assert.equal(h.nodes.form.hidden, true);
-  assert.equal(h.doc.activeElement, h.nodes.edit);
-  assert.match(h.nodes.status.textContent, /Nothing was saved/);
+  assert.equal(h.links.get(h.state(), 7), null);
+  assert.equal(h.changes(), 0, 'retired controls have no listeners');
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/33');
   const escape = h.nodes.form.fire('keydown', { key: 'Escape' });
-  assert.equal(escape.prevented, true);
-  assert.equal(escape.stopped, true);
-  assert.equal(h.links.get(h.state(), 7), 22);
+  assert.equal(escape.prevented, false);
+  assert.equal(escape.stopped, false);
+  assert.equal(h.links.get(h.state(), 7), null);
   h.view.leave();
   h.view.show(7);
-  assert.equal(h.links.get(h.state(), 7), 22);
+  assert.equal(h.links.get(h.state(), 7), null);
   h.nodes.revert.fire('click');
   assert.equal(h.links.get(h.state(), 7), null);
-  assert.equal(h.nodes.revert.hidden, true);
   h.view.show(-8);
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/44');
   h.nodes.form.fire('submit');
-  assert.equal(h.links.resolve(h.state(), h.state().issues[-8], { source: 'saved' }).issue.digitalId, 44);
+  assert.equal(h.links.resolve(h.state(), h.state().issues[-8], { source: 'saved' }).issue.digitalId, null);
   assert.deepEqual(h.state(), before);
-  assert.equal(h.nodes.reportPanel.hidden, true, 'applying does not open report details');
   h.view.destroy();
   h.nodes.edit.fire('click');
-  assert.equal(h.nodes.form.hidden, true, 'destroy removes listeners without erasing active links');
-  assert.equal(h.links.get(h.state(), -8), 44);
+  assert.equal(h.nodes.root.hidden, true);
+  assert.equal(h.links.get(h.state(), -8), null);
 });
 
-test('injected reader form reconciles outcomes without discarding unrelated temporary links', () => {
+test('retired reader help preserves the existing replacement and uncertainty lifecycle', () => {
   const h = harness();
   h.links.use(h.state(), 7, 'https://read.marvel.com/#/book/22');
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/33');
   h.view.reconcile({ changed: false });
-  assert.equal(h.nodes.apply.disabled, false, 'known-unchanged failed replacement preserves draft');
   assert.equal(h.links.get(h.state(), 7), 22);
   const foreign = structuredClone(h.state());
   foreign.read[7] = 999;
   h.replace(foreign);
   h.view.reconcile({ changed: false });
   assert.equal(h.links.get(h.state(), 7), 22, 'foreign progress retains binding');
-  assert.equal(h.nodes.apply.disabled, true, 'new held record requires draft comparison again');
   h.nodes.form.fire('submit');
   assert.equal(h.links.get(h.state(), 7), 22);
   h.nodes.cancel.fire('click');
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/33');
   h.nodes.form.fire('submit');
-  assert.equal(h.links.get(h.state(), 7), 33);
+  assert.equal(h.links.get(h.state(), 7), 22, 'a retired form cannot replace a binding');
   h.nodes.edit.fire('click');
   h.view.reconcile({ changed: true });
   assert.equal(h.links.size, 0);
-  assert.equal(h.nodes.form.hidden, true);
-  assert.equal(h.doc.activeElement, h.nodes.edit);
   h.links.use(h.state(), 7, 'https://read.marvel.com/#/book/22');
   h.nodes.edit.fire('click');
   h.view.reconcile({ changed: null });
   assert.equal(h.links.known, false);
-  assert.equal(h.nodes.edit.disabled, true);
-  assert.equal(h.fallback(), 1);
   h.view.reconcile({ changed: false, confirmed: true });
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/22');
   h.nodes.form.fire('submit');
   h.view.clearDocument();
   assert.equal(h.links.size, 0);
-  assert.equal(h.nodes.reportPanel.hidden, true);
   h.replace({ ...h.state(), issues: {} });
   h.view.refresh();
-  assert.equal(h.nodes.edit.disabled, true);
   h.nodes.edit.fire('click');
-  assert.match(h.messages.at(-1), /matching saved comic/);
+  assert.equal(h.messages.length, 0, 'there is no hidden editing action or error');
 });
 
-test('UX05 lifetime copy belongs only to a current draft or active temporary link', () => {
+test('pre-cutoff help names the ending date and distinguishes lookup from exact recorded links', () => {
   const h = harness();
   assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
   h.nodes.edit.fire('click');
-  assert.match(h.nodes.summary.textContent, /until the page reloads or closes/);
+  assert.match(h.nodes.summary.textContent, /Reading ends December 7, 2026/);
   h.nodes.cancel.fire('click');
   assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/22');
   h.nodes.form.fire('submit');
-  assert.match(h.nodes.summary.textContent, /until the page reloads or closes/);
+  assert.match(h.nodes.summary.textContent, /Otherwise it looks up the link or opens the comic details page/);
   h.nodes.revert.fire('click');
   assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
 });
 
-test('reader help starts closed and keeps an active temporary link visible outside its disclosure', () => {
+test('reader help starts closed and has no temporary editor or report markup', () => {
   const h = harness();
   const before = structuredClone(h.state());
   assert.equal(h.nodes.help.open, false);
-  assert.equal(h.nodes.temporary.hidden, true);
   h.nodes.edit.fire('click');
-  assert.equal(h.nodes.help.open, true, 'Explicit editing makes its controls visible');
+  assert.equal(h.nodes.help.open, false, 'Retired edit controls have no effect');
   h.paste('https://read.marvel.com/#/book/22');
   h.nodes.form.fire('submit');
   h.nodes.help.open = false;
   h.nodes.heading.focus();
   h.view.refresh();
   assert.equal(h.nodes.edit.getClientRects().length, 0);
-  assert.equal(h.nodes.temporary.hidden, false);
-  assert.equal(h.nodes.temporary.getClientRects().length, 1);
-  assert.match(h.nodes.temporary.textContent, /temporary reader link/i);
-  assert.match(h.nodes.temporary.textContent, /reload|close/i);
-  assert.match(h.nodes.temporary.textContent, /does not verify.*identity or access/i);
-  assert.doesNotMatch(h.nodes.temporary.textContent, /https?:\/\//);
+  const html = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8');
+  assert.doesNotMatch(html, /id="reader-link-(?:edit|form|input|apply|revert|temporary)"/);
   assert.deepEqual(h.state(), before);
   h.nodes.help.open = true;
   h.nodes.revert.fire('click');
-  assert.equal(h.nodes.temporary.hidden, true);
+  assert.equal(h.links.size, 0);
 });
 
-test('changing comic context closes reader help and withdraws stale drafts without losing unrelated links', () => {
+test('changing comic context closes reader help without changing saved identities or unrelated bindings', () => {
   const h = harness();
   h.links.use(h.state(), 7, 'https://read.marvel.com/#/book/22');
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/33');
   h.view.show(-8);
   assert.equal(h.nodes.help.open, false);
-  assert.equal(h.nodes.form.hidden, true);
-  assert.equal(h.nodes.input.value, '');
-  assert.equal(h.nodes.temporary.hidden, true);
-  assert.equal(h.doc.activeElement, h.nodes.heading);
   assert.equal(h.links.get(h.state(), 7), 22);
   h.view.leave();
   assert.equal(h.nodes.help.open, false);
-  assert.equal(h.nodes.temporary.hidden, true);
+  assert.equal(h.nodes.root.hidden, true);
   h.view.show(7);
   assert.equal(h.nodes.help.open, false);
-  assert.equal(h.nodes.temporary.hidden, false);
+  assert.equal(h.nodes.root.hidden, false);
   h.replace({ ...h.state(), issues: {} });
   h.view.refresh();
-  assert.equal(h.nodes.temporary.hidden, true);
-  assert.equal(h.nodes.edit.disabled, true);
+  assert.equal(h.links.get(h.state(), 7), null);
 });
 
-test('reader refresh restores focus to visible help rather than a control inside closed details', () => {
+test('leaving reader help restores focus rather than hiding the focused disclosure', () => {
   const h = harness();
-  h.nodes.edit.fire('click');
-  assert.equal(h.doc.activeElement, h.nodes.input);
-  h.nodes.help.open = false;
-  h.view.refresh();
-  assert.equal(h.doc.activeElement, h.nodes.heading);
-  assert.equal(h.nodes.heading.getClientRects().length, 1);
-  assert.equal(h.nodes.input.getClientRects().length, 0);
+  h.nodes.heading.focus();
+  h.view.leave();
+  assert.equal(h.fallback(), 1);
+  assert.equal(h.nodes.root.hidden, true);
+  assert.equal(h.doc.activeElement, null);
 });
 
-test('native details layout boxes do not keep focus in a closed reader editor', () => {
-  const h = harness();
-  h.nodes.edit.fire('click');
-  h.nodes.help.open = false;
-  h.nodes.input.getClientRects = () => [{}];
+test('post-cutoff reader help honestly names a general website with no single-comic link', () => {
+  const h = harness(new Date(2026, 11, 7));
   h.view.refresh();
-  assert.equal(h.doc.activeElement.id, h.nodes.heading.id);
+  assert.match(h.nodes.summary.textContent, /Marvel Comics website, not a single-comic link/);
+  assert.doesNotMatch(h.nodes.summary.textContent, /opens.*Unlimited web reader/);
 });

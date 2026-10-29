@@ -38,7 +38,7 @@ test('order-only allowlist excludes all personal state without mutating its inpu
 });
 
 test('order-only keeps exact interleaved positions, identities, titles and sections', () => {
-  const { entries, unresolved } = parseChecklist(serializeReadingOrder(fixture));
+  const { entries, unresolved } = parseChecklist(serializeReadingOrder(fixture), { legacyReaderLinks: true });
   const rows = [...entries, ...unresolved].sort((a, b) => a.index - b.index);
   assert.deepEqual(rows.map((row) => [row.issueId ?? null, row.title, row.section, row.read]), [
     [42, 'First ] issue', 'Volume one', false],
@@ -76,9 +76,12 @@ test('order-only preserves manual reader books but excludes URL page and credent
   assert.match(md, /https:\/\/read\.marvel\.com\/#\/book\/1067/);
   assert.match(md, /https:\/\/www\.marvel\.com\/comics\/issue\/42\/slug/);
   assert.doesNotMatch(md, /page\/8|user|secret|private|comics\/issue\/-/);
+  const legacy = parseChecklist(md, { legacyReaderLinks: true });
+  assert.deepEqual(legacy.entries.map((entry) => entry.issueId), [readerIssueId(129648), readerIssueId(1067), 42, 99]);
+  assert.equal(legacy.unresolved[0].title, 'Not resolved');
   const parsed = parseChecklist(md);
-  assert.deepEqual(parsed.entries.map((entry) => entry.issueId), [readerIssueId(129648), readerIssueId(1067), 42, 99]);
-  assert.equal(parsed.unresolved[0].title, 'Not resolved');
+  assert.deepEqual(parsed.entries.map((entry) => entry.issueId), [42, 99]);
+  assert.deepEqual(parsed.unresolved.map((entry) => entry.title), ['Manual book', 'Pasted book', 'Not resolved']);
 });
 
 test('order-only resets sections when a named run is followed by an unlabelled position', () => {

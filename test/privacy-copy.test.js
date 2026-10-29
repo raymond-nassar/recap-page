@@ -146,11 +146,11 @@ const REQUESTS = [
   ],
   [
     'opening a reader resolves a missing reader link',
-    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)/i,
+    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)|otherwise it looks up the missing link or opens the recorded comic details page/i,
   ],
   [
-    'reader launch names both Marvel destinations',
-    /(?:(?:pressing\s+)?(?:\*\*)?\bRead\b(?:\*\*)?\s+opens|opening an issue)[\s\S]{0,300}(?:Marvel Unlimited|Marvel's reader)[\s\S]{0,300}marvel\.com/i,
+    'reader launch distinguishes the retiring web reader and the general Marvel Comics website',
+    /Read[\s\S]{0,300}(?:Marvel Unlimited web reader|Marvel's web reader)[\s\S]{0,600}general Marvel Comics\s+website/i,
   ],
   [
     'the requests disclose which issues',
