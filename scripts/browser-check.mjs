@@ -20268,6 +20268,13 @@ SCENARIOS.push({
       && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    // Every announcement from here on, as the page's announcer receives it (stage 3 review, S3b-2).
+    await page.evaluate(() => {
+      window.__cloudSpoken = [];
+      const node = document.querySelector('#announcer');
+      new MutationObserver(() => { if (node.textContent) window.__cloudSpoken.push(node.textContent); })
+        .observe(node, { childList: true, characterData: true, subtree: true });
+    });
     fixture.folderDeleted();
     await open(page, '/#/about');
     await open(page, '/#/data');
@@ -20278,6 +20285,12 @@ SCENARIOS.push({
     t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
       told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
     t.check('the line under the card no longer says automatic backup is on once the switch shows it off', asked.report === '', JSON.stringify(asked.report));
+    await page.waitForFunction((reason) => window.__cloudSpoken.some((text) => text.includes(reason)), { timeout: 3000 }, deleted).catch(() => {});
+    await new Promise((resolve) => { setTimeout(resolve, 300); });
+    const spoken = await page.evaluate(() => window.__cloudSpoken);
+    const warned = await page.$eval('#cloud-backup-status', (node) => node.classList.contains('notice') && node.classList.contains('notice-warn'));
+    t.check('stopped backups are announced once and the status line wears the warning notice',
+      spoken.filter((text) => text.includes(deleted)).length === 1 && warned, JSON.stringify({ spoken, warned }));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

@@ -474,6 +474,10 @@ function cloudNodes() {
   });
   // As in a browser, where closest() starts at the element itself, so a hidden control is seen as hidden.
   for (const node of Object.values(nodes)) node.closest = function closest(selector) { return selector === '[hidden]' && this.hidden ? this : null; };
+  for (const node of Object.values(nodes)) {
+    const names = new Set();
+    node.classList = { toggle(name, force) { if (force) names.add(name); else names.delete(name); }, contains: (name) => names.has(name) };
+  }
   return nodes;
 }
 
@@ -605,6 +609,38 @@ test('after Try again now and after Disconnect, focus lands on what the card say
   await settled();
   assert.deepEqual([card.nodes.status.hidden, card.nodes.disconnect.hidden, card.nodes.report.focused], [true, true, true],
     'the control and the status line are gone, so the report of the disconnect has focus');
+});
+
+// Said once each, as it happens, through the page's announcer: signing in, a sign-in that failed, a sign-in
+// to make again, and backups that stopped. The line itself is not live, or it would also speak every
+// "Backing up now". Stopped and failed states wear the warning notice, whose mark is not color alone
+// (stage 3 review, S3b-2).
+test('the card announces each change a person must hear once, as it happens, and marks stops and failures as warnings', () => {
+  const spoken = [];
+  const quiet = cloudCard({ ...CLOUD, host: 'needs-sign-in' }, { announce: (text) => spoken.push(text) });
+  assert.deepEqual([spoken, quiet.nodes.status.classList.contains('notice-warn')], [[], true], 'what a page finds when it opens is not news');
+  const card = cloudCard({ ...CLOUD, host: 'not-connected', account: null }, { announce: (text) => spoken.push(text) });
+  const warned = () => card.nodes.status.classList.contains('notice') && card.nodes.status.classList.contains('notice-warn');
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  card.show({ ...CLOUD });
+  card.show({ ...CLOUD });
+  assert.deepEqual([spoken, warned()], [['Connected to OneDrive as reader@example.test.'], false], 'signed in, said once');
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  card.show({ ...CLOUD, host: 'not-connected', account: null, message: 'Sign-in was cancelled.' });
+  assert.deepEqual([spoken.at(-1), warned()], ['Sign-in was cancelled.', true]);
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true };
+  card.show({ ...on, backup: { phase: 'up-to-date', code: null, retryAt: null, lastUploadAt: 5 } });
+  card.show({ ...on, host: 'needs-sign-in' });
+  card.show({ ...on, host: 'needs-sign-in' });
+  assert.deepEqual([spoken.at(-1), warned()], ['Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.', true]);
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } });
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } });
+  assert.deepEqual([/OneDrive is full, so backups have stopped/.test(spoken.at(-1)), warned()], [true, true]);
+  card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 5 } });
+  assert.equal(warned(), false, 'backing up again is no warning');
+  card.show({ ...CLOUD, agreed: true, askedAgain: true });
+  assert.deepEqual([/connected again since this browser agreed/.test(spoken.at(-1)), warned()], [true, true], 'asked again: backups stopped');
+  assert.equal(spoken.length, 5, 'one announcement for each of the five changes, and none for the rest');
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {

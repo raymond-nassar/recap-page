@@ -2410,7 +2410,7 @@ const cloudBackupView = createCloudBackupView({
   }),
   askConfirm,
   askConfirmChoice,
-  notify,
+  notify, announce,
   getModel: () => cloudBackup.model,
   onConnect: () => cloudBackup.connect(),
   onTurnOn: () => cloudBackup.turnOn(),

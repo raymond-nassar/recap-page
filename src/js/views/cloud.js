@@ -74,6 +74,28 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
   }
 }
 
+// Stopped and failed states, which wear the warning notice, whose mark does not rely on color.
+export function cloudCardWarns(model) {
+  const { host } = model;
+  if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
+  if (host === 'not-connected') return Boolean(model.message);
+  if (host === 'connected') return Boolean(model.askedAgain || (model.on && model.backup.phase === 'failed'));
+  return false;
+}
+
+// The changes a person must hear as they happen: signing in, a sign-in that failed, a sign-in to make
+// again, and backups that stopped. Each is named so it is said once while it lasts.
+function noticeOf(model, previous) {
+  const { host } = model;
+  if (host === 'needs-sign-in') return 'needs-sign-in';
+  if (previous === 'signing-in' && host === 'not-connected' && model.message) return 'sign-in-failed';
+  if (previous === 'signing-in' && host === 'connected') return 'signed-in';
+  if (host === 'unavailable' && model.agreed) return `unavailable:${model.message}`;
+  if (host === 'connected' && model.askedAgain) return 'asked-again';
+  if (host === 'connected' && model.on && model.backup.phase === 'failed') return `failed:${model.backup.code}`;
+  return null;
+}
+
 // Said in the erase question only while erasing changes cloud backup.
 export function cloudEraseNote(model) {
   if (!model?.shown) return null;
@@ -101,7 +123,7 @@ export function renderCloudCopy(model, root = globalThis.document) {
 }
 
 export function createCloudBackupView({
-  el, elements, askConfirm, askConfirmChoice, notify, getModel,
+  el, elements, askConfirm, askConfirmChoice, notify, getModel, announce = () => {},
   onConnect, onTurnOn, onTurnOff, onDiscover, onFetch, onRestore, onDeleteOwn, onDisconnect, onRetry, onFinished,
   when = longTime, at = shortTime,
 }) {
@@ -115,6 +137,9 @@ export function createCloudBackupView({
   // It is withdrawn once the switch shows otherwise, as when the folder is deleted or another profile
   // reconnects and this browser is asked again, so the card never says on beside an unticked switch.
   let claimed = null;
+  // What the card last showed, so each change worth hearing is said once, as it happens, and never what a
+  // page finds already true when it opens (stage 3 review, S3b-2).
+  let heard = null;
   const report = (message, kind = 'error', claims = null) => {
     claimed = claims;
     notify('#cloud-backup-report', message, kind);
@@ -174,13 +199,22 @@ export function createCloudBackupView({
     const nodes = elements();
     if (!nodes.card) return;
     nodes.card.hidden = !model.shown;
-    if (!model.shown) return;
+    if (!model.shown) {
+      heard = null;
+      return;
+    }
     const { host } = model;
     const connected = host === 'connected';
     nodes.intro.hidden = !(host === 'not-connected' || host === 'signing-in');
     const said = cloudCardStatus(model, { when, at });
     nodes.status.textContent = said;
     nodes.status.hidden = !said;
+    const warns = cloudCardWarns(model);
+    nodes.status.classList?.toggle('notice', warns);
+    nodes.status.classList?.toggle('notice-warn', warns);
+    const notice = noticeOf(model, heard?.host);
+    if (heard && notice && notice !== heard.notice && said) announce(said);
+    heard = { host, notice };
     nodes.progress.hidden = !(model.on && model.backup.phase === 'saving');
     nodes.signIn.hidden = !(host === 'not-connected' || host === 'needs-sign-in');
     nodes.retry.hidden = !(model.on && (model.backup.phase === 'failed' || model.backup.phase === 'retrying'));
