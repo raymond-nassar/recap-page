@@ -783,7 +783,9 @@ OneDrive every file this app deletes goes to the person's recycle bin for up to 
 emptied, because the access the app asks for cannot delete permanently. A person who deletes the app's
 folder there has withdrawn consent in the contract's terms: the Windows host knows the folder by its id,
 so its next list or create finds it gone, gives the connection a new id, and every browser sees what the
-account holds and agrees again before a backup makes the folder anew.
+account holds and agrees again before a backup makes the folder anew. Until the host restarts, its
+status gives that reason, so those browsers' cards say the folder was deleted rather than that OneDrive
+was connected again.
 
 ## What is intentionally centralized
 

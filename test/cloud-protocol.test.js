@@ -1201,11 +1201,12 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
 // The Windows host as the page meets it: the account above, plus the status, connect and disconnect the
 // host answers. A sign-in stays open until the test finishes it, and every status request is counted.
 function windowsHost(transport, { account = 'reader@example.test' } = {}) {
-  const host = { enabled: true, state: transport.connection ? 'connected' : 'not-connected', statuses: 0, disconnects: 0, refuse: null };
+  const host = { enabled: true, state: transport.connection ? 'connected' : 'not-connected', statuses: 0, disconnects: 0, refuse: null, reason: null };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const answer = () => (host.enabled ? Object.freeze({
     enabled: true, provider: 'onedrive', state: host.state, connection: linked() ? transport.connection : null,
-    account: linked() ? account : null, message: null, signInExpiresAt: host.state === 'signing-in' ? 1_800_000_300_000 : null,
+    account: linked() ? account : null, message: null, reason: linked() ? host.reason : null,
+    signInExpiresAt: host.state === 'signing-in' ? 1_800_000_300_000 : null,
   }) : Object.freeze({ enabled: false }));
   return Object.assign(transport, {
     host,
@@ -1329,8 +1330,15 @@ test('consent belongs to one connection: after another profile reconnects the ho
   assert.equal(env.transport.created.length, made, 'nothing was created under a connection this browser did not agree to');
   const model = tab.cloud.model;
   assert.deepEqual([model.on, model.agreed, model.askedAgain, model.backup.phase], [false, true, true, 'off']);
+  assert.equal(model.reason, null, 'another profile signing in needs no explaining');
   const looked = await tab.cloud.enter();
   assert.deepEqual([looked.discovery.state, looked.discovery.connection], ['ready', 'connection-two'], 'the newly connected account is shown first');
+  // The person deleted the app folder instead: the host starts a new connection and says why, and the page
+  // carries that to the card rather than claiming anyone signed in again (P02-T07 decision 2).
+  env.transport.signedIn('connection-three');
+  env.transport.host.reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  const told = await tab.cloud.refresh();
+  assert.deepEqual([told.askedAgain, told.reason], [true, env.transport.host.reason]);
 });
 
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {

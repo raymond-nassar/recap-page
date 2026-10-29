@@ -19818,16 +19818,16 @@ SCENARIOS.push({
 const CLOUD_PREFIX_PATH = '/__recap_cloud__/v1/';
 
 function cloudFixtureHost() {
-  const host = { state: 'not-connected', connection: null, account: null, items: new Map(), next: 1, calls: [] };
+  const host = { state: 'not-connected', connection: null, account: null, reason: null, items: new Map(), next: 1, calls: [] };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
   const status = () => ({
     provider: 'onedrive', state: host.state, connection: linked() ? host.connection : null, account: linked() ? host.account : null,
-    message: null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
+    message: null, reason: linked() ? host.reason : null, signInExpiresAt: host.state === 'signing-in' ? Date.now() + 300_000 : null,
   });
   const refuse = (code, message) => ({ ok: false, error: { code, message } });
   const guard = (input) => {
     if (!linked()) return refuse('not-connected', 'Cloud backup is not connected on this computer.');
-    return input.connection === host.connection ? null : refuse('needs-consent', 'Cloud backup was connected again.');
+    return input.connection === host.connection ? null : refuse('needs-consent', host.reason ?? 'Cloud backup was connected again.');
   };
   const shape = ({ id, name, size, created }) => ({ id, name, size, created });
   function handle(operation, input) {
@@ -19838,7 +19838,7 @@ function cloudFixtureHost() {
       return { ok: true, status: status() };
     }
     if (operation === 'disconnect') {
-      Object.assign(host, { state: 'not-connected', connection: null, account: null });
+      Object.assign(host, { state: 'not-connected', connection: null, account: null, reason: null });
       return { ok: true, status: status() };
     }
     const refused = guard(input);
@@ -19862,7 +19862,13 @@ function cloudFixtureHost() {
   }
   return {
     host, handle,
-    signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test' }); },
+    signedIn() { Object.assign(host, { state: 'connected', connection: 'c'.repeat(32), account: 'reader@example.test', reason: null }); },
+    // The person deleted the Recap Page folder, and another browser's backup found it gone: the host forgot
+    // the folder, started a new connection and says why, as host/cloudHost.mjs does.
+    folderDeleted() {
+      host.items.clear();
+      Object.assign(host, { connection: 'd'.repeat(32), reason: 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.' });
+    },
   };
 }
 
@@ -20176,6 +20182,25 @@ SCENARIOS.push({
         && about.data.includes('Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive')
         && !about.data.includes('never sent anywhere'),
       JSON.stringify(about));
+
+    // The person deletes the Recap Page folder in OneDrive while this browser backs up, and another
+    // browser's backup finds it gone first. Opening Backup & settings asks the host, and the card says the
+    // folder was deleted rather than that anyone signed in again (P02-T07 decision 2).
+    fixture.signedIn();
+    await open(page, '/#/data');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent === 'Connected to OneDrive as reader@example.test.'
+      && document.querySelector('#cloud-discovery-list').textContent.includes('There are no Recap Page backups'), { timeout: 15000 });
+    await click(page, '#opt-cloud-auto');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
+    fixture.folderDeleted();
+    await open(page, '/#/about');
+    await open(page, '/#/data');
+    const deleted = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+    const told = await page.waitForFunction((reason) => document.querySelector('#cloud-backup-status').textContent.endsWith(reason),
+      { timeout: 15000 }, deleted).then(() => true, () => false);
+    const asked = await cloudCard(page);
+    t.check('a deleted Recap Page folder is said as that, with automatic backup off here until this browser agrees again, not as a sign-in nobody made',
+      told && asked.status === `Connected to OneDrive as reader@example.test. ${deleted}` && asked.auto && !asked.checked, JSON.stringify(asked));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

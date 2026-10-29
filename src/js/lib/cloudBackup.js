@@ -74,6 +74,8 @@ export function createCloudBackup({
       host: enabled() ? status.state : agreed ? 'not-answering' : 'absent',
       account: enabled() ? status.account : null,
       message: enabled() ? status.message : null,
+      // Why this browser is asked again, when the host knows: the person deleted the app folder.
+      reason: enabled() ? status.reason ?? null : null,
       signInExpiresAt: enabled() ? status.signInExpiresAt : null,
       agreed: agreed !== null,
       on: isOn(),

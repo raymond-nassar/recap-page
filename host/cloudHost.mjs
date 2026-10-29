@@ -104,6 +104,11 @@ export function createCloudHost({
   let refreshing = null;
   let probed = null;
   let epoch = 0;
+  // Why the current connection was started without anyone signing in again: the person deleted the app
+  // folder. Every browser that agreed to the connection before it is told so, rather than that OneDrive
+  // was connected again (P02-T07 decision 2). Held in memory only, so a restarted host says the general
+  // sentence instead.
+  let changed = null;
   let inFlight = 0;
   let queue = Promise.resolve();
   // Every change to the stored sign-in, in order, so a refresh that finishes after a disconnect can never
@@ -152,8 +157,14 @@ export function createCloudHost({
       connection: problem ? null : record?.connection ?? null,
       account: problem ? null : record?.account.hint ?? null,
       message: problem?.message ?? message,
+      reason: !problem && record && changed?.connection === record.connection ? changed.reason : null,
       signInExpiresAt: signIn?.expiresAt ?? null,
     };
+  }
+
+  // A browser naming a connection that is no longer the current one, told why in the words its card shows.
+  function askAgain(current) {
+    return new ProviderError('needs-consent', changed?.connection === current.connection ? changed.reason : CONNECTED_AGAIN);
   }
 
   async function signInJob(job) {
@@ -283,7 +294,7 @@ export function createCloudHost({
     return async ({ renew = false } = {}) => {
       const current = record;
       if (!current) throw new ProviderError('not-connected', 'Cloud backup was disconnected.');
-      if (current.connection !== connection) throw new ProviderError('needs-consent', CONNECTED_AGAIN);
+      if (current.connection !== connection) throw askAgain(current);
       if (!current.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
       if (!renew && access?.connection === connection && access.expiresAt - 60_000 > clock()) return access.token;
       // One refresh at a time for a connection: the second caller waits for the first one's token rather
@@ -307,7 +318,7 @@ export function createCloudHost({
     if (!record) throw new ProviderError('not-connected', 'Cloud backup is not connected on this computer.');
     // A different connection than the one this browser agreed to: another profile reconnected the host,
     // perhaps to another account, so this browser has to see what is there and agree again first.
-    if (record.connection !== input.connection) throw new ProviderError('needs-consent', CONNECTED_AGAIN);
+    if (record.connection !== input.connection) throw askAgain(record);
     if (!record.refreshToken) throw new ProviderError('needs-sign-in', 'Sign in to OneDrive again to keep backing up.');
     const current = record;
     const onedrive = createOneDrive({
@@ -355,6 +366,7 @@ export function createCloudHost({
       await store.save(next).catch(() => {});
       record = next;
       access = null;
+      changed = { connection: next.connection, reason: FOLDER_GONE };
     });
     throw new ProviderError('needs-consent', FOLDER_GONE);
   }

@@ -990,16 +990,24 @@ test('a deleted app folder asks every browser again under a new connection, and 
   const fetch = microsoft();
   const env = host({ store, fetch });
   const api = await hostServer(env.instance);
+  // Why every browser is asked again, as the card shows it: the person deleted the folder, nobody signed in
+  // again (P02-T07 decision 2). The page's own transport carries it.
+  const FOLDER_GONE = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  const transport = createCloudHostTransport({ fetchImpl: pageFetch(api).fetchImpl });
   try {
+    assert.equal((await api.call('status')).body.status.reason, null, 'an ordinary connection has nothing to explain');
     fetch.state.folderId = 'APP!2';
     const refused = await api.call('list', { connection: RECORD.connection });
     assert.equal(refused.body.error?.code, 'needs-consent', 'the person deleted the folder, so consent runs again');
+    assert.equal(refused.body.error?.message, FOLDER_GONE);
     const status = (await api.call('status')).body.status;
     assert.equal(status.state, 'connected');
     assert.notEqual(status.connection, RECORD.connection, 'a new connection, so every browser asks again');
+    assert.equal(status.reason, FOLDER_GONE, 'and the host says why, for every browser that has not agreed again');
+    assert.equal((await transport.status()).reason, FOLDER_GONE, 'through the page\'s transport too');
     assert.deepEqual([store.saved.connection, store.saved.folder], [status.connection, null]);
-    assert.equal((await api.call('create', { connection: RECORD.connection, name: NAME, bytes: 'aGk=' })).body.error?.code, 'needs-consent',
-      'nothing is made under the old consent');
+    const old = (await api.call('create', { connection: RECORD.connection, name: NAME, bytes: 'aGk=' })).body.error;
+    assert.deepEqual([old?.code, old?.message], ['needs-consent', FOLDER_GONE], 'nothing is made under the old consent, which is told why');
     assert.deepEqual((await api.call('list', { connection: status.connection })).body.items, [], 'discovery under the new one');
     const made = await api.call('create', { connection: status.connection, name: NAME, bytes: 'aGk=' });
     assert.equal(made.body.ok, true);
@@ -1008,6 +1016,9 @@ test('a deleted app folder asks every browser again under a new connection, and 
     fetch.state.items.push(CREATED);
     assert.deepEqual((await api.call('list', { connection: status.connection })).body.items.map((entry) => entry.name), [NAME]);
     assert.ok(fetch.calls.some((call) => call.url.startsWith(`${GRAPH}/me/drive/items/APP!2/children?`)), 'listed by the new folder\'s id');
+    assert.equal((await api.call('status')).body.status.reason, FOLDER_GONE, 'still said while that connection lasts, for the browsers not yet asked');
+    await api.call('disconnect');
+    assert.equal((await api.call('status')).body.status.reason, null, 'and gone with it');
   } finally {
     env.instance.close();
     await api.close();
@@ -1258,7 +1269,7 @@ test('the page\'s transport speaks the control API as the served page does, and 
   const transport = createCloudHostTransport({ fetchImpl: page.fetchImpl });
   try {
     assert.deepEqual(await transport.status(), {
-      enabled: true, provider: 'onedrive', state: 'not-connected', connection: null, account: null, message: null, signInExpiresAt: null,
+      enabled: true, provider: 'onedrive', state: 'not-connected', connection: null, account: null, message: null, reason: null, signInExpiresAt: null,
     });
     let started = null;
     await signIn(env, api, { nonceRef, start: async () => { started = await transport.connect(); return started; } });
@@ -1376,7 +1387,7 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
   const busy = body(429, { ok: false, error: { code: 'unavailable', message: 'Too many cloud requests at once.' } });
   assert.deepEqual(await answering(busy).status(), {
     enabled: true, provider: null, state: 'unavailable', connection: null, account: null,
-    message: 'The Recap Page app is busy. Try again in a moment.', signInExpiresAt: null,
+    message: 'The Recap Page app is busy. Try again in a moment.', reason: null, signInExpiresAt: null,
   });
   await assert.rejects(answering(busy).list({ connection: RECORD.connection }), { code: 'unavailable' });
   const full = body(200, { ok: false, error: { code: 'quota', message: 'OneDrive is full.', retryAfterMs: 5 } });

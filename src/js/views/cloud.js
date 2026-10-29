@@ -63,7 +63,10 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
     case 'needs-sign-in': return 'Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.';
     case 'connected': {
       const account = model.account ? `Connected to ${name} as ${model.account}.` : `Connected to ${name}.`;
-      if (model.askedAgain) return `${account} ${name} was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`;
+      if (model.askedAgain) {
+        return model.reason ? `${account} ${model.reason}`
+          : `${account} ${name} was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`;
+      }
       if (!model.on) return account;
       return `${account} ${cloudBackupStatus(model.backup, { name, when, at })}`;
     }

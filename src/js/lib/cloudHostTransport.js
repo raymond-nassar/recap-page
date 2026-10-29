@@ -57,12 +57,13 @@ function statusOf(value) {
     connection: text(value.connection, 128),
     account: text(value.account, 256),
     message: text(value.message, 1024),
+    reason: text(value.reason, 1024),
     signInExpiresAt: Number.isSafeInteger(value.signInExpiresAt) ? value.signInExpiresAt : null,
   };
 }
 
 function unavailable(message) {
-  return { enabled: true, provider: null, state: 'unavailable', connection: null, account: null, message, signInExpiresAt: null };
+  return { enabled: true, provider: null, state: 'unavailable', connection: null, account: null, message, reason: null, signInExpiresAt: null };
 }
 
 function failure(error, code, fallback) {

@@ -529,6 +529,14 @@ test('the cloud card shows only what each state allows, and nothing at all in a 
   card.show({ ...CLOUD, agreed: true, askedAgain: true, discovery: FOUND });
   assert.equal(card.nodes.autoInput.checked, false, 'agreed to another connection: asked again');
   assert.match(card.nodes.status.textContent, /connected again since this browser agreed/);
+  // When the host knows why, the card says that instead: the person deleted the folder, and nobody signed in
+  // again (P02-T07 decision 2).
+  const reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
+  card.show({ ...CLOUD, agreed: true, askedAgain: true, reason, discovery: FOUND });
+  assert.equal(card.nodes.status.textContent, `Connected to OneDrive as reader@example.test. ${reason}`);
+  assert.equal(card.nodes.autoInput.checked, false);
+  card.show({ ...CLOUD, agreed: true, reason, discovery: FOUND });
+  assert.equal(card.nodes.status.textContent, 'Connected to OneDrive as reader@example.test.', 'only a browser being asked again is told why');
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {
