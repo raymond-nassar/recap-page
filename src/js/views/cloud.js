@@ -109,6 +109,39 @@ export function cloudEraseNote(model) {
   return null;
 }
 
+// "the OneDrive account reader@example.test", or "this OneDrive account" where the host gave no name.
+function accountIn(model) {
+  const name = cloudProviderName(model);
+  return model.account ? `the ${name} account ${model.account}` : `this ${name} account`;
+}
+
+// Deleting this device's backups, in the owner's words approved 2026-10-28 (stage 3 review, S3a-2 and
+// S3b-5): the deletion reaches only the account the host holds now, so the question and the reports name
+// it, and say where any backups made in another account are.
+export function cloudDeleteQuestion(model) {
+  const name = cloudProviderName(model);
+  return `This turns automatic backup off for this browser and deletes every backup it made in ${accountIn(model)}. Backups from other devices are kept, and so are any this browser made in another ${name} account. To delete those, connect to that account and delete them here, or delete them in ${name} itself. Deleted backups stay in ${name}'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.`;
+}
+
+export function cloudDeleteReport({ deleted, failed }, model) {
+  const name = cloudProviderName(model);
+  const where = accountIn(model);
+  if (failed.length === 0) {
+    return deleted === 0
+      ? `No backups of this browser were in ${where}. Any it made in another account are still there. Automatic backup is off for this browser.`
+      : `Deleted ${plural(deleted, 'backup')} of this browser from ${where}, where ${deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.`;
+  }
+  const reason = failed[0].code === 'needs-sign-in' ? 'sign in again first'
+    : failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${failed.length === 1 ? 'it' : 'them'}`;
+  return `Deleted ${deleted} of ${plural(deleted + failed.length, 'backup')} of this browser from ${where}. ${plural(failed.length, 'backup')} could not be deleted (${reason}). Automatic backup is off for this browser; delete again to finish.`;
+}
+
+// A deletion that stopped before deleting anything, which says automatic backup is off only when it is,
+// because consent was withdrawn before the step that failed (stage 3 review, S3a-4).
+export function cloudDeleteFailure(message, off) {
+  return `${withOutcome('Nothing was deleted.', message, DELETED)}${off ? ' Automatic backup is off for this browser.' : ''}`;
+}
+
 // Added to what an erase reports when cloud backup could not be turned off everywhere it said.
 export function cloudEraseOutcome(result) {
   if (result?.ok !== false) return '';
@@ -341,36 +374,30 @@ export function createCloudBackupView({
     });
   }
 
-  // True when every one of this device's backups is gone.
-  async function deleteOwnBackups(name) {
+  // True when every one of this device's backups is gone. The reports name the account the question did.
+  async function deleteOwnBackups(model) {
     let result;
     try { result = await onDeleteOwn(); }
     catch (error) {
-      report(withOutcome('Nothing was deleted.', error.message, DELETED));
+      const off = !getModel().agreed;
+      report(cloudDeleteFailure(error.message, off), 'error', off ? false : null);
       return false;
     }
-    const total = result.deleted + result.failed.length;
-    if (result.failed.length === 0) {
-      report(result.deleted === 0 ? `No backups of this browser were in ${name}. Automatic backup is off for this browser.`
-        : `Deleted ${plural(result.deleted, 'backup')} of this browser from ${name}, where ${result.deleted === 1 ? 'it stays' : 'they stay'} in the recycle bin until it is emptied. Automatic backup is off for this browser.`, 'ok', false);
-      return true;
-    }
-    const reason = result.failed[0].code === 'needs-sign-in' ? 'sign in again first'
-      : result.failed[0].code === 'timeout' ? `${name} did not answer in time` : `${name} did not delete ${result.failed.length === 1 ? 'it' : 'them'}`;
-    report(`Deleted ${result.deleted} of ${plural(total, 'backup')} of this browser. ${plural(result.failed.length, 'backup')} could not be deleted (${reason}). Automatic backup is off for this browser; delete again to finish.`, 'warn', false);
-    return false;
+    const done = result.failed.length === 0;
+    report(cloudDeleteReport(result, model), done ? 'ok' : 'warn', false);
+    return done;
   }
 
   function deleteOwn() {
     return run(async () => {
-      const name = cloudProviderName(getModel());
+      const model = getModel();
       const yes = await askConfirm({
         title: 'Delete this device\'s cloud backups?',
-        body: `This turns automatic backup off for this browser and deletes every backup it made in ${name}. Backups from other devices are kept. Deleted backups stay in ${name}'s recycle bin until it is emptied, but Recap Page cannot bring them back.`,
+        body: cloudDeleteQuestion(model),
         confirmLabel: 'Delete cloud backups',
         danger: true,
       });
-      if (yes) await deleteOwnBackups(name);
+      if (yes) await deleteOwnBackups(model);
     });
   }
 
@@ -395,7 +422,7 @@ export function createCloudBackupView({
         if (!yes) return;
       }
       // One question at a time: should the deletion stop part way, disconnecting is asked again on its own.
-      if (deleteFirst && !(await deleteOwnBackups(name))) {
+      if (deleteFirst && !(await deleteOwnBackups(model))) {
         const anyway = await askConfirm({
           title: 'Disconnect anyway?',
           body: `Some of this device's backups are still in ${name}. To delete them later, connect again and use Delete this device's cloud backups, or delete them in ${name} itself.`,

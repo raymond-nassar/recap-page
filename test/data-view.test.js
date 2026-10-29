@@ -701,23 +701,49 @@ test('restoring a backup from the account reads it again and asks with the dange
   assert.deepEqual(gone.state.asked, [], 'nothing is asked about a backup that is gone');
 });
 
-test('deleting this device\'s backups asks first, says the recycle bin keeps them, and says what is left when it stops part way', async () => {
+test('deleting this device\'s backups asks first, names the account, says the recycle bin keeps them, and says what is left when it stops part way', async () => {
   const card = cloudCard({ ...CLOUD, agreed: true, on: true, hasStream: true });
   card.nodes.remove._fire();
   await settled();
   const [question] = card.state.asked;
   assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Delete this device\'s cloud backups?', 'Delete cloud backups', true]);
-  assert.match(question.body, /Deleted backups stay in OneDrive's recycle bin until it is emptied, but Recap Page cannot bring them back\./);
+  // The owner's words, approved 2026-10-28 (stage 3 review, S3a-2 and S3b-5).
+  assert.equal(question.body, 'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account '
+    + 'reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete '
+    + 'those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle '
+    + 'bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
   assert.deepEqual(card.state.calls, [], 'Cancel deletes nothing');
 
-  const partial = cloudCard({ ...CLOUD, agreed: true, on: true, hasStream: true }, {
-    onDeleteOwn: async () => ({ deleted: 1, failed: [{ id: 'item-2', name: 'b', code: 'timeout' }] }),
-  });
-  partial.state.answers.push(true);
-  partial.nodes.remove._fire();
-  await settled();
-  assert.deepEqual(partial.state.notices.at(-1), ['#cloud-backup-report',
-    'Deleted 1 of 2 backups of this browser. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.', 'warn']);
+  const deleting = async (result, model = { ...CLOUD, agreed: true, on: true, hasStream: true }, after = null) => {
+    const each = cloudCard(model, {
+      onDeleteOwn: async () => {
+        if (after) each.state.model = after;
+        if (result instanceof Error) throw result;
+        return result;
+      },
+    });
+    each.state.answers.push(true);
+    each.nodes.remove._fire();
+    await settled();
+    return each.state.notices.at(-1);
+  };
+  assert.deepEqual(await deleting({ deleted: 2, failed: [] }), ['#cloud-backup-report', 'Deleted 2 backups of this browser from the OneDrive account '
+    + 'reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 1, failed: [] }), ['#cloud-backup-report', 'Deleted 1 backup of this browser from the OneDrive account '
+    + 'reader@example.test, where it stays in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 0, failed: [] }), ['#cloud-backup-report', 'No backups of this browser were in the OneDrive account '
+    + 'reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.', 'ok']);
+  assert.deepEqual(await deleting({ deleted: 1, failed: [{ id: 'item-2', name: 'b', code: 'timeout' }] }), ['#cloud-backup-report',
+    'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). '
+    + 'Automatic backup is off for this browser; delete again to finish.', 'warn']);
+  assert.match((await deleting({ deleted: 0, failed: [] }, { ...CLOUD, account: null, agreed: true, on: true, hasStream: true }))[1],
+    /^No backups of this browser were in this OneDrive account\. /, 'no account name: this OneDrive account');
+  // A deletion that fails before deleting anything says automatic backup is off only when it is (S3a-4).
+  const late = new Error('The Recap Page app did not answer in time.');
+  assert.deepEqual(await deleting(late, undefined, { ...CLOUD, agreed: false, hasStream: true }), ['#cloud-backup-report',
+    'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.', 'error']);
+  assert.deepEqual(await deleting(late, undefined, { ...CLOUD, agreed: true, on: true, hasStream: true }), ['#cloud-backup-report',
+    'Nothing was deleted. The Recap Page app did not answer in time.', 'error'], 'consent never withdrawn: nothing more to say');
 });
 
 test('disconnecting offers deleting this device\'s backups as an unchecked choice, and asks again before leaving some behind', async () => {

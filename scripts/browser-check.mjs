@@ -20222,15 +20222,17 @@ SCENARIOS.push({
 
     const stored = fixture.host.items.size;
     const remove = await ask('#btn-cloud-delete');
-    t.check('deleting this device\'s backups asks with the danger answer and says the recycle bin keeps them',
+    t.check('deleting this device\'s backups asks with the danger answer, names the account, and says how long the recycle bin keeps them',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
-        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin until it is emptied'),
+        && remove.body.includes('every backup it made in the OneDrive account reader@example.test.')
+        && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
     await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
     t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
       stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
-        && (await cloudCard(page)).report.includes('in the recycle bin until it is emptied'),
+        && (await cloudCard(page)).report.includes('from the OneDrive account reader@example.test, where')
+        && (await cloudCard(page)).report.includes('in the recycle bin for up to 30 days unless it is emptied'),
       `${stored}: ${(await cloudCard(page)).report}`);
 
     await page.focus('#btn-cloud-disconnect');

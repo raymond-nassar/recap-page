@@ -785,7 +785,7 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
 // app says, not from a copy of it.
 test('the cloud backup sentences from stage 3 are the owner\'s approved words', async () => {
   const { ERASE_HOST_SILENT } = await import('../src/js/lib/cloudBackup.js');
-  const { cloudCardStatus, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  const { cloudCardStatus, cloudDeleteFailure, cloudDeleteQuestion, cloudDeleteReport, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
   // A. Erase all local data, when the Recap Page app does not answer.
   assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT] }).trim(),
     'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
@@ -797,6 +797,21 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
   // G. Consent suspended by an erase.
   assert.equal(cloudCardStatus({ ...connected, suspended: true }),
     'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
+  // B. Delete this device's cloud backups: the question and its four reports.
+  assert.equal(cloudDeleteQuestion(connected),
+    'This turns automatic backup off for this browser and deletes every backup it made in the OneDrive account reader@example.test. Backups from other devices are kept, and so are any this browser made in another OneDrive account. To delete those, connect to that account and delete them here, or delete them in OneDrive itself. Deleted backups stay in OneDrive\'s recycle bin for up to 30 days unless it is emptied, but Recap Page cannot bring them back.');
+  assert.equal(cloudDeleteReport({ deleted: 2, failed: [] }, connected),
+    'Deleted 2 backups of this browser from the OneDrive account reader@example.test, where they stay in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 1, failed: [] }, connected),
+    'Deleted 1 backup of this browser from the OneDrive account reader@example.test, where it stays in the recycle bin for up to 30 days unless it is emptied. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 0, failed: [] }, connected),
+    'No backups of this browser were in the OneDrive account reader@example.test. Any it made in another account are still there. Automatic backup is off for this browser.');
+  assert.equal(cloudDeleteReport({ deleted: 1, failed: [{ id: 'x', name: 'x', code: 'timeout' }] }, connected),
+    'Deleted 1 of 2 backups of this browser from the OneDrive account reader@example.test. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.');
+  assert.match(cloudDeleteQuestion({ ...connected, account: null }), /every backup it made in this OneDrive account\. /);
+  // C. A deletion that fails before deleting anything.
+  assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true),
+    'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.');
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an
