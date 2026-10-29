@@ -5,6 +5,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createDataView, eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import {
+  cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView,
+} from '../src/js/views/cloud.js';
 import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -422,6 +425,243 @@ test('a restored import draft sends the reader to Search to resume it', async ()
   // The page that resumes a draft is named Search everywhere now (#831, #924).
   assert.deepEqual(notices.at(-1), ['#draft-transfer-report',
     'Import draft restored. Reading data was not changed. Review Resume saved import in Search.', 'ok']);
+});
+
+// -- the cloud backup card (#810, P02-T05) --
+
+const STREAM = 'a'.repeat(32);
+const NEWEST = Object.freeze({ id: 'item-9', stream: STREAM, generation: 9, device: 'Phone', createdAt: 900, size: 40, summary: { lists: 2, records: 3, draft: false } });
+const EARLIER = Object.freeze({ ...NEWEST, id: 'item-8', generation: 8, createdAt: 800, summary: { lists: 1, records: 3, draft: false } });
+const FOUND = Object.freeze({
+  state: 'ready', connection: 'c'.repeat(32), message: null, code: null,
+  result: { own: null, devices: [{ stream: STREAM, own: false, current: NEWEST, previous: EARLIER, invalid: 1, files: 3 }], omitted: 0, unrecognized: 2 },
+});
+const CLOUD = Object.freeze({
+  shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, signInExpiresAt: null,
+  agreed: false, on: false, askedAgain: false, hasStream: false, recordProblem: null,
+  backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
+  discovery: { state: 'idle', connection: null, result: null, message: null, code: null },
+});
+const CONTROLS = ['intro', 'status', 'progress', 'primary', 'signIn', 'retry', 'auto', 'discovery', 'actions', 'remove', 'disconnect'];
+const when = (at) => `T${at}`;
+const settled = async () => { for (let turn = 0; turn < 8; turn += 1) await new Promise((resolve) => { setImmediate(resolve); }); };
+
+// Enough of document.createElement for the card: tags, text, attributes and data, and the buttons below.
+function fakeEl(tag, props = {}, children = []) {
+  const node = stubNode({ tag, dataset: {}, children: [].concat(children).filter((child) => child != null) });
+  for (const [key, value] of Object.entries(props)) {
+    if (value == null || value === false) continue;
+    if (key === 'text') node.textContent = value;
+    else if (key === 'dataset') Object.assign(node.dataset, value);
+    else node.attributes[key] = value;
+  }
+  node.closest = (selector) => (selector === 'button' && tag === 'button' ? node : null);
+  return node;
+}
+
+function buttonsIn(node) {
+  return (node.children ?? []).flatMap((child) => [...(child.tag === 'button' ? [child] : []), ...buttonsIn(child)]);
+}
+
+function cloudNodes() {
+  const nodes = Object.fromEntries(['card', ...CONTROLS, 'autoInput', 'discoverySummary'].map((key) => [key, stubNode()]));
+  nodes.found = stubNode({
+    children: [],
+    replaceChildren(...parts) { this.children = parts; },
+    querySelectorAll() { return buttonsIn(this); },
+  });
+  return nodes;
+}
+
+function cloudCard(model, overrides = {}) {
+  const nodes = cloudNodes();
+  const state = { model, asked: [], notices: [], calls: [] };
+  const record = (name, value) => async (...args) => { state.calls.push([name, ...args]); return typeof value === 'function' ? value(...args) : value; };
+  const view = createCloudBackupView({
+    el: fakeEl, elements: () => nodes, getModel: () => state.model, when, at: when,
+    askConfirm: async (options) => { state.asked.push(options); return state.answers.shift() ?? false; },
+    askConfirmChoice: async (options) => { state.asked.push(options); return state.answers.shift() ?? null; },
+    notify: (selector, message, kind) => state.notices.push([selector, message, kind]),
+    onConnect: record('connect'), onTurnOn: record('on'), onTurnOff: record('off'), onDiscover: record('discover'),
+    onFetch: record('fetch', (copy) => ({ ...copy, text: '{"backup":true}' })), onRestore: record('restore', { ok: true }),
+    onDeleteOwn: record('delete', { deleted: 2, failed: [] }), onDisconnect: record('disconnect'), onRetry: () => state.calls.push(['retry']),
+    onFinished: (message) => state.calls.push(['finished', message]),
+    ...overrides,
+  });
+  state.answers = [];
+  view.wire();
+  const shown = () => CONTROLS.filter((key) => !nodes[key].hidden);
+  return { nodes, view, state, shown, show(next) { state.model = next; view.render(next); } };
+}
+
+test('the cloud card shows only what each state allows, and nothing at all in a build without cloud backup', () => {
+  const card = cloudCard({ ...CLOUD, shown: false });
+  assert.equal(card.nodes.card.hidden, true);
+
+  card.show({ ...CLOUD, host: 'not-connected', account: null });
+  assert.equal(card.nodes.card.hidden, false);
+  assert.deepEqual(card.shown(), ['intro', 'primary', 'signIn'], 'signed out: what it does, and Sign in with Microsoft');
+
+  card.show({ ...CLOUD, host: 'signing-in', account: null, signInExpiresAt: 300 });
+  assert.deepEqual(card.shown(), ['intro', 'status']);
+  assert.equal(card.nodes.status.textContent, 'Finish signing in to Microsoft in the browser window that opened. The sign-in stops by itself at T300.');
+
+  card.show({ ...CLOUD, discovery: FOUND });
+  assert.deepEqual(card.shown(), ['status', 'auto', 'discovery', 'actions', 'disconnect'], 'connected, not agreed: the account first');
+  assert.deepEqual([card.nodes.autoInput.checked, card.nodes.discovery.open], [false, true]);
+  assert.equal(card.nodes.status.textContent, 'Connected to OneDrive as reader@example.test.');
+
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 500 } });
+  assert.deepEqual(card.shown(), ['status', 'progress', 'auto', 'discovery', 'actions', 'remove', 'disconnect']);
+  assert.equal(card.nodes.autoInput.checked, true);
+  card.show({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 500 } });
+  assert.ok(card.shown().includes('retry'));
+  assert.match(card.nodes.status.textContent, /OneDrive is full, so backups have stopped\. .* Last backed up T500\.$/);
+
+  card.show({ ...on, host: 'needs-sign-in' });
+  assert.deepEqual(card.shown(), ['status', 'primary', 'signIn', 'auto', 'actions', 'disconnect'], 'sign in again, or turn off, or disconnect');
+  card.show({ ...on, host: 'not-answering', account: null });
+  assert.deepEqual(card.shown(), ['status', 'auto'], 'the app is not answering: only turning it off here');
+  card.show({ ...CLOUD, host: 'unavailable', account: null, message: 'Windows is restricting PowerShell.' });
+  assert.deepEqual(card.shown(), ['status', 'actions', 'disconnect']);
+  assert.equal(card.nodes.status.textContent, 'Windows is restricting PowerShell.');
+  card.show({ ...CLOUD, agreed: true, askedAgain: true, discovery: FOUND });
+  assert.equal(card.nodes.autoInput.checked, false, 'agreed to another connection: asked again');
+  assert.match(card.nodes.status.textContent, /connected again since this browser agreed/);
+});
+
+test('what backups are doing is said in words for every state the coordinator reports', () => {
+  const said = (phase, code = null, retryAt = null, lastUploadAt = 7) => cloudBackupStatus({ phase, code, retryAt, lastUploadAt }, { when, at: when });
+  assert.equal(said('saving'), 'Backing up now.');
+  assert.equal(said('up-to-date'), 'Backed up T7.');
+  assert.equal(said('pending'), 'Changes are waiting to be backed up. Last backed up T7.');
+  assert.equal(said('waiting', 'offline'), 'Backups wait for a network connection. Last backed up T7.');
+  assert.equal(said('waiting', 'paused', null, null), 'Backups wait for the restore to finish.');
+  assert.equal(said('retrying', 'timeout', 99), 'The last backup did not finish, so it is tried again at T99. Last backed up T7.');
+  for (const code of ['oversize', 'too-large']) assert.match(said('failed', code), /^Your saved data is larger than a cloud backup can be/);
+  assert.match(said('failed', 'storage'), /could not read its saved data or its cloud backup record/);
+  assert.match(said('failed', 'hash'), /^A backup could not be made, so backups have stopped until your data changes or you try again\./);
+  assert.equal(cloudCardStatus({ ...CLOUD, host: 'needs-sign-in' }), 'Microsoft asked for the sign-in to be made again, so backups have stopped. Sign in to carry on.');
+  assert.equal(cloudCardStatus({ ...CLOUD, host: 'not-connected', message: 'Sign-in was cancelled.' }), 'Sign-in was cancelled.');
+});
+
+test('the backups found are listed by device with Restore buttons named for what they restore, kept while backups go on', () => {
+  const card = cloudCard({ ...CLOUD, discovery: FOUND });
+  const [device, unrecognized] = card.nodes.found.children.filter((child) => child.tag !== 'button').slice(-2);
+  assert.equal(device.children[0].textContent, 'Phone');
+  const buttons = card.nodes.found.querySelectorAll('button');
+  assert.deepEqual(buttons.map((button) => [button.attributes.id, button.textContent, button.dataset.cloudCopy, button.dataset.cloudGeneration]), [
+    [`cloud-copy-${STREAM}-current`, 'Restore', 'current', '9'], [`cloud-copy-${STREAM}-previous`, 'Restore', 'previous', '8'], [undefined, 'Check again', undefined, undefined],
+  ]);
+  assert.deepEqual(buttons.slice(0, 2).map((button) => button.attributes['aria-label']), [
+    'Restore the newest backup from Phone, made T900', 'Restore the earlier backup from Phone, made T800',
+  ], 'each name starts with what the button says');
+  assert.match(device.children.at(-1).textContent, /^1 more backup could not be read, so it is not offered\.$/);
+  assert.equal(unrecognized.textContent, '2 other files in the folder were left alone.');
+  const drawn = card.nodes.found.children;
+  card.show({ ...CLOUD, discovery: FOUND, on: true, agreed: true, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: null } });
+  assert.equal(card.nodes.found.children, drawn, 'not redrawn, so a focused Restore keeps focus');
+});
+
+test('restoring a backup from the account reads it again and asks with the danger answer; Cancel applies nothing', async () => {
+  const card = cloudCard({ ...CLOUD, discovery: FOUND });
+  const [newest] = card.nodes.found.querySelectorAll('button');
+  card.nodes.found._fire({ target: newest });
+  await settled();
+  assert.deepEqual(card.state.calls.map(([name]) => name), ['fetch'], 'read and checked again first');
+  const [question] = card.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Replace all saved data with this backup?', 'Restore this backup', true]);
+  assert.ok(question.body.startsWith('From Phone, made T900. This replaces your reading data with this backup\'s 2 lists,'), question.body);
+  assert.ok(!question.body.includes('file'), 'a backup from the account is never called a file');
+
+  card.state.answers.push(true);
+  card.nodes.found._fire({ target: newest });
+  await settled();
+  assert.deepEqual(card.state.calls.slice(-2), [['restore', '{"backup":true}'], ['finished', 'Backup restored from OneDrive. Any import draft from it waits in Search for your review.']]);
+
+  const gone = cloudCard({ ...CLOUD, discovery: FOUND }, {
+    onFetch: async () => { throw new Error('That backup is no longer in the cloud account. Nothing was changed.'); },
+  });
+  gone.nodes.found._fire({ target: gone.nodes.found.querySelectorAll('button')[0] });
+  await settled();
+  assert.deepEqual(gone.state.notices, [['#cloud-backup-report', 'That backup is no longer in the cloud account. Nothing was changed.', 'error']]);
+  assert.deepEqual(gone.state.asked, [], 'nothing is asked about a backup that is gone');
+});
+
+test('deleting this device\'s backups asks first, says the recycle bin keeps them, and says what is left when it stops part way', async () => {
+  const card = cloudCard({ ...CLOUD, agreed: true, on: true, hasStream: true });
+  card.nodes.remove._fire();
+  await settled();
+  const [question] = card.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.danger], ['Delete this device\'s cloud backups?', 'Delete cloud backups', true]);
+  assert.match(question.body, /Deleted backups stay in OneDrive's recycle bin until it is emptied, but Recap Page cannot bring them back\./);
+  assert.deepEqual(card.state.calls, [], 'Cancel deletes nothing');
+
+  const partial = cloudCard({ ...CLOUD, agreed: true, on: true, hasStream: true }, {
+    onDeleteOwn: async () => ({ deleted: 1, failed: [{ id: 'item-2', name: 'b', code: 'timeout' }] }),
+  });
+  partial.state.answers.push(true);
+  partial.nodes.remove._fire();
+  await settled();
+  assert.deepEqual(partial.state.notices.at(-1), ['#cloud-backup-report',
+    'Deleted 1 of 2 backups of this browser. 1 backup could not be deleted (OneDrive did not answer in time). Automatic backup is off for this browser; delete again to finish.', 'warn']);
+});
+
+test('disconnecting offers deleting this device\'s backups as an unchecked choice, and asks again before leaving some behind', async () => {
+  const model = { ...CLOUD, agreed: true, on: true, hasStream: true };
+  const plain = cloudCard(model);
+  plain.state.answers.push({ choice: false });
+  plain.nodes.disconnect._fire();
+  await settled();
+  const [question] = plain.state.asked;
+  assert.deepEqual([question.title, question.confirmLabel, question.choiceLabel, question.choiceConfirmLabel],
+    ['Disconnect OneDrive?', 'Disconnect', 'Also delete this device\'s cloud backups', 'Delete and disconnect']);
+  assert.match(question.body, /for every browser profile on this Windows account/);
+  assert.deepEqual(plain.state.calls.map(([name]) => name), ['disconnect'], 'the box left unchecked deletes nothing');
+
+  const stuck = cloudCard(model, { onDeleteOwn: async () => ({ deleted: 0, failed: [{ id: 'x', name: 'x', code: 'needs-sign-in' }] }) });
+  stuck.state.answers.push({ choice: true }, false);
+  stuck.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(stuck.state.asked.map((asked) => asked.title), ['Disconnect OneDrive?', 'Disconnect anyway?'], 'one question at a time');
+  assert.equal(stuck.state.asked[1].danger, undefined, 'disconnecting can be undone by signing in again');
+  assert.deepEqual(stuck.state.calls, [], 'declined: still connected');
+  stuck.state.answers.push({ choice: true }, true);
+  stuck.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(stuck.state.calls.map(([name]) => name), ['disconnect']);
+
+  const backedOut = cloudCard(model);
+  backedOut.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual(backedOut.state.calls, [], 'Cancel changes nothing');
+});
+
+test('the erase question names cloud backup only while erasing changes it', async () => {
+  assert.equal(cloudEraseNote({ ...CLOUD, shown: false }), null);
+  assert.equal(cloudEraseNote({ ...CLOUD, host: 'not-connected', account: null }), null);
+  for (const host of ['connected', 'needs-sign-in', 'signing-in', 'unavailable']) {
+    assert.equal(cloudEraseNote({ ...CLOUD, host }), 'Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in OneDrive stay there.', host);
+  }
+  assert.equal(cloudEraseNote({ ...CLOUD, host: 'not-answering', agreed: true }), 'This browser\'s cloud backup settings are erased too. Backups already in OneDrive stay there.');
+
+  const nodes = stubElements();
+  const asked = [];
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    getCloudEraseNote: () => cloudEraseNote(CLOUD),
+    askConfirm: async (options) => { asked.push(options); return false; },
+  }));
+  view.wire();
+  await nodes.btnWipe._fire();
+  assert.ok(asked[0].body.endsWith(' Cloud backup is disconnected too, for every browser profile on this Windows account. Backups already in OneDrive stay there.'), asked[0].body);
+});
+
+test('the cloud card imports nothing that stores, sends or restores', () => {
+  const source = readFileSync(join(ROOT, 'src/js/views/cloud.js'), 'utf8');
+  const imported = [...source.matchAll(/\bfrom\s+['"]([^'"]+)['"]/g)].map((match) => match[1]);
+  assert.deepEqual(imported, ['./data.js'], 'only the shared restore wording');
 });
 
 // -- helpers --

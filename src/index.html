@@ -976,6 +976,34 @@
                   <p class="rail-hint">Versions before this one cannot read a complete backup. Close other Recap Page tabs before restoring one. If a restore is interrupted, this card offers to finish it, put the earlier data back, or download an exact copy of the data from before it. This version cannot restore that copy: it is for recovering the earlier data by hand or with help.</p>
                 </details>
               </div>
+              <!-- Cloud backup (#810). Hidden until the page learns this build has it, which it asks when this
+                   view opens, so a build without cloud backup never shows the card. The sign-in button carries
+                   Microsoft's logo, unaltered, beside its own words, as Microsoft's branding guidance asks;
+                   src/brands/README.md records where the logo came from. -->
+              <div class="card card-static addpri" id="cloud-backup" hidden>
+                <h3>Cloud backup</h3>
+                <p class="rail-hint" id="cloud-backup-intro">Keep a complete backup in your own OneDrive, made automatically as you read.</p>
+                <p id="cloud-backup-status" tabindex="-1"></p>
+                <progress id="cloud-backup-progress" aria-hidden="true" hidden></progress>
+                <div class="field-row" id="cloud-backup-primary">
+                  <button type="button" id="btn-cloud-sign-in" class="btn btn-g" hidden><img src="./brands/ms-symbollockup_mssymbol_19.svg" alt="" width="21" height="21" />Sign in with Microsoft</button>
+                  <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
+                </div>
+                <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
+                <details class="setting-more" id="cloud-discovery" hidden>
+                  <summary id="cloud-discovery-summary">Backups in this OneDrive</summary>
+                  <div id="cloud-discovery-list"></div>
+                </details>
+                <div class="field-row" id="cloud-backup-actions">
+                  <button type="button" id="btn-cloud-delete" class="btn btn-g" hidden>Delete this device's cloud backups</button>
+                  <button type="button" id="btn-cloud-disconnect" class="btn btn-g" hidden>Disconnect</button>
+                </div>
+                <div id="cloud-backup-report" class="results" tabindex="-1"></div>
+                <details class="setting-more">
+                  <summary>About cloud backup</summary>
+                  <p class="rail-hint">A backup is made once changes have been quiet for ten seconds, at most once every five minutes, and at once when you leave Recap Page. The two newest backups of this browser are kept, and older ones go to OneDrive's recycle bin. Restoring one replaces everything it holds, as restoring a complete backup file does.</p>
+                </details>
+              </div>
               <div class="card card-static addpri">
                 <h3>Reading data</h3>
                 <div class="field-row">

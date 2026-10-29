@@ -167,6 +167,7 @@ export function createDataView({
   onExportDraft,
   onRestoreDraft,
   getRecoveryCopy = null,
+  getCloudEraseNote = null,
   eraseHistory = false,
 }) {
   let restoring = false;
@@ -428,9 +429,13 @@ export function createDataView({
         const recovery = recoveryCopy === null
           ? ' The app could not check for a recovery copy kept by a complete restore, so one may still be kept after the erase.'
           : recoveryCopy ? ' The recovery copy kept by a complete restore is erased too.' : '';
+        // Asked at the moment of the question, like the recovery copy, so it names cloud backup only while
+        // erasing changes it (#810).
+        const cloudNote = getCloudEraseNote?.();
+        const cloud = cloudNote ? ` ${cloudNote}` : '';
         const yes = await askConfirm({
           title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
-          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${recovery}`,
+          body: `${eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory, savedCopy: savedCopyState() })} The saved import draft and its retained source snapshots will also be removed after the reading-data erase is verified.${recovery}${cloud}`,
           confirmLabel: 'Erase everything',
           danger: true,
         });
@@ -471,19 +476,20 @@ function plural(count, one, many = `${one}s`) {
 
 // Each report states its outcome once. Messages from the backup file and the restore engine often end
 // by saying what happened, so the lead-in that says the same thing is added only when they do not.
-const UNCHANGED = /\bnothing (?:further |more )?was (?:changed|replaced|removed)\b/i;
-const STOPPED = /\bstopped\b/i;
+export const UNCHANGED = /\bnothing (?:further |more )?was (?:changed|replaced|removed)\b/i;
+export const STOPPED = /\bstopped\b/i;
 export function withOutcome(lead, message, said) {
   return said.test(message) ? message : `${lead} ${message}`;
 }
 
 // The counts belong to the file, so they are attached to it: a device with ten lists restoring a file
-// with two is replacing its ten with the file's two, not "your reading data (2 lists)".
-export function completeRestoreQuestion({ lists, records, draft }) {
-  const counted = `This replaces your reading data with this file's ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
+// with two is replacing its ten with the file's two, not "your reading data (2 lists)". A backup chosen
+// from cloud backup is named as a backup rather than a file.
+export function completeRestoreQuestion({ lists, records, draft }, { source = 'file' } = {}) {
+  const counted = `This replaces your reading data with this ${source}'s ${plural(lists, 'list')}, your completion history with its ${plural(records, 'record')}`;
   return `${counted}${draft
-    ? ', your display and reading preferences with the ones in this file, and your import draft with the one in this file. '
-    : ' and your display and reading preferences with the ones in this file, and removes any import draft, because this file has none. '}`
+    ? `, your display and reading preferences with the ones in this ${source}, and your import draft with the one in this ${source}. `
+    : ` and your display and reading preferences with the ones in this ${source}, and removes any import draft, because this ${source} has none. `}`
     + 'A finished complete restore cannot be undone as a whole, so download a complete backup first if you might want the current data back. '
     + 'Close any other Recap Page tabs and windows first, including ones running an older version.';
 }

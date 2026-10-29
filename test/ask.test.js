@@ -252,26 +252,33 @@ test('only a danger question wears the danger answer, and the next question does
   }
 });
 
-// The seven answers with no way back, by their own copy: Erase everything, the completion-history restore
+// The ten answers with no way back, by their own copy: Erase everything, the completion-history restore
 // ("There is no automatic Undo"), discarding an import source, removing a salvage copy ("nothing else
 // to recover it from"), and the complete restore's three: restoring a complete backup and finishing an
 // interrupted one ("cannot be undone as a whole"), and keeping current data, which deletes the recovery
-// copy. Every other question has an Undo, keeps a copy or changes nothing, so it stays plain.
-test('exactly the seven irreversible questions ask with danger', async () => {
+// copy. Cloud backup adds three (#810): restoring a backup from the account, as a complete backup file's
+// restore does, deleting this device's cloud backups, which the app cannot bring back, and disconnecting
+// with that deletion chosen. A question with a choice wears the danger look only on its chosen answer,
+// so both of its answers are read. Every other question has an Undo, keeps a copy or changes nothing,
+// so it stays plain.
+test('exactly the ten irreversible answers ask with danger', async () => {
   const { readFile, readdir } = await import('node:fs/promises');
   const root = new URL('../src/js/', import.meta.url);
   const files = (await readdir(root, { recursive: true })).filter((file) => file.endsWith('.js'));
   const asked = [];
   for (const file of files) {
     const source = await readFile(new URL(file.replaceAll('\\', '/'), root), 'utf8');
-    for (const [, call] of source.matchAll(/askConfirm\(\{([\s\S]*?)\n\s*\}\);/g)) {
-      asked.push({ label: call.match(/confirmLabel: ([^\n]+),/)?.[1], danger: /\n\s*danger: true,/.test(call) });
+    for (const [, choice, call] of source.matchAll(/askConfirm(Choice)?\(\{([\s\S]*?)\n\s*\}\);/g)) {
+      if (choice) {
+        asked.push({ label: call.match(/\bconfirmLabel: ('[^']*')/)?.[1], danger: false });
+        asked.push({ label: call.match(/\bchoiceConfirmLabel: ('[^']*')/)?.[1], danger: true });
+      } else asked.push({ label: call.match(/confirmLabel: ([^\n]+),/)?.[1], danger: /\n\s*danger: true,/.test(call) });
     }
   }
-  assert.ok(asked.length >= 10, `found the confirmations (${asked.length})`);
+  assert.ok(asked.length >= 14, `found the confirmations (${asked.length})`);
   assert.deepEqual(asked.filter((entry) => entry.danger).map((entry) => entry.label).sort(), [
-    "'Discard draft'", "'Erase everything'", "'Finish restore'", "'Keep current data'", "'Remove copy'",
-    "'Restore complete backup'", "'Restore completion history'",
+    "'Delete and disconnect'", "'Delete cloud backups'", "'Discard draft'", "'Erase everything'", "'Finish restore'",
+    "'Keep current data'", "'Remove copy'", "'Restore complete backup'", "'Restore completion history'", "'Restore this backup'",
   ]);
 });
 

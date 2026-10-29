@@ -1281,6 +1281,19 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 #view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }
 
+/* Cloud backup (#810). Its rows and its switch set their own display, which would otherwise defeat the
+   hidden attribute that keeps each out of the states it does not belong to. Each backup found in the
+   account is one line with its Restore beside it, under the device that made it. */
+#cloud-backup :is(.field-row, .checkbox)[hidden] { display: none; }
+#cloud-backup-status { margin: var(--space-4) 0; max-width: 62ch; }
+#cloud-backup progress { width: 100%; }
+#btn-cloud-sign-in > img { flex: none; }
+.cloud-device { margin-top: var(--space-5); }
+.cloud-device h4 { margin: 0 0 var(--space-2); font-size: var(--t-body); font-weight: 600; }
+.cloud-copies { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.cloud-copy { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+#cloud-discovery-list > .btn { margin-top: var(--space-4); }
+
 /* A settings row. The header and its one line description sit in the text column, and the control
    that changes the setting is pinned to the right of the card rather than stacked underneath it,
    so a column of settings reads as a column of settings rather than as an article with buttons in
