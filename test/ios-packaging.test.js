@@ -464,6 +464,7 @@ test('iOS largest-text Home reflow is scoped, observable and documented', () => 
   assert.match(controller, /preferredContentSizeCategory\s*==\s*\.accessibilityExtraExtraExtraLarge/);
   assert.match(controller, /dataset\.iosLargestText/);
   assert.match(presentationTests, /gridTemplateColumnCount/);
+  assert.match(presentationTests, /tracks\.split\(\/\\\\s\+\/\)\.length/);
   assert.match(presentationTests, /XCTAssertEqual\(homeHeader\["gridTemplateColumnCount"\] as\? Int,\s*1\)/);
   assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
   assert.match(docs, /largest accessibility[\s\S]*text size[\s\S]*Home\s+header/i);

@@ -139,7 +139,7 @@ final class PresentationUITests: XCTestCase {
               largestText: document.documentElement.dataset.iosLargestText === 'true',
               display: style.display,
               gridTemplateColumnCount: style.display === 'grid' && tracks !== 'none'
-                ? tracks.split(/\s+/).length
+                ? tracks.split(/\\s+/).length
                 : 0,
             };
           })(),
