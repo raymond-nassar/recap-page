@@ -14,3 +14,10 @@
   --t-title: calc(var(--ios-text-scale) * 28px);
   --t-title-lg: calc(var(--ios-text-scale) * 40px);
 }
+
+.skip-link {
+  display: inline-flex;
+  min-width: var(--target);
+  min-height: var(--target);
+  align-items: center;
+}

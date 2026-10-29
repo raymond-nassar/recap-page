@@ -68,7 +68,8 @@ final class PresentationUITests: XCTestCase {
         const waitFor = async (condition, name) => {
           const deadline = Date.now() + 30000;
           while (Date.now() < deadline) {
-            if (condition()) return;
+            const value = condition();
+            if (value) return value;
             await new Promise((resolve) => setTimeout(resolve, 50));
           }
           throw new Error(`Timed out opening ${name}`);
@@ -219,7 +220,7 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertEqual(screenRoot, 16, accuracy: 0.1)
                 }
 
-                let safeInsets = try XCTUnwrap(result["safeInsets"] as? [Double])
+                let safeInsets = try XCTUnwrap((result["safeInsets"] as? [NSNumber])?.map(\.doubleValue))
                 XCTAssertEqual(safeInsets.count, 4)
                 XCTAssertTrue(safeInsets.allSatisfy { $0 >= 0 })
                 let restartLiveRegion = try XCTUnwrap(result["restartLiveRegion"] as? [String: String])
@@ -293,7 +294,7 @@ final class PresentationUITests: XCTestCase {
     func testRotationAndKeyboardKeepSearchUsableWithinTheWindow() throws {
         let app = launch(route: "issue-search")
         let result = try probeResult(of: app)
-        let initialInsets = try XCTUnwrap(result["safeInsets"] as? [Double])
+        let initialInsets = try XCTUnwrap((result["safeInsets"] as? [NSNumber])?.map(\.doubleValue))
         XCTAssertTrue(initialInsets.allSatisfy { $0 >= 0 })
         let window = app.windows.firstMatch
         let webView = app.webViews.firstMatch
@@ -316,10 +317,9 @@ final class PresentationUITests: XCTestCase {
         XCTAssertTrue(monitor.waitForExistence(timeout: 30))
         let layout = try XCTUnwrap(monitor.label.data(using: .utf8))
         let current = try XCTUnwrap(try JSONSerialization.jsonObject(with: layout) as? [String: Any])
-        XCTAssertLessThanOrEqual(
-            try XCTUnwrap(current["documentWidth"] as? Double),
-            try XCTUnwrap(current["viewportWidth"] as? Double),
-            "landscape has no horizontal page overflow")
+        let documentWidth = try XCTUnwrap((current["documentWidth"] as? NSNumber)?.doubleValue)
+        let viewportWidth = try XCTUnwrap((current["viewportWidth"] as? NSNumber)?.doubleValue)
+        XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
         let searchField = app.searchFields["Search issue titles"].firstMatch
@@ -390,8 +390,8 @@ final class PresentationUITests: XCTestCase {
                     guard let element = object as? XCUIElement,
                           let data = element.label.data(using: .utf8),
                           let metrics = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                          let width = metrics["viewportWidth"] as? Double,
-                          let documentWidth = metrics["documentWidth"] as? Double else { return false }
+                          let width = (metrics["viewportWidth"] as? NSNumber)?.doubleValue,
+                          let documentWidth = (metrics["documentWidth"] as? NSNumber)?.doubleValue else { return false }
                     return width > 0 && documentWidth <= width
                 },
                 object: monitor)

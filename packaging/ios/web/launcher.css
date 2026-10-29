@@ -1,8 +1,8 @@
 #fallback,
 #return {
   display: inline-flex;
-  min-width: var(--target);
-  min-height: var(--target);
+  min-width: var(--target, 44px);
+  min-height: var(--target, 44px);
   align-items: center;
   justify-content: center;
 }

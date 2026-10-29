@@ -192,7 +192,10 @@ test('stroke widths come only from stroke tokens, while a stroke may name its co
 test('iOS launcher hit areas use the shared target token', () => {
   assert.deepEqual(tokenGrammarFindings(TOKEN_SHEETS[3], launcher), []);
   assert.deepEqual(tokenUsageFindings(sheets()), []);
-  const rawTarget = tokenGrammarFindings(TOKEN_SHEETS[3], launcher.replaceAll('var(--target)', '44px'));
+  const rawTarget = tokenGrammarFindings(
+    TOKEN_SHEETS[3],
+    launcher.replaceAll(/var\(--target(?:,\s*44px)?\)/g, '44px'),
+  );
   assert.ok(rawTarget.some((finding) => finding.includes('carries raw target value 44px')));
 });
 

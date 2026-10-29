@@ -204,7 +204,7 @@ final class LaunchUITests: XCTestCase {
         let result = try probeResult(of: app)
         XCTAssertNil(result["readingData"] as? String)
         XCTAssertEqual(result["noticeHidden"] as? Bool, true)
-        XCTAssertFalse(app.staticTexts["ios-data-loss-message"].exists)
+        XCTAssertFalse(app.buttons["Dismiss"].exists)
     }
 
     @MainActor
@@ -227,12 +227,12 @@ final class LaunchUITests: XCTestCase {
             "the notice names the supported file-restore route: \(String(describing: result["noticeText"]))")
         XCTAssertEqual(result["settingsLinkHref"] as? String, "#/data")
         XCTAssertEqual(result["settingsViewVisible"] as? Bool, true, "the notice link opens Backup & settings")
-        let message = app.staticTexts["ios-data-loss-message"]
-        XCTAssertTrue(message.waitForExistence(timeout: 30))
-        app.buttons["ios-data-loss-dismiss"].tap()
+        let dismissButton = app.buttons["Dismiss"]
+        XCTAssertTrue(dismissButton.waitForExistence(timeout: 30))
+        dismissButton.tap()
         let dismissed = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"),
-            object: message)
+            object: dismissButton)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
 
         app.terminate()
@@ -258,7 +258,7 @@ final class LaunchUITests: XCTestCase {
         let result = try probeResult(of: app)
         XCTAssertEqual(result["readingDataPresent"] as? Bool, true)
         XCTAssertEqual(result["noticeHidden"] as? Bool, true)
-        XCTAssertFalse(app.staticTexts["ios-data-loss-message"].exists)
+        XCTAssertFalse(app.buttons["Dismiss"].exists)
     }
 
     @MainActor
@@ -419,7 +419,9 @@ final class LaunchUITests: XCTestCase {
         let finish = reader.buttons["Finish restore"]
         XCTAssertTrue(finish.waitForExistence(timeout: 30))
         finish.tap()
-        let confirm = reader.buttons["ask-ok"]
+        let confirm = reader.buttons.matching(
+            NSPredicate(format: "label == %@ AND hittable == true", "Finish restore"))
+            .firstMatch
         XCTAssertTrue(confirm.waitForExistence(timeout: 15))
         confirm.tap()
         let recoveryClosed = XCTNSPredicateExpectation(
