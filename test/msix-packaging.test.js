@@ -175,10 +175,20 @@ test('startup expectations bind three package variants and reject an unlisted ex
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
     assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')));
-    // The cloud backup host imports only its own modules, and server.mjs imports it once, by name.
+    // The cloud backup host imports only its own modules and the Node built-ins listed for each, and
+    // server.mjs imports it once, by name. A built-in that loads code from elsewhere, such as createRequire's
+    // node:module, is refused as unlisted, and the two routes that need no import at all, by name (stage 2
+    // review, S1a finding 3).
     const cloudHost = read(join(ROOT, 'host', 'cloudHost.mjs'));
     for (const altered of [
       `${cloudHost}\nimport 'left-pad';\n`, `${cloudHost}\nimport './unlisted.mjs';\n`, `${cloudHost}\nimport('./oneDrive.mjs');\n`,
+      `${cloudHost}\nimport { createRequire } from 'node:module';\ncreateRequire(import.meta.url)('left-pad');\n`,
+      `${cloudHost}\nimport { createRequire as make } from 'node:module';\nconst load = make(import.meta.url);\nload('left-pad');\n`,
+      `${cloudHost}\nimport { Worker } from 'node:worker_threads';\nexport { Worker };\n`,
+      `${cloudHost}\nimport vm from 'node:vm';\nexport { vm };\n`,
+      `${cloudHost}\nprocess.getBuiltinModule('node:module').createRequire(import.meta.url)('left-pad');\n`,
+      `${cloudHost}\nconst { getBuiltinModule: builtIn } = process;\nbuiltIn('node:vm');\n`,
+      `${cloudHost}\nprocess['dlopen']({ exports: {} }, './addon.node');\n`,
     ]) {
       fixture.put('host/cloudHost.mjs', altered);
       assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
@@ -187,12 +197,13 @@ test('startup expectations bind three package variants and reject an unlisted ex
     const server = read(join(ROOT, 'server.mjs'));
     for (const altered of [
       `${server}\nimport('./host/cloudHost.mjs');\n`, server.replace("import('./host/cloudHost.mjs')", "import('./host/' + 'cloudHost.mjs')"),
+      `${server}\nimport { createRequire } from 'node:module';\nexport const load = createRequire(import.meta.url);\n`,
     ]) {
       fixture.put('server.mjs', altered);
       assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     }
     fixture.put('server.mjs', server);
-    t.diagnostic('startup-host-imports fixtures=5 rejected=5');
+    t.diagnostic('startup-host-imports fixtures=13 rejected=13');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);

@@ -754,8 +754,11 @@ answers 404 there, as for an unknown path, and loads nothing new. A packaged bui
 configuration its packager put beside the server, and a checkout only the path in
 `MRT_CLOUD_CLIENT_CONFIG`. The host answers only POSTs from the app's origin made by a process in the
 same Windows session, and keeps every token to itself. The startup contract binds the six modules'
-bytes as startup files, allows the server exactly one dynamic import of the host, and lets the host's
-modules import nothing but one another and Node's built-ins.
+bytes as startup files, allows the server exactly one dynamic import of the host, and pins every
+startup source's imports to an exact list, Node's built-ins included, so the host's modules import
+nothing but one another and the built-ins listed for each. A built-in that loads code from elsewhere,
+such as `node:module` for `createRequire`, cannot be added without changing that list, and the two ways
+to load code without an import, `process.getBuiltinModule` and `process.dlopen`, are refused by name.
 
 **The page.** `src/js/lib/cloudBackup.js` holds the transport, the protocol and the coordinator
 together for the Cloud backup card in Backup & settings, which `src/js/views/cloud.js` draws. The card

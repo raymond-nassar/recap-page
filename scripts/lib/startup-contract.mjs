@@ -40,6 +40,19 @@ const LOCAL_IMPORTS = Object.freeze({
   'host/cloudTokens.mjs': ['./cloudSession.mjs'],
   'host/oneDrive.mjs': ['./cloudSignIn.mjs'],
 });
+// And each one's Node built-ins, exactly, so none that loads code by another route, such as node:module's
+// createRequire, node:vm or node:worker_threads, can be added without changing this list. The two routes
+// that need no import, process.getBuiltinModule and process.dlopen, are refused by name (stage 2 review,
+// S1a finding 3). The pin reads the source, so it stops ordinary code, not code written to hide itself.
+const NODE_IMPORTS = Object.freeze({
+  'Launcher.mjs': ['node:child_process', 'node:fs', 'node:net', 'node:path', 'node:url'],
+  'server.mjs': ['node:fs/promises', 'node:http', 'node:path', 'node:url'],
+  'host/cloudHost.mjs': ['node:crypto'],
+  'host/cloudSession.mjs': ['node:child_process', 'node:path'],
+  'host/cloudSignIn.mjs': ['node:child_process', 'node:crypto', 'node:http', 'node:path'],
+  'host/cloudTokens.mjs': ['node:child_process', 'node:fs/promises', 'node:path'],
+});
+const LOADERS = new Set(['getBuiltinModule', 'dlopen']);
 const HOST_IMPORT = './host/cloudHost.mjs';
 export const REASONS = Object.freeze([
   'none', 'input-missing', 'input-mismatch', 'host-unqualified', 'host-changed',
@@ -155,6 +168,13 @@ export function startupSourceInputs(root = ROOT) {
                     requires = true;
                   }
                 },
+                // Wherever the name appears, as a property, a destructured key or a computed string.
+                Identifier({ name }) {
+                  if (LOADERS.has(name)) requires = true;
+                },
+                Literal({ value }) {
+                  if (typeof value === 'string' && LOADERS.has(value)) requires = true;
+                },
               }),
             },
           },
@@ -165,6 +185,8 @@ export function startupSourceInputs(root = ROOT) {
     requireFact(messages.length === 0 && !requires);
     const local = imports.filter((name) => !name.startsWith('node:'));
     requireFact(JSON.stringify(local.sort()) === JSON.stringify(LOCAL_IMPORTS[path] ?? []));
+    const builtIns = [...new Set(imports.filter((name) => name.startsWith('node:')))].sort();
+    requireFact(JSON.stringify(builtIns) === JSON.stringify(NODE_IMPORTS[path] ?? []));
     // server.mjs may import node:child_process to open a browser, and the cloud host exactly once; no
     // other startup source imports anything at run time.
     requireFact(dynamic.every((name) => path === 'server.mjs' && (name === 'node:child_process' || name === HOST_IMPORT)));
