@@ -390,10 +390,11 @@ final class LaunchUITests: XCTestCase {
 
     @MainActor
     func testFifthJournalPutFailureOffersRecoveryAfterForcedTermination() throws {
+        let faultDisabled = ProcessInfo.processInfo.environment["RECAP_IOS_DISABLE_FIFTH_JOURNAL_PUT"] == "1"
         let writer = launch(
             probe: Self.startInterruptedCompleteRestore,
             restoreTestSeed: true,
-            failFifthJournalPut: true)
+            failFifthJournalPut: !faultDisabled)
         let beforeKill = try probeResult(of: writer, timeout: 180)
         try record("journal-fault-before-kill", beforeKill)
         writer.terminate()
@@ -401,7 +402,10 @@ final class LaunchUITests: XCTestCase {
         let reader = launch(probe: Self.inspectInterruptedCompleteRestore)
         let recovered = try probeResult(of: reader, timeout: 180)
         try record("journal-fault-after-kill", recovered)
-        XCTAssertEqual(recovered["stateTableRow"] as? String, "none or active / matching / anything else")
+        XCTAssertEqual(
+            recovered["stateTableRow"] as? String,
+            "none or active / matching / anything else",
+            "the fault-disabled mutation must reach the done row: \(String(describing: recovered["stateTableRow"]))")
         XCTAssertTrue((beforeKill["report"] as? String ?? "").contains("stopped part way"))
         XCTAssertTrue((beforeKill["marker"] as? String ?? "").hasPrefix("active:"))
         XCTAssertEqual(beforeKill["journalKind"] as? String, "valid")
@@ -419,10 +423,12 @@ final class LaunchUITests: XCTestCase {
         let finish = reader.buttons["Finish restore"]
         XCTAssertTrue(finish.waitForExistence(timeout: 30))
         finish.tap()
-        let confirm = reader.buttons.matching(
-            NSPredicate(format: "label == %@ AND hittable == true", "Finish restore"))
-            .firstMatch
+        let confirm = reader.buttons["Finish restore"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        let confirmHittable = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in confirm.isHittable },
+            object: confirm)
+        XCTAssertEqual(XCTWaiter.wait(for: [confirmHittable], timeout: 15), .completed)
         confirm.tap()
         let recoveryClosed = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"),
@@ -885,7 +891,7 @@ final class LaunchUITests: XCTestCase {
     const until = async (check, ms) => {
       const end = Date.now() + ms;
       for (;;) {
-        const value = check();
+        const value = await check();
         if (value) return value;
         if (Date.now() > end) throw new Error('Timed out waiting for recovery after the process kill');
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -893,30 +899,30 @@ final class LaunchUITests: XCTestCase {
     };
     document.querySelector('[data-view="data"]').click();
     await until(() => !document.getElementById('view-data').hidden, 15000);
-    await until(() => {
-      const recovery = document.getElementById('complete-restore-recovery');
-      return recovery && !recovery.hidden;
-    }, 30000);
     const [complete, restore] = await Promise.all([
       import(new URL('./js/lib/completeBackup.js', location.href).href),
       import(new URL('./js/lib/completeRestore.js', location.href).href),
     ]);
     const inspector = new restore.CompleteRestore();
-    const journal = await inspector.readJournal();
-    const marker = restore.readMarker(localStorage);
-    const decision = restore.decideRestoreState(marker, journal, localStorage, Date.now());
-    if (decision.kind === 'recovery') {
-      await until(() => {
-        const recovery = document.getElementById('complete-restore-recovery');
-        return recovery && !recovery.hidden;
-      }, 30000);
-    }
+    const state = await until(async () => {
+      const journal = await inspector.readJournal();
+      const marker = restore.readMarker(localStorage);
+      const decision = restore.decideRestoreState(marker, journal, localStorage, Date.now());
+      const recovery = document.getElementById('complete-restore-recovery');
+      const interrupted = decision.kind === 'recovery' && recovery && !recovery.hidden;
+      const finished = marker.state === 'done'
+        && journal.kind === 'valid'
+        && marker.id === journal.record.id
+        && journal.record.phase === 'done';
+      return interrupted || finished ? { journal, marker, decision } : null;
+    }, 30000);
+    const { journal, marker, decision } = state;
     const matches = journal.kind === 'valid'
       && (marker.state === 'absent' || ['active', 'done'].includes(marker.state) && marker.id === journal.record.id);
     let row = 'unmatched';
     if (matches && decision.kind === 'recovery' && decision.recovery?.kind === 'interrupted') {
       row = 'none or active / matching / anything else';
-    } else if (matches && marker.state === 'done' && decision.kind === 'finished') {
+    } else if (matches && marker.state === 'done' && journal.record.phase === 'done') {
       row = 'done: / matching / any';
     } else if (marker.state === 'absent' && journal.kind === 'absent' && decision.kind === 'none') {
       row = 'none / none / any';

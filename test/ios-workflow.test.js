@@ -102,8 +102,8 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 3, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
-  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 7,
-    'the two unit tests, two iPhone UI suites, iPad presentation, optional 375-point presentation, and opt-in CORS test each run separately');
+  assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 8,
+    'the two unit tests, two iPhone UI suites, iPad presentation, optional 375-point presentation, opt-in CORS test, and fault-disabled mutation each run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -118,6 +118,20 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
   assert.match(workflow,
     /if \[ -z "\$result" \]; then[\s\S]*The selected CORS test returned no probe result[\s\S]*exit 1/,
     'a skipped test cannot produce a green CORS step');
+});
+
+test('the fault-disabled restore mutation is opt-in and requires the done-row failure', () => {
+  assert.match(workflow,
+    /prove_journal_fault_disabled:\n {8}description: Prove interrupted restore rejects a completed restore without the injected fault\n {8}required: false\n {8}type: boolean\n {8}default: false/);
+  const newest = jobSource('newest');
+  const step = stepScript(newest, 'Prove the interrupted-restore test rejects the done row');
+  assert.match(newest,
+    /- name: Prove the interrupted-restore test rejects the done row\n {8}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.prove_journal_fault_disabled \}\}\n {8}timeout-minutes: 10\n {8}env:\n {10}TEST_RUNNER_RECAP_IOS_DISABLE_FIFTH_JOURNAL_PUT: '1'/);
+  assert.match(step, /-only-testing:RecapPageUITests\/LaunchUITests\/testFifthJournalPutFailureOffersRecoveryAfterForcedTermination/);
+  assert.match(step, /if \[ "\$status" -eq 0 \]; then/);
+  assert.match(step, /RECAP_PROBE_RESULT journal-fault-after-kill/);
+  assert.match(step, /"stateTableRow":"done: \/ matching \/ any"/);
+  assert.match(step, /the fault-disabled mutation must reach the done row/);
 });
 
 test('newest, oldest and iPad jobs use the intended Xcode runtimes', () => {
@@ -249,7 +263,7 @@ test('the iPhone jobs boot and wait for the chosen Simulator before building and
     const source = jobSource(job.name);
     const boot = stepScript(source, 'Boot the Simulator before building');
     assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
-    const expectedBuilds = job.name === 'newest' ? 5 : 3;
+    const expectedBuilds = job.name === 'newest' ? 6 : 3;
     assert.equal((source.match(/-destination "\$DESTINATION"/g) ?? []).length, expectedBuilds);
     assert.doesNotMatch(source, /simctl (?:shutdown|erase)|retry-tests-on-failure|continue-on-error/);
     assert.match(source, new RegExp(`runner.temp \\}\\}/RecapPage-${job.name}-\\*\\.xcresult`));

@@ -15,6 +15,11 @@ on:
         required: false
         type: boolean
         default: false
+      prove_journal_fault_disabled:
+        description: Prove interrupted restore rejects a completed restore without the injected fault
+        required: false
+        type: boolean
+        default: false
 
 # The workflow only reads the repository. It signs nothing, uploads nothing to Apple and uses no
 # secret: these are unsigned Simulator builds.
@@ -30,10 +35,10 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 127 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 137 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 130
+    timeout-minutes: 140
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -137,6 +142,35 @@ jobs:
             fi
             echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
           done
+
+      - name: Prove the interrupted-restore test rejects the done row
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.prove_journal_fault_disabled }}
+        timeout-minutes: 10
+        env:
+          TEST_RUNNER_RECAP_IOS_DISABLE_FIFTH_JOURNAL_PUT: '1'
+        run: |
+          set +e
+          set -o pipefail
+          log="$RUNNER_TEMP/journal-fault-disabled.log"
+          xcodebuild test-without-building \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+            -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-journal-fault-disabled.xcresult" \
+            -only-testing:RecapPageUITests/LaunchUITests/testFifthJournalPutFailureOffersRecoveryAfterForcedTermination \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "::error::The fault-disabled mutation unexpectedly passed."
+            exit 1
+          fi
+          if ! grep -Fq 'RECAP_PROBE_RESULT journal-fault-after-kill ' "$log" ||
+              ! grep -Fq '"stateTableRow":"done: / matching / any"' "$log" ||
+              ! grep -Fq 'the fault-disabled mutation must reach the done row' "$log"; then
+            echo "::error::The targeted test failed without recording the expected done row."
+            exit 1
+          fi
+          echo 'Expected fault-disabled failure observed: the interrupted-restore test recorded the done row.'
 
       - name: Check live metadata CORS from the app origin
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.live_cors }}
