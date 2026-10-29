@@ -1229,11 +1229,11 @@ function windowsHost(transport, { account = 'reader@example.test' } = {}) {
   });
 }
 
-function page({ env, home = device(), channel = null, databases } = {}) {
+function page({ env, home = device(), channel = null, databases, savedChanges = null } = {}) {
   const time = fakeTime();
   const protocol = env.make({ clock: time.now });
   const cloud = createCloudBackup({
-    transport: env.transport, protocol, device: 'Microsoft Edge on Windows', channel, setTimer: time.setTimer,
+    transport: env.transport, protocol, device: 'Microsoft Edge on Windows', channel, setTimer: time.setTimer, savedChanges,
     capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
     databases: databases ?? (async () => [...env.idb.databases.keys()].map((name) => ({ name, version: 1 }))),
     coordinator: {
@@ -1276,15 +1276,19 @@ test('in a build without cloud backup the page shows nothing, asks once when the
 test('turning on agrees to the connection shown, backs up at once, and goes on at the next start without asking', async () => {
   const env = harness();
   windowsHost(env.transport);
-  const first = page({ env });
+  const heard = [];
+  const savedChanges = { subscribe(listener) { heard.push(listener); return () => {}; } };
+  const first = page({ env, savedChanges });
   const shown = await first.cloud.enter();
   assert.deepEqual([shown.shown, shown.host, shown.on, shown.agreed, shown.account], [true, 'connected', false, false, 'reader@example.test']);
   assert.deepEqual([shown.discovery.state, shown.discovery.result.devices], ['ready', []], 'what the account holds comes first');
   assert.deepEqual(env.transport.calls, ['list'], 'discovery creates nothing in the account');
+  assert.equal(heard.length, 0, 'no saved change is listened for before backups start');
 
   env.transport.calls.length = 0;
   const on = await first.cloud.turnOn();
   assert.deepEqual([on.on, on.agreed], [true, true]);
+  assert.equal(heard.length, 1, 'listened for from the first start');
   const record = await first.protocol.record();
   assert.deepEqual([record.consent.connection, record.consent.provider, record.device], [env.transport.connection, 'onedrive', 'Microsoft Edge on Windows']);
   await first.run(0);
@@ -1304,6 +1308,10 @@ test('turning on agrees to the connection shown, backs up at once, and goes on a
   const unanswered = await page({ env, home: first.home }).cloud.resume();
   assert.deepEqual([unanswered.shown, unanswered.host, unanswered.agreed, unanswered.on, unanswered.backup.phase],
     [true, 'not-answering', true, false, 'off'], 'a browser that agreed is told the host is not answering, and waits');
+
+  first.home.mark(4);
+  heard[0]('mrt.state.v2');
+  assert.equal(first.cloud.model.backup.phase, 'pending', 'a saved change reaches the backups');
 });
 
 test('consent belongs to one connection: after another profile reconnects the host, nothing is uploaded and this browser is asked again', async () => {
@@ -1460,4 +1468,19 @@ test('turning cloud backup on or off in one tab reaches the others', async () =>
   await a.cloud.turnOff();
   await b.cloud.idle();
   assert.deepEqual([b.cloud.model.on, b.cloud.model.backup.phase], [false, 'off']);
+});
+
+// The page passes a real BroadcastChannel, and Node has one too: any process that imports the page's
+// modules, as several test files import main.js, waited on a listener that never closes. Measured here
+// on 2026-10-28: a full run stopped producing output, and had to be stopped, once main.js held one open.
+test('listening for other tabs keeps no process alive', async () => {
+  const { execFile } = await import('node:child_process');
+  const code = "import { createCloudBackup } from './src/js/lib/cloudBackup.js';\n"
+    + "createCloudBackup({ transport: { status() {}, connect() {}, disconnect() {} }, protocol: {}, channel: new BroadcastChannel('probe') });\n";
+  const started = Date.now();
+  const outcome = await new Promise((resolve) => {
+    execFile(process.execPath, ['--input-type=module', '-e', code], { cwd: new URL('..', import.meta.url), timeout: 20_000 },
+      (error) => resolve(error ? (error.killed ? 'still running after 20 seconds' : error.message) : 'exited'));
+  });
+  assert.equal(outcome, 'exited', `after ${Date.now() - started} ms`);
 });

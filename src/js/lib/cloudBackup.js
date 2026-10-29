@@ -10,7 +10,7 @@
 // Backup & settings costs one status request that such a build answers 404.
 
 import { CLOUD_BACKUP_DATABASE } from '../storage.js';
-import { CloudBackupError, cloudDeviceLabel } from './cloudProtocol.js';
+import { CloudBackupError, CloudBackupProtocol, cloudDeviceLabel } from './cloudProtocol.js';
 import { CloudBackupCoordinator } from './cloudCoordinator.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
@@ -35,7 +35,7 @@ export function browserDeviceLabel(nav = globalThis.navigator) {
 }
 
 export function createCloudBackup({
-  transport, protocol, capture, isBlocked = () => false,
+  transport, protocol = new CloudBackupProtocol({ transport }), capture, isBlocked = () => false, savedChanges = null,
   databases = () => globalThis.indexedDB?.databases?.(),
   device = browserDeviceLabel(), channel = null, setTimer = (callback, ms) => globalThis.setTimeout(callback, ms),
   coordinator: coordinatorOptions = {}, onChange = () => {},
@@ -101,7 +101,8 @@ export function createCloudBackup({
   }
 
   function backups() {
-    coordinator ??= new CloudBackupCoordinator({
+    if (coordinator) return coordinator;
+    coordinator = new CloudBackupCoordinator({
       capture, isBlocked,
       upload: (snapshot) => protocol.upload(snapshot),
       // The connection the host holds at this run, so a backup made under another one never counts here.
@@ -119,6 +120,9 @@ export function createCloudBackup({
       },
       ...coordinatorOptions,
     });
+    // Saved changes are listened for from the first time backups start, so a browser that never turns
+    // cloud backup on hears none of them.
+    savedChanges?.subscribe(() => coordinator.notify());
     return coordinator;
   }
 
@@ -155,7 +159,12 @@ export function createCloudBackup({
   function announce() {
     try { channel?.postMessage('changed'); } catch { /* other tabs catch up when they next look */ }
   }
-  if (channel) channel.onmessage = () => { void refresh(); };
+  if (channel) {
+    channel.onmessage = () => { void refresh(); };
+    // Listening never keeps anything alive on its own. Node's channel would hold open any process that
+    // imports the page's modules, as the tests do; a browser's has no unref, and needs none.
+    channel.unref?.();
+  }
 
   function watchSignIn() {
     if (poll !== null || status?.state !== 'signing-in') return;

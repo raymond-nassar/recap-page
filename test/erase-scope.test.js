@@ -12,6 +12,7 @@ import { readFileSync } from 'node:fs';
 import { compileFunction } from 'node:vm';
 
 import { eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import { cloudEraseOutcome } from '../src/js/views/cloud.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { createEmptyState, createList, addIssuesToList, deleteList, exportBackup } from '../src/js/lib/model.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, ListHistoryStore, eraseReaderAndHistory } from '../src/js/lib/listHistory.js';
@@ -58,12 +59,23 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
   reader.load();
   const history = new ListHistoryStore({ readerStore: reader, locks });
   history.load();
-  const calls = { notify: [], announce: [], cache: [], forget: 0, links: [] };
+  const calls = { notify: [], announce: [], cache: [], forget: 0, links: [], cloud: [] };
   const cacheStarted = deferred();
   const h = { storage, reader, history, calls, cacheStarted, undo: { list: reader.state.lists.old }, temporaryLink: 'old reference' };
+  const listsSaved = () => {
+    try { return JSON.parse(storage.getItem(KEY)).listOrder.length; } catch { return null; }
+  };
   const dependencies = {
     store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY, IMPORT_DRAFT_KEY: 'mrt.import.draft.v1',
-    eraseReaderAndHistory, eraseOutcome,
+    eraseReaderAndHistory, eraseOutcome, cloudEraseOutcome,
+    // Cloud backup is held before the erase writes and told afterwards whether the reading data went.
+    cloudBackup: {
+      beforeErase() { calls.cloud.push(['before', listsSaved()]); },
+      async afterErase(erased) {
+        calls.cloud.push(['after', erased, listsSaved()]);
+        return h.cloudResult ?? { ok: true, problems: [] };
+      },
+    },
     cache: { async clear(...args) { calls.cache.push(args); cacheStarted.resolve(); return clear(h, ...args); } },
     readerLinkView: { reconcile(result) { calls.links.push(result); if (result.changed === true || result.changed === null) h.temporaryLink = null; } },
     readingView: { forgetDeleted() { calls.forget += 1; h.undo = null; } },
@@ -469,4 +481,25 @@ test('erase removes a complete restore\'s recovery copy only after the user data
   await kept.run();
   assert.match(kept.calls.notify.at(-1)[1], /^All local data erased\. The recovery copy could not be removed\. It is still kept\.$/);
   assert.equal(kept.calls.notify.at(-1)[2], 'warn');
+});
+
+// Cloud backup (#810): held before the erase writes anything, so no backup of the erased state is made
+// over what was there, and told afterwards whether the reading data went, so it forgets this browser
+// and disconnects only then. What it could not turn off is said with the erase's outcome.
+test('erase holds cloud backup before its first write, lets it go on when nothing was erased, and says what it could not turn off', async () => {
+  const h = eraseFixture();
+  await h.run();
+  assert.deepEqual(h.calls.cloud, [['before', 1], ['after', true, 0]]);
+  assert.deepEqual(h.calls.announce, ['All local data erased.']);
+
+  const refused = eraseFixture();
+  refused.restoreErase = async () => ({ ok: false, erased: false, error: 'Close other Recap Page tabs, then try again.' });
+  await refused.run();
+  assert.deepEqual(refused.calls.cloud, [['before', 1], ['after', false, 1]], 'nothing erased: backups go on');
+
+  const stuck = eraseFixture();
+  stuck.cloudResult = { ok: false, problems: ['The Recap Page app could not be reached.'] };
+  await stuck.run();
+  assert.deepEqual(stuck.calls.notify.at(-1), ['#save-report',
+    'All local data erased. Cloud backup could not be fully turned off. The Recap Page app could not be reached. Check Cloud backup in Backup & settings.', 'warn']);
 });

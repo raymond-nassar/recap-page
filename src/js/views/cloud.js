@@ -80,6 +80,12 @@ export function cloudEraseNote(model) {
   return null;
 }
 
+// Added to what an erase reports when cloud backup could not be turned off everywhere it said.
+export function cloudEraseOutcome(result) {
+  if (result?.ok !== false) return '';
+  return ` Cloud backup could not be fully turned off. ${result.problems.join(' ')} Check Cloud backup in Backup & settings.`;
+}
+
 export function createCloudBackupView({
   el, elements, askConfirm, askConfirmChoice, notify, getModel,
   onConnect, onTurnOn, onTurnOff, onDiscover, onFetch, onRestore, onDeleteOwn, onDisconnect, onRetry, onFinished,
