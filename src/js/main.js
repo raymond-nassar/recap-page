@@ -31,6 +31,7 @@ import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
 import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
+import { readerClosureNotice } from './lib/readerDestination.js';
 import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
 import { createReaderLinkView } from './views/reader-link.js';
 import { APP_VERSION } from './lib/version.js';
@@ -1737,9 +1738,9 @@ function renderRail() {
 
 // ------------------------------------------------------------------ reading view
 
-function fact(key, value, cls = '') {
+function fact(key, value, cls = '', hint = '') {
   return el('div', {}, [
-    el('dt', { text: key }),
+    el('dt', {}, [key, hint ? el('p', { class: 'rail-hint', text: hint }) : null]),
     el('dd', { class: cls || null, text: value }),
   ]);
 }
@@ -1810,11 +1811,13 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
     refuse(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
   }
-  announce(res.target === 'reader'
-    ? `Opening ${issue.title} in Marvel Unlimited in a new tab.`
-    : res.target === 'page'
-      ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
-      : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  announce(res.target === 'comics'
+    ? `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`
+    : res.target === 'reader'
+      ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
+      : res.target === 'page'
+        ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
+        : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
   showHelp("If no new tab appears, check your browser's popup controls for this site, "
     + 'then choose Read again. Opening a comic does not mark it read.');
 }
@@ -2896,6 +2899,20 @@ export function boot() {
   readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
+  let readerDayTimer;
+  const refreshReaderDestinations = () => {
+    $('#reader-closure-notice').textContent = readerClosureNotice();
+    readingView.refreshReader();
+    homeView.refreshReader();
+    issueView.refreshReader();
+    readerLinkView.refresh();
+    clearTimeout(readerDayTimer);
+    const now = new Date();
+    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    readerDayTimer = setTimeout(refreshReaderDestinations, next.getTime() - now.getTime() + 10);
+  };
+  globalThis.addEventListener('focus', refreshReaderDestinations);
+  refreshReaderDestinations();
   homeUpdatesView.wire();
   previewView.wire();
   wireAsk();
@@ -3174,10 +3191,7 @@ const readingView = createReadingView({
 
 const readerLinkView = createReaderLinkView({
   elements: () => Object.fromEntries([
-    'root', 'summary', 'edit', 'form', 'label', 'input', 'preview', 'error',
-    'apply', 'cancel', 'revert', 'status', 'reportToggle', 'reportPanel',
-    'reportText', 'reportStatus', 'regenerate', 'reportLink', 'reportDisclosure',
-    'help', 'heading', 'temporary',
+    'root', 'summary', 'help', 'heading',
   ].map((key) => [key, $(`#reader-link-${key}`)])),
   getState: () => store.state,
   links: temporaryReaderLinks,

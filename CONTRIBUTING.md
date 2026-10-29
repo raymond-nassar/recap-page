@@ -31,8 +31,8 @@ Check these constraints before starting. Changes that break them will be decline
   [the reasons](docs/WHY_A_BROWSER_APP.md) are hardware findings rather than preferences.
 
 The bundled metadata snapshot ends in 2025. Newer comics start without bundled covers or details.
-Readers can add them by hand, request a Marvel Fandom lookup, or paste a Marvel Unlimited reader
-link. The snapshot boundary is not a defect.
+Readers can add them by hand or request a Marvel Fandom lookup. Pasted Marvel Unlimited reader
+links are no longer accepted. The snapshot boundary is not a defect.
 
 ## Before you write anything
 

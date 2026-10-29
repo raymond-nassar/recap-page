@@ -1,16 +1,13 @@
 import { isAllowedApiBase } from '../js/lib/apiBase.js';
 import { issuePageUrl } from '../js/lib/issuePageUrl.js';
 import { createAndroidReader } from './reader.js';
+import { launchDestination, MARVEL_COMICS_URL } from '../js/lib/readerDestination.js';
 
 window.opener = null;
 
-const paragraph = document.createElement('p');
-const appLink = document.createElement('a');
-paragraph.append(appLink);
 const fallback = document.getElementById('fallback');
-fallback.parentElement.before(paragraph);
 const disclosure = document.createElement('p');
-disclosure.textContent = 'Known digital issue IDs ask Marvel for an app link. Without one, a recorded issue page whose metadata lookup was already refused opens in your browser. Other issues still request metadata. Lists, notes and reading progress are not sent.';
+disclosure.textContent = 'Read opens your installed browser, not the Marvel Unlimited app. Before December 7, 2026, an issue without a recorded reader link may request metadata. From that date Read opens the general Marvel Comics website without a metadata lookup. Recap Page no longer contacts Bifrost. Lists, notes and reading progress are not sent.';
 document.querySelector('.box').append(disclosure);
 
 function readApiBase() {
@@ -30,8 +27,9 @@ createAndroidReader({
     heading: document.getElementById('h'),
     status: document.getElementById('p'),
     fallback,
-    appLink,
   },
   readApiBase,
+  destination: launchDestination(new URLSearchParams(window.location.search)),
+  comicsUrl: MARVEL_COMICS_URL,
   validateIssuePageUrl: issuePageUrl,
 }).start();

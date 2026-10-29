@@ -1202,6 +1202,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 .badge-scheduled { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); }
 .badge-unknown, .badge-pending, .badge-norecord { color: var(--muted); }
 .badge-override-unavailable { color: var(--red-fg); border-color: rgb(var(--red-line) / 33.333%); }
+.badge.availability-record { white-space: normal; overflow-wrap: anywhere; }
 
 .row-actions { position: relative; justify-self: end; text-align: right; }
 .row-actions-toggle { display: inline-flex; align-items: center; min-height: var(--target); padding: var(--space-3) var(--space-4); }

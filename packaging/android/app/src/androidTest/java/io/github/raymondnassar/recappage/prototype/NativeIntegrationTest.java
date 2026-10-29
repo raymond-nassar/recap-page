@@ -456,6 +456,7 @@ public final class NativeIntegrationTest {
         assertReadingProgress();
         Object nativeEndpoint = nativePort();
         assertNotNull("The main document has its native endpoint", nativeEndpoint);
+        evaluate(web, "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 6, 12])); } };");
         tap(web, "#btn-hero-read");
         waitFor("A real user gesture creates one child WebView", 5000, () -> popupViews().size() == 1);
         WebView popup = popupViews().get(0);
@@ -489,9 +490,7 @@ public final class NativeIntegrationTest {
                             && request.getUrl().toString().equals(
                                     "https://bifrost.marvel.com/unison/legacy?digitalId=900000099")) {
                         appLookups.incrementAndGet();
-                        String body = "{\"data\":{\"dynamicQueryOrError\":{\"entity\":{\"contents\":["
-                                + "{\"content\":{\"id\":\"" + appUrl.substring("marvelunlimited://issue/".length())
-                                + "\"}}]}}}}";
+                        String body = "{}";
                         return new WebResourceResponse("application/json", "UTF-8", 200, "OK",
                                 Map.of("Access-Control-Allow-Origin", ORIGIN, "Cache-Control", "no-store"),
                                 new ByteArrayInputStream(body.getBytes(StandardCharsets.UTF_8)));
@@ -518,26 +517,16 @@ public final class NativeIntegrationTest {
         });
         assertEquals("Valid URI is rejected from every disallowed caller context", 0, countIntents(Intent.ACTION_VIEW));
         server.releaseLookup.countDown();
-        waitFor("Validated app link becomes an intercepted package-scoped ACTION_VIEW", WAIT_MS,
-                () -> countIntents(Intent.ACTION_VIEW) == 1);
-        intended(allOf(hasAction(Intent.ACTION_VIEW), hasCategories(Collections.singleton(Intent.CATEGORY_BROWSABLE)),
-                hasPackage("com.marvel.unlimited"), hasData(appUrl)));
-        waitFor("Native dispatch result reaches the retained launcher", WAIT_MS,
-                () -> truth(popup, "document.querySelector('#p').textContent.includes('was opened')"));
-        assertEquals("App handoff retains the fallback popup", 1, popupViews().size());
-        assertEquals("One on-demand Bifrost lookup", 1, appLookups.get());
-
-        assertTrue("Synthetic image must not install Marvel Unlimited for the missing-handler case",
-                device.executeShellCommand("pm path com.marvel.unlimited").trim().isEmpty());
-        Intents.release();
-        Intents.init();
+        UiObject2 firstChoices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
+        assertNotNull("Read asks for an installed browser, without dispatching the MU app", firstChoices);
+        assertEquals("No Bifrost lookup", 0, appLookups.get());
+        assertEquals("No outgoing intent before the browser choice", 0, countIntents(Intent.ACTION_VIEW));
+        device.pressBack();
+        waitFor("Cancel returns a visible browser failure and usable fallback", WAIT_MS,
+                () -> truth(popup, "document.querySelector('#p').textContent.includes('browser was not opened')"));
+        assertEquals("Cancelled browser choice retains popup", 1, popupViews().size());
         intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://read.marvel.com/#/book/900000099")))
                 .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
-        tap(popup, "a[href^='marvelunlimited:']");
-        waitFor("Missing app produces a visible failure rather than a successful handoff", WAIT_MS,
-                () -> truth(popup, "document.querySelector('#p').textContent.includes('could not be opened')"));
-        assertEquals("Missing app retains popup", 1, popupViews().size());
-        assertEquals("Retry reuses the validated identifier", 1, appLookups.get());
         tap(popup, "#fallback");
         UiObject2 choices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
         assertNotNull("Multiple browsers remain selectable despite the default and domain approval", choices);
@@ -548,7 +537,7 @@ public final class NativeIntegrationTest {
                     return match.loadLabel(activity.getPackageManager()).toString();
                 }
             }
-            throw new AssertionError("The pinned emulator image must include Chrome");
+            throw new AssertionError("The native test device must include Chrome");
         });
         UiObject2 chrome = choices.findObject(By.text(chromeLabel));
         assertNotNull("Default browser remains an explicit choice", chrome);
@@ -568,10 +557,31 @@ public final class NativeIntegrationTest {
         assertFixture();
         assertNotNull("Main WebView remains attached", onMain(() -> web.getParent()));
         assertTrue("Loopback fixture server completed cleanly", server.failure == null);
+        evaluate(web, "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 7])); } };"
+                + "dispatchEvent(new Event('focus'));");
+        intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://marvel.webtoon.com/")))
+                .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
+        tap(web, "#btn-hero-read");
+        UiObject2 afterChoices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
+        assertNotNull("After local December 7 Read still asks for an installed browser", afterChoices);
+        UiObject2 afterChrome = afterChoices.findObject(By.text(chromeLabel));
+        assertNotNull("The same browser is available after the cutoff", afterChrome);
+        afterChrome.click();
+        waitFor("Post-cutoff browser handoff closes popup", WAIT_MS, () -> popupViews().isEmpty());
+        Intent generalIntent = Intents.getIntents().stream()
+                .filter(intent -> "https://marvel.webtoon.com/".equals(intent.getDataString()))
+                .findFirst().orElseThrow();
+        assertEquals("The general website goes only to the chosen browser",
+                "com.android.chrome", generalIntent.getPackage());
+        assertEquals("No metadata lookup after the cutoff", 1, server.issueRequests.get());
+        assertEquals("No Bifrost lookup on either side", 0, appLookups.get());
+        assertSame("Both handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
+        assertFixture();
         measurements.put("popupCount", 1).put("syntheticMetadataLookups", server.issueRequests.get())
-                .put("syntheticAppLookups", appLookups.get()).put("appDispatchAttempts", 2)
+                .put("syntheticAppLookups", appLookups.get()).put("appDispatchAttempts", 0)
                 .put("browserFallbackAttempts", 1).put("externalBrowserRendered", false)
-                .put("destination", appUrl).put("browserPackage", browserIntent.getPackage())
+                .put("destination", browserIntent.getDataString()).put("afterCutoffDestination", generalIntent.getDataString())
+                .put("browserPackage", browserIntent.getPackage())
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
                 .put("popupBridgeAssetStatus", 403);
     }

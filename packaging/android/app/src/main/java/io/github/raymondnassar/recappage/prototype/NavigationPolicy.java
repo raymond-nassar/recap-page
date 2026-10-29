@@ -15,11 +15,8 @@ import java.util.regex.Pattern;
 final class NavigationPolicy {
     static final int MAX_SAVE_BYTES = 32 * 1024 * 1024;
     private static final Set<String> POPUP_ASSETS = new HashSet<>(Arrays.asList(
-            "open.html", "open.js", "open.css", "js/lib/apiBase.js", "js/lib/issuePageUrl.js",
+            "open.html", "open.js", "open.css", "js/lib/apiBase.js", "js/lib/issuePageUrl.js", "js/lib/readerDestination.js",
             "android/launch.css", "android/launcher.js", "android/reader.js"));
-    private static final Pattern MARVEL_ISSUE = Pattern.compile(
-            "marvelunlimited://issue/drn:src:marvel:unison::prod:"
-                    + "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}");
     private final String origin;
     private final URI base;
     private static final Pattern REQUEST_PREFIX = Pattern.compile(
@@ -96,11 +93,10 @@ final class NavigationPolicy {
         URI uri = parse(value);
         if (uri.getPort() != -1 && uri.getPort() != 443) return false;
         String host = uri.getHost();
+        if (host.equals("marvel.webtoon.com")) {
+            return "/".equals(uri.getRawPath()) && uri.getRawQuery() == null && uri.getRawFragment() == null;
+        }
         return host.equals("read.marvel.com") || host.equals("www.marvel.com") || host.equals("marvel.com");
-    }
-
-    boolean isMarvelIssue(String value) {
-        return value != null && MARVEL_ISSUE.matcher(value).matches();
     }
 
     boolean isNetworkSubresource(String value) {

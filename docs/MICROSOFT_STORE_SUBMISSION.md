@@ -137,7 +137,7 @@ Add these customer-facing requirements:
 
 1. A supported default web browser.
 2. Internet access for live metadata, optional cover art, and external reading links.
-3. A Marvel Unlimited subscription is required only to read subscription comics.
+3. Marvel determines access to its reading services. Comics are not included.
 
 ## English (United States) Store listing
 
@@ -147,9 +147,7 @@ Recap Page
 
 ### Short description
 
-Follow Marvel stories across series with credited reading orders. Open the next unread comic,
-mark it read yourself, and resume with local progress. Recap Page contains no comics and requires
-your own Marvel Unlimited subscription for reading.
+Follow Marvel stories with credited reading orders and private progress. Marvel Unlimited reading ends December 7, 2026. After that date, Read opens the Marvel Comics website, not a single-comic link. Comics are not included.
 
 ### Long description
 
@@ -163,8 +161,7 @@ A reading session, using made-up progress rather than someone's reading history:
    compiled from Comic Book Herald's guide:
    https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/
 2. Imagine the first six comics are marked read. Civil War (2006) #7 is the next unread issue.
-3. Choose Read. The official reader opens in a separate tab when a link is available. Otherwise the
-   new tab looks up the link and falls back to an official issue page, not guaranteed access.
+3. Choose Read. Until December 7, 2026, the Marvel Unlimited web reader opens in a separate tab when a link is recorded, with a comic details page as the fallback. From that date, Read opens the general Marvel Comics website, not a single-comic link.
 4. Return to Recap Page and choose Done. New Avengers (2004) #21 becomes next; reading is not
    detected automatically.
 5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
@@ -172,8 +169,7 @@ A reading session, using made-up progress rather than someone's reading history:
 Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
 own order. Follow a Reading Path on Modern Timeline, add private notes, or track custom issues
 without changing that reading loop. Your progress stays in your browser profile. There is no
-account, advertising, analytics, or telemetry. Reading requires your own Marvel Unlimited
-subscription.
+account, advertising, analytics, or telemetry. Comics are not included. Marvel determines access to its reading services. Historical Marvel Unlimited badges do not establish access to Marvel Comics.
 
 Recap Page contains no comic pages. Cover art is optional and loads directly from Marvel image
 hosts. Search and issue details use a community metadata service. An optional manual lookup can open
@@ -193,14 +189,14 @@ or Disney. Marvel names and marks belong to their respective owners.
 4. Private read markers, notes, availability overrides, and custom entries
 5. JSON backup and restore
 6. Optional cover art and live metadata
-7. Direct links to official Marvel reading pages
+7. Links to Marvel's reading services, with a clearly labeled general website after December 7, 2026.
 8. No account, ads, analytics, or telemetry
 
 ### Keywords
 
 1. `comic reading tracker`
 2. `reading order`
-3. `Marvel Unlimited companion`
+3. `Marvel reading tracker`
 4. `comic checklist`
 5. `reading progress`
 6. `comic events`

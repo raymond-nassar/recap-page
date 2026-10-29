@@ -318,7 +318,7 @@ test('453 Home refresh uses effective launchability and saved provenance without
   assert.equal(h.nodes.continueRead.hidden, false);
   assert.equal(h.nodes.continueRead.disabled, false);
   assert.equal(h.nodes.continueRead.textContent, 'Read');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Manual comic in Marvel Unlimited with temporary link');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Manual comic in Marvel Unlimited (reading ends December 7, 2026)');
   assert.equal(h.nodes.continueNext.textContent, 'Next: Manual comic (temporary reader link)');
   h.nodes.continueRead.listeners.click({});
   assert.equal(h.calls.read.at(-1)[2], 'saved');
@@ -349,7 +349,7 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.nodes.continueSeries.textContent, 'Series');
   assert.equal(h.nodes.continueNumber.textContent, '#3');
   assert.equal(h.nodes.continueRead.textContent, 'Read');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Next issue in Marvel Unlimited');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Next issue in Marvel Unlimited (reading ends December 7, 2026)');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.calls.covers.length, 1);
 });

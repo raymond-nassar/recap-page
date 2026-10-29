@@ -218,12 +218,6 @@ public final class MainActivity extends Activity {
             String url = request.getUrl().toString();
             if (!request.isForMainFrame()) return true;
             if (popup ? local.policy.isPopupPage(url) : local.policy.isAppPage(url)) return false;
-            if (popup && local.policy.isPopupPage(view.getUrl()) && local.policy.isMarvelIssue(url)) {
-                boolean opened = openExternal(url);
-                view.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:"
-                        + opened + "}));", null);
-                return true;
-            }
             if (popup && local.policy.isPopupPage(view.getUrl()) && local.policy.isOfficialReader(url)) {
                 openReaderBrowser(url, view);
                 return true;
@@ -385,16 +379,13 @@ public final class MainActivity extends Activity {
     }
 
     private boolean openExternal(String url) {
-        boolean marvel = local.policy.isMarvelIssue(url);
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
-            if (marvel) intent.setPackage("com.marvel.unlimited");
             startActivity(intent);
             return true;
         } catch (ActivityNotFoundException | SecurityException error) {
-            notice(marvel ? "Marvel Unlimited could not be opened. Use Open in browser."
-                    : "No browser could open this link. Install or enable a browser and try again.");
+            notice("No browser could open this link. Install or enable a browser and try again.");
             return false;
         }
     }
@@ -421,6 +412,7 @@ public final class MainActivity extends Activity {
         ArrayList<ResolveInfo> choices = readerBrowsers(getPackageManager());
         if (choices.isEmpty()) {
             notice("No browser is available. Install or enable a browser and try again.");
+            popup.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:false}));", null);
             return;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -435,8 +427,11 @@ public final class MainActivity extends Activity {
         }
         Dialog chooser = new AlertDialog.Builder(this).setTitle("Open in browser")
                 .setItems(labels, (dialog, selected) -> openReaderBrowser(intent, choices.get(selected), popup))
-                .setNegativeButton(android.R.string.cancel, null).create();
+                .setNegativeButton(android.R.string.cancel, (dialog, selected) ->
+                        popup.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:false}));", null)).create();
         chooser.setOnDismissListener(ignored -> popups.remove(chooser));
+        chooser.setOnCancelListener(ignored ->
+                popup.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:false}));", null));
         popups.add(chooser);
         chooser.show();
     }
@@ -449,6 +444,7 @@ public final class MainActivity extends Activity {
             closePopup(popup);
         } catch (ActivityNotFoundException | SecurityException error) {
             notice("The selected browser could not open this link. Try another browser.");
+            popup.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:false}));", null);
         }
     }
 
