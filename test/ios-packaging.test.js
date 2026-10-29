@@ -436,7 +436,7 @@ test('the shipping iOS web view installs a reply-capable download handler', () =
   const controller = appSource('WebViewController');
   const handler = appSource('IosBridgeHandler');
   assert.match(factory, /addScriptMessageHandler\(\s*bridgeHandler,\s*contentWorld:\s*\.page,\s*name:\s*IosBridgeHandler\.name/s);
-  assert.match(controller, /IosBridgeHandler\(policy:\s*policy,\s*presenter:\s*self\)/);
+  assert.match(controller, /IosBridgeHandler\(policy:\s*policy,\s*presenter:\s*self,\s*dataLossState:\s*dataLossState\)/);
   assert.match(handler, /WKScriptMessageHandlerWithReply/);
   assert.match(handler, /isTrustedPage\(/);
   assert.match(handler, /UIDocumentPickerViewController\(forExporting:\s*\[fileURL\],\s*asCopy:\s*true\)/);

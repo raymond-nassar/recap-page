@@ -51,6 +51,30 @@ final class IOSExportRequestTests: XCTestCase {
     }
 }
 
+final class IOSDataLossStateTests: XCTestCase {
+    func testSavedDataSurvivesDismissalUntilDataReturns() throws {
+        let suite = "recap-ios-data-loss-tests-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let state = IOSDataLossState(defaults: defaults)
+
+        XCTAssertFalse(state.hasPreviouslySavedData)
+        XCTAssertFalse(state.isNoticeDismissed)
+        XCTAssertTrue(state.pageStateScript.contains("recapIosHadSavedData = false"))
+
+        state.recordSavedData()
+        XCTAssertTrue(state.hasPreviouslySavedData)
+        XCTAssertFalse(state.isNoticeDismissed)
+        XCTAssertTrue(state.pageStateScript.contains("recapIosHadSavedData = true"))
+
+        state.dismissNotice()
+        XCTAssertTrue(state.isNoticeDismissed)
+        state.recordSavedData()
+        XCTAssertTrue(state.hasPreviouslySavedData)
+        XCTAssertFalse(state.isNoticeDismissed, "data returning clears the dismissal for a future loss")
+    }
+}
+
 @MainActor
 final class IosBridgeHandlerTests: XCTestCase {
     private let policy = NavigationPolicy(scheme: "recappage", host: "localhost")

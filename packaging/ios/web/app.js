@@ -3,6 +3,14 @@ import { wireMobileUi } from '../mobile/mobile-ui.js';
 import { setDownloadHandler } from '../js/lib/download.js';
 import { createIosBridge } from './bridge.js';
 
+const DATA_LOSS_COPY = Object.freeze({
+  messageBeforeLink: 'Your saved reading data is missing from this device. Restore from a backup file in ',
+  settingsLink: 'Backup & settings',
+  messageAfterLink: '.',
+  dismiss: 'Dismiss',
+  dismissalFailure: 'The missing-data notice could not be dismissed. Please try again.',
+});
+
 const report = document.createElement('p');
 report.id = 'ios-report';
 report.className = 'notice';
@@ -10,6 +18,92 @@ report.setAttribute('role', 'status');
 report.setAttribute('aria-live', 'polite');
 report.hidden = true;
 document.querySelector('.wrap').prepend(report);
+
+const dataLossNotice = document.createElement('section');
+dataLossNotice.id = 'ios-data-loss-notice';
+dataLossNotice.className = 'notice';
+dataLossNotice.setAttribute('role', 'status');
+dataLossNotice.setAttribute('aria-live', 'polite');
+dataLossNotice.hidden = true;
+const dataLossMessage = document.createElement('p');
+dataLossMessage.id = 'ios-data-loss-message';
+dataLossMessage.append(document.createTextNode(DATA_LOSS_COPY.messageBeforeLink));
+const dataLossSettingsLink = document.createElement('a');
+dataLossSettingsLink.href = '#/data';
+dataLossSettingsLink.className = 'quiet';
+dataLossSettingsLink.id = 'ios-data-loss-settings';
+dataLossSettingsLink.textContent = DATA_LOSS_COPY.settingsLink;
+dataLossMessage.append(dataLossSettingsLink, document.createTextNode(DATA_LOSS_COPY.messageAfterLink));
+const dismissDataLossNotice = document.createElement('button');
+dismissDataLossNotice.type = 'button';
+dismissDataLossNotice.id = 'ios-data-loss-dismiss';
+dismissDataLossNotice.textContent = DATA_LOSS_COPY.dismiss;
+dataLossNotice.append(dataLossMessage, dismissDataLossNotice);
+document.querySelector('.wrap').prepend(dataLossNotice);
+
+const native = window.webkit?.messageHandlers?.recap;
+
+function showBridgeError(message) {
+  report.hidden = false;
+  report.textContent = message;
+}
+
+function postDataLossMessage(kind) {
+  if (!native || typeof native.postMessage !== 'function') return Promise.resolve(null);
+  try {
+    return Promise.resolve(native.postMessage({ v: 1, kind, present: kind === 'saved-data-present' }));
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+function noteSavedDataPresent() {
+  dataLossNotice.hidden = true;
+  window.recapIosDataLossNoticeDismissed = false;
+  postDataLossMessage('saved-data-present').then((reply) => {
+    if (reply && (reply.v !== 1 || reply.kind !== 'data-loss-result' || reply.status !== 'recorded')) {
+      showBridgeError('iOS could not record that saved reading data exists.');
+    }
+  }).catch(() => showBridgeError('iOS could not record that saved reading data exists.'));
+}
+
+let readingDataPresent = null;
+try {
+  readingDataPresent = localStorage.getItem('mrt.state.v2') !== null;
+} catch {
+  showBridgeError('iOS could not check whether saved reading data exists.');
+}
+
+if (readingDataPresent === true) {
+  noteSavedDataPresent();
+} else if (readingDataPresent === false
+  && window.recapIosHadSavedData === true
+  && window.recapIosDataLossNoticeDismissed !== true) {
+  dataLossNotice.hidden = false;
+}
+
+dismissDataLossNotice.addEventListener('click', async () => {
+  dismissDataLossNotice.disabled = true;
+  try {
+    const reply = await postDataLossMessage('dismiss-data-loss');
+    if (reply?.v !== 1 || reply.kind !== 'data-loss-result' || reply.status !== 'dismissed') {
+      throw new Error('The iOS app did not confirm the dismissal.');
+    }
+    window.recapIosDataLossNoticeDismissed = true;
+    dataLossNotice.hidden = true;
+  } catch {
+    showBridgeError(DATA_LOSS_COPY.dismissalFailure);
+  } finally {
+    dismissDataLossNotice.disabled = false;
+  }
+});
+
+const originalSetItem = Storage.prototype.setItem;
+Storage.prototype.setItem = function (key, value) {
+  const result = Reflect.apply(originalSetItem, this, [key, value]);
+  if (this === localStorage && key === 'mrt.state.v2') noteSavedDataPresent();
+  return result;
+};
 
 window.addEventListener('recapios:external-open', (event) => {
   report.hidden = false;

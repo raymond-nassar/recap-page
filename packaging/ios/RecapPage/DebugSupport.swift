@@ -13,6 +13,8 @@ enum DebugSupport {
     static let readHandoffTestKey = "RECAP_IOS_READ_HANDOFF_TEST"
     static let recordHandOffsKey = "RECAP_IOS_RECORD_HANDOFFS"
     static let liveCorsCheckKey = "RECAP_IOS_LIVE_CORS_CHECK"
+    static let dataLossStateResetKey = "RECAP_IOS_DATA_LOSS_RESET"
+    static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
     static let probeResultIdentifier = "recap-probe-result"
     static let handOffRecorderIdentifier = "ios-handoff-recorder"
 
@@ -54,6 +56,14 @@ enum DebugSupport {
 
     static var recordsHandOffs: Bool {
         environment[recordHandOffsKey] == "1"
+    }
+
+    static var resetsDataLossState: Bool {
+        environment[dataLossStateResetKey] == "1"
+    }
+
+    static var clearsReadingData: Bool {
+        environment[clearReadingDataKey] == "1"
     }
 
     static let readHandoffTestScript = #"""

@@ -43,6 +43,43 @@ struct IOSExportRequest {
     }
 }
 
+struct IOSDataLossState {
+    private static let savedDataKey = "recap.ios.savedDataSeen"
+    private static let dismissedNoticeKey = "recap.ios.dataLossNoticeDismissed"
+    private let defaults: UserDefaults
+
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+    }
+
+    var hasPreviouslySavedData: Bool {
+        defaults.bool(forKey: Self.savedDataKey)
+    }
+
+    var isNoticeDismissed: Bool {
+        defaults.bool(forKey: Self.dismissedNoticeKey)
+    }
+
+    var pageStateScript: String {
+        "window.recapIosHadSavedData = \(hasPreviouslySavedData ? "true" : "false");"
+            + "window.recapIosDataLossNoticeDismissed = \(isNoticeDismissed ? "true" : "false");"
+    }
+
+    func recordSavedData() {
+        defaults.set(true, forKey: Self.savedDataKey)
+        defaults.set(false, forKey: Self.dismissedNoticeKey)
+    }
+
+    func dismissNotice() {
+        defaults.set(true, forKey: Self.dismissedNoticeKey)
+    }
+
+    func reset() {
+        defaults.removeObject(forKey: Self.savedDataKey)
+        defaults.removeObject(forKey: Self.dismissedNoticeKey)
+    }
+}
+
 enum ExportPickerOutcome {
     case saved
     case cancelled
@@ -76,6 +113,7 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
     private let temporaryRoot: URL
     private let fileManager: FileManager
     private let pickerDriver: PickerDriver?
+    private let dataLossState: IOSDataLossState
     private var pending: PendingExport?
 
     init(
@@ -83,13 +121,15 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
         presenter: UIViewController?,
         temporaryRoot: URL = FileManager.default.temporaryDirectory,
         fileManager: FileManager = .default,
-        pickerDriver: PickerDriver? = nil
+        pickerDriver: PickerDriver? = nil,
+        dataLossState: IOSDataLossState = IOSDataLossState()
     ) {
         self.policy = policy
         self.presenter = presenter
         self.temporaryRoot = temporaryRoot
         self.fileManager = fileManager
         self.pickerDriver = pickerDriver
+        self.dataLossState = dataLossState
     }
 
     func userContentController(
@@ -102,17 +142,38 @@ final class IosBridgeHandler: NSObject, WKScriptMessageHandlerWithReply, UIDocum
             isMainFrame: message.frameInfo.isMainFrame,
             policy: policy
         ) else {
-            replyHandler(nil, "The iOS download request did not come from the app page.")
+            replyHandler(nil, "The iOS request did not come from the app page.")
             return
         }
-        guard let request = IOSExportRequest(body: message.body) else {
-            replyHandler(nil, "This download request is not a supported text file.")
+        guard let body = message.body as? [String: Any],
+              body["v"] as? Int == 1,
+              let kind = body["kind"] as? String else {
+            replyHandler(nil, "This iOS request is not supported.")
             return
         }
-        #if DEBUG
-        NSLog("Recap Page iOS export handler received a request.")
-        #endif
-        beginExport(request, reply: replyHandler)
+        switch kind {
+        case "save":
+            guard let request = IOSExportRequest(body: body) else {
+                replyHandler(nil, "This download request is not a supported text file.")
+                return
+            }
+            #if DEBUG
+            NSLog("Recap Page iOS export handler received a request.")
+            #endif
+            beginExport(request, reply: replyHandler)
+        case "saved-data-present":
+            guard body["present"] as? Bool == true else {
+                replyHandler(nil, "The saved-data marker requires a positive confirmation.")
+                return
+            }
+            dataLossState.recordSavedData()
+            replyHandler(["v": 1, "kind": "data-loss-result", "status": "recorded"], nil)
+        case "dismiss-data-loss":
+            dataLossState.dismissNotice()
+            replyHandler(["v": 1, "kind": "data-loss-result", "status": "dismissed"], nil)
+        default:
+            replyHandler(nil, "This iOS request is not supported.")
+        }
     }
 
     func beginExport(_ request: IOSExportRequest, reply: @escaping (Any?, String?) -> Void) {

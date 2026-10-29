@@ -10,6 +10,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
     private var appPage: URL?
     private var pendingReadSheets: [ReadSheetController] = []
     private var presentedReadSheet: ReadSheetController?
+    private let dataLossState = IOSDataLossState()
     /// Set when iOS ended the page's content process, until the reloaded page has been told.
     private(set) var restartNoticePending = false
 
@@ -29,8 +30,25 @@ final class WebViewController: UIViewController, WKUIDelegate {
             return
         }
         let policy = NavigationPolicy(config: assets.config)
-        let bridge = IosBridgeHandler(policy: policy, presenter: self)
+        #if DEBUG
+        if DebugSupport.resetsDataLossState {
+            dataLossState.reset()
+        }
+        #endif
+        let bridge = IosBridgeHandler(policy: policy, presenter: self, dataLossState: dataLossState)
         let configuration = WebViewFactory.configuration(assets: assets, bridgeHandler: bridge)
+        #if DEBUG
+        if DebugSupport.clearsReadingData {
+            configuration.userContentController.addUserScript(WKUserScript(
+                source: "localStorage.removeItem('mrt.state.v2');",
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
+        #endif
+        configuration.userContentController.addUserScript(WKUserScript(
+            source: dataLossState.pageStateScript,
+            injectionTime: .atDocumentStart,
+            forMainFrameOnly: true))
         #if DEBUG
         if DebugSupport.seedsRestoreTest {
             configuration.userContentController.addUserScript(WKUserScript(

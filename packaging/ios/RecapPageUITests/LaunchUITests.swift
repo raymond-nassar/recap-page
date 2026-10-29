@@ -16,7 +16,9 @@ final class LaunchUITests: XCTestCase {
         recordHandOffs: Bool = false,
         isolateRequests: Bool = true,
         liveCorsCheck: Bool = false,
-        restoreTestSeed: Bool = false
+        restoreTestSeed: Bool = false,
+        resetDataLossState: Bool = false,
+        clearReadingData: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         if isolateRequests { app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1" }
@@ -27,6 +29,8 @@ final class LaunchUITests: XCTestCase {
         if recordHandOffs { app.launchEnvironment["RECAP_IOS_RECORD_HANDOFFS"] = "1" }
         if liveCorsCheck { app.launchEnvironment["RECAP_IOS_LIVE_CORS_CHECK"] = "1" }
         if restoreTestSeed { app.launchEnvironment["RECAP_IOS_RESTORE_TEST_SEED"] = "1" }
+        if resetDataLossState { app.launchEnvironment["RECAP_IOS_DATA_LOSS_RESET"] = "1" }
+        if clearReadingData { app.launchEnvironment["RECAP_IOS_CLEAR_READING_DATA"] = "1" }
         app.launch()
         return app
     }
@@ -83,6 +87,135 @@ final class LaunchUITests: XCTestCase {
         attachment.name = "\(name).json"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    private static let markAndRemoveReadingData = """
+    const key = 'mrt.state.v2';
+    localStorage.setItem(key, JSON.stringify({
+      schemaVersion: 4, issues: {}, read: {}, overrides: {}, notes: {}, ratings: {},
+      lists: {}, listOrder: [], active: null
+    }));
+    const reply = await window.webkit.messageHandlers.recap.postMessage({
+      v: 1, kind: 'saved-data-present', present: true
+    });
+    localStorage.removeItem(key);
+    return JSON.stringify({
+      recorded: reply?.status === 'recorded',
+      readingData: localStorage.getItem(key),
+    });
+    """
+
+    private static let markAndKeepReadingData = """
+    const key = 'mrt.state.v2';
+    localStorage.setItem(key, JSON.stringify({
+      schemaVersion: 4, issues: {}, read: {}, overrides: {}, notes: {}, ratings: {},
+      lists: {}, listOrder: [], active: null
+    }));
+    const reply = await window.webkit.messageHandlers.recap.postMessage({
+      v: 1, kind: 'saved-data-present', present: true
+    });
+    return JSON.stringify({
+      recorded: reply?.status === 'recorded',
+      readingData: localStorage.getItem(key),
+    });
+    """
+
+    private static let observeDataLossNotice = """
+    const notice = document.getElementById('ios-data-loss-notice');
+    return JSON.stringify({
+      readingData: localStorage.getItem('mrt.state.v2'),
+      noticeHidden: notice.hidden,
+      noticeText: document.getElementById('ios-data-loss-message').textContent,
+      settingsLinkHref: document.getElementById('ios-data-loss-settings').getAttribute('href'),
+    });
+    """
+
+    private static let eraseReadingData = """
+    const until = async (condition, timeout = 30000) => {
+      const deadline = Date.now() + timeout;
+      while (Date.now() < deadline) {
+        if (condition()) return;
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      throw new Error('Timed out waiting for the in-app erase');
+    };
+    document.querySelector('[data-view="data"]').click();
+    await until(() => !document.getElementById('view-data').hidden);
+    document.getElementById('btn-wipe').click();
+    await until(() => document.getElementById('ask').open);
+    document.getElementById('ask-ok').click();
+    await until(() => document.getElementById('save-report').textContent.toLowerCase().includes('erased'));
+    return JSON.stringify({
+      readingDataPresent: localStorage.getItem('mrt.state.v2') !== null,
+      noticeHidden: document.getElementById('ios-data-loss-notice').hidden,
+      report: document.getElementById('save-report').textContent,
+    });
+    """
+
+    @MainActor
+    func testFreshInstallDoesNotShowDataLossNotice() throws {
+        let app = launch(
+            probe: Self.observeDataLossNotice,
+            resetDataLossState: true,
+            clearReadingData: true)
+        let result = try probeResult(of: app)
+        XCTAssertNil(result["readingData"] as? String)
+        XCTAssertEqual(result["noticeHidden"] as? Bool, true)
+        XCTAssertFalse(app.staticTexts["ios-data-loss-message"].exists)
+    }
+
+    @MainActor
+    func testMissingSavedDataShowsNoticeWithoutWritingAndDismissalPersists() throws {
+        let setup = launch(
+            probe: Self.markAndRemoveReadingData,
+            resetDataLossState: true,
+            clearReadingData: true)
+        let setupResult = try probeResult(of: setup)
+        XCTAssertEqual(setupResult["recorded"] as? Bool, true)
+        XCTAssertNil(setupResult["readingData"] as? String, "the setup simulates removal outside the app")
+        setup.terminate()
+
+        let app = launch(probe: Self.observeDataLossNotice)
+        let result = try probeResult(of: app)
+        XCTAssertNil(result["readingData"] as? String, "loss detection does not write a replacement state")
+        XCTAssertEqual(result["noticeHidden"] as? Bool, false)
+        XCTAssertTrue((result["noticeText"] as? String)?.contains("Restore from a backup file") == true)
+        XCTAssertEqual(result["settingsLinkHref"] as? String, "#/data")
+        let settingsLink = app.links.matching(identifier: "ios-data-loss-settings").firstMatch
+        XCTAssertTrue(settingsLink.waitForExistence(timeout: 30))
+        settingsLink.tap()
+        XCTAssertTrue(app.staticTexts["data-h"].waitForExistence(timeout: 30), "the notice link opens Backup & settings")
+        let message = app.staticTexts["ios-data-loss-message"]
+        XCTAssertTrue(message.waitForExistence(timeout: 30))
+        app.buttons["ios-data-loss-dismiss"].tap()
+        let dismissed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"),
+            object: message)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
+
+        app.terminate()
+        app.launch()
+        let afterRelaunch = try probeResult(of: app)
+        XCTAssertNil(afterRelaunch["readingData"] as? String)
+        XCTAssertEqual(afterRelaunch["noticeHidden"] as? Bool, true)
+    }
+
+    @MainActor
+    func testInAppEraseKeepsAnEmptyReadingDataKeyAndDoesNotShowLossNotice() throws {
+        let setup = launch(
+            probe: Self.markAndKeepReadingData,
+            resetDataLossState: true,
+            clearReadingData: true)
+        let setupResult = try probeResult(of: setup)
+        XCTAssertEqual(setupResult["recorded"] as? Bool, true)
+        XCTAssertNotNil(setupResult["readingData"] as? String)
+        setup.terminate()
+
+        let app = launch(probe: Self.eraseReadingData)
+        let result = try probeResult(of: app)
+        XCTAssertEqual(result["readingDataPresent"] as? Bool, true)
+        XCTAssertEqual(result["noticeHidden"] as? Bool, true)
+        XCTAssertFalse(app.staticTexts["ios-data-loss-message"].exists)
     }
 
     @MainActor
