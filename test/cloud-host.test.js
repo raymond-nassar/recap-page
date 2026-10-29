@@ -230,6 +230,9 @@ test('the token store protects through a fixed PowerShell script, with the bytes
     assert.equal(await store.exists(), false);
     assert.equal(await store.load(), null);
     assert.equal(shell.runs.length, 0, 'nothing stored, so PowerShell never starts');
+    await store.probe();
+    assert.deepEqual([shell.runs.length, shell.runs[0].mode, readdirSync(directory)], [1, 'protect', []], 'the probe protects a fixed value and writes nothing');
+    shell.runs.length = 0;
     await store.save(RECORD);
     const [protect] = shell.runs;
     const { command, args } = protectCommand(SYSTEM);
@@ -263,8 +266,11 @@ test('restricted PowerShell, an unreadable blob, a hung PowerShell and a non-Win
       const shell = fakePowerShell(() => outcome);
       const store = createTokenStore({ directory, protector: createProtector({ platform: 'win32', spawnImpl: shell.spawnImpl, system: SYSTEM }) });
       await assert.rejects(store.save(RECORD), { code }, code);
+      await assert.rejects(store.probe(), { code }, `${code}: the probe meets it too`);
       assert.deepEqual(readdirSync(directory), [], `${code}: nothing written`);
     }
+    await assert.rejects(createTokenStore({ directory: null, protector: createProtector({ platform: 'win32' }) }).probe(), { code: 'platform' },
+      'no private folder to keep a sign-in in');
     const hung = fakePowerShell(() => 'hang');
     let killed = null;
     const spawnImpl = (...args) => {
@@ -665,7 +671,11 @@ function memoryStore(initial = null) {
   return {
     log,
     get saved() { return saved === null ? null : structuredClone(saved); },
-    faults: { load: null },
+    faults: { load: null, probe: null },
+    async probe() {
+      log.push('probe');
+      if (this.faults.probe) throw this.faults.probe;
+    },
     async exists() { return saved !== null; },
     async load() {
       log.push('load');
@@ -1092,6 +1102,46 @@ test('a token OneDrive refuses even after renewing it asks for a sign-in again, 
   } finally {
     env.instance.close();
     await api.close();
+  }
+});
+
+// A computer that never connected has never run PowerShell, so a restriction used to be found only by the
+// save after a whole Microsoft sign-in, and Connect then ran another one (stage 2 review, L2). It is found
+// before Microsoft's page opens now, and stays said.
+test('a computer that cannot protect a sign-in says so before Microsoft\'s page opens, and keeps saying it', async () => {
+  const store = memoryStore();
+  store.faults.probe = new CloudTokenError('language');
+  const env = host({ store });
+  const api = await hostServer(env.instance);
+  try {
+    assert.equal((await api.call('status')).body.status.state, 'not-connected', 'nothing has needed PowerShell yet');
+    const refused = (await api.call('connect')).body;
+    assert.deepEqual([refused.ok, refused.error.code], [false, 'language']);
+    const status = (await api.call('status')).body.status;
+    assert.equal(status.state, 'unavailable');
+    assert.match(status.message, /restricting PowerShell/);
+    assert.equal((await api.call('connect')).body.error.code, 'language', 'refused at once from then on');
+    assert.deepEqual([env.opened.length, store.log.filter((entry) => entry === 'probe').length, env.fetch.calls.length], [0, 1, 0],
+      'no browser, one probe, nothing sent to Microsoft');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+
+  // A restriction that arrives only with the save after a sign-in is said from then on all the same.
+  const nonceRef = { value: null };
+  const later = memoryStore();
+  later.save = async () => { throw new CloudTokenError('language'); };
+  const signed = host({ store: later, fetch: microsoft({ nonce: () => nonceRef.value }) });
+  const laterApi = await hostServer(signed.instance);
+  try {
+    await signIn(signed, laterApi, { nonceRef });
+    assert.equal((await laterApi.call('status')).body.status.state, 'unavailable');
+    assert.equal((await laterApi.call('connect')).body.error.code, 'language');
+    assert.equal(signed.opened.length, 1, 'no second sign-in');
+  } finally {
+    signed.instance.close();
+    await laterApi.close();
   }
 });
 

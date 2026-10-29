@@ -148,6 +148,14 @@ export function validRecord(value) {
 export function createTokenStore({ directory, protector, fs = { mkdir, readFile, rename, rm, stat, writeFile } } = {}) {
   const file = directory ? join(directory, TOKEN_FILE) : null;
   return {
+    // Whether this Windows account can protect a sign-in here at all, asked before a first sign-in, so
+    // restricted PowerShell or unusable local application data is found before Microsoft's page opens
+    // rather than after the person has signed in (stage 2 review, L2). It protects a fixed value and
+    // writes nothing.
+    async probe() {
+      if (!file) throw new CloudTokenError('platform');
+      await protector.protect(Buffer.from('recap-page cloud backup probe', 'utf8'));
+    },
     // Whether a sign-in is stored at all, answered without PowerShell, so a computer that never
     // connected never starts it.
     async exists() {

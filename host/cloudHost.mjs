@@ -101,6 +101,7 @@ export function createCloudHost({
   let signIn = null;
   let access = null;
   let refreshing = null;
+  let probed = null;
   let epoch = 0;
   let inFlight = 0;
   let queue = Promise.resolve();
@@ -200,14 +201,36 @@ export function createCloudHost({
     await load();
     if (unavailable) throw unavailable;
     if (!signIn && !record?.refreshToken) {
-      const job = { expiresAt: Math.floor(clock() + signInMs), close: () => {} };
-      signIn = job;
-      message = null;
-      signInJob(job)
-        .catch((error) => { if (signIn === job) message = error?.message ?? SIGN_IN_ENDED.failed; })
-        .finally(() => { if (signIn === job) signIn = null; });
+      // With no sign-in stored, whether this Windows account can protect one is asked before Microsoft's
+      // page opens, once in the host's life (stage 2 review, L2). Asked again after the wait, because a
+      // second Connect may have started a sign-in meanwhile.
+      if (!record) await probe();
+      if (!signIn && !record?.refreshToken) {
+        const job = { expiresAt: Math.floor(clock() + signInMs), close: () => {} };
+        signIn = job;
+        message = null;
+        signInJob(job)
+          .catch((error) => {
+            // The save after a sign-in meets a restriction the probe could not, should one arrive later.
+            if (error?.code === 'language' || error?.code === 'platform') unavailable = error;
+            if (signIn === job) message = error?.message ?? SIGN_IN_ENDED.failed;
+          })
+          .finally(() => { if (signIn === job) signIn = null; });
+      }
     }
     return status();
+  }
+
+  // Restricted PowerShell, or no usable local application data, makes cloud backup unavailable here for
+  // the rest of the host's life, so status says so and Connect refuses at once; any other failure is
+  // asked about again at the next Connect.
+  function probe() {
+    probed ??= store.probe().catch((error) => {
+      probed = null;
+      if (error?.code === 'language' || error?.code === 'platform') unavailable = error;
+      throw error;
+    });
+    return probed;
   }
 
   // Disconnecting works even where the sign-in cannot be read, so erase can always remove it.
