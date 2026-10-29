@@ -413,6 +413,17 @@ export class CloudBackupProtocol {
     return held;
   }
 
+  // Erase: this browser forgets cloud backup altogether. Its next consent starts a new stream, so no number
+  // is used twice, and this stream's files stay in the account, where discovery shows them as another
+  // device's. Read back raw, because a record too damaged to check is exactly the one being removed.
+  async forget() {
+    return saying('Cloud backup may still be on.', async () => {
+      await this.records.write(() => null);
+      if (await this.records.read() !== null) throw recordLost();
+      return null;
+    });
+  }
+
   // The number is committed and read back before the file it names exists, so no crash, kill or second
   // tab can hand it out again. Inside one transaction, so two tabs can never read the same counter.
   async allocate() {

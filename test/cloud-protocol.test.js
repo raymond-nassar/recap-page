@@ -1,8 +1,9 @@
 // The write-once generation protocol: the record and its counter, one backup end to end, generations
 // across tabs and restarts, lost replies and late creates, read-back, pruning, refusals, discovery of
 // altered and foreign files, restore through the complete restore engine, deleting this device's
-// backups, and the protocol under the coordinator. The provider is a fake transport here; IndexedDB is a
-// fake that schedules transactions as browsers do. The real IndexedDB is exercised in Edge separately.
+// backups, the protocol under the coordinator, and the page's cloud backup that holds them together
+// (P02-T05). The provider is a fake transport here; IndexedDB is a fake that schedules transactions as
+// browsers do. The real IndexedDB is exercised in Edge separately.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,6 +15,7 @@ import {
   parseCloudBackupName,
 } from '../src/js/lib/cloudProtocol.js';
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
+import { CLOUD_SIGN_IN_POLL_MS, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
 import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
@@ -1192,4 +1194,270 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
   assert.deepEqual(env.transport.created.map((name) => parseCloudBackupName(name).generation), [1, 2, 3, 4]);
   assert.deepEqual(env.transport.generations(stream), [2, 3, 4], 'the lost reply\'s file waits to be pruned with the next backup');
   coordinator.stop();
+});
+
+// ------------------------------------------------------------------ the page's cloud backup
+
+// The Windows host as the page meets it: the account above, plus the status, connect and disconnect the
+// host answers. A sign-in stays open until the test finishes it, and every status request is counted.
+function windowsHost(transport, { account = 'reader@example.test' } = {}) {
+  const host = { enabled: true, state: transport.connection ? 'connected' : 'not-connected', statuses: 0, disconnects: 0, refuse: null };
+  const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
+  const answer = () => (host.enabled ? Object.freeze({
+    enabled: true, provider: 'onedrive', state: host.state, connection: linked() ? transport.connection : null,
+    account: linked() ? account : null, message: null, signInExpiresAt: host.state === 'signing-in' ? 1_800_000_300_000 : null,
+  }) : Object.freeze({ enabled: false }));
+  return Object.assign(transport, {
+    host,
+    async status() { host.statuses += 1; return answer(); },
+    async connect() {
+      if (host.state === 'not-connected' || host.state === 'needs-sign-in') host.state = 'signing-in';
+      return answer();
+    },
+    async disconnect() {
+      host.disconnects += 1;
+      if (host.refuse) throw Object.assign(new Error(host.refuse), { code: 'refused' });
+      transport.connection = null;
+      host.state = 'not-connected';
+      return answer();
+    },
+    // The sign-in in the browser finishing: the same connection for the same account and folder, or a new one.
+    signedIn(connection) {
+      transport.connection = connection;
+      host.state = 'connected';
+    },
+  });
+}
+
+function page({ env, home = device(), channel = null, databases } = {}) {
+  const time = fakeTime();
+  const protocol = env.make({ clock: time.now });
+  const cloud = createCloudBackup({
+    transport: env.transport, protocol, device: 'Microsoft Edge on Windows', channel, setTimer: time.setTimer,
+    capture: () => captureCompleteBackup({ storage: home.storage, cryptoProvider: webcrypto }),
+    databases: databases ?? (async () => [...env.idb.databases.keys()].map((name) => ({ name, version: 1 }))),
+    coordinator: {
+      locks: env.locks, events: new EventTarget(), clock: time.now, setTimer: time.setTimer, clearTimer: time.clearTimer,
+      cryptoProvider: webcrypto, isOnline: () => true, isHidden: () => false,
+    },
+  });
+  return { env, protocol, home, time, cloud, run: (ms = 0) => time.advance(ms, [cloud]) };
+}
+
+test('other devices see this one by its browser and the system it runs on', () => {
+  const edge = { userAgentData: { brands: [{ brand: 'Not)A;Brand' }, { brand: 'Chromium' }, { brand: 'Microsoft Edge' }], platform: 'Windows' } };
+  assert.equal(browserDeviceLabel(edge), 'Microsoft Edge on Windows');
+  assert.equal(browserDeviceLabel({ userAgentData: { brands: [{ brand: 'Chromium' }, { brand: 'Not_A Brand' }], platform: 'Android' } }), 'Chromium on Android');
+  assert.equal(browserDeviceLabel({ userAgent: 'Mozilla/5.0 (Macintosh)' }), 'Recap Page', 'no client hints: the protocol\'s default');
+  assert.equal(browserDeviceLabel(undefined), 'Recap Page');
+});
+
+test('in a build without cloud backup the page shows nothing, asks once when the card opens, and never opens the record', async () => {
+  const env = harness();
+  windowsHost(env.transport).host.enabled = false;
+  const { cloud } = page({ env });
+  await cloud.resume();
+  assert.equal(env.transport.host.statuses, 0, 'nothing at startup');
+  assert.equal((await cloud.enter()).shown, false);
+  assert.equal(env.transport.host.statuses, 1, 'one request when Backup & settings opens');
+  cloud.beforeErase();
+  assert.deepEqual(await cloud.afterErase(true), { ok: true, problems: [] });
+  assert.deepEqual([env.transport.host.statuses, env.transport.host.disconnects], [1, 0], 'an erase asks nothing more');
+  assert.deepEqual(env.transport.calls, []);
+  assert.equal(env.idb.databases.size, 0, 'no database was made');
+
+  const blind = page({ env, databases: async () => undefined });
+  await blind.cloud.resume();
+  assert.equal(env.transport.host.statuses, 1, 'a browser that cannot list its databases does not guess at startup');
+  assert.equal((await blind.cloud.enter()).shown, false);
+  assert.equal(env.idb.databases.size, 0, 'nor open one to look, with no host to back up to');
+});
+
+test('turning on agrees to the connection shown, backs up at once, and goes on at the next start without asking', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  const shown = await first.cloud.enter();
+  assert.deepEqual([shown.shown, shown.host, shown.on, shown.agreed, shown.account], [true, 'connected', false, false, 'reader@example.test']);
+  assert.deepEqual([shown.discovery.state, shown.discovery.result.devices], ['ready', []], 'what the account holds comes first');
+  assert.deepEqual(env.transport.calls, ['list'], 'discovery creates nothing in the account');
+
+  env.transport.calls.length = 0;
+  const on = await first.cloud.turnOn();
+  assert.deepEqual([on.on, on.agreed], [true, true]);
+  const record = await first.protocol.record();
+  assert.deepEqual([record.consent.connection, record.consent.provider, record.device], [env.transport.connection, 'onedrive', 'Microsoft Edge on Windows']);
+  await first.run(0);
+  assert.deepEqual(env.transport.calls, ['list', 'create', 'read'], 'the first backup went at once');
+  assert.equal(first.cloud.model.backup.phase, 'up-to-date');
+
+  const statuses = env.transport.host.statuses;
+  const next = page({ env, home: first.home });
+  env.transport.calls.length = 0;
+  assert.equal((await next.cloud.resume()).on, true, 'the record says this browser agreed');
+  assert.equal(env.transport.host.statuses, statuses + 1);
+  await next.run(CLOUD_BACKUP_CADENCE.quietMs);
+  assert.deepEqual(env.transport.calls, [], 'compared, and already backed up');
+  assert.equal(next.cloud.model.backup.phase, 'up-to-date');
+
+  env.transport.host.enabled = false;
+  const unanswered = await page({ env, home: first.home }).cloud.resume();
+  assert.deepEqual([unanswered.shown, unanswered.host, unanswered.agreed, unanswered.on, unanswered.backup.phase],
+    [true, 'not-answering', true, false, 'off'], 'a browser that agreed is told the host is not answering, and waits');
+});
+
+test('consent belongs to one connection: after another profile reconnects the host, nothing is uploaded and this browser is asked again', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const made = env.transport.created.length;
+  env.transport.signedIn('connection-two');
+  tab.home.mark(5);
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.minIntervalMs);
+  assert.equal(env.transport.created.length, made, 'nothing was created under a connection this browser did not agree to');
+  const model = tab.cloud.model;
+  assert.deepEqual([model.on, model.agreed, model.askedAgain, model.backup.phase], [false, true, true, 'off']);
+  const looked = await tab.cloud.enter();
+  assert.deepEqual([looked.discovery.state, looked.discovery.connection], ['ready', 'connection-two'], 'the newly connected account is shown first');
+});
+
+test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  env.transport.signedIn(null);
+  env.transport.host.state = 'not-connected';
+  const { backup } = await device().snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup, device: 'Phone' }));
+  const tab = page({ env });
+  const before = await tab.cloud.enter();
+  assert.deepEqual([before.host, before.discovery.state, env.transport.calls], ['not-connected', 'idle', []]);
+  assert.equal((await tab.cloud.connect()).host, 'signing-in');
+  await tab.run(CLOUD_SIGN_IN_POLL_MS * 3);
+  assert.equal(tab.cloud.model.host, 'signing-in', 'still waiting for the browser');
+  env.transport.signedIn('connection-two');
+  await tab.run(CLOUD_SIGN_IN_POLL_MS);
+  await until(() => tab.cloud.model.discovery.state === 'ready', 'discovery follows the sign-in');
+  const after = tab.cloud.model;
+  assert.deepEqual([after.host, after.on, after.discovery.result.devices.map((entry) => entry.current.device)], ['connected', false, ['Phone']]);
+  const [copy] = after.discovery.result.devices;
+  assert.equal(JSON.parse((await tab.cloud.fetchBackup(copy.current)).text).digest, backup.digest, 'read and checked again for the restore');
+  env.transport.faults.read.push('corrupt');
+  await assert.rejects(tab.cloud.fetchBackup(copy.current), { code: 'invalid' });
+
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const made = env.transport.created.length;
+  env.transport.host.state = 'needs-sign-in';
+  env.transport.faults.list.push('needs-sign-in');
+  tab.home.mark(7);
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.minIntervalMs);
+  assert.deepEqual([tab.cloud.model.host, tab.cloud.model.on, tab.cloud.model.backup.phase], ['needs-sign-in', true, 'needs-sign-in']);
+  await tab.cloud.connect();
+  env.transport.signedIn('connection-two');
+  await tab.run(CLOUD_SIGN_IN_POLL_MS);
+  assert.equal(env.transport.created.length, made + 1, 'the change waiting since went at once');
+  assert.equal(tab.cloud.model.backup.phase, 'up-to-date');
+});
+
+test('deleting this device\'s backups stops them first and reads the account again; disconnecting deletes nothing', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  tab.home.mark(3);
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.minIntervalMs);
+  const { stream } = await tab.protocol.record();
+  assert.deepEqual(env.transport.generations(stream), [1, 2]);
+  await tab.cloud.discover();
+  assert.deepEqual(await tab.cloud.deleteOwn(), { deleted: 2, failed: [] });
+  const model = tab.cloud.model;
+  assert.deepEqual([model.on, model.agreed, model.hasStream, model.backup.phase], [false, false, true, 'off']);
+  assert.deepEqual([model.discovery.state, model.discovery.result.devices], ['ready', []], 'what the account holds was read again');
+  tab.home.mark(4);
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.minIntervalMs);
+  assert.deepEqual(env.transport.generations(stream), [], 'and nothing is backed up after');
+
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const gone = await tab.cloud.disconnect();
+  assert.deepEqual([gone.host, gone.on, gone.backup.phase, env.transport.host.disconnects], ['not-connected', false, 'off', 1]);
+  assert.deepEqual(env.transport.generations(stream), [3], 'the files stay');
+});
+
+test('erase holds backups from before its first write, forgets this browser and disconnects the host; one that erased nothing lets them go on', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  let deliver = () => {};
+  const channel = { postMessage() {}, set onmessage(handler) { deliver = handler; } };
+  const tab = page({ env, channel });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const made = env.transport.created.length;
+
+  tab.cloud.beforeErase();
+  assert.equal(tab.cloud.model.backup.phase, 'off');
+  deliver();
+  await tab.cloud.idle();
+  assert.equal(tab.cloud.model.backup.phase, 'off', 'another tab\'s news restarts nothing during an erase');
+  tab.home.storage.clear();
+  assert.deepEqual(await tab.cloud.afterErase(true), { ok: true, problems: [] });
+  assert.equal(await tab.protocol.record(), null, 'this browser forgot cloud backup');
+  assert.equal(env.transport.host.disconnects, 1, 'and the host its sign-in, for every profile');
+  await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made, 'the erased state was never backed up');
+  assert.deepEqual([tab.cloud.model.host, tab.cloud.model.agreed], ['not-connected', false]);
+
+  env.transport.signedIn('connection-three');
+  tab.home.mark(8);
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  tab.cloud.beforeErase();
+  await tab.cloud.afterErase(false);
+  assert.deepEqual([tab.cloud.model.on, tab.cloud.model.backup.phase === 'off'], [true, false], 'nothing erased: backups go on');
+
+  // The record cannot be forgotten nor consent withdrawn, and the host cannot be reached: both are said,
+  // and nothing backs up the erased state over what was there before.
+  tab.cloud.beforeErase();
+  env.idb.faults.abort = 2;
+  env.transport.host.refuse = 'The Recap Page app could not be reached.';
+  const stuck = await tab.cloud.afterErase(true);
+  assert.deepEqual([stuck.ok, stuck.problems.length], [false, 2]);
+  assert.match(stuck.problems[1], /could not be reached/);
+  assert.deepEqual([tab.cloud.model.on, tab.cloud.model.backup.phase], [true, 'off']);
+  const before = env.transport.created.length;
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, before);
+});
+
+test('turning cloud backup on or off in one tab reaches the others', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const ends = [];
+  const channel = () => {
+    const end = { onmessage: null, postMessage: () => { for (const other of ends) if (other !== end) other.onmessage?.(); } };
+    ends.push(end);
+    return end;
+  };
+  const a = page({ env, channel: channel() });
+  const b = page({ env, channel: channel(), home: a.home });
+  await a.cloud.enter();
+  await b.cloud.enter();
+  await a.cloud.turnOn();
+  await b.cloud.idle();
+  assert.deepEqual([b.cloud.model.on, b.cloud.model.backup.phase === 'off'], [true, false], 'the other tab backs up too');
+  await a.cloud.turnOff();
+  await b.cloud.idle();
+  assert.deepEqual([b.cloud.model.on, b.cloud.model.backup.phase], [false, 'off']);
 });
