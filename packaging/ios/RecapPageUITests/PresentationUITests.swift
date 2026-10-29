@@ -241,7 +241,11 @@ final class PresentationUITests: XCTestCase {
                 toggle.waitForExistence(timeout: 30),
                 "the narrow navigation toggle is available: \(app.debugDescription)")
             toggle.tap()
-            XCTAssertTrue(close.waitForExistence(timeout: 30), "the More sheet is presented")
+            let closeVisible = close.waitForExistence(timeout: 30)
+            if !closeVisible {
+                print("T03 More hierarchy after toggle tap:\n\(app.debugDescription)")
+            }
+            XCTAssertTrue(closeVisible, "the More sheet is presented")
             XCTAssertTrue(link.waitForExistence(timeout: 30), "\(linkName) is shown in More")
         }
         XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
@@ -249,6 +253,15 @@ final class PresentationUITests: XCTestCase {
         let heading = app.webViews.firstMatch.staticTexts.matching(
             NSPredicate(format: "label == %@", headingLabel)).firstMatch
         XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
+    }
+
+    private func performAccessibilityAudit(of app: XCUIApplication) throws {
+        try app.performAccessibilityAudit { issue in
+            print("T03 accessibility audit issue: \(issue.compactDescription)")
+            print("T03 accessibility audit details: \(issue.detailedDescription)")
+            print("T03 accessibility audit element: \(issue.element.debugDescription)")
+            return false
+        }
     }
 
     func testDynamicTypeReflowsCoreScreensAtBothAppearances() throws {
@@ -354,7 +367,7 @@ final class PresentationUITests: XCTestCase {
                 ])
                 XCTAssertGreaterThanOrEqual(skipLinkWidth, 44, "the skip link meets the 44-point width")
                 XCTAssertGreaterThanOrEqual(skipLinkHeight, 44, "the skip link meets the 44-point height")
-                try app.performAccessibilityAudit()
+                try performAccessibilityAudit(of: app)
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
                 if let nextLink, let nextHeadingLabel {
@@ -409,7 +422,7 @@ final class PresentationUITests: XCTestCase {
                     matchingRules.contains { ($0["href"] as? String)?.hasSuffix("/ios/launcher.css") == true },
                     "#\(id) matches an iOS launcher rule")
             }
-            try app.performAccessibilityAudit()
+            try performAccessibilityAudit(of: app)
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
             app.buttons["ios-read-sheet-close"].tap()

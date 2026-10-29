@@ -502,6 +502,12 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
 });
 
+test('T03 accessibility audit and More-sheet failures retain actionable diagnostics', () => {
+  assert.match(presentationTests, /private func performAccessibilityAudit\(of app: XCUIApplication\)[\s\S]*?issue\.compactDescription[\s\S]*?issue\.detailedDescription[\s\S]*?issue\.element\.debugDescription[\s\S]*?return false/);
+  assert.match(presentationTests, /performAccessibilityAudit\(of: app\)/);
+  assert.match(presentationTests, /if !closeVisible\s*\{\s*print\("T03 More hierarchy after toggle tap:[\s\S]*?app\.debugDescription/);
+});
+
 test('the iOS token overlay matches the phone layer root specificity', () => {
   const phone = read('packaging/android/web/mobile.css').replace(/\/\*[\s\S]*?\*\//g, '');
   const overlay = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
