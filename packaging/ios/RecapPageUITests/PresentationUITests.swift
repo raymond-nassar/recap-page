@@ -110,7 +110,6 @@ final class PresentationUITests: XCTestCase {
         monitor.id = 'recap-layout-probe';
         monitor.setAttribute('role', 'status');
         monitor.setAttribute('aria-live', 'polite');
-        monitor.setAttribute('aria-label', 'Layout test measurements');
         monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden;white-space:nowrap';
         document.body.append(monitor);
         const snapshot = (view) => ({
@@ -119,14 +118,17 @@ final class PresentationUITests: XCTestCase {
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
         });
-        const restartRegion = document.getElementById('ios-report');
-        const refreshMonitor = () => { monitor.textContent = JSON.stringify(snapshot('current')); };
+        const refreshMonitor = () => {
+          monitor.textContent = JSON.stringify(snapshot('current'));
+          monitor.setAttribute('aria-label', monitor.textContent);
+        };
         window.addEventListener('resize', refreshMonitor);
         window.visualViewport?.addEventListener('resize', refreshMonitor);
         new ResizeObserver(refreshMonitor).observe(document.documentElement);
         refreshMonitor();
         const screens = [];
         \(routeScript)
+        const restartRegion = await waitFor(() => document.getElementById('ios-report'), 'iOS report status region');
         return JSON.stringify({
           scale: Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ios-text-scale')),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
@@ -246,8 +248,12 @@ final class PresentationUITests: XCTestCase {
                 ("search", "add-h", "Backup & settings"),
                 ("data", "data-h", nil),
             ] as [(String, String, String?)] {
-                let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
-                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
+                if name == "home" {
+                    XCTAssertTrue(app.staticTexts["RECAP PAGE!"].waitForExistence(timeout: 30), "Home is visible for audit")
+                } else {
+                    let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
+                    XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
+                }
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
@@ -306,7 +312,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertGreaterThanOrEqual(webView.frame.minX, window.frame.minX)
         XCTAssertLessThanOrEqual(webView.frame.maxX, window.frame.maxX)
         XCTAssertLessThanOrEqual(webView.frame.maxY, window.frame.maxY)
-        let monitor = app.descendants(matching: .any).matching(identifier: "recap-layout-probe").firstMatch
+        let monitor = layoutMonitor(of: app)
         XCTAssertTrue(monitor.waitForExistence(timeout: 30))
         let layout = try XCTUnwrap(monitor.label.data(using: .utf8))
         let current = try XCTUnwrap(try JSONSerialization.jsonObject(with: layout) as? [String: Any])
@@ -328,6 +334,12 @@ final class PresentationUITests: XCTestCase {
 
         XCUIDevice.shared.orientation = .portrait
         app.terminate()
+    }
+
+    private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {
+        app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label CONTAINS %@", "\"viewportWidth\""))
+            .firstMatch
     }
 
     private func waitForReadSheetPresentation(_ app: XCUIApplication) {
@@ -372,7 +384,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertLessThanOrEqual(webView.frame.maxX, window.frame.maxX)
             XCTAssertLessThanOrEqual(webView.frame.maxY, window.frame.maxY)
 
-            let monitor = app.descendants(matching: .any).matching(identifier: "recap-layout-probe").firstMatch
+            let monitor = layoutMonitor(of: app)
             let settled = XCTNSPredicateExpectation(
                 predicate: NSPredicate { object, _ in
                     guard let element = object as? XCUIElement,

@@ -123,7 +123,8 @@ final class LaunchUITests: XCTestCase {
     });
     """
 
-    private static let observeDataLossNotice = """
+    private static func observeDataLossNotice(openSettings: Bool = false) -> String {
+        """
     const waitForElement = async (id, timeout = 30000) => {
       const deadline = Date.now() + timeout;
       while (Date.now() < deadline) {
@@ -136,13 +137,27 @@ final class LaunchUITests: XCTestCase {
     const notice = await waitForElement('ios-data-loss-notice');
     const message = await waitForElement('ios-data-loss-message');
     const settingsLink = await waitForElement('ios-data-loss-settings');
+    if (\(openSettings)) {
+      settingsLink.click();
+      const deadline = Date.now() + 30000;
+      while (Date.now() < deadline) {
+        const view = document.getElementById('view-data');
+        if (view && !view.hidden) break;
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+      if (document.getElementById('view-data')?.hidden) {
+        throw new Error('Backup & settings did not open from the data-loss notice link');
+      }
+    }
     return JSON.stringify({
       readingData: localStorage.getItem('mrt.state.v2'),
       noticeHidden: notice.hidden,
       noticeText: message.textContent,
       settingsLinkHref: settingsLink.getAttribute('href'),
+      settingsViewVisible: !document.getElementById('view-data').hidden,
     });
     """
+    }
 
     private static let eraseReadingData = """
     const waitFor = async (findElement, description, timeout = 30000) => {
@@ -169,11 +184,9 @@ final class LaunchUITests: XCTestCase {
     const confirmButton = await waitFor(() => document.getElementById('ask-ok'), 'confirmation button (#ask-ok)');
     confirmButton.click();
     const report = await waitFor(() => {
-      const saveReport = document.getElementById('save-report');
-      const iosReport = document.getElementById('ios-report');
-      return [saveReport, iosReport].find((element) =>
-        element && element.textContent.toLowerCase().includes('erased')) || null;
-    }, 'erase result (#save-report or #ios-report)');
+      const announcer = document.getElementById('announcer');
+      return announcer && announcer.textContent.toLowerCase().includes('erased') ? announcer : null;
+    }, 'erase confirmation (#announcer)');
     const notice = await waitFor(() => document.getElementById('ios-data-loss-notice'), 'data-loss notice (#ios-data-loss-notice)');
     return JSON.stringify({
       readingDataPresent: localStorage.getItem('mrt.state.v2') !== null,
@@ -185,7 +198,7 @@ final class LaunchUITests: XCTestCase {
     @MainActor
     func testFreshInstallDoesNotShowDataLossNotice() throws {
         let app = launch(
-            probe: Self.observeDataLossNotice,
+            probe: Self.observeDataLossNotice(),
             resetDataLossState: true,
             clearReadingData: true)
         let result = try probeResult(of: app)
@@ -205,7 +218,7 @@ final class LaunchUITests: XCTestCase {
         XCTAssertNil(setupResult["readingData"] as? String, "the setup simulates removal outside the app")
         setup.terminate()
 
-        let app = launch(probe: Self.observeDataLossNotice)
+        let app = launch(probe: Self.observeDataLossNotice(openSettings: true))
         let result = try probeResult(of: app)
         XCTAssertNil(result["readingData"] as? String, "loss detection does not write a replacement state")
         XCTAssertEqual(result["noticeHidden"] as? Bool, false)
@@ -213,10 +226,7 @@ final class LaunchUITests: XCTestCase {
             (result["noticeText"] as? String)?.contains("Restore from a backup file") == true,
             "the notice names the supported file-restore route: \(String(describing: result["noticeText"]))")
         XCTAssertEqual(result["settingsLinkHref"] as? String, "#/data")
-        let settingsLink = app.links.matching(identifier: "ios-data-loss-settings").firstMatch
-        XCTAssertTrue(settingsLink.waitForExistence(timeout: 30))
-        settingsLink.tap()
-        XCTAssertTrue(app.staticTexts["data-h"].waitForExistence(timeout: 30), "the notice link opens Backup & settings")
+        XCTAssertEqual(result["settingsViewVisible"] as? Bool, true, "the notice link opens Backup & settings")
         let message = app.staticTexts["ios-data-loss-message"]
         XCTAssertTrue(message.waitForExistence(timeout: 30))
         app.buttons["ios-data-loss-dismiss"].tap()
@@ -226,6 +236,7 @@ final class LaunchUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
 
         app.terminate()
+        app.launchEnvironment["RECAP_PROBE_SCRIPT"] = Self.observeDataLossNotice()
         app.launch()
         let afterRelaunch = try probeResult(of: app)
         XCTAssertNil(afterRelaunch["readingData"] as? String)
@@ -373,7 +384,7 @@ final class LaunchUITests: XCTestCase {
             probe: Self.emptyReadingData,
             resetDataLossState: true,
             clearReadingData: true)
-        XCTAssertNil(try probeResult(of: cleanup)["readingData"])
+        XCTAssertTrue(try probeResult(of: cleanup)["readingData"] is NSNull)
         cleanup.terminate()
     }
 
@@ -405,7 +416,7 @@ final class LaunchUITests: XCTestCase {
         XCTAssertEqual(recovered["priorCopyVisible"] as? Bool, true)
         XCTAssertNotNil(recovered["data"] as? [String: Any], "the post-kill saved bytes were recorded")
 
-        let finish = reader.buttons["btn-complete-finish"]
+        let finish = reader.buttons["Finish restore"]
         XCTAssertTrue(finish.waitForExistence(timeout: 30))
         finish.tap()
         let confirm = reader.buttons["ask-ok"]

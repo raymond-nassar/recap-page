@@ -14,6 +14,7 @@ import { createIosBridge, validateIosExport } from '../packaging/ios/web/bridge.
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
+import { paletteTokenFindings } from '../scripts/check-palette.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
@@ -145,7 +146,16 @@ test('the iOS page loads the phone layer and the iOS overlay after the shared st
   assert.doesNotMatch(desktop, /ios\/(?:ios\.css|app\.js)|viewport-fit/);
   const launcher = await readFile(join(output, 'open.html'), 'utf8');
   assert.equal(launcher.split('viewport-fit=cover').length, 2);
+  const sharedLauncherStyles = launcher.indexOf('href="./open.css"');
+  const iosLauncherStyles = launcher.indexOf('href="./ios/launcher.css"');
+  assert.ok(sharedLauncherStyles > 0 && sharedLauncherStyles < iosLauncherStyles,
+    'the iOS launcher overlay follows the shared launcher stylesheet');
+  assert.equal(launcher.split('<link rel="stylesheet" href="./ios/launcher.css" />').length, 2);
   assert.match(launcher, /<script type="module" src="\.\/open\.js"><\/script>/);
+  const launcherCss = read('packaging/ios/web/launcher.css');
+  assert.deepEqual(paletteTokenFindings('packaging/ios/web/launcher.css', launcherCss), []);
+  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);/s);
+  assert.equal(rootTokens(read('src/styles.css')).get('--target'), '44px');
   const entry = await readFile(join(output, 'ios', 'app.js'), 'utf8');
   for (const match of entry.matchAll(/^import .* from '(\.\.\/[^']+)';$/gm)) {
     await assert.doesNotReject(readFile(join(output, 'ios', match[1])), `generated iOS import must resolve: ${match[1]}`);
@@ -205,8 +215,10 @@ test('iOS preparation refuses a changed shared entry, overlapping output and a d
   }
   assert.throws(() => iosIndex(page.replace('<h3>Your data</h3>', '<h3>Data</h3>'), build), /Shared privacy introduction changed/);
   const launcher = await readFile(new URL('src/open.html', ROOT), 'utf8');
-  assert.doesNotThrow(() => iosLauncher(launcher));
+  assert.match(iosLauncher(launcher), /<link rel="stylesheet" href="\.\/open\.css" \/>\s*<link rel="stylesheet" href="\.\/ios\/launcher\.css" \/>/);
   assert.throws(() => iosLauncher(launcher.replace('./open.js', './launch.js')), /Shared launcher entry changed/);
+  assert.throws(() => iosLauncher(launcher.replace('</head>', '<link rel="stylesheet" href="./open.css" /></head>')), /Shared launcher entry changed/);
+  assert.throws(() => iosLauncher(launcher.replace('</head>', '<link rel="stylesheet" href="./ios/launcher.css" /></head>')), /Shared launcher entry changed/);
   await assert.rejects(prepareIos(path('src/generated')), /overlap/);
   await assert.rejects(prepareIos(path('packaging/ios/web/generated')), /overlap/);
   const unowned = join(scratch, 'unowned');

@@ -241,7 +241,12 @@ export function checkAll(source) {
 // wears it, so a later move onto a scale is a change to one token's value, made one screen at a time. A
 // scale step may wait for its first consumer. A kept token exists only for the declarations that wear
 // it, so it has to have one.
-export const TOKEN_SHEETS = ['src/styles.css', 'packaging/android/web/mobile.css', 'packaging/ios/web/ios.css'];
+export const TOKEN_SHEETS = [
+  'src/styles.css',
+  'packaging/android/web/mobile.css',
+  'packaging/ios/web/ios.css',
+  'packaging/ios/web/launcher.css',
+];
 const onScale = (family, value) => ({ family, value, scale: true });
 const kept = (family, value, role) => ({ family, value, scale: false, role });
 

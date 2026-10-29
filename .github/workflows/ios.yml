@@ -223,6 +223,10 @@ jobs:
           xcrun simctl list runtimes
           node --version
 
+      - name: Prepare the bundled web app
+        timeout-minutes: 3
+        run: node scripts/prepare-ios.mjs
+
       - name: Start the 13-inch iPad Simulator boot
         timeout-minutes: 3
         run: |
@@ -239,10 +243,6 @@ jobs:
           xcrun simctl boot "$udid" > "$RUNNER_TEMP/ipad-boot.log" 2>&1 &
           echo "IPAD_UDID=$udid" >> "$GITHUB_ENV"
           echo "IPAD_DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
-
-      - name: Prepare the bundled web app
-        timeout-minutes: 3
-        run: node scripts/prepare-ios.mjs
 
       - name: Build for testing
         timeout-minutes: 20

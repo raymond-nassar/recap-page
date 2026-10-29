@@ -1,0 +1,8 @@
+#fallback,
+#return {
+  display: inline-flex;
+  min-width: var(--target);
+  min-height: var(--target);
+  align-items: center;
+  justify-content: center;
+}

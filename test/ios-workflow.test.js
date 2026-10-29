@@ -153,6 +153,8 @@ test('the separate iPad job starts only the iPad boot before building and waits 
   const source = jobSource('ipad');
   const start = stepScript(source, 'Start the 13-inch iPad Simulator boot');
   const wait = stepScript(source, 'Wait for the 13-inch iPad Simulator after the build');
+  assert.ok(source.indexOf('name: Prepare the bundled web app') <
+    source.indexOf('Start the 13-inch iPad Simulator boot'));
   assert.ok(source.indexOf('Start the 13-inch iPad Simulator boot') < source.indexOf('name: Build for testing'));
   assert.ok(source.indexOf('name: Build for testing') < source.indexOf('Wait for the 13-inch iPad Simulator after the build'));
   assert.ok(source.indexOf('Wait for the 13-inch iPad Simulator after the build') <

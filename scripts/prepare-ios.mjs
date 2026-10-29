@@ -151,11 +151,18 @@ export function iosIndex(html, build) {
               </p>`);
 }
 
-// The launcher keeps the shared open.js. Only its viewport changes, for the same reason as Home's.
+// The launcher keeps shared open.js; its iOS-only target overlay sits after open.css.
 export function iosLauncher(html) {
   once(html, VIEWPORT, 'Shared launcher entry changed; iOS injection needs review');
+  const stylesheet = '<link rel="stylesheet" href="./open.css" />';
+  const overlay = '<link rel="stylesheet" href="./ios/launcher.css" />';
+  once(html, stylesheet, 'Shared launcher entry changed; iOS injection needs review');
+  if (html.split(overlay).length !== 1) {
+    throw new Error('Shared launcher entry changed; iOS injection needs review');
+  }
   once(html, '<script type="module" src="./open.js"></script>', 'Shared launcher entry changed; iOS injection needs review');
-  return html.replace(VIEWPORT, COVER_VIEWPORT);
+  return html.replace(VIEWPORT, COVER_VIEWPORT)
+    .replace(stylesheet, `${stylesheet}\n    ${overlay}`);
 }
 
 export async function prepareIos(output = IOS_ASSET_DIR) {
@@ -172,7 +179,7 @@ export async function prepareIos(output = IOS_ASSET_DIR) {
     readFile(join(ROOT, 'package.json'), 'utf8'),
     readIosIdentity(),
   ]);
-  for (const required of ['app.js', 'ios.css']) {
+  for (const required of ['app.js', 'ios.css', 'launcher.css']) {
     if (!webPaths.includes(required)) throw new Error(`Missing iOS entry asset: ${required}`);
   }
   const { version } = JSON.parse(packageText);
