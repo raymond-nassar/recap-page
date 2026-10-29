@@ -456,7 +456,14 @@ public final class NativeIntegrationTest {
         assertReadingProgress();
         Object nativeEndpoint = nativePort();
         assertNotNull("The main document has its native endpoint", nativeEndpoint);
-        evaluate(web, "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 6, 12])); } };");
+        assertEquals("The main page observes the injected pre-cutoff local date", "2026-12-06",
+                evaluateRequiredValue(web, "(() => {"
+                        + "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 6, 12])); } };"
+                        + "dispatchEvent(new Event('focus'));"
+                        + "const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),"
+                        + "String(d.getDate()).padStart(2,'0')].join('-');})()"));
+        waitFor("Pre-cutoff Read label follows the injected clock", WAIT_MS,
+                () -> "Read".equals(text(web, "document.querySelector('#btn-hero-read').textContent")));
         tap(web, "#btn-hero-read");
         waitFor("A real user gesture creates one child WebView", 5000, () -> popupViews().size() == 1);
         WebView popup = popupViews().get(0);
@@ -557,8 +564,14 @@ public final class NativeIntegrationTest {
         assertFixture();
         assertNotNull("Main WebView remains attached", onMain(() -> web.getParent()));
         assertTrue("Loopback fixture server completed cleanly", server.failure == null);
-        evaluate(web, "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 7])); } };"
-                + "dispatchEvent(new Event('focus'));");
+        assertEquals("The main page observes the injected post-cutoff local date", "2026-12-07",
+                evaluateRequiredValue(web, "(() => {"
+                        + "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 7])); } };"
+                        + "dispatchEvent(new Event('focus'));"
+                        + "const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),"
+                        + "String(d.getDate()).padStart(2,'0')].join('-');})()"));
+        waitFor("Post-cutoff Read label follows the injected clock", WAIT_MS,
+                () -> "Find on Marvel Comics".equals(text(web, "document.querySelector('#btn-hero-read').textContent")));
         intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://marvel.webtoon.com/")))
                 .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
         tap(web, "#btn-hero-read");
@@ -933,6 +946,12 @@ public final class NativeIntegrationTest {
                 + "const r=parseRoute(location.hash);if(!r)throw Error('Unrecognized current route');"
                 + "const s=JSON.parse(localStorage.getItem('mrt.state.v2'));"
                 + "return formatRoute({...r,listId:r.listId ?? s.active});");
+    }
+
+    private Object evaluateRequiredValue(WebView target, String expression) throws Exception {
+        Object value = evaluate(target, expression);
+        assertNotNull("Clock injection must return its observed local date", value);
+        return value;
     }
 
     private Object evaluate(WebView target, String expression) throws Exception {
