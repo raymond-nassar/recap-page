@@ -747,6 +747,12 @@ for:
 | `refused` | Refused for a reason no wait fixes | Backups stop until the data changes or the person retries |
 | `invalid` | A request or an answer this version does not expect | Backups stop until the data changes or the person retries |
 
+Status answers in one of three ways: the account's state as the provider holds it; not enabled, for a
+build without cloud backup; or transient, when nothing answered, the server failed or the provider was
+too busy to say. A transient status says nothing lasting, so the backups a browser agreed to keep
+running, or start, and their own backoff carries the outage. Only a definite answer stops them, such as
+another connection, none at all, or a sign-in to make again.
+
 **The Windows host.** On Windows the local server answers the transport itself, under one prefix on
 the app's own origin, so the page needs no cross-origin access. The host's six modules in `host/` load
 at the first request there, and only in a build that carries a file in the client configuration's

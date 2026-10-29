@@ -1201,13 +1201,22 @@ test('under the coordinator, a burst makes one backup at the cadence, opening a 
 // The Windows host as the page meets it: the account above, plus the status, connect and disconnect the
 // host answers. A sign-in stays open until the test finishes it, and every status request is counted.
 function windowsHost(transport, { account = 'reader@example.test' } = {}) {
-  const host = { enabled: true, state: transport.connection ? 'connected' : 'not-connected', statuses: 0, disconnects: 0, refuse: null, reason: null };
+  const host = { enabled: true, state: transport.connection ? 'connected' : 'not-connected', statuses: 0, disconnects: 0, refuse: null, reason: null, silent: false };
   const linked = () => host.state === 'connected' || host.state === 'needs-sign-in';
-  const answer = () => (host.enabled ? Object.freeze({
+  // A host that does not answer at all, as the real transport reads one: status says so as transient, and
+  // every operation fails as unreachable.
+  const answer = () => (host.silent ? Object.freeze({ enabled: false, transient: true }) : host.enabled ? Object.freeze({
     enabled: true, provider: 'onedrive', state: host.state, connection: linked() ? transport.connection : null,
     account: linked() ? account : null, message: null, reason: linked() ? host.reason : null,
     signInExpiresAt: host.state === 'signing-in' ? 1_800_000_300_000 : null,
   }) : Object.freeze({ enabled: false }));
+  for (const name of ['list', 'read', 'create', 'delete']) {
+    const operation = transport[name];
+    transport[name] = async (...args) => {
+      if (host.silent) throw Object.assign(new Error('The Recap Page app could not be reached.'), { code: 'unavailable' });
+      return operation(...args);
+    };
+  }
   return Object.assign(transport, {
     host,
     async status() { host.statuses += 1; return answer(); },
@@ -1339,6 +1348,49 @@ test('consent belongs to one connection: after another profile reconnects the ho
   env.transport.host.reason = 'The Recap Page folder was deleted from OneDrive, so cloud backup asks again before it makes a new one.';
   const told = await tab.cloud.refresh();
   assert.deepEqual([told.askedAgain, told.reason], [true, env.transport.host.reason]);
+});
+
+// A host that does not answer, as while the app restarts, is not a host that said no. Backups this browser
+// agreed to keep their schedule, or start, and their own backoff carries the outage, so they go on by
+// themselves when it answers; only a definite answer stops them (stage 3 review, S3a-3).
+test('a host that does not answer stops no backups: they go on by themselves when it answers again', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const made = env.transport.created.length;
+  env.transport.host.silent = true;
+  const during = await tab.cloud.refresh();
+  assert.deepEqual([during.host, during.agreed], ['not-answering', true], 'as opening About or Backup & settings asks');
+  tab.home.mark(11);
+  tab.cloud.notify();
+  await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made, 'nothing can be made while it does not answer');
+  env.transport.host.silent = false;
+  await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made + 1, 'made once it answers, with nothing asked of the page');
+  assert.equal(tab.cloud.model.backup.phase, 'up-to-date');
+
+  // Started while it does not answer: backups wait for it rather than never starting.
+  env.transport.host.silent = true;
+  const later = page({ env, home: tab.home });
+  const started = await later.cloud.resume();
+  assert.deepEqual([started.host, started.agreed], ['not-answering', true]);
+  tab.home.mark(12);
+  await later.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  env.transport.host.silent = false;
+  await later.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made + 2);
+
+  // A definite answer still stops them: the host was disconnected in another profile.
+  await env.transport.disconnect();
+  assert.equal((await later.cloud.refresh()).backup.phase, 'off');
+  tab.home.mark(13);
+  later.cloud.notify();
+  await later.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made + 2);
 });
 
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {

@@ -18,7 +18,7 @@ export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
 export const CLOUD_SIGN_IN_POLL_MS = 2000;
 // Host states that hold a connection.
 const LINKED = new Set(['connected', 'needs-sign-in']);
-const NOT_ANSWERING = Object.freeze({ enabled: false });
+const NOT_ANSWERING = Object.freeze({ enabled: false, transient: true });
 const OFF = Object.freeze({ phase: 'off', code: null, retryAt: null, lastUploadAt: null });
 const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, message: null, code: null });
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
@@ -141,7 +141,11 @@ export function createCloudBackup({
       if (exists === true || (exists === null && enabled())) {
         try { record = await protocol.record(); } catch (error) { recordProblem = error?.message ?? null; }
       }
-      if (isOn() && !held) {
+      // A host that did not answer, or was too busy to, is not a host that said no: backups this browser
+      // agreed to keep running, or start, and their own backoff carries the outage until it answers. Only
+      // a definite answer stops them (stage 3 review, S3a-3).
+      const waiting = status.transient === true && consent() !== null;
+      if ((isOn() || waiting) && !held) {
         const running = backups();
         if (!running.active) running.start();
         // Signed in again after Microsoft asked for it: backups go on at once.

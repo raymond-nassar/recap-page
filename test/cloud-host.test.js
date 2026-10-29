@@ -1394,7 +1394,7 @@ test('the page\'s transport keeps every refusal\'s code and wait, and a request 
   }
 });
 
-test('a build without cloud backup, a server that is not this app\'s and no answer at all read as not enabled', async () => {
+test('a build without cloud backup and a server that is not this app\'s read as not enabled, and no answer or a busy host as transient', async () => {
   assert.equal(process.env.MRT_CLOUD_CLIENT_CONFIG, undefined, 'this checkout carries no client configuration');
   const server = createStaticServer();
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
@@ -1411,7 +1411,6 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
   const text = (status) => () => new Response('Not here', { status, headers: { 'content-type': 'text/plain' } });
   const body = (status, value) => () => json(status, value);
   const notEnabled = [
-    [() => { throw new TypeError('fetch failed'); }, 'unavailable'],
     [text(405), 'invalid'],
     [body(200, { hello: 'world' }), 'invalid'],
     [body(200, { ok: true, status: { state: 'somewhere else' } }), 'invalid'],
@@ -1420,6 +1419,12 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
     assert.deepEqual(await answering(respond).status(), { enabled: false }, String(respond));
     await assert.rejects(answering(respond).list({ connection: RECORD.connection }), { code }, String(respond));
   }
+  // No answer, or a server failing rather than saying no, says nothing lasting about cloud backup, so the
+  // backups a browser agreed to carry on through it (stage 3 review, S3a-3).
+  const unreachable = answering(() => { throw new TypeError('fetch failed'); });
+  assert.deepEqual(await unreachable.status(), { enabled: false, transient: true });
+  await assert.rejects(unreachable.list({ connection: RECORD.connection }), { code: 'unavailable' });
+  assert.deepEqual(await answering(text(503)).status(), { enabled: false, transient: true });
   await assert.rejects(answering(body(200, { ok: true, items: 'many' })).list({ connection: RECORD.connection }), { code: 'invalid' });
   await assert.rejects(answering(body(200, { ok: true, bytes: '***' })).read('ITEM!7', { connection: RECORD.connection }), { code: 'invalid' });
   await assert.rejects(answering(body(200, { ok: true })).read('ITEM!7', { connection: RECORD.connection }), { code: 'invalid' });
@@ -1427,7 +1432,7 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
   const busy = body(429, { ok: false, error: { code: 'unavailable', message: 'Too many cloud requests at once.' } });
   assert.deepEqual(await answering(busy).status(), {
     enabled: true, provider: null, state: 'unavailable', connection: null, account: null,
-    message: 'The Recap Page app is busy. Try again in a moment.', reason: null, signInExpiresAt: null,
+    message: 'The Recap Page app is busy. Try again in a moment.', reason: null, signInExpiresAt: null, transient: true,
   });
   await assert.rejects(answering(busy).list({ connection: RECORD.connection }), { code: 'unavailable' });
   const full = body(200, { ok: false, error: { code: 'quota', message: 'OneDrive is full.', retryAfterMs: 5 } });
@@ -1436,7 +1441,7 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
   await assert.rejects(answering(body(200, { ok: false, error: { code: 7 } })).delete('ITEM!7', { connection: RECORD.connection }), { code: 'failed' });
 
   // A host that never answers, or stops partway through its answer, is given up on at the engine's
-  // deadline and the grace, and a status that never comes reads as not enabled.
+  // deadline and the grace, and a status that never comes reads as transient.
   const silent = createCloudHostTransport({
     deadlines: { list: 30, read: 30, create: 30, delete: 30 }, graceMs: 0, accountMs: 30,
     fetchImpl: async (path, init) => {
@@ -1446,7 +1451,7 @@ test('a build without cloud backup, a server that is not this app\'s and no answ
       return new Promise((resolve, reject) => { init.signal.addEventListener('abort', () => reject(init.signal.reason)); });
     },
   });
-  assert.deepEqual(await silent.status(), { enabled: false });
+  assert.deepEqual(await silent.status(), { enabled: false, transient: true });
   await assert.rejects(silent.list({ connection: RECORD.connection }), { code: 'timeout' });
   await assert.rejects(silent.read('ITEM!7', { connection: RECORD.connection }), { code: 'timeout' });
 });

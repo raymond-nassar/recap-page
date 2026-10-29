@@ -6,7 +6,9 @@
 //
 // A build without a client configuration answers 404 under the prefix, as for any unknown path, and so
 // does a server that is not this app's. Status calls that, and every other answer that is not the host's,
-// "not enabled", so such a build shows no cloud control at all.
+// "not enabled", so such a build shows no cloud control at all. No answer at all, a server failing, or
+// the host too busy to answer says nothing lasting about cloud backup, so status marks it transient, and
+// the backups a browser agreed to carry on through it (stage 3 review, S3a-3).
 
 import { CloudBackupError, CLOUD_DEADLINE_GRACE_MS, CLOUD_TRANSPORT_DEADLINES_MS } from './cloudProtocol.js';
 
@@ -17,6 +19,7 @@ export const CLOUD_HOST_HEADER = 'x-recap-cloud';
 const ACCOUNT_MS = 15_000;
 const STATES = new Set(['unavailable', 'not-connected', 'signing-in', 'connected', 'needs-sign-in']);
 const NOT_ENABLED = Object.freeze({ enabled: false });
+const NOT_ANSWERED = Object.freeze({ enabled: false, transient: true });
 const CHUNK = 0x8000;
 // The host turns a request away before reading it when it is not the served page's. The page's own
 // requests always have the shape it accepts, so a refusal means the page was opened at another address,
@@ -120,16 +123,18 @@ export function createCloudHostTransport({
   const within = (operation) => deadlines[operation] + graceMs;
 
   return {
-    // Never refuses: "not enabled" when nothing answered as the host, and "unavailable" with the reason
-    // when the host answered but cannot serve this page.
+    // Never refuses: "not enabled" when something other than the host answered, transient when nothing
+    // answered or the host was busy, and "unavailable" with the reason when the host cannot serve this page.
     async status() {
       let answer;
-      try { answer = await request('status', {}, accountMs); } catch { return NOT_ENABLED; }
+      try { answer = await request('status', {}, accountMs); } catch { return NOT_ANSWERED; }
       const { code, body } = answer;
       if (code === 200 && object(body) && body.ok === true) return statusOf(body.status);
+      if (code >= 500) return NOT_ANSWERED;
       if (!object(body) || body.ok !== false || !object(body.error)) return NOT_ENABLED;
       if (code === 200) return unavailable(text(body.error.message, 1024) ?? 'Cloud backup stopped unexpectedly.');
-      return unavailable(code === 429 ? BUSY : TURNED_AWAY[body.error.code] ?? REFUSED);
+      if (code === 429) return { ...unavailable(BUSY), transient: true };
+      return unavailable(TURNED_AWAY[body.error.code] ?? REFUSED);
     },
     async connect() { return statusOf((await post('connect', {}, accountMs)).status); },
     async disconnect() { return statusOf((await post('disconnect', {}, accountMs)).status); },
