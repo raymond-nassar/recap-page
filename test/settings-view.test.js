@@ -362,6 +362,9 @@ test('the cloud backup card follows the complete backup, starts hidden, and sign
   const logo = openingTags(signIn, 'img')[0]?.open ?? '';
   assert.deepEqual(['src', 'alt', 'width', 'height'].map((name) => getAttribute(logo, name)),
     ['./brands/ms-symbollockup_mssymbol_19.svg', '', '21', '21'], 'the logo at its own size, with nothing to say the words do not');
+  // An eager image downloads even inside the hidden card, which a build without cloud backup did on every
+  // start, four times in the browser check's four loads. A lazy one inside a hidden card never loads.
+  assert.equal(getAttribute(logo, 'loading'), 'lazy', 'and downloaded only once the card shows');
   const bytes = readFileSync(new URL('../src/brands/ms-symbollockup_mssymbol_19.svg', import.meta.url));
   const digest = createHash('sha256').update(bytes).digest('hex');
   assert.equal(digest, '929f48f88c8ca7f3f5d294be47ec4caf51acc28ac25340c19a903125d7ecd84a', 'the file Microsoft published on 2026-10-28');
