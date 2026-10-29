@@ -91,11 +91,17 @@ const SECURITY_HEADERS = Object.freeze({
 // The prefix is the host's CLOUD_API_PREFIX, which a test holds equal, because the startup contract lets
 // this file import only the two modules it names.
 const CLOUD_PREFIX = '/__recap_cloud__/v1/';
+// A packaged build is one carrying src/build-info.json, which both packagers write and no checkout has.
+// It is decided once, at startup, and only the file's absence means a checkout: any other failure to look
+// counts as packaged, so the environment is never trusted on a guess (stage 2 review, S1a finding 2).
+async function packagedBuild() {
+  return stat(fileURLToPath(new URL('./src/build-info.json', import.meta.url))).then(() => true, (error) => error?.code !== 'ENOENT');
+}
+const PACKAGED = await packagedBuild();
 let cloudHost = null;
 
 async function cloudClientText() {
-  const packaged = await stat(fileURLToPath(new URL('./src/build-info.json', import.meta.url))).then(() => true, () => false);
-  const path = packaged ? fileURLToPath(new URL('./cloud-client.json', import.meta.url)) : process.env.MRT_CLOUD_CLIENT_CONFIG;
+  const path = PACKAGED ? fileURLToPath(new URL('./cloud-client.json', import.meta.url)) : process.env.MRT_CLOUD_CLIENT_CONFIG;
   if (!path) return null;
   const text = await readFile(path, 'utf8').catch(() => null);
   if (text === null || text.length > 4096) return null;

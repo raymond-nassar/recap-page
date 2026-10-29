@@ -798,16 +798,18 @@ test('the MSIX lane adds ARM64 without changing the ZIP runtime target', () => {
   assert.match(zip, /marvel-reading-tracker-windows\.zip/);
 });
 
-test('the package coordinator clears origin-changing environment values case-insensitively', async () => {
+test('the package coordinator clears origin-changing environment values and the cloud client path case-insensitively', async () => {
   const { packageEnvironment } = await import('../packaging/windows/Launcher.mjs');
+  // A packaged server never reads the cloud client path; it is left out as well, so a variable set for a
+  // checkout cannot reach a release by any later change (stage 2 review, S1a finding 2).
   for (const blocked of [
-    { MRT_PORT: '8788', MRT_NO_OPEN: '1' },
-    { mrt_port: '8788', mrt_no_open: '1' },
-    { Mrt_Port: '8788', Mrt_No_Open: '1' },
+    { MRT_PORT: '8788', MRT_NO_OPEN: '1', MRT_CLOUD_CLIENT_CONFIG: 'C:\\elsewhere\\client.json' },
+    { mrt_port: '8788', mrt_no_open: '1', mrt_cloud_client_config: 'C:\\elsewhere\\client.json' },
+    { Mrt_Port: '8788', Mrt_No_Open: '1', Mrt_Cloud_Client_Config: 'C:\\elsewhere\\client.json' },
   ]) {
     const env = packageEnvironment({ ...blocked, KEEP_ME: 'yes' });
     assert.deepEqual(
-      Object.keys(env).filter((key) => /^(MRT_PORT|MRT_NO_OPEN)$/i.test(key)),
+      Object.keys(env).filter((key) => /^(MRT_PORT|MRT_NO_OPEN|MRT_CLOUD_CLIENT_CONFIG)$/i.test(key)),
       ['MRT_NO_OPEN'],
     );
     assert.equal(env.MRT_NO_OPEN, '1');

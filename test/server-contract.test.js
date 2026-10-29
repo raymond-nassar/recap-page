@@ -300,19 +300,30 @@ test('with a client configuration the host answers the cloud prefix, and one of 
 
 // A packaged build carries src/build-info.json, which no checkout has. It reads only the configuration
 // its packager put beside the server, so nothing in a reader's environment can point a release at another
-// client; a checkout reads only the path it is given.
+// client; a checkout reads only the path it is given. Which it is, is decided once at startup, and only
+// the file's absence means a checkout (stage 2 review, S1a finding 2).
 test('a packaged build reads only the configuration beside its server, and a checkout only the path it is given', async () => {
+  const decide = source.match(/^async function packagedBuild\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(decide);
+  const packagedWhen = (failure) => runInNewContext(`${decide.replaceAll('import.meta.url', "'file:///app/server.mjs'")}\npackagedBuild();`, {
+    URL, fileURLToPath: (url) => String(url),
+    stat: async (path) => {
+      assert.equal(path, 'file:///app/src/build-info.json');
+      if (failure) throw Object.assign(new Error(failure), { code: failure });
+      return {};
+    },
+  });
+  assert.equal(await packagedWhen(null), true, 'a build carrying build-info.json is packaged');
+  assert.equal(await packagedWhen('ENOENT'), false, 'only its absence means a checkout');
+  for (const code of ['EPERM', 'EACCES', 'EBUSY', 'EMFILE']) assert.equal(await packagedWhen(code), true, `${code} is never taken for a checkout`);
   const body = source.match(/^async function cloudClientText\(\) \{[\s\S]*?^\}/m)?.[0];
   assert.ok(body);
   const run = async ({ packaged, env, content = JSON.stringify({ format: 'recap-page-cloud-client' }) }) => {
     const read = [];
     const text = await runInNewContext(`${body.replaceAll('import.meta.url', "'file:///app/server.mjs'")}\ncloudClientText();`, {
-      process: { env }, URL,
+      process: { env }, URL, PACKAGED: packaged,
       fileURLToPath: (url) => String(url),
-      stat: async (path) => {
-        if (packaged && path === 'file:///app/src/build-info.json') return {};
-        throw new Error('missing');
-      },
+      stat: async () => { throw new Error('missing'); },
       readFile: async (path) => {
         read.push(path);
         return content;

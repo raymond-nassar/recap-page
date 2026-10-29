@@ -9,8 +9,8 @@
 export const CLOUD_CLIENT_FORMAT = 'recap-page-cloud-client';
 export const CLOUD_CLIENT_VERSION = 1;
 export const CLOUD_CLIENT_FILENAME = 'cloud-client.json';
-// Read only by a development checkout. A packaged build ignores it, because the Windows launcher hands the
-// person's whole environment to the server, and a variable must never choose which registration signs in.
+// Read only by a development checkout. A packaged build ignores it, and the MSIX launcher leaves it out of
+// what it hands the server, because a variable must never choose which registration signs in.
 export const CLOUD_CLIENT_ENV = 'MRT_CLOUD_CLIENT_CONFIG';
 export const MAX_CLOUD_CLIENT_BYTES = 4096;
 // Microsoft identifiers are GUIDs. Anything of this shape is accepted, so that test fixtures can use
