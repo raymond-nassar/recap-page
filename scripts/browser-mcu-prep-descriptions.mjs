@@ -87,6 +87,7 @@ function checkProtected(t, label, actual, expected, expectedHistory) {
 export const mcuPrepDescriptions = {
   id: 'mcu-prep-descriptions',
   title: 'exact MCU recommendations on cards, Preview and new imports without rewriting saved descriptions',
+  operations: ['withdrawn-fixture-write', 'withdrawn-fixture-reload', 'withdrawn-route-open', 'withdrawn-route-ready'],
   async run(page, t) {
     const errors = [];
     const external = [];
@@ -197,14 +198,18 @@ export const mcuPrepDescriptions = {
       isDeepStrictEqual(reloaded.state.lists, imported.state.lists));
     checkProtected(t, 'After new-import reload', reloaded, personal, personalHistory);
 
-    await page.evaluate((key, state, historyKey, historyText) => {
+    await t.step('withdrawn-fixture-write', () => page.evaluate((key, state, historyKey, historyText) => {
       localStorage.setItem(key, JSON.stringify(state));
       localStorage.setItem(historyKey, historyText);
-    }, KEY, retired, LIST_HISTORY_KEY, retiredHistory);
-    await page.reload({ waitUntil: 'load' });
-    await page.goto(`${page.__origin}/?catalog=actual#/read/saved-multiverse?full=1&filter=all`, { waitUntil: 'load' });
-    await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name
-      && document.querySelectorAll('#rows .rt').length === 2, {}, retired.lists['saved-multiverse'].name);
+    }, KEY, retired, LIST_HISTORY_KEY, retiredHistory));
+    await t.step('withdrawn-fixture-reload', () => page.reload({ waitUntil: 'load' }));
+    await t.step('withdrawn-route-open', () => page.goto(
+      `${page.__origin}/?catalog=actual#/read/saved-multiverse?full=1&filter=all`, { waitUntil: 'load' },
+    ));
+    await t.step('withdrawn-route-ready', () => page.waitForFunction(
+      (name) => document.querySelector('#order-name')?.textContent.trim() === name
+        && document.querySelectorAll('#rows .rt').length === 2, {}, retired.lists['saved-multiverse'].name,
+    ));
     const route = await page.evaluate((key) => ({
       hash: location.hash, active: JSON.parse(localStorage.getItem(key)).active,
       lists: Object.keys(JSON.parse(localStorage.getItem(key)).lists),
