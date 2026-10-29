@@ -15,6 +15,7 @@ enum DebugSupport {
     static let liveCorsCheckKey = "RECAP_IOS_LIVE_CORS_CHECK"
     static let dataLossStateResetKey = "RECAP_IOS_DATA_LOSS_RESET"
     static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
+    static let failFifthJournalPutKey = "RECAP_IOS_FAIL_FIFTH_JOURNAL_PUT"
     static let probeResultIdentifier = "recap-probe-result"
     static let handOffRecorderIdentifier = "ios-handoff-recorder"
 
@@ -65,6 +66,24 @@ enum DebugSupport {
     static var clearsReadingData: Bool {
         environment[clearReadingDataKey] == "1"
     }
+
+    static var failsFifthJournalPut: Bool {
+        environment[failFifthJournalPutKey] == "1"
+    }
+
+    static let failFifthJournalPutScript = """
+    (() => {
+      const originalPut = IDBObjectStore.prototype.put;
+      let journalPuts = 0;
+      IDBObjectStore.prototype.put = function (...args) {
+        if (this.name === 'journal') journalPuts += 1;
+        if (this.name === 'journal' && journalPuts === 5) {
+          throw new DOMException('Injected journal failure', 'UnknownError');
+        }
+        return originalPut.apply(this, args);
+      };
+    })();
+    """
 
     static let readHandoffTestScript = #"""
     (() => {

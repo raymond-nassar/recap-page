@@ -1,3 +1,4 @@
+import CryptoKit
 import XCTest
 
 /// The app as a person launches it: Home and a list's Preview with every remote load blocked, and saved
@@ -18,7 +19,8 @@ final class LaunchUITests: XCTestCase {
         liveCorsCheck: Bool = false,
         restoreTestSeed: Bool = false,
         resetDataLossState: Bool = false,
-        clearReadingData: Bool = false
+        clearReadingData: Bool = false,
+        failFifthJournalPut: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         if isolateRequests { app.launchEnvironment["RECAP_ISOLATE_REQUESTS"] = "1" }
@@ -31,6 +33,7 @@ final class LaunchUITests: XCTestCase {
         if restoreTestSeed { app.launchEnvironment["RECAP_IOS_RESTORE_TEST_SEED"] = "1" }
         if resetDataLossState { app.launchEnvironment["RECAP_IOS_DATA_LOSS_RESET"] = "1" }
         if clearReadingData { app.launchEnvironment["RECAP_IOS_CLEAR_READING_DATA"] = "1" }
+        if failFifthJournalPut { app.launchEnvironment["RECAP_IOS_FAIL_FIFTH_JOURNAL_PUT"] = "1" }
         app.launch()
         return app
     }
@@ -303,6 +306,120 @@ final class LaunchUITests: XCTestCase {
         return JSON.stringify({ found });
         """)
         XCTAssertEqual(try probeResult(of: reader)["found"] as? String, token)
+    }
+
+    @MainActor
+    func testSavedReadingDataIsWholeAfterForcedTerminationAtEachDelay() throws {
+        for afterBackground in [false, true] {
+            for delayMs in [0, 250, 750] {
+                let writer = launch(
+                    probe: Self.writeDurabilityData,
+                    resetDataLossState: true,
+                    clearReadingData: true)
+                let written = try probeResult(of: writer, timeout: 180)
+                XCTAssertEqual(written["writeOk"] as? Bool, true)
+                let before = try XCTUnwrap(written["before"] as? String)
+                let after = try XCTUnwrap(written["after"] as? String)
+                let beforeHash = Self.sha256(before)
+                let afterHash = Self.sha256(after)
+                XCTAssertNotEqual(beforeHash, afterHash, "the save changes canonical reading data")
+                let savedAtMs = try XCTUnwrap(written["savedAtMs"] as? Double)
+
+                var backgroundAtMs: Double?
+                if afterBackground {
+                    XCUIDevice.shared.press(.home)
+                    let backgrounded = XCTNSPredicateExpectation(
+                        predicate: NSPredicate { _, _ in writer.state == .runningBackground },
+                        object: writer)
+                    XCTAssertEqual(
+                        XCTWaiter.wait(for: [backgrounded], timeout: 10),
+                        .completed,
+                        "the app moved to the background before the forced termination")
+                    backgroundAtMs = Date().timeIntervalSince1970 * 1000
+                }
+                if delayMs > 0 {
+                    Thread.sleep(forTimeInterval: Double(delayMs) / 1000)
+                }
+
+                let killRequestedAtMs = Date().timeIntervalSince1970 * 1000
+                writer.terminate()
+                let killCompletedAtMs = Date().timeIntervalSince1970 * 1000
+                let reader = launch(probe: Self.readDurabilityData)
+                let found = try probeResult(of: reader, timeout: 180)
+                let observed = try XCTUnwrap(found["readingData"] as? String)
+                let observedHash = Self.sha256(observed)
+                let backgroundDelay: Any = backgroundAtMs.map {
+                    Int((killRequestedAtMs - $0).rounded())
+                } ?? NSNull()
+                try record(
+                    "forced-kill-\(afterBackground ? "background" : "foreground")-\(delayMs)",
+                    [
+                        "requestedDelayMs": delayMs,
+                        "elapsedSinceSaveMs": Int((killRequestedAtMs - savedAtMs).rounded()),
+                        "elapsedFromBackgroundMs": backgroundDelay,
+                        "killDurationMs": Int((killCompletedAtMs - killRequestedAtMs).rounded()),
+                        "beforeHash": beforeHash,
+                        "afterHash": afterHash,
+                        "observedHash": observedHash,
+                    ])
+                XCTAssertTrue(
+                    observedHash == beforeHash || observedHash == afterHash,
+                    "the reading data is one whole canonical state, not a partial write")
+                reader.terminate()
+            }
+        }
+
+        let cleanup = launch(
+            probe: Self.emptyReadingData,
+            resetDataLossState: true,
+            clearReadingData: true)
+        XCTAssertNil(try probeResult(of: cleanup)["readingData"])
+        cleanup.terminate()
+    }
+
+    @MainActor
+    func testFifthJournalPutFailureOffersRecoveryAfterForcedTermination() throws {
+        let writer = launch(
+            probe: Self.startInterruptedCompleteRestore,
+            restoreTestSeed: true,
+            failFifthJournalPut: true)
+        let beforeKill = try probeResult(of: writer, timeout: 180)
+        try record("journal-fault-before-kill", beforeKill)
+        writer.terminate()
+
+        let reader = launch(probe: Self.inspectInterruptedCompleteRestore)
+        let recovered = try probeResult(of: reader, timeout: 180)
+        try record("journal-fault-after-kill", recovered)
+        XCTAssertEqual(recovered["stateTableRow"] as? String, "none or active / matching / anything else")
+        XCTAssertTrue((beforeKill["report"] as? String ?? "").contains("stopped part way"))
+        XCTAssertTrue((beforeKill["marker"] as? String ?? "").hasPrefix("active:"))
+        XCTAssertEqual(beforeKill["journalKind"] as? String, "valid")
+        XCTAssertEqual(beforeKill["decisionKind"] as? String, "recovery")
+        XCTAssertEqual(beforeKill["recoveryKind"] as? String, "interrupted")
+        XCTAssertTrue(["absent", "active"].contains(recovered["markerState"] as? String ?? ""))
+        XCTAssertEqual(recovered["journalKind"] as? String, "valid")
+        XCTAssertEqual(recovered["journalMatchesMarker"] as? Bool, true)
+        XCTAssertEqual(recovered["decisionKind"] as? String, "recovery")
+        XCTAssertEqual(recovered["recoveryKind"] as? String, "interrupted")
+        XCTAssertEqual(recovered["finishVisible"] as? Bool, true)
+        XCTAssertEqual(recovered["priorCopyVisible"] as? Bool, true)
+        XCTAssertNotNil(recovered["data"] as? [String: Any], "the post-kill saved bytes were recorded")
+
+        let finish = reader.buttons["btn-complete-finish"]
+        XCTAssertTrue(finish.waitForExistence(timeout: 30))
+        finish.tap()
+        let confirm = reader.buttons["ask-ok"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        confirm.tap()
+        let recoveryClosed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"),
+            object: finish)
+        XCTAssertEqual(XCTWaiter.wait(for: [recoveryClosed], timeout: 45), .completed)
+        reader.terminate()
+    }
+
+    private static func sha256(_ value: String) -> String {
+        SHA256.hash(data: Data(value.utf8)).map { String(format: "%02x", $0) }.joined()
     }
 
     @MainActor
@@ -651,6 +768,161 @@ final class LaunchUITests: XCTestCase {
       after: localStorage.getItem('mrt.state.v2'),
       report: document.getElementById('restore-report').textContent,
       dialogOpen: document.getElementById('ask').open,
+    });
+    """#
+
+    private static let writeDurabilityData = #"""
+    const [storage, model] = await Promise.all([
+      import(new URL('./js/storage.js', location.href).href),
+      import(new URL('./js/lib/model.js', location.href).href),
+    ]);
+    const store = new storage.Store({ storage: localStorage });
+    store.load();
+    const beforeState = model.createList(model.createEmptyState(), {
+      id: 'ios-durability-before',
+      name: 'Before forced termination',
+    });
+    const afterState = model.createList(model.createEmptyState(), {
+      id: 'ios-durability-after',
+      name: 'After forced termination',
+    });
+    store.update(() => beforeState);
+    if (!store.lastUpdateOk) throw new Error(`The prior reading state was not saved: ${store.lastError}`);
+    await new Promise((resolve) => setTimeout(resolve, 750));
+    const before = localStorage.getItem(storage.KEY);
+    store.update(() => afterState);
+    if (!store.lastUpdateOk) throw new Error(`The new reading state was not saved: ${store.lastError}`);
+    const after = localStorage.getItem(storage.KEY);
+    if (before === null || after === null) throw new Error('The saved reading state was missing.');
+    return JSON.stringify({ before, after, savedAtMs: Date.now(), writeOk: true });
+    """#
+
+    private static let readDurabilityData = #"""
+    return JSON.stringify({ readingData: localStorage.getItem('mrt.state.v2') });
+    """#
+
+    private static let emptyReadingData = #"""
+    return JSON.stringify({ readingData: localStorage.getItem('mrt.state.v2') });
+    """#
+
+    private static let startInterruptedCompleteRestore = #"""
+    const until = async (check, ms) => {
+      const end = Date.now() + ms;
+      for (;;) {
+        const value = check();
+        if (value) return value;
+        if (Date.now() > end) throw new Error('Timed out waiting for the interrupted complete restore');
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    document.querySelector('[data-view="data"]').click();
+    await until(() => !document.getElementById('view-data').hidden, 15000);
+    const [storage, model, complete, restore] = await Promise.all([
+      import(new URL('./js/storage.js', location.href).href),
+      import(new URL('./js/lib/model.js', location.href).href),
+      import(new URL('./js/lib/completeBackup.js', location.href).href),
+      import(new URL('./js/lib/completeRestore.js', location.href).href),
+    ]);
+    const store = new storage.Store({ storage: localStorage });
+    store.load();
+    const prior = model.createList(model.createEmptyState(), {
+      id: 'ios-restore-prior',
+      name: 'Prior data',
+    });
+    const restored = model.createList(model.createEmptyState(), {
+      id: 'ios-restore-target',
+      name: 'Restored data',
+    });
+    store.update(() => prior);
+    if (!store.lastUpdateOk) throw new Error(`The prior data could not be saved: ${store.lastError}`);
+    store.update(() => restored);
+    if (!store.lastUpdateOk) throw new Error(`The restore target could not be saved: ${store.lastError}`);
+    const backup = await complete.captureCompleteBackup({ storage: localStorage });
+    store.update(() => prior);
+    if (!store.lastUpdateOk) throw new Error(`The prior data could not be restored for the test: ${store.lastError}`);
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([backup.text], 'interrupted-complete-backup.json', { type: 'application/json' }));
+    const input = document.getElementById('restore-complete');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await until(() => document.getElementById('ask').open, 15000);
+    document.getElementById('ask-ok').click();
+    const report = await until(() => {
+      const text = document.getElementById('complete-backup-report').textContent;
+      return text.length > 0 ? text : null;
+    }, 30000);
+    const inspector = new restore.CompleteRestore();
+    const journal = await inspector.readJournal();
+    const marker = restore.readMarker(localStorage);
+    const decision = restore.decideRestoreState(marker, journal, localStorage, Date.now());
+    const data = Object.fromEntries(complete.RESTORE_KEYS.map((key) => [key, localStorage.getItem(key)]));
+    return JSON.stringify({
+      report,
+      marker: marker.raw,
+      journalKind: journal.kind,
+      journalPhase: journal.record?.phase ?? null,
+      journalWrites: journal.record?.writes ?? null,
+      decisionKind: decision.kind,
+      recoveryKind: decision.recovery?.kind ?? null,
+      data,
+    });
+    """#
+
+    private static let inspectInterruptedCompleteRestore = #"""
+    const until = async (check, ms) => {
+      const end = Date.now() + ms;
+      for (;;) {
+        const value = check();
+        if (value) return value;
+        if (Date.now() > end) throw new Error('Timed out waiting for recovery after the process kill');
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    document.querySelector('[data-view="data"]').click();
+    await until(() => !document.getElementById('view-data').hidden, 15000);
+    await until(() => {
+      const recovery = document.getElementById('complete-restore-recovery');
+      return recovery && !recovery.hidden;
+    }, 30000);
+    const [complete, restore] = await Promise.all([
+      import(new URL('./js/lib/completeBackup.js', location.href).href),
+      import(new URL('./js/lib/completeRestore.js', location.href).href),
+    ]);
+    const inspector = new restore.CompleteRestore();
+    const journal = await inspector.readJournal();
+    const marker = restore.readMarker(localStorage);
+    const decision = restore.decideRestoreState(marker, journal, localStorage, Date.now());
+    if (decision.kind === 'recovery') {
+      await until(() => {
+        const recovery = document.getElementById('complete-restore-recovery');
+        return recovery && !recovery.hidden;
+      }, 30000);
+    }
+    const matches = journal.kind === 'valid'
+      && (marker.state === 'absent' || ['active', 'done'].includes(marker.state) && marker.id === journal.record.id);
+    let row = 'unmatched';
+    if (matches && decision.kind === 'recovery' && decision.recovery?.kind === 'interrupted') {
+      row = 'none or active / matching / anything else';
+    } else if (matches && marker.state === 'done' && decision.kind === 'finished') {
+      row = 'done: / matching / any';
+    } else if (marker.state === 'absent' && journal.kind === 'absent' && decision.kind === 'none') {
+      row = 'none / none / any';
+    }
+    const data = Object.fromEntries(complete.RESTORE_KEYS.map((key) => [key, localStorage.getItem(key)]));
+    return JSON.stringify({
+      marker: marker.raw,
+      markerState: marker.state,
+      journalKind: journal.kind,
+      journalPhase: journal.record?.phase ?? null,
+      journalWrites: journal.record?.writes ?? null,
+      journalMatchesMarker: matches,
+      decisionKind: decision.kind,
+      recoveryKind: decision.recovery?.kind ?? null,
+      stateTableRow: row,
+      finishVisible: !document.getElementById('btn-complete-finish').hidden,
+      priorCopyVisible: !document.getElementById('btn-complete-prior-copy').hidden,
+      recoveryMessage: document.getElementById('complete-restore-recovery-status').textContent,
+      data,
     });
     """#
 }

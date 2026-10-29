@@ -78,6 +78,12 @@ final class WebViewController: UIViewController, WKUIDelegate {
                 injectionTime: .atDocumentStart,
                 forMainFrameOnly: true))
         }
+        if DebugSupport.failsFifthJournalPut {
+            controller.addUserScript(WKUserScript(
+                source: DebugSupport.failFifthJournalPutScript,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true))
+        }
         #endif
         controller.addUserScript(WKUserScript(
             source: dataLossState.pageStateScript,
