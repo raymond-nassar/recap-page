@@ -82,6 +82,12 @@ final class WebViewController: UIViewController, WKUIDelegate {
         startLoading()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // A second Read tap can queue a sheet while UIKit is completing the previous dismissal.
+        presentNextReadSheet()
+    }
+
     private func startLoading() {
         #if DEBUG
         if DebugSupport.isolatesRequests, let webView {

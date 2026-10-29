@@ -57,7 +57,10 @@ final class LaunchUITests: XCTestCase {
             return recordedLaunches >= launches && recordedHandOffs.count >= handoffs
         }
         let settled = XCTNSPredicateExpectation(predicate: predicate, object: element)
-        XCTAssertEqual(XCTWaiter().wait(for: [settled], timeout: timeout), .completed, "the requested hand-offs completed")
+        XCTAssertEqual(
+            XCTWaiter().wait(for: [settled], timeout: timeout),
+            .completed,
+            "the requested hand-offs completed; recorder: \(element.label)")
         let data = try XCTUnwrap(element.label.data(using: .utf8))
         return try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any], element.label)
     }
@@ -138,6 +141,9 @@ final class LaunchUITests: XCTestCase {
                 probe: Self.recoveryExport,
                 pickerOutcome: outcome,
                 unreadableRecovery: true)
+            let download = app.buttons["Download a copy of the unreadable data"]
+            XCTAssertTrue(download.waitForExistence(timeout: 90), "the unreadable-data export button appeared")
+            download.tap()
             let result = try probeResult(of: app)
             try record("recovery-export-\(outcome)", result)
             XCTAssertEqual(result["original"] as? String, "{unreadable")
@@ -169,10 +175,11 @@ final class LaunchUITests: XCTestCase {
                 .completed,
                 "Read launch \(expected) control is hittable")
             read.tap()
+            _ = try handOffRecord(of: app, launches: expected, handoffs: expected - 1)
             let close = app.buttons["ios-read-sheet-close"]
             XCTAssertTrue(
                 close.waitForExistence(timeout: 30),
-                "Read launch \(expected) appeared in a sheet with a Close control")
+                "Read launch \(expected) appeared in a sheet with a Close control; recorder: \(app.staticTexts["ios-handoff-recorder"].label)")
             _ = try handOffRecord(of: app, launches: expected, handoffs: expected)
             let dismissed = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"),
@@ -362,7 +369,8 @@ final class LaunchUITests: XCTestCase {
     const downloadButton = document.getElementById('btn-download-salvage');
     let downloadClickObserved = false;
     downloadButton.addEventListener('click', () => { downloadClickObserved = true; }, { once: true });
-    downloadButton.click();
+    const clickObserved = await until(() => downloadClickObserved, 90000);
+    if (!clickObserved) throw new Error('the unreadable-data export button was not tapped');
     const exportReport = await until(() => {
       const text = document.getElementById('ios-report')?.textContent ?? '';
       return /cancelled|not confirmed saved/i.test(text) ? text : null;
