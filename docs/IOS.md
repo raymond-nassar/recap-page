@@ -124,8 +124,10 @@ refused only the restore with text above Latin-1. The measurements are recorded 
 
 The manual **iOS TestFlight** workflow is tooling, not a delivered build. It has not yet proved
 cloud signing, Apple processing, installation or an update on a device. Nothing here changes saved
-reading data. It cannot be dispatched until its workflow is on main. Merge the native-feature
-work first, then this tooling, then reserve builds against the intended source already on main.
+reading data. It cannot be dispatched until its workflow is on main. The owner chose to prove the
+signing route with an early first build from main as soon as Apple and GitHub setup is complete,
+before the native-feature work merges. Reserve that build against the current main source; after
+the native features merge, reserve the second build for the update-in-place check.
 
 ### Owner setup, in order, from Windows
 
