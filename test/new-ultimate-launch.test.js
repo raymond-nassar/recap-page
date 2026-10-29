@@ -214,7 +214,7 @@ test('launcher held pending resolves with truthful title and cleared exact abort
       launcherMeasure(rows, 'pending no navigation', [], navigations);
       release({ ok: true, json: async () => ({ digitalId: 700002 }) });
       await new Promise(setImmediate);
-      launcherMeasure(rows, 'resolved title', 'Opening Marvel Unlimited - Recap Page', doc.title);
+      launcherMeasure(rows, 'resolved title', 'Opening Marvel Unlimited web reader - Recap Page', doc.title);
       launcherMeasure(rows, 'exact reader', ['https://read.marvel.com/#/book/700002'], navigations);
       launcherMeasure(rows, 'cleared abort', true, timers[0].cleared === true);
       launcherMeasure(rows, 'no duplicate timer', 1, timers.length);

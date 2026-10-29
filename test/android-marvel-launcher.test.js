@@ -105,7 +105,8 @@ test('Android metadata HTTP, transport and JSON failures remain explicit with a 
 });
 
 test('Android known-ID launch opens the exact browser reader without Bifrost or app dispatch', async () => {
-  const f = fixture('?d=38811&i=52986&t=%3Cimg%3E', () => assert.fail('Known ID cannot fetch'),
+  const publicDrn = '03baf094-d1bf-4eb6-8533-0840ebc0d0b9';
+  const f = fixture(`?d=38811&i=52986&t=%3Cimg%3E&drn=${publicDrn}`, () => assert.fail('Known ID cannot fetch'),
     () => assert.fail('Known ID needs no settings lookup'));
   assert.equal(f.elements.fallback.href, exactReader);
   assert.match(f.elements.heading.textContent, /<img>/);

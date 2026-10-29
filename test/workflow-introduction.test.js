@@ -37,18 +37,17 @@ test('all introduction surfaces distinguish shared progress and manual reading f
     assert.match(copy, /each list keeps its own order/i);
     assert.match(copy, /(?:not|isn't) detected automatically/);
     assert.match(copy, /same browser profile/);
-    assert.match(copy, /separate tab/);
-    assert.match(copy, /official issue page/);
-    assert.match(copy, /not guaranteed access|A link doesn't guarantee access/);
-    assert.match(copy, /subscription/);
-    assert.match(copy, /desktop/);
+    assert.match(copy, /December 7, 2026/);
+    assert.match(copy, /general Marvel Comics website, not a single-comic link/);
+    if (source === listing) assert.match(copy, /Marvel determines access to its reading services/);
+    if (source !== readme) assert.match(copy, /desktop/);
     assert.match(copy, /No automatic device sync or offline comic reading/);
   }
   assert.match(text(listing), /not a native phone app/);
   for (const source of [page, readme]) {
     const copy = text(source);
-    assert.match(copy, /Android (?:app )?in development/);
-    assert.match(copy, /not a Google Play release|Not available on Google Play/);
+    assert.match(copy, /released app is available on Google Play/);
+    assert.doesNotMatch(copy, /Not available on Google Play/);
     assert.doesNotMatch(copy, /not a native phone app/);
   }
 });

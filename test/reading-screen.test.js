@@ -256,7 +256,7 @@ test('reading rows use a labeled disclosure at every width instead of hover-only
   for (const label of ['Move up', 'Move down', 'Remove from list']) {
     assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
   }
-  for (const label of ['Mark as available', 'Mark as unavailable', 'Clear availability override']) {
+  for (const label of ['Record as available in Unlimited', 'Record as unavailable in Unlimited', 'Clear your Unlimited record']) {
     assert.ok(reading.includes(`'${label}'`), `the explicit availability actions are missing ${label}`);
   }
 

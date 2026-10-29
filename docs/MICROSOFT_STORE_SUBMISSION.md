@@ -189,7 +189,7 @@ or Disney. Marvel names and marks belong to their respective owners.
 4. Private read markers, notes, availability overrides, and custom entries
 5. JSON backup and restore
 6. Optional cover art and live metadata
-7. Links to Marvel's reading services, with a clearly labeled general website after December 7, 2026.
+7. Links to Marvel's reading services, with a clearly labeled general website after December 7, 2026
 8. No account, ads, analytics, or telemetry
 
 ### Keywords

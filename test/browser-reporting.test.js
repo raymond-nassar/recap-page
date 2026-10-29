@@ -558,7 +558,10 @@ test('context isolation fixes two fresh arms and four contexts without changing 
   });
   assert.equal((result.stdout.match(/ok {3}reader check/g) ?? []).length, 9);
   const readerBody = source.slice(source.indexOf("    id: 'reader-round-trip',"), source.indexOf("    id: 'undo-delete-dismiss',"));
-  assert.equal((readerBody.match(/t\.check\(/g) ?? []).length, 9);
+  assert.match(readerBody, /legacyReaderBackup\(page, t,/);
+  const readerOwner = readFileSync(new URL('../scripts/browser-marvel-interim.mjs', import.meta.url), 'utf8');
+  const backupOwner = readerOwner.slice(readerOwner.indexOf('export async function legacyReaderBackup('));
+  assert.equal((backupOwner.match(/t\.check\(/g) ?? []).length, 3);
   assert.match(source.slice(start, end), /const exportId = recoveryComparison \? 'restore-copy-workflow' : 'reader-round-trip';/);
   assert.match(source.slice(start, end), /SCENARIOS\.find\(\(scenario\) => scenario\.id === exportId\)/);
   assert.match(result.stdout, /arm=reader-path passed=10 failed=0/);

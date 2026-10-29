@@ -14621,9 +14621,9 @@ const SCENARIOS = [
             height: link.getBoundingClientRect().height,
           })),
         }));
-        t.check('Android navigation explains development status and offers usable full-size previews',
-          /Not available on Google Play/.test(android.copy)
-          && /The beta doesn't include all the features shown here/.test(android.copy)
+        t.check('Android navigation explains release status and browser reading with usable full-size previews',
+          /The released app is available on Google Play/.test(android.copy)
+          && /Android's Read uses an installed browser, not the Marvel Unlimited app/.test(android.copy)
           && /previews made in a desktop browser, not on a phone/.test(android.copy)
           && android.previews.length === 2
           && android.previews.every((link) => link.href.startsWith('./assets/') && link.height >= 44),
@@ -14735,9 +14735,9 @@ const SCENARIOS = [
       const actions = [
         ['up', 'Move up'],
         ['down', 'Move down'],
-        ['override-available', 'Mark as available'],
-        ['override-unavailable', 'Mark as unavailable'],
-        ['override-clear', 'Clear availability override'],
+        ['override-available', 'Record as available in Unlimited'],
+        ['override-unavailable', 'Record as unavailable in Unlimited'],
+        ['override-clear', 'Clear your Unlimited record'],
         ['remove', 'Remove from list'],
       ];
       const metadata = [
