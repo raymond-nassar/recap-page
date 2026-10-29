@@ -536,6 +536,40 @@ test('an upload that gets no answer is settled before the reply: cancelled first
   assert.deepEqual(unknown.calls.map((call) => call.method), ['DELETE', 'GET'], 'the next list cancels the unsettled session first');
 });
 
+// A timeout or a server failure answering the PUT may come after every byte was committed, a gateway's
+// 504 in particular, so it is settled as a lost reply is (stage 2 review, L1): a create refused with any
+// code but timeout must never appear later. Refusals that say what was wrong stay definite.
+test('an upload answered with a timeout or a server failure is settled like a lost reply; other refusals are definite', async () => {
+  const bytes = Buffer.from('hello');
+  for (const status of [408, 500, 502, 504]) {
+    const landed = drive([
+      { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
+      { method: 'PUT', url: UPLOAD, reply: json(status, {}) },
+      { method: 'DELETE', url: UPLOAD, reply: json(404, { error: { code: 'itemNotFound' } }) },
+      { method: 'GET', url: LOOKUP, reply: json(200, CREATED) },
+    ]);
+    assert.equal((await landed.onedrive.create(NAME, bytes)).id, 'ITEM!7', `${status}: it had landed, so it is reported as made`);
+    assert.deepEqual(landed.calls.map((call) => call.method), ['POST', 'PUT', 'DELETE', 'GET'], `${status}: cancelled, then looked up`);
+  }
+  const busy = drive([
+    { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
+    { method: 'PUT', url: UPLOAD, reply: json(503, {}, { 'retry-after': '30' }) },
+    { method: 'DELETE', url: UPLOAD, reply: new Response(null, { status: 204 }) },
+    { method: 'GET', url: LOOKUP, reply: json(404, { error: { code: 'itemNotFound' } }) },
+  ]);
+  await assert.rejects(busy.onedrive.create(NAME, bytes), (error) => error.code === 'unavailable' && error.retryAfterMs === 30_000,
+    'not there, and the wait OneDrive asked for is kept');
+  for (const [status, code] of [[409, 'exists'], [403, 'refused'], [507, 'quota']]) {
+    const refused = drive([
+      { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
+      { method: 'PUT', url: UPLOAD, reply: json(status, {}) },
+      { method: 'DELETE', url: UPLOAD, reply: new Response(null, { status: 204 }) },
+    ]);
+    await assert.rejects(refused.onedrive.create(NAME, bytes), { code }, String(status));
+    assert.ok(!refused.calls.some((call) => call.method === 'GET'), `${status}: definite, so nothing is looked up`);
+  }
+});
+
 test('a list waits for an upload under way, so nothing a reply said had failed can appear after it', async () => {
   const put = deferred();
   const listed = [];

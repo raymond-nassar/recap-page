@@ -187,14 +187,15 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
   // An upload that got no answer may still have been committed. Its session is cancelled first, so nothing
   // can complete after this reply, and then its name is looked up: the file is there now, or never will be.
   // A session that cannot be cancelled leaves the outcome unknown, which the contract calls a timeout: the
-  // next list cancels it first and shows whether it landed.
-  async function settle(name, upload) {
+  // next list cancels it first and shows whether it landed. A wait the service asked for is kept when the
+  // file is not there.
+  async function settle(name, upload, wait = 0) {
     if (!(await cancel(upload))) {
       tracker.unsettled.set(name, upload);
       throw new ProviderError('timeout', 'OneDrive did not say whether the backup was saved.');
     }
     const found = await lookup(name);
-    if (!found) throw new ProviderError('unavailable', 'The backup did not reach OneDrive.');
+    if (!found) throw new ProviderError('unavailable', 'The backup did not reach OneDrive.', wait > 0 ? { retryAfterMs: wait } : undefined);
     return found;
   }
 
@@ -231,6 +232,15 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
     if (response.status === 202) {
       await discard(response);
       return settle(name, upload);
+    }
+    // A timeout or a server failure may come after every byte was committed, a gateway's 504 in particular,
+    // so it is settled as a lost reply is: a create refused with any code but timeout must never appear
+    // later (stage 2 review, L1). The Android and iOS providers follow this one, so it holds the contract
+    // exactly. Other refusals, such as 409, 403 or a full account's 507, are definite.
+    if (response.status === 408 || (response.status >= 500 && response.status !== 507)) {
+      const wait = retryAfterMs(response, clock());
+      await discard(response);
+      return settle(name, upload, wait);
     }
     const refused = await failure(response);
     await cancel(upload);
