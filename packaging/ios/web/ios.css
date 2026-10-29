@@ -16,8 +16,18 @@
 }
 
 .skip-link {
+  position: fixed;
+  left: 0;
+  top: 0;
   display: inline-flex;
   min-width: var(--target);
   min-height: var(--target);
   align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link:focus {
+  opacity: 1;
+  pointer-events: auto;
 }

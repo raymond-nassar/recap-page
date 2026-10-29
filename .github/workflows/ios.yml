@@ -485,7 +485,7 @@ jobs:
           done
 
       - name: Run presentation UI tests on iPhone SE (3rd generation)
-        if: steps.iphone-se.outputs.available == 'true'
+        if: ${{ !cancelled() && steps.iphone-se.outputs.available == 'true' }}
         timeout-minutes: 20
         run: |
           set -o pipefail

@@ -315,7 +315,7 @@ test('the minimum runtime tests 375-point iPhone SE presentation only when avail
   assert.match(source,
     /- name: Boot iPhone SE \(3rd generation\) Simulator\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
   assert.match(source,
-    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}/);
   assert.ok(source.indexOf('name: Build for testing') < source.indexOf('name: Wait for the 375-point iPhone SE Simulator after the build'));
   assert.ok(source.indexOf('name: Find the iPhone SE (3rd generation) Simulator') <
     source.indexOf('name: Boot iPhone SE (3rd generation) Simulator'));
@@ -404,6 +404,28 @@ ${test}`, { GITHUB_ENV: env.GITHUB_ENV, IPHONE_375_UDID: 'iOS-18-SE3' });
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test('the iPhone SE presentation step runs after UI failure unless cancelled and retains job failure', () => {
+  const source = jobSource('minimum');
+  const mainUI = source.split('      - name: Run the UI tests\n')[1]?.split('      - name: Run presentation UI tests on iPhone SE')[0];
+  const seUI = source.split('      - name: Run presentation UI tests on iPhone SE (3rd generation)\n')[1]
+    ?.split('      - name: Summarize the probe results')[0];
+  assert.match(source,
+    /- name: Run presentation UI tests on iPhone SE \(3rd generation\)\n {8}if: \$\{\{ !cancelled\(\) && steps\.iphone-se\.outputs\.available == 'true' \}\}\n {8}timeout-minutes: 20/);
+  assert.ok(mainUI, 'the main iPhone UI step remains required');
+  assert.ok(seUI, 'the independent SE step remains present');
+  assert.doesNotMatch(mainUI, /continue-on-error/);
+  assert.doesNotMatch(seUI, /continue-on-error/);
+  assert.doesNotMatch(source, /continue-on-error/);
+});
+
+test('presentation probes select the live layout monitor by its identifier', () => {
+  const source = readFileSync(new URL('../packaging/ios/RecapPageUITests/PresentationUITests.swift', import.meta.url), 'utf8');
+  const monitor = source.split('private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {')[1]
+    ?.split('\n    }')[0];
+  assert.match(monitor ?? '', /matching\(identifier: "recap-layout-probe"\)/);
+  assert.doesNotMatch(monitor ?? '', /label CONTAINS/);
 });
 
 test('both iPhone jobs retry only recognized UI infrastructure failures once and require a complete passing retry', async (t) => {

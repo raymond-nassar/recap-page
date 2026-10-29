@@ -172,7 +172,7 @@ final class PresentationUITests: XCTestCase {
         add(attachment)
     }
 
-    private func navigate(_ app: XCUIApplication, linkName: String, headingID: String) {
+    private func navigate(_ app: XCUIApplication, linkName: String, headingLabel: String) {
         var link = app.links.matching(identifier: linkName).allElementsBoundByIndex.first(where: \.isHittable)
         if link == nil {
             let toggle = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] %@", "sidebar")).firstMatch
@@ -181,7 +181,8 @@ final class PresentationUITests: XCTestCase {
         }
         XCTAssertNotNil(link, "the \(linkName) navigation link is reachable")
         link?.tap()
-        let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
+        let heading = app.webViews.firstMatch.staticTexts.matching(
+            NSPredicate(format: "label == %@", headingLabel)).firstMatch
         XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
     }
 
@@ -228,11 +229,11 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertEqual(restartLiveRegion["live"], "polite", "the restart notice is announced without interrupting")
 
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-home")
-                navigate(app, linkName: "Library", headingID: "library-h")
+                navigate(app, linkName: "Library", headingLabel: "Library")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-library")
-                navigate(app, linkName: "Search", headingID: "add-h")
+                navigate(app, linkName: "Search", headingLabel: "Search")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-search")
-                navigate(app, linkName: "Backup & settings", headingID: "data-h")
+                navigate(app, linkName: "Backup & settings", headingLabel: "Backup & settings")
                 capture(app, named: "t03-\(category.rawValue)-\(appearance)-data")
                 app.terminate()
             }
@@ -243,23 +244,20 @@ final class PresentationUITests: XCTestCase {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
             let app = launch(category: category)
             _ = try probeResult(of: app)
-            for (name, headingID, nextLink) in [
-                ("home", "home-h", "Library"),
-                ("library", "library-h", "Search"),
-                ("search", "add-h", "Backup & settings"),
-                ("data", "data-h", nil),
-            ] as [(String, String, String?)] {
-                if name == "home" {
-                    XCTAssertTrue(app.staticTexts["RECAP PAGE!"].waitForExistence(timeout: 30), "Home is visible for audit")
-                } else {
-                    let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
-                    XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
-                }
+            for (name, headingLabel, nextLink, nextHeadingLabel) in [
+                ("home", "RECAP PAGE!", "Library", "Library"),
+                ("library", "Library", "Search", "Search"),
+                ("search", "Search", "Backup & settings", "Backup & settings"),
+                ("data", "Backup & settings", nil, nil),
+            ] as [(String, String, String?, String?)] {
+                let heading = app.webViews.firstMatch.staticTexts.matching(
+                    NSPredicate(format: "label == %@", headingLabel)).firstMatch
+                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
-                if let nextLink {
-                    navigate(app, linkName: nextLink, headingID: nextLink == "Library" ? "library-h" : nextLink == "Search" ? "add-h" : "data-h")
+                if let nextLink, let nextHeadingLabel {
+                    navigate(app, linkName: nextLink, headingLabel: nextHeadingLabel)
                 }
             }
             app.terminate()
@@ -338,7 +336,7 @@ final class PresentationUITests: XCTestCase {
 
     private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)
-            .matching(NSPredicate(format: "label CONTAINS %@", "\"viewportWidth\""))
+            .matching(identifier: "recap-layout-probe")
             .firstMatch
     }
 

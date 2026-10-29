@@ -194,9 +194,9 @@ test('iOS launcher hit areas use the shared target token', () => {
   assert.deepEqual(tokenUsageFindings(sheets()), []);
   const rawTarget = tokenGrammarFindings(
     TOKEN_SHEETS[3],
-    launcher.replaceAll(/var\(--target(?:,\s*44px)?\)/g, '44px'),
+    launcher.replaceAll(/var\(--target-touch(?:,\s*48px)?\)/g, '48px'),
   );
-  assert.ok(rawTarget.some((finding) => finding.includes('carries raw target value 44px')));
+  assert.ok(rawTarget.some((finding) => finding.includes('carries raw target value 48px')));
 });
 
 test('a shadow is a whole elevation token or a ring drawn with stroke widths, and a text shadow is a token', () => {

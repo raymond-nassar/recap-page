@@ -154,10 +154,12 @@ test('the iOS page loads the phone layer and the iOS overlay after the shared st
   assert.match(launcher, /<script type="module" src="\.\/open\.js"><\/script>/);
   const launcherCss = read('packaging/ios/web/launcher.css');
   assert.deepEqual(paletteTokenFindings('packaging/ios/web/launcher.css', launcherCss), []);
-  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*min-width:\s*var\(--target,\s*44px\);[^}]*min-height:\s*var\(--target,\s*44px\);/s);
-  assert.equal(rootTokens(read('src/styles.css')).get('--target'), '44px');
+  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*min-width:\s*var\(--target-touch,\s*48px\);[^}]*min-height:\s*var\(--target-touch,\s*48px\);/s);
+  assert.equal(rootTokens(read('src/styles.css')).get('--target-touch'), '48px');
   const iosCss = read('packaging/ios/web/ios.css');
   assert.match(iosCss, /\.skip-link\s*\{[^}]*display:\s*inline-flex;[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);/s);
+  assert.match(iosCss, /\.skip-link\s*\{[^}]*position:\s*fixed;[^}]*left:\s*0;[^}]*top:\s*0;[^}]*opacity:\s*0;[^}]*pointer-events:\s*none;/s);
+  assert.match(iosCss, /\.skip-link:focus\s*\{[^}]*opacity:\s*1;[^}]*pointer-events:\s*auto;/s);
   const entry = await readFile(join(output, 'ios', 'app.js'), 'utf8');
   for (const match of entry.matchAll(/^import .* from '(\.\.\/[^']+)';$/gm)) {
     await assert.doesNotReject(readFile(join(output, 'ios', match[1])), `generated iOS import must resolve: ${match[1]}`);
