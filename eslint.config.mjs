@@ -137,6 +137,7 @@ export default [
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-done-undo.mjs',
+      'scripts/browser-bulk-read.mjs',
       'scripts/browser-milestones.mjs',
       'scripts/browser-save-notice.mjs',
       'scripts/browser-reading-card.mjs',

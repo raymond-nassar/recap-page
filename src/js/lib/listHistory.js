@@ -109,7 +109,7 @@ function rawCatalogId(list) {
     ? list.catalogId.slice(0, MAX_NAME) : null;
 }
 
-function canonicalReaderValue(raw, state, token) {
+export function canonicalReaderValue(raw, state, token) {
   if (typeof raw !== 'string' || typeof token !== 'string' || !token) return false;
   let input;
   try {
