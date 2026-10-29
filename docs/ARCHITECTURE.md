@@ -764,7 +764,10 @@ server, and a checkout only the path in `MRT_CLOUD_CLIENT_CONFIG`, which the MSI
 what it hands the server. The host answers only POSTs from the app's origin made by a process in the
 same Windows session, and keeps every token to itself. A request's body has five seconds to arrive once
 the host starts reading it, inside the five seconds each operation's deadline keeps in hand, and one that
-has not arrived by then is answered 408 and its connection closed. The startup contract binds the six modules'
+has not arrived by then is answered 408 and its connection closed. It takes at most 16 requests at once
+and 1,200 in any minute, from every browser profile together, and turns the rest away unread with 429,
+with the time to wait once the minute's limit is reached; the page reads either as the host being busy,
+and tries again no sooner. The startup contract binds the six modules'
 bytes as startup files, allows the server exactly one dynamic import of the host, and pins every
 startup source's imports to an exact list, Node's built-ins included, so the host's modules import
 nothing but one another and the built-ins listed for each. A built-in that loads code from elsewhere,

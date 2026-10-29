@@ -43,6 +43,13 @@ export const HOST_DEADLINES_MS = Object.freeze({ list: 115_000, read: 595_000, c
 // operation's own deadline starts, so it is held inside the five seconds that deadline keeps in hand, and a
 // test holds that too.
 export const HOST_BODY_MS = 5_000;
+// At most this many requests in any window of this length, from every caller together, counted as each is
+// taken after the checks below; one past it is turned away 429, unread and holding no place, with the time
+// until the oldest leaves the window, which the page's backoff honors (stage 2 review, S1b). Measured in Edge,
+// the page's own heaviest minute was 380 requests, from three tabs of one profile open through a sign-in into
+// an account at discovery's limits (16 devices, four reads each), then turning backups on, Check again,
+// deleting this device's backups and disconnecting, all within 40 seconds; one tab alone made 217.
+export const HOST_RATE = Object.freeze({ limit: 1_200, windowMs: 60_000 });
 const CONNECTION = /^[a-f0-9]{32}$/;
 // Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
 const ITEM_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
@@ -131,6 +138,7 @@ export function createCloudHost({
   sessionCheck = createSessionCheck({ platform }),
   openUrl = (url) => openBrowser(url, { platform, spawnImpl }),
   clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS, deadlines = HOST_DEADLINES_MS, bodyMs = HOST_BODY_MS,
+  rate = HOST_RATE,
 } = {}) {
   const clientId = client.providers.onedrive.clientId;
   const tracker = createUploadTracker();
@@ -149,6 +157,19 @@ export function createCloudHost({
   // sentence instead.
   let changed = null;
   let inFlight = 0;
+  // When each request in the current window was taken, oldest first. A clock set back starts the window
+  // again, rather than turning every request away until the clock catches up.
+  const taken = [];
+
+  // Zero when the request is taken, or how long until the oldest leaves the window.
+  function admit() {
+    const now = clock();
+    if (taken.length > 0 && now < taken[taken.length - 1]) taken.length = 0;
+    while (taken.length > 0 && taken[0] <= now - rate.windowMs) taken.shift();
+    if (taken.length >= rate.limit) return Math.ceil(taken[0] + rate.windowMs - now);
+    taken.push(now);
+    return 0;
+  }
   let queue = Promise.resolve();
   // Every change to the stored sign-in, in order, so a refresh that finishes after a disconnect can never
   // write the connection back.
@@ -469,7 +490,7 @@ export function createCloudHost({
     const target = String(req.url ?? '');
     const operation = target.startsWith(CLOUD_API_PREFIX) ? target.slice(CLOUD_API_PREFIX.length) : '';
     // Every refusal closes the connection, so a body that was never read cannot be left on it.
-    const refuse = (status, code, text, extra = {}) => send(res, status, { ok: false, error: { code, message: text } }, { connection: 'close', ...extra });
+    const refuse = (status, code, text, extra = {}, more = {}) => send(res, status, { ok: false, error: { code, message: text, ...more } }, { connection: 'close', ...extra });
     const port = req.socket?.localPort;
     if (req.method !== 'POST') return refuse(405, 'method', 'Only POST is accepted here.', { allow: 'POST' });
     if (req.headers.host !== `127.0.0.1:${port}`) return refuse(403, 'host', 'This request did not name this server.');
@@ -483,6 +504,10 @@ export function createCloudHost({
     if (!(await sessionCheck(req.socket))) return refuse(403, 'session', 'This request came from another Windows session.');
     if (!OPERATIONS.has(operation)) return refuse(404, 'operation', 'There is no such cloud operation.');
     if (inFlight >= MAX_IN_FLIGHT) return refuse(429, 'unavailable', 'Too many cloud requests at once.');
+    const wait = admit();
+    if (wait > 0) {
+      return refuse(429, 'unavailable', 'Too many cloud requests in a short time.', { 'retry-after': String(Math.ceil(wait / 1000)) }, { retryAfterMs: wait });
+    }
     inFlight += 1;
     try {
       const text = await readBody(req, operation === 'create' ? CREATE_BODY : SMALL_BODY, bodyMs);

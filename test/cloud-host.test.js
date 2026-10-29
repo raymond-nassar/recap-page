@@ -926,6 +926,36 @@ test('a body that does not arrive in time is refused at its deadline, and its pl
   }
 });
 
+// At most so many requests in any window, counted as they are taken: one past it is turned away 429 at once,
+// unread and holding no place, with the wait until the oldest leaves the window, and taken again after that
+// (stage 2 review, S1b).
+test('a burst past the rate window is turned away at once with the wait, holding no place, and taken again after it', async () => {
+  let now = 1_000_000;
+  const env = host({ clock: () => now, rate: { limit: 5, windowMs: 60_000 } });
+  const api = await hostServer(env.instance);
+  let stalled = null;
+  try {
+    for (let taken = 1; taken <= 5; taken += 1) {
+      assert.equal((await api.call('status')).status, 200, `request ${taken} of 5`);
+      now += 1_000;
+    }
+    const over = await api.call('status');
+    assert.deepEqual([over.status, over.body?.error?.code, over.body?.error?.retryAfterMs, over.headers['retry-after'], over.headers.connection],
+      [429, 'unavailable', 55_000, '55', 'close']);
+    for (let more = 0; more < 16; more += 1) assert.equal((await api.call('status')).status, 429, 'still past the window');
+    stalled = await stalledRequest(api.port, 'list');
+    const turned = await Promise.race([stalled.answer, new Promise((resolve) => { setTimeout(() => resolve(null), 3_000); })]);
+    assert.match(turned?.text ?? '', /^HTTP\/1\.1 429 /, 'turned away before its body was waited for');
+    now += 55_000;
+    assert.equal((await api.call('status')).status, 200, 'taken again once the oldest has left the window: none of the 18 turned away kept one of the 16 places');
+    assert.equal((await api.call('status')).status, 429, 'and the window is full again');
+  } finally {
+    stalled?.socket.destroy();
+    env.instance.close();
+    await api.close();
+  }
+});
+
 async function signIn(env, api, { nonceRef, start = async () => (await api.call('connect')).body.status }) {
   const started = await start();
   assert.equal(started.state, 'signing-in');
