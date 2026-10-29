@@ -24,14 +24,15 @@ jobs:
   newest:
     name: iOS app on the newest runtime
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 70 minutes between them, and as
+    # The backstop for time outside any step. The steps below declare 75 minutes between them, and as
     # in CI the step deadline is the one that should fire, so an overrun reports failure on the step
     # that ran long rather than cancelled on the job. Generous until this job has runs to measure.
-    timeout-minutes: 75
+    timeout-minutes: 80
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
-      DESTINATION: platform=iOS Simulator,name=iPhone 17,OS=latest
+      SIMULATOR_NAME: iPhone 17
+      SIMULATOR_RUNTIME: latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 3
@@ -56,6 +57,25 @@ jobs:
         timeout-minutes: 3
         run: node scripts/prepare-ios.mjs
 
+      # Cold-boot work overlapped testing in the failures diagnosed in #964.
+      - name: Boot the Simulator before building
+        timeout-minutes: 5
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices).filter((runtime) =>
+              runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-") &&
+              (process.env.SIMULATOR_RUNTIME === "latest" || runtime.endsWith("." + process.env.SIMULATOR_RUNTIME))
+            ).sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name === process.env.SIMULATOR_NAME);
+            if (!device) throw new Error("Requested iOS Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
       - name: Build for testing
         timeout-minutes: 20
         run: >-
@@ -64,15 +84,44 @@ jobs:
           -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
           CODE_SIGNING_ALLOWED=NO
 
-      - name: Run the unit and UI tests
-        timeout-minutes: 30
+      - name: Run the unit tests
+        timeout-minutes: 12
         run: |
           set -o pipefail
           xcodebuild test-without-building \
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -resultBundlePath "$RUNNER_TEMP/RecapPage-newest.xcresult" \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
+            -only-testing:RecapPageTests \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-unit.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
+
+      - name: Run the UI tests
+        timeout-minutes: 18
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            # A separate assertion failure must not be hidden by an infrastructure retry.
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+              exit 1
+            fi
+            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+          done
 
       # The probes' measurements, where a reader of the run finds them without opening the bundle.
       - name: Summarize the probe results
@@ -82,7 +131,7 @@ jobs:
           {
             echo '### Probe results on the newest runtime'
             echo '```'
-            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/test.log" | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
+            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/unit-test.log" "$RUNNER_TEMP"/ui-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -92,7 +141,10 @@ jobs:
         timeout-minutes: 5
         with:
           name: ios-results-newest-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/RecapPage-newest.xcresult
+          path: |
+            ${{ runner.temp }}/RecapPage-newest-*.xcresult
+            ${{ runner.temp }}/unit-test.log
+            ${{ runner.temp }}/ui-*.log
           if-no-files-found: warn
 
   minimum:
@@ -101,10 +153,11 @@ jobs:
     # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
     # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
     runs-on: macos-15
-    timeout-minutes: 75
+    timeout-minutes: 80
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
-      DESTINATION: platform=iOS Simulator,name=iPhone 16e,OS=18.5
+      SIMULATOR_NAME: iPhone 16e
+      SIMULATOR_RUNTIME: iOS-18-5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 3
@@ -128,6 +181,24 @@ jobs:
         timeout-minutes: 3
         run: node scripts/prepare-ios.mjs
 
+      - name: Boot the Simulator before building
+        timeout-minutes: 5
+        run: |
+          udid=$(xcrun simctl list devices available --json | node -e '
+            const fs = require("node:fs");
+            const { devices } = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runtimes = Object.keys(devices).filter((runtime) =>
+              runtime.startsWith("com.apple.CoreSimulator.SimRuntime.iOS-") &&
+              (process.env.SIMULATOR_RUNTIME === "latest" || runtime.endsWith("." + process.env.SIMULATOR_RUNTIME))
+            ).sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+            const device = devices[runtimes.at(-1)]?.find((entry) => entry.name === process.env.SIMULATOR_NAME);
+            if (!device) throw new Error("Requested iOS Simulator is not available");
+            process.stdout.write(device.udid);
+          ')
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+          echo "DESTINATION=platform=iOS Simulator,id=$udid" >> "$GITHUB_ENV"
+
       - name: Build for testing
         timeout-minutes: 20
         run: >-
@@ -136,15 +207,44 @@ jobs:
           -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData"
           CODE_SIGNING_ALLOWED=NO
 
-      - name: Run the unit and UI tests
-        timeout-minutes: 30
+      - name: Run the unit tests
+        timeout-minutes: 12
         run: |
           set -o pipefail
           xcodebuild test-without-building \
             -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum.xcresult" \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
+            -only-testing:RecapPageTests \
+            -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-unit.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
+
+      - name: Run the UI tests
+        timeout-minutes: 18
+        run: |
+          set -o pipefail
+          infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode'
+          for attempt in 1 2; do
+            log="$RUNNER_TEMP/ui-$attempt.log"
+            if xcodebuild test-without-building \
+                -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
+                -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+                -only-testing:RecapPageUITests \
+                -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-ui-$attempt.xcresult" \
+                CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
+              exit 0
+            else
+              statuses=("${PIPESTATUS[@]}")
+            fi
+            if [ "${statuses[1]}" -ne 0 ]; then
+              exit "${statuses[1]}"
+            fi
+            # A separate assertion failure must not be hidden by an infrastructure retry.
+            if [ "$attempt" = 2 ] || ! grep -Eq "$infrastructure" "$log" ||
+                grep -E ':[0-9]+(:[0-9]+)?: error:|XCTAssert.*failed|failed -' "$log" | grep -Ev "$infrastructure"; then
+              exit 1
+            fi
+            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator"
+          done
 
       - name: Summarize the probe results
         if: ${{ !cancelled() }}
@@ -153,7 +253,7 @@ jobs:
           {
             echo '### Probe results on the lowest iOS 18 runtime'
             echo '```'
-            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/test.log" | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
+            grep -h 'RECAP_PROBE_RESULT' "$RUNNER_TEMP/unit-test.log" "$RUNNER_TEMP"/ui-*.log | sed 's/^.*RECAP_PROBE_RESULT //' | sort -u || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -163,5 +263,8 @@ jobs:
         timeout-minutes: 5
         with:
           name: ios-results-minimum-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/RecapPage-minimum.xcresult
+          path: |
+            ${{ runner.temp }}/RecapPage-minimum-*.xcresult
+            ${{ runner.temp }}/unit-test.log
+            ${{ runner.temp }}/ui-*.log
           if-no-files-found: warn
