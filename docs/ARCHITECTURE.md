@@ -762,7 +762,9 @@ the rest of the server's life, and a file over 4 KiB, or anything but a file, is
 build, one carrying `src/build-info.json`, reads only the configuration its packager put beside the
 server, and a checkout only the path in `MRT_CLOUD_CLIENT_CONFIG`, which the MSIX launcher leaves out of
 what it hands the server. The host answers only POSTs from the app's origin made by a process in the
-same Windows session, and keeps every token to itself. The startup contract binds the six modules'
+same Windows session, and keeps every token to itself. A request's body has five seconds to arrive once
+the host starts reading it, inside the five seconds each operation's deadline keeps in hand, and one that
+has not arrived by then is answered 408 and its connection closed. The startup contract binds the six modules'
 bytes as startup files, allows the server exactly one dynamic import of the host, and pins every
 startup source's imports to an exact list, Node's built-ins included, so the host's modules import
 nothing but one another and the built-ins listed for each. A built-in that loads code from elsewhere,

@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
 import { createHash } from 'node:crypto';
 import { createServer, request } from 'node:http';
+import { connect } from 'node:net';
 import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -808,10 +809,34 @@ async function hostServer(host) {
   return { port, call, close: () => new Promise((resolve) => server.close(resolve)) };
 }
 
-function host({ store = memoryStore(), fetch = microsoft(), session = async () => true, opened = [], clock = Date.now, deadlines } = {}) {
+// A caller that sends a request's headers and the start of its body, then nothing more. It resolves once
+// connected, with the answer it gets and when the host closed the connection.
+function stalledRequest(port, operation) {
+  return new Promise((resolve, reject) => {
+    const socket = connect(port, '127.0.0.1');
+    const started = Date.now();
+    let text = '';
+    const answer = new Promise((settle) => {
+      socket.on('data', (chunk) => { text += chunk.toString('utf8'); });
+      socket.on('close', () => settle({ text, ms: Date.now() - started }));
+    });
+    socket.on('error', () => {});
+    socket.once('connect', () => {
+      socket.write([
+        `POST ${CLOUD_API_PREFIX}${operation} HTTP/1.1`, `Host: 127.0.0.1:${port}`, `Origin: http://127.0.0.1:${port}`,
+        'Content-Type: application/json', `${CLOUD_API_HEADER}: 1`, 'Content-Length: 64', '', '{"connection":',
+      ].join('\r\n'));
+      resolve({ socket, answer });
+    });
+    socket.once('error', reject);
+  });
+}
+
+function host({ store = memoryStore(), fetch = microsoft(), session = async () => true, opened = [], clock = Date.now, deadlines, bodyMs, rate } = {}) {
   const sessions = [];
   const instance = createCloudHost({
     clientText: CLIENT_TEXT, platform: 'win32', fetchImpl: fetch.fetchImpl, store, clock, ...(deadlines ? { deadlines } : {}),
+    ...(bodyMs ? { bodyMs } : {}), ...(rate ? { rate } : {}),
     sessionCheck: async (socket) => {
       sessions.push(socket.remotePort);
       return session(socket);
@@ -868,6 +893,34 @@ test('the control API refuses every request that is not the served page\'s, befo
     assert.equal(other.body.error.code, 'session');
     assert.ok(!other.text.includes('not-connected'), 'another session learns nothing about the connection');
   } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
+// A caller that sends a request's headers and then stalls holds one of the host's 16 places only until the
+// body deadline: then it is answered 408, its connection is closed, and the place is free again (stage 2
+// review, S1b).
+test('a body that does not arrive in time is refused at its deadline, and its place is free again', async () => {
+  const env = host({ bodyMs: 1_500 });
+  const api = await hostServer(env.instance);
+  const stalled = [];
+  try {
+    for (let place = 0; place < 16; place += 1) stalled.push(await stalledRequest(api.port, 'list'));
+    await until(async () => (await api.call('status')).status === 429, 'every place is held by a stalled body');
+    const answers = await Promise.race([
+      Promise.all(stalled.map((request) => request.answer)),
+      new Promise((resolve) => { setTimeout(() => resolve(null), 6_000); }),
+    ]);
+    assert.ok(answers, 'every stalled request was answered, and its connection closed');
+    for (const { text, ms } of answers) {
+      assert.match(text, /^HTTP\/1\.1 408 /);
+      assert.match(text, /"code":"slow"/);
+      assert.ok(ms >= 1_000 && ms < 5_000, `answered after ${ms} ms`);
+    }
+    assert.equal((await api.call('status')).status, 200, 'the places are free again');
+  } finally {
+    for (const { socket } of stalled) socket.destroy();
     env.instance.close();
     await api.close();
   }
@@ -1050,8 +1103,11 @@ test('signing in again after the app folder was deleted is a new connection; the
 // request, and each sits at least five seconds inside the deadline the page's engine states, so the page
 // always hears an answer before it gives up (stage 1 review, L8; the transport contract, CQ-2).
 test('every data operation answers within its deadline, inside the one the engine states', async () => {
+  // A request's body has to arrive before its operation starts, so its deadline comes out of the five
+  // seconds each deadline here keeps in hand. Read from the module, so a host without one fails here.
+  const { HOST_BODY_MS } = await import('../host/cloudHost.mjs');
   for (const operation of ['list', 'read', 'create', 'delete']) {
-    assert.ok(HOST_DEADLINES_MS[operation] + 5_000 <= CLOUD_TRANSPORT_DEADLINES_MS[operation], operation);
+    assert.ok(HOST_BODY_MS + HOST_DEADLINES_MS[operation] <= CLOUD_TRANSPORT_DEADLINES_MS[operation], operation);
   }
   const silent = {
     fetchImpl: (url, options = {}) => new Promise((resolve, reject) => {
@@ -1435,6 +1491,18 @@ test('a build without cloud backup and a server that is not this app\'s read as 
     message: 'The Recap Page app is busy. Try again in a moment.', reason: null, signInExpiresAt: null, transient: true,
   });
   await assert.rejects(answering(busy).list({ connection: RECORD.connection }), { code: 'unavailable' });
+  // Turned away unread, as one request too many or as a body that did not arrive in time: nothing was done,
+  // so it is retried, the person reads the page's own words rather than the host's, and the host's wait is
+  // kept (stage 2 review, S1b).
+  const slow = body(408, { ok: false, error: { code: 'slow', message: 'That request did not arrive in time.' } });
+  assert.deepEqual(await answering(slow).status(), await answering(busy).status());
+  for (const turnedAway of [busy, slow]) {
+    await assert.rejects(answering(turnedAway).create(NAME, new Uint8Array([1]), { connection: RECORD.connection }),
+      (error) => error.code === 'unavailable' && error.message === 'The Recap Page app is busy. Try again in a moment.');
+  }
+  const waited = body(429, { ok: false, error: { code: 'unavailable', message: 'Too many cloud requests in a short time.', retryAfterMs: 2000 } });
+  await assert.rejects(answering(waited).delete('ITEM!7', { connection: RECORD.connection }),
+    (error) => error.code === 'unavailable' && error.message === 'The Recap Page app is busy. Try again in a moment.' && error.retryAfterMs === 2000);
   const full = body(200, { ok: false, error: { code: 'quota', message: 'OneDrive is full.', retryAfterMs: 5 } });
   await assert.rejects(answering(full).create(NAME, new Uint8Array([1]), { connection: RECORD.connection }),
     (error) => error.code === 'quota' && error.message === 'OneDrive is full.' && error.retryAfterMs === 5);

@@ -31,6 +31,9 @@ const TURNED_AWAY = Object.freeze({
 });
 const REFUSED = 'The Recap Page app refused the request from this page. Reload the page to try again.';
 const BUSY = 'The Recap Page app is busy. Try again in a moment.';
+// Statuses for a request the host turned away without reading or doing it: one too many (429), or a body
+// that did not arrive in time (408).
+const TURNED_AWAY_UNREAD = new Set([408, 429]);
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 function text(value, limit) { return typeof value === 'string' && value.length > 0 && value.length <= limit ? value : null; }
@@ -112,7 +115,9 @@ export function createCloudHostTransport({
     if (code === 200 && object(body) && body.ok === true) return body;
     if (object(body) && body.ok === false && object(body.error)) {
       if (code === 200) throw failure(body.error, text(body.error.code, 64) ?? 'failed', 'Cloud backup could not do that.');
-      if (code === 429) throw failure(body.error, 'unavailable', BUSY);
+      // One request too many, or a body that did not arrive in time: nothing was done, so it is retried, in
+      // the page's own words, keeping any wait the host gave (stage 2 review, S1b).
+      if (TURNED_AWAY_UNREAD.has(code)) throw failure({ retryAfterMs: body.error.retryAfterMs }, 'unavailable', BUSY);
       throw failure({ message: TURNED_AWAY[body.error.code] ?? REFUSED }, 'refused', REFUSED);
     }
     throw code === 404
@@ -133,7 +138,7 @@ export function createCloudHostTransport({
       if (code >= 500) return NOT_ANSWERED;
       if (!object(body) || body.ok !== false || !object(body.error)) return NOT_ENABLED;
       if (code === 200) return unavailable(text(body.error.message, 1024) ?? 'Cloud backup stopped unexpectedly.');
-      if (code === 429) return { ...unavailable(BUSY), transient: true };
+      if (TURNED_AWAY_UNREAD.has(code)) return { ...unavailable(BUSY), transient: true };
       return unavailable(TURNED_AWAY[body.error.code] ?? REFUSED);
     },
     async connect() { return statusOf((await post('connect', {}, accountMs)).status); },

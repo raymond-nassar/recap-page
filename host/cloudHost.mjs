@@ -36,6 +36,13 @@ const MAX_IN_FLIGHT = 16;
 // together. Work cut off this way goes on behind the answer: a create keeps its place in the upload
 // tracker, so the next list still waits for it or cancels it.
 export const HOST_DEADLINES_MS = Object.freeze({ list: 115_000, read: 595_000, create: 595_000, delete: 25_000 });
+// How long a request's body may take to arrive once reading it starts, after which the request is refused
+// 408 and its connection closed, so a caller that stalls holds one of the places above for that long at most
+// (stage 2 review, S1b). Measured in Edge on this machine, the largest body this host accepts, a 44.7 MB
+// create, arrived 35 to 130 ms after its headers, and a 137 KB one in under a millisecond. It comes before an
+// operation's own deadline starts, so it is held inside the five seconds that deadline keeps in hand, and a
+// test holds that too.
+export const HOST_BODY_MS = 5_000;
 const CONNECTION = /^[a-f0-9]{32}$/;
 // Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
 const ITEM_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
@@ -70,17 +77,41 @@ function send(res, status, body, extra = {}) {
   res.end(JSON.stringify(body));
 }
 
-async function readBody(req, limit) {
+const TOO_LARGE = Symbol('too large');
+const TOO_SLOW = Symbol('too slow');
+const GONE = Symbol('gone');
+
+// The body as text, or why there is none: larger than the operation accepts, not all here by the deadline,
+// or the caller gone first.
+function readBody(req, limit, ms) {
   const declared = Number(req.headers['content-length']);
-  if (Number.isFinite(declared) && declared > limit) return null;
-  const chunks = [];
-  let size = 0;
-  for await (const chunk of req) {
-    size += chunk.length;
-    if (size > limit) return null;
-    chunks.push(chunk);
-  }
-  return Buffer.concat(chunks).toString('utf8');
+  if (Number.isFinite(declared) && declared > limit) return Promise.resolve(TOO_LARGE);
+  if (req.socket?.destroyed) return Promise.resolve(GONE);
+  return new Promise((resolve) => {
+    const chunks = [];
+    let size = 0;
+    let timer = null;
+    const finish = (value) => {
+      clearTimeout(timer);
+      req.off('data', take);
+      req.off('end', done);
+      req.off('error', gone);
+      req.off('close', gone);
+      resolve(value);
+    };
+    const take = (chunk) => {
+      size += chunk.length;
+      if (size > limit) finish(TOO_LARGE);
+      else chunks.push(chunk);
+    };
+    const done = () => finish(Buffer.concat(chunks).toString('utf8'));
+    const gone = () => finish(GONE);
+    timer = setTimeout(() => finish(TOO_SLOW), ms);
+    req.on('data', take);
+    req.once('end', done);
+    req.once('error', gone);
+    req.once('close', gone);
+  });
 }
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
@@ -99,7 +130,7 @@ export function createCloudHost({
   store = createTokenStore({ directory: tokenDirectory(env), protector: createProtector({ platform, spawnImpl }) }),
   sessionCheck = createSessionCheck({ platform }),
   openUrl = (url) => openBrowser(url, { platform, spawnImpl }),
-  clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS, deadlines = HOST_DEADLINES_MS,
+  clock = Date.now, random = randomBytes, signInMs = SIGN_IN_MS, deadlines = HOST_DEADLINES_MS, bodyMs = HOST_BODY_MS,
 } = {}) {
   const clientId = client.providers.onedrive.clientId;
   const tracker = createUploadTracker();
@@ -454,8 +485,15 @@ export function createCloudHost({
     if (inFlight >= MAX_IN_FLIGHT) return refuse(429, 'unavailable', 'Too many cloud requests at once.');
     inFlight += 1;
     try {
-      const text = await readBody(req, operation === 'create' ? CREATE_BODY : SMALL_BODY);
-      if (text === null) return refuse(413, 'size', 'That request is larger than this operation accepts.');
+      const text = await readBody(req, operation === 'create' ? CREATE_BODY : SMALL_BODY, bodyMs);
+      // Nobody is left to answer.
+      if (text === GONE) return undefined;
+      if (text === TOO_SLOW) {
+        // Answered, then the connection is closed, so the rest of the body is never waited for.
+        res.once('finish', () => req.socket?.destroy());
+        return refuse(408, 'slow', 'That request did not arrive in time.');
+      }
+      if (text === TOO_LARGE) return refuse(413, 'size', 'That request is larger than this operation accepts.');
       let input;
       try { input = text === '' ? {} : JSON.parse(text); }
       catch { return refuse(400, 'json', 'That request is not readable JSON.'); }
