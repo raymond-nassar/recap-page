@@ -358,7 +358,10 @@ test('the cloud backup card follows the complete backup, starts hidden, and sign
     assert.equal(cardOf(id), cloud, `${id} belongs with the cloud backup card`);
   }
   const signIn = sliceElement(cloud.html, 'button', openingTags(cloud.html, 'button').find((entry) => getAttribute(entry.open, 'id') === 'btn-cloud-sign-in').start);
-  assert.equal(signIn.replace(/<[^>]+>/g, '').trim(), 'Sign in with Microsoft', 'the words are the button\'s name');
+  // Read from the button's text nodes rather than by deleting its tags, which CodeQL reports as an
+  // incomplete sanitizer even in a test (alert #25 on #970).
+  const words = [...signIn.matchAll(/>([^<]*)</g)].map((match) => match[1]).join('').trim();
+  assert.equal(words, 'Sign in with Microsoft', 'the words are the button\'s name');
   const logo = openingTags(signIn, 'img')[0]?.open ?? '';
   assert.deepEqual(['src', 'alt', 'width', 'height'].map((name) => getAttribute(logo, name)),
     ['./brands/ms-symbollockup_mssymbol_19.svg', '', '21', '21'], 'the logo at its own size, with nothing to say the words do not');
