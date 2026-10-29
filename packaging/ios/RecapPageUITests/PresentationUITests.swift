@@ -338,7 +338,7 @@ final class PresentationUITests: XCTestCase {
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
-                let skipLink = app.descendants(matching: .any).matching(
+                let skipLink = app.links.matching(
                     NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
                 XCTAssertTrue(skipLink.waitForExistence(timeout: 30), "the skip link is present for target measurement")
                 try record("t03-target-\(category.rawValue)-\(name)", [
@@ -384,7 +384,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(
                 rules.contains { ($0["selector"] as? String)?.contains("#fallback") == true },
                 "the launcher stylesheet contains the target rule")
-            let manualLink = app.descendants(matching: .any).matching(
+            let manualLink = app.links.matching(
                 NSPredicate(format: "label == %@", "Continue manually")).firstMatch
             XCTAssertTrue(manualLink.waitForExistence(timeout: 30), "the manual Read link is present for target measurement")
             try record("t03-read-target-\(category.rawValue)", [
@@ -475,7 +475,7 @@ final class PresentationUITests: XCTestCase {
 
     private func moreToggle(of app: XCUIApplication) -> XCUIElement {
         let more = NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")
-        return app.descendants(matching: .any).matching(more).firstMatch
+        return app.buttons.matching(more).firstMatch
     }
 
     private func readSheetStyleProbe(of app: XCUIApplication) throws -> [String: Any] {

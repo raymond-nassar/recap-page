@@ -486,10 +486,13 @@ test('the Read-sheet probe reports stylesheet loading, matching rules and target
   assert.match(presentationTests, /minHeight/);
 });
 
-test('iOS presentation diagnostics tolerate the live-region suffix and find the More control by name', () => {
+test('iOS presentation diagnostics query links and the More button by their actual element types', () => {
   assert.match(presentationTests, /let suffix = ", application status"/);
   assert.match(presentationTests, /reported\.hasSuffix\(suffix\)/);
   assert.match(presentationTests, /private func moreToggle\(of app: XCUIApplication\)/);
+  assert.match(presentationTests, /let skipLink = app\.links\.matching\(/);
+  assert.match(presentationTests, /let manualLink = app\.links\.matching\(/);
+  assert.match(presentationTests, /return app\.buttons\.matching\(more\)\.firstMatch/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
 });
 
