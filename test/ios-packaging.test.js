@@ -495,10 +495,12 @@ test('iOS presentation diagnostics use DOM target geometry and observed accessib
   assert.match(presentationTests, /route: "all"/);
   assert.match(presentationTests, /let skipLink = app\.links\.matching\(/);
   assert.match(presentationTests, /let skipTarget = try XCTUnwrap\(screen\["skipLink"\] as\? \[String: Any\]\)/);
-  assert.doesNotMatch(presentationTests, /skipLink\.frame\.(?:width|height)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.doesNotMatch(presentationTests, /skipLink\.frame\.width/);
   assert.match(presentationTests, /let manualLink = app\.links\.matching\(/);
   assert.match(presentationTests, /manualLink\.waitForExistence\(timeout: 30\)/);
-  assert.doesNotMatch(presentationTests, /manualLink\.frame\.(?:width|height)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
+  assert.doesNotMatch(presentationTests, /manualLink\.frame\.width/);
   assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
   assert.match(presentationTests, /return app\.otherElements\.matching\(more\)\.firstMatch/);
   assert.match(presentationTests, /let close = app\.buttons\.matching\(NSPredicate\(format: "label == %@", "Close"\)\)\.firstMatch/);
@@ -524,6 +526,36 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
   const launcher = read('packaging/ios/web/launcher.css');
   assert.match(overlay, /:root \.skip-link\s*\{[^}]*line-height:\s*var\(--target\);[^}]*padding-block:\s*0;/s);
   assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
+});
+
+test('iOS target links expose their hit region as a single accessible link', () => {
+  const controller = appSource('WebViewController');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+
+  assert.match(controller, /private static let accessibleTargetScript = #"""/);
+  assert.match(controller, /source:\s*Self\.accessibleTargetScript,[\s\S]*?injectionTime:\s*\.atDocumentEnd/);
+  assert.match(controller, /const selector = '\.skip-link, #fallback, #return'/);
+  assert.match(controller, /link\.dataset\.iosAccessibleTarget === 'true'/);
+  assert.match(controller, /visualText\.setAttribute\('aria-hidden', 'true'\)/);
+  assert.match(controller, /link\.setAttribute\('aria-label', label\)/);
+  assert.match(tests, /app\.staticTexts\["Skip to main content"\]\.exists/);
+  assert.match(tests, /app\.staticTexts\["Continue manually"\]\.exists/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.match(tests, /XCTAssertGreaterThanOrEqual\(manualLink\.frame\.height,\s*48/);
+});
+
+test('largest-text data headings wrap and overflow diagnostics identify heading text', () => {
+  const overlay = read('packaging/ios/web/ios.css');
+  const tests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+  const docs = read('docs/IOS.md');
+
+  assert.match(overlay, /:root\[data-ios-largest-text="true"\]\s+#view-data \.setgroup > h2\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+  assert.match(tests, /dataSectionHeadings/);
+  assert.match(tests, /text:\s*heading\.textContent\.trim\(\)/);
+  assert.match(tests, /textContent\.trim\(\)\.replace\(\/\\\\s\+\/g,\s*' '\)\.slice\(0,\s*100\)/);
+  assert.match(tests, /XCTAssertEqual\(personalization\["overflowWrap"\] as\? String,\s*"anywhere"/);
+  assert.match(tests, /XCTAssertLessThanOrEqual\(.*?personalization\["scrollWidth"\].*?personalization\["clientWidth"\]/s);
+  assert.match(docs, /Backup &\s+settings section headings can wrap/i);
 });
 
 test('the iOS app icon is the web app mark drawn opaque from the same geometry', async () => {

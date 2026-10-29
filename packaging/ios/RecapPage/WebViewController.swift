@@ -93,6 +93,10 @@ final class WebViewController: UIViewController, WKUIDelegate {
             source: Self.dynamicTypeScaleScript(for: traitCollection),
             injectionTime: .atDocumentStart,
             forMainFrameOnly: true))
+        controller.addUserScript(WKUserScript(
+            source: Self.accessibleTargetScript,
+            injectionTime: .atDocumentEnd,
+            forMainFrameOnly: true))
         #if DEBUG
         if DebugSupport.seedsRestoreTest {
             controller.addUserScript(WKUserScript(
@@ -114,6 +118,23 @@ final class WebViewController: UIViewController, WKUIDelegate {
         }
         #endif
     }
+
+    private static let accessibleTargetScript = #"""
+    (() => {
+      const selector = '.skip-link, #fallback, #return';
+      for (const link of document.querySelectorAll(selector)) {
+        if (link.dataset.iosAccessibleTarget === 'true') continue;
+        const label = link.textContent.trim().replace(/\s+/g, ' ');
+        if (!label) continue;
+        const visualText = document.createElement('span');
+        visualText.setAttribute('aria-hidden', 'true');
+        while (link.firstChild) visualText.append(link.firstChild);
+        link.append(visualText);
+        link.setAttribute('aria-label', label);
+        link.dataset.iosAccessibleTarget = 'true';
+      }
+    })();
+    """#
 
     private static func dynamicTypeScaleScript(for traits: UITraitCollection) -> String {
         let bodySize = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traits).pointSize

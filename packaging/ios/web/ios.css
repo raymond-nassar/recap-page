@@ -50,3 +50,7 @@
   justify-self: stretch;
   margin-left: 0;
 }
+
+:root[data-ios-largest-text="true"] #view-data .setgroup > h2 {
+  overflow-wrap: anywhere;
+}

@@ -143,6 +143,15 @@ final class PresentationUITests: XCTestCase {
                 : 0,
             };
           })(),
+          dataSectionHeadings: [...document.querySelectorAll('#view-data .setgroup > h2')].map((heading) => {
+            const style = getComputedStyle(heading);
+            return {
+              text: heading.textContent.trim(),
+              overflowWrap: style.overflowWrap,
+              clientWidth: heading.clientWidth,
+              scrollWidth: heading.scrollWidth,
+            };
+          }),
           skipLink: (() => {
             const link = document.querySelector('.skip-link');
             if (!link) return null;
@@ -169,6 +178,9 @@ final class PresentationUITests: XCTestCase {
                 tag: element.tagName.toLowerCase(),
                 id: element.id,
                 className: typeof element.className === 'string' ? element.className : '',
+                text: /^H[1-6]$/.test(element.tagName)
+                  ? element.textContent.trim().replace(/\\s+/g, ' ').slice(0, 100)
+                  : undefined,
                 left: Math.round(rect.left * 10) / 10,
                 right: Math.round(rect.right * 10) / 10,
                 extent: Math.round(extent * 10) / 10,
@@ -304,6 +316,18 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertEqual(screenRoot, 16, accuracy: 0.1)
                 }
 
+                if category == .accessibilityExtraExtraExtraLarge {
+                    let data = try XCTUnwrap(screens.first { $0["view"] as? String == "view-data" })
+                    let headings = try XCTUnwrap(data["dataSectionHeadings"] as? [[String: Any]])
+                    let personalization = try XCTUnwrap(
+                        headings.first { $0["text"] as? String == "Personalization" })
+                    XCTAssertEqual(personalization["overflowWrap"] as? String, "anywhere")
+                    XCTAssertLessThanOrEqual(
+                        try XCTUnwrap(personalization["scrollWidth"] as? Int),
+                        try XCTUnwrap(personalization["clientWidth"] as? Int),
+                        "the Personalization heading wraps within its section")
+                }
+
                 let home = try XCTUnwrap(screens.first { $0["view"] as? String == "view-home" })
                 let homeHeader = try XCTUnwrap(home["homeHeader"] as? [String: Any])
                 XCTAssertEqual(
@@ -360,6 +384,8 @@ final class PresentationUITests: XCTestCase {
                 let skipLink = app.links.matching(
                     NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
                 XCTAssertTrue(skipLink.waitForExistence(timeout: 30), "the skip link is present for target measurement")
+                XCTAssertFalse(app.staticTexts["Skip to main content"].exists, "the skip link has no separate text target")
+                XCTAssertGreaterThanOrEqual(skipLink.frame.height, 44, "the native skip link target is at least 44 points high")
                 let screen = try XCTUnwrap(
                     screens.first { $0["view"] as? String == view },
                     "the DOM probe records \(name)")
@@ -412,7 +438,13 @@ final class PresentationUITests: XCTestCase {
             let manualLink = app.links.matching(
                 NSPredicate(format: "label == %@", "Continue manually")).firstMatch
             XCTAssertTrue(manualLink.waitForExistence(timeout: 30), "the manual Read link is present for target measurement")
+            XCTAssertFalse(app.staticTexts["Continue manually"].exists, "the manual link has no separate text target")
+            XCTAssertGreaterThanOrEqual(manualLink.frame.height, 48, "the native manual link target is at least 48 points high")
             let elements = try XCTUnwrap(styleProbe["elements"] as? [String: [String: Any]])
+            let returnLink = app.links["Back to Recap Page"].firstMatch
+            XCTAssertTrue(returnLink.waitForExistence(timeout: 30), "the return link is present")
+            XCTAssertFalse(app.staticTexts["Back to Recap Page"].exists, "the return link has no separate text target")
+            XCTAssertGreaterThanOrEqual(returnLink.frame.height, 48, "the native return link target is at least 48 points high")
             for id in ["fallback", "return"] {
                 let element = try XCTUnwrap(elements[id], "the Read launcher contains #\(id)")
                 XCTAssertEqual(element["exists"] as? Bool, true, "#\(id) is present")

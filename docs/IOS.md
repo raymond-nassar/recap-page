@@ -37,8 +37,10 @@ or enlarge layout dimensions. At the largest accessibility text size, the iOS ov
 header one column so the What's new control keeps enough width to read. This adjustment is confined
 to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
 shared `--target` token for a 44-point hit region, and the standalone Read links use the shared
-`--target-touch` token for 48-point regions. Their text line boxes fill those targets so WebKit's
-native accessibility audit sees the full hit region.
+`--target-touch` token for 48-point regions. The native shell gives each link its accessible name
+and hides its presentation-only text wrapper from assistive technology, so the link target is not
+represented by a smaller nested text element. At the largest accessibility text size, the Backup &
+settings section headings can wrap within their existing column rather than widening the page.
 
 The Simulator presentation tests cover both default and largest text sizes, light and dark
 appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
