@@ -15,6 +15,13 @@
       "sourceRevision": "aeaedb446102d45b019d1c40cf24369bba2b52ae",
       "sourceTree": "7886e50864367961077abc21f6037ecab76fa61d",
       "artifact": null
+    },
+    {
+      "buildNumber": 4,
+      "productVersion": "4.2.0",
+      "sourceRevision": "7b39b9d35f56dbc57852237add8a57d6293e70f2",
+      "sourceTree": "f1c02a9f92feed3964477551210e1fa838aeadcf",
+      "artifact": null
     }
   ]
 }
