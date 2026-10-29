@@ -749,10 +749,13 @@ for:
 
 **The Windows host.** On Windows the local server answers the transport itself, under one prefix on
 the app's own origin, so the page needs no cross-origin access. The host's six modules in `host/` load
-at the first request there, and only in a build that carries a client configuration; any other build
-answers 404 there, as for an unknown path, and loads nothing new. A packaged build reads only the
-configuration its packager put beside the server, and a checkout only the path in
-`MRT_CLOUD_CLIENT_CONFIG`. The host answers only POSTs from the app's origin made by a process in the
+at the first request there, and only in a build that carries a file in the client configuration's
+format, which the host then checks in full; any other build answers 404 there, as for an unknown path,
+and loads nothing new. A file the host refuses is said once in the server's log, and answered 404 for
+the rest of the server's life, and a file over 4 KiB, or anything but a file, is never read. A packaged
+build, one carrying `src/build-info.json`, reads only the configuration its packager put beside the
+server, and a checkout only the path in `MRT_CLOUD_CLIENT_CONFIG`, which the MSIX launcher leaves out of
+what it hands the server. The host answers only POSTs from the app's origin made by a process in the
 same Windows session, and keeps every token to itself. The startup contract binds the six modules'
 bytes as startup files, allows the server exactly one dynamic import of the host, and pins every
 startup source's imports to an exact list, Node's built-ins included, so the host's modules import

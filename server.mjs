@@ -84,12 +84,12 @@ const SECURITY_HEADERS = Object.freeze({
 });
 
 // Cloud backup's control API, under one prefix on this origin (#810, P02-T01 sections 3.6 and 3.8). Its
-// modules load at the first request here, and only when this build carries a client configuration, so a
-// build without one loads nothing new and answers 404 here, as for any unknown path. A packaged build
-// reads only the configuration its packager put beside this file and a checkout only the path in
-// MRT_CLOUD_CLIENT_CONFIG, so nothing in a reader's environment can point a release at another client.
-// The prefix is the host's CLOUD_API_PREFIX, which a test holds equal, because the startup contract lets
-// this file import only the two modules it names.
+// modules load at the first request here, and only when this build carries a file in the client
+// configuration's format, which the host then checks in full, so a build without one loads nothing new and
+// answers 404 here, as for any unknown path. A packaged build reads only the configuration its packager
+// put beside this file and a checkout only the path in MRT_CLOUD_CLIENT_CONFIG, so nothing in a reader's
+// environment can point a release at another client. The prefix is the host's CLOUD_API_PREFIX, which a
+// test holds equal, because the startup contract lets this file import only the two modules it names.
 const CLOUD_PREFIX = '/__recap_cloud__/v1/';
 // A packaged build is one carrying src/build-info.json, which both packagers write and no checkout has.
 // It is decided once, at startup, and only the file's absence means a checkout: any other failure to look
@@ -103,6 +103,10 @@ let cloudHost = null;
 async function cloudClientText() {
   const path = PACKAGED ? fileURLToPath(new URL('./cloud-client.json', import.meta.url)) : process.env.MRT_CLOUD_CLIENT_CONFIG;
   if (!path) return null;
+  // Measured before it is read, so a large file costs one stat, and anything but a file, whose size says
+  // nothing, is never opened (stage 2 review, S1a finding 1).
+  const info = await stat(path).catch(() => null);
+  if (!info?.isFile() || info.size > 4096) return null;
   const text = await readFile(path, 'utf8').catch(() => null);
   if (text === null || text.length > 4096) return null;
   try {
@@ -112,8 +116,9 @@ async function cloudClientText() {
   }
 }
 
-// Made once and kept. A configuration that is missing is looked for again at the next request, which in a
-// build without one only ever comes from something other than this app; one the host refuses is reported.
+// Made once and kept, and so is a refusal, which is said once for the life of the process however often
+// the page asks (stage 2 review, S1a finding 1). A configuration that is missing, too large or of another
+// format is looked for again at the next request.
 async function cloudHandler() {
   if (!cloudHost) {
     const text = await cloudClientText();
@@ -122,7 +127,6 @@ async function cloudHandler() {
       .then(({ createCloudHost }) => createCloudHost({ clientText: text }))
       .catch((err) => {
         console.error(`Cloud backup is unavailable: ${err?.message ?? err}`);
-        cloudHost = null;
         return null;
       });
   }

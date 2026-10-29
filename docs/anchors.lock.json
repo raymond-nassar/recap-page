@@ -1514,8 +1514,8 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:318-339|0": {
-    "anchor": "server.mjs:318-339",
+  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:322-343|0": {
+    "anchor": "server.mjs:322-343",
     "fp": "4875091a9f41cacf",
     "head": "export function badPortMessage(raw) {"
   },
@@ -6324,8 +6324,8 @@
     "fp": "b4d25fd001f72a5a",
     "head": "const SECURITY_HEADERS = Object.freeze({"
   },
-  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:370-411|0": {
-    "anchor": "test/server-contract.test.js:370-411",
+  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:447-488|0": {
+    "anchor": "test/server-contract.test.js:447-488",
     "fp": "7e7a6a6822d82b78",
     "head": "test('every application response carries the security headers', async () => {"
   },

@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { request } from 'node:http';
 import { connect } from 'node:net';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -247,6 +248,64 @@ test('anything other than GET or HEAD is refused and says what is allowed', asyn
   });
 });
 
+// A server started on its own, as a release starts one, in a child process whose module resolution is
+// watched and whose log is kept, so a test can see what the server loads and what it says (stage 2
+// review, S1a findings 1 and 5). Node's off-thread module hooks run on every version this repository
+// supports, and the child listens only on a port the system picks.
+const SERVER_CHILD = [
+  "import { register } from 'node:module';",
+  "import { MessageChannel } from 'node:worker_threads';",
+  'const { port1, port2 } = new MessageChannel();',
+  'const resolved = [];',
+  "port1.on('message', (url) => resolved.push(url));",
+  "register(new URL('./hooks.mjs', import.meta.url), { data: { port: port2 }, transferList: [port2] });",
+  'const logs = [];',
+  "console.error = (...parts) => { logs.push(parts.join(' ')); };",
+  'const { createStaticServer, CLOUD_PREFIX } = await import(process.argv[2]);',
+  'const server = createStaticServer();',
+  "await new Promise((resolve) => { server.listen(0, '127.0.0.1', resolve); });",
+  'const statuses = [];',
+  'for (const method of JSON.parse(process.argv[3])) {',
+  "  const res = await fetch('http://127.0.0.1:' + server.address().port + CLOUD_PREFIX + 'status', { method });",
+  '  await res.arrayBuffer();',
+  '  statuses.push(res.status);',
+  '}',
+  'server.closeAllConnections();',
+  'await new Promise((resolve) => { server.close(resolve); });',
+  // What the hooks thread posted as each import resolved arrives on this thread's port a moment later.
+  'await new Promise((resolve) => { setTimeout(resolve, 250); });',
+  'port1.close();',
+  "process.stdout.write(JSON.stringify({ statuses, logs, host: resolved.filter((url) => url.includes('/host/')) }));",
+].join('\n');
+const RESOLVE_HOOKS = [
+  'let port;',
+  'export function initialize(data) { port = data.port; }',
+  'export async function resolve(specifier, context, nextResolve) {',
+  '  const result = await nextResolve(specifier, context);',
+  '  port.postMessage(result.url);',
+  '  return result;',
+  '}',
+].join('\n');
+
+function serverChild(methods, configuration) {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-server-child-'));
+  try {
+    writeFileSync(join(directory, 'child.mjs'), SERVER_CHILD);
+    writeFileSync(join(directory, 'hooks.mjs'), RESOLVE_HOOKS);
+    const env = { ...process.env };
+    delete env.MRT_CLOUD_CLIENT_CONFIG;
+    delete env.NODE_TEST_CONTEXT;
+    if (configuration) env.MRT_CLOUD_CLIENT_CONFIG = configuration;
+    const child = spawnSync(process.execPath, [join(directory, 'child.mjs'), new URL('../server.mjs', import.meta.url).href, JSON.stringify(methods)], {
+      env, encoding: 'utf8', timeout: 60_000, windowsHide: true,
+    });
+    assert.equal(child.status, 0, child.stderr);
+    return JSON.parse(child.stdout);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+}
+
 // Cloud backup's control API is the one prefix that answers other methods (#810, P02-T01 section 3.6).
 // Without a client configuration, which is every build until cloud backup is turned on, it answers 404
 // to every method, as an unknown path does, and every other path keeps its contract. Runs before the
@@ -268,9 +327,12 @@ test('without a client configuration the cloud prefix answers 404 to every metho
     if (saved === undefined) delete process.env.MRT_CLOUD_CLIENT_CONFIG;
     else process.env.MRT_CLOUD_CLIENT_CONFIG = saved;
   }
+  // And a server started on its own resolves nothing of the host for any method, and says nothing.
+  const methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'];
+  assert.deepEqual(serverChild(methods, null), { statuses: methods.map(() => 404), logs: [], host: [] });
 });
 
-test('with a client configuration the host answers the cloud prefix, and one of another shape loads nothing', async () => {
+test('with a client configuration the host answers the cloud prefix, one of another shape loads nothing, and one the host refuses is said once', async () => {
   const directory = mkdtempSync(join(tmpdir(), 'recap-cloud-client-'));
   const saved = process.env.MRT_CLOUD_CLIENT_CONFIG;
   try {
@@ -280,6 +342,15 @@ test('with a client configuration the host answers the cloud prefix, and one of 
     await withServer(async (port) => {
       assert.equal((await fetchPath(port, `${CLOUD_PREFIX}status`, { method: 'POST' })).status, 404);
     });
+    assert.deepEqual(serverChild(['POST'], other), { statuses: [404], logs: [], host: [] }, 'nothing of the host is resolved for it');
+    // A file carrying only the format tag loads the host, which checks the whole file and refuses it. The
+    // refusal is kept for the life of the process, so it is said once however often the page asks.
+    const tagged = join(directory, 'tagged.json');
+    writeFileSync(tagged, JSON.stringify({ format: 'recap-page-cloud-client' }));
+    const refused = serverChild(['POST', 'POST', 'POST'], tagged);
+    assert.deepEqual(refused.statuses, [404, 404, 404]);
+    assert.deepEqual(refused.logs, ['Cloud backup is unavailable: The cloud client configuration is not one this version understands.']);
+    assert.ok(refused.host.some((url) => url.endsWith('/host/cloudHost.mjs')), 'the watch sees the host load when it does');
     const client = join(directory, 'cloud-client.json');
     writeFileSync(client, JSON.stringify({
       format: 'recap-page-cloud-client', version: 1, providers: { onedrive: { clientId: 'test-client.recap-page', authority: 'consumers' } },
@@ -318,12 +389,12 @@ test('a packaged build reads only the configuration beside its server, and a che
   for (const code of ['EPERM', 'EACCES', 'EBUSY', 'EMFILE']) assert.equal(await packagedWhen(code), true, `${code} is never taken for a checkout`);
   const body = source.match(/^async function cloudClientText\(\) \{[\s\S]*?^\}/m)?.[0];
   assert.ok(body);
-  const run = async ({ packaged, env, content = JSON.stringify({ format: 'recap-page-cloud-client' }) }) => {
+  const run = async ({ packaged, env, content = JSON.stringify({ format: 'recap-page-cloud-client' }), kind = 'file' }) => {
     const read = [];
     const text = await runInNewContext(`${body.replaceAll('import.meta.url', "'file:///app/server.mjs'")}\ncloudClientText();`, {
       process: { env }, URL, PACKAGED: packaged,
       fileURLToPath: (url) => String(url),
-      stat: async () => { throw new Error('missing'); },
+      stat: async () => ({ isFile: () => kind === 'file', size: Buffer.byteLength(content) }),
       readFile: async (path) => {
         read.push(path);
         return content;
@@ -336,9 +407,15 @@ test('a packaged build reads only the configuration beside its server, and a che
   assert.deepEqual((await run({ packaged: false, env: elsewhere })).read, ['C:/elsewhere/client.json']);
   const none = await run({ packaged: false, env: {} });
   assert.deepEqual([none.text, none.read], [null, []], 'a checkout told nothing reads nothing');
-  for (const content of ['{"format":"something-else"}', 'not json', `{"format":"recap-page-cloud-client","pad":"${'x'.repeat(4096)}"}`]) {
+  for (const content of ['{"format":"something-else"}', 'not json']) {
     assert.equal((await run({ packaged: false, env: elsewhere, content })).text, null, 'nothing else is taken for a configuration, so the host never loads for it');
   }
+  // Measured before it is read, so a large file costs one stat rather than a read (stage 2 review, S1a
+  // finding 1), and anything but a file, which has no size worth trusting, is never opened.
+  const large = await run({ packaged: false, env: elsewhere, content: `{"format":"recap-page-cloud-client","pad":"${'x'.repeat(4096)}"}` });
+  assert.deepEqual([large.text, large.read], [null, []], 'a file over 4096 bytes is refused by its size alone');
+  const folder = await run({ packaged: false, env: elsewhere, kind: 'directory' });
+  assert.deepEqual([folder.text, folder.read], [null, []]);
 });
 
 test('the local health response is identifiable and cannot be cached by the worker', async () => {
