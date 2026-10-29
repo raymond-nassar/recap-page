@@ -6,12 +6,10 @@ Follow a Marvel story across series and keep your place with credited reading or
 read yourself, resume at the next unread issue, and keep private notes and custom entries.
 No automatic device sync or offline comic reading.
 
-[Android's Read](docs/ANDROID.md) uses an installed browser, not the Marvel Unlimited app.
-No computer needed. The
-[earlier beta](https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2)
-doesn't include all the current features. The released app is available on Google Play.
-See the [phone previews](https://raymond-nassar.github.io/recap-page/#android)
-and [beta guide](docs/ANDROID_BETA.md) before testing.
+Recap Page for Android is on
+[Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
+No computer needed. [Android's Read](docs/ANDROID.md) uses an installed browser, not the
+Marvel Unlimited app. Coming soon for iPhone and iPad.
 
 Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link
 is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link.

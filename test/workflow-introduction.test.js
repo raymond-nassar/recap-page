@@ -46,8 +46,12 @@ test('all introduction surfaces distinguish shared progress and manual reading f
   assert.match(text(listing), /not a native phone app/);
   for (const source of [page, readme]) {
     const copy = text(source);
-    assert.match(copy, /released app is available on Google Play/);
-    assert.doesNotMatch(copy, /Not available on Google Play/);
+    assert.match(copy, /Coming soon for iPhone and iPad/);
+    assert.ok(
+      source.includes('https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage'),
+      'must link the Google Play listing',
+    );
+    assert.doesNotMatch(copy, /Not available on Google Play|earlier beta|Try the beta/);
     assert.doesNotMatch(copy, /not a native phone app/);
   }
 });
