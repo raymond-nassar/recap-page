@@ -76,6 +76,9 @@ function refuse(message, code) { throw new CloudBackupError(message, code); }
 // that left undone. None claims an outcome its operation did not have (stage 1 review, L3).
 const RECORD_LOST = 'This browser could not keep its cloud backup record.';
 const RECORD_UNREADABLE = 'This browser\'s cloud backup record cannot be read.';
+// A backup's number another copy of this record already used, by the provider's refusal or a second item
+// under the same name.
+const TAKEN = 'A backup with this number was already in the account, perhaps made by a device restored from this one, so this browser now starts its backups afresh, and this one will be made again.';
 const recordLost = () => new CloudBackupError(RECORD_LOST, 'storage');
 // A record that is there but fails its checks, as against one the browser could not read at all: turning
 // cloud backup on replaces the first with a new stream, and may find the second intact (stage 3 review,
@@ -662,7 +665,8 @@ export class CloudBackupProtocol {
 
   // Per backup: one list, one create, one read and at most two deletes, the second only while files left
   // behind earlier remain. The list comes before the create, so a stream that another copy of this record
-  // has gone ahead in is caught before any number of it is used (M6), and pruning works from that list.
+  // has gone ahead in is caught before any number of it is used (M6), and pruning works from that list. A
+  // transport whose provider keeps two items under one name adds a second list, after the create.
   // Resolves only once the record holds this backup as verified, which is what the coordinator's spacing
   // and comparison read.
   async upload({ text, backup, personalDigest } = {}) {
@@ -692,11 +696,24 @@ export class CloudBackupProtocol {
       // Only another copy of this record can have made this name. The number is never tried again, and
       // the next backup is the new stream's first.
       await saying('Nothing was uploaded.', () => this.restream(taken, { allocate: false }));
-      refuse('A backup with this number was already in the account, perhaps made by a device restored from this one, so this browser now starts its backups afresh, and this one will be made again.', 'exists');
+      refuse(TAKEN, 'exists');
     }
     if (!created || created.name !== name) {
       if (created) await this.discard(created.id, connection);
       refuse('The cloud copy was not kept under the name it was given, so it was removed and will be made again.', 'verify');
+    }
+    // A provider that keeps two items under one name, as Google Drive does, can now hold another copy's file
+    // of this stream and number, made from a copy of this record after this backup's list. Discovery shows a
+    // number once, so one of the two could not be chosen until its copy's data changed. Listing again finds
+    // the other: this file goes, the stream parts here, and the backup is made again, as the new stream's
+    // first, without waiting for a change (stage 4 review, S4b-1).
+    if (this.transport.duplicateNames === true) {
+      const { known: now } = await this.listed(connection);
+      if (now.some((item) => item.stream === stream && item.generation === generation && item.id !== created.id)) {
+        await this.discard(created.id, connection);
+        await saying('Nothing was uploaded.', () => this.restream(taken, { allocate: false }));
+        refuse(TAKEN, 'exists');
+      }
     }
     const returned = bytesOf(await this.call('read', created.id, { connection }));
     if (!returned || await this.digest(returned) !== sent) {

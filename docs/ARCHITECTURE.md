@@ -677,13 +677,13 @@ lost reply or a request that lands late can only add an older generation. The co
 IndexedDB database `mrt-cloud-backup-v1` with this browser's consent and its two newest verified
 backups, never in a complete backup file, so a restored device keeps its own stream. Each number is
 committed with strict durability and read back before the file it names is created, at
-`src/js/lib/cloudProtocol.js:484-495`, because a browser that is killed can roll localStorage back,
+`src/js/lib/cloudProtocol.js:487-498`, because a browser that is killed can roll localStorage back,
 as Complete backups explains. A file holds the complete backup's exact bytes in a small envelope
 naming its stream, generation, device label and time, compressed with gzip, and its name declares the
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup then deletes this stream's files older than
-its second-newest verified generation, at `src/js/lib/cloudProtocol.js:719-720`: one delete keeps pace
+its second-newest verified generation, at `src/js/lib/cloudProtocol.js:736-737`: one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
 A connection belongs to the Windows host or the Android app and is shared by every browser profile
@@ -698,13 +698,16 @@ consent it was made under.
 restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
 or Android profile restored the same way. Such a record holds a counter behind the files its stream
 already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:680-681`: a file of this stream at or above the number just taken, or a
+`src/js/lib/cloudProtocol.js:684-685`: a file of this stream at or above the number just taken, or a
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
-shows them as another device's under the same label. Google Drive allows one name twice, so there the
-list is the only guard: two copies that take the same number at the same moment both keep their
-files, and the next list that shows one ahead of the other parts them.
+shows them as another device's under the same label. Google Drive allows one name twice, so there two
+copies that take the same number at the same moment can both create it, and discovery, which shows a
+number once, could offer only one of them. So with such a provider every backup lists again after its
+create: a copy that finds another file of its own stream and number removes its own, starts a new stream,
+and makes the backup again at once, so each copy's data stays one discovery offers, without waiting for
+that data to change.
 
 **The transport.** Below the protocol is one transport per page, the only way the engine reaches a
 provider, and no token ever crosses it. It is installed through one registration point in the page's
@@ -717,7 +720,8 @@ names the connection the page's consent was for:
 - `read` resolves to an item's bytes. It refuses an item whose stored bytes exceed 32 MiB without
   returning them; the upload cap, by contrast, applies to the envelope before compression.
 - `create` makes a new item and resolves to it. It never knowingly replaces one, refuses a name it can
-  tell is taken, and a create refused with any code but `timeout` never appears later.
+  tell is taken, and a create refused with any code but `timeout` never appears later. A transport whose
+  provider keeps two items under one name, as Google Drive does, says so with `duplicateNames: true`.
 - `delete` removes an item, and one already gone counts as removed.
 
 Item ids are opaque and may equal names, as a CloudKit record's would. A connection id is opaque too,
@@ -798,7 +802,7 @@ read at all is not reported that way, because it may still be intact, and a late
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists
 and reads. Decompression is fed a kibibyte at a time and stops at 32 MiB, at
-`src/js/lib/cloudProtocol.js:582`, so a small file that expands without end costs no more than the
+`src/js/lib/cloudProtocol.js:585`, so a small file that expands without end costs no more than the
 cap, and an altered, foreign or unrecognized file is counted, never trusted or touched. A backup chosen
 there is read and checked again, then restored through the complete restore engine above.
 

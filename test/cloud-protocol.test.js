@@ -175,6 +175,8 @@ function fakeTransport({ duplicates = false, connection = 'connection-one' } = {
   };
   return {
     files, calls, created, faults, store, named,
+    // Said by a transport whose provider keeps two items under one name, so the engine lists after a create.
+    duplicateNames: duplicates,
     get connection() { return host.connection; },
     set connection(value) { host.connection = value; },
     async list(options) {
@@ -798,9 +800,11 @@ test('two installations sharing one stream part ways at the first list that show
   }
 });
 
-// The copy lists before the first makes generation 2, then creates the same name. OneDrive refuses it, so
-// the copy starts a new stream; Google keeps both, so the list is its only guard, and the next list parts
-// them.
+// The copy lists before the first makes generation 2, then creates the same name, with other data. OneDrive
+// refuses it; Google keeps both, and the list after the create finds the other. Either way the copy starts a
+// new stream, and made again at once with the same data, as its coordinator retries, each copy's data is one
+// discovery offers. Before the list after the create, Google kept both, and discovery, which shows a
+// generation once, hid one copy's backup until that copy's data changed (stage 4 review, S4b-1).
 test('a create refused because its name exists starts a new stream, and that number is never tried again', async () => {
   for (const duplicates of [false, true]) {
     const env = harness({ transport: fakeTransport({ duplicates }) });
@@ -813,19 +817,22 @@ test('a create refused because its name exists starts a new stream, and that num
     const theirs = await home.snapshot();
     env.transport.faults.create.push(async () => { await first.upload(theirs); });
     home.mark(3);
+    const mine = await home.snapshot();
     const taken = cloudBackupName(stream, 2);
-    if (!duplicates) {
-      await assert.rejects(second.upload(await home.snapshot()), { code: 'exists' });
+    const made = await second.upload(mine).catch(async (error) => {
+      if (error?.code !== 'exists') throw error;
       const record = await second.record();
       assert.notEqual(record.stream, stream);
       assert.deepEqual([record.nextGeneration, record.validated], [1, []], 'the next backup is the new stream\'s first');
-    } else {
-      assert.equal((await second.upload(await home.snapshot())).stream, stream, 'Google kept both');
-      home.mark(4);
-      await first.upload(await home.snapshot());
+      return second.upload(mine);
+    });
+    const offered = [];
+    for (const entry of (await first.discover(ON)).devices) {
+      for (const copy of [entry.current, entry.previous]) if (copy) offered.push(JSON.parse((await first.fetchBackup(copy, ON)).text).digest);
     }
-    home.mark(5);
-    const made = await second.upload(await home.snapshot());
+    assert.deepEqual([offered.includes(theirs.backup.digest), offered.includes(mine.backup.digest)], [true, true],
+      `duplicates ${duplicates}: each copy's data can be chosen, without waiting for its data to change`);
+    assert.deepEqual(env.transport.generations(stream), [1, 2], 'one file of each number left in the shared stream');
     assert.notEqual(made.stream, stream, `duplicates ${duplicates}: parted`);
     assert.equal(env.transport.created.filter((name) => name === taken).length, 2, 'the shared number was sent once by each, never again');
   }
