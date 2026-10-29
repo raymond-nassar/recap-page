@@ -158,10 +158,20 @@ export async function androidBuild({
   };
 }
 
-export async function iosBuild({ root = ROOT } = {}) {
-  // Reserved TestFlight builds arrive with the signing tooling and its ledger. Until then every iOS
-  // build is a development build, which is also what keeps one from ever being uploaded.
+export async function iosBuild({
+  root = ROOT, number = process.env.RECAP_IOS_BUILD_NUMBER,
+  ledgerPath = process.env.RECAP_IOS_LEDGER ?? join(root, 'packaging', 'ios', 'build-numbers.json'),
+} = {}) {
   const identity = await buildIdentity('ios', DEVELOPMENT_IOS_BUILD, 'development', root);
+  if (number !== undefined) {
+    const { iosReservation } = await import('../ios-release.mjs');
+    const entry = iosReservation(JSON.parse(await readFile(ledgerPath, 'utf8')), number);
+    requireValue(entry.artifact === null && !identity.sourceDirty
+      && entry.productVersion === identity.productVersion && entry.sourceRevision === identity.sourceRevision
+      && entry.sourceTree === identity.sourceTree, 'iOS reservation is sealed or does not match clean source');
+    identity.packageVersion = entry.buildNumber;
+    identity.channel = 'candidate';
+  }
   return { identity, buildNumber: identity.packageVersion };
 }
 

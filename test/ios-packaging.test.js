@@ -13,6 +13,12 @@ import {
 import { ABOUT_BUILD } from '../scripts/lib/release-identity.mjs';
 import { CSP } from '../server.mjs';
 import { rootTokens } from '../scripts/check-spacing.mjs';
+import { execFileSync } from 'node:child_process';
+import {
+  assertIosAppendOnly, candidateIdentity, checkIosHistory, iosReservation, iosUploadRecord, reserveIosBuild,
+  sealIosArtifact, validateIosLedger, verifyIosUpload,
+} from '../scripts/ios-release.mjs';
+import { artifactRecord, iosBuild } from '../scripts/lib/release-identity.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
@@ -20,6 +26,246 @@ const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
+
+const initialIosLedger = () => ({ schemaVersion: 1, retiredThrough: 1, reservations: [] });
+const iosSource = { productVersion: '4.2.0', sourceRevision: 'a'.repeat(40), sourceTree: 'b'.repeat(40) };
+
+test('iOS allocations reject reused, skipped, invalid and exhausted build numbers', () => {
+  const first = reserveIosBuild(initialIosLedger(), iosSource);
+  const second = reserveIosBuild(first, iosSource);
+  assert.deepEqual(second.reservations.map((entry) => entry.buildNumber), [2, 3]);
+  for (const number of [1, 2, 4, '3', 1.5, 10000]) {
+    const bad = structuredClone(second);
+    bad.reservations[1].buildNumber = number;
+    assert.throws(() => validateIosLedger(bad), /increase/);
+  }
+  assert.throws(() => iosReservation(first, '02'), /invalid/);
+  assert.throws(() => iosReservation(first, 3), /not reserved/);
+  assert.throws(() => validateIosLedger({ ...first, secret: 'not permitted' }), /fields/);
+  for (const field of ['productVersion', 'sourceRevision', 'sourceTree']) {
+    assert.throws(() => reserveIosBuild(first, { ...iosSource, [field]: 'invalid' }), /source/);
+  }
+});
+
+test('iOS append-only ledger rejects removal, reassignment, unsealing and changed seals', () => {
+  const first = reserveIosBuild(initialIosLedger(), iosSource);
+  const artifact = { name: 'RecapPage.ipa', bytes: 3, sha256: 'c'.repeat(64) };
+  const record = { ...candidateIdentity(first.reservations[0]), artifact };
+  const sealed = sealIosArtifact(first, record);
+  assertIosAppendOnly(first, sealed);
+  assertIosAppendOnly(sealed, reserveIosBuild(sealed, iosSource));
+  assert.throws(() => assertIosAppendOnly(first, initialIosLedger()), /removed/);
+  assert.throws(() => sealIosArtifact(sealed, record), /already sealed/);
+  assert.throws(() => sealIosArtifact(first, { ...record, channel: 'development' }), /source mismatch/);
+  assert.throws(() => sealIosArtifact(first, { ...record, unexpected: true }), /source mismatch/);
+  assert.throws(() => assertIosAppendOnly(sealed, first), /rewritten/);
+  for (const field of ['sourceRevision', 'sourceTree', 'productVersion']) {
+    const bad = structuredClone(first);
+    bad.reservations[0][field] = field === 'productVersion' ? '4.3.0' : 'd'.repeat(40);
+    assert.throws(() => assertIosAppendOnly(first, bad), /rewritten/);
+  }
+  for (const [field, value] of [['name', 'Other.ipa'], ['bytes', 4], ['sha256', 'd'.repeat(64)]]) {
+    const bad = structuredClone(sealed);
+    bad.reservations[0].artifact[field] = value;
+    assert.throws(() => assertIosAppendOnly(sealed, bad), /rewritten/);
+  }
+  for (const name of ['../RecapPage.ipa', 'RecapPage.zip']) {
+    assert.throws(() => sealIosArtifact(first, { ...record, artifact: { ...artifact, name } }), /seal/);
+  }
+});
+
+test('iOS upload verification refuses an unmerged seal, changed size, same-size digest change and renamed bytes', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'recap-ios-seal-'));
+  try {
+    const ipa = join(directory, 'RecapPage.ipa');
+    await writeFile(ipa, 'abc');
+    const ledger = reserveIosBuild(initialIosLedger(), iosSource);
+    const record = await artifactRecord(ipa, candidateIdentity(ledger.reservations[0]));
+    const sealed = sealIosArtifact(ledger, record);
+    await verifyIosUpload(ipa, record, sealed);
+    await assert.rejects(verifyIosUpload(ipa, record, ledger), /merged seal/);
+    await writeFile(ipa, 'abd');
+    await assert.rejects(verifyIosUpload(ipa, record, sealed), /bytes or filename/);
+    await writeFile(ipa, 'abcd');
+    await assert.rejects(verifyIosUpload(ipa, record, sealed), /bytes or filename/);
+    await writeFile(ipa, 'abc');
+    const renamed = join(directory, 'Other.ipa');
+    await writeFile(renamed, 'abc');
+    await assert.rejects(verifyIosUpload(renamed, record, sealed), /bytes or filename/);
+    await assert.rejects(verifyIosUpload(ipa, { ...record, sourceRevision: 'd'.repeat(40) }, sealed), /merged seal/);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test('committed iOS ledger history and current append preserve prior reservations', () => {
+  checkIosHistory();
+});
+
+test('iOS upload receipts retain the seal and report upload plus exactly 90 days as an estimated expiry', () => {
+  const entry = reserveIosBuild(initialIosLedger(), iosSource).reservations[0];
+  const record = { ...candidateIdentity(entry),
+    artifact: { name: 'RecapPage.ipa', bytes: 3, sha256: 'c'.repeat(64) } };
+  const now = new Date('2026-10-29T08:00:00.000Z');
+  const receipt = iosUploadRecord(record, '123', '124', now);
+  assert.deepEqual(receipt, { ...record, exportRun: '123', uploadRun: '124',
+    uploadedAt: '2026-10-29T08:00:00.000Z', expiresAt: '2027-01-27T08:00:00.000Z',
+    expiryBasis: 'Upload plus 90 days; confirm the actual expiration in TestFlight after processing.' });
+  assert.equal(new Date(receipt.expiresAt) - new Date(receipt.uploadedAt), 90 * 24 * 60 * 60 * 1000);
+  assert.throws(() => iosUploadRecord(record, '../123', '124', now), /run identity/);
+});
+
+test('iOS history refuses rewriting a reservation even when the working ledger looks valid', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-history-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+  };
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'process.env.RECAP_IOS_BUILD_NUMBER;\n');
+    await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
+    commit();
+    const source = { productVersion: '4.2.0', sourceRevision: git('rev-parse', 'HEAD'),
+      sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    const first = reserveIosBuild(initialIosLedger(), source);
+    await writeFile(ledgerPath, JSON.stringify(first));
+    commit();
+    checkIosHistory({ root });
+    await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
+    assert.throws(() => checkIosHistory({ root }), /removed/);
+    // A later valid-looking ledger cannot erase the earlier committed removal.
+    commit();
+    await writeFile(ledgerPath, JSON.stringify(first));
+    commit();
+    assert.throws(() => checkIosHistory({ root }), /removed/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('iOS reservation CLI refuses pre-tooling sources, checks main membership and preserves existing locks', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-reserve-'));
+  const ledger = join(root, 'ledger.json');
+  const repo = join(root, 'repo');
+  const git = (...args) => execFileSync('git', args, { cwd: repo, encoding: 'utf8' }).trim();
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+    return git('rev-parse', 'HEAD');
+  };
+  // A copy of the CLI resolves its repository root from its own location, so it reserves fixture commits.
+  const execute = (...args) => execFileSync(process.execPath, [join(repo, 'scripts', 'ios-release.mjs'), ...args],
+    { encoding: 'utf8', env: { ...process.env, RECAP_IOS_LEDGER: ledger }, stdio: ['ignore', 'pipe', 'pipe'] });
+  try {
+    await mkdir(join(repo, 'scripts', 'lib'), { recursive: true });
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await writeFile(join(repo, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(repo, 'scripts', 'lib', 'release-identity.mjs'), read('scripts/lib/release-identity.mjs'));
+    await writeFile(join(repo, 'scripts', 'ios-release.mjs'), read('scripts/ios-release.mjs'));
+    // Before the ledger lands, the source's own preparation cannot stamp a reserved identity.
+    const preTooling = commit();
+    await writeFile(ledger, JSON.stringify(initialIosLedger()));
+    assert.throws(() => execute('reserve', preTooling), /predates iOS reservation support/);
+    assert.deepEqual(JSON.parse(await readFile(ledger, 'utf8')), initialIosLedger());
+    await mkdir(join(repo, 'packaging', 'ios'), { recursive: true });
+    await writeFile(join(repo, 'packaging', 'ios', 'build-numbers.json'), JSON.stringify(initialIosLedger()));
+    const main = commit();
+    await writeFile(`${ledger}.lock`, 'fixture');
+    assert.throws(() => execute('reserve', main), /EEXIST/);
+    assert.equal(await readFile(`${ledger}.lock`, 'utf8'), 'fixture');
+    assert.deepEqual(JSON.parse(await readFile(ledger, 'utf8')), initialIosLedger());
+    await rm(`${ledger}.lock`);
+    execute('reserve', main);
+    execute('reserve', main);
+    const reserved = validateIosLedger(JSON.parse(await readFile(ledger, 'utf8')));
+    assert.deepEqual(reserved.reservations.map((item) => item.buildNumber), [2, 3]);
+    assert.ok(reserved.reservations.every((item) => item.sourceRevision === main));
+    await assert.rejects(readFile(`${ledger}.lock`), { code: 'ENOENT' });
+    await assert.rejects(readFile(`${ledger}.next`), { code: 'ENOENT' });
+    assert.throws(() => execute('reserve', main.slice(0, 8)), /Usage/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('iOS history refuses a committed reservation whose source predates reservation support', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-pretooling-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+  };
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    // The shape of a main commit before the tooling: a version, an old iosBuild and no ledger.
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'export const iosBuild = 1;\n');
+    commit();
+    const source = { productVersion: '4.2.0', sourceRevision: git('rev-parse', 'HEAD'),
+      sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(initialIosLedger(), source)));
+    assert.throws(() => checkIosHistory({ root }), /predates iOS reservation support/);
+    commit();
+    assert.throws(() => checkIosHistory({ root }), /predates iOS reservation support/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('reserved iOS preparation identity requires matching clean source and an unsealed reservation', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'recap-ios-source-'));
+  const ledgerPath = join(directory, 'ledger.json');
+  const root = join(directory, 'source');
+  await mkdir(root);
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    git('add', 'package.json');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    const source = { productVersion: '4.2.0', sourceRevision: git('rev-parse', 'HEAD'),
+      sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    const ledger = reserveIosBuild(initialIosLedger(), source);
+    await writeFile(ledgerPath, JSON.stringify(ledger));
+    const built = await iosBuild({ root, number: '2', ledgerPath });
+    assert.equal(built.buildNumber, 2);
+    assert.deepEqual(built.identity, candidateIdentity(ledger.reservations[0]));
+    for (const changed of [
+      { ...ledger.reservations[0], sourceRevision: 'c'.repeat(40) },
+      { ...ledger.reservations[0], sourceTree: 'c'.repeat(40) },
+      { ...ledger.reservations[0], productVersion: '4.3.0' },
+      { ...ledger.reservations[0], artifact: { name: 'a.ipa', bytes: 1, sha256: 'c'.repeat(64) } },
+    ]) {
+      await writeFile(ledgerPath, JSON.stringify({ ...ledger, reservations: [changed] }));
+      await assert.rejects(iosBuild({ root, number: '2', ledgerPath }), /sealed or does not match/);
+    }
+    await writeFile(ledgerPath, JSON.stringify(ledger));
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0","modified":true}');
+    await assert.rejects(iosBuild({ root, number: '2', ledgerPath }), /clean source/);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
 
 let scratch;
 let output;
