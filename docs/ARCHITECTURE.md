@@ -706,8 +706,8 @@ shows them as another device's under the same label. Google Drive allows one nam
 copies that take the same number at the same moment can both create it, and discovery, which shows a
 number once, could offer only one of them. So with such a provider every backup lists again after its
 create: a copy that finds another file of its own stream and number removes its own, starts a new stream,
-and makes the backup again at once, so each copy's data stays one discovery offers, without waiting for
-that data to change.
+and makes the backup again within seconds, when its coordinator retries, so each copy's data stays one
+discovery offers, without waiting for that data to change.
 
 **The transport.** Below the protocol is one transport per page, the only way the engine reaches a
 provider, and no token ever crosses it. It is installed through one registration point in the page's

@@ -802,9 +802,9 @@ test('two installations sharing one stream part ways at the first list that show
 
 // The copy lists before the first makes generation 2, then creates the same name, with other data. OneDrive
 // refuses it; Google keeps both, and the list after the create finds the other. Either way the copy starts a
-// new stream, and made again at once with the same data, as its coordinator retries, each copy's data is one
-// discovery offers. Before the list after the create, Google kept both, and discovery, which shows a
-// generation once, hid one copy's backup until that copy's data changed (stage 4 review, S4b-1).
+// new stream, and made again with the same data when its coordinator retries, within seconds, each copy's
+// data is one discovery offers. Before the list after the create, Google kept both, and discovery, which
+// shows a generation once, hid one copy's backup until that copy's data changed (stage 4 review, S4b-1).
 test('a create refused because its name exists starts a new stream, and that number is never tried again', async () => {
   for (const duplicates of [false, true]) {
     const env = harness({ transport: fakeTransport({ duplicates }) });
