@@ -20,9 +20,6 @@ const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
-const appSources = ['AppAssets', 'AppDelegate', 'AppSchemeHandler', 'AssetResponder', 'DebugSupport',
-  'NavigationCoordinator', 'NavigationPolicy', 'SceneDelegate', 'WebViewController', 'WebViewFactory']
-  .map((name) => ({ name, text: read(`packaging/ios/RecapPage/${name}.swift`) }));
 
 let scratch;
 let output;
@@ -37,6 +34,25 @@ async function filesUnder(directory, prefix = '') {
     else found.push(path);
   }
   return found.sort();
+}
+
+// The app target is a synchronized folder group with no list of files of its own, so a Swift file
+// added to its folder is compiled into the app with no project edit. The checks that read the app's
+// code walk the same folder for the same reason. Each use asserts the walk found the files it names,
+// so a walk that comes back empty fails instead of passing with nothing read.
+const appSources = (await filesUnder(path('packaging/ios/RecapPage')))
+  .filter((file) => file.endsWith('.swift'))
+  .map((file) => ({ name: file.slice(0, -'.swift'.length), text: read(`packaging/ios/RecapPage/${file}`) }));
+
+function appSwift() {
+  assert.ok(appSources.some(({ name }) => name === 'DebugSupport'), 'the walk of the app folder found DebugSupport.swift');
+  return appSources;
+}
+
+function appSource(name) {
+  const source = appSwift().find((file) => file.name === name);
+  assert.ok(source, `the walk of the app folder found ${name}.swift`);
+  return source.text;
 }
 
 function prose(html) {
@@ -232,7 +248,7 @@ test('every permanent iOS name agrees with the identity file', async () => {
   const plist = read('packaging/ios/RecapPage-Info.plist');
   assert.equal(/<key>CFBundleDisplayName<\/key>\s*<string>([^<]+)<\/string>/.exec(plist)?.[1], identity.displayName);
   assert.doesNotMatch(plist, /UIRequiresFullScreen/);
-  const assets = appSources.find(({ name }) => name === 'AppAssets').text;
+  const assets = appSource('AppAssets');
   assert.equal(/static let permanentOrigin = "([^"]+)"/.exec(assets)?.[1], identity.origin);
 });
 
@@ -267,7 +283,8 @@ test('the privacy manifest declares exactly the required-reason APIs the app cal
   assert.match(manifest, /<key>NSPrivacyTrackingDomains<\/key>\s*<array\/>/);
   assert.match(manifest, /<key>NSPrivacyCollectedDataTypes<\/key>\s*<array\/>/);
   const declared = [...manifest.matchAll(/<string>(NSPrivacyAccessedAPICategory\w+)<\/string>/g)].map((match) => match[1]).sort();
-  const used = [...REQUIRED_REASON].filter(([, pattern]) => appSources.some(({ text }) => pattern.test(text)))
+  const sources = appSwift();
+  const used = [...REQUIRED_REASON].filter(([, pattern]) => sources.some(({ text }) => pattern.test(text)))
     .map(([category]) => category).sort();
   assert.deepEqual(declared, used);
 });
@@ -287,20 +304,33 @@ function debugLines(text) {
   return { lines, inside };
 }
 
-test('Debug-only test surfaces cannot reach a Release build', () => {
-  const debugSupport = appSources.find(({ name }) => name === 'DebugSupport').text.trim().split(/\r?\n/);
+// What has to stay in Debug builds: the Debug-only surfaces themselves, and any call that reaches a
+// method by its name. WebKit's private test hooks are reached that way, and a private selector in the
+// shipped binary is a use of non-public API, so the dynamic call and the private name are each held
+// to Debug wherever they appear.
+const DEBUG_ONLY = [
+  ['a Debug-only surface', /DebugSupport|RECAP_PROBE|RECAP_ISOLATE|XCTest/],
+  ['a method called by name', /\bNSSelectorFromString\b|\bperform\s*\(/],
+  ['a private selector name', /"_[A-Za-z_][\w:]*"/],
+];
+
+test('Debug-only test surfaces and methods called by name cannot reach a Release build', () => {
+  const debugSupport = appSource('DebugSupport').trim().split(/\r?\n/);
   assert.equal(debugSupport[0], '#if DEBUG', 'the whole file is inside one Debug block');
   assert.equal(debugSupport.at(-1), '#endif');
   assert.equal(debugSupport.filter((line) => /^\s*#endif\b/.test(line)).length, 1);
   let uses = 0;
-  for (const { name, text } of appSources.filter(({ name: file }) => file !== 'DebugSupport')) {
+  const outside = [];
+  for (const { name, text } of appSwift().filter(({ name: file }) => file !== 'DebugSupport')) {
     const { lines, inside } = debugLines(text);
     lines.forEach((line, index) => {
-      if (!/DebugSupport|RECAP_PROBE|RECAP_ISOLATE|XCTest/.test(line)) return;
+      const kinds = DEBUG_ONLY.filter(([, pattern]) => pattern.test(line)).map(([kind]) => kind);
+      if (!kinds.length) return;
       uses += 1;
-      assert.ok(inside.has(index), `${name}.swift line ${index + 1} uses a Debug-only surface outside #if DEBUG`);
+      if (!inside.has(index)) outside.push(`${name}.swift line ${index + 1}: ${kinds.join(' and ')} outside #if DEBUG`);
     });
   }
+  assert.deepEqual(outside, []);
   assert.ok(uses >= 3, `found ${uses} uses of the Debug-only surfaces, so this would barely check`);
   const all = configurations(project);
   const release = [...all.values()].filter(({ name }) => name === 'Release');

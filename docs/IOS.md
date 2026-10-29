@@ -69,8 +69,10 @@ The tests prove, on both runtimes:
 - how much saved data fits, as described under [Storage capacity](#storage-capacity).
 
 The tests block every http and https request, so a test run never contacts a third party. That
-blocking, and the probe interface the UI tests read results through, exist only in Debug builds; a
-repository test fails if any of it, or any use of it, could reach a Release build.
+blocking, and the probe interface the UI tests read results through, exist only in Debug builds. A
+repository test reads every Swift file in the app's folder and fails if any of it, any use of it, or
+any call that reaches a method by its name, which is how WebKit's private test hooks are reached,
+could reach a Release build.
 
 On a Mac, run `npm run ios:prepare` and open `packaging/ios/RecapPage.xcodeproj` in Xcode 26.
 
