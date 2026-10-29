@@ -19881,6 +19881,21 @@ async function cloudDatabases(page) {
   return page.evaluate(async () => (await indexedDB.databases()).map((entry) => entry.name).filter((name) => name === 'mrt-cloud-backup-v1'));
 }
 
+// About's privacy statement as it is shown: the Your data paragraph as read, and which variants of the
+// switched sentences are showing (P02-T06), read from their hidden state because the request list sits in
+// a closed details element, where innerText would also read the hidden variant.
+async function aboutPrivacy(page) {
+  return page.evaluate(() => {
+    const view = document.querySelector('#view-about');
+    const heading = [...view.querySelectorAll('h3')].find((node) => node.textContent === 'Your data');
+    return {
+      data: heading.nextElementSibling.innerText.replace(/\s+/g, ' ').trim(),
+      cloud: [...view.querySelectorAll('[data-cloud-copy="on"]')].map((node) => !node.hidden),
+      local: [...view.querySelectorAll('[data-cloud-copy="off"]')].map((node) => !node.hidden),
+    };
+  });
+}
+
 SCENARIOS.push({
   id: 'cloud-dormant',
   title: 'a build without cloud backup shows no card, asks the server once when Backup & settings opens, and stores nothing',
@@ -19919,6 +19934,9 @@ SCENARIOS.push({
       (await cloudCard(page)).hidden && (await cloudDatabases(page)).length === 0);
     t.check('the provider\'s logo is never downloaded while the card it sits in is hidden',
       logos.length === 0, JSON.stringify(logos));
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('the privacy promise keeps the words a build without cloud backup has always said',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', subtitle);
     await click(page, '#btn-wipe');
     await page.waitForSelector('#ask[open]');
     const body = await page.$eval('#ask-body', (node) => node.textContent);
@@ -19929,6 +19947,20 @@ SCENARIOS.push({
     t.check('the erase question says nothing of cloud backup, and erasing asks nothing and stores nothing',
       !/cloud/i.test(body) && asked.length === 1 && (await cloudDatabases(page)).length === 0,
       JSON.stringify({ asked, body: body.slice(-160) }));
+
+    // About carries the full privacy statement, so it asks too: the same one request, answered 404.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    for (const end = Date.now() + 10_000; answered.length < 2 && Date.now() < end;) {
+      await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 100); }));
+    }
+    await page.evaluate(() => new Promise((resolve) => { setTimeout(resolve, 500); }));
+    const about = await aboutPrivacy(page);
+    t.check('opening About asks once more, answered 404, and its privacy statement keeps the words it has always had',
+      JSON.stringify(answered) === '[404,404]' && asked.length === 2
+        && about.data.endsWith('Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.')
+        && about.cloud.length === 2 && about.cloud.every((shown) => !shown) && about.local.every(Boolean),
+      JSON.stringify({ asked, answered, about }));
   },
 });
 
@@ -19952,6 +19984,9 @@ SCENARIOS.push({
     await seedFixtureState(page);
     await open(page, '/#/data');
     await page.waitForSelector('#cloud-backup:not([hidden])');
+    const subtitle = await page.$eval('#view-data .head .sub', (node) => node.innerText.trim());
+    t.check('a build with cloud backup says so in the promise at the top of Backup & settings, before anyone connects',
+      subtitle === 'Your reading progress lives in this browser, at this exact address, and is sent only to your own OneDrive, if you turn on cloud backup below.', subtitle);
     // The logo is lazy, so it loads once the card is shown and near the window, and not before.
     await page.$eval('#cloud-backup', (node) => node.scrollIntoView({ block: 'center' }));
     const loaded = await page.waitForFunction(() => {
@@ -20123,6 +20158,18 @@ SCENARIOS.push({
     const gone = await cloudCard(page);
     t.check('disconnecting signs out for every profile and offers the sign-in again',
       fixture.host.state === 'not-connected' && gone.signIn && !gone.auto && !gone.discovery, JSON.stringify(gone));
+
+    // About asks the host too, so its privacy statement names cloud backup, and what it sends and to whom.
+    await open(page, '/#/about');
+    await page.waitForSelector('#view-about:not([hidden])');
+    const shown = await page.waitForFunction(() => [...document.querySelectorAll('#view-about [data-cloud-copy="on"]')].every((node) => !node.hidden),
+      { timeout: 10000 }).then(() => true, () => false);
+    const about = await aboutPrivacy(page);
+    t.check('About\'s privacy statement takes its cloud backup words, and its request list adds what cloud backup sends',
+      shown && about.cloud.length === 2 && about.cloud.every(Boolean) && about.local.every((visible) => !visible)
+        && about.data.includes('Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive')
+        && !about.data.includes('never sent anywhere'),
+      JSON.stringify(about));
     t.check('the journey raised no page errors', errors.length === 0, JSON.stringify(errors));
   },
 });

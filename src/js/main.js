@@ -81,7 +81,7 @@ import {
 import { createSavedChanges, observeSavedWrites } from './lib/cloudCoordinator.js';
 import { CLOUD_BACKUP_CHANNEL, createCloudBackup } from './lib/cloudBackup.js';
 import { createCloudHostTransport } from './lib/cloudHostTransport.js';
-import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView } from './views/cloud.js';
+import { cloudEraseNote, cloudEraseOutcome, createCloudBackupView, renderCloudCopy } from './views/cloud.js';
 
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 // Made before any owner of saved data, so the first write any of them attempts already passes its
@@ -1563,10 +1563,10 @@ function showView(next, { focus = true, push = false, at = null } = {}) {
   // screen rather than before reaching it, so that route repaints at its own call site.
   if (next === 'data') {
     recoveryView.renderSalvage();
-    // Asked every time Backup & settings opens: one request, which a build without cloud backup answers
-    // 404, and the card stays hidden there (#810).
+    // Asked every time Backup & settings or About opens: one request, which a build without cloud backup
+    // answers 404, so the card stays hidden and the privacy copy keeps its local words (#810, P02-T06).
     void cloudBackup.enter();
-  }
+  } else if (next === 'about') void cloudBackup.refresh();
   if (homeAt) $('#home-categories').scrollIntoView({ block: 'start' });
   else window.scrollTo({ top: 0 });
   revealMobileNavigation();
@@ -2388,7 +2388,7 @@ const cloudBackup = createCloudBackup({
   isBlocked: () => completeRestore.state.phase !== 'open',
   savedChanges,
   channel: typeof globalThis.BroadcastChannel === 'function' ? new globalThis.BroadcastChannel(CLOUD_BACKUP_CHANNEL) : null,
-  onChange: (model) => cloudBackupView.render(model),
+  onChange: (model) => { cloudBackupView.render(model); renderCloudCopy(model); },
 });
 
 // The Cloud backup card. A restore from the account goes through the complete restore engine, as a file's

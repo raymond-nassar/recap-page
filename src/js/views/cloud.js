@@ -86,6 +86,17 @@ export function cloudEraseOutcome(result) {
   return ` Cloud backup could not be fully turned off. ${result.problems.join(' ')} Check Cloud backup in Backup & settings.`;
 }
 
+// The privacy sentences, wherever they are, in the variant true of this build (P02-T06). The markup carries
+// both: data-cloud-copy="off" is what a build without cloud backup says, and "on" starts hidden. Only an
+// answer from the host, or this browser's own consent, shows the "on" words, so a build that never learns
+// it has cloud backup says exactly what it said before cloud backup existed.
+export function renderCloudCopy(model, root = globalThis.document) {
+  const on = Boolean(model?.shown);
+  for (const node of root?.querySelectorAll?.('[data-cloud-copy]') ?? []) {
+    node.hidden = (node.dataset?.cloudCopy === 'on') !== on;
+  }
+}
+
 export function createCloudBackupView({
   el, elements, askConfirm, askConfirmChoice, notify, getModel,
   onConnect, onTurnOn, onTurnOff, onDiscover, onFetch, onRestore, onDeleteOwn, onDisconnect, onRetry, onFinished,

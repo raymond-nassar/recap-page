@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { createDataView, eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
 import {
-  cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView,
+  cloudBackupStatus, cloudCardStatus, cloudEraseNote, createCloudBackupView, renderCloudCopy,
 } from '../src/js/views/cloud.js';
 import { createEmptyState, createList, exportBackup } from '../src/js/lib/model.js';
 
@@ -662,6 +662,25 @@ test('the cloud card imports nothing that stores, sends or restores', () => {
   const source = readFileSync(join(ROOT, 'src/js/views/cloud.js'), 'utf8');
   const imported = [...source.matchAll(/\bfrom\s+['"]([^'"]+)['"]/g)].map((match) => match[1]);
   assert.deepEqual(imported, ['./data.js'], 'only the shared restore wording');
+});
+
+// The privacy sentences' two variants (P02-T06): the cloud words only on the host's answer or this browser's
+// own consent, which is what shown means, and the words a build without cloud backup says otherwise.
+test('the privacy sentences take their cloud variant only where cloud backup is', () => {
+  const nodes = ['off', 'on', 'off', 'on'].map((cloudCopy) => ({ dataset: { cloudCopy }, hidden: cloudCopy === 'on' }));
+  const asked = [];
+  const root = { querySelectorAll: (selector) => { asked.push(selector); return nodes; } };
+  const hidden = () => nodes.map((node) => node.hidden);
+  renderCloudCopy({ ...CLOUD, shown: false }, root);
+  assert.deepEqual(hidden(), [false, true, false, true], 'a build without cloud backup keeps its own words');
+  renderCloudCopy({ ...CLOUD, host: 'not-connected', account: null }, root);
+  assert.deepEqual(hidden(), [true, false, true, false], 'a build with cloud backup says so before anyone connects');
+  renderCloudCopy({ ...CLOUD, shown: false }, root);
+  assert.deepEqual(hidden(), [false, true, false, true], 'and switches back when the host stops answering for it');
+  renderCloudCopy(null, root);
+  assert.deepEqual(hidden(), [false, true, false, true], 'no model reads as no cloud backup');
+  assert.deepEqual([...new Set(asked)], ['[data-cloud-copy]']);
+  assert.doesNotThrow(() => renderCloudCopy({ ...CLOUD }, null), 'a page without the markup is left alone');
 });
 
 // -- helpers --

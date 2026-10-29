@@ -103,28 +103,42 @@ function appFiles() {
 }
 
 // The reader has just extracted a folder and is looking at it. This is the only thing in the
-// archive written to be read before anything is run.
-const readMe = [
-  'Recap Page',
-  '',
-  'To start: double-click "Start on Windows.cmd" in this folder.',
-  '',
-  'A small window opens and stays open, and your browser opens the tracker by itself.',
-  'That window is the tracker running, so leave it alone until you are finished.',
-  'To stop, click that window and press Ctrl+C.',
-  '',
-  'Nothing needs installing. Everything the tracker needs is in this folder, including',
-  'the runtime, which is in "runtime". Nothing is uploaded anywhere and no account is',
-  'needed. Your reading progress is kept by your browser, so stopping the tracker never',
-  'loses it.',
-  '',
-  'Windows may ask you to confirm the first time, because this folder arrived from the',
-  'internet. That prompt is expected.',
-  '',
-  'The tracker itself is covered by LICENSE. The bundled runtime is Node.js, and its own',
-  'licence, covering everything inside it, is runtime\\LICENSE-node.txt.',
-  '',
-].join('\r\n');
+// archive written to be read before anything is run. Its privacy sentence is true of the build it ships
+// in, as the app's own is (P02-T06): a package given a cloud client configuration has cloud backup, and
+// says what that sends and where, while one without says nothing is uploaded, exactly as before.
+function readMeFor({ cloudBackup = false } = {}) {
+  return [
+    'Recap Page',
+    '',
+    'To start: double-click "Start on Windows.cmd" in this folder.',
+    '',
+    'A small window opens and stays open, and your browser opens the tracker by itself.',
+    'That window is the tracker running, so leave it alone until you are finished.',
+    'To stop, click that window and press Ctrl+C.',
+    '',
+    ...(cloudBackup ? [
+      'Nothing needs installing. Everything the tracker needs is in this folder, including',
+      'the runtime, which is in "runtime". No Recap Page account is needed, and what you',
+      'save is uploaded only if you turn on cloud backup, and then only to your own',
+      'OneDrive. Your reading progress is kept by your browser, so stopping the tracker',
+      'never loses it.',
+    ] : [
+      'Nothing needs installing. Everything the tracker needs is in this folder, including',
+      'the runtime, which is in "runtime". Nothing is uploaded anywhere and no account is',
+      'needed. Your reading progress is kept by your browser, so stopping the tracker never',
+      'loses it.',
+    ]),
+    '',
+    'Windows may ask you to confirm the first time, because this folder arrived from the',
+    'internet. That prompt is expected.',
+    '',
+    'The tracker itself is covered by LICENSE. The bundled runtime is Node.js, and its own',
+    'licence, covering everything inside it, is runtime\\LICENSE-node.txt.',
+    '',
+  ].join('\r\n');
+}
+
+const readMe = readMeFor();
 
 async function main() {
   // Asked for by argument only, and never by default: see scripts/lib/cloud-client.mjs.
@@ -163,7 +177,7 @@ async function main() {
       await mkdir(dirname(destination), { recursive: true });
       await copyFile(join(ROOT, file), destination);
     }
-    await writeFile(join(payload, 'Read this first.txt'), readMe);
+    await writeFile(join(payload, 'Read this first.txt'), readMeFor({ cloudBackup: cloudClient !== null }));
     if (cloudClient) await writeFile(join(payload, cloudClient.name), cloudClient.bytes);
     await writeBuildIdentity(join(payload, 'src'), identity);
 
@@ -192,6 +206,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 }
 
 export {
-  NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, fetchRuntime,
+  NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, readMeFor, fetchRuntime,
   runtimeArchiveName,
 };
