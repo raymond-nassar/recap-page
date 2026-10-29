@@ -21,6 +21,8 @@ const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
 const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
 const terminationTests = read('packaging/ios/RecapPageTests/TerminationTests.swift');
 const presentationTests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
+const launchTests = read('packaging/ios/RecapPageUITests/LaunchUITests.swift');
+const debugSupport = read('packaging/ios/RecapPage/DebugSupport.swift');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
@@ -422,6 +424,15 @@ test('the Swift code reaches WebKit only through methods iOS 18 has', async () =
 test('the termination test fails visibly if the pinned WebKit hook is absent', () => {
   assert.match(terminationTests, /guard webView\.responds\(to: kill\) else \{\s*XCTFail\("The pinned WebKit is missing _killWebContentProcess; termination behavior was not exercised\."\)\s*return\s*\}/);
   assert.doesNotMatch(terminationTests, /XCTSkip(?:Unless|If)/);
+});
+
+test('T05 pins all six termination windows and the fifth journal-put recovery state', () => {
+  assert.match(launchTests, /for afterBackground in \[false, true\] \{\s*for delayMs in \[0, 250, 750\]/);
+  assert.match(launchTests, /observedHash == beforeHash \|\| observedHash == afterHash/);
+  assert.match(debugSupport, /this\.name === 'journal' && journalPuts === 5/);
+  assert.match(launchTests, /XCTAssertEqual\(beforeKill\["journalPhase"\] as\? String,\s*"applying"/);
+  assert.match(launchTests, /XCTAssertEqual\(\s*beforeKill\["journalWrites"\] as\? Int,\s*2/);
+  assert.match(launchTests, /XCTAssertEqual\(\s*recovered\["stateTableRow"\] as\? String,\s*"none or active \/ matching \/ anything else"/s);
 });
 
 test('the iOS overlay names only shared design tokens, never a raw color', () => {

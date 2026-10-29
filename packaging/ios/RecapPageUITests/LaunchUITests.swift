@@ -413,6 +413,11 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue((beforeKill["report"] as? String ?? "").contains("stopped part way"))
         XCTAssertTrue((beforeKill["marker"] as? String ?? "").hasPrefix("active:"))
         XCTAssertEqual(beforeKill["journalKind"] as? String, "valid")
+        XCTAssertEqual(beforeKill["journalPhase"] as? String, "applying")
+        XCTAssertEqual(
+            beforeKill["journalWrites"] as? Int,
+            2,
+            "the fifth journal put fails after two restore writes are checkpointed")
         XCTAssertEqual(beforeKill["decisionKind"] as? String, "recovery")
         XCTAssertEqual(beforeKill["recoveryKind"] as? String, "interrupted")
         XCTAssertTrue(["absent", "active"].contains(recovered["markerState"] as? String ?? ""))
