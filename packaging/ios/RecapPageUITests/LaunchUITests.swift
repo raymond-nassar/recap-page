@@ -227,6 +227,13 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
         let fallback = app.links["Continue manually"]
         XCTAssertTrue(fallback.waitForExistence(timeout: 30), "the failed lookup leaves a manual fallback link")
+        let ready = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "isHittable == true"),
+            object: fallback)
+        XCTAssertEqual(
+            XCTWaiter.wait(for: [ready], timeout: 30),
+            .completed,
+            "the failed-lookup fallback link is hittable")
         fallback.tap()
         let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
