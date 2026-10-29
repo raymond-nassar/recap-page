@@ -1262,6 +1262,7 @@ function openIssueFocus(issueId, context, opener) {
   history.replaceState({ ...current, issueFocusOpener: opener }, '', location.href);
   issueRoute = route;
   history.pushState(null, '', href);
+  acknowledgedHash = location.hash;
   if ($('#preview').open) $('#preview').close();
   showView('issue', { focus: true });
 }
@@ -1346,19 +1347,20 @@ async function newEmptyList() {
 // Every section the rail can reach now lives in lib/route.js, so that one list backs both what
 // showView can display and what a URL can address.
 
-// The URL is written from the state, never the other way round, except at boot and on a Back press.
+// The URL is written from the state, never the other way round, except at boot and on hash navigation.
 // Nothing may be written before boot has had its chance to read the incoming hash: renderAll runs
 // once before the route is restored, and an ungated sync there would overwrite the very address the
 // reader arrived on.
 let routeReady = false;
 let applyingRoute = false;
+let acknowledgedHash = null;
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
 // to leave the view, so every passive sync replaces.
 //
 // Both branches write history rather than assigning location.hash, and that is the difference that
-// lets a reading filter be pushed. Assigning the hash fires hashchange synchronously, which re-runs
+// lets a reading filter be pushed. Assigning the hash queues hashchange in a later task, which re-runs
 // applyRoute and moves focus to the view heading. Every caller that pushes a view already reached
 // showView with focus of its own, so that second pass was redundant for them; for a filter radio it
 // would have thrown the keyboard out of the control the reader just pressed, which is the defect
@@ -1370,6 +1372,9 @@ let applyingRoute = false;
 
 function syncHash({ push = false } = {}) {
   if (!routeReady || applyingRoute) return;
+  // The address can lead the view until hashchange arrives. A redraw in that gap must not
+  // overwrite the destination, especially the history entry Back has just returned to.
+  if (!push && location.hash !== acknowledgedHash) return;
   // While a traversal is open the address lags the rows on purpose: the entry on top is the one the
   // reader arrived on and Back has to return to it. A passive sync fired by something else in that
   // window would otherwise replace it with the half-chosen address and destroy it. That is reachable
@@ -1405,6 +1410,7 @@ function syncHash({ push = false } = {}) {
     history.pushState(null, '', next);
   }
   else history.replaceState(null, '', next);
+  acknowledgedHash = location.hash;
 }
 
 // Adopting the list first means the redirect inside showView sees the list the URL asked for
@@ -2930,6 +2936,7 @@ export function boot() {
     // The address bar is now allowed to be written, but not before: renderAll has just run once, and
     // an ungated sync inside it would have overwritten the incoming hash before it was read.
     routeReady = true;
+    acknowledgedHash = location.hash;
     if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
     else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
   };
@@ -2953,6 +2960,7 @@ export function boot() {
   // Focus does move here, unlike at boot, because a Back press is a navigation the reader made. A
   // screen reader that is told nothing after it has no way to know the page changed under it.
   window.addEventListener('hashchange', () => {
+    acknowledgedHash = location.hash;
     const route = parseRoute(location.hash);
     if (route) applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER });
   });
