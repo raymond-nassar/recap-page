@@ -948,6 +948,10 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .facts { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: 0 0 var(--space-7); }
 .facts > div { min-width: 0; }
 .facts dt { font-size: var(--t-caption); letter-spacing: .11em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+/* The record's note sits inside its term so it is read with the label it qualifies, and there it
+   inherited the label's capitals, tracking and weight (#978). Its one sentence took three lines of
+   spaced capitals on a 360px Android screen, measured in Edge, and takes two set as a sentence. */
+.facts dt > .rail-hint { text-transform: none; letter-spacing: normal; font-weight: 400; }
 .facts dd { margin: var(--space-1) 0 0; font-size: var(--t-body); font-weight: 600; }
 .facts dd.ok { color: var(--teal); }
 .facts dd.warn { color: var(--amber); }
