@@ -67,6 +67,10 @@ export function cloudCardStatus(model, { when = longTime, at = shortTime } = {})
         return model.reason ? `${account} ${model.reason}`
           : `${account} ${name} was connected again since this browser agreed to back up, so check the backups below before turning automatic backup on again.`;
       }
+      // Consent an erase set aside (stage 3 review, S3a-7); the owner's words, approved 2026-10-28.
+      if (model.suspended) {
+        return `${account} Automatic backup stopped while this browser's data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.`;
+      }
       if (!model.on) return account;
       return `${account} ${cloudBackupStatus(model.backup, { name, when, at })}`;
     }
@@ -79,7 +83,7 @@ export function cloudCardWarns(model) {
   const { host } = model;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
-  if (host === 'connected') return Boolean(model.askedAgain || (model.on && model.backup.phase === 'failed'));
+  if (host === 'connected') return Boolean(model.askedAgain || model.suspended || (model.on && model.backup.phase === 'failed'));
   return false;
 }
 

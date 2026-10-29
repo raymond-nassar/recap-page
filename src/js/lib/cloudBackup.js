@@ -61,6 +61,11 @@ export function createCloudBackup({
   let wasRunning = false;
   // Whether the erase question named the disconnect, as the card read the host when it was asked.
   let promised = false;
+  // The erase's own part of the record: its setting consent aside under the worker lock, whether it did,
+  // and the lock's release (stage 3 review, S3a-7).
+  let erasing = null;
+  let setAside = false;
+  let releaseErase = null;
   let model = null;
 
   const enabled = () => status?.enabled === true;
@@ -86,6 +91,9 @@ export function createCloudBackup({
       agreed: agreed !== null,
       on: isOn(),
       askedAgain: Boolean(agreed && linked && !isOn()),
+      // Consent an erase set aside and has not put back or forgotten: running in another tab, or a page
+      // that died during it, which nothing resumes by itself (stage 3 review, S3a-7).
+      suspended: Boolean(record && record.consent === null && record.suspended),
       hasStream: record !== null,
       recordProblem,
       backup: coordinator?.state ?? OFF,
@@ -313,28 +321,57 @@ export function createCloudBackup({
       return model;
     },
 
-    // Before an erase writes anything, so the erased state is never backed up as the newest copy.
+    // Before an erase writes anything, so the erased state is never backed up as the newest copy: this
+    // page's backups stop at once, then the worker lock is taken, after any backup another tab has under
+    // way, and this browser's consent is set aside in the shared record. Until the erase forgets or
+    // restores the record, no tab's backup runs and none can take a number, even one where backups are
+    // turned on meanwhile (stage 3 review, S3a-7). A page that dies during the erase releases the lock
+    // with it and leaves consent set aside, which the card says. Callers await this before the first write.
     beforeErase() {
       held = true;
       wasRunning = Boolean(coordinator?.active);
       promised = enabled() && DISCONNECT_NAMED.has(status.state);
       coordinator?.stop();
+      erasing = (async () => {
+        const exists = await recordExists();
+        if (!(exists === true || (exists === null && (record !== null || enabled())))) return;
+        try {
+          releaseErase = await protocol.hold();
+          setAside = await protocol.suspendConsent();
+        } catch {
+          // A record that cannot be read or written is forgotten by the erase, or reported if it cannot be.
+        }
+        if (setAside) announce();
+      })();
+      return erasing;
     },
 
     // After the erase: when it erased the reading data, this browser forgets cloud backup and the host
     // its sign-in, for every profile, as the erase question said. When it did not, backups go on.
     async afterErase(erased) {
+      // Whatever beforeErase started finishes first, so the lock and the consent put back are its own.
+      await erasing;
+      erasing = null;
       const resume = wasRunning;
       const named = promised;
+      const restore = setAside;
+      const release = releaseErase ?? (() => {});
       wasRunning = false;
       promised = false;
+      setAside = false;
+      releaseErase = null;
       if (!erased) {
+        // Nothing was erased: the same consent goes back before any tab's backup may run again.
+        if (restore) await protocol.resumeConsent().catch(() => {});
+        release();
         held = false;
-        if (resume) await refresh();
+        if (restore) announce();
+        if (resume || restore) await refresh();
         return { ok: true, problems: [] };
       }
       // A build without cloud backup, in a browser that never had it: nothing to forget, and no request.
       if (!enabled() && record === null && await recordExists() !== true) {
+        release();
         held = false;
         return { ok: true, problems: [] };
       }
@@ -352,6 +389,8 @@ export function createCloudBackup({
           await protocol.withdrawConsent().catch(() => {});
         }
       }
+      // Forgotten, or its consent set aside or withdrawn: no tab can take a number now, so the lock goes.
+      release();
       // Promised in the question, or this browser had cloud backup: a host that does not answer now, or
       // answers that this build has none, has not been disconnected, and saying nothing would leave that
       // promise silently broken (stage 3 review, S3a-1).

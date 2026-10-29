@@ -785,10 +785,18 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
 // app says, not from a copy of it.
 test('the cloud backup sentences from stage 3 are the owner\'s approved words', async () => {
   const { ERASE_HOST_SILENT } = await import('../src/js/lib/cloudBackup.js');
-  const { cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  const { cloudCardStatus, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
   // A. Erase all local data, when the Recap Page app does not answer.
   assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT] }).trim(),
     'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
+  const connected = {
+    shown: true, provider: 'onedrive', host: 'connected', account: 'reader@example.test', message: null, reason: null, signInExpiresAt: null,
+    agreed: false, on: false, askedAgain: false, suspended: false, hasStream: true, recordProblem: null,
+    backup: { phase: 'off', code: null, retryAt: null, lastUploadAt: null },
+  };
+  // G. Consent suspended by an erase.
+  assert.equal(cloudCardStatus({ ...connected, suspended: true }),
+    'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

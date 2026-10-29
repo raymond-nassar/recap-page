@@ -1534,23 +1534,23 @@
     "fp": "f763d40c3a35479d",
     "head": "export const CLOUD_TRANSPORT_DEADLINES_MS = Object.freeze({ list: 120_000, read: 600_000, create: 60"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:429-440|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:429-440",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:478-489|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:478-489",
     "fp": "2499eb9e27356a8a",
     "head": "async allocate() {"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:527|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:527",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:576|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:576",
     "fp": "677baafd30c320ae",
     "head": "for (let at = 0; at < bytes.byteLength; at += INFLATE_SLICE) await writer.write(bytes.subarray(at, a"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:625-626|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:625-626",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:674-675|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:674-675",
     "fp": "6646963445582955",
     "head": "const { known } = await this.listed(connection);"
   },
-  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:664-665|0": {
-    "anchor": "src/js/lib/cloudProtocol.js:664-665",
+  "docs/ARCHITECTURE.md|cloud-backup|src/js/lib/cloudProtocol.js:713-714|0": {
+    "anchor": "src/js/lib/cloudProtocol.js:713-714",
     "fp": "5513fa894d547460",
     "head": "const stale = known.filter((item) => item.stream === record.stream && item.generation < floor)"
   },

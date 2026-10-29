@@ -16,7 +16,7 @@ import {
 } from '../src/js/lib/cloudProtocol.js';
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
 import { CLOUD_SIGN_IN_POLL_MS, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
-import { cloudEraseNote, cloudEraseOutcome } from '../src/js/views/cloud.js';
+import { cloudCardStatus, cloudCardWarns, cloudEraseNote, cloudEraseOutcome } from '../src/js/views/cloud.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
 import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
@@ -1462,6 +1462,83 @@ test('an erase the host does not answer says cloud backup may still be connected
   assert.deepEqual([outcome.ok, outcome.problems.length], [false, 1]);
 });
 
+// An erase sets this browser's consent aside in the shared record before its first write, rather than
+// withdrawing it, and holds the worker lock until it has forgotten or restored the record. So no tab backs
+// up the erased state, not even one where backups are turned on during the erase, and an erase that erased
+// nothing puts the same consent back (stage 3 review, S3a-7; the lock, coordinator, 2026-10-28).
+test('an erase holds every tab\'s backups until it has forgotten or restored the record', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  await first.cloud.enter();
+  await first.cloud.turnOn();
+  await first.run(0);
+  const made = env.transport.created.length;
+  const agreed = await first.protocol.record();
+
+  await first.cloud.beforeErase();
+  const setAside = await first.protocol.record();
+  assert.deepEqual([setAside.consent, setAside.suspended, setAside.validated], [null, agreed.consent, agreed.validated],
+    'set aside rather than withdrawn');
+  first.home.storage.clear();
+
+  // Another tab during the erase restores nothing, and turning backups on there uploads nothing until the
+  // erase has ended. Its clock is moved directly, because its backup waits on the erase's lock.
+  const second = page({ env, home: first.home });
+  const opened = await second.cloud.enter();
+  assert.deepEqual([opened.agreed, (await second.protocol.record()).consent], [false, null]);
+  await second.cloud.turnOn();
+  await second.time.advance(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.equal(env.transport.created.length, made, 'turned on during the erase: nothing is uploaded');
+  assert.deepEqual([env.locks.held(CLOUD_BACKUP_LOCK), env.locks.waiting(CLOUD_BACKUP_LOCK)], [1, 1], 'its backup waits on the erase\'s lock');
+  await first.cloud.afterErase(true);
+  await second.cloud.idle();
+  assert.deepEqual([env.transport.created.length, await second.protocol.record()], [made, null], 'the erase forgot this browser, so nothing is made');
+
+  // An erase that erased nothing puts the same consent back, with what was verified.
+  const again = harness();
+  windowsHost(again.transport);
+  const tab = page({ env: again });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  const before = await tab.protocol.record();
+  await tab.cloud.beforeErase();
+  await tab.cloud.afterErase(false);
+  assert.deepEqual(await tab.protocol.record(), before);
+  assert.deepEqual([tab.cloud.model.on, again.locks.held(CLOUD_BACKUP_LOCK)], [true, 0]);
+});
+
+// A page that dies during an erase leaves consent set aside and releases its lock with it. Nothing puts the
+// consent back by itself, because the erase may have stopped part way and backups of partly erased data
+// replace the good ones; the card says so, and the person turns backups on again (stage 3 review, S3a-7).
+// The words are the owner's, approved 2026-10-28.
+test('a page that dies during an erase leaves backups stopped and says so, until the person turns them on', async () => {
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  await first.cloud.enter();
+  await first.cloud.turnOn();
+  await first.run(0);
+  const made = env.transport.created.length;
+  await first.protocol.suspendConsent();
+  first.home.mark(21);
+
+  const next = page({ env, home: first.home });
+  const statuses = env.transport.host.statuses;
+  await next.cloud.resume();
+  await next.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  assert.deepEqual([env.transport.host.statuses, env.transport.created.length], [statuses, made], 'startup asks nothing and uploads nothing');
+  const shown = await next.cloud.enter();
+  assert.deepEqual([shown.agreed, shown.on, shown.suspended], [false, false, true]);
+  assert.equal(cloudCardStatus(shown), 'Connected to OneDrive as reader@example.test. Automatic backup stopped while this browser\'s data was '
+    + 'being erased. If that erase did not finish, check your data before you turn automatic backup on again, because new backups replace older ones.');
+  assert.equal(cloudCardWarns(shown), true);
+  await next.cloud.turnOn();
+  await next.run(0);
+  assert.deepEqual([env.transport.created.length, (await next.protocol.record()).suspended], [made + 1, null], 'turned on by the person, it backs up');
+});
+
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {
   const env = harness();
   windowsHost(env.transport);
@@ -1564,14 +1641,15 @@ test('erase holds backups from before its first write, forgets this browser and 
   assert.deepEqual([tab.cloud.model.on, tab.cloud.model.backup.phase === 'off'], [true, false], 'nothing erased: backups go on');
 
   // The record cannot be forgotten nor consent withdrawn, and the host cannot be reached: both are said,
-  // and nothing backs up the erased state over what was there before.
-  tab.cloud.beforeErase();
+  // and nothing backs up the erased state over what was there before. Consent was set aside before the
+  // erase's first write, so it stays set aside, and the card says backups stopped (stage 3 review, S3a-7).
+  await tab.cloud.beforeErase();
   env.idb.faults.abort = 2;
   env.transport.host.refuse = 'The Recap Page app could not be reached.';
   const stuck = await tab.cloud.afterErase(true);
   assert.deepEqual([stuck.ok, stuck.problems.length], [false, 2]);
   assert.match(stuck.problems[1], /could not be reached/);
-  assert.deepEqual([tab.cloud.model.on, tab.cloud.model.backup.phase], [true, 'off']);
+  assert.deepEqual([tab.cloud.model.on, tab.cloud.model.suspended, tab.cloud.model.backup.phase], [false, true, 'off']);
   const before = env.transport.created.length;
   tab.cloud.notify();
   await tab.run(CLOUD_BACKUP_CADENCE.maxWaitMs);

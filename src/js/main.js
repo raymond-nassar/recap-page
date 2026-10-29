@@ -2275,7 +2275,7 @@ const dataView = createDataView({
     // User data first, then any recovery copy a complete restore kept, which the restore engine removes
     // in cleanup order. While a recovery is pending, this is the one change allowed past the pause.
     // Cloud backup is held from before the first write, so the erased state is never backed up (#810).
-    cloudBackup.beforeErase();
+    await cloudBackup.beforeErase();
     let result = null;
     let draftRemoved = null;
     const erasure = await completeRestore.erase(async () => {

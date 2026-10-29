@@ -49,7 +49,8 @@ const PROVIDER = /^[a-z][a-z0-9-]{0,31}$/;
 const RECORD_STORE = 'stream';
 const RECORD_SLOT = 'record';
 const RECORD_OPEN_MS = 5000;
-const RECORD_FIELDS = ['consent', 'device', 'nextGeneration', 'stream', 'validated', 'version'];
+// suspended holds consent an erase has set aside until it forgets or restores the record (S3a-7).
+const RECORD_FIELDS = ['consent', 'device', 'nextGeneration', 'stream', 'suspended', 'validated', 'version'];
 // The id is random for every consent, so an acknowledgement can tell consent given again from the consent
 // its backup was made under, even for the same connection in the same millisecond (stage 1 review, L1).
 const CONSENT_FIELDS = ['at', 'connection', 'id', 'provider'];
@@ -152,6 +153,7 @@ function checkRecord(value) {
     && typeof value.stream === 'string' && STREAM.test(value.stream)
     && Number.isSafeInteger(value.nextGeneration) && value.nextGeneration >= 1 && validDevice(value.device)
     && (value.consent === null || validConsent(value.consent))
+    && (value.suspended === null || (value.consent === null && validConsent(value.suspended)))
     && Array.isArray(value.validated) && value.validated.length <= 2
     && value.validated.every((entry) => validVerified(entry, value.nextGeneration))
     && (value.validated.length < 2 || value.validated[0].generation > value.validated[1].generation);
@@ -389,9 +391,9 @@ export class CloudBackupProtocol {
       await this.records.write((current) => {
         let record;
         try { record = current === null ? null : checkRecord(current); } catch { record = null; }
-        if (!record) return { version: 1, stream, nextGeneration: 1, device: label, consent, validated: [] };
+        if (!record) return { version: 1, stream, nextGeneration: 1, device: label, consent, validated: [], suspended: null };
         const validated = record.consent?.connection === consent.connection ? record.validated : [];
-        return { ...record, device: label, consent, validated };
+        return { ...record, device: label, consent, validated, suspended: null };
       });
       const held = await this.record();
       if (!held || canonical(held.consent) !== canonical(consent)) throw recordLost();
@@ -407,10 +409,57 @@ export class CloudBackupProtocol {
   }
 
   async withdraw() {
-    await this.records.write((current) => (current === null ? undefined : { ...checkRecord(current), consent: null, validated: [] }));
+    await this.records.write((current) => (current === null ? undefined : { ...checkRecord(current), consent: null, validated: [], suspended: null }));
     const held = await this.record();
     if (held && (held.consent !== null || held.validated.length > 0)) throw recordLost();
     return held;
+  }
+
+  // Before an erase writes anything, consent is set aside in the record rather than withdrawn: no tab's
+  // allocate takes a number while it is, and what was verified and the counter stay. The erase then forgets
+  // the record, or, having erased nothing, puts the same consent back. A page that dies in between leaves it
+  // set aside, and nothing puts it back by itself, because a part-way erase must not be backed up over the
+  // good copies (stage 3 review, S3a-7). True when there was consent to set aside.
+  async suspendConsent() {
+    let suspended = null;
+    await this.records.write((current) => {
+      const record = current === null ? null : checkRecord(current);
+      if (!record?.consent) return undefined;
+      suspended = record.consent;
+      return { ...record, consent: null, suspended };
+    });
+    if (suspended === null) return false;
+    const held = await this.record();
+    if (!held || held.consent !== null || canonical(held.suspended) !== canonical(suspended)) throw recordLost();
+    return true;
+  }
+
+  // Only consent still set aside goes back: consent given again meanwhile, or withdrawn, wins.
+  async resumeConsent() {
+    let resumed = null;
+    await this.records.write((current) => {
+      const record = current === null ? null : checkRecord(current);
+      if (!record || record.consent !== null || record.suspended === null) return undefined;
+      resumed = record.suspended;
+      return { ...record, consent: resumed, suspended: null };
+    });
+    if (resumed === null) return false;
+    const held = await this.record();
+    if (!held || canonical(held.consent) !== canonical(resumed) || held.suspended !== null) throw recordLost();
+    return true;
+  }
+
+  // The worker lock, held until the function this resolves to is called: an erase holds it from setting
+  // consent aside until it has forgotten or restored the record, so no tab's backup runs meanwhile. Resolves
+  // once held, after any backup another tab has under way.
+  async hold() {
+    if (!this.locks) return () => {};
+    let release;
+    const released = new Promise((resolve) => { release = resolve; });
+    await new Promise((granted, failed) => {
+      this.locks.request(CLOUD_BACKUP_LOCK, { mode: 'exclusive' }, () => { granted(); return released; }).catch(failed);
+    });
+    return release;
   }
 
   // Erase: this browser forgets cloud backup altogether. Its next consent starts a new stream, so no number
