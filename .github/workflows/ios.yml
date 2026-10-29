@@ -69,7 +69,7 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild test-without-building \
-            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage -only-testing:RecapPageTests/CapabilityProbeTests \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             -resultBundlePath "$RUNNER_TEMP/RecapPage-newest.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
@@ -141,7 +141,7 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild test-without-building \
-            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage -only-testing:RecapPageTests/CapabilityProbeTests \
+            -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
             -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log"
