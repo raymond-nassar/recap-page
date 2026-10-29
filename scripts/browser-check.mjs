@@ -19488,6 +19488,7 @@ async function cloudCard(page) {
       discovery: shown('#cloud-discovery'), remove: shown('#btn-cloud-delete'), disconnect: shown('#btn-cloud-disconnect'),
       restores: [...document.querySelectorAll('#cloud-discovery-list button[data-cloud-copy]')].map((button) => ({
         id: button.id, text: button.textContent, label: button.getAttribute('aria-label'),
+        shown: !button.closest('[hidden]') && button.getClientRects().length > 0, enabled: !button.disabled,
       })),
     };
   });
@@ -19692,8 +19693,9 @@ SCENARIOS.push({
     await click(page, '#cloud-discovery-list button[data-cloud-action="check"]');
     await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]');
     const listed = await cloudCard(page);
-    t.check('the account now lists this browser\'s backup, with a Restore named for the copy it restores',
+    t.check('the account now lists this browser\'s backup, with a shown, enabled Restore named for the copy it restores',
       listed.restores.length === 1 && listed.restores[0].text === 'Restore' && listed.restores[0].label.startsWith('Restore the newest backup from ')
+        && listed.restores[0].shown && listed.restores[0].enabled
         && await page.$eval('#cloud-discovery-list', (node) => node.textContent.includes('(this browser)')),
       JSON.stringify(listed.restores));
     await page.$eval('#cloud-discovery', (node) => { node.open = false; });
@@ -19758,8 +19760,21 @@ SCENARIOS.push({
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto:checked', { timeout: 15000 });
     await page.$eval('#cloud-discovery', (node) => { node.open = true; });
-    await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]', { timeout: 15000 });
-    await click(page, '#cloud-discovery-list button[data-cloud-copy="current"]');
+    // Pressed as a person presses it: with the mouse, where the button is drawn, after checking it is what
+    // sits under the pointer there. A click by script reached the button while the owner's session found
+    // every Restore hidden (P02-T07, step 9).
+    const newest = '#cloud-discovery-list button[data-cloud-copy="current"]';
+    const visible = await page.waitForSelector(newest, { visible: true, timeout: 15000 }).then(() => true, () => false);
+    const press = visible ? await page.$eval(newest, (button) => {
+      button.scrollIntoView({ block: 'center' });
+      const box = button.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      return { x, y, enabled: !button.disabled, under: button.contains(document.elementFromPoint(x, y)) };
+    }) : null;
+    t.check('the newest backup\'s Restore button is shown, enabled and under the pointer where it is drawn',
+      visible && press.enabled && press.under, JSON.stringify({ visible, press }));
+    if (press) await page.mouse.click(press.x, press.y);
     await page.waitForSelector('#ask[open]');
     await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
     await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });

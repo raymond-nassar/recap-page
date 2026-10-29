@@ -838,21 +838,33 @@ test('the cloud card imports nothing that stores, sends or restores', () => {
 });
 
 // The privacy sentences' two variants (P02-T06): the cloud words only on the host's answer or this browser's
-// own consent, which is what shown means, and the words a build without cloud backup says otherwise.
-test('the privacy sentences take their cloud variant only where cloud backup is', () => {
-  const nodes = ['off', 'on', 'off', 'on'].map((cloudCopy) => ({ dataset: { cloudCopy }, hidden: cloudCopy === 'on' }));
-  const asked = [];
-  const root = { querySelectorAll: (selector) => { asked.push(selector); return nodes; } };
+// own consent, which is what shown means, and the words a build without cloud backup says otherwise. A
+// Restore button names the copy it restores in the same attribute, "current" or "previous", and exists only
+// where cloud backup is, so a switch reaching past the two variants hid every one of them (P02-T07, step 9).
+test('the privacy sentences take their cloud variant only where cloud backup is, and Restore buttons stay shown', () => {
+  const nodes = ['off', 'on', 'off', 'on', 'current', 'previous'].map((cloudCopy) => ({ dataset: { cloudCopy }, hidden: cloudCopy === 'on' }));
+  // Matched as the page matches them, so a selector wider than the two variants reaches the buttons here too.
+  const root = {
+    querySelectorAll: (selector) => {
+      const wanted = selector.split(',').map((part) => {
+        const found = /^\s*\[data-cloud-copy(?:="(\w+)")?\]\s*$/.exec(part);
+        assert.ok(found, `an attribute selector this fake can match: ${part}`);
+        return found[1] ?? null;
+      });
+      return nodes.filter((node) => wanted.some((value) => value === null || value === node.dataset.cloudCopy));
+    },
+  };
   const hidden = () => nodes.map((node) => node.hidden);
   renderCloudCopy({ ...CLOUD, shown: false }, root);
-  assert.deepEqual(hidden(), [false, true, false, true], 'a build without cloud backup keeps its own words');
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'a build without cloud backup keeps its own words');
   renderCloudCopy({ ...CLOUD, host: 'not-connected', account: null }, root);
-  assert.deepEqual(hidden(), [true, false, true, false], 'a build with cloud backup says so before anyone connects');
+  assert.deepEqual(hidden(), [true, false, true, false, false, false], 'a build with cloud backup says so before anyone connects');
+  renderCloudCopy({ ...CLOUD }, root);
+  assert.deepEqual(hidden(), [true, false, true, false, false, false], 'and with backups listed, every Restore button is still shown');
   renderCloudCopy({ ...CLOUD, shown: false }, root);
-  assert.deepEqual(hidden(), [false, true, false, true], 'and switches back when the host stops answering for it');
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'and switches back when the host stops answering for it');
   renderCloudCopy(null, root);
-  assert.deepEqual(hidden(), [false, true, false, true], 'no model reads as no cloud backup');
-  assert.deepEqual([...new Set(asked)], ['[data-cloud-copy]']);
+  assert.deepEqual(hidden(), [false, true, false, true, false, false], 'no model reads as no cloud backup');
   assert.doesNotThrow(() => renderCloudCopy({ ...CLOUD }, null), 'a page without the markup is left alone');
 });
 

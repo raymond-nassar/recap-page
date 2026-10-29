@@ -168,10 +168,12 @@ export function cloudEraseOutcome(result) {
 // The privacy sentences, wherever they are, in the variant true of this build (P02-T06). The markup carries
 // both: data-cloud-copy="off" is what a build without cloud backup says, and "on" starts hidden. Only an
 // answer from the host, or this browser's own consent, shows the "on" words, so a build that never learns
-// it has cloud backup says exactly what it said before cloud backup existed.
+// it has cloud backup says exactly what it said before cloud backup existed. Only those two values are
+// switched: a Restore button names its copy in the same attribute, and switching every value hid them all
+// in the owner's session (P02-T07, step 9).
 export function renderCloudCopy(model, root = globalThis.document) {
   const on = Boolean(model?.shown);
-  for (const node of root?.querySelectorAll?.('[data-cloud-copy]') ?? []) {
+  for (const node of root?.querySelectorAll?.('[data-cloud-copy="on"], [data-cloud-copy="off"]') ?? []) {
     node.hidden = (node.dataset?.cloudCopy === 'on') !== on;
   }
 }
