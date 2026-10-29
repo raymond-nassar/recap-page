@@ -8,6 +8,13 @@
       "sourceRevision": "ea19e96b5c204d3e1fca9105edb78174a3fc64c6",
       "sourceTree": "f1fc5b35e14e8f5dab12b6175e5fb8d0fb679638",
       "artifact": null
+    },
+    {
+      "buildNumber": 3,
+      "productVersion": "4.2.0",
+      "sourceRevision": "aeaedb446102d45b019d1c40cf24369bba2b52ae",
+      "sourceTree": "7886e50864367961077abc21f6037ecab76fa61d",
+      "artifact": null
     }
   ]
 }
