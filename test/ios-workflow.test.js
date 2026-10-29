@@ -113,8 +113,11 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
   assert.match(workflow,
     /workflow_dispatch:\n {4}inputs:\n {6}live_cors:\n {8}description: Check whether the live metadata API permits the app origin\n {8}required: false\n {8}type: boolean\n {8}default: false/);
   assert.match(workflow,
-    /- name: Check live metadata CORS from the app origin\n {8}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.live_cors \}\}\n {8}timeout-minutes: 10\n {8}env:\n {10}RECAP_RUN_LIVE_CORS: '1'/);
+    /- name: Check live metadata CORS from the app origin\n {8}if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.live_cors \}\}\n {8}timeout-minutes: 10\n {8}env:\n {10}TEST_RUNNER_RECAP_RUN_LIVE_CORS: '1'/);
   assert.match(workflow, /-only-testing:RecapPageUITests\/LaunchUITests\/testManualLiveMetadataCorsFromTheAppOrigin/);
+  assert.match(workflow,
+    /if \[ -z "\$result" \]; then[\s\S]*The selected CORS test returned no probe result[\s\S]*exit 1/,
+    'a skipped test cannot produce a green CORS step');
 });
 
 test('the newest runtime and the app\'s oldest supported system are both tested, with Xcode chosen by path', () => {

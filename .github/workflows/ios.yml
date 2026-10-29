@@ -142,7 +142,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.live_cors }}
         timeout-minutes: 10
         env:
-          RECAP_RUN_LIVE_CORS: '1'
+          TEST_RUNNER_RECAP_RUN_LIVE_CORS: '1'
         run: |
           set +e
           set -o pipefail
@@ -154,11 +154,23 @@ jobs:
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/live-cors.log"
           status=$?
           set -e
+          result=$(grep -h 'RECAP_PROBE_RESULT live-metadata-cors' "$RUNNER_TEMP/live-cors.log" | sed 's/^.*RECAP_PROBE_RESULT //' || true)
           {
             echo '### Live metadata CORS check'
             echo "xcodebuild exit code: $status"
-            grep -h 'RECAP_PROBE_RESULT live-metadata-cors' "$RUNNER_TEMP/live-cors.log" | sed 's/^.*RECAP_PROBE_RESULT //' || true
+            if [ -n "$result" ]; then
+              echo "$result"
+            else
+              echo 'The selected CORS test returned no probe result.'
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          if [ -z "$result" ]; then
+            echo "::error::The selected CORS test returned no probe result."
+            exit 1
+          fi
           exit "$status"
 
       # The probes' measurements, where a reader of the run finds them without opening the bundle.
