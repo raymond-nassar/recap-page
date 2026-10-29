@@ -103,12 +103,22 @@ final class LaunchUITests: XCTestCase {
       return Boolean(view) && !view.hidden;
     }, 30000);
     // A named single list, as the desktop checks open one: the first card in the timeline can open a
-    // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues.
-    location.hash = '#/catalog';
-    const search = await until(() => {
+    // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues. The
+    // route is asked for again while the timeline has not appeared, because one run of this probe
+    // saw it never appear after a single request.
+    const catalogShown = () => {
       const view = document.getElementById('view-catalog');
-      return view && !view.hidden ? document.getElementById('catalog-q') : null;
-    }, 30000);
+      return Boolean(view) && !view.hidden;
+    };
+    let routeRequests = 0;
+    const routeEnd = Date.now() + 60000;
+    while (!catalogShown() && Date.now() < routeEnd) {
+      routeRequests += 1;
+      if (location.hash === '#/catalog') window.dispatchEvent(new HashChangeEvent('hashchange'));
+      else location.hash = '#/catalog';
+      await until(catalogShown, 3000);
+    }
+    const search = catalogShown() ? document.getElementById('catalog-q') : null;
     if (search) {
       search.value = 'House of M';
       search.dispatchEvent(new Event('input', { bubbles: true }));
@@ -121,6 +131,11 @@ final class LaunchUITests: XCTestCase {
     return JSON.stringify({
       origin: location.origin,
       home: Boolean(home),
+      routeRequests,
+      hash: location.hash,
+      views: [...document.querySelectorAll('.view:not([hidden])')].map((view) => view.id),
+      dialogs: [...document.querySelectorAll('dialog[open]')].map((dialog) => dialog.id),
+      shellInert: Boolean(document.getElementById('shell')?.inert),
       searched: Boolean(search),
       opener: Boolean(opener),
       previewOpen: Boolean(document.querySelector('#preview[open]')),

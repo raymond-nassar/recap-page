@@ -15,26 +15,38 @@ final class TerminationTests: XCTestCase {
             webView,
             "location.origin === '\(AppAssets.permanentOrigin)' && document.readyState === 'complete' && Boolean(document.getElementById('ios-report'))")
         // The first load's own completion is reported after readyState settles; let it arrive before
-        // the simulated ending, so the notice can only come from the reload.
+        // the ending, so the notice can only come from the reload.
         while webView.isLoading { try await Task.sleep(nanoseconds: 100_000_000) }
         try await Task.sleep(nanoseconds: 500_000_000)
         XCTAssertFalse(controller.restartNoticePending)
         let documentBefore = try await WebTestSupport.evaluate(webView, "return performance.timeOrigin;") as? Double
+        // Test-only counters for the diagnostics below: the documents this web view starts from here
+        // on, and the restart events any of them receives.
+        webView.configuration.userContentController.addUserScript(WKUserScript(source: """
+        sessionStorage.setItem('recap-test-documents', String(Number(sessionStorage.getItem('recap-test-documents') ?? 0) + 1));
+        window.addEventListener('recap:ios-restarted', () => sessionStorage.setItem('recap-test-events', String(Number(sessionStorage.getItem('recap-test-events') ?? 0) + 1)));
+        """, injectionTime: .atDocumentStart, forMainFrameOnly: true))
 
-        // WebKit reports an ended content process to the navigation delegate. Calling that delegate
-        // method, rather than the controller's, proves the wiring as well as the recovery.
-        webView.navigationDelegate?.webViewWebContentProcessDidTerminate?(webView)
-        XCTAssertTrue(controller.restartNoticePending)
+        // The content process is ended for real, so WebKit itself tells the navigation delegate, as it
+        // does when iOS ends it, and no earlier page survives to unload while the new one starts.
+        // Calling the delegate method instead leaves the earlier page running, which an ended process
+        // never does, and under it the reloaded page did not show the notice on either Simulator
+        // runtime. The selector is WebKit's own test hook, called only from this test bundle, which no
+        // build of the app contains.
+        let kill = NSSelectorFromString("_killWebContentProcess")
+        try XCTSkipUnless(webView.responds(to: kill), "this WebKit gives a test no way to end its content process")
+        _ = webView.perform(kill)
 
         do {
             try await WebTestSupport.waitFor(
                 webView, "Boolean(document.getElementById('ios-report')) && !document.getElementById('ios-report').hidden")
         } catch {
             // What the page and the controller hold when the notice never appeared: whether a new
-            // document loaded, whether the restart was ever consumed, and where the page is.
+            // document loaded, how many did, whether the restart was consumed and reached a page.
             let page = try? await WebTestSupport.evaluate(webView, """
             return JSON.stringify({ href: location.href, readyState: document.readyState, timeOrigin: performance.timeOrigin,
-              report: Boolean(document.getElementById('ios-report')), hidden: document.getElementById('ios-report')?.hidden ?? null });
+              report: Boolean(document.getElementById('ios-report')), hidden: document.getElementById('ios-report')?.hidden ?? null,
+              documents: sessionStorage.getItem('recap-test-documents'), events: sessionStorage.getItem('recap-test-events') });
             """) as? String
             WebTestSupport.record("termination-diagnostics", """
             {"pending":\(controller.restartNoticePending),"loading":\(webView.isLoading),"url":"\(webView.url?.absoluteString ?? "")","documentBefore":\(documentBefore ?? -1),"page":\(page ?? "null")}
