@@ -118,6 +118,15 @@ function assertMainSource(entry, main = 'origin/main', root = ROOT) {
   requireValue(command('rev-parse', `${entry.sourceRevision}^{tree}`) === entry.sourceTree
     && JSON.parse(command('show', `${entry.sourceRevision}:package.json`)).version === entry.productVersion,
   'source tree or version mismatch');
+  // The export runs the source's own preparation script. A source older than this tooling stamps a
+  // development identity, so it would sign and then fail the embedded check, consuming the number.
+  let capable = false;
+  try {
+    command('cat-file', '-e', `${entry.sourceRevision}:${ledgerFile}`);
+    capable = command('show', `${entry.sourceRevision}:scripts/lib/release-identity.mjs`)
+      .includes('RECAP_IOS_BUILD_NUMBER');
+  } catch { /* a missing file leaves the source incapable */ }
+  requireValue(capable, 'source predates iOS reservation support; reserve a later main commit');
 }
 
 export function checkIosHistory({ root = ROOT } = {}) {

@@ -198,7 +198,10 @@ node scripts/ios-release.mjs history
 ```
 
 The full source commit must already be on main, with its tree and product version matching the
-reservation. Merge reservations one at a time through main before building. CI checks the ledger's
+reservation. It must also already contain this ledger and the reservation-aware build stamping,
+because the export runs the source's own preparation: an older main commit would sign, then fail
+its identity check and consume the number.
+Merge reservations one at a time through main before building. CI checks the ledger's
 first-parent history as well as the working copy and refuses removal, reuse, reassignment, a
 changed seal or a source introduced after its reservation. Merge main into competing branches
 and recheck; do not overwrite newer reservations.

@@ -129,7 +129,9 @@ test('iOS history refuses rewriting a reservation even when the working ledger l
     git('config', 'user.name', 'Fixture');
     git('config', 'user.email', 'fixture@example.invalid');
     await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
     await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'process.env.RECAP_IOS_BUILD_NUMBER;\n');
     await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
     commit();
     const source = { productVersion: '4.2.0', sourceRevision: git('rev-parse', 'HEAD'),
@@ -150,14 +152,36 @@ test('iOS history refuses rewriting a reservation even when the working ledger l
   }
 });
 
-test('iOS reservation CLI checks main membership and preserves existing locks', async () => {
+test('iOS reservation CLI refuses pre-tooling sources, checks main membership and preserves existing locks', async () => {
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-reserve-'));
   const ledger = join(root, 'ledger.json');
-  const main = execFileSync('git', ['rev-parse', 'origin/main'], { encoding: 'utf8' }).trim();
-  const execute = (...args) => execFileSync(process.execPath, [path('scripts/ios-release.mjs'), ...args],
+  const repo = join(root, 'repo');
+  const git = (...args) => execFileSync('git', args, { cwd: repo, encoding: 'utf8' }).trim();
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+    return git('rev-parse', 'HEAD');
+  };
+  // A copy of the CLI resolves its repository root from its own location, so it reserves fixture commits.
+  const execute = (...args) => execFileSync(process.execPath, [join(repo, 'scripts', 'ios-release.mjs'), ...args],
     { encoding: 'utf8', env: { ...process.env, RECAP_IOS_LEDGER: ledger }, stdio: ['ignore', 'pipe', 'pipe'] });
   try {
+    await mkdir(join(repo, 'scripts', 'lib'), { recursive: true });
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await writeFile(join(repo, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(repo, 'scripts', 'lib', 'release-identity.mjs'), read('scripts/lib/release-identity.mjs'));
+    await writeFile(join(repo, 'scripts', 'ios-release.mjs'), read('scripts/ios-release.mjs'));
+    // Before the ledger lands, the source's own preparation cannot stamp a reserved identity.
+    const preTooling = commit();
     await writeFile(ledger, JSON.stringify(initialIosLedger()));
+    assert.throws(() => execute('reserve', preTooling), /predates iOS reservation support/);
+    assert.deepEqual(JSON.parse(await readFile(ledger, 'utf8')), initialIosLedger());
+    await mkdir(join(repo, 'packaging', 'ios'), { recursive: true });
+    await writeFile(join(repo, 'packaging', 'ios', 'build-numbers.json'), JSON.stringify(initialIosLedger()));
+    const main = commit();
     await writeFile(`${ledger}.lock`, 'fixture');
     assert.throws(() => execute('reserve', main), /EEXIST/);
     assert.equal(await readFile(`${ledger}.lock`, 'utf8'), 'fixture');
@@ -171,6 +195,36 @@ test('iOS reservation CLI checks main membership and preserves existing locks', 
     await assert.rejects(readFile(`${ledger}.lock`), { code: 'ENOENT' });
     await assert.rejects(readFile(`${ledger}.next`), { code: 'ENOENT' });
     assert.throws(() => execute('reserve', main.slice(0, 8)), /Usage/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('iOS history refuses a committed reservation whose source predates reservation support', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-pretooling-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+  const commit = () => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+  };
+  try {
+    git('init', '-q');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    // The shape of a main commit before the tooling: a version, an old iosBuild and no ledger.
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'export const iosBuild = 1;\n');
+    commit();
+    const source = { productVersion: '4.2.0', sourceRevision: git('rev-parse', 'HEAD'),
+      sourceTree: git('rev-parse', 'HEAD^{tree}') };
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(initialIosLedger(), source)));
+    assert.throws(() => checkIosHistory({ root }), /predates iOS reservation support/);
+    commit();
+    assert.throws(() => checkIosHistory({ root }), /predates iOS reservation support/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
