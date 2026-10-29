@@ -212,8 +212,9 @@ export function createCloudBackupView({
   }
 
   // The control that started an action is disabled while it runs, so the shared question cannot hand
-  // focus back to it when it closes. It is handed back here once usable, or to the card's status when
-  // the action has moved the card on and the control is gone.
+  // focus back to it when it closes. It is handed back here once usable; when the action has moved the
+  // card on and the control is gone, focus goes to the card's status, or, when that says nothing, to the
+  // report of what was done, so it never falls to the page (stage 3 review, S3b-1).
   async function run(action) {
     if (working) return;
     const opener = globalThis.document?.activeElement ?? null;
@@ -225,10 +226,11 @@ export function createCloudBackupView({
       render();
       const lost = !globalThis.document?.activeElement || globalThis.document.activeElement === globalThis.document.body;
       if (lost) {
-        const usable = opener?.isConnected && !opener.disabled && !opener.closest?.('[hidden]');
-        const status = elements().status;
-        if (usable) opener.focus();
-        else if (status?.isConnected && !status.closest?.('[hidden]')) status.focus();
+        const usable = (node) => node?.isConnected && !node.disabled && !node.closest?.('[hidden]');
+        const { status, report: line } = elements();
+        if (usable(opener)) opener.focus();
+        else if (usable(status)) status.focus();
+        else line?.focus?.();
       }
     }
   }
@@ -376,7 +378,7 @@ export function createCloudBackupView({
     const nodes = elements();
     if (!nodes.card) return;
     nodes.signIn.addEventListener('click', () => { void signIn(); });
-    nodes.retry.addEventListener('click', () => onRetry());
+    nodes.retry.addEventListener('click', () => { void run(async () => { onRetry(); }); });
     nodes.autoInput.addEventListener('change', (event) => { void toggle(event); });
     nodes.discovery.addEventListener('toggle', () => {
       if (nodes.discovery.open && getModel().discovery.state === 'idle') void onDiscover();

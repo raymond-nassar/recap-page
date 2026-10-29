@@ -20233,6 +20233,7 @@ SCENARIOS.push({
         && (await cloudCard(page)).report.includes('in the recycle bin until it is emptied'),
       `${stored}: ${(await cloudCard(page)).report}`);
 
+    await page.focus('#btn-cloud-disconnect');
     await click(page, '#btn-cloud-disconnect');
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
@@ -20240,6 +20241,11 @@ SCENARIOS.push({
     const gone = await cloudCard(page);
     t.check('disconnecting signs out for every profile and offers the sign-in again',
       fixture.host.state === 'not-connected' && gone.signIn && !gone.auto && !gone.discovery, JSON.stringify(gone));
+    // The button and the status line are both gone now, so focus goes to the report (stage 3 review, S3b-1).
+    const landed = await page.waitForFunction(() => document.activeElement?.id === 'cloud-backup-report', { timeout: 3000 })
+      .then(() => true, () => false);
+    t.check('after Disconnect, focus lands on the report of it rather than falling to the page',
+      landed, await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName));
 
     // About asks the host too, so its privacy statement names cloud backup, and what it sends and to whom.
     await open(page, '/#/about');

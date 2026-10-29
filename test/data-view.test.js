@@ -472,6 +472,8 @@ function cloudNodes() {
     replaceChildren(...parts) { this.children = parts; },
     querySelectorAll() { return buttonsIn(this); },
   });
+  // As in a browser, where closest() starts at the element itself, so a hidden control is seen as hidden.
+  for (const node of Object.values(nodes)) node.closest = function closest(selector) { return selector === '[hidden]' && this.hidden ? this : null; };
   return nodes;
 }
 
@@ -579,6 +581,30 @@ test('the line under the card never says automatic backup is on beside an untick
   assert.deepEqual(off.nodes.report.children, [OFF], 'disconnected elsewhere: still off');
   off.show(on);
   assert.deepEqual(off.nodes.report.children, [], 'turned on in another tab: withdrawn');
+});
+
+// Focus never falls to the page. An action whose control is gone afterwards hands focus to the status line,
+// or, when that says nothing, to the report of what was done, which is there while the card is (stage 3
+// review, S3b-1).
+test('after Try again now and after Disconnect, focus lands on what the card says', async () => {
+  const on = { ...CLOUD, agreed: true, on: true, hasStream: true, discovery: FOUND };
+  const card = cloudCard({ ...on, backup: { phase: 'failed', code: 'quota', retryAt: null, lastUploadAt: 5 } }, {
+    onRetry: () => {
+      card.state.calls.push(['retry']);
+      card.show({ ...on, backup: { phase: 'saving', code: null, retryAt: null, lastUploadAt: 5 } });
+    },
+    onDisconnect: async () => { card.state.model = { ...CLOUD, host: 'not-connected', account: null }; },
+  });
+  assert.equal(card.nodes.retry.hidden, false);
+  await card.nodes.retry._fire();
+  await settled();
+  assert.deepEqual([card.state.calls.at(-1), card.nodes.retry.hidden, card.nodes.status.focused], [['retry'], true, true],
+    'the button went with the failure, so the status line has focus');
+  card.state.answers.push({ choice: false });
+  await card.nodes.disconnect._fire();
+  await settled();
+  assert.deepEqual([card.nodes.status.hidden, card.nodes.disconnect.hidden, card.nodes.report.focused], [true, true, true],
+    'the control and the status line are gone, so the report of the disconnect has focus');
 });
 
 test('what backups are doing is said in words for every state the coordinator reports', () => {
