@@ -136,6 +136,7 @@ enum DebugSupport {
 
     @MainActor private static var probeStarted = false
     @MainActor private static var launchedWebViews = Set<ObjectIdentifier>()
+    @MainActor private static var presentedReadSheets = 0
     @MainActor private static var recordedHandOffs: [String] = []
     @MainActor private static var handOffRecorder: UILabel?
 
@@ -143,6 +144,7 @@ enum DebugSupport {
     static func prepareHandOffRecorder(in view: UIView) {
         guard recordsHandOffs else { return }
         launchedWebViews = []
+        presentedReadSheets = 0
         recordedHandOffs = []
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         label.accessibilityIdentifier = handOffRecorderIdentifier
@@ -161,6 +163,13 @@ enum DebugSupport {
     }
 
     @MainActor
+    static func recordReadSheetPresented() {
+        guard recordsHandOffs else { return }
+        presentedReadSheets += 1
+        updateHandOffRecorder()
+    }
+
+    @MainActor
     static func recordHandOff(_ url: URL) {
         guard recordsHandOffs else { return }
         recordedHandOffs.append(url.absoluteString)
@@ -172,7 +181,11 @@ enum DebugSupport {
         guard let handOffRecorder else { return }
         do {
             let data = try JSONSerialization.data(
-                withJSONObject: ["launches": launchedWebViews.count, "handoffs": recordedHandOffs],
+                withJSONObject: [
+                    "launches": launchedWebViews.count,
+                    "presentations": presentedReadSheets,
+                    "handoffs": recordedHandOffs,
+                ],
                 options: [.sortedKeys])
             handOffRecorder.accessibilityLabel = String(decoding: data, as: UTF8.self)
         } catch {

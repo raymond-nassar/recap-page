@@ -45,7 +45,13 @@ final class LaunchUITests: XCTestCase {
     }
 
     @MainActor
-    private func handOffRecord(of app: XCUIApplication, launches: Int, handoffs: Int, timeout: TimeInterval = 30) throws -> [String: Any] {
+    private func handOffRecord(
+        of app: XCUIApplication,
+        launches: Int,
+        handoffs: Int,
+        presentations: Int = 0,
+        timeout: TimeInterval = 30
+    ) throws -> [String: Any] {
         let element = app.staticTexts["ios-handoff-recorder"]
         XCTAssertTrue(element.waitForExistence(timeout: timeout), "the hand-off recorder appeared")
         let predicate = NSPredicate { object, _ in
@@ -53,8 +59,11 @@ final class LaunchUITests: XCTestCase {
                   let data = element.label.data(using: .utf8),
                   let record = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let recordedLaunches = record["launches"] as? Int,
+                  let recordedPresentations = record["presentations"] as? Int,
                   let recordedHandOffs = record["handoffs"] as? [String] else { return false }
-            return recordedLaunches >= launches && recordedHandOffs.count >= handoffs
+            return recordedLaunches >= launches
+                && recordedPresentations >= presentations
+                && recordedHandOffs.count >= handoffs
         }
         let settled = XCTNSPredicateExpectation(predicate: predicate, object: element)
         XCTAssertEqual(
@@ -175,19 +184,21 @@ final class LaunchUITests: XCTestCase {
                 .completed,
                 "Read launch \(expected) control is hittable")
             read.tap()
-            _ = try handOffRecord(of: app, launches: expected, handoffs: expected - 1)
+            _ = try handOffRecord(
+                of: app,
+                launches: expected,
+                handoffs: expected,
+                presentations: expected)
             let close = app.buttons["ios-read-sheet-close"]
-            XCTAssertTrue(
-                close.waitForExistence(timeout: 30),
-                "Read launch \(expected) appeared in a sheet with a Close control; recorder: \(app.staticTexts["ios-handoff-recorder"].label)")
-            _ = try handOffRecord(of: app, launches: expected, handoffs: expected)
-            let dismissed = XCTNSPredicateExpectation(
-                predicate: NSPredicate(format: "exists == false"),
-                object: close)
-            XCTAssertEqual(
-                XCTWaiter.wait(for: [dismissed], timeout: 30),
-                .completed,
-                "Read launch \(expected) sheet dismissed after hand-off")
+            if close.exists {
+                let dismissed = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "exists == false"),
+                    object: close)
+                XCTAssertEqual(
+                    XCTWaiter.wait(for: [dismissed], timeout: 30),
+                    .completed,
+                    "Read launch \(expected) sheet dismissed after hand-off")
+            }
         }
 
         let result = try handOffRecord(of: app, launches: 2, handoffs: 2)

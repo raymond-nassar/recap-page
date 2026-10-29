@@ -8,6 +8,7 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
     private let openExternally: (URL, @escaping (Bool) -> Void) -> Void
     private let onClose: (ReadSheetController) -> Void
     private var isClosing = false
+    private var didRecordPresentation = false
 
     init(
         webView: WKWebView,
@@ -49,6 +50,16 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
         let close = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeTapped))
         close.accessibilityIdentifier = "ios-read-sheet-close"
         navigationItem.leftBarButtonItem = close
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        #if DEBUG
+        if !didRecordPresentation {
+            didRecordPresentation = true
+            DebugSupport.recordReadSheetPresented()
+        }
+        #endif
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
