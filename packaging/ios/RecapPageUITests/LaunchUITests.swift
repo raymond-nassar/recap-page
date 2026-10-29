@@ -104,8 +104,8 @@ final class LaunchUITests: XCTestCase {
     }, 30000);
     // A named single list, as the desktop checks open one: the first card in the timeline can open a
     // grouped Preview with no issue links. House of M is the smallest fixture, at 20 issues. The
-    // route is asked for again while the timeline has not appeared, because one run of this probe
-    // saw it never appear after a single request.
+    // route is asked for again because on both Simulator runtimes one request went unanswered: a
+    // redraw landing before hashchange can undo one (#961), and the retry goes once that is fixed.
     const catalogShown = () => {
       const view = document.getElementById('view-catalog');
       return Boolean(view) && !view.hidden;
