@@ -15,7 +15,7 @@ import { join } from 'node:path';
 import { PassThrough } from 'node:stream';
 import { CLOUD_CLIENT_FORMAT, parseCloudClient } from '../host/cloudConfig.mjs';
 import { callerProcess, createSessionCheck, processSession } from '../host/cloudSession.mjs';
-import { CloudTokenError, PROTECT_SCRIPT, createProtector, createTokenStore, protectCommand } from '../host/cloudTokens.mjs';
+import { CloudTokenError, PROTECT_SCRIPT, createProtector, createTokenStore, protectCommand, validRecord } from '../host/cloudTokens.mjs';
 import {
   ProviderError, browserLaunch, capabilityUrl, newAuthorization, openBrowser, retryAfterMs, startCallback,
 } from '../host/cloudSignIn.mjs';
@@ -536,6 +536,25 @@ test('an upload that gets no answer is settled before the reply: cancelled first
   assert.deepEqual(unknown.calls.map((call) => call.method), ['DELETE', 'GET'], 'the next list cancels the unsettled session first');
 });
 
+// An id made only of dots becomes a dot segment in Graph's request path, so '..' would name the drive
+// rather than an item or the app folder (stage 2 review, L5). None is taken from OneDrive's answers or
+// from a stored record; the control API's own refusal of one is in the host's cases below.
+test('item and folder ids made only of dots are never taken from OneDrive or the stored record', async () => {
+  const listed = drive([{ method: 'GET', url: CHILDREN, reply: json(200, { value: [CREATED, { ...CREATED, id: '..' }, { ...CREATED, id: '.' }] }) }]);
+  assert.deepEqual((await listed.onedrive.list()).map((entry) => entry.id), ['ITEM!7']);
+  const root = fakeFetch([{ method: 'GET', url: `${GRAPH}/me/drive/special/approot?$select=id,parentReference`, reply: json(200, { id: '..', parentReference: { driveId: '...' } }) }]);
+  assert.deepEqual(await createOneDrive({ fetchImpl: root.fetchImpl, accessToken: async () => 'access' }).appFolder(), { id: null, driveId: null });
+  const learned = [];
+  const made = fakeFetch([
+    { method: 'POST', url: SESSION, reply: json(200, { uploadUrl: UPLOAD }) },
+    { method: 'PUT', url: UPLOAD, reply: json(201, { ...CREATED, parentReference: { id: '..' } }) },
+  ]);
+  await createOneDrive({ fetchImpl: made.fetchImpl, accessToken: async () => 'access', onFolder: (id) => learned.push(id) }).create(NAME, Buffer.from('hello'));
+  assert.deepEqual(learned, [], 'a parent named only with dots is not learned as the folder');
+  assert.equal(validRecord(RECORD), true);
+  for (const folder of ['.', '..']) assert.equal(validRecord({ ...RECORD, folder }), false, folder);
+});
+
 // A timeout or a server failure answering the PUT may come after every byte was committed, a gateway's
 // 504 in particular, so it is settled as a lost reply is (stage 2 review, L1): a create refused with any
 // code but timeout must never appear later. Refusals that say what was wrong stay definite.
@@ -950,7 +969,12 @@ test('a page that names another connection is refused, and disconnecting removes
     assert.equal((await api.call('list', {})).body.error.code, 'invalid');
     assert.equal((await api.call('create', { connection: RECORD.connection, name: '../escape', bytes: 'aGk=' })).body.error.code, 'invalid');
     assert.equal((await api.call('create', { connection: RECORD.connection, name: NAME, bytes: '' })).body.error.code, 'invalid');
-    assert.equal((await api.call('read', { connection: RECORD.connection, id: 'a/b' })).body.error.code, 'invalid');
+    for (const id of ['a/b', '.', '..']) {
+      for (const operation of ['read', 'delete']) {
+        assert.equal((await api.call(operation, { connection: RECORD.connection, id })).body.error.code, 'invalid', `${operation} ${id}`);
+      }
+    }
+    assert.equal(env.fetch.calls.length, 0, 'no refused id reached OneDrive');
     const gone = await api.call('disconnect');
     assert.equal(gone.body.status.state, 'not-connected');
     assert.equal(store.saved, null);

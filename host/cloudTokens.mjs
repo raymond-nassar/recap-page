@@ -41,7 +41,8 @@ const MAX_RECORD = 64 * 1024;
 const BASE64 = /^[A-Za-z0-9+/]*={0,2}$/;
 const CONNECTION = /^[a-f0-9]{32}$/;
 // The app folder's OneDrive item id, by which the host lists and creates, so a deleted folder is noticed.
-const FOLDER_ID = /^[A-Za-z0-9!._-]{1,256}$/;
+// Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
+const FOLDER_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
 export const TOKEN_FILE = 'onedrive.v1';
 
 const REASONS = Object.freeze({

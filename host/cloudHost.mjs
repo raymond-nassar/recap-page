@@ -37,7 +37,8 @@ const MAX_IN_FLIGHT = 16;
 // tracker, so the next list still waits for it or cancels it.
 export const HOST_DEADLINES_MS = Object.freeze({ list: 115_000, read: 595_000, create: 595_000, delete: 25_000 });
 const CONNECTION = /^[a-f0-9]{32}$/;
-const ITEM_ID = /^[A-Za-z0-9!._-]{1,256}$/;
+// Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
+const ITEM_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
 // Only names of the shape the backup protocol writes, so nothing reaching this API can put any other kind
 // of file in the person's account, or a path where a name belongs.
 const ITEM_NAME = /^recap-page-[a-z0-9][a-z0-9.-]{0,118}$/;

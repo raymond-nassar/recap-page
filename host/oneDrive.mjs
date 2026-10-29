@@ -21,7 +21,8 @@ export const MAX_ITEM_BYTES = 32 * 1024 * 1024;
 const METADATA_MS = 30_000;
 const MAX_PAGES = 50;
 const ITEM_FIELDS = '$select=id,name,size,createdDateTime';
-const ITEM_ID = /^[A-Za-z0-9!._-]{1,256}$/;
+// Never made only of dots, which a request path would read as a dot segment (stage 2 review, L5).
+const ITEM_ID = /^(?!\.+$)[A-Za-z0-9!._-]{1,256}$/;
 
 export function authorizationUrl({ clientId, redirectUri, authorization }) {
   const params = new URLSearchParams({
