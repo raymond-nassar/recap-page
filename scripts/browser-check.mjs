@@ -12487,7 +12487,13 @@ const SCENARIOS = [
     async run(page, t) {
       const browserErrors = [];
       page.on('console', (message) => {
-        if (message.type() === 'error') browserErrors.push(message.text());
+        if (message.type() !== 'error') return;
+        // This journey boots into About, which asks a build without cloud backup one status question that it
+        // answers 404 like any unknown path (#810), and Chromium reports every 404 as a failed resource. That
+        // answer is the expected one, so it alone is set aside; any other error still counts.
+        const at = new URL(message.location()?.url || 'about:blank', page.__origin).pathname;
+        if (at.startsWith('/__recap_cloud__/v1/') && /^Failed to load resource: .*\b404\b/.test(message.text())) return;
+        browserErrors.push(message.text());
       });
       page.on('pageerror', (error) => browserErrors.push(error.message));
 
