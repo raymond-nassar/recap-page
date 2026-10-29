@@ -398,6 +398,10 @@ final class LaunchUITests: XCTestCase {
         let beforeKill = try probeResult(of: writer, timeout: 180)
         try record("journal-fault-before-kill", beforeKill)
         writer.terminate()
+        XCTAssertEqual(
+            (beforeKill["restoreLockReadiness"] as? [String: Any])?["ready"] as? Bool,
+            true,
+            "the restore began only after this page held the sole shared restore lock: \(String(describing: beforeKill["restoreLockReadiness"]))")
 
         let reader = launch(probe: Self.inspectInterruptedCompleteRestore)
         let recovered = try probeResult(of: reader, timeout: 180)
@@ -754,6 +758,40 @@ final class LaunchUITests: XCTestCase {
     input.files = transfer.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
     await until(() => document.getElementById('ask').open, 15000);
+    let lockReadiness = async () => {
+      if (typeof navigator.locks?.query !== 'function') {
+        return { available: false, error: 'LockManager.query is unavailable', held: [], pending: [] };
+      }
+      const state = await navigator.locks.query();
+      const relevant = (locks) => locks
+        .filter(({ name }) => name === storage.RESTORE_LOCK)
+        .map(({ name, mode }) => ({ name, mode }));
+      return { available: true, held: relevant(state.held), pending: relevant(state.pending) };
+    };
+    let readiness = null;
+    let ready = false;
+    const readinessDeadline = Date.now() + 15000;
+    while (Date.now() < readinessDeadline) {
+      try {
+        readiness = await lockReadiness();
+      } catch (error) {
+        readiness = { available: false, error: error.message, held: [], pending: [] };
+      }
+      if (readiness.available
+          && readiness.held.length === 1
+          && readiness.held[0].mode === 'shared'
+          && readiness.pending.length === 0) {
+        ready = true;
+        break;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    if (!ready) {
+      return JSON.stringify({
+        report: 'Restore was not started because lock readiness was not established.',
+        restoreLockReadiness: { ready, ...readiness },
+      });
+    }
     document.getElementById('ask-ok').click();
     await until(() => document.getElementById('restore-report').textContent.includes('Reading data restored'), 30000);
     const stored = JSON.parse(localStorage.getItem('mrt.state.v2'));
@@ -877,6 +915,7 @@ final class LaunchUITests: XCTestCase {
     const data = Object.fromEntries(complete.RESTORE_KEYS.map((key) => [key, localStorage.getItem(key)]));
     return JSON.stringify({
       report,
+      restoreLockReadiness: { ready, ...readiness },
       marker: marker.raw,
       journalKind: journal.kind,
       journalPhase: journal.record?.phase ?? null,
