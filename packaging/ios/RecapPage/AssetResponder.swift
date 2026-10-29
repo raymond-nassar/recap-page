@@ -7,8 +7,8 @@ struct AssetReply: Equatable {
     let body: Data
 }
 
-/// Serves the bundled web app from its manifest, with the headers the Windows server sends, so the
-/// pages run under the same content security policy on every platform.
+/// Serves the bundled web app from its manifest with the Windows server's headers, adding frame-src
+/// 'none' and worker-src 'none' to its content security policy, as the Android app does.
 struct AssetResponder {
     let assets: AppAssets
     let policy: NavigationPolicy

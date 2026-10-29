@@ -98,8 +98,8 @@ jobs:
   minimum:
     name: iOS app on the lowest iOS 18 runtime
     # The app supports iOS and iPadOS 18.0 and later. No image carries the 18.0 runtime, and this one
-    # carries 18.5 beside Xcode 26, which every App Store build must use, so the same build is tested
-    # on the oldest system the runners have.
+    # carries 18.5 beside Xcode 26, which every App Store build must use. Each job builds its own copy:
+    # this one with Xcode 26.3 and the newest with 26.6, so only a 26.3 build is shown to run on iOS 18.
     runs-on: macos-15
     timeout-minutes: 75
     env:

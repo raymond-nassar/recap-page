@@ -19,9 +19,10 @@ it. It adds the Android app's phone layer as `mobile/`, the iOS entry and overla
 shows, and a manifest listing every file with its SHA-256.
 
 The native shell in `packaging/ios` is a UIKit app with one web view. A scheme handler answers every
-request for the app's own scheme from those bundled files, with the same content security policy
-and headers the Windows app's server sends, and only for paths the manifest lists. There is no
-listening server and nothing to keep running.
+request for the app's own scheme from those bundled files, and only for paths the manifest lists. Its
+headers are the Windows app's server's, with `frame-src 'none'` and `worker-src 'none'` added to the
+content security policy, as the Android app serves it. There is no listening server and nothing to
+keep running.
 
 Only the app page loads in the web view. A link you follow to the web, such as the privacy policy or
 a source credit, opens in your default browser, and any other navigation is refused. If iOS ends the
