@@ -20,6 +20,7 @@ const ROOT = new URL('../', import.meta.url);
 const path = (relativePath) => fileURLToPath(new URL(relativePath, ROOT));
 const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
 const terminationTests = read('packaging/ios/RecapPageTests/TerminationTests.swift');
+const presentationTests = read('packaging/ios/RecapPageUITests/PresentationUITests.swift');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const policyUrl = 'https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md';
 const project = read('packaging/ios/RecapPage.xcodeproj/project.pbxproj');
@@ -445,13 +446,50 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
-  assert.match(controller, /document\.documentElement\?\.style\.setProperty\('--ios-text-scale'/);
+  assert.match(controller, /root\.style\.setProperty\('--ios-text-scale'/);
   assert.match(controller, /removeAllUserScripts\(\)[\s\S]*?installPageScripts\(in:\s*webView\.configuration\.userContentController\)/,
     'the persistent app scripts are restored after the restart-only flag is removed');
   assert.match(controller, /webView\.topAnchor\.constraint\(equalTo:\s*guide\.topAnchor\)/);
   assert.match(controller, /webView\.leadingAnchor\.constraint\(equalTo:\s*guide\.leadingAnchor\)/);
   assert.match(controller, /webView\.trailingAnchor\.constraint\(equalTo:\s*guide\.trailingAnchor\)/);
   assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
+});
+
+test('iOS largest-text Home reflow is scoped, observable and documented', () => {
+  const css = read('packaging/ios/web/ios.css');
+  const controller = appSource('WebViewController');
+  const docs = read('docs/IOS.md');
+  assert.match(css, /:root\[data-ios-largest-text="true"\]\s+#view-home > \.head\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/s);
+  assert.match(css, /:root\[data-ios-largest-text="true"\]\s+#view-home #home-updates\s*\{[^}]*grid-column:\s*1;[^}]*width:\s*100%;/s);
+  assert.match(controller, /preferredContentSizeCategory\s*==\s*\.accessibilityExtraExtraExtraLarge/);
+  assert.match(controller, /dataset\.iosLargestText/);
+  assert.match(presentationTests, /gridTemplateColumnCount/);
+  assert.match(presentationTests, /XCTAssertEqual\(homeHeader\["gridTemplateColumnCount"\] as\? Int,\s*1\)/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.match(docs, /largest accessibility[\s\S]*text size[\s\S]*Home\s+header/i);
+});
+
+test('the Read-sheet probe reports stylesheet loading, matching rules and target geometry', () => {
+  const debug = appSource('DebugSupport');
+  const readSheet = appSource('ReadSheetController');
+  assert.match(debug, /static let readSheetStyleProbeScript/);
+  assert.match(debug, /document\.styleSheets/);
+  assert.match(debug, /element\.matches/);
+  assert.match(debug, /getComputedStyle/);
+  assert.match(debug, /static func recordReadSheetStyleProbe/);
+  assert.match(readSheet, /func webView\(_ webView: WKWebView, didFinish navigation: WKNavigation!\)/);
+  assert.match(readSheet, /DebugSupport\.readSheetStyleProbeEnabled/);
+  assert.match(readSheet, /DebugSupport\.recordReadSheetStyleProbe/);
+  assert.match(presentationTests, /readSheetStyleProbe\(of: app\)/);
+  assert.match(presentationTests, /ios\/launcher\.css/);
+  assert.match(presentationTests, /minHeight/);
+});
+
+test('iOS presentation diagnostics tolerate the live-region suffix and find the More control by name', () => {
+  assert.match(presentationTests, /let suffix = ", application status"/);
+  assert.match(presentationTests, /reported\.hasSuffix\(suffix\)/);
+  assert.match(presentationTests, /private func moreToggle\(of app: XCUIApplication\)/);
+  assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
 });
 
 test('the iOS token overlay matches the phone layer root specificity', () => {

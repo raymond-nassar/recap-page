@@ -59,6 +59,10 @@ enum DebugSupport {
         environment[recordHandOffsKey] == "1"
     }
 
+    static var readSheetStyleProbeEnabled: Bool {
+        readHandoffTestEnabled && recordsHandOffs
+    }
+
     static var resetsDataLossState: Bool {
         environment[dataLossStateResetKey] == "1"
     }
@@ -173,6 +177,7 @@ enum DebugSupport {
     @MainActor private static var launchedWebViews = Set<ObjectIdentifier>()
     @MainActor private static var presentedReadSheets = 0
     @MainActor private static var recordedHandOffs: [String] = []
+    @MainActor private static var readSheetStyleProbe: [String: Any]?
     @MainActor private static var handOffRecorder: UILabel?
 
     @MainActor
@@ -181,6 +186,7 @@ enum DebugSupport {
         launchedWebViews = []
         presentedReadSheets = 0
         recordedHandOffs = []
+        readSheetStyleProbe = nil
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         label.accessibilityIdentifier = handOffRecorderIdentifier
         label.isAccessibilityElement = true
@@ -212,21 +218,94 @@ enum DebugSupport {
     }
 
     @MainActor
+    static func recordReadSheetStyleProbe(_ value: Any?, error: Error?) {
+        guard readSheetStyleProbeEnabled else { return }
+        if let error {
+            readSheetStyleProbe = ["error": Self.debugDescription(of: error)]
+        } else if let value = value as? String,
+                  let data = value.data(using: .utf8),
+                  let object = try? JSONSerialization.jsonObject(with: data),
+                  let result = object as? [String: Any] {
+            readSheetStyleProbe = result
+        } else {
+            readSheetStyleProbe = ["error": "The Read stylesheet probe returned no JSON result."]
+        }
+        updateHandOffRecorder()
+    }
+
+    @MainActor
     private static func updateHandOffRecorder() {
         guard let handOffRecorder else { return }
         do {
-            let data = try JSONSerialization.data(
-                withJSONObject: [
-                    "launches": launchedWebViews.count,
-                    "presentations": presentedReadSheets,
-                    "handoffs": recordedHandOffs,
-                ],
-                options: [.sortedKeys])
+            var record: [String: Any] = [
+                "launches": launchedWebViews.count,
+                "presentations": presentedReadSheets,
+                "handoffs": recordedHandOffs,
+            ]
+            if let readSheetStyleProbe {
+                record["readSheetStyleProbe"] = readSheetStyleProbe
+            }
+            let data = try JSONSerialization.data(withJSONObject: record, options: [.sortedKeys])
             handOffRecorder.accessibilityLabel = String(decoding: data, as: UTF8.self)
         } catch {
             handOffRecorder.accessibilityLabel = "error: \(Self.debugDescription(of: error))"
         }
     }
+
+    static let readSheetStyleProbeScript = #"""
+    (() => {
+      const links = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((link) => ({
+        href: link.href,
+        loaded: Boolean(link.sheet),
+      }));
+      const stylesheets = Array.from(document.styleSheets).map((sheet) => {
+        let rules = [];
+        try {
+          rules = Array.from(sheet.cssRules || []).flatMap((rule) =>
+            rule.selectorText ? [{ selector: rule.selectorText, cssText: rule.cssText }] : []);
+        } catch (error) {
+          rules = [{ error: `${error.name}: ${error.message}` }];
+        }
+        return { href: sheet.href, disabled: sheet.disabled, rules };
+      });
+      const elements = {};
+      for (const id of ['fallback', 'return']) {
+        const element = document.getElementById(id);
+        if (!element) {
+          elements[id] = { exists: false };
+          continue;
+        }
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        const matchingRules = stylesheets.flatMap((sheet) => sheet.rules
+          .filter((rule) => {
+            try {
+              return element.matches(rule.selector);
+            } catch {
+              return false;
+            }
+          })
+          .map((rule) => ({ href: sheet.href, selector: rule.selector, cssText: rule.cssText })));
+        elements[id] = {
+          exists: true,
+          width: rect.width,
+          height: rect.height,
+          computed: {
+            display: style.display,
+            width: style.width,
+            height: style.height,
+            minWidth: style.minWidth,
+            minHeight: style.minHeight,
+            boxSizing: style.boxSizing,
+            padding: style.padding,
+            lineHeight: style.lineHeight,
+          },
+          matchingRules,
+        };
+      }
+      return JSON.stringify({ links, stylesheets, elements });
+    })()
+    """#
 
     private static func debugDescription(of error: Error) -> String {
         let error = error as NSError

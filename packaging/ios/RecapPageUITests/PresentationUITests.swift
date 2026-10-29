@@ -3,8 +3,13 @@ import XCTest
 
 private func layoutMetrics(from label: String) -> [String: Any]? {
     let prefix = "recap-layout-probe "
-    guard label.hasPrefix(prefix),
-          let data = String(label.dropFirst(prefix.count)).data(using: .utf8) else { return nil }
+    guard label.hasPrefix(prefix) else { return nil }
+    let suffix = ", application status"
+    let reported = String(label.dropFirst(prefix.count))
+    let json = reported.hasSuffix(suffix)
+        ? String(reported.dropLast(suffix.count))
+        : reported
+    guard let data = json.data(using: .utf8) else { return nil }
     return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
 }
 
@@ -125,6 +130,32 @@ final class PresentationUITests: XCTestCase {
           viewportWidth: document.documentElement.clientWidth,
           documentWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
           rootFontSize: Number.parseFloat(getComputedStyle(document.documentElement).fontSize),
+          homeHeader: (() => {
+            const header = document.querySelector('#view-home > .head');
+            if (!header) return null;
+            const style = getComputedStyle(header);
+            const tracks = style.gridTemplateColumns.trim();
+            return {
+              largestText: document.documentElement.dataset.iosLargestText === 'true',
+              display: style.display,
+              gridTemplateColumnCount: style.display === 'grid' && tracks !== 'none'
+                ? tracks.split(/\s+/).length
+                : 0,
+            };
+          })(),
+          skipLink: (() => {
+            const link = document.querySelector('.skip-link');
+            if (!link) return null;
+            const rect = link.getBoundingClientRect();
+            const style = getComputedStyle(link);
+            return {
+              width: rect.width,
+              height: rect.height,
+              display: style.display,
+              minWidth: style.minWidth,
+              minHeight: style.minHeight,
+            };
+          })(),
           widestOverflowingElements: [...document.querySelectorAll('body *')]
             .filter((element) => element !== monitor)
             .flatMap((element) => {
@@ -204,9 +235,11 @@ final class PresentationUITests: XCTestCase {
     private func navigate(_ app: XCUIApplication, linkName: String, headingLabel: String) {
         let link = app.links.matching(identifier: linkName).firstMatch
         if !link.isHittable {
-            let toggle = app.buttons["More"]
+            let toggle = moreToggle(of: app)
             let close = app.buttons["more-sheet-close"]
-            XCTAssertTrue(toggle.waitForExistence(timeout: 30), "the narrow navigation toggle is available")
+            XCTAssertTrue(
+                toggle.waitForExistence(timeout: 30),
+                "the narrow navigation toggle is available: \(app.debugDescription)")
             toggle.tap()
             XCTAssertTrue(close.waitForExistence(timeout: 30), "the More sheet is presented")
             XCTAssertTrue(link.waitForExistence(timeout: 30), "\(linkName) is shown in More")
@@ -257,6 +290,22 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertEqual(screenRoot, 16, accuracy: 0.1)
                 }
 
+                let home = try XCTUnwrap(screens.first { $0["view"] as? String == "view-home" })
+                let homeHeader = try XCTUnwrap(home["homeHeader"] as? [String: Any])
+                XCTAssertEqual(
+                    homeHeader["largestText"] as? Bool,
+                    category == .accessibilityExtraExtraExtraLarge,
+                    "the iOS-only Home override follows only the largest Dynamic Type category")
+                if category == .accessibilityExtraExtraExtraLarge {
+                    XCTAssertEqual(homeHeader["display"] as? String, "grid")
+                    XCTAssertEqual(homeHeader["gridTemplateColumnCount"] as? Int, 1)
+                }
+                let skipLinkMetrics = try XCTUnwrap(home["skipLink"] as? [String: Any])
+                XCTAssertGreaterThanOrEqual(
+                    try XCTUnwrap(skipLinkMetrics["height"] as? Double),
+                    44,
+                    "the iOS skip link has a 44-point target")
+
                 let safeInsets = try XCTUnwrap((result["safeInsets"] as? [NSNumber])?.map(\.doubleValue))
                 XCTAssertEqual(safeInsets.count, 4)
                 XCTAssertTrue(safeInsets.allSatisfy { $0 >= 0 })
@@ -291,12 +340,13 @@ final class PresentationUITests: XCTestCase {
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
                 let skipLink = app.descendants(matching: .any).matching(
                     NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
-                if skipLink.exists {
-                    try record("t03-target-\(category.rawValue)-\(name)", [
-                        "skipLinkWidth": Double(skipLink.frame.width),
-                        "skipLinkHeight": Double(skipLink.frame.height),
-                    ])
-                }
+                XCTAssertTrue(skipLink.waitForExistence(timeout: 30), "the skip link is present for target measurement")
+                try record("t03-target-\(category.rawValue)-\(name)", [
+                    "skipLinkWidth": Double(skipLink.frame.width),
+                    "skipLinkHeight": Double(skipLink.frame.height),
+                ])
+                XCTAssertGreaterThanOrEqual(skipLink.frame.width, 44, "the skip link meets the 44-point width")
+                XCTAssertGreaterThanOrEqual(skipLink.frame.height, 44, "the skip link meets the 44-point height")
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
@@ -317,6 +367,23 @@ final class PresentationUITests: XCTestCase {
             openRead.tap()
             XCTAssertTrue(app.buttons["ios-read-sheet-close"].waitForExistence(timeout: 30), "the Read sheet is presented")
             waitForReadSheetPresentation(app)
+            let styleProbe = try readSheetStyleProbe(of: app)
+            try record("t03-read-sheet-style-\(category.rawValue)", styleProbe)
+            let links = try XCTUnwrap(styleProbe["links"] as? [[String: Any]])
+            XCTAssertTrue(
+                links.contains {
+                    ($0["href"] as? String)?.hasSuffix("/ios/launcher.css") == true
+                        && ($0["loaded"] as? Bool) == true
+                },
+                "the iOS launcher stylesheet loads in the Read sheet: \(styleProbe)")
+            let stylesheets = try XCTUnwrap(styleProbe["stylesheets"] as? [[String: Any]])
+            let launcherSheet = try XCTUnwrap(
+                stylesheets.first { ($0["href"] as? String)?.hasSuffix("/ios/launcher.css") == true },
+                "the Read sheet exposes its iOS launcher stylesheet")
+            let rules = try XCTUnwrap(launcherSheet["rules"] as? [[String: Any]])
+            XCTAssertTrue(
+                rules.contains { ($0["selector"] as? String)?.contains("#fallback") == true },
+                "the launcher stylesheet contains the target rule")
             let manualLink = app.descendants(matching: .any).matching(
                 NSPredicate(format: "label == %@", "Continue manually")).firstMatch
             XCTAssertTrue(manualLink.waitForExistence(timeout: 30), "the manual Read link is present for target measurement")
@@ -324,6 +391,22 @@ final class PresentationUITests: XCTestCase {
                 "manualLinkWidth": Double(manualLink.frame.width),
                 "manualLinkHeight": Double(manualLink.frame.height),
             ])
+            XCTAssertGreaterThanOrEqual(manualLink.frame.height, 48, "the manual Read link meets the iOS target")
+            let elements = try XCTUnwrap(styleProbe["elements"] as? [String: [String: Any]])
+            for id in ["fallback", "return"] {
+                let element = try XCTUnwrap(elements[id], "the Read launcher contains #\(id)")
+                XCTAssertEqual(element["exists"] as? Bool, true, "#\(id) is present")
+                XCTAssertGreaterThanOrEqual(
+                    try XCTUnwrap(element["height"] as? Double),
+                    48,
+                    "#\(id) has a 48-point hit region")
+                let computed = try XCTUnwrap(element["computed"] as? [String: Any])
+                XCTAssertEqual(computed["minHeight"] as? String, "48px", "#\(id) uses the iOS target token")
+                let matchingRules = try XCTUnwrap(element["matchingRules"] as? [[String: Any]])
+                XCTAssertTrue(
+                    matchingRules.contains { ($0["href"] as? String)?.hasSuffix("/ios/launcher.css") == true },
+                    "#\(id) matches an iOS launcher rule")
+            }
             try app.performAccessibilityAudit()
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
@@ -388,6 +471,33 @@ final class PresentationUITests: XCTestCase {
         app.descendants(matching: .any)
             .matching(NSPredicate(format: "label BEGINSWITH %@", "recap-layout-probe "))
             .firstMatch
+    }
+
+    private func moreToggle(of app: XCUIApplication) -> XCUIElement {
+        let more = NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")
+        return app.descendants(matching: .any).matching(more).firstMatch
+    }
+
+    private func readSheetStyleProbe(of app: XCUIApplication) throws -> [String: Any] {
+        let recorder = app.staticTexts["ios-handoff-recorder"]
+        XCTAssertTrue(recorder.waitForExistence(timeout: 30), "the Read-sheet recorder appeared")
+        let probeReady = XCTNSPredicateExpectation(
+            predicate: NSPredicate { object, _ in
+                guard let element = object as? XCUIElement,
+                      let data = element.label.data(using: .utf8),
+                      let record = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return false }
+                return record["readSheetStyleProbe"] != nil
+            },
+            object: recorder)
+        XCTAssertEqual(
+            XCTWaiter.wait(for: [probeReady], timeout: 30),
+            .completed,
+            "the Read sheet recorded its stylesheet probe")
+        let data = try XCTUnwrap(recorder.label.data(using: .utf8))
+        let record = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        let probe = try XCTUnwrap(record["readSheetStyleProbe"] as? [String: Any])
+        XCTAssertNil(probe["error"], String(describing: probe))
+        return probe
     }
 
     private func waitForReadSheetPresentation(_ app: XCUIApplication) {

@@ -6,8 +6,9 @@ Store yet. Like the [Android app](ANDROID.md), it is the existing web app inside
 shell, so every fix to the shared app reaches iOS too, and it adds no account, server or upload.
 
 **Nothing here is in anyone's hands yet.** The shell is built and tested in the iOS Simulator on
-GitHub's macOS runners for every pull request. Saving files through the Files picker, Read, text
-size and signed builds for TestFlight arrive in later steps of #949, each with its own checks.
+GitHub's macOS runners for every pull request. Files export and restore, Read, text size, iPad
+windowing and the missing-data notice are being implemented and tested in P02 of #949. Signed
+builds for TestFlight follow in P03, with their own checks.
 
 ## How it works
 
@@ -28,6 +29,20 @@ Only the app page loads in the web view. A link you follow to the web, such as t
 a source credit, opens in your default browser, and any other navigation is refused. If iOS ends the
 page's process, which it can do to an app in the background, the app reloads the page and says that
 saved reading progress is retained: saved data lives outside that process.
+
+## Text size and windowing
+
+The native shell maps the system text size to the six shared type tokens. It does not zoom the page
+or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
+header one column so the What's new control keeps enough width to read. This adjustment is confined
+to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
+shared 44-pixel target token, and the standalone Read links use the shared 48-pixel touch-target
+token.
+
+The Simulator presentation tests cover both default and largest text sizes, light and dark
+appearances, iPhone and iPad windows, and the Read sheet. Hosted validation of the current
+presentation corrections is in progress. VoiceOver, hardware keyboard, pointer, actual Files picker
+and browser hand-off behavior still need the owner's device checks.
 
 ## Permanent names
 
@@ -111,8 +126,9 @@ refused only the restore with text above Latin-1. The measurements are recorded 
 
 ## Known limits
 
-- Saving backups and exports to Files, choosing a backup file to restore, Read, text size, iPad
-  window sizes and a notice when iOS removes saved data are not in the app yet.
+- Files export and restore, Read hand-off, Dynamic Type, iPad window sizing and the missing-data
+  notice are implemented and under hosted Simulator validation. Actual Files picker, browser
+  hand-off and assistive-technology behavior remain device checks.
 - iOS can remove an app's website data when the device runs very low on space, and this app cannot
   opt out of that. The About text recommends keeping an export outside the app, explains that it can
   include progress and notes, and says that deleting the app does not remove exported files.

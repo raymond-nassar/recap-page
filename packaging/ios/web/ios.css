@@ -22,6 +22,7 @@
   display: inline-flex;
   min-width: var(--target);
   min-height: var(--target);
+  height: var(--target);
   align-items: center;
   opacity: 0;
   pointer-events: none;
@@ -30,4 +31,20 @@
 .skip-link:focus {
   opacity: 1;
   pointer-events: auto;
+}
+
+:root[data-ios-largest-text="true"] #view-home > .head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:root[data-ios-largest-text="true"] #view-home > .head > .home-lockup {
+  grid-column: 1;
+}
+
+:root[data-ios-largest-text="true"] #view-home #home-updates {
+  grid-column: 1;
+  width: 100%;
+  justify-self: stretch;
+  margin-left: 0;
 }

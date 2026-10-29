@@ -73,6 +73,17 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
         #endif
     }
 
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        #if DEBUG
+        guard DebugSupport.readSheetStyleProbeEnabled else { return }
+        webView.evaluateJavaScript(DebugSupport.readSheetStyleProbeScript) { value, error in
+            Task { @MainActor in
+                DebugSupport.recordReadSheetStyleProbe(value, error: error)
+            }
+        }
+        #endif
+    }
+
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         let decision = policy.decideLauncher(
             url: navigationAction.request.url,

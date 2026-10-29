@@ -118,9 +118,15 @@ final class WebViewController: UIViewController, WKUIDelegate {
     private static func dynamicTypeScaleScript(for traits: UITraitCollection) -> String {
         let bodySize = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traits).pointSize
         let scale = String(Double(bodySize) / 17.0)
+        let isLargestText = traits.preferredContentSizeCategory == .accessibilityExtraExtraExtraLarge
         return """
         (() => {
-          const apply = () => document.documentElement?.style.setProperty('--ios-text-scale', '\(scale)');
+          const apply = () => {
+            const root = document.documentElement;
+            if (!root) return;
+            root.style.setProperty('--ios-text-scale', '\(scale)');
+            root.dataset.iosLargestText = '\(isLargestText)';
+          };
           if (document.documentElement) apply();
           else document.addEventListener('DOMContentLoaded', apply, { once: true });
         })();
