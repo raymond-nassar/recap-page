@@ -16,6 +16,7 @@ import {
 } from '../src/js/lib/cloudProtocol.js';
 import { CLOUD_BACKUP_CADENCE, CloudBackupCoordinator, personalDigest } from '../src/js/lib/cloudCoordinator.js';
 import { CLOUD_SIGN_IN_POLL_MS, browserDeviceLabel, createCloudBackup } from '../src/js/lib/cloudBackup.js';
+import { cloudEraseNote, cloudEraseOutcome } from '../src/js/views/cloud.js';
 import { CompleteRestore, createRestoreJournal } from '../src/js/lib/completeRestore.js';
 import { canonical, captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
@@ -1421,6 +1422,44 @@ test('startup asks the host only when this browser holds consent', async () => {
   tab.home.storage.clear();
   await tab.cloud.afterErase(true);
   assert.deepEqual([await asked(), env.idb.databases.has(CLOUD_BACKUP_DATABASE)], [0, true], 'erased, the database kept');
+});
+
+// The erase question promised to disconnect every profile, or this browser had cloud backup: a host that
+// does not answer, or answers that this build has none, has not been disconnected, so the erase says so
+// rather than reporting success (stage 3 review, S3a-1). The words are the owner's, approved 2026-10-28.
+test('an erase the host does not answer says cloud backup may still be connected, rather than reporting success', async () => {
+  for (const silence of ['silent', 'not enabled']) {
+    const env = harness();
+    windowsHost(env.transport);
+    const tab = page({ env });
+    await tab.cloud.enter();
+    await tab.cloud.turnOn();
+    await tab.run(0);
+    assert.match(cloudEraseNote(tab.cloud.model), /disconnected too, for every browser profile/);
+    await tab.cloud.beforeErase();
+    if (silence === 'silent') env.transport.host.silent = true;
+    else env.transport.host.enabled = false;
+    tab.home.storage.clear();
+    const outcome = await tab.cloud.afterErase(true);
+    assert.deepEqual([outcome.ok, env.transport.host.disconnects], [false, 0], silence);
+    assert.equal(cloudEraseOutcome(outcome), ' Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup '
+      + 'may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.', silence);
+  }
+  // Not answering already when the question was asked, so it named only this browser's settings: this
+  // browser had cloud backup all the same, so a host that still does not answer is said.
+  const env = harness();
+  windowsHost(env.transport);
+  const tab = page({ env });
+  await tab.cloud.enter();
+  await tab.cloud.turnOn();
+  await tab.run(0);
+  env.transport.host.silent = true;
+  await tab.cloud.refresh();
+  assert.match(cloudEraseNote(tab.cloud.model), /^This browser's cloud backup settings are erased too\./);
+  await tab.cloud.beforeErase();
+  tab.home.storage.clear();
+  const outcome = await tab.cloud.afterErase(true);
+  assert.deepEqual([outcome.ok, outcome.problems.length], [false, 1]);
 });
 
 test('signing in waits for the browser, then shows the account before asking; signing in again carries backups on', async () => {

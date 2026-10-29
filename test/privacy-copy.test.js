@@ -780,6 +780,17 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
   );
 });
 
+// The card's and the erase's own sentences that stage 3's review changed, A to G, which the owner approved
+// word for word on 2026-10-28, so changing any needs the owner's approval again. Each is read from what the
+// app says, not from a copy of it.
+test('the cloud backup sentences from stage 3 are the owner\'s approved words', async () => {
+  const { ERASE_HOST_SILENT } = await import('../src/js/lib/cloudBackup.js');
+  const { cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  // A. Erase all local data, when the Recap Page app does not answer.
+  assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT] }).trim(),
+    'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
+});
+
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an
 // assertion. These four lists were built by thirteen rounds of review trying to break the rule, and
 // until now they lived in a scratch file outside the repository while both the changelog and the

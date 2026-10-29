@@ -22,6 +22,10 @@ const NOT_ANSWERING = Object.freeze({ enabled: false, transient: true });
 const OFF = Object.freeze({ phase: 'off', code: null, retryAt: null, lastUploadAt: null });
 const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, message: null, code: null });
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
+// The owner's words, approved 2026-10-28 (stage 3 review, S3a-1), and pinned in the privacy copy tests.
+export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
+// The host states the erase question names as disconnected, as cloudEraseNote reads them.
+const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
 
 // What other devices see in discovery: the browser's brand and the system it runs on, from the client
 // hints Chromium gives every page, or the protocol's default where there are none.
@@ -55,6 +59,8 @@ export function createCloudBackup({
   // whatever another tab says.
   let held = false;
   let wasRunning = false;
+  // Whether the erase question named the disconnect, as the card read the host when it was asked.
+  let promised = false;
   let model = null;
 
   const enabled = () => status?.enabled === true;
@@ -311,6 +317,7 @@ export function createCloudBackup({
     beforeErase() {
       held = true;
       wasRunning = Boolean(coordinator?.active);
+      promised = enabled() && DISCONNECT_NAMED.has(status.state);
       coordinator?.stop();
     },
 
@@ -318,7 +325,9 @@ export function createCloudBackup({
     // its sign-in, for every profile, as the erase question said. When it did not, backups go on.
     async afterErase(erased) {
       const resume = wasRunning;
+      const named = promised;
       wasRunning = false;
+      promised = false;
       if (!erased) {
         held = false;
         if (resume) await refresh();
@@ -331,8 +340,11 @@ export function createCloudBackup({
       }
       const problems = [];
       let kept = false;
+      let had = record !== null;
       const exists = await recordExists();
       if (exists === true || (exists === null && (record !== null || enabled()))) {
+        // A record that cannot be read was still this browser's cloud backup.
+        had = had || await protocol.record().then((value) => value !== null, () => true);
         try { await protocol.forget(); } catch (error) {
           kept = true;
           problems.push(error?.message ?? 'This browser could not forget its cloud backup record.');
@@ -340,10 +352,15 @@ export function createCloudBackup({
           await protocol.withdrawConsent().catch(() => {});
         }
       }
-      if (status === null || enabled()) {
+      // Promised in the question, or this browser had cloud backup: a host that does not answer now, or
+      // answers that this build has none, has not been disconnected, and saying nothing would leave that
+      // promise silently broken (stage 3 review, S3a-1).
+      const expected = named || had;
+      if (status === null || enabled() || expected) {
         try {
           const now = await transport.status();
           if (now.enabled && now.state !== 'not-connected') await transport.disconnect();
+          else if (!now.enabled && expected) problems.push(ERASE_HOST_SILENT);
         } catch (error) {
           problems.push(error?.message ?? 'Cloud backup could not be disconnected.');
         }
