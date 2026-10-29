@@ -55,6 +55,7 @@ import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createFeedback } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
+import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
 import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
@@ -2422,6 +2423,7 @@ const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 // Said in the pane that follows the reader between views, because a pause stops saving everywhere.
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
+  bulkReadView.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
     notify('#app-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
@@ -3159,6 +3161,25 @@ const addView = createAddView({
   ymd,
 });
 
+const bulkReadView = createBulkReadView({
+  store,
+  canSave: () => completeRestore.writable(),
+  button: () => $('#btn-mark-all-read'),
+  getListId: activeListId,
+  isCurrent: () => view === 'read',
+  askConfirm,
+  notify,
+  clearNotice,
+  reconcile: () => renderAll(),
+  focusCurrentView: () => focusViewHeading(view),
+  focusRetry: () => {
+    const retry = [...document.querySelectorAll('.report button:not(.notice-dismiss)')]
+      .find((control) => control.textContent === 'Try Undo again' && control.checkVisibility());
+    if (retry) retry.focus();
+    else focusViewHeading(view);
+  },
+});
+
 const readingView = createReadingView({
   $,
   activeListId,
@@ -3194,6 +3215,7 @@ const readingView = createReadingView({
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
   onHydrate: (listId) => hydrator.start(listId),
+  onMarkAllRead: () => bulkReadView.markAllRead(),
   onStartSynopsis: startSynopsisRun,
   openIssueFocus,
   paintCover,
@@ -3202,6 +3224,7 @@ const readingView = createReadingView({
   recordDirectProgressSave,
   readerPresentation,
   renderSaveEducation,
+  renderBulkRead: () => bulkReadView.render(),
   retireReaderHelp,
   saveSettings,
   seriesOnly,

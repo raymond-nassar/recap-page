@@ -12611,7 +12611,14 @@ const SCENARIOS = [
         restored.open === false && restored.rows === 0 && restored.checked === 'unread',
         JSON.stringify(restored));
 
+      await page.waitForFunction(() => {
+        const shell = document.querySelector('#shell');
+        return shell && !shell.inert && document.querySelector('#view-read')?.hidden === false;
+      }, { timeout: 15000 });
       await page.evaluate(() => document.querySelector('#btn-hero-done')?.click());
+      await page.waitForFunction(() => Object.keys(
+        JSON.parse(localStorage.getItem('mrt.state.v2')).read,
+      ).length === 2, { timeout: 15000 });
       const passiveStoredFilter = await page.evaluate(() => ({
         hash: location.hash,
         open: document.querySelector('#full')?.open,
@@ -16547,6 +16554,7 @@ SCENARIOS.push({
     await open(page, '/?catalog=browser-check#/read/shelf');
     await page.reload({ waitUntil: 'load' });
     await page.waitForFunction(() => document.querySelectorAll('#shelf .tile').length === 8, { timeout: 15000 });
+    await page.waitForSelector('#shelf .tile', { visible: true, timeout: 15000 });
     const results = {};
     for (const [width, height] of [[1280, 900], [390, 844], [2560, 1080]]) {
       await page.setViewport({ width, height });
@@ -18583,7 +18591,7 @@ async function responsiveCommands(page) {
     if (details) details.open = true;
     document.querySelector('#list-export').open = true;
     result.opened = box(complete);
-    result.commands = ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    result.commands = ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-mark-all-read', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list']
       .map((id) => ({ id, ...box(document.getElementById(id)), hidden: document.getElementById(id).hidden }));
     if (details) details.open = false;
@@ -18594,7 +18602,7 @@ async function responsiveCommands(page) {
   const overlap = a && b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
     * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : null;
   return { ...actual, overlap, expected: { minimumTarget: 44, ordinaryHeightCap: 112,
-    expandedIds: ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-export-md',
+    expandedIds: ['btn-complete-list', 'btn-rename-list', 'btn-list-note', 'btn-duplicate-list', 'btn-mark-all-read', 'btn-export-md',
       'btn-export-order', 'btn-hydrate', 'btn-synopsis', 'btn-delete-list'] } };
 }
 
@@ -21835,6 +21843,7 @@ const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionHomes, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
 MUTATIONS.push(...completion.completionMutations);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
+SCENARIOS.push((await import('./browser-bulk-read.mjs')).bulkRead);
 const doneUndo = await import('./browser-done-undo.mjs');
 SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints);
 MUTATIONS.push(...doneUndo.doneUndoMutations, ...doneUndo.doneDescriptionMutations, ...doneUndo.doneHomeMutations, ...doneUndo.doneHintMutations, ...doneUndo.readDoneHintsMutations);

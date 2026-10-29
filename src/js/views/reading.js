@@ -126,6 +126,7 @@ export function createReadingView({
   onExportMarkdown,
   onExportOrder,
   onHydrate,
+  onMarkAllRead = () => {},
   onStartSynopsis,
   openIssueFocus,
   paintCover,
@@ -134,6 +135,7 @@ export function createReadingView({
   recordDirectProgressSave,
   readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
+  renderBulkRead = () => {},
   retireReaderHelp,
   saveSettings,
   seriesOnly,
@@ -275,6 +277,7 @@ export function createReadingView({
   }
 
   function wire() {
+    $('#btn-mark-all-read')?.addEventListener('click', onMarkAllRead);
     const details = $('#list-actions');
     const summary = details.querySelector('summary');
     details.addEventListener('keydown', (event) => {
@@ -551,6 +554,7 @@ export function createReadingView({
   }
 
   function render() {
+    renderBulkRead();
     renderReview();
     if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
     if (doneResult && !doneResult.settling && !doneResultHolds(doneResult)) withdrawDoneResult(doneResult);

@@ -2939,7 +2939,7 @@ async function mobileLayout(page, label, narrow) {
     const completeRule = node.querySelector('#btn-complete-list')?.nextElementSibling;
     return {
       names: buttons.map((button) => button.textContent.trim()),
-      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-export-md',
+      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-mark-all-read', '#btn-export-md',
         '#btn-export-order', '#btn-hydrate', '#btn-synopsis', '#btn-delete-list']
         .map((selector) => node.querySelector(selector)).filter((button) => button && !button.hidden)
         .map((button) => button.textContent.trim()),
@@ -2979,7 +2979,7 @@ async function mobileLayout(page, label, narrow) {
   }));
   check(!escaped.open && escaped.focus === 'android-list-options' && !escaped.actions && !escaped.exports && escaped.home,
     `${label}: Escape from a command closes the sheet, returns to List options and restores both groups ${JSON.stringify(escaped)}`);
-  for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-delete-list']) {
+  for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-mark-all-read', '#btn-delete-list']) {
     await click(page, '#android-list-options');
     await click(page, action);
     await page.waitForSelector('#ask[open]', { timeout: 5000 }).catch(async (error) => {

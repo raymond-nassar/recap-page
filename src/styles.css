@@ -225,7 +225,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:793-800`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:794-801`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -967,7 +967,8 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .btn-icon { padding: 0; min-width: var(--target); min-height: var(--target); justify-content: center; }
 .btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
-.btn:disabled, .completion-wrapup .btn[aria-disabled="true"] { opacity: .5; cursor: default; filter: none; }
+.btn:disabled, .completion-wrapup .btn[aria-disabled="true"], #btn-mark-all-read:disabled { opacity: .5; cursor: default; filter: none; }
+#btn-mark-all-read:disabled { pointer-events: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
 .btn-danger {
   background: rgb(var(--red-line) / 7.059%); color: var(--red-fg);

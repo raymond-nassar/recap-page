@@ -84,6 +84,18 @@ search again. **Clear selection**, in the same bar, returns to search without ch
 A new search replaces earlier save feedback, but keeps your selected comics and destination.
 Unfinished selections are not saved across a reload; the browser warns before you leave with one.
 
+### Record a list you have already read
+
+Open the saved Reading List, expand **List actions** (**List options** on Android), and choose
+**Mark All Read**, then confirm the unread count in the dialog. This includes
+deferred comics and issues hidden by filters, and keeps existing read dates unchanged.
+Read progress is shared, so the same comics count as read in other lists too.
+
+**Undo mark all read** reverses the newly added read marks during this session, until your next
+saved reading-data change. It does not undo comics that were already read. The action does not
+change the list's Completed status, notes, order or deferrals. To correct progress later, use the
+individual read checkboxes in **Full Reading List**.
+
 ### Finish a reading list without removing it
 
 Choose **Mark as Completed** when you are finished, even if you skipped or deferred comics.
