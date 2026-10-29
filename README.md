@@ -57,8 +57,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 - **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
   again in **Completed lists** without losing notes or comic progress.
 - **Find comics.** Filter curated lists by category, or find issues, series, and creators in Search.
-- **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
-  unavailable checks.
+- **Marvel Unlimited record**
+  This is a historical record, not availability in Marvel Comics.
 - **Back up your progress.** Restore a backup on this device or another. Android and desktop save
   separately. Reading data and completion history have separate backups; each restore replaces
   only that kind of data.

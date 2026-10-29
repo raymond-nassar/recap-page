@@ -9353,8 +9353,8 @@ const SCENARIOS = [
         .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
       placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab.', { timeout: 5000 });
-      t.check('the spoken announcement is unchanged', true);
+        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab. Reading ends December 7, 2026.', { timeout: 5000 });
+      t.check('the spoken announcement includes the approved reading deadline', true);
       await page.evaluate(() => document.querySelector('#btn-hero-done').click());
       await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
       t.check('Done retires the hint', await hintCount() === 0);
