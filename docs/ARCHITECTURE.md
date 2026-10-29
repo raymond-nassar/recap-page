@@ -785,14 +785,15 @@ holds. A sign-in happens in the browser, and the card asks the host every two se
 Turning backups on or off in one tab reaches the others through a broadcast channel. Before its first
 write, an erase stops this page's backups, takes the worker lock, after any backup another tab has under
 way, and sets this browser's consent aside in its record, so no tab backs up the erased state, not even
-one where backups are turned on meanwhile. It then forgets the record, so the next consent starts a new
-stream, or, having erased nothing, puts the same consent back, and only then lets go of the lock; and it
-disconnects the host for every browser profile, as its question says. A page that dies during an erase
-leaves consent set aside, which nothing puts back by itself, and the card says backups stopped until the
-person turns them on again. A record that fails its checks also stops backups and is said on the card,
-and turning backups on then starts a new stream, so discovery shows the old stream's files as another
-device's. A record the browser could not read at all is not reported that way, because it may still be
-intact, and a later turn-on would keep it.
+one where backups are turned on meanwhile. The lock ends with the page that holds it, so an erase that
+cannot take it, or cannot confirm consent set aside, erases nothing and says why. One that goes ahead
+then forgets the record, so the next consent starts a new stream, or, having erased nothing, puts the
+same consent back, and only then lets go of the lock; and it disconnects the host for every browser
+profile, as its question says. A page that dies during an erase leaves consent set aside, which nothing
+puts back by itself, and the card says backups stopped until the person turns them on again. A record
+that fails its checks also stops backups and is said on the card, and turning backups on then starts a
+new stream, so discovery shows the old stream's files as another device's. A record the browser could not
+read at all is not reported that way, because it may still be intact, and a later turn-on would keep it.
 
 **Discovery and restore.** Before a browser's first upload it lists what is already in the account:
 for each stream, the newest file that passes every check and the one before it. Discovery only lists

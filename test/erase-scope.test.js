@@ -70,7 +70,7 @@ function eraseFixture({ locks = { request: async (_name, operation) => operation
     eraseReaderAndHistory, eraseOutcome, cloudEraseOutcome,
     // Cloud backup is held before the erase writes and told afterwards whether the reading data went.
     cloudBackup: {
-      beforeErase() { calls.cloud.push(['before', listsSaved()]); },
+      beforeErase() { calls.cloud.push(['before', listsSaved()]); return h.cloudRefusal ?? null; },
       async afterErase(erased) {
         calls.cloud.push(['after', erased, listsSaved()]);
         return h.cloudResult ?? { ok: true, problems: [] };
@@ -502,4 +502,15 @@ test('erase holds cloud backup before its first write, lets it go on when nothin
   await stuck.run();
   assert.deepEqual(stuck.calls.notify.at(-1), ['#save-report',
     'All local data erased. Cloud backup could not be fully turned off. The Recap Page app could not be reached. Check Cloud backup in Backup & settings.', 'warn']);
+});
+
+// Cloud backup that could not be stopped first answers why, and then nothing is erased, because a tab still
+// holding consent would back up the erased data over the good copies (stage 4 review, S4c-1).
+test('erase does not start when cloud backup could not be stopped first, and says why', async () => {
+  const h = eraseFixture();
+  h.cloudRefusal = 'The reason it gave.';
+  await h.run();
+  assert.deepEqual(h.calls.cloud, [['before', 1]], 'nothing written, and nothing for cloud backup to undo');
+  assert.deepEqual(h.calls.notify, [['#save-report', 'Nothing was erased. The reason it gave.', 'error']]);
+  assert.deepEqual(h.calls.announce, []);
 });

@@ -24,6 +24,8 @@ const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, mess
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
 // The owner's words, approved 2026-10-28 (stage 3 review, S3a-1), and pinned in the privacy copy tests.
 export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
+// Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1).
+export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, and a backup of the erased data could have replaced your earlier backups.';
 // The host states the erase question names as disconnected, as cloudEraseNote reads them.
 const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
 
@@ -335,6 +337,10 @@ export function createCloudBackup({
     // restores the record, no tab's backup runs and none can take a number, even one where backups are
     // turned on meanwhile (stage 3 review, S3a-7). A page that dies during the erase releases the lock
     // with it and leaves consent set aside, which the card says. Callers await this before the first write.
+    // It resolves to null once the record is confirmed to give no tab a number: no consent in it, consent
+    // set aside and read back, or a record that fails its checks, from which no tab takes one and which the
+    // erase forgets. Otherwise it puts back what it did and resolves to why, and the caller erases nothing,
+    // because the lock alone ends with the page that holds it (stage 4 review, S4c-1).
     beforeErase() {
       held = true;
       wasRunning = Boolean(coordinator?.active);
@@ -342,14 +348,31 @@ export function createCloudBackup({
       coordinator?.stop();
       erasing = (async () => {
         const exists = await recordExists();
-        if (!(exists === true || (exists === null && (record !== null || enabled())))) return;
-        try {
-          releaseErase = await protocol.hold();
-          setAside = await protocol.suspendConsent();
-        } catch {
-          // A record that cannot be read or written is forgotten by the erase, or reported if it cannot be.
+        if (exists === true || (exists === null && (record !== null || enabled()))) {
+          let why = null;
+          try {
+            releaseErase = await protocol.hold();
+            setAside = await protocol.suspendConsent();
+          } catch (error) {
+            // Only a record that fails its checks, read under the lock, lets the erase go on: no tab takes a
+            // number from it, and the erase forgets it.
+            if (!(releaseErase && isUnreadableRecord(error))) {
+              why = error instanceof CloudBackupError ? `${ERASE_NOT_STOPPED} ${error.message}` : ERASE_NOT_STOPPED;
+            }
+          }
+          if (why !== null) {
+            const resume = wasRunning;
+            releaseErase?.();
+            releaseErase = null;
+            held = false;
+            wasRunning = false;
+            promised = false;
+            if (resume) await refresh();
+            return why;
+          }
         }
         if (setAside) announce();
+        return null;
       })();
       return erasing;
     },
@@ -393,11 +416,14 @@ export function createCloudBackup({
         try { await protocol.forget(); } catch (error) {
           kept = true;
           problems.push(error?.message ?? 'This browser could not forget its cloud backup record.');
-          // Consent at least, so the erased state is never backed up over what was there before.
+          // Consent given in another tab during the erase too, so the erased state is never backed up under it.
           await protocol.withdrawConsent().catch(() => {});
         }
       }
-      // Forgotten, or its consent set aside or withdrawn: no tab can take a number now, so the lock goes.
+      // Forgotten, withdrawn, or still set aside as beforeErase confirmed before the first write: this
+      // browser's consent gives no tab a number, so the lock goes. Consent the person gave in another tab
+      // during the erase, should this browser then be able neither to forget the record nor to withdraw it,
+      // is the one case left; the report then says cloud backup may still be on (stage 4 review, S4c-1).
       release();
       // Promised in the question, or this browser had cloud backup: a host that does not answer now, or
       // answers that this build has none, has not been disconnected, and saying nothing would leave that

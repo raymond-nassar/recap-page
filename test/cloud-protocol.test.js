@@ -1539,6 +1539,68 @@ test('a page that dies during an erase leaves backups stopped and says so, until
   assert.deepEqual([env.transport.created.length, (await next.protocol.record()).suspended], [made + 1, null], 'turned on by the person, it backs up');
 });
 
+// The erase goes ahead only once the shared record is confirmed to give no tab a number, because the lock ends
+// with the page that holds it. A lock it cannot take, or consent it cannot set aside, leaves nothing erased.
+// Before this, a second tab with consent backed up the cleared data, and in time its backups would prune the
+// good ones (stage 4 review, S4c-1, the reviewer's sequence: setting aside, forgetting and withdrawing all
+// fail). The test plays the page's part: it erases only when the erase is not refused.
+test('an erase that cannot take the lock or set consent aside erases nothing, and no tab backs up the erased data', async () => {
+  const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
+  const env = harness();
+  windowsHost(env.transport);
+  const first = page({ env });
+  await first.cloud.enter();
+  await first.cloud.turnOn();
+  await first.run(0);
+  const second = page({ env, home: first.home });
+  await second.cloud.resume();
+  await second.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+  const made = env.transport.created.length;
+  const agreed = await first.protocol.record();
+  const erase = async (failing) => {
+    const refused = await first.cloud.beforeErase();
+    if (!refused) {
+      first.home.storage.clear();
+      failing?.();
+      await first.cloud.afterErase(true);
+    }
+    return refused;
+  };
+  const afterwards = async () => {
+    env.idb.faults.abort = 0;
+    env.transport.host.refuse = null;
+    assert.equal(env.locks.held(CLOUD_BACKUP_LOCK), 0, 'the erase let go of the lock');
+    second.cloud.notify();
+    await second.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+    return env.transport.created.length;
+  };
+
+  env.idb.faults.abort = 3;
+  env.transport.host.refuse = 'The Recap Page app could not be reached.';
+  const unwritten = await erase();
+  assert.equal(await afterwards(), made, 'no tab backed up anything');
+  assert.equal(unwritten, `${ERASE_NOT_STOPPED} This browser could not keep its cloud backup record.`);
+  assert.deepEqual([await first.protocol.record(), first.cloud.model.on, first.cloud.model.backup.phase !== 'off'],
+    [agreed, true, true], 'consent as it was, and this page\'s backups going on');
+
+  const request = env.locks.request;
+  env.locks.request = async () => { throw new DOMException('The lock request was aborted.', 'AbortError'); };
+  const unlocked = await erase();
+  env.locks.request = request;
+  assert.equal(await afterwards(), made);
+  assert.equal(unlocked, ERASE_NOT_STOPPED, 'without the lock, nothing is set aside or erased');
+  assert.deepEqual([await first.protocol.record(), first.cloud.model.on, first.cloud.model.backup.phase !== 'off'], [agreed, true, true]);
+
+  // When the recovery fails after consent was set aside, the record still gives no tab a number.
+  const stuck = await erase(() => {
+    env.idb.faults.abort = 2;
+    env.transport.host.refuse = 'The Recap Page app could not be reached.';
+  });
+  assert.equal(stuck, null);
+  assert.equal(await afterwards(), made, 'the erased state was never backed up');
+  assert.deepEqual([(await first.protocol.record()).consent, second.cloud.model.suspended], [null, true]);
+});
+
 // A record that fails its checks is said on the card, and turning on replaces it with a new stream, so its
 // files are then another device's. A record the browser could not read at all is not called unreadable,
 // because turning on may find it intact and go on with it (stage 3 review, S3b-7).

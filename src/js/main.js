@@ -2272,10 +2272,10 @@ const dataView = createDataView({
   getCloudEraseNote: () => cloudEraseNote(cloudBackup.model),
   eraseHistory: true,
   onErase: async (draftExpected) => {
-    // User data first, then any recovery copy a complete restore kept, which the restore engine removes
-    // in cleanup order. While a recovery is pending, this is the one change allowed past the pause.
-    // Cloud backup is held from before the first write, so the erased state is never backed up (#810).
-    await cloudBackup.beforeErase();
+    // User data, then any recovery copy a complete restore kept, in cleanup order: while a recovery is pending,
+    // this is the one change allowed past the pause. Cloud backup is held first, or nothing is erased (#810).
+    const unheld = await cloudBackup.beforeErase();
+    if (unheld) { notify('#save-report', `Nothing was erased. ${unheld}`, 'error'); return; }
     let result = null;
     let draftRemoved = null;
     const erasure = await completeRestore.erase(async () => {
