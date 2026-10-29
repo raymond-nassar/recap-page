@@ -748,11 +748,11 @@ test('a promise about one thing may still be absolute, and one still is', () => 
   assert.doesNotMatch(withCloud, /never sent anywhere/i, 'and no longer says the setting never leaves');
 });
 
-// The approved words, variant by variant, in the order the markup carries them, because the owner approves
-// the exact text (OD-10). Each "off" variant is what the app said before cloud backup existed, so a build
-// without it reads exactly as it did. Each "on" variant starts hidden, so only the page learning that the
-// build has cloud backup can show it. The request list's exception has no "off" variant: without cloud
-// backup there is nothing to add.
+// The approved words, variant by variant, in the order the markup carries them. The owner approved every one
+// of them word for word on 2026-10-28 (OD-10 on #810), so changing any needs the owner's approval again. Each
+// "off" variant is what the app said before cloud backup existed, so a build without it reads exactly as it
+// did. Each "on" variant starts hidden, so only the page learning that the build has cloud backup can show
+// it. The request list's exception has no "off" variant: without cloud backup there is nothing to add.
 const CLOUD_COPY = [
   ['off', 'This is browser storage, not cookies, an account, or a cloud copy, and nothing is uploaded.'],
   ['on', 'This is browser storage, not cookies or an account. Your lists and progress are uploaded only if you turn on cloud backup, and then only to your own OneDrive.'],
@@ -762,7 +762,7 @@ const CLOUD_COPY = [
   ['on', 'The choice is stored in this browser alongside your other settings and is sent only inside a cloud backup to your own OneDrive, if you turn cloud backup on.'],
   ['off', 'There is no account to create, and no analytics or tracking of any kind. Your progress and your notes are never sent anywhere. Clearing site data for this address erases them, so export a backup regularly.'],
   ['on', 'Clearing site data for this address erases them here, so keep a backup. There is no Recap Page account to create, and no analytics or tracking of any kind. Your lists, progress and notes are uploaded only if you turn on cloud backup in Backup & settings, and then only to your own OneDrive, where they are as private as anything else you keep there. Recap Page\'s developer has no access to them.'],
-  ['on', 'Cloud backup is the one exception, and only once you turn it on: after you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes, lists and reads the backups there to check them and to offer them for restoring, and deletes this browser\'s older ones. Microsoft sees those backups, as it sees anything in your OneDrive.'],
+  ['on', 'Cloud backup is the one exception, and only once you turn it on. After you sign in on Microsoft\'s own page, Recap Page sends a complete backup of what you save to your own OneDrive after you make changes. It also lists and reads the backups there, to check them and to offer them for restoring, and deletes this browser\'s older ones. Microsoft sees those backups, as it sees anything in your OneDrive.'],
 ];
 
 test('each privacy sentence cloud backup changes carries both variants, in the approved words', () => {
