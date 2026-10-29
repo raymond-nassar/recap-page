@@ -113,10 +113,13 @@ export function createCloudHost({
   };
 
   // The stored sign-in is read once, when it is first needed, and only if one exists, so a computer that
-  // never connected never starts PowerShell. A read that timed out is tried again next time.
+  // never connected never starts PowerShell. A read that timed out is tried again next time. The read
+  // takes its place in the same queue as every change to the stored sign-in, so a disconnect that lands
+  // while it unprotects the file waits for it and then wins, rather than being undone by it (stage 2
+  // review, M1).
   function load() {
     if (unavailable) return Promise.resolve();
-    loading ??= (async () => {
+    loading ??= serial(async () => {
       try {
         record = (await store.exists()) ? await store.load() : null;
       } catch (error) {
@@ -132,7 +135,7 @@ export function createCloudHost({
           throw error;
         }
       }
-    })();
+    });
     return loading;
   }
 

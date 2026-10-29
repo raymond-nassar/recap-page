@@ -1036,6 +1036,42 @@ test('where Windows restricts PowerShell, cloud backup says why, signs nothing i
   assert.ok(new ProviderError('unavailable', 'x', { retryAfterMs: 5 }).retryAfterMs === 5);
 });
 
+// The first request to a freshly started host reads the stored sign-in, and a disconnect can land while
+// PowerShell unprotects it. That read used to finish after the disconnect and put the old sign-in back,
+// so the disconnect answered connected and the next refresh saved it again (stage 2 review, M1).
+test('a disconnect that lands while the stored sign-in is being read is never undone by that read', async () => {
+  const store = memoryStore({ ...RECORD });
+  const reading = deferred();
+  const read = store.load.bind(store);
+  // As the real store does: the file is read first, then PowerShell spends its time unprotecting it.
+  store.load = async () => {
+    const sealed = await read();
+    store.log.push('reading');
+    await reading.promise;
+    return sealed;
+  };
+  const env = host({ store });
+  const api = await hostServer(env.instance);
+  try {
+    const first = api.call('status');
+    await until(() => store.log.includes('reading'), 'the stored sign-in is being read');
+    const asked = env.sessions.length;
+    const leaving = api.call('disconnect');
+    await until(() => env.sessions.length > asked, 'the disconnect reached the host');
+    for (let turn = 0; turn < 50; turn += 1) await settle();
+    reading.resolve();
+    assert.equal((await leaving).body.status.state, 'not-connected');
+    await first;
+    assert.equal((await api.call('status')).body.status.state, 'not-connected');
+    assert.equal((await api.call('list', { connection: RECORD.connection })).body.error.code, 'not-connected', 'the old connection is refused');
+    assert.equal(store.saved, null, 'the sign-in stays removed');
+    assert.ok(!store.log.slice(store.log.indexOf('clear')).includes('save'), 'nothing saved it back');
+  } finally {
+    env.instance.close();
+    await api.close();
+  }
+});
+
 // ------------------------------------------------------------------ the page's transport
 
 // The browser's part of a request from the served page: the absolute address, and the Origin and fetch
