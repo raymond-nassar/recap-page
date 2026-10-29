@@ -225,6 +225,9 @@ final class LaunchUITests: XCTestCase {
         read.tap()
         XCTAssertTrue(app.staticTexts["Reader lookup failed"].waitForExistence(timeout: 90))
         XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
+        let fallback = app.links["Continue manually"]
+        XCTAssertTrue(fallback.waitForExistence(timeout: 30), "the failed lookup leaves a manual fallback link")
+        fallback.tap()
         let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
         XCTAssertEqual(urls.count, 1)

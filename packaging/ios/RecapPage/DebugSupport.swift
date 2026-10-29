@@ -75,6 +75,12 @@ enum DebugSupport {
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addButtons, { once: true });
       else addButtons();
 
+      if (new URLSearchParams(location.search).has('recapTestFail')) {
+        const schedule = window.setTimeout.bind(window);
+        window.setTimeout = (handler, delay, ...args) =>
+          schedule(handler, delay === 1400 ? 30_000 : delay, ...args);
+      }
+
       const originalFetch = window.fetch.bind(window);
       window.fetch = async (input, init) => {
         const requestUrl = typeof input === 'string' || input instanceof URL ? input : input.url;
