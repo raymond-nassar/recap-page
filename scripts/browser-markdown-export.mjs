@@ -63,6 +63,7 @@ export const readableMarkdownExport = {
     const before = await page.evaluate(() => ({
       state: localStorage.getItem('mrt.state.v2'),
       requests: window.__exportRequests,
+      cloud: window.__cloudQuestions.length,
     }));
     const open = async (selector) => {
       await page.focus(selector);
@@ -159,9 +160,11 @@ export const readableMarkdownExport = {
     }));
     t.check('export, option changes and cancellation leave saved data byte-for-byte unchanged',
       after.state === before.state);
+    // Backup & settings, opened once above, asks the host once, and no export may add a question
+    // (stage 3 review, S3b-9).
     t.check('the export flow makes no fetch requests',
-      after.requests === before.requests && after.cloud.every((operation) => operation === 'status'),
-      JSON.stringify({ before: before.requests, after: after.requests, cloud: after.cloud }));
+      after.requests === before.requests && after.cloud.length === before.cloud + 1 && after.cloud.every((operation) => operation === 'status'),
+      JSON.stringify({ before: before.requests, after: after.requests, asked: before.cloud, cloud: after.cloud }));
     await page.focus('#btn-export-json');
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => window.__mrtDownloads.length === 4);

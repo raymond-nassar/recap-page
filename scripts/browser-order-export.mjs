@@ -82,7 +82,7 @@ export const orderOnlyExport = {
     t.check('Reading export choices open from a keyboard-reachable disclosure',
       await page.$eval('#list-export', (node) => node.open));
     const before = await page.evaluate(() => ({
-      state: localStorage.getItem('mrt.state.v2'), calls: window.__exportFetches,
+      state: localStorage.getItem('mrt.state.v2'), calls: window.__exportFetches, cloud: window.__cloudQuestions.length,
     }));
     const external = [];
     const observeRequest = (request) => {
@@ -149,10 +149,13 @@ export const orderOnlyExport = {
     t.check('JSON reader-data backup contents are unchanged by exporting',
       JSON.stringify(backupBefore) === JSON.stringify(backupAfter)
         && backupAfter.lists['order-export'].deferredIssueIds.join() === '900003');
+    // Backup & settings, opened once above, asks the host once, and no export may add a question
+    // (stage 3 review, S3b-9).
     t.check('all export actions leave the original stored bytes and network counters unchanged',
       await page.evaluate((snapshot) => localStorage.getItem('mrt.state.v2') === snapshot.state
-        && window.__exportFetches === snapshot.calls && window.__cloudQuestions.every((operation) => operation === 'status'), before),
-      JSON.stringify(external));
+        && window.__exportFetches === snapshot.calls && window.__cloudQuestions.length === snapshot.cloud + 1
+        && window.__cloudQuestions.every((operation) => operation === 'status'), before),
+      JSON.stringify({ external, asked: before.cloud, cloud: await page.evaluate(() => window.__cloudQuestions) }));
     t.check('export sent zero external requests', external.length === 0, JSON.stringify(external));
     page.off('request', observeRequest);
 
