@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "bundleIdentifier": "io.github.raymondnassar.recappage",
+  "displayName": "Recap Page",
+  "scheme": "recappage",
+  "host": "localhost",
+  "origin": "recappage://localhost",
+  "iCloudContainer": "iCloud.io.github.raymondnassar.recappage",
+  "minimumOS": "18.0"
+}

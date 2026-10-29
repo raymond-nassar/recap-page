@@ -82,6 +82,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
   const offenders = [];
   let scanned = 0;
   const androidBuild = path.join(repoRoot, 'packaging', 'android', 'app', 'build') + path.sep;
+  const iosBuild = path.join(repoRoot, 'packaging', 'ios', 'build') + path.sep;
   for (const file of files) {
     const text = await readFile(file, 'utf8');
     // Data files, and generated ones like the mockups' bundle, are objects with an items array.
@@ -95,8 +96,8 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
       continue;
     }
     if (!Array.isArray(parsed?.items)) continue;
-    // Generated Android copies still undergo the prose check, but do not inflate the source census.
-    if (!file.startsWith(androidBuild)) scanned += 1;
+    // Generated Android and iOS copies still undergo the prose check, but do not inflate the source census.
+    if (!file.startsWith(androidBuild) && !file.startsWith(iosBuild)) scanned += 1;
     for (const item of parsed.items) {
       if (typeof item?.description === 'string' && item.description.length > 0) {
         offenders.push(`${path.relative(repoRoot, file)}: ${item.issueId ?? '?'} carries ${JSON.stringify(item.description).slice(0, 60)}`);

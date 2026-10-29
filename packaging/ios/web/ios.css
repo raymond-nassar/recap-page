@@ -1,0 +1,9 @@
+/* The iOS overlay, loaded after styles.css and the shared phone layer in mobile/mobile.css.
+   It may name only the shared design tokens declared in styles.css, never a raw value of its own. */
+
+/* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
+   would read at two sizes. This keeps the size the page sets in both orientations. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}

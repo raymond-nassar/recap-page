@@ -6,8 +6,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
 import {
-  ANDROID_CODE_LIMIT, ROOT, ABOUT_BUILD, androidBuild, artifactRecord,
-  assertAppendOnlyLedger, assertSourceUnchanged, nextAndroidVersionCode, reserveAndroidBuild,
+  ANDROID_CODE_LIMIT, ROOT, ABOUT_BUILD, DEVELOPMENT_IOS_BUILD, androidBuild, artifactRecord,
+  assertAppendOnlyLedger, assertSourceUnchanged, iosBuild, nextAndroidVersionCode, reserveAndroidBuild,
   sealAndroidArtifact, sourceIdentity, stampAbout, validateAndroidLedger,
   validateIdentity, verifyAndroidPromotion, verifyArtifact, writeBuildIdentity,
 } from '../scripts/lib/release-identity.mjs';
@@ -65,6 +65,19 @@ test('public identity rejects arbitrary fields, paths, malformed versions and di
   validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.0' });
   validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.1', channel: 'proof' });
   assert.throws(() => validateIdentity({ ...portable, platform: 'windows-msix', packageVersion: '3.0.1.2' }));
+});
+
+test('an iOS identity carries a positive whole build number, and an unreserved build is development', async () => {
+  const ios = { ...candidate(), platform: 'ios', packageVersion: 2 };
+  validateIdentity(ios);
+  for (const packageVersion of [0, -1, 1.5, '2', Number.NaN, null, Number.MAX_SAFE_INTEGER + 1]) {
+    assert.throws(() => validateIdentity({ ...ios, packageVersion }), /iOS build number/, String(packageVersion));
+  }
+  const { identity, buildNumber } = await iosBuild();
+  assert.equal(identity.platform, 'ios');
+  assert.equal(identity.channel, 'development');
+  assert.equal(buildNumber, DEVELOPMENT_IOS_BUILD);
+  assert.equal(identity.packageVersion, DEVELOPMENT_IOS_BUILD);
 });
 
 test('About stamping and its build report agree without changing the source template', async () => {
