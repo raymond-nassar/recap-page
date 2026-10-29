@@ -113,8 +113,9 @@ refused only the restore with text above Latin-1. The measurements are recorded 
 
 - Saving backups and exports to Files, choosing a backup file to restore, Read, text size, iPad
   window sizes and a notice when iOS removes saved data are not in the app yet.
-- iOS can remove an app's website data when the device runs short of space, and this app cannot opt
-  out of that. Keep a backup outside the app.
+- iOS can remove an app's website data when the device runs very low on space, and this app cannot
+  opt out of that. The About text recommends keeping an export outside the app, explains that it can
+  include progress and notes, and says that deleting the app does not remove exported files.
 - iPhone and iPad device backups, to iCloud or to a computer, include this app's saved data. The
   app's privacy text says so.
 - Checks that need a real device, such as Read handing a comic to a browser, run on the owner's iPad

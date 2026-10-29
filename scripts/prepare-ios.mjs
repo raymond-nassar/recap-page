@@ -144,7 +144,8 @@ export function iosIndex(html, build) {
                 Your lists, progress and notes live in private storage inside this app on your iPhone or iPad, separate from Safari and from any desktop browser.
                 There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
                 Backups of this device to iCloud or to a computer include this app's saved data.
-                Deleting the app removes its private storage, so export and keep a backup outside the app first.
+                Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.
+                An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files.
               </p>
               <p class="rail-hint">
                 <a href="${PRIVACY_POLICY}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>

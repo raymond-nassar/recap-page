@@ -1,8 +1,11 @@
 #fallback,
 #return {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   min-width: var(--target-touch, 48px);
   min-height: var(--target-touch, 48px);
+  margin-inline: auto;
+  padding: 12px 8px;
   align-items: center;
   justify-content: center;
 }

@@ -15,7 +15,7 @@
   --t-title-lg: calc(var(--ios-text-scale) * 40px);
 }
 
-.skip-link {
+:root .skip-link {
   position: fixed;
   left: 0;
   top: 0;

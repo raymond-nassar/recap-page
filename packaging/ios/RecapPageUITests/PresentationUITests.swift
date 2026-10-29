@@ -173,14 +173,17 @@ final class PresentationUITests: XCTestCase {
     }
 
     private func navigate(_ app: XCUIApplication, linkName: String, headingLabel: String) {
-        var link = app.links.matching(identifier: linkName).allElementsBoundByIndex.first(where: \.isHittable)
-        if link == nil {
-            let toggle = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] %@", "sidebar")).firstMatch
-            if toggle.exists { toggle.tap() }
-            link = app.links.matching(identifier: linkName).allElementsBoundByIndex.first(where: \.isHittable)
+        let link = app.links.matching(identifier: linkName).firstMatch
+        if !link.isHittable {
+            let toggle = app.buttons["More"]
+            let close = app.buttons["more-sheet-close"]
+            XCTAssertTrue(toggle.waitForExistence(timeout: 30), "the narrow navigation toggle is available")
+            toggle.tap()
+            XCTAssertTrue(close.waitForExistence(timeout: 30), "the More sheet is presented")
+            XCTAssertTrue(link.waitForExistence(timeout: 30), "\(linkName) is shown in More")
         }
-        XCTAssertNotNil(link, "the \(linkName) navigation link is reachable")
-        link?.tap()
+        XCTAssertTrue(link.isHittable, "the \(linkName) navigation link is reachable")
+        link.tap()
         let heading = app.webViews.firstMatch.staticTexts.matching(
             NSPredicate(format: "label == %@", headingLabel)).firstMatch
         XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
@@ -253,6 +256,14 @@ final class PresentationUITests: XCTestCase {
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
+                let skipLink = app.descendants(matching: .any).matching(
+                    NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
+                if skipLink.exists {
+                    try record("t03-target-\(category.rawValue)-\(name)", [
+                        "skipLinkWidth": Double(skipLink.frame.width),
+                        "skipLinkHeight": Double(skipLink.frame.height),
+                    ])
+                }
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
@@ -273,6 +284,13 @@ final class PresentationUITests: XCTestCase {
             openRead.tap()
             XCTAssertTrue(app.buttons["ios-read-sheet-close"].waitForExistence(timeout: 30), "the Read sheet is presented")
             waitForReadSheetPresentation(app)
+            let manualLink = app.descendants(matching: .any).matching(
+                NSPredicate(format: "label == %@", "Continue manually")).firstMatch
+            XCTAssertTrue(manualLink.waitForExistence(timeout: 30), "the manual Read link is present for target measurement")
+            try record("t03-read-target-\(category.rawValue)", [
+                "manualLinkWidth": Double(manualLink.frame.width),
+                "manualLinkHeight": Double(manualLink.frame.height),
+            ])
             try app.performAccessibilityAudit()
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
@@ -336,7 +354,7 @@ final class PresentationUITests: XCTestCase {
 
     private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)
-            .matching(identifier: "recap-layout-probe")
+            .matching(NSPredicate(format: "label CONTAINS[c] %@", "viewportWidth"))
             .firstMatch
     }
 

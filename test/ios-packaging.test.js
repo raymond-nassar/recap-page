@@ -154,11 +154,11 @@ test('the iOS page loads the phone layer and the iOS overlay after the shared st
   assert.match(launcher, /<script type="module" src="\.\/open\.js"><\/script>/);
   const launcherCss = read('packaging/ios/web/launcher.css');
   assert.deepEqual(paletteTokenFindings('packaging/ios/web/launcher.css', launcherCss), []);
-  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*min-width:\s*var\(--target-touch,\s*48px\);[^}]*min-height:\s*var\(--target-touch,\s*48px\);/s);
+  assert.match(launcherCss, /#fallback,\s*#return\s*\{[^}]*display:\s*flex;[^}]*width:\s*fit-content;[^}]*min-width:\s*var\(--target-touch,\s*48px\);[^}]*min-height:\s*var\(--target-touch,\s*48px\);[^}]*padding:\s*12px 8px;/s);
   assert.equal(rootTokens(read('src/styles.css')).get('--target-touch'), '48px');
   const iosCss = read('packaging/ios/web/ios.css');
-  assert.match(iosCss, /\.skip-link\s*\{[^}]*display:\s*inline-flex;[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);/s);
-  assert.match(iosCss, /\.skip-link\s*\{[^}]*position:\s*fixed;[^}]*left:\s*0;[^}]*top:\s*0;[^}]*opacity:\s*0;[^}]*pointer-events:\s*none;/s);
+  assert.match(iosCss, /:root\s+\.skip-link\s*\{[^}]*display:\s*inline-flex;[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);/s);
+  assert.match(iosCss, /:root\s+\.skip-link\s*\{[^}]*position:\s*fixed;[^}]*left:\s*0;[^}]*top:\s*0;[^}]*opacity:\s*0;[^}]*pointer-events:\s*none;/s);
   assert.match(iosCss, /\.skip-link:focus\s*\{[^}]*opacity:\s*1;[^}]*pointer-events:\s*auto;/s);
   const entry = await readFile(join(output, 'ios', 'app.js'), 'utf8');
   for (const match of entry.matchAll(/^import .* from '(\.\.\/[^']+)';$/gm)) {
@@ -191,8 +191,8 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(text, /no analytics or tracking/i);
   assert.match(text, /automatic service requests do not upload your saved lists, progress or notes/i);
   assert.match(text, /Backups of this device to iCloud or to a computer include this app's saved data/);
-  assert.match(text, /Deleting the app removes its private storage/);
-  assert.match(text, /keep a backup outside the app/);
+  assert.ok(text.includes('Deleting the app removes its private storage, and iOS can also clear it when the device is very low on storage, so export and keep a backup outside the app first.'));
+  assert.ok(text.includes("An export gives the place you choose the file's contents, which can include progress and notes. Deleting the app does not remove exported files."));
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
   const links = [...yourData(page).matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
   assert.equal(links.length, 1, 'the added disclosure has one explicit policy destination');
@@ -203,6 +203,11 @@ test('iOS About states private app storage, device backups and what the requests
   const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
   assert.ok(details(desktop));
   assert.equal(details(page), details(desktop), 'the request-by-request enumeration is the shared one');
+});
+
+test('iOS missing-data dismissal failure uses the owner-approved wording', () => {
+  const entry = read('packaging/ios/web/app.js');
+  assert.match(entry, /dismissalFailure: 'The missing-data notice could not be dismissed\. Try again\.'/);
 });
 
 test('iOS preparation refuses a changed shared entry, overlapping output and a directory it does not own', async () => {

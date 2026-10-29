@@ -8,7 +8,7 @@ const DATA_LOSS_COPY = Object.freeze({
   settingsLink: 'Backup & settings',
   messageAfterLink: '.',
   dismiss: 'Dismiss',
-  dismissalFailure: 'The missing-data notice could not be dismissed. Please try again.',
+  dismissalFailure: 'The missing-data notice could not be dismissed. Try again.',
 });
 
 const report = document.createElement('p');

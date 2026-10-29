@@ -420,12 +420,12 @@ test('the iPhone SE presentation step runs after UI failure unless cancelled and
   assert.doesNotMatch(source, /continue-on-error/);
 });
 
-test('presentation probes select the live layout monitor by its identifier', () => {
+test('presentation probes select the live layout monitor by its accessible label', () => {
   const source = readFileSync(new URL('../packaging/ios/RecapPageUITests/PresentationUITests.swift', import.meta.url), 'utf8');
   const monitor = source.split('private func layoutMonitor(of app: XCUIApplication) -> XCUIElement {')[1]
     ?.split('\n    }')[0];
-  assert.match(monitor ?? '', /matching\(identifier: "recap-layout-probe"\)/);
-  assert.doesNotMatch(monitor ?? '', /label CONTAINS/);
+  assert.match(monitor ?? '', /matching\(NSPredicate\(format: "label CONTAINS\[c\] %@", "viewportWidth"\)\)/);
+  assert.doesNotMatch(monitor ?? '', /matching\(identifier:/);
 });
 
 test('both iPhone jobs retry only recognized UI infrastructure failures once and require a complete passing retry', async (t) => {
