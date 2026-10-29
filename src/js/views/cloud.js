@@ -142,6 +142,18 @@ export function cloudDeleteFailure(message, off) {
   return `${withOutcome('Nothing was deleted.', message, DELETED)}${off ? ' Automatic backup is off for this browser.' : ''}`;
 }
 
+// The disconnect question, in the owner's words approved 2026-10-28 (stage 3 review, S3a-5 and S3b-6).
+// Deleting is a choice only while connected with backups of this browser, so only that question says
+// "unless"; after Microsoft asked for the sign-in again, the backups can be deleted only by signing in.
+export function cloudDisconnectQuestion(model, choice) {
+  const name = cloudProviderName(model);
+  const lead = `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.`;
+  if (choice) return `${lead} Backups already in ${name} stay there unless you also delete this device's.`;
+  const first = model.host === 'needs-sign-in' && model.hasStream
+    ? ' To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.' : '';
+  return `${lead} Backups already in ${name} stay there.${first}`;
+}
+
 // Added to what an erase reports when cloud backup could not be turned off everywhere it said.
 export function cloudEraseOutcome(result) {
   if (result?.ok !== false) return '';
@@ -406,9 +418,10 @@ export function createCloudBackupView({
       const model = getModel();
       const name = cloudProviderName(model);
       const title = `Disconnect ${name}?`;
-      const body = `Recap Page forgets the ${name} sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in ${name} stay there unless you also delete this device's.`;
+      const choice = model.host === 'connected' && model.hasStream;
+      const body = cloudDisconnectQuestion(model, choice);
       let deleteFirst = false;
-      if (model.host === 'connected' && model.hasStream) {
+      if (choice) {
         const answer = await askConfirmChoice({
           title, body, confirmLabel: 'Disconnect',
           choiceLabel: 'Also delete this device\'s cloud backups', choiceConfirmLabel: 'Delete and disconnect',

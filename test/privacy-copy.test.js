@@ -785,7 +785,7 @@ test('each privacy sentence cloud backup changes carries both variants, in the a
 // app says, not from a copy of it.
 test('the cloud backup sentences from stage 3 are the owner\'s approved words', async () => {
   const { ERASE_HOST_SILENT } = await import('../src/js/lib/cloudBackup.js');
-  const { cloudCardStatus, cloudDeleteFailure, cloudDeleteQuestion, cloudDeleteReport, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
+  const { cloudCardStatus, cloudDeleteFailure, cloudDeleteQuestion, cloudDeleteReport, cloudDisconnectQuestion, cloudEraseOutcome } = await import('../src/js/views/cloud.js');
   // A. Erase all local data, when the Recap Page app does not answer.
   assert.equal(cloudEraseOutcome({ ok: false, problems: [ERASE_HOST_SILENT] }).trim(),
     'Cloud backup could not be fully turned off. The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account. Check Cloud backup in Backup & settings.');
@@ -812,6 +812,11 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
   // C. A deletion that fails before deleting anything.
   assert.equal(cloudDeleteFailure('The Recap Page app did not answer in time.', true),
     'Nothing was deleted. The Recap Page app did not answer in time. Automatic backup is off for this browser.');
+  // D. The disconnect question without the choice, and after Microsoft asked for the sign-in again.
+  assert.equal(cloudDisconnectQuestion({ ...connected, hasStream: false }, false),
+    'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there.');
+  assert.equal(cloudDisconnectQuestion({ ...connected, host: 'needs-sign-in' }, false),
+    'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them. Backups already in OneDrive stay there. To delete this device\'s backups first, sign in again, then choose Delete this device\'s cloud backups.');
 });
 
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an

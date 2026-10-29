@@ -776,6 +776,25 @@ test('disconnecting offers deleting this device\'s backups as an unchecked choic
   assert.deepEqual(backedOut.state.calls, [], 'Cancel changes nothing');
 });
 
+// The deletion is offered only where it can be made, so only that question says "unless"; with a sign-in
+// to make again, the plain question says how to delete first. The owner's words, approved 2026-10-28
+// (stage 3 review, S3a-5 and S3b-6).
+test('the disconnect question offers deleting only where it can, and otherwise says how', async () => {
+  const LEAD = 'Recap Page forgets the OneDrive sign-in for every browser profile on this Windows account, and automatic backup stops in each of them.';
+  const asked = async (model) => {
+    const card = cloudCard(model);
+    card.nodes.disconnect._fire();
+    await settled();
+    return card.state.asked[0].body;
+  };
+  assert.equal(await asked({ ...CLOUD, agreed: true, on: true, hasStream: true }),
+    `${LEAD} Backups already in OneDrive stay there unless you also delete this device's.`, 'with the choice');
+  assert.equal(await asked({ ...CLOUD, hasStream: false }), `${LEAD} Backups already in OneDrive stay there.`, 'nothing of this browser to delete');
+  assert.equal(await asked({ ...CLOUD, host: 'unavailable', account: null, hasStream: true }), `${LEAD} Backups already in OneDrive stay there.`);
+  assert.equal(await asked({ ...CLOUD, host: 'needs-sign-in', agreed: true, hasStream: true }),
+    `${LEAD} Backups already in OneDrive stay there. To delete this device's backups first, sign in again, then choose Delete this device's cloud backups.`);
+});
+
 test('the erase question names cloud backup only while erasing changes it', async () => {
   assert.equal(cloudEraseNote({ ...CLOUD, shown: false }), null);
   assert.equal(cloudEraseNote({ ...CLOUD, host: 'not-connected', account: null }), null);
