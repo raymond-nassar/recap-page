@@ -194,3 +194,68 @@ Retrieved 2026-09-29:
   nonreuse and the Play limit.
 - [Windows package requirements](https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/app-package-requirements):
   Store-reserved fourth component and platform version constraints.
+
+## iOS allocation and exact-artifact contract
+
+The append-only `packaging/ios/build-numbers.json` ledger owns all iOS build numbers. Development
+build 1 is retired from distribution. Reserve consecutively from 2, independently of product
+version, run number and time. Abandoned and failed reservations remain consumed. The current
+single-component format stops at 9999 rather than inventing a new numbering scheme.
+
+```text
+node scripts/ios-release.mjs reserve <full-source-sha>
+node scripts/ios-release.mjs history
+```
+
+The full source commit must already be on main, with its tree and product version matching the
+reservation. It must also already contain this ledger and the reservation-aware build stamping,
+because the export runs the source's own preparation: an older main commit would sign, then fail
+its identity check and consume the number.
+Merge reservations one at a time through main before building. CI checks the ledger's
+first-parent history as well as the working copy and refuses removal, reuse, reassignment, a
+changed seal or a source introduced after its reservation. Merge main into competing branches
+and recheck; do not overwrite newer reservations.
+
+The [protected TestFlight workflow](IOS.md#signing-and-internal-testflight) runs manually on main
+only. Its export and upload modes are separate runs and require separate owner approvals in the
+existing, owner-created `ios-testflight` environment. Preflight refuses missing or unreadable
+owner-review/main-only protection without creating configuration. Approval permits only that
+run's selected mode; neither a reservation nor an artifact is upload permission.
+
+Export builds the reservation's clean source in a separate checkout with the later approved ledger.
+`RECAP_IOS_BUILD_NUMBER` and `RECAP_IOS_LEDGER` bind preparation to that reservation; native build
+settings use the same build number and product version. About and the bundled build identity
+must agree. Export produces a signed IPA on disk, never uploads, and retains it with a strict
+artifact record and proposed seal for 30 days.
+
+For an independently inspected final signed IPA, the record and proposed seal can also be made
+without signing or uploading:
+
+```text
+node scripts/ios-release.mjs record <ipa> <new-record.json>
+```
+
+Set those two environment variables first. The record command does not mutate the ledger or prove
+the signature; it writes the proposed ledger beside the record with `.proposed.json` appended.
+Review and merge only the matching seal into the latest ledger. The seal fixes the IPA's basename,
+byte count and SHA-256. A changed signature, renamed file or rebuild requires a fresh number.
+Never rebuild a sealed reservation or substitute the reservation commit for the source commit.
+
+```text
+node scripts/ios-release.mjs verify <ipa> <record.json>
+```
+
+Verification checks the exact merged seal and candidate identity, not just a self-supplied hash.
+Upload mode downloads the packet from the selected successful export run of this workflow on
+main, rechecks the current main ledger after approval, verifies exact bytes, then calls altool once.
+It does not rebuild or re-sign. Every mode refuses workflow reruns and previously attempted numbers
+in that mode, including failed attempts. After a failed or uncertain upload, inspect Apple state;
+do not retry blindly. Upload in allocation order and confirm Apple's current build state before
+approval. The upload receipt records source, seal, run IDs, upload date and upload-plus-90-days
+estimated expiry; confirm Apple's actual expiry after processing.
+
+Never retain signing keys in artifacts, source or public records. The API key exists in protected
+environment secrets and runner scratch only, with always-run deletion. Certificate/profile signing
+from Windows and Transporter or Build Upload API uploading remain documented fallbacks, not an
+automatic alternate path around a refusal. Real signing, processing, installation, expiry and
+update-in-place behavior remain delivery evidence, not facts established by the tooling tests.

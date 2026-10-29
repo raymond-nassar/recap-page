@@ -1,0 +1,157 @@
+name: iOS TestFlight
+run-name: iOS ${{ inputs.mode }} build ${{ inputs.build_number }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Export signed bytes, or upload bytes whose seal has merged
+        type: choice
+        options: [export, upload]
+        required: true
+        default: export
+      build_number:
+        description: Build number already reserved on main
+        type: string
+        required: true
+      export_run:
+        description: Successful export run ID, required only for upload
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ios-testflight
+  cancel-in-progress: false
+
+env:
+  IOS_MODE: ${{ inputs.mode }}
+  IOS_BUILD_NUMBER: ${{ inputs.build_number }}
+  IOS_EXPORT_RUN: ${{ inputs.export_run }}
+
+jobs:
+  preflight:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      github.workflow_ref == format('{0}/.github/workflows/ios-testflight.yml@refs/heads/main', github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      source_sha: ${{ steps.check.outputs.source_sha }}
+      environment: ${{ steps.check.outputs.environment }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Refuse missing owner protection or invalid reservation before approval
+        id: check
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/ios-release.mjs preflight
+
+  deliver:
+    needs: preflight
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      github.workflow_ref == format('{0}/.github/workflows/ios-testflight.yml@refs/heads/main', github.repository) &&
+      (inputs.mode == 'export' || inputs.mode == 'upload') &&
+      needs.preflight.outputs.environment == 'ios-testflight'
+    environment: ${{ needs.preflight.outputs.environment }}
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      # This is the toolchain whose Simulator build the minimum job runs on iOS 18.
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 3
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: inputs.mode == 'export'
+        timeout-minutes: 3
+        with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
+          path: application
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Recheck current protection and reservation after approval
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/ios-release.mjs preflight
+      - name: Fetch the exact successful export packet
+        if: inputs.mode == 'upload'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-export-${{ inputs.build_number }}-${{ inputs.export_run }}
+          path: ${{ runner.temp }}/ios-public
+          run-id: ${{ inputs.export_run }}
+          github-token: ${{ github.token }}
+      - name: Export a signed IPA without uploading
+        if: inputs.mode == 'export'
+        timeout-minutes: 35
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: node scripts/ios-release.mjs export
+      - name: Verify the merged seal and upload once
+        if: inputs.mode == 'upload'
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: node scripts/ios-release.mjs upload
+      - name: Remove the private API key
+        if: always()
+        timeout-minutes: 2
+        shell: bash
+        run: |
+          rm -f "$RUNNER_TEMP"/ios-private-keys/AuthKey_*.p8
+          rmdir "$RUNNER_TEMP/ios-private-keys" 2>/dev/null || test ! -d "$RUNNER_TEMP/ios-private-keys"
+      - name: Retain signed bytes, record and proposed seal only
+        if: success() && inputs.mode == 'export'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-export-${{ inputs.build_number }}-${{ github.run_id }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/ios-public/*.ipa
+            ${{ runner.temp }}/ios-public/ios-artifact.json
+            ${{ runner.temp }}/ios-public/build-numbers.proposed.json
+      - name: Retain the successful upload receipt
+        if: success() && inputs.mode == 'upload'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 5
+        with:
+          name: ios-upload-${{ inputs.build_number }}-${{ github.run_id }}
+          retention-days: 90
+          if-no-files-found: error
+          path: ${{ runner.temp }}/ios-upload.json
