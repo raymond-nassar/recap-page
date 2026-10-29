@@ -829,6 +829,15 @@ test('the cloud backup sentences from stage 3 are the owner\'s approved words', 
     'Connected to OneDrive as reader@example.test. This browser could not read its cloud backup settings, so backups have stopped. Turning automatic backup on starts them again. This browser\'s earlier backups will then be listed as another device\'s.');
 });
 
+// Why an erase was refused, said after "Nothing was erased." when cloud backup could not be stopped first
+// (stage 4 review, S4c-1). The owner approved these words, with an edit, on 2026-10-29 (#810), so changing
+// them needs the owner's approval again.
+test('the sentence an erase gives when cloud backup could not be stopped first is the owner\'s approved words', async () => {
+  const { ERASE_NOT_STOPPED } = await import('../src/js/lib/cloudBackup.js');
+  assert.equal(ERASE_NOT_STOPPED,
+    'Automatic backup could not be stopped first, so erasing now could let a backup of the erased data replace your earlier backups.');
+});
+
 // The corpus. Everything above is an instrument, and an instrument nobody can re-run is an
 // assertion. These four lists were built by thirteen rounds of review trying to break the rule, and
 // until now they lived in a scratch file outside the repository while both the changelog and the

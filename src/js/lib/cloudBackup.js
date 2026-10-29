@@ -24,8 +24,9 @@ const IDLE = Object.freeze({ state: 'idle', connection: null, result: null, mess
 const NOT_LINKED = 'Cloud backup is not connected to an account right now, so nothing was changed.';
 // The owner's words, approved 2026-10-28 (stage 3 review, S3a-1), and pinned in the privacy copy tests.
 export const ERASE_HOST_SILENT = 'The Recap Page app did not answer, so cloud backup may still be connected for every browser profile on this Windows account.';
-// Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1).
-export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, and a backup of the erased data could have replaced your earlier backups.';
+// Why an erase did not start, after "Nothing was erased." (stage 4 review, S4c-1). The owner's words,
+// approved 2026-10-29 with an edit, and pinned in the privacy copy tests.
+export const ERASE_NOT_STOPPED = 'Automatic backup could not be stopped first, so erasing now could let a backup of the erased data replace your earlier backups.';
 // The host states the erase question names as disconnected, as cloudEraseNote reads them.
 const DISCONNECT_NAMED = new Set(['connected', 'needs-sign-in', 'signing-in', 'unavailable']);
 
