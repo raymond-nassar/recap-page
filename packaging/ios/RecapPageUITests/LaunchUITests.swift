@@ -745,6 +745,7 @@ final class LaunchUITests: XCTestCase {
     document.querySelector('[data-view="data"]').click();
     await until(() => !document.getElementById('view-data').hidden, 15000);
     const model = await import(new URL('./js/lib/model.js', location.href).href);
+    const storage = await import(new URL('./js/storage.js', location.href).href);
     const state = model.createList(model.createEmptyState(), {
       id: 'ios-picker-restore',
       name: 'Restored by iOS file chooser',
@@ -903,6 +904,38 @@ final class LaunchUITests: XCTestCase {
     input.files = transfer.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
     await until(() => document.getElementById('ask').open, 15000);
+    let readiness = null;
+    let ready = false;
+    if (typeof navigator.locks?.query !== 'function') {
+      readiness = { available: false, error: 'LockManager.query is unavailable', held: [], pending: [] };
+    } else {
+      const readinessDeadline = Date.now() + 15000;
+      while (Date.now() < readinessDeadline) {
+        try {
+          const state = await navigator.locks.query();
+          const relevant = (locks) => locks
+            .filter(({ name }) => name === storage.RESTORE_LOCK)
+            .map(({ name, mode }) => ({ name, mode }));
+          readiness = { available: true, held: relevant(state.held), pending: relevant(state.pending) };
+        } catch (error) {
+          readiness = { available: false, error: error.message, held: [], pending: [] };
+        }
+        if (readiness.available
+            && readiness.held.length === 1
+            && readiness.held[0].mode === 'shared'
+            && readiness.pending.length === 0) {
+          ready = true;
+          break;
+        }
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    }
+    if (!ready) {
+      return JSON.stringify({
+        report: 'Restore was not started because lock readiness was not established.',
+        restoreLockReadiness: { ready, ...readiness },
+      });
+    }
     document.getElementById('ask-ok').click();
     const report = await until(() => {
       const text = document.getElementById('complete-backup-report').textContent;
