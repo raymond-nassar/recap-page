@@ -78,7 +78,7 @@ enum DebugSupport {
       if (new URLSearchParams(location.search).has('recapTestFail')) {
         const schedule = window.setTimeout.bind(window);
         window.setTimeout = (handler, delay, ...args) =>
-          schedule(handler, delay === 1400 ? 30_000 : delay, ...args);
+          delay === 1400 ? 0 : schedule(handler, delay, ...args);
       }
 
       const originalFetch = window.fetch.bind(window);

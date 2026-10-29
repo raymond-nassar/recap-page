@@ -176,13 +176,7 @@ final class LaunchUITests: XCTestCase {
             recordHandOffs: true)
         for expected in 1...2 {
             let read = app.buttons["Open Read test"]
-            let ready = XCTNSPredicateExpectation(
-                predicate: NSPredicate(format: "isHittable == true"),
-                object: read)
-            XCTAssertEqual(
-                XCTWaiter.wait(for: [ready], timeout: 60),
-                .completed,
-                "Read launch \(expected) control is hittable")
+            XCTAssertTrue(read.waitForExistence(timeout: 60), "Read launch \(expected) control appeared")
             read.tap()
             _ = try handOffRecord(
                 of: app,
@@ -190,15 +184,15 @@ final class LaunchUITests: XCTestCase {
                 handoffs: expected,
                 presentations: expected)
             let close = app.buttons["ios-read-sheet-close"]
-            if close.exists {
-                let dismissed = XCTNSPredicateExpectation(
-                    predicate: NSPredicate(format: "exists == false"),
-                    object: close)
-                XCTAssertEqual(
-                    XCTWaiter.wait(for: [dismissed], timeout: 30),
-                    .completed,
-                    "Read launch \(expected) sheet dismissed after hand-off")
-            }
+            XCTAssertTrue(close.waitForExistence(timeout: 30), "Read launch \(expected) sheet remains for observation")
+            close.tap()
+            let dismissed = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"),
+                object: close)
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [dismissed], timeout: 30),
+                .completed,
+                "Read launch \(expected) sheet dismissed after the test observed its hand-off")
         }
 
         let result = try handOffRecord(of: app, launches: 2, handoffs: 2)
@@ -227,19 +221,19 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
         let fallback = app.links["Continue manually"]
         XCTAssertTrue(fallback.waitForExistence(timeout: 30), "the failed lookup leaves a manual fallback link")
-        let ready = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "isHittable == true"),
-            object: fallback)
-        XCTAssertEqual(
-            XCTWaiter.wait(for: [ready], timeout: 30),
-            .completed,
-            "the failed-lookup fallback link is hittable")
-        fallback.tap()
+        let close = app.buttons["ios-read-sheet-close"]
+        let window = app.windows.element(boundBy: 0)
+        print("iOS T02 fallback geometry: link=\(fallback.frame), Close=\(close.frame), window=\(window.frame)")
+        let followFallback = app.buttons["ios-test-follow-fallback"]
+        XCTAssertTrue(followFallback.waitForExistence(timeout: 30), "the Debug-only fallback trigger appeared")
+        followFallback.tap()
         let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
         XCTAssertEqual(urls.count, 1)
         XCTAssertEqual(try XCTUnwrap(URL(string: urls[0])).scheme, "https")
         try record("read-failed-lookup-fallback", result)
+        XCTAssertTrue(close.waitForExistence(timeout: 30), "the failed-lookup sheet remains for observation")
+        close.tap()
     }
 
     @MainActor

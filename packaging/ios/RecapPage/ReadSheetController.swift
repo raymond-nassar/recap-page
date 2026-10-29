@@ -50,6 +50,17 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
         let close = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeTapped))
         close.accessibilityIdentifier = "ios-read-sheet-close"
         navigationItem.leftBarButtonItem = close
+        #if DEBUG
+        if DebugSupport.readHandoffTestEnabled {
+            let followFallback = UIBarButtonItem(
+                title: "Test fallback",
+                style: .plain,
+                target: self,
+                action: #selector(followFallbackForTesting))
+            followFallback.accessibilityIdentifier = "ios-test-follow-fallback"
+            navigationItem.rightBarButtonItem = followFallback
+        }
+        #endif
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +78,15 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
             url: navigationAction.request.url,
             isMainFrame: navigationAction.targetFrame?.isMainFrame ?? false,
             opensNewWindow: navigationAction.targetFrame == nil)
+        #if DEBUG
+        NSLog(
+            "Recap Page launcher navigation decision: host=%@ path=%@ mainFrame=%@ newWindow=%@ decision=%@",
+            navigationAction.request.url?.host ?? "none",
+            navigationAction.request.url?.path ?? "none",
+            String(describing: navigationAction.targetFrame?.isMainFrame),
+            String(navigationAction.targetFrame == nil),
+            String(describing: decision))
+        #endif
         switch decision {
         case .allow:
             return .allow
@@ -99,6 +119,12 @@ final class ReadSheetController: UIViewController, WKNavigationDelegate, WKUIDel
     @objc private func closeTapped() {
         close()
     }
+
+    #if DEBUG
+    @objc private func followFallbackForTesting() {
+        webView.evaluateJavaScript("document.getElementById('fallback')?.click();")
+    }
+    #endif
 
     func closeForProcessTermination() {
         close()

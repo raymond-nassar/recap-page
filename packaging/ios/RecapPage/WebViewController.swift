@@ -119,7 +119,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         if DebugSupport.recordsHandOffs {
             DebugSupport.recordHandOff(url)
             reportExternalOpen(success: true)
-            completion?(true)
+            // UI tests close the sheet after observing this synchronous recorder update.
             return
         }
         #endif
