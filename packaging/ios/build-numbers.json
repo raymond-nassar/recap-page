@@ -1,5 +1,13 @@
 {
   "schemaVersion": 1,
   "retiredThrough": 1,
-  "reservations": []
+  "reservations": [
+    {
+      "buildNumber": 2,
+      "productVersion": "4.2.0",
+      "sourceRevision": "ea19e96b5c204d3e1fca9105edb78174a3fc64c6",
+      "sourceTree": "f1fc5b35e14e8f5dab12b6175e5fb8d0fb679638",
+      "artifact": null
+    }
+  ]
 }
