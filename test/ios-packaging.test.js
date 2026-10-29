@@ -466,7 +466,7 @@ test('iOS largest-text Home reflow is scoped, observable and documented', () => 
   assert.match(presentationTests, /gridTemplateColumnCount/);
   assert.match(presentationTests, /tracks\.split\(\/\\\\s\+\/\)\.length/);
   assert.match(presentationTests, /XCTAssertEqual\(homeHeader\["gridTemplateColumnCount"\] as\? Int,\s*1\)/);
-  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLink\.frame\.height,\s*44/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(skipLinkHeight,\s*44/);
   assert.match(docs, /largest accessibility[\s\S]*text size[\s\S]*Home\s+header/i);
 });
 
@@ -486,13 +486,19 @@ test('the Read-sheet probe reports stylesheet loading, matching rules and target
   assert.match(presentationTests, /minHeight/);
 });
 
-test('iOS presentation diagnostics query links and the More button by their actual element types', () => {
+test('iOS presentation diagnostics use DOM target geometry and observed accessibility types', () => {
   assert.match(presentationTests, /let suffix = ", application status"/);
   assert.match(presentationTests, /reported\.hasSuffix\(suffix\)/);
   assert.match(presentationTests, /private func moreToggle\(of app: XCUIApplication\)/);
+  assert.match(presentationTests, /route: "all"/);
   assert.match(presentationTests, /let skipLink = app\.links\.matching\(/);
+  assert.match(presentationTests, /let skipTarget = try XCTUnwrap\(screen\["skipLink"\] as\? \[String: Any\]\)/);
+  assert.doesNotMatch(presentationTests, /skipLink\.frame\.(?:width|height)/);
   assert.match(presentationTests, /let manualLink = app\.links\.matching\(/);
-  assert.match(presentationTests, /return app\.buttons\.matching\(more\)\.firstMatch/);
+  assert.match(presentationTests, /manualLink\.waitForExistence\(timeout: 30\)/);
+  assert.doesNotMatch(presentationTests, /manualLink\.frame\.(?:width|height)/);
+  assert.match(presentationTests, /elements\[id\][\s\S]*?element\["height"\]/);
+  assert.match(presentationTests, /return app\.otherElements\.matching\(more\)\.firstMatch/);
   assert.doesNotMatch(presentationTests, /app\.buttons\["More"\]/);
 });
 

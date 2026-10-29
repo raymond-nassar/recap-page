@@ -327,26 +327,33 @@ final class PresentationUITests: XCTestCase {
 
     func testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
-            let app = launch(category: category)
-            _ = try probeResult(of: app)
-            for (name, headingLabel, nextLink, nextHeadingLabel) in [
-                ("home", "RECAP PAGE!", "Library", "Library"),
-                ("library", "Library", "Search", "Search"),
-                ("search", "Search", "Backup & settings", "Backup & settings"),
-                ("data", "Backup & settings", nil, nil),
-            ] as [(String, String, String?, String?)] {
+            let app = launch(category: category, route: "all")
+            let probe = try probeResult(of: app)
+            let screens = try XCTUnwrap(probe["screens"] as? [[String: Any]])
+            for (name, headingLabel, view, nextLink, nextHeadingLabel) in [
+                ("home", "RECAP PAGE!", "view-home", "Library", "Library"),
+                ("library", "Library", "view-library", "Search", "Search"),
+                ("search", "Search", "view-add", "Backup & settings", "Backup & settings"),
+                ("data", "Backup & settings", "view-data", nil, nil),
+            ] as [(String, String, String, String?, String?)] {
                 let heading = app.webViews.firstMatch.staticTexts.matching(
                     NSPredicate(format: "label == %@", headingLabel)).firstMatch
                 XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
                 let skipLink = app.links.matching(
                     NSPredicate(format: "label == %@", "Skip to main content")).firstMatch
                 XCTAssertTrue(skipLink.waitForExistence(timeout: 30), "the skip link is present for target measurement")
+                let screen = try XCTUnwrap(
+                    screens.first { $0["view"] as? String == view },
+                    "the DOM probe records \(name)")
+                let skipTarget = try XCTUnwrap(screen["skipLink"] as? [String: Any])
+                let skipLinkWidth = try XCTUnwrap((skipTarget["width"] as? NSNumber)?.doubleValue)
+                let skipLinkHeight = try XCTUnwrap((skipTarget["height"] as? NSNumber)?.doubleValue)
                 try record("t03-target-\(category.rawValue)-\(name)", [
-                    "skipLinkWidth": Double(skipLink.frame.width),
-                    "skipLinkHeight": Double(skipLink.frame.height),
+                    "skipLinkWidth": skipLinkWidth,
+                    "skipLinkHeight": skipLinkHeight,
                 ])
-                XCTAssertGreaterThanOrEqual(skipLink.frame.width, 44, "the skip link meets the 44-point width")
-                XCTAssertGreaterThanOrEqual(skipLink.frame.height, 44, "the skip link meets the 44-point height")
+                XCTAssertGreaterThanOrEqual(skipLinkWidth, 44, "the skip link meets the 44-point width")
+                XCTAssertGreaterThanOrEqual(skipLinkHeight, 44, "the skip link meets the 44-point height")
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
@@ -387,11 +394,6 @@ final class PresentationUITests: XCTestCase {
             let manualLink = app.links.matching(
                 NSPredicate(format: "label == %@", "Continue manually")).firstMatch
             XCTAssertTrue(manualLink.waitForExistence(timeout: 30), "the manual Read link is present for target measurement")
-            try record("t03-read-target-\(category.rawValue)", [
-                "manualLinkWidth": Double(manualLink.frame.width),
-                "manualLinkHeight": Double(manualLink.frame.height),
-            ])
-            XCTAssertGreaterThanOrEqual(manualLink.frame.height, 48, "the manual Read link meets the iOS target")
             let elements = try XCTUnwrap(styleProbe["elements"] as? [String: [String: Any]])
             for id in ["fallback", "return"] {
                 let element = try XCTUnwrap(elements[id], "the Read launcher contains #\(id)")
@@ -475,7 +477,7 @@ final class PresentationUITests: XCTestCase {
 
     private func moreToggle(of app: XCUIApplication) -> XCUIElement {
         let more = NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")
-        return app.buttons.matching(more).firstMatch
+        return app.otherElements.matching(more).firstMatch
     }
 
     private func readSheetStyleProbe(of app: XCUIApplication) throws -> [String: Any] {
