@@ -548,7 +548,9 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
     assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
-    assert.match(generated, /digital issue ID to Marvel's Bifrost service/);
+    assert.match(generated, /installed browser, not the Marvel Unlimited app/);
+    assert.match(generated, /no longer contacts Bifrost/);
+    assert.match(generated, /general Marvel Comics website without a reader-link lookup/);
     const launcher = await readFile(join(output, 'open.html'), 'utf8');
     assert.match(launcher, /src="\.\/android\/launcher\.js"/);
     assert.doesNotMatch(launcher, /src="\.\/open\.js"/);

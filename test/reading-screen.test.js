@@ -256,7 +256,7 @@ test('reading rows use a labeled disclosure at every width instead of hover-only
   for (const label of ['Move up', 'Move down', 'Remove from list']) {
     assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
   }
-  for (const label of ['Mark as available', 'Mark as unavailable', 'Clear availability override']) {
+  for (const label of ['Record as available in Unlimited', 'Record as unavailable in Unlimited', 'Clear your Unlimited record']) {
     assert.ok(reading.includes(`'${label}'`), `the explicit availability actions are missing ${label}`);
   }
 
@@ -280,7 +280,7 @@ test('UX-13 row command groups are ruled apart, the override in force is marked 
   assert.match(css, /\.ract \.mini-danger \{ color: var\(--red-fg-2\); \}/);
   // The three availability choices share a row while the menu has two columns, so grouping costs no
   // extra row: with Clear alone, a 640x450 window's sticky filters covered the first group.
-  const trio = css.indexOf('.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); }');
+  const trio = css.indexOf('.ract-availability { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--space-3); }');
   const narrow = css.search(/@media \(max-width: 620px\) \{\s*\.ract-group, \.ract-availability \{ grid-template-columns: minmax\(0, 1fr\); \}/);
   assert.ok(trio > css.indexOf('.ract-group { display: grid;') && narrow > trio,
     'the trio follows the two-column groups, and one column still wins at 620px and below');

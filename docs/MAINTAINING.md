@@ -166,8 +166,9 @@ stays untouched. The targeted `cache-generations`,
 `import-draft-lifecycle`, `reading-state-clarity`, `storylines-discovery-actual-data`,
 `discovery-priorities`, `mcu-prep-organization` and `local-server-recovery` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
-Stop the normal app server before any targeted run so the runner can bind that port. Each journey
-prints its own assertion and timing totals.
+For isolated targeted work on a shared machine, add `--ephemeral` to keep that server running.
+These runs do not establish fixed-origin acceptance. Without this flag, stop the normal app server
+before a targeted fixed-port run. Each journey prints its own assertion and timing totals.
 
 The runner prints progress before creating each browser context and reports results as they
 finish. Browser and cleanup failures preserve completed results and the primary failing stage.

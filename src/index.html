@@ -173,6 +173,8 @@
               </details>
             </div>
 
+            <p id="reader-closure-notice" class="notice notice-warn">Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link. Your saved lists, progress and backups stay unchanged.</p>
+
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
               <div class="chero-in">
@@ -462,7 +464,6 @@
                       <p id="issue-rating-status" class="rail-hint" hidden></p>
                     </div>
                   </div>
-                  <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
                 </div>
                 <div class="art">
                   <img id="issue-focus-img" alt="" />
@@ -491,33 +492,10 @@
                   </div>
                   <section id="reader-link-root" class="reader-link" aria-labelledby="reader-link-heading" hidden>
                     <details class="field-disclosure action-disclosure" id="reader-link-help">
-                      <summary id="reader-link-heading">Trouble opening this comic?</summary>
+                      <summary id="reader-link-heading">Where Read opens</summary>
                       <div class="stack">
                         <p id="reader-link-summary" class="rail-hint"></p>
-                        <div class="cta">
-                          <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
-                          <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
-                        </div>
-                        <form id="reader-link-form" class="stack" hidden>
-                          <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
-                          <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
-                          <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
-                          <p id="reader-link-preview" class="rail-hint"></p>
-                          <p id="reader-link-error" class="report"></p>
-                          <div class="cta">
-                            <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
-                            <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
-                          </div>
-                        </form>
-                        <p id="reader-link-status" class="rail-hint"></p>
-                        <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
-                        <div id="reader-link-reportPanel" class="stack" hidden>
-                          <p id="reader-link-reportStatus" class="rail-hint"></p>
-                          <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
-                          <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
-                          <p id="reader-link-reportDisclosure" class="rail-hint"></p>
-                          <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
-                        </div>
+                        <p class="rail-hint">Marvel Unlimited reader links are no longer accepted. Saved comics and JSON backups keep their recorded references.</p>
                       </div>
                     </details>
                   </section>
@@ -925,12 +903,12 @@
                   </details>
                   <div id="manual-candidates" class="results"></div>
                   <details class="field-disclosure">
-                    <summary>Add a reader link (optional)</summary>
+                    <summary>Add a comic details link (optional)</summary>
                     <div class="stack">
-                      <label for="manual-url">marvel.com or Marvel Unlimited address</label>
-                      <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://read.marvel.com/#/book/…" />
+                      <label for="manual-url">marvel.com comic details address</label>
+                      <input type="url" id="manual-url" aria-describedby="manual-url-hint" placeholder="https://www.marvel.com/comics/issue/…" />
                       <p class="rail-hint" id="manual-url-hint">
-                        Paste its Marvel Unlimited address to make Read open the book directly.
+                        Marvel Unlimited reader links are no longer accepted. The title alone is enough to add a comic.
                       </p>
                     </div>
                   </details>
@@ -1198,8 +1176,12 @@
               <h3>Metadata and links only</h3>
               <p class="rail-hint">
                 No comic content is stored, copied, proxied, or served. The app tracks which issues you
-                have read and links out to Marvel's own site and reader. Reading an issue requires your
-                own Marvel Unlimited subscription. Cover images load directly from Marvel's own servers,
+                have read and links out to Marvel's own services. Reading in Marvel Unlimited ends
+                December 7, 2026. Before that date, Read uses the web reader when a link is recorded,
+                with your own subscription. From that date, Read opens the general Marvel Comics
+                website, not a single-comic link. Access is determined by Marvel, not this tracker.
+                Availability badges are historical Marvel Unlimited records, not proof of access
+                to Marvel Comics. Cover images load directly from Marvel's own servers,
                 and an address on any other host is refused rather than requested.
                 Switching cover art off stops them being requested.
               </p>
@@ -1226,7 +1208,7 @@
               <h3>Keyboard shortcuts</h3>
               <table class="keys">
                 <tbody>
-                  <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
+                  <tr><th scope="row"><kbd>↵</kbd></th><td>Use the current comic's reader action</td></tr>
                   <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark as read and continue. Turn off in Backup &amp; settings.</td></tr>
                   <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
@@ -1259,11 +1241,14 @@
                   issues are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  Pressing Read opens Marvel's reader at read.marvel.com when its direct reader link
-                  is known. With a matching issue-page link but a refused reader-ID lookup, Read
-                  opens the exact Marvel issue page on marvel.com directly. Otherwise the launch
-                  tab asks the metadata API for a missing reader link and opens Marvel's reader if
-                  found, or the issue page if not.
+                  Before December 7, 2026, pressing Read opens Marvel's web reader when its direct
+                  reader link is known. With a matching issue-page link but a refused reader-ID lookup,
+                  Read opens the exact Marvel issue page directly. Otherwise the launch tab asks
+                  the metadata API for a missing reader link and opens the web reader if found,
+                  or the issue page if not. From the start of December 7 on your device's local
+                  clock, Read opens the general Marvel Comics website without a reader-link lookup.
+                  Android uses your installed browser, not the Marvel Unlimited app, on both sides
+                  of that date. Recap Page no longer contacts Bifrost.
                   Adding an issue by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.

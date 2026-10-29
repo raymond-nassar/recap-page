@@ -80,14 +80,15 @@ These features make direct requests:
 - Series and creator name searches use bundled indexes locally. Fetching the issues for a
   selected series or creator sends their IDs to the metadata service.
 - Issue detail and reader-link lookups send the issue identity to that service.
-- Opening an issue in the Android prototype also sends its digital ID to `bifrost.marvel.com`
-  for a Marvel Unlimited app link. The request has no credentials or referrer, bypasses the HTTP
-  cache, and is not saved in reading state. Marvel sees the digital ID and network address.
-  **Open in browser** remains available.
+- Android's Read uses an installed browser, not the Marvel Unlimited app. Recap Page no longer
+  contacts Bifrost to resolve app links. **Open in browser** remains available if a browser does
+  not open.
 - Cover images load from Marvel's image host when cover art is enabled. It is on by default and
   can be switched off.
-- **Read** opens Marvel Unlimited when a direct reader link is known, or opens the issue page on
-  marvel.com when no reader link can be resolved.
+- Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a direct link is
+  known. Otherwise it looks up the missing link or opens the recorded comic details page.
+  From the start of December 7 on the device's local clock, it opens the general Marvel Comics
+  website without a reader-link lookup. This is not a single-comic link.
 - The optional hand-entry lookup sends your title to the Marvel Fandom wiki only after you press
   the lookup button.
 
@@ -106,8 +107,9 @@ HTTP caching, not deletion from their logs or systems.
 Recap Page stores cover URLs only. It never hosts, proxies, saves to project storage, or uploads
 comic image bytes. Your browser may cache covers it displays from Marvel's image host.
 
-Comics are not included. Reading happens on Marvel's service and needs your own subscription.
-Recap Page does not bypass Marvel Unlimited.
+Comics are not included. Reading in Marvel Unlimited ends December 7, 2026.
+Reading happens on Marvel's services, whose access requirements are determined by Marvel.
+Recap Page does not grant or verify access to comics.
 
 ## Windows package permissions
 

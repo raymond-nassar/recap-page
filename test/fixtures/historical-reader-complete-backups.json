@@ -1,0 +1,109 @@
+{
+  "sourceCommit": "f25abec60d6578f5815ffb60d2f179698048f83a",
+  "fixtures": [
+    {
+      "name": "recorded-reader",
+      "draft": {
+        "format": "recap-import-draft",
+        "version": 1,
+        "rawText": "# Historical source\r\n- [x] [Saved reader](https://read.marvel.com/#/book/129648)",
+        "occurrences": [
+          {
+            "issueId": -9007199254611343,
+            "title": "Saved reader",
+            "url": null,
+            "read": true,
+            "index": 0,
+            "section": null,
+            "digitalId": 129648,
+            "line": 2,
+            "choice": null,
+            "applied": false
+          }
+        ],
+        "incarnation": "baseline-device",
+        "revision": "baseline-revision",
+        "previousSources": [
+          "Earlier source\r\nkept verbatim"
+        ],
+        "destination": {
+          "id": "destination",
+          "created": 1,
+          "name": "Historical import",
+          "newList": true,
+          "prefix": []
+        },
+        "expected": null,
+        "readerToken": null,
+        "paused": false,
+        "pending": null
+      },
+      "text": "{\"components\":{\"draft\":{\"destination\":{\"created\":1,\"id\":\"destination\",\"name\":\"Historical import\",\"newList\":true,\"prefix\":[]},\"format\":\"recap-import-draft\",\"occurrences\":[{\"applied\":false,\"choice\":null,\"digitalId\":129648,\"index\":0,\"issueId\":-9007199254611343,\"line\":2,\"read\":true,\"section\":null,\"title\":\"Saved reader\",\"url\":null}],\"previousSources\":[\"Earlier source\\r\\nkept verbatim\"],\"rawText\":\"# Historical source\\r\\n- [x] [Saved reader](https://read.marvel.com/#/book/129648)\",\"version\":1},\"history\":{\"format\":\"recap-page-list-history\",\"records\":[],\"version\":1},\"reader\":{\"active\":\"saved\",\"app\":\"recap-page\",\"issues\":{\"-9007199254611343\":{\"cover\":null,\"creators\":null,\"detailsRefused\":false,\"digitalId\":129648,\"hydrated\":true,\"issueId\":-9007199254611343,\"mu\":\"2020-01-01\",\"number\":null,\"onSale\":null,\"pageCount\":null,\"seriesId\":null,\"seriesName\":null,\"source\":\"manual\",\"title\":\"Saved reader\",\"url\":null}},\"listOrder\":[\"saved\"],\"lists\":{\"saved\":{\"catalogId\":null,\"collectedIn\":{},\"created\":12345,\"deferredIssueIds\":[],\"description\":\"\",\"id\":\"saved\",\"itemIds\":[-9007199254611343],\"name\":\"Saved list\",\"note\":\"\"}},\"notes\":{},\"overrides\":{\"-9007199254611343\":\"unavailable\"},\"ratings\":{},\"read\":{},\"schemaVersion\":4},\"settings\":{\"covers\":true,\"filter\":\"all\",\"hideDescriptions\":true,\"readingShortcut\":true,\"sidebarCollapsed\":null,\"theme\":\"system\"}},\"digest\":\"2db6945431cfd505f6bcf57706fe8a265d2fbbae2bb4b5e0f7f6a4ea030aa948\",\"format\":\"recap-page-complete-backup\",\"version\":1}"
+    },
+    {
+      "name": "unresolved-reader",
+      "draft": {
+        "format": "recap-import-draft",
+        "version": 1,
+        "rawText": "# Historical source\r\n- [ ] [Old invalid link](https://read.marvel.com/)\r\n- [ ] [Saved reader](https://read.marvel.com/#/book/129648)",
+        "occurrences": [
+          {
+            "title": "Old invalid link",
+            "url": "https://read.marvel.com/",
+            "read": false,
+            "index": 0,
+            "section": null,
+            "line": 2,
+            "choice": {
+              "issueId": 7,
+              "title": "Selected comic",
+              "number": null,
+              "url": "https://www.marvel.com/comics/issue/7/",
+              "seriesId": null,
+              "seriesName": null,
+              "onSale": null,
+              "mu": null,
+              "digitalId": null,
+              "cover": null,
+              "pageCount": null,
+              "creators": null,
+              "source": "api",
+              "hydrated": false,
+              "detailsRefused": false
+            },
+            "applied": false
+          },
+          {
+            "issueId": -9007199254611343,
+            "title": "Saved reader",
+            "url": null,
+            "read": false,
+            "index": 1,
+            "section": null,
+            "digitalId": 129648,
+            "line": 3,
+            "choice": null,
+            "applied": false
+          }
+        ],
+        "incarnation": "baseline-device",
+        "revision": "baseline-revision",
+        "previousSources": [
+          "Earlier source\r\nkept verbatim"
+        ],
+        "destination": {
+          "id": "destination",
+          "created": 1,
+          "name": "Historical import",
+          "newList": true,
+          "prefix": []
+        },
+        "expected": null,
+        "readerToken": null,
+        "paused": false,
+        "pending": null
+      },
+      "text": "{\"components\":{\"draft\":{\"destination\":{\"created\":1,\"id\":\"destination\",\"name\":\"Historical import\",\"newList\":true,\"prefix\":[]},\"format\":\"recap-import-draft\",\"occurrences\":[{\"applied\":false,\"choice\":{\"cover\":null,\"creators\":null,\"detailsRefused\":false,\"digitalId\":null,\"hydrated\":false,\"issueId\":7,\"mu\":null,\"number\":null,\"onSale\":null,\"pageCount\":null,\"seriesId\":null,\"seriesName\":null,\"source\":\"api\",\"title\":\"Selected comic\",\"url\":\"https://www.marvel.com/comics/issue/7/\"},\"index\":0,\"line\":2,\"read\":false,\"section\":null,\"title\":\"Old invalid link\",\"url\":\"https://read.marvel.com/\"},{\"applied\":false,\"choice\":null,\"digitalId\":129648,\"index\":1,\"issueId\":-9007199254611343,\"line\":3,\"read\":false,\"section\":null,\"title\":\"Saved reader\",\"url\":null}],\"previousSources\":[\"Earlier source\\r\\nkept verbatim\"],\"rawText\":\"# Historical source\\r\\n- [ ] [Old invalid link](https://read.marvel.com/)\\r\\n- [ ] [Saved reader](https://read.marvel.com/#/book/129648)\",\"version\":1},\"history\":{\"format\":\"recap-page-list-history\",\"records\":[],\"version\":1},\"reader\":{\"active\":\"saved\",\"app\":\"recap-page\",\"issues\":{\"-9007199254611343\":{\"cover\":null,\"creators\":null,\"detailsRefused\":false,\"digitalId\":129648,\"hydrated\":true,\"issueId\":-9007199254611343,\"mu\":\"2020-01-01\",\"number\":null,\"onSale\":null,\"pageCount\":null,\"seriesId\":null,\"seriesName\":null,\"source\":\"manual\",\"title\":\"Saved reader\",\"url\":null}},\"listOrder\":[\"saved\"],\"lists\":{\"saved\":{\"catalogId\":null,\"collectedIn\":{},\"created\":12345,\"deferredIssueIds\":[],\"description\":\"\",\"id\":\"saved\",\"itemIds\":[-9007199254611343],\"name\":\"Saved list\",\"note\":\"\"}},\"notes\":{},\"overrides\":{\"-9007199254611343\":\"unavailable\"},\"ratings\":{},\"read\":{},\"schemaVersion\":4},\"settings\":{\"covers\":true,\"filter\":\"all\",\"hideDescriptions\":true,\"readingShortcut\":true,\"sidebarCollapsed\":null,\"theme\":\"system\"}},\"digest\":\"f5fd61ae18b0ea9c4c0c458893afcca70c770bc057d4966136051e9139c4156e\",\"format\":\"recap-page-complete-backup\",\"version\":1}"
+    }
+  ]
+}
