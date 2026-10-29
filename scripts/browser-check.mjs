@@ -8868,7 +8868,7 @@ const SCENARIOS = [
       });
       t.check('reading data, completion history and the import draft each keep their download, restore and report together',
         groups.together && groups.distinct && groups.inGroup && groups.aboveSalvage
-          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
+          && JSON.stringify(groups.order) === JSON.stringify(['Complete backup', 'Cloud backup', 'Reading data', 'Completion history', 'Import draft', 'Copies kept after a failed read']),
         JSON.stringify(groups));
       const labels = await page.evaluate(() => ['restore-file', 'restore-history-file', 'restore-draft'].map((id) => {
         const input = document.getElementById(id);
@@ -19165,7 +19165,7 @@ SCENARIOS.push(responsiveOwner({
       await page.setViewport({ width, height: 900 });
       await open(page, '/#/data');
       await responsiveFrames(page);
-      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.map((label) => {
+      const measured = await page.$$eval('#view-data .setting-ctl.checkbox', (labels) => labels.filter((label) => label.getClientRects().length).map((label) => {
         const input = label.querySelector('input[type="checkbox"]');
         const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
         const range = document.createRange();
@@ -19926,7 +19926,7 @@ SCENARIOS.push({
 
 SCENARIOS.push({
   id: 'cloud-backup',
-  title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, and asks Cancel first before anything without a way back',
+  title: 'cloud backup signs in beside Microsoft\'s logo, shows the account before asking, backs up at once, restores through the complete restore engine, and asks Cancel first before anything without a way back',
   async run(page, t) {
     const fixture = cloudFixtureHost();
     await page.exposeFunction('__mrtCloudHost', (operation, input) => fixture.handle(operation, input));
@@ -19979,6 +19979,31 @@ SCENARIOS.push({
       connected.status === 'Connected to OneDrive as reader@example.test.' && connected.auto && !connected.checked
         && connected.discovery && await page.$eval('#cloud-discovery', (node) => node.open) && fixture.host.items.size === 0,
       JSON.stringify(connected));
+    // UX-23 (#835), as RC10 holds the settings switches a build without cloud backup shows.
+    const switchAt = [];
+    for (const width of [1280, 360]) {
+      await page.setViewport({ width, height: 900 });
+      switchAt.push(await page.$eval('#cloud-auto', (label, at) => {
+        const input = label.querySelector('input[type="checkbox"]');
+        const text = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        const words = range.getBoundingClientRect();
+        const track = input.getBoundingClientRect();
+        const box = label.getBoundingClientRect();
+        const card = label.closest('.card').getBoundingClientRect();
+        const style = getComputedStyle(label);
+        return {
+          width: at, height: box.height,
+          unboxed: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth].every((value) => value === '0px'),
+          beside: track.right <= words.left + 0.5 && track.bottom > words.top && track.top < words.bottom,
+          inside: words.right <= box.right + 0.5 && box.left >= card.left - 0.5 && box.right <= card.right + 0.5,
+        };
+      }, width));
+    }
+    await page.setViewport({ width: 1280, height: 900 });
+    t.check('the automatic backup switch is set out as the other settings switches are, track first and its label beside it, unboxed, at 1280 and 360 pixels',
+      switchAt.every((entry) => entry.unboxed && entry.beside && entry.inside && entry.height >= 24), JSON.stringify(switchAt));
 
     await click(page, '#opt-cloud-auto');
     await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.includes('Backed up'), { timeout: 20000 });
@@ -20046,17 +20071,42 @@ SCENARIOS.push({
         && leave.extra.plain.label === 'Disconnect' && !leave.extra.plain.danger && fixture.host.state === 'connected',
       JSON.stringify(leave));
 
+    // Restoring for real, through the complete restore engine. The saved data is changed first and the
+    // page started again, as a later session would leave it, so the restore has something to replace.
+    await page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      state.lists.fixture.name = 'Changed after the backup';
+      localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    });
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto:checked', { timeout: 15000 });
+    await page.$eval('#cloud-discovery', (node) => { node.open = true; });
+    await page.waitForSelector('#cloud-discovery-list button[data-cloud-copy="current"]', { timeout: 15000 });
+    await click(page, '#cloud-discovery-list button[data-cloud-copy="current"]');
+    await page.waitForSelector('#ask[open]');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, '#ask-ok')]);
+    await page.waitForFunction(() => document.querySelector('#complete-backup-report').textContent.includes('Backup restored from OneDrive.'), { timeout: 15000 });
+    const restored = await readState(page);
+    t.check('confirming restores the backup through the complete restore engine, replacing the change made after it',
+      restored?.lists?.fixture?.name === ORDER.name && JSON.stringify(restored.listOrder) === JSON.stringify(['fixture']),
+      JSON.stringify({ name: restored?.lists?.fixture?.name, order: restored?.listOrder }));
+    await page.waitForSelector('#cloud-backup:not([hidden]) #opt-cloud-auto', { timeout: 15000 });
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-status').textContent.startsWith('Connected to OneDrive'), { timeout: 15000 });
+    t.check('after the restore this browser still backs up: its consent is not part of what a restore replaces',
+      (await cloudCard(page)).checked, JSON.stringify(await cloudCard(page)));
+
+    const stored = fixture.host.items.size;
     const remove = await ask('#btn-cloud-delete');
     t.check('deleting this device\'s backups asks with the danger answer and says the recycle bin keeps them',
       remove.label === 'Delete cloud backups' && remove.danger && remove.focus === 'ask-cancel'
         && remove.body.includes('Deleted backups stay in OneDrive\'s recycle bin until it is emptied'),
       JSON.stringify(remove));
     await click(page, '#ask-ok');
-    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('Deleted 1 backup'), { timeout: 15000 });
-    t.check('deleting removes the backup, turns automatic backup off here, and says where the copy went',
-      fixture.host.items.size === 0 && !(await cloudCard(page)).checked
+    await page.waitForFunction((count) => document.querySelector('#cloud-backup-report').textContent.includes(`Deleted ${count} backup`), { timeout: 15000 }, stored);
+    t.check('deleting removes every backup this browser made, turns automatic backup off here, and says where the copies went',
+      stored >= 1 && fixture.host.items.size === 0 && !(await cloudCard(page)).checked
         && (await cloudCard(page)).report.includes('in the recycle bin until it is emptied'),
-      (await cloudCard(page)).report);
+      `${stored}: ${(await cloudCard(page)).report}`);
 
     await click(page, '#btn-cloud-disconnect');
     await page.waitForSelector('#ask[open]');
