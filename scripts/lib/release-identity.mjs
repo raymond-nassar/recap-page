@@ -7,6 +7,9 @@ import { fileURLToPath } from 'node:url';
 export const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 export const ANDROID_CODE_LIMIT = 2100000000;
 export const DEVELOPMENT_ANDROID_CODE = 3000002;
+// Every iOS build made without a reservation carries this number, as every unreserved Android build
+// carries DEVELOPMENT_ANDROID_CODE, so a development build can never pass for a reserved one.
+export const DEVELOPMENT_IOS_BUILD = 1;
 export const ABOUT_BUILD = 'Source checkout; revision not embedded.';
 const SHA = /^[0-9a-f]{40}$/;
 const HASH = /^[0-9a-f]{64}$/;
@@ -55,6 +58,9 @@ export function validateIdentity(value) {
   if (value.platform === 'android') {
     requireValue(Number.isSafeInteger(value.packageVersion) && value.packageVersion > 0
       && value.packageVersion <= ANDROID_CODE_LIMIT, 'Android versionCode outside Play limit');
+  } else if (value.platform === 'ios') {
+    requireValue(Number.isSafeInteger(value.packageVersion) && value.packageVersion > 0,
+      'iOS build number must be a positive whole number');
   } else {
     requireValue(['windows-portable', 'windows-msix'].includes(value.platform), 'invalid platform');
     const expected = value.platform === 'windows-portable' ? value.productVersion
@@ -156,6 +162,13 @@ export async function androidBuild({
     versionName: identity.channel === 'candidate' ? identity.productVersion
       : `${identity.productVersion}-dev.${identity.sourceRevision.slice(0, 8)}${identity.sourceDirty ? '-dirty' : ''}`,
   };
+}
+
+export async function iosBuild({ root = ROOT } = {}) {
+  // Reserved TestFlight builds arrive with the signing tooling and its ledger. Until then every iOS
+  // build is a development build, which is also what keeps one from ever being uploaded.
+  const identity = await buildIdentity('ios', DEVELOPMENT_IOS_BUILD, 'development', root);
+  return { identity, buildNumber: identity.packageVersion };
 }
 
 export async function artifactRecord(path, identity) {

@@ -47,6 +47,7 @@
     "store:check": "node scripts/check-store-submission.mjs",
     "browser": "node scripts/browser-check.mjs",
     "android:prepare": "node scripts/prepare-android.mjs",
+    "ios:prepare": "node scripts/prepare-ios.mjs",
     "android:browser": "node scripts/browser-android.mjs",
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",

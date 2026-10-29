@@ -10,7 +10,10 @@ import {
 
 const css = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
 const mobile = readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8');
-const sheets = (styles = css, overlay = mobile) => [[TOKEN_SHEETS[0], styles], [TOKEN_SHEETS[1], overlay]];
+const ios = readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8');
+const sheets = (styles = css, overlay = mobile, iosOverlay = ios) => [
+  [TOKEN_SHEETS[0], styles], [TOKEN_SHEETS[1], overlay], [TOKEN_SHEETS[2], iosOverlay],
+];
 
 // What one rule appended to a stylesheet adds to that sheet's token findings.
 function rawFindings(rule, sheet = 0) {
@@ -102,6 +105,8 @@ test('design tokens are declared once, in the shared :root block, with their lis
   const overlay = tokenDefinitionFindings(sheets(css, `${mobile}\n:root { --radius-md: 8px; }\n`));
   assert.ok(has(overlay, 'packaging/android/web/mobile.css line') && has(overlay, 'declares --radius-md outside the shared :root block'), overlay.join('\n'));
   assert.ok(has(overlay, 'declares --radius-md a second time'), overlay.join('\n'));
+  const iosOverlay = tokenDefinitionFindings(sheets(css, mobile, `${ios}\n:root { --radius-md: 8px; }\n`));
+  assert.ok(has(iosOverlay, 'packaging/ios/web/ios.css line') && has(iosOverlay, 'declares --radius-md outside the shared :root block'), iosOverlay.join('\n'));
   const themed = tokenDefinitionFindings(sheets(css.replace(':root[data-theme="light"] {', ':root[data-theme="light"] {\n  --radius-lg: 12px;')));
   assert.ok(has(themed, 'declares --radius-lg outside the shared :root block'), themed.join('\n'));
   assert.ok(has(tokenDefinitionFindings(sheets(css.replace('--radius-sm: 4px;', '--radius-sm: 4px;\n  --radius-rogue: 7px;'))),
@@ -115,7 +120,7 @@ test('every listed token is declared with its listed value, and the resolver rea
   assert.equal(resolveTokens('0 var(--radius-marker) var(--radius-marker) 0', tokens), '0 3px 3px 0');
 });
 
-test('radius values in either stylesheet come only from radius tokens', () => {
+test('radius values in every stylesheet come only from radius tokens', () => {
   for (const [file, source] of sheets()) assert.deepEqual(tokenGrammarFindings(file, source), [], file);
   for (const [rule, sheet, expected] of [
     ['.x { border-radius: 5px; }', 0, ['carries raw radius value 5px']],
@@ -123,6 +128,7 @@ test('radius values in either stylesheet come only from radius tokens', () => {
     ['.x { border-radius: calc(var(--radius-md) - 1px); }', 0, ['carries raw radius value calc(var(--radius-md) - 1px)']],
     ['.x { border-radius: var(--space-4); }', 0, ['uses var(--space-4), which is not a radius token']],
     ['.x { border-radius: 12px 12px 0 0; }', 1, ['carries raw radius value 12px', 'carries raw radius value 12px']],
+    ['.x { border-radius: 6px; }', 2, ['carries raw radius value 6px']],
   ]) {
     const findings = rawFindings(rule, sheet);
     assert.equal(findings.length, expected.length, `${rule}: ${findings.join('; ')}`);
