@@ -966,7 +966,36 @@ function outputBody(file, value) {
   return { file, content: typeof value === 'string' ? value : jsonText(value) };
 }
 
-export function assertRelationshipReportExtension(previous, current, laterGuides = []) {
+const RECIPROCAL_RELATIONSHIP = Object.freeze({
+  partial: 'partial', 'candidate-subset': 'existing-subset', 'existing-subset': 'candidate-subset',
+});
+
+// A Comic Book Herald guide published after this review is not an owner registration, but its own
+// approved review compared it with the whole library, this guide included. That review is the
+// reciprocal authority, so it is accepted only when every digest binding it still holds and its
+// approved relationship with this guide is the exact inverse of the one observed now.
+function assertLaterCbhReciprocal(current, entry, { mapping, report }) {
+  validateMappingDigest(mapping);
+  validateReportDigest(report);
+  validateApprovalDigest(mapping.relationshipReview, mapping.id);
+  assert.equal(mapping.reviewStatus, 'approved');
+  assert.equal(report.candidateId, mapping.id);
+  const review = mapping.relationshipReview;
+  assert.equal(review.reportDigest, report.reportDigest);
+  assert.equal(review.mappingDigest, mapping.mappingDigest);
+  assert.equal(report.mappingDigest, mapping.mappingDigest);
+  const reciprocal = report.comparisons.find(({ orderId }) => orderId === current.candidateId);
+  const authority = review.dispositions.find(({ orderId }) => orderId === current.candidateId);
+  assert.ok(reciprocal && authority, 'Later Comic Book Herald authority must include this earlier guide.');
+  assert.equal(authority.decision, 'approved');
+  assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
+  assert.equal(authority.relationship, reciprocal.relationship);
+  assert.equal(entry.relationship, RECIPROCAL_RELATIONSHIP[reciprocal.relationship]);
+  assert.equal(reciprocal.sharedCount, entry.sharedCount);
+  assert.deepEqual([...reciprocal.sharedIds].sort(), [...entry.sharedIds].sort());
+}
+
+export function assertRelationshipReportExtension(previous, current, laterGuides = [], laterCbhGuides = []) {
   for (const field of [
     'candidateId', 'packetDigest', 'mappingDigest', 'peerDigests', 'sourceCounts', 'candidateCount',
   ]) {
@@ -989,7 +1018,14 @@ export function assertRelationshipReportExtension(previous, current, laterGuides
     const later = laterGuides.find(({ registeredId, contract }) => (
       registeredId === entry.orderId && contract?.id === entry.orderId
     ));
-    assert.ok(later, `New library entries with shared issues require a registered reciprocal review: ${entry.orderId}`);
+    const laterCbh = later ? null : laterCbhGuides.find(({ registeredId, mapping }) => (
+      registeredId === entry.orderId && mapping?.id === entry.orderId
+    ));
+    assert.ok(later || laterCbh, `New library entries with shared issues require a registered reciprocal review: ${entry.orderId}`);
+    if (laterCbh) {
+      assertLaterCbhReciprocal(current, entry, laterCbh);
+      continue;
+    }
     const { contract, mapping, report } = later;
     validateMappingDigest(mapping);
     validateReportDigest(report);
@@ -1047,6 +1083,15 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       mapping: path.join(root, 'scripts', 'data', 'owner-mappings', `${id}.json`),
       report: path.join(root, 'scripts', 'data', 'owner-overlaps', `${id}.json`),
     }));
+  const ownerRegisteredIds = new Set(registry.guides.map(({ id }) => id));
+  const exists = (file) => stat(file).then(() => true, () => false);
+  const laterCbhPaths = (await Promise.all(currentLibrary.manifest.lists
+    .filter(({ id }) => !previousOrderIds.has(id) && !ownerRegisteredIds.has(id))
+    .map(async ({ id }) => {
+      const mapping = path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`);
+      const report = path.join(root, 'scripts', 'data', 'cbh-overlaps', `${id}.json`);
+      return await exists(mapping) && await exists(report) ? { id, mapping, report } : null;
+    }))).filter(Boolean);
   const targetPaths = Object.values(paths).map((name) => path.join(root, name));
   const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
   const thunderboltsSourcePath = path.join(root, 'scripts', 'data', 'mcu-prep-thunderbolts-source.json');
@@ -1054,6 +1099,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     manifestFile, catalogFile, registryFile, payloadFile, ...targetPaths, ...peerMappingFiles,
     ...(request.id === THUNDERBOLTS_MISMATCH.guideId ? [thunderboltsSourcePath] : []),
     ...laterGuidePaths.flatMap(({ contract, mapping, report }) => [contract, mapping, report]),
+    ...laterCbhPaths.flatMap(({ mapping, report }) => [mapping, report]),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
   ];
   const inputs = await readPublicationInputs({ root, paths: inputPaths });
@@ -1115,6 +1161,8 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   assertRelationshipReportExtension(previousReport, verifiedReport, laterGuidePaths.map((entry) => ({
     registeredId: entry.id,
     contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
+  })), laterCbhPaths.map((entry) => ({
+    registeredId: entry.id, mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
   })));
 
   const gapByPosition = new Map((packet.sourceGaps ?? []).map((gap) => [gap.sourcePosition, gap]));

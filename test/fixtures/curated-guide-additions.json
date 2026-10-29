@@ -57,6 +57,13 @@
         "beforeId": "mcu-prep-daredevil-born-again"
       },
       "rowCount": 44
+    },
+    {
+      "id": "professor-x-reading-order",
+      "insertionAnchor": {
+        "beforeId": "captain-marvel-ms-marvel-reading-order"
+      },
+      "rowCount": 58
     }
   ]
 }

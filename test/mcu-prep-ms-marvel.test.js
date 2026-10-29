@@ -147,7 +147,7 @@ test('Ms. Marvel binds full-current authority and the strict First Steps recipro
   };
   const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
-  })));
+  })), { presentIds: [id] });
   assert.equal(report.comparisonCount, 291);
   assert.equal(report.libraryDigest, recordedDigest,
     'This post-refresh authority binds actual descriptions, not an older inverse');

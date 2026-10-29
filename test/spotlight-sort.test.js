@@ -124,6 +124,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Ultimate Spider-Man',
     'Apocalypse / X-Men: Age of Apocalypse',
     'Shadow King',
+    'Professor X (Charles Xavier)',
     'Captain Marvel / Ms. Marvel',
     'Ms. Marvel (Kamala Khan)',
     'Captain America: Modern Marvel Era',

@@ -48,6 +48,7 @@ const currentOverlaps = [
   ['mcu-prep-spider-man-brand-new-day', 6],
   ['mcu-prep-the-incredible-hulk-2008', 6],
   ['modern-x-men-fast-track', 42],
+  ['professor-x-reading-order', 4],
   ['punisher-reading-order', 38],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
   ['runaways-reading-order', 12],

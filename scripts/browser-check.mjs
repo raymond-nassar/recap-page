@@ -3859,14 +3859,14 @@ const SCENARIOS = [
         complete: await readSubset('complete-guide'),
         bestOf: await readSubset('best-of'),
       };
-      // #897 moved the fifteen young readers' lists from All to Young readers, their one screen.
+      // #897 moved the fifteen young readers' lists from All to Young readers; #981 adds a Best of.
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 71 && desktop.all.stories === 70
-        && desktop.all.cards === 71 && desktop.all.adamCards === 1
+        desktop.all.readings === 72 && desktop.all.stories === 71
+        && desktop.all.cards === 72 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
-        && desktop.bestOf.readings === 8 && desktop.bestOf.stories === 8
-        && desktop.bestOf.cards === 8 && desktop.bestOf.adamCards === 0,
+        && desktop.bestOf.readings === 9 && desktop.bestOf.stories === 9
+        && desktop.bestOf.cards === 9 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -3877,12 +3877,12 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 71 && narrow.all.stories === 70
-        && narrow.all.cards === 71 && narrow.all.adamCards === 1
+        narrow.all.readings === 72 && narrow.all.stories === 71
+        && narrow.all.cards === 72 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
-        && narrow.bestOf.readings === 8 && narrow.bestOf.stories === 8
-        && narrow.bestOf.cards === 8 && narrow.bestOf.adamCards === 0
+        && narrow.bestOf.readings === 9 && narrow.bestOf.stories === 9
+        && narrow.bestOf.cards === 9 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,
         JSON.stringify(narrow));
 

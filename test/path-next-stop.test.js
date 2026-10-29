@@ -8,7 +8,7 @@ import { createListRecommendationResolver } from '../src/js/lib/listRecommendati
 // #897 item 2. When a Reading List that is a stop on a path is finished, its wrap-up offers that
 // path's next stop. The owner's decision, through the coordinating session on 2026-10-26, is that
 // the wrap-up's existing "Next in <path>" suggestion is that offer, so these hold it to each point
-// of the Issue's acceptance on every stop of the three bundled paths, with the shipped catalog: it
+// of the Issue's acceptance on every stop of the bundled paths, with the shipped catalog: it
 // appears only for path stops, names the right next stop, offers Preview or Open, and is absent
 // after a path's last stop.
 
@@ -51,9 +51,10 @@ function resolver() {
 const onPath = (result) => result.suggestions
   .filter((suggestion) => suggestion.reasons.some((reason) => reason.type === 'reading-path'));
 
-test('the three bundled paths are the ones these checks walk', () => {
+test('the four bundled paths are the ones these checks walk', () => {
   assert.deepEqual(paths.map((path) => [path.id, path.stops.length]), [
-    ['modern-avengers', 10], ['x-men-messiah-to-avx', 12], ['marvel-knights-to-planet-x', 78],
+    ['modern-avengers', 10], ['x-men-messiah-to-avx', 12], ['professor-x-and-the-x-men', 4],
+    ['marvel-knights-to-planet-x', 78],
   ]);
 });
 
