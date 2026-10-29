@@ -99,11 +99,11 @@ test('the iOS workflow reads the repository and nothing more: no secret, no envi
   assert.doesNotMatch(workflow, /secrets\.|\benvironment:|id-token|allowProvisioningUpdates|exportArchive|\barchive\b|authenticationKey/);
   const builds = [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)[\s\S]*?CODE_SIGNING_ALLOWED=NO/g)];
   assert.equal(builds.length, [...workflow.matchAll(/xcodebuild (?:build-for-testing|build|test-without-building)/g)].length);
-  assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 2, 'each job builds once');
+  assert.equal(builds.filter(([command]) => command.includes('build-for-testing')).length, 3, 'each job builds once');
   assert.equal(builds.filter(([command]) => command.includes('xcodebuild build\n') && command.includes('-configuration Release')).length, 1,
     'the newest runtime compiles the Release configuration');
   assert.equal(builds.filter(([command]) => command.includes('test-without-building')).length, 7,
-    'the two unit tests, two iPhone UI suites, iPad and optional 375-point presentation suites, and one opt-in CORS test each run separately');
+    'the two unit tests, two iPhone UI suites, iPad presentation, optional 375-point presentation, and opt-in CORS test each run separately');
   assert.match(builds.find(([command]) => command.includes('-configuration Release'))[0],
     /-destination "\$DESTINATION"[\s\S]*CODE_SIGNING_ALLOWED=NO/);
   assert.match(block('concurrency'), /group: ios-\$\{\{ github\.ref \}\}\n {2}cancel-in-progress: true/);
@@ -120,128 +120,49 @@ test('live metadata CORS is off by default and runs only from an opted-in manual
     'a skipped test cannot produce a green CORS step');
 });
 
-test('the newest runtime and the app\'s oldest supported system are both tested, with Xcode chosen by path', () => {
-  assert.deepEqual(jobs.map(({ name, runsOn }) => [name, runsOn]), [['newest', 'macos-26'], ['minimum', 'macos-15']]);
+test('newest, oldest and iPad jobs use the intended Xcode runtimes', () => {
+  assert.deepEqual(jobs.map(({ name, runsOn }) => [name, runsOn]),
+    [['newest', 'macos-26'], ['ipad', 'macos-26'], ['minimum', 'macos-15']]);
   const major = identity.minimumOS.split('.')[0];
   for (const job of jobs) {
     assert.match(job.env.DEVELOPER_DIR, /^\/Applications\/Xcode_26\.[\d.]+\.app\/Contents\/Developer$/, job.name);
     assert.ok(job.steps.some(({ label }) => label === 'Show the toolchain'), `${job.name} prints its Xcode version`);
   }
   assert.match(workflow, /xcodebuild -version/);
-  assert.equal(jobs[0].env.SIMULATOR_RUNTIME, 'latest');
-  assert.match(jobs[1].env.SIMULATOR_RUNTIME, new RegExp(`^iOS-${major}-\\d+$`));
+  assert.match(jobSource('newest'), /SIMULATOR_RUNTIME: latest/);
+  assert.match(jobSource('minimum'), new RegExp(`SIMULATOR_RUNTIME: iOS-${major}-\\d+`));
+  assert.match(jobSource('ipad'), /SIMULATOR_RUNTIME: latest/);
 });
 
-test('the newest runtime checks the 6.9-inch iPhone and the 13-inch iPad presentation matrix', () => {
+test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs in its own job', () => {
   const newest = jobSource('newest');
-  assert.equal(jobs[0].env.SIMULATOR_NAME, 'iPhone 17 Pro Max');
-  assert.match(newest, /Start the 13-inch iPad Simulator boot/);
-  assert.match(newest, /Wait for the 13-inch iPad Simulator after the build/);
-  assert.ok(newest.indexOf('Start the 13-inch iPad Simulator boot') <
-    newest.indexOf('name: Build the Release Simulator configuration'));
-  assert.ok(newest.indexOf('name: Build for testing') <
-    newest.indexOf('Wait for the 13-inch iPad Simulator after the build'));
-  assert.match(newest, /xcrun simctl boot "\$udid" > "\$RUNNER_TEMP\/ipad-boot\.log" 2>&1 &/);
-  assert.match(newest, /xcrun simctl bootstatus "\$IPAD_UDID" -b/);
-  assert.match(newest, /entry\.name\.startsWith\("iPad Pro 13-inch"\)/);
-  assert.match(newest, /IPAD_DESTINATION=platform=iOS Simulator,id=\$udid/);
-  assert.match(newest, /-only-testing:RecapPageUITests\/PresentationUITests/);
-  assert.match(newest, /RecapPage-newest-ipad-ui-\$attempt\.xcresult/);
-  assert.match(newest, /timeout-minutes: 35\n {8}run: \|/);
-  assert.match(newest, /\$RUNNER_TEMP\/ui-\$attempt\.log/);
-  assert.match(newest, /\$RUNNER_TEMP\/ui-ipad-\$attempt\.log/);
+  const ipad = jobSource('ipad');
+  assert.match(newest, /SIMULATOR_NAME: iPhone 17 Pro Max/);
+  assert.doesNotMatch(newest, /iPad Pro 13-inch|IPAD_UDID|IPAD_DESTINATION/);
+  assert.equal(jobs.find(({ name }) => name === 'ipad').runsOn, 'macos-26');
+  assert.equal(ipad.match(/xcodebuild build-for-testing/g)?.length, 1);
+  assert.match(ipad, /-only-testing:RecapPageUITests\/PresentationUITests/);
+  assert.doesNotMatch(ipad, /-only-testing:RecapPageUITests\s|-only-testing:RecapPageTests|live_cors/);
+  assert.match(ipad, /name: iPad presentation on the newest runtime/);
+  assert.match(ipad, /timeout-minutes: 86/);
+  assert.match(ipad, /timeout-minutes: 35\n {8}run: \|/);
+  assert.match(ipad, /ios-results-ipad-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
 });
 
-function jobSource(name) {
-  return workflow.split(`\n  ${name}:\n`)[1]?.split(/\n {2}\w+:\n/)[0] ?? '';
-}
-
-function stepScript(source, label) {
-  const step = source.split(`      - name: ${label}\n`)[1]?.split(/\n {6}- /)[0];
-  assert.ok(step, `found step ${label}`);
-  const script = step.split('        run: |\n')[1];
-  assert.ok(script, `${label} has an executable block`);
-  return script.split('\n').filter((line) => line.startsWith('          '))
-    .map((line) => line.slice(10)).join('\n') + '\n';
-}
-
-const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash';
-const infrastructure = [
-  'The test runner failed to initialize for UI testing.',
-  'Failed to get background assertion for target app with pid 13819: Timed out while acquiring background assertion.',
-  'Failed to launch application: Timed out while launching application via Xcode.',
-];
-const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
-
-async function runScript(root, script, env = {}) {
-  const path = join(root, 'step.sh');
-  await writeFile(path, script);
-  const result = spawnSync(bash, ['--noprofile', '--norc', '-e', '-o', 'pipefail', path], {
-    encoding: 'utf8', timeout: 15000,
-    env: {
-      ...process.env,
-      RUNNER_TEMP: root,
-      DESTINATION: 'platform=iOS Simulator,id=chosen-device',
-      IPAD_DESTINATION: 'platform=iOS Simulator,id=chosen-ipad',
-      ...env,
-    },
-  });
-  assert.ifError(result.error);
-  return result;
-}
-
-test('both iOS jobs boot and wait for the chosen Simulator before building and keep all attempt bundles', async () => {
-  for (const job of jobs) {
-    const source = jobSource(job.name);
-    const boot = stepScript(source, 'Boot the Simulator before building');
-    assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
-    const expectedBuilds = job.name === 'newest' ? 5 : 3;
-    assert.equal((source.match(/-destination "\$DESTINATION"/g) ?? []).length, expectedBuilds);
-    assert.doesNotMatch(source, /simctl (?:shutdown|erase)|retry-tests-on-failure|continue-on-error/);
-    assert.match(source, new RegExp(`runner.temp \\}\\}/RecapPage-${job.name}-\\*\\.xcresult`));
-    assert.match(source, /runner.temp \}\}\/ui-\*\.log/);
-    assert.match(source, /if: \$\{\{ !cancelled\(\) \}\}/);
-    const root = await mkdtemp(join(tmpdir(), 'recap-ios-boot-'));
-    try {
-      const fixture = { devices: Object.fromEntries(['iOS-9-3', 'iOS-18-5', 'iOS-26-5', 'tvOS-99-0'].map((runtime) =>
-        [`com.apple.CoreSimulator.SimRuntime.${runtime}`, [{ name: job.env.SIMULATOR_NAME, udid: runtime }]])) };
-      await writeFile(join(root, 'devices.json'), JSON.stringify(fixture));
-      const stub = `xcrun() {
-  if [ "$*" = "simctl list devices available --json" ]; then
-    cat "$RUNNER_TEMP/devices.json"
-  else
-    printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
-  fi
-}
-`;
-      const env = { ...job.env, GITHUB_ENV: join(root, 'github-env') };
-      const result = await runScript(root, stub + boot, env);
-      assert.equal(result.status, 0, result.stderr);
-      const expected = job.name === 'newest' ? 'iOS-26-5' : 'iOS-18-5';
-      assert.equal(await readFile(join(root, 'calls'), 'utf8'), `simctl boot ${expected}\nsimctl bootstatus ${expected} -b\n`);
-      assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), `DESTINATION=platform=iOS Simulator,id=${expected}\n`);
-      await writeFile(join(root, 'devices.json'), '{"devices":{}}');
-      const missing = await runScript(root, stub + boot, env);
-      assert.notEqual(missing.status, 0, 'an unavailable Simulator fails before boot');
-      assert.match(missing.stderr, /Requested iOS Simulator is not available/);
-      assert.equal(await readFile(join(root, 'calls'), 'utf8'), `simctl boot ${expected}\nsimctl bootstatus ${expected} -b\n`);
-    } finally {
-      await rm(root, { recursive: true, force: true });
-    }
-  }
-});
-
-test('the newest runtime starts iPad boot before building and waits after the build', async () => {
-  const source = jobSource('newest');
+test('the separate iPad job starts only the iPad boot before building and waits afterward', async () => {
+  const source = jobSource('ipad');
   const start = stepScript(source, 'Start the 13-inch iPad Simulator boot');
   const wait = stepScript(source, 'Wait for the 13-inch iPad Simulator after the build');
-  assert.ok(source.indexOf('Start the 13-inch iPad Simulator boot') < source.indexOf('name: Build the Release Simulator configuration'));
+  assert.ok(source.indexOf('Start the 13-inch iPad Simulator boot') < source.indexOf('name: Build for testing'));
   assert.ok(source.indexOf('name: Build for testing') < source.indexOf('Wait for the 13-inch iPad Simulator after the build'));
   assert.ok(source.indexOf('Wait for the 13-inch iPad Simulator after the build') <
     source.indexOf('name: Run presentation UI tests on iPad'));
   assert.match(start, /xcrun simctl boot "\$udid" > "\$RUNNER_TEMP\/ipad-boot\.log" 2>&1 &/);
+  assert.match(start, /entry\.name\.startsWith\("iPad Pro 13-inch"\)/);
+  assert.match(start, /IPAD_DESTINATION=platform=iOS Simulator,id=\$udid/);
   assert.match(wait, /xcrun simctl bootstatus "\$IPAD_UDID" -b/);
   assert.match(source, /- name: Wait for the 13-inch iPad Simulator after the build\n {8}timeout-minutes: 5/);
+  assert.match(source, /\$RUNNER_TEMP\/ui-ipad-\$attempt\.log/);
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-ipad-boot-'));
   try {
     const fixture = {
@@ -283,13 +204,93 @@ test('the newest runtime starts iPad boot before building and waits after the bu
   }
 });
 
+function jobSource(name) {
+  return workflow.split(`\n  ${name}:\n`)[1]?.split(/\n {2}\w+:\n/)[0] ?? '';
+}
+
+function stepScript(source, label) {
+  const step = source.split(`      - name: ${label}\n`)[1]?.split(/\n {6}- /)[0];
+  assert.ok(step, `found step ${label}`);
+  const script = step.split('        run: |\n')[1];
+  assert.ok(script, `${label} has an executable block`);
+  return script.split('\n').filter((line) => line.startsWith('          '))
+    .map((line) => line.slice(10)).join('\n') + '\n';
+}
+
+const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash';
+const infrastructure = [
+  'The test runner failed to initialize for UI testing.',
+  'Failed to get background assertion for target app with pid 13819: Timed out while acquiring background assertion.',
+  'Failed to launch application: Timed out while launching application via Xcode.',
+];
+const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
+
+async function runScript(root, script, env = {}) {
+  const path = join(root, 'step.sh');
+  await writeFile(path, script);
+  const result = spawnSync(bash, ['--noprofile', '--norc', '-e', '-o', 'pipefail', path], {
+    encoding: 'utf8', timeout: 15000,
+    env: {
+      ...process.env,
+      RUNNER_TEMP: root,
+      DESTINATION: 'platform=iOS Simulator,id=chosen-device',
+      IPAD_DESTINATION: 'platform=iOS Simulator,id=chosen-ipad',
+      ...env,
+    },
+  });
+  assert.ifError(result.error);
+  return result;
+}
+
+test('the iPhone jobs boot and wait for the chosen Simulator before building and keep all attempt bundles', async () => {
+  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
+    const source = jobSource(job.name);
+    const boot = stepScript(source, 'Boot the Simulator before building');
+    assert.ok(source.indexOf('Boot the Simulator before building') < source.indexOf('name: Build for testing'));
+    const expectedBuilds = job.name === 'newest' ? 5 : 3;
+    assert.equal((source.match(/-destination "\$DESTINATION"/g) ?? []).length, expectedBuilds);
+    assert.doesNotMatch(source, /simctl (?:shutdown|erase)|retry-tests-on-failure|continue-on-error/);
+    assert.match(source, new RegExp(`runner.temp \\}\\}/RecapPage-${job.name}-\\*\\.xcresult`));
+    assert.match(source, /runner.temp \}\}\/ui-\*\.log/);
+    assert.match(source, /if: \$\{\{ !cancelled\(\) \}\}/);
+    const root = await mkdtemp(join(tmpdir(), 'recap-ios-boot-'));
+    try {
+      const fixture = { devices: Object.fromEntries(['iOS-9-3', 'iOS-18-5', 'iOS-26-5', 'tvOS-99-0'].map((runtime) =>
+        [`com.apple.CoreSimulator.SimRuntime.${runtime}`, [{ name: job.env.SIMULATOR_NAME, udid: runtime }]])) };
+      await writeFile(join(root, 'devices.json'), JSON.stringify(fixture));
+      const stub = `xcrun() {
+  if [ "$*" = "simctl list devices available --json" ]; then
+    cat "$RUNNER_TEMP/devices.json"
+  else
+    printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  fi
+}
+`;
+      const env = { ...job.env, GITHUB_ENV: join(root, 'github-env') };
+      const result = await runScript(root, stub + boot, env);
+      assert.equal(result.status, 0, result.stderr);
+      const expected = job.name === 'newest' ? 'iOS-26-5' : 'iOS-18-5';
+      assert.equal(await readFile(join(root, 'calls'), 'utf8'), `simctl boot ${expected}\nsimctl bootstatus ${expected} -b\n`);
+      assert.equal(await readFile(env.GITHUB_ENV, 'utf8'), `DESTINATION=platform=iOS Simulator,id=${expected}\n`);
+      await writeFile(join(root, 'devices.json'), '{"devices":{}}');
+      const missing = await runScript(root, stub + boot, env);
+      assert.notEqual(missing.status, 0, 'an unavailable Simulator fails before boot');
+      assert.match(missing.stderr, /Requested iOS Simulator is not available/);
+      assert.equal(await readFile(join(root, 'calls'), 'utf8'), `simctl boot ${expected}\nsimctl bootstatus ${expected} -b\n`);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
 test('the minimum runtime tests 375-point iPhone SE presentation only when available', async () => {
+  const minimum = jobs.find(({ name }) => name === 'minimum');
   const source = jobSource('minimum');
   const detect = stepScript(source, 'Find the iPhone SE (3rd generation) Simulator');
   const boot = stepScript(source, 'Boot iPhone SE (3rd generation) Simulator');
   const wait = stepScript(source, 'Wait for the 375-point iPhone SE Simulator after the build');
   const test = stepScript(source, 'Run presentation UI tests on iPhone SE (3rd generation)');
-  assert.equal(jobs[1].env.SIMULATOR_NAME, 'iPhone 16e');
+  assert.match(source, /SIMULATOR_NAME: iPhone 16e/);
   assert.match(source, /- name: Find the iPhone SE \(3rd generation\) Simulator\n {8}id: iphone-se/);
   assert.match(source,
     /- name: Wait for the 375-point iPhone SE Simulator after the build\n {8}if: steps\.iphone-se\.outputs\.available == 'true'/);
@@ -333,7 +334,7 @@ test('the minimum runtime tests 375-point iPhone SE presentation only when avail
 }
 `;
     const env = {
-      ...jobs[1].env,
+      ...minimum.env,
       GITHUB_ENV: join(root, 'github-env'),
       GITHUB_OUTPUT: join(root, 'github-output'),
     };
@@ -389,7 +390,7 @@ ${test}`, { GITHUB_ENV: env.GITHUB_ENV, IPHONE_375_UDID: 'iOS-18-SE3' });
   }
 });
 
-test('both iOS jobs retry only recognized UI infrastructure failures once and require a complete passing retry', async (t) => {
+test('both iPhone jobs retry only recognized UI infrastructure failures once and require a complete passing retry', async (t) => {
   const scenarios = [
     { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
     ...infrastructure.map((message, index) => ({
@@ -402,7 +403,7 @@ test('both iOS jobs retry only recognized UI infrastructure failures once and re
     { name: 'unrecognized failure', logs: ['Simulator connection lost'], codes: [65], calls: 1, exit: 1 },
     { name: 'log write failure', logs: [infrastructure[0]], codes: [65], calls: 1, exit: 23, teeFailure: true },
   ];
-  for (const job of jobs) {
+  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
     const script = stepScript(jobSource(job.name), 'Run the UI tests');
     for (const scenario of scenarios) {
       await t.test(`${job.name}: ${scenario.name}`, async () => {
@@ -444,7 +445,7 @@ ${scenario.teeFailure ? 'tee() { command tee "$@"; return 23; }\n' : ''}`;
 });
 
 test('the iPad presentation suite retries only the recognized UI infrastructure failures', async (t) => {
-  const script = stepScript(jobSource('newest'), 'Run presentation UI tests on iPad');
+  const script = stepScript(jobSource('ipad'), 'Run presentation UI tests on iPad');
   const scenarios = [
     { name: 'first pass', logs: ['passed'], codes: [0], calls: 1, exit: 0 },
     { name: 'infrastructure recovers', logs: [infrastructure[0], 'passed'], codes: [65, 0], calls: 2, exit: 0 },
@@ -476,7 +477,7 @@ test('the iPad presentation suite retries only the recognized UI infrastructure 
           assert.match(call, /^test-without-building /);
           assert.match(call, /-only-testing:RecapPageUITests\/PresentationUITests/);
           assert.ok(call.includes('-destination platform=iOS Simulator,id=chosen-ipad'));
-          assert.ok(call.includes(`RecapPage-newest-ipad-ui-${index + 1}.xcresult`));
+          assert.ok(call.includes(`RecapPage-ipad-ui-${index + 1}.xcresult`));
           assert.equal(await readFile(join(root, `ui-ipad-${index + 1}.log`), 'utf8'), scenario.logs[index] + '\n');
         }
         assert.equal((result.stdout.match(/::warning::/g) ?? []).length, scenario.calls - 1);
@@ -488,7 +489,7 @@ test('the iPad presentation suite retries only the recognized UI infrastructure 
 });
 
 test('unit failures stop each iOS job without entering the UI retry gate', async () => {
-  for (const job of jobs) {
+  for (const job of jobs.filter(({ name }) => name !== 'ipad')) {
     const source = jobSource(job.name);
     const unit = stepScript(source, 'Run the unit tests');
     const uiStep = source.split('      - name: Run the UI tests\n')[1]?.split('        run: |')[0];

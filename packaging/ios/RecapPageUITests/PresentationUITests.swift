@@ -49,18 +49,20 @@ final class PresentationUITests: XCTestCase {
             """
         } else {
             routeScript = """
-            const route = routes.find(({ name }) => name === '\(route)');
+            const route = \(route == "issue-search" ? "issueSearchRoute" : "routes.find(({ name }) => name === '\(route)')");
             if (!route) throw new Error('Unknown presentation test route');
             await openRoute(route);
             screens.push(snapshot(route.id));
             """
         }
         return """
+        const issueSearchRoute = {
+          name: 'issue-search', id: 'view-add-search', selector: '[data-view="add-search"]'
+        };
         const routes = [
           { name: 'home', id: 'view-home', selector: '[data-view="home"]' },
           { name: 'library', id: 'view-library', selector: '[data-view="library"]' },
           { name: 'search', id: 'view-add', selector: '[data-view="add"]' },
-          { name: 'issue-search', id: 'view-add-search', selector: '[data-view="add-search"]' },
           { name: 'data', id: 'view-data', selector: '[data-view="data"]' },
         ];
         const waitFor = async (condition, name) => {
@@ -107,8 +109,9 @@ final class PresentationUITests: XCTestCase {
         const monitor = document.createElement('div');
         monitor.id = 'recap-layout-probe';
         monitor.setAttribute('role', 'status');
+        monitor.setAttribute('aria-live', 'polite');
         monitor.setAttribute('aria-label', 'Layout test measurements');
-        monitor.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap';
+        monitor.style.cssText = 'position:fixed;left:1px;top:1px;width:1px;height:1px;opacity:0.01;overflow:hidden;white-space:nowrap';
         document.body.append(monitor);
         const snapshot = (view) => ({
           view,
@@ -175,7 +178,8 @@ final class PresentationUITests: XCTestCase {
         }
         XCTAssertNotNil(link, "the \(linkName) navigation link is reachable")
         link?.tap()
-        XCTAssertTrue(app.staticTexts[headingID].waitForExistence(timeout: 30), "the \(linkName) view opened")
+        let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
+        XCTAssertTrue(heading.waitForExistence(timeout: 30), "the \(linkName) view opened")
     }
 
     func testDynamicTypeReflowsCoreScreensAtBothAppearances() throws {
@@ -242,7 +246,8 @@ final class PresentationUITests: XCTestCase {
                 ("search", "add-h", "Backup & settings"),
                 ("data", "data-h", nil),
             ] as [(String, String, String?)] {
-                XCTAssertTrue(app.staticTexts[headingID].waitForExistence(timeout: 30), "\(name) is visible for audit")
+                let heading = app.descendants(matching: .any).matching(identifier: headingID).firstMatch
+                XCTAssertTrue(heading.waitForExistence(timeout: 30), "\(name) is visible for audit")
                 try app.performAccessibilityAudit()
                 try record("t03-accessibility-\(category.rawValue)-\(name)", ["audit": "passed", "category": category.rawValue])
                 capture(app, named: "t03-audit-\(category.rawValue)-\(name)")
@@ -262,6 +267,7 @@ final class PresentationUITests: XCTestCase {
             XCTAssertTrue(openRead.waitForExistence(timeout: 30), "the Debug-only Read opener is visible")
             openRead.tap()
             XCTAssertTrue(app.buttons["ios-read-sheet-close"].waitForExistence(timeout: 30), "the Read sheet is presented")
+            waitForReadSheetPresentation(app)
             try app.performAccessibilityAudit()
             try record("t03-accessibility-\(category.rawValue)-read-sheet", ["audit": "passed", "category": category.rawValue])
             capture(app, named: "t03-read-sheet-\(category.rawValue)")
@@ -310,7 +316,7 @@ final class PresentationUITests: XCTestCase {
             "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.textFields["Search issue titles"].firstMatch
+        let searchField = app.searchFields["Search issue titles"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")
@@ -322,6 +328,23 @@ final class PresentationUITests: XCTestCase {
 
         XCUIDevice.shared.orientation = .portrait
         app.terminate()
+    }
+
+    private func waitForReadSheetPresentation(_ app: XCUIApplication) {
+        let recorder = app.staticTexts["ios-handoff-recorder"]
+        XCTAssertTrue(recorder.waitForExistence(timeout: 30), "the presentation recorder appeared")
+        let presented = XCTNSPredicateExpectation(
+            predicate: NSPredicate { object, _ in
+                guard let element = object as? XCUIElement,
+                      let data = element.label.data(using: .utf8),
+                      let record = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return false }
+                return (record["presentations"] as? Int ?? 0) > 0
+            },
+            object: recorder)
+        XCTAssertEqual(
+            XCTWaiter.wait(for: [presented], timeout: 30),
+            .completed,
+            "UIKit completed presenting the Read sheet")
     }
 
     func testWindowReflowsAcrossSupportedOrientations() throws {

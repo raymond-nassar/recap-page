@@ -166,9 +166,11 @@ final class LaunchUITests: XCTestCase {
     const confirmButton = await waitFor(() => document.getElementById('ask-ok'), 'confirmation button (#ask-ok)');
     confirmButton.click();
     const report = await waitFor(() => {
-      const element = document.getElementById('save-report');
-      return element && element.textContent.toLowerCase().includes('erased') ? element : null;
-    }, 'erase result (#save-report)');
+      const saveReport = document.getElementById('save-report');
+      const iosReport = document.getElementById('ios-report');
+      return [saveReport, iosReport].find((element) =>
+        element && element.textContent.toLowerCase().includes('erased')) || null;
+    }, 'erase result (#save-report or #ios-report)');
     const notice = await waitFor(() => document.getElementById('ios-data-loss-notice'), 'data-loss notice (#ios-data-loss-notice)');
     return JSON.stringify({
       readingDataPresent: localStorage.getItem('mrt.state.v2') !== null,
@@ -204,7 +206,9 @@ final class LaunchUITests: XCTestCase {
         let result = try probeResult(of: app)
         XCTAssertNil(result["readingData"] as? String, "loss detection does not write a replacement state")
         XCTAssertEqual(result["noticeHidden"] as? Bool, false)
-        XCTAssertTrue((result["noticeText"] as? String)?.contains("Restore from a backup file") == true)
+        XCTAssertTrue(
+            (result["noticeText"] as? String)?.contains("Restore from a backup file") == true,
+            "the notice names the supported file-restore route: \(String(describing: result["noticeText"]))")
         XCTAssertEqual(result["settingsLinkHref"] as? String, "#/data")
         let settingsLink = app.links.matching(identifier: "ios-data-loss-settings").firstMatch
         XCTAssertTrue(settingsLink.waitForExistence(timeout: 30))
