@@ -35,7 +35,7 @@ The screenshots show a different list, with cover art off.
 ![Recap Page Home with the Start with Modern Timeline and Search buttons and six reading-list
 categories from Modern Timeline to Young readers, with cover art off](docs/screenshots/home-960.png)
 
-![Avengers Disassembled showing the next issue, reading progress, and upcoming comics,
+![Avengers Disassembled showing the next issue, Read and Done buttons, and reading progress,
 with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ## Made for long reading journeys
