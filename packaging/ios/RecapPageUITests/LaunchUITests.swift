@@ -121,34 +121,59 @@ final class LaunchUITests: XCTestCase {
     """
 
     private static let observeDataLossNotice = """
-    const notice = document.getElementById('ios-data-loss-notice');
+    const waitForElement = async (id, timeout = 30000) => {
+      const deadline = Date.now() + timeout;
+      while (Date.now() < deadline) {
+        const element = document.getElementById(id);
+        if (element) return element;
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      throw new Error(`Timed out waiting for required element #${id}`);
+    };
+    const notice = await waitForElement('ios-data-loss-notice');
+    const message = await waitForElement('ios-data-loss-message');
+    const settingsLink = await waitForElement('ios-data-loss-settings');
     return JSON.stringify({
       readingData: localStorage.getItem('mrt.state.v2'),
       noticeHidden: notice.hidden,
-      noticeText: document.getElementById('ios-data-loss-message').textContent,
-      settingsLinkHref: document.getElementById('ios-data-loss-settings').getAttribute('href'),
+      noticeText: message.textContent,
+      settingsLinkHref: settingsLink.getAttribute('href'),
     });
     """
 
     private static let eraseReadingData = """
-    const until = async (condition, timeout = 30000) => {
+    const waitFor = async (findElement, description, timeout = 30000) => {
       const deadline = Date.now() + timeout;
       while (Date.now() < deadline) {
-        if (condition()) return;
+        const element = findElement();
+        if (element) return element;
         await new Promise((resolve) => setTimeout(resolve, 100));
       }
-      throw new Error('Timed out waiting for the in-app erase');
+      throw new Error(`Timed out waiting for ${description}`);
     };
-    document.querySelector('[data-view="data"]').click();
-    await until(() => !document.getElementById('view-data').hidden);
-    document.getElementById('btn-wipe').click();
-    await until(() => document.getElementById('ask').open);
-    document.getElementById('ask-ok').click();
-    await until(() => document.getElementById('save-report').textContent.toLowerCase().includes('erased'));
+    const settingsLink = await waitFor(() => document.querySelector('[data-view="data"]'), 'Backup & settings navigation');
+    settingsLink.click();
+    await waitFor(() => {
+      const view = document.getElementById('view-data');
+      return view && !view.hidden ? view : null;
+    }, 'Backup & settings view (#view-data)');
+    const wipeButton = await waitFor(() => document.getElementById('btn-wipe'), 'erase button (#btn-wipe)');
+    wipeButton.click();
+    await waitFor(() => {
+      const dialog = document.getElementById('ask');
+      return dialog && dialog.open ? dialog : null;
+    }, 'erase confirmation dialog (#ask)');
+    const confirmButton = await waitFor(() => document.getElementById('ask-ok'), 'confirmation button (#ask-ok)');
+    confirmButton.click();
+    const report = await waitFor(() => {
+      const element = document.getElementById('save-report');
+      return element && element.textContent.toLowerCase().includes('erased') ? element : null;
+    }, 'erase result (#save-report)');
+    const notice = await waitFor(() => document.getElementById('ios-data-loss-notice'), 'data-loss notice (#ios-data-loss-notice)');
     return JSON.stringify({
       readingDataPresent: localStorage.getItem('mrt.state.v2') !== null,
-      noticeHidden: document.getElementById('ios-data-loss-notice').hidden,
-      report: document.getElementById('save-report').textContent,
+      noticeHidden: notice.hidden,
+      report: report.textContent,
     });
     """
 

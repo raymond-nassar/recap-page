@@ -205,8 +205,23 @@ enum DebugSupport {
                 options: [.sortedKeys])
             handOffRecorder.accessibilityLabel = String(decoding: data, as: UTF8.self)
         } catch {
-            handOffRecorder.accessibilityLabel = "error: \(error.localizedDescription)"
+            handOffRecorder.accessibilityLabel = "error: \(Self.debugDescription(of: error))"
         }
+    }
+
+    private static func debugDescription(of error: Error) -> String {
+        let error = error as NSError
+        let keys = [
+            "WKJavaScriptExceptionMessage",
+            "WKJavaScriptExceptionLineNumber",
+            "WKJavaScriptExceptionColumnNumber",
+            "WKJavaScriptExceptionSourceURL",
+        ]
+        let details = keys.compactMap { key in
+            error.userInfo[key].map { "\(key)=\($0)" }
+        }
+        let summary = "\(error.domain) (\(error.code)): \(error.localizedDescription)"
+        return ([summary] + details).joined(separator: "; ")
     }
 
     /// Runs the script a UI test passed in, once, after the app page first finishes loading, and puts
@@ -227,7 +242,7 @@ enum DebugSupport {
         // /usr/lib/swift/libswiftWebKit.dylib".
         webView.__callAsyncJavaScript(script, arguments: [:], inFrame: nil, in: .page) { value, error in
             if let error {
-                label.accessibilityLabel = "error: \(error.localizedDescription)"
+                label.accessibilityLabel = "error: \(Self.debugDescription(of: error))"
             } else {
                 label.accessibilityLabel = (value as? String) ?? "error: the probe returned \(String(describing: value))"
             }
