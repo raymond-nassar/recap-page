@@ -6,7 +6,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { CLOUD_CLIENT_ARGUMENT, cloudClientInjection } from '../scripts/lib/cloud-client.mjs';
@@ -35,6 +35,7 @@ test('no build asks for a client configuration, none is committed, and a copy le
 
 test('a configuration is taken only as an absolute path outside the repository, checked as the host checks it', () => {
   const directory = mkdtempSync(join(tmpdir(), 'recap-cloud-client-'));
+  const outside = mkdtempSync(join(tmpdir(), 'recap-cloud-link-'));
   const saved = process.env.MRT_CLOUD_CLIENT_CONFIG;
   try {
     const good = join(directory, 'client.json');
@@ -60,9 +61,25 @@ test('a configuration is taken only as an absolute path outside the repository, 
     for (const path of [good, directory]) {
       assert.throws(() => cloudClientInjection([`${CLOUD_CLIENT_ARGUMENT}${path}`], directory), /outside this repository/, path);
     }
+    // A file at the root whose name begins with two dots is inside, and so is one reached through a link
+    // from outside: the rule reads whole segments of real paths (stage 2 review, L4). A junction stands in
+    // for the link, because Windows lets anyone make one.
+    const dotted = join(directory, '..cloud-client.json');
+    writeFileSync(dotted, CONFIG);
+    const inner = join(directory, 'inner');
+    mkdirSync(inner);
+    writeFileSync(join(inner, 'client.json'), CONFIG);
+    symlinkSync(inner, join(outside, 'link'), 'junction');
+    for (const path of [dotted, join(outside, 'link', 'client.json')]) {
+      assert.throws(() => cloudClientInjection([`${CLOUD_CLIENT_ARGUMENT}${path}`], directory), /outside this repository/, path);
+    }
+    assert.equal(cloudClientInjection([`${CLOUD_CLIENT_ARGUMENT}${join(outside, 'link', 'client.json')}`]).sha256,
+      createHash('sha256').update(CONFIG).digest('hex'), 'the same link is taken by this repository, which its target is outside');
   } finally {
     if (saved === undefined) delete process.env.MRT_CLOUD_CLIENT_CONFIG;
     else process.env.MRT_CLOUD_CLIENT_CONFIG = saved;
+    rmSync(join(outside, 'link'), { recursive: false, force: true });
+    rmSync(outside, { recursive: true, force: true });
     rmSync(directory, { recursive: true, force: true });
   }
 });
